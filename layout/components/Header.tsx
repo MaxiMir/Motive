@@ -1,8 +1,10 @@
 import React, { FC } from 'react'
 import { makeStyles } from '@material-ui/core/styles'
 import { AppBar, Button, IconButton } from '@material-ui/core/'
-import { AppBox } from '@/components/UI/AppBox'
-import { MenuIcon } from '@/components/UI/icons'
+import 'nprogress/nprogress.css'
+import { AppBox } from 'components/UI/AppBox'
+import { MenuIcon } from 'components/UI/icons'
+import { LINK } from 'link'
 
 export const Header: FC = () => {
   const classes = useStyles()
@@ -13,7 +15,9 @@ export const Header: FC = () => {
         <IconButton edge="start" color="inherit" aria-label="menu">
           <MenuIcon />
         </IconButton>
-        <Button className={classes.button}>Sign in</Button>
+        <Button className={classes.button} href={LINK.SIGN_IN}>
+          Sign in
+        </Button>
       </AppBox>
     </AppBar>
   )

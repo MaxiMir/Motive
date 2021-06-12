@@ -1,7 +1,7 @@
 import { FC } from 'react'
 import { makeStyles } from '@material-ui/core/styles'
 import { Typography } from '@material-ui/core'
-import { AppBox } from '@/components/UI/AppBox'
+import { AppBox } from 'components/UI/AppBox'
 
 export const AppIntro: FC = () => {
   const classes = useStyles()

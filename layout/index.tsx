@@ -2,7 +2,7 @@ import React, { FC } from 'react'
 import Head from 'next/head'
 import { Header } from './components/Header'
 import { Footer } from './components/Footer'
-import { theme } from '../theme'
+import { theme } from 'theme'
 
 export const Layout: FC = ({ children }) => {
   return (

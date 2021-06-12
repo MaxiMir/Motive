@@ -1,9 +1,9 @@
 import { FC } from 'react'
-import { Layout } from '../layout'
-import { AppIntro } from '@/components/AppIntro'
-import { Advantage } from '@/components/Advantage'
 import { useTheme } from '@material-ui/core'
-import { AppBox } from '@/components/UI/AppBox'
+import { Layout } from 'layout'
+import { AppIntro } from 'components/AppIntro'
+import { Advantage } from 'components/Advantage'
+import { AppBox } from 'components/UI/AppBox'
 
 const ADVANTAGES = [
   {
@@ -41,6 +41,7 @@ const Home: FC = () => {
           creative: palette.success,
           rating: {
             light: '#BDB5B5',
+            main: '',
             dark: '#1D1D1F',
           },
         }

@@ -8,19 +8,20 @@
     ],
     "allowJs": true,
     "skipLibCheck": true,
-    "strict": false,
-    "forceConsistentCasingInFileNames": true,
+    "strict": true, // Включить ли все строгие проверки типов сразу
+    "forceConsistentCasingInFileNames": true, // Запретить несогласованные ссылки на один и тот же файл
+    "allowSyntheticDefaultImports": true, // Разрешить импортировать модули не имеющие внутри себя "import default"
     "noEmit": true,
-    "esModuleInterop": true,
+    "esModuleInterop": true, // Не создавать итоговый файл
     "module": "esnext",
     "moduleResolution": "node",
     "resolveJsonModule": true,
     "isolatedModules": true,
+    "noFallthroughCasesInSwitch": true, // Сообщить об ошибке в случае обнаружения проваливания в конструкции switch-case
     "jsx": "preserve",
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
     "baseUrl": ".",
-    "paths": {
-      "@/components/*": ["components/*"]
-    }
   },
   "include": [
     "next-env.d.ts",

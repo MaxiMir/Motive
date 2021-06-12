@@ -1,6 +1,6 @@
 export { CatalogIcon } from './CatalogIcon'
 export { MenuIcon } from './MenuIcon'
 export { SearchIcon } from './SearchIcon'
-export { CupIcon } from './CupIcon'
-export { StarIcon } from './StarIcon'
+export { RatingIcon } from './RatingIcon'
+export { FavoritesIcon } from './FavoritesIcon'
 export { ProfileIcon } from './ProfileIcon'

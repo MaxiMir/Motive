@@ -1,11 +1,12 @@
 import { FC } from 'react'
+import Image from 'next/image'
 import {
   createStyles,
   SimplePaletteColorOptions,
   Typography,
 } from '@material-ui/core/'
 import { makeStyles } from '@material-ui/core/styles'
-import { AppBox } from '@/components/UI/AppBox'
+import { AppBox } from 'components/UI/AppBox'
 
 interface AdvantageProps {
   type: string
@@ -29,7 +30,7 @@ export const Advantage: FC<AdvantageProps> = ({
       className={classes.root}
     >
       <AppBox alignItems="center" spacing={3}>
-        <img src={`/images/${type}.png`} width={60} height={60} alt={type} />
+        <Image src={`/images/${type}.png`} width={60} height={60} alt={type} />
         <AppBox flexDirection="column" spacing={1}>
           <Typography variant="h5" className={classes.title}>
             {title}
@@ -52,6 +53,7 @@ const useStyles = makeStyles((theme) =>
     title: {
       width: 210,
       textTransform: 'uppercase',
+      fontWeight: 500,
     },
   }),
 )

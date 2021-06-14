@@ -1,9 +1,8 @@
 import React, { FC } from 'react'
 import { makeStyles } from '@material-ui/core/styles'
-import { AppBar, Button, IconButton } from '@material-ui/core/'
-import 'nprogress/nprogress.css'
+import { AppBar, Button } from '@material-ui/core/'
+import { AppMenu } from 'components/AppMenu'
 import { AppBox } from 'components/UI/AppBox'
-import { MenuIcon } from 'components/UI/icons'
 import { LINK } from 'link'
 
 export const Header: FC = () => {
@@ -12,9 +11,7 @@ export const Header: FC = () => {
   return (
     <AppBar position="static" className={classes.appBar}>
       <AppBox justifyContent="space-between">
-        <IconButton edge="start" color="inherit" aria-label="menu">
-          <MenuIcon />
-        </IconButton>
+        <AppMenu />
         <Button className={classes.button} href={LINK.SIGN_IN}>
           Sign in
         </Button>

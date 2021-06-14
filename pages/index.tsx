@@ -5,6 +5,8 @@ import { AppIntro } from 'components/AppIntro'
 import { Advantage } from 'components/Advantage'
 import { AppBox } from 'components/UI/AppBox'
 
+type Type = 'motivation' | 'creative' | 'support' | 'rating'
+
 const ADVANTAGES = [
   {
     type: 'motivation',
@@ -30,25 +32,32 @@ const ADVANTAGES = [
 
 const Home: FC = () => {
   const { palette } = useTheme()
+  const colors = {
+    motivation: {
+      start: palette.warning.light,
+      end: palette.warning.dark,
+    },
+    support: {
+      start: palette.info.light,
+      end: palette.info.dark,
+    },
+    creative: {
+      start: palette.success.light,
+      end: palette.success.dark,
+    },
+    rating: {
+      start: '#BDB5B5',
+      end: '#1D1D1F',
+    },
+  }
 
   return (
     <Layout>
       <AppIntro />
       {ADVANTAGES.map((advantage, key) => {
-        const colors = {
-          motivation: palette.warning,
-          support: palette.info,
-          creative: palette.success,
-          rating: {
-            light: '#BDB5B5',
-            main: '',
-            dark: '#1D1D1F',
-          },
-        }
-
         return (
           <AppBox style={{ height: 'calc((100vh - 290px ) / 4)' }} key={key}>
-            <Advantage {...advantage} color={colors[advantage.type]} />
+            <Advantage {...advantage} color={colors[advantage.type as Type]} />
           </AppBox>
         )
       })}

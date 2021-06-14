@@ -12,14 +12,14 @@ export const AppIntro: FC = () => {
       justifyContent="center"
       className={classes.root}
     >
-      <AppBox flexDirection="column">
+      <AppBox flexDirection="column" alignItems="center">
         <Typography
           variant="h4"
           align="center"
           component="h1"
           className={classes.header}
         >
-          Motive App
+          BE Better
         </Typography>
         <Typography align="center" className={classes.subheader}>
           your assistant to achieve your goals

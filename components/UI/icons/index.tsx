@@ -1,4 +1,4 @@
-export { CatalogIcon } from './CatalogIcon'
+export { TopOfTheDayIcon } from './TopOfTheDayIcon'
 export { MenuIcon } from './MenuIcon'
 export { SearchIcon } from './SearchIcon'
 export { RatingIcon } from './RatingIcon'

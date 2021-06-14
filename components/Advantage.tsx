@@ -1,18 +1,19 @@
 import { FC } from 'react'
 import Image from 'next/image'
-import {
-  createStyles,
-  SimplePaletteColorOptions,
-  Typography,
-} from '@material-ui/core/'
+import { Typography } from '@material-ui/core/'
 import { makeStyles } from '@material-ui/core/styles'
 import { AppBox } from 'components/UI/AppBox'
+
+interface Color {
+  start: string
+  end: string
+}
 
 interface AdvantageProps {
   type: string
   title: string
   subtitle: string
-  color: SimplePaletteColorOptions
+  color: Color
 }
 
 export const Advantage: FC<AdvantageProps> = ({
@@ -42,18 +43,16 @@ export const Advantage: FC<AdvantageProps> = ({
   )
 }
 
-const useStyles = makeStyles((theme) =>
-  createStyles({
-    root: {
-      width: '100%',
-      height: '100%',
-      background: (props: { color: SimplePaletteColorOptions }) =>
-        `linear-gradient(90deg, ${props.color.light} 0%, ${props.color.dark} 100%)`,
-    },
-    title: {
-      width: 210,
-      textTransform: 'uppercase',
-      fontWeight: 500,
-    },
-  }),
-)
+const useStyles = makeStyles({
+  root: {
+    width: '100%',
+    height: '100%',
+    background: (props: { color: Color }) =>
+      `linear-gradient(90deg, ${props.color.start} 0%, ${props.color.end} 100%)`,
+  },
+  title: {
+    width: 210,
+    textTransform: 'uppercase',
+    fontWeight: 500,
+  },
+})

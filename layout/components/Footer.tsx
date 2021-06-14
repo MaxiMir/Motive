@@ -4,7 +4,7 @@ import { makeStyles } from '@material-ui/core/styles'
 import { AppBox } from 'components/UI/AppBox'
 import { AppLink } from 'components/UI/AppLink'
 import {
-  CatalogIcon,
+  TopOfTheDayIcon,
   SearchIcon,
   RatingIcon,
   FavoritesIcon,
@@ -13,7 +13,7 @@ import {
 import { LINK } from 'link'
 
 const LINKS = [
-  { href: LINK.TOP_OF_THE_DAY, Icon: CatalogIcon },
+  { href: LINK.TOP_OF_THE_DAY, Icon: TopOfTheDayIcon },
   { href: LINK.SEARCH, Icon: SearchIcon },
   { href: LINK.RATING, Icon: RatingIcon },
   { href: LINK.FAVORITES, Icon: FavoritesIcon },

@@ -1,7 +1,7 @@
 import { FC } from 'react'
 import { SvgIcon, SvgIconProps } from '@material-ui/core'
 
-export const CatalogIcon: FC<SvgIconProps> = (props) => (
+export const TopOfTheDayIcon: FC<SvgIconProps> = (props) => (
   <SvgIcon {...props}>
     <rect
       x="1"
@@ -9,7 +9,7 @@ export const CatalogIcon: FC<SvgIconProps> = (props) => (
       width="14.6667"
       height="14.6667"
       rx="4"
-      fill="#303030"
+      fill="#121212"
       stroke="white"
       strokeWidth="2"
     />
@@ -19,7 +19,7 @@ export const CatalogIcon: FC<SvgIconProps> = (props) => (
       width="14.6667"
       height="14.6667"
       rx="4"
-      fill="#303030"
+      fill="#121212"
       stroke="white"
       strokeWidth="2"
     />
@@ -29,7 +29,7 @@ export const CatalogIcon: FC<SvgIconProps> = (props) => (
       width="14.6667"
       height="14.6667"
       rx="4"
-      fill="#303030"
+      fill="#121212"
       stroke="white"
       strokeWidth="2"
     />

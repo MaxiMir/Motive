@@ -19,7 +19,7 @@ export const AppIntro: FC = () => {
           component="h1"
           className={classes.header}
         >
-          BE Better
+          Be Better
         </Typography>
         <Typography align="center" className={classes.subheader}>
           your assistant to achieve your goals

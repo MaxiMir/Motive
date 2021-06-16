@@ -5,15 +5,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d25ef70e-284b-426d-b09e-54355338ab0b" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/components/AppMenu.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.eslintignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.prettierignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.eslintrc.js" beforeDir="false" afterPath="$PROJECT_DIR$/.eslintrc.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/Advantage.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/Advantage.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/components/AppIntro.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/AppIntro.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/UI/icons/CatalogIcon.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/UI/icons/TopOfTheDayIcon.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/UI/icons/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/UI/icons/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/layout/components/Footer.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/layout/components/Footer.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/layout/components/Header.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/layout/components/Header.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/pages/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/yarn.lock" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -98,6 +96,10 @@
       <workItem from="1623442585305" duration="6010000" />
       <workItem from="1623530820500" duration="868000" />
       <workItem from="1623572817303" duration="3789000" />
+      <workItem from="1623665044589" duration="46000" />
+      <workItem from="1623665474204" duration="17000" />
+      <workItem from="1623866219314" duration="2162000" />
+      <workItem from="1623868894616" duration="274000" />
     </task>
     <servers />
   </component>

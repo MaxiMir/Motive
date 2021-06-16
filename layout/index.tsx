@@ -3,8 +3,15 @@ import Head from 'next/head'
 import { Header } from './components/Header'
 import { Footer } from './components/Footer'
 import { theme } from 'theme'
+import { makeStyles } from '@material-ui/core/styles'
 
-export const Layout: FC = ({ children }) => {
+interface LayoutProps {
+  withPadding?: boolean
+}
+
+export const Layout: FC<LayoutProps> = ({ withPadding = true, children }) => {
+  const classes = useStyles({ withPadding })
+
   return (
     <>
       <Head>
@@ -21,8 +28,15 @@ export const Layout: FC = ({ children }) => {
         />
       </Head>
       <Header />
-      <main>{children}</main>
+      <main className={classes.main}>{children}</main>
       <Footer />
     </>
   )
 }
+
+const useStyles = makeStyles({
+  main: {
+    padding: (props: { withPadding: boolean }) =>
+      !props.withPadding ? '0' : '24px 16px 24px',
+  },
+})

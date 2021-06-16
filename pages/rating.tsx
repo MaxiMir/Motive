@@ -1,11 +1,11 @@
 import { FC } from 'react'
 import { Layout } from 'layout'
-import { AppLink } from 'components/UI/AppLink'
+import { AppHeader } from 'components/UI/AppHeader'
 
 const Rating: FC = () => {
   return (
     <Layout>
-      <AppLink href="/">Back</AppLink>
+      <AppHeader src="/images/rating.png">Rating</AppHeader>
     </Layout>
   )
 }

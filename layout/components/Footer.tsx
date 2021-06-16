@@ -13,11 +13,11 @@ import {
 import { LINK } from 'link'
 
 const LINKS = [
-  { href: LINK.TOP_OF_THE_DAY, Icon: TopOfTheDayIcon },
-  { href: LINK.SEARCH, Icon: SearchIcon },
-  { href: LINK.RATING, Icon: RatingIcon },
-  { href: LINK.FAVORITES, Icon: FavoritesIcon },
-  { href: LINK.PROFILE, Icon: ProfileIcon },
+  { href: LINK.TOP_OF_THE_DAY, Icon: TopOfTheDayIcon, title: 'top of the day' },
+  { href: LINK.SEARCH, Icon: SearchIcon, title: 'search' },
+  { href: LINK.RATING, Icon: RatingIcon, title: 'rating' },
+  { href: LINK.FAVORITES, Icon: FavoritesIcon, title: 'favorites' },
+  { href: LINK.PROFILE, Icon: ProfileIcon, title: 'profile' },
 ]
 
 export const Footer = () => {
@@ -33,11 +33,11 @@ export const Footer = () => {
         height="100%"
         padding={2}
       >
-        {LINKS.map(({ href, Icon }, key) => (
-          <AppLink href={href} key={key}>
+        {LINKS.map(({ href, title, Icon }, key) => (
+          <AppLink href={href} key={key} title={title}>
             <Icon
               fontSize="large"
-              className={pathname !== href ? undefined : classes.currentLink}
+              className={pathname !== href ? classes.link : classes.currentLink}
             />
           </AppLink>
         ))}
@@ -50,6 +50,12 @@ const useStyles = makeStyles({
   root: {
     height: 80,
     backgroundColor: '#121212',
+  },
+  link: {
+    transition: 'all .2s ease-in-out',
+    '&:hover': {
+      transform: 'scale(1.1)',
+    },
   },
   currentLink: {
     opacity: 0.6,

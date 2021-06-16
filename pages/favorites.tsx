@@ -1,13 +1,28 @@
 import { FC } from 'react'
+import { GetServerSideProps } from 'next'
+import Axios from 'lib/axios'
 import { Layout } from 'layout'
-import { AppLink } from 'components/UI/AppLink'
+import { AppHeader } from 'components/UI/AppHeader'
+import { Box } from '@material-ui/core'
 
-const Favorites: FC = () => {
+interface FavoritesProps {
+  favorites: Array<unknown>
+}
+
+const Favorites: FC<FavoritesProps> = ({ favorites }) => {
   return (
     <Layout>
-      <AppLink href="/">Back</AppLink>
+      <Box flexDirection="column">
+        <AppHeader src="/images/svg/favorites.svg">Favorites</AppHeader>
+      </Box>
     </Layout>
   )
+}
+
+export const getServerSideProps: GetServerSideProps = async () => {
+  // const data = await Axios.get('/favorites')
+
+  return { props: { favorites: [] } }
 }
 
 export default Favorites

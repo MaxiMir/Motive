@@ -5,7 +5,9 @@ import { AppLink } from 'components/UI/AppLink'
 const SignIn: FC = () => {
   return (
     <Layout>
-      <AppLink href="/">Back</AppLink>
+      <AppLink href="/" title="main">
+        Back
+      </AppLink>
     </Layout>
   )
 }

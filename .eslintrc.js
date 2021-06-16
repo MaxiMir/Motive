@@ -41,6 +41,7 @@ module.exports = {
       },
       plugins: ['@typescript-eslint'],
       rules: {
+        'react/prop-types': 'off',
         // Already handled by TS
         'no-dupe-class-members': 'off',
         'no-undef': 'off',
@@ -228,7 +229,6 @@ module.exports = {
     'use-isnan': 'warn',
     'valid-typeof': 'warn',
     'getter-return': 'warn',
-    'react/forbid-foreign-prop-types': ['warn', { allowInPropTypes: true }],
     'react/jsx-no-comment-textnodes': 'warn',
     'react/jsx-no-duplicate-props': 'warn',
     'react/jsx-no-target-blank': 'warn',

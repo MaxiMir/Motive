@@ -52,7 +52,7 @@ const Home: FC = () => {
   }
 
   return (
-    <Layout>
+    <Layout withPadding={false}>
       <AppIntro />
       {ADVANTAGES.map((advantage, key) => {
         return (

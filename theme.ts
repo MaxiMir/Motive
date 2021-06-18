@@ -22,6 +22,9 @@ export const theme = createMuiTheme({
       default: '#19191A',
       paper: '#1C1C1E',
     },
+    text: {
+      primary: '#F5F5F7',
+    },
   },
   overrides: {
     MuiCssBaseline: {

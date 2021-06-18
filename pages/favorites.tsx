@@ -1,26 +1,39 @@
 import { FC } from 'react'
+import dynamic from 'next/dynamic'
 import { GetServerSideProps } from 'next'
-import Axios from 'lib/axios'
+import { User } from 'dto/User'
 import { Layout } from 'layout'
 import { AppHeader } from 'components/UI/AppHeader'
-import { Box } from '@material-ui/core'
+import { AppBox } from '../components/UI/AppBox'
+
+const Typography = dynamic(() => import('@material-ui/core/Typography'))
 
 interface FavoritesProps {
-  favorites: Array<unknown>
+  favorites: Array<User>
 }
 
 const Favorites: FC<FavoritesProps> = ({ favorites }) => {
   return (
     <Layout>
-      <Box flexDirection="column">
+      <AppBox flexDirection="column" spacing={2}>
         <AppHeader src="/images/svg/favorites.svg">Favorites</AppHeader>
-      </Box>
+        {!favorites.length && (
+          <AppBox justifyContent="center" alignItems="center">
+            <AppBox flexDirection="column" alignItems="center" spacing={1}>
+              <Typography variant="h5" style={{ color: '#C8B1BB' }}>
+                The list is empty.
+              </Typography>
+              <Typography>Add people you are interested in</Typography>
+            </AppBox>
+          </AppBox>
+        )}
+      </AppBox>
     </Layout>
   )
 }
 
 export const getServerSideProps: GetServerSideProps = async () => {
-  // const data = await Axios.get('/favorites')
+  // const favorites = await Axios.get('/favorites')
 
   return { props: { favorites: [] } }
 }

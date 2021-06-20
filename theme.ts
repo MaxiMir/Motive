@@ -4,18 +4,21 @@ export const theme = createMuiTheme({
   palette: {
     type: 'dark',
     warning: {
+      // motivation
       light: '#FFE0B2',
-      main: '#ff9800',
-      dark: '#FF9800',
+      main: '#FF9800', // шрифт
+      dark: '#f57c00',
     },
     info: {
+      // support
       light: '#B3E5FC',
-      main: '#2196f3',
+      main: '#03A9F4', // шрифт
       dark: '#03A9F4',
     },
     success: {
+      // creativity
       light: '#D1C4E9',
-      main: '#BE9AFF',
+      main: '#BE9AFF', // шрифт
       dark: '#673AB7',
     },
     background: {

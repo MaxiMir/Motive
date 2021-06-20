@@ -11,7 +11,7 @@ import {
 } from '@material-ui/core'
 import { FavoritesIcon, MenuIcon } from './UI/icons'
 
-export const AppMenu: FC = () => {
+export const Menu: FC = () => {
   const classes = useStyles()
   const [open, setOpen] = useState(false)
 

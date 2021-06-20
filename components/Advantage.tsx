@@ -1,8 +1,8 @@
 import { FC } from 'react'
 import Image from 'next/image'
-import { Typography } from '@material-ui/core/'
 import { makeStyles } from '@material-ui/core/styles'
-import { AppBox } from 'components/UI/AppBox'
+import { Typography } from '@material-ui/core/'
+import AppBox from 'components/UI/AppBox'
 
 interface Color {
   start: string

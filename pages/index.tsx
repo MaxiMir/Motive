@@ -1,20 +1,25 @@
 import { FC } from 'react'
-import { useTheme } from '@material-ui/core'
-import { Layout } from 'layout'
-import { AppIntro } from 'components/AppIntro'
+import { CharacteristicType } from 'dto'
+import { useCharacteristicColor } from 'hook/useCharacteristicColor'
+import Layout from 'layout'
+import { Slogan } from 'components/Slogan'
 import { Advantage } from 'components/Advantage'
-import { AppBox } from 'components/UI/AppBox'
+import AppBox from 'components/UI/AppBox'
 
-type Type = 'motivation' | 'creative' | 'support' | 'rating'
+interface AdvantageItem {
+  type: CharacteristicType
+  title: string
+  subtitle: string
+}
 
-const ADVANTAGES = [
+const ADVANTAGES: AdvantageItem[] = [
   {
     type: 'motivation',
     title: 'Be motivational',
     subtitle: 'for yourself and others',
   },
   {
-    type: 'creative',
+    type: 'creativity',
     title: 'BE СREATIVE',
     subtitle: 'for yourself and others',
   },
@@ -24,40 +29,22 @@ const ADVANTAGES = [
     subtitle: 'to people in need',
   },
   {
-    type: 'rating',
+    type: 'completed',
     title: 'Rating',
     subtitle: 'And tear up the tops!',
   },
 ]
 
 const Home: FC = () => {
-  const { palette } = useTheme()
-  const colors = {
-    motivation: {
-      start: palette.warning.light,
-      end: palette.warning.dark,
-    },
-    support: {
-      start: palette.info.light,
-      end: palette.info.dark,
-    },
-    creative: {
-      start: palette.success.light,
-      end: palette.success.dark,
-    },
-    rating: {
-      start: '#BDB5B5',
-      end: '#1D1D1F',
-    },
-  }
+  const colors = useCharacteristicColor()
 
   return (
     <Layout withPadding={false}>
-      <AppIntro />
+      <Slogan />
       {ADVANTAGES.map((advantage, key) => {
         return (
           <AppBox style={{ height: 'calc((100vh - 290px ) / 4)' }} key={key}>
-            <Advantage {...advantage} color={colors[advantage.type as Type]} />
+            <Advantage {...advantage} color={colors[advantage.type]} />
           </AppBox>
         )
       })}

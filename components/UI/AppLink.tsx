@@ -4,11 +4,11 @@ import MaterialLink from '@material-ui/core/Link'
 
 interface AppLinkProps {
   href: string
-  title: string
+  title?: string
   className?: string
 }
 
-export const AppLink: FC<AppLinkProps> = ({
+const AppLink: FC<AppLinkProps> = ({
   href,
   title,
   children,
@@ -20,3 +20,5 @@ export const AppLink: FC<AppLinkProps> = ({
     </MaterialLink>
   </Link>
 )
+
+export default AppLink

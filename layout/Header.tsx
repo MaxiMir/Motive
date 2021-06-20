@@ -1,8 +1,8 @@
 import React, { FC } from 'react'
 import { makeStyles } from '@material-ui/core/styles'
 import { AppBar, Button } from '@material-ui/core/'
-import { AppMenu } from 'components/AppMenu'
-import { AppBox } from 'components/UI/AppBox'
+import { Menu } from 'components/Menu'
+import AppBox from 'components/UI/AppBox'
 import { LINK } from 'link'
 
 export const Header: FC = () => {
@@ -11,7 +11,7 @@ export const Header: FC = () => {
   return (
     <AppBar position="static" className={classes.appBar}>
       <AppBox justifyContent="space-between">
-        <AppMenu />
+        <Menu />
         <Button className={classes.button} href={LINK.SIGN_IN}>
           Sign in
         </Button>

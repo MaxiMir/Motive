@@ -1,8 +1,8 @@
 import * as React from 'react'
 import { useRouter } from 'next/router'
 import { makeStyles } from '@material-ui/core/styles'
-import { AppBox } from 'components/UI/AppBox'
-import { AppLink } from 'components/UI/AppLink'
+import AppBox from 'components/UI/AppBox'
+import AppLink from 'components/UI/AppLink'
 import {
   TopOfTheDayIcon,
   SearchIcon,

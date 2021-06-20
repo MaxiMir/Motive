@@ -1,17 +1,19 @@
 import { FC } from 'react'
 import dynamic from 'next/dynamic'
+import { User } from 'dto'
 
 const UserCardCompact = dynamic(() => import('./UserCardCompact'))
 
-interface UserCardProps {
-  view: 'compact'
-}
+export type View = 'compact'
+export type UserCardProps = User & { view: View }
 
-export const UserCard: FC<UserCardProps> = ({ view, ...restProps }) => {
-  switch (view) {
+const UserCard: FC<UserCardProps> = (props) => {
+  switch (props.view) {
     case 'compact':
-      return <UserCardCompact {...restProps} />
+      return <UserCardCompact {...props} />
     default:
       return <></>
   }
 }
+
+export default UserCard

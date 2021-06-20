@@ -1,6 +1,6 @@
 import { FC } from 'react'
-import { Layout } from 'layout'
-import { AppLink } from 'components/UI/AppLink'
+import Layout from 'layout'
+import AppLink from 'components/UI/AppLink'
 
 const SignIn: FC = () => {
   return (

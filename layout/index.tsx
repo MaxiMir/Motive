@@ -1,15 +1,15 @@
 import React, { FC } from 'react'
 import Head from 'next/head'
-import { Header } from './components/Header'
-import { Footer } from './components/Footer'
-import { theme } from 'theme'
 import { makeStyles } from '@material-ui/core/styles'
+import { Header } from './Header'
+import { Footer } from './Footer'
+import { theme } from 'theme'
 
 interface LayoutProps {
   withPadding?: boolean
 }
 
-export const Layout: FC<LayoutProps> = ({ withPadding = true, children }) => {
+const Layout: FC<LayoutProps> = ({ withPadding = true, children }) => {
   const classes = useStyles({ withPadding })
 
   return (
@@ -36,7 +36,11 @@ export const Layout: FC<LayoutProps> = ({ withPadding = true, children }) => {
 
 const useStyles = makeStyles({
   main: {
+    display: 'flex',
+    flexDirection: 'column',
     padding: (props: { withPadding: boolean }) =>
       !props.withPadding ? '0' : '24px 16px 24px',
   },
 })
+
+export default Layout

@@ -6,10 +6,9 @@ import {
   Divider,
   ListItem,
   IconButton,
-  ListItemIcon,
   ListItemText,
 } from '@material-ui/core'
-import { FavoritesIcon, MenuIcon } from './UI/icons'
+import { MenuIcon } from './UI/icons'
 
 export const Menu: FC = () => {
   const classes = useStyles()
@@ -41,22 +40,16 @@ export const Menu: FC = () => {
           onKeyDown={onKeyDown}
         >
           <List>
-            {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text) => (
+            {['How it works', 'Support'].map((text) => (
               <ListItem button key={text}>
-                <ListItemIcon>
-                  <FavoritesIcon />
-                </ListItemIcon>
                 <ListItemText primary={text} />
               </ListItem>
             ))}
           </List>
           <Divider />
           <List>
-            {['All mail', 'Trash', 'Spam'].map((text) => (
+            {['Exit'].map((text) => (
               <ListItem button key={text}>
-                <ListItemIcon>
-                  <FavoritesIcon />
-                </ListItemIcon>
                 <ListItemText primary={text} />
               </ListItem>
             ))}
@@ -69,6 +62,6 @@ export const Menu: FC = () => {
 
 const useStyles = makeStyles({
   list: {
-    width: 250,
+    width: 200,
   },
 })

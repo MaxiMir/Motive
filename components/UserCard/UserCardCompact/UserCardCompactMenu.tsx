@@ -1,14 +1,36 @@
-import { FC, useState, MouseEvent } from 'react'
+import { FC, useState, MouseEvent, useCallback } from 'react'
 import { createStyles, IconButton, Menu, MenuItem } from '@material-ui/core'
+import { useFavorite } from 'hook/useFavorite'
 import { makeStyles } from '@material-ui/core/styles'
 import MoreHorizIcon from '@material-ui/icons/MoreHoriz'
 
-const UserCardCompactMenu: FC = () => {
+interface UserCardCompactMenuProps {
+  id: string
+  link: string
+}
+
+const UserCardCompactMenu: FC<UserCardCompactMenuProps> = ({ id, link }) => {
   const classes = useStyles()
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null)
+  const [, onRemoveFromFavorite] = useFavorite(id)
 
   const onClick = (event: MouseEvent<HTMLElement>) => {
     setAnchorEl(event.currentTarget)
+  }
+
+  const onCopy = useCallback(async () => {
+    try {
+      await navigator.clipboard.writeText(link)
+    } catch (e) {
+      console.error('Something went wrong', e) // TODO
+    } finally {
+      onClose()
+    }
+  }, [link])
+
+  const onRemove = () => {
+    onRemoveFromFavorite()
+    onClose()
   }
 
   const onClose = () => {
@@ -35,8 +57,8 @@ const UserCardCompactMenu: FC = () => {
         open={!!anchorEl}
         onClose={onClose}
       >
-        <MenuItem onClick={onClose}>Copy Link</MenuItem>
-        <MenuItem onClick={onClose}>Remove from Favorites</MenuItem>
+        <MenuItem onClick={onCopy}>Copy Link</MenuItem>
+        <MenuItem onClick={onRemove}>Remove from Favorites</MenuItem>
       </Menu>
     </>
   )

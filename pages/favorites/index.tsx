@@ -14,20 +14,18 @@ interface FavoritesProps {
   favorites: User[]
 }
 
-const Favorites: FC<FavoritesProps> = ({ favorites }) => {
-  return (
-    <Layout>
-      <AppBox mb={3}>
-        <AppHeader src="/images/svg/favorites.svg">Favorites</AppHeader>
-      </AppBox>
-      {!favorites.length ? (
-        <EmptyList />
-      ) : (
-        <UserCardList list={favorites} view="compact" />
-      )}
-    </Layout>
-  )
-}
+const Favorites: FC<FavoritesProps> = ({ favorites }) => (
+  <Layout>
+    <AppBox mb={3}>
+      <AppHeader src="/images/svg/favorites.svg">Favorites</AppHeader>
+    </AppBox>
+    {!favorites.length ? (
+      <EmptyList />
+    ) : (
+      <UserCardList list={favorites} view="compact" />
+    )}
+  </Layout>
+)
 
 export const getServerSideProps: GetServerSideProps = async () => {
   const { data } = await Axios.get('/favorites')

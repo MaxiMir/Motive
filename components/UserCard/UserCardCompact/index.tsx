@@ -1,4 +1,4 @@
-import { FC } from 'react'
+import { FC, Fragment } from 'react'
 import Image from 'next/image'
 import { Typography } from '@material-ui/core/'
 import { makeStyles } from '@material-ui/core/styles'
@@ -19,6 +19,7 @@ const Types: CharacteristicType[] = [
 ]
 
 const UserCardCompact: FC<UserCardProps> = ({
+  id,
   avatar,
   link,
   name,
@@ -45,20 +46,19 @@ const UserCardCompact: FC<UserCardProps> = ({
               {name}
             </Typography>
           </AppLink>
-          <UserCardCompactMenu />
+          <UserCardCompactMenu id={id} link={link} />
         </AppBox>
         <AppBox justifyContent="space-between" alignItems="center">
           {Types.map((type, index) => (
-            <>
+            <Fragment key={index}>
               <UserCharacteristic
                 type={type}
                 value={characteristic[type]}
                 color={colors[type].fontColor}
                 view="compact"
-                key={index}
               />
               {index !== Types.length - 1 && <AppDot />}
-            </>
+            </Fragment>
           ))}
         </AppBox>
       </AppBox>
@@ -69,6 +69,9 @@ const UserCardCompact: FC<UserCardProps> = ({
 const useStyles = makeStyles({
   avatar: {
     borderRadius: '50%',
+    '&:hover': {
+      border: '1px solid red',
+    },
   },
 })
 

@@ -1,9 +1,8 @@
-import { FC } from 'react'
 import { createStyles, makeStyles } from '@material-ui/core/styles'
 import { Typography } from '@material-ui/core'
 import AppBox from 'components/UI/AppBox'
 
-export const Slogan: FC = () => {
+export const Slogan = () => {
   const classes = useStyles()
 
   return (

@@ -1,14 +1,13 @@
-import { FC } from 'react'
 import { User } from 'dto'
-import UserCard, { View } from './UserCard'
+import UserCard, { UserCardView } from './UserCard'
 import AppList from 'components/UI/AppList'
 
 interface UserCardListProps {
   list: User[]
-  view: View
+  view: UserCardView
 }
 
-const UserCardList: FC<UserCardListProps> = ({ list, view }) => (
+const UserCardList = ({ list, view }: UserCardListProps) => (
   <AppList<User>
     elements={list}
     spacing={4}

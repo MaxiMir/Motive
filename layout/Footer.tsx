@@ -10,14 +10,18 @@ import {
   FavoritesIcon,
   ProfileIcon,
 } from 'components/UI/icons'
-import { LINK } from 'link'
+import { ROUTE } from 'route'
 
 const LINKS = [
-  { href: LINK.TOP_OF_THE_DAY, Icon: TopOfTheDayIcon, title: 'top of the day' },
-  { href: LINK.SEARCH, Icon: SearchIcon, title: 'search' },
-  { href: LINK.RATING, Icon: RatingIcon, title: 'rating' },
-  { href: LINK.FAVORITES, Icon: FavoritesIcon, title: 'favorites' },
-  { href: LINK.PROFILE, Icon: ProfileIcon, title: 'profile' },
+  {
+    href: ROUTE.TOP_OF_THE_DAY,
+    Icon: TopOfTheDayIcon,
+    title: 'top of the day',
+  },
+  { href: ROUTE.SEARCH, Icon: SearchIcon, title: 'search' },
+  { href: ROUTE.RATING, Icon: RatingIcon, title: 'rating' },
+  { href: ROUTE.FAVORITES, Icon: FavoritesIcon, title: 'favorites' },
+  { href: ROUTE.PROFILE, Icon: ProfileIcon, title: 'profile' },
 ]
 
 export const Footer = () => {

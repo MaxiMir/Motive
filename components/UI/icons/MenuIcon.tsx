@@ -1,7 +1,6 @@
-import { FC } from 'react'
 import { SvgIcon, SvgIconProps } from '@material-ui/core'
 
-export const MenuIcon: FC<SvgIconProps> = (props) => (
+export const MenuIcon = (props: SvgIconProps) => (
   <SvgIcon {...props}>
     <line y1="19" x2="24" y2="19" stroke="white" strokeWidth="2" />
     <line y1="10" x2="24" y2="10" stroke="white" strokeWidth="2" />

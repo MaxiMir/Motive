@@ -1,4 +1,4 @@
-import { ChangeEvent, FC, useState } from 'react'
+import { ChangeEvent, useState } from 'react'
 import { createStyles, Tab, Tabs } from '@material-ui/core'
 import { makeStyles } from '@material-ui/core/styles'
 
@@ -8,7 +8,7 @@ interface AppTabsProps {
   ariaLabel: string
 }
 
-const AppTabs: FC<AppTabsProps> = ({ tabs, content, ariaLabel }) => {
+const AppTabs = ({ tabs, content, ariaLabel }: AppTabsProps) => {
   const [value, setValue] = useState(0)
   const classes = useStyles()
 
@@ -26,9 +26,7 @@ const AppTabs: FC<AppTabsProps> = ({ tabs, content, ariaLabel }) => {
       <Tabs
         value={value}
         aria-label={ariaLabel}
-        classes={{
-          indicator: classes.indicator,
-        }}
+        classes={{ indicator: classes.indicator }}
         variant="fullWidth"
         onChange={onChange}
       >

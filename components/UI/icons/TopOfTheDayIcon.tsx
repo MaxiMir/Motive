@@ -1,7 +1,6 @@
-import { FC } from 'react'
 import { SvgIcon, SvgIconProps } from '@material-ui/core'
 
-export const TopOfTheDayIcon: FC<SvgIconProps> = (props) => (
+export const TopOfTheDayIcon = (props: SvgIconProps) => (
   <SvgIcon {...props}>
     <rect
       x="1"

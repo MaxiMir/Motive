@@ -1,19 +1,38 @@
-import { FC } from 'react'
 import dynamic from 'next/dynamic'
-import { User } from 'dto'
+import {
+  CharacteristicColor,
+  useCharacteristicColor,
+} from 'hook/useCharacteristicColor'
+import { Characteristic, User } from 'dto'
 
-const UserCardCompact = dynamic(() => import('./UserCardCompact'))
+const UserCardFavorite = dynamic(() => import('./UserCardFavorite'))
+const UserCardRating = dynamic(() => import('./UserCardRating'))
 
-export type View = 'compact'
-export type UserCardProps = User & { view: View }
+export type UserCardView = 'favorite' | 'rating'
 
-const UserCard: FC<UserCardProps> = (props) => {
-  switch (props.view) {
-    case 'compact':
-      return <UserCardCompact {...props} />
-    default:
-      return <></>
+interface UserBaseProps extends User {
+  type?: Characteristic
+  view: UserCardView
+}
+
+export interface UserProps extends UserBaseProps {
+  colors: CharacteristicColor
+}
+
+const UserCard = (props: UserBaseProps) => {
+  const colors = useCharacteristicColor()
+  const Component = getComponent()
+
+  function getComponent() {
+    switch (props.view) {
+      case 'favorite':
+        return UserCardFavorite
+      case 'rating':
+        return UserCardRating
+    }
   }
+
+  return <Component {...props} colors={colors} />
 }
 
 export default UserCard

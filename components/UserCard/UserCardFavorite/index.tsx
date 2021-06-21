@@ -1,32 +1,31 @@
-import { FC, Fragment } from 'react'
+import { Fragment } from 'react'
 import Image from 'next/image'
 import { Typography } from '@material-ui/core/'
 import { makeStyles } from '@material-ui/core/styles'
-import { useCharacteristicColor } from 'hook/useCharacteristicColor'
-import { CharacteristicType } from 'dto'
-import { UserCardProps } from '../index'
-import UserCharacteristic from 'components/UserCharacteristic'
-import UserCardCompactMenu from './UserCardCompactMenu'
+import { Characteristic } from 'dto'
+import { UserProps } from '../index'
+import UserCardCharacteristic from './UserCardCharacteristic'
+import UserCardMenu from './UserCardMenu'
 import AppBox from 'components/UI/AppBox'
 import AppLink from 'components/UI/AppLink'
 import AppDot from 'components/UI/AppDot'
 
-const Types: CharacteristicType[] = [
+const CHARACTERISTICS: Characteristic[] = [
   'motivation',
   'creativity',
   'support',
   'completed',
 ]
 
-const UserCardCompact: FC<UserCardProps> = ({
+const UserCardFavorite = ({
   id,
   avatar,
   link,
   name,
   characteristic,
-}) => {
+  colors,
+}: UserProps) => {
   const classes = useStyles()
-  const colors = useCharacteristicColor()
 
   return (
     <AppBox spacing={1}>
@@ -46,18 +45,17 @@ const UserCardCompact: FC<UserCardProps> = ({
               {name}
             </Typography>
           </AppLink>
-          <UserCardCompactMenu id={id} link={link} />
+          <UserCardMenu id={id} link={link} />
         </AppBox>
         <AppBox justifyContent="space-between" alignItems="center">
-          {Types.map((type, index) => (
+          {CHARACTERISTICS.map((name, index) => (
             <Fragment key={index}>
-              <UserCharacteristic
-                type={type}
-                value={characteristic[type]}
-                color={colors[type].fontColor}
-                view="compact"
+              <UserCardCharacteristic
+                characteristic={name}
+                value={characteristic[name]}
+                color={colors[name].fontColor}
               />
-              {index !== Types.length - 1 && <AppDot />}
+              {index !== CHARACTERISTICS.length - 1 && <AppDot />}
             </Fragment>
           ))}
         </AppBox>
@@ -69,10 +67,7 @@ const UserCardCompact: FC<UserCardProps> = ({
 const useStyles = makeStyles({
   avatar: {
     borderRadius: '50%',
-    '&:hover': {
-      border: '1px solid red',
-    },
   },
 })
 
-export default UserCardCompact
+export default UserCardFavorite

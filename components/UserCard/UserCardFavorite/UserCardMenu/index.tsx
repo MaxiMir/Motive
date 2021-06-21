@@ -1,15 +1,15 @@
-import { FC, useState, MouseEvent, useCallback } from 'react'
+import { useState, MouseEvent, useCallback } from 'react'
 import { createStyles, IconButton, Menu, MenuItem } from '@material-ui/core'
 import { useFavorite } from 'hook/useFavorite'
 import { makeStyles } from '@material-ui/core/styles'
 import MoreHorizIcon from '@material-ui/icons/MoreHoriz'
 
-interface UserCardCompactMenuProps {
+interface UserCardFavoriteMenuProps {
   id: string
   link: string
 }
 
-const UserCardCompactMenu: FC<UserCardCompactMenuProps> = ({ id, link }) => {
+const UserCardMenu = ({ id, link }: UserCardFavoriteMenuProps) => {
   const classes = useStyles()
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null)
   const [, onRemoveFromFavorite] = useFavorite(id)
@@ -76,4 +76,4 @@ const useStyles = makeStyles((theme) =>
   }),
 )
 
-export default UserCardCompactMenu
+export default UserCardMenu

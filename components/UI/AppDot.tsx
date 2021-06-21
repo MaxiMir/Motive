@@ -1,4 +1,3 @@
-import { FC } from 'react'
 import { makeStyles } from '@material-ui/core/styles'
 import AppBox from './AppBox'
 
@@ -6,7 +5,7 @@ interface AppDotProps {
   size?: number
 }
 
-const AppDot: FC<AppDotProps> = ({ size = 3 }) => {
+const AppDot = ({ size = 3 }: AppDotProps) => {
   const classes = useStyles()
 
   return <AppBox width={size} height={size} className={classes.root} />

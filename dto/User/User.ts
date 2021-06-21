@@ -5,5 +5,7 @@ export interface User {
   name: string
   link: string
   avatar: string
-  characteristic: Characteristic
+  characteristic: {
+    [k in Characteristic]: number
+  }
 }

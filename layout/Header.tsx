@@ -1,18 +1,18 @@
-import React, { FC } from 'react'
+import React from 'react'
 import { makeStyles } from '@material-ui/core/styles'
 import { AppBar, Button } from '@material-ui/core/'
 import { Menu } from 'components/Menu'
 import AppBox from 'components/UI/AppBox'
-import { LINK } from 'link'
+import { ROUTE } from 'route'
 
-export const Header: FC = () => {
+export const Header = () => {
   const classes = useStyles()
 
   return (
     <AppBar position="static" className={classes.appBar}>
       <AppBox justifyContent="space-between">
         <Menu />
-        <Button className={classes.button} href={LINK.SIGN_IN}>
+        <Button className={classes.button} href={ROUTE.SIGN_IN}>
           Sign in
         </Button>
       </AppBox>

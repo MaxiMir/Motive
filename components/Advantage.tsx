@@ -1,8 +1,8 @@
-import { FC } from 'react'
-import Image from 'next/image'
 import { makeStyles } from '@material-ui/core/styles'
 import { Typography } from '@material-ui/core/'
+import { Characteristic } from 'dto'
 import AppBox from 'components/UI/AppBox'
+import AppCharacteristic from './UI/AppCharacteristic'
 
 interface Color {
   start: string
@@ -10,18 +10,18 @@ interface Color {
 }
 
 interface AdvantageProps {
-  type: string
+  characteristic: Characteristic
   title: string
   subtitle: string
   color: Color
 }
 
-export const Advantage: FC<AdvantageProps> = ({
-  type,
+export const Advantage = ({
+  characteristic,
   title,
   subtitle,
   color,
-}) => {
+}: AdvantageProps) => {
   const classes = useStyles({ color })
 
   return (
@@ -31,7 +31,7 @@ export const Advantage: FC<AdvantageProps> = ({
       className={classes.root}
     >
       <AppBox alignItems="center" spacing={3}>
-        <Image src={`/images/${type}.png`} width={60} height={60} alt={type} />
+        <AppCharacteristic name={characteristic} variant="h2" />
         <AppBox flexDirection="column" spacing={1}>
           <Typography variant="h5" className={classes.title}>
             {title}

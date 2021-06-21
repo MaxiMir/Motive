@@ -1,4 +1,4 @@
-export type CharacteristicType =
+export type Characteristic =
   | 'motivation'
   | 'creativity'
   | 'support'

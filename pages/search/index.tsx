@@ -1,8 +1,7 @@
-import { FC } from 'react'
 import Layout from 'layout'
 import AppLink from 'components/UI/AppLink'
 
-const TopOfTheDay: FC = () => {
+const Search = () => {
   return (
     <Layout>
       <AppLink href="/" title="main">
@@ -12,4 +11,4 @@ const TopOfTheDay: FC = () => {
   )
 }
 
-export default TopOfTheDay
+export default Search

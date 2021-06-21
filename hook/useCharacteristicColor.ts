@@ -31,3 +31,5 @@ export const useCharacteristicColor = () => {
     },
   }
 }
+
+export type CharacteristicColor = ReturnType<typeof useCharacteristicColor>

@@ -1,4 +1,4 @@
-import React, { FC, useState } from 'react'
+import React, { useState } from 'react'
 import { makeStyles } from '@material-ui/core/styles'
 import {
   Drawer,
@@ -10,7 +10,7 @@ import {
 } from '@material-ui/core'
 import { MenuIcon } from './UI/icons'
 
-export const Menu: FC = () => {
+export const Menu = () => {
   const classes = useStyles()
   const [open, setOpen] = useState(false)
 

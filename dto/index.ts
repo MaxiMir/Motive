@@ -1,3 +1,3 @@
-export type { Characteristic } from './Characteristic'
-export type { CharacteristicType } from './CharacteristicType'
-export type { User } from './User'
+export type { RatingPage } from './Page/RatingPage'
+export type { Characteristic } from './User/Characteristic'
+export type { User } from './User/User'

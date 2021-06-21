@@ -5,17 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d25ef70e-284b-426d-b09e-54355338ab0b" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/components/UI/AppTooltip.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/hook/useFavorite.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/__temp__/4.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/__temp__/6.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/components/UI/AppTabs.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/components/Menu.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/Menu.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/UserCard/UserCardCompact/UserCardCompactMenu.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/UserCard/UserCardCompact/UserCardCompactMenu.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/UserCard/UserCardCompact/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/UserCard/UserCardCompact/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/UserCharacteristic/UserCharacteristicCompact/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/UserCharacteristic/UserCharacteristicCompact/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/api/favorites.ts" beforeDir="false" afterPath="$PROJECT_DIR$/pages/api/favorites.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/favorites/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/pages/favorites/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/rating.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/pages/rating.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -45,7 +39,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="add_unversioned_files" value="$PROJECT_DIR$/node_modules/@material-ui/core/Box/Box.d.ts&#10;/Users/user/WebstormProjects/motive/.env.local" />
+    <property name="add_unversioned_files" value="$PROJECT_DIR$/node_modules/@material-ui/core/Box/Box.d.ts&#10;/Users/user/WebstormProjects/motive/.env.local&#10;/Users/user/WebstormProjects/motive/yarn-error.log" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/public/__temp__" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.standard" value="true" />
@@ -112,7 +106,9 @@
       <workItem from="1624044743872" duration="6163000" />
       <workItem from="1624087933814" duration="2561000" />
       <workItem from="1624130711234" duration="13676000" />
-      <workItem from="1624187271451" duration="4038000" />
+      <workItem from="1624187271451" duration="7926000" />
+      <workItem from="1624254259279" duration="37000" />
+      <workItem from="1624263102156" duration="415000" />
     </task>
     <servers />
   </component>

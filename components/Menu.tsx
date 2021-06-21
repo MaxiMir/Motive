@@ -40,11 +40,13 @@ export const Menu: FC = () => {
           onKeyDown={onKeyDown}
         >
           <List>
-            {['How it works', 'Support'].map((text) => (
-              <ListItem button key={text}>
-                <ListItemText primary={text} />
-              </ListItem>
-            ))}
+            {['News', 'How it works', 'Next Features', 'Support'].map(
+              (text) => (
+                <ListItem button key={text}>
+                  <ListItemText primary={text} />
+                </ListItem>
+              ),
+            )}
           </List>
           <Divider />
           <List>

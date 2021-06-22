@@ -3,12 +3,16 @@ import { GetServerSideProps } from 'next'
 import Axios from 'lib/axios'
 import { ROUTE } from 'route'
 import { User } from 'dto'
+import { AppListProps } from 'components/UI/AppList'
 import Layout from 'layout'
 import AppBox from 'components/UI/AppBox'
 import AppHeader from 'components/UI/AppHeader'
+import UserCard from 'components/UserCard'
 
 const EmptyList = dynamic(() => import('./EmptyList'))
-const UserCardList = dynamic(() => import('components/UserCardList'))
+const AppList = dynamic<AppListProps<User>>(
+  () => import('components/UI/AppList'),
+)
 
 interface FavoritesProps {
   favorites: User[]
@@ -22,7 +26,11 @@ const Favorites = ({ favorites }: FavoritesProps) => (
     {!favorites.length ? (
       <EmptyList />
     ) : (
-      <UserCardList list={favorites} view="favorite" />
+      <AppList
+        elements={favorites}
+        spacing={4}
+        render={(el) => <UserCard {...el} view="favorite" />}
+      />
     )}
   </Layout>
 )

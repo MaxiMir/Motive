@@ -12,6 +12,7 @@ export type UserCardView = 'favorite' | 'rating'
 
 interface UserBaseProps extends User {
   type?: Characteristic
+  index: number
   view: UserCardView
 }
 

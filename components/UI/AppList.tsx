@@ -1,16 +1,16 @@
 import { Fragment } from 'react'
 import AppBox, { Spacing } from './AppBox'
 
-interface AppListProps<T> {
+export interface AppListProps<T> {
   elements: T[]
-  render: (element: T) => JSX.Element
+  render: (element: T, index: number) => JSX.Element
   spacing?: Spacing
 }
 
 const AppList = <T,>({ elements, render, spacing }: AppListProps<T>) => (
   <AppBox flexDirection="column" spacing={spacing}>
     {elements.map((element, key) => (
-      <Fragment key={key}>{render(element)}</Fragment>
+      <Fragment key={key}>{render(element, key)}</Fragment>
     ))}
   </AppBox>
 )

@@ -29,7 +29,7 @@ const UserCardFavorite = ({
 
   return (
     <AppBox spacing={1}>
-      <AppLink href={link}>
+      <AppLink href={link} className={classes.avatarLink}>
         <Image
           src={avatar}
           width={55}
@@ -65,6 +65,9 @@ const UserCardFavorite = ({
 }
 
 const useStyles = makeStyles({
+  avatarLink: {
+    height: 55,
+  },
   avatar: {
     borderRadius: '50%',
   },

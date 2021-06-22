@@ -29,7 +29,9 @@ const Rating = ({ motivation, creativity, support }: RatingPage) => (
             <AppList<User>
               elements={list}
               spacing={4}
-              render={(el) => <UserCard {...el} type={type} view="rating" />}
+              render={(el, index) => (
+                <UserCard {...el} type={type} index={index} view="rating" />
+              )}
               key={index}
             />
           ),

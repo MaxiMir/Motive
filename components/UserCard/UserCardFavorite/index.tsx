@@ -3,7 +3,7 @@ import Image from 'next/image'
 import { Typography } from '@material-ui/core/'
 import { makeStyles } from '@material-ui/core/styles'
 import { Characteristic } from 'dto'
-import { UserProps } from '../index'
+import { UserCardProps } from '../index'
 import UserCardCharacteristic from './UserCardCharacteristic'
 import UserCardMenu from './UserCardMenu'
 import AppBox from 'components/UI/AppBox'
@@ -24,7 +24,7 @@ const UserCardFavorite = ({
   name,
   characteristic,
   colors,
-}: UserProps) => {
+}: UserCardProps<{}>) => {
   const classes = useStyles()
 
   return (

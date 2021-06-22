@@ -3,14 +3,20 @@ import Head from 'next/head'
 import { makeStyles } from '@material-ui/core/styles'
 import { Header } from './Header'
 import { Footer } from './Footer'
+import AppBox from 'components/UI/AppBox'
 import { theme } from 'theme'
 
 interface LayoutProps {
-  withPadding?: boolean
+  withVerticalPadding?: boolean
+  withHorizontalPadding?: boolean
 }
 
-const Layout: FC<LayoutProps> = ({ withPadding = true, children }) => {
-  const classes = useStyles({ withPadding })
+const Layout: FC<LayoutProps> = ({
+  withVerticalPadding = true,
+  withHorizontalPadding = true,
+  children,
+}) => {
+  const classes = useStyles()
 
   return (
     <>
@@ -28,18 +34,24 @@ const Layout: FC<LayoutProps> = ({ withPadding = true, children }) => {
         />
       </Head>
       <Header />
-      <main className={classes.main}>{children}</main>
+      <AppBox
+        className={classes.content}
+        paddingX={!withHorizontalPadding ? undefined : 2}
+        paddingY={withVerticalPadding ? undefined : 3}
+      >
+        {children}
+      </AppBox>
       <Footer />
     </>
   )
 }
 
 const useStyles = makeStyles({
-  main: {
+  content: {
     display: 'flex',
     flexDirection: 'column',
-    padding: (props: { withPadding: boolean }) =>
-      !props.withPadding ? '0' : '24px 16px 24px',
+    flex: 1,
+    'min-height': 'calc(100vh - 170px)',
   },
 })
 

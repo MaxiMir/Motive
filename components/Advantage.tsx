@@ -2,7 +2,7 @@ import { makeStyles } from '@material-ui/core/styles'
 import { Typography } from '@material-ui/core/'
 import { Characteristic } from 'dto'
 import AppBox from 'components/UI/AppBox'
-import AppCharacteristic from './UI/AppCharacteristic'
+import AppEmoji from 'components/UI/AppEmoji'
 
 interface Color {
   start: string
@@ -31,7 +31,7 @@ export const Advantage = ({
       className={classes.root}
     >
       <AppBox alignItems="center" spacing={3}>
-        <AppCharacteristic name={characteristic} variant="h2" />
+        <AppEmoji name={characteristic} variant="h2" />
         <AppBox flexDirection="column" spacing={1}>
           <Typography variant="h5" className={classes.title}>
             {title}

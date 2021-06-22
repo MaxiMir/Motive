@@ -1,15 +1,15 @@
 import { FC } from 'react'
-import Image from 'next/image'
 import { Typography } from '@material-ui/core'
+import AppEmoji, { AppEmojiName } from 'components/UI/AppEmoji'
 import AppBox from './AppBox'
 
 interface AppHeaderProps {
-  src: string
+  name: AppEmojiName
 }
 
-const AppHeader: FC<AppHeaderProps> = ({ src, children }) => (
+const AppHeader: FC<AppHeaderProps> = ({ name, children }) => (
   <AppBox alignItems="center" spacing={1}>
-    <Image src={src} width={32} height={32} alt="header icon" />
+    <AppEmoji name={name} variant="h4" />
     <Typography variant="h4" component="h1">
       {children}
     </Typography>

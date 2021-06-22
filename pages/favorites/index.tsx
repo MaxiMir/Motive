@@ -21,7 +21,7 @@ interface FavoritesProps {
 const Favorites = ({ favorites }: FavoritesProps) => (
   <Layout>
     <AppBox mb={3}>
-      <AppHeader src="/images/svg/favorites.svg">Favorites</AppHeader>
+      <AppHeader name="favorite-active">Favorites</AppHeader>
     </AppBox>
     {!favorites.length ? (
       <EmptyList />
@@ -29,7 +29,9 @@ const Favorites = ({ favorites }: FavoritesProps) => (
       <AppList
         elements={favorites}
         spacing={4}
-        render={(el) => <UserCard {...el} view="favorite" />}
+        render={(el, index) => (
+          <UserCard {...el} index={index} view="favorite" />
+        )}
       />
     )}
   </Layout>

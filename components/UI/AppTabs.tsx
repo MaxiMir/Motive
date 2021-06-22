@@ -1,6 +1,7 @@
 import { ChangeEvent, useState } from 'react'
 import { createStyles, Tab, Tabs } from '@material-ui/core'
 import { makeStyles } from '@material-ui/core/styles'
+import AppBox from './AppBox'
 
 interface AppTabsProps {
   tabs: string[] | JSX.Element[]
@@ -23,17 +24,19 @@ const AppTabs = ({ tabs, content, ariaLabel }: AppTabsProps) => {
 
   return (
     <>
-      <Tabs
-        value={value}
-        aria-label={ariaLabel}
-        classes={{ indicator: classes.indicator }}
-        variant="fullWidth"
-        onChange={onChange}
-      >
-        {tabs.map((tab, index) => (
-          <Tab label={tab} {...a11yProps(index)} key={index} />
-        ))}
-      </Tabs>
+      <AppBox paddingX={2}>
+        <Tabs
+          value={value}
+          aria-label={ariaLabel}
+          classes={{ indicator: classes.indicator }}
+          variant="fullWidth"
+          onChange={onChange}
+        >
+          {tabs.map((tab, index) => (
+            <Tab label={tab} {...a11yProps(index)} key={index} />
+          ))}
+        </Tabs>
+      </AppBox>
       {content.map((content, index) => (
         <div
           role="tabpanel"

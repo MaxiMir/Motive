@@ -1,12 +1,20 @@
 import Image from 'next/image'
 import { makeStyles } from '@material-ui/core/styles'
 import { Typography } from '@material-ui/core/'
-import { UserProps } from '../index'
+import { UserCardProps } from '../index'
 import AppBox from 'components/UI/AppBox'
 import AppLink from 'components/UI/AppLink'
 
-const UserCardRating = ({ avatar, link, name, index }: UserProps) => {
-  const classes = useStyles()
+const UserCardRating = ({
+  avatar,
+  link,
+  name,
+  index,
+  characteristic,
+  type,
+  colors,
+}: UserCardProps) => {
+  const classes = useStyles({ isOdd: index % 2 === 0 })
   const number = getNumber()
 
   function getNumber() {
@@ -25,8 +33,13 @@ const UserCardRating = ({ avatar, link, name, index }: UserProps) => {
   }
 
   return (
-    <AppBox alignItems="center" spacing={1}>
-      <AppBox justifyContent="center" width={22}>
+    <AppBox
+      alignItems="center"
+      spacing={1}
+      className={classes.root}
+      paddingX={2}
+    >
+      <AppBox justifyContent="center" width={22} marginRight={4}>
         <Typography variant={index <= 2 ? 'h5' : undefined} align="center">
           {number}
         </Typography>
@@ -34,8 +47,8 @@ const UserCardRating = ({ avatar, link, name, index }: UserProps) => {
       <AppLink href={link} className={classes.avatarLink}>
         <Image
           src={avatar}
-          width={30}
-          height={30}
+          width={35}
+          height={35}
           alt="avatar"
           className={classes.avatar}
         />
@@ -43,13 +56,30 @@ const UserCardRating = ({ avatar, link, name, index }: UserProps) => {
       <AppLink href={link}>
         <Typography>{name}</Typography>
       </AppLink>
+      {type && (
+        <AppBox justifyContent="end" flexGrow={1}>
+          <Typography
+            variant="subtitle1"
+            component="p"
+            style={{ color: colors[type].fontColor }}
+          >
+            <b>{characteristic[type]}</b>
+          </Typography>
+        </AppBox>
+      )}
     </AppBox>
   )
 }
 
 const useStyles = makeStyles({
+  root: {
+    height: 55,
+    background: (props: { isOdd: boolean }) =>
+      props.isOdd ? '#21262C' : 'initial',
+  },
   avatarLink: {
-    height: 30,
+    marginRight: 8,
+    height: 35,
   },
   avatar: {
     borderRadius: '50%',

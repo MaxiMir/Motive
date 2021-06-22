@@ -1,7 +1,7 @@
 import dynamic from 'next/dynamic'
 import { Typography } from '@material-ui/core/'
 import { Characteristic } from 'dto'
-import AppCharacteristic from 'components/UI/AppCharacteristic'
+import AppEmoji from 'components/UI/AppEmoji'
 import AppBox from 'components/UI/AppBox'
 import AppTooltip from 'components/UI/AppTooltip'
 
@@ -20,7 +20,7 @@ const UserCardCharacteristic = ({
 }: UserCharacteristicProps) => (
   <AppTooltip title={characteristic}>
     <AppBox alignItems="center" spacing={0.5}>
-      <AppCharacteristic name={characteristic} variant="subtitle1" />
+      <AppEmoji name={characteristic} variant="subtitle1" />
       <AppBox width={32}>
         <Typography variant="subtitle1" component="p" style={{ color }}>
           {value}

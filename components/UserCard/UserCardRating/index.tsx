@@ -1,6 +1,6 @@
 import Image from 'next/image'
 import { makeStyles } from '@material-ui/core/styles'
-import { Container, Typography } from '@material-ui/core/'
+import { Container, Grid, Typography } from '@material-ui/core/'
 import { UserCardProps } from '../index'
 import AppBox from 'components/UI/AppBox'
 import AppLink from 'components/UI/AppLink'
@@ -35,36 +35,43 @@ const UserCardRating = ({
   return (
     <div className={classes.root}>
       <Container fixed>
-        <AppBox alignItems="center" spacing={1} className={classes.root}>
-          <AppBox justifyContent="center" width={22} marginRight={6}>
-            <Typography variant={index <= 2 ? 'h5' : undefined} align="center">
-              {number}
-            </Typography>
-          </AppBox>
-          <AppLink href={link} className={classes.avatarLink}>
-            <Image
-              src={avatar}
-              width={35}
-              height={35}
-              alt="avatar"
-              className={classes.avatar}
-            />
-          </AppLink>
-          <AppLink href={link}>
-            <Typography>{name}</Typography>
-          </AppLink>
-          {type && (
-            <AppBox justifyContent="end" flexGrow={1}>
+        <Grid container alignItems="center" className={classes.container}>
+          <Grid item xs>
+            <AppBox justifyContent="center" width={22}>
+              <Typography variant={index <= 2 ? 'h5' : undefined}>
+                {number}
+              </Typography>
+            </AppBox>
+          </Grid>
+          <Grid item xs={8}>
+            <AppBox alignItems="center" spacing={2}>
+              <AppLink href={link} className={classes.avatarLink}>
+                <Image
+                  src={avatar}
+                  width={35}
+                  height={35}
+                  alt="avatar"
+                  className={classes.avatar}
+                />
+              </AppLink>
+              <AppLink href={link}>
+                <Typography>{name}</Typography>
+              </AppLink>
+            </AppBox>
+          </Grid>
+          <Grid item xs>
+            {type && (
               <Typography
                 variant="subtitle1"
                 component="p"
+                align="right"
                 style={{ color: colors[type].fontColor }}
               >
                 <b>{characteristic[type]}</b>
               </Typography>
-            </AppBox>
-          )}
-        </AppBox>
+            )}
+          </Grid>
+        </Grid>
       </Container>
     </div>
   )
@@ -72,11 +79,10 @@ const UserCardRating = ({
 
 const useStyles = makeStyles({
   root: {
-    height: 55,
     background: (props: { isOdd: boolean }) =>
       props.isOdd ? '#21262C' : 'initial',
   },
-  box: {
+  container: {
     height: 55,
   },
   avatarLink: {

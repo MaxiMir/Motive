@@ -24,7 +24,7 @@ const UserCardFavorite = ({
   name,
   characteristic,
   colors,
-}: UserCardProps<{}>) => {
+}: UserCardProps) => {
   const classes = useStyles()
 
   return (

@@ -40,7 +40,7 @@ export const Menu = () => {
           onKeyDown={onKeyDown}
         >
           <List>
-            {['News', 'How it works', 'Next Features', 'Support'].map(
+            {['News', 'How it works', 'Next Features', 'Support us'].map(
               (text) => (
                 <ListItem button key={text}>
                   <ListItemText primary={text} />

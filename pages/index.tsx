@@ -15,7 +15,7 @@ const Home = () => {
   const colors = useCharacteristicColor()
 
   return (
-    <Layout withHorizontalPadding={false} withVerticalPadding={false}>
+    <Layout withVerticalPadding={false}>
       <Slogan />
       {ADVANTAGES.map((advantage, key) => {
         return (

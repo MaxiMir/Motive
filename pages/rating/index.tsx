@@ -1,3 +1,4 @@
+import { Fragment } from 'react'
 import { GetServerSideProps } from 'next'
 import Axios from 'lib/axios'
 import { Container, Typography } from '@material-ui/core'
@@ -10,6 +11,7 @@ import AppHeader from 'components/UI/AppHeader'
 import AppTabs from 'components/UI/AppTabs'
 import AppBox from 'components/UI/AppBox'
 import AppList from 'components/UI/AppList'
+import TabNames from './TabNames'
 
 const TABS: Characteristic[] = ['motivation', 'creativity', 'support']
 
@@ -29,13 +31,15 @@ const Rating = ({ motivation, creativity, support }: RatingPage) => {
           ))}
           content={[motivation, creativity, support].map(
             ({ list, type }, index) => (
-              <AppList<User>
-                elements={list}
-                render={(el, index) => (
-                  <UserCard {...el} type={type} index={index} view="rating" />
-                )}
-                key={index}
-              />
+              <Fragment key={index}>
+                <TabNames />
+                <AppList<User>
+                  elements={list}
+                  render={(el, index) => (
+                    <UserCard {...el} type={type} index={index} view="rating" />
+                  )}
+                />
+              </Fragment>
             ),
           )}
           ariaLabel="rating by characteristics"

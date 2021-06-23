@@ -1,11 +1,11 @@
 import dynamic from 'next/dynamic'
 import { GetServerSideProps } from 'next'
 import Axios from 'lib/axios'
+import { Container } from '@material-ui/core'
 import { ROUTE } from 'route'
 import { User } from 'dto'
 import { AppListProps } from 'components/UI/AppList'
 import Layout from 'layout'
-import AppBox from 'components/UI/AppBox'
 import AppHeader from 'components/UI/AppHeader'
 import UserCard from 'components/UserCard'
 
@@ -20,20 +20,22 @@ interface FavoritesProps {
 
 const Favorites = ({ favorites }: FavoritesProps) => (
   <Layout>
-    <AppBox mb={3}>
-      <AppHeader name="favorite-active">Favorites</AppHeader>
-    </AppBox>
-    {!favorites.length ? (
-      <EmptyList />
-    ) : (
-      <AppList
-        elements={favorites}
-        spacing={4}
-        render={(el, index) => (
-          <UserCard {...el} index={index} view="favorite" />
-        )}
-      />
-    )}
+    <Container fixed>
+      <AppHeader name="favorite-active" mb={4}>
+        Favorites
+      </AppHeader>
+      {!favorites.length ? (
+        <EmptyList />
+      ) : (
+        <AppList
+          elements={favorites}
+          spacing={4}
+          render={(el, index) => (
+            <UserCard {...el} index={index} view="favorite" />
+          )}
+        />
+      )}
+    </Container>
   </Layout>
 )
 

@@ -1,7 +1,6 @@
 import { ChangeEvent, useState } from 'react'
-import { createStyles, Tab, Tabs } from '@material-ui/core'
+import { Container, createStyles, Tab, Tabs } from '@material-ui/core'
 import { makeStyles } from '@material-ui/core/styles'
-import AppBox from './AppBox'
 
 interface AppTabsProps {
   tabs: string[] | JSX.Element[]
@@ -24,7 +23,7 @@ const AppTabs = ({ tabs, content, ariaLabel }: AppTabsProps) => {
 
   return (
     <>
-      <AppBox paddingX={2}>
+      <Container fixed>
         <Tabs
           value={value}
           aria-label={ariaLabel}
@@ -36,7 +35,7 @@ const AppTabs = ({ tabs, content, ariaLabel }: AppTabsProps) => {
             <Tab label={tab} {...a11yProps(index)} key={index} />
           ))}
         </Tabs>
-      </AppBox>
+      </Container>
       {content.map((content, index) => (
         <div
           role="tabpanel"

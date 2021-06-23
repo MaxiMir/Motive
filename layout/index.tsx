@@ -8,14 +8,9 @@ import { theme } from 'theme'
 
 interface LayoutProps {
   withVerticalPadding?: boolean
-  withHorizontalPadding?: boolean
 }
 
-const Layout: FC<LayoutProps> = ({
-  withVerticalPadding = true,
-  withHorizontalPadding = true,
-  children,
-}) => {
+const Layout: FC<LayoutProps> = ({ withVerticalPadding = true, children }) => {
   const classes = useStyles()
 
   return (
@@ -34,13 +29,14 @@ const Layout: FC<LayoutProps> = ({
         />
       </Head>
       <Header />
-      <AppBox
-        className={classes.content}
-        paddingX={!withHorizontalPadding ? undefined : 2}
-        paddingY={withVerticalPadding ? undefined : 3}
-      >
-        {children}
-      </AppBox>
+      <main>
+        <AppBox
+          className={classes.content}
+          paddingY={!withVerticalPadding ? undefined : 3}
+        >
+          {children}
+        </AppBox>
+      </main>
       <Footer />
     </>
   )

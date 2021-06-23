@@ -1,6 +1,6 @@
 import { GetServerSideProps } from 'next'
 import Axios from 'lib/axios'
-import { Typography } from '@material-ui/core'
+import { Container, Typography } from '@material-ui/core'
 import { ROUTE } from 'route'
 import { Characteristic, RatingPage, User } from 'dto'
 import Layout from 'layout'
@@ -13,35 +13,37 @@ import AppList from 'components/UI/AppList'
 
 const TABS: Characteristic[] = ['motivation', 'creativity', 'support']
 
-const Rating = ({ motivation, creativity, support }: RatingPage) => (
-  <Layout withHorizontalPadding={false}>
-    <AppBox flexDirection="column" spacing={3}>
-      <AppBox paddingX={2}>
+const Rating = ({ motivation, creativity, support }: RatingPage) => {
+  return (
+    <Layout>
+      <Container fixed>
         <AppHeader name="completed">Rating</AppHeader>
+      </Container>
+      <AppBox flexDirection="column" spacing={2} mt={4}>
+        <AppTabs
+          tabs={TABS.map((type, index) => (
+            <AppBox alignItems="center" spacing={1} key={index}>
+              <AppEmoji name={type} variant="h6" />
+              <Typography style={{ textTransform: 'none' }}>{type}</Typography>
+            </AppBox>
+          ))}
+          content={[motivation, creativity, support].map(
+            ({ list, type }, index) => (
+              <AppList<User>
+                elements={list}
+                render={(el, index) => (
+                  <UserCard {...el} type={type} index={index} view="rating" />
+                )}
+                key={index}
+              />
+            ),
+          )}
+          ariaLabel="rating by characteristics"
+        />
       </AppBox>
-      <AppTabs
-        tabs={TABS.map((type, index) => (
-          <AppBox alignItems="center" spacing={1} key={index}>
-            <AppEmoji name={type} variant="h6" />
-            <Typography style={{ textTransform: 'none' }}>{type}</Typography>
-          </AppBox>
-        ))}
-        content={[motivation, creativity, support].map(
-          ({ list, type }, index) => (
-            <AppList<User>
-              elements={list}
-              render={(el, index) => (
-                <UserCard {...el} type={type} index={index} view="rating" />
-              )}
-              key={index}
-            />
-          ),
-        )}
-        ariaLabel="rating by characteristics"
-      />
-    </AppBox>
-  </Layout>
-)
+    </Layout>
+  )
+}
 
 export const getServerSideProps: GetServerSideProps = async () => {
   const { data } = await Axios.get(ROUTE.RATING)

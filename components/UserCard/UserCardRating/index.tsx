@@ -1,6 +1,6 @@
 import Image from 'next/image'
 import { makeStyles } from '@material-ui/core/styles'
-import { Typography } from '@material-ui/core/'
+import { Container, Typography } from '@material-ui/core/'
 import { UserCardProps } from '../index'
 import AppBox from 'components/UI/AppBox'
 import AppLink from 'components/UI/AppLink'
@@ -33,41 +33,40 @@ const UserCardRating = ({
   }
 
   return (
-    <AppBox
-      alignItems="center"
-      spacing={1}
-      className={classes.root}
-      paddingX={2}
-    >
-      <AppBox justifyContent="center" width={22} marginRight={4}>
-        <Typography variant={index <= 2 ? 'h5' : undefined} align="center">
-          {number}
-        </Typography>
-      </AppBox>
-      <AppLink href={link} className={classes.avatarLink}>
-        <Image
-          src={avatar}
-          width={35}
-          height={35}
-          alt="avatar"
-          className={classes.avatar}
-        />
-      </AppLink>
-      <AppLink href={link}>
-        <Typography>{name}</Typography>
-      </AppLink>
-      {type && (
-        <AppBox justifyContent="end" flexGrow={1}>
-          <Typography
-            variant="subtitle1"
-            component="p"
-            style={{ color: colors[type].fontColor }}
-          >
-            <b>{characteristic[type]}</b>
-          </Typography>
+    <div className={classes.root}>
+      <Container fixed>
+        <AppBox alignItems="center" spacing={1} className={classes.root}>
+          <AppBox justifyContent="center" width={22} marginRight={6}>
+            <Typography variant={index <= 2 ? 'h5' : undefined} align="center">
+              {number}
+            </Typography>
+          </AppBox>
+          <AppLink href={link} className={classes.avatarLink}>
+            <Image
+              src={avatar}
+              width={35}
+              height={35}
+              alt="avatar"
+              className={classes.avatar}
+            />
+          </AppLink>
+          <AppLink href={link}>
+            <Typography>{name}</Typography>
+          </AppLink>
+          {type && (
+            <AppBox justifyContent="end" flexGrow={1}>
+              <Typography
+                variant="subtitle1"
+                component="p"
+                style={{ color: colors[type].fontColor }}
+              >
+                <b>{characteristic[type]}</b>
+              </Typography>
+            </AppBox>
+          )}
         </AppBox>
-      )}
-    </AppBox>
+      </Container>
+    </div>
   )
 }
 
@@ -76,6 +75,9 @@ const useStyles = makeStyles({
     height: 55,
     background: (props: { isOdd: boolean }) =>
       props.isOdd ? '#21262C' : 'initial',
+  },
+  box: {
+    height: 55,
   },
   avatarLink: {
     marginRight: 8,

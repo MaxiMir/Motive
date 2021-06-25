@@ -1,20 +1,27 @@
+import { FC } from 'react'
 import Image from 'next/image'
 import { makeStyles } from '@material-ui/core/styles'
 import { Container, Grid, Typography } from '@material-ui/core/'
-import { UserCardProps } from '../index'
+import { useCharacteristicColor } from 'hook/useCharacteristicColor'
+import { Characteristic, User } from 'dto'
 import AppBox from 'components/UI/AppBox'
 import AppLink from 'components/UI/AppLink'
 
-const UserCardRating = ({
+interface UserCardRatingProps extends User {
+  index: number
+  type: Characteristic
+}
+
+const UserCardRating: FC<UserCardRatingProps> = ({
   avatar,
   link,
   name,
   index,
   characteristic,
   type,
-  colors,
-}: UserCardProps) => {
-  const classes = useStyles({ isOdd: index % 2 === 0 })
+}) => {
+  const colors = useCharacteristicColor()
+  const classes = useStyles({ isEven: index % 2 === 0 })
   const number = getNumber()
 
   function getNumber() {
@@ -60,16 +67,14 @@ const UserCardRating = ({
             </AppBox>
           </Grid>
           <Grid item xs>
-            {type && (
-              <Typography
-                variant="subtitle1"
-                component="p"
-                align="right"
-                style={{ color: colors[type].fontColor }}
-              >
-                <b>{characteristic[type]}</b>
-              </Typography>
-            )}
+            <Typography
+              variant="subtitle1"
+              component="p"
+              align="right"
+              style={{ color: colors[type].fontColor }}
+            >
+              <b>{characteristic[type]}</b>
+            </Typography>
           </Grid>
         </Grid>
       </Container>
@@ -79,8 +84,8 @@ const UserCardRating = ({
 
 const useStyles = makeStyles({
   root: {
-    background: (props: { isOdd: boolean }) =>
-      props.isOdd ? '#21262C' : 'initial',
+    background: (props: { isEven: boolean }) =>
+      props.isEven ? 'initial' : '#21262C',
   },
   container: {
     height: 55,

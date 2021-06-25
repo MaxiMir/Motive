@@ -5,7 +5,7 @@ import { Container, Typography } from '@material-ui/core'
 import { ROUTE } from 'route'
 import { Characteristic, RatingPage, User } from 'dto'
 import Layout from 'layout'
-import UserCard from 'components/UserCard'
+import UserCardRating from 'components/UserCard/UserCardRating'
 import AppEmoji from 'components/UI/AppEmoji'
 import AppHeader from 'components/UI/AppHeader'
 import AppTabs from 'components/UI/AppTabs'
@@ -36,7 +36,7 @@ const Rating = ({ motivation, creativity, support }: RatingPage) => {
                 <AppList<User>
                   elements={list}
                   render={(el, index) => (
-                    <UserCard {...el} type={type} index={index} view="rating" />
+                    <UserCardRating {...el} type={type} index={index} />
                   )}
                 />
               </Fragment>

@@ -4,10 +4,10 @@ import Axios from 'lib/axios'
 import { Container } from '@material-ui/core'
 import { ROUTE } from 'route'
 import { User } from 'dto'
-import { AppListProps } from 'components/UI/AppList'
 import Layout from 'layout'
+import UserCardFavorite from 'components/UserCard/UserCardFavorite'
 import AppHeader from 'components/UI/AppHeader'
-import UserCard from 'components/UserCard'
+import { AppListProps } from 'components/UI/AppList'
 
 const EmptyList = dynamic(() => import('./EmptyList'))
 const AppList = dynamic<AppListProps<User>>(
@@ -30,9 +30,7 @@ const Favorites = ({ favorites }: FavoritesProps) => (
         <AppList
           elements={favorites}
           spacing={4}
-          render={(el, index) => (
-            <UserCard {...el} index={index} view="favorite" />
-          )}
+          render={(el) => <UserCardFavorite {...el} />}
         />
       )}
     </Container>

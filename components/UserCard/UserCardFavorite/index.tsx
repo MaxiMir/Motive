@@ -1,9 +1,9 @@
-import { Fragment } from 'react'
+import { FC, Fragment } from 'react'
 import Image from 'next/image'
 import { Typography } from '@material-ui/core/'
 import { makeStyles } from '@material-ui/core/styles'
-import { Characteristic } from 'dto'
-import { UserCardProps } from '../index'
+import { useCharacteristicColor } from 'hook/useCharacteristicColor'
+import { Characteristic, User } from 'dto'
 import UserCardCharacteristic from './UserCardCharacteristic'
 import UserCardMenu from './UserCardMenu'
 import AppBox from 'components/UI/AppBox'
@@ -17,14 +17,14 @@ const CHARACTERISTICS: Characteristic[] = [
   'completed',
 ]
 
-const UserCardFavorite = ({
+const UserCardFavorite: FC<User> = ({
   id,
   avatar,
   link,
   name,
   characteristic,
-  colors,
-}: UserCardProps) => {
+}) => {
+  const colors = useCharacteristicColor()
   const classes = useStyles()
 
   return (

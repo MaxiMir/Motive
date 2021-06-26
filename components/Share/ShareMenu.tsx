@@ -114,7 +114,7 @@ const useStyles = makeStyles((theme) =>
       color: theme.palette.warning.light,
     },
     text: {
-      color: '#BDB5B5',
+      color: theme.palette.text.disabled,
     },
   }),
 )

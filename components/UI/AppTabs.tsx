@@ -6,10 +6,11 @@ interface AppTabsProps {
   tabs: string[] | JSX.Element[]
   content: string[] | JSX.Element[]
   ariaLabel: string
+  initial?: number
 }
 
-const AppTabs = ({ tabs, content, ariaLabel }: AppTabsProps) => {
-  const [value, setValue] = useState(0)
+const AppTabs = ({ tabs, content, ariaLabel, initial = 0 }: AppTabsProps) => {
+  const [value, setValue] = useState(initial)
   const classes = useStyles()
 
   const a11yProps = (index: number) => ({

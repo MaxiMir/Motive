@@ -17,13 +17,13 @@ const CHARACTERISTICS: Characteristic[] = [
   'completed',
 ]
 
-const UserCardFavorite = ({ id, avatar, link, name, characteristic }: User) => {
+const UserCardFavorite = ({ id, avatar, href, name, characteristic }: User) => {
   const colors = useCharacteristicColor()
   const classes = useStyles()
 
   return (
     <AppBox spacing={1}>
-      <AppLink href={link} className={classes.avatarLink}>
+      <AppLink href={href} className={classes.avatarLink}>
         <Image
           src={avatar}
           width={55}
@@ -34,12 +34,12 @@ const UserCardFavorite = ({ id, avatar, link, name, characteristic }: User) => {
       </AppLink>
       <AppBox flexDirection="column" justifyContent="flex-between" flex={1}>
         <AppBox justifyContent="space-between" alignItems="center">
-          <AppLink href={link}>
+          <AppLink href={href}>
             <Typography variant="subtitle1" component="p">
               {name}
             </Typography>
           </AppLink>
-          <UserCardMenu id={id} name={name} link={link} />
+          <UserCardMenu id={id} name={name} href={href} />
         </AppBox>
         <AppBox justifyContent="space-between" alignItems="center">
           {CHARACTERISTICS.map((name, index) => (

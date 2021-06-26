@@ -2,7 +2,7 @@ export const USERS = [
   {
     id: '1',
     name: 'Maxim Minchenko',
-    link: '/maximir',
+    href: '/maximir',
     avatar: '/__temp__/1.png',
     characteristic: {
       motivation: 23,
@@ -15,7 +15,7 @@ export const USERS = [
   {
     id: '2',
     name: 'Julia Z',
-    link: '/juliaz',
+    href: '/juliaz',
     avatar: '/__temp__/2.png',
     characteristic: {
       motivation: 1,
@@ -28,7 +28,7 @@ export const USERS = [
   {
     id: '3',
     name: 'Alexey Kopeychik',
-    link: '/kopeychik',
+    href: '/kopeychik',
     avatar: '/__temp__/4.png',
     characteristic: {
       motivation: 51,
@@ -41,7 +41,7 @@ export const USERS = [
   {
     id: '4',
     name: 'Valentina Ulyanova',
-    link: '/ulyanova',
+    href: '/ulyanova',
     avatar: '/__temp__/6.png',
     characteristic: {
       motivation: 11,
@@ -54,7 +54,7 @@ export const USERS = [
   {
     id: '5',
     name: 'Artyom Arzunyan',
-    link: '/artyom',
+    href: '/artyom',
     avatar: '/__temp__/3.png',
     characteristic: {
       motivation: 13,

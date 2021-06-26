@@ -1,3 +1,4 @@
+import { ROUTE } from 'route'
 import { Characteristic } from 'dto'
 import { useCharacteristicColor } from 'hook/useCharacteristicColor'
 import Layout from 'layout'
@@ -9,6 +10,7 @@ interface AdvantageItem {
   characteristic: Characteristic
   title: string
   subtitle: string
+  href: string
 }
 
 const Home = () => {
@@ -36,21 +38,25 @@ const ADVANTAGES: AdvantageItem[] = [
     characteristic: 'motivation',
     title: 'Be motivational',
     subtitle: 'for yourself and others',
+    href: ROUTE.RATING,
   },
   {
     characteristic: 'creativity',
     title: 'BE СREATIVE',
     subtitle: 'for yourself and others',
+    href: ROUTE.RATING + '?tab=1',
   },
   {
     characteristic: 'support',
     title: 'BE SUPPORTIVE',
     subtitle: 'to people in need',
+    href: ROUTE.RATING + '?tab=2',
   },
   {
     characteristic: 'completed',
     title: 'Rating',
     subtitle: 'And tear up the tops!',
+    href: ROUTE.RATING,
   },
 ]
 

@@ -13,7 +13,7 @@ interface UserCardRatingProps extends User {
 
 const UserCardRating = ({
   avatar,
-  link,
+  href,
   name,
   index,
   characteristic,
@@ -51,7 +51,7 @@ const UserCardRating = ({
           </Grid>
           <Grid item xs={8}>
             <AppBox alignItems="center" spacing={2}>
-              <AppLink href={link} className={classes.avatarLink}>
+              <AppLink href={href} className={classes.avatarLink}>
                 <Image
                   src={avatar}
                   width={35}
@@ -60,7 +60,7 @@ const UserCardRating = ({
                   className={classes.avatar}
                 />
               </AppLink>
-              <AppLink href={link}>
+              <AppLink href={href}>
                 <Typography>{name}</Typography>
               </AppLink>
             </AppBox>

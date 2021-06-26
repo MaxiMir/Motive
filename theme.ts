@@ -1,5 +1,6 @@
 import { createMuiTheme } from '@material-ui/core'
 
+// TODO добавить цвета
 export const theme = createMuiTheme({
   palette: {
     type: 'dark',
@@ -27,6 +28,7 @@ export const theme = createMuiTheme({
     },
     text: {
       primary: '#F5F5F7',
+      disabled: '#BDB5B5',
     },
   },
   overrides: {

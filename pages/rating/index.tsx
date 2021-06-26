@@ -1,5 +1,6 @@
 import { Fragment } from 'react'
 import { GetServerSideProps } from 'next'
+import { useRouter } from 'next/router'
 import Axios from 'lib/axios'
 import { Container, Typography } from '@material-ui/core'
 import { ROUTE } from 'route'
@@ -16,6 +17,8 @@ import TabNames from './TabNames'
 const TABS: Characteristic[] = ['motivation', 'creativity', 'support']
 
 const Rating = ({ motivation, creativity, support }: RatingPage) => {
+  const { query } = useRouter()
+
   return (
     <Layout>
       <Container fixed>
@@ -42,6 +45,7 @@ const Rating = ({ motivation, creativity, support }: RatingPage) => {
               </Fragment>
             ),
           )}
+          initial={!query.tab ? undefined : +query.tab}
           ariaLabel="rating by characteristics"
         />
       </AppBox>

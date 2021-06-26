@@ -5,13 +5,13 @@ const ShareMenu = dynamic(() => import('./ShareMenu'))
 
 interface ShareProps {
   title: string
-  urn: string
+  href: string
   onClose: () => void
 }
 
-const Share = ({ title, urn, onClose }: ShareProps) => {
+const Share = ({ title, href, onClose }: ShareProps) => {
   const [withMenu, setWithMenu] = useState(false)
-  const url = process.env.NEXT_PUBLIC_SERVER_BASE_URL + urn
+  const url = process.env.NEXT_PUBLIC_SERVER_BASE_URL + href
 
   const onCloseMenu = () => {
     setWithMenu(false)

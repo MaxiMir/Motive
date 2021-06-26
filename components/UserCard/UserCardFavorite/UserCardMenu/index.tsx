@@ -10,10 +10,10 @@ const Share = dynamic(() => import('components/Share'))
 interface UserCardFavoriteMenuProps {
   id: string
   name: string
-  link: string
+  href: string
 }
 
-const UserCardMenu = ({ id, name, link }: UserCardFavoriteMenuProps) => {
+const UserCardMenu = ({ id, name, href }: UserCardFavoriteMenuProps) => {
   const classes = useStyles()
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null)
   const [withShare, setWithShare] = useState(false)
@@ -59,7 +59,7 @@ const UserCardMenu = ({ id, name, link }: UserCardFavoriteMenuProps) => {
         <MenuItem onClick={onRemove}>Remove from Favorites</MenuItem>
       </Menu>
       {withShare && (
-        <Share title={name} urn={link} onClose={() => setWithShare(false)} />
+        <Share title={name} href={href} onClose={() => setWithShare(false)} />
       )}
     </>
   )

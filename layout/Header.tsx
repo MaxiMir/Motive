@@ -1,9 +1,9 @@
 import React from 'react'
 import { makeStyles } from '@material-ui/core/styles'
 import { AppBar, Button } from '@material-ui/core/'
+import { ROUTE } from 'route'
 import { Menu } from 'components/Menu'
 import AppBox from 'components/UI/AppBox'
-import { ROUTE } from 'route'
 
 export const Header = () => {
   const classes = useStyles()

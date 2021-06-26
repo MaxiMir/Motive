@@ -3,6 +3,7 @@ import { Typography } from '@material-ui/core/'
 import { Characteristic } from 'dto'
 import AppBox from 'components/UI/AppBox'
 import AppEmoji from 'components/UI/AppEmoji'
+import AppLink from 'components/UI/AppLink'
 
 interface Color {
   start: string
@@ -13,6 +14,7 @@ interface AdvantageProps {
   characteristic: Characteristic
   title: string
   subtitle: string
+  href: string
   color: Color
 }
 
@@ -20,6 +22,7 @@ export const Advantage = ({
   characteristic,
   title,
   subtitle,
+  href,
   color,
 }: AdvantageProps) => {
   const classes = useStyles({ color })
@@ -31,11 +34,15 @@ export const Advantage = ({
       className={classes.root}
     >
       <AppBox alignItems="center" spacing={3}>
-        <AppEmoji name={characteristic} variant="h2" />
+        <AppLink href={href}>
+          <AppEmoji name={characteristic} variant="h2" />
+        </AppLink>
         <AppBox flexDirection="column" spacing={1}>
-          <Typography variant="h5" className={classes.title}>
-            {title}
-          </Typography>
+          <AppLink href={href}>
+            <Typography variant="h5" className={classes.title}>
+              {title}
+            </Typography>
+          </AppLink>
           <Typography>{subtitle}</Typography>
         </AppBox>
       </AppBox>

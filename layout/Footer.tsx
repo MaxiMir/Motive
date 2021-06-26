@@ -1,6 +1,7 @@
 import * as React from 'react'
 import { useRouter } from 'next/router'
 import { makeStyles } from '@material-ui/core/styles'
+import { ROUTE } from 'route'
 import AppBox from 'components/UI/AppBox'
 import AppLink from 'components/UI/AppLink'
 import {
@@ -10,7 +11,6 @@ import {
   FavoritesIcon,
   ProfileIcon,
 } from 'components/UI/icons'
-import { ROUTE } from 'route'
 
 const LINKS = [
   {

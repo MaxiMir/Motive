@@ -21,12 +21,12 @@ export const useCharacteristicColor = () => {
     },
     completed: {
       fontColor: palette.warning.main,
-      start: '#BDB5B5',
+      start: palette.text.disabled,
       end: '#1D1D1F',
     },
     abandoned: {
       fontColor: palette.warning.main,
-      start: '#BDB5B5',
+      start: palette.text.disabled,
       end: '#1D1D1F',
     },
   }

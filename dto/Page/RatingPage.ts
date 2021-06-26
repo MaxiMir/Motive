@@ -1,12 +1,12 @@
-import { User, Characteristic } from 'dto'
+import { Page, User, Characteristic } from 'dto'
 
-export interface RatingPage {
-  motivation: RatingList
-  creativity: RatingList
-  support: RatingList
-}
+type RatingType = 'motivation' | 'creativity' | 'support'
 
-type RatingList = {
-  list: User[]
-  type: Characteristic
-}
+export type RatingPage = Page<
+  {
+    [k in RatingType]: {
+      list: User[]
+      type: Characteristic
+    }
+  }
+>

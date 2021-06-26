@@ -16,11 +16,11 @@ import TabNames from './TabNames'
 
 const TABS: Characteristic[] = ['motivation', 'creativity', 'support']
 
-const Rating = ({ motivation, creativity, support }: RatingPage) => {
+const Rating = ({ meta, motivation, creativity, support }: RatingPage) => {
   const { query } = useRouter()
 
   return (
-    <Layout>
+    <Layout {...meta}>
       <Container fixed>
         <AppHeader name="completed">Rating</AppHeader>
       </Container>

@@ -1,8 +1,10 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
-import { USERS } from './mock'
+import { USERS } from './mock/users'
+import { meta } from './mock/meta'
 
 export default (_req: NextApiRequest, res: NextApiResponse) => {
   res.status(200).json({
+    meta,
     motivation: {
       list: [...USERS].sort(
         ({ characteristic: c1 }, { characteristic: c2 }) =>

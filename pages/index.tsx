@@ -1,5 +1,7 @@
+import { GetServerSideProps } from 'next'
 import { ROUTE } from 'route'
-import { Characteristic } from 'dto'
+import Axios from 'lib/axios'
+import { Characteristic, MainPage } from 'dto'
 import { useCharacteristicColor } from 'hook/useCharacteristicColor'
 import Layout from 'layout'
 import { Slogan } from 'components/Slogan'
@@ -13,11 +15,11 @@ interface AdvantageItem {
   href: string
 }
 
-const Home = () => {
+const Home = ({ meta }: MainPage) => {
   const colors = useCharacteristicColor()
 
   return (
-    <Layout withVerticalPadding={false}>
+    <Layout withVerticalPadding={false} {...meta}>
       <Slogan />
       {ADVANTAGES.map((advantage, key) => {
         return (
@@ -59,5 +61,11 @@ const ADVANTAGES: AdvantageItem[] = [
     href: ROUTE.RATING,
   },
 ]
+
+export const getServerSideProps: GetServerSideProps = async () => {
+  const { data } = await Axios.get(ROUTE.RATING)
+
+  return { props: data }
+}
 
 export default Home

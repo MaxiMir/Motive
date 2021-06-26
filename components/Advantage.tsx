@@ -34,7 +34,7 @@ export const Advantage = ({
       className={classes.root}
     >
       <AppBox alignItems="center" spacing={3}>
-        <AppLink href={href}>
+        <AppLink href={href} className={classes.imageLink}>
           <AppEmoji name={characteristic} variant="h2" />
         </AppLink>
         <AppBox flexDirection="column" spacing={1}>
@@ -61,5 +61,10 @@ const useStyles = makeStyles({
     width: 210,
     textTransform: 'uppercase',
     fontWeight: 500,
+  },
+  imageLink: {
+    '&:hover': {
+      textDecoration: 'none',
+    },
   },
 })

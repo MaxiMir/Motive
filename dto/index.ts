@@ -1,3 +1,7 @@
+export type { Page } from './Page/Page'
+export type { Meta } from './Page/Meta'
+export type { MainPage } from './Page/MainPage'
 export type { RatingPage } from './Page/RatingPage'
+export type { FavoritesPage } from './Page/FavoritesPage'
 export type { Characteristic } from './User/Characteristic'
 export type { User } from './User/User'

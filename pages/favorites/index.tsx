@@ -3,7 +3,7 @@ import { GetServerSideProps } from 'next'
 import Axios from 'lib/axios'
 import { Container } from '@material-ui/core'
 import { ROUTE } from 'route'
-import { User } from 'dto'
+import { FavoritesPage, User } from 'dto'
 import Layout from 'layout'
 import UserCardFavorite from 'components/UserCard/UserCardFavorite'
 import AppHeader from 'components/UI/AppHeader'
@@ -14,12 +14,8 @@ const AppList = dynamic<AppListProps<User>>(
   () => import('components/UI/AppList'),
 )
 
-interface FavoritesProps {
-  favorites: User[]
-}
-
-const Favorites = ({ favorites }: FavoritesProps) => (
-  <Layout>
+const Favorites = ({ meta, favorites }: FavoritesPage) => (
+  <Layout {...meta}>
     <Container fixed>
       <AppHeader name="favorite-active" mb={4}>
         Favorites

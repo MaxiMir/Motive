@@ -23,6 +23,11 @@ const Layout: FC<LayoutProps> = ({ withVerticalPadding = true, children }) => {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         {/* PWA primary color */}
         <meta name="theme-color" content={theme.palette.primary.main} />
+        <meta property="og:title" content="{{title}}" />
+        <meta property="og:description" content="{{description}}" />
+        <meta property="og:url" content="{{url}}" />
+        <meta property="og:image" content="{{image}}" />
+        <meta property="og:type" content="website" />
         <link
           rel="stylesheet"
           href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"

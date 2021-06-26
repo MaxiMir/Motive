@@ -1,4 +1,3 @@
-import { FC } from 'react'
 import Image from 'next/image'
 import { makeStyles } from '@material-ui/core/styles'
 import { Container, Grid, Typography } from '@material-ui/core/'
@@ -12,14 +11,14 @@ interface UserCardRatingProps extends User {
   type: Characteristic
 }
 
-const UserCardRating: FC<UserCardRatingProps> = ({
+const UserCardRating = ({
   avatar,
   link,
   name,
   index,
   characteristic,
   type,
-}) => {
+}: UserCardRatingProps) => {
   const colors = useCharacteristicColor()
   const classes = useStyles({ isEven: index % 2 === 0 })
   const number = getNumber()

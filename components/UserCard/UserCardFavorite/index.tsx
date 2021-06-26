@@ -1,4 +1,4 @@
-import { FC, Fragment } from 'react'
+import { Fragment } from 'react'
 import Image from 'next/image'
 import { Typography } from '@material-ui/core/'
 import { makeStyles } from '@material-ui/core/styles'
@@ -17,13 +17,7 @@ const CHARACTERISTICS: Characteristic[] = [
   'completed',
 ]
 
-const UserCardFavorite: FC<User> = ({
-  id,
-  avatar,
-  link,
-  name,
-  characteristic,
-}) => {
+const UserCardFavorite = ({ id, avatar, link, name, characteristic }: User) => {
   const colors = useCharacteristicColor()
   const classes = useStyles()
 
@@ -45,7 +39,7 @@ const UserCardFavorite: FC<User> = ({
               {name}
             </Typography>
           </AppLink>
-          <UserCardMenu id={id} link={link} />
+          <UserCardMenu id={id} name={name} link={link} />
         </AppBox>
         <AppBox justifyContent="space-between" alignItems="center">
           {CHARACTERISTICS.map((name, index) => (

@@ -36,8 +36,8 @@ const useStyles = makeStyles((theme) =>
     },
     header: {
       background: `linear-gradient(90deg, ${theme.palette.warning.main}, ${theme.palette.success.dark}, ${theme.palette.info.dark})`,
-      'background-clip': 'text',
-      'text-fill-color': 'transparent',
+      '-webkit-background-clip': 'text',
+      '-webkit-text-fill-color': 'transparent',
       color: theme.palette.info.dark,
       fontWeight: 500,
     },

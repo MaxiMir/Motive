@@ -4,7 +4,7 @@ export const useFavorite = (id: string) => {
   }
 
   const onRemove = () => {
-    console.log('onAdd', id)
+    console.log('onRemove', id)
   }
 
   return [onAdd, onRemove]

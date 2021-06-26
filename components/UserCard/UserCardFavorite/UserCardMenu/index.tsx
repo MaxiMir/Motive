@@ -1,41 +1,39 @@
-import { useState, MouseEvent, useCallback } from 'react'
+import { useState, MouseEvent } from 'react'
+import dynamic from 'next/dynamic'
 import { createStyles, IconButton, Menu, MenuItem } from '@material-ui/core'
 import { useFavorite } from 'hook/useFavorite'
 import { makeStyles } from '@material-ui/core/styles'
 import MoreHorizIcon from '@material-ui/icons/MoreHoriz'
 
+const Share = dynamic(() => import('components/Share'))
+
 interface UserCardFavoriteMenuProps {
   id: string
+  name: string
   link: string
 }
 
-const UserCardMenu = ({ id, link }: UserCardFavoriteMenuProps) => {
+const UserCardMenu = ({ id, name, link }: UserCardFavoriteMenuProps) => {
   const classes = useStyles()
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null)
+  const [withShare, setWithShare] = useState(false)
   const [, onRemoveFromFavorite] = useFavorite(id)
 
   const onClick = (event: MouseEvent<HTMLElement>) => {
     setAnchorEl(event.currentTarget)
   }
 
-  const onCopy = useCallback(async () => {
-    try {
-      await navigator.clipboard.writeText(link)
-    } catch (e) {
-      console.error('Something went wrong', e) // TODO
-    } finally {
-      onClose()
-    }
-  }, [link])
+  const onShare = () => {
+    onCloseMenu()
+    setWithShare(true)
+  }
 
   const onRemove = () => {
+    onCloseMenu()
     onRemoveFromFavorite()
-    onClose()
   }
 
-  const onClose = () => {
-    setAnchorEl(null)
-  }
+  const onCloseMenu = () => setAnchorEl(null)
 
   return (
     <>
@@ -55,11 +53,14 @@ const UserCardMenu = ({ id, link }: UserCardFavoriteMenuProps) => {
           horizontal: 'right',
         }}
         open={!!anchorEl}
-        onClose={onClose}
+        onClose={onCloseMenu}
       >
-        <MenuItem onClick={onCopy}>Copy Link</MenuItem>
+        <MenuItem onClick={onShare}>Share</MenuItem>
         <MenuItem onClick={onRemove}>Remove from Favorites</MenuItem>
       </Menu>
+      {withShare && (
+        <Share title={name} urn={link} onClose={() => setWithShare(false)} />
+      )}
     </>
   )
 }

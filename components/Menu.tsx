@@ -36,8 +36,8 @@ export const Menu = () => {
         <div
           role="presentation"
           className={classes.list}
-          onClick={() => setOpen(false)}
           onKeyDown={onKeyDown}
+          onClick={() => setOpen(false)}
         >
           <List>
             {['News', 'How it works', 'Next Features', 'Support us'].map(

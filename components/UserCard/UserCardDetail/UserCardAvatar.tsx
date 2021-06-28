@@ -1,54 +1,67 @@
 import Image from 'next/image'
 import { makeStyles } from '@material-ui/core/styles'
-import { useCharacteristicColor } from 'hook/useCharacteristicColor'
-import { Characteristics } from 'dto/User/User'
-import AppCircular from 'components/UI/AppCircular'
+import { CharacteristicColors } from 'hook/useCharacteristicColors'
+import { Characteristics, Characteristic } from 'dto'
 import AppBox from 'components/UI/AppBox'
+import AppCircle from 'components/UI/AppCircle'
 
 interface UserCardAvatarProps {
   avatar: string
   characteristics: Characteristics
+  characteristicColors: CharacteristicColors
 }
 
-const UserCardAvatar = ({ avatar, characteristics }: UserCardAvatarProps) => {
+interface CircleItem {
+  type: Characteristic
+  size: number
+  strokeWidth: number
+  strokeWidthBg: number
+}
+
+const CIRCLE_ITEMS: CircleItem[] = [
+  {
+    type: 'creativity',
+    size: 126,
+    strokeWidth: 15,
+    strokeWidthBg: 20,
+  },
+  {
+    type: 'support',
+    size: 113,
+    strokeWidth: 17,
+    strokeWidthBg: 22,
+  },
+  {
+    type: 'motivation',
+    size: 99,
+    strokeWidth: 20,
+    strokeWidthBg: 25,
+  },
+]
+
+const UserCardAvatar = ({
+  avatar,
+  characteristics,
+  characteristicColors,
+}: UserCardAvatarProps) => {
   const classes = useStyles()
-  const characteristicColor = useCharacteristicColor()
 
   return (
     <AppBox className={classes.root}>
-      <AppBox
-        justifyContent="center"
-        alignItems="center"
-        className={classes.circleBlock}
-      >
-        <AppCircular
-          size={145}
-          value={characteristics.motivation}
-          color={characteristicColor.motivation}
-        />
-      </AppBox>
-      <AppBox
-        justifyContent="center"
-        alignItems="center"
-        className={classes.circleBlock}
-      >
-        <AppCircular
-          size={120}
-          value={characteristics.creativity}
-          color={characteristicColor.creativity}
-        />
-      </AppBox>
-      <AppBox
-        justifyContent="center"
-        alignItems="center"
-        className={classes.circleBlock}
-      >
-        <AppCircular
-          size={100}
-          value={characteristics.support}
-          color={characteristicColor.support}
-        />
-      </AppBox>
+      {CIRCLE_ITEMS.map(({ type, ...props }, index) => (
+        <AppBox
+          justifyContent="center"
+          alignItems="center"
+          className={classes.circleBlock}
+          key={index}
+        >
+          <AppCircle
+            progress={(characteristics[type] % 1) * 100}
+            color={characteristicColors[type]}
+            {...props}
+          />
+        </AppBox>
+      ))}
       <AppBox
         justifyContent="center"
         alignItems="center"
@@ -69,16 +82,16 @@ const UserCardAvatar = ({ avatar, characteristics }: UserCardAvatarProps) => {
 const useStyles = makeStyles({
   root: {
     position: 'relative',
-    width: 150,
-    height: 150,
+    width: 126,
+    height: 126,
   },
   circleBlock: {
     position: 'absolute',
     left: '50%',
     top: '50%',
     transform: 'translate(-50%,-50%)',
-    width: 150,
-    height: 150,
+    width: 126,
+    height: 126,
   },
   avatar: {
     borderRadius: '50%',

@@ -2,9 +2,9 @@ import { Fragment } from 'react'
 import Image from 'next/image'
 import { Typography } from '@material-ui/core/'
 import { makeStyles } from '@material-ui/core/styles'
-import { useCharacteristicColor } from 'hook/useCharacteristicColor'
+import { useCharacteristicColors } from 'hook/useCharacteristicColors'
 import { Characteristic, User } from 'dto'
-import UserCardCharacteristic from './UserCardCharacteristic'
+import UserCharacteristic from 'components/UserCharacteristic'
 import UserCardMenu from './UserCardMenu'
 import AppBox from 'components/UI/AppBox'
 import AppLink from 'components/UI/AppLink'
@@ -24,7 +24,7 @@ const UserCardFavorite = ({
   name,
   characteristics,
 }: User) => {
-  const colors = useCharacteristicColor()
+  const colors = useCharacteristicColors()
   const classes = useStyles()
 
   return (
@@ -38,7 +38,7 @@ const UserCardFavorite = ({
           className={classes.avatar}
         />
       </AppLink>
-      <AppBox flexDirection="column" justifyContent="flex-between" flex={1}>
+      <AppBox flexDirection="column" justifyContent="space-between" flex={1}>
         <AppBox justifyContent="space-between" alignItems="center">
           <AppLink href={href}>
             <Typography variant="subtitle1" component="p">
@@ -50,7 +50,7 @@ const UserCardFavorite = ({
         <AppBox justifyContent="space-between" alignItems="center">
           {CHARACTERISTICS.map((name, index) => (
             <Fragment key={index}>
-              <UserCardCharacteristic
+              <UserCharacteristic
                 characteristic={name}
                 value={characteristics[name]}
                 color={colors[name].fontColor}

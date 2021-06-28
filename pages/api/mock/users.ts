@@ -56,6 +56,8 @@ export const USERS = [
       abandoned: 0,
       completed: 13,
     },
+    isFavorite: false,
+    views: 12354,
   },
   {
     id: '5',

@@ -6,9 +6,9 @@ interface AppTooltipProps {
   className?: string
 }
 
-const AppTooltip: FC<AppTooltipProps> = ({ title, className, children }) => (
+const AppTooltip: FC<AppTooltipProps> = ({ title, children, ...restProps }) => (
   <Tooltip title={title}>
-    <span className={className}>{children}</span>
+    <span {...restProps}>{children}</span>
   </Tooltip>
 )
 

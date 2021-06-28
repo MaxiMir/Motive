@@ -1,10 +1,13 @@
 import dynamic from 'next/dynamic'
 import Image from 'next/image'
-import { UserDetail } from 'dto'
+import { Characteristic, UserDetail } from 'dto'
 import { makeStyles } from '@material-ui/core/styles'
 import { Container, Typography } from '@material-ui/core'
 import { numberToShort } from 'helper/prepare'
+import { useIncrementPageViews } from 'hook/useIncrementPageViews'
+import { useCharacteristicColors } from 'hook/useCharacteristicColors'
 import UserCardAvatar from './UserCardAvatar'
+import UserCardCharacteristic from './UserCardCharacteristic'
 import AppTooltip from 'components/UI/AppTooltip'
 import AppBox from 'components/UI/AppBox'
 
@@ -16,8 +19,12 @@ const UserCardDetail = ({
   views,
   avatar,
   characteristics,
+  role,
 }: UserDetail) => {
   const classes = useStyles()
+  const characteristicColors = useCharacteristicColors()
+
+  useIncrementPageViews(role)
 
   return (
     <Container fixed>
@@ -39,8 +46,38 @@ const UserCardDetail = ({
           </Typography>
         </AppBox>
       </AppBox>
-      <AppBox>
-        <UserCardAvatar avatar={avatar} characteristics={characteristics} />
+      <AppBox spacing={2}>
+        <UserCardAvatar
+          avatar={avatar}
+          characteristics={characteristics}
+          characteristicColors={characteristicColors}
+        />
+        <AppBox flexDirection="column" justifyContent="space-between" flex={1}>
+          <AppBox justifyContent="space-between">
+            {(['motivation', 'creativity', 'support'] as Characteristic[]).map(
+              (type, index) => (
+                <UserCardCharacteristic
+                  characteristic={type}
+                  value={characteristics[type]}
+                  color={characteristicColors[type].fontColor}
+                  key={index}
+                />
+              ),
+            )}
+          </AppBox>
+          <AppBox justifyContent="space-between">
+            {(['abandoned', 'completed'] as Characteristic[]).map(
+              (type, index) => (
+                <UserCardCharacteristic
+                  characteristic={type}
+                  value={characteristics[type]}
+                  color={characteristicColors[type].fontColor}
+                  key={index}
+                />
+              ),
+            )}
+          </AppBox>
+        </AppBox>
       </AppBox>
     </Container>
   )

@@ -1,11 +1,5 @@
 import { useTheme } from '@material-ui/core'
-
-type Characteristic =
-  | 'motivation'
-  | 'support'
-  | 'creativity'
-  | 'completed'
-  | 'abandoned'
+import { Characteristic } from 'dto'
 
 export type CharacteristicColor = {
   fontColor: string
@@ -13,7 +7,9 @@ export type CharacteristicColor = {
   end: string
 }
 
-export const useCharacteristicColor = (): {
+export type CharacteristicColors = ReturnType<typeof useCharacteristicColors>
+
+export const useCharacteristicColors = (): {
   [k in Characteristic]: CharacteristicColor
 } => {
   const { palette } = useTheme()
@@ -35,12 +31,12 @@ export const useCharacteristicColor = (): {
       end: palette.success.dark,
     },
     completed: {
-      fontColor: palette.warning.main,
+      fontColor: '#78C77B',
       start: palette.text.disabled,
       end: '#1D1D1F',
     },
     abandoned: {
-      fontColor: palette.warning.main,
+      fontColor: '#AEABAE',
       start: palette.text.disabled,
       end: '#1D1D1F',
     },

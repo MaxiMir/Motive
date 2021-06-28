@@ -7,21 +7,21 @@ export default (_req: NextApiRequest, res: NextApiResponse) => {
     meta,
     motivation: {
       list: [...USERS].sort(
-        ({ characteristic: c1 }, { characteristic: c2 }) =>
+        ({ characteristics: c1 }, { characteristics: c2 }) =>
           c2.motivation - c1.motivation,
       ),
       type: 'motivation',
     },
     creativity: {
       list: [...USERS].sort(
-        ({ characteristic: c1 }, { characteristic: c2 }) =>
+        ({ characteristics: c1 }, { characteristics: c2 }) =>
           c2.motivation - c1.motivation,
       ),
       type: 'creativity',
     },
     support: {
       list: [...USERS].sort(
-        ({ characteristic: c1 }, { characteristic: c2 }) =>
+        ({ characteristics: c1 }, { characteristics: c2 }) =>
           c2.motivation - c1.motivation,
       ),
       type: 'support',

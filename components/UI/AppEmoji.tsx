@@ -14,7 +14,7 @@ interface AppEmojiProps {
   className?: string
 }
 
-const AppEmoji = ({ name, variant, className }: AppEmojiProps) => {
+const AppEmoji = ({ name, variant, ...restProps }: AppEmojiProps) => {
   const content = getContent()
 
   function getContent() {
@@ -44,7 +44,7 @@ const AppEmoji = ({ name, variant, className }: AppEmojiProps) => {
       component="p"
       role="img"
       aria-label={name}
-      className={className}
+      {...restProps}
     >
       {content}
     </Typography>

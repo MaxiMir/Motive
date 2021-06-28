@@ -2,7 +2,7 @@ import { GetServerSideProps } from 'next'
 import { ROUTE } from 'route'
 import Axios from 'lib/axios'
 import { Characteristic, MainPage } from 'dto'
-import { useCharacteristicColor } from 'hook/useCharacteristicColor'
+import { useCharacteristicColors } from 'hook/useCharacteristicColors'
 import Layout from 'layout'
 import { Slogan } from 'components/Slogan'
 import { Advantage } from 'components/Advantage'
@@ -13,26 +13,6 @@ interface AdvantageItem {
   title: string
   subtitle: string
   href: string
-}
-
-const Home = ({ meta }: MainPage) => {
-  const colors = useCharacteristicColor()
-
-  return (
-    <Layout withVerticalPadding={false} {...meta}>
-      <Slogan />
-      {ADVANTAGES.map((advantage, key) => {
-        return (
-          <AppBox style={{ height: 'calc((100vh - 290px ) / 4)' }} key={key}>
-            <Advantage
-              {...advantage}
-              color={colors[advantage.characteristic]}
-            />
-          </AppBox>
-        )
-      })}
-    </Layout>
-  )
 }
 
 const ADVANTAGES: AdvantageItem[] = [
@@ -62,8 +42,28 @@ const ADVANTAGES: AdvantageItem[] = [
   },
 ]
 
+const Home = ({ meta }: MainPage) => {
+  const colors = useCharacteristicColors()
+
+  return (
+    <Layout withVerticalPadding={false} {...meta}>
+      <Slogan />
+      {ADVANTAGES.map((advantage, key) => {
+        return (
+          <AppBox style={{ height: 'calc((100vh - 290px ) / 4)' }} key={key}>
+            <Advantage
+              {...advantage}
+              color={colors[advantage.characteristic]}
+            />
+          </AppBox>
+        )
+      })}
+    </Layout>
+  )
+}
+
 export const getServerSideProps: GetServerSideProps = async () => {
-  const { data } = await Axios.get(ROUTE.RATING)
+  const { data } = await Axios.get(ROUTE.INDEX)
 
   return { props: data }
 }

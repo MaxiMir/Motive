@@ -13,15 +13,10 @@ const AppLink: FC<AppLinkProps> = ({
   title,
   className,
   children,
-  ...restLinkProps
+  ...restProps
 }) => (
-  <Link href={href} {...restLinkProps}>
-    <MaterialLink
-      href={href}
-      title={title}
-      color="inherit"
-      className={className}
-    >
+  <Link href={href}>
+    <MaterialLink href={href} title={title} color="inherit" {...restProps}>
       {children}
     </MaterialLink>
   </Link>

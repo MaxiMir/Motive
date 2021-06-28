@@ -13,7 +13,7 @@ export interface UserCharacteristicProps {
   color: string
 }
 
-const UserCardCharacteristic = ({
+const UserCharacteristic = ({
   characteristic,
   value,
   color,
@@ -33,4 +33,4 @@ const UserCardCharacteristic = ({
   </AppTooltip>
 )
 
-export default UserCardCharacteristic
+export default UserCharacteristic

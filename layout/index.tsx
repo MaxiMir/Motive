@@ -41,6 +41,7 @@ const Layout: FC<LayoutProps> = ({
         <meta property="og:type" content={type} />
         {/* PWA primary color */}
         <meta name="theme-color" content={theme.palette.primary.main} />
+        <meta charSet="UTF-8" />
         <link
           rel="stylesheet"
           href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"

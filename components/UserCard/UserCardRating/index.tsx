@@ -72,7 +72,7 @@ const UserCardRating = ({
               align="right"
               style={{ color: colors[type].fontColor }}
             >
-              <b>{characteristic[type]}</b>
+              <b>{Math.floor(characteristic[type])}</b>
             </Typography>
           </Grid>
         </Grid>

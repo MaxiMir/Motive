@@ -2,38 +2,44 @@ export const USERS = [
   {
     id: '1',
     name: 'Maxim Minchenko',
-    href: '/maximir',
+    href: '/better/maximir',
     avatar: '/__temp__/1.png',
-    characteristic: {
-      motivation: 23,
-      support: 13,
-      creativity: 14,
+    characteristics: {
+      motivation: 23.13,
+      support: 13.56,
+      creativity: 14.66,
       abandoned: 0,
       completed: 8,
     },
+    isFavorite: true,
+    views: 113,
+    goals: [],
   },
   {
     id: '2',
     name: 'Julia Z',
-    href: '/juliaz',
+    href: '/better/juliaz',
     avatar: '/__temp__/2.png',
-    characteristic: {
+    characteristics: {
       motivation: 1,
-      support: 5,
-      creativity: 11,
+      support: 5.51,
+      creativity: 11.89,
       abandoned: 0,
       completed: 4,
     },
+    isFavorite: true,
+    views: 1,
+    goals: [],
   },
   {
     id: '3',
     name: 'Alexey Kopeychik',
-    href: '/kopeychik',
+    href: '/better/kopeychik',
     avatar: '/__temp__/4.png',
-    characteristic: {
+    characteristics: {
       motivation: 51,
       support: 31,
-      creativity: 7,
+      creativity: 7.13,
       abandoned: 0,
       completed: 4,
     },
@@ -41,12 +47,12 @@ export const USERS = [
   {
     id: '4',
     name: 'Valentina Ulyanova',
-    href: '/ulyanova',
+    href: '/better/ulyanova',
     avatar: '/__temp__/6.png',
-    characteristic: {
-      motivation: 11,
-      support: 14,
-      creativity: 24,
+    characteristics: {
+      motivation: 11.5,
+      support: 14.52,
+      creativity: 24.69,
       abandoned: 0,
       completed: 13,
     },
@@ -54,12 +60,12 @@ export const USERS = [
   {
     id: '5',
     name: 'Artyom Arzunyan',
-    href: '/artyom',
+    href: '/better/artyom',
     avatar: '/__temp__/3.png',
-    characteristic: {
+    characteristics: {
       motivation: 13,
-      support: 17,
-      creativity: 2,
+      support: 17.51,
+      creativity: 2.65,
       abandoned: 0,
       completed: 12,
     },

@@ -3,11 +3,12 @@ import { Tooltip } from '@material-ui/core/'
 
 interface AppTooltipProps {
   title: string
+  className?: string
 }
 
-const AppTooltip: FC<AppTooltipProps> = ({ title, children }) => (
+const AppTooltip: FC<AppTooltipProps> = ({ title, className, children }) => (
   <Tooltip title={title}>
-    <span>{children}</span>
+    <span className={className}>{children}</span>
   </Tooltip>
 )
 

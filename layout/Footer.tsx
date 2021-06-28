@@ -8,7 +8,7 @@ import {
   TopOfTheDayIcon,
   SearchIcon,
   RatingIcon,
-  FavoritesIcon,
+  FavoritesMenuIcon,
   ProfileIcon,
 } from 'components/UI/icons'
 
@@ -20,7 +20,7 @@ const LINKS = [
   },
   { href: ROUTE.SEARCH, Icon: SearchIcon, title: 'search' },
   { href: ROUTE.RATING, Icon: RatingIcon, title: 'rating' },
-  { href: ROUTE.FAVORITES, Icon: FavoritesIcon, title: 'favorites' },
+  { href: ROUTE.FAVORITES, Icon: FavoritesMenuIcon, title: 'favorites' },
   { href: ROUTE.PROFILE, Icon: ProfileIcon, title: 'profile' },
 ]
 

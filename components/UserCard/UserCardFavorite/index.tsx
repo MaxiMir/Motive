@@ -17,7 +17,13 @@ const CHARACTERISTICS: Characteristic[] = [
   'completed',
 ]
 
-const UserCardFavorite = ({ id, avatar, href, name, characteristic }: User) => {
+const UserCardFavorite = ({
+  id,
+  avatar,
+  href,
+  name,
+  characteristics,
+}: User) => {
   const colors = useCharacteristicColor()
   const classes = useStyles()
 
@@ -46,7 +52,7 @@ const UserCardFavorite = ({ id, avatar, href, name, characteristic }: User) => {
             <Fragment key={index}>
               <UserCardCharacteristic
                 characteristic={name}
-                value={characteristic[name]}
+                value={characteristics[name]}
                 color={colors[name].fontColor}
               />
               {index !== CHARACTERISTICS.length - 1 && <AppDot />}

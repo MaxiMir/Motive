@@ -18,12 +18,12 @@ const UserCardCharacteristic = ({
   value,
   color,
 }: UserCharacteristicProps) => (
-  <AppTooltip title={characteristic}>
+  <AppTooltip title={characteristic[0].toUpperCase() + characteristic.slice(1)}>
     <AppBox alignItems="center" spacing={0.5}>
       <AppEmoji name={characteristic} variant="subtitle1" />
       <AppBox width={32}>
         <Typography variant="subtitle1" component="p" style={{ color }}>
-          {value}
+          {Math.floor(value)}
           {!['completed', 'abandoned'].includes(characteristic) && (
             <UserCharacteristicLvl />
           )}

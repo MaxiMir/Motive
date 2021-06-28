@@ -1,21 +1,17 @@
 import { makeStyles } from '@material-ui/core/styles'
 import { Typography } from '@material-ui/core/'
+import { CharacteristicColor } from 'hook/useCharacteristicColor'
 import { Characteristic } from 'dto'
 import AppBox from 'components/UI/AppBox'
 import AppEmoji from 'components/UI/AppEmoji'
 import AppLink from 'components/UI/AppLink'
-
-interface Color {
-  start: string
-  end: string
-}
 
 interface AdvantageProps {
   characteristic: Characteristic
   title: string
   subtitle: string
   href: string
-  color: Color
+  color: CharacteristicColor
 }
 
 export const Advantage = ({
@@ -54,7 +50,7 @@ const useStyles = makeStyles({
   root: {
     width: '100%',
     height: '100%',
-    background: (props: { color: Color }) =>
+    background: (props: { color: CharacteristicColor }) =>
       `linear-gradient(90deg, ${props.color.start} 0%, ${props.color.end} 100%)`,
   },
   title: {

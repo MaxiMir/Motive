@@ -1,6 +1,21 @@
 import { useTheme } from '@material-ui/core'
 
-export const useCharacteristicColor = () => {
+type Characteristic =
+  | 'motivation'
+  | 'support'
+  | 'creativity'
+  | 'completed'
+  | 'abandoned'
+
+export type CharacteristicColor = {
+  fontColor: string
+  start: string
+  end: string
+}
+
+export const useCharacteristicColor = (): {
+  [k in Characteristic]: CharacteristicColor
+} => {
   const { palette } = useTheme()
 
   return {
@@ -31,5 +46,3 @@ export const useCharacteristicColor = () => {
     },
   }
 }
-
-export type CharacteristicColor = ReturnType<typeof useCharacteristicColor>

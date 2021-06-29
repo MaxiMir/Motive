@@ -8,6 +8,7 @@ import { useIncrementPageViews } from 'hook/useIncrementPageViews'
 import { useCharacteristicColors } from 'hook/useCharacteristicColors'
 import UserCardAvatar from './UserCardAvatar'
 import UserCardCharacteristic from './UserCardCharacteristic'
+import UserCardEmptyGoals from './UserCardEmptyGoals'
 import AppTooltip from 'components/UI/AppTooltip'
 import AppBox from 'components/UI/AppBox'
 
@@ -21,6 +22,7 @@ const UserCardDetail = ({
   avatar,
   characteristics,
   role,
+  goals,
 }: UserDetail) => {
   const classes = useStyles()
   const characteristicColors = useCharacteristicColors()
@@ -51,44 +53,51 @@ const UserCardDetail = ({
           </Typography>
         </AppBox>
       </AppBox>
-      <AppBox spacing={2} mb={3}>
-        <UserCardAvatar
-          avatar={avatar}
-          characteristics={characteristics}
-          characteristicColors={characteristicColors}
-        />
-        <AppBox flexDirection="column" justifyContent="space-between" flex={1}>
-          <AppBox justifyContent="space-between">
-            {(['motivation', 'creativity', 'support'] as Characteristic[]).map(
-              (type, index) => (
+      <AppBox flexDirection="column" spacing={3}>
+        <AppBox spacing={2}>
+          <UserCardAvatar
+            avatar={avatar}
+            characteristics={characteristics}
+            characteristicColors={characteristicColors}
+          />
+          <AppBox
+            flexDirection="column"
+            justifyContent="space-between"
+            flex={1}
+          >
+            <AppBox justifyContent="space-between">
+              {(
+                ['motivation', 'creativity', 'support'] as Characteristic[]
+              ).map((type, index) => (
                 <UserCardCharacteristic
                   characteristic={type}
                   value={characteristics[type]}
                   color={characteristicColors[type].fontColor}
                   key={index}
                 />
-              ),
-            )}
-          </AppBox>
-          <AppBox justifyContent="space-between">
-            {(['abandoned', 'completed'] as Characteristic[]).map(
-              (type, index) => (
-                <UserCardCharacteristic
-                  characteristic={type}
-                  value={characteristics[type]}
-                  color={characteristicColors[type].fontColor}
-                  key={index}
-                />
-              ),
-            )}
+              ))}
+            </AppBox>
+            <AppBox justifyContent="space-between">
+              {(['abandoned', 'completed'] as Characteristic[]).map(
+                (type, index) => (
+                  <UserCardCharacteristic
+                    characteristic={type}
+                    value={characteristics[type]}
+                    color={characteristicColors[type].fontColor}
+                    key={index}
+                  />
+                ),
+              )}
+            </AppBox>
           </AppBox>
         </AppBox>
+        {role === 'OWNER' && (
+          <AppBox justifyContent="center">
+            <UserCardAddGoal />
+          </AppBox>
+        )}
+        {!goals.length && <UserCardEmptyGoals />}
       </AppBox>
-      {role === 'OWNER' && (
-        <AppBox justifyContent="center">
-          <UserCardAddGoal />
-        </AppBox>
-      )}
     </Container>
   )
 }

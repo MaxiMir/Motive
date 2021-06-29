@@ -12,7 +12,10 @@ const UserCardFavorite = ({ isFavorite: initial }: UserCardFavoriteProps) => {
   const classes = useStyles()
 
   return (
-    <IconButton onClick={() => setIsFavorite(!isFavorite)}>
+    <IconButton
+      title={`${isFavorite ? 'remove from' : 'add to'} favorite`}
+      onClick={() => setIsFavorite(!isFavorite)}
+    >
       <AppEmoji
         name={!isFavorite ? 'favorite' : 'favorite-active'}
         variant="h5"

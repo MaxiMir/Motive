@@ -7,6 +7,7 @@ export type AppEmojiName =
   | 'favorite-active'
   | 'favorite'
   | 'views'
+  | 'goal'
 
 interface AppEmojiProps {
   name: AppEmojiName
@@ -33,6 +34,8 @@ const AppEmoji = ({ name, variant, ...restProps }: AppEmojiProps) => {
         return '🌟'
       case 'favorite':
         return '⭐'
+      case 'goal':
+        return '💎'
       default:
         return ''
     }

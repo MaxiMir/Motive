@@ -12,6 +12,7 @@ import AppTooltip from 'components/UI/AppTooltip'
 import AppBox from 'components/UI/AppBox'
 
 const UserCardFavorite = dynamic(() => import('./UserCardFavorite'))
+const UserCardAddGoal = dynamic(() => import('./UserCardAddGoal'))
 
 const UserCardDetail = ({
   name,
@@ -37,16 +38,20 @@ const UserCardDetail = ({
             <UserCardFavorite isFavorite={isFavorite} />
           )}
         </AppBox>
-        <AppBox alignItems="center" spacing={1}>
+        <AppBox alignItems="center" spacing={0.5}>
           <AppTooltip title="Page Views" className={classes.tooltip}>
             <Image src="/images/eye.png" alt="eye" width={39} height={24} />
           </AppTooltip>
-          <Typography variant="h6" component="p" className={classes.views}>
+          <Typography
+            variant="subtitle1"
+            component="p"
+            className={classes.views}
+          >
             {numberToShort(views)}
           </Typography>
         </AppBox>
       </AppBox>
-      <AppBox spacing={2}>
+      <AppBox spacing={2} mb={3}>
         <UserCardAvatar
           avatar={avatar}
           characteristics={characteristics}
@@ -79,6 +84,11 @@ const UserCardDetail = ({
           </AppBox>
         </AppBox>
       </AppBox>
+      {role === 'OWNER' && (
+        <AppBox justifyContent="center">
+          <UserCardAddGoal />
+        </AppBox>
+      )}
     </Container>
   )
 }

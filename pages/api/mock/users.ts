@@ -14,6 +14,7 @@ export const USERS = [
     isFavorite: true,
     views: 113,
     goals: [],
+    role: 'OWNER',
   },
   {
     id: '2',
@@ -37,12 +38,15 @@ export const USERS = [
     href: '/better/kopeychik',
     avatar: '/__temp__/4.png',
     characteristics: {
-      motivation: 51,
-      support: 31,
+      motivation: 51.89,
+      support: 31.51,
       creativity: 7.13,
-      abandoned: 0,
+      abandoned: 1,
       completed: 4,
     },
+    isFavorite: false,
+    views: 387,
+    goals: [],
   },
   {
     id: '4',

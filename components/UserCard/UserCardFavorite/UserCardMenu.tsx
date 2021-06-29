@@ -1,11 +1,12 @@
 import { useState, MouseEvent } from 'react'
 import dynamic from 'next/dynamic'
-import { createStyles, IconButton, Menu, MenuItem } from '@material-ui/core'
+import { createStyles, IconButton, MenuItem } from '@material-ui/core'
 import { useFavorite } from 'hook/useFavorite'
 import { makeStyles } from '@material-ui/core/styles'
 import MoreHorizIcon from '@material-ui/icons/MoreHoriz'
 
 const Share = dynamic(() => import('components/Share'))
+const Menu = dynamic(() => import('@material-ui/core/Menu'))
 
 interface UserCardFavoriteMenuProps {
   id: string
@@ -40,24 +41,26 @@ const UserCardMenu = ({ id, name, href }: UserCardFavoriteMenuProps) => {
       <IconButton className={classes.button} onClick={onClick}>
         <MoreHorizIcon fontSize="small" className={classes.icon} />
       </IconButton>
-      <Menu
-        id="user-menu"
-        anchorEl={anchorEl}
-        anchorOrigin={{
-          vertical: 'top',
-          horizontal: 'right',
-        }}
-        keepMounted
-        transformOrigin={{
-          vertical: 'top',
-          horizontal: 'right',
-        }}
-        open={!!anchorEl}
-        onClose={onCloseMenu}
-      >
-        <MenuItem onClick={onShare}>Share</MenuItem>
-        <MenuItem onClick={onRemove}>Remove from Favorites</MenuItem>
-      </Menu>
+      {anchorEl && (
+        <Menu
+          id="user-menu"
+          anchorEl={anchorEl}
+          anchorOrigin={{
+            vertical: 'top',
+            horizontal: 'right',
+          }}
+          keepMounted
+          transformOrigin={{
+            vertical: 'top',
+            horizontal: 'right',
+          }}
+          open={!!anchorEl}
+          onClose={onCloseMenu}
+        >
+          <MenuItem onClick={onShare}>Share</MenuItem>
+          <MenuItem onClick={onRemove}>Remove from Favorites</MenuItem>
+        </Menu>
+      )}
       {withShare && (
         <Share title={name} href={href} onClose={() => setWithShare(false)} />
       )}

@@ -31,7 +31,9 @@ export const theme = createMuiTheme({
       disabled: '#BDB5B5',
     },
     primary: {
-      main: '#FFE0B2', // шрифт
+      main: '#4DA0EC', // шрифт
+      light: '#D1C4E9',
+      dark: '#673AB7',
     },
   },
   overrides: {

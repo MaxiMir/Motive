@@ -2,7 +2,7 @@ import dynamic from 'next/dynamic'
 import Image from 'next/image'
 import { Characteristic, UserDetail } from 'dto'
 import { makeStyles } from '@material-ui/core/styles'
-import { Container, Typography } from '@material-ui/core'
+import { Typography } from '@material-ui/core'
 import { numberToShort } from 'helper/prepare'
 import { useIncrementPageViews } from 'hook/useIncrementPageViews'
 import { useCharacteristicColors } from 'hook/useCharacteristicColors'
@@ -11,6 +11,7 @@ import UserCardCharacteristic from './UserCardCharacteristic'
 import UserCardEmptyGoals from './UserCardEmptyGoals'
 import AppTooltip from 'components/UI/AppTooltip'
 import AppBox from 'components/UI/AppBox'
+import AppContainer from 'components/UI/AppContainer'
 
 const UserCardFavorite = dynamic(() => import('./UserCardFavorite'))
 const UserCardAddGoal = dynamic(() => import('./UserCardAddGoal'))
@@ -26,11 +27,12 @@ const UserCardDetail = ({
 }: UserDetail) => {
   const classes = useStyles()
   const characteristicColors = useCharacteristicColors()
+  const isOwner = role === 'OWNER'
 
   useIncrementPageViews(role)
 
   return (
-    <Container fixed>
+    <AppContainer withFlexColumn>
       <AppBox justifyContent="space-between" mb={2}>
         <AppBox alignItems="center">
           <Typography variant="h6" component="h1">
@@ -53,7 +55,7 @@ const UserCardDetail = ({
           </Typography>
         </AppBox>
       </AppBox>
-      <AppBox flexDirection="column" spacing={3}>
+      <AppBox flexDirection="column" spacing={3} flex={1}>
         <AppBox spacing={2}>
           <UserCardAvatar
             avatar={avatar}
@@ -91,14 +93,14 @@ const UserCardDetail = ({
             </AppBox>
           </AppBox>
         </AppBox>
-        {role === 'OWNER' && (
+        {isOwner && (
           <AppBox justifyContent="center">
             <UserCardAddGoal />
           </AppBox>
         )}
-        {!goals.length && <UserCardEmptyGoals />}
+        {!goals.length && <UserCardEmptyGoals isOwner={isOwner} />}
       </AppBox>
-    </Container>
+    </AppContainer>
   )
 }
 

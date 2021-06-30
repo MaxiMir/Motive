@@ -4,7 +4,6 @@ import { makeStyles } from '@material-ui/core/styles'
 import { theme } from 'theme'
 import { Header } from './Header'
 import { Footer } from './Footer'
-import AppBox from 'components/UI/AppBox'
 
 interface LayoutProps {
   title: string
@@ -24,7 +23,7 @@ const Layout: FC<LayoutProps> = ({
   withVerticalPadding = true,
   children,
 }) => {
-  const classes = useStyles()
+  const classes = useStyles({ withVerticalPadding })
 
   return (
     <>
@@ -48,14 +47,7 @@ const Layout: FC<LayoutProps> = ({
         />
       </Head>
       <Header />
-      <main>
-        <AppBox
-          className={classes.content}
-          paddingY={!withVerticalPadding ? undefined : 3}
-        >
-          {children}
-        </AppBox>
-      </main>
+      <main className={classes.main}>{children}</main>
       <Footer />
     </>
   )
@@ -64,11 +56,12 @@ const Layout: FC<LayoutProps> = ({
 // TODO https://shivamethical.medium.com/creating-web-page-preview-while-sharing-url-via-social-applications-like-whats-app-fb-cd2e19b11bf2
 
 const useStyles = makeStyles({
-  content: {
+  main: {
     display: 'flex',
     flexDirection: 'column',
-    flex: 1,
-    'min-height': 'calc(100vh - 170px)',
+    minHeight: 'calc(100vh - 170px)',
+    padding: (props: { withVerticalPadding: boolean }) =>
+      !props.withVerticalPadding ? 0 : '24px 0',
   },
 })
 

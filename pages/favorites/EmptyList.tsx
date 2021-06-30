@@ -2,7 +2,7 @@ import { Typography } from '@material-ui/core/'
 import AppBox from 'components/UI/AppBox'
 
 const EmptyList = () => (
-  <AppBox alignItems="center" flexGrow={1}>
+  <AppBox alignItems="center" justifyContent="center" flex={1}>
     <AppBox flexDirection="column" alignItems="center" width="100%">
       <Typography variant="h5" style={{ color: '#C8B1BB' }}>
         The list is empty.

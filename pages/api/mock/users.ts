@@ -62,6 +62,7 @@ export const USERS = [
     },
     isFavorite: false,
     views: 12354,
+    goals: [],
   },
   {
     id: '5',
@@ -75,5 +76,8 @@ export const USERS = [
       abandoned: 0,
       completed: 12,
     },
+    isFavorite: false,
+    views: 321,
+    goals: [],
   },
 ]

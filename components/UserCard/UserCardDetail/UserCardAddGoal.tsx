@@ -23,9 +23,6 @@ const UserCardAddGoal = () => {
 const useStyles = makeStyles({
   button: {
     width: 200,
-    textTransform: 'none',
-    border: '1px solid #4DA0EC',
-    fontSize: '0.875rem',
     borderRadius: 5,
   },
 })

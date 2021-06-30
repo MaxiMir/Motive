@@ -54,7 +54,7 @@ const useStyles = makeStyles({
       `linear-gradient(90deg, ${props.color.start} 0%, ${props.color.end} 100%)`,
   },
   title: {
-    width: 210,
+    width: 215,
     textTransform: 'uppercase',
     fontWeight: 500,
   },

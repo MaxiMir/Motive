@@ -8,24 +8,17 @@ interface UserCardAddGoalProps {
   isOwner: boolean
 }
 
-const UserCardEmptyGoals = ({ isOwner }: UserCardAddGoalProps) => {
+const UserCardEmptyGoals = ({ isOwner }: UserCardAddGoalProps): JSX.Element => {
   const classes = useStyles()
 
   return (
-    <AppBox
-      flexDirection="column"
-      justifyContent="center"
-      alignItems="center"
-      spacing={1}
-      flexGrow={1}
-    >
+    <AppBox flexDirection="column" justifyContent="center" alignItems="center" spacing={1} flexGrow={1}>
       <Typography variant="h6" component="p" className={classes.title}>
         {isOwner ? 'You have no goals' : 'No goals'}
       </Typography>
       {isOwner && (
         <Typography component="p">
-          You can create <span className={classes.own}>your own</span> or use
-          the{' '}
+          You can create <span className={classes.own}>your own</span> or use the{' '}
           <AppLink href={ROUTE.SEARCH} className={classes.link}>
             search
           </AppLink>

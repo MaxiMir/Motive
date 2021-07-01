@@ -4,8 +4,8 @@ import Axios from 'lib/axios'
 import { Characteristic, MainPage } from 'dto'
 import { useCharacteristicColors } from 'hook/useCharacteristicColors'
 import Layout from 'layout'
-import { Slogan } from 'components/Slogan'
-import { Advantage } from 'components/Advantage'
+import Slogan from 'components/Slogan'
+import Advantage from 'components/Advantage'
 import AppBox from 'components/UI/AppBox'
 
 interface AdvantageItem {
@@ -26,13 +26,13 @@ const ADVANTAGES: AdvantageItem[] = [
     characteristic: 'creativity',
     title: 'BE СREATIVE',
     subtitle: 'for yourself and others',
-    href: ROUTE.RATING + '?tab=1',
+    href: `${ROUTE.RATING}?tab=1`,
   },
   {
     characteristic: 'support',
     title: 'BE SUPPORTIVE',
     subtitle: 'to people in need',
-    href: ROUTE.RATING + '?tab=2',
+    href: `${ROUTE.RATING}?tab=2`,
   },
   {
     characteristic: 'completed',
@@ -42,22 +42,17 @@ const ADVANTAGES: AdvantageItem[] = [
   },
 ]
 
-const Home = ({ meta }: MainPage) => {
+export default function Home(meta: MainPage): JSX.Element {
   const colors = useCharacteristicColors()
 
   return (
     <Layout withVerticalPadding={false} {...meta}>
       <Slogan />
-      {ADVANTAGES.map((advantage, key) => {
-        return (
-          <AppBox style={{ height: 'calc((100vh - 290px ) / 4)' }} key={key}>
-            <Advantage
-              {...advantage}
-              color={colors[advantage.characteristic]}
-            />
-          </AppBox>
-        )
-      })}
+      {ADVANTAGES.map((advantage) => (
+        <AppBox style={{ height: 'calc((100vh - 290px ) / 4)' }} key={advantage.characteristic}>
+          <Advantage {...advantage} color={colors[advantage.characteristic]} />
+        </AppBox>
+      ))}
     </Layout>
   )
 }
@@ -67,5 +62,3 @@ export const getServerSideProps: GetServerSideProps = async () => {
 
   return { props: data }
 }
-
-export default Home

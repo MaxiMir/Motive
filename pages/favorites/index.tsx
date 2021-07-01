@@ -10,11 +10,9 @@ import AppHeader from 'components/UI/AppHeader'
 import { AppListProps } from 'components/UI/AppList'
 
 const EmptyList = dynamic(() => import('./EmptyList'))
-const AppList = dynamic<AppListProps<User>>(
-  () => import('components/UI/AppList'),
-)
+const AppList = dynamic<AppListProps<User>>(() => import('components/UI/AppList'))
 
-const Favorites = ({ meta, favorites }: FavoritesPage) => {
+export default function Favorites({ meta, favorites }: FavoritesPage): JSX.Element {
   return (
     <Layout {...meta}>
       <AppContainer withFlexColumn>
@@ -28,6 +26,7 @@ const Favorites = ({ meta, favorites }: FavoritesPage) => {
             elements={favorites}
             spacing={4}
             render={(el) => <UserCardFavorite {...el} />}
+            keyGetter={(el) => el.id}
           />
         )}
       </AppContainer>
@@ -40,5 +39,3 @@ export const getServerSideProps: GetServerSideProps = async () => {
 
   return { props: data }
 }
-
-export default Favorites

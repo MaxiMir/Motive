@@ -1,11 +1,9 @@
 import AppLink from 'components/UI/AppLink'
 
-const TopOfTheDay = () => {
+export default function TopOfTheDay(): JSX.Element {
   return (
     <AppLink href="/" title="main">
       Back
     </AppLink>
   )
 }
-
-export default TopOfTheDay

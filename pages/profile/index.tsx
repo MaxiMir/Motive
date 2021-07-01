@@ -1,11 +1,9 @@
 import AppLink from 'components/UI/AppLink'
 
-const Profile = () => {
+export default function Profile(): JSX.Element {
   return (
     <AppLink href="/" title="main">
       Back
     </AppLink>
   )
 }
-
-export default Profile

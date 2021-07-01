@@ -11,26 +11,13 @@ interface CircleProps {
 const RADIUS = 175
 const DIAMETER = Math.round(Math.PI * RADIUS * 2)
 
-const AppCircle = ({
-  progress,
-  size,
-  color,
-  strokeWidth,
-  strokeWidthBg,
-}: CircleProps) => {
+export default function AppCircle({ progress, size, color, strokeWidth, strokeWidthBg }: CircleProps): JSX.Element {
   const offset = Math.round(((100 - Math.min(progress, 100)) / 100) * DIAMETER)
 
   return (
     <>
       <svg width={size} height={size} viewBox="-25 -25 400 400">
-        <circle
-          stroke={color.start}
-          cx={RADIUS}
-          cy={RADIUS}
-          r={RADIUS}
-          strokeWidth={strokeWidthBg}
-          fill="none"
-        />
+        <circle stroke={color.start} cx={RADIUS} cy={RADIUS} r={RADIUS} strokeWidth={strokeWidthBg} fill="none" />
         <circle
           className="circle"
           stroke={color.end}
@@ -61,5 +48,3 @@ const AppCircle = ({
     </>
   )
 }
-
-export default AppCircle

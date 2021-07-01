@@ -39,41 +39,18 @@ const CIRCLE_ITEMS: CircleItem[] = [
   },
 ]
 
-const UserCardAvatar = ({
-  avatar,
-  characteristics,
-  characteristicColors,
-}: UserCardAvatarProps) => {
+const UserCardAvatar = ({ avatar, characteristics, characteristicColors }: UserCardAvatarProps): JSX.Element => {
   const classes = useStyles()
 
   return (
     <AppBox className={classes.root}>
-      {CIRCLE_ITEMS.map(({ type, ...props }, index) => (
-        <AppBox
-          justifyContent="center"
-          alignItems="center"
-          className={classes.circleBlock}
-          key={index}
-        >
-          <AppCircle
-            progress={(characteristics[type] % 1) * 100}
-            color={characteristicColors[type]}
-            {...props}
-          />
+      {CIRCLE_ITEMS.map(({ type, ...props }) => (
+        <AppBox justifyContent="center" alignItems="center" className={classes.circleBlock} key={type}>
+          <AppCircle progress={(characteristics[type] % 1) * 100} color={characteristicColors[type]} {...props} />
         </AppBox>
       ))}
-      <AppBox
-        justifyContent="center"
-        alignItems="center"
-        className={classes.circleBlock}
-      >
-        <Image
-          src={avatar}
-          alt="avatar"
-          width={80}
-          height={80}
-          className={classes.avatar}
-        />
+      <AppBox justifyContent="center" alignItems="center" className={classes.circleBlock}>
+        <Image src={avatar} alt="avatar" width={80} height={80} className={classes.avatar} />
       </AppBox>
     </AppBox>
   )

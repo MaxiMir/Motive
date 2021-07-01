@@ -1,4 +1,4 @@
-export const meta = {
+export default {
   title: 'Title #Motive',
   description: 'description #Motive',
   keywords: 'keywords #Motive',

@@ -2,11 +2,11 @@ import React, { FC } from 'react'
 import NextNprogress from 'nextjs-progressbar'
 import { ThemeProvider } from '@material-ui/core/styles'
 import CssBaseline from '@material-ui/core/CssBaseline'
-import { theme } from 'theme'
+import theme from 'theme'
 
 interface MyAppProps {
   Component: FC
-  pageProps: any
+  pageProps: { children: React.Component }
 }
 
 export default function MyApp(props: MyAppProps): JSX.Element {

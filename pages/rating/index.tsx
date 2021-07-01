@@ -16,7 +16,7 @@ import TabNames from './TabNames'
 
 const TABS: Characteristic[] = ['motivation', 'creativity', 'support']
 
-const Rating = ({ meta, motivation, creativity, support }: RatingPage) => {
+export default function Rating({ meta, motivation, creativity, support }: RatingPage): JSX.Element {
   const { query } = useRouter()
 
   return (
@@ -26,25 +26,22 @@ const Rating = ({ meta, motivation, creativity, support }: RatingPage) => {
       </Container>
       <AppBox flexDirection="column" spacing={2} mt={4}>
         <AppTabs
-          tabs={TABS.map((type, index) => (
-            <AppBox alignItems="center" spacing={1} key={index}>
+          tabs={TABS.map((type) => (
+            <AppBox alignItems="center" spacing={1} key={type}>
               <AppEmoji name={type} variant="h6" />
               <Typography style={{ textTransform: 'none' }}>{type}</Typography>
             </AppBox>
           ))}
-          content={[motivation, creativity, support].map(
-            ({ list, type }, index) => (
-              <Fragment key={index}>
-                <TabNames />
-                <AppList<User>
-                  elements={list}
-                  render={(el, index) => (
-                    <UserCardRating {...el} type={type} index={index} />
-                  )}
-                />
-              </Fragment>
-            ),
-          )}
+          content={[motivation, creativity, support].map(({ list, type }) => (
+            <Fragment key={type}>
+              <TabNames />
+              <AppList<User>
+                elements={list}
+                render={(el, index) => <UserCardRating {...el} type={type} index={index} />}
+                keyGetter={(el) => el.id}
+              />
+            </Fragment>
+          ))}
           initial={!query.tab ? undefined : +query.tab}
           ariaLabel="rating by characteristics"
         />
@@ -58,5 +55,3 @@ export const getServerSideProps: GetServerSideProps = async () => {
 
   return { props: data }
 }
-
-export default Rating

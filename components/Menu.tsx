@@ -1,16 +1,9 @@
 import React, { useState } from 'react'
 import { makeStyles } from '@material-ui/core/styles'
-import {
-  Drawer,
-  List,
-  Divider,
-  ListItem,
-  IconButton,
-  ListItemText,
-} from '@material-ui/core'
+import { Drawer, List, Divider, ListItem, IconButton, ListItemText } from '@material-ui/core'
 import { MenuIcon } from './UI/icons'
 
-export const Menu = () => {
+export default function Menu(): JSX.Element {
   const classes = useStyles()
   const [open, setOpen] = useState(false)
 
@@ -24,29 +17,17 @@ export const Menu = () => {
 
   return (
     <div>
-      <IconButton
-        edge="start"
-        color="inherit"
-        aria-label="menu"
-        onClick={() => setOpen(true)}
-      >
+      <IconButton edge="start" color="inherit" aria-label="menu" onClick={() => setOpen(true)}>
         <MenuIcon />
       </IconButton>
       <Drawer open={open} onClose={() => setOpen(false)}>
-        <div
-          role="presentation"
-          className={classes.list}
-          onKeyDown={onKeyDown}
-          onClick={() => setOpen(false)}
-        >
+        <div role="presentation" className={classes.list} onKeyDown={onKeyDown} onClick={() => setOpen(false)}>
           <List>
-            {['News', 'How it works', 'Next Features', 'Support us'].map(
-              (text) => (
-                <ListItem button key={text}>
-                  <ListItemText primary={text} />
-                </ListItem>
-              ),
-            )}
+            {['News', 'How it works', 'Next Features', 'Support us'].map((text) => (
+              <ListItem button key={text}>
+                <ListItemText primary={text} />
+              </ListItem>
+            ))}
           </List>
           <Divider />
           <List>

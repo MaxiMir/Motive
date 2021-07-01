@@ -9,13 +9,18 @@ interface AppTabsProps {
   initial?: number
 }
 
-const AppTabs = ({ tabs, content, ariaLabel, initial = 0 }: AppTabsProps) => {
+export default function AppTabs({ tabs, content, ariaLabel, initial = 0 }: AppTabsProps): JSX.Element {
   const [value, setValue] = useState(initial)
   const classes = useStyles()
 
-  const a11yProps = (index: number) => ({
+  const getA11yTabProps = (index: number) => ({
     id: `simple-tab-${index}`,
     'aria-controls': `simple-tabpanel-${index}`,
+  })
+
+  const getA11yContentProps = (index: number) => ({
+    id: `simple-tabpanel-${index}`,
+    'aria-labelledby': `simple-tab-${index}`,
   })
 
   const onChange = (_event: ChangeEvent<unknown>, newValue: number) => {
@@ -32,22 +37,22 @@ const AppTabs = ({ tabs, content, ariaLabel, initial = 0 }: AppTabsProps) => {
           variant="fullWidth"
           onChange={onChange}
         >
-          {tabs.map((tab, index) => (
-            <Tab label={tab} {...a11yProps(index)} key={index} />
-          ))}
+          {tabs.map((tab, index) => {
+            const a11yTabProps = getA11yTabProps(index)
+
+            return <Tab label={tab} {...a11yTabProps} key={a11yTabProps.id} />
+          })}
         </Tabs>
       </Container>
-      {content.map((content, index) => (
-        <div
-          role="tabpanel"
-          hidden={value !== index}
-          id={`simple-tabpanel-${index}`}
-          aria-labelledby={`simple-tab-${index}`}
-          key={index}
-        >
-          {value === index && content}
-        </div>
-      ))}
+      {content.map((tabContent, index) => {
+        const a11yContentProps = getA11yContentProps(index)
+
+        return (
+          <div role="tabpanel" hidden={value !== index} {...a11yContentProps} key={a11yContentProps.id}>
+            {value === index && tabContent}
+          </div>
+        )
+      })}
     </>
   )
 }
@@ -59,5 +64,3 @@ const useStyles = makeStyles((theme) =>
     },
   }),
 )
-
-export default AppTabs

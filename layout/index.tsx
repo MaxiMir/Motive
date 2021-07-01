@@ -1,9 +1,9 @@
 import React, { FC } from 'react'
 import Head from 'next/head'
 import { makeStyles } from '@material-ui/core/styles'
-import { theme } from 'theme'
-import { Header } from './Header'
-import { Footer } from './Footer'
+import theme from 'theme'
+import Header from './Header'
+import Footer from './Footer'
 
 interface LayoutProps {
   title: string
@@ -14,15 +14,7 @@ interface LayoutProps {
   withVerticalPadding?: boolean
 }
 
-const Layout: FC<LayoutProps> = ({
-  title,
-  description,
-  keywords,
-  url,
-  type,
-  withVerticalPadding = true,
-  children,
-}) => {
+const Layout: FC<LayoutProps> = ({ title, description, keywords, url, type, withVerticalPadding = true, children }) => {
   const classes = useStyles({ withVerticalPadding })
 
   return (
@@ -41,10 +33,7 @@ const Layout: FC<LayoutProps> = ({
         {/* PWA primary color */}
         <meta name="theme-color" content={theme.palette.primary.main} />
         <meta charSet="UTF-8" />
-        <link
-          rel="stylesheet"
-          href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"
-        />
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" />
       </Head>
       <Header />
       <main className={classes.main}>{children}</main>
@@ -60,8 +49,7 @@ const useStyles = makeStyles({
     display: 'flex',
     flexDirection: 'column',
     minHeight: 'calc(100vh - 170px)',
-    padding: (props: { withVerticalPadding: boolean }) =>
-      !props.withVerticalPadding ? 0 : '24px 0',
+    padding: (props: { withVerticalPadding: boolean }) => (!props.withVerticalPadding ? 0 : '24px 0'),
   },
 })
 

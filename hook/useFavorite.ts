@@ -1,4 +1,4 @@
-export const useFavorite = (id: string) => {
+export default function useFavorite(id: string): [() => void, () => void] {
   const onAdd = () => {
     console.log('onAdd', id)
   }

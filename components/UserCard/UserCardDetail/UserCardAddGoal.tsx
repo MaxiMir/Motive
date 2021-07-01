@@ -2,7 +2,7 @@ import { makeStyles } from '@material-ui/core/styles'
 import { Button } from '@material-ui/core'
 import AppEmoji from 'components/UI/AppEmoji'
 
-const UserCardAddGoal = () => {
+const UserCardAddGoal = (): JSX.Element => {
   const classes = useStyles()
 
   return (

@@ -7,20 +7,13 @@ interface UserCardFavoriteProps {
   isFavorite: boolean
 }
 
-const UserCardFavorite = ({ isFavorite: initial }: UserCardFavoriteProps) => {
+const UserCardFavorite = ({ isFavorite: initial }: UserCardFavoriteProps): JSX.Element => {
   const [isFavorite, setIsFavorite] = useState(initial)
   const classes = useStyles()
 
   return (
-    <IconButton
-      title={`${isFavorite ? 'remove from' : 'add to'} favorite`}
-      onClick={() => setIsFavorite(!isFavorite)}
-    >
-      <AppEmoji
-        name={!isFavorite ? 'favorite' : 'favorite-active'}
-        variant="h5"
-        className={classes.emoji}
-      />
+    <IconButton title={`${isFavorite ? 'remove from' : 'add to'} favorite`} onClick={() => setIsFavorite(!isFavorite)}>
+      <AppEmoji name={!isFavorite ? 'favorite' : 'favorite-active'} variant="h5" className={classes.emoji} />
     </IconButton>
   )
 }

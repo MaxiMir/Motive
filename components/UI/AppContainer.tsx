@@ -5,11 +5,11 @@ type AppContainerProps = Omit<ContainerProps, 'fixed'> & {
   withFlexColumn?: boolean
 }
 
-const AppContainer = ({
+export default function AppContainer({
   withFlexColumn = false,
   children,
   ...restProps
-}: AppContainerProps) => {
+}: AppContainerProps): JSX.Element {
   const classes = useStyles({ withFlexColumn })
 
   return (
@@ -30,5 +30,3 @@ const useStyles = makeStyles({
           alignItems: 'stretch',
         },
 })
-
-export default AppContainer

@@ -14,21 +14,11 @@ interface AdvantageProps {
   color: CharacteristicColor
 }
 
-export const Advantage = ({
-  characteristic,
-  title,
-  subtitle,
-  href,
-  color,
-}: AdvantageProps) => {
+export default function Advantage({ characteristic, title, subtitle, href, color }: AdvantageProps): JSX.Element {
   const classes = useStyles({ color })
 
   return (
-    <AppBox
-      justifyContent="center"
-      alignItems="center"
-      className={classes.root}
-    >
+    <AppBox justifyContent="center" alignItems="center" className={classes.root}>
       <AppBox alignItems="center" spacing={3}>
         <AppLink href={href} className={classes.imageLink}>
           <AppEmoji name={characteristic} variant="h2" />

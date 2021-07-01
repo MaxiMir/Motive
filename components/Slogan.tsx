@@ -2,22 +2,13 @@ import { createStyles, makeStyles } from '@material-ui/core/styles'
 import { Typography } from '@material-ui/core'
 import AppBox from 'components/UI/AppBox'
 
-export const Slogan = () => {
+export default function Slogan(): JSX.Element {
   const classes = useStyles()
 
   return (
-    <AppBox
-      alignItems="center"
-      justifyContent="center"
-      className={classes.root}
-    >
+    <AppBox alignItems="center" justifyContent="center" className={classes.root}>
       <AppBox flexDirection="column" alignItems="center">
-        <Typography
-          variant="h4"
-          align="center"
-          component="h1"
-          className={classes.header}
-        >
+        <Typography variant="h4" align="center" component="h1" className={classes.header}>
           Be Better
         </Typography>
         <Typography align="center" className={classes.subheader}>

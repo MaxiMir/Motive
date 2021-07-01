@@ -3,16 +3,17 @@ import AppBox, { Spacing } from './AppBox'
 
 export interface AppListProps<T> {
   elements: T[]
-  render: (element: T, index: number) => JSX.Element
   spacing?: Spacing
+  render: (element: T, index: number) => JSX.Element
+  keyGetter: (element: T) => string
 }
 
-const AppList = <T,>({ elements, render, spacing }: AppListProps<T>) => (
-  <AppBox flexDirection="column" spacing={spacing}>
-    {elements.map((element, key) => (
-      <Fragment key={key}>{render(element, key)}</Fragment>
-    ))}
-  </AppBox>
-)
-
-export default AppList
+export default function AppList<T>({ elements, spacing, render, keyGetter }: AppListProps<T>): JSX.Element {
+  return (
+    <AppBox flexDirection="column" spacing={spacing}>
+      {elements.map((element, key) => (
+        <Fragment key={keyGetter(element)}>{render(element, key)}</Fragment>
+      ))}
+    </AppBox>
+  )
+}

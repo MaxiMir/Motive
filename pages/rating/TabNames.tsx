@@ -2,7 +2,7 @@ import { Container, Grid, Typography } from '@material-ui/core/'
 import { makeStyles } from '@material-ui/core/styles'
 import AppBox from 'components/UI/AppBox'
 
-const TabNames = () => {
+const TabNames = (): JSX.Element => {
   const classes = useStyles()
 
   return (

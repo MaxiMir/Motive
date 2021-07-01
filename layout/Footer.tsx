@@ -1,16 +1,10 @@
-import * as React from 'react'
+import React from 'react'
 import { useRouter } from 'next/router'
 import { makeStyles } from '@material-ui/core/styles'
 import { ROUTE } from 'route'
 import AppBox from 'components/UI/AppBox'
 import AppLink from 'components/UI/AppLink'
-import {
-  TopOfTheDayIcon,
-  SearchIcon,
-  RatingIcon,
-  FavoritesMenuIcon,
-  ProfileIcon,
-} from 'components/UI/icons'
+import { TopOfTheDayIcon, SearchIcon, RatingIcon, FavoritesMenuIcon, ProfileIcon } from 'components/UI/icons'
 
 const LINKS = [
   {
@@ -24,25 +18,16 @@ const LINKS = [
   { href: ROUTE.PROFILE, Icon: ProfileIcon, title: 'profile' },
 ]
 
-export const Footer = () => {
+export default function Footer(): JSX.Element {
   const classes = useStyles()
   const { pathname } = useRouter()
 
   return (
     <footer className={classes.root}>
-      <AppBox
-        justifyContent="space-between"
-        alignItems="center"
-        flexGrow={1}
-        height="100%"
-        padding={2}
-      >
+      <AppBox justifyContent="space-between" alignItems="center" flexGrow={1} height="100%" padding={2}>
         {LINKS.map(({ href, title, Icon }, key) => (
           <AppLink href={href} key={key} title={title}>
-            <Icon
-              fontSize="large"
-              className={pathname !== href ? classes.link : classes.currentLink}
-            />
+            <Icon fontSize="large" className={pathname !== href ? classes.link : classes.currentLink} />
           </AppLink>
         ))}
       </AppBox>

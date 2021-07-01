@@ -1,6 +1,6 @@
 import AppLink from 'components/UI/AppLink'
 
-const Search = () => {
+const Search = (): JSX.Element => {
   return (
     <AppLink href="/" title="main">
       Back

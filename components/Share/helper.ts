@@ -8,11 +8,7 @@ interface InitParams {
 
 type ShareType = keyof typeof SHARERS
 
-const prepare = ({
-  shareUrl,
-  params,
-  isLink = false,
-}: InitParams): [string, boolean] => {
+const prepare = ({ shareUrl, params, isLink = false }: InitParams): [string, boolean] => {
   const urlSearchParams = new URLSearchParams('')
 
   Object.entries(params).forEach(([name, value]) => {
@@ -22,17 +18,33 @@ const prepare = ({
   return [`${shareUrl}?${urlSearchParams}`, isLink]
 }
 
-export const onClick = (type: ShareType, title: string, url: string) => {
+/**
+ * Обработчик клика по элементам SN
+ */
+export const clickHandler = (type: ShareType, title: string, url: string): void => {
   const [shareUrl, isLink] = SHARERS[type](url, title)
 
   if (isLink) {
-    return (window.location.href = shareUrl)
+    window.location.href = shareUrl
+    return
   }
 
-  return window.open(shareUrl, '_blank')
+  window.open(shareUrl, '_blank')
 }
 
-export const SHARERS = {
+/**
+ * Обработчик для копирования текста в буфер обмена
+ */
+export const copyHandler = async (text: string, onEnd: () => void, onError: (err: string) => void): Promise<void> => {
+  try {
+    await navigator.clipboard.writeText(text)
+    onEnd()
+  } catch (err) {
+    onError(err)
+  }
+}
+
+export const SHARERS: { [k: string]: (u: string, quote: string) => [string, boolean] } = {
   facebook(u: string, quote: string) {
     return prepare({
       shareUrl: 'https://www.facebook.com/sharer/sharer.php',

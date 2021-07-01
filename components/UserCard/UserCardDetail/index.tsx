@@ -6,25 +6,17 @@ import { Typography } from '@material-ui/core'
 import { numberToShort } from 'helper/prepare'
 import { useIncrementPageViews } from 'hook/useIncrementPageViews'
 import { useCharacteristicColors } from 'hook/useCharacteristicColors'
-import UserCardAvatar from './UserCardAvatar'
-import UserCardCharacteristic from './UserCardCharacteristic'
-import UserCardEmptyGoals from './UserCardEmptyGoals'
 import AppTooltip from 'components/UI/AppTooltip'
 import AppBox from 'components/UI/AppBox'
 import AppContainer from 'components/UI/AppContainer'
+import UserCardAvatar from './UserCardAvatar'
+import UserCardCharacteristic from './UserCardCharacteristic'
+import UserCardEmptyGoals from './UserCardEmptyGoals'
 
 const UserCardFavorite = dynamic(() => import('./UserCardFavorite'))
 const UserCardAddGoal = dynamic(() => import('./UserCardAddGoal'))
 
-const UserCardDetail = ({
-  name,
-  isFavorite,
-  views,
-  avatar,
-  characteristics,
-  role,
-  goals,
-}: UserDetail) => {
+const UserCardDetail = ({ name, isFavorite, views, avatar, characteristics, role, goals }: UserDetail): JSX.Element => {
   const classes = useStyles()
   const characteristicColors = useCharacteristicColors()
   const isOwner = role === 'OWNER'
@@ -38,19 +30,13 @@ const UserCardDetail = ({
           <Typography variant="h6" component="h1">
             {name}
           </Typography>
-          {isFavorite !== undefined && (
-            <UserCardFavorite isFavorite={isFavorite} />
-          )}
+          {isFavorite !== undefined && <UserCardFavorite isFavorite={isFavorite} />}
         </AppBox>
         <AppBox alignItems="center" spacing={0.5}>
           <AppTooltip title="Page Views" className={classes.tooltip}>
             <Image src="/images/eye.png" alt="eye" width={39} height={24} />
           </AppTooltip>
-          <Typography
-            variant="subtitle1"
-            component="p"
-            className={classes.views}
-          >
+          <Typography variant="subtitle1" component="p" className={classes.views}>
             {numberToShort(views)}
           </Typography>
         </AppBox>
@@ -62,34 +48,26 @@ const UserCardDetail = ({
             characteristics={characteristics}
             characteristicColors={characteristicColors}
           />
-          <AppBox
-            flexDirection="column"
-            justifyContent="space-between"
-            flex={1}
-          >
+          <AppBox flexDirection="column" justifyContent="space-between" flex={1}>
             <AppBox justifyContent="space-between">
-              {(
-                ['motivation', 'creativity', 'support'] as Characteristic[]
-              ).map((type, index) => (
+              {(['motivation', 'creativity', 'support'] as Characteristic[]).map((type) => (
                 <UserCardCharacteristic
                   characteristic={type}
                   value={characteristics[type]}
                   color={characteristicColors[type].fontColor}
-                  key={index}
+                  key={type}
                 />
               ))}
             </AppBox>
             <AppBox justifyContent="space-between">
-              {(['abandoned', 'completed'] as Characteristic[]).map(
-                (type, index) => (
-                  <UserCardCharacteristic
-                    characteristic={type}
-                    value={characteristics[type]}
-                    color={characteristicColors[type].fontColor}
-                    key={index}
-                  />
-                ),
-              )}
+              {(['abandoned', 'completed'] as Characteristic[]).map((type) => (
+                <UserCardCharacteristic
+                  characteristic={type}
+                  value={characteristics[type]}
+                  color={characteristicColors[type].fontColor}
+                  key={type}
+                />
+              ))}
             </AppBox>
           </AppBox>
         </AppBox>

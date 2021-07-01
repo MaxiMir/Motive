@@ -5,7 +5,7 @@ interface AppDotProps {
   size?: number
 }
 
-const AppDot = ({ size = 3 }: AppDotProps) => {
+export default function AppDot({ size = 3 }: AppDotProps): JSX.Element {
   const classes = useStyles()
 
   return <AppBox width={size} height={size} className={classes.root} />
@@ -17,5 +17,3 @@ const useStyles = makeStyles({
     backgroundColor: '#424242',
   },
 })
-
-export default AppDot

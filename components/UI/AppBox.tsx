@@ -6,8 +6,6 @@ interface AppBoxProps extends BoxProps {
   spacing?: Spacing
 }
 
-const AppBox = ({ spacing, ...props }: AppBoxProps) => (
-  <Box display="flex" gridGap={spacing && spacing * 8} {...props} />
-)
-
-export default AppBox
+export default function AppBox({ spacing, ...props }: AppBoxProps): JSX.Element {
+  return <Box display="flex" gridGap={spacing && spacing * 8} {...props} />
+}

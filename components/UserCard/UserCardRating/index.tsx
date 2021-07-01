@@ -11,22 +11,15 @@ interface UserCardRatingProps extends User {
   type: Characteristic
 }
 
-const UserCardRating = ({
-  avatar,
-  href,
-  name,
-  index,
-  characteristics,
-  type,
-}: UserCardRatingProps) => {
+const UserCardRating = ({ avatar, href, name, index, characteristics, type }: UserCardRatingProps): JSX.Element => {
   const colors = useCharacteristicColors()
   const classes = useStyles({ isEven: index % 2 === 0 })
   const number = getNumber()
 
   function getNumber() {
-    const number = index + 1
+    const incrementedNumber = index + 1
 
-    switch (number) {
+    switch (incrementedNumber) {
       case 1:
         return '🥇'
       case 2:
@@ -34,7 +27,7 @@ const UserCardRating = ({
       case 3:
         return '🥉'
       default:
-        return number
+        return incrementedNumber
     }
   }
 
@@ -44,21 +37,13 @@ const UserCardRating = ({
         <Grid container alignItems="center" className={classes.container}>
           <Grid item xs>
             <AppBox justifyContent="center" width={22}>
-              <Typography variant={index <= 2 ? 'h5' : undefined}>
-                {number}
-              </Typography>
+              <Typography variant={index <= 2 ? 'h5' : undefined}>{number}</Typography>
             </AppBox>
           </Grid>
           <Grid item xs={8}>
             <AppBox alignItems="center" spacing={2}>
               <AppLink href={href} className={classes.avatarLink}>
-                <Image
-                  src={avatar}
-                  width={35}
-                  height={35}
-                  alt="avatar"
-                  className={classes.avatar}
-                />
+                <Image src={avatar} width={35} height={35} alt="avatar" className={classes.avatar} />
               </AppLink>
               <AppLink href={href}>
                 <Typography>{name}</Typography>
@@ -66,12 +51,7 @@ const UserCardRating = ({
             </AppBox>
           </Grid>
           <Grid item xs>
-            <Typography
-              variant="subtitle1"
-              component="p"
-              align="right"
-              style={{ color: colors[type].fontColor }}
-            >
+            <Typography variant="subtitle1" component="p" align="right" style={{ color: colors[type].fontColor }}>
               <b>{Math.floor(characteristics[type])}</b>
             </Typography>
           </Grid>
@@ -83,8 +63,7 @@ const UserCardRating = ({
 
 const useStyles = makeStyles({
   root: {
-    background: (props: { isEven: boolean }) =>
-      props.isEven ? 'initial' : '#21262C',
+    background: (props: { isEven: boolean }) => (props.isEven ? 'initial' : '#21262C'),
   },
   container: {
     height: 55,

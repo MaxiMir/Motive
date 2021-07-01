@@ -1,7 +1,7 @@
 import { makeStyles } from '@material-ui/core/styles'
 import { createStyles } from '@material-ui/core'
 
-const UserCharacteristicLvl = () => {
+const UserCharacteristicLvl = (): JSX.Element => {
   const classes = useStyles()
 
   return <sup className={classes.root}>lvl</sup>

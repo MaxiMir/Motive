@@ -4,14 +4,25 @@ module.exports = {
   parser: '@typescript-eslint/parser',
   extends: [
     'plugin:react/recommended',
+    'airbnb',
+    'plugin:@typescript-eslint/recommended',
     'plugin:prettier/recommended',
     'plugin:react-hooks/recommended',
+    'plugin:import/errors',
+    'plugin:import/warnings',
+    'plugin:import/typescript',
   ],
   settings: {
     react: {
       version: 'detect',
     },
     'import/internal-regex': '^next/',
+    'import/resolver': {
+      node: {
+        extensions: ['.js', '.jsx', '.ts', '.tsx'],
+        moduleDirectory: ['node_modules', '.'],
+      },
+    },
   },
   env: {
     browser: true,
@@ -41,7 +52,14 @@ module.exports = {
       },
       plugins: ['@typescript-eslint'],
       rules: {
+        'import/extensions': 'off',
+        'react/require-default-props': 'off',
+        'react/jsx-filename-extension': [2, { extensions: ['.ts', '.tsx'] }],
         'react/prop-types': 'off',
+        'import/no-extraneous-dependencies': ['error', { devDependencies: true }],
+        'react/jsx-props-no-spreading': 'off',
+        'import/no-self-import': 'off',
+
         // Already handled by TS
         'no-dupe-class-members': 'off',
         'no-undef': 'off',
@@ -83,21 +101,14 @@ module.exports = {
       },
     },
     {
-      files: [
-        'test/**/*',
-        'examples/**/*',
-        'packages/create-next-app/templates/**/*',
-      ],
+      files: ['test/**/*', 'examples/**/*', 'packages/create-next-app/templates/**/*'],
       rules: { 'react/react-in-jsx-scope': 'off' },
     },
     {
       files: ['packages/**'],
       rules: {
         'no-shadow': ['warn', { builtinGlobals: false }],
-        'import/no-extraneous-dependencies': [
-          'error',
-          { devDependencies: false },
-        ],
+        'import/no-extraneous-dependencies': ['error', { devDependencies: false }],
       },
     },
     {

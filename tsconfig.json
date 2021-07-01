@@ -9,6 +9,10 @@
     "allowJs": true,
     "skipLibCheck": true,
     "strict": true, // Включить ли все строгие проверки типов сразу
+    "strictNullChecks": true,
+    "strictFunctionTypes": true,
+    "strictPropertyInitialization": true,
+    "alwaysStrict": true,
     "forceConsistentCasingInFileNames": true, // Запретить несогласованные ссылки на один и тот же файл
     "allowSyntheticDefaultImports": true, // Разрешить импортировать модули не имеющие внутри себя "import default"
     "noEmit": true,

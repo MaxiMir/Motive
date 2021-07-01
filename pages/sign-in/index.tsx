@@ -1,11 +1,9 @@
 import AppLink from 'components/UI/AppLink'
 
-const SignIn = () => {
+export default function SignIn(): JSX.Element {
   return (
     <AppLink href="/" title="main">
       Back
     </AppLink>
   )
 }
-
-export default SignIn

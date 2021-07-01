@@ -5,38 +5,21 @@ import { makeStyles } from '@material-ui/core/styles'
 import { useCharacteristicColors } from 'hook/useCharacteristicColors'
 import { Characteristic, User } from 'dto'
 import UserCharacteristic from 'components/UserCharacteristic'
-import UserCardMenu from './UserCardMenu'
 import AppBox from 'components/UI/AppBox'
 import AppLink from 'components/UI/AppLink'
 import AppDot from 'components/UI/AppDot'
+import UserCardMenu from './UserCardMenu'
 
-const CHARACTERISTICS: Characteristic[] = [
-  'motivation',
-  'creativity',
-  'support',
-  'completed',
-]
+const CHARACTERISTICS: Characteristic[] = ['motivation', 'creativity', 'support', 'completed']
 
-const UserCardFavorite = ({
-  id,
-  avatar,
-  href,
-  name,
-  characteristics,
-}: User) => {
+const UserCardFavorite = ({ id, avatar, href, name, characteristics }: User): JSX.Element => {
   const colors = useCharacteristicColors()
   const classes = useStyles()
 
   return (
     <AppBox spacing={1}>
       <AppLink href={href} className={classes.avatarLink}>
-        <Image
-          src={avatar}
-          width={55}
-          height={55}
-          alt="avatar"
-          className={classes.avatar}
-        />
+        <Image src={avatar} width={55} height={55} alt="avatar" className={classes.avatar} />
       </AppLink>
       <AppBox flexDirection="column" justifyContent="space-between" flex={1}>
         <AppBox justifyContent="space-between" alignItems="center">
@@ -48,12 +31,12 @@ const UserCardFavorite = ({
           <UserCardMenu id={id} name={name} href={href} />
         </AppBox>
         <AppBox justifyContent="space-between" alignItems="center">
-          {CHARACTERISTICS.map((name, index) => (
-            <Fragment key={index}>
+          {CHARACTERISTICS.map((characteristic, index) => (
+            <Fragment key={characteristic}>
               <UserCharacteristic
-                characteristic={name}
-                value={characteristics[name]}
-                color={colors[name].fontColor}
+                characteristic={characteristic}
+                value={characteristics[characteristic]}
+                color={colors[characteristic].fontColor}
               />
               {index !== CHARACTERISTICS.length - 1 && <AppDot />}
             </Fragment>

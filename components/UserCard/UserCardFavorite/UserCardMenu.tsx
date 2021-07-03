@@ -1,6 +1,6 @@
 import { useState, MouseEvent } from 'react'
 import dynamic from 'next/dynamic'
-import { createStyles, IconButton, MenuItem } from '@material-ui/core'
+import { IconButton, MenuItem } from '@material-ui/core'
 import { makeStyles } from '@material-ui/core/styles'
 import MoreHorizIcon from '@material-ui/icons/MoreHoriz'
 import useFavorite from 'hook/useFavorite'
@@ -38,8 +38,8 @@ const UserCardMenu = ({ id, name, href }: UserCardFavoriteMenuProps): JSX.Elemen
 
   return (
     <>
-      <IconButton className={classes.button} onClick={onClick}>
-        <MoreHorizIcon fontSize="small" className={classes.icon} />
+      <IconButton className={classes.button} title="open user menu" onClick={onClick}>
+        <MoreHorizIcon fontSize="small" color="secondary" className={classes.icon} />
       </IconButton>
       {anchorEl && (
         <Menu
@@ -66,16 +66,13 @@ const UserCardMenu = ({ id, name, href }: UserCardFavoriteMenuProps): JSX.Elemen
   )
 }
 
-const useStyles = makeStyles((theme) =>
-  createStyles({
-    button: {
-      padding: 3,
-    },
-    icon: {
-      fontSize: '1.5rem',
-      color: theme.palette.warning.light,
-    },
-  }),
-)
+const useStyles = makeStyles({
+  button: {
+    padding: 3,
+  },
+  icon: {
+    fontSize: '1.5rem',
+  },
+})
 
 export default UserCardMenu

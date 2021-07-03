@@ -8,11 +8,9 @@ interface AppLinkProps {
   className?: string
 }
 
-const AppLink: FC<AppLinkProps> = ({ href, title, className, children, ...restProps }) => (
+const AppLink: FC<AppLinkProps> = ({ href, title, className, ...restProps }) => (
   <Link href={href}>
-    <MaterialLink href={href} title={title} color="inherit" className={className} {...restProps}>
-      {children}
-    </MaterialLink>
+    <MaterialLink href={href} title={title} color="inherit" className={className} {...restProps} />
   </Link>
 )
 

@@ -3,7 +3,11 @@ import { Snackbar, SnackbarProps } from '@material-ui/core'
 import { makeStyles } from '@material-ui/core/styles'
 import Alert, { AlertProps } from '@material-ui/lab/Alert'
 
-type AppSnackbarProps = Pick<AlertProps, 'severity'> & Pick<SnackbarProps, 'autoHideDuration'> & { onClose: () => void }
+interface AppSnackbarProps {
+  severity: AlertProps['severity']
+  autoHideDuration: SnackbarProps['autoHideDuration']
+  onClose: () => void
+}
 
 const AppSnackbar: FC<AppSnackbarProps> = ({ severity, autoHideDuration, children, onClose }) => {
   const classes = useStyles()

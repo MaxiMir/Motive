@@ -1,6 +1,7 @@
-import { Container, Grid, Typography } from '@material-ui/core/'
+import { Container, Grid } from '@material-ui/core/'
 import { makeStyles } from '@material-ui/core/styles'
 import AppBox from 'components/UI/AppBox'
+import AppTypography from 'components/UI/AppTypography'
 
 const TabNames = (): JSX.Element => {
   const classes = useStyles()
@@ -11,20 +12,20 @@ const TabNames = (): JSX.Element => {
         <Grid container alignItems="center" className={classes.container}>
           <Grid item xs>
             <AppBox justifyContent="center" width={22}>
-              <Typography variant="subtitle1" component="p">
+              <AppTypography variant="subtitle1" component="p">
                 <b>№</b>
-              </Typography>
+              </AppTypography>
             </AppBox>
           </Grid>
           <Grid item xs={8}>
-            <Typography variant="subtitle1" component="p">
+            <AppTypography variant="subtitle1" component="p">
               <b>User</b>
-            </Typography>
+            </AppTypography>
           </Grid>
           <Grid item xs>
-            <Typography variant="subtitle1" component="p" align="right">
+            <AppTypography variant="subtitle1" component="p" align="right">
               <b>Level</b>
-            </Typography>
+            </AppTypography>
           </Grid>
         </Grid>
       </Container>

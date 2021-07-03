@@ -2,7 +2,7 @@ import { Fragment } from 'react'
 import { GetServerSideProps } from 'next'
 import { useRouter } from 'next/router'
 import Axios from 'lib/axios'
-import { Container, Typography } from '@material-ui/core'
+import { Container } from '@material-ui/core'
 import { ROUTE } from 'route'
 import { Characteristic, RatingPage, User } from 'dto'
 import Layout from 'layout'
@@ -12,6 +12,7 @@ import AppHeader from 'components/UI/AppHeader'
 import AppTabs from 'components/UI/AppTabs'
 import AppBox from 'components/UI/AppBox'
 import AppList from 'components/UI/AppList'
+import AppTypography from 'components/UI/AppTypography'
 import TabNames from './TabNames'
 
 const TABS: Characteristic[] = ['motivation', 'creativity', 'support']
@@ -29,7 +30,7 @@ export default function Rating({ meta, motivation, creativity, support }: Rating
           tabs={TABS.map((type) => (
             <AppBox alignItems="center" spacing={1} key={type}>
               <AppEmoji name={type} variant="h6" />
-              <Typography style={{ textTransform: 'none' }}>{type}</Typography>
+              <AppTypography style={{ textTransform: 'none' }}>{type}</AppTypography>
             </AppBox>
           ))}
           content={[motivation, creativity, support].map(({ list, type }) => (

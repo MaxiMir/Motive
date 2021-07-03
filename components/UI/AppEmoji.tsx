@@ -1,12 +1,11 @@
-import { Variant } from '@material-ui/core/styles/createTypography'
-import { Typography } from '@material-ui/core/'
 import { Characteristic } from 'dto'
+import AppTypography, { AppTypographyProps } from './AppTypography'
 
-export type AppEmojiName = Characteristic | 'favorite-active' | 'favorite' | 'views' | 'goal'
+export type AppEmojiName = Characteristic | 'favorite-active' | 'favorite' | 'views' | 'goal' | 'task'
 
 interface AppEmojiProps {
   name: AppEmojiName
-  variant: Variant
+  variant: AppTypographyProps['variant']
   className?: string
 }
 
@@ -31,14 +30,16 @@ export default function AppEmoji({ name, variant, ...restProps }: AppEmojiProps)
         return '⭐'
       case 'goal':
         return '💎'
+      case 'task':
+        return '📌'
       default:
         return ''
     }
   }
 
   return (
-    <Typography variant={variant} component="p" role="img" aria-label={name} {...restProps}>
+    <AppTypography variant={variant} component="p" role="img" aria-label={name} {...restProps}>
       {content}
-    </Typography>
+    </AppTypography>
   )
 }

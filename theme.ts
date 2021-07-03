@@ -30,10 +30,12 @@ export default createMuiTheme({
       primary: '#F5F5F7',
       disabled: '#BDB5B5',
     },
+    secondary: {
+      dark: '#C8B1BB',
+      main: '#FFE0B2', // шрифт
+    },
     primary: {
-      main: '#4DA0EC', // шрифт
-      light: '#D1C4E9',
-      dark: '#673AB7',
+      main: '#C8B1BB', // шрифт
     },
   },
   overrides: {

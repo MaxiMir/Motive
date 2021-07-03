@@ -1,15 +1,11 @@
-import React, { FC } from 'react'
+import React from 'react'
+import { AppProps } from 'next/app'
 import NextNprogress from 'nextjs-progressbar'
 import { ThemeProvider } from '@material-ui/core/styles'
 import CssBaseline from '@material-ui/core/CssBaseline'
 import theme from 'theme'
 
-interface MyAppProps {
-  Component: FC
-  pageProps: { children: React.Component }
-}
-
-export default function MyApp(props: MyAppProps): JSX.Element {
+export default function MyApp(props: AppProps): JSX.Element {
   const { Component, pageProps } = props
 
   React.useEffect(() => {
@@ -23,7 +19,7 @@ export default function MyApp(props: MyAppProps): JSX.Element {
 
   return (
     <ThemeProvider theme={theme}>
-      <NextNprogress color="#FFE0B2" />
+      <NextNprogress color={theme.palette.secondary.main} />
       {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
       <CssBaseline />
       <Component {...pageProps} />

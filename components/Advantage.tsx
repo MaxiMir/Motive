@@ -1,10 +1,10 @@
 import { makeStyles } from '@material-ui/core/styles'
-import { Typography } from '@material-ui/core/'
 import { CharacteristicColor } from 'hook/useCharacteristicColors'
 import { Characteristic } from 'dto'
 import AppBox from 'components/UI/AppBox'
 import AppEmoji from 'components/UI/AppEmoji'
 import AppLink from 'components/UI/AppLink'
+import AppTypography from 'components/UI/AppTypography'
 
 interface AdvantageProps {
   characteristic: Characteristic
@@ -25,11 +25,11 @@ export default function Advantage({ characteristic, title, subtitle, href, color
         </AppLink>
         <AppBox flexDirection="column" spacing={1}>
           <AppLink href={href}>
-            <Typography variant="h5" className={classes.title}>
+            <AppTypography variant="h5" className={classes.title}>
               {title}
-            </Typography>
+            </AppTypography>
           </AppLink>
-          <Typography>{subtitle}</Typography>
+          <AppTypography>{subtitle}</AppTypography>
         </AppBox>
       </AppBox>
     </AppBox>
@@ -43,14 +43,14 @@ const useStyles = makeStyles({
     background: (props: { color: CharacteristicColor }) =>
       `linear-gradient(90deg, ${props.color.start} 0%, ${props.color.end} 100%)`,
   },
-  title: {
-    width: 215,
-    textTransform: 'uppercase',
-    fontWeight: 500,
-  },
   imageLink: {
     '&:hover': {
       textDecoration: 'none',
     },
+  },
+  title: {
+    width: 215,
+    textTransform: 'uppercase',
+    fontWeight: 500,
   },
 })

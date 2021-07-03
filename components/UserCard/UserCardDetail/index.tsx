@@ -2,13 +2,13 @@ import dynamic from 'next/dynamic'
 import Image from 'next/image'
 import { Characteristic, UserDetail } from 'dto'
 import { makeStyles } from '@material-ui/core/styles'
-import { Typography } from '@material-ui/core'
 import { numberToShort } from 'helper/prepare'
 import { useIncrementPageViews } from 'hook/useIncrementPageViews'
 import { useCharacteristicColors } from 'hook/useCharacteristicColors'
 import AppTooltip from 'components/UI/AppTooltip'
 import AppBox from 'components/UI/AppBox'
 import AppContainer from 'components/UI/AppContainer'
+import AppTypography from 'components/UI/AppTypography'
 import UserCardAvatar from './UserCardAvatar'
 import UserCardCharacteristic from './UserCardCharacteristic'
 import UserCardEmptyGoals from './UserCardEmptyGoals'
@@ -27,22 +27,22 @@ const UserCardDetail = ({ name, isFavorite, views, avatar, characteristics, role
     <AppContainer withFlexColumn>
       <AppBox justifyContent="space-between" mb={2}>
         <AppBox alignItems="center">
-          <Typography variant="h6" component="h1">
+          <AppTypography variant="h5" component="h1">
             {name}
-          </Typography>
+          </AppTypography>
           {isFavorite !== undefined && <UserCardFavorite isFavorite={isFavorite} />}
         </AppBox>
         <AppBox alignItems="center" spacing={0.5}>
           <AppTooltip title="Page Views" className={classes.tooltip}>
             <Image src="/images/eye.png" alt="eye" width={39} height={24} />
           </AppTooltip>
-          <Typography variant="subtitle1" component="p" className={classes.views}>
+          <AppTypography variant="subtitle1" component="p" className={classes.views}>
             {numberToShort(views)}
-          </Typography>
+          </AppTypography>
         </AppBox>
       </AppBox>
       <AppBox flexDirection="column" spacing={3} flex={1}>
-        <AppBox spacing={2}>
+        <AppBox spacing={1}>
           <UserCardAvatar
             avatar={avatar}
             characteristics={characteristics}

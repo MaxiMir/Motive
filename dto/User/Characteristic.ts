@@ -1,6 +1,1 @@
-export type Characteristic =
-  | 'motivation'
-  | 'creativity'
-  | 'support'
-  | 'completed'
-  | 'abandoned'
+export type Characteristic = 'motivation' | 'creativity' | 'support' | 'completed' | 'abandoned'

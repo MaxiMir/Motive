@@ -1,15 +1,15 @@
 import UserCharacteristic, { UserCharacteristicProps } from 'components/UserCharacteristic'
 import { makeStyles } from '@material-ui/core/styles'
-import { Typography } from '@material-ui/core/'
 import AppBox from 'components/UI/AppBox'
+import AppTypography from 'components/UI/AppTypography'
 
 const UserCardCharacteristic = (props: UserCharacteristicProps): JSX.Element => {
   const { color, characteristic } = props
   const classes = useStyles({ color })
 
   return (
-    <AppBox flexDirection="column" spacing={0.5}>
-      <Typography className={classes.title}>{characteristic}</Typography>
+    <AppBox flexDirection="column" spacing={0.5} width={60}>
+      <AppTypography className={classes.title}>{characteristic}</AppTypography>
       <UserCharacteristic {...props} />
     </AppBox>
   )

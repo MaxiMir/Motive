@@ -1,7 +1,6 @@
 import React, { FC } from 'react'
 import Head from 'next/head'
 import { makeStyles } from '@material-ui/core/styles'
-import theme from 'theme'
 import Header from './Header'
 import Footer from './Footer'
 
@@ -31,7 +30,7 @@ const Layout: FC<LayoutProps> = ({ title, description, keywords, url, type, with
         <meta property="og:image" content="/images/app.png" />
         <meta property="og:type" content={type} />
         {/* PWA primary color */}
-        <meta name="theme-color" content={theme.palette.primary.main} />
+        <meta name="theme-color" content="#4DA0EC" />
         <meta charSet="UTF-8" />
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" />
       </Head>

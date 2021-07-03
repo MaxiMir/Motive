@@ -74,7 +74,7 @@ const ShareMenu = ({ title, url, onCopyEnd, onCopyError, onClose }: ShareMenuPro
             <ListItem button onClick={onClick} className={classes.listItem} key={text}>
               <AppBox alignItems="center" className={classes.listBox}>
                 <ListItemIcon>
-                  <Icon className={classes.icon} />
+                  <Icon color="secondary" />
                 </ListItemIcon>
                 <ListItemText primary={text} className={classes.text} />
               </AppBox>
@@ -89,15 +89,11 @@ const ShareMenu = ({ title, url, onCopyEnd, onCopyError, onClose }: ShareMenuPro
 const useStyles = makeStyles((theme) =>
   createStyles({
     listItem: {
-      width: '100vw',
       height: 65,
     },
     listBox: {
-      width: 225,
+      width: 200,
       margin: '0 auto',
-    },
-    icon: {
-      color: theme.palette.warning.light,
     },
     text: {
       color: theme.palette.text.disabled,

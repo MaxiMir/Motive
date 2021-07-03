@@ -1,10 +1,11 @@
 import Image from 'next/image'
 import { makeStyles } from '@material-ui/core/styles'
-import { Container, Grid, Typography } from '@material-ui/core/'
+import { Container, Grid } from '@material-ui/core/'
 import { useCharacteristicColors } from 'hook/useCharacteristicColors'
 import { Characteristic, User } from 'dto'
 import AppBox from 'components/UI/AppBox'
 import AppLink from 'components/UI/AppLink'
+import AppTypography from 'components/UI/AppTypography'
 
 interface UserCardRatingProps extends User {
   index: number
@@ -37,7 +38,7 @@ const UserCardRating = ({ avatar, href, name, index, characteristics, type }: Us
         <Grid container alignItems="center" className={classes.container}>
           <Grid item xs>
             <AppBox justifyContent="center" width={22}>
-              <Typography variant={index <= 2 ? 'h5' : undefined}>{number}</Typography>
+              <AppTypography variant={index <= 2 ? 'h5' : undefined}>{number}</AppTypography>
             </AppBox>
           </Grid>
           <Grid item xs={8}>
@@ -46,14 +47,14 @@ const UserCardRating = ({ avatar, href, name, index, characteristics, type }: Us
                 <Image src={avatar} width={35} height={35} alt="avatar" className={classes.avatar} />
               </AppLink>
               <AppLink href={href}>
-                <Typography>{name}</Typography>
+                <AppTypography>{name}</AppTypography>
               </AppLink>
             </AppBox>
           </Grid>
           <Grid item xs>
-            <Typography variant="subtitle1" component="p" align="right" style={{ color: colors[type].fontColor }}>
+            <AppTypography variant="subtitle1" component="p" align="right" style={{ color: colors[type].fontColor }}>
               <b>{Math.floor(characteristics[type])}</b>
-            </Typography>
+            </AppTypography>
           </Grid>
         </Grid>
       </Container>

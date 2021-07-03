@@ -1,9 +1,9 @@
 import dynamic from 'next/dynamic'
-import { Typography } from '@material-ui/core/'
 import { Characteristic } from 'dto'
 import AppEmoji from 'components/UI/AppEmoji'
 import AppBox from 'components/UI/AppBox'
 import AppTooltip from 'components/UI/AppTooltip'
+import AppTypography from 'components/UI/AppTypography'
 
 const UserCharacteristicLvl = dynamic(() => import('./UserCharacteristicLvl'))
 
@@ -18,10 +18,10 @@ const UserCharacteristic = ({ characteristic, value, color }: UserCharacteristic
     <AppBox alignItems="center" spacing={0.5}>
       <AppEmoji name={characteristic} variant="subtitle1" />
       <AppBox width={32}>
-        <Typography variant="subtitle1" component="p" style={{ color }}>
+        <AppTypography variant="h6" component="p" style={{ color }}>
           {Math.floor(value)}
           {!['completed', 'abandoned'].includes(characteristic) && <UserCharacteristicLvl />}
-        </Typography>
+        </AppTypography>
       </AppBox>
     </AppBox>
   </AppTooltip>

@@ -8,18 +8,8 @@ interface InitParams {
 
 type ShareType = keyof typeof SHARERS
 
-const prepare = ({ shareUrl, params, isLink = false }: InitParams): [string, boolean] => {
-  const urlSearchParams = new URLSearchParams('')
-
-  Object.entries(params).forEach(([name, value]) => {
-    urlSearchParams.append(name, value)
-  })
-
-  return [`${shareUrl}?${urlSearchParams}`, isLink]
-}
-
 /**
- * Обработчик клика по элементам SN
+ * Обработчик клика по элементам Social Networks
  */
 export const clickHandler = (type: ShareType, title: string, url: string): void => {
   const [shareUrl, isLink] = SHARERS[type](url, title)
@@ -44,6 +34,9 @@ export const copyHandler = async (text: string, onEnd: () => void, onError: (err
   }
 }
 
+/**
+ * Social Networks
+ */
 export const SHARERS: { [k: string]: (u: string, quote: string) => [string, boolean] } = {
   facebook(u: string, quote: string) {
     return prepare({
@@ -103,4 +96,14 @@ export const SHARERS: { [k: string]: (u: string, quote: string) => [string, bool
       isLink: true,
     })
   },
+}
+
+const prepare = ({ shareUrl, params, isLink = false }: InitParams): [string, boolean] => {
+  const urlSearchParams = new URLSearchParams('')
+
+  Object.entries(params).forEach(([name, value]) => {
+    urlSearchParams.append(name, value)
+  })
+
+  return [`${shareUrl}?${urlSearchParams}`, isLink]
 }

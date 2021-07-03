@@ -17,7 +17,7 @@ export default function Menu(): JSX.Element {
 
   return (
     <div>
-      <IconButton edge="start" color="inherit" aria-label="menu" onClick={() => setOpen(true)}>
+      <IconButton edge="start" color="inherit" aria-label="open menu" onClick={() => setOpen(true)}>
         <MenuIcon />
       </IconButton>
       <Drawer open={open} onClose={() => setOpen(false)}>

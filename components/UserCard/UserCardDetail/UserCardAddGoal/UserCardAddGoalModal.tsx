@@ -1,5 +1,4 @@
 import { Fragment } from 'react'
-import dynamic from 'next/dynamic'
 import { v1 as uniqId } from 'uuid'
 import { Field, FieldArray, Form, Formik } from 'formik'
 import { object, string, array, SchemaOf } from 'yup'
@@ -13,8 +12,6 @@ import AppBox from 'components/UI/AppBox'
 import AppInput from 'components/UI/AppInput'
 import AppTypography from 'components/UI/AppTypography'
 import { CloseIcon, PaulIcon } from 'components/UI/icons'
-
-const Alert = dynamic(() => import('@material-ui/lab/Alert'))
 
 interface UserCardAddGoalModalProps {
   onClose: () => void
@@ -51,20 +48,18 @@ export default function UserCardAddGoalModal({ onClose }: UserCardAddGoalModalPr
         }}
         validationSchema={schema}
         onSubmit={async (values) => {
-          console.log('my values', values)
-          return new Promise((res) => setTimeout(res, 2500))
+          await new Promise<void>((r) =>
+            setTimeout(() => {
+              console.log(values)
+              r()
+            }, 3000),
+          )
         }}
       >
-        {({ touched, values, errors, isSubmitting }) => (
+        {({ values, isSubmitting }) => (
           <Form autoComplete="off">
             <AppBox flexDirection="column" spacing={3}>
-              <Field
-                name="title"
-                label="Title *"
-                color="secondary"
-                component={AppInput}
-                error={touched.title && errors.title}
-              />
+              <Field name="title" label="Title *" color="secondary" component={AppInput} />
               <FieldArray name="tasks">
                 {({ push, remove }) => (
                   <AppBox flexDirection="column" spacing={2}>
@@ -83,7 +78,6 @@ export default function UserCardAddGoalModal({ onClose }: UserCardAddGoalModalPr
                             rows={4}
                             rowsMax={4}
                             component={AppInput}
-                            error={touched.tasks?.[index]?.title && errors.tasks?.[index]?.title}
                           />
                           <IconButton
                             className={classes.buttonClose}
@@ -132,7 +126,6 @@ export default function UserCardAddGoalModal({ onClose }: UserCardAddGoalModalPr
                 >
                   {isSubmitting ? 'Submitting' : 'Submit'}
                 </Button>
-                <pre>{JSON.stringify({ values, errors }, null, 4)}</pre>
               </AppBox>
             </AppBox>
           </Form>

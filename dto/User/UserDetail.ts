@@ -3,7 +3,7 @@ import { Goal } from './Goal'
 import { Role } from './Role'
 
 export interface UserDetail extends User {
-  isFavorite?: boolean
+  isFavorite: boolean
   views: number
   goals: Array<Goal>
   role: Role

@@ -1,20 +1,34 @@
 import { useState } from 'react'
 import { makeStyles } from '@material-ui/core/styles'
 import { IconButton } from '@material-ui/core'
+import useFavorite from 'hooks/useFavorite'
+import { UserDetail } from 'dto'
 import AppEmoji from 'components/UI/AppEmoji'
+import AppSnackbar from 'components/UI/AppSnackbar'
 
-interface UserCardFavoriteProps {
-  isFavorite: boolean
-}
+type UserCardFavoriteProps = Pick<UserDetail, 'id' | 'isFavorite'>
 
-const UserCardFavorite = ({ isFavorite: initial }: UserCardFavoriteProps): JSX.Element => {
-  const [isFavorite, setIsFavorite] = useState(initial)
+const UserCardFavorite = ({ id, isFavorite: initial }: UserCardFavoriteProps): JSX.Element => {
+  const [isFavorite, onChange] = useFavorite(id, initial)
+  const [message, setMessage] = useState<string>()
   const classes = useStyles()
 
+  const onClick = () => {
+    onChange()
+    setMessage(isFavorite ? 'Removed from favorites' : 'Added to favorites')
+  }
+
   return (
-    <IconButton title={`${isFavorite ? 'remove from' : 'add to'} favorite`} onClick={() => setIsFavorite(!isFavorite)}>
-      <AppEmoji name={!isFavorite ? 'favorite' : 'favorite-active'} variant="h5" className={classes.emoji} />
-    </IconButton>
+    <>
+      <IconButton title={`${isFavorite ? 'Remove from' : 'Add to'} favorite`} onClick={onClick}>
+        <AppEmoji name={!isFavorite ? 'favorite' : 'favorite-active'} variant="h5" className={classes.emoji} />
+      </IconButton>
+      {message && (
+        <AppSnackbar severity="success" autoHideDuration={3000} onClose={() => setMessage(undefined)}>
+          {message}
+        </AppSnackbar>
+      )}
+    </>
   )
 }
 

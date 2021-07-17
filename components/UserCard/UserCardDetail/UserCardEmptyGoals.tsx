@@ -1,5 +1,5 @@
 import { makeStyles } from '@material-ui/core/styles'
-import { ROUTE } from 'route'
+import ROUTE from 'route'
 import AppBox from 'components/UI/AppBox'
 import AppLink from 'components/UI/AppLink'
 import AppTypography from 'components/UI/AppTypography'
@@ -12,19 +12,21 @@ const UserCardEmptyGoals = ({ isOwner }: UserCardAddGoalProps): JSX.Element => {
   const classes = useStyles()
 
   return (
-    <AppBox flexDirection="column" justifyContent="center" alignItems="center" spacing={1} flexGrow={1}>
-      <AppTypography variant="h6" component="p" color="primary">
-        {isOwner ? 'You have no goals...' : 'No goals yet...'}
-      </AppTypography>
-      {isOwner && (
-        <AppTypography component="p">
-          You can create <span className={classes.own}>your own</span> or use the{' '}
-          <AppLink href={ROUTE.SEARCH} className={classes.link}>
-            search
-          </AppLink>
+    <>
+      <AppBox flexDirection="column" justifyContent="center" alignItems="center" spacing={1} flexGrow={1}>
+        <AppTypography variant="h6" component="p" color="primary">
+          {isOwner ? 'You have no goals...' : 'No goals yet...'}
         </AppTypography>
-      )}
-    </AppBox>
+        {isOwner && (
+          <AppTypography component="p">
+            You can create <span className={classes.own}>your own</span> or use the{' '}
+            <AppLink href={ROUTE.SEARCH} className={classes.link}>
+              search
+            </AppLink>
+          </AppTypography>
+        )}
+      </AppBox>
+    </>
   )
 }
 

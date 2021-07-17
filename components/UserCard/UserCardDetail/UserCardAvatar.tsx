@@ -1,6 +1,6 @@
 import Image from 'next/image'
 import { makeStyles } from '@material-ui/core/styles'
-import { CharacteristicColors } from 'hook/useCharacteristicColors'
+import { CharacteristicColors } from 'hooks/useCharacteristicColors'
 import { Characteristics, Characteristic } from 'dto'
 import AppBox from 'components/UI/AppBox'
 import AppCircle from 'components/UI/AppCircle'

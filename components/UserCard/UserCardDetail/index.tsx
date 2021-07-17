@@ -2,21 +2,30 @@ import dynamic from 'next/dynamic'
 import Image from 'next/image'
 import { Characteristic, UserDetail } from 'dto'
 import { makeStyles } from '@material-ui/core/styles'
-import { numberToShort } from 'helper/prepare'
-import { useIncrementPageViews } from 'hook/useIncrementPageViews'
-import { useCharacteristicColors } from 'hook/useCharacteristicColors'
+import { numberToShort } from 'helpers/prepare'
+import useIncrementPageViews from 'hooks/useIncrementPageViews'
+import useCharacteristicColors from 'hooks/useCharacteristicColors'
 import AppTooltip from 'components/UI/AppTooltip'
 import AppBox from 'components/UI/AppBox'
 import AppContainer from 'components/UI/AppContainer'
 import AppTypography from 'components/UI/AppTypography'
+import UserCardFavorite from './UserCardFavorite'
 import UserCardAvatar from './UserCardAvatar'
 import UserCardCharacteristic from './UserCardCharacteristic'
 import UserCardEmptyGoals from './UserCardEmptyGoals'
 
-const UserCardFavorite = dynamic(() => import('./UserCardFavorite'))
 const UserCardAddGoal = dynamic(() => import('./UserCardAddGoal'))
 
-const UserCardDetail = ({ name, isFavorite, views, avatar, characteristics, role, goals }: UserDetail): JSX.Element => {
+const UserCardDetail = ({
+  id,
+  name,
+  isFavorite,
+  views,
+  avatar,
+  characteristics,
+  role,
+  goals,
+}: UserDetail): JSX.Element => {
   const classes = useStyles()
   const characteristicColors = useCharacteristicColors()
   const isOwner = role === 'OWNER'
@@ -30,7 +39,7 @@ const UserCardDetail = ({ name, isFavorite, views, avatar, characteristics, role
           <AppTypography variant="h5" component="h1">
             {name}
           </AppTypography>
-          {isFavorite !== undefined && <UserCardFavorite isFavorite={isFavorite} />}
+          {!isOwner && <UserCardFavorite id={id} isFavorite={isFavorite} />}
         </AppBox>
         <AppBox alignItems="center" spacing={0.5}>
           <AppTooltip title="Page Views" className={classes.tooltip}>

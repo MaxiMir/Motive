@@ -14,7 +14,7 @@ interface ShareProps {
 export default function Share({ open, title, href, onClose }: ShareProps): JSX.Element {
   const withNavigatorShare = useRef(false)
   const [withMenu, setWithMenu] = useState(false)
-  const [message, setMessage] = useState<'success' | 'error'>()
+  const [severity, setSeverity] = useState<'success' | 'error'>()
   const url = process.env.NEXT_PUBLIC_SERVER_BASE_URL + href
 
   const onCloseMenu = () => {
@@ -42,14 +42,14 @@ export default function Share({ open, title, href, onClose }: ShareProps): JSX.E
         <ShareMenu
           title={title}
           url={url}
-          onCopyEnd={() => setMessage('success')}
-          onCopyError={() => setMessage('error')}
+          onCopyEnd={() => setSeverity('success')}
+          onCopyError={() => setSeverity('error')}
           onClose={onCloseMenu}
         />
       )}
-      {message && (
-        <AppSnackbar severity={message} autoHideDuration={3000} onClose={() => setMessage(undefined)}>
-          {message === 'success' ? 'Copied' : 'Something went wrong'}
+      {severity && (
+        <AppSnackbar severity={severity} autoHideDuration={3000} onClose={() => setSeverity(undefined)}>
+          {severity === 'success' ? 'Copied' : 'Something went wrong'}
         </AppSnackbar>
       )}
     </>

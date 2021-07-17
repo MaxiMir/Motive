@@ -1,4 +1,4 @@
-import { CharacteristicColor } from 'hook/useCharacteristicColors'
+import { CharacteristicColor } from 'hooks/useCharacteristicColors'
 
 interface CircleProps {
   progress: number

@@ -1,9 +1,10 @@
 import { Fragment } from 'react'
+import dynamic from 'next/dynamic'
 import { v1 as uniqId } from 'uuid'
 import { Field, FieldArray, Form, Formik } from 'formik'
 import { object, string, array, SchemaOf } from 'yup'
 import { makeStyles } from '@material-ui/core/styles'
-import { Button, CircularProgress, IconButton } from '@material-ui/core'
+import { Button, IconButton } from '@material-ui/core'
 import { Add } from '@material-ui/icons'
 import { Goal } from 'dto'
 import AppModal from 'components/UI/AppModal'
@@ -12,13 +13,17 @@ import AppBox from 'components/UI/AppBox'
 import AppInput from 'components/UI/AppInput'
 import AppTypography from 'components/UI/AppTypography'
 import { CloseIcon, PaulIcon } from 'components/UI/icons'
+import AppGradientButton from 'components/UI/AppGradientButton'
+
+const CircularProgress = dynamic(() => import('@material-ui/core/CircularProgress'))
 
 interface UserCardAddGoalModalProps {
+  onCreate: () => void
   onClose: () => void
 }
 
 const schema: SchemaOf<Goal> = object({
-  title: string().trim().required('Goal title needed').min(5, "It's too short.").max(25, "It's so long."),
+  title: string().trim().required('Goal title needed').min(5, "It's too short.").max(35, "It's so long."),
   tasks: array()
     .of(
       object({
@@ -34,7 +39,7 @@ const schema: SchemaOf<Goal> = object({
     .required('This field is required'),
 })
 
-export default function UserCardAddGoalModal({ onClose }: UserCardAddGoalModalProps): JSX.Element {
+export default function UserCardAddGoalModal({ onCreate, onClose }: UserCardAddGoalModalProps): JSX.Element {
   const classes = useStyles()
 
   const generateNewTask = () => ({ id: uniqId(), title: '' })
@@ -51,6 +56,7 @@ export default function UserCardAddGoalModal({ onClose }: UserCardAddGoalModalPr
           await new Promise<void>((r) =>
             setTimeout(() => {
               console.log(values)
+              onCreate()
               r()
             }, 3000),
           )
@@ -68,7 +74,7 @@ export default function UserCardAddGoalModal({ onClose }: UserCardAddGoalModalPr
                     </AppHeader>
                     {values.tasks.map((task, index) => (
                       <Fragment key={task.id}>
-                        <AppBox spacing={2}>
+                        <AppBox spacing={1} alignItems="center">
                           <Field
                             name={`tasks.${index}.title`}
                             label="Task"
@@ -80,7 +86,6 @@ export default function UserCardAddGoalModal({ onClose }: UserCardAddGoalModalPr
                             component={AppInput}
                           />
                           <IconButton
-                            className={classes.buttonClose}
                             disableFocusRipple
                             aria-label="remove task"
                             disabled={values.tasks.length === 1}
@@ -91,13 +96,15 @@ export default function UserCardAddGoalModal({ onClose }: UserCardAddGoalModalPr
                         </AppBox>
                       </Fragment>
                     ))}
-                    <Button
-                      startIcon={<Add color="secondary" />}
-                      className={classes.buttonAdd}
-                      onClick={() => push(generateNewTask())}
-                    >
-                      <AppTypography color="secondary">add task</AppTypography>
-                    </Button>
+                    <div>
+                      <Button
+                        startIcon={<Add color="secondary" />}
+                        className={classes.buttonAdd}
+                        onClick={() => push(generateNewTask())}
+                      >
+                        <AppTypography color="secondary">add task</AppTypography>
+                      </Button>
+                    </div>
                   </AppBox>
                 )}
               </FieldArray>
@@ -108,7 +115,7 @@ export default function UserCardAddGoalModal({ onClose }: UserCardAddGoalModalPr
                     Remember Old Pitt!
                   </AppTypography>
                 </AppBox>
-                <AppTypography className={classes.hintText}>
+                <AppTypography className={classes.hint}>
                   He hunts for abandoned goals.
                   <br />
                   On the 14th day they get covered with 🕸.
@@ -117,15 +124,16 @@ export default function UserCardAddGoalModal({ onClose }: UserCardAddGoalModalPr
                   <br />
                   And people have to start all over again.
                 </AppTypography>
-                <Button
-                  disabled={isSubmitting}
-                  type="submit"
-                  variant="contained"
-                  color="primary"
-                  startIcon={isSubmitting ? <CircularProgress size="0.9rem" /> : undefined}
-                >
-                  {isSubmitting ? 'Submitting' : 'Submit'}
-                </Button>
+                <AppBox justifyContent="space-between">
+                  <AppGradientButton onClick={onClose}>🚫 Cancel</AppGradientButton>
+                  <AppGradientButton
+                    type="submit"
+                    disabled={isSubmitting}
+                    startIcon={isSubmitting ? <CircularProgress size="0.9rem" color="primary" /> : undefined}
+                  >
+                    {isSubmitting ? 'Creating' : '💎 Create'}
+                  </AppGradientButton>
+                </AppBox>
               </AppBox>
             </AppBox>
           </Form>
@@ -136,13 +144,10 @@ export default function UserCardAddGoalModal({ onClose }: UserCardAddGoalModalPr
 }
 
 const useStyles = makeStyles({
-  buttonClose: {
-    padding: 0,
-  },
   buttonAdd: {
     textTransform: 'none',
   },
-  hintText: {
+  hint: {
     color: '#99989D',
   },
 })

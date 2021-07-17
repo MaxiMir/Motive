@@ -2,27 +2,39 @@ import { useState } from 'react'
 import dynamic from 'next/dynamic'
 import { makeStyles } from '@material-ui/core/styles'
 import { Button } from '@material-ui/core'
-import AppEmoji from 'components/UI/AppEmoji'
+import AppSnackbar from 'components/UI/AppSnackbar'
 
 const UserCardAddGoalModal = dynamic(() => import('./UserCardAddGoalModal'))
 
-const UserCardAddGoal = (): JSX.Element => {
+export default function UserCardAddGoal(): JSX.Element {
   const [open, setOpen] = useState(false)
+  const [withMessage, setWithMessage] = useState(false)
   const classes = useStyles()
+
+  const onCreate = () => {
+    onClose()
+    setWithMessage(true)
+  }
+
+  const onClose = () => setOpen(false)
 
   return (
     <>
       <Button
-        startIcon={<AppEmoji name="goal" variant="h6" />}
         variant="outlined"
         size="small"
         color="secondary"
         className={classes.button}
         onClick={() => setOpen(true)}
       >
-        Create a new goal
+        💎 Create a new goal
       </Button>
-      {open && <UserCardAddGoalModal onClose={() => setOpen(false)} />}
+      {open && <UserCardAddGoalModal onCreate={onCreate} onClose={onClose} />}
+      {withMessage && (
+        <AppSnackbar severity="success" autoHideDuration={3000} onClose={() => setWithMessage(false)}>
+          The goal is successfully created
+        </AppSnackbar>
+      )}
     </>
   )
 }
@@ -39,5 +51,3 @@ const useStyles = makeStyles({
     },
   },
 })
-
-export default UserCardAddGoal

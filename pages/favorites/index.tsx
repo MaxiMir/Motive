@@ -1,7 +1,7 @@
 import dynamic from 'next/dynamic'
 import { GetServerSideProps } from 'next'
 import Axios from 'lib/axios'
-import { ROUTE } from 'route'
+import ROUTE from 'route'
 import { FavoritesPage, User } from 'dto'
 import Layout from 'layout'
 import UserCardFavorite from 'components/UserCard/UserCardFavorite'

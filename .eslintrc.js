@@ -59,6 +59,8 @@ module.exports = {
         'import/no-extraneous-dependencies': ['error', { devDependencies: true }],
         'react/jsx-props-no-spreading': 'off',
         'import/no-self-import': 'off',
+        'import/prefer-default-export': 'off',
+        'no-bitwise': 'off',
 
         // Already handled by TS
         'no-dupe-class-members': 'off',

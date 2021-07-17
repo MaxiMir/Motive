@@ -1,7 +1,7 @@
 import { Fragment } from 'react'
 import Image from 'next/image'
 import { makeStyles } from '@material-ui/core/styles'
-import { useCharacteristicColors } from 'hook/useCharacteristicColors'
+import useCharacteristicColors from 'hooks/useCharacteristicColors'
 import { Characteristic, User } from 'dto'
 import UserCharacteristic from 'components/UserCharacteristic'
 import AppBox from 'components/UI/AppBox'

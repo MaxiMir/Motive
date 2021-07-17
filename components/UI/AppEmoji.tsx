@@ -9,7 +9,7 @@ interface AppEmojiProps {
   className?: string
 }
 
-export default function AppEmoji({ name, variant, ...restProps }: AppEmojiProps): JSX.Element {
+export default function AppEmoji({ name, ...restProps }: AppEmojiProps): JSX.Element {
   const content = getContent()
 
   function getContent() {
@@ -38,7 +38,7 @@ export default function AppEmoji({ name, variant, ...restProps }: AppEmojiProps)
   }
 
   return (
-    <AppTypography variant={variant} component="p" role="img" aria-label={name} {...restProps}>
+    <AppTypography component="p" role="img" aria-label={name} {...restProps}>
       {content}
     </AppTypography>
   )

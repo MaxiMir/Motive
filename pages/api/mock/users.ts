@@ -45,7 +45,7 @@ export default [
       completed: 4,
     },
     isFavorite: false,
-    views: 387,
+    views: 1387000,
     goals: [],
   },
   {

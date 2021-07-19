@@ -9,7 +9,7 @@ const AppGradientButton: FC<AppGradientButtonProps> = (props) => {
 
   return (
     <div className={classes.buttonWrap}>
-      <Button variant="text" color="primary" className={classes.button} {...props} />
+      <Button variant="text" color="primary" size="small" className={classes.button} {...props} />
     </div>
   )
 }
@@ -17,9 +17,8 @@ const AppGradientButton: FC<AppGradientButtonProps> = (props) => {
 const useStyles = makeStyles((theme) =>
   createStyles({
     buttonWrap: {
-      position: 'relative',
-      background: `linear-gradient(to top left, ${theme.palette.success.dark}, ${theme.palette.info.dark})`,
       padding: 1,
+      background: `linear-gradient(to top left, ${theme.palette.success.dark}, ${theme.palette.info.dark})`,
       borderRadius: 5,
     },
     button: {

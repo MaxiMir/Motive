@@ -1,7 +1,7 @@
 import dynamic from 'next/dynamic'
 import Image from 'next/image'
-import { Characteristic, UserDetail } from 'dto'
 import { makeStyles } from '@material-ui/core/styles'
+import { Characteristic, UserDetail } from 'dto'
 import { numberToShort } from 'helpers/prepare'
 import useIncrementPageViews from 'hooks/useIncrementPageViews'
 import useCharacteristicColors from 'hooks/useCharacteristicColors'

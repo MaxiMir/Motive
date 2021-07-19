@@ -1,6 +1,6 @@
 import { makeStyles } from '@material-ui/core/styles'
-import { CharacteristicColor } from 'hooks/useCharacteristicColors'
 import { Characteristic } from 'dto'
+import { CharacteristicColor } from 'hooks/useCharacteristicColors'
 import AppBox from 'components/UI/AppBox'
 import AppEmoji from 'components/UI/AppEmoji'
 import AppLink from 'components/UI/AppLink'

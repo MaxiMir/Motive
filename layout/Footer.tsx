@@ -25,8 +25,8 @@ export default function Footer(): JSX.Element {
   return (
     <footer className={classes.root}>
       <AppBox justifyContent="space-between" alignItems="center" flexGrow={1} height="100%" padding={2}>
-        {LINKS.map(({ href, title, Icon }, key) => (
-          <AppLink href={href} key={key} title={title}>
+        {LINKS.map(({ href, title, Icon }) => (
+          <AppLink href={href} key={title} title={title}>
             <Icon fontSize="large" className={pathname !== href ? classes.link : classes.currentLink} />
           </AppLink>
         ))}

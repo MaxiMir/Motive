@@ -34,6 +34,7 @@ const useStyles = makeStyles({
   title: {
     padding: '24px 16px 0',
     textAlign: 'center',
+    textTransform: 'uppercase',
   },
   content: {
     padding: 16,

@@ -1,10 +1,9 @@
-import { Fragment } from 'react'
 import dynamic from 'next/dynamic'
 import { v1 as uniqId } from 'uuid'
 import { Field, FieldArray, Form, Formik } from 'formik'
 import { object, string, array, SchemaOf } from 'yup'
 import { makeStyles } from '@material-ui/core/styles'
-import { Button, IconButton } from '@material-ui/core'
+import { Button, FormControlLabel, IconButton, Switch } from '@material-ui/core'
 import { Add } from '@material-ui/icons'
 import { Goal } from 'dto'
 import AppModal from 'components/UI/AppModal'
@@ -24,19 +23,13 @@ interface UserCardAddGoalModalProps {
 
 const schema: SchemaOf<Goal> = object({
   title: string().trim().required('Goal title needed').min(5, "It's too short.").max(35, "It's so long."),
-  tasks: array()
-    .of(
-      object({
-        id: string().required(),
-        title: string()
-          .trim()
-          .required('Task content is required')
-          .min(5, "It's too short.")
-          .max(255, "It's too long."),
-        date: string(),
-      }),
-    )
-    .required('This field is required'),
+  tasks: array().of(
+    object({
+      id: string().required(),
+      title: string().trim().required('Task content is required').min(5, "It's too short.").max(255, "It's too long."),
+      date: string(),
+    }),
+  ),
 })
 
 export default function UserCardAddGoalModal({ onCreate, onClose }: UserCardAddGoalModalProps): JSX.Element {
@@ -70,10 +63,10 @@ export default function UserCardAddGoalModal({ onCreate, onClose }: UserCardAddG
                 {({ push, remove }) => (
                   <AppBox flexDirection="column" spacing={2}>
                     <AppHeader name="task" variant="h6" component="h2" color="primary">
-                      Tasks
+                      Tasks for tomorrow
                     </AppHeader>
                     {values.tasks.map((task, index) => (
-                      <Fragment key={task.id}>
+                      <AppBox flexDirection="column" spacing={1} key={task.id}>
                         <AppBox spacing={1} alignItems="center">
                           <Field
                             name={`tasks.${index}.title`}
@@ -94,7 +87,10 @@ export default function UserCardAddGoalModal({ onCreate, onClose }: UserCardAddG
                             <CloseIcon fontSize="small" />
                           </IconButton>
                         </AppBox>
-                      </Fragment>
+                        <AppBox paddingLeft={1}>
+                          <FormControlLabel control={<Switch size="small" />} label="remind" />
+                        </AppBox>
+                      </AppBox>
                     ))}
                     <div>
                       <Button

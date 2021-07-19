@@ -1,8 +1,8 @@
 import { Fragment } from 'react'
 import Image from 'next/image'
 import { makeStyles } from '@material-ui/core/styles'
-import useCharacteristicColors from 'hooks/useCharacteristicColors'
 import { Characteristic, User } from 'dto'
+import useCharacteristicColors from 'hooks/useCharacteristicColors'
 import UserCharacteristic from 'components/UserCharacteristic'
 import AppBox from 'components/UI/AppBox'
 import AppLink from 'components/UI/AppLink'
@@ -19,7 +19,7 @@ const UserCardFavorite = ({ id, avatar, href, name, characteristics }: User): JS
   return (
     <AppBox spacing={1}>
       <AppLink href={href} className={classes.avatarLink}>
-        <Image src={avatar} width={60} height={60} alt="avatar" className={classes.avatar} />
+        <Image src={avatar} width={55} height={55} alt="avatar" className={classes.avatar} />
       </AppLink>
       <AppBox flexDirection="column" justifyContent="space-between" flex={1}>
         <AppBox justifyContent="space-between" alignItems="center">
@@ -49,6 +49,7 @@ const UserCardFavorite = ({ id, avatar, href, name, characteristics }: User): JS
 
 const useStyles = makeStyles({
   avatarLink: {
+    width: 55,
     height: 55,
   },
   avatar: {

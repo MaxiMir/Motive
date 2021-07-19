@@ -20,9 +20,11 @@ const AppModal: FC<AppModalProps> = ({ title, children, onClose }) => {
 
 const useStyles = makeStyles({
   root: {
-    '.MuiBackdrop-root': {
-      background: 'rgba(34, 34, 34, 0.75)',
-      backdropFilter: 'blur(10px)',
+    '@global': {
+      '.MuiBackdrop-root': {
+        background: 'rgba(34, 34, 34, 0.75)',
+        backdropFilter: 'blur(10px)',
+      },
     },
   },
   paper: {
@@ -37,7 +39,8 @@ const useStyles = makeStyles({
     textTransform: 'uppercase',
   },
   content: {
-    padding: 16,
+    padding: '16px 16px 24px',
+    paddingBottom: 24,
   },
 })
 

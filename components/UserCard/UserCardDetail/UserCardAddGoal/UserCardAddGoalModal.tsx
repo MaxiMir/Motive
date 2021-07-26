@@ -1,9 +1,10 @@
+import { Fragment } from 'react'
 import dynamic from 'next/dynamic'
-import { v1 as uniqId } from 'uuid'
 import { Field, FieldArray, Form, Formik } from 'formik'
 import { object, string, array, SchemaOf } from 'yup'
 import { makeStyles } from '@material-ui/core/styles'
 import { Button, FormControlLabel, IconButton, Switch } from '@material-ui/core'
+import { KeyboardTimePicker } from 'formik-material-ui-pickers'
 import { Add } from '@material-ui/icons'
 import { Goal } from 'dto'
 import AppModal from 'components/UI/AppModal'
@@ -11,8 +12,8 @@ import AppHeader from 'components/UI/AppHeader'
 import AppBox from 'components/UI/AppBox'
 import AppInput from 'components/UI/AppInput'
 import AppTypography from 'components/UI/AppTypography'
-import { CloseIcon, PaulIcon } from 'components/UI/icons'
 import AppGradientButton from 'components/UI/AppGradientButton'
+import { CloseIcon, PaulIcon } from 'components/UI/icons'
 
 const CircularProgress = dynamic(() => import('@material-ui/core/CircularProgress'))
 
@@ -23,25 +24,28 @@ interface UserCardAddGoalModalProps {
 
 const schema: SchemaOf<Goal> = object({
   title: string().trim().required('Goal title needed').min(5, "It's too short.").max(35, "It's so long."),
+  hashtags: string().trim(),
   tasks: array().of(
     object({
-      id: string().required(),
       title: string().trim().required('Task content is required').min(5, "It's too short.").max(255, "It's too long."),
       date: string(),
     }),
   ),
 })
 
+const SECONDS_IN_THE_DAY = 3600 * 1000 * 24
+
 export default function UserCardAddGoalModal({ onCreate, onClose }: UserCardAddGoalModalProps): JSX.Element {
   const classes = useStyles()
 
-  const generateNewTask = () => ({ id: uniqId(), title: '' })
+  const generateNewTask = () => ({ title: '', date: undefined })
 
   return (
     <AppModal title="Creating a new goal" onClose={onClose}>
       <Formik
         initialValues={{
           title: '',
+          hashtags: '',
           tasks: [generateNewTask()],
         }}
         validationSchema={schema}
@@ -55,10 +59,19 @@ export default function UserCardAddGoalModal({ onCreate, onClose }: UserCardAddG
           )
         }}
       >
-        {({ values, isSubmitting }) => (
+        {({ values, setFieldValue, isSubmitting }) => (
           <Form autoComplete="off">
             <AppBox flexDirection="column" spacing={3}>
               <Field name="title" label="Title *" color="secondary" component={AppInput} />
+              <Field
+                name="hashtags"
+                label="Hashtags"
+                color="secondary"
+                multiline
+                rows={4}
+                rowsMax={4}
+                component={AppInput}
+              />
               <FieldArray name="tasks">
                 {({ push, remove }) => (
                   <AppBox flexDirection="column" spacing={2}>
@@ -66,16 +79,16 @@ export default function UserCardAddGoalModal({ onCreate, onClose }: UserCardAddG
                       Tasks for tomorrow
                     </AppHeader>
                     {values.tasks.map((task, index) => (
-                      <AppBox flexDirection="column" spacing={1} key={task.id}>
-                        <AppBox spacing={1} alignItems="center">
+                      <Fragment key={`tasks.${index}`}>
+                        <AppBox alignItems="center" spacing={1}>
                           <Field
                             name={`tasks.${index}.title`}
-                            label="Task"
+                            label="Task *"
                             color="secondary"
                             placeholder="What should be done"
                             multiline
-                            rows={4}
-                            rowsMax={4}
+                            rows={3}
+                            rowsMax={3}
                             component={AppInput}
                           />
                           <IconButton
@@ -87,10 +100,31 @@ export default function UserCardAddGoalModal({ onCreate, onClose }: UserCardAddG
                             <CloseIcon fontSize="small" />
                           </IconButton>
                         </AppBox>
-                        <AppBox paddingLeft={1}>
-                          <FormControlLabel control={<Switch size="small" />} label="remind" />
+                        <AppBox pl={1} mb={1} spacing={1}>
+                          <FormControlLabel
+                            control={
+                              <Switch
+                                size="small"
+                                onChange={(_, isChecked) =>
+                                  setFieldValue(
+                                    `tasks.${index}.date`,
+                                    isChecked ? new Date(Date.now() + SECONDS_IN_THE_DAY) : undefined,
+                                  )
+                                }
+                              />
+                            }
+                            label="remind"
+                          />
+                          {task.date && (
+                            <Field
+                              name={`tasks.${index}.date`}
+                              ampm={false}
+                              className={classes.timepicker}
+                              component={KeyboardTimePicker}
+                            />
+                          )}
                         </AppBox>
-                      </AppBox>
+                      </Fragment>
                     ))}
                     <div>
                       <Button
@@ -120,7 +154,7 @@ export default function UserCardAddGoalModal({ onCreate, onClose }: UserCardAddG
                   <br />
                   And people have to start all over again.
                 </AppTypography>
-                <AppBox justifyContent="space-between">
+                <AppBox justifyContent="space-between" mt={2}>
                   <AppGradientButton onClick={onClose}>🚫 Cancel</AppGradientButton>
                   <AppGradientButton
                     type="submit"
@@ -145,5 +179,8 @@ const useStyles = makeStyles({
   },
   hint: {
     color: '#99989D',
+  },
+  timepicker: {
+    width: 100,
   },
 })

@@ -61,6 +61,7 @@ module.exports = {
         'import/no-self-import': 'off',
         'import/prefer-default-export': 'off',
         'no-bitwise': 'off',
+        'react/no-array-index-key': 'off',
 
         // Already handled by TS
         'no-dupe-class-members': 'off',

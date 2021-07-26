@@ -1,6 +1,8 @@
 import React from 'react'
 import { AppProps } from 'next/app'
+import DateFnsUtils from '@date-io/date-fns'
 import NextNprogress from 'nextjs-progressbar'
+import { MuiPickersUtilsProvider } from '@material-ui/pickers'
 import { ThemeProvider } from '@material-ui/core/styles'
 import CssBaseline from '@material-ui/core/CssBaseline'
 import theme from 'theme'
@@ -18,11 +20,13 @@ export default function MyApp(props: AppProps): JSX.Element {
   }, [])
 
   return (
-    <ThemeProvider theme={theme}>
-      <NextNprogress color={theme.palette.secondary.main} />
-      {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
-      <CssBaseline />
-      <Component {...pageProps} />
-    </ThemeProvider>
+    <MuiPickersUtilsProvider utils={DateFnsUtils}>
+      <ThemeProvider theme={theme}>
+        <NextNprogress color={theme.palette.secondary.main} />
+        {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
+        <CssBaseline />
+        <Component {...pageProps} />
+      </ThemeProvider>
+    </MuiPickersUtilsProvider>
   )
 }

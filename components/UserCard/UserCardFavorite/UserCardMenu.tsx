@@ -1,12 +1,12 @@
-import { useState, MouseEvent } from 'react'
+import { useState } from 'react'
 import dynamic from 'next/dynamic'
 import { IconButton, MenuItem } from '@material-ui/core'
 import { makeStyles } from '@material-ui/core/styles'
 import MoreHorizIcon from '@material-ui/icons/MoreHoriz'
 import useFavorite from 'hooks/useFavorite'
+import Share from 'components/Share'
 import AppSnackbar from 'components/UI/AppSnackbar'
 
-const Share = dynamic(() => import('components/Share'))
 const Menu = dynamic(() => import('@material-ui/core/Menu'))
 
 interface UserCardFavoriteMenuProps {
@@ -21,10 +21,6 @@ const UserCardMenu = ({ id, name, href }: UserCardFavoriteMenuProps): JSX.Elemen
   const [withShare, setWithShare] = useState(false)
   const [message, setMessage] = useState<string>()
   const [, onChangeFavorite] = useFavorite(id, true)
-
-  const onClick = (event: MouseEvent<HTMLElement>) => {
-    setAnchorEl(event.currentTarget)
-  }
 
   const onShare = () => {
     onCloseMenu()
@@ -41,7 +37,7 @@ const UserCardMenu = ({ id, name, href }: UserCardFavoriteMenuProps): JSX.Elemen
 
   return (
     <>
-      <IconButton className={classes.button} title="open user menu" onClick={onClick}>
+      <IconButton className={classes.button} title="open user menu" onClick={(e) => setAnchorEl(e.currentTarget)}>
         <MoreHorizIcon fontSize="small" color="secondary" className={classes.icon} />
       </IconButton>
       {anchorEl && (

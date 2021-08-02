@@ -13,7 +13,18 @@ export default [
     },
     isFavorite: true,
     views: 113,
-    goals: [],
+    goals: [
+      {
+        id: '1',
+        name: 'learn French',
+        hashtags: ['foreignLanguage', 'knowledge'],
+        tasks: [
+          { id: '13', name: 'read 20 pages Harry Potter', completed: true },
+          { id: '14', name: 'to take apart two videos "73 Questions"', completed: false },
+          { id: '15', name: 'solve 1 the test', completed: false },
+        ],
+      },
+    ],
     role: 'OWNER',
   },
   {

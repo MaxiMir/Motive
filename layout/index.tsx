@@ -48,7 +48,7 @@ const useStyles = makeStyles({
     display: 'flex',
     flexDirection: 'column',
     minHeight: 'calc(100vh - 170px)',
-    padding: (props: { withVerticalPadding: boolean }) => (!props.withVerticalPadding ? 0 : '24px 0'),
+    padding: (props: { withVerticalPadding: boolean }) => (!props.withVerticalPadding ? '0 0 112px' : '24px 0 112px'),
   },
 })
 

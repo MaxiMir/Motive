@@ -11,7 +11,7 @@ const AppModal: FC<AppModalProps> = ({ title, children, onClose }) => {
   const classes = useStyles()
 
   return (
-    <Dialog open classes={{ root: classes.root, paper: classes.paper }} fullWidth onClose={onClose}>
+    <Dialog classes={{ root: classes.root, paper: classes.paper }} open fullWidth onClose={onClose}>
       <DialogTitle className={classes.title}>{title}</DialogTitle>
       <DialogContent className={classes.content}>{children}</DialogContent>
     </Dialog>

@@ -9,7 +9,7 @@ interface InitParams {
 type ShareType = keyof typeof SHARERS
 
 /**
- * Обработчик клика по элементам Social Networks
+ * Social Networks element click handler
  */
 export const clickHandler = (type: ShareType, title: string, url: string): void => {
   const [shareUrl, isLink] = SHARERS[type](url, title)
@@ -23,7 +23,7 @@ export const clickHandler = (type: ShareType, title: string, url: string): void 
 }
 
 /**
- * Обработчик для копирования текста в буфер обмена
+ * Handler for copying text to the clipboard
  */
 export const copyHandler = async (text: string, onEnd: () => void, onError: (err: string) => void): Promise<void> => {
   try {

@@ -1,7 +1,7 @@
 import dynamic from 'next/dynamic'
 import Image from 'next/image'
 import { makeStyles } from '@material-ui/core/styles'
-import { Characteristic, UserDetail } from 'dto'
+import { Characteristic, Goal, UserDetail } from 'dto'
 import { numberToShort } from 'helpers/prepare'
 import useIncrementPageViews from 'hooks/useIncrementPageViews'
 import useCharacteristicColors from 'hooks/useCharacteristicColors'
@@ -9,12 +9,15 @@ import AppTooltip from 'components/UI/AppTooltip'
 import AppBox from 'components/UI/AppBox'
 import AppContainer from 'components/UI/AppContainer'
 import AppTypography from 'components/UI/AppTypography'
+import { AppListProps } from 'components/UI/AppList'
 import UserCardFavorite from './UserCardFavorite'
 import UserCardAvatar from './UserCardAvatar'
 import UserCardCharacteristic from './UserCardCharacteristic'
 import UserCardEmptyGoals from './UserCardEmptyGoals'
 
 const UserCardAddGoal = dynamic(() => import('./UserCardAddGoal'))
+const AppList = dynamic<AppListProps<Goal>>(() => import('components/UI/AppList'))
+const GoalCardCurrent = dynamic(() => import('components/GoalCard/GoalCardCurrent'))
 
 const UserCardDetail = ({
   id,
@@ -85,7 +88,11 @@ const UserCardDetail = ({
             <UserCardAddGoal />
           </AppBox>
         )}
-        {!goals.length && <UserCardEmptyGoals isOwner={isOwner} />}
+        {!goals.length ? (
+          <UserCardEmptyGoals isOwner={isOwner} />
+        ) : (
+          <AppList elements={goals} keyGetter={(goal) => goal.id} render={(goal) => <GoalCardCurrent {...goal} />} />
+        )}
       </AppBox>
     </AppContainer>
   )

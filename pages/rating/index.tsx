@@ -38,8 +38,8 @@ export default function Rating({ meta, motivation, creativity, support }: Rating
               <TabNames />
               <AppList<User>
                 elements={list}
-                render={(el, index) => <UserCardRating {...el} type={type} index={index} />}
                 keyGetter={(el) => el.id}
+                render={(el, index) => <UserCardRating {...el} type={type} index={index} />}
               />
             </Fragment>
           ))}

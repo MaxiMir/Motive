@@ -6,7 +6,8 @@ import { makeStyles } from '@material-ui/core/styles'
 import { Button, FormControlLabel, IconButton, Switch } from '@material-ui/core'
 import { KeyboardTimePicker } from 'formik-material-ui-pickers'
 import { Add } from '@material-ui/icons'
-import { Goal } from 'dto'
+import { GoalCreation } from 'dto'
+import useFocus from 'hooks/useFocus'
 import AppModal from 'components/UI/AppModal'
 import AppHeader from 'components/UI/AppHeader'
 import AppBox from 'components/UI/AppBox'
@@ -22,12 +23,12 @@ interface UserCardAddGoalModalProps {
   onClose: () => void
 }
 
-const schema: SchemaOf<Goal> = object({
-  title: string().trim().required('Goal title needed').min(5, "It's too short.").max(35, "It's so long."),
-  hashtags: string().trim(),
+const schema: SchemaOf<GoalCreation> = object({
+  name: string().trim().required('Goal name needed').min(5, "It's too short.").max(35, "It's so long."),
+  hashtags: string().trim().max(150, "It's so long."),
   tasks: array().of(
     object({
-      title: string().trim().required('Task content is required').min(5, "It's too short.").max(255, "It's too long."),
+      name: string().trim().required('Task content is required').min(5, "It's too short.").max(255, "It's too long."),
       date: string(),
     }),
   ),
@@ -37,14 +38,15 @@ const SECONDS_IN_THE_DAY = 3600 * 1000 * 24
 
 export default function UserCardAddGoalModal({ onCreate, onClose }: UserCardAddGoalModalProps): JSX.Element {
   const classes = useStyles()
+  const [hashtagsRef, setHashtagsFocus] = useFocus()
 
-  const generateNewTask = () => ({ title: '', date: undefined })
+  const generateNewTask = () => ({ name: '', date: undefined })
 
   return (
     <AppModal title="Creating a new goal" onClose={onClose}>
       <Formik
         initialValues={{
-          title: '',
+          name: '',
           hashtags: '',
           tasks: [generateNewTask()],
         }}
@@ -62,16 +64,29 @@ export default function UserCardAddGoalModal({ onCreate, onClose }: UserCardAddG
         {({ values, setFieldValue, isSubmitting }) => (
           <Form autoComplete="off">
             <AppBox flexDirection="column" spacing={3}>
-              <Field name="title" label="Title *" color="secondary" component={AppInput} />
-              <Field
-                name="hashtags"
-                label="Hashtags"
-                color="secondary"
-                multiline
-                rows={4}
-                rowsMax={4}
-                component={AppInput}
-              />
+              <Field name="name" label="Name *" color="secondary" component={AppInput} />
+              <AppBox flexDirection="column" spacing={1}>
+                <Field
+                  name="hashtags"
+                  label="Hashtags"
+                  color="secondary"
+                  multiline
+                  rows={3}
+                  inputRef={hashtagsRef}
+                  component={AppInput}
+                />
+                <Button
+                  className={classes.button}
+                  variant="outlined"
+                  size="small"
+                  onClick={() => {
+                    setFieldValue('hashtags', `${values.hashtags} #`)
+                    setHashtagsFocus()
+                  }}
+                >
+                  # Hashtag
+                </Button>
+              </AppBox>
               <FieldArray name="tasks">
                 {({ push, remove }) => (
                   <AppBox flexDirection="column" spacing={2}>
@@ -82,13 +97,12 @@ export default function UserCardAddGoalModal({ onCreate, onClose }: UserCardAddG
                       <Fragment key={`tasks.${index}`}>
                         <AppBox alignItems="center" spacing={1}>
                           <Field
-                            name={`tasks.${index}.title`}
+                            name={`tasks.${index}.name`}
                             label="Task *"
                             color="secondary"
                             placeholder="What should be done"
                             multiline
                             rows={3}
-                            rowsMax={3}
                             component={AppInput}
                           />
                           <IconButton
@@ -126,15 +140,13 @@ export default function UserCardAddGoalModal({ onCreate, onClose }: UserCardAddG
                         </AppBox>
                       </Fragment>
                     ))}
-                    <div>
-                      <Button
-                        startIcon={<Add color="secondary" />}
-                        className={classes.buttonAdd}
-                        onClick={() => push(generateNewTask())}
-                      >
-                        <AppTypography color="secondary">add task</AppTypography>
-                      </Button>
-                    </div>
+                    <Button
+                      startIcon={<Add color="secondary" />}
+                      className={classes.button}
+                      onClick={() => push(generateNewTask())}
+                    >
+                      <AppTypography color="secondary">add task</AppTypography>
+                    </Button>
                   </AppBox>
                 )}
               </FieldArray>
@@ -174,7 +186,8 @@ export default function UserCardAddGoalModal({ onCreate, onClose }: UserCardAddG
 }
 
 const useStyles = makeStyles({
-  buttonAdd: {
+  button: {
+    alignSelf: 'baseline',
     textTransform: 'none',
   },
   hint: {

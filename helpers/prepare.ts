@@ -2,6 +2,9 @@ const THOUSAND = 1000
 const MILLION = 1000000
 const BILLION = 1000000000
 
+/**
+ * Reduces the number entry
+ */
 export const numberToShort = (value: number): string => {
   switch (true) {
     case value > THOUSAND && value < MILLION:
@@ -16,10 +19,12 @@ export const numberToShort = (value: number): string => {
 }
 
 /**
- * Усечение десятичных чисел
+ * Truncation of decimal numbers
  */
 const truncated = (num: number, decimalPlaces = 1): number => {
   const numPowerConverter = 10 ** decimalPlaces
 
   return ~~(num * numPowerConverter) / numPowerConverter
 }
+
+export const toUpperFirstChar = (string: string): string => string[0].toUpperCase() + string.slice(1)

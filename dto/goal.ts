@@ -1,7 +1,12 @@
+import { GoalCharacteristics } from './characteristic'
+
 export interface Goal {
   id: string
   name: string
+  href: string
+  started: string
   hashtags: string[]
+  characteristics: GoalCharacteristics
   tasks: Task[]
 }
 

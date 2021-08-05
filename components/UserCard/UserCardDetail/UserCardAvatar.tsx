@@ -1,13 +1,13 @@
 import Image from 'next/image'
 import { makeStyles } from '@material-ui/core/styles'
 import { CharacteristicColors } from 'hooks/useCharacteristicColors'
-import { Characteristics, Characteristic } from 'dto'
+import { UserCharacteristics, Characteristic } from 'dto'
 import AppBox from 'components/UI/AppBox'
 import AppCircle from 'components/UI/AppCircle'
 
 interface UserCardAvatarProps {
   avatar: string
-  characteristics: Characteristics
+  characteristics: UserCharacteristics
   characteristicColors: CharacteristicColors
 }
 

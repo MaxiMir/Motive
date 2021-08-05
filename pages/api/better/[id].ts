@@ -7,6 +7,6 @@ export default (req: NextApiRequest, res: NextApiResponse): void => {
 
   res.status(200).json({
     meta,
-    user: USERS.find(({ href }) => href === url?.replace('/api', '')),
+    user: USERS.find(({ href }) => url?.replace('/api', '').includes(href)),
   })
 }

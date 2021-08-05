@@ -1,12 +1,12 @@
 import { Goal } from './goal'
-import { Characteristics } from './characteristic'
+import { UserCharacteristics } from './characteristic'
 
 export interface User {
   id: string
   name: string
   href: string
   avatar: string
-  characteristics: Characteristics
+  characteristics: UserCharacteristics
 }
 
 export type Role = 'OWNER' | 'MEMBER'

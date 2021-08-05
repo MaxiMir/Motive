@@ -3,7 +3,7 @@ import Image from 'next/image'
 import { makeStyles } from '@material-ui/core/styles'
 import { Characteristic, User } from 'dto'
 import useCharacteristicColors from 'hooks/useCharacteristicColors'
-import UserCharacteristic from 'components/UserCharacteristic'
+import CharacteristicUser from 'components/Characteristic/CharacteristicUser'
 import AppBox from 'components/UI/AppBox'
 import AppLink from 'components/UI/AppLink'
 import AppDot from 'components/UI/AppDot'
@@ -11,6 +11,7 @@ import AppTypography from 'components/UI/AppTypography'
 import UserCardMenu from './UserCardMenu'
 
 const CHARACTERISTICS: Characteristic[] = ['motivation', 'creativity', 'support', 'completed']
+const LAST_CHARACTERISTIC_INDEX = 3
 
 const UserCardFavorite = ({ id, avatar, href, name, characteristics }: User): JSX.Element => {
   const colors = useCharacteristicColors()
@@ -28,17 +29,17 @@ const UserCardFavorite = ({ id, avatar, href, name, characteristics }: User): JS
               {name}
             </AppTypography>
           </AppLink>
-          <UserCardMenu id={id} name={name} href={href} />
+          <UserCardMenu id={id} title={name} href={href} />
         </AppBox>
         <AppBox justifyContent="space-between" alignItems="center">
           {CHARACTERISTICS.map((characteristic, index) => (
             <Fragment key={characteristic}>
-              <UserCharacteristic
+              <CharacteristicUser
                 characteristic={characteristic}
                 value={characteristics[characteristic]}
                 color={colors[characteristic].fontColor}
               />
-              {index !== CHARACTERISTICS.length - 1 && <AppDot />}
+              {index !== LAST_CHARACTERISTIC_INDEX && <AppDot />}
             </Fragment>
           ))}
         </AppBox>

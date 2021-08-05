@@ -1,4 +1,5 @@
 import dynamic from 'next/dynamic'
+import { useRouter } from 'next/router'
 import Image from 'next/image'
 import { makeStyles } from '@material-ui/core/styles'
 import { Characteristic, Goal, UserDetail } from 'dto'
@@ -10,6 +11,7 @@ import AppBox from 'components/UI/AppBox'
 import AppContainer from 'components/UI/AppContainer'
 import AppTypography from 'components/UI/AppTypography'
 import { AppListProps } from 'components/UI/AppList'
+import { useEffect } from 'react'
 import UserCardFavorite from './UserCardFavorite'
 import UserCardAvatar from './UserCardAvatar'
 import UserCardCharacteristic from './UserCardCharacteristic'
@@ -30,10 +32,17 @@ const UserCardDetail = ({
   goals,
 }: UserDetail): JSX.Element => {
   const classes = useStyles()
+  const { query } = useRouter()
   const characteristicColors = useCharacteristicColors()
   const isOwner = role === 'OWNER'
 
   useIncrementPageViews(role)
+
+  useEffect(() => {
+    const elem = query.goal && document.getElementById(`goal-${query.goal}`)
+
+    elem && elem.scrollIntoView({ behavior: 'smooth' })
+  }, [id, query])
 
   return (
     <AppContainer withFlexColumn>
@@ -91,7 +100,12 @@ const UserCardDetail = ({
         {!goals.length ? (
           <UserCardEmptyGoals isOwner={isOwner} />
         ) : (
-          <AppList elements={goals} keyGetter={(goal) => goal.id} render={(goal) => <GoalCardCurrent {...goal} />} />
+          <AppList
+            elements={goals}
+            keyGetter={(goal) => goal.id}
+            spacing={3}
+            render={(goal) => <GoalCardCurrent {...goal} />}
+          />
         )}
       </AppBox>
     </AppContainer>

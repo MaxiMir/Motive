@@ -15,14 +15,34 @@ export default [
     views: 113,
     goals: [
       {
-        id: '1',
+        id: '314',
         name: 'learn French',
+        href: '/better/maximir?goal=314',
+        started: '2021-07-30T18:31:42',
         hashtags: ['foreignLanguage', 'knowledge'],
+        characteristics: {
+          motivation: 3,
+          support: 4,
+          creativity: 45,
+        },
         tasks: [
-          { id: '13', name: 'read 20 pages Harry Potter', completed: true },
-          { id: '14', name: 'to take apart two videos "73 Questions"', completed: false },
-          { id: '15', name: 'solve 1 the test', completed: false },
+          { id: '1', name: 'read 20 pages Harry Potter', completed: true },
+          { id: '2', name: 'to take apart two videos "73 Questions"', completed: false },
+          { id: '3', name: 'solve 1 the test', completed: false },
         ],
+      },
+      {
+        id: '214',
+        name: 'become senior',
+        href: '/better/maximir?goal=214',
+        started: '2021-08-01T12:31:42',
+        hashtags: ['programming', 'knowledge'],
+        characteristics: {
+          motivation: 5,
+          support: 12,
+          creativity: 32,
+        },
+        tasks: [{ id: '1', name: 'watch video', completed: false }],
       },
     ],
     role: 'OWNER',

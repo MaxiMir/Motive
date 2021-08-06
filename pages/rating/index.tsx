@@ -1,6 +1,8 @@
 import { Fragment } from 'react'
 import { GetServerSideProps } from 'next'
 import { useRouter } from 'next/router'
+import { QueryClient, useQuery } from 'react-query'
+import { dehydrate } from 'react-query/hydration'
 import Axios from 'lib/axios'
 import { Container } from '@material-ui/core'
 import ROUTE from 'route'
@@ -17,11 +19,15 @@ import TabNames from './TabNames'
 
 const TABS: Characteristic[] = ['motivation', 'creativity', 'support']
 
-export default function Rating({ meta, motivation, creativity, support }: RatingPage): JSX.Element {
+const queryFn = async () => (await Axios.get(ROUTE.RATING)).data
+
+export default function Rating(): JSX.Element {
+  const { data, status } = useQuery<RatingPage>('rating', queryFn)
+  const { meta, motivation, creativity, support } = data as RatingPage
   const { query } = useRouter()
 
   return (
-    <Layout {...meta}>
+    <Layout status={status} {...meta}>
       <Container fixed>
         <AppHeader name="completed">Rating</AppHeader>
       </Container>
@@ -52,7 +58,12 @@ export default function Rating({ meta, motivation, creativity, support }: Rating
 }
 
 export const getServerSideProps: GetServerSideProps = async () => {
-  const { data } = await Axios.get(ROUTE.RATING)
+  const queryClient = new QueryClient()
+  await queryClient.prefetchQuery('rating', queryFn)
 
-  return { props: data }
+  return {
+    props: {
+      dehydratedState: dehydrate(queryClient),
+    },
+  }
 }

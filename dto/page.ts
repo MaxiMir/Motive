@@ -1,6 +1,7 @@
-import { Characteristic, User, UserDetail } from './user'
+import { User, UserDetail } from './user'
+import { Characteristic } from './characteristic'
 
-export type Page<T> = T & {
+export type Page<T> = {
   meta: {
     title: string
     description: string
@@ -8,7 +9,7 @@ export type Page<T> = T & {
     url: string
     type: string
   }
-}
+} & T
 
 export type MainPage = Page<undefined>
 

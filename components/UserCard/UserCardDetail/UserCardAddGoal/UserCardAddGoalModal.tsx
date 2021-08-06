@@ -28,7 +28,7 @@ const schema: SchemaOf<GoalCreation> = object({
   hashtags: string().trim().max(150, "It's so long."),
   tasks: array().of(
     object({
-      name: string().trim().required('Task content is required').min(5, "It's too short.").max(255, "It's too long."),
+      name: string().trim().required('Task content needed').min(5, "It's too short.").max(255, "It's too long."),
       date: string(),
     }),
   ),
@@ -114,7 +114,7 @@ export default function UserCardAddGoalModal({ onCreate, onClose }: UserCardAddG
                             <CloseIcon fontSize="small" />
                           </IconButton>
                         </AppBox>
-                        <AppBox pl={1} mb={1} spacing={1}>
+                        <AppBox height={48} alignItems="center" pl={1} spacing={1}>
                           <FormControlLabel
                             control={
                               <Switch

@@ -1,19 +1,34 @@
 import { GetServerSideProps } from 'next'
+import { useRouter } from 'next/router'
+import { QueryClient, useQuery } from 'react-query'
+import { dehydrate } from 'react-query/hydration'
 import Axios from 'lib/axios'
-import { MainPage } from 'dto'
+import { UserPage } from 'dto'
 import Layout from 'layout'
 import UserCardDetail from 'components/UserCard/UserCardDetail'
 
-export default function UserDetail({ meta, user }: MainPage): JSX.Element {
+const queryFn = async (url: string) => (await Axios.get(url)).data
+
+export default function UserDetail(): JSX.Element {
+  const { asPath } = useRouter()
+  const { data, status } = useQuery<UserPage>(asPath, () => queryFn(asPath))
+  const { meta, user } = data as UserPage
+
   return (
-    <Layout {...meta}>
+    <Layout status={status} {...meta}>
       <UserCardDetail {...user} />
     </Layout>
   )
 }
 
 export const getServerSideProps: GetServerSideProps = async (ctx) => {
-  const { data } = await Axios.get(ctx.req.url as string)
+  const url = ctx.req.url as string
+  const queryClient = new QueryClient()
+  await queryClient.prefetchQuery(url, () => queryFn(url))
 
-  return { props: data }
+  return {
+    props: {
+      dehydratedState: dehydrate(queryClient),
+    },
+  }
 }

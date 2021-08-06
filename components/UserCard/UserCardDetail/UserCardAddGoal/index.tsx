@@ -2,9 +2,9 @@ import { useState } from 'react'
 import dynamic from 'next/dynamic'
 import { makeStyles } from '@material-ui/core/styles'
 import { Button } from '@material-ui/core'
-import AppSnackbar from 'components/UI/AppSnackbar'
 
 const UserCardAddGoalModal = dynamic(() => import('./UserCardAddGoalModal'))
+const AppSnackbar = dynamic(() => import('components/UI/AppSnackbar'))
 
 export default function UserCardAddGoal(): JSX.Element {
   const [open, setOpen] = useState(false)

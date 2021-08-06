@@ -1,8 +1,11 @@
-import React, { FC } from 'react'
+import React, { FC, useEffect, useState } from 'react'
+import dynamic from 'next/dynamic'
 import Head from 'next/head'
 import { makeStyles } from '@material-ui/core/styles'
 import Header from './Header'
 import Footer from './Footer'
+
+const AppSnackbar = dynamic(() => import('components/UI/AppSnackbar'))
 
 interface LayoutProps {
   title: string
@@ -10,11 +13,26 @@ interface LayoutProps {
   keywords: string
   url: string
   type: string
+  status: 'error' | 'idle' | 'loading' | 'success'
   withVerticalPadding?: boolean
 }
 
-const Layout: FC<LayoutProps> = ({ title, description, keywords, url, type, withVerticalPadding = true, children }) => {
+const Layout: FC<LayoutProps> = ({
+  title,
+  description,
+  keywords,
+  url,
+  type,
+  withVerticalPadding = true,
+  status,
+  children,
+}) => {
+  const [showError, setShowError] = useState(status === 'error')
   const classes = useStyles({ withVerticalPadding })
+
+  useEffect(() => {
+    setShowError(status === 'error')
+  }, [status])
 
   return (
     <>
@@ -35,7 +53,15 @@ const Layout: FC<LayoutProps> = ({ title, description, keywords, url, type, with
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" />
       </Head>
       <Header />
-      <main className={classes.main}>{children}</main>
+      <main className={classes.main}>
+        {status === 'loading' && 'Loading...'}
+        {showError && (
+          <AppSnackbar severity="error" autoHideDuration={3000} onClose={() => setShowError(false)}>
+            Error: Something went wrong...
+          </AppSnackbar>
+        )}
+        {status === 'success' && <>{children}</>}
+      </main>
       <Footer />
     </>
   )

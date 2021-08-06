@@ -1,5 +1,7 @@
 import dynamic from 'next/dynamic'
 import { GetServerSideProps } from 'next'
+import { QueryClient, useQuery } from 'react-query'
+import { dehydrate } from 'react-query/hydration'
 import Axios from 'lib/axios'
 import ROUTE from 'route'
 import { FavoritesPage, User } from 'dto'
@@ -12,9 +14,14 @@ import { AppListProps } from 'components/UI/AppList'
 const EmptyList = dynamic(() => import('./EmptyList'))
 const AppList = dynamic<AppListProps<User>>(() => import('components/UI/AppList'))
 
-export default function Favorites({ meta, favorites }: FavoritesPage): JSX.Element {
+const queryFn = async () => (await Axios.get(ROUTE.FAVORITES)).data
+
+export default function Favorites(): JSX.Element {
+  const { data, status } = useQuery<FavoritesPage>('favorites', queryFn)
+  const { meta, favorites } = data as FavoritesPage
+
   return (
-    <Layout {...meta}>
+    <Layout status={status} {...meta}>
       <AppContainer withFlexColumn>
         <AppHeader name="favorite-active" mb={4}>
           Favorites
@@ -35,7 +42,12 @@ export default function Favorites({ meta, favorites }: FavoritesPage): JSX.Eleme
 }
 
 export const getServerSideProps: GetServerSideProps = async () => {
-  const { data } = await Axios.get(ROUTE.FAVORITES)
+  const queryClient = new QueryClient()
+  await queryClient.prefetchQuery('favorites', queryFn)
 
-  return { props: data }
+  return {
+    props: {
+      dehydratedState: dehydrate(queryClient),
+    },
+  }
 }

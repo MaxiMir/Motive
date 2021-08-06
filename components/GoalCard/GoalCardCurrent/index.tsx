@@ -8,10 +8,11 @@ import CharacteristicGoal from 'components/Characteristic/CharacteristicGoal'
 import AppBox from 'components/UI/AppBox'
 import AppHeader from 'components/UI/AppHeader'
 import GoalCardMenu from './GoalCardMenu'
+import GoalCardTaskForm from './GoalCardTaskForm'
 
 const CHARACTERISTICS: GoalCharacteristic[] = ['motivation', 'creativity', 'support']
 
-export default function GoalCardCurrent({ id, name, href, started, characteristics }: Goal): JSX.Element {
+export default function GoalCardCurrent({ id, name, href, started, characteristics, tasks }: Goal): JSX.Element {
   const classes = useStyles()
   const theme = useTheme()
   const colors = useCharacteristicColors()
@@ -19,7 +20,7 @@ export default function GoalCardCurrent({ id, name, href, started, characteristi
 
   return (
     <div className={classes.goalWrap} id={`goal-${id}`}>
-      <AppBox flexDirection="column" spacing={4} className={classes.content}>
+      <AppBox flexDirection="column" spacing={3} className={classes.content}>
         <AppBox justifyContent="space-between">
           <AppHeader name="goal" variant="h6" component="h3">
             {name}
@@ -36,8 +37,14 @@ export default function GoalCardCurrent({ id, name, href, started, characteristi
               />
             </Fragment>
           ))}
-          <CharacteristicGoal characteristic="duration" value={days} color={theme.palette.text.disabled} />
+          <CharacteristicGoal characteristic="runs for days" value={days} color={theme.palette.text.disabled} />
         </AppBox>
+        <div>
+          <AppHeader name="task" variant="h6" component="h2" color="primary">
+            Tasks
+          </AppHeader>
+          <GoalCardTaskForm tasks={tasks} />
+        </div>
       </AppBox>
     </div>
   )

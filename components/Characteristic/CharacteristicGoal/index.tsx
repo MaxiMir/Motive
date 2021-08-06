@@ -6,7 +6,7 @@ import AppTooltip from 'components/UI/AppTooltip'
 import AppTypography from 'components/UI/AppTypography'
 
 export interface CharacteristicGoalProps {
-  characteristic: Characteristic | 'duration'
+  characteristic: Characteristic | 'runs for days'
   value: number
   color: string
 }

@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import { differenceInDays } from 'date-fns'
 import { createStyles, useTheme } from '@material-ui/core'
 import { makeStyles } from '@material-ui/core/styles'
@@ -15,8 +16,8 @@ export default function GoalCardCurrent({ id, name, href, started, characteristi
   const classes = useStyles()
   const theme = useTheme()
   const colors = useCharacteristicColors()
+  const [rest, setRest] = useState(tasks.length - tasks.filter((t) => t.completed).length)
   const days = differenceInDays(new Date(), Date.parse(started))
-  const taskBalanceRef = tasks.length - tasks.filter((t) => t.completed).length
 
   return (
     <div className={classes.goalWrap} id={`goal-${id}`}>
@@ -43,7 +44,12 @@ export default function GoalCardCurrent({ id, name, href, started, characteristi
             Tasks
           </AppHeader>
           {tasks.map((task) => (
-            <GoalCardTask {...task} taskBalance={taskBalanceRef} key={task.id} />
+            <GoalCardTask
+              {...task}
+              rest={rest}
+              key={task.id}
+              onSet={(completed) => setRest((r) => r + (completed ? -1 : 1))}
+            />
           ))}
         </div>
       </AppBox>

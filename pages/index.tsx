@@ -1,4 +1,6 @@
 import { GetServerSideProps } from 'next'
+import { QueryClient, useQuery } from 'react-query'
+import { dehydrate } from 'react-query/hydration'
 import ROUTE from 'route'
 import Axios from 'lib/axios'
 import { Characteristic, MainPage } from 'dto'
@@ -42,11 +44,15 @@ const ADVANTAGES: AdvantageItem[] = [
   },
 ]
 
-export default function Home(meta: MainPage): JSX.Element {
+const queryFn = async () => (await Axios.get(ROUTE.INDEX)).data
+
+export default function Home(): JSX.Element {
   const colors = useCharacteristicColors()
+  const { data, status } = useQuery<MainPage>('index', queryFn)
+  const { meta } = (data as MainPage) || {}
 
   return (
-    <Layout withVerticalPadding={false} {...meta}>
+    <Layout status={status} withVerticalPadding={false} {...meta}>
       <Slogan />
       {ADVANTAGES.map((advantage) => (
         <AppBox style={{ height: 'calc((100vh - 290px ) / 4)' }} key={advantage.characteristic}>
@@ -58,7 +64,12 @@ export default function Home(meta: MainPage): JSX.Element {
 }
 
 export const getServerSideProps: GetServerSideProps = async () => {
-  const { data } = await Axios.get(ROUTE.INDEX)
+  const queryClient = new QueryClient()
+  await queryClient.prefetchQuery('index', queryFn)
 
-  return { props: data }
+  return {
+    props: {
+      dehydratedState: dehydrate(queryClient),
+    },
+  }
 }

@@ -6,4 +6,5 @@ export default {
   FAVORITES: '/favorites',
   PROFILE: '/profile',
   SIGN_IN: '/sign-in',
+  TASK: '/task',
 }

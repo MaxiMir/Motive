@@ -11,7 +11,7 @@ export type Page<T> = {
   }
 } & T
 
-export type MainPage = Page<undefined>
+export type MainPage = Page<{ [k: string]: never }>
 
 export type RatingPage = Page<
   {

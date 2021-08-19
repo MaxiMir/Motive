@@ -12,7 +12,7 @@ const queryFn = async (url: string) => (await Axios.get(url)).data
 export default function UserDetail(): JSX.Element {
   const { asPath } = useRouter()
   const { data, status } = useQuery<UserPage>(asPath, () => queryFn(asPath))
-  const { meta, user } = data as UserPage
+  const { meta, user } = (data as UserPage) || {}
 
   return (
     <Layout status={status} {...meta}>

@@ -54,10 +54,9 @@ const Layout: FC<LayoutProps> = ({
       </Head>
       <Header />
       <main className={classes.main}>
-        {status === 'loading' && 'Loading...'}
         {showError && (
           <AppSnackbar severity="error" autoHideDuration={3000} onClose={() => setShowError(false)}>
-            Error: Something went wrong...
+            Something went wrong...
           </AppSnackbar>
         )}
         {status === 'success' && <>{children}</>}

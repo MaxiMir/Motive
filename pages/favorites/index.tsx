@@ -18,7 +18,7 @@ const queryFn = async () => (await Axios.get(ROUTE.FAVORITES)).data
 
 export default function Favorites(): JSX.Element {
   const { data, status } = useQuery<FavoritesPage>('favorites', queryFn)
-  const { meta, favorites } = data as FavoritesPage
+  const { meta, favorites } = (data as FavoritesPage) || {}
 
   return (
     <Layout status={status} {...meta}>

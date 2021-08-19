@@ -1,7 +1,7 @@
 export default [
   {
     id: '1',
-    name: 'Maxim Minchenko1',
+    name: 'Maxim Minchenko',
     href: '/better/maximir',
     avatar: '/__temp__/1.png',
     characteristics: {

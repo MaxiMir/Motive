@@ -2,7 +2,6 @@ import React from 'react'
 import { AppProps } from 'next/app'
 import { QueryClient, QueryClientProvider } from 'react-query'
 import { Hydrate } from 'react-query/hydration'
-import { ReactQueryDevtools } from 'react-query/devtools'
 import DateFnsUtils from '@date-io/date-fns'
 import NextNprogress from 'nextjs-progressbar'
 import { MuiPickersUtilsProvider } from '@material-ui/pickers'
@@ -34,7 +33,6 @@ export default function MyApp({ Component, pageProps }: AppProps): JSX.Element {
           </ThemeProvider>
         </MuiPickersUtilsProvider>
       </Hydrate>
-      <ReactQueryDevtools />
     </QueryClientProvider>
   )
 }

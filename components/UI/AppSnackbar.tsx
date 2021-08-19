@@ -6,10 +6,12 @@ import Alert, { AlertProps } from '@material-ui/lab/Alert'
 interface AppSnackbarProps {
   severity: AlertProps['severity']
   autoHideDuration: SnackbarProps['autoHideDuration']
+  icon?: AlertProps['icon']
+  action?: SnackbarProps['action']
   onClose: () => void
 }
 
-const AppSnackbar: FC<AppSnackbarProps> = ({ severity, autoHideDuration, children, onClose }) => {
+const AppSnackbar: FC<AppSnackbarProps> = ({ autoHideDuration, severity, children, onClose, ...restAlertProps }) => {
   const classes = useStyles()
 
   const handleClose = (_event?: SyntheticEvent, reason?: string) => {
@@ -22,7 +24,14 @@ const AppSnackbar: FC<AppSnackbarProps> = ({ severity, autoHideDuration, childre
 
   return (
     <Snackbar open className={classes.root} autoHideDuration={autoHideDuration} onClose={handleClose}>
-      <Alert severity={severity}>{children}</Alert>
+      <Alert
+        {...restAlertProps}
+        severity={severity}
+        className={classes.alert}
+        color={severity === 'success' ? 'info' : undefined}
+      >
+        {children}
+      </Alert>
     </Snackbar>
   )
 }
@@ -30,6 +39,9 @@ const AppSnackbar: FC<AppSnackbarProps> = ({ severity, autoHideDuration, childre
 const useStyles = makeStyles({
   root: {
     bottom: 100,
+  },
+  alert: {
+    lineHeight: '19px',
   },
 })
 

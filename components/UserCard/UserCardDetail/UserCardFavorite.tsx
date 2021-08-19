@@ -1,10 +1,12 @@
 import { useState } from 'react'
+import dynamic from 'next/dynamic'
 import { makeStyles } from '@material-ui/core/styles'
 import { IconButton } from '@material-ui/core'
 import { UserDetail } from 'dto'
 import useFavorite from 'hooks/useFavorite'
 import AppEmoji from 'components/UI/AppEmoji'
-import AppSnackbar from 'components/UI/AppSnackbar'
+
+const AppSnackbar = dynamic(() => import('components/UI/AppSnackbar'))
 
 type UserCardFavoriteProps = Pick<UserDetail, 'id' | 'isFavorite'>
 

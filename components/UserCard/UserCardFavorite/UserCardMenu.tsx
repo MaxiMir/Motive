@@ -4,9 +4,9 @@ import { MenuItem } from '@material-ui/core'
 import useFavorite from 'hooks/useFavorite'
 import Share from 'components/Share'
 import AppMenuButton from 'components/UI/AppMenuButton'
-import AppSnackbar from 'components/UI/AppSnackbar'
 
 const Menu = dynamic(() => import('@material-ui/core/Menu'))
+const AppSnackbar = dynamic(() => import('components/UI/AppSnackbar'))
 
 interface UserCardFavoriteMenuProps {
   id: string

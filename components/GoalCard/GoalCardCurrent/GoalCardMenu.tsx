@@ -3,9 +3,9 @@ import dynamic from 'next/dynamic'
 import { MenuItem } from '@material-ui/core'
 import Share from 'components/Share'
 import AppMenuButton from 'components/UI/AppMenuButton'
-import AppSnackbar from 'components/UI/AppSnackbar'
 
 const Menu = dynamic(() => import('@material-ui/core/Menu'))
+const AppSnackbar = dynamic(() => import('components/UI/AppSnackbar'))
 
 interface GoalCardMenuProps {
   title: string

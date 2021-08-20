@@ -13,7 +13,19 @@ import UserCardMenu from './UserCardMenu'
 const CHARACTERISTICS: CharacteristicDto[] = ['motivation', 'creativity', 'support', 'completed']
 const LAST_CHARACTERISTIC_INDEX = 3
 
-const UserCardFavorite = ({ id, avatar, href, name, characteristics }: User): JSX.Element => {
+export interface UserCardFavoriteProps extends User {
+  type: 'favorite'
+  onRemove: (id: string) => void
+}
+
+const UserCardFavorite = ({
+  id,
+  avatar,
+  href,
+  name,
+  characteristics,
+  onRemove,
+}: UserCardFavoriteProps): JSX.Element => {
   const colors = useCharacteristicColors()
   const classes = useStyles()
 
@@ -29,7 +41,7 @@ const UserCardFavorite = ({ id, avatar, href, name, characteristics }: User): JS
               {name}
             </AppTypography>
           </AppLink>
-          <UserCardMenu id={id} title={name} href={href} />
+          <UserCardMenu id={id} title={name} href={href} onRemove={onRemove} />
         </AppBox>
         <AppBox justifyContent="space-between" alignItems="center">
           {CHARACTERISTICS.map((characteristic, index) => (

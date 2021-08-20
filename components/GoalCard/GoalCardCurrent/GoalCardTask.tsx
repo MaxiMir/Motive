@@ -18,7 +18,7 @@ interface GoalCardTaskProps extends Task {
 export default function GoalCardTask({ id, name, completed: initial, rest, onSet }: GoalCardTaskProps): JSX.Element {
   const [checked, setChecked] = useState(initial)
   const [severity, setSeverity] = useState<'success' | 'error'>()
-  const { mutate, isLoading } = useMutation((completed: boolean) => Axios.put(`${ROUTE.TASK}/${id}`, { completed }), {
+  const { mutate, isLoading } = useMutation((completed: boolean) => Axios.put(ROUTE.getTaskId(id), { completed }), {
     onSuccess: (_, completed) => {
       completed && setSeverity('success')
       onSet(completed)
@@ -28,7 +28,7 @@ export default function GoalCardTask({ id, name, completed: initial, rest, onSet
       setSeverity('error')
     },
   })
-  const { icon, content } = getSnackbarInfo()
+  const snackbarInfo = severity && getSnackbarInfo()
   const mutateWithDebounce = useDebounceCb(mutate, 500)
 
   const onChange = (_: ChangeEvent<unknown>, isChecked: boolean) => {
@@ -45,7 +45,7 @@ export default function GoalCardTask({ id, name, completed: initial, rest, onSet
   function getSnackbarInfo() {
     if (severity === 'error') {
       return {
-        icon: '❗',
+        icon: undefined,
         content: 'Something went wrong...',
       }
     }
@@ -68,13 +68,13 @@ export default function GoalCardTask({ id, name, completed: initial, rest, onSet
       />
       {severity && (
         <AppSnackbar
-          icon={icon}
+          icon={snackbarInfo?.icon}
           severity={severity}
           autoHideDuration={3000}
           action={severity !== 'success' ? undefined : <Button onClick={onUndo}>Undo</Button>}
           onClose={() => setSeverity(undefined)}
         >
-          {content}
+          {snackbarInfo?.content}
         </AppSnackbar>
       )}
     </form>

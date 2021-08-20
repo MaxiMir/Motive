@@ -1,12 +1,19 @@
 import dynamic from 'next/dynamic'
+import { Characteristic } from 'dto'
 import { toUpperFirstChar } from 'helpers/prepare'
 import AppEmoji from 'components/UI/AppEmoji'
 import AppBox from 'components/UI/AppBox'
 import AppTooltip from 'components/UI/AppTooltip'
 import AppTypography from 'components/UI/AppTypography'
-import { CharacteristicCardUserProps } from '../index'
 
 const CharacteristicCardUserLvl = dynamic(() => import('./CharacteristicCardUserLvl'))
+
+export interface CharacteristicCardUserProps {
+  type: 'user'
+  characteristic: Characteristic
+  value: number
+  color: string
+}
 
 const CharacteristicCardUser = ({ characteristic, value, color }: CharacteristicCardUserProps): JSX.Element => (
   <AppTooltip title={toUpperFirstChar(characteristic)}>

@@ -1,34 +1,30 @@
 import { useState } from 'react'
 import dynamic from 'next/dynamic'
 import { MenuItem } from '@material-ui/core'
-import useFavorite from 'hooks/useFavorite'
 import Share from 'components/Share'
 import AppMenuButton from 'components/UI/AppMenuButton'
 
 const Menu = dynamic(() => import('@material-ui/core/Menu'))
-const AppSnackbar = dynamic(() => import('components/UI/AppSnackbar'))
 
 interface UserCardFavoriteMenuProps {
   id: string
   title: string
   href: string
+  onRemove: (id: string) => void
 }
 
-const UserCardMenu = ({ id, title, href }: UserCardFavoriteMenuProps): JSX.Element => {
+const UserCardMenu = ({ id, title, href, onRemove }: UserCardFavoriteMenuProps): JSX.Element => {
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null)
   const [withShare, setWithShare] = useState(false)
-  const [message, setMessage] = useState<string>()
-  const [, onChangeFavorite] = useFavorite(id, true)
 
   const onShare = () => {
     onCloseMenu()
     setWithShare(true)
   }
 
-  const onRemove = () => {
+  const onRemoveCombine = () => {
     onCloseMenu()
-    onChangeFavorite()
-    setMessage('Removed from favorites')
+    onRemove(id)
   }
 
   const onCloseMenu = () => setAnchorEl(null)
@@ -51,16 +47,11 @@ const UserCardMenu = ({ id, title, href }: UserCardFavoriteMenuProps): JSX.Eleme
           onClose={onCloseMenu}
         >
           <MenuItem onClick={onShare}>Share</MenuItem>
-          <MenuItem onClick={onRemove}>Remove from Favorites</MenuItem>
+          <MenuItem onClick={onRemoveCombine}>Remove from Favorites</MenuItem>
           <MenuItem onClick={onCloseMenu}>Cancel</MenuItem>
         </Menu>
       )}
       <Share open={withShare} title={title} href={href} onClose={() => setWithShare(false)} />
-      {message && (
-        <AppSnackbar severity="success" autoHideDuration={3000} onClose={() => setMessage(undefined)}>
-          {message}
-        </AppSnackbar>
-      )}
     </>
   )
 }

@@ -12,7 +12,7 @@ interface AppSnackbarProps {
   onClose: () => void
 }
 
-const AppSnackbar: FC<AppSnackbarProps> = ({ autoHideDuration, severity, children, onClose, ...restAlertProps }) => {
+const AppSnackbar: FC<AppSnackbarProps> = ({ icon, autoHideDuration, children, onClose, ...restAlertProps }) => {
   const classes = useStyles()
 
   const handleClose = (_event?: SyntheticEvent, reason?: string) => {
@@ -33,9 +33,9 @@ const AppSnackbar: FC<AppSnackbarProps> = ({ autoHideDuration, severity, childre
     >
       <Alert
         {...restAlertProps}
-        severity={severity}
+        icon={restAlertProps.severity === 'error' ? '❗' : icon}
         className={classes.alert}
-        color={severity === 'success' ? 'info' : undefined}
+        color={restAlertProps.severity === 'success' ? 'info' : undefined}
       >
         {children}
       </Alert>

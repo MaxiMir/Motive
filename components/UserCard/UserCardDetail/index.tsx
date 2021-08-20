@@ -1,8 +1,9 @@
+import { useEffect } from 'react'
 import dynamic from 'next/dynamic'
 import { useRouter } from 'next/router'
 import Image from 'next/image'
 import { makeStyles } from '@material-ui/core/styles'
-import { Characteristic, Goal } from 'dto'
+import { Characteristic, Goal, UserDetail } from 'dto'
 import { numberToShort } from 'helpers/prepare'
 import useIncrementPageViews from 'hooks/useIncrementPageViews'
 import useCharacteristicColors from 'hooks/useCharacteristicColors'
@@ -11,16 +12,18 @@ import AppBox from 'components/UI/AppBox'
 import AppContainer from 'components/UI/AppContainer'
 import AppTypography from 'components/UI/AppTypography'
 import { AppListProps } from 'components/UI/AppList'
-import { useEffect } from 'react'
 import UserCardFavorite from './UserCardFavorite'
 import UserCardAvatar from './UserCardAvatar'
 import UserCardCharacteristic from './UserCardCharacteristic'
 import UserCardEmptyGoals from './UserCardEmptyGoals'
-import { UserCardDetailProps } from '../index'
 
 const UserCardAddGoal = dynamic(() => import('./UserCardAddGoal'))
-const AppList = dynamic<AppListProps<Goal>>(() => import('components/UI/AppList'))
 const GoalCard = dynamic(() => import('components/GoalCard'))
+const AppList = dynamic<AppListProps<Goal>>(() => import('components/UI/AppList'))
+
+export interface UserCardDetailProps extends UserDetail {
+  type: 'detail'
+}
 
 const UserCardDetail = ({
   id,

@@ -1,9 +1,16 @@
+import { Characteristic } from 'dto'
 import { toUpperFirstChar } from 'helpers/prepare'
 import AppEmoji from 'components/UI/AppEmoji'
 import AppBox from 'components/UI/AppBox'
 import AppTooltip from 'components/UI/AppTooltip'
 import AppTypography from 'components/UI/AppTypography'
-import { CharacteristicCardGoalProps } from '../index'
+
+export interface CharacteristicCardGoalProps {
+  type: 'goal'
+  characteristic: Characteristic | 'runs for days'
+  value: number
+  color: string
+}
 
 const CharacteristicCardGoal = ({ characteristic, value, color }: CharacteristicCardGoalProps): JSX.Element => (
   <AppTooltip title={toUpperFirstChar(characteristic)}>

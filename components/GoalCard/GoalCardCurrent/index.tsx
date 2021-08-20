@@ -2,16 +2,19 @@ import { useState } from 'react'
 import { differenceInDays } from 'date-fns'
 import { createStyles, useTheme } from '@material-ui/core'
 import { makeStyles } from '@material-ui/core/styles'
-import { GoalCharacteristic } from 'dto'
+import { Goal, GoalCharacteristic } from 'dto'
 import useCharacteristicColors from 'hooks/useCharacteristicColors'
 import CharacteristicCard from 'components/CharacteristicCard'
 import AppBox from 'components/UI/AppBox'
 import AppHeader from 'components/UI/AppHeader'
 import GoalCardTask from './GoalCardTask'
 import GoalCardMenu from './GoalCardMenu'
-import { GoalCardCurrentProps } from '../index'
 
 const CHARACTERISTICS: GoalCharacteristic[] = ['motivation', 'creativity', 'support']
+
+export interface GoalCardCurrentProps extends Goal {
+  type: 'current'
+}
 
 export default function GoalCardCurrent({
   id,

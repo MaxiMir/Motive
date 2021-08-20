@@ -1,11 +1,7 @@
 import dynamic from 'next/dynamic'
-import { Goal } from 'dto'
+import { GoalCardCurrentProps } from './GoalCardCurrent'
 
 const GoalCardCurrent = dynamic(() => import('./GoalCardCurrent'))
-
-export interface GoalCardCurrentProps extends Goal {
-  type: 'current'
-}
 
 export default function GoalCard(props: GoalCardCurrentProps): JSX.Element {
   switch (props.type) {

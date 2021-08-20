@@ -17,7 +17,7 @@ export type RatingPage = Page<
   {
     [k in 'motivation' | 'creativity' | 'support']: {
       list: User[]
-      type: Characteristic
+      characteristic: Characteristic
     }
   }
 >

@@ -1,7 +1,7 @@
 import { makeStyles } from '@material-ui/core/styles'
 import { createStyles } from '@material-ui/core'
 
-const CharacteristicUserLvl = (): JSX.Element => {
+const CharacteristicCardUserLvl = (): JSX.Element => {
   const classes = useStyles()
 
   return <sup className={classes.root}>lvl</sup>
@@ -17,4 +17,4 @@ const useStyles = makeStyles((theme) =>
   }),
 )
 
-export default CharacteristicUserLvl
+export default CharacteristicCardUserLvl

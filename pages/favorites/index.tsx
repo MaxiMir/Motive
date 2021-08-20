@@ -6,7 +6,7 @@ import Axios from 'lib/axios'
 import ROUTE from 'route'
 import { FavoritesPage, User } from 'dto'
 import Layout from 'layout'
-import UserCardFavorite from 'components/UserCard/UserCardFavorite'
+import UserCard from 'components/UserCard'
 import AppContainer from 'components/UI/AppContainer'
 import AppHeader from 'components/UI/AppHeader'
 import { AppListProps } from 'components/UI/AppList'
@@ -32,7 +32,7 @@ export default function Favorites(): JSX.Element {
           <AppList
             elements={favorites}
             spacing={4}
-            render={(el) => <UserCardFavorite {...el} />}
+            render={(el) => <UserCard type="favorite" {...el} />}
             keyGetter={(el) => el.id}
           />
         )}

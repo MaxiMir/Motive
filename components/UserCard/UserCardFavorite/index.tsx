@@ -1,16 +1,16 @@
 import { Fragment } from 'react'
 import Image from 'next/image'
 import { makeStyles } from '@material-ui/core/styles'
-import { Characteristic, User } from 'dto'
+import { Characteristic as CharacteristicDto, User } from 'dto'
 import useCharacteristicColors from 'hooks/useCharacteristicColors'
-import CharacteristicUser from 'components/Characteristic/CharacteristicUser'
+import Characteristic from 'components/CharacteristicCard'
 import AppBox from 'components/UI/AppBox'
 import AppLink from 'components/UI/AppLink'
 import AppDot from 'components/UI/AppDot'
 import AppTypography from 'components/UI/AppTypography'
 import UserCardMenu from './UserCardMenu'
 
-const CHARACTERISTICS: Characteristic[] = ['motivation', 'creativity', 'support', 'completed']
+const CHARACTERISTICS: CharacteristicDto[] = ['motivation', 'creativity', 'support', 'completed']
 const LAST_CHARACTERISTIC_INDEX = 3
 
 const UserCardFavorite = ({ id, avatar, href, name, characteristics }: User): JSX.Element => {
@@ -34,7 +34,8 @@ const UserCardFavorite = ({ id, avatar, href, name, characteristics }: User): JS
         <AppBox justifyContent="space-between" alignItems="center">
           {CHARACTERISTICS.map((characteristic, index) => (
             <Fragment key={characteristic}>
-              <CharacteristicUser
+              <Characteristic
+                type="user"
                 characteristic={characteristic}
                 value={characteristics[characteristic]}
                 color={colors[characteristic].fontColor}

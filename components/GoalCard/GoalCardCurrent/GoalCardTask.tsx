@@ -28,6 +28,7 @@ export default function GoalCardTask({ id, name, completed: initial, rest, onSet
       setSeverity('error')
     },
   })
+  const { icon, content } = getSnackbarInfo()
   const mutateWithDebounce = useDebounceCb(mutate, 500)
 
   const onChange = (_: ChangeEvent<unknown>, isChecked: boolean) => {
@@ -39,6 +40,20 @@ export default function GoalCardTask({ id, name, completed: initial, rest, onSet
     setChecked(!checked)
     mutateWithDebounce(!checked)
     setSeverity(undefined)
+  }
+
+  function getSnackbarInfo() {
+    if (severity === 'error') {
+      return {
+        icon: '❗',
+        content: 'Something went wrong...',
+      }
+    }
+
+    return {
+      icon: !rest ? '🦾️' : '⚡️',
+      content: !rest ? 'Well done! All tasks are completed' : `Do it! Remains to be done: ${rest}`,
+    }
   }
 
   return (
@@ -53,16 +68,13 @@ export default function GoalCardTask({ id, name, completed: initial, rest, onSet
       />
       {severity && (
         <AppSnackbar
-          icon={severity !== 'success' ? '❗' : '🦾️'}
+          icon={icon}
           severity={severity}
           autoHideDuration={3000}
           action={severity !== 'success' ? undefined : <Button onClick={onUndo}>Undo</Button>}
           onClose={() => setSeverity(undefined)}
         >
-          {severity === 'success' && !rest
-            ? 'Well done! All tasks are completed'
-            : `Do it! Remains to be done: ${rest}`}
-          {severity === 'error' && 'Something went wrong...'}
+          {content}
         </AppSnackbar>
       )}
     </form>

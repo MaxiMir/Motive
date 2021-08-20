@@ -2,7 +2,7 @@ import dynamic from 'next/dynamic'
 import { useRouter } from 'next/router'
 import Image from 'next/image'
 import { makeStyles } from '@material-ui/core/styles'
-import { Characteristic, Goal, UserDetail } from 'dto'
+import { Characteristic, Goal } from 'dto'
 import { numberToShort } from 'helpers/prepare'
 import useIncrementPageViews from 'hooks/useIncrementPageViews'
 import useCharacteristicColors from 'hooks/useCharacteristicColors'
@@ -16,10 +16,11 @@ import UserCardFavorite from './UserCardFavorite'
 import UserCardAvatar from './UserCardAvatar'
 import UserCardCharacteristic from './UserCardCharacteristic'
 import UserCardEmptyGoals from './UserCardEmptyGoals'
+import { UserCardDetailProps } from '../index'
 
 const UserCardAddGoal = dynamic(() => import('./UserCardAddGoal'))
 const AppList = dynamic<AppListProps<Goal>>(() => import('components/UI/AppList'))
-const GoalCardCurrent = dynamic(() => import('components/GoalCard/GoalCardCurrent'))
+const GoalCard = dynamic(() => import('components/GoalCard'))
 
 const UserCardDetail = ({
   id,
@@ -30,7 +31,7 @@ const UserCardDetail = ({
   characteristics,
   role,
   goals,
-}: UserDetail): JSX.Element => {
+}: UserCardDetailProps): JSX.Element => {
   const classes = useStyles()
   const { query } = useRouter()
   const characteristicColors = useCharacteristicColors()
@@ -73,6 +74,7 @@ const UserCardDetail = ({
             <AppBox justifyContent="space-between">
               {(['motivation', 'creativity', 'support'] as Characteristic[]).map((type) => (
                 <UserCardCharacteristic
+                  type="user"
                   characteristic={type}
                   value={characteristics[type]}
                   color={characteristicColors[type].fontColor}
@@ -83,6 +85,7 @@ const UserCardDetail = ({
             <AppBox justifyContent="space-between">
               {(['abandoned', 'completed'] as Characteristic[]).map((type) => (
                 <UserCardCharacteristic
+                  type="user"
                   characteristic={type}
                   value={characteristics[type]}
                   color={characteristicColors[type].fontColor}
@@ -104,7 +107,7 @@ const UserCardDetail = ({
             elements={goals}
             keyGetter={(goal) => goal.id}
             spacing={3}
-            render={(goal) => <GoalCardCurrent {...goal} />}
+            render={(goal) => <GoalCard type="current" {...goal} />}
           />
         )}
       </AppBox>

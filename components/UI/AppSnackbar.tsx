@@ -48,9 +48,8 @@ const useStyles = makeStyles({
     bottom: 100,
   },
   alert: {
-    lineHeight: '24px',
+    lineHeight: '21px',
     '& .MuiAlert-icon': {
-      fontSize: 24,
       animation: '$fadeWithBlur 0.7s cubic-bezier(0.55, 0.085, 0.68, 0.53) both',
     },
   },

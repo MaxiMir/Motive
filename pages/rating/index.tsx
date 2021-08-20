@@ -8,7 +8,7 @@ import { Container } from '@material-ui/core'
 import ROUTE from 'route'
 import { Characteristic, RatingPage, User } from 'dto'
 import Layout from 'layout'
-import UserCardRating from 'components/UserCard/UserCardRating'
+import UserCard from 'components/UserCard'
 import AppEmoji from 'components/UI/AppEmoji'
 import AppHeader from 'components/UI/AppHeader'
 import AppTabs from 'components/UI/AppTabs'
@@ -39,13 +39,13 @@ export default function Rating(): JSX.Element {
               <AppTypography style={{ textTransform: 'none' }}>{type}</AppTypography>
             </AppBox>
           ))}
-          content={[motivation, creativity, support].map(({ list, type }) => (
-            <Fragment key={type}>
+          content={[motivation, creativity, support].map(({ list, characteristic }) => (
+            <Fragment key={characteristic}>
               <TabNames />
               <AppList<User>
                 elements={list}
                 keyGetter={(el) => el.id}
-                render={(el, index) => <UserCardRating {...el} type={type} index={index} />}
+                render={(el, index) => <UserCard type="rating" {...el} characteristic={characteristic} index={index} />}
               />
             </Fragment>
           ))}

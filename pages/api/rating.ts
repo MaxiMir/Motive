@@ -7,15 +7,15 @@ export default (_req: NextApiRequest, res: NextApiResponse): void => {
     meta,
     motivation: {
       list: [...USERS].sort(({ characteristics: c1 }, { characteristics: c2 }) => c2.motivation - c1.motivation),
-      type: 'motivation',
+      characteristic: 'motivation',
     },
     creativity: {
       list: [...USERS].sort(({ characteristics: c1 }, { characteristics: c2 }) => c2.motivation - c1.motivation),
-      type: 'creativity',
+      characteristic: 'creativity',
     },
     support: {
       list: [...USERS].sort(({ characteristics: c1 }, { characteristics: c2 }) => c2.motivation - c1.motivation),
-      type: 'support',
+      characteristic: 'support',
     },
   })
 }

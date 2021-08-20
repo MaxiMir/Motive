@@ -5,7 +5,7 @@ import { dehydrate } from 'react-query/hydration'
 import Axios from 'lib/axios'
 import { UserPage } from 'dto'
 import Layout from 'layout'
-import UserCardDetail from 'components/UserCard/UserCardDetail'
+import UserCard from 'components/UserCard'
 
 const queryFn = async (url: string) => (await Axios.get(url)).data
 
@@ -16,7 +16,7 @@ export default function UserDetail(): JSX.Element {
 
   return (
     <Layout status={status} {...meta}>
-      <UserCardDetail {...user} />
+      <UserCard type="detail" {...user} />
     </Layout>
   )
 }

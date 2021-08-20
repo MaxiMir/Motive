@@ -22,7 +22,7 @@ const useStyles = makeStyles((theme) =>
       borderRadius: 5,
     },
     button: {
-      minWidth: 130,
+      minWidth: 120,
       textTransform: 'none',
       background: theme.palette.background.default,
 

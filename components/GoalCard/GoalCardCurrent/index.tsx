@@ -2,17 +2,25 @@ import { useState } from 'react'
 import { differenceInDays } from 'date-fns'
 import { createStyles, useTheme } from '@material-ui/core'
 import { makeStyles } from '@material-ui/core/styles'
-import { GoalCharacteristic, Goal } from 'dto'
+import { GoalCharacteristic } from 'dto'
 import useCharacteristicColors from 'hooks/useCharacteristicColors'
-import CharacteristicGoal from 'components/Characteristic/CharacteristicGoal'
+import CharacteristicCard from 'components/CharacteristicCard'
 import AppBox from 'components/UI/AppBox'
 import AppHeader from 'components/UI/AppHeader'
 import GoalCardTask from './GoalCardTask'
 import GoalCardMenu from './GoalCardMenu'
+import { GoalCardCurrentProps } from '../index'
 
 const CHARACTERISTICS: GoalCharacteristic[] = ['motivation', 'creativity', 'support']
 
-export default function GoalCardCurrent({ id, name, href, started, characteristics, tasks }: Goal): JSX.Element {
+export default function GoalCardCurrent({
+  id,
+  name,
+  href,
+  started,
+  characteristics,
+  tasks,
+}: GoalCardCurrentProps): JSX.Element {
   const classes = useStyles()
   const theme = useTheme()
   const colors = useCharacteristicColors()
@@ -30,14 +38,20 @@ export default function GoalCardCurrent({ id, name, href, started, characteristi
         </AppBox>
         <AppBox justifyContent="space-between" alignItems="center">
           {CHARACTERISTICS.map((characteristic) => (
-            <CharacteristicGoal
+            <CharacteristicCard
+              type="goal"
               characteristic={characteristic}
               value={characteristics[characteristic]}
               color={colors[characteristic].fontColor}
               key={characteristic}
             />
           ))}
-          <CharacteristicGoal characteristic="runs for days" value={days} color={theme.palette.text.disabled} />
+          <CharacteristicCard
+            type="goal"
+            characteristic="runs for days"
+            value={days}
+            color={theme.palette.text.disabled}
+          />
         </AppBox>
         <div>
           <AppHeader name="task" variant="h6" component="h2" color="primary">

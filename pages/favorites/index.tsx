@@ -60,7 +60,7 @@ export default function Favorites(): JSX.Element {
         )}
       </AppContainer>
       {severity && (
-        <AppSnackbar severity={severity} autoHideDuration={3000} onClose={() => setSeverity(undefined)}>
+        <AppSnackbar severity={severity} autoHideDuration={1500} onClose={() => setSeverity(undefined)}>
           {severity === 'success' ? 'Removed from favorites' : 'Something went wrong...'}
         </AppSnackbar>
       )}

@@ -1,7 +1,7 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
 
 export default (_: NextApiRequest, res: NextApiResponse): void => {
-  res.status(500).json({
+  res.status(200).json({
     success: true,
   })
 }

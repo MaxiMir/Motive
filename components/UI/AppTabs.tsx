@@ -40,7 +40,7 @@ export default function AppTabs({ tabs, content, ariaLabel, initial = 0 }: AppTa
           {tabs.map((tab, index) => {
             const a11yTabProps = getA11yTabProps(index)
 
-            return <Tab label={tab} {...a11yTabProps} key={a11yTabProps.id} />
+            return <Tab label={tab} key={a11yTabProps.id} {...a11yTabProps} />
           })}
         </Tabs>
       </Container>

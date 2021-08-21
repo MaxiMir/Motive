@@ -2,7 +2,7 @@ import { useState } from 'react'
 import { differenceInDays } from 'date-fns'
 import { createStyles, useTheme } from '@material-ui/core'
 import { makeStyles } from '@material-ui/core/styles'
-import { Goal, GoalCharacteristic } from 'dto'
+import { Goal, GoalCharacteristic, Role } from 'dto'
 import useCharacteristicColors from 'hooks/useCharacteristicColors'
 import CharacteristicCard from 'components/CharacteristicCard'
 import AppBox from 'components/UI/AppBox'
@@ -14,6 +14,7 @@ const CHARACTERISTICS: GoalCharacteristic[] = ['motivation', 'creativity', 'supp
 
 export interface GoalCardCurrentProps extends Goal {
   type: 'current'
+  role: Role
 }
 
 export default function GoalCardCurrent({
@@ -23,6 +24,7 @@ export default function GoalCardCurrent({
   started,
   characteristics,
   tasks,
+  role,
 }: GoalCardCurrentProps): JSX.Element {
   const classes = useStyles()
   const theme = useTheme()
@@ -37,7 +39,7 @@ export default function GoalCardCurrent({
           <AppHeader name="goal" variant="h6" component="h3">
             {name}
           </AppHeader>
-          <GoalCardMenu title={name} href={href} />
+          <GoalCardMenu title={name} href={href} role={role} />
         </AppBox>
         <AppBox justifyContent="space-between" alignItems="center">
           {CHARACTERISTICS.map((characteristic) => (
@@ -69,6 +71,9 @@ export default function GoalCardCurrent({
             />
           ))}
         </div>
+        <AppHeader name="feedback" variant="h6" component="h2" color="primary">
+          Feedback
+        </AppHeader>
       </AppBox>
     </div>
   )

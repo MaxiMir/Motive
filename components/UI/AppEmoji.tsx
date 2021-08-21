@@ -1,7 +1,15 @@
 import { Characteristic } from 'dto'
 import AppTypography, { AppTypographyProps } from './AppTypography'
 
-export type AppEmojiName = Characteristic | 'favorite-active' | 'favorite' | 'views' | 'goal' | 'task' | 'runs for days'
+export type AppEmojiName =
+  | Characteristic
+  | 'favorite-active'
+  | 'favorite'
+  | 'views'
+  | 'goal'
+  | 'task'
+  | 'runs for days'
+  | 'feedback'
 
 interface AppEmojiProps {
   name: AppEmojiName
@@ -34,6 +42,8 @@ export default function AppEmoji({ name, ...restProps }: AppEmojiProps): JSX.Ele
         return '📌'
       case 'runs for days':
         return '⏳'
+      case 'feedback':
+        return '💭'
       default:
         return ''
     }

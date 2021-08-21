@@ -5,7 +5,7 @@ const EmptyList = (): JSX.Element => (
   <AppBox alignItems="center" justifyContent="center" flex={1}>
     <AppBox flexDirection="column" alignItems="center" width="100%">
       <AppTypography variant="h5" style={{ color: '#C8B1BB' }}>
-        The list is empty.
+        The list is empty
       </AppTypography>
       <AppTypography>Add people you are interested in</AppTypography>
     </AppBox>

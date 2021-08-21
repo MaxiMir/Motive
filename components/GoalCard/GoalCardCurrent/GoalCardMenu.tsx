@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import dynamic from 'next/dynamic'
 import { MenuItem } from '@material-ui/core'
+import { Role } from 'dto'
 import Share from 'components/Share'
 import AppMenuButton from 'components/UI/AppMenuButton'
 
@@ -10,9 +11,10 @@ const AppSnackbar = dynamic(() => import('components/UI/AppSnackbar'))
 interface GoalCardMenuProps {
   title: string
   href: string
+  role: Role
 }
 
-export default function GoalCardMenu({ title, href }: GoalCardMenuProps): JSX.Element {
+export default function GoalCardMenu({ title, href, role }: GoalCardMenuProps): JSX.Element {
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null)
   const [withShare, setWithShare] = useState(false)
   const [withReport, setWithReport] = useState(false)
@@ -36,7 +38,7 @@ export default function GoalCardMenu({ title, href }: GoalCardMenuProps): JSX.El
       {anchorEl && (
         <Menu id="goal-menu" anchorEl={anchorEl} keepMounted open={!!anchorEl} onClose={onCloseMenu}>
           <MenuItem onClick={onShare}>Share</MenuItem>
-          <MenuItem onClick={() => setWithReport(true)}>Report</MenuItem>
+          {role !== 'OWNER' && <MenuItem onClick={() => setWithReport(true)}>Report</MenuItem>}
           <MenuItem onClick={onCloseMenu}>Cancel</MenuItem>
         </Menu>
       )}

@@ -110,7 +110,7 @@ const UserCardDetail = ({
             elements={goals}
             keyGetter={(goal) => goal.id}
             spacing={3}
-            render={(goal) => <GoalCard type="current" {...goal} />}
+            render={(goal) => <GoalCard type="current" role={role} {...goal} />}
           />
         )}
       </AppBox>

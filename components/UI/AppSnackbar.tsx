@@ -28,7 +28,7 @@ const AppSnackbar: FC<AppSnackbarProps> = ({ icon, autoHideDuration, children, o
       open
       className={classes.root}
       autoHideDuration={autoHideDuration}
-      TransitionComponent={(props: TransitionProps) => <Slide {...props} direction="up" />}
+      TransitionComponent={(props: TransitionProps) => <Slide direction="up" {...props} />}
       onClose={handleClose}
     >
       <Alert

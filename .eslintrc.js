@@ -63,6 +63,7 @@ module.exports = {
         'no-bitwise': 'off',
         'react/no-array-index-key': 'off',
         'import/no-unresolved': 'off',
+        'no-return-await': 'off',
 
         // Already handled by TS
         'no-dupe-class-members': 'off',

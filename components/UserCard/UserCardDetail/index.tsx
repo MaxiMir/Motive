@@ -2,10 +2,12 @@ import { useEffect } from 'react'
 import dynamic from 'next/dynamic'
 import { useRouter } from 'next/router'
 import Image from 'next/image'
+import { useQuery } from 'react-query'
 import { makeStyles } from '@material-ui/core/styles'
 import { Characteristic, Goal, UserDetail } from 'dto'
+import ROUTE from 'route'
+import Axios from 'lib/axios'
 import { numberToShort } from 'helpers/prepare'
-import useIncrementPageViews from 'hooks/useIncrementPageViews'
 import useCharacteristicColors from 'hooks/useCharacteristicColors'
 import AppTooltip from 'components/UI/AppTooltip'
 import AppBox from 'components/UI/AppBox'
@@ -25,6 +27,8 @@ export interface UserCardDetailProps extends UserDetail {
   type: 'detail'
 }
 
+const queryFn = async (id: string) => await Axios.put(ROUTE.getUserId(id))
+
 const UserCardDetail = ({
   id,
   name,
@@ -32,15 +36,14 @@ const UserCardDetail = ({
   views,
   avatar,
   characteristics,
-  role,
+  isOwner,
   goals,
 }: UserCardDetailProps): JSX.Element => {
   const classes = useStyles()
   const { query } = useRouter()
   const characteristicColors = useCharacteristicColors()
-  const isOwner = role === 'OWNER'
 
-  useIncrementPageViews(role)
+  useQuery('page-views', () => queryFn(id), { refetchOnWindowFocus: false, enabled: !isOwner })
 
   useEffect(() => {
     const elem = query.goal && document.getElementById(`goal-${query.goal}`)
@@ -110,7 +113,7 @@ const UserCardDetail = ({
             elements={goals}
             keyGetter={(goal) => goal.id}
             spacing={3}
-            render={(goal) => <GoalCard type="current" role={role} {...goal} />}
+            render={(goal) => <GoalCard type="current" {...goal} />}
           />
         )}
       </AppBox>

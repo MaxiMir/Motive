@@ -8,8 +8,10 @@ export type AppEmojiName =
   | 'views'
   | 'goal'
   | 'task'
+  | 'task-current'
   | 'runs for days'
   | 'feedback'
+  | 'completedByOthers'
 
 interface AppEmojiProps {
   name: AppEmojiName
@@ -40,10 +42,14 @@ export default function AppEmoji({ name, ...restProps }: AppEmojiProps): JSX.Ele
         return '💎'
       case 'task':
         return '📌'
+      case 'task-current':
+        return '⚡️'
       case 'runs for days':
         return '⏳'
       case 'feedback':
         return '💭'
+      case 'completedByOthers':
+        return '🔥'
       default:
         return ''
     }

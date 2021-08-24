@@ -3,6 +3,10 @@ export default {
   TOP_OF_THE_DAY: '/top-of-the-day',
   SEARCH: '/search',
   RATING: '/rating',
+  USERS: '/users',
+  getUserId(id: string): string {
+    return toUrn(this.USERS, id)
+  },
   FAVORITES: '/favorites',
   FAVORITES_USERS: '/favorites/user',
   getFavoriteUserId(id: string): string {
@@ -10,9 +14,9 @@ export default {
   },
   PROFILE: '/profile',
   SIGN_IN: '/sign-in',
-  TASK: '/task',
+  TASKS: '/tasks',
   getTaskId(id: string): string {
-    return toUrn(this.TASK, id)
+    return toUrn(this.TASKS, id)
   },
 }
 

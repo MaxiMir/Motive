@@ -20,7 +20,7 @@ const useStyles = makeStyles((theme) =>
     container: {
       position: 'relative',
       flex: '1 1 150px',
-      maxWidth: 220,
+      maxWidth: 300,
       height: 150,
       border: `1px solid ${theme.palette.warning.light}`,
       borderRadius: 5,

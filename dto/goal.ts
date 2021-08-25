@@ -1,6 +1,12 @@
 import { GoalCharacteristics } from './characteristic'
 import { Role } from './role'
 
+export interface GoalCreation {
+  name: string
+  hashtags?: string
+  tasks: Array<Omit<Task, 'id' | 'completed' | 'completedByOthers'>>
+}
+
 export interface Goal {
   id: string
   name: string
@@ -10,6 +16,7 @@ export interface Goal {
   role: Role
   characteristics: GoalCharacteristics
   tasks: Task[]
+  feedback: Feedback
 }
 
 export interface Task {
@@ -20,8 +27,8 @@ export interface Task {
   completedByOthers: boolean
 }
 
-export interface GoalCreation {
-  name: string
-  hashtags?: string
-  tasks: Array<Omit<Task, 'id' | 'completed' | 'completedByOthers'>>
+export interface Feedback {
+  text: string | null
+  photos: string[] | null
+  videos: string[] | null
 }

@@ -20,11 +20,11 @@ const queryFn = async () => (await Axios.get(ROUTE.FAVORITES)).data
 
 export default function Favorites(): JSX.Element {
   const { data, status } = useQuery<FavoritesPage>('favorites', queryFn)
-  const { meta, favorites: initial } = (data as FavoritesPage) || {}
+  const { meta, favorites: initial, client } = (data as FavoritesPage) || {}
   const prevFavoritesRef = useRef(initial)
   const [favorites, setFavorites] = useState(initial)
   const [severity, setSeverity] = useState<'success' | 'error'>()
-  const { mutate } = useMutation((id: string) => Axios.delete(ROUTE.getFavoriteUserId(id)), {
+  const { mutate } = useMutation((user: User) => Axios.put(ROUTE.getUserFavorite(user.id), false), {
     onSuccess() {
       prevFavoritesRef.current = favorites
     },
@@ -36,14 +36,14 @@ export default function Favorites(): JSX.Element {
     },
   })
 
-  const onRemove = (id: string) => {
+  const onRemove = (user: User) => {
     prevFavoritesRef.current = favorites
-    mutate(id)
-    setFavorites(favorites.filter((f) => f.id !== id))
+    mutate({ ...user })
+    setFavorites(favorites.filter((f) => f.id !== user.id))
   }
 
   return (
-    <Layout status={status} {...meta}>
+    <Layout client={client} status={status} {...meta}>
       <AppContainer withFlexColumn>
         <AppHeader name="favorite-active" mb={4}>
           Favorites
@@ -54,8 +54,8 @@ export default function Favorites(): JSX.Element {
           <AppList
             elements={favorites}
             spacing={4}
-            render={(el) => <UserCard type="favorite" {...el} onRemove={onRemove} />}
-            keyGetter={(el) => el.id}
+            render={(user) => <UserCard type="favorite" {...user} onRemove={() => onRemove(user)} />}
+            keyGetter={(user) => user.id}
           />
         )}
       </AppContainer>

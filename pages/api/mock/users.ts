@@ -11,8 +11,8 @@ export default [
       abandoned: 0,
       completed: 8,
     },
-    isOwner: true,
-    isFavorite: true,
+    owner: true,
+    favorite: true,
     views: 113,
     goals: [
       {
@@ -32,6 +32,11 @@ export default [
           { id: '2', name: 'watch video "73 Questions"', completed: false, completedByOthers: true },
           { id: '3', name: 'solve 1 the test', completed: false, completedByOthers: false },
         ],
+        feedback: {
+          text: `It was a very productive day, learned a lot of new expressions. \n Loved the video with 73 questions with Margot Robbie. \n I got the phrase “I am so excited to be here”.`,
+          photos: ['/__temp__/7.png', '/__temp__/8.png'],
+          videos: null,
+        },
       },
       {
         id: '214',
@@ -46,6 +51,11 @@ export default [
           creativity: 32,
         },
         tasks: [{ id: '11', name: 'watch video', completed: false }],
+        feedback: {
+          text: null,
+          photos: null,
+          videos: null,
+        },
       },
     ],
   },
@@ -61,8 +71,8 @@ export default [
       abandoned: 0,
       completed: 4,
     },
-    isOwner: false,
-    isFavorite: true,
+    owner: false,
+    favorite: true,
     views: 1,
     goals: [
       {
@@ -97,7 +107,7 @@ export default [
       abandoned: 1,
       completed: 4,
     },
-    isFavorite: false,
+    favorite: false,
     views: 1387000,
     goals: [
       {
@@ -131,7 +141,7 @@ export default [
       abandoned: 0,
       completed: 13,
     },
-    isFavorite: false,
+    favorite: false,
     views: 12354,
     goals: [],
   },
@@ -147,7 +157,7 @@ export default [
       abandoned: 0,
       completed: 12,
     },
-    isFavorite: false,
+    favorite: false,
     views: 321,
     goals: [],
   },

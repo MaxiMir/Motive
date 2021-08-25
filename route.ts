@@ -7,11 +7,10 @@ export default {
   getUserId(id: string): string {
     return toUrn(this.USERS, id)
   },
-  FAVORITES: '/favorites',
-  FAVORITES_USERS: '/favorites/user',
-  getFavoriteUserId(id: string): string {
-    return toUrn(this.FAVORITES_USERS, id)
+  getUserFavorite(id: string): string {
+    return toUrn(this.getUserId(id), 'favorite')
   },
+  FAVORITES: '/favorites',
   PROFILE: '/profile',
   SIGN_IN: '/sign-in',
   TASKS: '/tasks',

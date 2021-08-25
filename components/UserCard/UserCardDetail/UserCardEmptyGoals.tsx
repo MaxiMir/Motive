@@ -5,19 +5,19 @@ import AppLink from 'components/UI/AppLink'
 import AppTypography from 'components/UI/AppTypography'
 
 interface UserCardAddGoalProps {
-  isOwner: boolean
+  owner: boolean
 }
 
-const UserCardEmptyGoals = ({ isOwner }: UserCardAddGoalProps): JSX.Element => {
+const UserCardEmptyGoals = ({ owner }: UserCardAddGoalProps): JSX.Element => {
   const classes = useStyles()
 
   return (
     <>
       <AppBox flexDirection="column" justifyContent="center" alignItems="center" spacing={1} flexGrow={1}>
         <AppTypography variant="h6" component="p" color="primary">
-          {isOwner ? 'You have no goals...' : 'No goals yet...'}
+          {owner ? 'You have no goals...' : 'No goals yet...'}
         </AppTypography>
-        {isOwner && (
+        {owner && (
           <AppTypography component="p">
             You can create <span className={classes.own}>your own</span> or use the{' '}
             <AppLink href={ROUTE.SEARCH} className={classes.link}>

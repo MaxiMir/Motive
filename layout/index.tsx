@@ -2,6 +2,7 @@ import React, { FC, useEffect, useState } from 'react'
 import dynamic from 'next/dynamic'
 import Head from 'next/head'
 import { makeStyles } from '@material-ui/core/styles'
+import { Client } from 'dto'
 import Header from './Header'
 import Footer from './Footer'
 
@@ -15,6 +16,7 @@ interface LayoutProps {
   type: string
   status: 'error' | 'idle' | 'loading' | 'success'
   withVerticalPadding?: boolean
+  client: Client
 }
 
 const Layout: FC<LayoutProps> = ({

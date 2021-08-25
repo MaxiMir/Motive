@@ -50,7 +50,7 @@ const UserCardAvatar = ({ avatar, characteristics, characteristicColors }: UserC
         </AppBox>
       ))}
       <AppBox justifyContent="center" alignItems="center" className={classes.circleBlock}>
-        <Image src={avatar} alt="avatar" width={80} height={80} className={classes.avatar} />
+        <Image src={avatar} alt="avatar" width={80} height={80} objectFit="cover" className={classes.avatar} />
       </AppBox>
     </AppBox>
   )

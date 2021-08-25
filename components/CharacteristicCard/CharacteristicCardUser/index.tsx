@@ -6,7 +6,7 @@ import AppBox from 'components/UI/AppBox'
 import AppTooltip from 'components/UI/AppTooltip'
 import AppTypography from 'components/UI/AppTypography'
 
-const CharacteristicCardUserLvl = dynamic(() => import('./CharacteristicCardUserLvl'))
+const CharacteristicCardLvl = dynamic(() => import('./CharacteristicCardLvl'))
 
 export interface CharacteristicCardUserProps {
   type: 'user'
@@ -22,7 +22,7 @@ const CharacteristicCardUser = ({ characteristic, value, color }: Characteristic
       <AppBox width={32}>
         <AppTypography variant="h6" component="p" style={{ color }}>
           {Math.floor(value)}
-          {!['completed', 'abandoned'].includes(characteristic) && <CharacteristicCardUserLvl />}
+          {!['completed', 'abandoned'].includes(characteristic) && <CharacteristicCardLvl />}
         </AppTypography>
       </AppBox>
     </AppBox>

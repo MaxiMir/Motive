@@ -1,4 +1,4 @@
-import { User, UserDetail } from './user'
+import { Client, User, UserDetail } from './user'
 import { Characteristic } from './characteristic'
 
 export type Page<T> = {
@@ -9,6 +9,7 @@ export type Page<T> = {
     url: string
     type: string
   }
+  client: Client
 } & T
 
 export type MainPage = Page<{ [k: string]: never }>

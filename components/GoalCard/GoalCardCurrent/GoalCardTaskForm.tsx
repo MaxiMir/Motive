@@ -10,14 +10,13 @@ import AppBox from 'components/UI/AppBox'
 
 const Button = dynamic(() => import('@material-ui/core/Button'))
 const AppSnackbar = dynamic(() => import('components/UI/AppSnackbar'))
-const AppEmoji = dynamic(() => import('components/UI/AppEmoji'))
 
 interface GoalCardTaskFormProps extends Task {
   rest: number
   onSet: (completed: boolean) => void
 }
 
-export default React.memo(function GoalCardTaskForm({
+export default function GoalCardTaskForm({
   id,
   name,
   completed: initial,
@@ -48,7 +47,7 @@ export default React.memo(function GoalCardTaskForm({
   function onUndo() {
     setChecked(!checked)
     setSeverity(undefined)
-    mutateWithDebounce(!checked)
+    mutate(!checked)
   }
 
   function getSnackbarInfo() {
@@ -70,13 +69,11 @@ export default React.memo(function GoalCardTaskForm({
       <AppBox alignItems="center">
         <AppCheckbox
           name={id}
-          label={name}
+          label={name + (completedByOthers && !checked ? ' 🔥' : '')}
           checked={checked}
           disabled={checked || isLoading}
-          key={id}
           onChange={onChange}
         />
-        {completedByOthers && !checked && <AppEmoji name="completedByOthers" variant="subtitle1" />}
       </AppBox>
       {severity && (
         <AppSnackbar
@@ -91,4 +88,4 @@ export default React.memo(function GoalCardTaskForm({
       )}
     </form>
   )
-})
+}

@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { Fragment, useState } from 'react'
 import dynamic from 'next/dynamic'
 import { differenceInDays } from 'date-fns'
 import { createStyles, useTheme } from '@material-ui/core'
@@ -9,6 +9,7 @@ import CharacteristicCard from 'components/CharacteristicCard'
 import AppBox from 'components/UI/AppBox'
 import AppHeader from 'components/UI/AppHeader'
 import GoalCardMenu from './GoalCardMenu'
+import GoalCardFeedback from './GoalCardFeedback'
 
 const GoalCardTask = dynamic(() => import('./GoalCardTask'))
 const GoalCardTaskForm = dynamic(() => import('./GoalCardTaskForm'))
@@ -26,6 +27,7 @@ export default function GoalCardCurrent({
   started,
   characteristics,
   tasks,
+  feedback,
   role,
 }: GoalCardCurrentProps): JSX.Element {
   const classes = useStyles()
@@ -61,28 +63,30 @@ export default function GoalCardCurrent({
             color={theme.palette.text.disabled}
           />
         </AppBox>
-        <div>
+        <AppBox flexDirection="column" spacing={1}>
           <AppHeader name="task" variant="h6" component="h2" color="primary">
             Tasks
           </AppHeader>
           {tasks.map((task, index) => (
-            <>
+            <Fragment key={index}>
               {!withForm ? (
-                <GoalCardTask {...task} key={task.id} />
+                <GoalCardTask {...task} />
               ) : (
                 <GoalCardTaskForm
                   {...task}
                   rest={rest}
-                  key={index}
                   onSet={(completed) => setRest((r) => r + (completed ? -1 : 1))}
                 />
               )}
-            </>
+            </Fragment>
           ))}
-        </div>
-        <AppHeader name="feedback" variant="h6" component="h2" color="primary">
-          Feedback
-        </AppHeader>
+        </AppBox>
+        <AppBox flexDirection="column" spacing={1}>
+          <AppHeader name="feedback" variant="h6" component="h2" color="primary">
+            Feedback
+          </AppHeader>
+          <GoalCardFeedback {...feedback} />
+        </AppBox>
       </AppBox>
     </div>
   )

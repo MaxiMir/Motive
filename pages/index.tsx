@@ -49,10 +49,10 @@ const queryFn = async () => (await Axios.get(ROUTE.INDEX)).data
 export default function Home(): JSX.Element {
   const colors = useCharacteristicColors()
   const { data, status } = useQuery<MainPage>('index', queryFn)
-  const { meta } = (data as MainPage) || {}
+  const { meta, client } = (data as MainPage) || {}
 
   return (
-    <Layout status={status} withVerticalPadding={false} {...meta}>
+    <Layout client={client} status={status} withVerticalPadding={false} {...meta}>
       <Slogan />
       {ADVANTAGES.map((advantage) => (
         <AppBox style={{ height: 'calc((100vh - 290px ) / 4)' }} key={advantage.characteristic}>

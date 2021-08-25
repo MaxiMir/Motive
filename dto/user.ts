@@ -11,7 +11,11 @@ export interface User {
 
 export interface UserDetail extends User {
   views: number
-  isFavorite: boolean
-  isOwner: boolean
+  favorite: boolean
+  owner: boolean
   goals: Array<Goal>
+}
+
+export interface Client {
+  isAuthenticated: boolean
 }

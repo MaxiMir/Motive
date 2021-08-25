@@ -4,7 +4,7 @@ import { useRouter } from 'next/router'
 import Image from 'next/image'
 import { useQuery } from 'react-query'
 import { makeStyles } from '@material-ui/core/styles'
-import { Characteristic, Goal, UserDetail } from 'dto'
+import { Characteristic, Client, Goal, UserDetail } from 'dto'
 import ROUTE from 'route'
 import Axios from 'lib/axios'
 import { numberToShort } from 'helpers/prepare'
@@ -25,6 +25,7 @@ const AppList = dynamic<AppListProps<Goal>>(() => import('components/UI/AppList'
 
 export interface UserCardDetailProps extends UserDetail {
   type: 'detail'
+  client: Client
 }
 
 const queryFn = async (id: string) => await Axios.put(ROUTE.getUserId(id))
@@ -32,18 +33,19 @@ const queryFn = async (id: string) => await Axios.put(ROUTE.getUserId(id))
 const UserCardDetail = ({
   id,
   name,
-  isFavorite,
+  favorite,
   views,
   avatar,
   characteristics,
-  isOwner,
+  owner,
   goals,
+  client,
 }: UserCardDetailProps): JSX.Element => {
   const classes = useStyles()
   const { query } = useRouter()
   const characteristicColors = useCharacteristicColors()
 
-  useQuery('page-views', () => queryFn(id), { refetchOnWindowFocus: false, enabled: !isOwner })
+  useQuery('page-views', () => queryFn(id), { refetchOnWindowFocus: false, enabled: !owner })
 
   useEffect(() => {
     const elem = query.goal && document.getElementById(`goal-${query.goal}`)
@@ -53,12 +55,12 @@ const UserCardDetail = ({
 
   return (
     <AppContainer withFlexColumn>
-      <AppBox justifyContent="space-between" mb={2}>
+      <AppBox justifyContent="space-between" mb={2} height={52}>
         <AppBox alignItems="center">
           <AppTypography variant="h5" component="h1">
             {name}
           </AppTypography>
-          {!isOwner && <UserCardFavorite id={id} isFavorite={isFavorite} />}
+          {!owner && client.isAuthenticated && <UserCardFavorite id={id} favorite={favorite} />}
         </AppBox>
         <AppBox alignItems="center" spacing={0.5}>
           <AppTooltip title="Page Views" className={classes.tooltip}>
@@ -101,13 +103,13 @@ const UserCardDetail = ({
             </AppBox>
           </AppBox>
         </AppBox>
-        {isOwner && (
+        {owner && (
           <AppBox justifyContent="center">
             <UserCardAddGoal />
           </AppBox>
         )}
         {!goals.length ? (
-          <UserCardEmptyGoals isOwner={isOwner} />
+          <UserCardEmptyGoals owner={owner} />
         ) : (
           <AppList
             elements={goals}

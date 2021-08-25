@@ -23,11 +23,11 @@ const queryFn = async () => (await Axios.get(ROUTE.RATING)).data
 
 export default function Rating(): JSX.Element {
   const { data, status } = useQuery<RatingPage>('rating', queryFn)
-  const { meta, motivation, creativity, support } = (data as RatingPage) || {}
+  const { meta, motivation, creativity, support, client } = (data as RatingPage) || {}
   const { query } = useRouter()
 
   return (
-    <Layout status={status} {...meta}>
+    <Layout client={client} status={status} {...meta}>
       <Container fixed>
         <AppHeader name="completed">Rating</AppHeader>
       </Container>

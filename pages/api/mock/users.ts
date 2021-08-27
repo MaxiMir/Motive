@@ -34,7 +34,7 @@ export default [
         ],
         feedback: {
           text: `It was a very productive day, learned a lot of new expressions. \n Loved the video with 73 questions with Margot Robbie. \n I got the phrase “I am so excited to be here”.`,
-          photos: ['/__temp__/7.png', '/__temp__/8.png'],
+          photos: ['/__temp__/7.png', '/__temp__/8.png', '/__temp__/9.png'],
           videos: null,
         },
       },

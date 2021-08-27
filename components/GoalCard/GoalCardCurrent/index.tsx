@@ -100,6 +100,7 @@ const useStyles = makeStyles((theme) =>
       borderRadius: 15,
     },
     content: {
+      height: '100%',
       padding: 16,
       background: theme.palette.background.paper,
       borderRadius: 13,

@@ -87,6 +87,9 @@ export default function GoalCardCurrent({
           </AppHeader>
           <GoalCardFeedback {...feedback} />
         </AppBox>
+        <AppHeader name="comment" variant="h6" component="h2" color="primary">
+          Comments
+        </AppHeader>
       </AppBox>
     </div>
   )

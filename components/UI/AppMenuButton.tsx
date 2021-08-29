@@ -1,6 +1,6 @@
+import clsx from 'clsx'
 import { makeStyles } from '@material-ui/core/styles'
-import { IconButton, IconButtonProps } from '@material-ui/core'
-import MoreHorizIcon from '@material-ui/icons/MoreHoriz'
+import { createStyles, IconButton, IconButtonProps } from '@material-ui/core'
 
 type AppMenuButtonProps = Pick<IconButtonProps, 'title' | 'onClick'> & {
   ariaControls: string
@@ -11,16 +11,20 @@ export default function AppMenuButton({ ariaControls, ...restProps }: AppMenuBut
 
   return (
     <IconButton className={classes.button} aria-controls={ariaControls} aria-haspopup="true" {...restProps}>
-      <MoreHorizIcon fontSize="small" color="secondary" className={classes.icon} />
+      <span color="secondary" className={clsx('material-icons', classes.icon)}>
+        more_vert
+      </span>
     </IconButton>
   )
 }
 
-const useStyles = makeStyles({
-  button: {
-    padding: 3,
-  },
-  icon: {
-    fontSize: '1.5rem',
-  },
-})
+const useStyles = makeStyles((theme) =>
+  createStyles({
+    button: {
+      padding: 3,
+    },
+    icon: {
+      color: theme.palette.warning.light,
+    },
+  }),
+)

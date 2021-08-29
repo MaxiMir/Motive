@@ -3,20 +3,37 @@ import { Feedback } from 'dto'
 import AppTypography from 'components/UI/AppTypography'
 import AppBox from 'components/UI/AppBox'
 
-const GoalCardFeedbackPhoto = dynamic(() => import('./GoalCardFeedbackPhoto'))
+const AppHeader = dynamic(() => import('components/UI/AppHeader'))
+const AppGallery = dynamic(() => import('components/UI/AppGallery'))
+const GoalCardFeedbackVideo = dynamic(() => import('./GoalCardFeedbackVideo'))
 
 export default function GoalCardFeedback({ text, photos, videos }: Feedback): JSX.Element {
   return (
     <AppBox flexDirection="column" spacing={2}>
-      <AppTypography>{text || 'Coming soon ...'}</AppTypography>
-      <AppBox flexWrap="wrap" spacing={2}>
-        {photos?.map((photo) => (
-          <GoalCardFeedbackPhoto photo={photo} key={photo} />
-        ))}
-      </AppBox>
-      {videos?.map((photo) => (
-        <div key={photo} />
-      ))}
+      <AppTypography>
+        {/* eslint-disable-next-line react/no-danger */}
+        <span dangerouslySetInnerHTML={{ __html: text || 'Coming soon ...' }} />
+      </AppTypography>
+      {photos?.length && (
+        <>
+          <AppHeader name="photo" variant="h6" component="h3" color="primary">
+            Photo
+          </AppHeader>
+          <AppGallery items={photos} />
+        </>
+      )}
+      {videos?.length && (
+        <>
+          <AppHeader name="video" variant="h6" component="h3" color="primary">
+            Video
+          </AppHeader>
+          <AppBox flexWrap="wrap" justifyContent="space-between">
+            {videos.map((video) => (
+              <GoalCardFeedbackVideo video={video} key={video} />
+            ))}
+          </AppBox>
+        </>
+      )}
     </AppBox>
   )
 }

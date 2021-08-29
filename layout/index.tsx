@@ -53,6 +53,7 @@ const Layout: FC<LayoutProps> = ({
         <meta name="theme-color" content="#4DA0EC" />
         <meta charSet="UTF-8" />
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" />
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
       </Head>
       <Header />
       <main className={classes.main}>

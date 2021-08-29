@@ -5,7 +5,6 @@ import { object, string, array, SchemaOf } from 'yup'
 import { makeStyles } from '@material-ui/core/styles'
 import { Button, FormControlLabel, IconButton, Switch } from '@material-ui/core'
 import { KeyboardTimePicker } from 'formik-material-ui-pickers'
-import { Add } from '@material-ui/icons'
 import { GoalCreation } from 'dto'
 import useFocus from 'hooks/useFocus'
 import AppModal from 'components/UI/AppModal'
@@ -14,7 +13,8 @@ import AppBox from 'components/UI/AppBox'
 import AppInput from 'components/UI/AppInput'
 import AppTypography from 'components/UI/AppTypography'
 import AppGradientButton from 'components/UI/AppGradientButton'
-import { CloseIcon, PaulIcon } from 'components/UI/icons'
+import AppIconText from 'components/UI/AppIcon'
+import { PaulIcon } from 'components/UI/icons'
 
 const CircularProgress = dynamic(() => import('@material-ui/core/CircularProgress'))
 
@@ -110,8 +110,9 @@ export default function UserCardAddGoalModal({ onCreate, onClose }: UserCardAddG
                             aria-label="remove task"
                             disabled={values.tasks.length === 1}
                             onClick={() => remove(index)}
+                            className={classes.iconCloseBtn}
                           >
-                            <CloseIcon fontSize="small" />
+                            <AppIconText>close</AppIconText>
                           </IconButton>
                         </AppBox>
                         <AppBox height={48} alignItems="center" pl={1} spacing={1}>
@@ -141,7 +142,7 @@ export default function UserCardAddGoalModal({ onCreate, onClose }: UserCardAddG
                       </Fragment>
                     ))}
                     <Button
-                      startIcon={<Add color="secondary" />}
+                      startIcon={<AppIconText color="secondary">add</AppIconText>}
                       className={classes.button}
                       onClick={() => push(generateNewTask())}
                     >
@@ -195,5 +196,8 @@ const useStyles = makeStyles({
   },
   timepicker: {
     width: 100,
+  },
+  iconCloseBtn: {
+    color: '#99989D',
   },
 })

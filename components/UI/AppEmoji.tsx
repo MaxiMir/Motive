@@ -12,6 +12,9 @@ export type AppEmojiName =
   | 'runs for days'
   | 'feedback'
   | 'completedByOthers'
+  | 'comment'
+  | 'photo'
+  | 'video'
 
 interface AppEmojiProps {
   name: AppEmojiName
@@ -50,6 +53,12 @@ export default function AppEmoji({ name, ...restProps }: AppEmojiProps): JSX.Ele
         return '💭'
       case 'completedByOthers':
         return '🔥'
+      case 'comment':
+        return '💬'
+      case 'photo':
+        return '📸'
+      case 'video':
+        return '🎬'
       default:
         return ''
     }

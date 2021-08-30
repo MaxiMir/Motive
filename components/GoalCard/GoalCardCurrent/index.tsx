@@ -1,18 +1,19 @@
 import { Fragment, useState } from 'react'
 import dynamic from 'next/dynamic'
 import { differenceInDays } from 'date-fns'
-import { createStyles, useTheme } from '@material-ui/core'
+import { createStyles, useTheme, IconButton } from '@material-ui/core'
 import { makeStyles } from '@material-ui/core/styles'
 import { Goal, GoalCharacteristic } from 'dto'
 import useCharacteristicColors from 'hooks/useCharacteristicColors'
 import CharacteristicCard from 'components/CharacteristicCard'
 import AppBox from 'components/UI/AppBox'
 import AppHeader from 'components/UI/AppHeader'
+import AppIconText from 'components/UI/AppIcon'
 import GoalCardMenu from './GoalCardMenu'
-import GoalCardFeedback from './GoalCardFeedback'
 
 const GoalCardTask = dynamic(() => import('./GoalCardTask'))
 const GoalCardTaskForm = dynamic(() => import('./GoalCardTaskForm'))
+const GoalCardFeedback = dynamic(() => import('./GoalCardFeedback'))
 
 const CHARACTERISTICS: GoalCharacteristic[] = ['motivation', 'creativity', 'support']
 
@@ -34,6 +35,7 @@ export default function GoalCardCurrent({
   const theme = useTheme()
   const colors = useCharacteristicColors()
   const [rest, setRest] = useState(tasks.length - tasks.filter((t) => t.completed).length)
+  const [feedbackExpand, setFeedbackExpand] = useState<'more' | 'less'>('more')
   const days = differenceInDays(new Date(), Date.parse(started))
   const withForm = ['OWNER', 'MEMBER'].includes(role)
 
@@ -82,13 +84,18 @@ export default function GoalCardCurrent({
           ))}
         </AppBox>
         <AppBox flexDirection="column" spacing={1}>
-          <AppHeader name="feedback" variant="h6" component="h2" color="primary">
-            Feedback
-          </AppHeader>
-          <GoalCardFeedback {...feedback} />
+          <AppBox alignItems="center" spacing={1}>
+            <AppHeader name="feedback" variant="h6" component="h2" color="primary">
+              Feedback
+            </AppHeader>
+            <IconButton size="small" onClick={() => setFeedbackExpand(feedbackExpand === 'more' ? 'less' : 'more')}>
+              <AppIconText color="primary">expand_{feedbackExpand}</AppIconText>
+            </IconButton>
+          </AppBox>
+          {feedbackExpand === 'less' && <GoalCardFeedback {...feedback} />}
         </AppBox>
         <AppHeader name="comment" variant="h6" component="h2" color="primary">
-          Comments
+          Discussion
         </AppHeader>
       </AppBox>
     </div>
@@ -103,7 +110,6 @@ const useStyles = makeStyles((theme) =>
       borderRadius: 15,
     },
     content: {
-      height: '100%',
       padding: 16,
       background: theme.palette.background.paper,
       borderRadius: 13,

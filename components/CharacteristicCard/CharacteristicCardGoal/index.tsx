@@ -1,5 +1,5 @@
 import { Characteristic } from 'dto'
-import { toUpperFirstChar } from 'helpers/prepare'
+import { numberToShort, toUpperFirstChar } from 'helpers/prepare'
 import AppEmoji from 'components/UI/AppEmoji'
 import AppBox from 'components/UI/AppBox'
 import AppTooltip from 'components/UI/AppTooltip'
@@ -18,7 +18,7 @@ const CharacteristicCardGoal = ({ characteristic, value, color }: Characteristic
       <AppEmoji name={characteristic} variant="subtitle1" />
       <AppBox>
         <AppTypography variant="subtitle1" component="p" style={{ color }}>
-          {Math.floor(value)}
+          {numberToShort(value)}
         </AppTypography>
       </AppBox>
     </AppBox>

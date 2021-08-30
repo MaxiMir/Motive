@@ -23,7 +23,7 @@ const CIRCLE_ITEMS: CircleItem[] = [
     type: 'creativity',
     size: 126,
     strokeWidth: 15,
-    strokeWidthBg: 20,
+    strokeWidthBg: 21,
   },
   {
     type: 'support',
@@ -34,7 +34,7 @@ const CIRCLE_ITEMS: CircleItem[] = [
   {
     type: 'motivation',
     size: 99,
-    strokeWidth: 20,
+    strokeWidth: 18,
     strokeWidthBg: 25,
   },
 ]
@@ -50,7 +50,7 @@ const UserCardAvatar = ({ avatar, characteristics, characteristicColors }: UserC
         </AppBox>
       ))}
       <AppBox justifyContent="center" alignItems="center" className={classes.circleBlock}>
-        <Image src={avatar} alt="avatar" width={80} height={80} objectFit="cover" className={classes.avatar} />
+        <Image src={avatar} alt="avatar" width={81} height={81} objectFit="cover" className={classes.avatar} />
       </AppBox>
     </AppBox>
   )

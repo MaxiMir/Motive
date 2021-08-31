@@ -33,7 +33,7 @@ export default [
     owner: false,
     favorite: true,
     views: 1,
-    goals: [{ ...learnFrench, role: 'MEMBER' }],
+    goals: [{ ...learnFrench, role: 'MEMBER', href: '/better/juliaz?goal=314' }],
   },
   {
     id: '3',
@@ -49,7 +49,7 @@ export default [
     },
     favorite: false,
     views: 1387000,
-    goals: [{ ...learnFrench, role: undefined }],
+    goals: [{ ...learnFrench, role: undefined, href: '/better/kopeychik?goal=314' }],
   },
   {
     id: '4',

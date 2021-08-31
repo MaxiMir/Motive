@@ -10,6 +10,7 @@ import AppBox from 'components/UI/AppBox'
 import AppHeader from 'components/UI/AppHeader'
 import AppIconText from 'components/UI/AppIcon'
 import GoalCardMenu from './GoalCardMenu'
+import GoalCardDiscussion from './GoalCardDiscussion'
 
 const GoalCardTask = dynamic(() => import('./GoalCardTask'))
 const GoalCardTaskForm = dynamic(() => import('./GoalCardTaskForm'))
@@ -30,12 +31,14 @@ export default function GoalCardCurrent({
   tasks,
   feedback,
   role,
+  discussion,
 }: GoalCardCurrentProps): JSX.Element {
   const classes = useStyles()
   const theme = useTheme()
   const colors = useCharacteristicColors()
   const [rest, setRest] = useState(tasks.length - tasks.filter((t) => t.completed).length)
   const [feedbackExpand, setFeedbackExpand] = useState<'more' | 'less'>('more')
+  const [discussionExpand, setDiscussionExpand] = useState<'more' | 'less'>('more')
   const days = differenceInDays(new Date(), Date.parse(started))
   const withForm = ['OWNER', 'MEMBER'].includes(role)
 
@@ -94,9 +97,15 @@ export default function GoalCardCurrent({
           </AppBox>
           {feedbackExpand === 'less' && <GoalCardFeedback {...feedback} />}
         </AppBox>
-        <AppHeader name="comment" variant="h6" component="h2" color="primary">
-          Discussion
-        </AppHeader>
+        <AppBox alignItems="center" spacing={1}>
+          <AppHeader name="comment" variant="h6" component="h2" color="primary">
+            Discussion {!discussion ? '' : <span className={classes.discussion}>{discussion}</span>}
+          </AppHeader>
+          <IconButton size="small" onClick={() => setDiscussionExpand(discussionExpand === 'more' ? 'less' : 'more')}>
+            <AppIconText color="primary">unfold_{discussionExpand}</AppIconText>
+          </IconButton>
+        </AppBox>
+        {discussionExpand === 'less' && <GoalCardDiscussion discussion={discussion} role={role} />}
       </AppBox>
     </div>
   )
@@ -113,6 +122,9 @@ const useStyles = makeStyles((theme) =>
       padding: 16,
       background: theme.palette.background.paper,
       borderRadius: 13,
+    },
+    discussion: {
+      color: '#99989D',
     },
   }),
 )

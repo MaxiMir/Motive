@@ -17,6 +17,7 @@ export interface Goal {
   characteristics: GoalCharacteristics
   tasks: Task[]
   feedback: Feedback
+  discussion: number
 }
 
 export interface Task {

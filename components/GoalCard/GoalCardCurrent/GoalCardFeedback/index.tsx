@@ -12,7 +12,7 @@ export default function GoalCardFeedback({ text, photos, videos }: Feedback): JS
     <AppBox flexDirection="column" spacing={2}>
       <AppTypography>
         {/* eslint-disable-next-line react/no-danger */}
-        <span dangerouslySetInnerHTML={{ __html: text || 'Coming soon ...' }} />
+        <span dangerouslySetInnerHTML={{ __html: text?.replaceAll('\n', '<br />') || 'Coming soon ...' }} />
       </AppTypography>
       {photos?.length && (
         <>

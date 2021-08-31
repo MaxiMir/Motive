@@ -16,7 +16,7 @@ export const learnFrench = {
     { id: '3', name: 'solve 1 the test', completed: false, completedByOthers: false },
   ],
   feedback: {
-    text: `It was a very productive day, learned a lot of new expressions. <br /> Loved the video with 73 questions with Margot Robbie. \n I got the phrase “I am so excited to be here”.`,
+    text: 'It was a very productive day, learned a lot of new expressions. \n Loved the video with 73 questions with Margot Robbie. \n I got the phrase “I am so excited to be here”.',
     photos: [
       // TODO npm install probe-image-size
       { src: '/__temp__/9.jpg', width: 4, height: 3 },
@@ -24,6 +24,7 @@ export const learnFrench = {
     ],
     videos: ['https://www.youtube.com/watch?v=Bl5630CeYFs&t=25s', 'https://www.youtube.com/watch?v=5KWEjn839lc'],
   },
+  discussion: 21,
 }
 
 export const becomeSenior = {
@@ -44,4 +45,5 @@ export const becomeSenior = {
     photos: null,
     videos: null,
   },
+  discussion: 0,
 }

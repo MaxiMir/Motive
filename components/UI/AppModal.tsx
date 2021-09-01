@@ -1,4 +1,4 @@
-import { FC } from 'react'
+import { FC, Fragment } from 'react'
 import dynamic from 'next/dynamic'
 import { makeStyles } from '@material-ui/core/styles'
 import { Dialog, DialogContent, DialogTitle } from '@material-ui/core'
@@ -22,7 +22,9 @@ const AppModal: FC<AppModalProps> = ({ title, actions, children, onClose }) => {
       {actions && (
         <DialogActions>
           <AppBox flexGrow={1} justifyContent="space-between" pb={1}>
-            {actions}
+            {actions.map((a, key) => (
+              <Fragment key={key}>{a}</Fragment>
+            ))}
           </AppBox>
         </DialogActions>
       )}

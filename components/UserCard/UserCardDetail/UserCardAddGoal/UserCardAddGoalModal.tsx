@@ -1,11 +1,15 @@
-import { Fragment } from 'react'
+import React, { Fragment, useState } from 'react'
 import dynamic from 'next/dynamic'
+import { AxiosError } from 'axios'
+import Axios from 'lib/axios'
+import { useMutation } from 'react-query'
 import { Field, FieldArray, Form, FormikProvider, useFormik } from 'formik'
 import { object, string, array, SchemaOf } from 'yup'
 import { makeStyles } from '@material-ui/core/styles'
 import { Button, FormControlLabel, IconButton, Switch } from '@material-ui/core'
 import { KeyboardTimePicker } from 'formik-material-ui-pickers'
-import { GoalCreation } from 'dto'
+import ROUTE from 'route'
+import { Goal, GoalCreation } from 'dto'
 import useFocus from 'hooks/useFocus'
 import AppModal from 'components/UI/AppModal'
 import AppHeader from 'components/UI/AppHeader'
@@ -17,10 +21,15 @@ import AppIconText from 'components/UI/AppIcon'
 import { PaulIcon } from 'components/UI/icons'
 
 const CircularProgress = dynamic(() => import('@material-ui/core/CircularProgress'))
+const AppSnackbar = dynamic(() => import('components/UI/AppSnackbar'))
 
 interface UserCardAddGoalModalProps {
-  onCreate: () => void
+  onSuccess: (goal: Goal) => void
   onClose: () => void
+}
+
+interface Response {
+  data: Goal
 }
 
 const schema: SchemaOf<GoalCreation> = object({
@@ -36,31 +45,33 @@ const schema: SchemaOf<GoalCreation> = object({
 
 const SECONDS_IN_THE_DAY = 3600 * 1000 * 24
 
-export default function UserCardAddGoalModal({ onCreate, onClose }: UserCardAddGoalModalProps): JSX.Element {
+export default function UserCardAddGoalModal({ onSuccess, onClose }: UserCardAddGoalModalProps): JSX.Element {
   const classes = useStyles()
   const [hashtagsRef, setHashtagsFocus] = useFocus()
+  const [withError, setWithError] = useState(false)
   const formik = useFormik({
     initialValues: {
       name: '',
       hashtags: '',
-      tasks: [generateNewTask()],
+      tasks: [{ name: '', date: undefined }],
     },
     validationSchema: schema,
-    onSubmit: async (formValues) => {
-      await new Promise<void>((r) =>
-        setTimeout(() => {
-          console.log(formValues)
-          onCreate()
-          r()
-        }, 3000),
-      )
+    async onSubmit(formValues) {
+      mutate(formValues)
     },
   })
-  const { values, setFieldValue, isSubmitting, handleSubmit } = formik
-
-  function generateNewTask() {
-    return { name: '', date: undefined }
-  }
+  const { mutate, isLoading } = useMutation<Response, AxiosError, GoalCreation>(
+    (goal: GoalCreation) => Axios.post(ROUTE.GOALS, goal),
+    {
+      onSuccess(response) {
+        onSuccess(response.data)
+      },
+      onError() {
+        setWithError(true)
+      },
+    },
+  )
+  const { values, setFieldValue, handleSubmit } = formik
 
   return (
     <AppModal
@@ -69,11 +80,11 @@ export default function UserCardAddGoalModal({ onCreate, onClose }: UserCardAddG
         <AppGradientButton onClick={onClose}>🚫 Cancel</AppGradientButton>,
         <AppGradientButton
           type="submit"
-          disabled={isSubmitting}
-          startIcon={isSubmitting ? <CircularProgress size="0.9rem" color="primary" /> : undefined}
+          disabled={isLoading}
+          startIcon={isLoading ? <CircularProgress size="0.9rem" color="primary" /> : undefined}
           onClick={() => handleSubmit()}
         >
-          {isSubmitting ? 'Creating' : '💎 Create'}
+          {isLoading ? 'Creating' : '💎 Create'}
         </AppGradientButton>,
       ]}
       onClose={onClose}
@@ -161,7 +172,7 @@ export default function UserCardAddGoalModal({ onCreate, onClose }: UserCardAddG
                   <Button
                     startIcon={<AppIconText color="secondary">add</AppIconText>}
                     className={classes.button}
-                    onClick={() => push(generateNewTask())}
+                    onClick={() => push({ name: '', date: undefined })}
                   >
                     <AppTypography color="secondary">add task</AppTypography>
                   </Button>
@@ -187,6 +198,11 @@ export default function UserCardAddGoalModal({ onCreate, onClose }: UserCardAddG
             </AppBox>
           </AppBox>
         </Form>
+        {withError && (
+          <AppSnackbar severity="error" autoHideDuration={3000} onClose={() => setWithError(false)}>
+            Something went wrong...
+          </AppSnackbar>
+        )}
       </FormikProvider>
     </AppModal>
   )

@@ -26,8 +26,8 @@ const UserCardFavorite = ({
   characteristics,
   onRemove,
 }: UserCardFavoriteProps): JSX.Element => {
-  const colors = useCharacteristicColors()
   const classes = useStyles()
+  const colors = useCharacteristicColors()
 
   return (
     <AppBox spacing={1}>

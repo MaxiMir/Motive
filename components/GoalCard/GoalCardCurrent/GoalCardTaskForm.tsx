@@ -6,9 +6,9 @@ import { Task } from 'dto'
 import ROUTE from 'route'
 import useDebounceCb from 'hooks/useDebounceCb'
 import AppCheckbox from 'components/UI/AppCheckbox'
-import AppBox from 'components/UI/AppBox'
 
 const Button = dynamic(() => import('@material-ui/core/Button'))
+const GoalCardTaskDate = dynamic(() => import('./GoalCardTaskDate'))
 const AppSnackbar = dynamic(() => import('components/UI/AppSnackbar'))
 
 interface GoalCardTaskFormProps extends Task {
@@ -21,17 +21,18 @@ export default function GoalCardTaskForm({
   name,
   completed: initial,
   completedByOthers,
+  date,
   rest,
   onSet,
 }: GoalCardTaskFormProps): JSX.Element {
   const [checked, setChecked] = useState(initial)
   const [severity, setSeverity] = useState<'success' | 'error'>()
   const { mutate, isLoading } = useMutation((completed: boolean) => Axios.put(ROUTE.getTaskId(id), { completed }), {
-    onSuccess: (_, completed) => {
+    onSuccess(_, completed) {
       completed && setSeverity('success')
       onSet(completed)
     },
-    onError: (_, completed) => {
+    onError(_, completed) {
       setChecked(!completed)
       setSeverity('error')
     },
@@ -66,15 +67,14 @@ export default function GoalCardTaskForm({
 
   return (
     <form>
-      <AppBox alignItems="center">
-        <AppCheckbox
-          name={id}
-          label={name + (completedByOthers && !checked ? ' 🔥' : '')}
-          checked={checked}
-          disabled={checked || isLoading}
-          onChange={onChange}
-        />
-      </AppBox>
+      <AppCheckbox
+        name={id}
+        label={name + (completedByOthers && !checked ? ' 🔥' : '')}
+        checked={checked}
+        disabled={checked || isLoading}
+        onChange={onChange}
+      />
+      {date && <GoalCardTaskDate date={date} />}
       {severity && (
         <AppSnackbar
           icon={snackbarInfo?.icon}

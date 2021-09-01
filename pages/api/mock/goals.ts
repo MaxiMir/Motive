@@ -1,5 +1,5 @@
 export const learnFrench = {
-  id: '314',
+  id: '3143',
   name: 'learn French',
   href: '/better/maximir?goal=314',
   started: '2021-07-30T18:31:42',
@@ -11,8 +11,20 @@ export const learnFrench = {
     creativity: 45,
   },
   tasks: [
-    { id: '1', name: 'read 20 pages Harry Potter', completed: true, completedByOthers: false },
-    { id: '2', name: 'watch video "73 Questions"', completed: false, completedByOthers: true },
+    {
+      id: '1',
+      name: 'read 20 pages Harry Potter',
+      completed: true,
+      completedByOthers: false,
+      date: new Date().toISOString(),
+    },
+    {
+      id: '2',
+      name: 'watch video "73 Questions"',
+      completed: false,
+      completedByOthers: true,
+      date: new Date(Date.now() + 3600 * 1235).toISOString(),
+    },
     { id: '3', name: 'solve 1 the test', completed: false, completedByOthers: false },
   ],
   feedback: {

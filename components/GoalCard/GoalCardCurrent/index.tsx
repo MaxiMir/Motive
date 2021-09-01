@@ -102,7 +102,7 @@ export default function GoalCardCurrent({
             Discussion {!discussion ? '' : <span className={classes.discussion}>{discussion}</span>}
           </AppHeader>
           <IconButton size="small" onClick={() => setDiscussionExpand(discussionExpand === 'more' ? 'less' : 'more')}>
-            <AppIconText color="primary">unfold_{discussionExpand}</AppIconText>
+            <AppIconText color="primary">expand_{discussionExpand}</AppIconText>
           </IconButton>
         </AppBox>
         {discussionExpand === 'less' && <GoalCardDiscussion discussion={discussion} role={role} />}

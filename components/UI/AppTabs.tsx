@@ -10,8 +10,8 @@ interface AppTabsProps {
 }
 
 export default function AppTabs({ tabs, content, ariaLabel, initial = 0 }: AppTabsProps): JSX.Element {
-  const [value, setValue] = useState(initial)
   const classes = useStyles()
+  const [value, setValue] = useState(initial)
 
   const getA11yTabProps = (index: number) => ({
     id: `simple-tab-${index}`,

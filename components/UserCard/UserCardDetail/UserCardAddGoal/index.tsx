@@ -2,21 +2,25 @@ import { useState } from 'react'
 import dynamic from 'next/dynamic'
 import { makeStyles } from '@material-ui/core/styles'
 import { Button } from '@material-ui/core'
+import { Goal } from 'dto'
 
 const UserCardAddGoalModal = dynamic(() => import('./UserCardAddGoalModal'))
 const AppSnackbar = dynamic(() => import('components/UI/AppSnackbar'))
 
-export default function UserCardAddGoal(): JSX.Element {
+interface UserCardAddGoalProps {
+  onAdd: (goal: Goal) => void
+}
+
+export default function UserCardAddGoal({ onAdd }: UserCardAddGoalProps): JSX.Element {
+  const classes = useStyles()
   const [open, setOpen] = useState(false)
   const [withMessage, setWithMessage] = useState(false)
-  const classes = useStyles()
 
-  const onCreate = () => {
-    onClose()
+  const onSuccess = (goal: Goal) => {
+    setOpen(false)
     setWithMessage(true)
+    onAdd(goal)
   }
-
-  const onClose = () => setOpen(false)
 
   return (
     <>
@@ -29,9 +33,9 @@ export default function UserCardAddGoal(): JSX.Element {
       >
         💎 Create a new goal
       </Button>
-      {open && <UserCardAddGoalModal onCreate={onCreate} onClose={onClose} />}
+      {open && <UserCardAddGoalModal onSuccess={onSuccess} onClose={() => setOpen(false)} />}
       {withMessage && (
-        <AppSnackbar severity="success" autoHideDuration={3000} onClose={() => setWithMessage(false)}>
+        <AppSnackbar icon="💎" severity="success" autoHideDuration={3000} onClose={() => setWithMessage(false)}>
           The goal is successfully created
         </AppSnackbar>
       )}

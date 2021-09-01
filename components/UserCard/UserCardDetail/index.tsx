@@ -1,4 +1,4 @@
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import dynamic from 'next/dynamic'
 import { useRouter } from 'next/router'
 import Image from 'next/image'
@@ -7,7 +7,7 @@ import { makeStyles } from '@material-ui/core/styles'
 import { Characteristic, Client, Goal, UserDetail } from 'dto'
 import ROUTE from 'route'
 import Axios from 'lib/axios'
-import { numberToShort } from 'helpers/prepare'
+import { changeQueryParam, numberToShort } from 'helpers/prepare'
 import useCharacteristicColors from 'hooks/useCharacteristicColors'
 import AppTooltip from 'components/UI/AppTooltip'
 import AppBox from 'components/UI/AppBox'
@@ -38,20 +38,29 @@ const UserCardDetail = ({
   avatar,
   characteristics,
   owner,
-  goals,
+  goals: goalsInit,
   client,
 }: UserCardDetailProps): JSX.Element => {
   const classes = useStyles()
-  const { query } = useRouter()
+  const router = useRouter()
   const characteristicColors = useCharacteristicColors()
-
+  const [goals, setGoals] = useState(goalsInit)
   useQuery('page-views', () => queryFn(id), { refetchOnWindowFocus: false, enabled: !owner })
 
+  const onAdd = (goal: Goal) => {
+    setGoals([...goals, goal])
+    router.push(changeQueryParam(router.asPath, 'goal', goal.id), undefined, { shallow: true })
+  }
+
   useEffect(() => {
-    const elem = query.goal && document.getElementById(`goal-${query.goal}`)
+    setGoals(goalsInit)
+  }, [goalsInit])
+
+  useEffect(() => {
+    const elem = router.query.goal && document.getElementById(`goal-${router.query.goal}`)
 
     elem && elem.scrollIntoView({ behavior: 'smooth' })
-  }, [id, query])
+  }, [id, router.query])
 
   return (
     <AppContainer withFlexColumn>
@@ -105,7 +114,7 @@ const UserCardDetail = ({
         </AppBox>
         {owner && (
           <AppBox justifyContent="center">
-            <UserCardAddGoal />
+            <UserCardAddGoal onAdd={onAdd} />
           </AppBox>
         )}
         {!goals.length ? (

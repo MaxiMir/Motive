@@ -18,10 +18,10 @@ const UserCardFavorite = ({ id, favorite: initial }: UserCardFavoriteProps): JSX
   const [isFavorite, setIsFavorite] = useState(initial)
   const [severity, setSeverity] = useState<'success' | 'error'>()
   const { mutate } = useMutation((favorite: boolean) => Axios.put(ROUTE.getUserFavorite(id), favorite), {
-    onError: (_, favorite) => {
+    onError(_, favorite) {
       setIsFavorite(!favorite)
     },
-    onSettled: (_, error) => {
+    onSettled(_, error) {
       setSeverity(!error ? 'success' : 'error')
     },
   })

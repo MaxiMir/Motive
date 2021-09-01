@@ -13,6 +13,7 @@ export default {
   FAVORITES: '/favorites',
   PROFILE: '/profile',
   SIGN_IN: '/sign-in',
+  GOALS: '/goals',
   TASKS: '/tasks',
   getTaskId(id: string): string {
     return toUrn(this.TASKS, id)

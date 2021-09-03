@@ -7,6 +7,10 @@ export interface GoalCreation {
   tasks: Array<Omit<Task, 'id' | 'completed' | 'completedByOthers'>>
 }
 
+export interface GoalCreationResponse {
+  data: Goal
+}
+
 export interface Goal {
   id: string
   name: string
@@ -15,9 +19,14 @@ export interface Goal {
   hashtags: string[]
   role: Role
   characteristics: GoalCharacteristics
+  date: string
   tasks: Task[]
   feedback: Feedback
   discussion: number
+}
+
+export interface GoalDatesResponse {
+  data: Pick<Goal, 'id' | 'date'>[]
 }
 
 export interface Task {

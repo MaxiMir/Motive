@@ -28,7 +28,7 @@ export interface UserCardDetailProps extends UserDetail {
   client: Client
 }
 
-const queryFn = async (id: string) => await Axios.put(ROUTE.getUserId(id))
+const queryFn = async (id: string) => await Axios.put(ROUTE.getUser(id))
 
 const UserCardDetail = ({
   id,
@@ -47,9 +47,9 @@ const UserCardDetail = ({
   const [goals, setGoals] = useState(goalsInit)
   useQuery('page-views', () => queryFn(id), { refetchOnWindowFocus: false, enabled: !owner })
 
-  const onAdd = (goal: Goal) => {
+  const onAdd = async (goal: Goal) => {
     setGoals([...goals, goal])
-    router.push(changeQueryParam(router.asPath, 'goal', goal.id), undefined, { shallow: true })
+    await router.push(changeQueryParam(router.asPath, 'goal', goal.id), undefined, { shallow: true })
   }
 
   useEffect(() => {

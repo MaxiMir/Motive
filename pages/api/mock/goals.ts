@@ -1,8 +1,11 @@
-export const learnFrench = {
+import { Goal } from 'dto'
+
+export const learnFrench: Goal = {
   id: '3143',
   name: 'learn French',
   href: '/better/maximir?goal=314',
   started: '2021-07-30T18:31:42',
+  date: '2021-08-02T00:00:00.000Z', // 00:00:00.000
   hashtags: ['foreignLanguage', 'knowledge'],
   role: 'OWNER',
   characteristics: {
@@ -39,11 +42,12 @@ export const learnFrench = {
   discussion: 21,
 }
 
-export const becomeSenior = {
+export const becomeSenior: Goal = {
   id: '214',
   name: 'become senior',
   href: '/better/maximir?goal=214',
   started: '2021-08-01T12:31:42',
+  date: '2021-08-02T00:00:00.000Z',
   hashtags: ['programming', 'knowledge'],
   role: 'OWNER',
   characteristics: {
@@ -51,7 +55,7 @@ export const becomeSenior = {
     support: 12,
     creativity: 32,
   },
-  tasks: [{ id: '11', name: 'watch video', completed: false }],
+  tasks: [{ id: '11', name: 'watch video', completed: false, completedByOthers: false }],
   feedback: {
     text: null,
     photos: null,

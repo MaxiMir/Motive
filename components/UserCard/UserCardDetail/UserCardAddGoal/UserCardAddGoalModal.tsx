@@ -7,9 +7,8 @@ import { Field, FieldArray, Form, FormikProvider, useFormik } from 'formik'
 import { object, string, array, SchemaOf } from 'yup'
 import { makeStyles } from '@material-ui/core/styles'
 import { Button, FormControlLabel, IconButton, Switch } from '@material-ui/core'
-import { KeyboardTimePicker } from 'formik-material-ui-pickers'
 import ROUTE from 'route'
-import { Goal, GoalCreation } from 'dto'
+import { Goal, GoalCreation, GoalCreationResponse } from 'dto'
 import useFocus from 'hooks/useFocus'
 import AppModal from 'components/UI/AppModal'
 import AppHeader from 'components/UI/AppHeader'
@@ -22,14 +21,16 @@ import { PaulIcon } from 'components/UI/icons'
 
 const CircularProgress = dynamic(() => import('@material-ui/core/CircularProgress'))
 const AppSnackbar = dynamic(() => import('components/UI/AppSnackbar'))
+const KeyboardTimePicker = dynamic(() =>
+  import('formik-material-ui-pickers').then(
+    (m) => m.KeyboardTimePicker,
+    () => null as never,
+  ),
+)
 
 interface UserCardAddGoalModalProps {
   onSuccess: (goal: Goal) => void
   onClose: () => void
-}
-
-interface Response {
-  data: Goal
 }
 
 const schema: SchemaOf<GoalCreation> = object({
@@ -60,7 +61,7 @@ export default function UserCardAddGoalModal({ onSuccess, onClose }: UserCardAdd
       mutate(formValues)
     },
   })
-  const { mutate, isLoading } = useMutation<Response, AxiosError, GoalCreation>(
+  const { mutate, isLoading } = useMutation<GoalCreationResponse, AxiosError, GoalCreation>(
     (goal: GoalCreation) => Axios.post(ROUTE.GOALS, goal),
     {
       onSuccess(response) {
@@ -163,6 +164,7 @@ export default function UserCardAddGoalModal({ onSuccess, onClose }: UserCardAdd
                             name={`tasks.${index}.date`}
                             ampm={false}
                             className={classes.timepicker}
+                            keyboardIcon={<span className="material-icons">query_builder</span>}
                             component={KeyboardTimePicker}
                           />
                         )}

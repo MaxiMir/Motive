@@ -16,6 +16,7 @@ export default (req: NextApiRequest, res: NextApiResponse): void => {
     id: 813,
     href: '/better/maximir?goal=813',
     started: new Date().toISOString(),
+    date: new Date().toISOString(),
     role: 'OWNER',
     characteristics: {
       motivation: 0,

@@ -8,8 +8,6 @@ instance.defaults.headers = {
   'Content-Type': 'application/json',
 }
 
-// instance.interceptors.response.use((response) => response.data) // TODO
-
 // import store from '../store'
 //
 // const listener = () => {

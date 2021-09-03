@@ -4,16 +4,22 @@ export default {
   SEARCH: '/search',
   RATING: '/rating',
   USERS: '/users',
-  getUserId(id: string): string {
+  getUser(id: string): string {
     return toUrn(this.USERS, id)
   },
   getUserFavorite(id: string): string {
-    return toUrn(this.getUserId(id), 'favorite')
+    return toUrn(this.getUser(id), 'favorite')
   },
   FAVORITES: '/favorites',
   PROFILE: '/profile',
   SIGN_IN: '/sign-in',
   GOALS: '/goals',
+  getGoal(id: string): string {
+    return toUrn(this.GOALS, id)
+  },
+  getGoalDates(id: string): string {
+    return toUrn(this.getGoal(id), 'dates')
+  },
   TASKS: '/tasks',
   getTaskId(id: string): string {
     return toUrn(this.TASKS, id)

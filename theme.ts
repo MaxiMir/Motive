@@ -41,6 +41,9 @@ export default createMuiTheme({
   overrides: {
     MuiCssBaseline: {
       '@global': {
+        html: {
+          background: '#19191A',
+        },
         body: {
           margin: 0,
           padding: 0,

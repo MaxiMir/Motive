@@ -6,7 +6,7 @@ import { TransitionProps } from '@material-ui/core/transitions'
 
 interface AppSnackbarProps {
   severity: AlertProps['severity']
-  autoHideDuration: SnackbarProps['autoHideDuration']
+  autoHideDuration?: SnackbarProps['autoHideDuration']
   icon?: AlertProps['icon']
   action?: SnackbarProps['action']
   onClose: () => void

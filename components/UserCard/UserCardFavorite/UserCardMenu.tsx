@@ -31,7 +31,12 @@ const UserCardMenu = ({ id, title, href, onRemove }: UserCardFavoriteMenuProps):
 
   return (
     <>
-      <AppMenuButton ariaControls="user-menu" title="open user menu" onClick={(e) => setAnchorEl(e.currentTarget)} />
+      <AppMenuButton
+        ariaControls="user-menu"
+        title="open user menu"
+        isHorizontal
+        onClick={(e) => setAnchorEl(e.currentTarget)}
+      />
       {anchorEl && (
         <Menu
           id="user-menu"

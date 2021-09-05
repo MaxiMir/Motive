@@ -5,8 +5,8 @@ export const learnFrench: Goal = {
   name: 'learn French',
   href: '/better/maximir?goal=314',
   started: '2021-07-30T18:31:42',
-  date: '2021-08-02T00:00:00.000Z', // 00:00:00.000
-  hashtags: ['foreignLanguage', 'knowledge'],
+  date: '2021-09-03T00:00:00.000Z', // 00:00:00.000
+  hashtags: ['foreignLanguage', 'knowledge', 'learnFrench', 'immigration', 'recommendation'],
   role: 'OWNER',
   characteristics: {
     motivation: 1120,
@@ -17,7 +17,7 @@ export const learnFrench: Goal = {
     {
       id: '1',
       name: 'read 20 pages Harry Potter',
-      completed: true,
+      completed: false,
       completedByOthers: false,
       date: new Date().toISOString(),
     },

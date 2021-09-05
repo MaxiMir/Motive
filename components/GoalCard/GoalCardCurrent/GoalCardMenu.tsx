@@ -6,7 +6,6 @@ import Share from 'components/Share'
 import AppMenuButton from 'components/UI/AppMenuButton'
 
 const Menu = dynamic(() => import('@material-ui/core/Menu'))
-const AppSnackbar = dynamic(() => import('components/UI/AppSnackbar'))
 
 interface GoalCardMenuProps {
   title: string
@@ -18,7 +17,6 @@ export default function GoalCardMenu({ title, href, role }: GoalCardMenuProps): 
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null)
   const [withShare, setWithShare] = useState(false)
   const [withReport, setWithReport] = useState(false)
-  const [message, setMessage] = useState<string>()
 
   const onShare = () => {
     onCloseMenu()
@@ -54,11 +52,6 @@ export default function GoalCardMenu({ title, href, role }: GoalCardMenuProps): 
         </Menu>
       )}
       <Share open={withShare} title={title} href={href} onClose={() => setWithShare(false)} />
-      {message && (
-        <AppSnackbar severity="success" autoHideDuration={3000} onClose={() => setMessage(undefined)}>
-          {message}
-        </AppSnackbar>
-      )}
     </>
   )
 }

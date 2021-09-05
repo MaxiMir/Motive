@@ -13,9 +13,12 @@ import GoalCardMenu from './GoalCardMenu'
 import GoalCardDiscussion from './GoalCardDiscussion'
 import GoalCardDate from './GoalCardDate'
 
+const Collapse = dynamic(() => import('@material-ui/core/Collapse'))
 const GoalCardTask = dynamic(() => import('./GoalCardTask'))
+const GoalCardHashtags = dynamic(() => import('./GoalCardHashtags'))
 const GoalCardTaskForm = dynamic(() => import('./GoalCardTaskForm'))
 const GoalCardFeedback = dynamic(() => import('./GoalCardFeedback'))
+const GoalCardWeb = dynamic(() => import('./GoalCardWeb'))
 
 const CHARACTERISTICS: GoalCharacteristic[] = ['motivation', 'creativity', 'support']
 
@@ -26,6 +29,7 @@ export interface GoalCardCurrentProps extends Goal {
 export default function GoalCardCurrent({
   id,
   name,
+  hashtags,
   href,
   date,
   started,
@@ -43,6 +47,9 @@ export default function GoalCardCurrent({
   const [discussionExpand, setDiscussionExpand] = useState<'more' | 'less'>('more')
   const days = differenceInDays(new Date(), Date.parse(started))
   const withForm = ['OWNER', 'MEMBER'].includes(role)
+  const showWeb = differenceInDays(new Date(), Date.parse(date)) >= 14
+  const showFeedback = feedbackExpand === 'less'
+  const showDiscussion = discussionExpand === 'less'
 
   return (
     <AppBox flexDirection="column" spacing={1}>
@@ -72,6 +79,7 @@ export default function GoalCardCurrent({
               color={theme.palette.text.disabled}
             />
           </AppBox>
+          {hashtags?.length && <GoalCardHashtags hashtags={hashtags} />}
           <AppBox flexDirection="column" spacing={1}>
             <AppHeader name="task" variant="h6" component="h2" color="primary">
               Tasks
@@ -99,7 +107,9 @@ export default function GoalCardCurrent({
                 <AppIconText color="primary">expand_{feedbackExpand}</AppIconText>
               </IconButton>
             </AppBox>
-            {feedbackExpand === 'less' && <GoalCardFeedback {...feedback} />}
+            <Collapse in={showFeedback}>
+              {showFeedback && <GoalCardFeedback {...feedback} />}
+            </Collapse>
           </AppBox>
           <AppBox alignItems="center" spacing={1}>
             <AppHeader name="comment" variant="h6" component="h2" color="primary">
@@ -109,8 +119,11 @@ export default function GoalCardCurrent({
               <AppIconText color="primary">expand_{discussionExpand}</AppIconText>
             </IconButton>
           </AppBox>
-          {discussionExpand === 'less' && <GoalCardDiscussion discussion={discussion} role={role} />}
+          <Collapse in={showDiscussion}>
+            {showDiscussion && <GoalCardDiscussion discussion={discussion} role={role} />}
+          </Collapse>
         </AppBox>
+        {showWeb && <GoalCardWeb />}
       </div>
     </AppBox>
   )
@@ -119,6 +132,7 @@ export default function GoalCardCurrent({
 const useStyles = makeStyles((theme) =>
   createStyles({
     goalWrap: {
+      position: 'relative',
       padding: 2,
       background: `linear-gradient(to top left, ${theme.palette.warning.main}, ${theme.palette.success.dark}, ${theme.palette.info.dark})`,
       borderRadius: 15,

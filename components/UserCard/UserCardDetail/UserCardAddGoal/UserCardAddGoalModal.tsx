@@ -1,4 +1,4 @@
-import React, { Fragment, useState } from 'react'
+import React, { Fragment } from 'react'
 import dynamic from 'next/dynamic'
 import { AxiosError } from 'axios'
 import Axios from 'lib/axios'
@@ -10,6 +10,7 @@ import { Button, FormControlLabel, IconButton, Switch } from '@material-ui/core'
 import ROUTE from 'route'
 import { Goal, GoalCreation, GoalCreationResponse } from 'dto'
 import useFocus from 'hooks/useFocus'
+import { useSnackbar } from 'hooks/useSnackbar'
 import AppModal from 'components/UI/AppModal'
 import AppHeader from 'components/UI/AppHeader'
 import AppBox from 'components/UI/AppBox'
@@ -20,7 +21,6 @@ import AppIconText from 'components/UI/AppIcon'
 import { PaulIcon } from 'components/UI/icons'
 
 const CircularProgress = dynamic(() => import('@material-ui/core/CircularProgress'))
-const AppSnackbar = dynamic(() => import('components/UI/AppSnackbar'))
 const KeyboardTimePicker = dynamic(() =>
   import('formik-material-ui-pickers').then(
     (m) => m.KeyboardTimePicker,
@@ -49,7 +49,7 @@ const SECONDS_IN_THE_DAY = 3600 * 1000 * 24
 export default function UserCardAddGoalModal({ onSuccess, onClose }: UserCardAddGoalModalProps): JSX.Element {
   const classes = useStyles()
   const [hashtagsRef, setHashtagsFocus] = useFocus()
-  const [withError, setWithError] = useState(false)
+  const { enqueueSnackbar } = useSnackbar()
   const formik = useFormik({
     initialValues: {
       name: '',
@@ -68,7 +68,7 @@ export default function UserCardAddGoalModal({ onSuccess, onClose }: UserCardAdd
         onSuccess(response.data)
       },
       onError() {
-        setWithError(true)
+        enqueueSnackbar({ message: 'Something went wrong...', severity: 'error' })
       },
     },
   )
@@ -109,7 +109,7 @@ export default function UserCardAddGoalModal({ onSuccess, onClose }: UserCardAdd
                 variant="outlined"
                 size="small"
                 onClick={() => {
-                  setFieldValue('hashtags', `${values.hashtags} #`)
+                  setFieldValue('hashtags', !values.hashtags ? '#' : [values.hashtags, '#'].join(' '))
                   setHashtagsFocus()
                 }}
               >
@@ -133,6 +133,7 @@ export default function UserCardAddGoalModal({ onSuccess, onClose }: UserCardAdd
                           multiline
                           rows={3}
                           component={AppInput}
+                          autoFocus={!!index && index === values.tasks.length - 1}
                         />
                         <IconButton
                           disableFocusRipple
@@ -200,11 +201,6 @@ export default function UserCardAddGoalModal({ onSuccess, onClose }: UserCardAdd
             </AppBox>
           </AppBox>
         </Form>
-        {withError && (
-          <AppSnackbar severity="error" autoHideDuration={3000} onClose={() => setWithError(false)}>
-            Something went wrong...
-          </AppSnackbar>
-        )}
       </FormikProvider>
     </AppModal>
   )

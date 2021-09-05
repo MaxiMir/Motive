@@ -58,7 +58,7 @@ export default function GoalCardDate({ id, date, onChangeDate }: GoalCardDatePro
           return !pickerDate || !goalsDate ? true : !goalsDate.some((goalDate) => goalDate === pickerDateReset)
         }}
         TextFieldComponent={() => (
-          <Button aria-label="select a goal date" onClick={() => setOpen(true)}>
+          <Button aria-label="select a goal date" disabled={!goals} onClick={() => setOpen(true)}>
             {formattedDate}
           </Button>
         )}

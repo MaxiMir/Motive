@@ -1,8 +1,8 @@
 import { useEffect, useRef, useState } from 'react'
 import dynamic from 'next/dynamic'
+import { useSnackbar } from 'hooks/useSnackbar'
 
 const ShareMenu = dynamic(() => import('./ShareMenu'))
-const AppSnackbar = dynamic(() => import('components/UI/AppSnackbar'))
 
 interface ShareProps {
   open: boolean
@@ -13,8 +13,8 @@ interface ShareProps {
 
 export default function Share({ open, title, href, onClose }: ShareProps): JSX.Element {
   const withNavigatorShare = useRef(false)
+  const { enqueueSnackbar } = useSnackbar()
   const [withMenu, setWithMenu] = useState(false)
-  const [severity, setSeverity] = useState<'success' | 'error'>()
   const url = process.env.NEXT_PUBLIC_SERVER_BASE_URL + href
 
   const onCloseMenu = () => {
@@ -42,15 +42,10 @@ export default function Share({ open, title, href, onClose }: ShareProps): JSX.E
         <ShareMenu
           title={title}
           url={url}
-          onCopyEnd={() => setSeverity('success')}
-          onCopyError={() => setSeverity('error')}
+          onCopyEnd={() => enqueueSnackbar({ message: 'Copied', severity: 'success' })}
+          onCopyError={() => enqueueSnackbar({ message: 'Something went wrong...', severity: 'error' })}
           onClose={onCloseMenu}
         />
-      )}
-      {severity && (
-        <AppSnackbar severity={severity} autoHideDuration={3000} onClose={() => setSeverity(undefined)}>
-          {severity === 'success' ? 'Copied' : 'Something went wrong'}
-        </AppSnackbar>
       )}
     </>
   )

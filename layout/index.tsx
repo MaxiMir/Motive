@@ -1,12 +1,10 @@
-import React, { FC, useEffect, useState } from 'react'
-import dynamic from 'next/dynamic'
+import React, { FC, useEffect } from 'react'
 import Head from 'next/head'
 import { makeStyles } from '@material-ui/core/styles'
 import { Client } from 'dto'
+import { useSnackbar } from 'hooks/useSnackbar'
 import Header from './Header'
 import Footer from './Footer'
-
-const AppSnackbar = dynamic(() => import('components/UI/AppSnackbar'))
 
 interface LayoutProps {
   title: string
@@ -29,12 +27,12 @@ const Layout: FC<LayoutProps> = ({
   status,
   children,
 }) => {
-  const [showError, setShowError] = useState(status === 'error')
+  const { enqueueSnackbar } = useSnackbar()
   const classes = useStyles({ withVerticalPadding })
 
   useEffect(() => {
-    setShowError(status === 'error')
-  }, [status])
+    status === 'error' && enqueueSnackbar({ message: 'Something went wrong...', severity: 'error' })
+  }, [enqueueSnackbar, status])
 
   return (
     <>
@@ -56,14 +54,7 @@ const Layout: FC<LayoutProps> = ({
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
       </Head>
       <Header />
-      <main className={classes.main}>
-        {showError && (
-          <AppSnackbar severity="error" autoHideDuration={3000} onClose={() => setShowError(false)}>
-            Something went wrong...
-          </AppSnackbar>
-        )}
-        {status === 'success' && <>{children}</>}
-      </main>
+      <main className={classes.main}>{status === 'success' && <>{children}</>}</main>
       <Footer />
     </>
   )

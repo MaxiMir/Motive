@@ -8,7 +8,7 @@ export default {
     return toUrn(this.USERS, id)
   },
   getUserFavorite(id: string): string {
-    return toUrn(this.getUser(id), 'favorite')
+    return toUrn(this.getTaskId(id))
   },
   FAVORITES: '/favorites',
   PROFILE: '/profile',

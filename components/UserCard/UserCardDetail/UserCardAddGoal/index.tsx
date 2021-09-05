@@ -5,7 +5,6 @@ import { Button } from '@material-ui/core'
 import { Goal } from 'dto'
 
 const UserCardAddGoalModal = dynamic(() => import('./UserCardAddGoalModal'))
-const AppSnackbar = dynamic(() => import('components/UI/AppSnackbar'))
 
 interface UserCardAddGoalProps {
   onAdd: (goal: Goal) => void
@@ -14,11 +13,9 @@ interface UserCardAddGoalProps {
 export default function UserCardAddGoal({ onAdd }: UserCardAddGoalProps): JSX.Element {
   const classes = useStyles()
   const [open, setOpen] = useState(false)
-  const [withMessage, setWithMessage] = useState(false)
 
   const onSuccess = (goal: Goal) => {
     setOpen(false)
-    setWithMessage(true)
     onAdd(goal)
   }
 
@@ -34,11 +31,6 @@ export default function UserCardAddGoal({ onAdd }: UserCardAddGoalProps): JSX.El
         💎 Create a new goal
       </Button>
       {open && <UserCardAddGoalModal onSuccess={onSuccess} onClose={() => setOpen(false)} />}
-      {withMessage && (
-        <AppSnackbar icon="💎" severity="success" autoHideDuration={3000} onClose={() => setWithMessage(false)}>
-          The goal is successfully created
-        </AppSnackbar>
-      )}
     </>
   )
 }

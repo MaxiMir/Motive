@@ -9,6 +9,7 @@ import ROUTE from 'route'
 import Axios from 'lib/axios'
 import { changeQueryParam, numberToShort } from 'helpers/prepare'
 import useCharacteristicColors from 'hooks/useCharacteristicColors'
+import { useSnackbar } from 'hooks/useSnackbar'
 import AppTooltip from 'components/UI/AppTooltip'
 import AppBox from 'components/UI/AppBox'
 import AppContainer from 'components/UI/AppContainer'
@@ -43,6 +44,7 @@ const UserCardDetail = ({
 }: UserCardDetailProps): JSX.Element => {
   const classes = useStyles()
   const router = useRouter()
+  const { enqueueSnackbar } = useSnackbar()
   const characteristicColors = useCharacteristicColors()
   const [goals, setGoals] = useState(goalsInit)
   useQuery('page-views', () => queryFn(id), { refetchOnWindowFocus: false, enabled: !owner })
@@ -50,17 +52,17 @@ const UserCardDetail = ({
   const onAdd = async (goal: Goal) => {
     setGoals([...goals, goal])
     await router.push(changeQueryParam(router.asPath, 'goal', goal.id), undefined, { shallow: true })
+    enqueueSnackbar({ message: 'The goal is successfully created', severity: 'success', icon: '💎' })
   }
+
+  useEffect(() => {
+    const elem = router.query.goal && document.getElementById(`goal-${router.query.goal}`)
+    elem && elem.scrollIntoView({ behavior: 'smooth' })
+  }, [id, router.query])
 
   useEffect(() => {
     setGoals(goalsInit)
   }, [goalsInit])
-
-  useEffect(() => {
-    const elem = router.query.goal && document.getElementById(`goal-${router.query.goal}`)
-
-    elem && elem.scrollIntoView({ behavior: 'smooth' })
-  }, [id, router.query])
 
   return (
     <AppContainer withFlexColumn>

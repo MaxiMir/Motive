@@ -11,7 +11,7 @@ export default (req: NextApiRequest, res: NextApiResponse): void => {
       ? []
       : body.hashtags
           .trim()
-          .split('#')
+          .split('# ')
           .map((h: string) => h.trim()),
     id: 813,
     href: '/better/maximir?goal=813',

@@ -1,18 +1,17 @@
-import { FC, SyntheticEvent } from 'react'
-import { Slide, Snackbar, SnackbarProps } from '@material-ui/core'
+import { SyntheticEvent } from 'react'
+import { Snackbar, SnackbarProps } from '@material-ui/core'
 import { makeStyles } from '@material-ui/core/styles'
 import Alert, { AlertProps } from '@material-ui/lab/Alert'
-import { TransitionProps } from '@material-ui/core/transitions'
 
-interface AppSnackbarProps {
+export interface AppSnackbarProps {
   severity: AlertProps['severity']
-  autoHideDuration?: SnackbarProps['autoHideDuration']
   icon?: AlertProps['icon']
   action?: SnackbarProps['action']
+  message: string
   onClose: () => void
 }
 
-const AppSnackbar: FC<AppSnackbarProps> = ({ icon, autoHideDuration, children, onClose, ...restAlertProps }) => {
+export default function AppSnackbar({ icon, message, onClose, ...restAlertProps }: AppSnackbarProps): JSX.Element {
   const classes = useStyles()
 
   const handleClose = (_event?: SyntheticEvent, reason?: string) => {
@@ -24,20 +23,14 @@ const AppSnackbar: FC<AppSnackbarProps> = ({ icon, autoHideDuration, children, o
   }
 
   return (
-    <Snackbar
-      open
-      className={classes.root}
-      autoHideDuration={autoHideDuration}
-      TransitionComponent={(props: TransitionProps) => <Slide direction="up" {...props} />}
-      onClose={handleClose}
-    >
+    <Snackbar open className={classes.root} autoHideDuration={1500} onClose={handleClose}>
       <Alert
         {...restAlertProps}
         icon={restAlertProps.severity === 'error' ? '❗' : icon}
         className={classes.alert}
         color={restAlertProps.severity === 'success' ? 'info' : undefined}
       >
-        {children}
+        {message}
       </Alert>
     </Snackbar>
   )
@@ -64,5 +57,3 @@ const useStyles = makeStyles({
     },
   },
 })
-
-export default AppSnackbar

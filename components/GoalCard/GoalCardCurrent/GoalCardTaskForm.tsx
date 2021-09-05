@@ -5,11 +5,11 @@ import Axios from 'lib/axios'
 import { Task } from 'dto'
 import ROUTE from 'route'
 import useDebounceCb from 'hooks/useDebounceCb'
+import { useSnackbar } from 'hooks/useSnackbar'
 import AppCheckbox from 'components/UI/AppCheckbox'
 
 const Button = dynamic(() => import('@material-ui/core/Button'))
 const GoalCardTaskDate = dynamic(() => import('./GoalCardTaskDate'))
-const AppSnackbar = dynamic(() => import('components/UI/AppSnackbar'))
 
 interface GoalCardTaskFormProps extends Task {
   rest: number
@@ -25,19 +25,26 @@ export default function GoalCardTaskForm({
   rest,
   onSet,
 }: GoalCardTaskFormProps): JSX.Element {
+  const { enqueueSnackbar, closeSnackbar } = useSnackbar()
   const [checked, setChecked] = useState(initial)
-  const [severity, setSeverity] = useState<'success' | 'error'>()
   const { mutate, isLoading } = useMutation((completed: boolean) => Axios.put(ROUTE.getTaskId(id), { completed }), {
     onSuccess(_, completed) {
-      completed && setSeverity('success')
+      const restWithNew = rest - 1
+
+      completed &&
+        enqueueSnackbar({
+          message: !restWithNew ? 'Well done! All tasks are completed' : `Do it! Remains to be done: ${restWithNew}`,
+          severity: 'success',
+          icon: !restWithNew ? '🦾️' : '⚡️',
+          action: <Button onClick={onUndo}>Undo</Button>,
+        })
       onSet(completed)
     },
     onError(_, completed) {
       setChecked(!completed)
-      setSeverity('error')
+      enqueueSnackbar({ message: 'Something went wrong...', severity: 'error' })
     },
   })
-  const snackbarInfo = severity && getSnackbarInfo()
   const mutateWithDebounce = useDebounceCb(mutate, 500)
 
   const onChange = (_: ChangeEvent<unknown>, isChecked: boolean) => {
@@ -47,22 +54,8 @@ export default function GoalCardTaskForm({
 
   function onUndo() {
     setChecked(!checked)
-    setSeverity(undefined)
+    closeSnackbar()
     mutate(!checked)
-  }
-
-  function getSnackbarInfo() {
-    if (severity === 'error') {
-      return {
-        icon: undefined,
-        content: 'Something went wrong...',
-      }
-    }
-
-    return {
-      icon: !rest ? '🦾️' : '⚡️',
-      content: !rest ? 'Well done! All tasks are completed' : `Do it! Remains to be done: ${rest}`,
-    }
   }
 
   return (
@@ -75,17 +68,6 @@ export default function GoalCardTaskForm({
         onChange={onChange}
       />
       {date && <GoalCardTaskDate date={date} />}
-      {severity && (
-        <AppSnackbar
-          icon={snackbarInfo?.icon}
-          severity={severity}
-          autoHideDuration={3000}
-          action={severity !== 'success' ? undefined : <Button onClick={onUndo}>Undo</Button>}
-          onClose={() => setSeverity(undefined)}
-        >
-          {snackbarInfo?.content}
-        </AppSnackbar>
-      )}
     </form>
   )
 }

@@ -1,14 +1,14 @@
 import { FC } from 'react'
-import { Tooltip } from '@material-ui/core/'
+import { Tooltip, TooltipProps } from '@material-ui/core/'
 
 interface AppTooltipProps {
-  title: string
+  title: TooltipProps['title']
   className?: string
 }
 
-const AppTooltip: FC<AppTooltipProps> = ({ title, ...restProps }) => (
+const AppTooltip: FC<AppTooltipProps> = ({ title, className, children }) => (
   <Tooltip title={title}>
-    <span {...restProps} />
+    <span className={className}>{children}</span>
   </Tooltip>
 )
 

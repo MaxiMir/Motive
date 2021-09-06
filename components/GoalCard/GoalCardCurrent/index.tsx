@@ -13,7 +13,6 @@ import GoalCardMenu from './GoalCardMenu'
 import GoalCardDiscussion from './GoalCardDiscussion'
 import GoalCardDate from './GoalCardDate'
 
-const Collapse = dynamic(() => import('@material-ui/core/Collapse'))
 const GoalCardTask = dynamic(() => import('./GoalCardTask'))
 const GoalCardHashtags = dynamic(() => import('./GoalCardHashtags'))
 const GoalCardTaskForm = dynamic(() => import('./GoalCardTaskForm'))
@@ -107,9 +106,7 @@ export default function GoalCardCurrent({
                 <AppIconText color="primary">expand_{feedbackExpand}</AppIconText>
               </IconButton>
             </AppBox>
-            <Collapse in={showFeedback}>
-              {showFeedback && <GoalCardFeedback {...feedback} />}
-            </Collapse>
+            {showFeedback && <GoalCardFeedback {...feedback} />}
           </AppBox>
           <AppBox alignItems="center" spacing={1}>
             <AppHeader name="comment" variant="h6" component="h2" color="primary">
@@ -119,9 +116,7 @@ export default function GoalCardCurrent({
               <AppIconText color="primary">expand_{discussionExpand}</AppIconText>
             </IconButton>
           </AppBox>
-          <Collapse in={showDiscussion}>
-            {showDiscussion && <GoalCardDiscussion discussion={discussion} role={role} />}
-          </Collapse>
+          {showDiscussion && <GoalCardDiscussion discussion={discussion} role={role} />}
         </AppBox>
         {showWeb && <GoalCardWeb />}
       </div>

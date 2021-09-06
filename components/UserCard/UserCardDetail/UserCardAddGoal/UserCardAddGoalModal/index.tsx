@@ -1,12 +1,13 @@
-import React, { Fragment } from 'react'
+import React, { Fragment, useMemo, useState } from 'react'
 import dynamic from 'next/dynamic'
 import { AxiosError } from 'axios'
 import Axios from 'lib/axios'
 import { useMutation } from 'react-query'
-import { Field, FieldArray, Form, FormikProvider, useFormik } from 'formik'
 import { object, string, array, SchemaOf } from 'yup'
+import { Field, FieldArray, Form, FormikProvider, useFormik } from 'formik'
+import { addDays } from 'date-fns'
 import { makeStyles } from '@material-ui/core/styles'
-import { Button, FormControlLabel, IconButton, Switch } from '@material-ui/core'
+import { Button, Collapse, FormControlLabel, IconButton, Switch } from '@material-ui/core'
 import ROUTE from 'route'
 import { Goal, GoalCreation, GoalCreationResponse } from 'dto'
 import useFocus from 'hooks/useFocus'
@@ -44,12 +45,13 @@ const schema: SchemaOf<GoalCreation> = object({
   ),
 })
 
-const SECONDS_IN_THE_DAY = 3600 * 1000 * 24
-
+// TODO: focus error fields
 export default function UserCardAddGoalModal({ onSuccess, onClose }: UserCardAddGoalModalProps): JSX.Element {
   const classes = useStyles()
   const [hashtagsRef, setHashtagsFocus] = useFocus()
   const { enqueueSnackbar } = useSnackbar()
+  const tomorrow = useMemo(() => addDays(new Date(), 1), [])
+  const [expandPittText, setExpandPittText] = useState<'more' | 'less'>('more')
   const formik = useFormik({
     initialValues: {
       name: '',
@@ -73,6 +75,7 @@ export default function UserCardAddGoalModal({ onSuccess, onClose }: UserCardAdd
     },
   )
   const { values, setFieldValue, handleSubmit } = formik
+  const showPittText = expandPittText === 'less'
 
   return (
     <AppModal
@@ -100,7 +103,7 @@ export default function UserCardAddGoalModal({ onSuccess, onClose }: UserCardAdd
                 label="Hashtags"
                 color="secondary"
                 multiline
-                rows={3}
+                rows={2}
                 inputRef={hashtagsRef}
                 component={AppInput}
               />
@@ -151,10 +154,7 @@ export default function UserCardAddGoalModal({ onSuccess, onClose }: UserCardAdd
                             <Switch
                               size="small"
                               onChange={(_, isChecked) =>
-                                setFieldValue(
-                                  `tasks.${index}.date`,
-                                  isChecked ? new Date(Date.now() + SECONDS_IN_THE_DAY) : undefined,
-                                )
+                                setFieldValue(`tasks.${index}.date`, isChecked ? tomorrow : undefined)
                               }
                             />
                           }
@@ -166,6 +166,7 @@ export default function UserCardAddGoalModal({ onSuccess, onClose }: UserCardAdd
                             ampm={false}
                             className={classes.timepicker}
                             keyboardIcon={<span className="material-icons">query_builder</span>}
+                            // disabledHours={() => }
                             component={KeyboardTimePicker}
                           />
                         )}
@@ -188,16 +189,21 @@ export default function UserCardAddGoalModal({ onSuccess, onClose }: UserCardAdd
                 <AppTypography variant="h6" component="h3" color="primary">
                   Remember Old Pitt!
                 </AppTypography>
+                <IconButton size="small" onClick={() => setExpandPittText(expandPittText === 'more' ? 'less' : 'more')}>
+                  <AppIconText color="primary">expand_{expandPittText}</AppIconText>
+                </IconButton>
               </AppBox>
-              <AppTypography className={classes.hint}>
-                He hunts for abandoned goals.
-                <br />
-                On the 14th day they get covered with 🕸.
-                <br />
-                On the 28th day he eats them.
-                <br />
-                And people have to start all over again.
-              </AppTypography>
+              <Collapse in={showPittText}>
+                <AppTypography className={classes.hint}>
+                  He hunts for abandoned goals.
+                  <br />
+                  On the 14th day they get covered with 🕸.
+                  <br />
+                  On the 28th day he eats them.
+                  <br />
+                  And people have to start all over again.
+                </AppTypography>
+              </Collapse>
             </AppBox>
           </AppBox>
         </Form>
@@ -212,6 +218,7 @@ const useStyles = makeStyles({
     textTransform: 'none',
   },
   hint: {
+    fontSize: '0.9rem',
     color: '#99989D',
   },
   timepicker: {

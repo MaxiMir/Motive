@@ -23,7 +23,7 @@ export default function GoalCardDate({ id, date, onChangeDate }: GoalCardDatePro
   const [open, setOpen] = useState(false)
   const [value, setValue] = useState(new Date(date))
   const { data } = useQuery<GoalDatesResponse>(`goal-dates-${id}`, () => queryFn(id))
-  const formattedDate = format(value, 'MM/dd/yyyy')
+  const formattedDate = format(value, 'MM/dd/yy')
   const dateISO = value?.toISOString()
   const goals = data?.data
   const dateIndex = dateISO && goals?.findIndex((goal) => goal.date === dateISO)
@@ -49,13 +49,17 @@ export default function GoalCardDate({ id, date, onChangeDate }: GoalCardDatePro
       <KeyboardDatePicker
         disableFuture
         variant="dialog"
-        format="MM/dd/yyyy"
+        format="MM/dd/yy"
         open={open}
         value={value}
         shouldDisableDate={(pickerDate) => {
-          const pickerDateReset = format(pickerDate as Date, 'MM/dd/yyyy')
+          if (!pickerDate || !goalsDate) {
+            return true
+          }
 
-          return !pickerDate || !goalsDate ? true : !goalsDate.some((goalDate) => goalDate === pickerDateReset)
+          const pickerDateReset = format(pickerDate as Date, 'MM/dd/yy')
+
+          return !goalsDate.some((goalDate) => goalDate === pickerDateReset)
         }}
         TextFieldComponent={() => (
           <Button aria-label="select a goal date" disabled={!goals} onClick={() => setOpen(true)}>

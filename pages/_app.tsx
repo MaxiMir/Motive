@@ -2,7 +2,6 @@ import React, { useState } from 'react'
 import dynamic from 'next/dynamic'
 import { AppProps } from 'next/app'
 import { QueryClient, QueryClientProvider } from 'react-query'
-import { Hydrate } from 'react-query/hydration'
 import DateFnsUtils from '@date-io/date-fns'
 import NextNprogress from 'nextjs-progressbar'
 import { MuiPickersUtilsProvider } from '@material-ui/pickers'
@@ -28,19 +27,17 @@ export default function MyApp({ Component, pageProps }: AppProps): JSX.Element {
 
   return (
     <QueryClientProvider client={queryClient}>
-      <Hydrate state={pageProps.dehydratedState}>
-        <MuiPickersUtilsProvider utils={DateFnsUtils}>
-          <ThemeProvider theme={theme}>
-            <SnackbarContext.Provider value={{ props: snackbarProps, setProps: setSnackbarProps }}>
-              <NextNprogress color={theme.palette.secondary.main} />
-              {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
-              <CssBaseline />
-              <Component {...pageProps} />
-              {snackbarProps && <AppSnackbar {...snackbarProps} onClose={() => setSnackbarProps(null)} />}
-            </SnackbarContext.Provider>
-          </ThemeProvider>
-        </MuiPickersUtilsProvider>
-      </Hydrate>
+      <MuiPickersUtilsProvider utils={DateFnsUtils}>
+        <ThemeProvider theme={theme}>
+          <SnackbarContext.Provider value={{ props: snackbarProps, setProps: setSnackbarProps }}>
+            <NextNprogress color={theme.palette.secondary.main} />
+            {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
+            <CssBaseline />
+            <Component {...pageProps} />
+            {snackbarProps && <AppSnackbar {...snackbarProps} onClose={() => setSnackbarProps(null)} />}
+          </SnackbarContext.Provider>
+        </ThemeProvider>
+      </MuiPickersUtilsProvider>
     </QueryClientProvider>
   )
 }

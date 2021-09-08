@@ -15,17 +15,10 @@ const LAST_CHARACTERISTIC_INDEX = 3
 
 export interface UserCardFavoriteProps extends User {
   type: 'favorite'
-  onRemove: (id: string) => void
+  onRemove: () => void
 }
 
-const UserCardFavorite = ({
-  id,
-  avatar,
-  href,
-  name,
-  characteristics,
-  onRemove,
-}: UserCardFavoriteProps): JSX.Element => {
+const UserCardFavorite = ({ avatar, href, name, characteristics, onRemove }: UserCardFavoriteProps): JSX.Element => {
   const classes = useStyles()
   const colors = useCharacteristicColors()
 
@@ -41,7 +34,7 @@ const UserCardFavorite = ({
               {name}
             </AppTypography>
           </AppLink>
-          <UserCardMenu id={id} title={name} href={href} onRemove={onRemove} />
+          <UserCardMenu title={name} href={href} onRemove={onRemove} />
         </AppBox>
         <AppBox justifyContent="space-between" alignItems="center">
           {CHARACTERISTICS.map((characteristic, index) => (

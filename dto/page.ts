@@ -1,6 +1,10 @@
 import { Client, User, UserDetail } from './user'
 import { Characteristic } from './characteristic'
 
+export type PageSWR<T> = {
+  fallbackData: Page<T>
+}
+
 export type Page<T> = {
   meta: {
     title: string

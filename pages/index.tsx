@@ -1,9 +1,8 @@
 import { GetServerSideProps } from 'next'
-import { QueryClient, useQuery } from 'react-query'
-import { dehydrate } from 'react-query/hydration'
-import ROUTE from 'route'
+import useSWR from 'swr'
 import Axios from 'lib/axios'
-import { Characteristic, MainPage } from 'dto'
+import ROUTE from 'route'
+import { Characteristic, MainPage, PageSWR } from 'dto'
 import useCharacteristicColors from 'hooks/useCharacteristicColors'
 import Layout from 'layout'
 import Slogan from 'components/Slogan'
@@ -44,15 +43,15 @@ const ADVANTAGES: AdvantageItem[] = [
   },
 ]
 
-const queryFn = async () => (await Axios.get(ROUTE.INDEX)).data
+const fetcher = async () => (await Axios.get(ROUTE.INDEX)).data
 
-export default function Home(): JSX.Element {
+export default function Home({ fallbackData }: PageSWR<MainPage>): JSX.Element {
   const colors = useCharacteristicColors()
-  const { data, status } = useQuery<MainPage>('index', queryFn)
+  const { data, error } = useSWR(ROUTE.INDEX, fetcher, { fallbackData })
   const { meta, client } = (data as MainPage) || {}
 
   return (
-    <Layout client={client} status={status} withVerticalPadding={false} {...meta}>
+    <Layout client={client} error={error} withVerticalPadding={false} {...meta}>
       <Slogan />
       {ADVANTAGES.map((advantage) => (
         <AppBox style={{ height: 'calc((100vh - 290px ) / 4)' }} key={advantage.characteristic}>
@@ -64,12 +63,11 @@ export default function Home(): JSX.Element {
 }
 
 export const getServerSideProps: GetServerSideProps = async () => {
-  const queryClient = new QueryClient()
-  await queryClient.prefetchQuery('index', queryFn)
+  const data = await fetcher()
 
   return {
     props: {
-      dehydratedState: dehydrate(queryClient),
+      fallbackData: data,
     },
   }
 }

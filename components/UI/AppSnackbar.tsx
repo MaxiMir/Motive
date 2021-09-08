@@ -23,7 +23,7 @@ export default function AppSnackbar({ icon, message, onClose, ...restAlertProps 
   }
 
   return (
-    <Snackbar open className={classes.root} autoHideDuration={1500} onClose={handleClose}>
+    <Snackbar open className={classes.root} autoHideDuration={3000} onClose={handleClose}>
       <Alert
         {...restAlertProps}
         icon={restAlertProps.severity === 'error' ? '❗' : icon}
@@ -42,8 +42,16 @@ const useStyles = makeStyles({
   },
   alert: {
     lineHeight: '21px',
+    '@media (max-width:365px)': {
+      fontSize: '0.85rem',
+    },
     '& .MuiAlert-icon': {
+      display: 'flex',
+      alignItems: 'center',
       animation: '$fadeWithBlur 0.7s cubic-bezier(0.55, 0.085, 0.68, 0.53) both',
+    },
+    '& .MuiAlert-action': {
+      paddingLeft: 8,
     },
   },
   '@keyframes fadeWithBlur': {

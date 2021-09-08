@@ -12,7 +12,7 @@ interface LayoutProps {
   keywords: string
   url: string
   type: string
-  status: 'error' | 'idle' | 'loading' | 'success'
+  error: boolean
   withVerticalPadding?: boolean
   client: Client
 }
@@ -24,15 +24,16 @@ const Layout: FC<LayoutProps> = ({
   url,
   type,
   withVerticalPadding = true,
-  status,
+  error,
   children,
 }) => {
   const { enqueueSnackbar } = useSnackbar()
   const classes = useStyles({ withVerticalPadding })
 
   useEffect(() => {
-    status === 'error' && enqueueSnackbar({ message: 'Something went wrong...', severity: 'error' })
-  }, [enqueueSnackbar, status])
+    error && enqueueSnackbar({ message: 'Something went wrong...', severity: 'error' })
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [error])
 
   return (
     <>
@@ -54,7 +55,7 @@ const Layout: FC<LayoutProps> = ({
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
       </Head>
       <Header />
-      <main className={classes.main}>{status === 'success' && <>{children}</>}</main>
+      <main className={classes.main}>{!error && <>{children}</>}</main>
       <Footer />
     </>
   )

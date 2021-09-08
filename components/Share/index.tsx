@@ -13,7 +13,7 @@ interface ShareProps {
 
 export default function Share({ open, title, href, onClose }: ShareProps): JSX.Element {
   const withNavigatorShare = useRef(false)
-  const { enqueueSnackbar } = useSnackbar()
+  const { enqueueSnackbar, closeSnackbar } = useSnackbar()
   const [withMenu, setWithMenu] = useState(false)
   const url = process.env.NEXT_PUBLIC_SERVER_BASE_URL + href
 
@@ -35,6 +35,10 @@ export default function Share({ open, title, href, onClose }: ShareProps): JSX.E
 
     navigator.share({ title, url }).catch(onClose)
   }, [onClose, open, title, url])
+
+  useEffect(() => {
+    withMenu && closeSnackbar()
+  }, [closeSnackbar, withMenu])
 
   return (
     <>

@@ -7,13 +7,12 @@ import AppMenuButton from 'components/UI/AppMenuButton'
 const Menu = dynamic(() => import('@material-ui/core/Menu'))
 
 interface UserCardFavoriteMenuProps {
-  id: string
   title: string
   href: string
-  onRemove: (id: string) => void
+  onRemove: () => void
 }
 
-const UserCardMenu = ({ id, title, href, onRemove }: UserCardFavoriteMenuProps): JSX.Element => {
+const UserCardMenu = ({ title, href, onRemove }: UserCardFavoriteMenuProps): JSX.Element => {
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null)
   const [withShare, setWithShare] = useState(false)
 
@@ -24,7 +23,7 @@ const UserCardMenu = ({ id, title, href, onRemove }: UserCardFavoriteMenuProps):
 
   const onRemoveCombine = () => {
     onCloseMenu()
-    onRemove(id)
+    onRemove()
   }
 
   const onCloseMenu = () => setAnchorEl(null)

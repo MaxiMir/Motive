@@ -158,7 +158,7 @@ export default function UserCardAddGoalModal({ onSuccess, onClose }: UserCardAdd
                               }
                             />
                           }
-                          label="remind"
+                          label="remind me"
                         />
                         {task.date && (
                           <Field

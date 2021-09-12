@@ -1,21 +1,20 @@
 import { GetServerSideProps } from 'next'
 import { useRouter } from 'next/router'
-import { QueryClient, useQuery } from 'react-query'
-import { dehydrate } from 'react-query/hydration'
+import useSWR from 'swr'
 import Axios from 'lib/axios'
-import { UserPage } from 'dto'
+import { PageSWR, UserPage } from 'dto'
 import Layout from 'layout'
 import UserCard from 'components/UserCard'
 
-const queryFn = async (url: string) => (await Axios.get(url)).data
+const fetcher = async (url: string) => (await Axios.get(url)).data
 
-export default function UserDetail(): JSX.Element {
+export default function UserDetail({ fallbackData }: PageSWR<UserPage>): JSX.Element {
   const { asPath } = useRouter()
-  const { data, status } = useQuery<UserPage>(asPath, () => queryFn(asPath))
-  const { meta, user, client } = (data as UserPage) || {}
+  const { data, error } = useSWR(asPath, () => fetcher(asPath), { fallbackData })
+  const { meta, user, client } = data || {}
 
   return (
-    <Layout client={client} status={status} {...meta}>
+    <Layout client={client} error={error} {...meta}>
       <UserCard type="detail" client={client} {...user} />
     </Layout>
   )
@@ -23,12 +22,11 @@ export default function UserDetail(): JSX.Element {
 
 export const getServerSideProps: GetServerSideProps = async (ctx) => {
   const url = ctx.req.url as string
-  const queryClient = new QueryClient()
-  await queryClient.prefetchQuery(url, () => queryFn(url))
+  const data = await fetcher(url)
 
   return {
     props: {
-      dehydratedState: dehydrate(queryClient),
+      fallbackData: data,
     },
   }
 }

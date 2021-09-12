@@ -47,6 +47,7 @@ const UserCardDetail = ({
   const { enqueueSnackbar } = useSnackbar()
   const characteristicColors = useCharacteristicColors()
   const [goals, setGoals] = useState(goalsInit)
+
   useQuery('page-views', () => queryFn(id), { refetchOnWindowFocus: false, enabled: !owner })
 
   const onAdd = async (goal: Goal) => {

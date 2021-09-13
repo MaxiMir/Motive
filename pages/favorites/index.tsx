@@ -39,7 +39,6 @@ export default function Favorites({ fallbackData }: PageSWR<FavoritesPage>): JSX
           severity: 'success',
           action: <Button onClick={() => onUndo(id)}>Undo</Button>,
         })
-      mutateSWR(ROUTE.FAVORITES)
     },
     onError() {
       mutateFavoritesLocal(prevFavoritesRef.current)

@@ -1,6 +1,6 @@
-import AppEmoji, { AppEmojiName } from 'components/UI/AppEmoji'
-import AppTypography, { AppTypographyProps } from './AppTypography'
 import AppBox from './AppBox'
+import AppEmoji, { AppEmojiName } from './AppEmoji'
+import AppTypography, { AppTypographyProps } from './AppTypography'
 
 interface AppHeaderProps extends AppTypographyProps {
   name: AppEmojiName

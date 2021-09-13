@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect } from 'react'
 import dynamic from 'next/dynamic'
 import { useRouter } from 'next/router'
 import Image from 'next/image'
@@ -7,9 +7,9 @@ import { makeStyles } from '@material-ui/core/styles'
 import { Characteristic, Client, Goal, UserDetail } from 'dto'
 import ROUTE from 'route'
 import Axios from 'lib/axios'
-import { changeQueryParam, numberToShort } from 'helpers/prepare'
+import { numberToShort } from 'helpers/prepare'
+import { scrollToElem } from 'helpers/dom'
 import useCharacteristicColors from 'hooks/useCharacteristicColors'
-import { useSnackbar } from 'hooks/useSnackbar'
 import AppTooltip from 'components/UI/AppTooltip'
 import AppBox from 'components/UI/AppBox'
 import AppContainer from 'components/UI/AppContainer'
@@ -27,6 +27,7 @@ const AppList = dynamic<AppListProps<Goal>>(() => import('components/UI/AppList'
 export interface UserCardDetailProps extends UserDetail {
   type: 'detail'
   client: Client
+  onAddGoal: (goal: Goal) => void
 }
 
 const queryFn = async (id: string) => await Axios.put(ROUTE.getUser(id))
@@ -39,36 +40,24 @@ const UserCardDetail = ({
   avatar,
   characteristics,
   owner,
-  goals: goalsInit,
+  goals,
   client,
+  onAddGoal,
 }: UserCardDetailProps): JSX.Element => {
   const classes = useStyles()
-  const router = useRouter()
-  const { enqueueSnackbar } = useSnackbar()
+  const { query } = useRouter()
   const characteristicColors = useCharacteristicColors()
-  const [goals, setGoals] = useState(goalsInit)
 
   useQuery('page-views', () => queryFn(id), { refetchOnWindowFocus: false, enabled: !owner })
 
-  const onAdd = async (goal: Goal) => {
-    setGoals([...goals, goal])
-    await router.push(changeQueryParam(router.asPath, 'goal', goal.id), undefined, { shallow: true })
-    enqueueSnackbar({ message: 'The goal is successfully created', severity: 'success', icon: '💎' })
-  }
-
   useEffect(() => {
-    const elem = router.query.goal && document.getElementById(`goal-${router.query.goal}`)
-    elem && elem.scrollIntoView({ behavior: 'smooth' })
-  }, [id, router.query])
-
-  useEffect(() => {
-    setGoals(goalsInit)
-  }, [goalsInit])
+    query.goal && scrollToElem(`goal-${query.goal}`)
+  }, [id, query])
 
   return (
     <AppContainer withFlexColumn>
       <AppBox justifyContent="space-between" mb={2} height={52}>
-        <AppBox alignItems="center">
+        <AppBox alignItems="center" spacing={1}>
           <AppTypography variant="h5" component="h1">
             {name}
           </AppTypography>
@@ -117,7 +106,7 @@ const UserCardDetail = ({
         </AppBox>
         {owner && (
           <AppBox justifyContent="center">
-            <UserCardAddGoal onAdd={onAdd} />
+            <UserCardAddGoal onAdd={onAddGoal} />
           </AppBox>
         )}
         {!goals.length ? (

@@ -7,8 +7,7 @@ import { useSnackbar } from 'hooks/useSnackbar'
 import Header from './Header'
 import Footer from './Footer'
 
-const AppContainer = dynamic(() => import('components/UI/AppContainer'))
-const AppBackButton = dynamic(() => import('components/UI/AppBackButton'))
+const AppHistory = dynamic(() => import('components/UI/AppHistory'))
 
 interface LayoutProps {
   title: string
@@ -18,7 +17,7 @@ interface LayoutProps {
   type: string
   error: boolean
   withVerticalPadding?: boolean
-  withBackBtn?: boolean
+  withHistory?: boolean
   client: Client
 }
 
@@ -28,7 +27,7 @@ const Layout: FC<LayoutProps> = ({
   keywords,
   url,
   type,
-  withBackBtn = true,
+  withHistory = true,
   withVerticalPadding = true,
   error,
   children,
@@ -62,11 +61,7 @@ const Layout: FC<LayoutProps> = ({
       </Head>
       <Header />
       <main className={classes.main}>
-        {withBackBtn && (
-          <AppContainer className={classes.backButtonContainer}>
-            <AppBackButton />
-          </AppContainer>
-        )}
+        {withHistory && <AppHistory />}
         {!error && <>{children}</>}
       </main>
       <Footer />
@@ -82,9 +77,6 @@ const useStyles = makeStyles({
     flexDirection: 'column',
     minHeight: 'calc(100vh - 80px)',
     padding: (props: { withVerticalPadding: boolean }) => (!props.withVerticalPadding ? '0 0 112px' : '24px 0 112px'),
-  },
-  backButtonContainer: {
-    marginBottom: 24,
   },
 })
 

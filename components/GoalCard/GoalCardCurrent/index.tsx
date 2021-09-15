@@ -44,13 +44,13 @@ export default function GoalCardCurrent({
   const [feedbackExpand, setFeedbackExpand] = useState<'more' | 'less'>('more')
   const [discussionExpand, setDiscussionExpand] = useState<'more' | 'less'>('more')
   const days = differenceInDays(new Date(), Date.parse(started))
-  const withForm = ['OWNER', 'MEMBER'].includes(role)
   const showWeb = differenceInDays(new Date(), Date.parse(date)) >= 14
+  const withForm = ['OWNER', 'MEMBER'].includes(role)
   const showFeedback = feedbackExpand === 'less'
   const showDiscussion = discussionExpand === 'less'
 
   return (
-    <AppBox flexDirection="column" spacing={1}>
+    <AppBox flexDirection="column" spacing={1} className={classes.goalContainer}>
       <GoalCardDate id={id} date={date} stepDates={stepDates} onChangeDate={(s) => console.log(s)} />
       <div className={classes.goalWrap} id={`goal-${id}`}>
         <AppBox flexDirection="column" spacing={3} className={classes.content}>
@@ -125,13 +125,22 @@ export default function GoalCardCurrent({
 
 const useStyles = makeStyles((theme) =>
   createStyles({
+    goalContainer: {
+      flex: '1 1 calc(50% - 12px)',
+      flexGrow: 0,
+      [theme.breakpoints.down('sm')]: {
+        flex: 1,
+      },
+    },
     goalWrap: {
       position: 'relative',
+      height: '100%',
       padding: 2,
       background: `linear-gradient(to top left, ${theme.palette.warning.main}, ${theme.palette.success.dark}, ${theme.palette.info.dark})`,
       borderRadius: 15,
     },
     content: {
+      height: '100%',
       padding: 16,
       background: theme.palette.background.paper,
       borderRadius: 13,

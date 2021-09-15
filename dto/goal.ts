@@ -19,14 +19,21 @@ export interface Goal {
   hashtags: string[]
   role: Role
   characteristics: GoalCharacteristics
+  step: Step
+  stepDates: StepDate[]
+}
+
+export interface Step {
+  id: string
   date: string
   tasks: Task[]
   feedback: Feedback
   discussion: number
 }
 
-export interface GoalDatesResponse {
-  data: Pick<Goal, 'id' | 'date'>[]
+export interface StepDate {
+  id: string
+  date: string
 }
 
 export interface Task {

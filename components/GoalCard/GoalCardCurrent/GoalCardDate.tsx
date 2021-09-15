@@ -1,49 +1,41 @@
 import React, { useMemo, useState } from 'react'
-import { useQuery } from 'react-query'
 import { format } from 'date-fns'
 import { Button, IconButton } from '@material-ui/core/'
 import { makeStyles } from '@material-ui/core/styles'
 import { KeyboardDatePicker } from '@material-ui/pickers'
-import ROUTE from 'route'
-import Axios from 'lib/axios'
-import { GoalDatesResponse } from 'dto'
+import { StepDate } from 'dto'
 import useDebounceCb from 'hooks/useDebounceCb'
 import AppBox from 'components/UI/AppBox'
 
 interface GoalCardDateProps {
   id: string
   date: string
+  stepDates: StepDate[]
   onChangeDate: (id: string) => void
 }
 
-const queryFn = async (id: string) => await Axios.get(ROUTE.getGoalDates(id))
+const DATE_FORMAT = 'MM/dd/yy'
 
-export default function GoalCardDate({ id, date, onChangeDate }: GoalCardDateProps): JSX.Element {
+export default function GoalCardDate({ id, date, stepDates, onChangeDate }: GoalCardDateProps): JSX.Element {
   const classes = useStyles()
   const [open, setOpen] = useState(false)
   const [value, setValue] = useState(new Date(date))
-  const { data } = useQuery<GoalDatesResponse>(`goal-dates-${id}`, () => queryFn(id))
   const formattedDate = format(value, 'MM/dd/yy')
-  const dateISO = value?.toISOString()
-  const goals = data?.data
-  const dateIndex = dateISO && goals?.findIndex((goal) => goal.date === dateISO)
-  const prevDate = typeof dateIndex !== 'number' ? undefined : goals?.[dateIndex - 1]?.date
-  const nextDate = typeof dateIndex !== 'number' ? undefined : goals?.[dateIndex + 1]?.date
-  const goalsDate = useMemo(() => goals?.map((goal) => format(new Date(goal.date), 'MM/dd/yyyy')), [goals])
+  const dateISO = value.toISOString()
+  const dateIndex = stepDates.findIndex((s) => s.date === dateISO)
+  const prevDate = stepDates[dateIndex - 1]?.date
+  const nextDate = stepDates[dateIndex + 1]?.date
+  const formattedStepDates = useMemo(() => stepDates.map((s) => format(new Date(s.date), DATE_FORMAT)), [stepDates])
   const onChangeDateWithDebounce = useDebounceCb(onChangeDate, 1500)
 
-  const onChange = (newDate: Date | null) => {
-    newDate && setValue(newDate)
+  const onChange = (changedDate: string) => {
+    setValue(new Date(changedDate))
     onChangeDateWithDebounce(id)
   }
 
   return (
     <AppBox alignSelf="center" alignItems="center" spacing={1}>
-      <IconButton
-        className={classes.button}
-        disabled={!prevDate}
-        onClick={() => onChange(new Date(prevDate as string))}
-      >
+      <IconButton className={classes.button} disabled={!prevDate} onClick={() => onChange(prevDate)}>
         <span className="material-icons">chevron_left</span>
       </IconButton>
       <KeyboardDatePicker
@@ -53,16 +45,11 @@ export default function GoalCardDate({ id, date, onChangeDate }: GoalCardDatePro
         open={open}
         value={value}
         shouldDisableDate={(pickerDate) => {
-          if (!pickerDate || !goalsDate) {
-            return true
-          }
-
-          const pickerDateReset = format(pickerDate as Date, 'MM/dd/yy')
-
-          return !goalsDate.some((goalDate) => goalDate === pickerDateReset)
+          const formattedPickerDateReset = format(pickerDate as Date, DATE_FORMAT)
+          return !formattedStepDates.some((f) => f === formattedPickerDateReset)
         }}
         TextFieldComponent={() => (
-          <Button aria-label="select a goal date" disabled={!goals} onClick={() => setOpen(true)}>
+          <Button aria-label="select a goal date" onClick={() => setOpen(true)}>
             {formattedDate}
           </Button>
         )}
@@ -70,11 +57,7 @@ export default function GoalCardDate({ id, date, onChangeDate }: GoalCardDatePro
         onChange={(newDate) => newDate && setValue(newDate)}
         onClose={() => setOpen(false)}
       />
-      <IconButton
-        className={classes.button}
-        disabled={!nextDate}
-        onClick={() => onChange(new Date(nextDate as string))}
-      >
+      <IconButton className={classes.button} disabled={!nextDate} onClick={() => onChange(nextDate)}>
         <span className="material-icons">chevron_right</span>
       </IconButton>
     </AppBox>

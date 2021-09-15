@@ -28,12 +28,3 @@ const truncated = (num: number, decimalPlaces = 1): number => {
 }
 
 export const toUpperFirstChar = (string: string): string => string[0].toUpperCase() + string.slice(1)
-
-export const changeQueryParam = (urn: string, name: string, value: string): string => {
-  const [urnWithoutQueryParam, queryParams = ''] = urn.split('?', 2)
-  const searchParams = new URLSearchParams(queryParams)
-
-  searchParams.set(name, value)
-
-  return [urnWithoutQueryParam, searchParams].join('?')
-}

@@ -1,13 +1,10 @@
 import React, { FC, useEffect } from 'react'
 import Head from 'next/head'
-import dynamic from 'next/dynamic'
 import { makeStyles } from '@material-ui/core/styles'
 import { Client } from 'dto'
 import { useSnackbar } from 'hooks/useSnackbar'
 import Header from './Header'
 import Footer from './Footer'
-
-const AppHistory = dynamic(() => import('components/UI/AppHistory'))
 
 interface LayoutProps {
   title: string
@@ -17,7 +14,6 @@ interface LayoutProps {
   type: string
   error: boolean
   withVerticalPadding?: boolean
-  withHistory?: boolean
   client: Client
 }
 
@@ -27,7 +23,6 @@ const Layout: FC<LayoutProps> = ({
   keywords,
   url,
   type,
-  withHistory = true,
   withVerticalPadding = true,
   error,
   children,
@@ -60,10 +55,7 @@ const Layout: FC<LayoutProps> = ({
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
       </Head>
       <Header />
-      <main className={classes.main}>
-        {withHistory && <AppHistory />}
-        {!error && <>{children}</>}
-      </main>
+      <main className={classes.main}>{!error && <>{children}</>}</main>
       <Footer />
     </>
   )

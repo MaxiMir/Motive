@@ -8,7 +8,7 @@ export default {
     return toUrn(this.USERS, id)
   },
   getUserFavorite(id: string): string {
-    return toUrn(this.getTaskId(id))
+    return toUrn(this.getUser(id))
   },
   FAVORITES: '/favorites',
   PROFILE: '/profile',
@@ -16,9 +16,6 @@ export default {
   GOALS: '/goals',
   getGoal(id: string): string {
     return toUrn(this.GOALS, id)
-  },
-  getGoalDates(id: string): string {
-    return toUrn(this.getGoal(id), 'dates')
   },
   TASKS: '/tasks',
   getTaskId(id: string): string {

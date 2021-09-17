@@ -1,30 +1,31 @@
 import React, { useState } from 'react'
-import { useMutation } from 'react-query'
 import { makeStyles } from '@material-ui/core/styles'
 import { IconButton } from '@material-ui/core'
 import { UserDetail } from 'dto'
 import ROUTE from 'route'
-import Axios from 'lib/axios'
 import useDebounceCb from 'hooks/useDebounceCb'
+import useSend from 'hooks/useSend'
 import { useSnackbar } from 'hooks/useSnackbar'
 import AppEmoji from 'components/UI/AppEmoji'
 
 type UserCardFavoriteProps = Pick<UserDetail, 'id' | 'favorite'>
 
 const UserCardFavorite = ({ id, favorite: initial }: UserCardFavoriteProps): JSX.Element => {
+  const url = ROUTE.getUserFavorite(id)
   const { enqueueSnackbar } = useSnackbar()
   const classes = useStyles()
   const [isFavorite, setIsFavorite] = useState(initial)
-  const { mutate } = useMutation((favorite: boolean) => Axios.put(ROUTE.getUserFavorite(id), favorite), {
+  const { send } = useSend({
+    onSuccess() {
+      enqueueSnackbar({ message: isFavorite ? 'Added to favorites' : 'Removed from favorites', severity: 'success' })
+    },
     onError(_, favorite) {
       setIsFavorite(!favorite)
       enqueueSnackbar({ message: 'Something went wrong...', severity: 'error' })
     },
-    onSuccess() {
-      enqueueSnackbar({ message: isFavorite ? 'Added to favorites' : 'Removed from favorites', severity: 'success' })
-    },
   })
-  const mutateWithDebounce = useDebounceCb(mutate, 500)
+
+  const mutateWithDebounce = useDebounceCb((data: boolean) => send({ url, method: 'put', data }), 500)
 
   const onClick = () => {
     setIsFavorite(!isFavorite)

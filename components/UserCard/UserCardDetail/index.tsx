@@ -2,11 +2,11 @@ import { useEffect } from 'react'
 import dynamic from 'next/dynamic'
 import { useRouter } from 'next/router'
 import Image from 'next/image'
-import { useQuery } from 'react-query'
-import { makeStyles } from '@material-ui/core/styles'
-import { Characteristic, Client, Goal, UserDetail } from 'dto'
-import ROUTE from 'route'
+import useSWR from 'swr'
 import Axios from 'lib/axios'
+import { makeStyles } from '@material-ui/core/styles'
+import ROUTE from 'route'
+import { Characteristic, Client, Goal, UserDetail } from 'dto'
 import { numberToShort } from 'helpers/prepare'
 import { scrollToElem } from 'helpers/dom'
 import useCharacteristicColors from 'hooks/useCharacteristicColors'
@@ -30,7 +30,7 @@ export interface UserCardDetailProps extends UserDetail {
   onAddGoal: (goal: Goal) => void
 }
 
-const queryFn = async (id: string) => await Axios.put(ROUTE.getUser(id))
+const fetcher = async (id: string) => await Axios.put(ROUTE.getUser(id))
 
 const UserCardDetail = ({
   id,
@@ -47,8 +47,7 @@ const UserCardDetail = ({
   const classes = useStyles()
   const { query } = useRouter()
   const characteristicColors = useCharacteristicColors()
-
-  useQuery('page-views', () => queryFn(id), { refetchOnWindowFocus: false, enabled: !owner })
+  useSWR(owner ? null : 'page-views', () => fetcher(id), { revalidateOnFocus: false })
 
   useEffect(() => {
     query.goal && scrollToElem(`goal-${query.goal}`)
@@ -56,7 +55,7 @@ const UserCardDetail = ({
 
   return (
     <AppContainer withFlexColumn>
-      <AppBox justifyContent="space-between" mb={2} height={52}>
+      <AppBox justifyContent="space-between" mb={2}>
         <AppBox alignItems="center" spacing={1}>
           <AppTypography variant="h5" component="h1">
             {name}

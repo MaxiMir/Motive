@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
+    "dev": "NODE_OPTIONS='--inspect' next dev",
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
@@ -43,7 +43,6 @@
     "react-images": "^1.2.0-beta.7",
     "react-photo-gallery": "^8.0.0",
     "react-player": "^2.9.0",
-    "react-query": "^3.19.2",
     "swr": "^1.0.0",
     "yup": "^0.32.9"
   },

@@ -1,10 +1,9 @@
 import React, { ChangeEvent, useState } from 'react'
 import dynamic from 'next/dynamic'
-import { useMutation } from 'react-query'
-import Axios from 'lib/axios'
 import { Task } from 'dto'
 import ROUTE from 'route'
 import useDebounceCb from 'hooks/useDebounceCb'
+import useSend from 'hooks/useSend'
 import { useSnackbar } from 'hooks/useSnackbar'
 import AppCheckbox from 'components/UI/AppCheckbox'
 
@@ -25,9 +24,10 @@ export default function GoalCardTaskForm({
   rest,
   onSet,
 }: GoalCardTaskFormProps): JSX.Element {
+  const url = ROUTE.getTaskId(id)
   const { enqueueSnackbar, closeSnackbar } = useSnackbar()
   const [checked, setChecked] = useState(initial)
-  const { mutate, isLoading } = useMutation((completed: boolean) => Axios.put(ROUTE.getTaskId(id), { completed }), {
+  const { isLoading, send } = useSend({
     onSuccess(_, completed) {
       const restWithNew = rest - 1
 
@@ -45,7 +45,8 @@ export default function GoalCardTaskForm({
       enqueueSnackbar({ message: 'Something went wrong...', severity: 'error' })
     },
   })
-  const mutateWithDebounce = useDebounceCb(mutate, 500)
+
+  const mutateWithDebounce = useDebounceCb((data) => send({ url, method: 'put', data }), 500)
 
   const onChange = (_: ChangeEvent<unknown>, isChecked: boolean) => {
     setChecked(isChecked)
@@ -55,7 +56,7 @@ export default function GoalCardTaskForm({
   function onUndo() {
     setChecked(!checked)
     closeSnackbar()
-    mutate(!checked)
+    send({ url, method: 'put', data: !checked })
   }
 
   return (

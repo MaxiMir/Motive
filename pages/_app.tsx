@@ -1,7 +1,6 @@
 import React, { useState } from 'react'
 import dynamic from 'next/dynamic'
 import { AppProps } from 'next/app'
-import { QueryClient, QueryClientProvider } from 'react-query'
 import DateFnsUtils from '@date-io/date-fns'
 import NextNprogress from 'nextjs-progressbar'
 import { MuiPickersUtilsProvider } from '@material-ui/pickers'
@@ -13,7 +12,6 @@ import theme from 'theme'
 const AppSnackbar = dynamic(() => import('components/UI/AppSnackbar'))
 
 export default function MyApp({ Component, pageProps }: AppProps): JSX.Element {
-  const [queryClient] = useState(() => new QueryClient())
   const [snackbarProps, setSnackbarProps] = useState<ContextSnackbarProps | null>(null)
 
   React.useEffect(() => {
@@ -26,18 +24,16 @@ export default function MyApp({ Component, pageProps }: AppProps): JSX.Element {
   }, [])
 
   return (
-    <QueryClientProvider client={queryClient}>
-      <MuiPickersUtilsProvider utils={DateFnsUtils}>
-        <ThemeProvider theme={theme}>
-          <SnackbarContext.Provider value={{ props: snackbarProps, setProps: setSnackbarProps }}>
-            <NextNprogress color={theme.palette.secondary.main} />
-            {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
-            <CssBaseline />
-            <Component {...pageProps} />
-            {snackbarProps && <AppSnackbar {...snackbarProps} onClose={() => setSnackbarProps(null)} />}
-          </SnackbarContext.Provider>
-        </ThemeProvider>
-      </MuiPickersUtilsProvider>
-    </QueryClientProvider>
+    <MuiPickersUtilsProvider utils={DateFnsUtils}>
+      <ThemeProvider theme={theme}>
+        <NextNprogress color={theme.palette.secondary.main} />
+        {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
+        <CssBaseline />
+        <SnackbarContext.Provider value={{ props: snackbarProps, setProps: setSnackbarProps }}>
+          <Component {...pageProps} />
+        </SnackbarContext.Provider>
+        {snackbarProps && <AppSnackbar {...snackbarProps} onClose={() => setSnackbarProps(null)} />}
+      </ThemeProvider>
+    </MuiPickersUtilsProvider>
   )
 }

@@ -4,6 +4,7 @@ import { makeStyles } from '@material-ui/core/styles'
 import ROUTE from 'route'
 import AppBox from 'components/UI/AppBox'
 import AppLink from 'components/UI/AppLink'
+import AppContainer from 'components/UI/AppContainer'
 import { TopOfTheDayIcon, SearchIcon, RatingIcon, FavoritesMenuIcon, ProfileIcon } from 'components/UI/icons'
 
 const LINKS = [
@@ -24,20 +25,21 @@ export default function Footer(): JSX.Element {
 
   return (
     <footer className={classes.root}>
-      <AppBox justifyContent="space-between" alignItems="center" flexGrow={1} height="100%" padding={2}>
-        {LINKS.map(({ href, title, Icon }) => (
-          <AppLink href={href} key={title} title={title}>
-            <Icon fontSize="large" className={pathname !== href ? classes.link : classes.currentLink} />
-          </AppLink>
-        ))}
-      </AppBox>
+      <AppContainer>
+        <AppBox justifyContent="space-between" alignItems="center" height={80}>
+          {LINKS.map(({ href, title, Icon }) => (
+            <AppLink href={href} key={title} title={title}>
+              <Icon fontSize="large" className={pathname !== href ? classes.link : classes.currentLink} />
+            </AppLink>
+          ))}
+        </AppBox>
+      </AppContainer>
     </footer>
   )
 }
 
 const useStyles = makeStyles({
   root: {
-    height: 80,
     backgroundColor: '#121212',
   },
   link: {

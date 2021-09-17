@@ -1,15 +1,13 @@
 import React, { Fragment, useMemo, useState } from 'react'
 import dynamic from 'next/dynamic'
-import { AxiosError } from 'axios'
-import Axios from 'lib/axios'
-import { useMutation } from 'react-query'
 import { object, string, array, SchemaOf } from 'yup'
 import { Field, FieldArray, Form, FormikProvider, useFormik } from 'formik'
 import { addDays } from 'date-fns'
 import { makeStyles } from '@material-ui/core/styles'
 import { Button, Collapse, FormControlLabel, IconButton, Switch } from '@material-ui/core'
 import ROUTE from 'route'
-import { Goal, GoalCreation, GoalCreationResponse } from 'dto'
+import { Goal, GoalCreation } from 'dto'
+import useSend from 'hooks/useSend'
 import useFocus from 'hooks/useFocus'
 import { useSnackbar } from 'hooks/useSnackbar'
 import AppModal from 'components/UI/AppModal'
@@ -52,6 +50,10 @@ export default function UserCardAddGoalModal({ onSuccess, onClose }: UserCardAdd
   const { enqueueSnackbar } = useSnackbar()
   const tomorrow = useMemo(() => addDays(new Date(), 1), [])
   const [expandPittText, setExpandPittText] = useState<'more' | 'less'>('more')
+  const { isLoading, send } = useSend({
+    onSuccess: (response) => onSuccess(response.data),
+    onError: () => enqueueSnackbar({ message: 'Something went wrong...', severity: 'error' }),
+  })
   const formik = useFormik({
     initialValues: {
       name: '',
@@ -59,21 +61,14 @@ export default function UserCardAddGoalModal({ onSuccess, onClose }: UserCardAdd
       tasks: [{ name: '', date: undefined }],
     },
     validationSchema: schema,
-    async onSubmit(formValues) {
-      mutate(formValues)
+    async onSubmit(data) {
+      send({
+        url: ROUTE.GOALS,
+        method: 'post',
+        data,
+      })
     },
   })
-  const { mutate, isLoading } = useMutation<GoalCreationResponse, AxiosError, GoalCreation>(
-    (goal: GoalCreation) => Axios.post(ROUTE.GOALS, goal),
-    {
-      onSuccess(response) {
-        onSuccess(response.data)
-      },
-      onError() {
-        enqueueSnackbar({ message: 'Something went wrong...', severity: 'error' })
-      },
-    },
-  )
   const { values, setFieldValue, handleSubmit } = formik
   const showPittText = expandPittText === 'less'
 

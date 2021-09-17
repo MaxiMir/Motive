@@ -13,7 +13,7 @@ interface UserCardFavoriteMenuProps {
 }
 
 const UserCardMenu = ({ title, href, onRemove }: UserCardFavoriteMenuProps): JSX.Element => {
-  const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null)
+  const [anchorEl, setAnchorEl] = useState<HTMLElement | null>(null)
   const [withShare, setWithShare] = useState(false)
 
   const onShare = () => {
@@ -37,19 +37,7 @@ const UserCardMenu = ({ title, href, onRemove }: UserCardFavoriteMenuProps): JSX
         onClick={(e) => setAnchorEl(e.currentTarget)}
       />
       {anchorEl && (
-        <Menu
-          id="user-menu"
-          anchorEl={anchorEl}
-          keepMounted
-          open={!!anchorEl}
-          PaperProps={{
-            style: {
-              paddingLeft: 15,
-              paddingRight: 15,
-            },
-          }}
-          onClose={onCloseMenu}
-        >
+        <Menu id="user-menu" anchorEl={anchorEl} keepMounted open={!!anchorEl} onClose={onCloseMenu}>
           <MenuItem onClick={onShare}>Share</MenuItem>
           <MenuItem onClick={onRemoveCombine}>Remove from Favorites</MenuItem>
           <MenuItem onClick={onCloseMenu}>Cancel</MenuItem>

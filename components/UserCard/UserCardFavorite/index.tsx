@@ -1,7 +1,7 @@
 import { Fragment } from 'react'
 import Image from 'next/image'
 import { makeStyles } from '@material-ui/core/styles'
-import { Characteristic as CharacteristicDto, User } from 'dto'
+import { User, UserCharacteristic } from 'dto'
 import useCharacteristicColors from 'hooks/useCharacteristicColors'
 import Characteristic from 'components/CharacteristicCard'
 import AppBox from 'components/UI/AppBox'
@@ -10,7 +10,7 @@ import AppDot from 'components/UI/AppDot'
 import AppTypography from 'components/UI/AppTypography'
 import UserCardMenu from './UserCardMenu'
 
-const CHARACTERISTICS: CharacteristicDto[] = ['motivation', 'creativity', 'support', 'completed']
+const CHARACTERISTICS: UserCharacteristic[] = ['motivation', 'creativity', 'support', 'completed']
 const LAST_CHARACTERISTIC_INDEX = 3
 
 export interface UserCardFavoriteProps extends User {

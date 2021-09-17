@@ -1,5 +1,5 @@
 import dynamic from 'next/dynamic'
-import { Characteristic } from 'dto'
+import { UserCharacteristic } from 'dto'
 import { toUpperFirstChar } from 'helpers/prepare'
 import AppEmoji from 'components/UI/AppEmoji'
 import AppBox from 'components/UI/AppBox'
@@ -10,7 +10,7 @@ const CharacteristicCardLvl = dynamic(() => import('./CharacteristicCardLvl'))
 
 export interface CharacteristicCardUserProps {
   type: 'user'
-  characteristic: Characteristic
+  characteristic: UserCharacteristic
   value: number
   color: string
 }

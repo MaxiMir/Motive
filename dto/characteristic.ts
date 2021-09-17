@@ -1,7 +1,9 @@
-export type Characteristic = 'motivation' | 'creativity' | 'support' | 'completed' | 'abandoned'
+export type Characteristic = 'motivation' | 'creativity' | 'support' | 'completed' | 'abandoned' | 'members'
+
+export type UserCharacteristic = Exclude<Characteristic, 'members'>
 
 export type UserCharacteristics = {
-  [k in Characteristic]: number
+  [k in UserCharacteristic]: number
 }
 
 export type GoalCharacteristic = Exclude<Characteristic, 'completed' | 'abandoned'>

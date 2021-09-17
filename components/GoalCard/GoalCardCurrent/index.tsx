@@ -12,6 +12,7 @@ import AppIconText from 'components/UI/AppIcon'
 import GoalCardMenu from './GoalCardMenu'
 import GoalCardDiscussion from './GoalCardDiscussion'
 import GoalCardDate from './GoalCardDate'
+import AppDot from '../../UI/AppDot'
 
 const GoalCardTask = dynamic(() => import('./GoalCardTask'))
 const GoalCardHashtags = dynamic(() => import('./GoalCardHashtags'))
@@ -19,7 +20,7 @@ const GoalCardTaskForm = dynamic(() => import('./GoalCardTaskForm'))
 const GoalCardFeedback = dynamic(() => import('./GoalCardFeedback'))
 const GoalCardWeb = dynamic(() => import('./GoalCardWeb'))
 
-const CHARACTERISTICS: GoalCharacteristic[] = ['motivation', 'creativity', 'support']
+const CHARACTERISTICS: GoalCharacteristic[] = ['motivation', 'creativity', 'support', 'members']
 
 export interface GoalCardCurrentProps extends Goal {
   type: 'current'
@@ -62,13 +63,16 @@ export default function GoalCardCurrent({
           </AppBox>
           <AppBox justifyContent="space-between" alignItems="center">
             {CHARACTERISTICS.map((characteristic) => (
-              <CharacteristicCard
-                type="goal"
-                characteristic={characteristic}
-                value={characteristics[characteristic]}
-                color={colors[characteristic].fontColor}
-                key={characteristic}
-              />
+              <>
+                <CharacteristicCard
+                  type="goal"
+                  characteristic={characteristic}
+                  value={characteristics[characteristic]}
+                  color={colors[characteristic].fontColor}
+                  key={characteristic}
+                />
+                <AppDot />
+              </>
             ))}
             <CharacteristicCard
               type="goal"

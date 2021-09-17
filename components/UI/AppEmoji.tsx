@@ -18,7 +18,7 @@ export type AppEmojiName =
 
 interface AppEmojiProps {
   name: AppEmojiName
-  variant: AppTypographyProps['variant']
+  variant?: AppTypographyProps['variant']
   className?: string
 }
 
@@ -37,6 +37,8 @@ export default function AppEmoji({ name, ...restProps }: AppEmojiProps): JSX.Ele
         return '🏆'
       case 'abandoned':
         return '🕸'
+      case 'members':
+        return '📬'
       case 'favorite-active':
         return '🌟'
       case 'favorite':

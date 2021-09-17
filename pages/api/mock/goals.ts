@@ -11,6 +11,7 @@ export const learnFrench: Goal = {
     motivation: 1120, // ALL
     support: 4, // ALL
     creativity: 45, // ALL
+    members: 158,
   },
   step: {
     id: '232',
@@ -63,6 +64,7 @@ export const becomeSenior: Goal = {
     motivation: 5,
     support: 12,
     creativity: 32,
+    members: 3,
   },
   step: {
     id: '312',
@@ -101,6 +103,7 @@ export const getNewGoal = (goalCreation: GoalCreation): Goal => {
       motivation: 0,
       support: 0,
       creativity: 0,
+      members: 0,
     },
     step: {
       id: '312',

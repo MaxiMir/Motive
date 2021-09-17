@@ -35,8 +35,13 @@ export default function useCharacteristicColors(): { [k in Characteristic]: Char
     },
     abandoned: {
       fontColor: '#AEABAE',
-      start: palette.text.disabled,
-      end: '#1D1D1F',
+      start: palette.text.disabled, // unused
+      end: '#1D1D1F', // unused
+    },
+    members: {
+      fontColor: '#EF8277',
+      start: palette.text.disabled, // unused
+      end: '#1D1D1F', // unused
     },
   }
 }

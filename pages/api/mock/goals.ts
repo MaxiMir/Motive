@@ -1,7 +1,7 @@
 import { Goal, GoalCreation } from 'dto'
 
 export const learnFrench: Goal = {
-  id: '3143',
+  id: '314',
   name: 'learn French',
   href: '/better/maximir?goal=314',
   started: '2021-07-30T18:31:42',
@@ -15,7 +15,7 @@ export const learnFrench: Goal = {
   },
   step: {
     id: '232',
-    date: '2021-09-03T00:00:00.000Z', // 00:00:00.000
+    date: '2021-09-13T00:00:00.000Z', // 00:00:00.000
     tasks: [
       {
         id: '1',
@@ -45,11 +45,11 @@ export const learnFrench: Goal = {
     discussion: 21,
   },
   stepDates: [
-    { id: '5', date: '2021-08-06T00:00:00.000Z' },
-    { id: '3', date: '2021-08-07T00:00:00.000Z' },
-    { id: '2', date: '2021-08-08T00:00:00.000Z' },
-    { id: '1', date: '2021-08-10T00:00:00.000Z' },
-    { id: '3143', date: '2021-09-03T00:00:00.000Z' },
+    { id: '5', date: '2021-09-06T00:00:00.000Z' },
+    { id: '3', date: '2021-09-07T00:00:00.000Z' },
+    { id: '2', date: '2021-09-08T00:00:00.000Z' },
+    { id: '1', date: '2021-09-10T00:00:00.000Z' },
+    { id: '3143', date: '2021-09-13T00:00:00.000Z' },
   ],
 }
 
@@ -57,7 +57,7 @@ export const becomeSenior: Goal = {
   id: '214',
   name: 'become senior',
   href: '/better/maximir?goal=214',
-  started: '2021-08-01T12:31:42',
+  started: '2021-09-01T12:31:42',
   hashtags: ['programming', 'knowledge'],
   role: 'OWNER',
   characteristics: {
@@ -68,7 +68,7 @@ export const becomeSenior: Goal = {
   },
   step: {
     id: '312',
-    date: '2021-08-02T00:00:00.000Z',
+    date: '2021-09-02T00:00:00.000Z',
     tasks: [{ id: '11', name: 'watch video', completed: false, completedByOthers: false }],
     feedback: {
       text: null,
@@ -78,11 +78,11 @@ export const becomeSenior: Goal = {
     discussion: 0,
   },
   stepDates: [
-    { id: '5', date: '2021-08-06T00:00:00.000Z' },
-    { id: '3', date: '2021-08-07T00:00:00.000Z' },
-    { id: '2', date: '2021-08-08T00:00:00.000Z' },
-    { id: '1', date: '2021-08-10T00:00:00.000Z' },
-    { id: '3143', date: '2021-09-03T00:00:00.000Z' },
+    { id: '5', date: '2021-09-06T00:00:00.000Z' },
+    { id: '3', date: '2021-09-07T00:00:00.000Z' },
+    { id: '2', date: '2021-09-08T00:00:00.000Z' },
+    { id: '1', date: '2021-09-10T00:00:00.000Z' },
+    { id: '3143', date: '2021-09-13T00:00:00.000Z' },
   ],
 }
 

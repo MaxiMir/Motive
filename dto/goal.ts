@@ -7,10 +7,6 @@ export interface GoalCreation {
   tasks: Array<Omit<Task, 'id' | 'completed' | 'completedByOthers'>>
 }
 
-export interface GoalCreationResponse {
-  data: Goal
-}
-
 export interface Goal {
   id: string
   name: string

@@ -8,7 +8,6 @@ import useDebounceCb from 'hooks/useDebounceCb'
 import AppBox from 'components/UI/AppBox'
 
 interface GoalCardDateProps {
-  id: string
   date: string
   stepDates: StepDate[]
   onChangeDate: (id: string) => void
@@ -16,7 +15,7 @@ interface GoalCardDateProps {
 
 const DATE_FORMAT = 'MM/dd/yy'
 
-export default function GoalCardDate({ id, date, stepDates, onChangeDate }: GoalCardDateProps): JSX.Element {
+export default function GoalCardDate({ date, stepDates, onChangeDate }: GoalCardDateProps): JSX.Element {
   const classes = useStyles()
   const [open, setOpen] = useState(false)
   const [value, setValue] = useState(new Date(date))
@@ -28,9 +27,10 @@ export default function GoalCardDate({ id, date, stepDates, onChangeDate }: Goal
   const formattedStepDates = useMemo(() => stepDates.map((s) => format(new Date(s.date), DATE_FORMAT)), [stepDates])
   const onChangeDateWithDebounce = useDebounceCb(onChangeDate, 1500)
 
-  const onChange = (changedDate: string) => {
-    setValue(new Date(changedDate))
-    onChangeDateWithDebounce(id)
+  const onChange = (newFormattedDate: string) => {
+    const changedDate = new Date(newFormattedDate)
+    setValue(changedDate)
+    onChangeDateWithDebounce(newFormattedDate)
   }
 
   return (
@@ -54,7 +54,12 @@ export default function GoalCardDate({ id, date, stepDates, onChangeDate }: Goal
           </Button>
         )}
         onClick={() => setOpen(true)}
-        onChange={(newDate) => newDate && setValue(newDate)}
+        onChange={(newDate) => {
+          if (newDate) {
+            setValue(newDate)
+            // onChangeDate()
+          }
+        }}
         onClose={() => setOpen(false)}
       />
       <IconButton className={classes.button} disabled={!nextDate} onClick={() => onChange(nextDate)}>

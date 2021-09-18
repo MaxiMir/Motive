@@ -6,7 +6,7 @@ import useSWR from 'swr'
 import Axios from 'lib/axios'
 import { makeStyles } from '@material-ui/core/styles'
 import ROUTE from 'route'
-import { Characteristic, Client, Goal, UserDetail } from 'dto'
+import { Client, Goal, UserDetail, UserCharacteristic } from 'dto'
 import { numberToShort } from 'helpers/prepare'
 import { scrollToElem } from 'helpers/dom'
 import useCharacteristicColors from 'hooks/useCharacteristicColors'
@@ -80,7 +80,7 @@ const UserCardDetail = ({
           />
           <AppBox flexDirection="column" justifyContent="space-between" flex={1}>
             <AppBox justifyContent="space-between">
-              {(['motivation', 'creativity', 'support'] as Characteristic[]).map((type) => (
+              {(['motivation', 'creativity', 'support'] as UserCharacteristic[]).map((type) => (
                 <UserCardCharacteristic
                   type="user"
                   characteristic={type}
@@ -91,7 +91,7 @@ const UserCardDetail = ({
               ))}
             </AppBox>
             <AppBox justifyContent="space-between">
-              {(['abandoned', 'completed'] as Characteristic[]).map((type) => (
+              {(['abandoned', 'completed'] as UserCharacteristic[]).map((type) => (
                 <UserCardCharacteristic
                   type="user"
                   characteristic={type}

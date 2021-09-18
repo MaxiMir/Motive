@@ -13,7 +13,7 @@ export interface UserDetail extends User {
   views: number
   favorite: boolean
   owner: boolean
-  goals: Array<Goal>
+  goals: Goal[]
 }
 
 export interface Client {

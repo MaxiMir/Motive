@@ -5,7 +5,7 @@ import useSWR from 'swr'
 import Axios from 'lib/axios'
 import { Container } from '@material-ui/core'
 import ROUTE from 'route'
-import { PageSWR, RatingPage, User, Characteristic } from 'dto'
+import { PageSWR, RatingPage, User, UserCharacteristic } from 'dto'
 import Layout from 'layout'
 import UserCard from 'components/UserCard'
 import AppEmoji from 'components/UI/AppEmoji'
@@ -16,7 +16,7 @@ import AppList from 'components/UI/AppList'
 import AppTypography from 'components/UI/AppTypography'
 import TabNames from './TabNames'
 
-const TABS: Characteristic[] = ['motivation', 'creativity', 'support']
+const TABS: UserCharacteristic[] = ['motivation', 'creativity', 'support']
 
 const fetcher = async () => (await Axios.get(ROUTE.RATING)).data
 

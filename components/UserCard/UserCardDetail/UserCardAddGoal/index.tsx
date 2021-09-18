@@ -15,8 +15,8 @@ export default function UserCardAddGoal({ onAdd }: UserCardAddGoalProps): JSX.El
   const [open, setOpen] = useState(false)
 
   const onSuccess = (goal: Goal) => {
-    setOpen(false)
     onAdd(goal)
+    setOpen(false)
   }
 
   return (

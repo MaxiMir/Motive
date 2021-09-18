@@ -1,5 +1,5 @@
 import { Client, User, UserDetail } from './user'
-import { Characteristic } from './characteristic'
+import { UserCharacteristic } from './characteristic'
 
 export type PageSWR<T> = {
   fallbackData: Page<T>
@@ -22,7 +22,7 @@ export type RatingPage = Page<
   {
     [k in 'motivation' | 'creativity' | 'support']: {
       list: User[]
-      characteristic: Characteristic
+      characteristic: UserCharacteristic
     }
   }
 >

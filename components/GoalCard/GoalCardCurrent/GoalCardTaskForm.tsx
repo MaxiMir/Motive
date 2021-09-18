@@ -1,8 +1,7 @@
-import React, { ChangeEvent, useState } from 'react'
+import React, { useState } from 'react'
 import dynamic from 'next/dynamic'
 import { Task } from 'dto'
 import ROUTE from 'route'
-import useDebounceCb from 'hooks/useDebounceCb'
 import useSend from 'hooks/useSend'
 import { useSnackbar } from 'hooks/useSnackbar'
 import AppCheckbox from 'components/UI/AppCheckbox'
@@ -24,21 +23,19 @@ export default function GoalCardTaskForm({
   rest,
   onSet,
 }: GoalCardTaskFormProps): JSX.Element {
-  const url = ROUTE.getTaskId(id)
   const { enqueueSnackbar, closeSnackbar } = useSnackbar()
   const [checked, setChecked] = useState(initial)
   const { isLoading, send } = useSend({
-    onSuccess(_, completed) {
+    onSuccess(_, data) {
       const restWithNew = rest - 1
 
-      completed &&
+      data.completed &&
         enqueueSnackbar({
           message: !restWithNew ? 'Well done! All tasks are completed' : `Do it! Remains to be done: ${restWithNew}`,
           severity: 'success',
           icon: !restWithNew ? '🦾️' : '⚡️',
           action: <Button onClick={onUndo}>Undo</Button>,
         })
-      onSet(completed)
     },
     onError(_, completed) {
       setChecked(!completed)
@@ -46,17 +43,15 @@ export default function GoalCardTaskForm({
     },
   })
 
-  const mutateWithDebounce = useDebounceCb((data) => send({ url, method: 'put', data }), 500)
-
-  const onChange = (_: ChangeEvent<unknown>, isChecked: boolean) => {
+  const onChange = (isChecked: boolean) => {
+    onSet(isChecked)
     setChecked(isChecked)
-    mutateWithDebounce(isChecked)
+    send({ url: ROUTE.getTaskId(id), method: 'put', data: { completed: isChecked } })
   }
 
   function onUndo() {
-    setChecked(!checked)
+    onChange(false)
     closeSnackbar()
-    send({ url, method: 'put', data: !checked })
   }
 
   return (
@@ -66,7 +61,7 @@ export default function GoalCardTaskForm({
         label={name + (completedByOthers && !checked ? ' 🔥' : '')}
         checked={checked}
         disabled={checked || isLoading}
-        onChange={onChange}
+        onChange={(_, isChecked) => onChange(isChecked)}
       />
       {date && <GoalCardTaskDate date={date} />}
     </form>

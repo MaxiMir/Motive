@@ -15,7 +15,7 @@ export interface CharacteristicCardGoalProps {
 const CharacteristicCardGoal = ({ characteristic, value, color }: CharacteristicCardGoalProps): JSX.Element => (
   <AppTooltip title={toUpperFirstChar(characteristic)}>
     <AppBox flexDirection="column" alignItems="center" spacing={1} width={40}>
-      <AppEmoji name={characteristic} variant="h6" />
+      <AppEmoji name={characteristic} variant="h5" />
       <AppBox>
         <AppTypography component="p" style={{ color }}>
           {numberToShort(value)}

@@ -1,7 +1,7 @@
 import Image from 'next/image'
 import { makeStyles } from '@material-ui/core/styles'
 import { CharacteristicColors } from 'hooks/useCharacteristicColors'
-import { UserCharacteristics, Characteristic } from 'dto'
+import { UserCharacteristics, UserCharacteristic } from 'dto'
 import AppBox from 'components/UI/AppBox'
 import AppCircle from 'components/UI/AppCircle'
 
@@ -12,7 +12,7 @@ interface UserCardAvatarProps {
 }
 
 interface CircleItem {
-  type: Characteristic
+  type: UserCharacteristic
   size: number
   strokeWidth: number
   strokeWidthBg: number

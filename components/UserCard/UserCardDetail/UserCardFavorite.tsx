@@ -11,7 +11,6 @@ import AppEmoji from 'components/UI/AppEmoji'
 type UserCardFavoriteProps = Pick<UserDetail, 'id' | 'favorite'>
 
 const UserCardFavorite = ({ id, favorite: initial }: UserCardFavoriteProps): JSX.Element => {
-  const url = ROUTE.getUserFavorite(id)
   const { enqueueSnackbar } = useSnackbar()
   const classes = useStyles()
   const [isFavorite, setIsFavorite] = useState(initial)
@@ -25,7 +24,10 @@ const UserCardFavorite = ({ id, favorite: initial }: UserCardFavoriteProps): JSX
     },
   })
 
-  const mutateWithDebounce = useDebounceCb((data: boolean) => send({ url, method: 'put', data }), 500)
+  const mutateWithDebounce = useDebounceCb(
+    (f: boolean) => send({ url: ROUTE.getUserFavorite(id), method: 'put', data: { favorite: f } }),
+    500,
+  )
 
   const onClick = () => {
     setIsFavorite(!isFavorite)

@@ -1,18 +1,19 @@
-import { Fragment, useState } from 'react'
+import { Fragment, useRef, useState } from 'react'
 import dynamic from 'next/dynamic'
 import { differenceInDays } from 'date-fns'
 import { createStyles, useTheme, IconButton } from '@material-ui/core'
 import { makeStyles } from '@material-ui/core/styles'
 import { Goal, GoalCharacteristic } from 'dto'
+import { setQueryParams } from 'helpers/url'
 import useCharacteristicColors from 'hooks/useCharacteristicColors'
 import CharacteristicCard from 'components/CharacteristicCard'
 import AppBox from 'components/UI/AppBox'
 import AppHeader from 'components/UI/AppHeader'
 import AppIconText from 'components/UI/AppIcon'
+import AppDot from 'components/UI/AppDot'
+import GoalCardDate from './GoalCardDate'
 import GoalCardMenu from './GoalCardMenu'
 import GoalCardDiscussion from './GoalCardDiscussion'
-import GoalCardDate from './GoalCardDate'
-import AppDot from '../../UI/AppDot'
 
 const GoalCardTask = dynamic(() => import('./GoalCardTask'))
 const GoalCardHashtags = dynamic(() => import('./GoalCardHashtags'))
@@ -41,38 +42,42 @@ export default function GoalCardCurrent({
   const classes = useStyles()
   const theme = useTheme()
   const colors = useCharacteristicColors()
-  const [rest, setRest] = useState(tasks.length - tasks.filter((t) => t.completed).length)
+  const restRef = useRef(tasks.length - tasks.filter((t) => t.completed).length)
   const [feedbackExpand, setFeedbackExpand] = useState<'more' | 'less'>('more')
   const [discussionExpand, setDiscussionExpand] = useState<'more' | 'less'>('more')
   const days = differenceInDays(new Date(), Date.parse(started))
   const showWeb = differenceInDays(new Date(), Date.parse(date)) >= 14
+  const hrefWithDate = setQueryParams(href, { date })
   const withForm = ['OWNER', 'MEMBER'].includes(role)
   const showFeedback = feedbackExpand === 'less'
   const showDiscussion = discussionExpand === 'less'
 
+  const onChangeDate = async (newDate: string) => {
+    console.log(newDate)
+  }
+
   return (
     <AppBox flexDirection="column" spacing={1} className={classes.goalContainer}>
-      <GoalCardDate id={id} date={date} stepDates={stepDates} onChangeDate={(s) => console.log(s)} />
+      <GoalCardDate date={date} stepDates={stepDates} onChangeDate={onChangeDate} />
       <div className={classes.goalWrap} id={`goal-${id}`}>
         <AppBox flexDirection="column" spacing={3} className={classes.content}>
           <AppBox justifyContent="space-between">
             <AppHeader name="goal" variant="h6" component="h3">
               {name}
             </AppHeader>
-            <GoalCardMenu title={name} href={href} role={role} />
+            <GoalCardMenu title={name} href={hrefWithDate} role={role} />
           </AppBox>
           <AppBox justifyContent="space-between" alignItems="center">
             {CHARACTERISTICS.map((characteristic) => (
-              <>
+              <Fragment key={characteristic}>
                 <CharacteristicCard
                   type="goal"
                   characteristic={characteristic}
                   value={characteristics[characteristic]}
                   color={colors[characteristic].fontColor}
-                  key={characteristic}
                 />
                 <AppDot />
-              </>
+              </Fragment>
             ))}
             <CharacteristicCard
               type="goal"
@@ -93,8 +98,10 @@ export default function GoalCardCurrent({
                 ) : (
                   <GoalCardTaskForm
                     {...task}
-                    rest={rest}
-                    onSet={(completed) => setRest((r) => r + (completed ? -1 : 1))}
+                    rest={restRef.current}
+                    onSet={(completed) => {
+                      restRef.current += completed ? -1 : 1
+                    }}
                   />
                 )}
               </Fragment>

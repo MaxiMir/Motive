@@ -48,7 +48,7 @@ export default function Favorites({ fallbackData }: PageSWR<FavoritesPage>): JSX
     send({
       url: ROUTE.getUserFavorite(id),
       method: 'put',
-      data: false,
+      data: { favorite: false },
     })
   }
 
@@ -58,7 +58,7 @@ export default function Favorites({ fallbackData }: PageSWR<FavoritesPage>): JSX
     send({
       url: ROUTE.getUserFavorite(id),
       method: 'put',
-      data: true,
+      data: { favorite: true },
     })
   }
 

@@ -5,11 +5,11 @@ import { toUrn } from 'helpers/url'
 const getBaseUrl = (...urnParts: string[]) => toUrn('users', ...urnParts)
 
 export default class UserService {
-  static increaseViews({ id }: { id: string }): Promise<AxiosResponse> {
-    return Axios.put(getBaseUrl(id, 'page-views'))
+  static increaseViews({ userId }: { userId: string }): Promise<AxiosResponse> {
+    return Axios.put(getBaseUrl(userId, 'views'))
   }
 
-  static setFavorite({ id, ...data }: { id: string; favoriteId: string; isFavorite: boolean }): Promise<AxiosResponse> {
-    return Axios.put(getBaseUrl(id, 'favorites'), data)
+  static setFavorite({ userId, ...data }: { userId: string; id: string; favorite: boolean }): Promise<AxiosResponse> {
+    return Axios.put(getBaseUrl(userId, 'favorites'), data)
   }
 }

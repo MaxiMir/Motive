@@ -24,10 +24,7 @@ const UserCardFavorite = ({ id, favorite: initial, client }: UserCardFavoritePro
     },
   })
 
-  const mutateWithDebounce = useDebounceCb(
-    (favorite: boolean) => send({ id: client.id, favoriteId: id, isFavorite: favorite }),
-    500,
-  )
+  const mutateWithDebounce = useDebounceCb((favorite: boolean) => send({ userId: client.id, id, favorite }), 500)
 
   const onClick = () => {
     setIsFavorite(!isFavorite)

@@ -44,7 +44,7 @@ const UserCardDetail = ({
   const classes = useStyles()
   const { query } = useRouter()
   const characteristicColors = useCharacteristicColors()
-  useSWR(owner ? null : 'views', () => UserService.increaseViews({ id }), { revalidateOnFocus: false })
+  useSWR(owner ? null : 'views', () => UserService.increaseViews({ userId: id }), { revalidateOnFocus: false })
 
   useEffect(() => {
     query.goal && scrollToElem(`goal-${query.goal}`)

@@ -35,10 +35,10 @@ export default function GoalCardCurrent({
   started,
   characteristics,
   role,
-  step,
-  stepDates,
+  day,
+  dates,
 }: GoalCardCurrentProps): JSX.Element {
-  const { date, tasks, feedback, discussion } = step
+  const { date, tasks, feedback, discussion } = day
   const classes = useStyles()
   const theme = useTheme()
   const colors = useCharacteristicColors()
@@ -58,7 +58,7 @@ export default function GoalCardCurrent({
 
   return (
     <AppBox flexDirection="column" spacing={1} className={classes.goalContainer}>
-      <GoalCardDate date={date} stepDates={stepDates} onChangeDate={onChangeDate} />
+      <GoalCardDate date={date} dates={dates} onChangeDate={onChangeDate} />
       <div className={classes.goalWrap} id={`goal-${id}`}>
         <AppBox flexDirection="column" spacing={3} className={classes.content}>
           <AppBox justifyContent="space-between">

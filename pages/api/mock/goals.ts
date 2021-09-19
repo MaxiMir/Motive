@@ -13,7 +13,7 @@ export const learnFrench: Goal = {
     creativity: 45, // ALL
     members: 158,
   },
-  step: {
+  day: {
     id: '232',
     date: '2021-09-13T00:00:00.000Z', // 00:00:00.000
     tasks: [
@@ -44,7 +44,7 @@ export const learnFrench: Goal = {
     },
     discussion: 21,
   },
-  stepDates: [
+  dates: [
     { id: '5', date: '2021-09-06T00:00:00.000Z' },
     { id: '3', date: '2021-09-07T00:00:00.000Z' },
     { id: '2', date: '2021-09-08T00:00:00.000Z' },
@@ -66,7 +66,7 @@ export const becomeSenior: Goal = {
     creativity: 32,
     members: 3,
   },
-  step: {
+  day: {
     id: '312',
     date: '2021-09-02T00:00:00.000Z',
     tasks: [{ id: '11', name: 'watch video', completed: false, completedByOthers: false }],
@@ -77,7 +77,7 @@ export const becomeSenior: Goal = {
     },
     discussion: 0,
   },
-  stepDates: [
+  dates: [
     { id: '5', date: '2021-09-06T00:00:00.000Z' },
     { id: '3', date: '2021-09-07T00:00:00.000Z' },
     { id: '2', date: '2021-09-08T00:00:00.000Z' },
@@ -105,7 +105,7 @@ export const getNewGoal = (goalCreation: GoalCreation): Goal => {
       creativity: 0,
       members: 0,
     },
-    step: {
+    day: {
       id: '312',
       date: new Date().toISOString(),
       tasks: goalCreation.tasks.map((t, index) => ({
@@ -121,6 +121,6 @@ export const getNewGoal = (goalCreation: GoalCreation): Goal => {
       },
       discussion: 0,
     },
-    stepDates: [{ id: '13', date: new Date().toISOString() }],
+    dates: [{ id: '13', date: new Date().toISOString() }],
   }
 }

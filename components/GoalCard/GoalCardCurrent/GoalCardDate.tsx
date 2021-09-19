@@ -3,28 +3,28 @@ import { format } from 'date-fns'
 import { Button, IconButton } from '@material-ui/core/'
 import { makeStyles } from '@material-ui/core/styles'
 import { KeyboardDatePicker } from '@material-ui/pickers'
-import { StepDate } from 'dto'
+import { Goal } from 'dto'
 import useDebounceCb from 'hooks/useDebounceCb'
 import AppBox from 'components/UI/AppBox'
 
 interface GoalCardDateProps {
   date: string
-  stepDates: StepDate[]
+  dates: Goal['dates']
   onChangeDate: (id: string) => void
 }
 
 const DATE_FORMAT = 'MM/dd/yy'
 
-export default function GoalCardDate({ date, stepDates, onChangeDate }: GoalCardDateProps): JSX.Element {
+export default function GoalCardDate({ date, dates, onChangeDate }: GoalCardDateProps): JSX.Element {
   const classes = useStyles()
   const [open, setOpen] = useState(false)
   const [value, setValue] = useState(new Date(date))
   const formattedDate = format(value, 'MM/dd/yy')
   const dateISO = value.toISOString()
-  const dateIndex = stepDates.findIndex((s) => s.date === dateISO)
-  const prevDate = stepDates[dateIndex - 1]?.date
-  const nextDate = stepDates[dateIndex + 1]?.date
-  const formattedStepDates = useMemo(() => stepDates.map((s) => format(new Date(s.date), DATE_FORMAT)), [stepDates])
+  const dateIndex = dates.findIndex((s) => s.date === dateISO)
+  const prevDate = dates[dateIndex - 1]?.date
+  const nextDate = dates[dateIndex + 1]?.date
+  const formattedStepDates = useMemo(() => dates.map((s) => format(new Date(s.date), DATE_FORMAT)), [dates])
   const onChangeDateWithDebounce = useDebounceCb(onChangeDate, 1500)
 
   const onChange = (newFormattedDate: string) => {

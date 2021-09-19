@@ -15,21 +15,16 @@ export interface Goal {
   hashtags: string[]
   role: Role
   characteristics: GoalCharacteristics
-  step: Step
-  stepDates: StepDate[]
+  day: Day
+  dates: Array<{ id: string; date: string }>
 }
 
-export interface Step {
+interface Day {
   id: string
   date: string
   tasks: Task[]
   feedback: Feedback
   discussion: number
-}
-
-export interface StepDate {
-  id: string
-  date: string
 }
 
 export interface Task {
@@ -51,3 +46,13 @@ export interface Photo {
   width: number
   height: number
 }
+
+// TODO:
+// USER -> GOAL -> DAY -> TASK | FEEDBACK | DISCUSSION
+
+// PUT /users/{user-id}/favorites # ИЗБРАННОЕ => { id: string; favorite: boolean }
+// PUT /users/{user-id}/views # ПРОСМОТРЫ СТРАНИЦЫ
+
+// POST /goals # СОЗДАНИЕ ЦЕЛИ
+
+// PUT /tasks/${tasks_id}/ # ИЗМЕНЕНИЕ ТАСКИ

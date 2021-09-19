@@ -25,7 +25,7 @@ export default function GoalCardTaskForm({
 }: GoalCardTaskFormProps): JSX.Element {
   const { enqueueSnackbar, closeSnackbar } = useSnackbar()
   const [checked, setChecked] = useState(initial)
-  const { isLoading, send } = useSend(TaskService.setCompletedTask, {
+  const { isLoading, send } = useSend(TaskService.updateTask, {
     onSuccess(_, data) {
       const restWithNew = rest - 1
 
@@ -46,7 +46,7 @@ export default function GoalCardTaskForm({
   const onChange = (isChecked: boolean) => {
     onSet(isChecked)
     setChecked(isChecked)
-    send({ id, isCompleted: isChecked })
+    send({ id, name, completed: isChecked, completedByOthers })
   }
 
   function onUndo() {

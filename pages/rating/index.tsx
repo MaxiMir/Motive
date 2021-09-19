@@ -2,10 +2,10 @@ import { Fragment } from 'react'
 import { GetServerSideProps } from 'next'
 import { useRouter } from 'next/router'
 import useSWR from 'swr'
-import Axios from 'lib/axios'
 import { Container } from '@material-ui/core'
 import ROUTE from 'route'
 import { PageSWR, RatingPage, User, UserCharacteristic } from 'dto'
+import PageService from 'services/PageService'
 import Layout from 'layout'
 import UserCard from 'components/UserCard'
 import AppEmoji from 'components/UI/AppEmoji'
@@ -18,11 +18,9 @@ import TabNames from './TabNames'
 
 const TABS: UserCharacteristic[] = ['motivation', 'creativity', 'support']
 
-const fetcher = async () => (await Axios.get(ROUTE.RATING)).data
-
 export default function Rating({ fallbackData }: PageSWR<RatingPage>): JSX.Element {
   const { query } = useRouter()
-  const { data, error } = useSWR(ROUTE.RATING, fetcher, { fallbackData })
+  const { data, error } = useSWR(ROUTE.RATING, PageService.getRating, { fallbackData })
   const { meta, motivation, creativity, support, client } = (data as RatingPage) || {}
 
   return (
@@ -57,7 +55,7 @@ export default function Rating({ fallbackData }: PageSWR<RatingPage>): JSX.Eleme
 }
 
 export const getServerSideProps: GetServerSideProps = async () => {
-  const data = await fetcher()
+  const data = await PageService.getRating()
 
   return {
     props: {

@@ -1,8 +1,8 @@
 import { GetServerSideProps } from 'next'
 import useSWR from 'swr'
-import Axios from 'lib/axios'
 import ROUTE from 'route'
 import { Characteristic, MainPage, PageSWR } from 'dto'
+import PageService from 'services/PageService'
 import useCharacteristicColors from 'hooks/useCharacteristicColors'
 import Layout from 'layout'
 import Slogan from 'components/Slogan'
@@ -43,11 +43,9 @@ const ADVANTAGES: AdvantageItem[] = [
   },
 ]
 
-const fetcher = async () => (await Axios.get(ROUTE.INDEX)).data
-
 export default function Home({ fallbackData }: PageSWR<MainPage>): JSX.Element {
   const colors = useCharacteristicColors()
-  const { data, error } = useSWR(ROUTE.INDEX, fetcher, { fallbackData })
+  const { data, error } = useSWR('home', PageService.getMain, { fallbackData })
   const { meta, client } = (data as MainPage) || {}
 
   return (
@@ -63,7 +61,7 @@ export default function Home({ fallbackData }: PageSWR<MainPage>): JSX.Element {
 }
 
 export const getServerSideProps: GetServerSideProps = async () => {
-  const data = await fetcher()
+  const data = await PageService.getMain()
 
   return {
     props: {

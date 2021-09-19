@@ -17,5 +17,6 @@ export interface UserDetail extends User {
 }
 
 export interface Client {
+  id: string
   isAuthenticated: boolean
 }

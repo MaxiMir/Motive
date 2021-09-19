@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import dynamic from 'next/dynamic'
 import { Task } from 'dto'
-import ROUTE from 'route'
+import TaskService from 'services/TaskService'
 import useSend from 'hooks/useSend'
 import { useSnackbar } from 'hooks/useSnackbar'
 import AppCheckbox from 'components/UI/AppCheckbox'
@@ -25,11 +25,11 @@ export default function GoalCardTaskForm({
 }: GoalCardTaskFormProps): JSX.Element {
   const { enqueueSnackbar, closeSnackbar } = useSnackbar()
   const [checked, setChecked] = useState(initial)
-  const { isLoading, send } = useSend({
+  const { isLoading, send } = useSend(TaskService.setCompletedTask, {
     onSuccess(_, data) {
       const restWithNew = rest - 1
 
-      data.completed &&
+      data.isCompleted &&
         enqueueSnackbar({
           message: !restWithNew ? 'Well done! All tasks are completed' : `Do it! Remains to be done: ${restWithNew}`,
           severity: 'success',
@@ -46,7 +46,7 @@ export default function GoalCardTaskForm({
   const onChange = (isChecked: boolean) => {
     onSet(isChecked)
     setChecked(isChecked)
-    send({ url: ROUTE.getTaskId(id), method: 'put', data: { completed: isChecked } })
+    send({ id, isCompleted: isChecked })
   }
 
   function onUndo() {

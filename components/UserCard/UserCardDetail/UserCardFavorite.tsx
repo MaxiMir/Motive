@@ -1,20 +1,20 @@
 import React, { useState } from 'react'
 import { makeStyles } from '@material-ui/core/styles'
 import { IconButton } from '@material-ui/core'
-import { UserDetail } from 'dto'
-import ROUTE from 'route'
+import { UserDetail, Client } from 'dto'
+import UserService from 'services/UserService'
 import useDebounceCb from 'hooks/useDebounceCb'
 import useSend from 'hooks/useSend'
 import { useSnackbar } from 'hooks/useSnackbar'
 import AppEmoji from 'components/UI/AppEmoji'
 
-type UserCardFavoriteProps = Pick<UserDetail, 'id' | 'favorite'>
+type UserCardFavoriteProps = Pick<UserDetail, 'id' | 'favorite'> & { client: Client }
 
-const UserCardFavorite = ({ id, favorite: initial }: UserCardFavoriteProps): JSX.Element => {
+const UserCardFavorite = ({ id, favorite: initial, client }: UserCardFavoriteProps): JSX.Element => {
   const { enqueueSnackbar } = useSnackbar()
   const classes = useStyles()
   const [isFavorite, setIsFavorite] = useState(initial)
-  const { send } = useSend({
+  const { send } = useSend(UserService.setFavorite, {
     onSuccess() {
       enqueueSnackbar({ message: isFavorite ? 'Added to favorites' : 'Removed from favorites', severity: 'success' })
     },
@@ -25,7 +25,7 @@ const UserCardFavorite = ({ id, favorite: initial }: UserCardFavoriteProps): JSX
   })
 
   const mutateWithDebounce = useDebounceCb(
-    (f: boolean) => send({ url: ROUTE.getUserFavorite(id), method: 'put', data: { favorite: f } }),
+    (favorite: boolean) => send({ id: client.id, favoriteId: id, isFavorite: favorite }),
     500,
   )
 

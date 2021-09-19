@@ -2,9 +2,10 @@ import React, { useRef } from 'react'
 import dynamic from 'next/dynamic'
 import { GetServerSideProps } from 'next'
 import useSWR, { useSWRConfig } from 'swr'
-import Axios from 'lib/axios'
 import ROUTE from 'route'
 import { PageSWR, FavoritesPage, User } from 'dto'
+import PageService from 'services/PageService'
+import UserService from 'services/UserService'
 import useSend from 'hooks/useSend'
 import { useSnackbar } from 'hooks/useSnackbar'
 import Layout from 'layout'
@@ -17,22 +18,20 @@ const EmptyList = dynamic(() => import('./EmptyList'))
 const AppList = dynamic<AppListProps<User>>(() => import('components/UI/AppList'))
 const Button = dynamic(() => import('@material-ui/core/Button'))
 
-const fetcher = async () => (await Axios.get(ROUTE.FAVORITES)).data
-
 export default function Favorites({ fallbackData }: PageSWR<FavoritesPage>): JSX.Element {
   const mutateSWR = useSWRConfig().mutate
-  const { data, error } = useSWR(ROUTE.FAVORITES, fetcher, { fallbackData })
+  const { data, error } = useSWR(ROUTE.FAVORITES, PageService.getFavorites, { fallbackData })
   const { meta, favorites, client } = (data as FavoritesPage) || {}
   const prevFavoritesRef = useRef(favorites)
   const { enqueueSnackbar, closeSnackbar } = useSnackbar()
-  const { send } = useSend({
-    onSuccess: (_, { id, favorite }) => {
+  const { send } = useSend(UserService.setFavorite, {
+    onSuccess: (_, { favoriteId, isFavorite }) => {
       prevFavoritesRef.current = favorites
-      !favorite &&
+      isFavorite &&
         enqueueSnackbar({
           message: 'Removed from favorites',
           severity: 'success',
-          action: <Button onClick={() => onUndo(id)}>Undo</Button>,
+          action: <Button onClick={() => onUndo(favoriteId)}>Undo</Button>,
         })
     },
     onError: () => {
@@ -41,25 +40,17 @@ export default function Favorites({ fallbackData }: PageSWR<FavoritesPage>): JSX
     },
   })
 
-  const onRemove = (id: string) => {
+  const onRemove = (favoriteId: string) => {
     prevFavoritesRef.current = favorites
 
-    mutateFavoritesLocal(favorites.filter((f) => f.id !== id))
-    send({
-      url: ROUTE.getUserFavorite(id),
-      method: 'put',
-      data: { favorite: false },
-    })
+    mutateFavoritesLocal(favorites.filter((f) => f.id !== favoriteId))
+    send({ id: client.id, favoriteId, isFavorite: true })
   }
 
-  function onUndo(id: string) {
+  function onUndo(favoriteId: string) {
     mutateFavoritesLocal(prevFavoritesRef.current)
     closeSnackbar()
-    send({
-      url: ROUTE.getUserFavorite(id),
-      method: 'put',
-      data: { favorite: true },
-    })
+    send({ id: client.id, favoriteId, isFavorite: false })
   }
 
   function mutateFavoritesLocal(users: User[]) {
@@ -88,7 +79,7 @@ export default function Favorites({ fallbackData }: PageSWR<FavoritesPage>): JSX
 }
 
 export const getServerSideProps: GetServerSideProps = async () => {
-  const data = await fetcher()
+  const data = await PageService.getFavorites()
 
   return {
     props: {

@@ -1,21 +1,21 @@
 import { GetServerSideProps } from 'next'
 import { useRouter } from 'next/router'
 import useSWR, { useSWRConfig } from 'swr'
-import Axios from 'lib/axios'
 import { Goal, PageSWR, UserPage } from 'dto'
+import PageService from 'services/PageService'
 import { scrollToElem } from 'helpers/dom'
 import { useSnackbar } from 'hooks/useSnackbar'
 import Layout from 'layout'
 import UserCard from 'components/UserCard'
 
-const fetcher = async (url: string) => (await Axios.get(url)).data
-
 export default function UserDetail({ fallbackData }: PageSWR<UserPage>): JSX.Element {
   const router = useRouter()
   const { enqueueSnackbar } = useSnackbar()
   const mutateSWR = useSWRConfig().mutate
-  const { data, error } = useSWR(router.asPath, () => fetcher(router.asPath), { fallbackData })
-  const { meta, user, client } = data || {}
+  const { data, error } = useSWR<UserPage>(router.asPath, () => PageService.getDynamic(router.asPath), {
+    fallbackData,
+  })
+  const { meta, user, client } = (data as UserPage) || {}
 
   const onAddGoal = async (goal: Goal) => {
     mutateSWR(router.asPath, { ...data, user: { ...user, goals: [...user.goals, goal] } }, false)
@@ -32,7 +32,8 @@ export default function UserDetail({ fallbackData }: PageSWR<UserPage>): JSX.Ele
 
 export const getServerSideProps: GetServerSideProps = async (ctx) => {
   const url = ctx.req.url as string
-  const data = await fetcher(url)
+
+  const data = await PageService.getDynamic(url)
 
   return {
     props: {

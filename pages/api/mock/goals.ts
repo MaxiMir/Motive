@@ -88,7 +88,7 @@ export const becomeSenior: Goal = {
 
 export const getNewGoal = (goalCreation: GoalCreation): Goal => {
   return {
-    id: '813',
+    id: '413',
     name: goalCreation.name,
     href: '/better/maximir?goal=813',
     started: new Date().toISOString(),

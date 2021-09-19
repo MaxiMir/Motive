@@ -11,6 +11,8 @@ const getUrnData = (urn: string) => {
 const toUrl = (url: string, searchParams: URLSearchParams) =>
   [url, searchParams].join(!searchParams.toString() ? '' : '?')
 
+export const toUrn = (...urnParts: string[]): string => urnParts.join('/')
+
 /**
  * Returns the name of the method to insert
  */

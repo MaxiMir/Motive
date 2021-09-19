@@ -8,13 +8,11 @@ instance.defaults.headers = {
   'Content-Type': 'application/json',
 }
 
-// import store from '../store'
-//
-// const listener = () => {
-//   const token = store.getState().token
-//   api.defaults.headers.common['Authorization'] = token;
-// }
-//
-// store.subscribe(listener)
+instance.interceptors.response.use(
+  (r) => r.data,
+  (e) => {
+    throw e
+  },
+)
 
 export default instance

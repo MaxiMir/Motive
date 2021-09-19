@@ -1,37 +1,33 @@
 import { useCallback, useState } from 'react'
-import { AxiosRequestConfig, AxiosResponse } from 'axios'
-import Axios from 'lib/axios'
+import { AxiosRequestConfig } from 'axios'
 
-interface Config {
-  url: AxiosRequestConfig['url']
-  method: AxiosRequestConfig['method']
-  data: AxiosRequestConfig['data']
-}
-
-interface Options {
-  onSuccess: (response: AxiosResponse, data: AxiosRequestConfig['data']) => void
+interface Options<R> {
+  onSuccess: (response: R, data: AxiosRequestConfig['data']) => void
   onError: (e: Error, request: AxiosRequestConfig['data']) => void
 }
 
-export default function useSend({ onSuccess, onError }: Options): {
+export default function useSend<D, R>(
+  fetcher: (data: D) => Promise<R>,
+  { onSuccess, onError }: Options<R>,
+): {
   isLoading: boolean
-  send: (config: Config) => void
+  send: (data: D) => void
 } {
   const [isLoading, setIsLoading] = useState(false)
 
   const send = useCallback(
-    async (config: Config) => {
+    async (data) => {
       try {
         setIsLoading(true)
-        const response = await Axios(config)
-        onSuccess(response, config.data)
+        const response = await fetcher(data)
+        onSuccess(response, data)
       } catch (e) {
-        onError(e, config.data)
+        onError(e, data)
       } finally {
         setIsLoading(false)
       }
     },
-    [onError, onSuccess],
+    [fetcher, onError, onSuccess],
   )
 
   return { isLoading, send }

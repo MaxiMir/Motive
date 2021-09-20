@@ -46,13 +46,3 @@ export interface Photo {
   width: number
   height: number
 }
-
-// TODO:
-// USER -> GOAL -> DAY -> TASK | FEEDBACK | DISCUSSION
-
-// PUT /users/{user-id}/favorites # ИЗБРАННОЕ => { id: string; favorite: boolean }
-// PUT /users/{user-id}/views # ПРОСМОТРЫ СТРАНИЦЫ
-
-// POST /goals # СОЗДАНИЕ ЦЕЛИ
-
-// PUT /tasks/${tasks_id}/ # ИЗМЕНЕНИЕ ТАСКИ

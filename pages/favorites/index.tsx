@@ -25,13 +25,14 @@ export default function Favorites({ fallbackData }: PageSWR<FavoritesPage>): JSX
   const prevFavoritesRef = useRef(favorites)
   const { enqueueSnackbar, closeSnackbar } = useSnackbar()
   const { send } = useSend(UserService.setFavorite, {
-    onSuccess: (_, { favoriteId, isFavorite }) => {
+    onSuccess: (_, { id, favorite }) => {
       prevFavoritesRef.current = favorites
-      isFavorite &&
+
+      favorite &&
         enqueueSnackbar({
           message: 'Removed from favorites',
           severity: 'success',
-          action: <Button onClick={() => onUndo(favoriteId)}>Undo</Button>,
+          action: <Button onClick={() => onUndo(id)}>Undo</Button>,
         })
     },
     onError: () => {

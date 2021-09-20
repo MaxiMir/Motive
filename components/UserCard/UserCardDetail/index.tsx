@@ -2,10 +2,8 @@ import { useEffect } from 'react'
 import dynamic from 'next/dynamic'
 import { useRouter } from 'next/router'
 import Image from 'next/image'
-import useSWR from 'swr'
 import { makeStyles } from '@material-ui/core/styles'
 import { Client, Goal, UserDetail, UserCharacteristic } from 'dto'
-import UserService from 'services/UserService'
 import { numberToShort } from 'helpers/prepare'
 import { scrollToElem } from 'helpers/dom'
 import useCharacteristicColors from 'hooks/useCharacteristicColors'
@@ -44,7 +42,6 @@ const UserCardDetail = ({
   const classes = useStyles()
   const { query } = useRouter()
   const characteristicColors = useCharacteristicColors()
-  useSWR(owner ? null : 'views', () => UserService.increaseViews({ userId: id }), { revalidateOnFocus: false })
 
   useEffect(() => {
     query.goal && scrollToElem(`goal-${query.goal}`)

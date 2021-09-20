@@ -29,7 +29,7 @@ export default function GoalCardTaskForm({
     onSuccess(_, data) {
       const restWithNew = rest - 1
 
-      data.isCompleted &&
+      data.completed &&
         enqueueSnackbar({
           message: !restWithNew ? 'Well done! All tasks are completed' : `Do it! Remains to be done: ${restWithNew}`,
           severity: 'success',

@@ -90,7 +90,7 @@ export const getNewGoal = (goalCreation: GoalCreation): Goal => {
   return {
     id: '413',
     name: goalCreation.name,
-    href: '/better/maximir?goal=813',
+    href: '/better/maximir?goal=413',
     started: new Date().toISOString(),
     hashtags: !goalCreation.hashtags
       ? []

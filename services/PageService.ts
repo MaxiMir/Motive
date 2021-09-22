@@ -1,6 +1,5 @@
 import Axios from 'lib/axios'
 import { FavoritesPage, MainPage, RatingPage } from 'dto'
-import route from 'route'
 
 export default class PageService {
   static async getMain(): Promise<MainPage> {
@@ -8,11 +7,11 @@ export default class PageService {
   }
 
   static async getRating(): Promise<RatingPage> {
-    return Axios.get(route.RATING)
+    return Axios.get('/rating')
   }
 
   static async getFavorites(): Promise<FavoritesPage> {
-    return Axios.get(route.FAVORITES)
+    return Axios.get('/favorites')
   }
 
   static async getDynamic<T>(url: string): Promise<T> {

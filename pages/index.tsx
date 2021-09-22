@@ -1,9 +1,10 @@
 import { GetServerSideProps } from 'next'
 import useSWR from 'swr'
-import ROUTE from 'route'
+import { RATING_ROUTE } from 'route'
 import { Characteristic, MainPage, PageSWR } from 'dto'
 import PageService from 'services/PageService'
 import useCharacteristicColors from 'hooks/useCharacteristicColors'
+import { setQueryParams } from 'helpers/url'
 import Layout from 'layout'
 import Slogan from 'components/Slogan'
 import Advantage from 'components/Advantage'
@@ -21,25 +22,25 @@ const ADVANTAGES: AdvantageItem[] = [
     characteristic: 'motivation',
     title: 'Be motivational',
     subtitle: 'for yourself and others',
-    href: ROUTE.RATING,
+    href: RATING_ROUTE,
   },
   {
     characteristic: 'creativity',
     title: 'BE СREATIVE',
     subtitle: 'for yourself and others',
-    href: `${ROUTE.RATING}?tab=1`,
+    href: setQueryParams(RATING_ROUTE, { tab: '1' }),
   },
   {
     characteristic: 'support',
     title: 'BE SUPPORTIVE',
     subtitle: 'to people in need',
-    href: `${ROUTE.RATING}?tab=2`,
+    href: setQueryParams(RATING_ROUTE, { tab: '2' }),
   },
   {
     characteristic: 'completed',
     title: 'Rating',
     subtitle: 'And tear up the tops!',
-    href: ROUTE.RATING,
+    href: RATING_ROUTE,
   },
 ]
 

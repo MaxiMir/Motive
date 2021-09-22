@@ -1,8 +1,6 @@
-export default {
-  TOP_OF_THE_DAY: '/top-of-the-day',
-  SEARCH: '/search',
-  RATING: '/rating',
-  FAVORITES: '/favorites',
-  PROFILE: '/profile',
-  SIGN_IN: '/sign-in',
-}
+export const TOP_OF_THE_DAY_ROUTE = '/top-of-the-day'
+export const SEARCH_ROUTE = '/search'
+export const RATING_ROUTE = '/rating'
+export const FAVORITES_ROUTE = '/favorites'
+export const PROFILE_ROUTE = '/profile'
+export const SIGN_IN_ROUTE = '/sign-in'

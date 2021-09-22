@@ -1,5 +1,5 @@
 import { makeStyles } from '@material-ui/core/styles'
-import ROUTE from 'route'
+import { SEARCH_ROUTE } from 'route'
 import AppBox from 'components/UI/AppBox'
 import AppLink from 'components/UI/AppLink'
 import AppTypography from 'components/UI/AppTypography'
@@ -20,7 +20,7 @@ const UserCardEmptyGoals = ({ owner }: UserCardAddGoalProps): JSX.Element => {
         {owner && (
           <AppTypography component="p">
             You can create <span className={classes.own}>your own</span> or use the{' '}
-            <AppLink href={ROUTE.SEARCH} className={classes.link}>
+            <AppLink href={SEARCH_ROUTE} className={classes.link}>
               search
             </AppLink>
           </AppTypography>

@@ -2,7 +2,6 @@ import React, { useRef } from 'react'
 import dynamic from 'next/dynamic'
 import { GetServerSideProps } from 'next'
 import useSWR, { useSWRConfig } from 'swr'
-import ROUTE from 'route'
 import { PageSWR, FavoritesPage, User } from 'dto'
 import PageService from 'services/PageService'
 import UserService from 'services/UserService'
@@ -20,7 +19,7 @@ const Button = dynamic(() => import('@material-ui/core/Button'))
 
 export default function Favorites({ fallbackData }: PageSWR<FavoritesPage>): JSX.Element {
   const mutateSWR = useSWRConfig().mutate
-  const { data, error } = useSWR(ROUTE.FAVORITES, PageService.getFavorites, { fallbackData })
+  const { data, error } = useSWR('Favorites', PageService.getFavorites, { fallbackData })
   const { meta, favorites, client } = (data as FavoritesPage) || {}
   const prevFavoritesRef = useRef(favorites)
   const { enqueueSnackbar, closeSnackbar } = useSnackbar()
@@ -55,7 +54,7 @@ export default function Favorites({ fallbackData }: PageSWR<FavoritesPage>): JSX
   }
 
   function mutateFavoritesLocal(users: User[]) {
-    return mutateSWR(ROUTE.FAVORITES, { ...data, favorites: users }, false)
+    return mutateSWR('Favorites', { ...data, favorites: users }, false)
   }
 
   return (

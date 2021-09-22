@@ -3,7 +3,6 @@ import { GetServerSideProps } from 'next'
 import { useRouter } from 'next/router'
 import useSWR from 'swr'
 import { Container } from '@material-ui/core'
-import ROUTE from 'route'
 import { PageSWR, RatingPage, User, UserCharacteristic } from 'dto'
 import PageService from 'services/PageService'
 import Layout from 'layout'
@@ -20,7 +19,7 @@ const TABS: UserCharacteristic[] = ['motivation', 'creativity', 'support']
 
 export default function Rating({ fallbackData }: PageSWR<RatingPage>): JSX.Element {
   const { query } = useRouter()
-  const { data, error } = useSWR(ROUTE.RATING, PageService.getRating, { fallbackData })
+  const { data, error } = useSWR('Rating', PageService.getRating, { fallbackData })
   const { meta, motivation, creativity, support, client } = (data as RatingPage) || {}
 
   return (

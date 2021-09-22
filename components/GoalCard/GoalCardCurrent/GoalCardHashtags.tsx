@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import { useRouter } from 'next/router'
 import { Chip, useMediaQuery, useTheme } from '@material-ui/core'
-import ROUTE from 'route'
+import { SEARCH_ROUTE } from 'route'
 import AppBox from 'components/UI/AppBox'
 
 interface GoalCardHashtagsProps {
@@ -26,7 +26,7 @@ export default function GoalCardHashtags({ hashtags }: GoalCardHashtagsProps): J
           variant="outlined"
           size="small"
           key={hashtag}
-          onClick={() => router.push(`${ROUTE.SEARCH}/?q=${hashtag}`)}
+          onClick={() => router.push(`${SEARCH_ROUTE}/?q=${hashtag}`)}
         />
       ))}
       {hashtags.length !== showingHashtags.length && (

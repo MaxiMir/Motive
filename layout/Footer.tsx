@@ -1,7 +1,7 @@
 import React from 'react'
 import { useRouter } from 'next/router'
 import { makeStyles } from '@material-ui/core/styles'
-import ROUTE from 'route'
+import { FAVORITES_ROUTE, PROFILE_ROUTE, RATING_ROUTE, SEARCH_ROUTE, TOP_OF_THE_DAY_ROUTE } from 'route'
 import AppBox from 'components/UI/AppBox'
 import AppLink from 'components/UI/AppLink'
 import AppContainer from 'components/UI/AppContainer'
@@ -9,14 +9,14 @@ import { TopOfTheDayIcon, SearchIcon, RatingIcon, FavoritesMenuIcon, ProfileIcon
 
 const LINKS = [
   {
-    href: ROUTE.TOP_OF_THE_DAY,
+    href: TOP_OF_THE_DAY_ROUTE,
     Icon: TopOfTheDayIcon,
     title: 'top of the day',
   },
-  { href: ROUTE.SEARCH, Icon: SearchIcon, title: 'search' },
-  { href: ROUTE.RATING, Icon: RatingIcon, title: 'rating' },
-  { href: ROUTE.FAVORITES, Icon: FavoritesMenuIcon, title: 'favorites' },
-  { href: ROUTE.PROFILE, Icon: ProfileIcon, title: 'profile' },
+  { href: SEARCH_ROUTE, Icon: SearchIcon, title: 'search' },
+  { href: RATING_ROUTE, Icon: RatingIcon, title: 'rating' },
+  { href: FAVORITES_ROUTE, Icon: FavoritesMenuIcon, title: 'favorites' },
+  { href: PROFILE_ROUTE, Icon: ProfileIcon, title: 'profile' },
 ]
 
 export default function Footer(): JSX.Element {

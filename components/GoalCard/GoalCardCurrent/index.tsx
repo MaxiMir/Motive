@@ -14,6 +14,7 @@ import AppDot from 'components/UI/AppDot'
 import GoalCardDate from './GoalCardDate'
 import GoalCardMenu from './GoalCardMenu'
 import GoalCardDiscussion from './GoalCardDiscussion'
+import GoalCardActions from './GoalCardActions'
 
 const GoalCardTask = dynamic(() => import('./GoalCardTask'))
 const GoalCardHashtags = dynamic(() => import('./GoalCardHashtags'))
@@ -60,73 +61,79 @@ export default function GoalCardCurrent({
     <AppBox flexDirection="column" spacing={1} className={classes.goalContainer}>
       <GoalCardDate date={date} dates={dates} onChangeDate={onChangeDate} />
       <div className={classes.goalWrap} id={`goal-${id}`}>
-        <AppBox flexDirection="column" spacing={3} className={classes.content}>
-          <AppBox justifyContent="space-between">
-            <AppHeader name="goal" variant="h6" component="h3">
-              {name}
-            </AppHeader>
-            <GoalCardMenu title={name} href={hrefWithDate} role={role} />
-          </AppBox>
-          <AppBox justifyContent="space-between" alignItems="center">
-            {CHARACTERISTICS.map((characteristic) => (
-              <Fragment key={characteristic}>
-                <CharacteristicCard
-                  type="goal"
-                  characteristic={characteristic}
-                  value={characteristics[characteristic]}
-                  color={colors[characteristic].fontColor}
-                />
-                <AppDot />
-              </Fragment>
-            ))}
-            <CharacteristicCard
-              type="goal"
-              characteristic="runs for days"
-              value={days}
-              color={theme.palette.text.disabled}
-            />
-          </AppBox>
-          {hashtags?.length && <GoalCardHashtags hashtags={hashtags} />}
-          <AppBox flexDirection="column" spacing={1}>
-            <AppHeader name="task" variant="h6" component="h2" color="primary">
-              Tasks
-            </AppHeader>
-            {tasks.map((task, index) => (
-              <Fragment key={index}>
-                {!withForm ? (
-                  <GoalCardTask {...task} />
-                ) : (
-                  <GoalCardTaskForm
-                    {...task}
-                    rest={restRef.current}
-                    onSet={(completed) => {
-                      restRef.current += completed ? -1 : 1
-                    }}
-                  />
-                )}
-              </Fragment>
-            ))}
-          </AppBox>
-          <AppBox flexDirection="column" spacing={1}>
-            <AppBox alignItems="center" spacing={1}>
-              <AppHeader name="feedback" variant="h6" component="h2" color="primary">
-                Feedback
+        <AppBox flexDirection="column" justifyContent="space-between" spacing={3} className={classes.content}>
+          <AppBox flexDirection="column" spacing={3}>
+            <AppBox justifyContent="space-between">
+              <AppHeader name="goal" variant="h6" component="h3">
+                {name}
               </AppHeader>
-              <IconButton size="small" onClick={() => setFeedbackExpand(feedbackExpand === 'more' ? 'less' : 'more')}>
-                <AppIconText color="primary">expand_{feedbackExpand}</AppIconText>
+              <GoalCardMenu title={name} href={hrefWithDate} role={role} />
+            </AppBox>
+            <AppBox justifyContent="space-between" alignItems="center">
+              {CHARACTERISTICS.map((characteristic) => (
+                <Fragment key={characteristic}>
+                  <CharacteristicCard
+                    type="goal"
+                    characteristic={characteristic}
+                    value={characteristics[characteristic]}
+                    color={colors[characteristic].fontColor}
+                  />
+                  <AppDot />
+                </Fragment>
+              ))}
+              <CharacteristicCard
+                type="goal"
+                characteristic="runs for days"
+                value={days}
+                color={theme.palette.text.disabled}
+              />
+            </AppBox>
+            {hashtags?.length && <GoalCardHashtags hashtags={hashtags} />}
+            <AppBox flexDirection="column" spacing={1}>
+              <AppHeader name="task" variant="h6" component="h2" color="primary">
+                Tasks
+              </AppHeader>
+              {tasks.map((task, index) => (
+                <Fragment key={index}>
+                  {!withForm ? (
+                    <GoalCardTask {...task} />
+                  ) : (
+                    <GoalCardTaskForm
+                      {...task}
+                      rest={restRef.current}
+                      onSet={(completed) => {
+                        restRef.current += completed ? -1 : 1
+                      }}
+                    />
+                  )}
+                </Fragment>
+              ))}
+            </AppBox>
+            <AppBox flexDirection="column" spacing={1}>
+              <AppBox alignItems="center" spacing={1}>
+                <AppHeader name="feedback" variant="h6" component="h2" color="primary">
+                  Feedback
+                </AppHeader>
+                <IconButton size="small" onClick={() => setFeedbackExpand(feedbackExpand === 'more' ? 'less' : 'more')}>
+                  <AppIconText color="primary">expand_{feedbackExpand}</AppIconText>
+                </IconButton>
+              </AppBox>
+              {showFeedback && <GoalCardFeedback {...feedback} />}
+            </AppBox>
+            <AppBox alignItems="center" spacing={1}>
+              <AppHeader name="comment" variant="h6" component="h2" color="primary">
+                Discussion {!discussion ? '' : <span className={classes.discussion}>{discussion}</span>}
+              </AppHeader>
+              <IconButton
+                size="small"
+                onClick={() => setDiscussionExpand(discussionExpand === 'more' ? 'less' : 'more')}
+              >
+                <AppIconText color="primary">expand_{discussionExpand}</AppIconText>
               </IconButton>
             </AppBox>
-            {showFeedback && <GoalCardFeedback {...feedback} />}
+            {showDiscussion && <GoalCardDiscussion discussion={discussion} role={role} />}
           </AppBox>
-          <AppBox alignItems="center" spacing={1}>
-            <AppHeader name="comment" variant="h6" component="h2" color="primary">
-              Discussion {!discussion ? '' : <span className={classes.discussion}>{discussion}</span>}
-            </AppHeader>
-            <IconButton size="small" onClick={() => setDiscussionExpand(discussionExpand === 'more' ? 'less' : 'more')}>
-              <AppIconText color="primary">expand_{discussionExpand}</AppIconText>
-            </IconButton>
-          </AppBox>
-          {showDiscussion && <GoalCardDiscussion discussion={discussion} role={role} />}
+          <GoalCardActions role={role} />
         </AppBox>
         {showWeb && <GoalCardWeb />}
       </div>

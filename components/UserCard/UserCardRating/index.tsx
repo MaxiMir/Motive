@@ -16,7 +16,8 @@ export interface UserCardRatingProps extends User {
 const UserCardRating = ({
   avatar,
   href,
-  name,
+  firstName,
+  lastName,
   index,
   characteristic,
   characteristics,
@@ -54,8 +55,8 @@ const UserCardRating = ({
               <AppLink href={href} className={classes.avatarLink}>
                 <Image src={avatar} width={35} height={35} alt="avatar" className={classes.avatar} />
               </AppLink>
-              <AppLink href={href}>
-                <AppTypography>{name}</AppTypography>
+              <AppLink href={href} variant="body1">
+                {firstName} {lastName}
               </AppLink>
             </AppBox>
           </Grid>

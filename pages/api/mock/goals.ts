@@ -6,16 +6,35 @@ export const learnFrench: Goal = {
   href: '/better/maximir?goal=314',
   started: '2021-07-30T18:31:42',
   hashtags: ['foreignLanguage', 'knowledge', 'learnFrench', 'immigration', 'recommendation'],
-  role: 'OWNER',
+  role: 'MEMBER',
+  owner: {
+    id: '2',
+    firstName: 'Julia',
+    lastName: 'Minchenko',
+    avatar: '/__temp__/2.png',
+    href: '/better/juliaz',
+  },
   characteristics: {
-    motivation: 1120, // ALL
-    support: 4, // ALL
-    creativity: 45, // ALL
-    members: 158,
+    motivation: {
+      users: ['3', '4', '5'],
+      countAll: 3,
+    },
+    support: {
+      users: ['3', '4', '5'],
+      countAll: 4,
+    },
+    creativity: {
+      users: ['3', '4', '5'],
+      countAll: 45,
+    },
+    members: {
+      users: ['3', '4', '5'],
+      countAll: 49,
+    },
   },
   day: {
     id: '232',
-    date: '2021-09-13T00:00:00.000Z', // 00:00:00.000
+    date: '2021-10-04T00:00:00.000Z', // 00:00:00.000
     tasks: [
       {
         id: '1',
@@ -49,7 +68,7 @@ export const learnFrench: Goal = {
     { id: '3', date: '2021-09-07T00:00:00.000Z' },
     { id: '2', date: '2021-09-08T00:00:00.000Z' },
     { id: '1', date: '2021-09-10T00:00:00.000Z' },
-    { id: '3143', date: '2021-09-13T00:00:00.000Z' },
+    { id: '3143', date: '2021-10-04T00:00:00.000Z' },
   ],
 }
 
@@ -60,11 +79,30 @@ export const becomeSenior: Goal = {
   started: '2021-09-01T12:31:42',
   hashtags: ['programming', 'knowledge'],
   role: 'OWNER',
+  owner: {
+    id: '1',
+    firstName: 'Maxim',
+    lastName: 'Minchenko',
+    avatar: '/__temp__/1.png',
+    href: '/better/maximir',
+  },
   characteristics: {
-    motivation: 5,
-    support: 12,
-    creativity: 32,
-    members: 3,
+    motivation: {
+      users: ['3', '4', '5'],
+      countAll: 5,
+    },
+    support: {
+      users: ['3', '4', '5'],
+      countAll: 12,
+    },
+    creativity: {
+      users: ['3', '4', '5'],
+      countAll: 32,
+    },
+    members: {
+      users: ['3', '4', '5'],
+      countAll: 3,
+    },
   },
   day: {
     id: '312',
@@ -82,7 +120,7 @@ export const becomeSenior: Goal = {
     { id: '3', date: '2021-09-07T00:00:00.000Z' },
     { id: '2', date: '2021-09-08T00:00:00.000Z' },
     { id: '1', date: '2021-09-10T00:00:00.000Z' },
-    { id: '3143', date: '2021-09-13T00:00:00.000Z' },
+    { id: '3143', date: '2021-10-04T00:00:00.000Z' },
   ],
 }
 
@@ -99,11 +137,30 @@ export const getNewGoal = (goalCreation: GoalCreation): Goal => {
           .split('# ')
           .map((h: string) => h.trim()),
     role: 'OWNER',
+    owner: {
+      id: '1',
+      firstName: 'Maxim',
+      lastName: 'Minchenko',
+      avatar: '/__temp__/1.png',
+      href: '/better/maximir',
+    },
     characteristics: {
-      motivation: 0,
-      support: 0,
-      creativity: 0,
-      members: 0,
+      motivation: {
+        users: [],
+        countAll: 0,
+      },
+      support: {
+        users: [],
+        countAll: 0,
+      },
+      creativity: {
+        users: [],
+        countAll: 0,
+      },
+      members: {
+        users: [],
+        countAll: 0,
+      },
     },
     day: {
       id: '312',

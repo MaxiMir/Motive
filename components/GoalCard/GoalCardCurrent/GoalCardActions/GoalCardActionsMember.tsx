@@ -3,7 +3,6 @@ import { MainCharacteristic } from 'dto'
 import CharacteristicCard from 'components/CharacteristicCard'
 import AppBox from 'components/UI/AppBox'
 import AppEmoji from 'components/UI/AppEmoji'
-import GoalCardActionsComplaint from './GoalCardActionsComplaint'
 
 export default function GoalCardActionsMember(): JSX.Element {
   return (
@@ -12,7 +11,6 @@ export default function GoalCardActionsMember(): JSX.Element {
         {(['motivation', 'creativity', 'support'] as MainCharacteristic[]).map((name) => (
           <CharacteristicCard type="action" name={name} key={name} />
         ))}
-        <GoalCardActionsComplaint />
       </AppBox>
       <Button variant="outlined" color="primary" startIcon={<AppEmoji name="unsubscribe" onlyEmoji />}>
         Leave

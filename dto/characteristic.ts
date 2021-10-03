@@ -10,6 +10,11 @@ export type UserCharacteristics = {
 
 export type GoalCharacteristic = Exclude<Characteristic, 'completed' | 'abandoned'>
 
+export type GoalCharacteristicValue = {
+  users: string[]
+  countAll: number
+}
+
 export type GoalCharacteristics = {
-  [k in GoalCharacteristic]: number
+  [k in GoalCharacteristic]: GoalCharacteristicValue
 }

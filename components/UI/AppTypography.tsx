@@ -42,7 +42,7 @@ const useStyles = makeStyles((theme) =>
       lineHeight: 1.334,
     },
     h6: {
-      fontSize: '1.25rem',
+      fontSize: '1.15rem',
       lineHeight: 1.6,
     },
   }),

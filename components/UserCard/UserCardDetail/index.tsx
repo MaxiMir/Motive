@@ -29,12 +29,13 @@ export interface UserCardDetailProps extends UserDetail {
 
 const UserCardDetail = ({
   id,
-  name,
+  firstName,
+  lastName,
   favorite,
   views,
   avatar,
   characteristics,
-  owner,
+  role,
   goals,
   client,
   onAddGoal,
@@ -42,6 +43,7 @@ const UserCardDetail = ({
   const classes = useStyles()
   const { query } = useRouter()
   const characteristicColors = useCharacteristicColors()
+  const isOwner = role === 'OWNER'
 
   useEffect(() => {
     query.goal && scrollToElem(`goal-${query.goal}`)
@@ -52,9 +54,9 @@ const UserCardDetail = ({
       <AppBox justifyContent="space-between" mb={2}>
         <AppBox alignItems="center" spacing={1}>
           <AppTypography variant="h5" component="h1">
-            {name}
+            {firstName} {lastName}
           </AppTypography>
-          {!owner && client.isAuthenticated && <UserCardFavorite client={client} id={id} favorite={favorite} />}
+          {!isOwner && client.isAuthenticated && <UserCardFavorite client={client} id={id} favorite={favorite} />}
         </AppBox>
         <AppBox alignItems="center" spacing={0.5}>
           <AppTooltip title="Page Views" className={classes.tooltip}>
@@ -97,13 +99,13 @@ const UserCardDetail = ({
             </AppBox>
           </AppBox>
         </AppBox>
-        {owner && (
+        {isOwner && (
           <AppBox justifyContent="center">
             <UserCardAddGoal onAdd={onAddGoal} />
           </AppBox>
         )}
         {!goals.length ? (
-          <UserCardEmptyGoals owner={owner} />
+          <UserCardEmptyGoals isOwner={isOwner} />
         ) : (
           <AppList
             elements={goals}
@@ -123,7 +125,7 @@ const useStyles = makeStyles({
     height: 24,
   },
   views: {
-    color: '#99989D',
+    color: '#99989D', // TODO to theme
   },
 })
 

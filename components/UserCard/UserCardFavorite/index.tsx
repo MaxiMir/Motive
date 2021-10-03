@@ -18,7 +18,7 @@ export interface UserCardFavoriteProps extends User {
   onRemove: () => void
 }
 
-const UserCardFavorite = ({ avatar, href, name, characteristics, onRemove }: UserCardFavoriteProps): JSX.Element => {
+const UserCardFavorite = ({ avatar, href, firstName, lastName, characteristics, onRemove }: UserCardFavoriteProps): JSX.Element => {
   const classes = useStyles()
   const colors = useCharacteristicColors()
 
@@ -31,10 +31,10 @@ const UserCardFavorite = ({ avatar, href, name, characteristics, onRemove }: Use
         <AppBox justifyContent="space-between" alignItems="center">
           <AppLink href={href}>
             <AppTypography variant="subtitle1" component="p">
-              {name}
+              {firstName} {lastName}
             </AppTypography>
           </AppLink>
-          <UserCardMenu title={name} href={href} onRemove={onRemove} />
+          <UserCardMenu title={`${firstName} ${lastName}`} href={href} onRemove={onRemove} />
         </AppBox>
         <AppBox justifyContent="space-between" alignItems="center">
           {CHARACTERISTICS.map((characteristic, index) => (

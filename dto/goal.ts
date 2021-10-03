@@ -13,10 +13,19 @@ export interface Goal {
   href: string
   started: string
   hashtags: string[]
+  owner: Owner
   role: Role
   characteristics: GoalCharacteristics
   day: Day
   dates: Array<{ id: string; date: string }>
+}
+
+export interface Owner {
+  id: string
+  firstName: string
+  lastName: string
+  avatar: string
+  href: string
 }
 
 interface Day {

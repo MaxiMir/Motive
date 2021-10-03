@@ -16,6 +16,7 @@ import GoalCardMenu from './GoalCardMenu'
 import GoalCardDiscussion from './GoalCardDiscussion'
 import GoalCardActions from './GoalCardActions'
 
+const GoalCardOwner = dynamic(() => import('./GoalCardOwner'))
 const GoalCardTask = dynamic(() => import('./GoalCardTask'))
 const GoalCardHashtags = dynamic(() => import('./GoalCardHashtags'))
 const GoalCardTaskForm = dynamic(() => import('./GoalCardTaskForm'))
@@ -36,6 +37,7 @@ export default function GoalCardCurrent({
   started,
   characteristics,
   role,
+  owner,
   day,
   dates,
 }: GoalCardCurrentProps): JSX.Element {
@@ -58,15 +60,18 @@ export default function GoalCardCurrent({
   }
 
   return (
-    <AppBox flexDirection="column" spacing={1} className={classes.goalContainer}>
+    <AppBox flexDirection="column" spacing={1} className={classes.root}>
       <GoalCardDate date={date} dates={dates} onChangeDate={onChangeDate} />
-      <div className={classes.goalWrap} id={`goal-${id}`}>
+      <div className={classes.wrap} id={`goal-${id}`}>
         <AppBox flexDirection="column" justifyContent="space-between" spacing={3} className={classes.content}>
           <AppBox flexDirection="column" spacing={3}>
-            <AppBox justifyContent="space-between">
-              <AppHeader name="goal" variant="h6" component="h3">
-                {name}
-              </AppHeader>
+            <AppBox justifyContent="space-between" alignItems="center">
+              <AppBox alignItems="center" spacing={1}>
+                <AppHeader name="goal" variant="h6" component="h3">
+                  {name}
+                </AppHeader>
+                {role === 'MEMBER' && <GoalCardOwner {...owner} />}
+              </AppBox>
               <GoalCardMenu title={name} href={hrefWithDate} role={role} />
             </AppBox>
             <AppBox justifyContent="space-between" alignItems="center">
@@ -75,7 +80,7 @@ export default function GoalCardCurrent({
                   <CharacteristicCard
                     type="goal"
                     characteristic={characteristic}
-                    value={characteristics[characteristic]}
+                    value={characteristics[characteristic].countAll}
                     color={colors[characteristic].fontColor}
                   />
                   <AppDot />
@@ -143,14 +148,14 @@ export default function GoalCardCurrent({
 
 const useStyles = makeStyles((theme) =>
   createStyles({
-    goalContainer: {
+    root: {
       flex: '1 1 calc(50% - 12px)',
       flexGrow: 0,
       [theme.breakpoints.down('sm')]: {
         flex: 1,
       },
     },
-    goalWrap: {
+    wrap: {
       position: 'relative',
       height: '100%',
       padding: 2,

@@ -1,9 +1,11 @@
 import { UserCharacteristics } from './characteristic'
 import { Goal } from './goal'
+import { Role } from './role'
 
 export interface User {
   id: string
-  name: string
+  firstName: string
+  lastName: string
   href: string
   avatar: string
   characteristics: UserCharacteristics
@@ -12,7 +14,7 @@ export interface User {
 export interface UserDetail extends User {
   views: number
   favorite: boolean
-  owner: boolean
+  role: Role
   goals: Goal[]
 }
 

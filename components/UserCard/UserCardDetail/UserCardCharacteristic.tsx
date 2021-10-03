@@ -1,6 +1,6 @@
-import CharacteristicCard from 'components/CharacteristicCard'
-import { CharacteristicCardUserProps } from 'components/CharacteristicCard/CharacteristicCardUser'
 import { makeStyles } from '@material-ui/core/styles'
+import { CharacteristicCardUserProps } from 'components/CharacteristicCard/CharacteristicCardUser'
+import CharacteristicCard from 'components/CharacteristicCard'
 import AppBox from 'components/UI/AppBox'
 import AppTypography from 'components/UI/AppTypography'
 

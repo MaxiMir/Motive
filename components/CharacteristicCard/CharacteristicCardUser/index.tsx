@@ -17,7 +17,7 @@ export interface CharacteristicCardUserProps {
 
 const CharacteristicCardUser = ({ characteristic, value, color }: CharacteristicCardUserProps): JSX.Element => (
   <AppTooltip title={toUpperFirstChar(characteristic)}>
-    <AppBox alignItems="baseline">
+    <AppBox alignItems="baseline" spacing={0.5}>
       <AppEmoji name={characteristic} variant="subtitle1" />
       <AppBox width={32}>
         <AppTypography variant="h6" component="p" style={{ color }}>

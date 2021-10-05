@@ -15,26 +15,32 @@ export const learnFrench: Goal = {
     href: '/better/juliaz',
   },
   characteristics: {
-    motivation: {
-      users: ['3', '4', '5'],
-      countAll: 3,
-    },
-    support: {
-      users: ['3', '4', '5'],
-      countAll: 4,
-    },
-    creativity: {
-      users: ['3', '4', '5'],
-      countAll: 45,
-    },
-    members: {
-      users: ['3', '4', '5'],
-      countAll: 49,
-    },
+    motivation: 3,
+    support: 4,
+    creativity: 45,
+    members: 49,
   },
   day: {
     id: '232',
     date: '2021-10-04T00:00:00.000Z', // 00:00:00.000
+    characteristics: {
+      motivation: {
+        users: ['3', '4', '5'],
+        countAll: 3,
+      },
+      support: {
+        users: ['3', '4', '5'],
+        countAll: 4,
+      },
+      creativity: {
+        users: ['3', '4', '5'],
+        countAll: 45,
+      },
+      members: {
+        users: ['3', '4', '5'],
+        countAll: 49,
+      },
+    },
     tasks: [
       {
         id: '1',
@@ -87,26 +93,32 @@ export const becomeSenior: Goal = {
     href: '/better/maximir',
   },
   characteristics: {
-    motivation: {
-      users: ['3', '4', '5'],
-      countAll: 5,
-    },
-    support: {
-      users: ['3', '4', '5'],
-      countAll: 12,
-    },
-    creativity: {
-      users: ['3', '4', '5'],
-      countAll: 32,
-    },
-    members: {
-      users: ['3', '4', '5'],
-      countAll: 3,
-    },
+    motivation: 5,
+    support: 12,
+    creativity: 32,
+    members: 3,
   },
   day: {
     id: '312',
     date: '2021-09-02T00:00:00.000Z',
+    characteristics: {
+      motivation: {
+        users: ['3', '4', '5'],
+        countAll: 5,
+      },
+      support: {
+        users: ['3', '4', '5'],
+        countAll: 12,
+      },
+      creativity: {
+        users: ['3', '4', '5'],
+        countAll: 32,
+      },
+      members: {
+        users: ['3', '4', '5'],
+        countAll: 3,
+      },
+    },
     tasks: [{ id: '11', name: 'watch video', completed: false, completedByOthers: false }],
     feedback: {
       text: null,
@@ -145,26 +157,32 @@ export const getNewGoal = (goalCreation: GoalCreation): Goal => {
       href: '/better/maximir',
     },
     characteristics: {
-      motivation: {
-        users: [],
-        countAll: 0,
-      },
-      support: {
-        users: [],
-        countAll: 0,
-      },
-      creativity: {
-        users: [],
-        countAll: 0,
-      },
-      members: {
-        users: [],
-        countAll: 0,
-      },
+      motivation: 0,
+      support: 0,
+      creativity: 0,
+      members: 0,
     },
     day: {
       id: '312',
       date: new Date().toISOString(),
+      characteristics: {
+        motivation: {
+          users: [],
+          countAll: 0,
+        },
+        support: {
+          users: [],
+          countAll: 0,
+        },
+        creativity: {
+          users: [],
+          countAll: 0,
+        },
+        members: {
+          users: [],
+          countAll: 0,
+        },
+      },
       tasks: goalCreation.tasks.map((t, index) => ({
         ...t,
         id: String(index),

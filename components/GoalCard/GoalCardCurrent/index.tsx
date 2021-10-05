@@ -3,7 +3,7 @@ import dynamic from 'next/dynamic'
 import { differenceInDays } from 'date-fns'
 import { createStyles, useTheme, IconButton } from '@material-ui/core'
 import { makeStyles } from '@material-ui/core/styles'
-import { Goal, GoalCharacteristic } from 'dto'
+import { Client, Goal, GoalCharacteristic } from 'dto'
 import { setQueryParams } from 'helpers/url'
 import useCharacteristicColors from 'hooks/useCharacteristicColors'
 import CharacteristicCard from 'components/CharacteristicCard'
@@ -27,6 +27,7 @@ const CHARACTERISTICS: GoalCharacteristic[] = ['motivation', 'creativity', 'supp
 
 export interface GoalCardCurrentProps extends Goal {
   type: 'current'
+  client: Client
 }
 
 export default function GoalCardCurrent({
@@ -40,8 +41,9 @@ export default function GoalCardCurrent({
   owner,
   day,
   dates,
+  client,
 }: GoalCardCurrentProps): JSX.Element {
-  const { date, tasks, feedback, discussion } = day
+  const { date, tasks, feedback, discussion, characteristics: dayCharacteristics } = day
   const classes = useStyles()
   const theme = useTheme()
   const colors = useCharacteristicColors()
@@ -80,7 +82,7 @@ export default function GoalCardCurrent({
                   <CharacteristicCard
                     type="goal"
                     characteristic={characteristic}
-                    value={characteristics[characteristic].countAll}
+                    value={characteristics[characteristic]}
                     color={colors[characteristic].fontColor}
                   />
                   <AppDot />
@@ -138,7 +140,7 @@ export default function GoalCardCurrent({
             </AppBox>
             {showDiscussion && <GoalCardDiscussion discussion={discussion} role={role} />}
           </AppBox>
-          <GoalCardActions role={role} />
+          <GoalCardActions role={role} characteristics={dayCharacteristics} client={client} />
         </AppBox>
         {showWeb && <GoalCardWeb />}
       </div>

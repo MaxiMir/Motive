@@ -1,4 +1,4 @@
-import { GoalCharacteristics } from './characteristic'
+import { GoalCharacteristics, GoalCharacteristicsWithUsers } from './characteristic'
 import { Role } from './role'
 
 export interface GoalCreation {
@@ -31,6 +31,7 @@ export interface Owner {
 interface Day {
   id: string
   date: string
+  characteristics: GoalCharacteristicsWithUsers
   tasks: Task[]
   feedback: Feedback
   discussion: number

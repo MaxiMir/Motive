@@ -1,5 +1,6 @@
 import { useContext } from 'react'
 import { ContextSnackbarProps, SnackbarContext } from 'context/snackbarContext'
+import useDebounceCb from './useDebounceCb'
 
 export interface UseSnackbar {
   enqueueSnackbar: (props: ContextSnackbarProps) => void
@@ -8,12 +9,13 @@ export interface UseSnackbar {
 
 export const useSnackbar = (): UseSnackbar => {
   const { props, setProps } = useContext(SnackbarContext)
+  const enqueueSnackbar = useDebounceCb((newProps: ContextSnackbarProps) => {
+    props && setProps(null)
+    setProps(newProps)
+  }, 250)
 
   return {
-    enqueueSnackbar: (newProps: ContextSnackbarProps) => {
-      props && setProps(null)
-      setTimeout(() => setProps(newProps), !props ? 0 : 500)
-    },
+    enqueueSnackbar,
     closeSnackbar: () => setProps(null),
   }
 }

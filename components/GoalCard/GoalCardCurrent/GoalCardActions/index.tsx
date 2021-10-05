@@ -1,15 +1,11 @@
 import dynamic from 'next/dynamic'
-import { Role } from 'dto'
+import { GoalCardActionsMemberProps } from './GoalCardActionsMember'
 
 const GoalCardActionsMember = dynamic(() => import('./GoalCardActionsMember'))
 
-interface GoalCardActionsProps {
-  role: Role
-}
-
-export default function GoalCardActions({ role }: GoalCardActionsProps): JSX.Element {
-  switch (role) {
+export default function GoalCardActions(props: GoalCardActionsMemberProps): JSX.Element {
+  switch (props.role) {
     default:
-      return <GoalCardActionsMember />
+      return <GoalCardActionsMember {...props} />
   }
 }

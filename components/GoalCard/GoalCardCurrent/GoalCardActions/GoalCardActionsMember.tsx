@@ -1,5 +1,5 @@
 import { useMemo } from 'react'
-import { Button } from '@material-ui/core/'
+import { Button } from '@material-ui/core'
 import { GoalCharacteristicsWithUsers, MainCharacteristic, Client, Role } from 'dto'
 import CharacteristicCard from 'components/CharacteristicCard'
 import AppBox from 'components/UI/AppBox'
@@ -7,18 +7,25 @@ import AppEmoji from 'components/UI/AppEmoji'
 
 export interface GoalCardActionsMemberProps {
   role: Role
+  dayId: string
   characteristics: GoalCharacteristicsWithUsers
   client: Client
+  onSetAction: (characteristic: MainCharacteristic, increase: boolean) => void
 }
 
-export default function GoalCardActionsMember({ characteristics, client }: GoalCardActionsMemberProps): JSX.Element {
+export default function GoalCardActionsMember({
+  dayId,
+  characteristics,
+  client,
+  onSetAction,
+}: GoalCardActionsMemberProps): JSX.Element {
   const activeMap = useMemo(getActiveCharacteristicMap, [characteristics, client.id])
 
   function getActiveCharacteristicMap() {
     return (['motivation', 'creativity', 'support'] as MainCharacteristic[]).reduce(
-      (acc, name: MainCharacteristic) => ({
+      (acc, type: MainCharacteristic) => ({
         ...acc,
-        [name]: characteristics[name].users.includes(client.id),
+        [type]: characteristics[type].users.includes(client.id),
       }),
       {} as { [k in MainCharacteristic]: boolean },
     )
@@ -27,8 +34,15 @@ export default function GoalCardActionsMember({ characteristics, client }: GoalC
   return (
     <AppBox justifyContent="space-between">
       <AppBox spacing={1}>
-        {(['motivation', 'creativity', 'support'] as MainCharacteristic[]).map((name) => (
-          <CharacteristicCard type="action" name={name} key={name} active={activeMap[name]} />
+        {(['motivation', 'creativity', 'support'] as MainCharacteristic[]).map((characteristic) => (
+          <CharacteristicCard
+            type="action"
+            dayId={dayId}
+            characteristic={characteristic}
+            key={characteristic}
+            active={activeMap[characteristic]}
+            onSet={onSetAction}
+          />
         ))}
       </AppBox>
       <Button variant="outlined" color="primary" startIcon={<AppEmoji name="unsubscribe" onlyEmoji />}>

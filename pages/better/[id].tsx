@@ -17,15 +17,21 @@ export default function UserDetail({ fallbackData }: PageSWR<UserPage>): JSX.Ele
   })
   const { meta, user, client } = (data as UserPage) || {}
 
-  const onAddGoal = async (goal: Goal) => {
+  const onAddGoal = (goal: Goal) => {
     mutateSWR(router.asPath, { ...data, user: { ...user, goals: [...user.goals, goal] } }, false)
     enqueueSnackbar({ message: 'The goal is successfully created', severity: 'success', icon: '💎' })
     setTimeout(() => scrollToElem(`goal-${goal.id}`), 500)
   }
 
+  const onChangeGoal = (goal: Goal) => {
+    const copiedGoals = [...user.goals]
+    copiedGoals[user.goals.findIndex((g) => g.id === goal.id)] = goal
+    mutateSWR(router.asPath, { ...data, user: { ...user, goals: copiedGoals } }, false)
+  }
+
   return (
     <Layout client={client} error={error} {...meta}>
-      <UserCard type="detail" client={client} {...user} onAddGoal={onAddGoal} />
+      <UserCard type="detail" client={client} {...user} onAddGoal={onAddGoal} onChangeGoal={onChangeGoal} />
     </Layout>
   )
 }

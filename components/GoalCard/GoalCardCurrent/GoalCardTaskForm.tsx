@@ -37,8 +37,8 @@ export default function GoalCardTaskForm({
           action: <Button onClick={onUndo}>Undo</Button>,
         })
     },
-    onError(_, completed) {
-      setChecked(!completed)
+    onError(_, data) {
+      setChecked(!data.completed)
       enqueueSnackbar({ message: 'Something went wrong...', severity: 'error' })
     },
   })

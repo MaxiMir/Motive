@@ -50,7 +50,7 @@ export default function Home({ fallbackData }: PageSWR<MainPage>): JSX.Element {
   const { meta, client } = (data as MainPage) || {}
 
   return (
-    <Layout client={client} error={error} withVerticalPadding={false} withHistory={false} {...meta}>
+    <Layout client={client} error={error} withVerticalPadding={false} {...meta}>
       <Slogan />
       {ADVANTAGES.map((advantage) => (
         <AppBox style={{ height: 'calc((100vh - 290px ) / 4)' }} key={advantage.characteristic}>

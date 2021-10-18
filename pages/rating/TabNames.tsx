@@ -1,4 +1,4 @@
-import { Container, Grid } from '@material-ui/core/'
+import { Container, Grid } from '@material-ui/core'
 import { makeStyles } from '@material-ui/core/styles'
 import AppBox from 'components/UI/AppBox'
 import AppTypography from 'components/UI/AppTypography'

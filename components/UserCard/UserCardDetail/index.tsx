@@ -25,6 +25,7 @@ export interface UserCardDetailProps extends UserDetail {
   type: 'detail'
   client: Client
   onAddGoal: (goal: Goal) => void
+  onChangeGoal: (goal: Goal) => void
 }
 
 const UserCardDetail = ({
@@ -39,6 +40,7 @@ const UserCardDetail = ({
   goals,
   client,
   onAddGoal,
+  onChangeGoal,
 }: UserCardDetailProps): JSX.Element => {
   const classes = useStyles()
   const { query } = useRouter()
@@ -112,7 +114,7 @@ const UserCardDetail = ({
             keyGetter={(goal) => goal.id}
             spacing={3}
             flexDirection="row"
-            render={(goal) => <GoalCard type="current" {...goal} client={client} />}
+            render={(goal) => <GoalCard type="current" goal={goal} client={client} onChangeGoal={onChangeGoal} />}
           />
         )}
       </AppBox>

@@ -1,5 +1,5 @@
 import { ElementType, FC } from 'react'
-import { Typography, TypographyProps } from '@material-ui/core/'
+import { Typography, TypographyProps } from '@material-ui/core'
 import { createStyles, makeStyles } from '@material-ui/core/styles'
 
 export type AppTypographyProps = Omit<TypographyProps, 'variant' | 'color'> & {

@@ -9,10 +9,12 @@ export interface UseSnackbar {
 
 export const useSnackbar = (): UseSnackbar => {
   const { props, setProps } = useContext(SnackbarContext)
-  const enqueueSnackbar = useDebounceCb((newProps: ContextSnackbarProps) => {
+  const enqueueSnackbar = useDebounceCb(changeProps, 250)
+
+  function changeProps(propsNew: ContextSnackbarProps) {
     props && setProps(null)
-    setProps(newProps)
-  }, 250)
+    setProps(propsNew)
+  }
 
   return {
     enqueueSnackbar,

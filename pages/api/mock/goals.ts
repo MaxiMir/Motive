@@ -4,7 +4,7 @@ export const learnFrench: Goal = {
   id: '314',
   name: 'learn French',
   href: '/better/maximir?goal=314',
-  started: '2021-07-30T18:31:42',
+  started: '2021-10-17T18:31:42',
   hashtags: ['foreignLanguage', 'knowledge', 'learnFrench', 'immigration', 'recommendation'],
   role: 'MEMBER',
   owner: {
@@ -22,7 +22,7 @@ export const learnFrench: Goal = {
   },
   day: {
     id: '232',
-    date: '2021-10-04T00:00:00.000Z', // 00:00:00.000
+    date: '2021-10-18T00:00:00.000Z', // 00:00:00.000
     characteristics: {
       motivation: {
         users: ['3', '4', '5'],
@@ -74,7 +74,7 @@ export const learnFrench: Goal = {
     { id: '3', date: '2021-09-07T00:00:00.000Z' },
     { id: '2', date: '2021-09-08T00:00:00.000Z' },
     { id: '1', date: '2021-09-10T00:00:00.000Z' },
-    { id: '3143', date: '2021-10-04T00:00:00.000Z' },
+    { id: '3143', date: '2021-10-18T00:00:00.000Z' },
   ],
 }
 
@@ -132,7 +132,7 @@ export const becomeSenior: Goal = {
     { id: '3', date: '2021-09-07T00:00:00.000Z' },
     { id: '2', date: '2021-09-08T00:00:00.000Z' },
     { id: '1', date: '2021-09-10T00:00:00.000Z' },
-    { id: '3143', date: '2021-10-04T00:00:00.000Z' },
+    { id: '3143', date: '2021-10-18T00:00:00.000Z' },
   ],
 }
 

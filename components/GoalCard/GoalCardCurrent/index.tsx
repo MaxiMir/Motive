@@ -3,7 +3,7 @@ import dynamic from 'next/dynamic'
 import { differenceInDays } from 'date-fns'
 import { createStyles, useTheme, IconButton } from '@material-ui/core'
 import { makeStyles } from '@material-ui/core/styles'
-import { Client, Goal, GoalCharacteristic } from 'dto'
+import { Client, Goal, GoalCharacteristic, MainCharacteristic } from 'dto'
 import { setQueryParams } from 'helpers/url'
 import useCharacteristicColors from 'hooks/useCharacteristicColors'
 import CharacteristicCard from 'components/CharacteristicCard'
@@ -25,24 +25,18 @@ const GoalCardWeb = dynamic(() => import('./GoalCardWeb'))
 
 const CHARACTERISTICS: GoalCharacteristic[] = ['motivation', 'creativity', 'support', 'members']
 
-export interface GoalCardCurrentProps extends Goal {
+export interface GoalCardCurrentProps {
   type: 'current'
+  goal: Goal
   client: Client
+  onChangeGoal: (goal: Goal) => void
 }
 
-export default function GoalCardCurrent({
-  id,
-  name,
-  hashtags,
-  href,
-  started,
-  characteristics,
-  role,
-  owner,
-  day,
-  dates,
-  client,
-}: GoalCardCurrentProps): JSX.Element {
+const SHOW_WEB_AFTER_DAYS = 14
+
+export default function GoalCardCurrent({ goal, client, onChangeGoal }: GoalCardCurrentProps): JSX.Element {
+  const currentDate = new Date()
+  const { id, name, hashtags, href, started, characteristics, role, owner, day, dates } = goal
   const { date, tasks, feedback, discussion, characteristics: dayCharacteristics } = day
   const classes = useStyles()
   const theme = useTheme()
@@ -50,8 +44,8 @@ export default function GoalCardCurrent({
   const restRef = useRef(tasks.length - tasks.filter((t) => t.completed).length)
   const [feedbackExpand, setFeedbackExpand] = useState<'more' | 'less'>('more')
   const [discussionExpand, setDiscussionExpand] = useState<'more' | 'less'>('more')
-  const days = differenceInDays(new Date(), Date.parse(started))
-  const showWeb = differenceInDays(new Date(), Date.parse(date)) >= 14
+  const days = differenceInDays(currentDate, Date.parse(started))
+  const showWeb = differenceInDays(currentDate, Date.parse(date)) >= SHOW_WEB_AFTER_DAYS
   const hrefWithDate = setQueryParams(href, { date })
   const withForm = ['OWNER', 'MEMBER'].includes(role)
   const showFeedback = feedbackExpand === 'less'
@@ -59,6 +53,16 @@ export default function GoalCardCurrent({
 
   const onChangeDate = async (newDate: string) => {
     console.log(newDate)
+  }
+
+  const onSetAction = (characteristic: MainCharacteristic, increase: boolean) => {
+    onChangeGoal({
+      ...goal,
+      characteristics: {
+        ...goal.characteristics,
+        [characteristic]: goal.characteristics[characteristic] + (increase ? 1 : -1),
+      },
+    })
   }
 
   return (
@@ -140,7 +144,13 @@ export default function GoalCardCurrent({
             </AppBox>
             {showDiscussion && <GoalCardDiscussion discussion={discussion} role={role} />}
           </AppBox>
-          <GoalCardActions role={role} characteristics={dayCharacteristics} client={client} />
+          <GoalCardActions
+            role={role}
+            dayId={day.id}
+            characteristics={dayCharacteristics}
+            client={client}
+            onSetAction={onSetAction}
+          />
         </AppBox>
         {showWeb && <GoalCardWeb />}
       </div>
@@ -151,10 +161,10 @@ export default function GoalCardCurrent({
 const useStyles = makeStyles((theme) =>
   createStyles({
     root: {
-      flex: '1 1 calc(50% - 12px)',
-      flexGrow: 0,
-      [theme.breakpoints.down('sm')]: {
-        flex: 1,
+      flex: '0 0 100%',
+      [theme.breakpoints.up('md')]: {
+        flex: '1 1 calc(50% - 12px)',
+        flexGrow: 0,
       },
     },
     wrap: {

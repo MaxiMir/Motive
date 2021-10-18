@@ -5,7 +5,9 @@ const GoalCardActionsMember = dynamic(() => import('./GoalCardActionsMember'))
 
 export default function GoalCardActions(props: GoalCardActionsMemberProps): JSX.Element {
   switch (props.role) {
-    default:
+    case 'MEMBER':
       return <GoalCardActionsMember {...props} />
+    default:
+      return <></>
   }
 }

@@ -1,7 +1,7 @@
 import { FC } from 'react'
 import Link from 'next/link'
 import MaterialLink from '@material-ui/core/Link'
-import { TypographyProps } from '@material-ui/core/'
+import { TypographyProps } from '@material-ui/core'
 
 interface AppLinkProps {
   href: string

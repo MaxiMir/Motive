@@ -14,19 +14,13 @@ export interface AppSnackbarProps {
 export default function AppSnackbar({ icon, message, onClose, ...restAlertProps }: AppSnackbarProps): JSX.Element {
   const classes = useStyles()
 
-  const handleClose = (_event?: SyntheticEvent, reason?: string) => {
-    if (reason === 'clickaway') {
-      return
-    }
-
-    onClose()
-  }
+  const handleClose = (_event?: SyntheticEvent, reason?: string) => reason !== 'clickaway' && onClose()
 
   return (
     <Snackbar open className={classes.root} autoHideDuration={3000} onClose={handleClose}>
       <Alert
         {...restAlertProps}
-        icon={restAlertProps.severity === 'error' ? '❗' : icon}
+        icon={restAlertProps.severity === 'error' ? '☠️' : icon}
         className={classes.alert}
         color={restAlertProps.severity === 'success' ? 'info' : undefined}
       >

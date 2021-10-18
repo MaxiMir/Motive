@@ -1,6 +1,6 @@
 import Image from 'next/image'
 import { makeStyles } from '@material-ui/core/styles'
-import { Container, Grid } from '@material-ui/core/'
+import { Container, Grid } from '@material-ui/core'
 import { User, UserCharacteristic } from 'dto'
 import useCharacteristicColors from 'hooks/useCharacteristicColors'
 import AppBox from 'components/UI/AppBox'

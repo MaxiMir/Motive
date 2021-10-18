@@ -1,6 +1,6 @@
 import React from 'react'
 import { makeStyles } from '@material-ui/core/styles'
-import { AppBar, Button } from '@material-ui/core/'
+import { AppBar, Button } from '@material-ui/core'
 import { SIGN_IN_ROUTE } from 'route'
 import Menu from 'components/Menu'
 import AppContainer from 'components/UI/AppContainer'

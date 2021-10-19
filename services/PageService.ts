@@ -7,11 +7,11 @@ export default class PageService {
   }
 
   static async getRating(): Promise<RatingPage> {
-    return Axios.get('/rating')
+    return Axios.get('/rating/')
   }
 
   static async getFavorites(): Promise<FavoritesPage> {
-    return Axios.get('/favorites')
+    return Axios.get('/favorites/')
   }
 
   static async getDynamic<T>(url: string): Promise<T> {

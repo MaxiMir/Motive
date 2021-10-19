@@ -36,7 +36,6 @@ export default function Favorites({ fallbackData }: PageSWR<FavoritesPage>): JSX
     },
     onError: () => {
       mutateFavoritesLocal(prevFavoritesRef.current)
-      enqueueSnackbar({ message: 'Something went wrong...', severity: 'error' })
     },
   })
 

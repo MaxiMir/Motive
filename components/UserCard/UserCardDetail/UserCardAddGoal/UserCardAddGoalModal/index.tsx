@@ -52,7 +52,6 @@ export default function UserCardAddGoalModal({ onSuccess, onClose }: UserCardAdd
   const [expandPittText, setExpandPittText] = useState<'more' | 'less'>('more')
   const { isLoading, send } = useSend<GoalCreation, Goal>(GoalService.create, {
     onSuccess: (r) => onSuccess(r),
-    onError: () => enqueueSnackbar({ message: 'Something went wrong...', severity: 'error' }),
   })
   const formik = useFormik({
     initialValues: {

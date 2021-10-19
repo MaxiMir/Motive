@@ -16,8 +16,10 @@ export const useSnackbar = (): UseSnackbar => {
     setProps(propsNew)
   }
 
+  const closeSnackbar = () => setProps(null)
+
   return {
     enqueueSnackbar,
-    closeSnackbar: () => setProps(null),
+    closeSnackbar,
   }
 }

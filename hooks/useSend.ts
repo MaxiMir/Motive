@@ -1,9 +1,10 @@
 import { useCallback, useState } from 'react'
 import { AxiosRequestConfig } from 'axios'
+import { useSnackbar } from './useSnackbar'
 
 interface Options<R> {
   onSuccess: (response: R, data: AxiosRequestConfig['data']) => void
-  onError: (e: Error, request: AxiosRequestConfig['data']) => void
+  onError?: (e: Error, request: AxiosRequestConfig['data']) => void
 }
 
 export default function useSend<D, R>(
@@ -14,6 +15,7 @@ export default function useSend<D, R>(
   send: (data: D) => void
 } {
   const [isLoading, setIsLoading] = useState(false)
+  const { enqueueSnackbar } = useSnackbar()
 
   const send = useCallback(
     async (data) => {
@@ -22,12 +24,13 @@ export default function useSend<D, R>(
         const response = await fetcher(data)
         onSuccess(response, data)
       } catch (e) {
-        onError(e, data)
+        onError?.(e, data)
+        enqueueSnackbar({ message: 'Something went wrong...', severity: 'error' })
       } finally {
         setIsLoading(false)
       }
     },
-    [fetcher, onError, onSuccess],
+    [enqueueSnackbar, fetcher, onError, onSuccess],
   )
 
   return { isLoading, send }

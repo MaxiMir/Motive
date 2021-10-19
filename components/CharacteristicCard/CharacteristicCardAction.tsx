@@ -32,14 +32,13 @@ export default function CharacteristicCardAction({
       onSet(characteristic, data.active)
       data.active &&
         enqueueSnackbar({
-          message: "You increased Julia's goal creativity points",
+          message: `You have increased goal's ${characteristic} points`,
           severity: 'success',
           icon: '✨',
         })
     },
     onError(_, data) {
       setActive(!data.active)
-      enqueueSnackbar({ message: 'Something went wrong...', severity: 'error' })
     },
   })
   const sendWithDebounce = useDebounceCb((isActive: boolean) => {

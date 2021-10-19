@@ -20,7 +20,6 @@ const UserCardFavorite = ({ id, favorite: initial, client }: UserCardFavoritePro
     },
     onError(_, favorite) {
       setIsFavorite(!favorite)
-      enqueueSnackbar({ message: 'Something went wrong...', severity: 'error' })
     },
   })
 

@@ -39,7 +39,6 @@ export default function GoalCardTaskForm({
     },
     onError(_, data) {
       setChecked(!data.completed)
-      enqueueSnackbar({ message: 'Something went wrong...', severity: 'error' })
     },
   })
 

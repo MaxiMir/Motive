@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useRef, useState } from 'react'
 import dynamic from 'next/dynamic'
 import { Task } from 'dto'
 import TaskService from 'services/TaskService'
@@ -11,7 +11,7 @@ const GoalCardTaskDate = dynamic(() => import('./GoalCardTaskDate'))
 
 interface GoalCardTaskFormProps extends Task {
   rest: number
-  onSet: (completed: boolean) => void
+  onSet: (isCompleted: boolean) => void
 }
 
 export default function GoalCardTaskForm({
@@ -23,33 +23,34 @@ export default function GoalCardTaskForm({
   rest,
   onSet,
 }: GoalCardTaskFormProps): JSX.Element {
+  const timerIdRef = useRef<NodeJS.Timeout>()
   const { enqueueSnackbar, closeSnackbar } = useSnackbar()
   const [checked, setChecked] = useState(initial)
   const { isLoading, send } = useSend(TaskService.updateTask, {
-    onSuccess(_, data) {
-      const restWithNew = rest - 1
-
-      data.completed &&
-        enqueueSnackbar({
-          message: !restWithNew ? 'Well done! All tasks are completed' : `Do it! Remains to be done: ${restWithNew}`,
-          severity: 'success',
-          icon: !restWithNew ? '🦾️' : '⚡️',
-          action: <Button onClick={onUndo}>Undo</Button>,
-        })
-    },
-    onError(_, data) {
-      setChecked(!data.completed)
+    onError() {
+      onSet(false)
+      setChecked(false)
     },
   })
 
-  const onChange = (isChecked: boolean) => {
-    onSet(isChecked)
-    setChecked(isChecked)
-    send({ id, name, completed: isChecked, completedByOthers })
+  const onChange = () => {
+    const restWithNew = rest - 1
+
+    onSet(true)
+    setChecked(true)
+    enqueueSnackbar({
+      message: !restWithNew ? 'Well done! All tasks are completed' : `Do it! Remains to be done: ${restWithNew}`,
+      severity: 'success',
+      icon: !restWithNew ? 'motivation-tech' : 'energy',
+      action: <Button onClick={onUndo}>Undo</Button>,
+    })
+    timerIdRef.current = setTimeout(() => send({ id }), 4000)
   }
 
   function onUndo() {
-    onChange(false)
+    timerIdRef.current && clearTimeout(timerIdRef.current)
+    onSet(false)
+    setChecked(false)
     closeSnackbar()
   }
 
@@ -60,7 +61,7 @@ export default function GoalCardTaskForm({
         label={name + (completedByOthers && !checked ? ' 🔥' : '')}
         checked={checked}
         disabled={checked || isLoading}
-        onChange={(_, isChecked) => onChange(isChecked)}
+        onChange={onChange}
       />
       {date && <GoalCardTaskDate date={date} />}
     </form>

@@ -39,6 +39,7 @@ export const JULIA: UserDetail = {
   goals: [
     {
       ...learnFrench,
+      role: 'OWNER',
       owner: {
         id: '2',
         firstName: 'Julia',

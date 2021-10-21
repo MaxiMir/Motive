@@ -112,8 +112,8 @@ export default function GoalCardCurrent({ goal, client, onChangeGoal }: GoalCard
                     <GoalCardTaskForm
                       {...task}
                       rest={restRef.current}
-                      onSet={(completed) => {
-                        restRef.current += completed ? -1 : 1
+                      onSet={(isCompleted) => {
+                        restRef.current += isCompleted ? -1 : 1
                       }}
                     />
                   )}

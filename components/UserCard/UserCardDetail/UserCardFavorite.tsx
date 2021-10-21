@@ -1,29 +1,33 @@
 import React, { useState } from 'react'
 import { makeStyles } from '@material-ui/core/styles'
 import { IconButton } from '@material-ui/core'
-import { UserDetail, Client } from 'dto'
-import UserService from 'services/UserService'
+import { UserDetail } from 'dto'
+import FavoriteService from 'services/FavoriteService'
 import useDebounceCb from 'hooks/useDebounceCb'
 import useSend from 'hooks/useSend'
 import { useSnackbar } from 'hooks/useSnackbar'
 import AppEmoji from 'components/UI/AppEmoji'
 
-type UserCardFavoriteProps = Pick<UserDetail, 'id' | 'favorite'> & { client: Client }
+type UserCardFavoriteProps = Pick<UserDetail, 'id' | 'favorite'>
 
-const UserCardFavorite = ({ id, favorite: initial, client }: UserCardFavoriteProps): JSX.Element => {
+const UserCardFavorite = ({ id, favorite: initial }: UserCardFavoriteProps): JSX.Element => {
   const { enqueueSnackbar } = useSnackbar()
   const classes = useStyles()
   const [isFavorite, setIsFavorite] = useState(initial)
-  const { send } = useSend(UserService.setFavorite, {
-    onSuccess() {
-      enqueueSnackbar({ message: isFavorite ? 'Added to favorites' : 'Removed from favorites', severity: 'success' })
+  const { send } = useSend(FavoriteService.setUser, {
+    onSuccess(_, { favorite }) {
+      enqueueSnackbar({
+        message: favorite ? 'Added to favorites' : 'Removed from favorites',
+        severity: 'success',
+        icon: favorite ? 'robot' : 'ninja',
+      })
     },
-    onError(_, favorite) {
+    onError(_, { favorite }) {
       setIsFavorite(!favorite)
     },
   })
 
-  const mutateWithDebounce = useDebounceCb((favorite: boolean) => send({ userId: client.id, id, favorite }), 500)
+  const mutateWithDebounce = useDebounceCb((favorite: boolean) => send({ id, favorite }), 500)
 
   const onClick = () => {
     setIsFavorite(!isFavorite)

@@ -19,7 +19,11 @@ export default function UserDetail({ fallbackData }: PageSWR<UserPage>): JSX.Ele
 
   const onAddGoal = (goal: Goal) => {
     mutateSWR(router.asPath, { ...data, user: { ...user, goals: [...user.goals, goal] } }, false)
-    enqueueSnackbar({ message: 'The goal is successfully created', severity: 'success', icon: '💎' })
+    enqueueSnackbar({
+      message: 'The goal is successfully created',
+      severity: 'success',
+      icon: 'goal',
+    })
     setTimeout(() => scrollToElem(`goal-${goal.id}`), 500)
   }
 

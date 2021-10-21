@@ -58,7 +58,7 @@ const UserCardDetail = ({
           <AppTypography variant="h5" component="h1">
             {firstName} {lastName}
           </AppTypography>
-          {!isOwner && client.isAuthenticated && <UserCardFavorite client={client} id={id} favorite={favorite} />}
+          {!isOwner && client.isAuthenticated && <UserCardFavorite id={id} favorite={favorite} />}
         </AppBox>
         <AppBox alignItems="center" spacing={0.5}>
           <AppTooltip title="Page Views" className={classes.tooltip}>

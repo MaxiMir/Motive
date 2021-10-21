@@ -46,7 +46,7 @@ export default function Share({ open, title, href, onClose }: ShareProps): JSX.E
         <ShareMenu
           title={title}
           url={url}
-          onCopyEnd={() => enqueueSnackbar({ message: 'Copied', severity: 'success' })}
+          onCopyEnd={() => enqueueSnackbar({ message: 'Copied', severity: 'success', icon: 'keyboard' })}
           onCopyError={() => enqueueSnackbar({ message: 'Something went wrong...', severity: 'error' })}
           onClose={onCloseMenu}
         />

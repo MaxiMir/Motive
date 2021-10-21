@@ -1,11 +1,15 @@
-import { SyntheticEvent } from 'react'
+import React, { SyntheticEvent } from 'react'
+import dynamic from 'next/dynamic'
 import { Snackbar, SnackbarProps } from '@material-ui/core'
 import { makeStyles } from '@material-ui/core/styles'
 import Alert, { AlertProps } from '@material-ui/lab/Alert'
+import { AppEmojiName } from './AppEmoji'
+
+const AppEmoji = dynamic(() => import('./AppEmoji'))
 
 export interface AppSnackbarProps {
   severity: AlertProps['severity']
-  icon?: AlertProps['icon']
+  icon?: AppEmojiName
   action?: SnackbarProps['action']
   message: string
   onClose: () => void
@@ -13,14 +17,23 @@ export interface AppSnackbarProps {
 
 export default function AppSnackbar({ icon, message, onClose, ...restAlertProps }: AppSnackbarProps): JSX.Element {
   const classes = useStyles()
+  const iconContent = getIconContent()
 
   const handleClose = (_event?: SyntheticEvent, reason?: string) => reason !== 'clickaway' && onClose()
+
+  function getIconContent() {
+    if (restAlertProps.severity === 'error') {
+      return <AppEmoji name="death" onlyEmoji />
+    }
+
+    return icon && <AppEmoji name={icon} onlyEmoji />
+  }
 
   return (
     <Snackbar open className={classes.root} autoHideDuration={3000} onClose={handleClose}>
       <Alert
         {...restAlertProps}
-        icon={restAlertProps.severity === 'error' ? '☠️' : icon}
+        icon={iconContent}
         className={classes.alert}
         color={restAlertProps.severity === 'success' ? 'info' : undefined}
       >

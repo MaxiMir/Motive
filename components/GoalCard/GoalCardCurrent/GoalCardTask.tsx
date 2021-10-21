@@ -10,7 +10,7 @@ export default function GoalCardTask({ name, date }: Task): JSX.Element {
   return (
     <>
       <AppBox alignItems="center" spacing={1}>
-        <AppEmoji name="task-current" variant="h6" />
+        <AppEmoji name="energy" variant="h6" />
         <AppTypography variant="subtitle1">{name}</AppTypography>
       </AppBox>
       {date && <GoalCardTaskDate date={date} />}

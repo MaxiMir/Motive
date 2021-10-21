@@ -9,7 +9,6 @@ import { Goal, GoalCreation } from 'dto'
 import GoalService from 'services/GoalService'
 import useSend from 'hooks/useSend'
 import useFocus from 'hooks/useFocus'
-import { useSnackbar } from 'hooks/useSnackbar'
 import AppModal from 'components/UI/AppModal'
 import AppHeader from 'components/UI/AppHeader'
 import AppBox from 'components/UI/AppBox'
@@ -47,7 +46,6 @@ const schema: SchemaOf<GoalCreation> = object({
 export default function UserCardAddGoalModal({ onSuccess, onClose }: UserCardAddGoalModalProps): JSX.Element {
   const classes = useStyles()
   const [hashtagsRef, setHashtagsFocus] = useFocus()
-  const { enqueueSnackbar } = useSnackbar()
   const tomorrow = useMemo(() => addDays(new Date(), 1), [])
   const [expandPittText, setExpandPittText] = useState<'more' | 'less'>('more')
   const { isLoading, send } = useSend<GoalCreation, Goal>(GoalService.create, {

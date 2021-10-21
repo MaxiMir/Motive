@@ -3,7 +3,7 @@ import { AxiosRequestConfig } from 'axios'
 import { useSnackbar } from './useSnackbar'
 
 interface Options<R> {
-  onSuccess: (response: R, data: AxiosRequestConfig['data']) => void
+  onSuccess?: (response: R, data: AxiosRequestConfig['data']) => void
   onError?: (e: Error, request: AxiosRequestConfig['data']) => void
 }
 
@@ -22,7 +22,7 @@ export default function useSend<D, R>(
       try {
         setIsLoading(true)
         const response = await fetcher(data)
-        onSuccess(response, data)
+        onSuccess?.(response, data)
       } catch (e) {
         onError?.(e, data)
         enqueueSnackbar({ message: 'Something went wrong...', severity: 'error' })

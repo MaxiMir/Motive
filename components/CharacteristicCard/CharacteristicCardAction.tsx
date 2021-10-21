@@ -29,12 +29,13 @@ export default function CharacteristicCardAction({
   const { send } = useSend(DayService.setCharacteristic, {
     onSuccess(_, data) {
       lastLoadedRef.current = data.active
+
       onSet(characteristic, data.active)
       data.active &&
         enqueueSnackbar({
           message: `You have increased goal's ${characteristic} points`,
           severity: 'success',
-          icon: '✨',
+          icon: 'magic',
         })
     },
     onError(_, data) {

@@ -6,12 +6,13 @@ const AppTypography = dynamic(() => import('./AppTypography'))
 
 export type AppEmojiName =
   | Characteristic
+  | 'motivation-tech'
   | 'favorite-active'
   | 'favorite'
   | 'views'
   | 'goal'
   | 'task'
-  | 'task-current'
+  | 'energy'
   | 'runs for days'
   | 'feedback'
   | 'completedByOthers'
@@ -20,6 +21,11 @@ export type AppEmojiName =
   | 'video'
   | 'violation'
   | 'unsubscribe'
+  | 'death'
+  | 'ninja'
+  | 'robot'
+  | 'magic'
+  | 'keyboard'
 
 interface AppEmojiProps {
   name: AppEmojiName
@@ -48,6 +54,8 @@ function getContent(name: AppEmojiName) {
   switch (name) {
     case 'motivation':
       return '💪'
+    case 'motivation-tech':
+      return '🦾️'
     case 'creativity':
       return '🧠'
     case 'support':
@@ -66,7 +74,7 @@ function getContent(name: AppEmojiName) {
       return '💎'
     case 'task':
       return '📌'
-    case 'task-current':
+    case 'energy':
       return '⚡️'
     case 'runs for days':
       return '⏳'
@@ -84,6 +92,16 @@ function getContent(name: AppEmojiName) {
       return '👹'
     case 'unsubscribe':
       return '📪'
+    case 'death':
+      return '☠️'
+    case 'ninja':
+      return '🥷‍'
+    case 'robot':
+      return '🤖‍'
+    case 'magic':
+      return '✨'
+    case 'keyboard':
+      return '⌨️'
     default:
       return ''
   }

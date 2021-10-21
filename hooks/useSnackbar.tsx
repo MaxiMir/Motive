@@ -3,6 +3,7 @@ import { ContextSnackbarProps, SnackbarContext } from 'context/snackbarContext'
 import useDebounceCb from './useDebounceCb'
 
 export interface UseSnackbar {
+  id?: number
   enqueueSnackbar: (props: ContextSnackbarProps) => void
   closeSnackbar: () => void
 }

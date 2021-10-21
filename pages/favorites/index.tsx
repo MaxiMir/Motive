@@ -4,7 +4,7 @@ import { GetServerSideProps } from 'next'
 import useSWR, { useSWRConfig } from 'swr'
 import { PageSWR, FavoritesPage, User } from 'dto'
 import PageService from 'services/PageService'
-import UserService from 'services/UserService'
+import FavoriteService from 'services/FavoriteService'
 import useSend from 'hooks/useSend'
 import { useSnackbar } from 'hooks/useSnackbar'
 import Layout from 'layout'
@@ -23,7 +23,7 @@ export default function Favorites({ fallbackData }: PageSWR<FavoritesPage>): JSX
   const { meta, favorites, client } = (data as FavoritesPage) || {}
   const prevFavoritesRef = useRef(favorites)
   const { enqueueSnackbar, closeSnackbar } = useSnackbar()
-  const { send } = useSend(UserService.setFavorite, {
+  const { send } = useSend(FavoriteService.setUser, {
     onSuccess: (_, { id, favorite }) => {
       prevFavoritesRef.current = favorites
 
@@ -32,6 +32,7 @@ export default function Favorites({ fallbackData }: PageSWR<FavoritesPage>): JSX
           message: 'Removed from favorites',
           severity: 'success',
           action: <Button onClick={() => onUndo(id)}>Undo</Button>,
+          icon: 'ninja',
         })
     },
     onError: () => {
@@ -43,13 +44,13 @@ export default function Favorites({ fallbackData }: PageSWR<FavoritesPage>): JSX
     prevFavoritesRef.current = favorites
 
     mutateFavoritesLocal(favorites.filter((f) => f.id !== id))
-    send({ userId: client.id, id, favorite: true })
+    send({ id, favorite: true })
   }
 
   function onUndo(id: string) {
     mutateFavoritesLocal(prevFavoritesRef.current)
     closeSnackbar()
-    send({ userId: client.id, id, favorite: false })
+    send({ id, favorite: false })
   }
 
   function mutateFavoritesLocal(users: User[]) {

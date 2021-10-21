@@ -18,7 +18,14 @@ export interface UserCardFavoriteProps extends User {
   onRemove: () => void
 }
 
-const UserCardFavorite = ({ avatar, href, firstName, lastName, characteristics, onRemove }: UserCardFavoriteProps): JSX.Element => {
+const UserCardFavorite = ({
+  avatar,
+  href,
+  firstName,
+  lastName,
+  characteristics,
+  onRemove,
+}: UserCardFavoriteProps): JSX.Element => {
   const classes = useStyles()
   const colors = useCharacteristicColors()
 

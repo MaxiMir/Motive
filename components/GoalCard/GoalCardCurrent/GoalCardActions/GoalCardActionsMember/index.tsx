@@ -1,9 +1,10 @@
 import { useMemo } from 'react'
 import { Button } from '@material-ui/core'
 import { GoalCharacteristicsWithUsers, MainCharacteristic, Client, Role } from 'dto'
-import CharacteristicCard from 'components/CharacteristicCard'
 import AppBox from 'components/UI/AppBox'
 import AppEmoji from 'components/UI/AppEmoji'
+import GoalCardActionsMemberDefault from './GoalCardActionsMemberDefault'
+import GoalCardActionsMemberSupport from './GoalCardActionsMemberSupport'
 
 export interface GoalCardActionsMemberProps {
   role: Role
@@ -34,9 +35,8 @@ export default function GoalCardActionsMember({
   return (
     <AppBox justifyContent="space-between">
       <AppBox spacing={1}>
-        {(['motivation', 'creativity', 'support'] as MainCharacteristic[]).map((characteristic) => (
-          <CharacteristicCard
-            type="action"
+        {(['motivation', 'creativity'] as MainCharacteristic[]).map((characteristic) => (
+          <GoalCardActionsMemberDefault
             dayId={dayId}
             characteristic={characteristic}
             key={characteristic}
@@ -44,6 +44,12 @@ export default function GoalCardActionsMember({
             onSet={onSetAction}
           />
         ))}
+        <GoalCardActionsMemberSupport
+          dayId={dayId}
+          characteristic="support"
+          active={activeMap.support}
+          onSet={onSetAction}
+        />
       </AppBox>
       <Button variant="outlined" color="primary" startIcon={<AppEmoji name="unsubscribe" onlyEmoji />}>
         Leave

@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useRef, useState } from 'react'
 import { makeStyles } from '@material-ui/core/styles'
 import { IconButton } from '@material-ui/core'
 import { UserDetail } from 'dto'
@@ -13,30 +13,35 @@ type UserCardFavoriteProps = Pick<UserDetail, 'id' | 'favorite'>
 const UserCardFavorite = ({ id, favorite: initial }: UserCardFavoriteProps): JSX.Element => {
   const { enqueueSnackbar } = useSnackbar()
   const classes = useStyles()
-  const [isFavorite, setIsFavorite] = useState(initial)
+  const lastLoadedRef = useRef(initial)
+  const [favorite, setFavorite] = useState(initial)
   const { send } = useSend(FavoriteService.setUser, {
-    onSuccess(_, { favorite }) {
+    onSuccess(_, data) {
+      lastLoadedRef.current = data.favorite
+
       enqueueSnackbar({
-        message: favorite ? 'Added to favorites' : 'Removed from favorites',
+        message: data.favorite ? 'Added to favorites' : 'Removed from favorites',
         severity: 'success',
-        icon: favorite ? 'robot' : 'ninja',
+        icon: data.favorite ? 'robot' : 'ninja',
       })
     },
-    onError(_, { favorite }) {
-      setIsFavorite(!favorite)
+    onError(_, data) {
+      setFavorite(!data.favorite)
     },
   })
 
-  const mutateWithDebounce = useDebounceCb((favorite: boolean) => send({ id, favorite }), 500)
+  const mutateWithDebounce = useDebounceCb((value: boolean) => {
+    lastLoadedRef.current !== value && send({ id, favorite: value })
+  })
 
   const onClick = () => {
-    setIsFavorite(!isFavorite)
-    mutateWithDebounce(!isFavorite)
+    setFavorite(!favorite)
+    mutateWithDebounce(!favorite)
   }
 
   return (
-    <IconButton title={`${isFavorite ? 'Remove from' : 'Add to'} favorite`} onClick={onClick}>
-      <AppEmoji name={!isFavorite ? 'favorite' : 'favorite-active'} variant="h5" className={classes.emoji} />
+    <IconButton title={`${favorite ? 'Remove from' : 'Add to'} favorite`} onClick={onClick}>
+      <AppEmoji name={!favorite ? 'favorite' : 'favorite-active'} variant="h5" className={classes.emoji} />
     </IconButton>
   )
 }

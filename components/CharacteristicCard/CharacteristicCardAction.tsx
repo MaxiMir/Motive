@@ -1,55 +1,21 @@
-import { useRef, useState } from 'react'
 import { Button, createStyles, makeStyles } from '@material-ui/core'
 import clsx from 'clsx'
 import { MainCharacteristic } from 'dto'
-import DayService from 'services/DayService'
-import useDebounceCb from 'hooks/useDebounceCb'
-import { useSnackbar } from 'hooks/useSnackbar'
-import useSend from 'hooks/useSend'
 import AppEmoji from 'components/UI/AppEmoji'
 
 export interface CharacteristicCardActionProps {
   type: 'action'
-  dayId: string
   characteristic: MainCharacteristic
   active: boolean
-  onSet: (characteristic: MainCharacteristic, increase: boolean) => void
+  onClick: () => void
 }
 
 export default function CharacteristicCardAction({
-  dayId,
   characteristic,
-  active: initial,
-  onSet,
+  active,
+  onClick,
 }: CharacteristicCardActionProps): JSX.Element {
   const classes = useStyles({ characteristic })
-  const lastLoadedRef = useRef(initial)
-  const [active, setActive] = useState(initial)
-  const { enqueueSnackbar } = useSnackbar()
-  const { send } = useSend(DayService.setCharacteristic, {
-    onSuccess(_, data) {
-      lastLoadedRef.current = data.active
-
-      onSet(characteristic, data.active)
-      data.active &&
-        enqueueSnackbar({
-          message: `You have increased goal's ${characteristic} points`,
-          severity: 'success',
-          icon: 'magic',
-        })
-    },
-    onError(_, data) {
-      setActive(!data.active)
-    },
-  })
-  const sendWithDebounce = useDebounceCb((isActive: boolean) => {
-    lastLoadedRef.current !== isActive && send({ dayId, characteristic, active: isActive })
-  })
-
-  const onClick = () => {
-    setActive(!active)
-    sendWithDebounce(!active)
-  }
 
   return (
     <Button variant="outlined" className={clsx(classes.button, active && classes.buttonActive)} onClick={onClick}>

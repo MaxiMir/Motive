@@ -14,7 +14,7 @@ export type GoalCharacteristics = {
   [k in GoalCharacteristic]: number
 }
 
-export type GoalCharacteristicWithUsers = {
+type GoalCharacteristicWithUsers = {
   users: string[]
   countAll: number
 }

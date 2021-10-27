@@ -5,7 +5,7 @@ export type PageSWR<T> = {
   fallbackData: Page<T>
 }
 
-export type Page<T> = {
+type Page<T> = {
   meta: {
     title: string
     description: string

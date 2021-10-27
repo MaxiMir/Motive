@@ -6,7 +6,7 @@ import { useSnackbar } from 'hooks/useSnackbar'
 import useSend from 'hooks/useSend'
 import CharacteristicCard from 'components/CharacteristicCard'
 
-export interface GoalCardActionsMemberDefaultProps {
+interface GoalCardActionsMemberDefaultProps {
   dayId: string
   characteristic: MainCharacteristic
   active: boolean

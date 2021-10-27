@@ -37,7 +37,7 @@ export const copyHandler = async (text: string, onEnd: () => void, onError: (err
 /**
  * Social Networks
  */
-export const SHARERS: { [k: string]: (u: string, quote: string) => [string, boolean] } = {
+const SHARERS: { [k: string]: (u: string, quote: string) => [string, boolean] } = {
   facebook(u: string, quote: string) {
     return prepare({
       shareUrl: 'https://www.facebook.com/sharer/sharer.php',

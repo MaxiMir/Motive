@@ -1,7 +1,7 @@
 import dynamic from 'next/dynamic'
 import { Role } from 'dto'
 
-const AppTypography = dynamic(() => import('components/UI/AppTypography'))
+const GoalCardDiscussionEmpty = dynamic(() => import('./GoalCardDiscussionEmpty'))
 
 interface GoalCardDiscussionProps {
   discussion: number
@@ -9,5 +9,5 @@ interface GoalCardDiscussionProps {
 }
 
 export default function GoalCardDiscussion({ discussion, role }: GoalCardDiscussionProps): JSX.Element {
-  return <>{!discussion && role !== 'MEMBER' && <AppTypography>Nothing so far...</AppTypography>}</>
+  return <>{!discussion && role !== 'MEMBER' && <GoalCardDiscussionEmpty />}</>
 }

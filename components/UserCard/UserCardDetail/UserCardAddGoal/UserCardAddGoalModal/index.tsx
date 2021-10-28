@@ -154,7 +154,6 @@ export default function UserCardAddGoalModal({ onSuccess, onClose }: UserCardAdd
                             ampm={false}
                             className={classes.timepicker}
                             keyboardIcon={<span className="material-icons">query_builder</span>}
-                            // disabledHours={() => }
                             component={KeyboardTimePicker}
                           />
                         )}

@@ -44,12 +44,7 @@ export default function GoalCardActionsMember({
             onSet={onSetAction}
           />
         ))}
-        <GoalCardActionsMemberSupport
-          dayId={dayId}
-          characteristic="support"
-          active={activeMap.support}
-          onSet={onSetAction}
-        />
+        <GoalCardActionsMemberSupport characteristic="support" active={activeMap.support} />
       </AppBox>
       <Button variant="outlined" color="primary" startIcon={<AppEmoji name="unsubscribe" onlyEmoji />}>
         Leave

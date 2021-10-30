@@ -2,12 +2,15 @@ import { UserCharacteristics } from './characteristic'
 import { Goal } from './goal'
 import { Role } from './role'
 
-export interface User {
+export interface UserBase {
   id: string
   firstName: string
   lastName: string
   href: string
   avatar: string
+}
+
+export interface User extends UserBase {
   characteristics: UserCharacteristics
 }
 

@@ -1,3 +1,5 @@
+import { UserBase } from './user'
+
 interface Message {
   id: string
   message: string
@@ -15,4 +17,7 @@ export interface MessageWithSupport extends Message {
   type: 'S'
 }
 
-export type Discussion = Array<MessageWithQuestion | MessageWithSupport>
+export type Discussion = {
+  users: UserBase[]
+  discussion: Array<MessageWithQuestion | MessageWithSupport>
+}

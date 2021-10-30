@@ -1,7 +1,7 @@
-import { Fragment, useRef, useState } from 'react'
+import { Fragment, useRef } from 'react'
 import dynamic from 'next/dynamic'
 import { differenceInDays } from 'date-fns'
-import { createStyles, useTheme, IconButton } from '@material-ui/core'
+import { createStyles, useTheme, Accordion, AccordionSummary, AccordionDetails } from '@material-ui/core'
 import { makeStyles } from '@material-ui/core/styles'
 import { Client, Goal, GoalCharacteristic, MainCharacteristic } from 'dto'
 import { setQueryParams } from 'helpers/url'
@@ -22,6 +22,7 @@ const GoalCardHashtags = dynamic(() => import('./GoalCardHashtags'))
 const GoalCardTaskForm = dynamic(() => import('./GoalCardTaskForm'))
 const GoalCardFeedback = dynamic(() => import('./GoalCardFeedback'))
 const GoalCardWeb = dynamic(() => import('./GoalCardWeb'))
+const AppTypography = dynamic(() => import('components/UI/AppTypography'))
 
 const CHARACTERISTICS: GoalCharacteristic[] = ['motivation', 'creativity', 'support', 'members']
 
@@ -37,19 +38,16 @@ const SHOW_WEB_AFTER_DAYS = 14
 export default function GoalCardCurrent({ goal, client, onChangeGoal }: GoalCardCurrentProps): JSX.Element {
   const currentDate = new Date()
   const { id, name, hashtags, href, started, characteristics, role, owner, day, dates } = goal
-  const { date, tasks, feedback, discussion, characteristics: dayCharacteristics } = day
+  const { id: dayId, date, tasks, feedback, discussionCount, characteristics: dayCharacteristics } = day
   const classes = useStyles()
   const theme = useTheme()
   const colors = useCharacteristicColors()
   const restRef = useRef(tasks.length - tasks.filter((t) => t.completed).length)
-  const [feedbackExpand, setFeedbackExpand] = useState<'more' | 'less'>('more')
-  const [discussionExpand, setDiscussionExpand] = useState<'more' | 'less'>('more')
   const days = differenceInDays(currentDate, Date.parse(started))
   const showWeb = differenceInDays(currentDate, Date.parse(date)) >= SHOW_WEB_AFTER_DAYS
   const hrefWithDate = setQueryParams(href, { date })
   const withForm = ['OWNER', 'MEMBER'].includes(role)
-  const showFeedback = feedbackExpand === 'less'
-  const showDiscussion = discussionExpand === 'less'
+  const expandIcon = <AppIconText color="primary">expand_more</AppIconText>
 
   const onChangeDate = async (newDate: string) => {
     console.log(newDate)
@@ -100,53 +98,63 @@ export default function GoalCardCurrent({ goal, client, onChangeGoal }: GoalCard
               />
             </AppBox>
             {hashtags?.length && <GoalCardHashtags hashtags={hashtags} />}
-            <AppBox flexDirection="column" spacing={1}>
-              <AppHeader name="task" variant="h6" component="h2" color="primary">
-                Tasks
-              </AppHeader>
-              {tasks.map((task, index) => (
-                <Fragment key={index}>
-                  {!withForm ? (
-                    <GoalCardTask {...task} />
+            <div>
+              <Accordion defaultExpanded>
+                <AccordionSummary expandIcon={expandIcon} aria-controls="feedback-content" id="feedback-header">
+                  <AppHeader name="task" variant="h6" component="h2" color="primary">
+                    Tasks
+                  </AppHeader>
+                </AccordionSummary>
+                <AccordionDetails>
+                  <AppBox flexDirection="column" spacing={2}>
+                    {tasks.map((task, index) => (
+                      <Fragment key={index}>
+                        {!withForm ? (
+                          <GoalCardTask {...task} />
+                        ) : (
+                          <GoalCardTaskForm
+                            {...task}
+                            rest={restRef.current}
+                            onSet={(isCompleted) => {
+                              restRef.current += isCompleted ? -1 : 1
+                            }}
+                          />
+                        )}
+                      </Fragment>
+                    ))}
+                  </AppBox>
+                </AccordionDetails>
+              </Accordion>
+              <Accordion>
+                <AccordionSummary expandIcon={expandIcon} aria-controls="feedback-content" id="feedback-header">
+                  <AppHeader name="feedback" variant="h6" component="h2" color="primary">
+                    Feedback
+                  </AppHeader>
+                </AccordionSummary>
+                <AccordionDetails>
+                  <GoalCardFeedback {...feedback} />
+                </AccordionDetails>
+              </Accordion>
+              <Accordion>
+                <AccordionSummary expandIcon={expandIcon} aria-controls="discussion-content" id="discussion-header">
+                  <AppHeader name="comment" variant="h6" component="h2" color="primary">
+                    Discussion{' '}
+                    {!discussionCount ? '' : <span className={classes.discussionCount}>{discussionCount}</span>}
+                  </AppHeader>
+                </AccordionSummary>
+                <AccordionDetails>
+                  {!discussionCount && role !== 'MEMBER' ? (
+                    <AppTypography>Nothing so far...</AppTypography>
                   ) : (
-                    <GoalCardTaskForm
-                      {...task}
-                      rest={restRef.current}
-                      onSet={(isCompleted) => {
-                        restRef.current += isCompleted ? -1 : 1
-                      }}
-                    />
+                    <GoalCardDiscussion dayId={dayId} client={client} role={role} />
                   )}
-                </Fragment>
-              ))}
-            </AppBox>
-            <AppBox flexDirection="column" spacing={1}>
-              <AppBox alignItems="center" spacing={1}>
-                <AppHeader name="feedback" variant="h6" component="h2" color="primary">
-                  Feedback
-                </AppHeader>
-                <IconButton size="small" onClick={() => setFeedbackExpand(feedbackExpand === 'more' ? 'less' : 'more')}>
-                  <AppIconText color="primary">expand_{feedbackExpand}</AppIconText>
-                </IconButton>
-              </AppBox>
-              {showFeedback && <GoalCardFeedback {...feedback} />}
-            </AppBox>
-            <AppBox alignItems="center" spacing={1}>
-              <AppHeader name="comment" variant="h6" component="h2" color="primary">
-                Discussion {!discussion ? '' : <span className={classes.discussion}>{discussion}</span>}
-              </AppHeader>
-              <IconButton
-                size="small"
-                onClick={() => setDiscussionExpand(discussionExpand === 'more' ? 'less' : 'more')}
-              >
-                <AppIconText color="primary">expand_{discussionExpand}</AppIconText>
-              </IconButton>
-            </AppBox>
-            {showDiscussion && <GoalCardDiscussion discussion={discussion} role={role} />}
+                </AccordionDetails>
+              </Accordion>
+            </div>
           </AppBox>
           <GoalCardActions
             role={role}
-            dayId={day.id}
+            dayId={dayId}
             characteristics={dayCharacteristics}
             client={client}
             onSetAction={onSetAction}
@@ -180,7 +188,7 @@ const useStyles = makeStyles((theme) =>
       background: theme.palette.background.paper,
       borderRadius: 13,
     },
-    discussion: {
+    discussionCount: {
       color: '#99989D',
     },
   }),

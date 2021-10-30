@@ -55,9 +55,7 @@ const Layout: FC<LayoutProps> = ({
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
       </Head>
       <Header />
-      <main className={classes.main}>
-        {!error && <>{children}</>}
-      </main>
+      <main className={classes.main}>{!error && <>{children}</>}</main>
       <Footer />
     </>
   )

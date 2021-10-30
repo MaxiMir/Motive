@@ -1,9 +1,18 @@
-import { useState } from 'react'
-import { Discussion } from 'dto'
-import DayService from 'services/DayService'
+import { Client, Discussion, Role } from 'dto'
 
-export default function GoalCardDiscussionContent(): JSX.Element {
-  const [content, setContent] = useState<Discussion>()
-  console.log(content, setContent, DayService.getDiscussion)
-  return <>1111</>
+interface GoalCardDiscussionContentProps {
+  dayId: string
+  client: Client
+  role: Role
+  discussion: Discussion
+}
+
+export default function GoalCardDiscussionContent({
+  dayId,
+  client,
+  role,
+  discussion,
+}: GoalCardDiscussionContentProps): JSX.Element {
+  console.log(dayId, client, role, discussion)
+  return <></>
 }

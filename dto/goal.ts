@@ -34,7 +34,7 @@ interface Day {
   characteristics: GoalCharacteristicsWithUsers
   tasks: Task[]
   feedback: Feedback
-  discussion: number
+  discussionCount: number
 }
 
 export interface Task {

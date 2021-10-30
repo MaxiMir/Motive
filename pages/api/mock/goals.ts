@@ -67,7 +67,7 @@ export const learnFrench: Goal = {
       ],
       videos: ['https://www.youtube.com/watch?v=Bl5630CeYFs&t=25s', 'https://www.youtube.com/watch?v=5KWEjn839lc'],
     },
-    discussion: 21,
+    discussionCount: 21,
   },
   dates: [
     { id: '5', date: '2021-09-06T00:00:00.000Z' },
@@ -125,7 +125,7 @@ export const becomeSenior: Goal = {
       photos: null,
       videos: null,
     },
-    discussion: 0,
+    discussionCount: 0,
   },
   dates: [
     { id: '5', date: '2021-09-06T00:00:00.000Z' },
@@ -194,7 +194,7 @@ export const getNewGoal = (goalCreation: GoalCreation): Goal => {
         photos: null,
         videos: null,
       },
-      discussion: 0,
+      discussionCount: 0,
     },
     dates: [{ id: '13', date: new Date().toISOString() }],
   }

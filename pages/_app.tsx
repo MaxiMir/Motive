@@ -14,6 +14,8 @@ const AppSnackbar = dynamic(() => import('components/UI/AppSnackbar'))
 export default function MyApp({ Component, pageProps }: AppProps): JSX.Element {
   const [snackbarProps, setSnackbarProps] = useState<ContextSnackbarProps | null>(null)
 
+  const onClose = () => setSnackbarProps(null)
+
   React.useEffect(() => {
     // Remove the server-side injected CSS.
     const jssStyles = document.querySelector('#jss-server-side')
@@ -32,7 +34,7 @@ export default function MyApp({ Component, pageProps }: AppProps): JSX.Element {
         <SnackbarContext.Provider value={{ props: snackbarProps, setProps: setSnackbarProps }}>
           <Component {...pageProps} />
         </SnackbarContext.Provider>
-        {snackbarProps && <AppSnackbar {...snackbarProps} onClose={() => setSnackbarProps(null)} />}
+        {snackbarProps && <AppSnackbar {...snackbarProps} onClose={onClose} />}
       </ThemeProvider>
     </MuiPickersUtilsProvider>
   )

@@ -15,13 +15,17 @@ export default function Menu(): JSX.Element {
     setOpen(false)
   }
 
+  const onOpen = () => setOpen(true)
+
+  const onClose = () => setOpen(false)
+
   return (
     <div>
-      <IconButton edge="start" color="inherit" aria-label="open menu" onClick={() => setOpen(true)}>
+      <IconButton edge="start" color="inherit" aria-label="open menu" onClick={onOpen}>
         <MenuIcon />
       </IconButton>
-      <Drawer open={open} onClose={() => setOpen(false)}>
-        <div role="presentation" className={classes.list} onKeyDown={onKeyDown} onClick={() => setOpen(false)}>
+      <Drawer open={open} onClose={onClose}>
+        <div role="presentation" className={classes.list} onKeyDown={onKeyDown} onClick={onClose}>
           <List>
             {['News', 'How it works', 'Next Features', 'Support us'].map((text) => (
               <ListItem button key={text}>

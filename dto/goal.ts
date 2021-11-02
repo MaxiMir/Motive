@@ -1,4 +1,5 @@
 import { GoalCharacteristics, GoalCharacteristicsWithUsers } from './characteristic'
+import { UserBase } from './user'
 import { Role } from './role'
 
 export interface GoalCreation {
@@ -13,19 +14,11 @@ export interface Goal {
   href: string
   started: string
   hashtags: string[]
-  owner: Owner
+  owner: UserBase
   role: Role
   characteristics: GoalCharacteristics
   day: Day
   dates: Array<{ id: string; date: string }>
-}
-
-export interface Owner {
-  id: string
-  firstName: string
-  lastName: string
-  avatar: string
-  href: string
 }
 
 interface Day {
@@ -34,7 +27,7 @@ interface Day {
   characteristics: GoalCharacteristicsWithUsers
   tasks: Task[]
   feedback: Feedback
-  discussionCount: number
+  messageCount: number
 }
 
 export interface Task {

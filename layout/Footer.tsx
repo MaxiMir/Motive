@@ -1,11 +1,13 @@
 import React from 'react'
 import { useRouter } from 'next/router'
+import clsx from 'clsx'
 import { makeStyles } from '@material-ui/core/styles'
 import { FAVORITES_ROUTE, PROFILE_ROUTE, RATING_ROUTE, SEARCH_ROUTE, TOP_OF_THE_DAY_ROUTE } from 'route'
 import AppBox from 'components/UI/AppBox'
 import AppLink from 'components/UI/AppLink'
 import AppContainer from 'components/UI/AppContainer'
 import { TopOfTheDayIcon, SearchIcon, RatingIcon, FavoritesMenuIcon, ProfileIcon } from 'components/UI/icons'
+import { BottomNavigationAction } from '@material-ui/core'
 
 const LINKS = [
   {
@@ -29,7 +31,11 @@ export default function Footer(): JSX.Element {
         <AppBox justifyContent="space-between" alignItems="center" height={80}>
           {LINKS.map(({ href, title, Icon }) => (
             <AppLink href={href} key={title} title={title}>
-              <Icon fontSize="large" className={pathname !== href ? classes.link : classes.currentLink} />
+              <BottomNavigationAction
+                label={title}
+                value={title}
+                icon={<Icon fontSize="large" className={clsx([pathname === href && classes.currentLink])} />}
+              />
             </AppLink>
           ))}
         </AppBox>
@@ -42,12 +48,12 @@ const useStyles = makeStyles({
   root: {
     backgroundColor: '#121212',
   },
-  link: {
-    transition: 'all .2s ease-in-out',
-    '&:hover': {
-      transform: 'scale(1.1)',
-    },
-  },
+  // link: {
+  //   transition: 'all .2s ease-in-out',
+  //   '&:hover': {
+  //     transform: 'scale(1.1)',
+  //   },
+  // },
   currentLink: {
     opacity: 0.6,
   },

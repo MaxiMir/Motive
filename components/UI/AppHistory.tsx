@@ -8,18 +8,15 @@ export default function AppHistory(): JSX.Element {
   const classes = useStyles()
   const router = useRouter()
 
+  const onClick = () => window.history?.forward()
+
   return (
     <AppContainer className={classes.root}>
       <AppBox spacing={2}>
         <IconButton size="small" aria-label="To the previous page" className={classes.button} onClick={router.back}>
           <span className="material-icons">arrow_back</span>
         </IconButton>
-        <IconButton
-          size="small"
-          aria-label="To the forward page"
-          className={classes.button}
-          onClick={() => window.history?.forward()}
-        >
+        <IconButton size="small" aria-label="To the forward page" className={classes.button} onClick={onClick}>
           <span className="material-icons">arrow_forward</span>
         </IconButton>
       </AppBox>

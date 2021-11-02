@@ -26,6 +26,7 @@ export type AppEmojiName =
   | 'robot'
   | 'magic'
   | 'keyboard'
+  | 'cancel'
 
 interface AppEmojiProps {
   name: AppEmojiName
@@ -102,6 +103,8 @@ function getContent(name: AppEmojiName) {
       return '✨'
     case 'keyboard':
       return '⌨️'
+    case 'cancel':
+      return '🚫'
     default:
       return ''
   }

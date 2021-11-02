@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from 'react'
 import dynamic from 'next/dynamic'
 import { useSnackbar } from 'hooks/useSnackbar'
 
-const ShareMenu = dynamic(() => import('./ShareMenu'))
+const ShareMenu = dynamic(() => import('./components/ShareMenu'))
 
 interface ShareProps {
   open: boolean
@@ -16,6 +16,10 @@ export default function Share({ open, title, href, onClose }: ShareProps): JSX.E
   const { enqueueSnackbar, closeSnackbar } = useSnackbar()
   const [withMenu, setWithMenu] = useState(false)
   const url = process.env.NEXT_PUBLIC_SERVER_BASE_URL + href
+
+  const onCopyEnd = () => enqueueSnackbar({ message: 'Copied', severity: 'success', icon: 'keyboard' })
+
+  const onCopyError = () => enqueueSnackbar({ message: 'Something went wrong...', severity: 'error' })
 
   const onCloseMenu = () => {
     setWithMenu(false)
@@ -43,13 +47,7 @@ export default function Share({ open, title, href, onClose }: ShareProps): JSX.E
   return (
     <>
       {withMenu && (
-        <ShareMenu
-          title={title}
-          url={url}
-          onCopyEnd={() => enqueueSnackbar({ message: 'Copied', severity: 'success', icon: 'keyboard' })}
-          onCopyError={() => enqueueSnackbar({ message: 'Something went wrong...', severity: 'error' })}
-          onClose={onCloseMenu}
-        />
+        <ShareMenu title={title} url={url} onCopyEnd={onCopyEnd} onCopyError={onCopyError} onClose={onCloseMenu} />
       )}
     </>
   )

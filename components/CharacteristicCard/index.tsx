@@ -1,11 +1,11 @@
 import dynamic from 'next/dynamic'
-import { CharacteristicCardGoalProps } from './CharacteristicCardGoal'
-import { CharacteristicCardUserProps } from './CharacteristicCardUser'
-import { CharacteristicCardActionProps } from './CharacteristicCardAction'
+import { CharacteristicCardGoalProps } from './views/CharacteristicCardGoal'
+import { CharacteristicCardUserProps } from './views/CharacteristicCardUser'
+import { CharacteristicCardActionProps } from './views/CharacteristicCardAction'
 
-const CharacteristicCardGoal = dynamic(() => import('./CharacteristicCardGoal'))
-const CharacteristicCardUser = dynamic(() => import('./CharacteristicCardUser'))
-const CharacteristicCardAction = dynamic(() => import('./CharacteristicCardAction'))
+const CharacteristicCardGoal = dynamic(() => import('./views/CharacteristicCardGoal'))
+const CharacteristicCardUser = dynamic(() => import('./views/CharacteristicCardUser'))
+const CharacteristicCardAction = dynamic(() => import('./views/CharacteristicCardAction'))
 
 export default function CharacteristicCard(
   props: CharacteristicCardGoalProps | CharacteristicCardUserProps | CharacteristicCardActionProps,

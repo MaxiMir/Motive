@@ -19,5 +19,5 @@ export interface MessageWithSupport extends Message {
 
 export type Discussion = {
   users: UserBase[]
-  discussion: Array<MessageWithQuestion | MessageWithSupport>
+  messages: Array<MessageWithQuestion | MessageWithSupport>
 }

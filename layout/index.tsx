@@ -48,6 +48,11 @@ const Layout: FC<LayoutProps> = ({
         <meta property="og:url" content={url} />
         <meta property="og:image" content="/images/app.png" />
         <meta property="og:type" content={type} />
+        {/* PWA TODO REPLACE */}
+        <link rel="manifest" href="/manifest.json" />
+        <link href="/icons/favicon-16x16.png" rel="icon" type="image/png" sizes="16x16" />
+        <link href="/icons/favicon-32x32.png" rel="icon" type="image/png" sizes="32x32" />
+        <link rel="apple-touch-icon" href="/apple-icon.png" />
         {/* PWA primary color */}
         <meta name="theme-color" content="#4DA0EC" />
         <meta charSet="UTF-8" />

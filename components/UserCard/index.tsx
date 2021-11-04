@@ -1,30 +1,24 @@
 import dynamic from 'next/dynamic'
-import { UserCardDetailProps } from './views/UserCardDetail'
-import { UserCardFavoriteProps } from './views/UserCardFavorite'
-import { UserCardRatingProps } from './views/UserCardRating'
-import { UserCardAvatarProps } from './views/UserCardAvatar'
-import { UserCardMessageProps } from './views/UserCardMessage'
+import { DetailProps } from './templates/Detail'
+import { FavoriteProps } from './templates/Favorite'
+import { RatingProps } from './templates/Rating'
+import { AvatarProps } from './templates/Avatar'
 
-const UserCardDetail = dynamic(() => import('./views/UserCardDetail'))
-const UserCardFavorite = dynamic(() => import('./views/UserCardFavorite'))
-const UserCardRating = dynamic(() => import('./views/UserCardRating'))
-const UserCardAvatar = dynamic(() => import('./views/UserCardAvatar'))
-const UserCardMessage = dynamic(() => import('./views/UserCardMessage'))
+const Detail = dynamic(() => import('./templates/Detail'))
+const Favorite = dynamic(() => import('./templates/Favorite'))
+const Rating = dynamic(() => import('./templates/Rating'))
+const Avatar = dynamic(() => import('./templates/Avatar'))
 
-export default function UserCard(
-  props: UserCardDetailProps | UserCardFavoriteProps | UserCardRatingProps | UserCardAvatarProps | UserCardMessageProps,
-): JSX.Element {
+export default function UserCard(props: DetailProps | FavoriteProps | RatingProps | AvatarProps): JSX.Element {
   switch (props.type) {
     case 'detail':
-      return <UserCardDetail {...props} />
+      return <Detail {...props} />
     case 'favorite':
-      return <UserCardFavorite {...props} />
+      return <Favorite {...props} />
     case 'rating':
-      return <UserCardRating {...props} />
+      return <Rating {...props} />
     case 'avatar':
-      return <UserCardAvatar {...props} />
-    case 'message':
-      return <UserCardMessage {...props} />
+      return <Avatar {...props} />
     default:
       return <></>
   }

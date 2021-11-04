@@ -1,13 +1,15 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
-import { messages } from '../../mock/messages'
+import { topics } from '../../mock/topics'
 import users from '../../mock/users'
 
-export default (_: NextApiRequest, res: NextApiResponse): void => {
+export default async (_: NextApiRequest, res: NextApiResponse): Promise<void> => {
+  await new Promise((r) => setTimeout(r, 3000))
+
   res.status(200).json({
     success: true,
     data: {
       users: users.map(({ id, firstName, lastName, href, avatar }) => ({ id, firstName, lastName, href, avatar })),
-      messages,
+      topics,
     },
   })
 }

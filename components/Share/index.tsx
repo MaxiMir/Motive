@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from 'react'
 import dynamic from 'next/dynamic'
 import { useSnackbar } from 'hooks/useSnackbar'
 
-const ShareMenu = dynamic(() => import('./components/ShareMenu'))
+const Menu = dynamic(() => import('./components/Menu'))
 
 interface ShareProps {
   open: boolean
@@ -47,7 +47,7 @@ export default function Share({ open, title, href, onClose }: ShareProps): JSX.E
   return (
     <>
       {withMenu && (
-        <ShareMenu title={title} url={url} onCopyEnd={onCopyEnd} onCopyError={onCopyError} onClose={onCloseMenu} />
+        <Menu title={title} url={url} onCopyEnd={onCopyEnd} onCopyError={onCopyError} onClose={onCloseMenu} />
       )}
     </>
   )

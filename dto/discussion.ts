@@ -8,16 +8,17 @@ interface Message {
   dislike: number
 }
 
-export interface MessageWithQuestion extends Message {
-  type: 'Q'
-  answer?: Message
+export interface TopicWithQuestion extends Message {
+  type: 'QUESTION'
+  answer: Message | null
 }
 
-export interface MessageWithSupport extends Message {
-  type: 'S'
+export interface TopicWithSupport extends Message {
+  type: 'SUPPORT'
+  answer: null
 }
 
 export type Discussion = {
   users: UserBase[]
-  messages: Array<MessageWithQuestion | MessageWithSupport>
+  topics: Array<TopicWithQuestion | TopicWithSupport>
 }

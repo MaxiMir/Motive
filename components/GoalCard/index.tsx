@@ -1,12 +1,12 @@
 import dynamic from 'next/dynamic'
-import { GoalCardCurrentProps } from './views/GoalCardCurrent'
+import { CurrentProps } from './templates/Current'
 
-const GoalCardCurrent = dynamic(() => import('./views/GoalCardCurrent'))
+const Current = dynamic(() => import('./templates/Current'))
 
-export default function GoalCard(props: GoalCardCurrentProps): JSX.Element {
+export default function GoalCard(props: CurrentProps): JSX.Element {
   switch (props.type) {
     case 'current':
-      return <GoalCardCurrent {...props} />
+      return <Current {...props} />
     default:
       return <></>
   }

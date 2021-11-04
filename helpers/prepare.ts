@@ -28,3 +28,5 @@ const truncated = (num: number, decimalPlaces = 1): number => {
 }
 
 export const toUpperFirstChar = (string: string): string => string[0].toUpperCase() + string.slice(1)
+
+export const toUserName = (firstName: string, lastName: string): string => [firstName, lastName].join(' ')

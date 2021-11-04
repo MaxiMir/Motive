@@ -1,22 +1,20 @@
 import dynamic from 'next/dynamic'
-import { CharacteristicCardGoalProps } from './views/CharacteristicCardGoal'
-import { CharacteristicCardUserProps } from './views/CharacteristicCardUser'
-import { CharacteristicCardActionProps } from './views/CharacteristicCardAction'
+import { GoalProps } from './templates/Goal'
+import { UserProps } from './templates/User'
+import { ActionProps } from './templates/Action'
 
-const CharacteristicCardGoal = dynamic(() => import('./views/CharacteristicCardGoal'))
-const CharacteristicCardUser = dynamic(() => import('./views/CharacteristicCardUser'))
-const CharacteristicCardAction = dynamic(() => import('./views/CharacteristicCardAction'))
+const Goal = dynamic(() => import('./templates/Goal'))
+const User = dynamic(() => import('./templates/User'))
+const Action = dynamic(() => import('./templates/Action'))
 
-export default function CharacteristicCard(
-  props: CharacteristicCardGoalProps | CharacteristicCardUserProps | CharacteristicCardActionProps,
-): JSX.Element {
+export default function CharacteristicCard(props: GoalProps | UserProps | ActionProps): JSX.Element {
   switch (props.type) {
     case 'goal':
-      return <CharacteristicCardGoal {...props} />
+      return <Goal {...props} />
     case 'user':
-      return <CharacteristicCardUser {...props} />
+      return <User {...props} />
     case 'action':
-      return <CharacteristicCardAction {...props} />
+      return <Action {...props} />
     default:
       return <></>
   }

@@ -2,7 +2,7 @@ import React from 'react'
 import { makeStyles } from '@material-ui/core/styles'
 import { AppBar, Button } from '@material-ui/core'
 import { SIGN_IN_ROUTE } from 'route'
-import Menu from 'components/Menu'
+import LeftMenu from 'components/LeftMenu'
 import AppContainer from 'components/UI/AppContainer'
 import AppBox from 'components/UI/AppBox'
 
@@ -13,7 +13,7 @@ export default function Header(): JSX.Element {
     <AppBar position="static" className={classes.appBar}>
       <AppContainer>
         <AppBox justifyContent="space-between">
-          <Menu />
+          <LeftMenu />
           <Button className={classes.button} href={SIGN_IN_ROUTE}>
             Sign in
           </Button>

@@ -71,6 +71,7 @@ const FRIEND: UserDetail = {
   goals: [
     {
       ...learnFrench,
+      role: 'GUEST',
       owner: {
         id: '1',
         firstName: 'Maxim',

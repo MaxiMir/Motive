@@ -14,5 +14,5 @@ export default function Support({ characteristic, active: initial }: SupportProp
     setActive(!active)
   }
 
-  return <CharacteristicCard type="action" characteristic={characteristic} active={active} onClick={onClick} />
+  return <CharacteristicCard type="reaction" characteristic={characteristic} active={active} onClick={onClick} />
 }

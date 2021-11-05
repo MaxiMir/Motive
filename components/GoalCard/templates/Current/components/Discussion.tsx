@@ -32,20 +32,23 @@ export default function Discussion({ dayId, role }: DiscussionProps): JSX.Elemen
           render={() => <Dialog type="goal-skeleton" />}
         />
       ) : (
-        <AppList
-          elements={topics}
-          keyGetter={(topic) => topic.id}
-          spacing={2}
-          render={(topic) => (
-            <Dialog
-              type="goal"
-              topicUser={usersMap[topic.userId]}
-              answerUser={!topic.answer?.userId ? null : usersMap[topic.answer.userId]}
-              topic={topic}
-              role={role}
-            />
-          )}
-        />
+        <>
+          <AppList
+            elements={topics}
+            keyGetter={(topic) => topic.id}
+            spacing={2}
+            render={(topic) => (
+              <Dialog
+                type="goal"
+                topicUser={usersMap[topic.userId]}
+                answerUser={!topic.answer?.userId ? undefined : usersMap[topic.answer.userId]}
+                topic={topic}
+                role={role}
+              />
+            )}
+          />
+          {role === 'MEMBER' && <div>INPUT QUESTION</div>}
+        </>
       )}
     </AppBox>
   )

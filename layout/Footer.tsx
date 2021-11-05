@@ -48,12 +48,6 @@ const useStyles = makeStyles({
   root: {
     backgroundColor: '#121212',
   },
-  // link: {
-  //   transition: 'all .2s ease-in-out',
-  //   '&:hover': {
-  //     transform: 'scale(1.1)',
-  //   },
-  // },
   currentLink: {
     opacity: 0.6,
   },

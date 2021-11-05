@@ -26,4 +26,14 @@ const support: TopicWithSupport = {
   answer: null,
 }
 
-export const topics = [question, support]
+const question2: TopicWithQuestion = {
+  id: '127',
+  message: 'What is the test?',
+  type: 'QUESTION',
+  userId: '4',
+  like: 1035,
+  dislike: 0,
+  answer: null,
+}
+
+export const topics = [question, support, question2]

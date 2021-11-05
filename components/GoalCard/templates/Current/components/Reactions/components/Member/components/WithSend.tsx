@@ -42,5 +42,5 @@ export default function WithSend({ dayId, characteristic, active: initial, onSet
     sendWithDebounce(!active)
   }
 
-  return <CharacteristicCard type="action" characteristic={characteristic} active={active} onClick={onClick} />
+  return <CharacteristicCard type="reaction" characteristic={characteristic} active={active} onClick={onClick} />
 }

@@ -1,31 +1,40 @@
+import { useState } from 'react'
 import { TopicWithQuestion, TopicWithSupport, Role, UserBase } from 'dto'
-import AppBox from 'components/UI/AppBox'
 import Message from './components/Message'
-import Reactions from './components/Reactions'
 
 export interface GoalProps {
   type: 'goal'
   topicUser: UserBase
-  answerUser: UserBase | null
+  answerUser?: UserBase
   topic: TopicWithQuestion | TopicWithSupport
   role: Role
 }
 
 export default function Goal({ topicUser, answerUser, topic, role }: GoalProps): JSX.Element {
+  const [showInput, setShowInput] = useState(false)
   const { type, message, like, dislike, answer } = topic
   const showReply = role === 'OWNER' && type === 'QUESTION' && !answer
 
   return (
     <>
-      <AppBox flexDirection="column" spacing={1}>
-        <Message message={message} user={topicUser} />
-        <Reactions like={like} dislike={dislike} onClick={!showReply ? undefined : () => false} />
-      </AppBox>
+      <Message
+        message={message}
+        user={topicUser}
+        like={like}
+        dislike={dislike}
+        support={type === 'SUPPORT'}
+        onClick={!showReply ? undefined : () => setShowInput(true)}
+      />
+      {showInput && <div>INPUT ANSWER</div>}
       {answer?.message && answerUser && (
-        <AppBox flexDirection="column" spacing={1} marginLeft="56px">
-          <Message message={answer.message} user={answerUser} />
-          <Reactions like={answer.like} dislike={answer.dislike} />
-        </AppBox>
+        <Message
+          message={answer.message}
+          user={answerUser}
+          like={answer.like}
+          dislike={answer.dislike}
+          answer
+          support
+        />
       )}
     </>
   )

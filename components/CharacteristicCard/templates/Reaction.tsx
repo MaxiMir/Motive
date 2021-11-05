@@ -3,14 +3,14 @@ import clsx from 'clsx'
 import { MainCharacteristic } from 'dto'
 import AppEmoji from 'components/UI/AppEmoji'
 
-export interface ActionProps {
-  type: 'action'
+export interface ReactionProps {
+  type: 'reaction'
   characteristic: MainCharacteristic
   active: boolean
   onClick: () => void
 }
 
-export default function Action({ characteristic, active, onClick }: ActionProps): JSX.Element {
+export default function Reaction({ characteristic, active, onClick }: ReactionProps): JSX.Element {
   const classes = useStyles({ characteristic })
 
   return (

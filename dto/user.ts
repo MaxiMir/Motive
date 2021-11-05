@@ -6,6 +6,7 @@ export interface UserBase {
   id: string
   firstName: string
   lastName: string
+  fullName: string
   href: string
   avatar: string
 }

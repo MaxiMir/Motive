@@ -5,6 +5,7 @@ const ME: UserDetail = {
   id: '1',
   firstName: 'Maxim',
   lastName: 'Minchenko',
+  fullName: 'Maxim Minchenko',
   href: '/better/maximir',
   avatar: '/__temp__/1.png',
   characteristics: {
@@ -24,6 +25,7 @@ const JULIA: UserDetail = {
   id: '2',
   firstName: 'Julia',
   lastName: 'Minchenko',
+  fullName: 'Julia Minchenko',
   href: '/better/juliaz',
   avatar: '/__temp__/2.png',
   characteristics: {
@@ -44,6 +46,7 @@ const JULIA: UserDetail = {
         id: '2',
         firstName: 'Julia',
         lastName: 'Minchenko',
+        fullName: 'Julia Minchenko',
         avatar: '/__temp__/2.png',
         href: '/better/juliaz',
       },
@@ -56,6 +59,7 @@ const FRIEND: UserDetail = {
   id: '3',
   firstName: 'Alexey',
   lastName: 'Kopeychik',
+  fullName: 'Alexey Kopeychik',
   href: '/better/kopeychik',
   avatar: '/__temp__/4.png',
   characteristics: {
@@ -76,6 +80,7 @@ const FRIEND: UserDetail = {
         id: '1',
         firstName: 'Maxim',
         lastName: 'Minchenko',
+        fullName: 'Maxim Minchenko',
         avatar: '/__temp__/1.png',
         href: '/better/maximir',
       },
@@ -88,6 +93,7 @@ const FRIEND1: UserDetail = {
   id: '4',
   firstName: 'Valentina',
   lastName: 'Ulyanova',
+  fullName: 'Valentina Ulyanova',
   href: '/better/ulyanova',
   avatar: '/__temp__/6.png',
   characteristics: {
@@ -107,6 +113,7 @@ const FRIEND2: UserDetail = {
   id: '5',
   firstName: 'Artyom',
   lastName: 'Arzunyan',
+  fullName: 'Artyom Arzunyan',
   href: '/better/artyom',
   avatar: '/__temp__/3.png',
   characteristics: {

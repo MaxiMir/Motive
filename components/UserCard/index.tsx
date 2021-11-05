@@ -1,15 +1,17 @@
 import dynamic from 'next/dynamic'
-import { DetailProps } from './templates/Detail'
-import { FavoriteProps } from './templates/Favorite'
-import { RatingProps } from './templates/Rating'
-import { AvatarProps } from './templates/Avatar'
+import { UserCardDetailProps } from './templates/UserCardDetail'
+import { UserCardFavoriteProps } from './templates/UserCardFavorite'
+import { UserCardRatingProps } from './templates/UserCardRating'
+import { UserCardAvatarProps } from './templates/UserCardAvatar'
 
-const Detail = dynamic(() => import('./templates/Detail'))
-const Favorite = dynamic(() => import('./templates/Favorite'))
-const Rating = dynamic(() => import('./templates/Rating'))
-const Avatar = dynamic(() => import('./templates/Avatar'))
+const Detail = dynamic(() => import('./templates/UserCardDetail'))
+const Favorite = dynamic(() => import('./templates/UserCardFavorite'))
+const Rating = dynamic(() => import('./templates/UserCardRating'))
+const Avatar = dynamic(() => import('./templates/UserCardAvatar'))
 
-export default function UserCard(props: DetailProps | FavoriteProps | RatingProps | AvatarProps): JSX.Element {
+export default function UserCard(
+  props: UserCardDetailProps | UserCardFavoriteProps | UserCardRatingProps | UserCardAvatarProps,
+): JSX.Element {
   switch (props.type) {
     case 'detail':
       return <Detail {...props} />

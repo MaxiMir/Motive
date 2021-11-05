@@ -1,48 +1,13 @@
 import { GetServerSideProps } from 'next'
 import useSWR from 'swr'
-import { RATING_ROUTE } from 'route'
-import { Characteristic, MainPage, PageSWR } from 'dto'
+import { MainPage, PageSWR } from 'dto'
 import PageService from 'services/PageService'
 import useCharacteristicColors from 'hooks/useCharacteristicColors'
-import { setQueryParams } from 'helpers/url'
 import Layout from 'layout'
-import Slogan from 'components/Slogan'
-import Advantage from 'components/Advantage'
 import AppBox from 'components/UI/AppBox'
-
-interface AdvantageItem {
-  characteristic: Characteristic
-  title: string
-  subtitle: string
-  href: string
-}
-
-const ADVANTAGES: AdvantageItem[] = [
-  {
-    characteristic: 'motivation',
-    title: 'Be motivational',
-    subtitle: 'for yourself and others',
-    href: RATING_ROUTE,
-  },
-  {
-    characteristic: 'creativity',
-    title: 'BE СREATIVE',
-    subtitle: 'for yourself and others',
-    href: setQueryParams(RATING_ROUTE, { tab: '1' }),
-  },
-  {
-    characteristic: 'support',
-    title: 'BE SUPPORTIVE',
-    subtitle: 'to people in need',
-    href: setQueryParams(RATING_ROUTE, { tab: '2' }),
-  },
-  {
-    characteristic: 'completed',
-    title: 'Rating',
-    subtitle: 'And tear up the tops!',
-    href: RATING_ROUTE,
-  },
-]
+import { ADVANTAGES } from './home/helper'
+import Slogan from './home/Slogan'
+import Advantage from './home/Advantage'
 
 export default function Home({ fallbackData }: PageSWR<MainPage>): JSX.Element {
   const colors = useCharacteristicColors()

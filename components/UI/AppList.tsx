@@ -10,15 +10,9 @@ export interface AppListProps<T> {
   render: (element: T, index: number) => JSX.Element
 }
 
-export default function AppList<T>({
-  flexDirection = 'column',
-  elements,
-  spacing,
-  render,
-  keyGetter,
-}: AppListProps<T>): JSX.Element {
+export default function AppList<T>({ elements, spacing, render, keyGetter }: AppListProps<T>): JSX.Element {
   return (
-    <AppBox flexDirection={flexDirection} flexWrap="wrap" spacing={spacing}>
+    <AppBox flexDirection="column" flexWrap="wrap" spacing={spacing}>
       {elements.map((element, key) => (
         <Fragment key={keyGetter(element)}>{render(element, key)}</Fragment>
       ))}

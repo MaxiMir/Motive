@@ -1,25 +1,28 @@
 import { useMemo } from 'react'
 import dynamic from 'next/dynamic'
 import useSWR from 'swr'
-import { Role, UserBase } from 'dto'
+import { Client, Role, UserBase } from 'dto'
 import DayService from 'services/DayService'
 import AppBox from 'components/UI/AppBox'
 import AppList from 'components/UI/AppList'
-import Loader from './components/Loader'
 
+const Loader = dynamic(() => import('./components/Loader'))
 const Topic = dynamic(() => import('./components/Topic'))
+const TopicInput = dynamic(() => import('./components/TopicInput'))
+const AppTypography = dynamic(() => import('components/UI/AppTypography'))
 
 interface DiscussionProps {
   dayId: string
   role: Role
   owner: UserBase
+  client: Client
 }
 
-export default function Discussion({ dayId, role, owner }: DiscussionProps): JSX.Element {
-  const { data } = useSWR(`discussion${dayId}`, () => DayService.getDiscussion({ dayId }))
+export default function Discussion({ dayId, role, owner, client }: DiscussionProps): JSX.Element {
+  const { data } = useSWR(`discussion-${dayId}`, () => DayService.getDiscussion({ dayId }))
   const { users, topics } = data?.data || {}
   const usersMap = useMemo(getUsersMap, [users])
-
+  // TODO REMOVE USERS
   function getUsersMap() {
     return users?.reduce<Record<string, UserBase>>((acc, user) => ({ ...acc, [user.id]: user }), {})
   }
@@ -30,6 +33,7 @@ export default function Discussion({ dayId, role, owner }: DiscussionProps): JSX
         <AppList elements={['1', '2', '3']} keyGetter={(id) => id} spacing={2} render={() => <Loader />} />
       ) : (
         <>
+          {client.user && client.id !== owner.id && <TopicInput user={client.user} />}
           <AppList
             elements={topics}
             keyGetter={(topic) => topic.id}
@@ -44,7 +48,7 @@ export default function Discussion({ dayId, role, owner }: DiscussionProps): JSX
               />
             )}
           />
-          {role === 'MEMBER' && <div>INPUT QUESTION</div>}
+          {!topics.length && <AppTypography>Nothing so far...</AppTypography>}
         </>
       )}
     </AppBox>

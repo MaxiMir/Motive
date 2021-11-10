@@ -4,8 +4,6 @@ import { Role } from './role'
 
 export interface UserBase {
   id: string
-  firstName: string
-  lastName: string
   fullName: string
   href: string
   avatar: string
@@ -23,6 +21,7 @@ export interface UserDetail extends User {
 }
 
 export interface Client {
-  id: string
+  id: string // TODO REMOVE!
+  user: UserBase | null
   isAuthenticated: boolean
 }

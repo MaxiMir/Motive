@@ -1,7 +1,7 @@
 import { makeStyles } from '@material-ui/core/styles'
 import { createStyles } from '@material-ui/core'
 
-const Level = (): JSX.Element => {
+export default function Level(): JSX.Element {
   const classes = useStyles()
 
   return <sup className={classes.root}>lvl</sup>
@@ -16,5 +16,3 @@ const useStyles = makeStyles((theme) =>
     },
   }),
 )
-
-export default Level

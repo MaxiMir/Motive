@@ -1,5 +1,5 @@
 import { AxiosResponse } from 'axios'
-import { Discussion, Goal } from 'dto'
+import { Discussion, Feedback, Goal } from 'dto'
 import Axios from 'lib/axios'
 
 export default class DayService {
@@ -19,5 +19,14 @@ export default class DayService {
     const { dayId } = data
 
     return Axios.get(`/days/${dayId}/discussion/`)
+  }
+
+  /**
+   * /days/{id}/feedback/
+   */
+  static getFeedback(data: { dayId: string }): Promise<AxiosResponse<Feedback>> {
+    const { dayId } = data
+
+    return Axios.get(`/days/${dayId}/feedback/`)
   }
 }

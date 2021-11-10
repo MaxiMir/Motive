@@ -8,7 +8,7 @@ export default async (_: NextApiRequest, res: NextApiResponse): Promise<void> =>
   res.status(200).json({
     success: true,
     data: {
-      users: users.map(({ id, firstName, lastName, href, avatar }) => ({ id, firstName, lastName, href, avatar })),
+      users: users.map(({ id, fullName, href, avatar }) => ({ id, fullName, href, avatar })),
       topics,
     },
   })

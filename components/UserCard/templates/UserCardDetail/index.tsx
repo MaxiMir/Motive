@@ -28,8 +28,7 @@ export interface UserCardDetailProps extends UserDetail {
 
 export default function UserCardDetail({
   id,
-  firstName,
-  lastName,
+  fullName,
   favorite,
   views,
   avatar,
@@ -54,7 +53,7 @@ export default function UserCardDetail({
       <AppBox justifyContent="space-between" mb={2}>
         <AppBox alignItems="center" spacing={1}>
           <AppTypography variant="h5" component="h1">
-            {firstName} {lastName}
+            {fullName}
           </AppTypography>
           {!isOwner && client.isAuthenticated && <Favorite id={id} favorite={favorite} />}
         </AppBox>
@@ -103,7 +102,7 @@ export default function UserCardDetail({
         {!goals.length ? (
           <EmptyGoals isOwner={isOwner} />
         ) : (
-          <AppBox spacing={3}>
+          <AppBox flexWrap="wrap" spacing={3}>
             {goals.map((goal) => (
               <GoalCard type="current" goal={goal} client={client} key={goal.id} onChangeGoal={onChangeGoal} />
             ))}

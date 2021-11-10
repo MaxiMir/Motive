@@ -1,28 +1,27 @@
 import { Fragment, useRef } from 'react'
 import dynamic from 'next/dynamic'
 import { differenceInDays } from 'date-fns'
-import { createStyles, useTheme, Accordion, AccordionSummary, AccordionDetails } from '@material-ui/core'
+import { createStyles, useTheme } from '@material-ui/core'
 import { makeStyles } from '@material-ui/core/styles'
 import { Client, Goal, GoalCharacteristic, MainCharacteristic } from 'dto'
 import { setQueryParams } from 'helpers/url'
 import useCharacteristicColors from 'hooks/useCharacteristicColors'
 import AppBox from 'components/UI/AppBox'
 import AppHeader from 'components/UI/AppHeader'
-import AppIconText from 'components/UI/AppIcon'
 import AppDot from 'components/UI/AppDot'
+import AppAccordion from 'components/UI/AppAccordion'
 import GoalDate from './components/GoalDate'
 import Menu from './components/Menu'
 import Characteristic from './components/Characteristic'
 import Discussion from './components/Discussion'
 import Reactions from './components/Reactions'
+import Feedback from './components/Feedback'
 
 const Owner = dynamic(() => import('./components/Owner'))
 const Task = dynamic(() => import('./components/Task'))
 const Hashtags = dynamic(() => import('./components/Hashtags'))
 const TaskForm = dynamic(() => import('./components/TaskForm'))
-const Feedback = dynamic(() => import('./components/Feedback'))
 const Web = dynamic(() => import('./components/Web'))
-const AppTypography = dynamic(() => import('components/UI/AppTypography'))
 
 const CHARACTERISTICS: GoalCharacteristic[] = ['motivation', 'creativity', 'support', 'members']
 
@@ -38,19 +37,23 @@ const SHOW_WEB_AFTER_DAYS = 14
 export default function GoalCurrent({ goal, client, onChangeGoal }: GoalCurrentProps): JSX.Element {
   const currentDate = new Date()
   const { id, name, hashtags, href, started, characteristics, role, owner, day, dates } = goal
-  const { id: dayId, date, tasks, feedback, messageCount, characteristics: dayCharacteristics } = day
+  const { id: dayId, date, tasks, messageCount, characteristics: dayCharacteristics } = day
   const classes = useStyles()
   const theme = useTheme()
   const colors = useCharacteristicColors()
   const restRef = useRef(tasks.length - tasks.filter((t) => t.completed).length)
   const days = differenceInDays(currentDate, Date.parse(started))
-  const showWeb = differenceInDays(currentDate, Date.parse(date)) >= SHOW_WEB_AFTER_DAYS
+  const showWeb = checkOnWeb()
   const hrefWithDate = setQueryParams(href, { date })
   const withForm = ['OWNER', 'MEMBER'].includes(role)
-  const expandIcon = <AppIconText color="primary">expand_more</AppIconText>
 
   const onChangeDate = async (newDate: string) => {
     console.log(newDate)
+  }
+
+  function checkOnWeb() {
+    const isLastDate = dates[dates.length - 1].date === date
+    return isLastDate && differenceInDays(currentDate, Date.parse(date)) >= SHOW_WEB_AFTER_DAYS
   }
 
   const onSetAction = (characteristic: MainCharacteristic, increase: boolean) => {
@@ -93,13 +96,13 @@ export default function GoalCurrent({ goal, client, onChangeGoal }: GoalCurrentP
             </AppBox>
             {hashtags?.length && <Hashtags hashtags={hashtags} />}
             <div>
-              <Accordion defaultExpanded>
-                <AccordionSummary expandIcon={expandIcon} aria-controls="feedback-content" id="feedback-header">
-                  <AppHeader name="task" variant="h6" component="h2" color="primary">
-                    Tasks
-                  </AppHeader>
-                </AccordionSummary>
-                <AccordionDetails>
+              <AppAccordion
+                name="task"
+                header="Tasks"
+                id="tasksContent"
+                ariaControls="tasks-content"
+                defaultExpanded
+                details={
                   <AppBox flexDirection="column" spacing={2}>
                     {tasks.map((task, index) => (
                       <Fragment key={index}>
@@ -117,32 +120,28 @@ export default function GoalCurrent({ goal, client, onChangeGoal }: GoalCurrentP
                       </Fragment>
                     ))}
                   </AppBox>
-                </AccordionDetails>
-              </Accordion>
-              <Accordion>
-                <AccordionSummary expandIcon={expandIcon} aria-controls="feedback-content" id="feedback-header">
-                  <AppHeader name="feedback" variant="h6" component="h2" color="primary">
-                    Feedback
-                  </AppHeader>
-                </AccordionSummary>
-                <AccordionDetails>
-                  <Feedback {...feedback} />
-                </AccordionDetails>
-              </Accordion>
-              <Accordion>
-                <AccordionSummary expandIcon={expandIcon} aria-controls="discussion-content" id="discussion-header">
-                  <AppHeader name="comment" variant="h6" component="h2" color="primary">
-                    Discussion {!messageCount ? '' : <span className={classes.messageCount}>{messageCount}</span>}
-                  </AppHeader>
-                </AccordionSummary>
-                <AccordionDetails>
-                  {!messageCount && role !== 'MEMBER' ? (
-                    <AppTypography>Nothing so far...</AppTypography>
-                  ) : (
-                    <Discussion dayId={dayId} role={role} owner={owner} />
-                  )}
-                </AccordionDetails>
-              </Accordion>
+                }
+              />
+              <AppAccordion
+                name="feedback"
+                header="Feedback"
+                id="feedbackContent"
+                ariaControls="feedback-content"
+                renderOnClick
+                unmountOnExit
+                details={<Feedback dayId={dayId} />}
+              />
+              <AppAccordion
+                name="comment"
+                header={
+                  <>Discussion {!messageCount ? '' : <span className={classes.messageCount}>{messageCount}</span>}</>
+                }
+                id="discussionContent"
+                ariaControls="discussion-content"
+                renderOnClick
+                unmountOnExit
+                details={<Discussion dayId={dayId} role={role} owner={owner} client={client} />}
+              />
             </div>
           </AppBox>
           <Reactions

@@ -9,8 +9,6 @@ export const learnFrench: Goal = {
   role: 'MEMBER',
   owner: {
     id: '2',
-    firstName: 'Julia',
-    lastName: 'Minchenko',
     fullName: 'Julia Minchenko',
     avatar: '/__temp__/2.png',
     href: '/better/juliaz',
@@ -23,7 +21,7 @@ export const learnFrench: Goal = {
   },
   day: {
     id: '232',
-    date: '2021-10-18T00:00:00.000Z', // 00:00:00.000
+    date: '2021-11-06T00:00:00.000Z', // 00:00:00.000
     characteristics: {
       motivation: {
         users: ['3', '4', '5'],
@@ -59,23 +57,14 @@ export const learnFrench: Goal = {
       },
       { id: '3', name: 'solve 1 the test', completed: false, completedByOthers: false },
     ],
-    feedback: {
-      text: 'It was a very productive day, learned a lot of new expressions. \n Loved the video with 73 questions with Margot Robbie. \n I got the phrase “I am so excited to be here”.',
-      photos: [
-        // TODO npm install probe-image-size
-        { src: '/__temp__/9.jpg', width: 4, height: 3 },
-        { src: '/__temp__/10.jpeg', width: 4, height: 3 },
-      ],
-      videos: ['https://www.youtube.com/watch?v=Bl5630CeYFs&t=25s', 'https://www.youtube.com/watch?v=5KWEjn839lc'],
-    },
-    messageCount: 21,
+    messageCount: 0,
   },
   dates: [
     { id: '5', date: '2021-09-06T00:00:00.000Z' },
     { id: '3', date: '2021-09-07T00:00:00.000Z' },
     { id: '2', date: '2021-09-08T00:00:00.000Z' },
     { id: '1', date: '2021-09-10T00:00:00.000Z' },
-    { id: '3143', date: '2021-10-18T00:00:00.000Z' },
+    { id: '3143', date: '2021-11-06T00:00:00.000Z' },
   ],
 }
 
@@ -88,8 +77,6 @@ export const becomeSenior: Goal = {
   role: 'OWNER',
   owner: {
     id: '1',
-    firstName: 'Maxim',
-    lastName: 'Minchenko',
     fullName: 'Maxim Minchenko',
     avatar: '/__temp__/1.png',
     href: '/better/maximir',
@@ -102,7 +89,7 @@ export const becomeSenior: Goal = {
   },
   day: {
     id: '312',
-    date: '2021-09-02T00:00:00.000Z',
+    date: '2021-10-06T00:00:00.000Z',
     characteristics: {
       motivation: {
         users: ['3', '4', '5'],
@@ -122,19 +109,14 @@ export const becomeSenior: Goal = {
       },
     },
     tasks: [{ id: '11', name: 'watch video', completed: false, completedByOthers: false }],
-    feedback: {
-      text: null,
-      photos: null,
-      videos: null,
-    },
     messageCount: 0,
   },
   dates: [
-    { id: '5', date: '2021-09-06T00:00:00.000Z' },
-    { id: '3', date: '2021-09-07T00:00:00.000Z' },
-    { id: '2', date: '2021-09-08T00:00:00.000Z' },
-    { id: '1', date: '2021-09-10T00:00:00.000Z' },
-    { id: '3143', date: '2021-10-18T00:00:00.000Z' },
+    { id: '1', date: '2021-09-06T00:00:00.000Z' },
+    { id: '2', date: '2021-09-07T00:00:00.000Z' },
+    { id: '3', date: '2021-09-08T00:00:00.000Z' },
+    { id: '4', date: '2021-09-10T00:00:00.000Z' },
+    { id: '5', date: '2021-10-06T00:00:00.000Z' },
   ],
 }
 
@@ -153,8 +135,6 @@ export const getNewGoal = (goalCreation: GoalCreation): Goal => {
     role: 'OWNER',
     owner: {
       id: '1',
-      firstName: 'Maxim',
-      lastName: 'Minchenko',
       fullName: 'Maxim Minchenko',
       avatar: '/__temp__/1.png',
       href: '/better/maximir',
@@ -192,11 +172,6 @@ export const getNewGoal = (goalCreation: GoalCreation): Goal => {
         completed: false,
         completedByOthers: false,
       })),
-      feedback: {
-        text: null,
-        photos: null,
-        videos: null,
-      },
       messageCount: 0,
     },
     dates: [{ id: '13', date: new Date().toISOString() }],

@@ -26,7 +26,6 @@ interface Day {
   date: string
   characteristics: GoalCharacteristicsWithUsers
   tasks: Task[]
-  feedback: Feedback
   messageCount: number
 }
 

@@ -1,11 +1,11 @@
 import { createStyles, makeStyles } from '@material-ui/core/styles'
 import AppPlayer from 'components/UI/AppPlayer'
 
-interface FeedbackVideoProps {
+interface AppVideoProps {
   video: string
 }
 
-export default function FeedbackVideo({ video }: FeedbackVideoProps): JSX.Element {
+export default function AppVideo({ video }: AppVideoProps): JSX.Element {
   const classes = useStyles()
 
   return (

@@ -14,7 +14,7 @@ export const useSnackbar = (): UseSnackbar => {
 
   function changeProps(propsNew: ContextSnackbarProps) {
     props && setProps(null)
-    setTimeout(() => setProps(propsNew), 0) // TODO batching
+    setTimeout(() => setProps(propsNew), 1) // TODO batching
   }
 
   const closeSnackbar = () => setProps(null)

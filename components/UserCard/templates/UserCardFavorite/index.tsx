@@ -37,7 +37,7 @@ export default function UserCardFavorite({
         <AppBox justifyContent="space-between" alignItems="center">
           <AppLink href={href}>
             <AppTypography variant="subtitle1" component="p">
-              fullName
+              {fullName}
             </AppTypography>
           </AppLink>
           <Menu title={fullName} href={href} onRemove={onRemove} />

@@ -58,6 +58,7 @@ const Layout: FC<LayoutProps> = ({
         <meta charSet="UTF-8" />
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" />
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+        <link rel="icon" type="image/x-icon" href="/favicon.ico" />
       </Head>
       <Header />
       <main className={classes.main}>{!error && <>{children}</>}</main>

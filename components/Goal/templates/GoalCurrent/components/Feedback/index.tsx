@@ -1,39 +1,21 @@
 import dynamic from 'next/dynamic'
-import { Feedback as FeedbackDTO } from 'dto'
-import AppTypography from 'components/UI/AppTypography'
+import useSWR from 'swr'
+import DayService from 'services/DayService'
 import AppBox from 'components/UI/AppBox'
 
-const AppHeader = dynamic(() => import('components/UI/AppHeader'))
-const AppGallery = dynamic(() => import('components/UI/AppGallery'))
-const FeedbackVideo = dynamic(() => import('./components/FeedbackVideo'))
+const Loader = dynamic(() => import('./components/Loader'))
+const Content = dynamic(() => import('./components/Content'))
 
-export default function Feedback({ text, photos, videos }: FeedbackDTO): JSX.Element {
+interface FeedbackProps {
+  dayId: string
+}
+
+export default function Feedback({ dayId }: FeedbackProps): JSX.Element {
+  const { data } = useSWR(`feedback-${dayId}`, () => DayService.getFeedback({ dayId }))
+
   return (
-    <AppBox flexDirection="column" spacing={2}>
-      <AppTypography>
-        {/* eslint-disable-next-line react/no-danger */}
-        <span dangerouslySetInnerHTML={{ __html: text?.replace(/\\n/g, '<br />') || 'Coming soon ...' }} />
-      </AppTypography>
-      {photos?.length && (
-        <>
-          <AppHeader name="photo" variant="h6" component="h3" color="primary">
-            Photo
-          </AppHeader>
-          <AppGallery items={photos} />
-        </>
-      )}
-      {videos?.length && (
-        <>
-          <AppHeader name="video" variant="h6" component="h3" color="primary">
-            Video
-          </AppHeader>
-          <AppBox flexWrap="wrap" justifyContent="space-between">
-            {videos.map((video) => (
-              <FeedbackVideo video={video} key={video} />
-            ))}
-          </AppBox>
-        </>
-      )}
+    <AppBox flexDirection="column" spacing={2} flexGrow={1}>
+      {!data?.data ? <Loader /> : <Content {...data.data} />}
     </AppBox>
   )
 }

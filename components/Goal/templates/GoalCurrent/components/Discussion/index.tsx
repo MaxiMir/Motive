@@ -28,7 +28,7 @@ export default function Discussion({ dayId, role, owner, client }: DiscussionPro
   }
 
   return (
-    <AppBox flexDirection="column" spacing={2} width="100%">
+    <AppBox flexDirection="column" spacing={2} flexGrow={1}>
       {!topics || !usersMap ? (
         <AppList elements={['1', '2', '3']} keyGetter={(id) => id} spacing={2} render={() => <Loader />} />
       ) : (

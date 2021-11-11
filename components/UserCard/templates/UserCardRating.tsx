@@ -16,8 +16,7 @@ export interface UserCardRatingProps extends User {
 export default function UserCardRating({
   avatar,
   href,
-  firstName,
-  lastName,
+  fullName,
   index,
   characteristic,
   characteristics,
@@ -53,10 +52,10 @@ export default function UserCardRating({
           <Grid item xs={8}>
             <AppBox alignItems="center" spacing={2}>
               <AppLink href={href} className={classes.avatarLink}>
-                <Image src={avatar} width={35} height={35} alt="avatar" className={classes.avatar} />
+                <Image src={avatar} width={35} height={35} alt="" className={classes.avatar} />
               </AppLink>
               <AppLink href={href} variant="body1">
-                {firstName} {lastName}
+                {fullName}
               </AppLink>
             </AppBox>
           </Grid>
@@ -91,4 +90,3 @@ const useStyles = makeStyles({
     borderRadius: '50%',
   },
 })
-

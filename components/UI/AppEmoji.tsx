@@ -7,7 +7,6 @@ const AppTypography = dynamic(() => import('./AppTypography'))
 export type AppEmojiName =
   | Characteristic
   | 'motivation-tech'
-  | 'favorite-active'
   | 'favorite'
   | 'views'
   | 'goal'
@@ -63,14 +62,14 @@ function getContent(name: AppEmojiName) {
       return '🧠'
     case 'support':
       return '🙏'
+    case 'awards':
+      return '🎖'
     case 'completed':
       return '🏆'
     case 'abandoned':
       return '🕸'
     case 'members':
       return '📬'
-    case 'favorite-active':
-      return '🌟'
     case 'favorite':
       return '⭐'
     case 'goal':

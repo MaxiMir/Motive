@@ -50,7 +50,7 @@ export default function Avatar({ avatar, characteristics, characteristicColors }
         </AppBox>
       ))}
       <AppBox justifyContent="center" alignItems="center" className={classes.circleBlock}>
-        <Image src={avatar} alt="avatar" width={81} height={81} objectFit="cover" className={classes.avatar} />
+        <Image src={avatar} alt="" width={81} height={81} objectFit="cover" className={classes.avatar} />
       </AppBox>
     </AppBox>
   )

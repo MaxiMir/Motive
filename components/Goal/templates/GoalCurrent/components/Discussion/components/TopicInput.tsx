@@ -14,7 +14,7 @@ export default function TopicInput({ user }: TopicInputProps): JSX.Element {
   const classes = useStyles()
 
   return (
-    <AppBox spacing={2}>
+    <AppBox spacing={2} flexGrow={1} pb={2}>
       <UserCard type="avatar" {...user} size={40} />
       <TextField
         placeholder="Your question"
@@ -22,8 +22,7 @@ export default function TopicInput({ user }: TopicInputProps): JSX.Element {
         color="secondary"
         InputLabelProps={{ shrink: false }}
         value={value}
-        fullWidth
-        style={{ width: '100%' }}
+        className={classes.input}
         onChange={(e) => setValue(e.target.value)}
       />
       <Fade in={!!value}>
@@ -36,6 +35,9 @@ export default function TopicInput({ user }: TopicInputProps): JSX.Element {
 }
 
 const useStyles = makeStyles({
+  input: {
+    flexGrow: 1,
+  },
   button: {
     width: 40,
     height: 40,

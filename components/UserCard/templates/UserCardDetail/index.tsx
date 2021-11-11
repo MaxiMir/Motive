@@ -2,7 +2,7 @@ import { useEffect } from 'react'
 import dynamic from 'next/dynamic'
 import { useRouter } from 'next/router'
 import Image from 'next/image'
-import { makeStyles } from '@material-ui/core/styles'
+import { useMediaQuery, useTheme, makeStyles } from '@material-ui/core'
 import { Client, Goal, UserDetail, UserCharacteristic } from 'dto'
 import { numberToShort } from 'helpers/prepare'
 import { scrollToElem } from 'helpers/dom'
@@ -40,9 +40,12 @@ export default function UserCardDetail({
   onChangeGoal,
 }: UserCardDetailProps): JSX.Element {
   const classes = useStyles()
-  const { query } = useRouter()
+  const theme = useTheme()
+  const router = useRouter()
   const characteristicColors = useCharacteristicColors()
+  const isMobile = useMediaQuery(theme.breakpoints.down('sm'))
   const isOwner = role === 'OWNER'
+  const { query } = router
 
   useEffect(() => {
     query.goal && scrollToElem(`goal-${query.goal}`)
@@ -59,7 +62,7 @@ export default function UserCardDetail({
         </AppBox>
         <AppBox alignItems="center" spacing={0.5}>
           <AppTooltip title="Page Views" className={classes.tooltip}>
-            <Image src="/images/eye.png" alt="eye" width={39} height={24} />
+            <Image src="/images/eye.png" alt="" width={39} height={24} />
           </AppTooltip>
           <AppTypography variant="subtitle1" component="p" className={classes.views}>
             {numberToShort(views)}
@@ -67,13 +70,12 @@ export default function UserCardDetail({
         </AppBox>
       </AppBox>
       <AppBox flexDirection="column" spacing={3} flex={1}>
-        <AppBox spacing={1}>
+        <AppBox spacing={isMobile ? 1 : 4}>
           <Avatar avatar={avatar} characteristics={characteristics} characteristicColors={characteristicColors} />
           <AppBox flexDirection="column" justifyContent="space-between" flex={1}>
             <AppBox justifyContent="space-between">
               {(['motivation', 'creativity', 'support'] as UserCharacteristic[]).map((type) => (
                 <Characteristic
-                  type="user"
                   characteristic={type}
                   value={characteristics[type]}
                   color={characteristicColors[type].fontColor}
@@ -82,9 +84,8 @@ export default function UserCardDetail({
               ))}
             </AppBox>
             <AppBox justifyContent="space-between">
-              {(['abandoned', 'completed'] as UserCharacteristic[]).map((type) => (
+              {(['completed', 'awards', 'abandoned'] as UserCharacteristic[]).map((type) => (
                 <Characteristic
-                  type="user"
                   characteristic={type}
                   value={characteristics[type]}
                   color={characteristicColors[type].fontColor}

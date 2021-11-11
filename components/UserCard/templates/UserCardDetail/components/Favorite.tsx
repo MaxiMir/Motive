@@ -1,4 +1,5 @@
 import React, { useRef, useState } from 'react'
+import clsx from 'clsx'
 import { makeStyles } from '@material-ui/core/styles'
 import { IconButton } from '@material-ui/core'
 import { UserDetail } from 'dto'
@@ -41,7 +42,7 @@ export default function Favorite({ id, favorite: initial }: FavoriteProps): JSX.
 
   return (
     <IconButton title={`${favorite ? 'Remove from' : 'Add to'} favorite`} onClick={onClick}>
-      <AppEmoji name={!favorite ? 'favorite' : 'favorite-active'} variant="h5" className={classes.emoji} />
+      <AppEmoji name="favorite" variant="h5" className={clsx([classes.emoji, !favorite && classes.emojiNotActive])} />
     </IconButton>
   )
 }
@@ -49,5 +50,8 @@ export default function Favorite({ id, favorite: initial }: FavoriteProps): JSX.
 const useStyles = makeStyles({
   emoji: {
     lineHeight: '28px',
+  },
+  emojiNotActive: {
+    filter: 'grayscale(1)',
   },
 })

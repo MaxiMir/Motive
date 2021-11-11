@@ -33,6 +33,11 @@ export default function useCharacteristicColors(): { [k in Characteristic]: Char
       start: palette.text.disabled,
       end: '#1D1D1F',
     },
+    awards: {
+      fontColor: '#f2d900',
+      start: palette.text.disabled, // unused
+      end: '#1D1D1F', // unused
+    },
     abandoned: {
       fontColor: '#AEABAE',
       start: palette.text.disabled, // unused

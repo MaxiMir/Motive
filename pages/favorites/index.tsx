@@ -60,7 +60,7 @@ export default function Favorites({ fallbackData }: PageSWR<FavoritesPage>): JSX
   return (
     <Layout client={client} error={error} {...meta}>
       <AppContainer withFlexColumn>
-        <AppHeader name="favorite-active" mb={4}>
+        <AppHeader name="favorite" mb={4}>
           Favorites
         </AppHeader>
         {!favorites.length ? (

@@ -13,7 +13,7 @@ export default function UserCardAvatar({ fullName, avatar, href, size }: UserCar
 
   return (
     <AppLink href={href} title={fullName} className={classes.avatarLink}>
-      <Image src={avatar} alt="avatar" width={size} height={size} objectFit="cover" className={classes.avatar} />
+      <Image src={avatar} alt="" width={size} height={size} objectFit="cover" className={classes.avatar} />
     </AppLink>
   )
 }

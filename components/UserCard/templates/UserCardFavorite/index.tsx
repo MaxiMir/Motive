@@ -31,7 +31,7 @@ export default function UserCardFavorite({
   return (
     <AppBox spacing={1}>
       <AppLink href={href} className={classes.avatarLink}>
-        <Image src={avatar} width={55} height={55} alt="avatar" className={classes.avatar} />
+        <Image src={avatar} width={55} height={55} alt="" className={classes.avatar} />
       </AppLink>
       <AppBox flexDirection="column" justifyContent="space-between" flex={1}>
         <AppBox justifyContent="space-between" alignItems="center">

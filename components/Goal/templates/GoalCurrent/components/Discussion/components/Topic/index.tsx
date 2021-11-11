@@ -1,43 +1,28 @@
 import { useState } from 'react'
+import dynamic from 'next/dynamic'
 import { TopicWithQuestion, TopicWithSupport, Role, UserBase } from 'dto'
 import Message from './components/Message'
 
 export interface TopicProps {
-  topicUser: UserBase
-  answerUser?: UserBase
   owner: UserBase
   topic: TopicWithQuestion | TopicWithSupport
   role: Role
 }
 
-export default function Topic({ topicUser, answerUser, owner, topic, role }: TopicProps): JSX.Element {
+const UserCard = dynamic(() => import('components/UserCard'))
+
+export default function Topic({ owner, topic, role }: TopicProps): JSX.Element {
   const [showInput, setShowInput] = useState(false)
-  const { type, message, like, dislike, answer } = topic
-  const showReply = role === 'OWNER' && type === 'QUESTION' && !answer
+  const { answer, ...message } = topic
+  const showReply = role === 'OWNER' && topic.type === 'QUESTION' && !topic.answer
+
+  const onClick = () => setShowInput(true)
 
   return (
     <>
-      <Message
-        message={message}
-        user={topicUser}
-        owner={owner}
-        like={like}
-        dislike={dislike}
-        support={type === 'SUPPORT'}
-        onClick={!showReply ? undefined : () => setShowInput(true)}
-      />
-      {showInput && <div>INPUT ANSWER</div>}
-      {answer?.message && answerUser && (
-        <Message
-          message={answer.message}
-          owner={owner}
-          user={answerUser}
-          like={answer.like}
-          dislike={answer.dislike}
-          answer
-          support
-        />
-      )}
+      <Message {...message} owner={owner} onClick={!showReply ? undefined : onClick} />
+      {showInput && <UserCard type="input" user={owner} answer />}
+      {answer?.message && <Message {...answer} owner={owner} answer />}
     </>
   )
 }

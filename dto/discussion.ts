@@ -1,24 +1,21 @@
 import { UserBase } from './user'
 
-interface Message {
+export interface Topic {
   id: string
   message: string
-  userId: string
+  user: UserBase
   like: number
   dislike: number
 }
 
-export interface TopicWithQuestion extends Message {
+export interface TopicWithQuestion extends Topic {
   type: 'QUESTION'
-  answer: Message | null
+  answer: Topic | null
 }
 
-export interface TopicWithSupport extends Message {
+export interface TopicWithSupport extends Topic {
   type: 'SUPPORT'
   answer: null
 }
 
-export type Discussion = {
-  users: UserBase[]
-  topics: Array<TopicWithQuestion | TopicWithSupport>
-}
+export type Discussion = Array<TopicWithQuestion | TopicWithSupport>

@@ -1,5 +1,5 @@
 import dynamic from 'next/dynamic'
-import { UserBase } from 'dto'
+import { UserBase, Topic } from 'dto'
 import AppLink from 'components/UI/AppLink'
 import AppBox from 'components/UI/AppBox'
 import AppTypography from 'components/UI/AppTypography'
@@ -7,16 +7,12 @@ import UserCard from 'components/UserCard'
 import Reaction from './components/Reaction'
 import Reply from './components/Reply'
 
-const SupportSign = dynamic(() => import('./components/SupportSign'))
+const AppSupportSign = dynamic(() => import('components/UI/AppSupportSign'))
 
-interface MessageProps {
-  user: UserBase
+interface MessageProps extends Topic {
+  type?: 'QUESTION' | 'SUPPORT'
   owner: UserBase
-  message: string
-  like: number
-  dislike: number
   answer?: boolean
-  support: boolean
   onClick?: () => void
 }
 
@@ -27,7 +23,7 @@ export default function Message({
   like,
   dislike,
   answer,
-  support,
+  type,
   onClick,
 }: MessageProps): JSX.Element {
   const { href, fullName } = user
@@ -37,7 +33,7 @@ export default function Message({
       <AppBox spacing={2}>
         <AppBox position="relative" height={40}>
           <UserCard type="avatar" size={40} {...user} />
-          {support && <SupportSign answer={answer} owner={owner} />}
+          {(type === 'SUPPORT' || answer) && <AppSupportSign answer={answer} owner={owner} />}
         </AppBox>
         <AppBox flexDirection="column" spacing={1} minWidth={152}>
           <AppLink href={href} title={fullName}>

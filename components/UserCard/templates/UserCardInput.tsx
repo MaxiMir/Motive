@@ -1,23 +1,31 @@
 import { useState } from 'react'
+import dynamic from 'next/dynamic'
 import clsx from 'clsx'
 import { Fade, TextField, makeStyles, IconButton } from '@material-ui/core'
 import { UserBase } from 'dto'
-import UserCard from 'components/UserCard'
+import UserCardAvatar from 'components/UserCard/templates/UserCardAvatar'
 import AppBox from 'components/UI/AppBox'
 
-interface TopicInputProps {
+const AppSupportSign = dynamic(() => import('components/UI/AppSupportSign'))
+
+export interface UserCardInputProps {
+  type: 'input'
   user: UserBase
+  answer?: boolean
 }
 
-export default function TopicInput({ user }: TopicInputProps): JSX.Element {
+export default function UserCardInput({ user, answer }: UserCardInputProps): JSX.Element {
   const [value, setValue] = useState('')
   const classes = useStyles()
 
   return (
     <AppBox spacing={2} flexGrow={1} pb={2}>
-      <UserCard type="avatar" {...user} size={40} />
+      <AppBox position="relative" height={40}>
+        <UserCardAvatar type="avatar" {...user} size={40} />
+        {answer && <AppSupportSign answer={answer} />}
+      </AppBox>
       <TextField
-        placeholder="Your question"
+        placeholder={`Your ${answer ? 'answer' : 'question'}`}
         variant="standard"
         color="secondary"
         InputLabelProps={{ shrink: false }}

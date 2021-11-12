@@ -6,12 +6,12 @@ import AppTooltip from 'components/UI/AppTooltip'
 
 interface SupportSignProps {
   answer?: boolean
-  owner?: UserBase
+  owner: UserBase
 }
 
 export default function SupportSign({ answer, owner }: SupportSignProps): JSX.Element {
   const classes = useStyles()
-  const title = answer ? 'Support: answer to question' : `Support for ${owner?.fullName || 'others'}`
+  const title = answer ? 'Support: answer to question' : `Support for ${owner.fullName}`
 
   return (
     <AppTooltip title={title} aria-label={title}>

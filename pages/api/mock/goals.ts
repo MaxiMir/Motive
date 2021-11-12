@@ -58,6 +58,7 @@ export const learnFrench: Goal = {
       { id: '3', name: 'solve 1 the test', completed: false, completedByOthers: false },
     ],
     messageCount: 4,
+    withFeedback: true,
   },
   dates: [
     { id: '5', date: '2021-09-06T00:00:00.000Z' },
@@ -110,6 +111,7 @@ export const becomeSenior: Goal = {
     },
     tasks: [{ id: '11', name: 'watch video', completed: false, completedByOthers: false }],
     messageCount: 0,
+    withFeedback: true,
   },
   dates: [
     { id: '1', date: '2021-09-06T00:00:00.000Z' },
@@ -173,6 +175,7 @@ export const getNewGoal = (goalCreation: GoalCreation): Goal => {
         completedByOthers: false,
       })),
       messageCount: 0,
+      withFeedback: false,
     },
     dates: [{ id: '13', date: new Date().toISOString() }],
   }

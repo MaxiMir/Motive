@@ -23,24 +23,28 @@ export default function Discussion({ dayId, role, owner, client, count }: Discus
   const { data } = useSWR(`discussion-${dayId}`, () => DayService.getDiscussion({ dayId }))
 
   return (
-    <AppBox flexDirection="column" spacing={2} flex={1} minHeight={count * 84 + (count - 1) * 16}>
-      {!data?.data ? (
-        <Loader count={count} />
-      ) : (
-        <>
-          {client.user && client.id !== owner.id && <UserCard type="input" user={client.user} />}
-          {!data?.data ? (
-            <AppTypography>Nothing so far...</AppTypography>
-          ) : (
-            <AppList
-              elements={data.data}
-              keyGetter={(topic) => topic.id}
-              spacing={2}
-              render={(topic) => <Topic topic={topic} role={role} owner={owner} />}
-            />
-          )}
-        </>
-      )}
+    <AppBox flexDirection="column" spacing={2} flex={1} minHeight={count * 84 + (count - 1) * 16 || 24}>
+      <>
+        {(!count || data?.data) && client.user && client.id !== owner.id && (
+          <UserCard type="input" user={client.user} />
+        )}
+        {!count ? (
+          <AppTypography>Nothing so far...</AppTypography>
+        ) : (
+          <>
+            {!data?.data ? (
+              <Loader count={count} />
+            ) : (
+              <AppList
+                elements={data.data}
+                keyGetter={(topic) => topic.id}
+                spacing={2}
+                render={(topic) => <Topic topic={topic} role={role} owner={owner} />}
+              />
+            )}
+          </>
+        )}
+      </>
     </AppBox>
   )
 }

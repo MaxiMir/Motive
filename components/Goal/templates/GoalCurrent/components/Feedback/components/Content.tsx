@@ -13,7 +13,6 @@ export default function Content({ text, photos, videos }: Feedback): JSX.Element
       <AppTypography>
         {/* eslint-disable-next-line react/no-danger */}
         {text && <span dangerouslySetInnerHTML={{ __html: text.replace(/\\n/g, '<br />') }} />}
-        {!text && !photos && !videos && 'Coming soon...'}
       </AppTypography>
       {photos?.length && (
         <>

@@ -15,13 +15,14 @@ import Menu from './components/Menu'
 import Characteristic from './components/Characteristic'
 import Discussion from './components/Discussion'
 import Reactions from './components/Reactions'
-import Feedback from './components/Feedback'
 
 const Owner = dynamic(() => import('./components/Owner'))
 const Task = dynamic(() => import('./components/Task'))
+const Feedback = dynamic(() => import('./components/Feedback'))
 const Hashtags = dynamic(() => import('./components/Hashtags'))
 const TaskForm = dynamic(() => import('./components/TaskForm'))
 const Web = dynamic(() => import('./components/Web'))
+const AppTypography = dynamic(() => import('components/UI/AppTypography'))
 
 const CHARACTERISTICS: GoalCharacteristic[] = ['motivation', 'creativity', 'support', 'members']
 
@@ -37,7 +38,7 @@ const SHOW_WEB_AFTER_DAYS = 14
 export default function GoalCurrent({ goal, client, onChangeGoal }: GoalCurrentProps): JSX.Element {
   const currentDate = new Date()
   const { id, name, hashtags, href, started, characteristics, role, owner, day, dates } = goal
-  const { id: dayId, date, tasks, messageCount, characteristics: dayCharacteristics } = day
+  const { id: dayId, date, tasks, messageCount, characteristics: dayCharacteristics, withFeedback } = day
   const classes = useStyles()
   const theme = useTheme()
   const colors = useCharacteristicColors()
@@ -48,7 +49,7 @@ export default function GoalCurrent({ goal, client, onChangeGoal }: GoalCurrentP
   const withForm = ['OWNER', 'MEMBER'].includes(role)
 
   const onChangeDate = async (newDate: string) => {
-    console.log(newDate)
+    console.log(newDate) // TODO
   }
 
   function checkOnWeb() {
@@ -129,7 +130,7 @@ export default function GoalCurrent({ goal, client, onChangeGoal }: GoalCurrentP
                 ariaControls="feedback-content"
                 renderOnClick
                 unmountOnExit
-                details={<Feedback dayId={dayId} />}
+                details={!withFeedback ? <AppTypography>Coming soon...</AppTypography> : <Feedback dayId={dayId} />}
               />
               <AppAccordion
                 name="discussion"

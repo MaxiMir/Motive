@@ -27,6 +27,7 @@ interface Day {
   characteristics: GoalCharacteristicsWithUsers
   tasks: Task[]
   messageCount: number
+  withFeedback: boolean
 }
 
 export interface Task {

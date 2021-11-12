@@ -14,7 +14,7 @@ export default function Feedback({ dayId }: FeedbackProps): JSX.Element {
   const { data } = useSWR(`feedback-${dayId}`, () => DayService.getFeedback({ dayId }))
 
   return (
-    <AppBox flexDirection="column" spacing={2} flex={1}>
+    <AppBox flexDirection="column" spacing={2} flex={1} minHeight={180}>
       {!data?.data ? <Loader /> : <Content {...data.data} />}
     </AppBox>
   )

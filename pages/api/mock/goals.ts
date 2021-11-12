@@ -57,7 +57,7 @@ export const learnFrench: Goal = {
       },
       { id: '3', name: 'solve 1 the test', completed: false, completedByOthers: false },
     ],
-    messageCount: 0,
+    messageCount: 4,
   },
   dates: [
     { id: '5', date: '2021-09-06T00:00:00.000Z' },

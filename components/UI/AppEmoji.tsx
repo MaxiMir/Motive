@@ -15,7 +15,7 @@ export type AppEmojiName =
   | 'runs for days'
   | 'feedback'
   | 'completedByOthers'
-  | 'comment'
+  | 'discussion'
   | 'photo'
   | 'video'
   | 'violation'
@@ -84,7 +84,7 @@ function getContent(name: AppEmojiName) {
       return '💭'
     case 'completedByOthers':
       return '🔥'
-    case 'comment':
+    case 'discussion':
       return '💬'
     case 'photo':
       return '📸'

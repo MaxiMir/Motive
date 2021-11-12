@@ -99,7 +99,7 @@ export default function GoalCurrent({ goal, client, onChangeGoal }: GoalCurrentP
               <AppAccordion
                 name="task"
                 header="Tasks"
-                id="tasksContent"
+                id={`tasksContent-${dayId}`}
                 ariaControls="tasks-content"
                 defaultExpanded
                 details={
@@ -125,22 +125,22 @@ export default function GoalCurrent({ goal, client, onChangeGoal }: GoalCurrentP
               <AppAccordion
                 name="feedback"
                 header="Feedback"
-                id="feedbackContent"
+                id={`feedbackContent-${dayId}`}
                 ariaControls="feedback-content"
                 renderOnClick
                 unmountOnExit
                 details={<Feedback dayId={dayId} />}
               />
               <AppAccordion
-                name="comment"
+                name="discussion"
                 header={
                   <>Discussion {!messageCount ? '' : <span className={classes.messageCount}>{messageCount}</span>}</>
                 }
-                id="discussionContent"
+                id={`discussionContent-${dayId}`}
                 ariaControls="discussion-content"
                 renderOnClick
                 unmountOnExit
-                details={<Discussion dayId={dayId} role={role} owner={owner} client={client} />}
+                details={<Discussion dayId={dayId} role={role} owner={owner} client={client} count={messageCount} />}
               />
             </div>
           </AppBox>

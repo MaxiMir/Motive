@@ -1,6 +1,6 @@
 export type Characteristic = 'motivation' | 'creativity' | 'support' | 'completed' | 'abandoned' | 'members' | 'awards'
 
-export type MainCharacteristic = Exclude<Characteristic, 'completed' | 'abandoned' | 'members'>
+export type MainCharacteristic = Exclude<Characteristic, 'completed' | 'abandoned' | 'members' | 'awards'>
 
 export type UserCharacteristic = Exclude<Characteristic, 'members'>
 

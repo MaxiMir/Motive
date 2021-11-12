@@ -1,10 +1,10 @@
 import { RATING_ROUTE } from 'route'
 import { setQueryParams } from 'helpers/url'
-import { AdvantageProps } from './Advantage'
+import { AdvantageProps } from './components/Advantage'
 
 type AdvantageItem = Omit<AdvantageProps, 'color'>
 
-export const ADVANTAGES: AdvantageItem[] = [
+const ADVANTAGES: AdvantageItem[] = [
   {
     characteristic: 'motivation',
     title: 'Be motivational',
@@ -30,3 +30,5 @@ export const ADVANTAGES: AdvantageItem[] = [
     href: RATING_ROUTE,
   },
 ]
+
+export default ADVANTAGES

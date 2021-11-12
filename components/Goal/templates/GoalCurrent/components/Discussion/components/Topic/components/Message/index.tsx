@@ -7,7 +7,7 @@ import UserCard from 'components/UserCard'
 import Reaction from './components/Reaction'
 import Reply from './components/Reply'
 
-const AppSupportSign = dynamic(() => import('components/UI/AppSupportSign'))
+const SupportSign = dynamic(() => import('./components/SupportSign'))
 
 interface MessageProps extends Topic {
   type?: 'QUESTION' | 'SUPPORT'
@@ -33,7 +33,7 @@ export default function Message({
       <AppBox spacing={2}>
         <AppBox position="relative" height={40}>
           <UserCard type="avatar" size={40} {...user} />
-          {(type === 'SUPPORT' || answer) && <AppSupportSign answer={answer} owner={owner} />}
+          {(type === 'SUPPORT' || answer) && <SupportSign answer={answer} owner={owner} />}
         </AppBox>
         <AppBox flexDirection="column" spacing={1} minWidth={152}>
           <AppLink href={href} title={fullName}>

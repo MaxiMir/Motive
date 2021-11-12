@@ -4,12 +4,12 @@ import AppBox from 'components/UI/AppBox'
 import AppEmoji from 'components/UI/AppEmoji'
 import AppTooltip from 'components/UI/AppTooltip'
 
-interface AppSupportSignProps {
+interface SupportSignProps {
   answer?: boolean
   owner?: UserBase
 }
 
-export default function AppSupportSign({ answer, owner }: AppSupportSignProps): JSX.Element {
+export default function SupportSign({ answer, owner }: SupportSignProps): JSX.Element {
   const classes = useStyles()
   const title = answer ? 'Support: answer to question' : `Support for ${owner?.fullName || 'others'}`
 

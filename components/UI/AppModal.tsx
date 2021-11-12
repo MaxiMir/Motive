@@ -21,7 +21,7 @@ const AppModal: FC<AppModalProps> = ({ title, actions, children, onClose }) => {
       <DialogContent className={classes.content}>{children}</DialogContent>
       {actions && (
         <DialogActions>
-          <AppBox flexGrow={1} justifyContent="space-between" pb={1}>
+          <AppBox flex={1} justifyContent="space-between" pb={1}>
             {actions.map((a, key) => (
               <Fragment key={key}>{a}</Fragment>
             ))}

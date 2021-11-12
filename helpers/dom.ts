@@ -1,2 +1,1 @@
-export const scrollToElem = (selector: string): void =>
-  document.getElementById(selector)?.scrollIntoView({ behavior: 'smooth' })
+export const scrollToElem = (id: string): void => document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' })

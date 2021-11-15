@@ -1,6 +1,4 @@
 import { UserCharacteristics } from './characteristic'
-import { Goal } from './goal'
-import { Role } from './role'
 
 export interface UserBase {
   id: string
@@ -11,13 +9,6 @@ export interface UserBase {
 
 export interface User extends UserBase {
   characteristics: UserCharacteristics
-}
-
-export interface UserDetail extends User {
-  views: number
-  favorite: boolean
-  role: Role
-  goals: Goal[]
 }
 
 export interface Client {

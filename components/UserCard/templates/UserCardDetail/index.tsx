@@ -11,10 +11,10 @@ import AppTooltip from 'components/UI/AppTooltip'
 import AppBox from 'components/UI/AppBox'
 import AppContainer from 'components/UI/AppContainer'
 import AppTypography from 'components/UI/AppTypography'
-import Favorite from './components/Favorite'
 import Avatar from './components/Avatar'
 import Characteristic from './components/Characteristic'
 import EmptyGoals from './components/EmptyGoals'
+import Favorite from './components/Favorite'
 
 const AddGoal = dynamic(() => import('./components/AddGoal'))
 const GoalCard = dynamic(() => import('components/Goal'))

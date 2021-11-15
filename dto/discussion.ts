@@ -1,19 +1,19 @@
 import { UserBase } from './user'
 
-export interface Topic {
+export interface TopicBase {
   id: string
+  date: string
   message: string
   user: UserBase
   like: number
-  dislike: number
 }
 
-export interface TopicWithQuestion extends Topic {
+export interface TopicWithQuestion extends TopicBase {
   type: 'QUESTION'
-  answer: Topic | null
+  answer: TopicBase | null
 }
 
-export interface TopicWithSupport extends Topic {
+export interface TopicWithSupport extends TopicBase {
   type: 'SUPPORT'
   answer: null
 }

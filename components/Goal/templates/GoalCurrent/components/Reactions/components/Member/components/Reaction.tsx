@@ -1,5 +1,4 @@
 import { Button, createStyles, makeStyles } from '@material-ui/core'
-import clsx from 'clsx'
 import { MainCharacteristic } from 'dto'
 import AppEmoji from 'components/UI/AppEmoji'
 
@@ -10,17 +9,12 @@ export interface ReactionProps {
   onClick: () => void
 }
 
-export default function Reaction({ characteristic, active, title, onClick }: ReactionProps): JSX.Element {
-  const classes = useStyles({ characteristic })
+export default function Reaction(props: ReactionProps): JSX.Element {
+  const classes = useStyles(props)
+  const { characteristic, title, onClick } = props
 
   return (
-    <Button
-      variant="outlined"
-      className={clsx(classes.button, active && classes.buttonActive)}
-      title={title}
-      aria-label={title}
-      onClick={onClick}
-    >
+    <Button variant="outlined" className={classes.button} title={title} aria-label={title} onClick={onClick}>
       <AppEmoji name={characteristic} variant="h6" className={classes.buttonContent} />
     </Button>
   )
@@ -32,7 +26,8 @@ const useStyles = makeStyles((theme) => {
       width: 36,
       height: 36,
       minWidth: 'initial',
-      borderColor: ({ characteristic }: { characteristic: MainCharacteristic }) => {
+      filter: ({ active }: ReactionProps) => (active ? 'initial' : 'grayscale(1)'),
+      borderColor: ({ characteristic }: ReactionProps) => {
         switch (characteristic) {
           case 'motivation':
             return theme.palette.warning.main
@@ -45,11 +40,9 @@ const useStyles = makeStyles((theme) => {
         }
       },
       '&:hover': {
+        filter: 'initial',
         background: getBackground,
       },
-    },
-    buttonActive: {
-      background: getBackground,
     },
     buttonContent: {
       width: 20,
@@ -57,7 +50,7 @@ const useStyles = makeStyles((theme) => {
   })
 })
 
-const getBackground = ({ characteristic }: { characteristic: MainCharacteristic }): string => {
+const getBackground = ({ characteristic }: ReactionProps): string => {
   switch (characteristic) {
     case 'motivation':
       return '#ff980033'

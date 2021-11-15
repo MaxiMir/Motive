@@ -18,7 +18,7 @@ const AppList = dynamic<AppListProps<User>>(() => import('components/UI/AppList'
 const Button = dynamic(() => import('@material-ui/core/Button'))
 
 export default function Favorites({ fallbackData }: PageSWR<FavoritesPage>): JSX.Element {
-  const mutateSWR = useSWRConfig().mutate
+  const { mutate } = useSWRConfig()
   const { data, error } = useSWR('Favorites', PageService.getFavorites, { fallbackData })
   const { meta, favorites, client } = (data as FavoritesPage) || {}
   const prevFavoritesRef = useRef(favorites)
@@ -54,7 +54,7 @@ export default function Favorites({ fallbackData }: PageSWR<FavoritesPage>): JSX
   }
 
   function mutateFavoritesLocal(users: User[]) {
-    return mutateSWR('Favorites', { ...data, favorites: users }, false)
+    return mutate('Favorites', { ...data, favorites: users }, false)
   }
 
   return (

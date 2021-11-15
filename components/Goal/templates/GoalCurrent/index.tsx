@@ -1,6 +1,6 @@
 import { Fragment, useRef } from 'react'
 import dynamic from 'next/dynamic'
-import { differenceInDays } from 'date-fns'
+import differenceInDays from 'date-fns/differenceInDays'
 import { createStyles, useTheme } from '@material-ui/core'
 import { makeStyles } from '@material-ui/core/styles'
 import { Client, Goal, GoalCharacteristic, MainCharacteristic } from 'dto'

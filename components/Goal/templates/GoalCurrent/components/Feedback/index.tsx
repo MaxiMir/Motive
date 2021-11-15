@@ -15,7 +15,7 @@ export default function Feedback({ dayId }: FeedbackProps): JSX.Element {
 
   return (
     <AppBox flexDirection="column" spacing={2} flex={1} minHeight={180}>
-      {!data?.data ? <Loader /> : <Content {...data.data} />}
+      {!data ? <Loader /> : <Content {...data} />}
     </AppBox>
   )
 }

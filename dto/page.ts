@@ -1,5 +1,7 @@
-import { Client, User, UserDetail } from './user'
+import { Client, User } from './user'
 import { UserCharacteristic } from './characteristic'
+import { Role } from './role'
+import { Goal } from './goal'
 
 export type PageSWR<T> = {
   fallbackData: Page<T>
@@ -30,3 +32,10 @@ export type RatingPage = Page<
 export type FavoritesPage = Page<{ favorites: User[] }>
 
 export type UserPage = Page<{ user: UserDetail }>
+
+export interface UserDetail extends User {
+  views: number
+  favorite: boolean
+  role: Role
+  goals: Goal[]
+}

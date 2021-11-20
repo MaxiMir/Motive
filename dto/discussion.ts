@@ -8,14 +8,22 @@ export interface TopicBase {
   like: number
 }
 
+// eslint-disable-next-line no-shadow
+export enum TopicType {
+  QUESTION = 'question',
+  SUPPORT = 'support',
+}
+
 export interface TopicWithQuestion extends TopicBase {
-  type: 'QUESTION'
+  type: TopicType.QUESTION
   answer: TopicBase | null
 }
 
 export interface TopicWithSupport extends TopicBase {
-  type: 'SUPPORT'
+  type: TopicType.SUPPORT
   answer: null
 }
 
-export type Discussion = Array<TopicWithQuestion | TopicWithSupport>
+export type Topic = TopicWithQuestion | TopicWithSupport
+
+export type Discussion = Array<Topic>

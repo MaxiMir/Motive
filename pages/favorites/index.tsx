@@ -1,12 +1,13 @@
 import React, { useRef } from 'react'
 import dynamic from 'next/dynamic'
 import { GetServerSideProps } from 'next'
-import useSWR, { useSWRConfig } from 'swr'
+import useSWR from 'swr'
 import { PageSWR, FavoritesPage, User } from 'dto'
 import PageService from 'services/PageService'
 import FavoriteService from 'services/FavoriteService'
 import useSend from 'hooks/useSend'
-import { useSnackbar } from 'hooks/useSnackbar'
+import useSnackbar from 'hooks/useSnackbar'
+import usePartialMutate from 'hooks/usePartialMutate'
 import Layout from 'layout'
 import UserCard from 'components/UserCard'
 import AppContainer from 'components/UI/AppContainer'
@@ -18,11 +19,12 @@ const AppList = dynamic<AppListProps<User>>(() => import('components/UI/AppList'
 const Button = dynamic(() => import('@material-ui/core/Button'))
 
 export default function Favorites({ fallbackData }: PageSWR<FavoritesPage>): JSX.Element {
-  const { mutate } = useSWRConfig()
-  const { data, error } = useSWR('Favorites', PageService.getFavorites, { fallbackData })
+  const swrKey = 'favorites'
+  const { data, error } = useSWR(swrKey, PageService.getFavorites, { fallbackData })
   const { meta, favorites, client } = (data as FavoritesPage) || {}
   const prevFavoritesRef = useRef(favorites)
   const { enqueueSnackbar, closeSnackbar } = useSnackbar()
+  const mutate = usePartialMutate(swrKey)
   const { send } = useSend(FavoriteService.setUser, {
     onSuccess: (_, { id, favorite }) => {
       prevFavoritesRef.current = favorites
@@ -54,7 +56,7 @@ export default function Favorites({ fallbackData }: PageSWR<FavoritesPage>): JSX
   }
 
   function mutateFavoritesLocal(users: User[]) {
-    return mutate('Favorites', { ...data, favorites: users }, false)
+    return mutate({ ...data, favorites: users }, false)
   }
 
   return (

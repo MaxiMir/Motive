@@ -2,7 +2,7 @@ import { useRef, useState } from 'react'
 import { MainCharacteristic } from 'dto'
 import DayService from 'services/DayService'
 import useDebounceCb from 'hooks/useDebounceCb'
-import { useSnackbar } from 'hooks/useSnackbar'
+import useSnackbar from 'hooks/useSnackbar'
 import useSend from 'hooks/useSend'
 import Reaction from './Reaction'
 
@@ -22,7 +22,7 @@ export default function ReactionWithSend({
   const lastLoadedRef = useRef(initial)
   const [active, setActive] = useState(initial)
   const { enqueueSnackbar } = useSnackbar()
-  const { send } = useSend(DayService.setCharacteristic, {
+  const { send } = useSend(DayService.updateCharacteristic, {
     onSuccess(_, data) {
       lastLoadedRef.current = data.active
 

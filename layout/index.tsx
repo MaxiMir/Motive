@@ -2,7 +2,7 @@ import React, { FC, useEffect } from 'react'
 import Head from 'next/head'
 import { makeStyles } from '@material-ui/core/styles'
 import { Client } from 'dto'
-import { useSnackbar } from 'hooks/useSnackbar'
+import useSnackbar from 'hooks/useSnackbar'
 import Header from './Header'
 import Footer from './Footer'
 

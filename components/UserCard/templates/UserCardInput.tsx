@@ -1,11 +1,11 @@
 import React, { useState } from 'react'
 import dynamic from 'next/dynamic'
 import clsx from 'clsx'
-import { TextField, makeStyles, IconButton } from '@material-ui/core'
-import { TopicWithQuestion, UserBase } from 'dto'
-import useSend from 'hooks/useSend'
-import { useSnackbar } from 'hooks/useSnackbar'
+import { IconButton, makeStyles, TextField } from '@material-ui/core'
+import { Topic, TopicType, UserBase } from 'dto'
 import DayService from 'services/DayService'
+import useSend from 'hooks/useSend'
+import useSnackbar from 'hooks/useSnackbar'
 import UserCardAvatar from 'components/UserCard/templates/UserCardAvatar'
 import AppBox from 'components/UI/AppBox'
 
@@ -13,17 +13,17 @@ const CircularProgress = dynamic(() => import('@material-ui/core/CircularProgres
 
 export interface UserCardInputProps {
   type: 'input'
-  user: UserBase
   dayId: string
+  user: UserBase
   answer?: boolean
-  onAdd: (topic: TopicWithQuestion) => void
+  onAdd: (topic: Topic) => void
 }
 
-export default function UserCardInput({ user, dayId, answer, onAdd }: UserCardInputProps): JSX.Element {
+export default function UserCardInput({ dayId, user, answer, onAdd }: UserCardInputProps): JSX.Element {
   const classes = useStyles()
   const [message, setMessage] = useState('')
   const { enqueueSnackbar } = useSnackbar()
-  const { isLoading, send } = useSend(DayService.addQuestion, {
+  const { isLoading, send } = useSend(DayService.createTopic, {
     onSuccess(topic) {
       enqueueSnackbar({ message: 'Question added', severity: 'success', icon: 'robot' })
       setMessage('')
@@ -31,7 +31,7 @@ export default function UserCardInput({ user, dayId, answer, onAdd }: UserCardIn
     },
   })
 
-  const onClick = () => send({ dayId, message })
+  const onClick = () => send({ dayId, message, type: TopicType.QUESTION })
 
   return (
     <form>

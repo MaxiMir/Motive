@@ -26,8 +26,8 @@ interface Day {
   date: string
   characteristics: GoalCharacteristicsWithUsers
   tasks: Task[]
-  messageCount: number
-  withFeedback: boolean
+  discussionCount: number
+  feedbackId: string | null
 }
 
 export interface Task {

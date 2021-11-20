@@ -1,6 +1,6 @@
 import { useCallback, useState } from 'react'
 import { AxiosRequestConfig } from 'axios'
-import { useSnackbar } from './useSnackbar'
+import useSnackbar from './useSnackbar'
 
 interface Options<R> {
   onSuccess?: (response: R, data: AxiosRequestConfig['data']) => void

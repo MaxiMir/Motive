@@ -8,7 +8,7 @@ interface UseSnackbar {
   closeSnackbar: () => void
 }
 
-export const useSnackbar = (): UseSnackbar => {
+export default function useSnackbar(): UseSnackbar {
   const { props, setProps } = useContext(SnackbarContext)
   const enqueueSnackbar = useDebounceCb(changeProps, 250)
 

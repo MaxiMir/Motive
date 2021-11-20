@@ -5,7 +5,7 @@ import { IconButton } from '@material-ui/core'
 import FavoriteService from 'services/FavoriteService'
 import useDebounceCb from 'hooks/useDebounceCb'
 import useSend from 'hooks/useSend'
-import { useSnackbar } from 'hooks/useSnackbar'
+import useSnackbar from 'hooks/useSnackbar'
 import AppEmoji from 'components/UI/AppEmoji'
 
 interface FavoriteProps {

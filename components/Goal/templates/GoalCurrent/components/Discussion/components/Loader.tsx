@@ -21,7 +21,7 @@ export default function Loader({ count, withInput }: LoaderProps): JSX.Element {
           <AppBox flexDirection="column" spacing={1} flex={1}>
             <Skeleton animation="wave" width={100} height={16} />
             <Skeleton animation="wave" width="100%" height={32} />
-            <AppBox justifyContent="space-between" alignItems="baseline">
+            <AppBox justifyContent="space-between" alignItems="center">
               <Skeleton animation="wave" width={100} height={15} />
               <AppBox spacing={1}>
                 <Skeleton animation="wave" width={16} height={16} />

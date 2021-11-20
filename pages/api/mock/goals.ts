@@ -21,7 +21,7 @@ export const learnFrench: Goal = {
   },
   day: {
     id: '232',
-    date: '2021-11-06T00:00:00.000Z', // 00:00:00.000
+    date: '2021-11-20T00:00:00.000Z', // 00:00:00.000
     characteristics: {
       motivation: {
         users: ['3', '4', '5'],
@@ -57,15 +57,15 @@ export const learnFrench: Goal = {
       },
       { id: '3', name: 'solve 1 the test', completed: false, completedByOthers: false },
     ],
-    messageCount: 4,
-    withFeedback: true,
+    discussionCount: 4,
+    feedbackId: '1',
   },
   dates: [
     { id: '5', date: '2021-09-06T00:00:00.000Z' },
     { id: '3', date: '2021-09-07T00:00:00.000Z' },
     { id: '2', date: '2021-09-08T00:00:00.000Z' },
     { id: '1', date: '2021-09-10T00:00:00.000Z' },
-    { id: '3143', date: '2021-11-06T00:00:00.000Z' },
+    { id: '3143', date: '2021-11-20T00:00:00.000Z' },
   ],
 }
 
@@ -110,8 +110,8 @@ export const becomeSenior: Goal = {
       },
     },
     tasks: [{ id: '11', name: 'watch video', completed: false, completedByOthers: false }],
-    messageCount: 0,
-    withFeedback: true,
+    discussionCount: 0,
+    feedbackId: '2',
   },
   dates: [
     { id: '1', date: '2021-09-06T00:00:00.000Z' },
@@ -148,7 +148,7 @@ export const getNewGoal = (goalCreation: GoalCreation): Goal => {
       members: 0,
     },
     day: {
-      id: '312',
+      id: '653',
       date: new Date().toISOString(),
       characteristics: {
         motivation: {
@@ -174,8 +174,8 @@ export const getNewGoal = (goalCreation: GoalCreation): Goal => {
         completed: false,
         completedByOthers: false,
       })),
-      messageCount: 0,
-      withFeedback: false,
+      discussionCount: 0,
+      feedbackId: '3',
     },
     dates: [{ id: '13', date: new Date().toISOString() }],
   }

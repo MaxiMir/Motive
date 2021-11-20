@@ -3,7 +3,7 @@ import dynamic from 'next/dynamic'
 import differenceInDays from 'date-fns/differenceInDays'
 import { createStyles, useTheme } from '@material-ui/core'
 import { makeStyles } from '@material-ui/core/styles'
-import { Client, Goal, GoalCharacteristic, MainCharacteristic } from 'dto'
+import { Client, Goal, GoalCharacteristic } from 'dto'
 import { setQueryParams } from 'helpers/url'
 import useCharacteristicColors from 'hooks/useCharacteristicColors'
 import AppBox from 'components/UI/AppBox'
@@ -30,15 +30,14 @@ export interface GoalCurrentProps {
   type: 'current'
   goal: Goal
   client: Client
-  onChangeGoal: (goal: Goal) => void
 }
 
 const SHOW_WEB_AFTER_DAYS = 14
 
-export default function GoalCurrent({ goal, client, onChangeGoal }: GoalCurrentProps): JSX.Element {
+export default function GoalCurrent({ goal, client }: GoalCurrentProps): JSX.Element {
   const currentDate = new Date()
   const { id, name, hashtags, href, started, characteristics, role, owner, day, dates } = goal
-  const { id: dayId, date, tasks, messageCount, characteristics: dayCharacteristics, withFeedback } = day
+  const { id: dayId, date, tasks, discussionCount, characteristics: dayCharacteristics, feedbackId } = day
   const classes = useStyles()
   const theme = useTheme()
   const colors = useCharacteristicColors()
@@ -55,16 +54,6 @@ export default function GoalCurrent({ goal, client, onChangeGoal }: GoalCurrentP
   function checkOnWeb() {
     const isLastDate = dates[dates.length - 1].date === date
     return isLastDate && differenceInDays(currentDate, Date.parse(date)) >= SHOW_WEB_AFTER_DAYS
-  }
-
-  const onSetAction = (characteristic: MainCharacteristic, increase: boolean) => {
-    onChangeGoal({
-      ...goal,
-      characteristics: {
-        ...goal.characteristics,
-        [characteristic]: goal.characteristics[characteristic] + (increase ? 1 : -1),
-      },
-    })
   }
 
   return (
@@ -130,28 +119,31 @@ export default function GoalCurrent({ goal, client, onChangeGoal }: GoalCurrentP
                 ariaControls="feedback-content"
                 renderOnClick
                 unmountOnExit
-                details={!withFeedback ? <AppTypography>Coming soon...</AppTypography> : <Feedback dayId={dayId} />}
+                details={!feedbackId ? <AppTypography>Coming soon...</AppTypography> : <Feedback id={feedbackId} />}
               />
               <AppAccordion
                 name="discussion"
                 header={
-                  <>Discussion {!messageCount ? '' : <span className={classes.messageCount}>{messageCount}</span>}</>
+                  <>
+                    Discussion{' '}
+                    {!discussionCount ? '' : <span className={classes.discussionCount}>{discussionCount}</span>}
+                  </>
                 }
                 id={`discussionContent-${dayId}`}
                 ariaControls="discussion-content"
                 renderOnClick
                 unmountOnExit
-                details={<Discussion dayId={dayId} role={role} owner={owner} client={client} count={messageCount} />}
+                details={<Discussion dayId={dayId} role={role} owner={owner} client={client} count={discussionCount} />}
               />
             </div>
           </AppBox>
           <Reactions
             role={role}
             dayId={dayId}
+            goal={goal}
             characteristics={dayCharacteristics}
             client={client}
             owner={owner}
-            onSetAction={onSetAction}
           />
         </AppBox>
         {showWeb && <Web />}
@@ -182,7 +174,7 @@ const useStyles = makeStyles((theme) =>
       background: theme.palette.background.paper,
       borderRadius: 13,
     },
-    messageCount: {
+    discussionCount: {
       color: '#99989D',
     },
   }),

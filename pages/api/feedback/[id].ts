@@ -4,7 +4,7 @@ export default async (req: NextApiRequest, res: NextApiResponse): Promise<void> 
   await new Promise((r) => setTimeout(r, 1500))
 
   res.status(200).json(
-    req.query?.id !== '232'
+    req.query?.id !== '1'
       ? {
           text: null,
           photos: null,

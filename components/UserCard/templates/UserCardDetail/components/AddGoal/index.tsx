@@ -3,25 +3,28 @@ import dynamic from 'next/dynamic'
 import { makeStyles } from '@material-ui/core/styles'
 import { Button } from '@material-ui/core'
 import { Goal } from 'dto'
+import useSnackbar from 'hooks/useSnackbar'
+import useSWRDetail from 'hooks/useSWRDetail'
+import { scrollToElem } from 'helpers/dom'
 import AppEmoji from 'components/UI/AppEmoji'
 
 const Modal = dynamic(() => import('./components/Modal'))
 
-interface AddGoalProps {
-  onAdd: (goal: Goal) => void
-}
-
-export default function AddGoal({ onAdd }: AddGoalProps): JSX.Element {
+export default function AddGoal(): JSX.Element {
   const classes = useStyles()
+  const { enqueueSnackbar } = useSnackbar()
   const [open, setOpen] = useState(false)
+  const [data, mutate] = useSWRDetail()
 
   const onClick = () => setOpen(true)
 
   const onClose = () => setOpen(false)
 
   const onSuccess = (goal: Goal) => {
-    onAdd(goal)
+    mutate({ ...data, user: { ...data.user, goals: [...data.user.goals, goal] } }, false)
+    enqueueSnackbar({ message: 'The goal is successfully created', severity: 'success', icon: 'goal' })
     setOpen(false)
+    setTimeout(() => scrollToElem(`goal-${goal.id}`), 500)
   }
 
   return (

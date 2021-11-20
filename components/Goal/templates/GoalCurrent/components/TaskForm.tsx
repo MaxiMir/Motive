@@ -3,7 +3,7 @@ import dynamic from 'next/dynamic'
 import { Task } from 'dto'
 import TaskService from 'services/TaskService'
 import useSend from 'hooks/useSend'
-import { useSnackbar } from 'hooks/useSnackbar'
+import useSnackbar from 'hooks/useSnackbar'
 import AppCheckbox from 'components/UI/AppCheckbox'
 
 const Button = dynamic(() => import('@material-ui/core/Button'))

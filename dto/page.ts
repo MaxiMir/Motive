@@ -1,5 +1,5 @@
 import { Client, User } from './user'
-import { UserCharacteristic } from './characteristic'
+import { MainCharacteristic, UserCharacteristic } from './characteristic'
 import { Role } from './role'
 import { Goal } from './goal'
 
@@ -22,7 +22,7 @@ export type MainPage = Page<{ [k: string]: never }>
 
 export type RatingPage = Page<
   {
-    [k in 'motivation' | 'creativity' | 'support']: {
+    [k in MainCharacteristic]: {
       list: User[]
       characteristic: UserCharacteristic
     }

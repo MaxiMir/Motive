@@ -106,7 +106,7 @@ function getContent(name: AppEmojiName) {
     case 'cancel':
       return '🚫'
     case 'like':
-      return '👍'
+      return '❤️'
     default:
       return ''
   }

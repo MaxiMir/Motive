@@ -1,18 +1,19 @@
 import dynamic from 'next/dynamic'
 import formatDistanceToNow from 'date-fns/formatDistanceToNow'
 import { makeStyles } from '@material-ui/core'
-import { UserBase, TopicBase } from 'dto'
+import { TopicBase, TopicType, UserBase } from 'dto'
 import AppLink from 'components/UI/AppLink'
 import AppBox from 'components/UI/AppBox'
 import AppTypography from 'components/UI/AppTypography'
 import UserCard from 'components/UserCard'
+import Menu from './components/Menu'
 import Like from './components/Like'
 import Reply from './components/Reply'
 
 const SupportSign = dynamic(() => import('./components/SupportSign'))
 
 interface MessageProps extends TopicBase {
-  type?: 'QUESTION' | 'SUPPORT'
+  type?: TopicType
   owner: UserBase
   answer?: boolean
   onClick?: () => void
@@ -37,12 +38,15 @@ export default function Message({
       <AppBox spacing={2}>
         <AppBox position="relative" height={40}>
           <UserCard type="avatar" size={40} {...user} />
-          {(type === 'SUPPORT' || answer) && <SupportSign answer={answer} owner={owner} />}
+          {(type === TopicType.SUPPORT || answer) && <SupportSign answer={answer} owner={owner} />}
         </AppBox>
         <AppBox flexDirection="column" spacing={1} minWidth={152} flex={1}>
-          <AppLink href={href} title={fullName}>
-            <b>{fullName}</b>
-          </AppLink>
+          <AppBox justifyContent="space-between" alignItems="center">
+            <AppLink href={href} title={fullName}>
+              <b>{fullName}</b>
+            </AppLink>
+            <Menu />
+          </AppBox>
           <AppTypography>{message}</AppTypography>
         </AppBox>
       </AppBox>

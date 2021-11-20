@@ -3,7 +3,7 @@ import dynamic from 'next/dynamic'
 import { useRouter } from 'next/router'
 import Image from 'next/image'
 import { useMediaQuery, useTheme, makeStyles } from '@material-ui/core'
-import { Client, Goal, UserDetail, UserCharacteristic } from 'dto'
+import { Client, UserDetail, UserCharacteristic } from 'dto'
 import { numberToShort } from 'helpers/prepare'
 import { scrollToElem } from 'helpers/dom'
 import useCharacteristicColors from 'hooks/useCharacteristicColors'
@@ -22,8 +22,6 @@ const GoalCard = dynamic(() => import('components/Goal'))
 export interface UserCardDetailProps extends UserDetail {
   type: 'detail'
   client: Client
-  onAddGoal: (goal: Goal) => void
-  onChangeGoal: (goal: Goal) => void
 }
 
 export default function UserCardDetail({
@@ -36,16 +34,13 @@ export default function UserCardDetail({
   role,
   goals,
   client,
-  onAddGoal,
-  onChangeGoal,
 }: UserCardDetailProps): JSX.Element {
   const classes = useStyles()
   const theme = useTheme()
-  const router = useRouter()
+  const { query } = useRouter()
   const characteristicColors = useCharacteristicColors()
   const isMobile = useMediaQuery(theme.breakpoints.down('sm'))
   const isOwner = role === 'OWNER'
-  const { query } = router
 
   useEffect(() => {
     query.goal && scrollToElem(`goal-${query.goal}`)
@@ -97,7 +92,7 @@ export default function UserCardDetail({
         </AppBox>
         {isOwner && (
           <AppBox justifyContent="center">
-            <AddGoal onAdd={onAddGoal} />
+            <AddGoal />
           </AppBox>
         )}
         {!goals.length ? (
@@ -105,7 +100,7 @@ export default function UserCardDetail({
         ) : (
           <AppBox flexWrap="wrap" spacing={3}>
             {goals.map((goal) => (
-              <GoalCard type="current" goal={goal} client={client} key={goal.id} onChangeGoal={onChangeGoal} />
+              <GoalCard type="current" goal={goal} client={client} key={goal.id} />
             ))}
           </AppBox>
         )}

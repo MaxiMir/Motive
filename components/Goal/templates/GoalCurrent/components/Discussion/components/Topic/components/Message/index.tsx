@@ -41,13 +41,13 @@ export default function Message({
           {(type === TopicType.SUPPORT || answer) && <SupportSign answer={answer} owner={owner} />}
         </AppBox>
         <AppBox flexDirection="column" spacing={1} minWidth={152} flex={1}>
-          <AppBox justifyContent="space-between" alignItems="center">
-            <AppLink href={href} title={fullName}>
-              <b>{fullName}</b>
-            </AppLink>
+          <AppLink href={href} title={fullName}>
+            <b>{fullName}</b>
+          </AppLink>
+          <AppBox justifyContent="space-between" alignItems="flex-start" spacing={1}>
+            <AppTypography>{message}</AppTypography>
             <Menu />
           </AppBox>
-          <AppTypography>{message}</AppTypography>
         </AppBox>
       </AppBox>
       <AppBox justifyContent="space-between" alignItems="center">
@@ -55,7 +55,7 @@ export default function Message({
           <span className={classes.date}>{dateDifference} ago</span>
           {onClick && <Reply onClick={onClick} />}
         </AppBox>
-        <Like count={like} />
+        <Like {...like} />
       </AppBox>
     </AppBox>
   )

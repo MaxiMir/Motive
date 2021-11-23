@@ -35,7 +35,7 @@ const Menu = ({ title, href, onRemove }: MenuProps): JSX.Element => {
       <AppMenuButton
         ariaControls="user-menu"
         title="open user menu"
-        isHorizontal
+        horizontal
         onClick={(e) => setAnchorEl(e.currentTarget)}
       />
       {anchorEl && (

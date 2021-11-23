@@ -7,13 +7,19 @@ const question: TopicWithQuestion = {
   message: 'What other books do you read?',
   type: TopicType.QUESTION,
   user: users[0],
-  like: 1344312,
+  like: {
+    active: true,
+    count: 1344312,
+  },
   answer: {
     id: '125',
     date: '2021-10-06T17:00:00.000Z',
     message: 'Typescript for dummies',
     user: users[1],
-    like: 23,
+    like: {
+      active: false,
+      count: 23,
+    },
   },
 }
 
@@ -23,7 +29,10 @@ const support: TopicWithSupport = {
   date: new Date().toISOString(),
   type: TopicType.SUPPORT,
   user: users[2],
-  like: 2566,
+  like: {
+    active: false,
+    count: 2566,
+  },
   answer: null,
 }
 
@@ -33,7 +42,10 @@ const question2: TopicWithQuestion = {
   message: 'What is the test?',
   type: TopicType.QUESTION,
   user: users[3],
-  like: 1035,
+  like: {
+    active: false,
+    count: 1035,
+  },
   answer: null,
 }
 

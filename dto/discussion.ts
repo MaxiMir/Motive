@@ -5,7 +5,12 @@ export interface TopicBase {
   date: string
   message: string
   user: UserBase
-  like: number
+  like: Like
+}
+
+export interface Like {
+  active: boolean
+  count: number
 }
 
 // eslint-disable-next-line no-shadow

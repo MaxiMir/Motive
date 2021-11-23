@@ -1,20 +1,17 @@
 import { useState } from 'react'
 import clsx from 'clsx'
 import { Button, makeStyles } from '@material-ui/core'
+import { Like as LikeDTO } from 'dto'
 import { numberToShort } from 'helpers/prepare'
 import AppEmoji from 'components/UI/AppEmoji'
 import AppBox from 'components/UI/AppBox'
 import AppTypography from 'components/UI/AppTypography'
 import AppTooltip from 'components/UI/AppTooltip'
 
-interface LikeProps {
-  count: number
-}
-
-export default function Like({ count: initial }: LikeProps): JSX.Element {
+export default function Like({ count: countInit, active: activeInit }: LikeDTO): JSX.Element {
   const classes = useStyles()
-  const [count, setCount] = useState(initial)
-  const [active, setActive] = useState(false)
+  const [count, setCount] = useState(countInit)
+  const [active, setActive] = useState(activeInit)
 
   const onClick = () => {
     setCount(count + (!active ? 1 : -1))

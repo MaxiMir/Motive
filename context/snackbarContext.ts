@@ -15,5 +15,5 @@ interface SnackbarContextType {
 
 export const SnackbarContext = createContext<SnackbarContextType>({
   props: null,
-  setProps: (_: ContextSnackbarProps | null) => false,
+  setProps: (_: ContextSnackbarProps | null) => undefined,
 })

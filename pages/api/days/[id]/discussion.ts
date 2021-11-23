@@ -16,7 +16,10 @@ export default async (req: NextApiRequest, res: NextApiResponse): Promise<void> 
         user: users[4],
         answer: null,
         type: 'question',
-        like: 0,
+        like: {
+          active: false,
+          count: 0,
+        },
       } as TopicWithQuestion)
     default:
       return res.status(200).json(req.query.id === '232' ? topics : [])

@@ -1,4 +1,4 @@
-import { GoalCharacteristics, GoalCharacteristicsWithUsers } from './characteristic'
+import { DayCharacteristics, GoalCharacteristics } from './characteristic'
 import { UserBase } from './user'
 import { Role } from './role'
 
@@ -16,7 +16,7 @@ export interface Goal {
   hashtags: string[]
   owner: UserBase
   role: Role
-  characteristics: GoalCharacteristics
+  characteristics: GoalCharacteristics // count all
   day: Day
   dates: Array<{ id: string; date: string }>
 }
@@ -24,7 +24,7 @@ export interface Goal {
 interface Day {
   id: string
   date: string
-  characteristics: GoalCharacteristicsWithUsers
+  characteristics: DayCharacteristics
   tasks: Task[]
   discussionCount: number
   feedbackId: string | null

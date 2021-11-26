@@ -1,7 +1,24 @@
+import { CSSProperties } from 'react'
 import { createMuiTheme } from '@material-ui/core'
 
-// TODO добавить цвета
+// Override Mui theme typings to include the new theme property
+declare module '@material-ui/core/styles/createMuiTheme' {
+  interface Theme {
+    text: {
+      silent: CSSProperties['color']
+    }
+  }
+  interface ThemeOptions {
+    text: {
+      silent: CSSProperties['color']
+    }
+  }
+}
+
 export default createMuiTheme({
+  text: {
+    silent: '#99989D',
+  },
   palette: {
     type: 'dark',
     warning: {

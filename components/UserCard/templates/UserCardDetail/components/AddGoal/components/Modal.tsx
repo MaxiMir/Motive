@@ -12,6 +12,7 @@ import {
   AccordionSummary,
   Button,
   IconButton,
+  createStyles,
 } from '@material-ui/core'
 import { Goal, GoalCreation } from 'dto'
 import GoalService from 'services/GoalService'
@@ -215,19 +216,21 @@ export default function Modal({ onSuccess, onClose }: ModalProps): JSX.Element {
   )
 }
 
-const useStyles = makeStyles({
-  button: {
-    alignSelf: 'baseline',
-    textTransform: 'none',
-  },
-  hint: {
-    fontSize: '0.9rem',
-    color: '#99989D',
-  },
-  timepicker: {
-    width: 100,
-  },
-  iconCloseBtn: {
-    color: '#99989D',
-  },
-})
+const useStyles = makeStyles((theme) =>
+  createStyles({
+    button: {
+      alignSelf: 'baseline',
+      textTransform: 'none',
+    },
+    hint: {
+      fontSize: '0.9rem',
+      color: theme.text.silent,
+    },
+    timepicker: {
+      width: 100,
+    },
+    iconCloseBtn: {
+      color: theme.text.silent,
+    },
+  }),
+)

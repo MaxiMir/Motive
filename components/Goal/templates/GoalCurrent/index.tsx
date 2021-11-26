@@ -138,14 +138,7 @@ export default function GoalCurrent({ goal, client }: GoalCurrentProps): JSX.Ele
               />
             </div>
           </AppBox>
-          <Reactions
-            role={role}
-            dayId={dayId}
-            goal={goal}
-            characteristics={dayCharacteristics}
-            client={client}
-            owner={owner}
-          />
+          <Reactions role={role} dayId={dayId} goal={goal} characteristics={dayCharacteristics} owner={owner} />
         </AppBox>
         {showWeb && <Web />}
       </div>
@@ -176,7 +169,7 @@ const useStyles = makeStyles((theme) =>
       borderRadius: 13,
     },
     discussionCount: {
-      color: '#99989D',
+      color: theme.text.silent,
     },
     discussion: {
       padding: '8px 0 16px 16px',

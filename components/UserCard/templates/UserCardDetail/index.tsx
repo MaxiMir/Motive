@@ -2,7 +2,7 @@ import { useEffect } from 'react'
 import dynamic from 'next/dynamic'
 import { useRouter } from 'next/router'
 import Image from 'next/image'
-import { useMediaQuery, useTheme, makeStyles } from '@material-ui/core'
+import { useMediaQuery, useTheme, makeStyles, createStyles } from '@material-ui/core'
 import { Client, UserDetail, UserCharacteristic } from 'dto'
 import { numberToShort } from 'helpers/prepare'
 import { scrollToElem } from 'helpers/dom'
@@ -109,11 +109,13 @@ export default function UserCardDetail({
   )
 }
 
-const useStyles = makeStyles({
-  tooltip: {
-    height: 24,
-  },
-  views: {
-    color: '#99989D', // TODO to theme
-  },
-})
+const useStyles = makeStyles((theme) =>
+  createStyles({
+    tooltip: {
+      height: 24,
+    },
+    views: {
+      color: theme.text.silent,
+    },
+  }),
+)

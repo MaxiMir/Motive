@@ -1,6 +1,6 @@
 import React, { useMemo, useState } from 'react'
 import { format } from 'date-fns'
-import { Button, IconButton } from '@material-ui/core'
+import { Button, createStyles, IconButton } from '@material-ui/core'
 import { makeStyles } from '@material-ui/core/styles'
 import { KeyboardDatePicker } from '@material-ui/pickers'
 import { Goal } from 'dto'
@@ -69,8 +69,10 @@ export default function GoalDate({ date, dates, onChangeDate }: DateProps): JSX.
   )
 }
 
-const useStyles = makeStyles({
-  button: {
-    color: '#99989D',
-  },
-})
+const useStyles = makeStyles((theme) =>
+  createStyles({
+    button: {
+      color: theme.text.silent,
+    },
+  }),
+)

@@ -1,6 +1,6 @@
 import React from 'react'
 import { useRouter } from 'next/router'
-import { makeStyles, IconButton } from '@material-ui/core'
+import { makeStyles, IconButton, createStyles } from '@material-ui/core'
 import AppContainer from './AppContainer'
 import AppBox from './AppBox'
 
@@ -24,12 +24,14 @@ export default function AppHistory(): JSX.Element {
   )
 }
 
-const useStyles = makeStyles({
-  root: {
-    marginBottom: 24,
-  },
-  button: {
-    background: '#feffda1c',
-    color: '#99989D',
-  },
-})
+const useStyles = makeStyles((theme) =>
+  createStyles({
+    root: {
+      marginBottom: 24,
+    },
+    button: {
+      background: '#feffda1c',
+      color: theme.text.silent,
+    },
+  }),
+)

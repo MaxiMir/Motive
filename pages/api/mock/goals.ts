@@ -23,22 +23,10 @@ export const learnFrench: Goal = {
     id: '232',
     date: '2021-11-20T00:00:00.000Z', // 00:00:00.000
     characteristics: {
-      motivation: {
-        users: ['3', '4', '5'],
-        countAll: 3,
-      },
-      support: {
-        users: ['3', '4', '5'],
-        countAll: 4,
-      },
-      creativity: {
-        users: ['3', '4', '5'],
-        countAll: 45,
-      },
-      members: {
-        users: ['3', '4', '5'],
-        countAll: 49,
-      },
+      motivation: true,
+      support: false,
+      creativity: true,
+      members: false,
     },
     tasks: [
       {
@@ -92,22 +80,10 @@ export const becomeSenior: Goal = {
     id: '312',
     date: '2021-10-06T00:00:00.000Z',
     characteristics: {
-      motivation: {
-        users: ['3', '4', '5'],
-        countAll: 5,
-      },
-      support: {
-        users: ['3', '4', '5'],
-        countAll: 12,
-      },
-      creativity: {
-        users: ['3', '4', '5'],
-        countAll: 32,
-      },
-      members: {
-        users: ['3', '4', '5'],
-        countAll: 3,
-      },
+      motivation: true,
+      support: false,
+      creativity: false,
+      members: false,
     },
     tasks: [{ id: '11', name: 'watch video', completed: false, completedByOthers: false }],
     discussionCount: 0,
@@ -151,22 +127,10 @@ export const getNewGoal = (goalCreation: GoalCreation): Goal => {
       id: '653',
       date: new Date().toISOString(),
       characteristics: {
-        motivation: {
-          users: [],
-          countAll: 0,
-        },
-        support: {
-          users: [],
-          countAll: 0,
-        },
-        creativity: {
-          users: [],
-          countAll: 0,
-        },
-        members: {
-          users: [],
-          countAll: 0,
-        },
+        motivation: false,
+        support: false,
+        creativity: false,
+        members: false,
       },
       tasks: goalCreation.tasks.map((t, index) => ({
         ...t,

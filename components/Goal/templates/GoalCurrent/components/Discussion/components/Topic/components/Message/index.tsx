@@ -1,6 +1,6 @@
 import dynamic from 'next/dynamic'
 import formatDistanceToNow from 'date-fns/formatDistanceToNow'
-import { makeStyles } from '@material-ui/core'
+import { createStyles, makeStyles } from '@material-ui/core'
 import { TopicBase, TopicType, UserBase } from 'dto'
 import AppLink from 'components/UI/AppLink'
 import AppBox from 'components/UI/AppBox'
@@ -49,12 +49,14 @@ export default function Message({ date, user, owner, message, like, type, onClic
   )
 }
 
-const useStyles = makeStyles({
-  name: {
-    lineHeight: '20px',
-  },
-  date: {
-    fontSize: '0.6875rem',
-    color: '#99989D',
-  },
-})
+const useStyles = makeStyles((theme) =>
+  createStyles({
+    name: {
+      lineHeight: '20px',
+    },
+    date: {
+      fontSize: '0.6875rem',
+      color: theme.text.silent,
+    },
+  }),
+)

@@ -14,11 +14,6 @@ export type GoalCharacteristics = {
   [k in GoalCharacteristic]: number
 }
 
-type GoalCharacteristicWithUsers = {
-  users: string[]
-  countAll: number
-}
-
-export type GoalCharacteristicsWithUsers = {
-  [k in GoalCharacteristic]: GoalCharacteristicWithUsers
+export type DayCharacteristics = {
+  [k in GoalCharacteristic]: boolean
 }

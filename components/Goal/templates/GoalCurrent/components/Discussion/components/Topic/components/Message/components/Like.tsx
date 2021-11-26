@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import clsx from 'clsx'
-import { Button, makeStyles } from '@material-ui/core'
+import { Button, createStyles, makeStyles } from '@material-ui/core'
 import { Like as LikeDTO } from 'dto'
 import { numberToShort } from 'helpers/prepare'
 import AppEmoji from 'components/UI/AppEmoji'
@@ -35,20 +35,22 @@ export default function Like({ count: countInit, active: activeInit }: LikeDTO):
   )
 }
 
-const useStyles = makeStyles({
-  button: {
-    width: 24,
-    height: 24,
-    minWidth: 'initial',
-  },
-  buttonNotActive: {
-    filter: 'grayscale(1)',
-    '&:hover': {
-      filter: 'initial',
+const useStyles = makeStyles((theme) =>
+  createStyles({
+    button: {
+      width: 24,
+      height: 24,
+      minWidth: 'initial',
     },
-  },
-  count: {
-    fontSize: '0.875rem',
-    color: '#99989D',
-  },
-})
+    buttonNotActive: {
+      filter: 'grayscale(1)',
+      '&:hover': {
+        filter: 'initial',
+      },
+    },
+    count: {
+      fontSize: '0.875rem',
+      color: theme.text.silent,
+    },
+  }),
+)

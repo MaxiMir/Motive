@@ -35,18 +35,16 @@ export default function UserCardInput({ dayId, user, answer, onAdd }: UserCardIn
 
   return (
     <form>
-      <AppBox spacing={2} flex={1} mb={2} pr={2} height={56}>
-        <AppBox width={40} height={40}>
-          <UserCardAvatar type="avatar" {...user} size={40} />
-        </AppBox>
+      <AppBox spacing={2} flex={1} mb={2} pr={2}>
+        <UserCardAvatar type="avatar" {...user} size={32} />
         <TextField
           placeholder={`Your ${answer ? 'answer' : 'question'}`}
           variant="standard"
           color="secondary"
           InputLabelProps={{ shrink: false }}
           value={message}
-          className={classes.input}
           disabled={isLoading}
+          className={classes.input}
           onChange={(e) => setMessage(e.target.value)}
         />
         <IconButton className={classes.button} disabled={isLoading || !message} onClick={onClick}>
@@ -63,7 +61,7 @@ export default function UserCardInput({ dayId, user, answer, onAdd }: UserCardIn
 
 const useStyles = makeStyles({
   input: {
-    flexGrow: 1,
+    flex: 1,
   },
   button: {
     width: 40,

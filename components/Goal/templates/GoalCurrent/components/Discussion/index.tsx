@@ -38,7 +38,7 @@ export default function Discussion({ dayId, role, owner, client, count: initialC
   }
 
   function getHeight() {
-    return !count ? undefined : (!withInput ? 0 : 72) + 524
+    return !count ? undefined : (!withInput ? 0 : 56) + 524
   }
 
   return (

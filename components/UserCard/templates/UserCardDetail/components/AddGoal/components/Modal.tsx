@@ -23,7 +23,7 @@ import AppBox from 'components/UI/AppBox'
 import AppInput from 'components/UI/AppInput'
 import AppTypography from 'components/UI/AppTypography'
 import AppGradientButton from 'components/UI/AppGradientButton'
-import AppIconText from 'components/UI/AppIcon'
+import AppIcon from 'components/UI/AppIcon'
 import AppEmoji from 'components/UI/AppEmoji'
 import { PaulIcon } from 'components/UI/icons'
 
@@ -144,7 +144,7 @@ export default function Modal({ onSuccess, onClose }: ModalProps): JSX.Element {
                           onClick={() => remove(index)}
                           className={classes.iconCloseBtn}
                         >
-                          <AppIconText>close</AppIconText>
+                          <AppIcon>close</AppIcon>
                         </IconButton>
                       </AppBox>
                       <AppBox height={48} alignItems="center" pl={1} spacing={1}>
@@ -172,7 +172,7 @@ export default function Modal({ onSuccess, onClose }: ModalProps): JSX.Element {
                     </Fragment>
                   ))}
                   <Button
-                    startIcon={<AppIconText color="secondary">add</AppIconText>}
+                    startIcon={<AppIcon color="secondary">add</AppIcon>}
                     className={classes.button}
                     onClick={() => push({ name: '', date: undefined })}
                   >
@@ -184,7 +184,7 @@ export default function Modal({ onSuccess, onClose }: ModalProps): JSX.Element {
             <AppBox flexDirection="column" spacing={2}>
               <Accordion>
                 <AccordionSummary
-                  expandIcon={<AppIconText color="primary">expand_more</AppIconText>}
+                  expandIcon={<AppIcon color="primary">expand_more</AppIcon>}
                   aria-controls="old-pitt-note"
                   id="old-pitt-note"
                 >

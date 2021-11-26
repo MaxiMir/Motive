@@ -133,6 +133,7 @@ export default function GoalCurrent({ goal, client }: GoalCurrentProps): JSX.Ele
                 ariaControls="discussion-content"
                 renderOnClick
                 unmountOnExit
+                detailsClass={classes.discussion}
                 details={<Discussion dayId={dayId} role={role} owner={owner} client={client} count={discussionCount} />}
               />
             </div>
@@ -176,6 +177,9 @@ const useStyles = makeStyles((theme) =>
     },
     discussionCount: {
       color: '#99989D',
+    },
+    discussion: {
+      padding: '8px 0 16px 16px',
     },
   }),
 )

@@ -1,6 +1,6 @@
 import clsx from 'clsx'
 import { IconButton, IconButtonProps, TypographyProps, makeStyles } from '@material-ui/core'
-import AppIconText from './AppIcon'
+import AppIcon from './AppIcon'
 
 type AppMenuButtonProps = Pick<IconButtonProps, 'title' | 'onClick'> & {
   ariaControls: string
@@ -20,9 +20,9 @@ export default function AppMenuButton({
 
   return (
     <IconButton className={classes.button} aria-controls={ariaControls} aria-haspopup="true" {...restProps}>
-      <AppIconText color={color || 'secondary'} className={clsx([compact && classes.icon])}>
+      <AppIcon color={color || 'secondary'} className={clsx([compact && classes.icon])}>
         more_{horizontal ? 'horiz' : 'vert'}
-      </AppIconText>
+      </AppIcon>
     </IconButton>
   )
 }

@@ -11,6 +11,8 @@ export interface TopicProps {
 }
 
 const UserCard = dynamic(() => import('components/UserCard'))
+const AppBox = dynamic(() => import('components/UI/AppBox'))
+const Reply = dynamic(() => import('./components/Reply'))
 
 export default function Topic({ dayId, owner, topic, role }: TopicProps): JSX.Element {
   const [showInput, setShowInput] = useState(false)
@@ -28,7 +30,12 @@ export default function Topic({ dayId, owner, topic, role }: TopicProps): JSX.El
     <>
       <Message {...message} owner={owner} onClick={!showReply ? undefined : onClick} />
       {showInput && <UserCard type="input" user={owner} dayId={dayId} answer onAdd={onAdd} />}
-      {answer?.message && <Message {...answer} owner={owner} answer />}
+      {answer?.message && (
+        <AppBox alignItems="center" spacing={1}>
+          <Reply />
+          <Message {...answer} owner={owner} />
+        </AppBox>
+      )}
     </>
   )
 }

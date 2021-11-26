@@ -15,43 +15,31 @@ const SupportSign = dynamic(() => import('./components/SupportSign'))
 interface MessageProps extends TopicBase {
   type?: TopicType
   owner: UserBase
-  answer?: boolean
   onClick?: () => void
 }
 
-export default function Message({
-  date,
-  user,
-  owner,
-  message,
-  like,
-  answer,
-  type,
-  onClick,
-}: MessageProps): JSX.Element {
+export default function Message({ date, user, owner, message, like, type, onClick }: MessageProps): JSX.Element {
   const classes = useStyles()
   const { href, fullName } = user
   const dateDifference = formatDistanceToNow(new Date(date), { includeSeconds: true })
 
   return (
-    <AppBox flexDirection="column" spacing={1} marginLeft={answer && 7}>
-      <AppBox spacing={2}>
-        <AppBox position="relative" height={40}>
-          <UserCard type="avatar" size={40} {...user} />
-          {(type === TopicType.SUPPORT || answer) && <SupportSign answer={answer} owner={owner} />}
-        </AppBox>
-        <AppBox flexDirection="column" spacing={1} minWidth={152} flex={1}>
-          <AppLink href={href} title={fullName}>
+    <AppBox flexDirection="column" spacing={1} flex={1}>
+      <AppBox flexDirection="column" spacing={2} minWidth={152}>
+        <AppBox alignItems="center" spacing={1}>
+          <UserCard type="avatar" size={26} {...user} />
+          <AppLink href={href} title={fullName} className={classes.name}>
             <b>{fullName}</b>
           </AppLink>
-          <AppBox justifyContent="space-between" alignItems="flex-start" spacing={1}>
-            <AppTypography>{message}</AppTypography>
-            <Menu />
-          </AppBox>
+          {type === TopicType.SUPPORT && <SupportSign owner={owner} />}
+        </AppBox>
+        <AppBox justifyContent="space-between" alignItems="flex-start" spacing={1}>
+          <AppTypography>{message}</AppTypography>
+          <Menu />
         </AppBox>
       </AppBox>
-      <AppBox justifyContent="space-between" alignItems="center">
-        <AppBox alignItems="center" spacing={1} paddingLeft={7}>
+      <AppBox justifyContent="space-between" alignItems="center" pr={1}>
+        <AppBox alignItems="center" spacing={1}>
           <span className={classes.date}>{dateDifference} ago</span>
           {onClick && <Reply onClick={onClick} />}
         </AppBox>
@@ -62,6 +50,9 @@ export default function Message({
 }
 
 const useStyles = makeStyles({
+  name: {
+    lineHeight: '20px',
+  },
   date: {
     fontSize: '0.6875rem',
     color: '#99989D',

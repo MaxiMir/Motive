@@ -21,7 +21,7 @@ interface DiscussionProps {
   count: number
 }
 
-const MESSAGE_COUNT = 10
+const SHOWN_COUNT = 4
 
 export default function Discussion({ dayId, role, owner, client, count: initialCount }: DiscussionProps): JSX.Element {
   const swrKey = `discussion-${dayId}`
@@ -29,23 +29,20 @@ export default function Discussion({ dayId, role, owner, client, count: initialC
   const { data } = useSWR(swrKey, () => (!count ? null : DayService.getDiscussion({ dayId })))
   const mutate = usePartialMutate(swrKey)
   const withInput = !!client.user && client.id !== owner.id
-  const shownCount = count >= MESSAGE_COUNT ? MESSAGE_COUNT : count
-  const minHeight = getMinHeight()
+  const shownCount = count >= SHOWN_COUNT ? SHOWN_COUNT : count
+  const height = getHeight()
 
   const onAdd = async (topic: TopicDTO) => {
     setCount(count + 1)
     mutate([topic, ...(data || [])], false)
   }
 
-  function getMinHeight() {
-    const inputHeight = !withInput ? 0 : 72
-    const elementsHeight = !shownCount ? 40 : shownCount * 84 + (shownCount - 1) * 16
-
-    return inputHeight + elementsHeight
+  function getHeight() {
+    return !count ? undefined : (!withInput ? 0 : 72) + 524
   }
 
   return (
-    <AppBox flexDirection="column" spacing={2} flex={1} minHeight={minHeight}>
+    <AppBox flexDirection="column" spacing={2} flex={1} height={height}>
       <>
         {(!count || data) && withInput && (
           <UserCard type="input" dayId={dayId} user={client.user as UserBase} onAdd={onAdd} />
@@ -57,12 +54,14 @@ export default function Discussion({ dayId, role, owner, client, count: initialC
             {!data ? (
               <Loader count={shownCount} withInput={withInput} />
             ) : (
-              <AppList
-                elements={data}
-                keyGetter={(topic) => topic.id}
-                spacing={2}
-                render={(topic) => <Topic dayId={dayId} topic={topic} role={role} owner={owner} />}
-              />
+              <AppBox display="block" maxHeight={524} pr={2} overflow="auto">
+                <AppList
+                  elements={data}
+                  keyGetter={(topic) => topic.id}
+                  spacing={2}
+                  render={(topic) => <Topic dayId={dayId} topic={topic} role={role} owner={owner} />}
+                />
+              </AppBox>
             )}
           </>
         )}

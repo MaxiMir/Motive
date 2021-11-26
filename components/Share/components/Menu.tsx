@@ -3,7 +3,7 @@ import { createStyles, Drawer, List, ListItem, ListItemIcon, ListItemText } from
 import { makeStyles } from '@material-ui/core/styles'
 import AppBox from 'components/UI/AppBox'
 import { FacebookIcon, TelegramIcon, TwitterIcon, VKIcon } from 'components/UI/icons'
-import AppIconText from 'components/UI/AppIcon'
+import AppIcon from 'components/UI/AppIcon'
 import { clickHandler, copyHandler } from '../helper'
 
 interface MenuProps {
@@ -50,17 +50,17 @@ const Menu = ({ title, url, onCopyEnd, onCopyError, onClose }: MenuProps): JSX.E
       },
       {
         text: 'Send to Email',
-        iconText: <AppIconText color="secondary">email</AppIconText>,
+        iconText: <AppIcon color="secondary">email</AppIcon>,
         onClick: () => clickHandler('email', title, url),
       },
       {
         text: 'Send to SMS',
-        iconText: <AppIconText color="secondary">sms</AppIconText>,
+        iconText: <AppIcon color="secondary">sms</AppIcon>,
         onClick: () => clickHandler('sms', title, url),
       },
       {
         text: 'Copy link',
-        iconText: <AppIconText color="secondary">link</AppIconText>,
+        iconText: <AppIcon color="secondary">link</AppIcon>,
         onClick: () => copyHandler(url, onCopyEnd, onCopyError),
       },
     ]

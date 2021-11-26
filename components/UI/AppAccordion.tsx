@@ -1,7 +1,7 @@
 import { ChangeEvent, useState } from 'react'
 import { Accordion, AccordionDetails, AccordionSummary } from '@material-ui/core'
 import { scrollToElem } from 'helpers/dom'
-import AppIconText from './AppIcon'
+import AppIcon from './AppIcon'
 import AppHeader from './AppHeader'
 import { AppEmojiName } from './AppEmoji'
 
@@ -14,6 +14,7 @@ interface AppAccordionProps {
   defaultExpanded?: boolean
   unmountOnExit?: boolean
   renderOnClick?: boolean
+  detailsClass?: string
 }
 
 export default function AppAccordion({
@@ -25,6 +26,7 @@ export default function AppAccordion({
   defaultExpanded,
   unmountOnExit,
   renderOnClick,
+  detailsClass,
 }: AppAccordionProps): JSX.Element {
   const [expanded, setExpanded] = useState(defaultExpanded || false)
   const [withDetails, setWithDetails] = useState(!renderOnClick)
@@ -42,7 +44,7 @@ export default function AppAccordion({
       TransitionProps={!unmountOnExit ? undefined : { unmountOnExit: true }}
     >
       <AccordionSummary
-        expandIcon={<AppIconText color="primary">expand_more</AppIconText>}
+        expandIcon={<AppIcon color="primary">expand_more</AppIcon>}
         id={id}
         aria-controls={ariaControls}
       >
@@ -50,7 +52,7 @@ export default function AppAccordion({
           {header}
         </AppHeader>
       </AccordionSummary>
-      <AccordionDetails>{withDetails && <>{details}</>}</AccordionDetails>
+      <AccordionDetails className={detailsClass}>{withDetails && <>{details}</>}</AccordionDetails>
     </Accordion>
   )
 }

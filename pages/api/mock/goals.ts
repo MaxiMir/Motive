@@ -57,7 +57,7 @@ export const learnFrench: Goal = {
       },
       { id: '3', name: 'solve 1 the test', completed: false, completedByOthers: false },
     ],
-    discussionCount: 4,
+    discussionCount: 5,
     feedbackId: '1',
   },
   dates: [

@@ -19,7 +19,7 @@ export default function Like({ count: countInit, active: activeInit }: LikeDTO):
   }
 
   return (
-    <AppBox alignItems="center" spacing={0.5}>
+    <AppBox alignItems="center">
       <AppTooltip title="Like">
         <Button
           size="small"
@@ -49,7 +49,6 @@ const useStyles = makeStyles({
   },
   count: {
     fontSize: '0.875rem',
-    minWidth: 34,
     color: '#99989D',
   },
 })

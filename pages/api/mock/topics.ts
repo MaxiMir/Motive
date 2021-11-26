@@ -31,7 +31,7 @@ const support: TopicWithSupport = {
   user: users[2],
   like: {
     active: false,
-    count: 2566,
+    count: 2,
   },
   answer: null,
 }
@@ -46,7 +46,17 @@ const question2: TopicWithQuestion = {
     active: false,
     count: 1035,
   },
-  answer: null,
+  answer: {
+    id: '125',
+    date: '2021-10-06T17:00:00.000Z',
+    message:
+      'I perform various tests. For example, I use the Kahut app. I read the book Sherlock Holmes and there are tests at the end of the chapter, too.',
+    user: users[1],
+    like: {
+      active: false,
+      count: 1455,
+    },
+  },
 }
 
 export const topics = [question, support, question2]

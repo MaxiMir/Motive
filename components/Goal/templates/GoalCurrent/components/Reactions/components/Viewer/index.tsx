@@ -1,12 +1,12 @@
 import { Button } from '@material-ui/core'
-import { MainCharacteristic, DayCharacteristics, Role, UserBase, Goal } from 'dto'
+import { MainCharacteristic, DayCharacteristics, UserBase, Goal, Role } from 'dto'
 import useSWRDetail from 'hooks/useSWRDetail'
 import AppBox from 'components/UI/AppBox'
 import AppEmoji from 'components/UI/AppEmoji'
 import ReactionWithSend from './components/ReactionWithSend'
 import Reaction from './components/Reaction'
 
-export interface MemberProps {
+export interface ViewerProps {
   role: Role
   dayId: string
   goal: Goal
@@ -14,7 +14,7 @@ export interface MemberProps {
   owner: UserBase
 }
 
-export default function Member({ dayId, goal, characteristics, owner }: MemberProps): JSX.Element {
+export default function Viewer({ role, dayId, goal, characteristics, owner }: ViewerProps): JSX.Element {
   const [data, mutate] = useSWRDetail()
 
   const onSet = (characteristic: MainCharacteristic, increase: boolean) => {
@@ -48,8 +48,12 @@ export default function Member({ dayId, goal, characteristics, owner }: MemberPr
           onClick={() => console.log('TODO LOGIC!')}
         />
       </AppBox>
-      <Button variant="outlined" color="primary" startIcon={<AppEmoji name="unsubscribe" onlyEmoji />}>
-        Leave
+      <Button
+        variant="outlined"
+        color={role === 'MEMBER' ? 'primary' : 'secondary'}
+        startIcon={<AppEmoji name={role === 'MEMBER' ? 'unsubscribe' : 'subscribe'} onlyEmoji />}
+      >
+        {role === 'MEMBER' ? 'Leave' : 'JOIN'}
       </Button>
     </AppBox>
   )

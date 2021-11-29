@@ -19,6 +19,7 @@ export type AppEmojiName =
   | 'photo'
   | 'video'
   | 'violation'
+  | 'subscribe'
   | 'unsubscribe'
   | 'death'
   | 'ninja'
@@ -27,6 +28,8 @@ export type AppEmojiName =
   | 'keyboard'
   | 'cancel'
   | 'like'
+  | 'cup'
+  | 'finish'
 
 interface AppEmojiProps {
   name: AppEmojiName
@@ -91,6 +94,8 @@ function getContent(name: AppEmojiName) {
       return '🎬'
     case 'violation':
       return '👹'
+    case 'subscribe':
+      return '📬'
     case 'unsubscribe':
       return '📪'
     case 'death':
@@ -107,6 +112,10 @@ function getContent(name: AppEmojiName) {
       return '🚫'
     case 'like':
       return '❤️'
+    case 'finish':
+      return '💫'
+    case 'cup':
+      return '🏆'
     default:
       return ''
   }

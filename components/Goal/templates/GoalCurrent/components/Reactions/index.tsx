@@ -1,13 +1,15 @@
 import dynamic from 'next/dynamic'
-import { MemberProps } from './components/Member'
+import { ViewerProps } from './components/Viewer'
 
-const ReactionsMember = dynamic(() => import('./components/Member'))
+const ReactionsMember = dynamic(() => import('./components/Viewer'))
+const Owner = dynamic(() => import('./components/Owner'))
+const OwnerWithFeedback = dynamic(() => import('./components/OwnerWithFeedback'))
 
-export default function Reactions(props: MemberProps): JSX.Element {
+export default function Reactions(props: ViewerProps): JSX.Element {
   switch (props.role) {
-    case 'MEMBER':
-      return <ReactionsMember {...props} />
+    case 'OWNER':
+      return !props.goal.day.feedbackId ? <Owner /> : <OwnerWithFeedback />
     default:
-      return <></>
+      return <ReactionsMember {...props} />
   }
 }

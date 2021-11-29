@@ -41,7 +41,7 @@ export interface Task {
 export interface Feedback {
   text: string | null
   photos: Photo[] | null
-  videos: string[] | null
+  video: string | null
 }
 
 export interface Photo {

@@ -22,7 +22,7 @@ export default function GoalDate({ date, dates, onChangeDate }: DateProps): JSX.
   const formattedDate = format(value, 'MM/dd/yy')
   const dateIndex = useMemo(getDateIndex, [dates, value])
   const [prevDate, nextDate] = [dates[dateIndex - 1], dates[dateIndex + 1]]
-  const onChangeDateWithDebounce = useDebounceCb(onChangeDate, 1500)
+  const onChangeDateWithDebounce = useDebounceCb(onChangeDate, 1000)
 
   const onClickArrow = (newDate: string) => {
     setValue(new Date(newDate))
@@ -31,7 +31,7 @@ export default function GoalDate({ date, dates, onChangeDate }: DateProps): JSX.
 
   const onChange = (newDate: Date) => {
     setValue(newDate)
-    onChangeDateWithDebounce(toISODateWithZeroTime(newDate))
+    onChangeDate(toISODateWithZeroTime(newDate))
   }
 
   const checkShouldDisableDate = (checkedDate: MaterialUiPickersDate) => {

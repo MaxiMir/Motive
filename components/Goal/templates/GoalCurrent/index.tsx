@@ -1,4 +1,4 @@
-import { Fragment, useRef } from 'react'
+import { Fragment, useRef, useState } from 'react'
 import dynamic from 'next/dynamic'
 import differenceInDays from 'date-fns/differenceInDays'
 import { createStyles, useTheme } from '@material-ui/core'
@@ -22,6 +22,7 @@ const Feedback = dynamic(() => import('./components/Feedback'))
 const Hashtags = dynamic(() => import('./components/Hashtags'))
 const TaskForm = dynamic(() => import('./components/TaskForm'))
 const Web = dynamic(() => import('./components/Web'))
+const Loader = dynamic(() => import('./components/Loader'))
 const AppTypography = dynamic(() => import('components/UI/AppTypography'))
 
 const CHARACTERISTICS: GoalCharacteristic[] = ['motivation', 'creativity', 'support', 'members']
@@ -40,15 +41,18 @@ export default function GoalCurrent({ goal, client }: GoalCurrentProps): JSX.Ele
   const { id: dayId, date, tasks, discussionCount, characteristics: dayCharacteristics, feedbackId } = day
   const classes = useStyles()
   const theme = useTheme()
-  const colors = useCharacteristicColors()
   const restRef = useRef(tasks.length - tasks.filter((t) => t.completed).length)
+  const colors = useCharacteristicColors()
+  const [loading, setLoading] = useState(false)
   const days = differenceInDays(currentDate, Date.parse(started))
   const showWeb = checkOnWeb()
   const hrefWithDate = setQueryParams(href, { date })
   const withForm = ['OWNER', 'MEMBER'].includes(role)
 
   const onChangeDate = async (newDayId: string) => {
+    setLoading(true)
     console.log(newDayId) // TODO
+    setTimeout(() => setLoading(false), 3000)
   }
 
   function checkOnWeb() {
@@ -141,6 +145,7 @@ export default function GoalCurrent({ goal, client }: GoalCurrentProps): JSX.Ele
           <Reactions role={role} dayId={dayId} goal={goal} characteristics={dayCharacteristics} owner={owner} />
         </AppBox>
         {showWeb && <Web />}
+        {loading && <Loader />}
       </div>
     </AppBox>
   )

@@ -47,12 +47,12 @@ export default function GoalCurrent({ goal, client }: GoalCurrentProps): JSX.Ele
   const hrefWithDate = setQueryParams(href, { date })
   const withForm = ['OWNER', 'MEMBER'].includes(role)
 
-  const onChangeDate = async (newDate: string) => {
-    console.log(newDate) // TODO
+  const onChangeDate = async (newDayId: string) => {
+    console.log(newDayId) // TODO
   }
 
   function checkOnWeb() {
-    const isLastDate = dates[dates.length - 1].date === date
+    const isLastDate = dates[dates.length - 1] === date
     return isLastDate && differenceInDays(currentDate, Date.parse(date)) >= SHOW_WEB_AFTER_DAYS
   }
 

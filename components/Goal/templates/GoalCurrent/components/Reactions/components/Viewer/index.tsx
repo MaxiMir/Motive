@@ -1,6 +1,6 @@
 import { Button } from '@material-ui/core'
 import { MainCharacteristic, DayCharacteristics, UserBase, Goal, Role } from 'dto'
-import useSWRDetail from 'hooks/useSWRDetail'
+import useSWRData from 'hooks/useSWRData'
 import AppBox from 'components/UI/AppBox'
 import AppEmoji from 'components/UI/AppEmoji'
 import ReactionWithSend from './components/ReactionWithSend'
@@ -15,7 +15,7 @@ export interface ViewerProps {
 }
 
 export default function Viewer({ role, dayId, goal, characteristics, owner }: ViewerProps): JSX.Element {
-  const [data, mutate] = useSWRDetail()
+  const [data, mutate] = useSWRData()
 
   const onSet = (characteristic: MainCharacteristic, increase: boolean) => {
     const copiedGoals = [...data.user.goals]

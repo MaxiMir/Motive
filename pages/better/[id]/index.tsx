@@ -3,6 +3,7 @@ import { useRouter } from 'next/router'
 import useSWR from 'swr'
 import { PageSWR, UserPage } from 'dto'
 import PageService from 'services/PageService'
+import { SWRDataContext } from 'context/swrDataContext'
 import Layout from 'layout'
 import UserCard from 'components/UserCard'
 
@@ -12,9 +13,11 @@ export default function UserDetail({ fallbackData }: PageSWR<UserPage>): JSX.Ele
   const { meta, user, client } = (data as UserPage) || {}
 
   return (
-    <Layout client={client} error={error} {...meta}>
-      <UserCard type="detail" client={client} {...user} />
-    </Layout>
+    <SWRDataContext.Provider value={data}>
+      <Layout client={client} error={error} {...meta}>
+        <UserCard type="detail" client={client} {...user} />
+      </Layout>
+    </SWRDataContext.Provider>
   )
 }
 

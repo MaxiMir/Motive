@@ -1,11 +1,14 @@
-import { Fragment, useRef, useState } from 'react'
+import { Fragment, useRef } from 'react'
 import dynamic from 'next/dynamic'
 import differenceInDays from 'date-fns/differenceInDays'
 import { createStyles, useTheme } from '@material-ui/core'
 import { makeStyles } from '@material-ui/core/styles'
 import { Client, Goal, GoalCharacteristic } from 'dto'
+import GoalService from 'services/GoalService'
 import { setQueryParams } from 'helpers/url'
 import useCharacteristicColors from 'hooks/useCharacteristicColors'
+import useSend from 'hooks/useSend'
+import useSWRData from 'hooks/useSWRData'
 import AppBox from 'components/UI/AppBox'
 import AppHeader from 'components/UI/AppHeader'
 import AppDot from 'components/UI/AppDot'
@@ -42,18 +45,21 @@ export default function GoalCurrent({ goal, client }: GoalCurrentProps): JSX.Ele
   const classes = useStyles()
   const theme = useTheme()
   const restRef = useRef(tasks.length - tasks.filter((t) => t.completed).length)
+  const [data, mutate] = useSWRData()
   const colors = useCharacteristicColors()
-  const [loading, setLoading] = useState(false)
   const days = differenceInDays(currentDate, Date.parse(started))
   const showWeb = checkOnWeb()
   const hrefWithDate = setQueryParams(href, { date })
   const withForm = ['OWNER', 'MEMBER'].includes(role)
+  const { isLoading, send } = useSend(GoalService.getById, {
+    onSuccess: (newGoal) => {
+      const goals = [...data.user.goals]
+      goals[goals.findIndex((g) => g.id === goal.id)] = newGoal
+      mutate({ ...data, user: { ...data.user, goals } }, false)
+    },
+  })
 
-  const onChangeDate = async (newDayId: string) => {
-    setLoading(true)
-    console.log(newDayId) // TODO
-    setTimeout(() => setLoading(false), 3000)
-  }
+  const onChangeDate = (newDayId: string) => send({ id: newDayId })
 
   function checkOnWeb() {
     const isLastDate = dates[dates.length - 1] === date
@@ -98,8 +104,8 @@ export default function GoalCurrent({ goal, client }: GoalCurrentProps): JSX.Ele
                 defaultExpanded
                 details={
                   <AppBox flexDirection="column" spacing={2}>
-                    {tasks.map((task, index) => (
-                      <Fragment key={index}>
+                    {tasks.map((task) => (
+                      <Fragment key={task.id}>
                         {!withForm ? (
                           <Task {...task} />
                         ) : (
@@ -145,7 +151,7 @@ export default function GoalCurrent({ goal, client }: GoalCurrentProps): JSX.Ele
           <Reactions role={role} dayId={dayId} goal={goal} characteristics={dayCharacteristics} owner={owner} />
         </AppBox>
         {showWeb && <Web />}
-        {loading && <Loader />}
+        {isLoading && <Loader />}
       </div>
     </AppBox>
   )

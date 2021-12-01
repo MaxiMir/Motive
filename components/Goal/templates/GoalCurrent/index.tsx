@@ -5,7 +5,6 @@ import { createStyles, useTheme } from '@material-ui/core'
 import { makeStyles } from '@material-ui/core/styles'
 import { Client, Goal, GoalCharacteristic } from 'dto'
 import GoalService from 'services/GoalService'
-import { setQueryParams } from 'helpers/url'
 import useCharacteristicColors from 'hooks/useCharacteristicColors'
 import useSend from 'hooks/useSend'
 import useSWRData from 'hooks/useSWRData'
@@ -13,6 +12,7 @@ import AppBox from 'components/UI/AppBox'
 import AppHeader from 'components/UI/AppHeader'
 import AppDot from 'components/UI/AppDot'
 import AppAccordion from 'components/UI/AppAccordion'
+import { checkOnWeb, getGoalHref, getQueryNewState } from './helper'
 import GoalDate from './components/GoalDate'
 import Menu from './components/Menu'
 import Characteristic from './components/Characteristic'
@@ -34,13 +34,12 @@ export interface GoalCurrentProps {
   type: 'current'
   goal: Goal
   client: Client
+  href: string
 }
 
-const SHOW_WEB_AFTER_DAYS = 14
-
-export default function GoalCurrent({ goal, client }: GoalCurrentProps): JSX.Element {
+export default function GoalCurrent({ goal, client, href }: GoalCurrentProps): JSX.Element {
   const currentDate = new Date()
-  const { id, name, hashtags, href, started, characteristics, role, owner, day, dates } = goal
+  const { id, name, hashtags, started, characteristics, role, owner, day, dates } = goal
   const { id: dayId, date, tasks, discussionCount, characteristics: dayCharacteristics, feedbackId } = day
   const classes = useStyles()
   const theme = useTheme()
@@ -48,28 +47,24 @@ export default function GoalCurrent({ goal, client }: GoalCurrentProps): JSX.Ele
   const [data, mutate] = useSWRData()
   const colors = useCharacteristicColors()
   const days = differenceInDays(currentDate, Date.parse(started))
-  const showWeb = checkOnWeb()
-  const hrefWithDate = setQueryParams(href, { date })
+  const showWeb = checkOnWeb(dates, date, currentDate)
+  const goalHref = getGoalHref(href, goal)
   const withForm = ['OWNER', 'MEMBER'].includes(role)
   const { isLoading, send } = useSend(GoalService.getById, {
     onSuccess: (newGoal) => {
       const goals = [...data.user.goals]
       goals[goals.findIndex((g) => g.id === goal.id)] = newGoal
       mutate({ ...data, user: { ...data.user, goals } }, false)
+      window.history.pushState(null, '', getQueryNewState(newGoal))
     },
   })
 
   const onChangeDate = (newDayId: string) => send({ id: newDayId })
 
-  function checkOnWeb() {
-    const isLastDate = dates[dates.length - 1] === date
-    return isLastDate && differenceInDays(currentDate, Date.parse(date)) >= SHOW_WEB_AFTER_DAYS
-  }
-
   return (
-    <AppBox flexDirection="column" spacing={1} className={classes.root}>
+    <AppBox flexDirection="column" spacing={1} id={`goal-${id}`} className={classes.root}>
       <GoalDate date={date} dates={dates} onChangeDate={onChangeDate} />
-      <div className={classes.wrap} id={`goal-${id}`}>
+      <div className={classes.wrap}>
         <AppBox flexDirection="column" justifyContent="space-between" spacing={3} className={classes.content}>
           <AppBox flexDirection="column" spacing={3}>
             <AppBox justifyContent="space-between" alignItems="center">
@@ -79,7 +74,7 @@ export default function GoalCurrent({ goal, client }: GoalCurrentProps): JSX.Ele
                 </AppHeader>
                 {role === 'MEMBER' && <Owner {...owner} />}
               </AppBox>
-              <Menu title={name} href={hrefWithDate} role={role} />
+              <Menu title={name} href={goalHref} role={role} />
             </AppBox>
             <AppBox justifyContent="space-between" alignItems="center">
               {CHARACTERISTICS.map((characteristic) => (

@@ -18,16 +18,9 @@ const getInsertMethodName = (searchParams: URLSearchParams, name: string) =>
   !searchParams.has(name) ? 'append' : 'set'
 
 /**
- * Set a Query param value
+ * Returns query params
  */
-export const setQueryParam = (urn: string, name: string, value: string): string => {
-  const { urlWithoutSearchParams, searchParams } = getUrnData(urn)
-  const methodName = getInsertMethodName(searchParams, name)
-
-  searchParams[methodName](name, value)
-
-  return toUrl(urlWithoutSearchParams, searchParams)
-}
+export const getQueryParams = (): Record<string, string> => Object.fromEntries(new URLSearchParams(window.location.search))
 
 /**
  * Set Query params
@@ -40,17 +33,6 @@ export const setQueryParams = (urn: string, params: Record<string, string>): str
 
     searchParams[methodName](name, value)
   })
-
-  return toUrl(urlWithoutSearchParams, searchParams)
-}
-
-/**
- * Remove Query param
- */
-export const deleteQueryParam = (urn: string, name: string): string => {
-  const { urlWithoutSearchParams, searchParams } = getUrnData(urn)
-
-  searchParams.delete(name)
 
   return toUrl(urlWithoutSearchParams, searchParams)
 }

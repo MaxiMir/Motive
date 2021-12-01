@@ -27,6 +27,7 @@ export interface UserCardDetailProps extends UserDetail {
 export default function UserCardDetail({
   id,
   fullName,
+  href,
   favorite,
   views,
   avatar,
@@ -43,7 +44,7 @@ export default function UserCardDetail({
   const isOwner = role === 'OWNER'
 
   useEffect(() => {
-    query.goal && scrollToElem(`goal-${query.goal}`)
+    query.s && scrollToElem(`goal-${query.s}`)
   }, [id, query])
 
   return (
@@ -100,7 +101,7 @@ export default function UserCardDetail({
         ) : (
           <AppBox flexWrap="wrap" spacing={3}>
             {goals.map((goal) => (
-              <GoalCard type="current" goal={goal} client={client} key={goal.id} />
+              <GoalCard type="current" goal={goal} client={client} href={href} key={goal.id} />
             ))}
           </AppBox>
         )}

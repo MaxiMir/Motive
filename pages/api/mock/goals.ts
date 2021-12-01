@@ -3,7 +3,6 @@ import { Goal, GoalCreation } from 'dto'
 export const learnFrench: Goal = {
   id: '314',
   name: 'learn French',
-  href: '/better/maximir?goal=314',
   started: '2021-10-17T18:31:42',
   hashtags: ['foreignLanguage', 'knowledge', 'learnFrench', 'immigration', 'recommendation'],
   role: 'MEMBER',
@@ -60,7 +59,6 @@ export const learnFrench: Goal = {
 export const becomeSenior: Goal = {
   id: '214',
   name: 'become senior',
-  href: '/better/maximir?goal=214',
   started: '2021-09-01T12:31:42',
   hashtags: ['programming', 'knowledge'],
   role: 'OWNER',
@@ -102,7 +100,6 @@ export const getNewGoal = (goalCreation: GoalCreation): Goal => {
   return {
     id: '413',
     name: goalCreation.name,
-    href: '/better/maximir?goal=413',
     started: new Date().toISOString(),
     hashtags: !goalCreation.hashtags
       ? []

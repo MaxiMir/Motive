@@ -7,9 +7,10 @@ export default async (_: NextApiRequest, res: NextApiResponse): Promise<void> =>
 
   const goal: Goal = {
     ...learnFrench,
-    id: Date.now().toString(),
+    id: '314',
     day: {
       ...learnFrench.day,
+      id: '777',
       characteristics: {
         motivation: false,
         support: false,

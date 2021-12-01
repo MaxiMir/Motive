@@ -11,7 +11,6 @@ export interface GoalCreation {
 export interface Goal {
   id: string
   name: string
-  href: string
   started: string
   hashtags: string[]
   owner: UserBase

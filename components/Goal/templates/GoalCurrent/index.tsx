@@ -39,7 +39,7 @@ export interface GoalCurrentProps {
 
 export default function GoalCurrent({ goal, client, href }: GoalCurrentProps): JSX.Element {
   const currentDate = new Date()
-  const { id, name, hashtags, started, characteristics, role, owner, day, dates } = goal
+  const { id, name, hashtags, started, characteristics, role, owner, day, datesMap } = goal
   const { id: dayId, date, tasks, discussionCount, characteristics: dayCharacteristics, feedbackId } = day
   const classes = useStyles()
   const theme = useTheme()
@@ -47,7 +47,7 @@ export default function GoalCurrent({ goal, client, href }: GoalCurrentProps): J
   const [data, mutate] = useSWRData()
   const colors = useCharacteristicColors()
   const days = differenceInDays(currentDate, Date.parse(started))
-  const showWeb = checkOnWeb(dates, date, currentDate)
+  const showWeb = checkOnWeb(datesMap, date, currentDate)
   const goalHref = getGoalHref(href, goal)
   const withForm = ['OWNER', 'MEMBER'].includes(role)
   const { isLoading, send } = useSend(GoalService.getById, {
@@ -63,7 +63,7 @@ export default function GoalCurrent({ goal, client, href }: GoalCurrentProps): J
 
   return (
     <AppBox flexDirection="column" spacing={1} id={`goal-${id}`} className={classes.root}>
-      <GoalDate date={date} dates={dates} onChangeDate={onChangeDate} />
+      <GoalDate date={date} datesMap={datesMap} onChangeDate={onChangeDate} />
       <div className={classes.wrap}>
         <AppBox flexDirection="column" justifyContent="space-between" spacing={3} className={classes.content}>
           <AppBox flexDirection="column" spacing={3}>

@@ -47,13 +47,13 @@ export const learnFrench: Goal = {
     discussionCount: 5,
     feedbackId: '1',
   },
-  dates: [
-    '2021-09-06T00:00:00.000Z',
-    '2021-09-07T00:00:00.000Z',
-    '2021-09-08T00:00:00.000Z',
-    '2021-09-10T00:00:00.000Z',
-    '2021-11-20T00:00:00.000Z',
-  ],
+  datesMap: {
+    '2021-09-06T00:00:00.000Z': '232',
+    '2021-09-07T00:00:00.000Z': '233',
+    '2021-09-08T00:00:00.000Z': '234',
+    '2021-09-10T00:00:00.000Z': '235',
+    '2021-11-20T00:00:00.000Z': '236',
+  },
 }
 
 export const becomeSenior: Goal = {
@@ -87,13 +87,13 @@ export const becomeSenior: Goal = {
     discussionCount: 0,
     feedbackId: null,
   },
-  dates: [
-    '2021-09-06T00:00:00.000Z',
-    '2021-09-07T00:00:00.000Z',
-    '2021-09-08T00:00:00.000Z',
-    '2021-09-10T00:00:00.000Z',
-    '2021-10-06T00:00:00.000Z',
-  ],
+  datesMap: {
+    '2021-09-06T00:00:00.000Z': '214',
+    '2021-09-07T00:00:00.000Z': '215',
+    '2021-09-08T00:00:00.000Z': '216',
+    '2021-09-10T00:00:00.000Z': '217',
+    '2021-10-06T00:00:00.000Z': '218',
+  },
 }
 
 export const getNewGoal = (goalCreation: GoalCreation): Goal => {
@@ -138,6 +138,8 @@ export const getNewGoal = (goalCreation: GoalCreation): Goal => {
       discussionCount: 0,
       feedbackId: '3',
     },
-    dates: [new Date().toISOString()],
+    datesMap: {
+      [new Date().toISOString()]: '653',
+    },
   }
 }

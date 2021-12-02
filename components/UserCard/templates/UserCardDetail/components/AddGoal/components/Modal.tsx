@@ -42,7 +42,7 @@ interface ModalProps {
 }
 
 const schema: SchemaOf<GoalCreation> = object({
-  name: string().trim().required('Goal name needed').min(5, "It's too short.").max(35, "It's so long."),
+  name: string().trim().required('Goal name needed').min(5, "It's too short.").max(32, "It's so long."),
   hashtags: string().trim().max(150, "It's so long."),
   tasks: array().of(
     object({

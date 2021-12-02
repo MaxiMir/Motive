@@ -11,27 +11,28 @@ import AppBox from 'components/UI/AppBox'
 
 interface DateProps {
   date: string
-  dates: Goal['dates']
+  datesMap: Goal['datesMap']
   onChangeDate: (id: string) => void
 }
 
-export default function GoalDate({ date, dates, onChangeDate }: DateProps): JSX.Element {
+export default function GoalDate({ date, datesMap, onChangeDate }: DateProps): JSX.Element {
   const classes = useStyles()
   const [open, setOpen] = useState(false)
   const [value, setValue] = useState(new Date(date))
   const formattedDate = format(value, 'MM/dd/yy')
+  const dates = Object.keys(datesMap)
   const dateIndex = useMemo(getDateIndex, [dates, value])
   const [prevDate, nextDate] = [dates[dateIndex - 1], dates[dateIndex + 1]]
   const onChangeDateWithDebounce = useDebounceCb(onChangeDate, 1000)
 
   const onClickArrow = (newDate: string) => {
     setValue(new Date(newDate))
-    onChangeDateWithDebounce(newDate)
+    onChangeDateWithDebounce(datesMap[newDate])
   }
 
   const onChange = (newDate: Date) => {
     setValue(newDate)
-    onChangeDate(toISODateWithZeroTime(newDate))
+    onChangeDate(datesMap[toISODateWithZeroTime(newDate)])
   }
 
   const checkShouldDisableDate = (checkedDate: MaterialUiPickersDate) => {

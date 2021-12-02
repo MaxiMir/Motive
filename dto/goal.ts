@@ -17,7 +17,7 @@ export interface Goal {
   role: Role
   characteristics: GoalCharacteristics // count all
   day: Day
-  dates: string[]
+  datesMap: Record<string, string> // { [formattedDate]: dayId }
 }
 
 interface Day {

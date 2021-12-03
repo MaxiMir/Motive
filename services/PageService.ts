@@ -14,7 +14,7 @@ export default class PageService {
     return Axios.get('/favorites')
   }
 
-  static async getDynamic<T>(url: string): Promise<T> {
+  static async getURL<T>(url: string): Promise<T> {
     return Axios.get(url)
   }
 }

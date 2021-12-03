@@ -7,7 +7,7 @@ export type PageSWR<T> = {
   fallbackData: Page<T>
 }
 
-type Page<T> = {
+export type Page<T> = {
   meta: {
     title: string
     description: string
@@ -16,6 +16,7 @@ type Page<T> = {
     type: string
   }
   client: Client
+  href: string
 } & T
 
 export type MainPage = Page<{ [k: string]: never }>

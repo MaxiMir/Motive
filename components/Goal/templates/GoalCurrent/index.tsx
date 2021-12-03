@@ -7,7 +7,7 @@ import { Client, Goal, GoalCharacteristic } from 'dto'
 import GoalService from 'services/GoalService'
 import useCharacteristicColors from 'hooks/useCharacteristicColors'
 import useSend from 'hooks/useSend'
-import useSWRData from 'hooks/useSWRData'
+import useUserPageContext from 'hooks/useUserPageContext'
 import AppBox from 'components/UI/AppBox'
 import AppHeader from 'components/UI/AppHeader'
 import AppDot from 'components/UI/AppDot'
@@ -44,7 +44,7 @@ export default function GoalCurrent({ goal, client, href }: GoalCurrentProps): J
   const classes = useStyles()
   const theme = useTheme()
   const restRef = useRef(tasks.length - tasks.filter((t) => t.completed).length)
-  const [data, mutate] = useSWRData()
+  const [data, mutate] = useUserPageContext()
   const colors = useCharacteristicColors()
   const days = differenceInDays(currentDate, Date.parse(started))
   const showWeb = checkOnWeb(datesMap, date, currentDate)

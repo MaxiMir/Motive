@@ -10,7 +10,7 @@ export default async (_: NextApiRequest, res: NextApiResponse): Promise<void> =>
     id: '314',
     day: {
       ...learnFrench.day,
-      id: '777',
+      id: '532',
       characteristics: {
         motivation: false,
         support: false,

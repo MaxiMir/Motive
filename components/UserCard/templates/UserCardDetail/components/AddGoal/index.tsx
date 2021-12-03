@@ -4,7 +4,7 @@ import { makeStyles } from '@material-ui/core/styles'
 import { Button } from '@material-ui/core'
 import { Goal } from 'dto'
 import useSnackbar from 'hooks/useSnackbar'
-import useSWRData from 'hooks/useSWRData'
+import useUserPageContext from 'hooks/useUserPageContext'
 import { scrollToElem } from 'helpers/dom'
 import AppEmoji from 'components/UI/AppEmoji'
 
@@ -14,7 +14,7 @@ export default function AddGoal(): JSX.Element {
   const classes = useStyles()
   const { enqueueSnackbar } = useSnackbar()
   const [open, setOpen] = useState(false)
-  const [data, mutate] = useSWRData()
+  const [data, mutate] = useUserPageContext()
 
   const onClick = () => setOpen(true)
 

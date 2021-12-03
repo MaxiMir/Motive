@@ -1,7 +1,6 @@
 import { useSWRConfig } from 'swr'
-import { ScopedMutator } from 'swr/dist/types'
 
-export type PartialMutate = (data?: unknown, shouldRevalidate?: boolean) => ScopedMutator
+export type PartialMutate = (data?: unknown, shouldRevalidate?: boolean) => unknown
 
 export default function usePartialMutate(swrKey: string): PartialMutate {
   const { mutate } = useSWRConfig()

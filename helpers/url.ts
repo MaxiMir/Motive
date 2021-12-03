@@ -20,18 +20,19 @@ const getInsertMethodName = (searchParams: URLSearchParams, name: string) =>
 /**
  * Returns query params
  */
-export const getQueryParams = (): Record<string, string> => Object.fromEntries(new URLSearchParams(window.location.search))
+export const getQueryParams = (): Record<string, string> =>
+  Object.fromEntries(new URLSearchParams(window.location.search))
 
 /**
  * Set Query params
  */
-export const setQueryParams = (urn: string, params: Record<string, string>): string => {
+export const setQueryParams = (urn: string, params: Record<string, string | number>): string => {
   const { urlWithoutSearchParams, searchParams } = getUrnData(urn)
 
   Object.entries(params).forEach(([name, value]) => {
     const methodName = getInsertMethodName(searchParams, name)
 
-    searchParams[methodName](name, value)
+    searchParams[methodName](name, value.toString())
   })
 
   return toUrl(urlWithoutSearchParams, searchParams)

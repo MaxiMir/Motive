@@ -22,6 +22,8 @@ export default async (req: NextApiRequest, res: NextApiResponse): Promise<void> 
         },
       } as TopicWithQuestion)
     default:
-      return res.status(200).json(req.query.id === '232' ? topics : [])
+      return res
+        .status(200)
+        .json(req.query.id === '232' && ['0', '1'].includes((req.query.page || '') as string) ? topics : [])
   }
 }

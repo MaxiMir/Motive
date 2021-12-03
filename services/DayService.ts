@@ -1,5 +1,5 @@
 import Axios from 'lib/axios'
-import { Discussion, Goal, TopicType, TopicWithQuestion } from 'dto'
+import { Goal, TopicType, TopicWithQuestion } from 'dto'
 
 export default class DayService {
   /**
@@ -9,15 +9,6 @@ export default class DayService {
     const { dayId, characteristic, ...restData } = data
 
     return Axios.put(`/days/${dayId}/${characteristic}/`, restData)
-  }
-
-  /**
-   * /days/{id}/discussion/
-   */
-  static getDiscussion(data: { dayId: string }): Promise<Discussion> {
-    const { dayId } = data
-
-    return Axios.get(`/days/${dayId}/discussion/`)
   }
 
   /**

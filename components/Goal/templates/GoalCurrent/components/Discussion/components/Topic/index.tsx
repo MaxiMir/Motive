@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import dynamic from 'next/dynamic'
-import { Role, TopicType, Topic as TopicDTO, UserBase } from 'dto'
+import { Role, Topic as TopicDTO, UserBase } from 'dto'
 import Message from './components/Message'
 
 export interface TopicProps {
@@ -17,7 +17,7 @@ const Reply = dynamic(() => import('./components/Reply'))
 export default function Topic({ dayId, owner, topic, role }: TopicProps): JSX.Element {
   const [showInput, setShowInput] = useState(false)
   const { answer, ...message } = topic
-  const showReply = role === 'OWNER' && topic.type === TopicType.QUESTION && !topic.answer
+  const showReply = role === 'OWNER' && !topic.answer
 
   const onClick = () => setShowInput(true)
 

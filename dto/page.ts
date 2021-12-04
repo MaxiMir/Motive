@@ -40,3 +40,8 @@ export interface UserDetail extends User {
   role: Role
   goals: Goal[]
 }
+
+export interface DataWithPagination<T> {
+  content: T
+  last: boolean
+}

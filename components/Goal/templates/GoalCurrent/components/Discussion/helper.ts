@@ -9,8 +9,8 @@ const PRELOAD_END_INDEX = 3
 // its return value will be accepted by `fetcher`.
 // If `null` is returned, the request of that page won't start.
 export const getSWRKey = (dayId: string, topicCount: number): InfiniteKeyLoader => {
-  return (page: number, previousPageData: Topic[]) => {
-    if (!topicCount || (previousPageData && !previousPageData.length)) {
+  return (page: number, previousData: Discussion) => {
+    if (!topicCount || previousData?.last) {
       return null // reached the end or discussion is empty
     }
 
@@ -21,10 +21,8 @@ export const getSWRKey = (dayId: string, topicCount: number): InfiniteKeyLoader 
 export const fetcher = (url: string): Promise<Discussion> => PageService.getURL(url)
 
 export const checkPartialOnLoadMore = (data?: Discussion[], content?: Topic[]): ((index: number) => boolean) => {
-  const isEmpty = !data?.[data?.length - 1].length
-  const elementsCount = content?.length
+  const allCount = content?.length
 
-  return isEmpty || !elementsCount
-    ? (_: number) => false
-    : (index: number) => elementsCount > LIMIT && elementsCount - index === PRELOAD_END_INDEX
+  return (index: number) =>
+    !allCount || data?.[data?.length - 1].last ? false : allCount - index === PRELOAD_END_INDEX
 }

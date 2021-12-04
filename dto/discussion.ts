@@ -1,4 +1,5 @@
 import { UserBase } from './user'
+import { DataWithPagination } from './page'
 
 export interface TopicBase {
   id: string
@@ -19,16 +20,9 @@ export enum TopicType {
   SUPPORT = 'support',
 }
 
-export interface TopicWithQuestion extends TopicBase {
-  type: TopicType.QUESTION
+export interface Topic extends TopicBase {
+  type: TopicType.QUESTION | TopicType.SUPPORT
   answer: TopicBase | null
 }
 
-export interface TopicWithSupport extends TopicBase {
-  type: TopicType.SUPPORT
-  answer: null
-}
-
-export type Topic = TopicWithQuestion | TopicWithSupport
-
-export type Discussion = Array<Topic>
+export type Discussion = DataWithPagination<Topic[]>

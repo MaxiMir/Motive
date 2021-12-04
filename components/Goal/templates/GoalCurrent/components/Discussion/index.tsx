@@ -26,25 +26,22 @@ const VISIBLE_COUNT = 4
 export default function Discussion({ dayId, role, owner, client, count: initialCount }: DiscussionProps): JSX.Element {
   const [count, setCount] = useState(initialCount)
   const { data, size, setSize, mutate } = useSWRInfinite(getSWRKey(dayId, count), fetcher)
-  const content = useMemo(
-    () =>
-      data
-        ?.flat()
-        .map((d) => d.content)
-        .flat(),
-    [data],
-  )
+  const content = useMemo(getContent, [data])
   const withInput = !!client.user && client.id !== owner.id
   const shownCount = count >= VISIBLE_COUNT ? VISIBLE_COUNT : count
   const height = !count ? undefined : (!withInput ? 0 : 56) + 524
   const checkOnLoadMore = checkPartialOnLoadMore(data, content)
 
-  const onAdd = async (topic: TopicDTO) => {
+  const onAdd = (topic: TopicDTO) => {
     setCount(count + 1)
-    await mutate([{ content: [topic], last: false }, ...(data || [])], false)
+    mutate([{ content: [topic], last: false }, ...(data || [])], false)
   }
 
   const onLoadMore = (inView: boolean) => inView && setSize(size + 1)
+
+  function getContent() {
+    return data?.map((d) => d.content).flat()
+  }
 
   return (
     <AppBox flexDirection="column" spacing={2} flex={1} height={height}>

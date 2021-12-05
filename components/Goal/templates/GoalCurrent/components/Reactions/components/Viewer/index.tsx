@@ -1,6 +1,7 @@
+import produce from 'immer'
 import { Button } from '@material-ui/core'
 import { MainCharacteristic, DayCharacteristics, UserBase, Goal, Role } from 'dto'
-import useUserPage from 'hooks/useUserPage'
+import useMutateGoals from 'hooks/useMutateGoals'
 import AppBox from 'components/UI/AppBox'
 import AppEmoji from 'components/UI/AppEmoji'
 import ReactionWithSend from './components/ReactionWithSend'
@@ -15,20 +16,14 @@ export interface ViewerProps {
 }
 
 export default function Viewer({ role, dayId, goal, characteristics, owner }: ViewerProps): JSX.Element {
-  const [userPage, mutateUserPage] = useUserPage()
+  const [goals, mutateGoals] = useMutateGoals()
 
-  const onSet = (characteristic: MainCharacteristic, increase: boolean) => {
-    const goals = [...userPage.user.goals]
-
-    goals[goals.findIndex((g) => g.id === goal.id)] = {
-      ...goal,
-      characteristics: {
-        ...goal.characteristics,
-        [characteristic]: goal.characteristics[characteristic] + (increase ? 1 : -1),
-      },
-    }
-    mutateUserPage({ ...userPage, user: { ...userPage.user, goals } }, false)
-  }
+  const onSet = (characteristic: MainCharacteristic, increase: boolean) =>
+    mutateGoals(
+      produce(goals, (draft: Goal[]) => {
+        draft[draft.findIndex((g) => g.id === goal.id)].characteristics[characteristic] += increase ? 1 : -1
+      }),
+    )
 
   return (
     <AppBox justifyContent="space-between">

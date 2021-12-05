@@ -1,5 +1,6 @@
 import { Fragment, useRef, useState } from 'react'
 import dynamic from 'next/dynamic'
+import produce from 'immer'
 import differenceInDays from 'date-fns/differenceInDays'
 import { createStyles, useTheme } from '@material-ui/core'
 import { makeStyles } from '@material-ui/core/styles'
@@ -7,7 +8,7 @@ import { Client, Goal, GoalCharacteristic } from 'dto'
 import GoalService from 'services/GoalService'
 import useCharacteristicColors from 'hooks/useCharacteristicColors'
 import useSend from 'hooks/useSend'
-import useUserPage from 'hooks/useUserPage'
+import useMutateGoals from 'hooks/useMutateGoals'
 import AppBox from 'components/UI/AppBox'
 import AppHeader from 'components/UI/AppHeader'
 import AppDot from 'components/UI/AppDot'
@@ -44,7 +45,7 @@ export default function GoalCurrent({ goal, client, href }: GoalCurrentProps): J
   const classes = useStyles()
   const theme = useTheme()
   const restRef = useRef(tasks.length - tasks.filter((t) => t.completed).length)
-  const [userPage, mutateUserPage] = useUserPage()
+  const [goals, mutateGoals] = useMutateGoals()
   const colors = useCharacteristicColors()
   const [discussionCount, setDiscussionCount] = useState(day.discussionCount)
   const days = differenceInDays(currentDate, Date.parse(started))
@@ -52,12 +53,13 @@ export default function GoalCurrent({ goal, client, href }: GoalCurrentProps): J
   const goalHref = getGoalHref(href, goal)
   const withForm = ['OWNER', 'MEMBER'].includes(role)
   const { isLoading, send } = useSend(GoalService.getById, {
-    onSuccess: (newGoal) => {
-      const goals = [...userPage.user.goals]
-
-      goals[goals.findIndex((g) => g.id === goal.id)] = newGoal
-      mutateUserPage({ ...userPage, user: { ...userPage.user, goals } }, false)
-      window.history.pushState(null, '', getQueryNewState(newGoal))
+    onSuccess: (changedGoal) => {
+      mutateGoals(
+        produce(goals, (draft: Goal[]) => {
+          draft[draft.findIndex((g) => g.id === goal.id)] = changedGoal
+        }),
+      )
+      window.history.pushState(null, '', getQueryNewState(changedGoal))
     },
   })
 

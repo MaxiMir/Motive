@@ -1,10 +1,11 @@
 import React, { useState } from 'react'
 import dynamic from 'next/dynamic'
+import produce from 'immer'
 import { makeStyles } from '@material-ui/core/styles'
 import { Button } from '@material-ui/core'
 import { Goal } from 'dto'
 import useSnackbar from 'hooks/useSnackbar'
-import useUserPage from 'hooks/useUserPage'
+import useMutateGoals from 'hooks/useMutateGoals'
 import { scrollToElem } from 'helpers/dom'
 import AppEmoji from 'components/UI/AppEmoji'
 
@@ -14,14 +15,18 @@ export default function AddGoal(): JSX.Element {
   const classes = useStyles()
   const { enqueueSnackbar } = useSnackbar()
   const [open, setOpen] = useState(false)
-  const [userPage, mutateUserPage] = useUserPage()
+  const [goals, mutateGoals] = useMutateGoals()
 
   const onClick = () => setOpen(true)
 
   const onClose = () => setOpen(false)
 
   const onSuccess = (goal: Goal) => {
-    mutateUserPage({ ...userPage, user: { ...userPage.user, goals: [...userPage.user.goals, goal] } }, false)
+    mutateGoals(
+      produce(goals, (draft: Goal[]) => {
+        draft.push(goal)
+      }),
+    )
     enqueueSnackbar({ message: 'The goal is successfully created', severity: 'success', icon: 'goal' })
     setOpen(false)
     setTimeout(() => scrollToElem(`goal-${goal.id}`), 500)

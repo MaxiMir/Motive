@@ -64,6 +64,7 @@ module.exports = {
         'react/no-array-index-key': 'off',
         'import/no-unresolved': 'off',
         'no-return-await': 'off',
+        'no-param-reassign': ['error', { props: true, ignorePropertyModificationsFor: ['draft'] }],
 
         // Already handled by TS
         'no-dupe-class-members': 'off',

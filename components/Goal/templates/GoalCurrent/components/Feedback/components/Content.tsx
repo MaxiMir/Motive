@@ -9,10 +9,12 @@ const AppVideo = dynamic(() => import('components/UI/AppVideo'))
 export default function Content({ text, photos, video }: Feedback): JSX.Element {
   return (
     <>
-      <AppTypography>
-        {/* eslint-disable-next-line react/no-danger */}
-        {text && <span dangerouslySetInnerHTML={{ __html: text.replace(/\\n/g, '<br />') }} />}
-      </AppTypography>
+      {text && (
+        <AppTypography>
+          {/* eslint-disable-next-line react/no-danger */}
+          <span dangerouslySetInnerHTML={{ __html: text.replace(/\\n/g, '<br />') }} />
+        </AppTypography>
+      )}
       {photos?.length && (
         <>
           <AppHeader name="photo" variant="h6" component="h3" color="primary">

@@ -85,7 +85,7 @@ export const becomeSenior: Goal = {
     },
     tasks: [{ id: '11', name: 'watch video', completed: false, completedByOthers: false }],
     discussionCount: 0,
-    feedbackId: null,
+    feedbackId: '2',
   },
   datesMap: {
     '2021-09-06T00:00:00.000Z': '214',

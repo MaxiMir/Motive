@@ -1,4 +1,4 @@
-import { Fragment, useRef } from 'react'
+import { Fragment, useRef, useState } from 'react'
 import dynamic from 'next/dynamic'
 import differenceInDays from 'date-fns/differenceInDays'
 import { createStyles, useTheme } from '@material-ui/core'
@@ -7,7 +7,7 @@ import { Client, Goal, GoalCharacteristic } from 'dto'
 import GoalService from 'services/GoalService'
 import useCharacteristicColors from 'hooks/useCharacteristicColors'
 import useSend from 'hooks/useSend'
-import useUserPageContext from 'hooks/useUserPageContext'
+import useUserPage from 'hooks/useUserPage'
 import AppBox from 'components/UI/AppBox'
 import AppHeader from 'components/UI/AppHeader'
 import AppDot from 'components/UI/AppDot'
@@ -40,21 +40,23 @@ export interface GoalCurrentProps {
 export default function GoalCurrent({ goal, client, href }: GoalCurrentProps): JSX.Element {
   const currentDate = new Date()
   const { id, name, hashtags, started, characteristics, role, owner, day, datesMap } = goal
-  const { id: dayId, date, tasks, discussionCount, characteristics: dayCharacteristics, feedbackId } = day
+  const { id: dayId, date, tasks, feedbackId } = day
   const classes = useStyles()
   const theme = useTheme()
   const restRef = useRef(tasks.length - tasks.filter((t) => t.completed).length)
-  const [data, mutate] = useUserPageContext()
+  const [userPage, mutateUserPage] = useUserPage()
   const colors = useCharacteristicColors()
+  const [discussionCount, setDiscussionCount] = useState(day.discussionCount)
   const days = differenceInDays(currentDate, Date.parse(started))
   const showWeb = checkOnWeb(datesMap, date, currentDate)
   const goalHref = getGoalHref(href, goal)
   const withForm = ['OWNER', 'MEMBER'].includes(role)
   const { isLoading, send } = useSend(GoalService.getById, {
     onSuccess: (newGoal) => {
-      const goals = [...data.user.goals]
+      const goals = [...userPage.user.goals]
+
       goals[goals.findIndex((g) => g.id === goal.id)] = newGoal
-      mutate({ ...data, user: { ...data.user, goals } }, false)
+      mutateUserPage({ ...userPage, user: { ...userPage.user, goals } }, false)
       window.history.pushState(null, '', getQueryNewState(newGoal))
     },
   })
@@ -139,11 +141,20 @@ export default function GoalCurrent({ goal, client, href }: GoalCurrentProps): J
                 renderOnClick
                 unmountOnExit
                 detailsClass={classes.discussion}
-                details={<Discussion dayId={dayId} role={role} owner={owner} client={client} count={discussionCount} />}
+                details={
+                  <Discussion
+                    dayId={dayId}
+                    role={role}
+                    owner={owner}
+                    client={client}
+                    count={discussionCount}
+                    setDiscussionCount={setDiscussionCount}
+                  />
+                }
               />
             </div>
           </AppBox>
-          <Reactions role={role} dayId={dayId} goal={goal} characteristics={dayCharacteristics} owner={owner} />
+          <Reactions role={role} dayId={dayId} goal={goal} characteristics={day.characteristics} owner={owner} />
         </AppBox>
         {showWeb && <Web />}
         {isLoading && <Loader />}

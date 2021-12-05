@@ -1,4 +1,4 @@
-import { useMemo, useState } from 'react'
+import { useMemo } from 'react'
 import dynamic from 'next/dynamic'
 import useSWRInfinite from 'swr/infinite'
 import { Client, Role, Topic as TopicDTO, UserBase } from 'dto'
@@ -19,12 +19,19 @@ interface DiscussionProps {
   owner: UserBase
   client: Client
   count: number
+  setDiscussionCount: (count: number) => void
 }
 
 const VISIBLE_COUNT = 4
 
-export default function Discussion({ dayId, role, owner, client, count: initialCount }: DiscussionProps): JSX.Element {
-  const [count, setCount] = useState(initialCount)
+export default function Discussion({
+  dayId,
+  role,
+  owner,
+  client,
+  count,
+  setDiscussionCount,
+}: DiscussionProps): JSX.Element {
   const { data, size, setSize, mutate } = useSWRInfinite(getSWRKey(dayId, count), fetcher)
   const content = useMemo(getContent, [data])
   const withInput = !!client.user && client.id !== owner.id
@@ -33,8 +40,8 @@ export default function Discussion({ dayId, role, owner, client, count: initialC
   const checkOnLoadMore = checkPartialOnLoadMore(data, content)
 
   const onAdd = (topic: TopicDTO) => {
-    setCount(count + 1)
     mutate([{ content: [topic], last: false }, ...(data || [])], false)
+    setDiscussionCount(count + 1)
   }
 
   const onLoadMore = (inView: boolean) => inView && setSize(size + 1)

@@ -1,6 +1,6 @@
 import { Button } from '@material-ui/core'
 import { MainCharacteristic, DayCharacteristics, UserBase, Goal, Role } from 'dto'
-import useUserPageContext from 'hooks/useUserPageContext'
+import useUserPage from 'hooks/useUserPage'
 import AppBox from 'components/UI/AppBox'
 import AppEmoji from 'components/UI/AppEmoji'
 import ReactionWithSend from './components/ReactionWithSend'
@@ -15,18 +15,19 @@ export interface ViewerProps {
 }
 
 export default function Viewer({ role, dayId, goal, characteristics, owner }: ViewerProps): JSX.Element {
-  const [data, mutate] = useUserPageContext()
+  const [userPage, mutateUserPage] = useUserPage()
 
   const onSet = (characteristic: MainCharacteristic, increase: boolean) => {
-    const copiedGoals = [...data.user.goals]
-    copiedGoals[copiedGoals.findIndex((g) => g.id === goal.id)] = {
+    const goals = [...userPage.user.goals]
+
+    goals[goals.findIndex((g) => g.id === goal.id)] = {
       ...goal,
       characteristics: {
         ...goal.characteristics,
         [characteristic]: goal.characteristics[characteristic] + (increase ? 1 : -1),
       },
     }
-    mutate({ ...data, user: { ...data.user, goals: copiedGoals } }, false)
+    mutateUserPage({ ...userPage, user: { ...userPage.user, goals } }, false)
   }
 
   return (

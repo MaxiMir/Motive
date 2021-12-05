@@ -2,15 +2,15 @@ import { InfiniteKeyLoader } from 'swr/infinite/dist/infinite/types'
 import { Discussion, Topic } from 'dto'
 import PageService from 'services/PageService'
 
-const LIMIT = 10
-const PRELOAD_END_INDEX = 3
+const LIMIT = 25
+const PRELOAD_END_INDEX = 5
 
 // A function to get the SWR key of each page,
 // its return value will be accepted by `fetcher`.
 // If `null` is returned, the request of that page won't start.
-export const getSWRKey = (dayId: string, topicCount: number): InfiniteKeyLoader => {
+export const getSWRKey = (dayId: string): InfiniteKeyLoader => {
   return (page: number, previousData: Discussion) => {
-    if (!topicCount || previousData?.last) {
+    if (previousData?.last) {
       return null // reached the end or discussion is empty
     }
 

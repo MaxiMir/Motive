@@ -63,9 +63,25 @@ export const topics = [question, support, question2]
 
 export const getTopics = (query: Record<string, string>): Discussion => {
   if (query.id === '232' && query.page === '0') {
+    const content = [
+      ...topics,
+      ...['41', '33', '24', '55', '43', '59', '22'].map((id, index) => ({
+        id,
+        date: `2021-10-06T17:${id}:00.000Z`,
+        message: `QUESTION ${id}`,
+        type: +id % 2 ? TopicType.QUESTION : TopicType.SUPPORT,
+        user: users[index] || +id % 2 ? users[1] : users[2],
+        like: {
+          active: +id % 3 === 0,
+          count: +id,
+        },
+        answer: null,
+      })),
+    ]
+
     return {
-      content: topics,
-      last: true,
+      content,
+      last: false,
     }
   }
 

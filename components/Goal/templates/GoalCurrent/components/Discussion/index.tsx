@@ -32,19 +32,21 @@ export default function Discussion({
   count,
   setDiscussionCount,
 }: DiscussionProps): JSX.Element {
-  const { data, size, setSize, mutate } = useSWRInfinite(getSWRKey(dayId, count), fetcher)
+  const { data, size, setSize, mutate } = useSWRInfinite(getSWRKey(dayId), fetcher, { initialSize: !count ? 0 : 1 })
   const content = useMemo(getContent, [data])
   const withInput = !!client.user && client.id !== owner.id
   const shownCount = count >= VISIBLE_COUNT ? VISIBLE_COUNT : count
   const height = !count ? undefined : (!withInput ? 0 : 56) + 524
   const checkOnLoadMore = checkPartialOnLoadMore(data, content)
 
-  const onAdd = (topic: TopicDTO) => {
-    mutate([{ content: [topic], last: false }, ...(data || [])], false)
+  const onAdd = async (topic: TopicDTO) => {
+    await mutate([{ content: [topic], last: false }, ...(data || [])], false)
     setDiscussionCount(count + 1)
   }
 
-  const onLoadMore = (inView: boolean) => inView && setSize(size + 1)
+  const onLoadMore = (inView: boolean) => {
+    inView && setSize(size + 1)
+  }
 
   function getContent() {
     return data?.map((d) => d.content).flat()

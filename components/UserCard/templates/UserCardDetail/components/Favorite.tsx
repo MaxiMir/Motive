@@ -25,14 +25,13 @@ export default function Favorite({ id, favorite: initial }: FavoriteProps): JSX.
       enqueueSnackbar({
         message: data.favorite ? 'Added to favorites' : 'Removed from favorites',
         severity: 'success',
-        icon: data.favorite ? 'robot' : 'ninja',
+        icon: data.favorite ? 'speaker' : 'ninja',
       })
     },
     onError(_, data) {
       setFavorite(!data.favorite)
     },
   })
-
   const mutateWithDebounce = useDebounceCb((value: boolean) => {
     lastLoadedRef.current !== value && send({ id, favorite: value })
   })

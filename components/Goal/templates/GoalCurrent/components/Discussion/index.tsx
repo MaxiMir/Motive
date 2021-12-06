@@ -36,7 +36,7 @@ export default function Discussion({
   const content = useMemo(getContent, [data])
   const withInput = !!client.user && client.id !== owner.id
   const shownCount = count >= VISIBLE_COUNT ? VISIBLE_COUNT : count
-  const height = !count ? undefined : (!withInput ? 0 : 56) + 524
+  const height = !count ? undefined : (!withInput ? 0 : 56) + 540
   const checkOnLoadMore = checkPartialOnLoadMore(data, content)
 
   const onAdd = async (topic: TopicDTO) => {

@@ -23,7 +23,7 @@ export type AppEmojiName =
   | 'unsubscribe'
   | 'death'
   | 'ninja'
-  | 'robot'
+  | 'speaker'
   | 'magic'
   | 'keyboard'
   | 'cancel'
@@ -102,8 +102,8 @@ function getContent(name: AppEmojiName) {
       return '☠️'
     case 'ninja':
       return '🥷‍'
-    case 'robot':
-      return '🤖‍'
+    case 'speaker':
+      return '🧞‍♂️‍'
     case 'magic':
       return '✨'
     case 'keyboard':

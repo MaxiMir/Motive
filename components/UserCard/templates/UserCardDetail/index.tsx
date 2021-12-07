@@ -25,6 +25,7 @@ export interface UserCardDetailProps extends UserDetail {
 }
 
 export default function UserCardDetail({
+  name,
   nickname,
   href,
   favorite,
@@ -51,7 +52,7 @@ export default function UserCardDetail({
       <AppBox justifyContent="space-between" mb={2}>
         <AppBox alignItems="center" spacing={1}>
           <AppTypography variant="h5" component="h1">
-            {nickname}
+            {name}
           </AppTypography>
           {!isOwner && client.isAuthenticated && <Favorite nickname={nickname} favorite={favorite} />}
         </AppBox>

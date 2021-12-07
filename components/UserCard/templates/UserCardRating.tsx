@@ -16,7 +16,7 @@ export interface UserCardRatingProps extends User {
 export default function UserCardRating({
   avatar,
   href,
-  nickname,
+  name,
   index,
   characteristic,
   characteristics,
@@ -55,7 +55,7 @@ export default function UserCardRating({
                 <Image src={avatar} width={35} height={35} alt="" className={classes.avatar} />
               </AppLink>
               <AppLink href={href} variant="body1">
-                {nickname}
+                {name}
               </AppLink>
             </AppBox>
           </Grid>

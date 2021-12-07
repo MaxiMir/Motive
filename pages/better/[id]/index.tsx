@@ -2,12 +2,10 @@ import { GetServerSideProps } from 'next'
 import { useRouter } from 'next/router'
 import useSWR from 'swr'
 import { PageSWR, UserPage } from 'dto'
-import { createGenericContext } from 'context/createGenericContext'
+import { UserPageContext } from 'context/userPageContext'
 import PageService from 'services/PageService'
 import Layout from 'layout'
 import UserCard from 'components/UserCard'
-
-export const UserPageContext = createGenericContext<UserPage>()
 
 export default function UserDetail({ fallbackData }: PageSWR<UserPage>): JSX.Element {
   const { asPath } = useRouter()
@@ -24,6 +22,7 @@ export default function UserDetail({ fallbackData }: PageSWR<UserPage>): JSX.Ele
 }
 
 export const getServerSideProps: GetServerSideProps = async (ctx) => {
+  // TODO заменить better -> users
   const data = await PageService.getURL(ctx.req.url as string)
 
   return {

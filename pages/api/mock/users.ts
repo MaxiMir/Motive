@@ -2,8 +2,8 @@ import { UserDetail } from 'dto'
 import { becomeSenior, learnFrench } from './goals'
 
 const ME: UserDetail = {
-  id: '1',
-  fullName: 'Maxim Minchenko',
+  name: 'Maxim Minchenko',
+  nickname: 'MaxiMir',
   href: '/better/maximir',
   avatar: '/__temp__/1.png',
   characteristics: {
@@ -21,9 +21,9 @@ const ME: UserDetail = {
 }
 
 const JULIA: UserDetail = {
-  id: '2',
-  fullName: 'Julia Minchenko',
-  href: '/better/juliaz',
+  name: 'Julia Minchenko',
+  nickname: 'yulifleur',
+  href: '/better/yulifleur',
   avatar: '/__temp__/2.png',
   characteristics: {
     motivation: 1,
@@ -41,19 +41,18 @@ const JULIA: UserDetail = {
       ...learnFrench,
       role: 'OWNER',
       owner: {
-        id: '2',
-        fullName: 'Julia Minchenko',
+        name: 'Julia Minchenko',
+        nickname: 'yulifleur',
         avatar: '/__temp__/2.png',
         href: '/better/juliaz',
       },
-      href: '/better/juliaz?goal=314',
     },
   ],
 }
 
 const FRIEND: UserDetail = {
-  id: '3',
-  fullName: 'Alexey Kopeychik',
+  name: 'Alexey Kopeychik',
+  nickname: 'NinjaKo',
   href: '/better/kopeychik',
   avatar: '/__temp__/4.png',
   characteristics: {
@@ -72,19 +71,18 @@ const FRIEND: UserDetail = {
       ...learnFrench,
       role: 'GUEST',
       owner: {
-        id: '1',
-        fullName: 'Maxim Minchenko',
+        name: 'Maxim Minchenko',
+        nickname: 'Maximir',
         avatar: '/__temp__/1.png',
         href: '/better/maximir',
       },
-      href: '/better/kopeychik?goal=314',
     },
   ],
 }
 
 const FRIEND1: UserDetail = {
-  id: '4',
-  fullName: 'Valentina Ulyanova',
+  name: 'Valentina Ulyanova',
+  nickname: 'ValUlya',
   href: '/better/ulyanova',
   avatar: '/__temp__/6.png',
   characteristics: {
@@ -102,8 +100,8 @@ const FRIEND1: UserDetail = {
 }
 
 const FRIEND2: UserDetail = {
-  id: '5',
-  fullName: 'Artyom Arzunyan',
+  name: 'Artyom Arzunyan',
+  nickname: 'Arty',
   href: '/better/artyom',
   avatar: '/__temp__/3.png',
   characteristics: {

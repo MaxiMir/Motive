@@ -5,7 +5,7 @@ export default class FavoriteService {
   /**
    * /favorite/user/
    */
-  static setUser({ ...data }: { id: string; favorite: boolean }): Promise<AxiosResponse> {
+  static setUser({ ...data }: { nickname: string; favorite: boolean }): Promise<AxiosResponse> {
     return Axios.put(`/favorite/user/`, data)
   }
 }

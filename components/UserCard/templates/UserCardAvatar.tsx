@@ -8,11 +8,11 @@ export interface UserCardAvatarProps extends UserBase {
   size: number
 }
 
-export default function UserCardAvatar({ fullName, avatar, href, size }: UserCardAvatarProps): JSX.Element {
+export default function UserCardAvatar({ nickname, avatar, href, size }: UserCardAvatarProps): JSX.Element {
   const classes = useStyles({ size })
 
   return (
-    <AppLink href={href} title={fullName} className={classes.avatarLink}>
+    <AppLink href={href} title={nickname} className={classes.avatarLink}>
       <Image src={avatar} alt="" width={size} height={size} objectFit="cover" className={classes.avatar} />
     </AppLink>
   )

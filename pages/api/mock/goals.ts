@@ -8,7 +8,7 @@ export const learnFrench: Goal = {
   role: 'MEMBER',
   owner: {
     id: '2',
-    fullName: 'Julia Minchenko',
+    nickname: 'Julia Minchenko',
     avatar: '/__temp__/2.png',
     href: '/better/juliaz',
   },
@@ -64,7 +64,7 @@ export const becomeSenior: Goal = {
   role: 'OWNER',
   owner: {
     id: '1',
-    fullName: 'Maxim Minchenko',
+    nickname: 'Maxim Minchenko',
     avatar: '/__temp__/1.png',
     href: '/better/maximir',
   },
@@ -110,7 +110,7 @@ export const getNewGoal = (goalCreation: GoalCreation): Goal => {
     role: 'OWNER',
     owner: {
       id: '1',
-      fullName: 'Maxim Minchenko',
+      nickname: 'Maxim Minchenko',
       avatar: '/__temp__/1.png',
       href: '/better/maximir',
     },

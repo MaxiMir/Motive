@@ -9,7 +9,7 @@ export default (req: NextApiRequest, res: NextApiResponse): void => {
   const user = USERS.find((u) => href.includes(u.href))
 
   res.status(200).json({
-    meta: { ...meta, title: `${user?.fullName} | Be Better` },
+    meta: { ...meta, title: `${user?.nickname} | Be Better` },
     client,
     user,
     href,

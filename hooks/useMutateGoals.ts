@@ -1,7 +1,7 @@
 import { useContext } from 'react'
 import produce from 'immer'
 import { Goal, UserPage } from 'dto'
-import { UserPageContext } from 'pages/better/[id]'
+import { UserPageContext } from 'context/userPageContext'
 import usePartialMutate from 'hooks/usePartialMutate'
 
 export default function useMutateGoals(): [Goal[], (goals: Goal[]) => void] {

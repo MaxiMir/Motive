@@ -20,7 +20,7 @@ interface MessageProps extends TopicBase {
 
 export default function Message({ id, date, user, owner, message, like, type, onClick }: MessageProps): JSX.Element {
   const classes = useStyles()
-  const { href, fullName } = user
+  const { href, nickname } = user
   const dateDifference = formatDistanceToNow(new Date(date), { includeSeconds: true })
 
   return (
@@ -28,8 +28,8 @@ export default function Message({ id, date, user, owner, message, like, type, on
       <AppBox flexDirection="column" spacing={2} minWidth={152}>
         <AppBox alignItems="center" spacing={1}>
           <UserCard type="avatar" size={26} {...user} />
-          <AppLink href={href} title={fullName} className={classes.name}>
-            <b>{fullName}</b>
+          <AppLink href={href} title={nickname} className={classes.name}>
+            <b>{nickname}</b>
           </AppLink>
           {type === TopicType.SUPPORT && <SupportSign owner={owner} />}
         </AppBox>

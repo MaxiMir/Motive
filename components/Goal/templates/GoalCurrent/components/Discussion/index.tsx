@@ -34,7 +34,7 @@ export default function Discussion({
 }: DiscussionProps): JSX.Element {
   const { data, size, setSize, mutate } = useSWRInfinite(getSWRKey(dayId), fetcher, { initialSize: !count ? 0 : 1 })
   const content = useMemo(getContent, [data])
-  const withInput = !!client.user && client.id !== owner.id
+  const withInput = client.isAuthenticated && client.nickname !== owner.nickname
   const shownCount = count >= VISIBLE_COUNT ? VISIBLE_COUNT : count
   const height = !count ? undefined : (!withInput ? 0 : 56) + 540
   const checkOnLoadMore = checkPartialOnLoadMore(data, content)
@@ -55,9 +55,7 @@ export default function Discussion({
   return (
     <AppBox flexDirection="column" spacing={2} flex={1} height={height}>
       <>
-        {(!count || content) && withInput && (
-          <UserCard type="input" dayId={dayId} user={client.user as UserBase} onAdd={onAdd} />
-        )}
+        {(!count || content) && withInput && <UserCard type="input" dayId={dayId} user={client} onAdd={onAdd} />}
         {!count ? (
           <AppTypography>Nothing so far...</AppTypography>
         ) : (

@@ -40,7 +40,7 @@ export default function Viewer({ role, dayId, goal, characteristics, owner }: Vi
         <Reaction
           characteristic="support"
           active={false}
-          title={`Support ${owner.fullName}`}
+          title={`Support ${owner.nickname}`}
           onClick={() => console.log('TODO LOGIC!')}
         />
       </AppBox>

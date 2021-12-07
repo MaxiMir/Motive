@@ -9,11 +9,11 @@ import useSnackbar from 'hooks/useSnackbar'
 import AppEmoji from 'components/UI/AppEmoji'
 
 interface FavoriteProps {
-  id: string
+  nickname: string
   favorite: boolean
 }
 
-export default function Favorite({ id, favorite: initial }: FavoriteProps): JSX.Element {
+export default function Favorite({ nickname, favorite: initial }: FavoriteProps): JSX.Element {
   const classes = useStyles()
   const lastLoadedRef = useRef(initial)
   const [favorite, setFavorite] = useState(initial)
@@ -33,7 +33,7 @@ export default function Favorite({ id, favorite: initial }: FavoriteProps): JSX.
     },
   })
   const mutateWithDebounce = useDebounceCb((value: boolean) => {
-    lastLoadedRef.current !== value && send({ id, favorite: value })
+    lastLoadedRef.current !== value && send({ nickname, favorite: value })
   })
 
   const onClick = () => {

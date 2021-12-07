@@ -25,8 +25,7 @@ export interface UserCardDetailProps extends UserDetail {
 }
 
 export default function UserCardDetail({
-  id,
-  fullName,
+  nickname,
   href,
   favorite,
   views,
@@ -45,16 +44,16 @@ export default function UserCardDetail({
 
   useEffect(() => {
     query.s && scrollToElem(`goal-${query.s}`)
-  }, [id, query])
+  }, [query])
 
   return (
     <AppContainer withFlexColumn>
       <AppBox justifyContent="space-between" mb={2}>
         <AppBox alignItems="center" spacing={1}>
           <AppTypography variant="h5" component="h1">
-            {fullName}
+            {nickname}
           </AppTypography>
-          {!isOwner && client.isAuthenticated && <Favorite id={id} favorite={favorite} />}
+          {!isOwner && client.isAuthenticated && <Favorite nickname={nickname} favorite={favorite} />}
         </AppBox>
         <AppBox alignItems="center" spacing={0.5}>
           <AppTooltip title="Page Views" className={classes.tooltip}>

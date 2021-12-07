@@ -21,7 +21,7 @@ export interface UserCardFavoriteProps extends User {
 export default function UserCardFavorite({
   avatar,
   href,
-  fullName,
+  nickname,
   characteristics,
   onRemove,
 }: UserCardFavoriteProps): JSX.Element {
@@ -37,10 +37,10 @@ export default function UserCardFavorite({
         <AppBox justifyContent="space-between" alignItems="center">
           <AppLink href={href}>
             <AppTypography variant="subtitle1" component="p">
-              {fullName}
+              {nickname}
             </AppTypography>
           </AppLink>
-          <Menu title={fullName} href={href} onRemove={onRemove} />
+          <Menu title={nickname} href={href} onRemove={onRemove} />
         </AppBox>
         <AppBox justifyContent="space-between" alignItems="center">
           {CHARACTERISTICS.map((characteristic, index) => (

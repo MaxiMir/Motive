@@ -6,6 +6,7 @@ import { useMediaQuery, useTheme, makeStyles, createStyles } from '@material-ui/
 import { Client, UserDetail, UserCharacteristic } from 'dto'
 import { numberToShort } from 'helpers/prepare'
 import { scrollToElem } from 'helpers/dom'
+import { getUserHref } from 'helpers/user'
 import useCharacteristicColors from 'hooks/useCharacteristicColors'
 import AppTooltip from 'components/UI/AppTooltip'
 import AppBox from 'components/UI/AppBox'
@@ -25,9 +26,8 @@ export interface UserCardDetailProps extends UserDetail {
 }
 
 export default function UserCardDetail({
+  id,
   name,
-  nickname,
-  href,
   favorite,
   views,
   avatar,
@@ -42,6 +42,7 @@ export default function UserCardDetail({
   const characteristicColors = useCharacteristicColors()
   const isMobile = useMediaQuery(theme.breakpoints.down('sm'))
   const isOwner = role === 'OWNER'
+  const href = getUserHref(id)
 
   useEffect(() => {
     query.s && scrollToElem(`goal-${query.s}`)
@@ -54,7 +55,7 @@ export default function UserCardDetail({
           <AppTypography variant="h5" component="h1">
             {name}
           </AppTypography>
-          {!isOwner && client.isAuthenticated && <Favorite nickname={nickname} favorite={favorite} />}
+          {!isOwner && client.isAuthenticated && <Favorite id={id} favorite={favorite} />}
         </AppBox>
         <AppBox alignItems="center" spacing={0.5}>
           <AppTooltip title="Page Views" className={classes.tooltip}>

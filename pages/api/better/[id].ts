@@ -5,13 +5,12 @@ import client from 'pages/api/mock/client'
 
 export default (req: NextApiRequest, res: NextApiResponse): void => {
   const { url } = req
-  const href = url?.replace('/api', '') || ''
-  const user = USERS.find((u) => href.includes(u.href))
+  const href = url?.replace('/api/', '') || ''
+  const user = USERS.find((u) => href.includes(u.id))
 
   res.status(200).json({
-    meta: { ...meta, title: `${user?.nickname} | Be Better` },
+    meta: { ...meta, title: `${user?.id} | Be Better` },
     client,
     user,
-    href,
   })
 }

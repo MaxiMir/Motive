@@ -3,6 +3,7 @@ import { makeStyles } from '@material-ui/core/styles'
 import { Container, Grid } from '@material-ui/core'
 import { User, UserCharacteristic } from 'dto'
 import useCharacteristicColors from 'hooks/useCharacteristicColors'
+import { getUserHref } from 'helpers/user'
 import AppBox from 'components/UI/AppBox'
 import AppLink from 'components/UI/AppLink'
 import AppTypography from 'components/UI/AppTypography'
@@ -14,8 +15,8 @@ export interface UserCardRatingProps extends User {
 }
 
 export default function UserCardRating({
+  id,
   avatar,
-  href,
   name,
   index,
   characteristic,
@@ -24,6 +25,7 @@ export default function UserCardRating({
   const colors = useCharacteristicColors()
   const classes = useStyles({ isEven: index % 2 === 0 })
   const number = getNumber()
+  const href = getUserHref(id)
 
   function getNumber() {
     const incrementedNumber = index + 1

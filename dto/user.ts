@@ -1,9 +1,8 @@
 import { UserCharacteristics } from './characteristic'
 
 export interface UserBase {
+  id: string
   name: string
-  nickname: string // uniq
-  href: string
   avatar: string
 }
 

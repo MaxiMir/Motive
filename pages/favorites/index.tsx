@@ -42,17 +42,17 @@ export default function Favorites({ fallbackData }: PageSWR<FavoritesPage>): JSX
     },
   })
 
-  const onRemove = (nickname: string) => {
+  const onRemove = (id: string) => {
     prevFavoritesRef.current = favorites
 
-    mutateFavoritesLocal(favorites.filter((f) => f.nickname !== nickname))
-    send({ nickname, favorite: true })
+    mutateFavoritesLocal(favorites.filter((f) => f.id !== id))
+    send({ id, favorite: true })
   }
 
-  function onUndo(nickname: string) {
+  function onUndo(id: string) {
     mutateFavoritesLocal(prevFavoritesRef.current)
     closeSnackbar()
-    send({ nickname, favorite: false })
+    send({ id, favorite: false })
   }
 
   function mutateFavoritesLocal(users: User[]) {
@@ -71,8 +71,8 @@ export default function Favorites({ fallbackData }: PageSWR<FavoritesPage>): JSX
           <AppList
             elements={favorites}
             spacing={4}
-            render={(user) => <UserCard type="favorite" {...user} onRemove={() => onRemove(user.nickname)} />}
-            keyGetter={(user) => user.nickname}
+            render={(user) => <UserCard type="favorite" {...user} onRemove={() => onRemove(user.id)} />}
+            keyGetter={(user) => user.id}
           />
         )}
       </AppContainer>

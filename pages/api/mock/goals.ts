@@ -7,10 +7,9 @@ export const learnFrench: Goal = {
   hashtags: ['foreignLanguage', 'knowledge', 'learnFrench', 'immigration', 'recommendation'],
   role: 'MEMBER',
   owner: {
-    id: '2',
-    nickname: 'Julia Minchenko',
+    id: 'juliaz',
+    name: 'Julia Minchenko',
     avatar: '/__temp__/2.png',
-    href: '/better/juliaz',
   },
   characteristics: {
     motivation: 3,
@@ -63,10 +62,9 @@ export const becomeSenior: Goal = {
   hashtags: ['programming', 'knowledge'],
   role: 'OWNER',
   owner: {
-    id: '1',
-    nickname: 'Maxim Minchenko',
+    id: 'maximir',
+    name: 'Maxim Minchenko',
     avatar: '/__temp__/1.png',
-    href: '/better/maximir',
   },
   characteristics: {
     motivation: 5,
@@ -109,10 +107,9 @@ export const getNewGoal = (goalCreation: GoalCreation): Goal => {
           .map((h: string) => h.trim()),
     role: 'OWNER',
     owner: {
-      id: '1',
-      nickname: 'Maxim Minchenko',
+      id: 'maximir',
+      name: 'Maxmin Minchenko',
       avatar: '/__temp__/1.png',
-      href: '/better/maximir',
     },
     characteristics: {
       motivation: 0,

@@ -10,7 +10,7 @@ interface SupportSignProps {
 
 export default function SupportSign({ owner }: SupportSignProps): JSX.Element {
   const classes = useStyles()
-  const title = `Support for ${owner.nickname}`
+  const title = `Support for ${owner.id}`
 
   return (
     <AppTooltip title={title} aria-label={title}>

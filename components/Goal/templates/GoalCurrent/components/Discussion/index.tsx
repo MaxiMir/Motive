@@ -34,7 +34,7 @@ export default function Discussion({
 }: DiscussionProps): JSX.Element {
   const { data, size, setSize, mutate } = useSWRInfinite(getSWRKey(dayId), fetcher, { initialSize: !count ? 0 : 1 })
   const content = useMemo(getContent, [data])
-  const withInput = client.isAuthenticated && client.nickname !== owner.nickname
+  const withInput = client.isAuthenticated && client.id !== owner.id
   const shownCount = count >= VISIBLE_COUNT ? VISIBLE_COUNT : count
   const height = !count ? undefined : (!withInput ? 0 : 56) + 540
   const checkOnLoadMore = checkPartialOnLoadMore(data, content)

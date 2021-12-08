@@ -38,7 +38,7 @@ export default function Rating({ fallbackData }: PageSWR<RatingPage>): JSX.Eleme
               <TabNames />
               <AppList<User>
                 elements={list}
-                keyGetter={(el) => el.nickname}
+                keyGetter={(el) => el.id}
                 render={(el, index) => <UserCard type="rating" {...el} characteristic={characteristic} index={index} />}
               />
             </Fragment>

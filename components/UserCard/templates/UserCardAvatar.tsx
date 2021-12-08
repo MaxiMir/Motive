@@ -1,6 +1,7 @@
 import Image from 'next/image'
 import { makeStyles } from '@material-ui/core/styles'
 import { UserBase } from 'dto'
+import { getUserHref } from 'helpers/user'
 import AppLink from 'components/UI/AppLink'
 
 export interface UserCardAvatarProps extends UserBase {
@@ -8,8 +9,9 @@ export interface UserCardAvatarProps extends UserBase {
   size: number
 }
 
-export default function UserCardAvatar({ name, avatar, href, size }: UserCardAvatarProps): JSX.Element {
+export default function UserCardAvatar({ id, name, avatar, size }: UserCardAvatarProps): JSX.Element {
   const classes = useStyles({ size })
+  const href = getUserHref(id)
 
   return (
     <AppLink href={href} title={name} className={classes.avatarLink}>

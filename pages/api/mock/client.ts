@@ -1,7 +1,6 @@
 import users from './users'
 
 export default {
-  id: '777',
+  ...users[4],
   isAuthenticated: true,
-  user: users[4],
 }

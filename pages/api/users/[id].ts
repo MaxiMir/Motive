@@ -12,7 +12,7 @@ export default (req: NextApiRequest, res: NextApiResponse): void => {
     : {
         meta: { ...meta, title: `${user?.name} | Be Better` },
         client,
-        user,
+        content: user,
       }
 
   res.status(!user ? 404 : 200).json(body)

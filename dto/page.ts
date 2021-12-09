@@ -4,7 +4,7 @@ import { Role } from './role'
 import { Goal } from './goal'
 
 export type PageSWR<T> = {
-  fallbackData: Page<T>
+  fallbackData: T
 }
 
 export interface Meta {
@@ -19,15 +19,16 @@ export interface Meta {
 export type Page<T> = {
   meta: Meta
   client: Client
-} & T
+  content: T
+}
 
 export type MainPage = Page<null>
 
 export type RatingPage = Page<{ [k in MainCharacteristic]: User[] }>
 
-export type FavoritesPage = Page<{ favorites: User[] }>
+export type FavoritesPage = Page<User[]>
 
-export type UserPage = Page<{ user: UserDetail }>
+export type UserPage = Page<UserDetail>
 
 export interface UserDetail extends User {
   views: number

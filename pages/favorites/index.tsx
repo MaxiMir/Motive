@@ -17,20 +17,20 @@ export default function Favorites({ fallbackData }: PageSWR<FavoritesPage>): JSX
   const { asPath } = useRouter()
   const { data, error } = useSWR(asPath, PageService.getFavorites, { fallbackData })
   const mutate = usePartialMutate(asPath)
-  const { meta, favorites } = data || {}
+  const { meta, content } = data || {}
 
   const mutateFavorites = (users: User[]) => {
-    mutate({ ...data, favorites: users }, false)
+    mutate({ ...data, content: users }, false)
   }
 
   return (
     <Layout {...meta} error={error}>
-      {favorites && (
+      {content && (
         <AppContainer withFlexColumn>
           <AppHeader name="favorite" mb={4}>
             Favorites
           </AppHeader>
-          {!favorites.length ? <EmptyList /> : <List favorites={favorites} mutateFavorites={mutateFavorites} />}
+          {!content.length ? <EmptyList /> : <List favorites={content} mutateFavorites={mutateFavorites} />}
         </AppContainer>
       )}
     </Layout>

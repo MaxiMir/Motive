@@ -1,5 +1,5 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
-import { getNewGoal } from '../mock/goals'
+import { getNewGoal } from 'pages/api/mock/goals'
 
 export default (req: NextApiRequest, res: NextApiResponse): void => {
   const { body } = req

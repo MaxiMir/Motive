@@ -5,7 +5,7 @@ const ME: UserDetail = {
   id: 'maximir',
   name: 'Maxim Minchenko',
   avatar: '/__temp__/1.png',
-  characteristics: {
+  characteristic: {
     motivation: 23.13,
     support: 13.56,
     creativity: 14.66,
@@ -23,7 +23,7 @@ const JULIA: UserDetail = {
   id: 'yulifleur',
   name: 'Julia Minchenko',
   avatar: '/__temp__/2.png',
-  characteristics: {
+  characteristic: {
     motivation: 1,
     support: 5.51,
     creativity: 11.89,
@@ -51,7 +51,7 @@ const FRIEND: UserDetail = {
   name: 'Alexey Kopeychik',
   id: 'kopeychik',
   avatar: '/__temp__/4.png',
-  characteristics: {
+  characteristic: {
     motivation: 51.89,
     support: 31.51,
     creativity: 7.13,
@@ -79,7 +79,7 @@ const FRIEND1: UserDetail = {
   id: 'valulya',
   name: 'Valentina Ulyanova',
   avatar: '/__temp__/6.png',
-  characteristics: {
+  characteristic: {
     motivation: 11.5,
     support: 14.52,
     creativity: 24.69,
@@ -97,7 +97,7 @@ const FRIEND2: UserDetail = {
   id: 'arty',
   name: 'Artyom Arzunyan',
   avatar: '/__temp__/3.png',
-  characteristics: {
+  characteristic: {
     motivation: 13,
     support: 17.51,
     creativity: 2.65,

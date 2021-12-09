@@ -18,10 +18,10 @@ import TabNames from './TabNames'
 export default function Rating({ fallbackData }: PageSWR<RatingPage>): JSX.Element {
   const { query } = useRouter()
   const { data, error } = useSWR('Rating', PageService.getRating, { fallbackData })
-  const { meta, motivation, creativity, support, client } = (data as RatingPage) || {}
+  const { meta } = (data as RatingPage) || {}
 
   return (
-    <Layout client={client} error={error} {...meta}>
+    <Layout error={error} {...meta}>
       <Container fixed>
         <AppHeader name="completed">Rating</AppHeader>
       </Container>
@@ -33,13 +33,15 @@ export default function Rating({ fallbackData }: PageSWR<RatingPage>): JSX.Eleme
               <AppTypography style={{ textTransform: 'none' }}>{type}</AppTypography>
             </AppBox>
           ))}
-          content={[motivation, creativity, support].map(({ list, characteristic }) => (
-            <Fragment key={characteristic}>
+          content={(['motivation', 'creativity', 'support'] as MainCharacteristic[]).map((characteristicName) => (
+            <Fragment key={characteristicName}>
               <TabNames />
               <AppList<User>
-                elements={list}
+                elements={data?.[characteristicName] || []}
                 keyGetter={(el) => el.id}
-                render={(el, index) => <UserCard type="rating" {...el} characteristic={characteristic} index={index} />}
+                render={(user, index) => (
+                  <UserCard type="rating" {...user} characteristicName={characteristicName} index={index} />
+                )}
               />
             </Fragment>
           ))}

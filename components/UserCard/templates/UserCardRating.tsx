@@ -1,7 +1,7 @@
 import Image from 'next/image'
 import { makeStyles } from '@material-ui/core/styles'
 import { Container, Grid } from '@material-ui/core'
-import { User, UserCharacteristic } from 'dto'
+import { User, UserCharacteristicName } from 'dto'
 import useCharacteristicColors from 'hooks/useCharacteristicColors'
 import AppBox from 'components/UI/AppBox'
 import AppLink from 'components/UI/AppLink'
@@ -9,17 +9,17 @@ import AppTypography from 'components/UI/AppTypography'
 
 export interface UserCardRatingProps extends User {
   type: 'rating'
+  characteristicName: UserCharacteristicName
   index: number
-  characteristic: UserCharacteristic
 }
 
 export default function UserCardRating({
   id,
   avatar,
   name,
-  index,
   characteristic,
-  characteristics,
+  characteristicName,
+  index,
 }: UserCardRatingProps): JSX.Element {
   const colors = useCharacteristicColors()
   const classes = useStyles({ isEven: index % 2 === 0 })
@@ -65,9 +65,9 @@ export default function UserCardRating({
               variant="subtitle1"
               component="p"
               align="right"
-              style={{ color: colors[characteristic].fontColor }}
+              style={{ color: colors[characteristicName].fontColor }}
             >
-              <b>{Math.floor(characteristics[characteristic])}</b>
+              <b>{Math.floor(characteristic[characteristicName])}</b>
             </AppTypography>
           </Grid>
         </Grid>

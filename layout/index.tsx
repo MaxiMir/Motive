@@ -1,20 +1,18 @@
 import React, { FC, useEffect } from 'react'
 import Head from 'next/head'
 import { makeStyles } from '@material-ui/core/styles'
-import { Client } from 'dto'
 import useSnackbar from 'hooks/useSnackbar'
 import Header from './Header'
 import Footer from './Footer'
 
 interface LayoutProps {
   title: string
-  description: string
-  keywords: string
-  url: string
-  type: string
-  error: boolean
+  description?: string
+  keywords?: string
+  url?: string
+  type?: string
+  error?: boolean
   withVerticalPadding?: boolean
-  client: Client
 }
 
 const Layout: FC<LayoutProps> = ({
@@ -39,15 +37,15 @@ const Layout: FC<LayoutProps> = ({
     <>
       <Head>
         <title>{title}</title>
-        <meta name="description" content={description} />
-        <meta name="keywords" content={keywords} />
+        {description && <meta name="description" content={description} />}
+        {keywords && <meta name="keywords" content={keywords} />}
         <meta name="robots" content="index, follow" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <meta property="og:title" content={title} />
-        <meta property="og:description" content={description} />
+        {description && <meta property="og:description" content={description} />}
         <meta property="og:url" content={url} />
         <meta property="og:image" content="/images/app.png" />
-        <meta property="og:type" content={type} />
+        {type && <meta property="og:type" content={type} />}
         <link rel="manifest" href="/manifest.json" />
         <link rel="apple-touch-icon" href="/apple-icon.png" />
         {/* PWA primary color */}

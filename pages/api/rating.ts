@@ -7,17 +7,8 @@ export default (_req: NextApiRequest, res: NextApiResponse): void => {
   res.status(200).json({
     meta,
     client,
-    motivation: {
-      list: [...USERS].sort((c1, c2) => c2.characteristics.motivation - c1.characteristics.motivation),
-      characteristic: 'motivation',
-    },
-    creativity: {
-      list: [...USERS].sort((c1, c2) => c2.characteristics.creativity - c1.characteristics.creativity),
-      characteristic: 'creativity',
-    },
-    support: {
-      list: [...USERS].sort((c1, c2) => c2.characteristics.support - c1.characteristics.support),
-      characteristic: 'support',
-    },
+    motivation: [...USERS].sort((c1, c2) => c2.characteristic.motivation - c1.characteristic.motivation),
+    creativity: [...USERS].sort((c1, c2) => c2.characteristic.creativity - c1.characteristic.creativity),
+    support: [...USERS].sort((c1, c2) => c2.characteristic.support - c1.characteristic.support),
   })
 }

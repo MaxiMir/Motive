@@ -7,10 +7,10 @@ import Promo from 'components/Promo'
 
 export default function Home({ fallbackData }: PageSWR<MainPage>): JSX.Element {
   const { data, error } = useSWR('home', PageService.getMain, { fallbackData })
-  const { meta, client } = (data as MainPage) || {}
+  const { meta } = (data as MainPage) || {}
 
   return (
-    <Layout client={client} error={error} withVerticalPadding={false} {...meta}>
+    <Layout error={error} withVerticalPadding={false} {...meta}>
       <Promo />
     </Layout>
   )

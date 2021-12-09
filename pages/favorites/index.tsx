@@ -21,7 +21,7 @@ const Button = dynamic(() => import('@material-ui/core/Button'))
 export default function Favorites({ fallbackData }: PageSWR<FavoritesPage>): JSX.Element {
   const swrKey = 'favorites'
   const { data, error } = useSWR(swrKey, PageService.getFavorites, { fallbackData })
-  const { meta, favorites, client } = (data as FavoritesPage) || {}
+  const { meta, favorites } = (data as FavoritesPage) || {}
   const prevFavoritesRef = useRef(favorites)
   const { enqueueSnackbar, closeSnackbar } = useSnackbar()
   const mutate = usePartialMutate(swrKey)
@@ -60,7 +60,7 @@ export default function Favorites({ fallbackData }: PageSWR<FavoritesPage>): JSX
   }
 
   return (
-    <Layout client={client} error={error} {...meta}>
+    <Layout error={error} {...meta}>
       <AppContainer withFlexColumn>
         <AppHeader name="favorite" mb={4}>
           Favorites

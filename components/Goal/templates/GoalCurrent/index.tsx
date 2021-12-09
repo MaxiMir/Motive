@@ -4,7 +4,7 @@ import produce from 'immer'
 import differenceInDays from 'date-fns/differenceInDays'
 import { createStyles, useTheme } from '@material-ui/core'
 import { makeStyles } from '@material-ui/core/styles'
-import { Client, Goal, GoalCharacteristic } from 'dto'
+import { Client, Goal, GoalCharacteristicName } from 'dto'
 import GoalService from 'services/GoalService'
 import useCharacteristicColors from 'hooks/useCharacteristicColors'
 import useSend from 'hooks/useSend'
@@ -29,7 +29,7 @@ const Web = dynamic(() => import('./components/Web'))
 const Loader = dynamic(() => import('./components/Loader'))
 const AppTypography = dynamic(() => import('components/UI/AppTypography'))
 
-const CHARACTERISTICS: GoalCharacteristic[] = ['motivation', 'creativity', 'support', 'members']
+const CHARACTERISTICS: GoalCharacteristicName[] = ['motivation', 'creativity', 'support', 'members']
 
 export interface GoalCurrentProps {
   type: 'current'
@@ -40,7 +40,7 @@ export interface GoalCurrentProps {
 
 export default function GoalCurrent({ goal, client, href }: GoalCurrentProps): JSX.Element {
   const currentDate = new Date()
-  const { id, name, hashtags, started, characteristics, role, owner, day, datesMap } = goal
+  const { id, name, hashtags, started, characteristic, role, owner, day, datesMap } = goal
   const { id: dayId, date, tasks, feedbackId } = day
   const classes = useStyles()
   const theme = useTheme()
@@ -81,17 +81,17 @@ export default function GoalCurrent({ goal, client, href }: GoalCurrentProps): J
               <Menu title={name} href={goalHref} role={role} />
             </AppBox>
             <AppBox justifyContent="space-between" alignItems="center">
-              {CHARACTERISTICS.map((characteristic) => (
-                <Fragment key={characteristic}>
+              {CHARACTERISTICS.map((characteristicName) => (
+                <Fragment key={characteristicName}>
                   <Characteristic
-                    characteristic={characteristic}
-                    value={characteristics[characteristic]}
-                    color={colors[characteristic].fontColor}
+                    name={characteristicName}
+                    value={characteristic[characteristicName]}
+                    color={colors[characteristicName].fontColor}
                   />
                   <AppDot />
                 </Fragment>
               ))}
-              <Characteristic characteristic="runs for days" value={days} color={theme.palette.text.disabled} />
+              <Characteristic name="runs for days" value={days} color={theme.palette.text.disabled} />
             </AppBox>
             {hashtags?.length && <Hashtags hashtags={hashtags} />}
             <div>
@@ -156,7 +156,7 @@ export default function GoalCurrent({ goal, client, href }: GoalCurrentProps): J
               />
             </div>
           </AppBox>
-          <Reactions role={role} dayId={dayId} goal={goal} characteristics={day.characteristics} owner={owner} />
+          <Reactions role={role} dayId={dayId} goal={goal} characteristic={day.characteristic} owner={owner} />
         </AppBox>
         {showWeb && <Web />}
         {isLoading && <Loader />}

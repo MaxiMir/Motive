@@ -5,6 +5,3 @@ export const RATING_ROUTE = '/rating'
 export const FAVORITES_ROUTE = '/favorites'
 export const PROFILE_ROUTE = '/profile'
 export const LOGIN_IN_ROUTE = '/sign-in'
-
-// BACKEND
-export const getUserPath = (id: string): string => `/users/${id}/`

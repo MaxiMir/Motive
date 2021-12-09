@@ -5,10 +5,10 @@ export default class DayService {
   /**
    * /days/{id}/{characteristic}/
    */
-  static updateCharacteristic(data: { dayId: string; characteristic: string; active: boolean }): Promise<Goal> {
-    const { dayId, characteristic, ...restData } = data
+  static updateCharacteristic(data: { dayId: string; name: string; active: boolean }): Promise<Goal> {
+    const { dayId, name, ...restData } = data
 
-    return Axios.put(`/days/${dayId}/${characteristic}/`, restData)
+    return Axios.put(`/days/${dayId}/${name}/`, restData)
   }
 
   /**

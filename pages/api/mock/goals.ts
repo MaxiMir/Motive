@@ -11,7 +11,7 @@ export const learnFrench: Goal = {
     name: 'Julia Minchenko',
     avatar: '/__temp__/2.png',
   },
-  characteristics: {
+  characteristic: {
     motivation: 3,
     support: 4,
     creativity: 45,
@@ -20,7 +20,7 @@ export const learnFrench: Goal = {
   day: {
     id: '232',
     date: '2021-12-03T00:00:00.000Z', // 00:00:00.000
-    characteristics: {
+    characteristic: {
       motivation: true,
       support: false,
       creativity: true,
@@ -66,7 +66,7 @@ export const becomeSenior: Goal = {
     name: 'Maxim Minchenko',
     avatar: '/__temp__/1.png',
   },
-  characteristics: {
+  characteristic: {
     motivation: 5,
     support: 12,
     creativity: 32,
@@ -75,7 +75,7 @@ export const becomeSenior: Goal = {
   day: {
     id: '312',
     date: '2021-10-06T00:00:00.000Z',
-    characteristics: {
+    characteristic: {
       motivation: true,
       support: false,
       creativity: false,
@@ -111,7 +111,7 @@ export const getNewGoal = (goalCreation: GoalCreation): Goal => {
       name: 'Maxmin Minchenko',
       avatar: '/__temp__/1.png',
     },
-    characteristics: {
+    characteristic: {
       motivation: 0,
       support: 0,
       creativity: 0,
@@ -120,7 +120,7 @@ export const getNewGoal = (goalCreation: GoalCreation): Goal => {
     day: {
       id: '653',
       date: new Date().toISOString(),
-      characteristics: {
+      characteristic: {
         motivation: false,
         support: false,
         creativity: false,

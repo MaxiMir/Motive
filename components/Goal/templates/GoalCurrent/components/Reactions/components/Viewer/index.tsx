@@ -1,6 +1,6 @@
 import produce from 'immer'
 import { Button } from '@material-ui/core'
-import { MainCharacteristic, DayCharacteristics, UserBase, Goal, Role } from 'dto'
+import { MainCharacteristic, DayCharacteristic, UserBase, Goal, Role } from 'dto'
 import useMutateGoals from 'hooks/useMutateGoals'
 import AppBox from 'components/UI/AppBox'
 import AppEmoji from 'components/UI/AppEmoji'
@@ -11,34 +11,28 @@ export interface ViewerProps {
   role: Role
   dayId: string
   goal: Goal
-  characteristics: DayCharacteristics
+  characteristic: DayCharacteristic
   owner: UserBase
 }
 
-export default function Viewer({ role, dayId, goal, characteristics, owner }: ViewerProps): JSX.Element {
+export default function Viewer({ role, dayId, goal, characteristic, owner }: ViewerProps): JSX.Element {
   const [goals, mutateGoals] = useMutateGoals()
 
-  const onSet = (characteristic: MainCharacteristic, increase: boolean) =>
+  const onSet = (value: MainCharacteristic, increase: boolean) =>
     mutateGoals(
       produce(goals, (draft: Goal[]) => {
-        draft[draft.findIndex((g) => g.id === goal.id)].characteristics[characteristic] += increase ? 1 : -1
+        draft[draft.findIndex((g) => g.id === goal.id)].characteristic[value] += increase ? 1 : -1
       }),
     )
 
   return (
     <AppBox justifyContent="space-between">
       <AppBox spacing={1}>
-        {(['motivation', 'creativity'] as MainCharacteristic[]).map((characteristic) => (
-          <ReactionWithSend
-            dayId={dayId}
-            characteristic={characteristic}
-            active={characteristics[characteristic]}
-            key={characteristic}
-            onSet={onSet}
-          />
+        {(['motivation', 'creativity'] as MainCharacteristic[]).map((name) => (
+          <ReactionWithSend dayId={dayId} name={name} active={characteristic[name]} key={name} onSet={onSet} />
         ))}
         <Reaction
-          characteristic="support"
+          name="support"
           active={false}
           title={`Support ${owner.id}`}
           onClick={() => console.log('TODO LOGIC!')}

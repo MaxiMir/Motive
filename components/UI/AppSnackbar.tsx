@@ -23,7 +23,7 @@ export default function AppSnackbar({ icon, message, onClose, ...restAlertProps 
 
   function getIconContent() {
     if (restAlertProps.severity === 'error') {
-      return <AppEmoji name="death" onlyEmoji />
+      return <AppEmoji name="error" onlyEmoji />
     }
 
     return icon && <AppEmoji name={icon} onlyEmoji />

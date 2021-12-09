@@ -1,5 +1,5 @@
 import { Client, User } from './user'
-import { MainCharacteristic, UserCharacteristic } from './characteristic'
+import { MainCharacteristic } from './characteristic'
 import { Role } from './role'
 import { Goal } from './goal'
 
@@ -19,16 +19,9 @@ export type Page<T> = {
   href: string
 } & T
 
-export type MainPage = Page<{ [k: string]: never }>
+export type MainPage = Page<null>
 
-export type RatingPage = Page<
-  {
-    [k in MainCharacteristic]: {
-      list: User[]
-      characteristic: UserCharacteristic
-    }
-  }
->
+export type RatingPage = Page<{ [k in MainCharacteristic]: User[] }>
 
 export type FavoritesPage = Page<{ favorites: User[] }>
 

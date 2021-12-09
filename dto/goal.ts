@@ -1,4 +1,4 @@
-import { DayCharacteristics, GoalCharacteristics } from './characteristic'
+import { DayCharacteristic, GoalCharacteristic } from './characteristic'
 import { UserBase } from './user'
 import { Role } from './role'
 
@@ -15,7 +15,7 @@ export interface Goal {
   hashtags: string[]
   owner: UserBase
   role: Role
-  characteristics: GoalCharacteristics // count all
+  characteristic: GoalCharacteristic // count all
   day: Day
   datesMap: Record<string, string> // { [formattedDate]: dayId }
 }
@@ -23,7 +23,7 @@ export interface Goal {
 interface Day {
   id: string
   date: string
-  characteristics: DayCharacteristics
+  characteristic: DayCharacteristic
   tasks: Task[]
   discussionCount: number
   feedbackId: string | null

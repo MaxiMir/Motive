@@ -1,4 +1,4 @@
-import { UserCharacteristics } from './characteristic'
+import { UserCharacteristic } from './characteristic'
 
 export interface UserBase {
   id: string
@@ -7,7 +7,7 @@ export interface UserBase {
 }
 
 export interface User extends UserBase {
-  characteristics: UserCharacteristics
+  characteristic: UserCharacteristic
 }
 
 export interface Client extends UserBase {

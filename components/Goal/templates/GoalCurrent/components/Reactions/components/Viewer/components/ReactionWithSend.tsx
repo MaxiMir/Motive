@@ -8,17 +8,12 @@ import Reaction from './Reaction'
 
 interface ReactionWithSendProps {
   dayId: string
-  characteristic: MainCharacteristic
+  name: MainCharacteristic
   active: boolean
   onSet: (characteristic: MainCharacteristic, increase: boolean) => void
 }
 
-export default function ReactionWithSend({
-  dayId,
-  characteristic,
-  active: initial,
-  onSet,
-}: ReactionWithSendProps): JSX.Element {
+export default function ReactionWithSend({ dayId, name, active: initial, onSet }: ReactionWithSendProps): JSX.Element {
   const lastLoadedRef = useRef(initial)
   const [active, setActive] = useState(initial)
   const { enqueueSnackbar } = useSnackbar()
@@ -26,10 +21,10 @@ export default function ReactionWithSend({
     onSuccess(_, data) {
       lastLoadedRef.current = data.active
 
-      onSet(characteristic, data.active)
+      onSet(name, data.active)
       data.active &&
         enqueueSnackbar({
-          message: `You have increased goal's ${characteristic} points`,
+          message: `You have increased goal's ${name} points`,
           severity: 'success',
           icon: 'magic',
         })
@@ -39,14 +34,14 @@ export default function ReactionWithSend({
     },
   })
   const sendWithDebounce = useDebounceCb((value: boolean) => {
-    lastLoadedRef.current !== value && send({ dayId, characteristic, active: value })
+    lastLoadedRef.current !== value && send({ dayId, name, active: value })
   })
-  const title = `${active ? 'Decrease' : 'Increase'} goal's ${characteristic} points`
+  const title = `${active ? 'Decrease' : 'Increase'} goal's ${name} points`
 
   const onClick = () => {
     setActive(!active)
     sendWithDebounce(!active)
   }
 
-  return <Reaction characteristic={characteristic} active={active} title={title} onClick={onClick} />
+  return <Reaction name={name} active={active} title={title} onClick={onClick} />
 }

@@ -1,18 +1,18 @@
 import Image from 'next/image'
 import { makeStyles } from '@material-ui/core/styles'
 import { CharacteristicColors } from 'hooks/useCharacteristicColors'
-import { UserCharacteristics, UserCharacteristic } from 'dto'
+import { UserCharacteristic, UserCharacteristicName } from 'dto'
 import AppBox from 'components/UI/AppBox'
 import AppCircle from 'components/UI/AppCircle'
 
 interface AvatarProps {
   avatar: string
-  characteristics: UserCharacteristics
+  characteristic: UserCharacteristic
   characteristicColors: CharacteristicColors
 }
 
 interface CircleItem {
-  type: UserCharacteristic
+  name: UserCharacteristicName
   size: number
   strokeWidth: number
   strokeWidthBg: number
@@ -20,33 +20,33 @@ interface CircleItem {
 
 const CIRCLE_ITEMS: CircleItem[] = [
   {
-    type: 'creativity',
+    name: 'creativity',
     size: 126,
     strokeWidth: 15,
     strokeWidthBg: 21,
   },
   {
-    type: 'support',
+    name: 'support',
     size: 113,
     strokeWidth: 17,
     strokeWidthBg: 22,
   },
   {
-    type: 'motivation',
+    name: 'motivation',
     size: 99,
     strokeWidth: 18,
     strokeWidthBg: 25,
   },
 ]
 
-export default function Avatar({ avatar, characteristics, characteristicColors }: AvatarProps): JSX.Element {
+export default function Avatar({ avatar, characteristic, characteristicColors }: AvatarProps): JSX.Element {
   const classes = useStyles()
 
   return (
     <AppBox className={classes.root}>
-      {CIRCLE_ITEMS.map(({ type, ...props }) => (
-        <AppBox justifyContent="center" alignItems="center" className={classes.circleBlock} key={type}>
-          <AppCircle progress={(characteristics[type] % 1) * 100} color={characteristicColors[type]} {...props} />
+      {CIRCLE_ITEMS.map(({ name, ...props }) => (
+        <AppBox justifyContent="center" alignItems="center" className={classes.circleBlock} key={name}>
+          <AppCircle progress={(characteristic[name] % 1) * 100} color={characteristicColors[name]} {...props} />
         </AppBox>
       ))}
       <AppBox justifyContent="center" alignItems="center" className={classes.circleBlock}>

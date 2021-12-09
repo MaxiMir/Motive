@@ -3,7 +3,7 @@ import dynamic from 'next/dynamic'
 import { useRouter } from 'next/router'
 import Image from 'next/image'
 import { useMediaQuery, useTheme, makeStyles, createStyles } from '@material-ui/core'
-import { Client, UserDetail, UserCharacteristic } from 'dto'
+import { Client, UserDetail, UserCharacteristicName } from 'dto'
 import { numberToShort } from 'helpers/prepare'
 import { scrollToElem } from 'helpers/dom'
 import useCharacteristicColors from 'hooks/useCharacteristicColors'
@@ -30,7 +30,7 @@ export default function UserCardDetail({
   favorite,
   views,
   avatar,
-  characteristics,
+  characteristic,
   role,
   goals,
   client,
@@ -66,25 +66,25 @@ export default function UserCardDetail({
       </AppBox>
       <AppBox flexDirection="column" spacing={3} flex={1}>
         <AppBox spacing={isMobile ? 1 : 4}>
-          <Avatar avatar={avatar} characteristics={characteristics} characteristicColors={characteristicColors} />
+          <Avatar avatar={avatar} characteristic={characteristic} characteristicColors={characteristicColors} />
           <AppBox flexDirection="column" justifyContent="space-between" flex={1}>
             <AppBox justifyContent="space-between">
-              {(['motivation', 'creativity', 'support'] as UserCharacteristic[]).map((type) => (
+              {(['motivation', 'creativity', 'support'] as UserCharacteristicName[]).map((characteristicName) => (
                 <Characteristic
-                  characteristic={type}
-                  value={characteristics[type]}
-                  color={characteristicColors[type].fontColor}
-                  key={type}
+                  name={characteristicName}
+                  value={characteristic[characteristicName]}
+                  color={characteristicColors[characteristicName].fontColor}
+                  key={characteristicName}
                 />
               ))}
             </AppBox>
             <AppBox justifyContent="space-between">
-              {(['completed', 'awards', 'abandoned'] as UserCharacteristic[]).map((type) => (
+              {(['completed', 'awards', 'abandoned'] as UserCharacteristicName[]).map((characteristicName) => (
                 <Characteristic
-                  characteristic={type}
-                  value={characteristics[type]}
-                  color={characteristicColors[type].fontColor}
-                  key={type}
+                  name={characteristicName}
+                  value={characteristic[characteristicName]}
+                  color={characteristicColors[characteristicName].fontColor}
+                  key={characteristicName}
                 />
               ))}
             </AppBox>

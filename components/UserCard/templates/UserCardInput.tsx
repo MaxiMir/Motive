@@ -30,7 +30,7 @@ export default function UserCardInput({ dayId, user, answer, onAdd }: UserCardIn
       onAdd(topic)
     },
   })
-  console.log(user)
+
   const onClick = () => send({ dayId, message, type: TopicType.QUESTION })
 
   return (

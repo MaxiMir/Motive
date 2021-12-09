@@ -6,7 +6,8 @@ import Header from './Header'
 import Footer from './Footer'
 
 interface LayoutProps {
-  title: string
+  data?: unknown | string
+  title?: string
   description?: string
   keywords?: string
   url?: string
@@ -36,7 +37,7 @@ const Layout: FC<LayoutProps> = ({
   return (
     <>
       <Head>
-        <title>{title}</title>
+        {title && <title>{title}</title>}
         {description && <meta name="description" content={description} />}
         {keywords && <meta name="keywords" content={keywords} />}
         <meta name="robots" content="index, follow" />

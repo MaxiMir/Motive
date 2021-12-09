@@ -21,7 +21,7 @@ export default function Rating({ fallbackData }: PageSWR<RatingPage>): JSX.Eleme
   const { meta } = (data as RatingPage) || {}
 
   return (
-    <Layout error={error} {...meta}>
+    <Layout {...meta} error={error}>
       <Container fixed>
         <AppHeader name="completed">Rating</AppHeader>
       </Container>

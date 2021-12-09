@@ -10,7 +10,7 @@ export default function Home({ fallbackData }: PageSWR<MainPage>): JSX.Element {
   const { meta } = (data as MainPage) || {}
 
   return (
-    <Layout error={error} withVerticalPadding={false} {...meta}>
+    <Layout {...meta} error={error} withVerticalPadding={false}>
       <Promo />
     </Layout>
   )

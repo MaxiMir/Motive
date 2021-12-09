@@ -1,81 +1,38 @@
-import React, { useRef } from 'react'
+import React from 'react'
+import { useRouter } from 'next/router'
 import dynamic from 'next/dynamic'
 import { GetServerSideProps } from 'next'
 import useSWR from 'swr'
 import { PageSWR, FavoritesPage, User } from 'dto'
-import PageService from 'services/PageService'
-import FavoriteService from 'services/FavoriteService'
-import useSend from 'hooks/useSend'
-import useSnackbar from 'hooks/useSnackbar'
 import usePartialMutate from 'hooks/usePartialMutate'
+import PageService from 'services/PageService'
 import Layout from 'layout'
-import UserCard from 'components/UserCard'
 import AppContainer from 'components/UI/AppContainer'
 import AppHeader from 'components/UI/AppHeader'
-import { AppListProps } from 'components/UI/AppList'
 
-const EmptyList = dynamic(() => import('./EmptyList'))
-const AppList = dynamic<AppListProps<User>>(() => import('components/UI/AppList'))
-const Button = dynamic(() => import('@material-ui/core/Button'))
+const EmptyList = dynamic(() => import('./components/EmptyList'))
+const List = dynamic(() => import('./components/List'))
 
 export default function Favorites({ fallbackData }: PageSWR<FavoritesPage>): JSX.Element {
-  const swrKey = 'favorites'
-  const { data, error } = useSWR(swrKey, PageService.getFavorites, { fallbackData })
-  const { meta, favorites } = (data as FavoritesPage) || {}
-  const prevFavoritesRef = useRef(favorites)
-  const { enqueueSnackbar, closeSnackbar } = useSnackbar()
-  const mutate = usePartialMutate(swrKey)
-  const { send } = useSend(FavoriteService.setUser, {
-    onSuccess: (_, { id, favorite }) => {
-      prevFavoritesRef.current = favorites
+  const { asPath } = useRouter()
+  const { data, error } = useSWR(asPath, PageService.getFavorites, { fallbackData })
+  const mutate = usePartialMutate(asPath)
+  const { meta, favorites } = data || {}
 
-      favorite &&
-        enqueueSnackbar({
-          message: 'Removed from favorites',
-          severity: 'success',
-          action: <Button onClick={() => onUndo(id)}>Undo</Button>,
-          icon: 'ninja',
-        })
-    },
-    onError: () => {
-      mutateFavoritesLocal(prevFavoritesRef.current)
-    },
-  })
-
-  const onRemove = (id: string) => {
-    prevFavoritesRef.current = favorites
-
-    mutateFavoritesLocal(favorites.filter((f) => f.id !== id))
-    send({ id, favorite: true })
-  }
-
-  function onUndo(id: string) {
-    mutateFavoritesLocal(prevFavoritesRef.current)
-    closeSnackbar()
-    send({ id, favorite: false })
-  }
-
-  function mutateFavoritesLocal(users: User[]) {
-    return mutate({ ...data, favorites: users }, false)
+  const mutateFavorites = (users: User[]) => {
+    mutate({ ...data, favorites: users }, false)
   }
 
   return (
-    <Layout error={error} {...meta}>
-      <AppContainer withFlexColumn>
-        <AppHeader name="favorite" mb={4}>
-          Favorites
-        </AppHeader>
-        {!favorites.length ? (
-          <EmptyList />
-        ) : (
-          <AppList
-            elements={favorites}
-            spacing={4}
-            render={(user) => <UserCard type="favorite" {...user} onRemove={() => onRemove(user.id)} />}
-            keyGetter={(user) => user.id}
-          />
-        )}
-      </AppContainer>
+    <Layout {...meta} error={error}>
+      {favorites && (
+        <AppContainer withFlexColumn>
+          <AppHeader name="favorite" mb={4}>
+            Favorites
+          </AppHeader>
+          {!favorites.length ? <EmptyList /> : <List favorites={favorites} mutateFavorites={mutateFavorites} />}
+        </AppContainer>
+      )}
     </Layout>
   )
 }

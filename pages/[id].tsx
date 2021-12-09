@@ -10,38 +10,29 @@ import UserCard from 'components/UserCard'
 export default function UserDetail({ fallbackData }: PageSWR<UserPage>): JSX.Element {
   const { asPath } = useRouter()
   const { data, error } = useSWR<UserPage>(asPath, () => UserService.getById(asPath), { fallbackData }) // swr detail page
-  const { meta, user, client } = (data as UserPage) || {}
+  const { meta, client, user } = data || {}
 
   return (
     <UserPageContext.Provider value={data}>
-      <Layout error={error || !fallbackData} {...meta}>
-        <UserCard type="detail" client={client} {...user} />
+      <Layout {...meta} error={error}>
+        {user && client && <UserCard type="detail" {...user} client={client} />}
       </Layout>
     </UserPageContext.Provider>
   )
 }
 
 export const getServerSideProps: GetServerSideProps = async (ctx) => {
-  try {
-    const data = await UserService.getById(ctx.req.url || '')
+  const data = await UserService.getById(ctx.req.url || '')
 
+  if (!data) {
     return {
-      props: {
-        fallbackData: data,
-      },
+      notFound: true,
     }
-  } catch (e) {
-    switch (e.response.status) {
-      case 404:
-        return {
-          notFound: true,
-        }
-      default:
-        return {
-          props: {
-            fallbackData: null,
-          },
-        }
-    }
+  }
+
+  return {
+    props: {
+      fallbackData: data,
+    },
   }
 }

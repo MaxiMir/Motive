@@ -2,7 +2,6 @@ import dynamic from 'next/dynamic'
 import formatDistanceToNow from 'date-fns/formatDistanceToNow'
 import { createStyles, makeStyles } from '@material-ui/core'
 import { TopicBase, TopicType, UserBase } from 'dto'
-import { getUserHref } from 'helpers/user'
 import AppLink from 'components/UI/AppLink'
 import AppBox from 'components/UI/AppBox'
 import AppTypography from 'components/UI/AppTypography'
@@ -23,14 +22,13 @@ export default function Message({ id, date, user, owner, message, like, type, on
   const classes = useStyles()
   const { id: userId, name } = user
   const dateDifference = formatDistanceToNow(new Date(date), { includeSeconds: true })
-  const href = getUserHref(userId)
 
   return (
     <AppBox flexDirection="column" spacing={1} flex={1}>
       <AppBox flexDirection="column" spacing={2} minWidth={152}>
         <AppBox alignItems="center" spacing={1}>
           <UserCard type="avatar" size={26} {...user} />
-          <AppLink href={href} title={name} className={classes.name}>
+          <AppLink href={`/${userId}`} title={name} className={classes.name}>
             <b>{user.name}</b>
           </AppLink>
           {type === TopicType.SUPPORT && <SupportSign owner={owner} />}

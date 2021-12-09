@@ -6,7 +6,6 @@ import { useMediaQuery, useTheme, makeStyles, createStyles } from '@material-ui/
 import { Client, UserDetail, UserCharacteristic } from 'dto'
 import { numberToShort } from 'helpers/prepare'
 import { scrollToElem } from 'helpers/dom'
-import { getUserHref } from 'helpers/user'
 import useCharacteristicColors from 'hooks/useCharacteristicColors'
 import AppTooltip from 'components/UI/AppTooltip'
 import AppBox from 'components/UI/AppBox'
@@ -42,7 +41,6 @@ export default function UserCardDetail({
   const characteristicColors = useCharacteristicColors()
   const isMobile = useMediaQuery(theme.breakpoints.down('sm'))
   const isOwner = role === 'OWNER'
-  const href = getUserHref(id)
 
   useEffect(() => {
     query.s && scrollToElem(`goal-${query.s}`)
@@ -102,7 +100,7 @@ export default function UserCardDetail({
         ) : (
           <AppBox flexWrap="wrap" spacing={3}>
             {goals.map((goal) => (
-              <GoalCard type="current" goal={goal} client={client} href={href} key={goal.id} />
+              <GoalCard type="current" goal={goal} client={client} href={`/${id}`} key={goal.id} />
             ))}
           </AppBox>
         )}

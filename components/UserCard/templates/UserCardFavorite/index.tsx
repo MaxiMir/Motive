@@ -3,7 +3,6 @@ import Image from 'next/image'
 import { makeStyles } from '@material-ui/core/styles'
 import { User, UserCharacteristic } from 'dto'
 import useCharacteristicColors from 'hooks/useCharacteristicColors'
-import { getUserHref } from 'helpers/user'
 import Characteristic from 'components/Characteristic'
 import AppBox from 'components/UI/AppBox'
 import AppLink from 'components/UI/AppLink'
@@ -28,7 +27,7 @@ export default function UserCardFavorite({
 }: UserCardFavoriteProps): JSX.Element {
   const classes = useStyles()
   const colors = useCharacteristicColors()
-  const href = getUserHref(id)
+  const href = `/${id}`
 
   return (
     <AppBox spacing={1}>

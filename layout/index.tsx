@@ -58,7 +58,7 @@ const Layout: FC<LayoutProps> = ({
         <link rel="icon" type="image/x-icon" href="/favicon.ico" />
       </Head>
       <Header />
-      <main className={classes.main}>{!error && <>{children}</>}</main>
+      {!error && <main className={classes.main}>{children}</main>}
       <Footer />
     </>
   )

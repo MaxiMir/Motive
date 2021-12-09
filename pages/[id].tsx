@@ -1,6 +1,7 @@
 import { GetServerSideProps } from 'next'
 import { useRouter } from 'next/router'
 import useSWR from 'swr'
+import { getUserPath } from 'route'
 import { PageSWR, UserPage } from 'dto'
 import { UserPageContext } from 'context/userPageContext'
 import PageService from 'services/PageService'
@@ -14,7 +15,7 @@ export default function UserDetail({ fallbackData }: PageSWR<UserPage>): JSX.Ele
 
   return (
     <UserPageContext.Provider value={data}>
-      <Layout client={client} error={error} {...meta}>
+      <Layout client={client} error={error || !fallbackData} {...meta}>
         <UserCard type="detail" client={client} {...user} />
       </Layout>
     </UserPageContext.Provider>
@@ -22,12 +23,26 @@ export default function UserDetail({ fallbackData }: PageSWR<UserPage>): JSX.Ele
 }
 
 export const getServerSideProps: GetServerSideProps = async (ctx) => {
-  // TODO заменить better -> users
-  const data = await PageService.getURL(ctx.req.url as string)
+  try {
+    const data = await PageService.getURL(getUserPath(ctx.req.url || ''))
 
-  return {
-    props: {
-      fallbackData: data,
-    },
+    return {
+      props: {
+        fallbackData: data,
+      },
+    }
+  } catch (e) {
+    switch (e.response.status) {
+      case '404':
+        return {
+          notFound: true,
+        }
+      default:
+        return {
+          props: {
+            fallbackData: null,
+          },
+        }
+    }
   }
 }

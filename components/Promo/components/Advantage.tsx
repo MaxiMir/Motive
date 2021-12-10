@@ -1,5 +1,5 @@
 import { makeStyles } from '@material-ui/core/styles'
-import { Characteristic } from 'dto'
+import { CharacteristicName } from 'dto'
 import { CharacteristicColor } from 'hooks/useCharacteristicColors'
 import AppBox from 'components/UI/AppBox'
 import AppEmoji from 'components/UI/AppEmoji'
@@ -7,21 +7,21 @@ import AppLink from 'components/UI/AppLink'
 import AppTypography from 'components/UI/AppTypography'
 
 export interface AdvantageProps {
-  characteristic: Characteristic
+  name: CharacteristicName
   title: string
   subtitle: string
   href: string
   color: CharacteristicColor
 }
 
-export default function Advantage({ characteristic, title, subtitle, href, color }: AdvantageProps): JSX.Element {
+export default function Advantage({ name, title, subtitle, href, color }: AdvantageProps): JSX.Element {
   const classes = useStyles({ color })
 
   return (
     <AppBox justifyContent="center" alignItems="center" className={classes.root}>
       <AppBox alignItems="center" spacing={3}>
         <AppLink href={href} className={classes.imageLink}>
-          <AppEmoji name={characteristic} variant="h2" />
+          <AppEmoji name={name} variant="h2" />
         </AppLink>
         <AppBox flexDirection="column" spacing={1}>
           <AppLink href={href}>

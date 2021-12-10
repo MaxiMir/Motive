@@ -11,7 +11,7 @@ import AppContainer from 'components/UI/AppContainer'
 import AppHeader from 'components/UI/AppHeader'
 
 const EmptyList = dynamic(() => import('./components/EmptyList'))
-const List = dynamic(() => import('./components/List'))
+const FavoriteList = dynamic(() => import('./components/FavoriteList'))
 
 export default function Favorites({ fallbackData }: PageSWR<FavoritesPage>): JSX.Element {
   const { asPath } = useRouter()
@@ -30,7 +30,7 @@ export default function Favorites({ fallbackData }: PageSWR<FavoritesPage>): JSX
           <AppHeader name="favorite" mb={4}>
             Favorites
           </AppHeader>
-          {!content.length ? <EmptyList /> : <List favorites={content} mutateFavorites={mutateFavorites} />}
+          {!content.length ? <EmptyList /> : <FavoriteList favorites={content} mutateFavorites={mutateFavorites} />}
         </AppContainer>
       )}
     </Layout>

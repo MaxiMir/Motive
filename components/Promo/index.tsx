@@ -11,8 +11,8 @@ export default function Promo(): JSX.Element {
     <>
       <Slogan />
       {ADVANTAGES.map((advantage) => (
-        <AppBox style={{ height: 'calc((100vh - 290px ) / 4)' }} key={advantage.characteristic}>
-          <Advantage {...advantage} color={colors[advantage.characteristic]} />
+        <AppBox style={{ height: 'calc((100vh - 290px ) / 4)' }} key={advantage.name}>
+          <Advantage {...advantage} color={colors[advantage.name]} />
         </AppBox>
       ))}
     </>

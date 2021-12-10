@@ -1,6 +1,6 @@
 import produce from 'immer'
 import { Button } from '@material-ui/core'
-import { MainCharacteristic, DayCharacteristic, UserBase, Goal, Role } from 'dto'
+import { MainCharacteristicName, DayCharacteristic, UserBase, Goal, Role } from 'dto'
 import useMutateGoals from 'hooks/useMutateGoals'
 import AppBox from 'components/UI/AppBox'
 import AppEmoji from 'components/UI/AppEmoji'
@@ -18,7 +18,7 @@ export interface ViewerProps {
 export default function Viewer({ role, dayId, goal, characteristic, owner }: ViewerProps): JSX.Element {
   const [goals, mutateGoals] = useMutateGoals()
 
-  const onSet = (value: MainCharacteristic, increase: boolean) =>
+  const onSet = (value: MainCharacteristicName, increase: boolean) =>
     mutateGoals(
       produce(goals, (draft: Goal[]) => {
         draft[draft.findIndex((g) => g.id === goal.id)].characteristic[value] += increase ? 1 : -1
@@ -28,7 +28,7 @@ export default function Viewer({ role, dayId, goal, characteristic, owner }: Vie
   return (
     <AppBox justifyContent="space-between">
       <AppBox spacing={1}>
-        {(['motivation', 'creativity'] as MainCharacteristic[]).map((name) => (
+        {(['motivation', 'creativity'] as MainCharacteristicName[]).map((name) => (
           <ReactionWithSend dayId={dayId} name={name} active={characteristic[name]} key={name} onSet={onSet} />
         ))}
         <Reaction

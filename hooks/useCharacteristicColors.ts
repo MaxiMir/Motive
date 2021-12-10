@@ -1,5 +1,5 @@
 import { useTheme } from '@material-ui/core'
-import { Characteristic } from 'dto'
+import { CharacteristicName } from 'dto'
 
 export type CharacteristicColor = {
   fontColor: string
@@ -9,7 +9,7 @@ export type CharacteristicColor = {
 
 export type CharacteristicColors = ReturnType<typeof useCharacteristicColors>
 
-export default function useCharacteristicColors(): { [k in Characteristic]: CharacteristicColor } {
+export default function useCharacteristicColors(): { [k in CharacteristicName]: CharacteristicColor } {
   const { palette } = useTheme()
 
   return {

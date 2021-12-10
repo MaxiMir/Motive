@@ -1,9 +1,10 @@
 import Image from 'next/image'
 import { makeStyles } from '@material-ui/core/styles'
 import { CharacteristicColors } from 'hooks/useCharacteristicColors'
-import { UserCharacteristic, UserCharacteristicName } from 'dto'
+import { UserCharacteristic } from 'dto'
 import AppBox from 'components/UI/AppBox'
 import AppCircle from 'components/UI/AppCircle'
+import { getCircleItems } from './helper'
 
 interface AvatarProps {
   avatar: string
@@ -11,45 +12,18 @@ interface AvatarProps {
   characteristicColors: CharacteristicColors
 }
 
-interface CircleItem {
-  name: UserCharacteristicName
-  size: number
-  strokeWidth: number
-  strokeWidthBg: number
-}
-
-const CIRCLE_ITEMS: CircleItem[] = [
-  {
-    name: 'creativity',
-    size: 126,
-    strokeWidth: 15,
-    strokeWidthBg: 21,
-  },
-  {
-    name: 'support',
-    size: 113,
-    strokeWidth: 17,
-    strokeWidthBg: 22,
-  },
-  {
-    name: 'motivation',
-    size: 99,
-    strokeWidth: 18,
-    strokeWidthBg: 25,
-  },
-]
-
 export default function Avatar({ avatar, characteristic, characteristicColors }: AvatarProps): JSX.Element {
   const classes = useStyles()
+  const circleItems = getCircleItems(characteristic)
 
   return (
     <AppBox className={classes.root}>
-      {CIRCLE_ITEMS.map(({ name, ...props }) => (
-        <AppBox justifyContent="center" alignItems="center" className={classes.circleBlock} key={name}>
-          <AppCircle progress={(characteristic[name] % 1) * 100} color={characteristicColors[name]} {...props} />
+      {circleItems.map(({ name, ...props }) => (
+        <AppBox justifyContent="center" alignItems="center" className={classes.circle} key={name}>
+          <AppCircle color={characteristicColors[name]} {...props} />
         </AppBox>
       ))}
-      <AppBox justifyContent="center" alignItems="center" className={classes.circleBlock}>
+      <AppBox justifyContent="center" alignItems="center" className={classes.circle}>
         <Image src={avatar} alt="" width={81} height={81} objectFit="cover" className={classes.avatar} />
       </AppBox>
     </AppBox>
@@ -62,7 +36,7 @@ const useStyles = makeStyles({
     width: 126,
     height: 126,
   },
-  circleBlock: {
+  circle: {
     position: 'absolute',
     left: '50%',
     top: '50%',

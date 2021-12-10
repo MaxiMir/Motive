@@ -7,12 +7,12 @@ import useSnackbar from 'hooks/useSnackbar'
 import UserCard from 'components/UserCard'
 import AppList from 'components/UI/AppList'
 
-interface ListProps {
+interface FavoriteListProps {
   favorites: User[]
   mutateFavorites: (users: User[]) => void
 }
 
-export default function List({ favorites, mutateFavorites }: ListProps): JSX.Element {
+export default function FavoriteList({ favorites, mutateFavorites }: FavoriteListProps): JSX.Element {
   const prevFavoritesRef = useRef(favorites)
   const { enqueueSnackbar, closeSnackbar } = useSnackbar()
   const { send } = useSend(FavoriteService.setUser, {

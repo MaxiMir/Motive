@@ -1,5 +1,5 @@
 import { useRef, useState } from 'react'
-import { MainCharacteristic } from 'dto'
+import { MainCharacteristicName } from 'dto'
 import DayService from 'services/DayService'
 import useDebounceCb from 'hooks/useDebounceCb'
 import useSnackbar from 'hooks/useSnackbar'
@@ -8,9 +8,9 @@ import Reaction from './Reaction'
 
 interface ReactionWithSendProps {
   dayId: string
-  name: MainCharacteristic
+  name: MainCharacteristicName
   active: boolean
-  onSet: (characteristic: MainCharacteristic, increase: boolean) => void
+  onSet: (characteristic: MainCharacteristicName, increase: boolean) => void
 }
 
 export default function ReactionWithSend({ dayId, name, active: initial, onSet }: ReactionWithSendProps): JSX.Element {

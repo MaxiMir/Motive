@@ -6,25 +6,25 @@ type AdvantageItem = Omit<AdvantageProps, 'color'>
 
 const ADVANTAGES: AdvantageItem[] = [
   {
-    characteristic: 'motivation',
+    name: 'motivation',
     title: 'Be motivational',
     subtitle: 'for yourself and others',
     href: RATING_ROUTE,
   },
   {
-    characteristic: 'creativity',
+    name: 'creativity',
     title: 'BE СREATIVE',
     subtitle: 'for yourself and others',
     href: setQueryParams(RATING_ROUTE, { tab: '1' }),
   },
   {
-    characteristic: 'support',
+    name: 'support',
     title: 'BE SUPPORTIVE',
     subtitle: 'to people in need',
     href: setQueryParams(RATING_ROUTE, { tab: '2' }),
   },
   {
-    characteristic: 'completed',
+    name: 'completed',
     title: 'Rating',
     subtitle: 'And tear up the tops!',
     href: RATING_ROUTE,

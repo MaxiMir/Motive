@@ -1,9 +1,9 @@
 import { Button, createStyles, makeStyles } from '@material-ui/core'
-import { MainCharacteristic } from 'dto'
+import { MainCharacteristicName } from 'dto'
 import AppEmoji from 'components/UI/AppEmoji'
 
 export interface ReactionProps {
-  name: MainCharacteristic
+  name: MainCharacteristicName
   active: boolean
   title: string
   onClick: () => void

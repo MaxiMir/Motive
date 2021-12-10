@@ -24,7 +24,7 @@ const JULIA: UserDetail = {
   name: 'Julia Minchenko',
   avatar: '/__temp__/2.png',
   characteristic: {
-    motivation: 1,
+    motivation: 1.0,
     support: 5.51,
     creativity: 11.89,
     awards: 0,
@@ -52,9 +52,9 @@ const FRIEND: UserDetail = {
   id: 'kopeychik',
   avatar: '/__temp__/4.png',
   characteristic: {
-    motivation: 51.89,
-    support: 31.51,
-    creativity: 7.13,
+    motivation: 47.63,
+    creativity: 27.53,
+    support: 37.33,
     awards: 0,
     completed: 4,
     abandoned: 1,
@@ -98,8 +98,8 @@ const FRIEND2: UserDetail = {
   name: 'Artyom Arzunyan',
   avatar: '/__temp__/3.png',
   characteristic: {
-    motivation: 13,
-    support: 17.51,
+    motivation: 13.66,
+    support: 17.7,
     creativity: 2.65,
     awards: 0,
     completed: 12,

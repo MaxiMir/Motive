@@ -1,3 +1,4 @@
+import produce from 'immer'
 import { MainCharacteristicName, UserCharacteristic } from 'dto'
 
 export const RADIUS = 175
@@ -53,9 +54,5 @@ export const getCircleItems = (characteristic: UserCharacteristic): CircleItem[]
   }))
   const withSort = items.every((item) => item.offset < DASHARRAY)
 
-  if (withSort) {
-    items.sort((i1, i2) => i1.offset - i2.offset)
-  }
-
-  return items
+  return !withSort ? items : produce(items, (draft) => draft.sort((i1, i2) => i1.offset - i2.offset))
 }

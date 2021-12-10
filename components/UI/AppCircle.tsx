@@ -41,8 +41,8 @@ export default function AppCircle({
         <style scoped jsx>{`
           .circle {
             stroke-dashoffset: ${offset};
-            transition: stroke-dashoffset 3s ease-out;
-            animation: progress 3s ease-out;
+            transition: stroke-dashoffset 1s ease-out;
+            animation: progress 1s ease-out;
           }
 
           @keyframes progress {

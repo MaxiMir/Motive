@@ -1,18 +1,13 @@
-import React, { useRef } from 'react'
+import { useRef } from 'react'
 import { Button } from '@material-ui/core'
 import { User } from 'dto'
-import FavoriteService from 'services/FavoriteService'
-import useSend from 'hooks/useSend'
 import useSnackbar from 'hooks/useSnackbar'
-import UserCard from 'components/UserCard'
-import AppList from 'components/UI/AppList'
+import useSend from 'hooks/useSend'
+import FavoriteService from 'services/FavoriteService'
 
-interface FavoriteListProps {
-  users: User[]
-  mutate: (users: User[]) => void
-}
+type UseRemoveFavoriteUser = (id: string) => void
 
-export default function UserList({ users, mutate }: FavoriteListProps): JSX.Element {
+export default function useRemoveFavorite(users: User[], mutate: (newUsers: User[]) => void): UseRemoveFavoriteUser {
   const prevUsersRef = useRef(users)
   const { enqueueSnackbar, closeSnackbar } = useSnackbar()
   const { send } = useSend(FavoriteService.setUser, {
@@ -32,25 +27,16 @@ export default function UserList({ users, mutate }: FavoriteListProps): JSX.Elem
     },
   })
 
-  const onRemove = (id: string) => {
-    prevUsersRef.current = users
-
-    mutate(users.filter((f) => f.id !== id))
-    send({ id, favorite: true })
-  }
-
   function onUndo(id: string) {
     mutate(prevUsersRef.current)
     closeSnackbar()
     send({ id, favorite: false })
   }
 
-  return (
-    <AppList
-      elements={users}
-      spacing={4}
-      render={(user) => <UserCard type="favorite" user={user} onRemove={() => onRemove(user.id)} />}
-      keyGetter={(user) => user.id}
-    />
-  )
+  return (id: string) => {
+    prevUsersRef.current = users
+
+    mutate(users.filter((f) => f.id !== id))
+    send({ id, favorite: true })
+  }
 }

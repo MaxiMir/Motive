@@ -1,19 +1,9 @@
-import React, { Fragment, useMemo } from 'react'
+import React, { useMemo } from 'react'
 import dynamic from 'next/dynamic'
-import { object, string, array, SchemaOf } from 'yup'
 import { Field, FieldArray, Form, FormikProvider, useFormik } from 'formik'
 import { addDays } from 'date-fns'
 import { makeStyles } from '@material-ui/core/styles'
-import {
-  Accordion,
-  AccordionDetails,
-  FormControlLabel,
-  Switch,
-  AccordionSummary,
-  Button,
-  IconButton,
-  createStyles,
-} from '@material-ui/core'
+import { Accordion, AccordionDetails, AccordionSummary, Button, createStyles } from '@material-ui/core'
 import { Goal, GoalCreation } from 'dto'
 import GoalService from 'services/GoalService'
 import useSend from 'hooks/useSend'
@@ -23,43 +13,25 @@ import AppHeader from 'components/UI/AppHeader'
 import AppBox from 'components/UI/AppBox'
 import AppInput from 'components/UI/AppInput'
 import AppTypography from 'components/UI/AppTypography'
-import AppGradientButton from 'components/UI/AppGradientButton'
 import AppIcon from 'components/UI/AppIcon'
-import AppEmoji from 'components/UI/AppEmoji'
 import { PaulIcon } from 'components/UI/icons'
+import { schema } from './helper'
+import SubmitButton from './components/SubmitButton'
+import CloseButton from './components/CloseButton'
 
-const CircularProgress = dynamic(() => import('@material-ui/core/CircularProgress'))
-const KeyboardTimePicker = dynamic(() =>
-  import('formik-material-ui-pickers').then(
-    (m) => m.KeyboardTimePicker,
-    () => null as never,
-  ),
-)
+const TaskField = dynamic(() => import('./components/TaskField'))
 
 interface ModalProps {
   onSuccess: (goal: Goal) => void
   onClose: () => void
 }
 
-const schema: SchemaOf<GoalCreation> = object({
-  name: string().trim().required('Goal name needed').min(5, "It's too short.").max(32, "It's so long."),
-  hashtags: string().trim().max(150, "It's so long."),
-  tasks: array().of(
-    object({
-      name: string().trim().required('Task content needed').min(5, "It's too short.").max(255, "It's too long."),
-      date: string(),
-    }),
-  ),
-})
-
 // TODO: focus error fields
 export default function Modal({ onSuccess, onClose }: ModalProps): JSX.Element {
   const classes = useStyles()
   const [hashtagsRef, setHashtagsFocus] = useFocus()
   const tomorrow = useMemo(() => addDays(new Date(), 1), [])
-  const { isLoading, send } = useSend<GoalCreation, Goal>(GoalService.create, {
-    onSuccess: (r) => onSuccess(r),
-  })
+  const { isLoading, send } = useSend<GoalCreation, Goal>(GoalService.create, { onSuccess })
   const formik = useFormik({
     initialValues: {
       name: '',
@@ -73,24 +45,15 @@ export default function Modal({ onSuccess, onClose }: ModalProps): JSX.Element {
   })
   const { values, setFieldValue, handleSubmit } = formik
 
+  const onAddHashtag = () => {
+    setFieldValue('hashtags', !values.hashtags ? '#' : [values.hashtags, '#'].join(' '))
+    setHashtagsFocus()
+  }
+
   return (
     <AppModal
       title="Creating a new goal"
-      actions={[
-        <AppGradientButton startIcon={<AppEmoji name="cancel" onlyEmoji />} onClick={onClose}>
-          Cancel
-        </AppGradientButton>,
-        <AppGradientButton
-          type="submit"
-          disabled={isLoading}
-          startIcon={
-            isLoading ? <CircularProgress size="0.9rem" color="primary" /> : <AppEmoji name="goal" onlyEmoji />
-          }
-          onClick={() => handleSubmit()}
-        >
-          {isLoading ? 'Creating' : 'Create'}
-        </AppGradientButton>,
-      ]}
+      actions={[<CloseButton onClick={onClose} />, <SubmitButton isLoading={isLoading} onClick={handleSubmit} />]}
       onClose={onClose}
     >
       <FormikProvider value={formik}>
@@ -107,15 +70,7 @@ export default function Modal({ onSuccess, onClose }: ModalProps): JSX.Element {
                 inputRef={hashtagsRef}
                 component={AppInput}
               />
-              <Button
-                className={classes.button}
-                variant="outlined"
-                size="small"
-                onClick={() => {
-                  setFieldValue('hashtags', !values.hashtags ? '#' : [values.hashtags, '#'].join(' '))
-                  setHashtagsFocus()
-                }}
-              >
+              <Button className={classes.button} variant="outlined" size="small" onClick={onAddHashtag}>
                 # Hashtag
               </Button>
             </AppBox>
@@ -126,51 +81,16 @@ export default function Modal({ onSuccess, onClose }: ModalProps): JSX.Element {
                     Tasks for tomorrow
                   </AppHeader>
                   {values.tasks.map((task, index) => (
-                    <Fragment key={`tasks.${index}`}>
-                      <AppBox alignItems="center" spacing={1}>
-                        <Field
-                          name={`tasks.${index}.name`}
-                          label="Task *"
-                          color="secondary"
-                          placeholder="What should be done"
-                          multiline
-                          rows={3}
-                          component={AppInput}
-                          autoFocus={!!index && index === values.tasks.length - 1}
-                        />
-                        <IconButton
-                          disableFocusRipple
-                          aria-label="remove task"
-                          disabled={values.tasks.length === 1}
-                          onClick={() => remove(index)}
-                          className={classes.iconCloseBtn}
-                        >
-                          <AppIcon>close</AppIcon>
-                        </IconButton>
-                      </AppBox>
-                      <AppBox height={48} alignItems="center" pl={1} spacing={1}>
-                        <FormControlLabel
-                          control={
-                            <Switch
-                              size="small"
-                              onChange={(_, isChecked) =>
-                                setFieldValue(`tasks.${index}.date`, isChecked ? tomorrow : undefined)
-                              }
-                            />
-                          }
-                          label="remind me"
-                        />
-                        {task.date && (
-                          <Field
-                            name={`tasks.${index}.date`}
-                            ampm={false}
-                            className={classes.timepicker}
-                            keyboardIcon={<span className="material-icons">query_builder</span>}
-                            component={KeyboardTimePicker}
-                          />
-                        )}
-                      </AppBox>
-                    </Fragment>
+                    <TaskField
+                      index={index}
+                      taskCount={values.tasks.length}
+                      date={task.date}
+                      key={`tasks.${index}`}
+                      onRemove={() => remove(index)}
+                      onToggleDate={(isChecked) =>
+                        setFieldValue(`tasks.${index}.date`, isChecked ? tomorrow : undefined)
+                      }
+                    />
                   ))}
                   <Button
                     startIcon={<AppIcon color="secondary">add</AppIcon>}
@@ -224,12 +144,6 @@ const useStyles = makeStyles((theme) =>
     },
     hint: {
       fontSize: '0.9rem',
-      color: theme.text.silent,
-    },
-    timepicker: {
-      width: 100,
-    },
-    iconCloseBtn: {
       color: theme.text.silent,
     },
   }),

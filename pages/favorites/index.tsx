@@ -1,36 +1,27 @@
 import React from 'react'
-import { useRouter } from 'next/router'
 import dynamic from 'next/dynamic'
 import { GetServerSideProps } from 'next'
-import useSWR from 'swr'
-import { PageSWR, FavoritesPage, User } from 'dto'
-import usePartialMutate from 'hooks/usePartialMutate'
+import { PageSWR, FavoritesPage } from 'dto'
 import PageService from 'services/PageService'
 import Layout from 'layout'
 import AppContainer from 'components/UI/AppContainer'
 import AppHeader from 'components/UI/AppHeader'
+import useFavoritesPage from './hook'
 
 const EmptyList = dynamic(() => import('./components/EmptyList'))
-const FavoriteList = dynamic(() => import('./components/FavoriteList'))
+const UserList = dynamic(() => import('./components/UserList'))
 
 export default function Favorites({ fallbackData }: PageSWR<FavoritesPage>): JSX.Element {
-  const { asPath } = useRouter()
-  const { data, error } = useSWR(asPath, PageService.getFavorites, { fallbackData })
-  const mutate = usePartialMutate(asPath)
-  const { meta, content } = data || {}
-
-  const mutateFavorites = (users: User[]) => {
-    mutate({ ...data, content: users }, false)
-  }
+  const [{ data, error }, mutate] = useFavoritesPage(fallbackData)
 
   return (
-    <Layout {...meta} error={error}>
-      {content && (
+    <Layout {...data?.meta} error={error}>
+      {data?.content && (
         <AppContainer withFlexColumn>
           <AppHeader name="favorite" mb={4}>
             Favorites
           </AppHeader>
-          {!content.length ? <EmptyList /> : <FavoriteList favorites={content} mutateFavorites={mutateFavorites} />}
+          {!data.content.length ? <EmptyList /> : <UserList users={data.content} mutate={mutate} />}
         </AppContainer>
       )}
     </Layout>

@@ -19,28 +19,25 @@ import Favorite from './components/Favorite'
 const AddGoal = dynamic(() => import('./components/AddGoal'))
 const GoalCard = dynamic(() => import('components/Goal'))
 
-export interface UserCardDetailProps extends UserDetail {
+const CHARACTERISTIC_NAMES: UserCharacteristicName[] = ['motivation', 'creativity', 'support']
+const SECOND_CHARACTERISTIC_NAMES: UserCharacteristicName[] = ['completed', 'awards', 'abandoned']
+
+export interface UserCardDetailProps {
   type: 'detail'
+  user: UserDetail
   client: Client
 }
 
-export default function UserCardDetail({
-  id,
-  name,
-  favorite,
-  views,
-  avatar,
-  characteristic,
-  role,
-  goals,
-  client,
-}: UserCardDetailProps): JSX.Element {
+export default function UserCardDetail({ user, client }: UserCardDetailProps): JSX.Element {
+  const { id, name, favorite, views, avatar, characteristic, role, goals } = user
   const classes = useStyles()
   const theme = useTheme()
   const { query } = useRouter()
   const characteristicColors = useCharacteristicColors()
   const isMobile = useMediaQuery(theme.breakpoints.down('sm'))
   const isOwner = role === 'OWNER'
+  const showFavorite = !isOwner && client.isAuthenticated
+  const shortViews = numberToShort(views)
 
   useEffect(() => {
     query.s && scrollToElem(`goal-${query.s}`)
@@ -53,14 +50,14 @@ export default function UserCardDetail({
           <AppTypography variant="h5" component="h1">
             {name}
           </AppTypography>
-          {!isOwner && client.isAuthenticated && <Favorite id={id} favorite={favorite} />}
+          {showFavorite && <Favorite id={id} favorite={favorite} />}
         </AppBox>
         <AppBox alignItems="center" spacing={0.5}>
           <AppTooltip title="Page Views" className={classes.tooltip}>
             <Image src="/images/eye.png" alt="" width={39} height={24} />
           </AppTooltip>
           <AppTypography variant="subtitle1" component="p" className={classes.views}>
-            {numberToShort(views)}
+            {shortViews}
           </AppTypography>
         </AppBox>
       </AppBox>
@@ -69,7 +66,7 @@ export default function UserCardDetail({
           <Avatar avatar={avatar} characteristic={characteristic} characteristicColors={characteristicColors} />
           <AppBox flexDirection="column" justifyContent="space-between" flex={1}>
             <AppBox justifyContent="space-between">
-              {(['motivation', 'creativity', 'support'] as UserCharacteristicName[]).map((characteristicName) => (
+              {CHARACTERISTIC_NAMES.map((characteristicName) => (
                 <Characteristic
                   name={characteristicName}
                   value={characteristic[characteristicName]}
@@ -79,7 +76,7 @@ export default function UserCardDetail({
               ))}
             </AppBox>
             <AppBox justifyContent="space-between">
-              {(['completed', 'awards', 'abandoned'] as UserCharacteristicName[]).map((characteristicName) => (
+              {SECOND_CHARACTERISTIC_NAMES.map((characteristicName) => (
                 <Characteristic
                   name={characteristicName}
                   value={characteristic[characteristicName]}

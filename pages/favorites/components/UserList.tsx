@@ -8,16 +8,16 @@ import UserCard from 'components/UserCard'
 import AppList from 'components/UI/AppList'
 
 interface FavoriteListProps {
-  favorites: User[]
-  mutateFavorites: (users: User[]) => void
+  users: User[]
+  mutate: (users: User[]) => void
 }
 
-export default function FavoriteList({ favorites, mutateFavorites }: FavoriteListProps): JSX.Element {
-  const prevFavoritesRef = useRef(favorites)
+export default function UserList({ users, mutate }: FavoriteListProps): JSX.Element {
+  const prevUsersRef = useRef(users)
   const { enqueueSnackbar, closeSnackbar } = useSnackbar()
   const { send } = useSend(FavoriteService.setUser, {
     onSuccess: (_, { id, favorite }) => {
-      prevFavoritesRef.current = favorites
+      prevUsersRef.current = users
 
       favorite &&
         enqueueSnackbar({
@@ -28,26 +28,26 @@ export default function FavoriteList({ favorites, mutateFavorites }: FavoriteLis
         })
     },
     onError: () => {
-      mutateFavorites(prevFavoritesRef.current)
+      mutate(prevUsersRef.current)
     },
   })
 
   const onRemove = (id: string) => {
-    prevFavoritesRef.current = favorites
+    prevUsersRef.current = users
 
-    mutateFavorites(favorites.filter((f) => f.id !== id))
+    mutate(users.filter((f) => f.id !== id))
     send({ id, favorite: true })
   }
 
   function onUndo(id: string) {
-    mutateFavorites(prevFavoritesRef.current)
+    mutate(prevUsersRef.current)
     closeSnackbar()
     send({ id, favorite: false })
   }
 
   return (
     <AppList
-      elements={favorites}
+      elements={users}
       spacing={4}
       render={(user) => <UserCard type="favorite" {...user} onRemove={() => onRemove(user.id)} />}
       keyGetter={(user) => user.id}

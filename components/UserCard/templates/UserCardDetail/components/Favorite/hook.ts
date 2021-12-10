@@ -1,20 +1,10 @@
-import React, { useRef, useState } from 'react'
-import clsx from 'clsx'
-import { makeStyles } from '@material-ui/core/styles'
-import { IconButton } from '@material-ui/core'
+import { useRef, useState } from 'react'
 import FavoriteService from 'services/FavoriteService'
 import useDebounceCb from 'hooks/useDebounceCb'
 import useSend from 'hooks/useSend'
 import useSnackbar from 'hooks/useSnackbar'
-import AppEmoji from 'components/UI/AppEmoji'
 
-interface FavoriteProps {
-  id: string
-  favorite: boolean
-}
-
-export default function Favorite({ id, favorite: initial }: FavoriteProps): JSX.Element {
-  const classes = useStyles()
+export default function useUserFavorite(id: string, initial: boolean): [boolean, () => void] {
   const lastLoadedRef = useRef(initial)
   const [favorite, setFavorite] = useState(initial)
   const { enqueueSnackbar } = useSnackbar()
@@ -36,23 +26,10 @@ export default function Favorite({ id, favorite: initial }: FavoriteProps): JSX.
     lastLoadedRef.current !== value && send({ id, favorite: value })
   })
 
-  const onClick = () => {
+  const onChange = () => {
     setFavorite(!favorite)
     mutateWithDebounce(!favorite)
   }
 
-  return (
-    <IconButton title={`${favorite ? 'Remove from' : 'Add to'} favorite`} onClick={onClick}>
-      <AppEmoji name="favorite" variant="h5" className={clsx([classes.emoji, !favorite && classes.emojiNotActive])} />
-    </IconButton>
-  )
+  return [favorite, onChange]
 }
-
-const useStyles = makeStyles({
-  emoji: {
-    lineHeight: '28px',
-  },
-  emojiNotActive: {
-    filter: 'grayscale(1)',
-  },
-})

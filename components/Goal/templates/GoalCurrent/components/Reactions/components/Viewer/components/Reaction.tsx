@@ -10,8 +10,8 @@ export interface ReactionProps {
 }
 
 export default function Reaction(props: ReactionProps): JSX.Element {
-  const classes = useStyles(props)
   const { name, title, onClick } = props
+  const classes = useStyles(props)
 
   return (
     <Button variant="outlined" className={classes.button} title={title} aria-label={title} onClick={onClick}>

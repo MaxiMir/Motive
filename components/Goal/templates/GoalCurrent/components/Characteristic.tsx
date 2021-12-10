@@ -12,14 +12,17 @@ export interface CharacteristicProps {
 }
 
 export default function Characteristic({ name, value, color }: CharacteristicProps): JSX.Element {
+  const title = toUpperFirstChar(name)
+  const shortValue = numberToShort(value)
+
   return (
     <AppBox flexDirection="column" alignItems="center" spacing={1} width={40}>
-      <AppTooltip title={toUpperFirstChar(name)}>
+      <AppTooltip title={title}>
         <AppEmoji name={name} variant="h5" />
       </AppTooltip>
       <AppBox>
         <AppTypography component="p" style={{ color }}>
-          {numberToShort(value)}
+          {shortValue}
         </AppTypography>
       </AppBox>
     </AppBox>

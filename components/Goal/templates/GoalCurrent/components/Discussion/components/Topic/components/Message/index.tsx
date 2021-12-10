@@ -27,7 +27,7 @@ export default function Message({ id, date, user, owner, message, like, type, on
     <AppBox flexDirection="column" spacing={1} flex={1}>
       <AppBox flexDirection="column" spacing={2} minWidth={152}>
         <AppBox alignItems="center" spacing={1}>
-          <UserCard type="avatar" size={26} {...user} />
+          <UserCard type="avatar" user={user} size={26} />
           <AppLink href={`/${userId}`} title={name} className={classes.name}>
             <b>{user.name}</b>
           </AppLink>

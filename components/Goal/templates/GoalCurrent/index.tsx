@@ -1,19 +1,16 @@
 import { Fragment, useRef, useState } from 'react'
 import dynamic from 'next/dynamic'
-import produce from 'immer'
 import differenceInDays from 'date-fns/differenceInDays'
 import { createStyles, useTheme } from '@material-ui/core'
 import { makeStyles } from '@material-ui/core/styles'
 import { Client, Goal, GoalCharacteristicName } from 'dto'
-import GoalService from 'services/GoalService'
 import useCharacteristicColors from 'hooks/useCharacteristicColors'
-import useSend from 'hooks/useSend'
-import useMutateGoals from 'hooks/useMutateGoals'
 import AppBox from 'components/UI/AppBox'
 import AppHeader from 'components/UI/AppHeader'
 import AppDot from 'components/UI/AppDot'
 import AppAccordion from 'components/UI/AppAccordion'
-import { checkOnWeb, getGoalHref, getQueryNewState } from './helper'
+import useChangeDate from './hook'
+import { checkOnWeb, getGoalHref } from './helper'
 import GoalDate from './components/GoalDate'
 import Menu from './components/Menu'
 import Characteristic from './components/Characteristic'
@@ -45,25 +42,17 @@ export default function GoalCurrent({ goal, client, href }: GoalCurrentProps): J
   const classes = useStyles()
   const theme = useTheme()
   const restRef = useRef(tasks.length - tasks.filter((t) => t.completed).length)
-  const [goals, mutateGoals] = useMutateGoals()
   const colors = useCharacteristicColors()
+  const [isLoading, onChangeDate] = useChangeDate(id)
   const [discussionCount, setDiscussionCount] = useState(day.discussionCount)
   const days = differenceInDays(currentDate, Date.parse(started))
   const showWeb = checkOnWeb(datesMap, date, currentDate)
   const goalHref = getGoalHref(href, goal)
   const withForm = ['OWNER', 'MEMBER'].includes(role)
-  const { isLoading, send } = useSend(GoalService.getById, {
-    onSuccess: (changedGoal) => {
-      mutateGoals(
-        produce(goals, (draft: Goal[]) => {
-          draft[draft.findIndex((g) => g.id === goal.id)] = changedGoal
-        }),
-      )
-      window.history.pushState(null, '', getQueryNewState(changedGoal))
-    },
-  })
 
-  const onChangeDate = (newDayId: string) => send({ id: newDayId })
+  const onSetTask = (isCompleted: boolean) => {
+    restRef.current += isCompleted ? -1 : 1
+  }
 
   return (
     <AppBox flexDirection="column" spacing={1} id={`goal-${id}`} className={classes.root}>
@@ -106,15 +95,9 @@ export default function GoalCurrent({ goal, client, href }: GoalCurrentProps): J
                     {tasks.map((task) => (
                       <Fragment key={task.id}>
                         {!withForm ? (
-                          <Task {...task} />
+                          <Task task={task} />
                         ) : (
-                          <TaskForm
-                            {...task}
-                            rest={restRef.current}
-                            onSet={(isCompleted) => {
-                              restRef.current += isCompleted ? -1 : 1
-                            }}
-                          />
+                          <TaskForm task={task} rest={restRef.current} onSet={onSetTask} />
                         )}
                       </Fragment>
                     ))}

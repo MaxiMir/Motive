@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { MouseEvent, useState } from 'react'
 import dynamic from 'next/dynamic'
 import { MenuItem } from '@material-ui/core'
 import { Role } from 'dto'
@@ -23,6 +23,8 @@ export default function Menu({ title, href, role }: MenuProps): JSX.Element {
     setWithShare(true)
   }
 
+  const onOpenMenu = (e: MouseEvent<HTMLButtonElement>) => setAnchorEl(e.currentTarget)
+
   const onOpenReport = () => setWithReport(true)
 
   const onCloseReport = () => {
@@ -34,7 +36,7 @@ export default function Menu({ title, href, role }: MenuProps): JSX.Element {
 
   return (
     <>
-      <AppMenuButton ariaControls="goal-menu" title="open goal menu" onClick={(e) => setAnchorEl(e.currentTarget)} />
+      <AppMenuButton ariaControls="goal-menu" title="open goal menu" onClick={onOpenMenu} />
       {anchorEl && (
         <MUMenu id="goal-menu" anchorEl={anchorEl} keepMounted open={!!anchorEl} onClose={onCloseMenu}>
           <MenuItem onClick={onShare}>Share</MenuItem>

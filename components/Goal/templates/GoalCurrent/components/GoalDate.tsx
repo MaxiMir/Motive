@@ -44,6 +44,10 @@ export default function GoalDate({ date, datesMap, onChangeDate }: DateProps): J
     return !dates.some((d) => d === formattedCheckedDate)
   }
 
+  const onOpen = () => setOpen(true)
+
+  const onClose = () => setOpen(false)
+
   function getDateIndex() {
     return dates.findIndex((d) => d === value.toISOString())
   }
@@ -61,13 +65,13 @@ export default function GoalDate({ date, datesMap, onChangeDate }: DateProps): J
         value={value}
         shouldDisableDate={checkShouldDisableDate}
         TextFieldComponent={() => (
-          <Button aria-label="select a goal date" onClick={() => setOpen(true)}>
+          <Button aria-label="select a goal date" onClick={onOpen}>
             {formattedDate}
           </Button>
         )}
-        onClick={() => setOpen(true)}
+        onClick={onOpen}
         onChange={(newDate) => newDate && onChange(newDate)}
-        onClose={() => setOpen(false)}
+        onClose={onClose}
       />
       <IconButton className={classes.button} disabled={!nextDate} onClick={() => onClickArrow(nextDate)}>
         <span className="material-icons">chevron_right</span>

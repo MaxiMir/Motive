@@ -64,6 +64,7 @@ const Layout: FC<LayoutProps> = ({
 }
 
 // TODO https://shivamethical.medium.com/creating-web-page-preview-while-sharing-url-via-social-applications-like-whats-app-fb-cd2e19b11bf2
+// TODO https://developer.mozilla.org/ru/docs/Web/Progressive_web_apps/Installable_PWAs
 
 const useStyles = makeStyles({
   main: {

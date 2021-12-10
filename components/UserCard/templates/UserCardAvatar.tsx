@@ -3,12 +3,14 @@ import { makeStyles } from '@material-ui/core/styles'
 import { UserBase } from 'dto'
 import AppLink from 'components/UI/AppLink'
 
-export interface UserCardAvatarProps extends UserBase {
+export interface UserCardAvatarProps {
   type: 'avatar'
+  user: UserBase
   size: number
 }
 
-export default function UserCardAvatar({ id, name, avatar, size }: UserCardAvatarProps): JSX.Element {
+export default function UserCardAvatar({ user, size }: UserCardAvatarProps): JSX.Element {
+  const { id, name, avatar } = user
   const classes = useStyles({ size })
 
   return (

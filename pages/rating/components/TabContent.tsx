@@ -1,5 +1,6 @@
 import { Container, Grid, makeStyles } from '@material-ui/core'
 import { User, MainCharacteristicName } from 'dto'
+import useCharacteristicColors from 'hooks/useCharacteristicColors'
 import UserCard from 'components/UserCard'
 import AppBox from 'components/UI/AppBox'
 import AppList from 'components/UI/AppList'
@@ -12,6 +13,7 @@ interface TabContentProps {
 
 export default function TabContent({ name, users }: TabContentProps): JSX.Element {
   const classes = useStyles()
+  const colors = useCharacteristicColors()
 
   return (
     <>
@@ -41,7 +43,9 @@ export default function TabContent({ name, users }: TabContentProps): JSX.Elemen
       <AppList<User>
         elements={users}
         keyGetter={(el) => el.id}
-        render={(user, index) => <UserCard type="rating" {...user} characteristicName={name} index={index} />}
+        render={(user, index) => (
+          <UserCard type="rating" user={user} characteristicName={name} color={colors[name].fontColor} index={index} />
+        )}
       />
     </>
   )

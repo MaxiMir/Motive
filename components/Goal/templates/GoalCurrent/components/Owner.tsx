@@ -11,7 +11,7 @@ export default function Owner(props: UserBase): JSX.Element {
       <AppTypography variant="h6" className={classes.withText}>
         with
       </AppTypography>
-      <UserCard type="avatar" size={28} {...props} />
+      <UserCard type="avatar" user={props} size={28} />
     </>
   )
 }

@@ -2,28 +2,23 @@ import Image from 'next/image'
 import { makeStyles } from '@material-ui/core/styles'
 import { Container, Grid } from '@material-ui/core'
 import { User, UserCharacteristicName } from 'dto'
-import useCharacteristicColors from 'hooks/useCharacteristicColors'
 import AppBox from 'components/UI/AppBox'
 import AppLink from 'components/UI/AppLink'
 import AppTypography from 'components/UI/AppTypography'
 
-export interface UserCardRatingProps extends User {
+export interface UserCardRatingProps {
   type: 'rating'
+  user: User
   characteristicName: UserCharacteristicName
+  color: string
   index: number
 }
 
-export default function UserCardRating({
-  id,
-  avatar,
-  name,
-  characteristic,
-  characteristicName,
-  index,
-}: UserCardRatingProps): JSX.Element {
-  const colors = useCharacteristicColors()
-  const classes = useStyles({ isEven: index % 2 === 0 })
+export default function UserCardRating({ user, characteristicName, color, index }: UserCardRatingProps): JSX.Element {
+  const { id, avatar, name, characteristic } = user
+  const classes = useStyles({ color, isEven: index % 2 === 0 })
   const number = getNumber()
+  const ratingValue = Math.floor(characteristic[characteristicName])
   const href = `/${id}`
 
   function getNumber() {
@@ -61,13 +56,8 @@ export default function UserCardRating({
             </AppBox>
           </Grid>
           <Grid item xs>
-            <AppTypography
-              variant="subtitle1"
-              component="p"
-              align="right"
-              style={{ color: colors[characteristicName].fontColor }}
-            >
-              <b>{Math.floor(characteristic[characteristicName])}</b>
+            <AppTypography variant="subtitle1" component="p" align="right" className={classes.ratingValue}>
+              <b>{ratingValue}</b>
             </AppTypography>
           </Grid>
         </Grid>
@@ -76,9 +66,11 @@ export default function UserCardRating({
   )
 }
 
+type UseStylesProps = { color: string; isEven: boolean }
+
 const useStyles = makeStyles({
   root: {
-    background: (props: { isEven: boolean }) => (props.isEven ? 'initial' : '#21262C'),
+    background: (props: UseStylesProps) => (props.isEven ? 'initial' : '#21262C'),
   },
   container: {
     height: 55,
@@ -89,5 +81,8 @@ const useStyles = makeStyles({
   },
   avatar: {
     borderRadius: '50%',
+  },
+  ratingValue: {
+    color: (props: UseStylesProps) => props.color,
   },
 })

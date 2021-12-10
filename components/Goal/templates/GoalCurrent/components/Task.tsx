@@ -6,7 +6,13 @@ import AppTypography from 'components/UI/AppTypography'
 
 const TaskDate = dynamic(() => import('./TaskDate'))
 
-export default function Task({ name, date }: TaskDTO): JSX.Element {
+interface TaskProps {
+  task: TaskDTO
+}
+
+export default function Task({ task }: TaskProps): JSX.Element {
+  const { name, date } = task
+
   return (
     <>
       <AppBox alignItems="center" spacing={1}>

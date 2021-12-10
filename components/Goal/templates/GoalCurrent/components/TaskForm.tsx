@@ -9,20 +9,14 @@ import AppCheckbox from 'components/UI/AppCheckbox'
 const Button = dynamic(() => import('@material-ui/core/Button'))
 const TaskDate = dynamic(() => import('./TaskDate'))
 
-interface FormProps extends Task {
+interface FormProps {
+  task: Task
   rest: number
   onSet: (isCompleted: boolean) => void
 }
 
-export default function TaskForm({
-  id,
-  name,
-  completed: initial,
-  completedByOthers,
-  date,
-  rest,
-  onSet,
-}: FormProps): JSX.Element {
+export default function TaskForm({ task, rest, onSet }: FormProps): JSX.Element {
+  const { id, name, completed: initial, completedByOthers, date } = task
   const timerIdRef = useRef<NodeJS.Timeout>()
   const { enqueueSnackbar, closeSnackbar } = useSnackbar()
   const [checked, setChecked] = useState(initial)

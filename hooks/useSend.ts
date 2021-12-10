@@ -4,7 +4,7 @@ import useSnackbar from './useSnackbar'
 
 interface Options<R> {
   onSuccess?: (response: R, data: AxiosRequestConfig['data']) => void
-  onError?: (e: Error, request: AxiosRequestConfig['data']) => void
+  onError?: (e: unknown, request: AxiosRequestConfig['data']) => void
 }
 
 export default function useSend<D, R>(

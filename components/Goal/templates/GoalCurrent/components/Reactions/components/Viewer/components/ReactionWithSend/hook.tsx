@@ -4,16 +4,13 @@ import DayService from 'services/DayService'
 import useDebounceCb from 'hooks/useDebounceCb'
 import useSnackbar from 'hooks/useSnackbar'
 import useSend from 'hooks/useSend'
-import Reaction from './Reaction'
 
-interface ReactionWithSendProps {
-  dayId: string
-  name: MainCharacteristicName
-  active: boolean
-  onSet: (characteristic: MainCharacteristicName, increase: boolean) => void
-}
-
-export default function ReactionWithSend({ dayId, name, active: initial, onSet }: ReactionWithSendProps): JSX.Element {
+export default function useSetReaction(
+  dayId: string,
+  name: MainCharacteristicName,
+  initial: boolean,
+  onSet: (characteristic: MainCharacteristicName, increase: boolean) => void,
+): [boolean, () => void] {
   const lastLoadedRef = useRef(initial)
   const [active, setActive] = useState(initial)
   const { enqueueSnackbar } = useSnackbar()
@@ -36,12 +33,11 @@ export default function ReactionWithSend({ dayId, name, active: initial, onSet }
   const sendWithDebounce = useDebounceCb((value: boolean) => {
     lastLoadedRef.current !== value && send({ dayId, name, active: value })
   })
-  const title = `${active ? 'Decrease' : 'Increase'} goal's ${name} points`
 
-  const onClick = () => {
+  const onChange = () => {
     setActive(!active)
     sendWithDebounce(!active)
   }
 
-  return <Reaction name={name} active={active} title={title} onClick={onClick} />
+  return [active, onChange]
 }

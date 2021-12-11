@@ -55,7 +55,7 @@ export default function Discussion({
   return (
     <AppBox flexDirection="column" spacing={2} flex={1} height={height}>
       <>
-        {(!count || content) && withInput && <UserCard type="input" dayId={dayId} user={client} onAdd={onAdd} />}
+        {(!count || content) && withInput && <UserCard tmpl="input" dayId={dayId} user={client} onAdd={onAdd} />}
         {!count ? (
           <AppTypography>Nothing so far...</AppTypography>
         ) : (

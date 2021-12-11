@@ -4,7 +4,7 @@ import AppGradientButton from 'components/UI/AppGradientButton'
 import AppEmoji from 'components/UI/AppEmoji'
 
 export interface ModalAuthProps {
-  type: 'auth'
+  tmpl: 'auth'
   onSuccess: () => void
   onClose: () => void
 }

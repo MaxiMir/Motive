@@ -29,7 +29,7 @@ const AppTypography = dynamic(() => import('components/UI/AppTypography'))
 const CHARACTERISTICS: GoalCharacteristicName[] = ['motivation', 'creativity', 'support', 'members']
 
 export interface GoalCurrentProps {
-  type: 'current'
+  tmpl: 'current'
   goal: Goal
   client: Client
   href: string

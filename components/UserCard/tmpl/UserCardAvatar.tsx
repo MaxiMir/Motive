@@ -4,7 +4,7 @@ import { UserBase } from 'dto'
 import AppLink from 'components/UI/AppLink'
 
 export interface UserCardAvatarProps {
-  type: 'avatar'
+  tmpl: 'avatar'
   user: UserBase
   size: number
 }

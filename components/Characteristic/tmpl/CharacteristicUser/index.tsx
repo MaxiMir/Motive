@@ -7,7 +7,7 @@ import AppTypography from 'components/UI/AppTypography'
 const Level = dynamic(() => import('./components/Level'))
 
 export interface CharacteristicUserProps {
-  type: 'user'
+  tmpl: 'user'
   name: UserCharacteristicName
   value: number
   color: string

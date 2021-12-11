@@ -16,7 +16,7 @@ export default function UserList({ users, mutate }: FavoriteListProps): JSX.Elem
     <AppList
       elements={users}
       spacing={4}
-      render={(user) => <UserCard type="favorite" user={user} onRemove={() => onRemove(user.id)} />}
+      render={(user) => <UserCard tmpl="favorite" user={user} onRemove={() => onRemove(user.id)} />}
       keyGetter={(user) => user.id}
     />
   )

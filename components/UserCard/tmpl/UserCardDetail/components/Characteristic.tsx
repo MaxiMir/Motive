@@ -17,7 +17,7 @@ export default function Characteristic(props: CharacteristicProps): JSX.Element 
   return (
     <AppBox flexDirection="column" spacing={0.5} width={60}>
       <AppTypography className={classes.title}>{name}</AppTypography>
-      <CharacteristicBase type="user" {...props} />
+      <CharacteristicBase tmpl="user" {...props} />
     </AppBox>
   )
 }

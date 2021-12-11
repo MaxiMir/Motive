@@ -7,7 +7,7 @@ import AppLink from 'components/UI/AppLink'
 import AppTypography from 'components/UI/AppTypography'
 
 export interface UserCardRatingProps {
-  type: 'rating'
+  tmpl: 'rating'
   user: User
   characteristicName: UserCharacteristicName
   color: string

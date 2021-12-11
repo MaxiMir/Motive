@@ -5,14 +5,14 @@ import { Topic, TopicType, UserBase } from 'dto'
 import DayService from 'services/DayService'
 import useSend from 'hooks/useSend'
 import useSnackbar from 'hooks/useSnackbar'
-import UserCardAvatar from 'components/UserCard/templates/UserCardAvatar'
+import UserCardAvatar from 'components/UserCard/tmpl/UserCardAvatar'
 import AppBox from 'components/UI/AppBox'
 
 const CircularProgress = dynamic(() => import('@material-ui/core/CircularProgress'))
 const AppIcon = dynamic(() => import('components/UI/AppIcon'))
 
 export interface UserCardInputProps {
-  type: 'input'
+  tmpl: 'input'
   dayId: string
   user: UserBase
   answer?: boolean
@@ -37,7 +37,7 @@ export default function UserCardInput({ dayId, user, answer, onAdd }: UserCardIn
   return (
     <form>
       <AppBox spacing={2} flex={1} mb={2} pr={2}>
-        <UserCardAvatar type="avatar" user={user} size={32} />
+        <UserCardAvatar tmpl="avatar" user={user} size={32} />
         <TextField
           placeholder={`Your ${messageType.toLowerCase()}`}
           variant="standard"

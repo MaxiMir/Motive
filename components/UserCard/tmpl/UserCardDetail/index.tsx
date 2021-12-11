@@ -23,7 +23,7 @@ const CHARACTERISTIC_NAMES: UserCharacteristicName[] = ['motivation', 'creativit
 const SECOND_CHARACTERISTIC_NAMES: UserCharacteristicName[] = ['completed', 'awards', 'abandoned']
 
 export interface UserCardDetailProps {
-  type: 'detail'
+  tmpl: 'detail'
   user: UserDetail
   client: Client
 }
@@ -97,7 +97,7 @@ export default function UserCardDetail({ user, client }: UserCardDetailProps): J
         ) : (
           <AppBox flexWrap="wrap" spacing={3}>
             {goals.map((goal) => (
-              <GoalCard type="current" goal={goal} client={client} href={`/${id}`} key={goal.id} />
+              <GoalCard tmpl="current" goal={goal} client={client} href={`/${id}`} key={goal.id} />
             ))}
           </AppBox>
         )}

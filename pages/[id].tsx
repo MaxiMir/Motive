@@ -15,7 +15,7 @@ export default function UserDetail({ fallbackData }: PageSWR<UserPage>): JSX.Ele
   return (
     <UserPageContext.Provider value={data}>
       <Layout {...data?.meta} error={error}>
-        {dataLoaded && <UserCard type="detail" user={data.content} client={data.client} />}
+        {dataLoaded && <UserCard tmpl="detail" user={data.content} client={data.client} />}
       </Layout>
     </UserPageContext.Provider>
   )

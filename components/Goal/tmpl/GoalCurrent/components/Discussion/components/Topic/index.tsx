@@ -29,7 +29,7 @@ export default function Topic({ dayId, owner, topic, role }: TopicProps): JSX.El
   return (
     <>
       <Message {...message} owner={owner} onClick={!showReply ? undefined : onClick} />
-      {showInput && <UserCard type="input" user={owner} dayId={dayId} answer onAdd={onAdd} />}
+      {showInput && <UserCard tmpl="input" user={owner} dayId={dayId} answer onAdd={onAdd} />}
       {answer?.message && (
         <AppBox alignItems="center" spacing={1}>
           <Reply />

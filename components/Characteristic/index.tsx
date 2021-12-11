@@ -1,10 +1,10 @@
 import dynamic from 'next/dynamic'
-import { CharacteristicUserProps } from './templates/CharacteristicUser'
+import { CharacteristicUserProps } from './tmpl/CharacteristicUser'
 
-const CharacteristicUser = dynamic(() => import('./templates/CharacteristicUser'))
+const CharacteristicUser = dynamic(() => import('./tmpl/CharacteristicUser'))
 
 export default function Characteristic(props: CharacteristicUserProps): JSX.Element {
-  switch (props.type) {
+  switch (props.tmpl) {
     case 'user':
       return <CharacteristicUser {...props} />
     default:

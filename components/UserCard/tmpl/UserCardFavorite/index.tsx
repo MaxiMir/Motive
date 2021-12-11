@@ -14,7 +14,7 @@ const CHARACTERISTICS: UserCharacteristicName[] = ['motivation', 'creativity', '
 const LAST_CHARACTERISTIC_INDEX = 3
 
 export interface UserCardFavoriteProps {
-  type: 'favorite'
+  tmpl: 'favorite'
   user: User
   onRemove: () => void
 }
@@ -43,7 +43,7 @@ export default function UserCardFavorite({ user, onRemove }: UserCardFavoritePro
           {CHARACTERISTICS.map((characteristicName, index) => (
             <Fragment key={characteristicName}>
               <Characteristic
-                type="user"
+                tmpl="user"
                 name={characteristicName}
                 value={characteristic[characteristicName]}
                 color={colors[characteristicName].fontColor}

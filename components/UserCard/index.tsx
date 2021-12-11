@@ -1,20 +1,20 @@
 import dynamic from 'next/dynamic'
-import { UserCardDetailProps } from './templates/UserCardDetail'
-import { UserCardFavoriteProps } from './templates/UserCardFavorite'
-import { UserCardRatingProps } from './templates/UserCardRating'
-import { UserCardAvatarProps } from './templates/UserCardAvatar'
-import { UserCardInputProps } from './templates/UserCardInput'
+import { UserCardDetailProps } from './tmpl/UserCardDetail'
+import { UserCardFavoriteProps } from './tmpl/UserCardFavorite'
+import { UserCardRatingProps } from './tmpl/UserCardRating'
+import { UserCardAvatarProps } from './tmpl/UserCardAvatar'
+import { UserCardInputProps } from './tmpl/UserCardInput'
 
-const UserCardDetail = dynamic(() => import('./templates/UserCardDetail'))
-const UserCardFavorite = dynamic(() => import('./templates/UserCardFavorite'))
-const UserCardRating = dynamic(() => import('./templates/UserCardRating'))
-const UserCardAvatar = dynamic(() => import('./templates/UserCardAvatar'))
-const UserCardInput = dynamic(() => import('./templates/UserCardInput'))
+const UserCardDetail = dynamic(() => import('./tmpl/UserCardDetail'))
+const UserCardFavorite = dynamic(() => import('./tmpl/UserCardFavorite'))
+const UserCardRating = dynamic(() => import('./tmpl/UserCardRating'))
+const UserCardAvatar = dynamic(() => import('./tmpl/UserCardAvatar'))
+const UserCardInput = dynamic(() => import('./tmpl/UserCardInput'))
 
 export default function UserCard(
   props: UserCardDetailProps | UserCardFavoriteProps | UserCardRatingProps | UserCardAvatarProps | UserCardInputProps,
 ): JSX.Element {
-  switch (props.type) {
+  switch (props.tmpl) {
     case 'detail':
       return <UserCardDetail {...props} />
     case 'favorite':

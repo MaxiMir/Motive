@@ -1,25 +1,21 @@
 import React, { useRef, useState } from 'react'
 import dynamic from 'next/dynamic'
 import { Task } from 'dto'
-import TaskService from 'services/TaskService'
 import useSend from 'hooks/useSend'
 import useSnackbar from 'hooks/useSnackbar'
-import AppCheckbox from 'components/UI/AppCheckbox'
+import TaskService from 'services/TaskService'
 
 const Button = dynamic(() => import('@material-ui/core/Button'))
-const TaskDate = dynamic(() => import('./TaskDate'))
 
-interface FormProps {
-  task: Task
-  rest: number
-  onSet: (isCompleted: boolean) => void
-}
-
-export default function TaskForm({ task, rest, onSet }: FormProps): JSX.Element {
-  const { id, name, completed: initial, completedByOthers, date } = task
+export default function useSetCompleted(
+  task: Task,
+  rest: number,
+  onSet: (isCompleted: boolean) => void,
+): [boolean, boolean, () => void] {
+  const { id, completed } = task
   const timerIdRef = useRef<NodeJS.Timeout>()
   const { enqueueSnackbar, closeSnackbar } = useSnackbar()
-  const [checked, setChecked] = useState(initial)
+  const [checked, setChecked] = useState(completed)
   const { isLoading, send } = useSend(TaskService.updateTask, {
     onError() {
       onSet(false)
@@ -48,16 +44,5 @@ export default function TaskForm({ task, rest, onSet }: FormProps): JSX.Element 
     closeSnackbar()
   }
 
-  return (
-    <form>
-      <AppCheckbox
-        name={id}
-        label={name + (completedByOthers && !checked ? ' 🔥' : '')}
-        checked={checked}
-        disabled={checked || isLoading}
-        onChange={onChange}
-      />
-      {date && <TaskDate date={date} />}
-    </form>
-  )
+  return [isLoading, checked, onChange]
 }

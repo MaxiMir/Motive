@@ -23,22 +23,23 @@ export default function UserCardInput({ dayId, user, answer, onAdd }: UserCardIn
   const classes = useStyles()
   const [message, setMessage] = useState('')
   const { enqueueSnackbar } = useSnackbar()
+  const messageType = answer ? 'Answer' : 'Question'
   const { isLoading, send } = useSend(DayService.createTopic, {
     onSuccess(topic) {
-      enqueueSnackbar({ message: 'Question added', severity: 'success', icon: 'speaker' })
+      enqueueSnackbar({ message: `${messageType} added`, severity: 'success', icon: 'speaker' })
       setMessage('')
       onAdd(topic)
     },
   })
 
-  const onClick = () => send({ dayId, message, type: TopicType.QUESTION })
+  const onClick = () => send({ dayId, message, type: answer ? TopicType.SUPPORT : TopicType.QUESTION })
 
   return (
     <form>
       <AppBox spacing={2} flex={1} mb={2} pr={2}>
         <UserCardAvatar type="avatar" user={user} size={32} />
         <TextField
-          placeholder={`Your ${answer ? 'answer' : 'question'}`}
+          placeholder={`Your ${messageType.toLowerCase()}`}
           variant="standard"
           color="secondary"
           InputLabelProps={{ shrink: false }}

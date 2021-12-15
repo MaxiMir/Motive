@@ -2,7 +2,7 @@ import { UserBase } from './user'
 import { DataWithPagination } from './page'
 
 export interface TopicBase {
-  id: string
+  id: number
   date: string
   message: string
   user: UserBase

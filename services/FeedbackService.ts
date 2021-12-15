@@ -5,7 +5,7 @@ export default class FeedbackService {
   /**
    * /feedback/{id}/
    */
-  static getById(data: { id: string }): Promise<Feedback> {
+  static getById(data: { id: number }): Promise<Feedback> {
     const { id } = data
 
     return Axios.get(`/feedback/${id}/`)

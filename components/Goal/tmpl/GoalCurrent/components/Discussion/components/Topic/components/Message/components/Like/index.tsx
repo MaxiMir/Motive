@@ -9,7 +9,7 @@ import AppTooltip from 'components/UI/AppTooltip'
 import useSetLike from './hook'
 
 interface LikeProps extends LikeDTO {
-  messageId: string
+  messageId: number
 }
 
 export default function Like({ messageId, count: countInit, active: activeInit }: LikeProps): JSX.Element {

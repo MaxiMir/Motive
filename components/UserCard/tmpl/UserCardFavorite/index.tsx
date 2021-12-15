@@ -20,10 +20,10 @@ export interface UserCardFavoriteProps {
 }
 
 export default function UserCardFavorite({ user, onRemove }: UserCardFavoriteProps): JSX.Element {
-  const { id, avatar, name, characteristic } = user
+  const { nickname, avatar, name, characteristic } = user
   const classes = useStyles()
   const colors = useCharacteristicColors()
-  const href = `/${id}`
+  const href = `/${nickname}`
 
   return (
     <AppBox spacing={1}>

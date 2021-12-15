@@ -6,7 +6,7 @@ import useSnackbar from 'hooks/useSnackbar'
 import useSend from 'hooks/useSend'
 
 export default function useSetReaction(
-  dayId: string,
+  dayId: number,
   name: MainCharacteristicName,
   initial: boolean,
   onSet: (characteristic: MainCharacteristicName, increase: boolean) => void,

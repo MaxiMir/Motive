@@ -12,7 +12,7 @@ import AppBox from 'components/UI/AppBox'
 interface DateProps {
   date: string
   datesMap: Goal['datesMap']
-  onChangeDate: (id: string) => void
+  onChangeDate: (id: number) => void
 }
 
 export default function GoalDate({ date, datesMap, onChangeDate }: DateProps): JSX.Element {

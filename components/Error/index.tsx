@@ -11,13 +11,13 @@ interface ErrorProps {
 export default function Error({ title, code }: ErrorProps): JSX.Element {
   return (
     <Container fixed>
-      <AppBox alignItems="center" justifyContent="center" height="80vh">
+      <AppBox alignItems="center" justifyContent="center" height="70vh">
         <AppBox flexDirection="column" alignItems="center" justifyContent="space-between">
           <AppTypography component="h1" variant="h1">
             {title}
           </AppTypography>
-          <AppTypography style={{ fontSize: '14em' }}>{code}</AppTypography>
-          <AppTypography style={{ fontSize: '14em' }}>
+          <AppTypography style={{ fontSize: '10em' }}>{code}</AppTypography>
+          <AppTypography style={{ fontSize: '10em' }}>
             <AppEmoji name="error" onlyEmoji />
           </AppTypography>
         </AppBox>

@@ -1,7 +1,8 @@
 import { UserCharacteristic } from './characteristic'
 
 export interface UserBase {
-  id: string
+  id: number
+  nickname: string
   name: string
   avatar: string
 }

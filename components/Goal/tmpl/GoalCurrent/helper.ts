@@ -20,7 +20,7 @@ export const getQueryNewState = (goal: Goal): string => {
   })
 }
 
-export const checkOnWeb = (datesMap: Record<string, string>, dayDate: string, currentDate: Date): boolean => {
+export const checkOnWeb = (datesMap: Record<string, number>, dayDate: string, currentDate: Date): boolean => {
   const dates = Object.keys(datesMap)
   const isLastDate = dates[dates.length - 1] === dayDate
 

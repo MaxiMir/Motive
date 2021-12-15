@@ -15,11 +15,11 @@ export interface UserCardRatingProps {
 }
 
 export default function UserCardRating({ user, characteristicName, color, index }: UserCardRatingProps): JSX.Element {
-  const { id, avatar, name, characteristic } = user
+  const { nickname, avatar, name, characteristic } = user
   const classes = useStyles({ color, isEven: index % 2 === 0 })
   const number = getNumber()
   const ratingValue = Math.floor(characteristic[characteristicName])
-  const href = `/${id}`
+  const href = `/${nickname}`
 
   function getNumber() {
     const incrementedNumber = index + 1

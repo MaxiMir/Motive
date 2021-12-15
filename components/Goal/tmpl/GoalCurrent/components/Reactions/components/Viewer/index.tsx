@@ -8,8 +8,8 @@ import ReactionWithSend from './components/ReactionWithSend'
 import Reaction from './components/Reaction'
 
 export interface ViewerProps {
+  dayId: number
   role: Role
-  dayId: string
   goal: Goal
   characteristic: DayCharacteristic
   owner: UserBase

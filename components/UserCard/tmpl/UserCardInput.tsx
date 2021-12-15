@@ -13,7 +13,7 @@ const AppIcon = dynamic(() => import('components/UI/AppIcon'))
 
 export interface UserCardInputProps {
   tmpl: 'input'
-  dayId: string
+  dayId: number
   user: UserBase
   answer?: boolean
   onAdd: (topic: Topic) => void

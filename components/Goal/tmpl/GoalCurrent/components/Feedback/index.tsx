@@ -7,7 +7,7 @@ const Loader = dynamic(() => import('./components/Loader'))
 const Content = dynamic(() => import('./components/Content'))
 
 interface FeedbackProps {
-  id: string
+  id: number
 }
 
 export default function Feedback({ id }: FeedbackProps): JSX.Element {

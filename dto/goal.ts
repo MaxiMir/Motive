@@ -9,7 +9,7 @@ export interface GoalCreation {
 }
 
 export interface Goal {
-  id: string
+  id: number
   name: string
   started: string
   hashtags: string[]
@@ -17,20 +17,21 @@ export interface Goal {
   role: Role
   characteristic: GoalCharacteristic // count all
   day: Day
-  datesMap: Record<string, string> // { [formattedDate]: dayId }
+  datesMap: Record<string, number> // { [formattedDate]: dayId }
 }
 
 interface Day {
-  id: string
+  id: number
   date: string
   characteristic: DayCharacteristic
   tasks: Task[]
   discussionCount: number
-  feedbackId: string | null
+  feedbackId: number | null
+  views: number
 }
 
 export interface Task {
-  id: string
+  id: number
   name: string
   date?: string
   completed: boolean

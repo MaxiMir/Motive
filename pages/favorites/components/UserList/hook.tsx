@@ -5,7 +5,7 @@ import useSnackbar from 'hooks/useSnackbar'
 import useSend from 'hooks/useSend'
 import FavoriteService from 'services/FavoriteService'
 
-type UseRemoveFavoriteUser = (id: string) => void
+type UseRemoveFavoriteUser = (id: number) => void
 
 export default function useRemoveFavorite(users: User[], mutate: (newUsers: User[]) => void): UseRemoveFavoriteUser {
   const prevUsersRef = useRef(users)
@@ -27,13 +27,13 @@ export default function useRemoveFavorite(users: User[], mutate: (newUsers: User
     },
   })
 
-  function onUndo(id: string) {
+  function onUndo(id: number) {
     mutate(prevUsersRef.current)
     closeSnackbar()
     send({ id, favorite: false })
   }
 
-  return (id: string) => {
+  return (id: number) => {
     prevUsersRef.current = users
 
     mutate(users.filter((f) => f.id !== id))

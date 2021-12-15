@@ -4,7 +4,7 @@ import useDebounceCb from 'hooks/useDebounceCb'
 import useSend from 'hooks/useSend'
 import useSnackbar from 'hooks/useSnackbar'
 
-export default function useUserFavorite(id: string, initial: boolean): [boolean, () => void] {
+export default function useUserFavorite(id: number, initial: boolean): [boolean, () => void] {
   const lastLoadedRef = useRef(initial)
   const [favorite, setFavorite] = useState(initial)
   const { enqueueSnackbar } = useSnackbar()

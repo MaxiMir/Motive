@@ -4,7 +4,7 @@ import { Role, Topic as TopicDTO, UserBase } from 'dto'
 import Message from './components/Message'
 
 export interface TopicProps {
-  dayId: string
+  dayId: number
   owner: UserBase
   topic: TopicDTO
   role: Role

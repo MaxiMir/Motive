@@ -2,7 +2,8 @@ import { UserDetail } from 'dto'
 import { becomeSenior, learnFrench } from './goals'
 
 const ME: UserDetail = {
-  id: 'maximir',
+  id: 1,
+  nickname: 'maximir',
   name: 'Maxim Minchenko',
   avatar: '/__temp__/1.png',
   characteristic: {
@@ -15,12 +16,12 @@ const ME: UserDetail = {
   },
   role: 'OWNER',
   favorite: true,
-  views: 113,
   goals: [learnFrench, becomeSenior],
 }
 
 const JULIA: UserDetail = {
-  id: 'yulifleur',
+  id: 2,
+  nickname: 'yulifleur',
   name: 'Julia Minchenko',
   avatar: '/__temp__/2.png',
   characteristic: {
@@ -33,14 +34,14 @@ const JULIA: UserDetail = {
   },
   role: 'GUEST',
   favorite: true,
-  views: 1,
   goals: [
     {
       ...learnFrench,
       role: 'OWNER',
       owner: {
+        id: 2,
+        nickname: 'yulifleur',
         name: 'Julia Minchenko',
-        id: 'yulifleur',
         avatar: '/__temp__/2.png',
       },
     },
@@ -48,8 +49,9 @@ const JULIA: UserDetail = {
 }
 
 const FRIEND: UserDetail = {
+  id: 5,
+  nickname: 'kopeychik',
   name: 'Alexey Kopeychik',
-  id: 'kopeychik',
   avatar: '/__temp__/4.png',
   characteristic: {
     motivation: 47.63,
@@ -61,13 +63,13 @@ const FRIEND: UserDetail = {
   },
   role: 'GUEST',
   favorite: false,
-  views: 1387000,
   goals: [
     {
       ...learnFrench,
       role: 'GUEST',
       owner: {
-        id: 'maximir',
+        id: 1,
+        nickname: 'maximir',
         name: 'Maxim Minchenko',
         avatar: '/__temp__/1.png',
       },
@@ -76,7 +78,8 @@ const FRIEND: UserDetail = {
 }
 
 const FRIEND1: UserDetail = {
-  id: 'valulya',
+  id: 3,
+  nickname: 'valulya',
   name: 'Valentina Ulyanova',
   avatar: '/__temp__/6.png',
   characteristic: {
@@ -89,12 +92,12 @@ const FRIEND1: UserDetail = {
   },
   role: 'GUEST',
   favorite: false,
-  views: 12354,
   goals: [],
 }
 
 const FRIEND2: UserDetail = {
-  id: 'arty',
+  id: 4,
+  nickname: 'arty',
   name: 'Artyom Arzunyan',
   avatar: '/__temp__/3.png',
   characteristic: {
@@ -107,7 +110,6 @@ const FRIEND2: UserDetail = {
   },
   role: 'GUEST',
   favorite: false,
-  views: 321,
   goals: [],
 }
 

@@ -5,7 +5,7 @@ import AppEmoji from 'components/UI/AppEmoji'
 import useUserFavorite from './hook'
 
 interface FavoriteProps {
-  id: string
+  id: number
   favorite: boolean
 }
 

@@ -6,7 +6,7 @@ import client from 'pages/api/mock/client'
 export default (req: NextApiRequest, res: NextApiResponse): void => {
   const { url } = req
   const href = url?.replace('/api/', '') || ''
-  const user = USERS.find((u) => href.includes(u.id))
+  const user = USERS.find((u) => href.includes(u.nickname))
   const body = !user
     ? null
     : {

@@ -5,7 +5,7 @@ export default class TaskService {
   /**
    * /tasks/{id}/completed/
    */
-  static updateTask(data: { id: string }): Promise<AxiosResponse> {
+  static updateTask(data: { id: number }): Promise<AxiosResponse> {
     return Axios.put(`/tasks/${data.id}/completed/`)
   }
 }

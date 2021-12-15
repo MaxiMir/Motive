@@ -113,6 +113,8 @@ function getContent(name: AppEmojiName) {
       return '💫'
     case 'cup':
       return '🏆'
+    case 'views':
+      return '🐾'
     default:
       return ''
   }

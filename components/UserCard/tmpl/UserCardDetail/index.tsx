@@ -1,13 +1,10 @@
 import { useEffect } from 'react'
 import dynamic from 'next/dynamic'
 import { useRouter } from 'next/router'
-import Image from 'next/image'
-import { useMediaQuery, useTheme, makeStyles, createStyles } from '@material-ui/core'
+import { useMediaQuery, useTheme } from '@material-ui/core'
 import { Client, UserDetail, UserCharacteristicName } from 'dto'
-import { numberToShort } from 'helpers/prepare'
 import { scrollToElem } from 'helpers/dom'
 import useCharacteristicColors from 'hooks/useCharacteristicColors'
-import AppTooltip from 'components/UI/AppTooltip'
 import AppBox from 'components/UI/AppBox'
 import AppContainer from 'components/UI/AppContainer'
 import AppTypography from 'components/UI/AppTypography'
@@ -29,15 +26,13 @@ export interface UserCardDetailProps {
 }
 
 export default function UserCardDetail({ user, client }: UserCardDetailProps): JSX.Element {
-  const { id, name, favorite, views, avatar, characteristic, role, goals } = user
-  const classes = useStyles()
+  const { id, nickname, name, favorite, avatar, characteristic, role, goals } = user
   const theme = useTheme()
   const { query } = useRouter()
   const characteristicColors = useCharacteristicColors()
   const isMobile = useMediaQuery(theme.breakpoints.down('sm'))
   const isOwner = role === 'OWNER'
   const showFavorite = !isOwner && client.isAuthenticated
-  const shortViews = numberToShort(views)
 
   useEffect(() => {
     query.s && scrollToElem(`goal-${query.s}`)
@@ -45,21 +40,11 @@ export default function UserCardDetail({ user, client }: UserCardDetailProps): J
 
   return (
     <AppContainer withFlexColumn>
-      <AppBox justifyContent="space-between" mb={2}>
-        <AppBox alignItems="center" spacing={1}>
-          <AppTypography variant="h5" component="h1">
-            {name}
-          </AppTypography>
-          {showFavorite && <Favorite id={id} favorite={favorite} />}
-        </AppBox>
-        <AppBox alignItems="center" spacing={0.5}>
-          <AppTooltip title="Page Views" className={classes.tooltip}>
-            <Image src="/images/eye.png" alt="" width={39} height={24} />
-          </AppTooltip>
-          <AppTypography variant="subtitle1" component="p" className={classes.views}>
-            {shortViews}
-          </AppTypography>
-        </AppBox>
+      <AppBox alignItems="center" spacing={1} mb={2}>
+        <AppTypography variant="h5" component="h1">
+          {name}
+        </AppTypography>
+        {showFavorite && <Favorite id={id} favorite={favorite} />}
       </AppBox>
       <AppBox flexDirection="column" spacing={3} flex={1}>
         <AppBox spacing={isMobile ? 1 : 4}>
@@ -97,7 +82,7 @@ export default function UserCardDetail({ user, client }: UserCardDetailProps): J
         ) : (
           <AppBox flexWrap="wrap" spacing={3}>
             {goals.map((goal) => (
-              <GoalCard tmpl="current" goal={goal} client={client} href={`/${id}`} key={goal.id} />
+              <GoalCard tmpl="current" goal={goal} client={client} href={`/${nickname}`} key={goal.id} />
             ))}
           </AppBox>
         )}
@@ -105,14 +90,3 @@ export default function UserCardDetail({ user, client }: UserCardDetailProps): J
     </AppContainer>
   )
 }
-
-const useStyles = makeStyles((theme) =>
-  createStyles({
-    tooltip: {
-      height: 24,
-    },
-    views: {
-      color: theme.text.silent,
-    },
-  }),
-)

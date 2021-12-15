@@ -12,7 +12,7 @@ export default class GoalService {
   /**
    * /goals/{id}/
    */
-  static getById(data: { dayId: string }): Promise<Goal> {
+  static getById(data: { dayId: number }): Promise<Goal> {
     const { dayId } = data
 
     return Axios.get(`/goals/${dayId}`)

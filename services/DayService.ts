@@ -5,7 +5,7 @@ export default class DayService {
   /**
    * /days/{id}/{characteristic}/
    */
-  static updateCharacteristic(data: { dayId: string; name: string; active: boolean }): Promise<Goal> {
+  static updateCharacteristic(data: { dayId: number; name: string; active: boolean }): Promise<Goal> {
     const { dayId, name, ...restData } = data
 
     return Axios.put(`/days/${dayId}/${name}/`, restData)
@@ -14,7 +14,7 @@ export default class DayService {
   /**
    * /days/{id}/discussion/
    */
-  static createTopic(data: { dayId: string; type: TopicType; message: string }): Promise<Topic> {
+  static createTopic(data: { dayId: number; type: TopicType; message: string }): Promise<Topic> {
     const { dayId, ...body } = data
 
     return Axios.post(`/days/${dayId}/discussion/`, body)

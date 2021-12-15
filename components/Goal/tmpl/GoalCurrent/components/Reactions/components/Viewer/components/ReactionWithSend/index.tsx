@@ -3,7 +3,7 @@ import Reaction from '../Reaction'
 import useSetReaction from './hook'
 
 export interface ReactionWithSendProps {
-  dayId: string
+  dayId: number
   name: MainCharacteristicName
   active: boolean
   onSet: (characteristic: MainCharacteristicName, increase: boolean) => void

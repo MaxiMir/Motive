@@ -6,9 +6,9 @@ import AppHeader from './AppHeader'
 import { AppEmojiName } from './AppEmoji'
 
 interface AppAccordionProps {
+  id: string
   name: AppEmojiName
   header: string | JSX.Element
-  id: string
   ariaControls: string
   details: JSX.Element
   defaultExpanded?: boolean

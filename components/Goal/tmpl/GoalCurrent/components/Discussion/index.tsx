@@ -14,7 +14,7 @@ const AppTypography = dynamic(() => import('components/UI/AppTypography'))
 const AppInView = dynamic(() => import('components/UI/AppInView'))
 
 interface DiscussionProps {
-  dayId: string
+  dayId: number
   role: Role
   owner: UserBase
   client: Client
@@ -32,7 +32,9 @@ export default function Discussion({
   count,
   setDiscussionCount,
 }: DiscussionProps): JSX.Element {
-  const { data, size, setSize, mutate } = useSWRInfinite(getSWRKey(dayId), fetcher, { initialSize: !count ? 0 : 1 })
+  const { data, size, setSize, mutate } = useSWRInfinite(getSWRKey(dayId.toString()), fetcher, {
+    initialSize: !count ? 0 : 1,
+  })
   const content = useMemo(getContent, [data])
   const withInput = client.isAuthenticated && client.id !== owner.id
   const shownCount = count >= VISIBLE_COUNT ? VISIBLE_COUNT : count
@@ -66,7 +68,7 @@ export default function Discussion({
               <AppBox display="block" maxHeight={524} pr={2} overflow="auto">
                 <AppList
                   elements={content}
-                  keyGetter={(topic) => topic.id}
+                  keyGetter={(topic) => topic.id.toString()}
                   spacing={2}
                   render={(topic, index) => (
                     <>

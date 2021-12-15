@@ -16,6 +16,7 @@ import Menu from './components/Menu'
 import Characteristic from './components/Characteristic'
 import Discussion from './components/Discussion'
 import Reactions from './components/Reactions'
+import Views from './components/Views'
 
 const Owner = dynamic(() => import('./components/Owner'))
 const Task = dynamic(() => import('./components/Task'))
@@ -38,7 +39,7 @@ export interface GoalCurrentProps {
 export default function GoalCurrent({ goal, client, href }: GoalCurrentProps): JSX.Element {
   const currentDate = new Date()
   const { id, name, hashtags, started, characteristic, role, owner, day, datesMap } = goal
-  const { id: dayId, date, tasks, feedbackId } = day
+  const { id: dayId, date, tasks, views, feedbackId } = day
   const classes = useStyles()
   const theme = useTheme()
   const restRef = useRef(tasks.length - tasks.filter((t) => t.completed).length)
@@ -139,7 +140,10 @@ export default function GoalCurrent({ goal, client, href }: GoalCurrentProps): J
               />
             </div>
           </AppBox>
-          <Reactions role={role} dayId={dayId} goal={goal} characteristic={day.characteristic} owner={owner} />
+          <AppBox flexDirection="column" spacing={2}>
+            <Reactions role={role} dayId={dayId} goal={goal} characteristic={day.characteristic} owner={owner} />
+            <Views views={views} />
+          </AppBox>
         </AppBox>
         {showWeb && <Web />}
         {isLoading && <Loader />}

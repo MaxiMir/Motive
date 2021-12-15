@@ -31,7 +31,6 @@ export type FavoritesPage = Page<User[]>
 export type UserPage = Page<UserDetail>
 
 export interface UserDetail extends User {
-  views: number
   favorite: boolean
   role: Role
   goals: Goal[]

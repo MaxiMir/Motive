@@ -4,7 +4,7 @@ import useDebounceCb from 'hooks/useDebounceCb'
 import DiscussionService from 'services/DiscussionService'
 
 export default function useSetLike(
-  messageId: string,
+  messageId: number,
   activeInit: boolean,
   countInit: number,
 ): [boolean, number, () => void] {

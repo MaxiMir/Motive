@@ -2,16 +2,15 @@ import { Button, createStyles, makeStyles } from '@material-ui/core'
 import { MainCharacteristicName } from 'dto'
 import AppEmoji from 'components/UI/AppEmoji'
 
-export interface ReactionProps {
+interface ReactionProps {
   name: MainCharacteristicName
   active: boolean
   title: string
   onClick: () => void
 }
 
-export default function Reaction(props: ReactionProps): JSX.Element {
-  const { name, title, onClick } = props
-  const classes = useStyles(props)
+export default function Reaction({ name, active, title, onClick }: ReactionProps): JSX.Element {
+  const classes = useStyles({ name, active })
 
   return (
     <Button variant="outlined" className={classes.button} title={title} aria-label={title} onClick={onClick}>
@@ -20,14 +19,16 @@ export default function Reaction(props: ReactionProps): JSX.Element {
   )
 }
 
+type UseStylesProps = Pick<ReactionProps, 'name' | 'active'>
+
 const useStyles = makeStyles((theme) => {
   return createStyles({
     button: {
       width: 36,
       height: 36,
       minWidth: 'initial',
-      filter: (props: ReactionProps) => (props.active ? 'initial' : 'grayscale(1)'),
-      borderColor: (props: ReactionProps) => {
+      filter: (props: UseStylesProps) => (props.active ? 'initial' : 'grayscale(1)'),
+      borderColor: (props: UseStylesProps) => {
         switch (props.name) {
           case 'motivation':
             return theme.palette.warning.main
@@ -50,7 +51,7 @@ const useStyles = makeStyles((theme) => {
   })
 })
 
-const getBackground = (props: ReactionProps): string => {
+const getBackground = (props: UseStylesProps): string => {
   switch (props.name) {
     case 'motivation':
       return '#ff980033'

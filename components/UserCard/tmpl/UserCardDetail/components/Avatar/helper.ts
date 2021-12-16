@@ -1,7 +1,7 @@
 import produce from 'immer'
 import { MainCharacteristicName, UserCharacteristic } from 'dto'
 
-export const RADIUS = 175
+const RADIUS = 175
 const DIAMETER = Math.round(Math.PI * RADIUS * 2)
 const DASHARRAY = 1100
 
@@ -12,7 +12,7 @@ interface CircleItemInit {
   strokeWidthBg: number
 }
 
-export const CIRCLE_ITEMS: CircleItemInit[] = [
+const CIRCLE_ITEMS: CircleItemInit[] = [
   {
     name: 'motivation',
     size: 99,

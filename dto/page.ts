@@ -7,7 +7,7 @@ export type PageSWR<T> = {
   fallbackData: T
 }
 
-export interface Meta {
+interface Meta {
   title: string
   description: string
   keywords: string
@@ -16,7 +16,7 @@ export interface Meta {
   href: string
 }
 
-export type Page<T> = {
+type Page<T> = {
   meta: Meta
   client: Client
   content: T

@@ -2,7 +2,7 @@ import { MainCharacteristicName } from 'dto'
 import Reaction from '../Reaction'
 import useSetReaction from './hook'
 
-export interface ReactionWithSendProps {
+interface ReactionWithSendProps {
   dayId: number
   name: MainCharacteristicName
   active: boolean

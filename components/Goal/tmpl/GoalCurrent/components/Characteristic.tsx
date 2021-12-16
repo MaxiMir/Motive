@@ -5,7 +5,7 @@ import AppBox from 'components/UI/AppBox'
 import AppTooltip from 'components/UI/AppTooltip'
 import AppTypography from 'components/UI/AppTypography'
 
-export interface CharacteristicProps {
+interface CharacteristicProps {
   name: GoalCharacteristicName | 'runs for days'
   value: number
   color: string

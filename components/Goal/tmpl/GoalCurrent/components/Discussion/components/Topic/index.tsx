@@ -3,7 +3,7 @@ import dynamic from 'next/dynamic'
 import { Role, Topic as TopicDTO, UserBase } from 'dto'
 import Message from './components/Message'
 
-export interface TopicProps {
+interface TopicProps {
   dayId: number
   owner: UserBase
   topic: TopicDTO

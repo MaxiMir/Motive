@@ -14,7 +14,7 @@ export default function useChangeDate(goalId: number): [boolean, (dayId: number)
           draft[draft.findIndex((g) => g.id === goalId)] = changedGoal
         }),
       )
-      window.history.pushState(null, '', getQueryNewState(changedGoal))
+      window.history.pushState(null, '', getQueryNewState(goals, changedGoal))
     },
   })
 

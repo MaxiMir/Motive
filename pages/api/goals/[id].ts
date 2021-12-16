@@ -7,10 +7,10 @@ export default async (_: NextApiRequest, res: NextApiResponse): Promise<void> =>
 
   const goal: Goal = {
     ...learnFrench,
-    id: '314',
+    id: 314,
     day: {
       ...learnFrench.day,
-      id: '532',
+      id: 532,
       characteristic: {
         motivation: false,
         support: false,
@@ -19,21 +19,21 @@ export default async (_: NextApiRequest, res: NextApiResponse): Promise<void> =>
       },
       tasks: [
         {
-          id: '5',
+          id: 5,
           name: 'read 30 pages Harry Potter',
           completed: false,
           completedByOthers: false,
           date: new Date().toISOString(),
         },
         {
-          id: '6',
+          id: 6,
           name: 'watch Lord of the Rings #1',
           completed: false,
           completedByOthers: false,
           date: new Date().toISOString(),
         },
         {
-          id: '7',
+          id: 7,
           name: 'Solve 3 tests',
           completed: false,
           completedByOthers: false,

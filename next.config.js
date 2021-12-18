@@ -8,4 +8,7 @@ module.exports = withPWA({
     dest: 'public',
     runtimeCaching,
   },
+  images: {
+    domains: ['localhost'], // TODO REPLACE
+  },
 })

@@ -1,24 +1,26 @@
 import { useEffect, useState } from 'react'
 import { Chip, makeStyles, useMediaQuery, useTheme } from '@material-ui/core'
 import { SEARCH_ROUTE } from 'route'
+import { Hashtag } from 'dto'
 import AppBox from 'components/UI/AppBox'
 import { getHashtags } from './helper'
 
 interface HashtagsProps {
-  hashtags: string[]
+  hashtags: Hashtag[]
 }
 
 export default function Hashtags({ hashtags }: HashtagsProps): JSX.Element {
   const theme = useTheme()
   const classes = useStyles()
   const isMobile = useMediaQuery(theme.breakpoints.down('sm'))
-  const [showingHashtags, setShowingHashtags] = useState(getHashtags(hashtags, isMobile))
+  const hashtagNames = hashtags.map((h) => h.name)
+  const [showingHashtags, setShowingHashtags] = useState(getHashtags(hashtagNames, isMobile))
 
-  const onClick = () => setShowingHashtags(hashtags)
+  const onClick = () => setShowingHashtags(hashtagNames)
 
   useEffect(() => {
-    setShowingHashtags(getHashtags(hashtags, isMobile))
-  }, [hashtags, isMobile])
+    setShowingHashtags(getHashtags(hashtagNames, isMobile))
+  }, [hashtagNames, isMobile])
 
   return (
     <AppBox flexWrap="wrap" spacing={1}>

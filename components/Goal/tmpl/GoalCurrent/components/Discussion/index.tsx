@@ -17,7 +17,7 @@ interface DiscussionProps {
   dayId: number
   role: Role
   owner: UserBase
-  client: Client
+  client?: Client
   count: number
   setDiscussionCount: (count: number) => void
 }
@@ -36,7 +36,7 @@ export default function Discussion({
     initialSize: !count ? 0 : 1,
   })
   const content = useMemo(getContent, [data])
-  const withInput = client.isAuthenticated && client.id !== owner.id
+  const withInput = !!client && client.id !== owner.id
   const shownCount = count >= VISIBLE_COUNT ? VISIBLE_COUNT : count
   const height = !count ? undefined : (!withInput ? 0 : 56) + 540
   const checkOnLoadMore = checkPartialOnLoadMore(data, content)

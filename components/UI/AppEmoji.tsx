@@ -1,11 +1,12 @@
 import dynamic from 'next/dynamic'
-import { CharacteristicName } from 'dto'
+import { GoalCharacteristicName, UserCharacteristicName } from 'dto'
 import { AppTypographyProps } from './AppTypography'
 
 const AppTypography = dynamic(() => import('./AppTypography'))
 
 export type AppEmojiName =
-  | CharacteristicName
+  | UserCharacteristicName
+  | GoalCharacteristicName
   | 'motivation-tech'
   | 'favorite'
   | 'views'

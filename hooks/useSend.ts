@@ -7,13 +7,15 @@ interface Options<R> {
   onError?: (e: unknown, request: AxiosRequestConfig['data']) => void
 }
 
+interface UseSend<D> {
+  isLoading: boolean
+  send: (data: D) => void
+}
+
 export default function useSend<D, R>(
   fetcher: (data: D) => Promise<R>,
   { onSuccess, onError }: Options<R>,
-): {
-  isLoading: boolean
-  send: (data: D) => void
-} {
+): UseSend<D> {
   const [isLoading, setIsLoading] = useState(false)
   const { enqueueSnackbar } = useSnackbar()
 

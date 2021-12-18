@@ -15,7 +15,9 @@ const ME: UserDetail = {
     abandoned: 0,
   },
   role: 'OWNER',
-  favorite: true,
+  preferences: {
+    favorites: [4],
+  },
   goals: [learnFrench, becomeSenior],
 }
 
@@ -33,7 +35,9 @@ const JULIA: UserDetail = {
     abandoned: 0,
   },
   role: 'GUEST',
-  favorite: true,
+  preferences: {
+    favorites: [],
+  },
   goals: [
     {
       ...learnFrench,
@@ -62,7 +66,9 @@ const FRIEND: UserDetail = {
     abandoned: 1,
   },
   role: 'GUEST',
-  favorite: false,
+  preferences: {
+    favorites: [],
+  },
   goals: [
     {
       ...learnFrench,
@@ -91,7 +97,9 @@ const FRIEND1: UserDetail = {
     abandoned: 0,
   },
   role: 'GUEST',
-  favorite: false,
+  preferences: {
+    favorites: [],
+  },
   goals: [],
 }
 
@@ -109,7 +117,9 @@ const FRIEND2: UserDetail = {
     abandoned: 0,
   },
   role: 'GUEST',
-  favorite: false,
+  preferences: {
+    favorites: [],
+  },
   goals: [],
 }
 

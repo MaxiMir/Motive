@@ -4,7 +4,12 @@ export const learnFrench: Goal = {
   id: 314,
   name: 'learn French',
   started: '2021-10-17T18:31:42',
-  hashtags: ['foreignLanguage', 'knowledge', 'learnFrench', 'immigration', 'recommendation'],
+  hashtags: [
+    { id: 15, name: 'foreignLanguage', views: 0 },
+    { id: 17, name: 'learnFrench', views: 0 },
+    { id: 18, name: 'immigration', views: 1 },
+    { id: 21, name: 'recommendation', views: 0 },
+  ],
   role: 'MEMBER',
   owner: {
     id: 2,
@@ -21,12 +26,7 @@ export const learnFrench: Goal = {
   day: {
     id: 232,
     date: '2021-12-03T00:00:00.000Z', // 00:00:00.000
-    characteristic: {
-      motivation: true,
-      support: false,
-      creativity: true,
-      members: false,
-    },
+    characteristic: null,
     tasks: [
       {
         id: 1,
@@ -48,20 +48,16 @@ export const learnFrench: Goal = {
     discussionCount: 5,
     feedbackId: 1,
   },
-  datesMap: {
-    '2021-09-06T00:00:00.000Z': 232,
-    '2021-09-07T00:00:00.000Z': 233,
-    '2021-09-08T00:00:00.000Z': 234,
-    '2021-09-10T00:00:00.000Z': 235,
-    '2021-12-03T00:00:00.000Z': 236,
-  },
 }
 
 export const becomeSenior: Goal = {
   id: 214,
   name: 'become senior',
   started: '2021-09-01T12:31:42',
-  hashtags: ['programming', 'knowledge'],
+  hashtags: [
+    { id: 3, name: 'programming', views: 1 },
+    { id: 4, name: 'knowledge', views: 1 },
+  ],
   role: 'OWNER',
   owner: {
     id: 1,
@@ -78,23 +74,11 @@ export const becomeSenior: Goal = {
   day: {
     id: 312,
     date: '2021-10-06T00:00:00.000Z',
-    characteristic: {
-      motivation: true,
-      support: false,
-      creativity: false,
-      members: false,
-    },
+    characteristic: null,
     tasks: [{ id: 11, name: 'watch video', completed: false, completedByOthers: false }],
     views: 123,
     discussionCount: 0,
     feedbackId: 2,
-  },
-  datesMap: {
-    '2021-09-06T00:00:00.000Z': 214,
-    '2021-09-07T00:00:00.000Z': 215,
-    '2021-09-08T00:00:00.000Z': 216,
-    '2021-09-10T00:00:00.000Z': 217,
-    '2021-10-06T00:00:00.000Z': 218,
   },
 }
 
@@ -103,12 +87,7 @@ export const getNewGoal = (goalCreation: GoalCreation): Goal => {
     id: 413,
     name: goalCreation.name,
     started: new Date().toISOString(),
-    hashtags: !goalCreation.hashtags
-      ? []
-      : goalCreation.hashtags
-          .trim()
-          .split('# ')
-          .map((h: string) => h.trim()),
+    hashtags: goalCreation.hashtags.map((name, id) => ({ id, name, views: 0 })),
     role: 'OWNER',
     owner: {
       id: 1,
@@ -125,12 +104,7 @@ export const getNewGoal = (goalCreation: GoalCreation): Goal => {
     day: {
       id: 653,
       date: new Date().toISOString(),
-      characteristic: {
-        motivation: false,
-        support: false,
-        creativity: false,
-        members: false,
-      },
+      characteristic: null,
       tasks: goalCreation.tasks.map((t, id) => ({
         ...t,
         id,
@@ -140,9 +114,6 @@ export const getNewGoal = (goalCreation: GoalCreation): Goal => {
       views: 0,
       discussionCount: 0,
       feedbackId: 3,
-    },
-    datesMap: {
-      [new Date().toISOString()]: 653,
     },
   }
 }

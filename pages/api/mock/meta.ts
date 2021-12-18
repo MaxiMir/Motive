@@ -1,7 +1,6 @@
 export default {
-  title: 'Title #Motive',
-  description: 'description #Motive',
-  keywords: 'keywords #Motive',
-  url: 'http://localhost:3000/rating',
+  title: 'Maxim Minchenko',
+  description: 'See how Maxim Minchenko (@maximir) accomplishes his goals',
+  url: 'http://bebetter/maximir',
   type: 'user page',
 }

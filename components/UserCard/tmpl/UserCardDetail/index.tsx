@@ -1,4 +1,4 @@
-import { useEffect } from 'react'
+import React, { useEffect, useMemo } from 'react'
 import dynamic from 'next/dynamic'
 import { useRouter } from 'next/router'
 import { useMediaQuery, useTheme } from '@material-ui/core'
@@ -22,17 +22,21 @@ const SECOND_CHARACTERISTIC_NAMES: UserCharacteristicName[] = ['completed', 'awa
 export interface UserCardDetailProps {
   tmpl: 'detail'
   user: UserDetail
-  client: Client
+  client?: Client
 }
 
 export default function UserCardDetail({ user, client }: UserCardDetailProps): JSX.Element {
-  const { id, nickname, name, favorite, avatar, characteristic, role, goals } = user
+  const { id, nickname, name, preferences, avatar, characteristic, goals } = user
   const theme = useTheme()
   const { query } = useRouter()
   const characteristicColors = useCharacteristicColors()
   const isMobile = useMediaQuery(theme.breakpoints.down('sm'))
-  const isOwner = role === 'OWNER'
-  const showFavorite = !isOwner && client.isAuthenticated
+  const isOwner = user.id === client?.id
+  const favorite = useMemo(getFavorite, [client, isOwner, preferences.favorites])
+
+  function getFavorite() {
+    return !isOwner && Boolean(client && preferences.favorites?.includes(client.id))
+  }
 
   useEffect(() => {
     query.s && scrollToElem(`goal-${query.s}`)
@@ -44,10 +48,10 @@ export default function UserCardDetail({ user, client }: UserCardDetailProps): J
         <AppTypography variant="h5" component="h1">
           {name}
         </AppTypography>
-        {showFavorite && <Favorite id={id} favorite={favorite} />}
+        {!isOwner && <Favorite id={id} favorite={favorite} />}
       </AppBox>
       <AppBox flexDirection="column" spacing={3} flex={1}>
-        <AppBox spacing={isMobile ? 1 : 4}>
+        <AppBox spacing={isMobile ? 1 : 4} mb={4}>
           <Avatar avatar={avatar} characteristic={characteristic} characteristicColors={characteristicColors} />
           <AppBox flexDirection="column" justifyContent="space-between" flex={1}>
             <AppBox justifyContent="space-between">

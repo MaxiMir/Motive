@@ -3,7 +3,7 @@ import { FavoritesPage, MainPage, RatingPage } from 'dto'
 
 export default class PageService {
   static async getMain(): Promise<MainPage> {
-    return Axios.get('/')
+    return Axios.get('/pages/main')
   }
 
   static async getRating(): Promise<RatingPage> {

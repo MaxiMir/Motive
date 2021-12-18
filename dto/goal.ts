@@ -4,7 +4,7 @@ import { Role } from './role'
 
 export interface GoalCreation {
   name: string
-  hashtags?: string
+  hashtags: string[]
   tasks: Array<Omit<Task, 'id' | 'completed' | 'completedByOthers'>>
 }
 
@@ -12,18 +12,23 @@ export interface Goal {
   id: number
   name: string
   started: string
-  hashtags: string[]
+  hashtags: Hashtag[]
   owner: UserBase
   role: Role
   characteristic: GoalCharacteristic // count all
   day: Day
-  datesMap: Record<string, number> // { [formattedDate]: dayId }
+}
+
+export interface Hashtag {
+  id: number
+  name: string
+  views: number
 }
 
 interface Day {
   id: number
   date: string
-  characteristic: DayCharacteristic
+  characteristic: DayCharacteristic | null
   tasks: Task[]
   discussionCount: number
   feedbackId: number | null

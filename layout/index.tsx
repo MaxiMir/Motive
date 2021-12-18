@@ -9,23 +9,13 @@ interface LayoutProps {
   data?: unknown | string
   title?: string
   description?: string
-  keywords?: string
   url?: string
   type?: string
   error?: boolean
   withVerticalPadding?: boolean
 }
 
-const Layout: FC<LayoutProps> = ({
-  title,
-  description,
-  keywords,
-  url,
-  type,
-  withVerticalPadding = true,
-  error,
-  children,
-}) => {
+const Layout: FC<LayoutProps> = ({ title, description, url, type, withVerticalPadding = true, error, children }) => {
   const { enqueueSnackbar } = useSnackbar()
   const classes = useStyles({ withVerticalPadding })
 
@@ -37,16 +27,16 @@ const Layout: FC<LayoutProps> = ({
   return (
     <>
       <Head>
-        {title && <title>{title}</title>}
+        <title>{title || process.env.NEXT_PUBLIC_APP_NAME}</title>
         {description && <meta name="description" content={description} />}
-        {keywords && <meta name="keywords" content={keywords} />}
         <meta name="robots" content="index, follow" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <meta property="og:title" content={title} />
         {description && <meta property="og:description" content={description} />}
-        <meta property="og:url" content={url} />
+        {url && <meta property="og:url" content={url} />}
         <meta property="og:image" content="/images/app.png" />
         {type && <meta property="og:type" content={type} />}
+        <link rel="canonical" href="https://www.instagram.com/astrogks/" />
         <link rel="manifest" href="/manifest.json" />
         <link rel="apple-touch-icon" href="/apple-icon.png" />
         {/* PWA primary color */}

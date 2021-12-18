@@ -15,7 +15,7 @@ export default function Favorites({ fallbackData }: PageSWR<FavoritesPage>): JSX
   const [{ data, error }, mutate] = useFavoritesPage(fallbackData)
 
   return (
-    <Layout {...data?.meta} error={error}>
+    <Layout title="favorites" error={error}>
       {data?.content && (
         <AppContainer withFlexColumn>
           <AppHeader name="favorite" mb={4}>

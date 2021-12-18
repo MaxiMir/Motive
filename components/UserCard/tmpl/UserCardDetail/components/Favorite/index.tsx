@@ -12,7 +12,7 @@ interface FavoriteProps {
 export default function Favorite({ id, favorite: initial }: FavoriteProps): JSX.Element {
   const classes = useStyles()
   const [favorite, setFavorite] = useUserFavorite(id, initial)
-
+  // TODO click for none auth users
   return (
     <IconButton title={`${favorite ? 'Remove from' : 'Add to'} favorite`} onClick={setFavorite}>
       <AppEmoji name="favorite" variant="h5" className={clsx([classes.emoji, !favorite && classes.emojiNotActive])} />

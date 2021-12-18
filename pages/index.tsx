@@ -6,10 +6,12 @@ import Layout from 'layout'
 import Promo from 'components/Promo'
 
 export default function Home({ fallbackData }: PageSWR<MainPage>): JSX.Element {
-  const { data, error } = useSWR('home', PageService.getMain, { fallbackData })
+  const { error } = useSWR('home', PageService.getMain, { fallbackData })
+
+  // TODO get client
 
   return (
-    <Layout {...data?.meta} error={error} withVerticalPadding={false}>
+    <Layout title={process.env.NEXT_PUBLIC_APP_NAME} error={error} withVerticalPadding={false}>
       <Promo />
     </Layout>
   )

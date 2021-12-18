@@ -1,5 +1,5 @@
 import { makeStyles } from '@material-ui/core/styles'
-import { CharacteristicName } from 'dto'
+import { UserCharacteristicName } from 'dto'
 import { CharacteristicColor } from 'hooks/useCharacteristicColors'
 import AppBox from 'components/UI/AppBox'
 import AppEmoji from 'components/UI/AppEmoji'
@@ -7,7 +7,7 @@ import AppLink from 'components/UI/AppLink'
 import AppTypography from 'components/UI/AppTypography'
 
 export interface AdvantageProps {
-  name: CharacteristicName
+  name: UserCharacteristicName
   title: string
   subtitle: string
   href: string

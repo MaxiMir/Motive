@@ -32,13 +32,14 @@ const CHARACTERISTICS: GoalCharacteristicName[] = ['motivation', 'creativity', '
 export interface GoalCurrentProps {
   tmpl: 'current'
   goal: Goal
-  client: Client
+  client?: Client
   href: string
 }
 
 export default function GoalCurrent({ goal, client, href }: GoalCurrentProps): JSX.Element {
   const currentDate = new Date()
-  const { id, name, hashtags, started, characteristic, role, owner, day, datesMap } = goal
+  const { id, name, hashtags, started, characteristic, role, owner, day } = goal
+  const datesMap = {} // TODO change
   const { id: dayId, date, tasks, views, feedbackId } = day
   const classes = useStyles()
   const theme = useTheme()
@@ -141,7 +142,14 @@ export default function GoalCurrent({ goal, client, href }: GoalCurrentProps): J
             </div>
           </AppBox>
           <AppBox flexDirection="column" spacing={2}>
-            <Reactions role={role} dayId={dayId} goal={goal} characteristic={day.characteristic} owner={owner} />
+            <Reactions
+              role={role}
+              dayId={dayId}
+              goal={goal}
+              characteristic={day.characteristic}
+              owner={owner}
+              client={client}
+            />
             <Views views={views} />
           </AppBox>
         </AppBox>

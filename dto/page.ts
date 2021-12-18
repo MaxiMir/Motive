@@ -2,23 +2,14 @@ import { Client, User } from './user'
 import { MainCharacteristicName } from './characteristic'
 import { Role } from './role'
 import { Goal } from './goal'
+import { Preferences } from './preferences'
 
 export type PageSWR<T> = {
   fallbackData: T
 }
 
-interface Meta {
-  title: string
-  description: string
-  keywords: string
-  url: string
-  type: string
-  href: string
-}
-
 type Page<T> = {
-  meta: Meta
-  client: Client
+  client?: Client
   content: T
 }
 
@@ -31,7 +22,7 @@ export type FavoritesPage = Page<User[]>
 export type UserPage = Page<UserDetail>
 
 export interface UserDetail extends User {
-  favorite: boolean
+  preferences: Preferences
   role: Role
   goals: Goal[]
 }

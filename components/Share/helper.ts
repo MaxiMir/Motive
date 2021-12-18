@@ -1,4 +1,4 @@
-const HASHTAG = process.env.NEXT_PUBLIC_APP_NAME_HASHTAG as string
+const HASHTAG = process.env.NEXT_PUBLIC_APP_NAME as string
 
 interface InitParams {
   shareUrl: string

@@ -1,7 +1,7 @@
-import Image from 'next/image'
 import { makeStyles } from '@material-ui/core/styles'
 import { UserBase } from 'dto'
 import AppLink from 'components/UI/AppLink'
+import AppAvatar from 'components/UI/AppAvatar'
 
 export interface UserCardAvatarProps {
   tmpl: 'avatar'
@@ -10,12 +10,12 @@ export interface UserCardAvatarProps {
 }
 
 export default function UserCardAvatar({ user, size }: UserCardAvatarProps): JSX.Element {
-  const { id, name, avatar } = user
+  const { name, nickname, avatar } = user
   const classes = useStyles({ size })
 
   return (
-    <AppLink href={`/${id}`} title={name} className={classes.avatarLink}>
-      <Image src={avatar} alt="" width={size} height={size} objectFit="cover" className={classes.avatar} />
+    <AppLink href={`/${nickname}`} title={name} className={classes.avatarLink}>
+      <AppAvatar urn={avatar} size={size} />
     </AppLink>
   )
 }
@@ -23,8 +23,5 @@ export default function UserCardAvatar({ user, size }: UserCardAvatarProps): JSX
 const useStyles = makeStyles({
   avatarLink: {
     height: (props: { size: number }) => props.size,
-  },
-  avatar: {
-    borderRadius: '50%',
   },
 })

@@ -10,12 +10,18 @@ import UserCard from 'components/UserCard'
 export default function UserDetail({ fallbackData }: PageSWR<UserPage>): JSX.Element {
   const { asPath } = useRouter()
   const { data, error } = useSWR<UserPage>(asPath, () => UserService.getById(asPath), { fallbackData }) // swr detail page
-  const dataLoaded = data?.content && data?.client
+  const user = data?.content
 
   return (
     <UserPageContext.Provider value={data}>
-      <Layout {...data?.meta} error={error}>
-        {dataLoaded && <UserCard tmpl="detail" user={data.content} client={data.client} />}
+      <Layout
+        title={user && `${user.name} profile on ${process.env.NEXT_PUBLIC_APP_NAME}`}
+        description={user && `See how ${user.name} (@${user.nickname}) accomplishes his goals`}
+        url={user && `${process.env.HOST}/${user.nickname}`}
+        type="profile"
+        error={error}
+      >
+        {user && <UserCard tmpl="detail" user={user} client={data.client} />}
       </Layout>
     </UserPageContext.Provider>
   )

@@ -1,6 +1,7 @@
+import { useMemo } from 'react'
 import produce from 'immer'
 import { Button } from '@material-ui/core'
-import { MainCharacteristicName, DayCharacteristic, UserBase, Goal, Role } from 'dto'
+import { MainCharacteristicName, DayCharacteristic, UserBase, Goal, Role, Client } from 'dto'
 import useMutateGoals from 'hooks/useMutateGoals'
 import AppBox from 'components/UI/AppBox'
 import AppEmoji from 'components/UI/AppEmoji'
@@ -11,12 +12,14 @@ export interface ViewerProps {
   dayId: number
   role: Role
   goal: Goal
-  characteristic: DayCharacteristic
+  characteristic: DayCharacteristic | null
   owner: UserBase
+  client?: Client
 }
 
-export default function Viewer({ role, dayId, goal, characteristic, owner }: ViewerProps): JSX.Element {
+export default function Viewer({ role, dayId, goal, characteristic, owner, client }: ViewerProps): JSX.Element {
   const [goals, mutateGoals] = useMutateGoals()
+  const activeMap = useMemo(getActiveMap, [characteristic?.creativity, characteristic?.motivation, client])
 
   const onSet = (value: MainCharacteristicName, increase: boolean) =>
     mutateGoals(
@@ -25,11 +28,19 @@ export default function Viewer({ role, dayId, goal, characteristic, owner }: Vie
       }),
     )
 
+  function getActiveMap() {
+    return {
+      motivation: Boolean(client && characteristic?.motivation?.includes(client.id)),
+      creativity: Boolean(client && characteristic?.creativity?.includes(client.id)),
+      support: false,
+    }
+  }
+
   return (
     <AppBox justifyContent="space-between">
       <AppBox spacing={1}>
         {(['motivation', 'creativity'] as MainCharacteristicName[]).map((name) => (
-          <ReactionWithSend dayId={dayId} name={name} active={characteristic[name]} key={name} onSet={onSet} />
+          <ReactionWithSend dayId={dayId} name={name} active={activeMap[name]} key={name} onSet={onSet} />
         ))}
         <Reaction
           name="support"

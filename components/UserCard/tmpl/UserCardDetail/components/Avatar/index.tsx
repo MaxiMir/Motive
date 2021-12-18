@@ -1,9 +1,9 @@
-import Image from 'next/image'
 import { makeStyles } from '@material-ui/core/styles'
 import { CharacteristicColors } from 'hooks/useCharacteristicColors'
 import { UserCharacteristic } from 'dto'
 import AppBox from 'components/UI/AppBox'
 import AppCircle from 'components/UI/AppCircle'
+import AppAvatar from 'components/UI/AppAvatar'
 import { getCircleItems } from './helper'
 
 interface AvatarProps {
@@ -24,7 +24,7 @@ export default function Avatar({ avatar, characteristic, characteristicColors }:
         </AppBox>
       ))}
       <AppBox justifyContent="center" alignItems="center" className={classes.circle}>
-        <Image src={avatar} alt="" width={81} height={81} objectFit="cover" className={classes.avatar} />
+        <AppAvatar urn={avatar} size={81} />
       </AppBox>
     </AppBox>
   )
@@ -43,8 +43,5 @@ const useStyles = makeStyles({
     transform: 'translate(-50%,-50%)',
     width: 126,
     height: 126,
-  },
-  avatar: {
-    borderRadius: '50%',
   },
 })

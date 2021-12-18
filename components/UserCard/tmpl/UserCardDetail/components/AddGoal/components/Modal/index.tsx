@@ -15,7 +15,7 @@ import AppInput from 'components/UI/AppInput'
 import AppTypography from 'components/UI/AppTypography'
 import AppIcon from 'components/UI/AppIcon'
 import { PaulIcon } from 'components/UI/icons'
-import { schema } from './helper'
+import { prepareHashtags, schema } from './helper'
 import SubmitButton from './components/SubmitButton'
 import CloseButton from './components/CloseButton'
 
@@ -40,7 +40,7 @@ export default function Modal({ onSuccess, onClose }: ModalProps): JSX.Element {
     },
     validationSchema: schema,
     async onSubmit(data) {
-      send(data)
+      send({ ...data, hashtags: prepareHashtags(data.hashtags) })
     },
   })
   const { values, setFieldValue, handleSubmit } = formik

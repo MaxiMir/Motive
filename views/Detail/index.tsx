@@ -4,6 +4,7 @@ import { useRouter } from 'next/router'
 import { useMediaQuery, useTheme } from '@material-ui/core'
 import { Client, UserDetail, UserCharacteristicName } from 'dto'
 import { scrollToElem } from 'helpers/dom'
+import { getUserHref } from 'helpers/user'
 import useCharacteristicColors from 'hooks/useCharacteristicColors'
 import AppBox from 'components/UI/AppBox'
 import AppContainer from 'components/UI/AppContainer'
@@ -19,23 +20,23 @@ const GoalCard = dynamic(() => import('components/Goal'))
 const CHARACTERISTIC_NAMES: UserCharacteristicName[] = ['motivation', 'creativity', 'support']
 const SECOND_CHARACTERISTIC_NAMES: UserCharacteristicName[] = ['completed', 'awards', 'abandoned']
 
-export interface UserCardDetailProps {
-  tmpl: 'detail'
+export interface DetailProps {
   user: UserDetail
   client?: Client
 }
 
-export default function UserCardDetail({ user, client }: UserCardDetailProps): JSX.Element {
-  const { id, nickname, name, preferences, avatar, characteristic, goals } = user
+export default function Detail({ user, client }: DetailProps): JSX.Element {
+  const { id, nickname, name, favorites, avatar, characteristic, goals } = user
   const theme = useTheme()
   const { query } = useRouter()
   const characteristicColors = useCharacteristicColors()
   const isMobile = useMediaQuery(theme.breakpoints.down('sm'))
   const isOwner = user.id === client?.id
-  const favorite = useMemo(getFavorite, [client, isOwner, preferences.favorites])
+  const favorite = useMemo(getFavorite, [client, isOwner, favorites])
+  const href = getUserHref(nickname)
 
   function getFavorite() {
-    return !isOwner && Boolean(client && preferences.favorites?.includes(client.id))
+    return !isOwner && Boolean(client && favorites.some((f) => f.id === client.id))
   }
 
   useEffect(() => {
@@ -48,7 +49,7 @@ export default function UserCardDetail({ user, client }: UserCardDetailProps): J
         <AppTypography variant="h5" component="h1">
           {name}
         </AppTypography>
-        {!isOwner && <Favorite id={id} favorite={favorite} />}
+        {!isOwner && <Favorite userId={id} favorite={favorite} />}
       </AppBox>
       <AppBox flexDirection="column" spacing={3} flex={1}>
         <AppBox spacing={isMobile ? 1 : 4} mb={4}>
@@ -86,7 +87,7 @@ export default function UserCardDetail({ user, client }: UserCardDetailProps): J
         ) : (
           <AppBox flexWrap="wrap" spacing={3}>
             {goals.map((goal) => (
-              <GoalCard tmpl="current" goal={goal} client={client} href={`/${nickname}`} key={goal.id} />
+              <GoalCard tmpl="current" goal={goal} client={client} href={href} key={goal.id} />
             ))}
           </AppBox>
         )}

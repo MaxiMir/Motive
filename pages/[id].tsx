@@ -3,13 +3,13 @@ import { useRouter } from 'next/router'
 import useSWR from 'swr'
 import { PageSWR, UserPage } from 'dto'
 import { UserPageContext } from 'context/userPageContext'
-import UserService from 'services/UserService'
+import PageService from 'services/PageService'
 import Layout from 'layout'
-import UserCard from 'components/UserCard'
+import Detail from 'views/Detail'
 
 export default function UserDetail({ fallbackData }: PageSWR<UserPage>): JSX.Element {
   const { asPath } = useRouter()
-  const { data, error } = useSWR<UserPage>(asPath, () => UserService.getById(asPath), { fallbackData }) // swr detail page
+  const { data, error } = useSWR<UserPage>(asPath, () => PageService.getUser(asPath), { fallbackData }) // swr detail page
   const user = data?.content
 
   return (
@@ -21,16 +21,25 @@ export default function UserDetail({ fallbackData }: PageSWR<UserPage>): JSX.Ele
         type="profile"
         error={error}
       >
-        {user && <UserCard tmpl="detail" user={user} client={data.client} />}
+        {user && <Detail user={user} client={data?.client} />}
       </Layout>
     </UserPageContext.Provider>
   )
 }
 
 export const getServerSideProps: GetServerSideProps = async (ctx) => {
-  const data = await UserService.getById(ctx.req.url || '')
+  // check on find json in fs:
+  if (ctx.req.url?.includes('_next')) {
+    return {
+      props: {
+        fallbackData: null,
+      },
+    }
+  }
 
-  if (!data) {
+  const fallbackData = await PageService.getUser(ctx.req.url || '')
+
+  if (!fallbackData.content) {
     return {
       notFound: true,
     }
@@ -38,7 +47,7 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
 
   return {
     props: {
-      fallbackData: data,
+      fallbackData,
     },
   }
 }

@@ -18,7 +18,13 @@ export default function TaskForm({ task, rest, onSet }: FormProps): JSX.Element 
 
   return (
     <form>
-      <AppCheckbox name={id} label={label} checked={checked} disabled={checked || isLoading} onChange={onChange} />
+      <AppCheckbox
+        name={id.toString()}
+        label={label}
+        checked={checked}
+        disabled={checked || isLoading}
+        onChange={onChange}
+      />
       {date && <TaskDate date={date} />}
     </form>
   )

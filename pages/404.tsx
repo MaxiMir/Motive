@@ -1,5 +1,5 @@
 import Layout from 'layout'
-import Error from 'components/Error'
+import Error from 'views/Error'
 
 export default function Page404(): JSX.Element {
   return (

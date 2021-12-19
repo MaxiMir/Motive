@@ -14,10 +14,7 @@ const ME: UserDetail = {
     completed: 8,
     abandoned: 0,
   },
-  role: 'OWNER',
-  preferences: {
-    favorites: [4],
-  },
+  favorites: [],
   goals: [learnFrench, becomeSenior],
 }
 
@@ -34,10 +31,7 @@ const JULIA: UserDetail = {
     completed: 4,
     abandoned: 0,
   },
-  role: 'GUEST',
-  preferences: {
-    favorites: [],
-  },
+  favorites: [],
   goals: [
     {
       ...learnFrench,
@@ -65,10 +59,7 @@ const FRIEND: UserDetail = {
     completed: 4,
     abandoned: 1,
   },
-  role: 'GUEST',
-  preferences: {
-    favorites: [],
-  },
+  favorites: [],
   goals: [
     {
       ...learnFrench,
@@ -96,10 +87,7 @@ const FRIEND1: UserDetail = {
     completed: 13,
     abandoned: 0,
   },
-  role: 'GUEST',
-  preferences: {
-    favorites: [],
-  },
+  favorites: [],
   goals: [],
 }
 
@@ -116,10 +104,7 @@ const FRIEND2: UserDetail = {
     completed: 12,
     abandoned: 0,
   },
-  role: 'GUEST',
-  preferences: {
-    favorites: [],
-  },
+  favorites: [],
   goals: [],
 }
 

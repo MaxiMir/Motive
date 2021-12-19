@@ -1,8 +1,10 @@
-import { UserPage } from 'dto'
 import Axios from 'lib/axios'
 
 export default class UserService {
-  static async getById(nickname: string): Promise<UserPage> {
-    return Axios.get(`/pages/users${nickname}`, { validateStatus: () => true })
+  /**
+   * /favorites
+   */
+  static updateFavorite(data: { userId: number; favorite: boolean }): Promise<void> {
+    return Axios.patch(`/users/favorites/`, data)
   }
 }

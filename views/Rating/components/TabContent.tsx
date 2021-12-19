@@ -42,7 +42,7 @@ export default function TabContent({ name, users }: TabContentProps): JSX.Elemen
       </div>
       <AppList<User>
         elements={users}
-        keyGetter={(el) => el.id}
+        keyGetter={(el) => el.id.toString()}
         render={(user, index) => (
           <UserCard tmpl="rating" user={user} characteristicName={name} color={colors[name].fontColor} index={index} />
         )}

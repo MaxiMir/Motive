@@ -1,10 +1,11 @@
-import Image from 'next/image'
 import { makeStyles } from '@material-ui/core/styles'
 import { Container, Grid } from '@material-ui/core'
 import { User, UserCharacteristicName } from 'dto'
+import { getUserHref } from 'helpers/user'
 import AppBox from 'components/UI/AppBox'
 import AppLink from 'components/UI/AppLink'
 import AppTypography from 'components/UI/AppTypography'
+import AppAvatar from 'components/UI/AppAvatar'
 
 export interface UserCardRatingProps {
   tmpl: 'rating'
@@ -19,7 +20,7 @@ export default function UserCardRating({ user, characteristicName, color, index 
   const classes = useStyles({ color, isEven: index % 2 === 0 })
   const number = getNumber()
   const ratingValue = Math.floor(characteristic[characteristicName])
-  const href = `/${nickname}`
+  const href = getUserHref(nickname)
 
   function getNumber() {
     const incrementedNumber = index + 1
@@ -48,7 +49,7 @@ export default function UserCardRating({ user, characteristicName, color, index 
           <Grid item xs={8}>
             <AppBox alignItems="center" spacing={2}>
               <AppLink href={href} className={classes.avatarLink}>
-                <Image src={avatar} width={35} height={35} alt="" className={classes.avatar} />
+                <AppAvatar urn={avatar} size={35} />
               </AppLink>
               <AppLink href={href} variant="body1">
                 {name}
@@ -78,9 +79,6 @@ const useStyles = makeStyles({
   avatarLink: {
     marginRight: 8,
     height: 35,
-  },
-  avatar: {
-    borderRadius: '50%',
   },
   ratingValue: {
     color: (props: UseStylesProps) => props.color,

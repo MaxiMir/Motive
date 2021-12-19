@@ -4,14 +4,13 @@ import { Button, createStyles, IconButton } from '@material-ui/core'
 import { makeStyles } from '@material-ui/core/styles'
 import { KeyboardDatePicker } from '@material-ui/pickers'
 import { MaterialUiPickersDate } from '@material-ui/pickers/typings/date'
-import { Goal } from 'dto'
 import { toISODateWithZeroTime } from 'helpers/date'
 import useDebounceCb from 'hooks/useDebounceCb'
 import AppBox from 'components/UI/AppBox'
 
 interface DateProps {
   date: string
-  datesMap: Goal['datesMap']
+  datesMap: Record<string, number>
   onChangeDate: (id: number) => void
 }
 

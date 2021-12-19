@@ -1,13 +1,14 @@
 import { Fragment } from 'react'
-import Image from 'next/image'
 import { makeStyles } from '@material-ui/core/styles'
 import { User, UserCharacteristicName } from 'dto'
 import useCharacteristicColors from 'hooks/useCharacteristicColors'
+import { getUserHref } from 'helpers/user'
 import Characteristic from 'components/Characteristic'
 import AppBox from 'components/UI/AppBox'
 import AppLink from 'components/UI/AppLink'
 import AppDot from 'components/UI/AppDot'
 import AppTypography from 'components/UI/AppTypography'
+import AppAvatar from 'components/UI/AppAvatar'
 import Menu from './components/Menu'
 
 const CHARACTERISTICS: UserCharacteristicName[] = ['motivation', 'creativity', 'support', 'completed']
@@ -23,12 +24,12 @@ export default function UserCardFavorite({ user, onRemove }: UserCardFavoritePro
   const { nickname, avatar, name, characteristic } = user
   const classes = useStyles()
   const colors = useCharacteristicColors()
-  const href = `/${nickname}`
+  const href = getUserHref(nickname)
 
   return (
     <AppBox spacing={1}>
       <AppLink href={href} className={classes.avatarLink}>
-        <Image src={avatar} width={55} height={55} alt="" className={classes.avatar} />
+        <AppAvatar urn={avatar} size={55} />
       </AppLink>
       <AppBox flexDirection="column" justifyContent="space-between" flex={1}>
         <AppBox justifyContent="space-between" alignItems="center">
@@ -61,8 +62,5 @@ const useStyles = makeStyles({
   avatarLink: {
     width: 55,
     height: 55,
-  },
-  avatar: {
-    borderRadius: '50%',
   },
 })

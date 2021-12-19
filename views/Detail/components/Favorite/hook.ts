@@ -1,14 +1,14 @@
 import { useRef, useState } from 'react'
-import FavoriteService from 'services/FavoriteService'
+import UserService from 'services/UserService'
 import useDebounceCb from 'hooks/useDebounceCb'
 import useSend from 'hooks/useSend'
 import useSnackbar from 'hooks/useSnackbar'
 
-export default function useUserFavorite(id: number, initial: boolean): [boolean, () => void] {
+export default function useUserFavorite(userId: number, initial: boolean): [boolean, () => void] {
   const lastLoadedRef = useRef(initial)
   const [favorite, setFavorite] = useState(initial)
   const { enqueueSnackbar } = useSnackbar()
-  const { send } = useSend(FavoriteService.setUser, {
+  const { send } = useSend(UserService.updateFavorite, {
     onSuccess(_, data) {
       lastLoadedRef.current = data.favorite
 
@@ -23,7 +23,7 @@ export default function useUserFavorite(id: number, initial: boolean): [boolean,
     },
   })
   const mutateWithDebounce = useDebounceCb((value: boolean) => {
-    lastLoadedRef.current !== value && send({ id, favorite: value })
+    lastLoadedRef.current !== value && send({ userId, favorite: value })
   })
 
   const onChange = () => {

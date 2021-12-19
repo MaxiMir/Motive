@@ -12,10 +12,9 @@ export default async (_: NextApiRequest, res: NextApiResponse): Promise<void> =>
       ...learnFrench.day,
       id: 532,
       characteristic: {
-        motivation: false,
-        support: false,
-        creativity: false,
-        members: false,
+        motivation: [],
+        support: [],
+        creativity: [],
       },
       tasks: [
         {

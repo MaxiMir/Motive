@@ -5,7 +5,7 @@ import PageService from 'services/PageService'
 import Layout from 'layout'
 import Promo from 'components/Promo'
 
-export default function Home({ fallbackData }: PageSWR<MainPage>): JSX.Element {
+export default function HomePage({ fallbackData }: PageSWR<MainPage>): JSX.Element {
   const { error } = useSWR('home', PageService.getMain, { fallbackData })
 
   // TODO get client

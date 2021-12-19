@@ -3,22 +3,22 @@ import { Button } from '@material-ui/core'
 import { User } from 'dto'
 import useSnackbar from 'hooks/useSnackbar'
 import useSend from 'hooks/useSend'
-import FavoriteService from 'services/FavoriteService'
+import UserService from 'services/UserService'
 
 type UseRemoveFavoriteUser = (id: number) => void
 
-export default function useRemoveFavorite(users: User[], mutate: (newUsers: User[]) => void): UseRemoveFavoriteUser {
+export default function useRemoveFavorites(users: User[], mutate: (newUsers: User[]) => void): UseRemoveFavoriteUser {
   const prevUsersRef = useRef(users)
   const { enqueueSnackbar, closeSnackbar } = useSnackbar()
-  const { send } = useSend(FavoriteService.setUser, {
-    onSuccess: (_, { id, favorite }) => {
+  const { send } = useSend(UserService.updateFavorite, {
+    onSuccess: (_, { userId, favorite }) => {
       prevUsersRef.current = users
 
       favorite &&
         enqueueSnackbar({
           message: 'Removed from favorites',
           severity: 'success',
-          action: <Button onClick={() => onUndo(id)}>Undo</Button>,
+          action: <Button onClick={() => onUndo(userId)}>Undo</Button>,
           icon: 'ninja',
         })
     },
@@ -27,16 +27,16 @@ export default function useRemoveFavorite(users: User[], mutate: (newUsers: User
     },
   })
 
-  function onUndo(id: number) {
+  function onUndo(userId: number) {
     mutate(prevUsersRef.current)
     closeSnackbar()
-    send({ id, favorite: false })
+    send({ userId, favorite: false })
   }
 
-  return (id: number) => {
+  return (userId: number) => {
     prevUsersRef.current = users
 
-    mutate(users.filter((f) => f.id !== id))
-    send({ id, favorite: true })
+    mutate(users.filter((f) => f.id !== userId))
+    send({ userId, favorite: true })
   }
 }

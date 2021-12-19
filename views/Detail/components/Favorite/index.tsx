@@ -5,14 +5,14 @@ import AppEmoji from 'components/UI/AppEmoji'
 import useUserFavorite from './hook'
 
 interface FavoriteProps {
-  id: number
+  userId: number
   favorite: boolean
 }
 
-export default function Favorite({ id, favorite: initial }: FavoriteProps): JSX.Element {
+export default function Favorite({ userId, favorite: initial }: FavoriteProps): JSX.Element {
   const classes = useStyles()
-  const [favorite, setFavorite] = useUserFavorite(id, initial)
-  // TODO click for none auth users
+  const [favorite, setFavorite] = useUserFavorite(userId, initial)
+  // TODO modal for not register
   return (
     <IconButton title={`${favorite ? 'Remove from' : 'Add to'} favorite`} onClick={setFavorite}>
       <AppEmoji name="favorite" variant="h5" className={clsx([classes.emoji, !favorite && classes.emojiNotActive])} />

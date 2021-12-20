@@ -35,7 +35,7 @@ export default function useCharacteristicColors(): {
       start: palette.text.disabled,
       end: '#1D1D1F',
     },
-    awards: {
+    followers: {
       fontColor: '#f2d900',
       start: palette.text.disabled, // unused
       end: '#1D1D1F', // unused

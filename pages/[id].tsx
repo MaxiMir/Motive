@@ -1,34 +1,29 @@
 import { GetServerSideProps } from 'next'
-import { useRouter } from 'next/router'
-import useSWR from 'swr'
-import { PageSWR, UserPage } from 'dto'
+import { UserPageSWR } from 'dto'
 import { UserPageContext } from 'context/userPageContext'
 import PageService from 'services/PageService'
+import useUserPage from 'hooks/useUserPage'
 import Layout from 'layout'
-import Detail from 'views/Detail'
+import User from 'views/User'
+import { getUserMeta } from 'helpers/user'
 
-export default function UserDetail({ fallbackData }: PageSWR<UserPage>): JSX.Element {
-  const { asPath } = useRouter()
-  const { data, error } = useSWR<UserPage>(asPath, () => PageService.getUser(asPath), { fallbackData }) // swr detail page
-  const user = data?.content
+export default function UserDetail({ fallbackData }: UserPageSWR): JSX.Element {
+  const { data, error } = useUserPage(fallbackData)
+  const userMeta = getUserMeta(data?.content)
+
+  // TODO REMOVE!
+  const client = { id: 0, name: '', nickname: '', avatar: '' }
 
   return (
     <UserPageContext.Provider value={data}>
-      <Layout
-        title={user && `${user.name} profile on ${process.env.NEXT_PUBLIC_APP_NAME}`}
-        description={user && `See how ${user.name} (@${user.nickname}) accomplishes his goals`}
-        url={user && `${process.env.HOST}/${user.nickname}`}
-        type="profile"
-        error={error}
-      >
-        {user && <Detail user={user} client={data?.client} />}
+      <Layout {...userMeta} error={error}>
+        {data?.content && <User user={data?.content} client={client} />}
       </Layout>
     </UserPageContext.Provider>
   )
 }
 
 export const getServerSideProps: GetServerSideProps = async (ctx) => {
-  // check on find json in fs:
   if (ctx.req.url?.includes('_next')) {
     return {
       props: {

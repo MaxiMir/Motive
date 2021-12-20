@@ -2,9 +2,11 @@ import Axios from 'lib/axios'
 
 export default class UserService {
   /**
-   * /favorites
+   * /users/{id}/following/
    */
-  static updateFavorite(data: { userId: number; favorite: boolean }): Promise<void> {
-    return Axios.patch(`/users/favorites/`, data)
+  static setFollowing(data: { clientId: number; userId: number; add: boolean }): Promise<void> {
+    const { clientId, add, ...body } = data
+
+    return Axios.patch(`/users/${clientId}/following/${add ? 'add' : 'remove'}`, body)
   }
 }

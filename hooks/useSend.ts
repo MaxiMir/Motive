@@ -1,10 +1,9 @@
 import { useCallback, useState } from 'react'
-import { AxiosRequestConfig } from 'axios'
 import useSnackbar from './useSnackbar'
 
-interface Options<R> {
-  onSuccess?: (response: R, data: AxiosRequestConfig['data']) => void
-  onError?: (e: unknown, request: AxiosRequestConfig['data']) => void
+interface Options<R, D> {
+  onSuccess?: (response: R, data: D) => void
+  onError?: (e: unknown, request: D) => void
 }
 
 interface UseSend<D> {
@@ -14,7 +13,7 @@ interface UseSend<D> {
 
 export default function useSend<D, R>(
   fetcher: (data: D) => Promise<R>,
-  { onSuccess, onError }: Options<R>,
+  { onSuccess, onError }: Options<R, D>,
 ): UseSend<D> {
   const [isLoading, setIsLoading] = useState(false)
   const { enqueueSnackbar } = useSnackbar()

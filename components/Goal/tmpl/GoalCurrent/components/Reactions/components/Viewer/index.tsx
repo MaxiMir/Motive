@@ -1,7 +1,7 @@
 import { useMemo } from 'react'
 import produce from 'immer'
 import { Button } from '@material-ui/core'
-import { MainCharacteristicName, DayCharacteristic, UserBase, Goal, Role, Client } from 'dto'
+import { MainCharacteristicName, DayCharacteristic, UserBase, Goal, Role } from 'dto'
 import useMutateGoals from 'hooks/useMutateGoals'
 import AppBox from 'components/UI/AppBox'
 import AppEmoji from 'components/UI/AppEmoji'
@@ -14,7 +14,7 @@ export interface ViewerProps {
   goal: Goal
   characteristic: DayCharacteristic | null
   owner: UserBase
-  client?: Client
+  client: UserBase
 }
 
 export default function Viewer({ role, dayId, goal, characteristic, owner, client }: ViewerProps): JSX.Element {

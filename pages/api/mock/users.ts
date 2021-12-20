@@ -10,11 +10,11 @@ const ME: UserDetail = {
     motivation: 23.13,
     support: 13.56,
     creativity: 14.66,
-    awards: 1,
+    followers: 1,
     completed: 8,
     abandoned: 0,
   },
-  favorites: [],
+  following: [],
   goals: [learnFrench, becomeSenior],
 }
 
@@ -27,11 +27,11 @@ const JULIA: UserDetail = {
     motivation: 1.0,
     support: 5.51,
     creativity: 11.89,
-    awards: 0,
+    followers: 0,
     completed: 4,
     abandoned: 0,
   },
-  favorites: [],
+  following: [],
   goals: [
     {
       ...learnFrench,
@@ -55,11 +55,11 @@ const FRIEND: UserDetail = {
     motivation: 47.63,
     creativity: 27.53,
     support: 37.33,
-    awards: 0,
+    followers: 0,
     completed: 4,
     abandoned: 1,
   },
-  favorites: [],
+  following: [],
   goals: [
     {
       ...learnFrench,
@@ -83,11 +83,11 @@ const FRIEND1: UserDetail = {
     motivation: 11.5,
     support: 14.52,
     creativity: 24.69,
-    awards: 0,
+    followers: 0,
     completed: 13,
     abandoned: 0,
   },
-  favorites: [],
+  following: [],
   goals: [],
 }
 
@@ -100,11 +100,11 @@ const FRIEND2: UserDetail = {
     motivation: 13.66,
     support: 17.7,
     creativity: 2.65,
-    awards: 0,
+    followers: 0,
     completed: 12,
     abandoned: 0,
   },
-  favorites: [],
+  following: [],
   goals: [],
 }
 

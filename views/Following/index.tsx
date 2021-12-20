@@ -1,24 +1,25 @@
 import React from 'react'
 import dynamic from 'next/dynamic'
-import { User } from 'dto'
+import { User, UserBase } from 'dto'
 import AppHeader from 'components/UI/AppHeader'
 import AppContainer from 'components/UI/AppContainer'
 
 const EmptyList = dynamic(() => import('./components/EmptyList'))
 const UserList = dynamic(() => import('./components/UserList'))
 
-interface FavoritesProps {
-  favorites: User[]
-  mutate: (users: User[]) => void
+interface FollowingProps {
+  users: User[]
+  client: UserBase
+  mutate: (user: User[]) => void
 }
 
-export default function Favorites({ favorites, mutate }: FavoritesProps): JSX.Element {
+export default function Following({ users, client, mutate }: FollowingProps): JSX.Element {
   return (
     <AppContainer withFlexColumn>
-      <AppHeader name="favorite" mb={4}>
-        Favorites
+      <AppHeader name="following" mb={4}>
+        Following
       </AppHeader>
-      {!favorites.length ? <EmptyList /> : <UserList users={favorites} mutate={mutate} />}
+      {!users.length ? <EmptyList /> : <UserList users={users} clientId={client.id} mutate={mutate} />}
     </AppContainer>
   )
 }

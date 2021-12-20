@@ -1,14 +1,13 @@
-import React, { useEffect, useMemo } from 'react'
+import React from 'react'
 import dynamic from 'next/dynamic'
-import { useRouter } from 'next/router'
 import { useMediaQuery, useTheme } from '@material-ui/core'
-import { Client, UserDetail, UserCharacteristicName } from 'dto'
-import { scrollToElem } from 'helpers/dom'
+import { UserDetail, UserCharacteristicName, UserBase } from 'dto'
 import { getUserHref } from 'helpers/user'
 import useCharacteristicColors from 'hooks/useCharacteristicColors'
 import AppBox from 'components/UI/AppBox'
 import AppContainer from 'components/UI/AppContainer'
 import AppTypography from 'components/UI/AppTypography'
+import useScrollToGoal from './hook'
 import Avatar from './components/Avatar'
 import Characteristic from './components/Characteristic'
 import EmptyGoals from './components/EmptyGoals'
@@ -18,30 +17,22 @@ const AddGoal = dynamic(() => import('./components/AddGoal'))
 const GoalCard = dynamic(() => import('components/Goal'))
 
 const CHARACTERISTIC_NAMES: UserCharacteristicName[] = ['motivation', 'creativity', 'support']
-const SECOND_CHARACTERISTIC_NAMES: UserCharacteristicName[] = ['completed', 'awards', 'abandoned']
+const SECOND_CHARACTERISTIC_NAMES: UserCharacteristicName[] = ['completed', 'abandoned', 'followers']
 
 export interface DetailProps {
   user: UserDetail
-  client?: Client
+  client: UserBase
 }
 
 export default function Detail({ user, client }: DetailProps): JSX.Element {
-  const { id, nickname, name, favorites, avatar, characteristic, goals } = user
+  const { id, nickname, name, following, avatar, characteristic, goals } = user
   const theme = useTheme()
-  const { query } = useRouter()
   const characteristicColors = useCharacteristicColors()
   const isMobile = useMediaQuery(theme.breakpoints.down('sm'))
-  const isOwner = user.id === client?.id
-  const favorite = useMemo(getFavorite, [client, isOwner, favorites])
+  const isOwner = id === client.id
   const href = getUserHref(nickname)
 
-  function getFavorite() {
-    return !isOwner && Boolean(client && favorites.some((f) => f.id === client.id))
-  }
-
-  useEffect(() => {
-    query.s && scrollToElem(`goal-${query.s}`)
-  }, [query])
+  useScrollToGoal()
 
   return (
     <AppContainer withFlexColumn>
@@ -49,7 +40,7 @@ export default function Detail({ user, client }: DetailProps): JSX.Element {
         <AppTypography variant="h5" component="h1">
           {name}
         </AppTypography>
-        {!isOwner && <Favorite userId={id} favorite={favorite} />}
+        {!isOwner && <Favorite userId={id} following={following} clientId={client.id} />}
       </AppBox>
       <AppBox flexDirection="column" spacing={3} flex={1}>
         <AppBox spacing={isMobile ? 1 : 4} mb={4}>

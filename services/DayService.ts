@@ -6,9 +6,9 @@ export default class DayService {
    * /days/{id}/{characteristic}/
    */
   static updateCharacteristic(data: { dayId: number; name: string; active: boolean }): Promise<Goal> {
-    const { dayId, name, ...restData } = data
+    const { dayId, name, ...body } = data
 
-    return Axios.put(`/days/${dayId}/${name}/`, restData)
+    return Axios.put(`/days/${dayId}/${name}/`, body)
   }
 
   /**

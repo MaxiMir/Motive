@@ -1,11 +1,11 @@
 import { GetServerSideProps } from 'next'
 import useSWR from 'swr'
-import { MainPage, PageSWR } from 'dto'
+import { MainPageSWR } from 'dto'
 import PageService from 'services/PageService'
 import Layout from 'layout'
 import Promo from 'components/Promo'
 
-export default function HomePage({ fallbackData }: PageSWR<MainPage>): JSX.Element {
+export default function HomePage({ fallbackData }: MainPageSWR): JSX.Element {
   const { error } = useSWR('home', PageService.getMain, { fallbackData })
 
   // TODO get client

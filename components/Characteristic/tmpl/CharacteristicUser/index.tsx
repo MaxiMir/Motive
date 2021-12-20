@@ -20,7 +20,7 @@ export default function CharacteristicUser({ name, value, color }: Characteristi
       <AppBox width={32}>
         <AppTypography variant="h6" component="p" style={{ color }}>
           {Math.floor(value)}
-          {!['completed', 'abandoned', 'awards'].includes(name) && <Level />}
+          {!['completed', 'abandoned', 'followers'].includes(name) && <Level />}
         </AppTypography>
       </AppBox>
     </AppBox>

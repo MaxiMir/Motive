@@ -1,11 +1,11 @@
 import React from 'react'
 import { useRouter } from 'next/router'
 import { makeStyles } from '@material-ui/core/styles'
-import { FAVORITES_ROUTE, PROFILE_ROUTE, RATING_ROUTE, SEARCH_ROUTE, TOP_OF_THE_DAY_ROUTE } from 'route'
+import { FOLLOWING_ROUTE, PROFILE_ROUTE, RATING_ROUTE, SEARCH_ROUTE, TOP_OF_THE_DAY_ROUTE } from 'route'
 import AppBox from 'components/UI/AppBox'
 import AppLink from 'components/UI/AppLink'
 import AppContainer from 'components/UI/AppContainer'
-import { TopOfTheDayIcon, SearchIcon, RatingIcon, FavoritesMenuIcon, ProfileIcon } from 'components/UI/icons'
+import { TopOfTheDayIcon, SearchIcon, RatingIcon, FollowingIcon, ProfileIcon } from 'components/UI/icons'
 
 const LINKS = [
   {
@@ -15,7 +15,7 @@ const LINKS = [
   },
   { href: SEARCH_ROUTE, Icon: SearchIcon, title: 'search' },
   { href: RATING_ROUTE, Icon: RatingIcon, title: 'rating' },
-  { href: FAVORITES_ROUTE, Icon: FavoritesMenuIcon, title: 'favorites' },
+  { href: FOLLOWING_ROUTE, Icon: FollowingIcon, title: 'following' },
   { href: PROFILE_ROUTE, Icon: ProfileIcon, title: 'profile' },
 ]
 

@@ -8,7 +8,7 @@ export type AppEmojiName =
   | UserCharacteristicName
   | GoalCharacteristicName
   | 'motivation-tech'
-  | 'favorite'
+  | 'following'
   | 'views'
   | 'goal'
   | 'task'
@@ -64,15 +64,14 @@ function getContent(name: AppEmojiName) {
       return '🧠'
     case 'support':
       return '🙏'
-    case 'awards':
-      return '🎖'
     case 'completed':
       return '🏆'
     case 'abandoned':
       return '🕸'
     case 'members':
       return '📬'
-    case 'favorite':
+    case 'followers':
+    case 'following':
       return '⭐'
     case 'goal':
       return '💎'

@@ -1,6 +1,6 @@
 export type MainCharacteristicName = 'motivation' | 'creativity' | 'support'
 
-export type UserCharacteristicName = MainCharacteristicName | 'completed' | 'abandoned' | 'awards'
+export type UserCharacteristicName = MainCharacteristicName | 'completed' | 'abandoned' | 'followers'
 
 export type UserCharacteristic = {
   [k in UserCharacteristicName]: number

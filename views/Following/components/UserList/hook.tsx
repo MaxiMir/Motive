@@ -5,21 +5,25 @@ import useSnackbar from 'hooks/useSnackbar'
 import useSend from 'hooks/useSend'
 import UserService from 'services/UserService'
 
-type UseRemoveFavoriteUser = (id: number) => void
+type UseRemoveFollowingUser = (id: number) => void
 
-export default function useRemoveFavorites(users: User[], mutate: (newUsers: User[]) => void): UseRemoveFavoriteUser {
+export default function useRemoveFollowing(
+  users: User[],
+  clientId: number,
+  mutate: (user: User[]) => void,
+): UseRemoveFollowingUser {
   const prevUsersRef = useRef(users)
   const { enqueueSnackbar, closeSnackbar } = useSnackbar()
-  const { send } = useSend(UserService.updateFavorite, {
-    onSuccess: (_, { userId, favorite }) => {
+  const { send } = useSend(UserService.setFollowing, {
+    onSuccess: (_, { userId, add }) => {
       prevUsersRef.current = users
 
-      favorite &&
+      !add &&
         enqueueSnackbar({
-          message: 'Removed from favorites',
+          message: 'Removed from following',
           severity: 'success',
           action: <Button onClick={() => onUndo(userId)}>Undo</Button>,
-          icon: 'ninja',
+          icon: 'speaker',
         })
     },
     onError: () => {
@@ -30,13 +34,13 @@ export default function useRemoveFavorites(users: User[], mutate: (newUsers: Use
   function onUndo(userId: number) {
     mutate(prevUsersRef.current)
     closeSnackbar()
-    send({ userId, favorite: false })
+    send({ clientId, userId, add: true })
   }
 
   return (userId: number) => {
     prevUsersRef.current = users
 
     mutate(users.filter((f) => f.id !== userId))
-    send({ userId, favorite: true })
+    send({ clientId, userId, add: false })
   }
 }

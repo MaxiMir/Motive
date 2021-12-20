@@ -14,13 +14,13 @@ import Menu from './components/Menu'
 const CHARACTERISTICS: UserCharacteristicName[] = ['motivation', 'creativity', 'support', 'completed']
 const LAST_CHARACTERISTIC_INDEX = 3
 
-export interface UserCardFavoriteProps {
-  tmpl: 'favorite'
+export interface UserCardFollowingProps {
+  tmpl: 'following'
   user: User
   onRemove: () => void
 }
 
-export default function UserCardFavorite({ user, onRemove }: UserCardFavoriteProps): JSX.Element {
+export default function UserCardFollowing({ user, onRemove }: UserCardFollowingProps): JSX.Element {
   const { nickname, avatar, name, characteristic } = user
   const classes = useStyles()
   const colors = useCharacteristicColors()

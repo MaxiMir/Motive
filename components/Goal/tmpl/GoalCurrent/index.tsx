@@ -3,7 +3,7 @@ import dynamic from 'next/dynamic'
 import differenceInDays from 'date-fns/differenceInDays'
 import { createStyles, useTheme } from '@material-ui/core'
 import { makeStyles } from '@material-ui/core/styles'
-import { Client, Goal, GoalCharacteristicName } from 'dto'
+import { UserBase, Goal, GoalCharacteristicName } from 'dto'
 import useCharacteristicColors from 'hooks/useCharacteristicColors'
 import AppBox from 'components/UI/AppBox'
 import AppHeader from 'components/UI/AppHeader'
@@ -32,7 +32,7 @@ const CHARACTERISTICS: GoalCharacteristicName[] = ['motivation', 'creativity', '
 export interface GoalCurrentProps {
   tmpl: 'current'
   goal: Goal
-  client?: Client
+  client: UserBase
   href: string
 }
 

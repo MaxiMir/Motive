@@ -10,7 +10,3 @@ export interface UserBase {
 export interface User extends UserBase {
   characteristic: UserCharacteristic
 }
-
-export interface Client extends UserBase {
-  isAuthenticated: boolean
-}

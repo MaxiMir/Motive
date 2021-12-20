@@ -1,5 +1,5 @@
 import Axios from 'lib/axios'
-import { FavoritesPage, MainPage, RatingPage, UserPage } from 'dto'
+import { FollowingPage, MainPage, RatingPage, UserPage } from 'dto'
 
 export default class PageService {
   static async getMain(): Promise<MainPage> {
@@ -10,8 +10,8 @@ export default class PageService {
     return Axios.get('/rating')
   }
 
-  static async getFavorites(): Promise<FavoritesPage> {
-    return Axios.get('/pages/favorites')
+  static async getFollowing(): Promise<FollowingPage> {
+    return Axios.get('/pages/following')
   }
 
   static getUser(nicknameUrn: string): Promise<UserPage> {

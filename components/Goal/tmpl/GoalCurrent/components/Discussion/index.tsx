@@ -1,7 +1,7 @@
 import { useMemo } from 'react'
 import dynamic from 'next/dynamic'
 import useSWRInfinite from 'swr/infinite'
-import { Client, Role, Topic as TopicDTO, UserBase } from 'dto'
+import { Role, Topic as TopicDTO, UserBase } from 'dto'
 import AppBox from 'components/UI/AppBox'
 import { AppListProps } from 'components/UI/AppList'
 import { getSWRKey, fetcher, checkPartialOnLoadMore } from './helper'
@@ -17,7 +17,7 @@ interface DiscussionProps {
   dayId: number
   role: Role
   owner: UserBase
-  client?: Client
+  client: UserBase
   count: number
   setDiscussionCount: (count: number) => void
 }
@@ -36,7 +36,7 @@ export default function Discussion({
     initialSize: !count ? 0 : 1,
   })
   const content = useMemo(getContent, [data])
-  const withInput = !!client && client.id !== owner.id
+  const withInput = !!client.id && client.id !== owner.id
   const shownCount = count >= VISIBLE_COUNT ? VISIBLE_COUNT : count
   const height = !count ? undefined : (!withInput ? 0 : 56) + 540
   const checkOnLoadMore = checkPartialOnLoadMore(data, content)

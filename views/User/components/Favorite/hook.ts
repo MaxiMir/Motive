@@ -1,4 +1,4 @@
-import { useRef, useState } from 'react'
+import { useRef } from 'react'
 import produce from 'immer'
 import UserService from 'services/UserService'
 import useDebounceCb from 'hooks/useDebounceCb'
@@ -8,43 +8,46 @@ import { useMutatePage } from 'views/User/hook'
 
 type UseUserFavorite = [boolean, () => void]
 
-export default function useUserFavorite(clientId: number, following: number, initial: boolean): UseUserFavorite {
-  const lastLoadedRef = useRef(initial)
-  const [favorite, setFavorite] = useState(initial)
+export default function useUserFavorite(clientId: number, following: number, favorite: boolean): UseUserFavorite {
+  const lastLoadedRef = useRef(favorite)
   const [page, mutate] = useMutatePage()
   const { enqueueSnackbar } = useSnackbar()
   const { send } = useSend(UserService.setFollowing, {
     onSuccess(_, data) {
-      lastLoadedRef.current = data.add
+      const { add } = data
+      lastLoadedRef.current = add
 
       enqueueSnackbar({
-        message: data.add ? 'Added to favorites' : 'Removed from favorites',
+        message: add ? 'Added to favorites' : 'Removed from favorites',
         severity: 'success',
-        icon: data.add ? 'speaker' : 'ninja',
+        icon: add ? 'speaker' : 'ninja',
       })
-
-      mutate(
-        produce(page, (draft) => {
-          draft.content.user.characteristic.followers += data.add ? 1 : -1
-        }),
-        false,
-      )
     },
     onError(_, data) {
-      setFavorite(!data.add)
+      mutateFavorite(!data.add)
     },
   })
-  const mutateWithDebounce = useDebounceCb((add: boolean) => {
+  const sendWithDebounce = useDebounceCb((add: boolean) => {
     lastLoadedRef.current !== add && send({ clientId, following, add })
   })
 
   const onChange = () => {
     if (clientId) {
-      setFavorite(!favorite)
-      mutateWithDebounce(!favorite)
+      mutateFavorite(!favorite)
+      sendWithDebounce(!favorite)
     }
 
     // TODO for not auth
+  }
+
+  function mutateFavorite(value: boolean) {
+    mutate(
+      produce(page, (draft) => {
+        draft.content.favorite = value
+        draft.content.user.characteristic.followers += value ? 1 : -1
+      }),
+      false,
+    )
   }
 
   return [favorite, onChange]

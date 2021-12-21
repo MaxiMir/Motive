@@ -15,15 +15,15 @@ export default function useRemoveFollowing(
   const prevUsersRef = useRef(users)
   const { enqueueSnackbar, closeSnackbar } = useSnackbar()
   const { send } = useSend(UserService.setFollowing, {
-    onSuccess: (_, { userId, add }) => {
+    onSuccess: (_, { following, add }) => {
       prevUsersRef.current = users
 
       !add &&
         enqueueSnackbar({
           message: 'Removed from following',
           severity: 'success',
-          action: <Button onClick={() => onUndo(userId)}>Undo</Button>,
-          icon: 'speaker',
+          action: <Button onClick={() => onUndo(following)}>Undo</Button>,
+          icon: 'ninja',
         })
     },
     onError: () => {
@@ -31,16 +31,16 @@ export default function useRemoveFollowing(
     },
   })
 
-  function onUndo(userId: number) {
+  function onUndo(following: number) {
     mutate(prevUsersRef.current)
     closeSnackbar()
-    send({ clientId, userId, add: true })
+    send({ clientId, following, add: true })
   }
 
-  return (userId: number) => {
+  return (following: number) => {
     prevUsersRef.current = users
 
-    mutate(users.filter((f) => f.id !== userId))
-    send({ clientId, userId, add: false })
+    mutate(users.filter((f) => f.id !== following))
+    send({ clientId, following, add: false })
   }
 }

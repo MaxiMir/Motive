@@ -4,9 +4,9 @@ export default class UserService {
   /**
    * /users/{id}/following/
    */
-  static setFollowing(data: { clientId: number; userId: number; add: boolean }): Promise<void> {
-    const { clientId, add, ...body } = data
+  static setFollowing(data: { clientId: number; following: number; add: boolean }): Promise<void> {
+    const { clientId, add, following } = data
 
-    return Axios.patch(`/users/${clientId}/following/${add ? 'add' : 'remove'}`, body)
+    return Axios.patch(`/users/${clientId}/following/`, { op: add ? 'add' : 'remove', following })
   }
 }

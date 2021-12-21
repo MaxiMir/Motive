@@ -10,7 +10,12 @@ export default function FollowingPage({ fallbackData }: FollowingPageSWR): JSX.E
   const [{ data, error }, mutate] = useFollowingPage(fallbackData)
 
   // TODO REMOVE!
-  const client = { id: 0, name: '', nickname: '', avatar: '' }
+  const client = {
+    id: 1,
+    nickname: 'maximir',
+    name: 'Maxim Minchenko',
+    avatar: '/avatars/6d483e94-a791-4a75-ba15-99ee48276dd4.webp',
+  }
 
   return (
     <Layout title="Following" error={error}>

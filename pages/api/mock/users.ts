@@ -14,7 +14,7 @@ const ME: UserDetail = {
     completed: 8,
     abandoned: 0,
   },
-  following: [],
+  favorite: false,
   goals: [learnFrench, becomeSenior],
 }
 
@@ -31,7 +31,7 @@ const JULIA: UserDetail = {
     completed: 4,
     abandoned: 0,
   },
-  following: [],
+  favorite: false,
   goals: [
     {
       ...learnFrench,
@@ -59,7 +59,7 @@ const FRIEND: UserDetail = {
     completed: 4,
     abandoned: 1,
   },
-  following: [],
+  favorite: false,
   goals: [
     {
       ...learnFrench,
@@ -87,7 +87,7 @@ const FRIEND1: UserDetail = {
     completed: 13,
     abandoned: 0,
   },
-  following: [],
+  favorite: false,
   goals: [],
 }
 
@@ -104,7 +104,7 @@ const FRIEND2: UserDetail = {
     completed: 12,
     abandoned: 0,
   },
-  following: [],
+  favorite: false,
   goals: [],
 }
 

@@ -3,7 +3,7 @@ import useSWR from 'swr'
 import { MainPageSWR } from 'dto'
 import PageService from 'services/PageService'
 import Layout from 'layout'
-import Promo from 'components/Promo'
+import Main from 'views/Main'
 
 export default function HomePage({ fallbackData }: MainPageSWR): JSX.Element {
   const { error } = useSWR('home', PageService.getMain, { fallbackData })
@@ -12,7 +12,7 @@ export default function HomePage({ fallbackData }: MainPageSWR): JSX.Element {
 
   return (
     <Layout title={process.env.NEXT_PUBLIC_APP_NAME} error={error} withVerticalPadding={false}>
-      <Promo />
+      <Main />
     </Layout>
   )
 }

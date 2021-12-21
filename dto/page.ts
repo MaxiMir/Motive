@@ -23,12 +23,12 @@ export type FollowingPage = Page<User[]>
 
 export type FollowingPageSWR = PageSWR<FollowingPage>
 
+export type UserPage = Page<{ favorite: boolean; user: UserDetail }>
+
 export type UserPageSWR = PageSWR<UserPage>
 
-export type UserPage = Page<UserDetail>
-
 export interface UserDetail extends User {
-  following: UserBase[]
+  favorite: boolean
   goals: Goal[]
 }
 

@@ -2,7 +2,7 @@ import produce from 'immer'
 import { Goal } from 'dto'
 import GoalService from 'services/GoalService'
 import useSend from 'hooks/useSend'
-import useMutateGoals from 'hooks/useMutateGoals'
+import { useMutateGoals } from 'views/User/hook'
 import { getQueryNewState } from './helper'
 
 export default function useChangeDate(goalId: number): [boolean, (dayId: number) => void] {

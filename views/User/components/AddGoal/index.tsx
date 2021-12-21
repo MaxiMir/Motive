@@ -5,7 +5,7 @@ import { makeStyles } from '@material-ui/core/styles'
 import { Button } from '@material-ui/core'
 import { Goal } from 'dto'
 import useSnackbar from 'hooks/useSnackbar'
-import useMutateGoals from 'hooks/useMutateGoals'
+import { useMutateGoals } from 'views/User/hook'
 import { scrollToElem } from 'helpers/dom'
 import AppEmoji from 'components/UI/AppEmoji'
 

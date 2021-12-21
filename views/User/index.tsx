@@ -7,7 +7,7 @@ import useCharacteristicColors from 'hooks/useCharacteristicColors'
 import AppBox from 'components/UI/AppBox'
 import AppContainer from 'components/UI/AppContainer'
 import AppTypography from 'components/UI/AppTypography'
-import useScrollToGoal from './hook'
+import { useScrollToGoal } from './hook'
 import Avatar from './components/Avatar'
 import Characteristic from './components/Characteristic'
 import EmptyGoals from './components/EmptyGoals'
@@ -22,10 +22,11 @@ const SECOND_CHARACTERISTIC_NAMES: UserCharacteristicName[] = ['completed', 'aba
 export interface DetailProps {
   user: UserDetail
   client: UserBase
+  favorite: boolean
 }
 
-export default function Detail({ user, client }: DetailProps): JSX.Element {
-  const { id, nickname, name, following, avatar, characteristic, goals } = user
+export default function Detail({ user, client, favorite }: DetailProps): JSX.Element {
+  const { id, nickname, name, avatar, characteristic, goals } = user
   const theme = useTheme()
   const characteristicColors = useCharacteristicColors()
   const isMobile = useMediaQuery(theme.breakpoints.down('sm'))
@@ -40,7 +41,7 @@ export default function Detail({ user, client }: DetailProps): JSX.Element {
         <AppTypography variant="h5" component="h1">
           {name}
         </AppTypography>
-        {!isOwner && <Favorite userId={id} following={following} clientId={client.id} />}
+        {!isOwner && <Favorite userId={id} favorite={favorite} clientId={client.id} />}
       </AppBox>
       <AppBox flexDirection="column" spacing={3} flex={1}>
         <AppBox spacing={isMobile ? 1 : 4} mb={4}>

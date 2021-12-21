@@ -1,4 +1,5 @@
 import dynamic from 'next/dynamic'
+import { numberToShort } from 'helpers/prepare'
 import { UserCharacteristicName } from 'dto'
 import AppEmoji from 'components/UI/AppEmoji'
 import AppBox from 'components/UI/AppBox'
@@ -14,12 +15,14 @@ export interface CharacteristicUserProps {
 }
 
 export default function CharacteristicUser({ name, value, color }: CharacteristicUserProps): JSX.Element {
+  const preparedCb = name !== 'followers' ? Math.floor : numberToShort
+
   return (
     <AppBox alignItems="baseline" spacing={0.5}>
       <AppEmoji name={name} variant="subtitle1" />
       <AppBox width={32}>
         <AppTypography variant="h6" component="p" style={{ color }}>
-          {Math.floor(value)}
+          {preparedCb(value)}
           {!['completed', 'abandoned', 'followers'].includes(name) && <Level />}
         </AppTypography>
       </AppBox>

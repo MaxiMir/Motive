@@ -4,7 +4,7 @@ import ADVANTAGES from './helper'
 import Slogan from './components/Slogan'
 import Advantage from './components/Advantage'
 
-export default function Promo(): JSX.Element {
+export default function Main(): JSX.Element {
   const colors = useCharacteristicColors()
 
   return (

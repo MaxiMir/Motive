@@ -3,9 +3,9 @@ import { UserPageSWR } from 'dto'
 import { UserPageContext } from 'context/userPageContext'
 import PageService from 'services/PageService'
 import useUserPage from 'hooks/useUserPage'
+import { getUserMeta } from 'views/User/helper'
 import Layout from 'layout'
 import User from 'views/User'
-import { getUserMeta } from 'helpers/user'
 
 export default function UserDetail({ fallbackData }: UserPageSWR): JSX.Element {
   const { data, error } = useUserPage(fallbackData)

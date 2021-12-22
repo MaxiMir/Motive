@@ -35,7 +35,6 @@ const JULIA: UserDetail = {
   goals: [
     {
       ...learnFrench,
-      role: 'OWNER',
       owner: {
         id: 2,
         nickname: 'yulifleur',
@@ -63,7 +62,6 @@ const FRIEND: UserDetail = {
   goals: [
     {
       ...learnFrench,
-      role: 'GUEST',
       owner: {
         id: 1,
         nickname: 'maximir',

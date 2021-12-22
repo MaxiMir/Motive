@@ -10,7 +10,7 @@ import AppHeader from 'components/UI/AppHeader'
 import AppDot from 'components/UI/AppDot'
 import AppAccordion from 'components/UI/AppAccordion'
 import useChangeDate from './hook'
-import { checkOnWeb, getGoalHref } from './helper'
+import { checkOnWeb, getGoalHref, getRole } from './helper'
 import GoalDate from './components/GoalDate'
 import Menu from './components/Menu'
 import Characteristic from './components/Characteristic'
@@ -38,8 +38,9 @@ export interface GoalCurrentProps {
 
 export default function GoalCurrent({ goal, client, href }: GoalCurrentProps): JSX.Element {
   const currentDate = new Date()
-  const { id, name, hashtags, started, characteristic, role, owner, day } = goal
+  const { id, name, hashtags, started, characteristic, owner } = goal
   const datesMap = {} // TODO change
+  const [day] = goal.days
   const { id: dayId, date, tasks, views, feedbackId } = day
   const classes = useStyles()
   const theme = useTheme()
@@ -50,6 +51,7 @@ export default function GoalCurrent({ goal, client, href }: GoalCurrentProps): J
   const days = differenceInDays(currentDate, Date.parse(started))
   const showWeb = checkOnWeb(datesMap, date, currentDate)
   const goalHref = getGoalHref(href, goal)
+  const role = getRole(goal, client)
   const withForm = ['OWNER', 'MEMBER'].includes(role)
 
   const onSetTask = (isCompleted: boolean) => {

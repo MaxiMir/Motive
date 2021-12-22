@@ -9,7 +9,7 @@ export default function RatingPage({ fallbackData }: RatingPageSWR): JSX.Element
   const { data, error } = useSWR('Rating', PageService.getRating, { fallbackData })
 
   return (
-    <Layout title="rating" error={error}>
+    <Layout title="Rating" error={error}>
       {data?.content && <Rating {...data.content} />}
     </Layout>
   )

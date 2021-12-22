@@ -1,9 +1,8 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 import { Chip, makeStyles, useMediaQuery, useTheme } from '@material-ui/core'
 import { SEARCH_ROUTE } from 'route'
 import { Hashtag } from 'dto'
 import AppBox from 'components/UI/AppBox'
-import { getHashtags } from './helper'
 
 interface HashtagsProps {
   hashtags: Hashtag[]
@@ -13,13 +12,17 @@ export default function Hashtags({ hashtags }: HashtagsProps): JSX.Element {
   const theme = useTheme()
   const classes = useStyles()
   const isMobile = useMediaQuery(theme.breakpoints.down('sm'))
-  const hashtagNames = hashtags.map((h) => h.name)
-  const [showingHashtags, setShowingHashtags] = useState(getHashtags(hashtagNames, isMobile))
+  const hashtagNames = useMemo(getHashtagNames, [hashtags])
+  const [showingHashtags, setShowingHashtags] = useState<string[]>([])
 
   const onClick = () => setShowingHashtags(hashtagNames)
 
+  function getHashtagNames() {
+    return hashtags.map((h) => h.name)
+  }
+
   useEffect(() => {
-    setShowingHashtags(getHashtags(hashtagNames, isMobile))
+    setShowingHashtags(!isMobile ? hashtagNames : hashtagNames.slice(0, 2))
   }, [hashtagNames, isMobile])
 
   return (

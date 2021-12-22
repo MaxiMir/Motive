@@ -7,7 +7,7 @@ export default class PageService {
   }
 
   static async getRating(): Promise<RatingPage> {
-    return Axios.get('/rating')
+    return Axios.get('/pages/rating')
   }
 
   static async getFollowing(): Promise<FollowingPage> {

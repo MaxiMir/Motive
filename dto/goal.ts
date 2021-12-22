@@ -1,6 +1,5 @@
 import { DayCharacteristic, GoalCharacteristic } from './characteristic'
 import { UserBase } from './user'
-import { Role } from './role'
 
 export interface GoalCreation {
   name: string
@@ -14,9 +13,8 @@ export interface Goal {
   started: string
   hashtags: Hashtag[]
   owner: UserBase
-  role: Role
   characteristic: GoalCharacteristic // count all
-  day: Day
+  days: Day[]
 }
 
 export interface Hashtag {

@@ -8,40 +8,42 @@ export default async (_: NextApiRequest, res: NextApiResponse): Promise<void> =>
   const goal: Goal = {
     ...learnFrench,
     id: 314,
-    day: {
-      ...learnFrench.day,
-      id: 532,
-      characteristic: {
-        motivation: [],
-        support: [],
-        creativity: [],
+    days: [
+      {
+        ...learnFrench.days[0],
+        id: 532,
+        characteristic: {
+          motivation: [],
+          support: [],
+          creativity: [],
+        },
+        tasks: [
+          {
+            id: 5,
+            name: 'read 30 pages Harry Potter',
+            completed: false,
+            completedByOthers: false,
+            date: new Date().toISOString(),
+          },
+          {
+            id: 6,
+            name: 'watch Lord of the Rings #1',
+            completed: false,
+            completedByOthers: false,
+            date: new Date().toISOString(),
+          },
+          {
+            id: 7,
+            name: 'Solve 3 tests',
+            completed: false,
+            completedByOthers: false,
+            date: new Date().toISOString(),
+          },
+        ],
+        discussionCount: 0,
+        feedbackId: null,
       },
-      tasks: [
-        {
-          id: 5,
-          name: 'read 30 pages Harry Potter',
-          completed: false,
-          completedByOthers: false,
-          date: new Date().toISOString(),
-        },
-        {
-          id: 6,
-          name: 'watch Lord of the Rings #1',
-          completed: false,
-          completedByOthers: false,
-          date: new Date().toISOString(),
-        },
-        {
-          id: 7,
-          name: 'Solve 3 tests',
-          completed: false,
-          completedByOthers: false,
-          date: new Date().toISOString(),
-        },
-      ],
-      discussionCount: 0,
-      feedbackId: null,
-    },
+    ],
   }
   res.status(200).json(goal)
 }

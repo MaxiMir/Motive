@@ -6,7 +6,6 @@ import Header from './Header'
 import Footer from './Footer'
 
 interface LayoutProps {
-  data?: unknown | string
   title?: string
   description?: string
   url?: string

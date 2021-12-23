@@ -11,7 +11,11 @@ export default function HomePage({ fallbackData }: MainPageSWR): JSX.Element {
   // TODO get client
 
   return (
-    <Layout title={process.env.NEXT_PUBLIC_APP_NAME} error={error} withVerticalPadding={false}>
+    <Layout
+      title={`${process.env.NEXT_PUBLIC_APP_NAME} • your assistant to achieve your goals`}
+      error={error}
+      withVerticalPadding={false}
+    >
       <Main />
     </Layout>
   )

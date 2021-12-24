@@ -51,7 +51,7 @@ export default function GoalCurrent({ goal, client, href }: GoalCurrentProps): J
   const days = differenceInDays(currentDate, Date.parse(started))
   const showWeb = checkOnWeb(datesMap, date, currentDate)
   const goalHref = getGoalHref(href, goal)
-  const role = getRole(goal, client)
+  const role = getRole(client, goal)
   const withForm = ['OWNER', 'MEMBER'].includes(role)
 
   const onSetTask = (isCompleted: boolean) => {

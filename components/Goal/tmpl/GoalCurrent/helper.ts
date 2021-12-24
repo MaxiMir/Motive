@@ -31,7 +31,7 @@ export const checkOnWeb = (datesMap: Record<string, number>, dayDate: string, cu
   return isLastDate && differenceInDays(currentDate, Date.parse(dayDate)) >= SHOW_WEB_AFTER_DAYS
 }
 
-export const getRole = (goal: Goal, client: UserBase): Role => {
+export const getRole = (client: UserBase, goal: Goal): Role => {
   switch (true) {
     case goal.owner.id === client.id:
       return 'OWNER'

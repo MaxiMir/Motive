@@ -9,12 +9,12 @@ import useDebounceCb from 'hooks/useDebounceCb'
 import AppBox from 'components/UI/AppBox'
 
 interface DateProps {
-  date: string
   datesMap: Record<string, number>
+  date: string
   onChangeDate: (id: number) => void
 }
 
-export default function GoalDate({ date, datesMap, onChangeDate }: DateProps): JSX.Element {
+export default function GoalDate({ datesMap, date, onChangeDate }: DateProps): JSX.Element {
   const classes = useStyles()
   const [open, setOpen] = useState(false)
   const [value, setValue] = useState(new Date(date))
@@ -57,7 +57,6 @@ export default function GoalDate({ date, datesMap, onChangeDate }: DateProps): J
         <span className="material-icons">chevron_left</span>
       </IconButton>
       <KeyboardDatePicker
-        disableFuture
         variant="dialog"
         format="MM/dd/yy"
         open={open}

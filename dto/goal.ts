@@ -52,3 +52,8 @@ export interface Photo {
   width: number
   height: number
 }
+
+export interface Calendar {
+  id: number
+  date: string
+}

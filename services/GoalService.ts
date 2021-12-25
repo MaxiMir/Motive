@@ -1,4 +1,4 @@
-import { Goal, GoalCreation } from 'dto'
+import { Calendar, Goal, GoalCreation } from 'dto'
 import Axios from 'lib/axios'
 
 export default class GoalService {
@@ -16,5 +16,14 @@ export default class GoalService {
     const { dayId } = data
 
     return Axios.get(`/goals/${dayId}`)
+  }
+
+  /**
+   * /goals/{id}/calendar
+   */
+  static getDates(data: { dayId: number }): Promise<Calendar[]> {
+    const { dayId } = data
+
+    return Axios.get(`/goals/${dayId}/calendar`)
   }
 }

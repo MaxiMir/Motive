@@ -34,7 +34,6 @@ const useStyles = makeStyles((theme) =>
     },
     subheader: {
       color: '#A1A1A6',
-      fontWeight: 500,
     },
   }),
 )

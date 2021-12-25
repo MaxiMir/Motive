@@ -1,9 +1,11 @@
-import { Fragment, useRef, useState } from 'react'
+import { Fragment, useMemo, useRef, useState } from 'react'
 import dynamic from 'next/dynamic'
 import differenceInDays from 'date-fns/differenceInDays'
+import useSWR from 'swr'
 import { createStyles, useTheme } from '@material-ui/core'
 import { makeStyles } from '@material-ui/core/styles'
 import { UserBase, Goal, GoalCharacteristicName } from 'dto'
+import GoalService from 'services/GoalService'
 import useCharacteristicColors from 'hooks/useCharacteristicColors'
 import AppBox from 'components/UI/AppBox'
 import AppHeader from 'components/UI/AppHeader'
@@ -39,7 +41,8 @@ export interface GoalCurrentProps {
 export default function GoalCurrent({ goal, client, href }: GoalCurrentProps): JSX.Element {
   const currentDate = new Date()
   const { id, name, hashtags, started, characteristic, owner } = goal
-  const datesMap = {} // TODO change
+  const calendarSWR = useSWR(`dates-${goal.id}`, () => GoalService.getDates({ dayId: id }))
+  const datesMap = useMemo(getDatesMap, [calendarSWR.data])
   const [day] = goal.days
   const { id: dayId, date, tasks, views, feedbackId } = day
   const classes = useStyles()
@@ -58,9 +61,13 @@ export default function GoalCurrent({ goal, client, href }: GoalCurrentProps): J
     restRef.current += isCompleted ? -1 : 1
   }
 
+  function getDatesMap() {
+    return calendarSWR.data?.reduce((acc, c) => ({ ...acc, [c.date]: c.id }), {}) || {}
+  }
+
   return (
     <AppBox flexDirection="column" spacing={1} id={`goal-${id}`} className={classes.root}>
-      <GoalDate date={date} datesMap={datesMap} onChangeDate={onChangeDate} />
+      <GoalDate datesMap={datesMap} date={date} onChangeDate={onChangeDate} />
       <div className={classes.wrap}>
         <AppBox flexDirection="column" justifyContent="space-between" spacing={3} className={classes.content}>
           <AppBox flexDirection="column" spacing={3}>

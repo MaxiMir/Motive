@@ -8,7 +8,7 @@ import { useMutatePage } from 'views/User/hook'
 
 type UseUserFavorite = [boolean, () => void]
 
-export default function useUserFavorite(clientId: number, following: number, favorite: boolean): UseUserFavorite {
+export default function useUserFavorite(clientId: number, followingId: number, favorite: boolean): UseUserFavorite {
   const lastLoadedRef = useRef(favorite)
   const [page, mutate] = useMutatePage()
   const { enqueueSnackbar } = useSnackbar()
@@ -28,7 +28,7 @@ export default function useUserFavorite(clientId: number, following: number, fav
     },
   })
   const sendWithDebounce = useDebounceCb((add: boolean) => {
-    lastLoadedRef.current !== add && send({ clientId, following, add })
+    lastLoadedRef.current !== add && send({ clientId, followingId, add })
   })
 
   const onChange = () => {

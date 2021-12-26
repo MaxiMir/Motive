@@ -1,6 +1,6 @@
 import React, { useRef, useState } from 'react'
 import dynamic from 'next/dynamic'
-import { Task } from 'dto'
+import { TaskDto } from 'dto'
 import useSend from 'hooks/useSend'
 import useSnackbar from 'hooks/useSnackbar'
 import TaskService from 'services/TaskService'
@@ -8,7 +8,7 @@ import TaskService from 'services/TaskService'
 const Button = dynamic(() => import('@material-ui/core/Button'))
 
 export default function useSetCompleted(
-  task: Task,
+  task: TaskDto,
   rest: number,
   onSet: (isCompleted: boolean) => void,
 ): [boolean, boolean, () => void] {

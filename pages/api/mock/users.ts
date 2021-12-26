@@ -1,7 +1,7 @@
-import { UserDetail } from 'dto'
+import { UserDetailDto } from 'dto'
 import { becomeSenior, learnFrench } from './goals'
 
-const ME: UserDetail = {
+const ME: UserDetailDto = {
   id: 1,
   nickname: 'maximir',
   name: 'Maxim Minchenko',
@@ -18,7 +18,7 @@ const ME: UserDetail = {
   goals: [learnFrench, becomeSenior],
 }
 
-const JULIA: UserDetail = {
+const JULIA: UserDetailDto = {
   id: 2,
   nickname: 'yulifleur',
   name: 'Julia Minchenko',
@@ -45,7 +45,7 @@ const JULIA: UserDetail = {
   ],
 }
 
-const FRIEND: UserDetail = {
+const FRIEND: UserDetailDto = {
   id: 5,
   nickname: 'kopeychik',
   name: 'Alexey Kopeychik',
@@ -72,7 +72,7 @@ const FRIEND: UserDetail = {
   ],
 }
 
-const FRIEND1: UserDetail = {
+const FRIEND1: UserDetailDto = {
   id: 3,
   nickname: 'valulya',
   name: 'Valentina Ulyanova',
@@ -89,7 +89,7 @@ const FRIEND1: UserDetail = {
   goals: [],
 }
 
-const FRIEND2: UserDetail = {
+const FRIEND2: UserDetailDto = {
   id: 4,
   nickname: 'arty',
   name: 'Artyom Arzunyan',

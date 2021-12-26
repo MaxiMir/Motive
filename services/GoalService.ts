@@ -1,27 +1,18 @@
-import { Calendar, Goal, GoalCreation } from 'dto'
+import { CalendarDto, GoalDto, GoalCreationDto } from 'dto'
 import Axios from 'lib/axios'
 
 export default class GoalService {
   /**
-   * /goals/
+   * /goals
    */
-  static create(data: GoalCreation): Promise<Goal> {
+  static create(data: GoalCreationDto): Promise<GoalDto> {
     return Axios.post('/goals/', data)
-  }
-
-  /**
-   * /goals/{id}/
-   */
-  static getById(data: { dayId: number }): Promise<Goal> {
-    const { dayId } = data
-
-    return Axios.get(`/goals/${dayId}`)
   }
 
   /**
    * /goals/{id}/calendar
    */
-  static getDates(data: { dayId: number }): Promise<Calendar[]> {
+  static getDates(data: { dayId: number }): Promise<CalendarDto[]> {
     const { dayId } = data
 
     return Axios.get(`/goals/${dayId}/calendar`)

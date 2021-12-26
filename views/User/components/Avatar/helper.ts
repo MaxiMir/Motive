@@ -1,5 +1,5 @@
 import produce from 'immer'
-import { MainCharacteristicName, UserCharacteristic } from 'dto'
+import { MainCharacteristicName, UserCharacteristicDto } from 'dto'
 
 const RADIUS = 175
 const DIAMETER = Math.round(Math.PI * RADIUS * 2)
@@ -45,7 +45,7 @@ interface CircleItem extends CircleItemInit {
   dasharray: number
 }
 
-export const getCircleItems = (characteristic: UserCharacteristic): CircleItem[] => {
+export const getCircleItems = (characteristic: UserCharacteristicDto): CircleItem[] => {
   const items = CIRCLE_ITEMS.map((item) => ({
     ...item,
     radius: RADIUS,

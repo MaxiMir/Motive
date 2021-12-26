@@ -3,7 +3,7 @@ import dynamic from 'next/dynamic'
 import produce from 'immer'
 import { makeStyles } from '@material-ui/core/styles'
 import { Button } from '@material-ui/core'
-import { Goal } from 'dto'
+import { GoalDto } from 'dto'
 import useSnackbar from 'hooks/useSnackbar'
 import { useMutateGoals } from 'views/User/hook'
 import { scrollToElem } from 'helpers/dom'
@@ -21,9 +21,9 @@ export default function AddGoal(): JSX.Element {
 
   const onClose = () => setOpen(false)
 
-  const onSuccess = (goal: Goal) => {
+  const onSuccess = (goal: GoalDto) => {
     mutateGoals(
-      produce(goals, (draft: Goal[]) => {
+      produce(goals, (draft: GoalDto[]) => {
         draft.push(goal)
       }),
     )

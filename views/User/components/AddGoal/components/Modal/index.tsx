@@ -4,7 +4,7 @@ import { Field, FieldArray, Form, FormikProvider, useFormik } from 'formik'
 import { addDays } from 'date-fns'
 import { makeStyles } from '@material-ui/core/styles'
 import { Accordion, AccordionDetails, AccordionSummary, Button, createStyles } from '@material-ui/core'
-import { Goal, GoalCreation } from 'dto'
+import { GoalDto, GoalCreationDto } from 'dto'
 import GoalService from 'services/GoalService'
 import useSend from 'hooks/useSend'
 import useFocus from 'hooks/useFocus'
@@ -22,7 +22,7 @@ import CloseButton from './components/CloseButton'
 const TaskField = dynamic(() => import('./components/TaskField'))
 
 interface ModalProps {
-  onSuccess: (goal: Goal) => void
+  onSuccess: (goal: GoalDto) => void
   onClose: () => void
 }
 
@@ -31,7 +31,7 @@ export default function Modal({ onSuccess, onClose }: ModalProps): JSX.Element {
   const classes = useStyles()
   const [hashtagsRef, setHashtagsFocus] = useFocus()
   const tomorrow = useMemo(() => addDays(new Date(), 1), [])
-  const { isLoading, send } = useSend<GoalCreation, Goal>(GoalService.create, { onSuccess })
+  const { isLoading, send } = useSend<GoalCreationDto, GoalDto>(GoalService.create, { onSuccess })
   const formik = useFormik({
     initialValues: {
       name: '',

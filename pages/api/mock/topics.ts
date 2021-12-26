@@ -1,7 +1,7 @@
-import { Discussion, Topic, TopicType } from 'dto'
+import { DiscussionDto, TopicDto, TopicType } from 'dto'
 import users from './users'
 
-const question: Topic = {
+const question: TopicDto = {
   id: 124,
   date: '2021-10-06T16:42:00.000Z',
   message: 'What other books do you read?',
@@ -23,7 +23,7 @@ const question: Topic = {
   },
 }
 
-const support: Topic = {
+const support: TopicDto = {
   id: 126,
   message: 'You have great plans! Good job!',
   date: new Date().toISOString(),
@@ -36,7 +36,7 @@ const support: Topic = {
   answer: null,
 }
 
-const question2: Topic = {
+const question2: TopicDto = {
   id: 127,
   date: '2021-10-06T17:00:00.000Z',
   message: 'What is the test?',
@@ -61,7 +61,7 @@ const question2: Topic = {
 
 export const topics = [question, support, question2]
 
-export const getTopics = (query: Record<string, string>): Discussion => {
+export const getTopics = (query: Record<string, string>): DiscussionDto => {
   if (query.id === '232') {
     return {
       content: topics,
@@ -75,7 +75,7 @@ export const getTopics = (query: Record<string, string>): Discussion => {
   }
 }
 
-export const getNewTopic = (message: string, isQuestion: boolean): Topic => ({
+export const getNewTopic = (message: string, isQuestion: boolean): TopicDto => ({
   id: Date.now(),
   date: new Date().toISOString(),
   message,

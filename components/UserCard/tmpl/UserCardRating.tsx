@@ -1,6 +1,6 @@
 import { makeStyles } from '@material-ui/core/styles'
 import { Container, Grid } from '@material-ui/core'
-import { User, UserCharacteristicName } from 'dto'
+import { UserDto, UserCharacteristicName } from 'dto'
 import { getUserHref } from 'views/User/helper'
 import AppBox from 'components/UI/AppBox'
 import AppLink from 'components/UI/AppLink'
@@ -9,7 +9,7 @@ import AppAvatar from 'components/UI/AppAvatar'
 
 export interface UserCardRatingProps {
   tmpl: 'rating'
-  user: User
+  user: UserDto
   characteristicName: UserCharacteristicName
   color: string
   index: number

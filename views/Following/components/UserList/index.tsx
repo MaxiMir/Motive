@@ -1,13 +1,13 @@
 import React from 'react'
-import { User } from 'dto'
+import { UserDto } from 'dto'
 import UserCard from 'components/UserCard'
 import AppList from 'components/UI/AppList'
 import useRemoveFollowing from './hook'
 
 interface FavoriteListProps {
-  users: User[]
+  users: UserDto[]
   clientId: number
-  mutate: (user: User[]) => void
+  mutate: (user: UserDto[]) => void
 }
 
 export default function UserList({ users, clientId, mutate }: FavoriteListProps): JSX.Element {

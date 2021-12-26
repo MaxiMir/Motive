@@ -1,24 +1,24 @@
 import produce from 'immer'
-import { Goal } from 'dto'
-import GoalService from 'services/GoalService'
+import { GoalDto } from 'dto'
+import DayService from 'services/DayService'
 import useSend from 'hooks/useSend'
 import { useMutateGoals } from 'views/User/hook'
 import { getQueryNewState } from './helper'
 
 export default function useChangeDate(goalId: number): [boolean, (dayId: number) => void] {
   const [goals, mutateGoals] = useMutateGoals()
-  const { isLoading, send } = useSend(GoalService.getById, {
-    onSuccess: (changedGoal) => {
+  const { isLoading, send } = useSend(DayService.getById, {
+    onSuccess: (day) => {
       mutateGoals(
-        produce(goals, (draft: Goal[]) => {
-          draft[draft.findIndex((g) => g.id === goalId)] = changedGoal
+        produce(goals, (draft: GoalDto[]) => {
+          draft[draft.findIndex((g) => g.id === goalId)].days = [day]
         }),
       )
-      window.history.pushState(null, '', getQueryNewState(goals, changedGoal))
+      window.history.pushState(null, '', getQueryNewState(goals, goalId, day.id))
     },
   })
 
-  const onChangeDate = (dayId: number) => send({ dayId })
+  const onChangeDate = (dayId: number) => send({ id: dayId })
 
   return [isLoading, onChangeDate]
 }

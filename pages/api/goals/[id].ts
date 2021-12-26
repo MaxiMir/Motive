@@ -1,11 +1,11 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
-import { Goal } from 'dto'
+import { GoalDto } from 'dto'
 import { learnFrench } from 'pages/api/mock/goals'
 
 export default async (_: NextApiRequest, res: NextApiResponse): Promise<void> => {
   await new Promise((r) => setTimeout(r, 1500))
 
-  const goal: Goal = {
+  const goal: GoalDto = {
     ...learnFrench,
     id: 314,
     days: [

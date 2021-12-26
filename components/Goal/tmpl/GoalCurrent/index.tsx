@@ -4,7 +4,7 @@ import differenceInDays from 'date-fns/differenceInDays'
 import useSWR from 'swr'
 import { createStyles, useTheme } from '@material-ui/core'
 import { makeStyles } from '@material-ui/core/styles'
-import { UserBase, Goal, GoalCharacteristicName } from 'dto'
+import { UserBaseDto, GoalDto, GoalCharacteristicName } from 'dto'
 import GoalService from 'services/GoalService'
 import useCharacteristicColors from 'hooks/useCharacteristicColors'
 import AppBox from 'components/UI/AppBox'
@@ -33,8 +33,8 @@ const CHARACTERISTICS: GoalCharacteristicName[] = ['motivation', 'creativity', '
 
 export interface GoalCurrentProps {
   tmpl: 'current'
-  goal: Goal
-  client: UserBase
+  goal: GoalDto
+  client: UserBaseDto
   href: string
 }
 

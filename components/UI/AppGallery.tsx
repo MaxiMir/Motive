@@ -1,13 +1,13 @@
 import { useCallback, useState } from 'react'
 import dynamic from 'next/dynamic'
 import Carousel, { Modal, ModalGateway } from 'react-images'
-import { Photo } from 'dto'
+import { PhotoDto } from 'dto'
 import AppGalleryPhoto from './AppGalleryPhoto'
 
 const Gallery = dynamic(() => import('react-photo-gallery'), { ssr: false })
 
 interface AppGalleryProps {
-  items: Photo[]
+  items: PhotoDto[]
 }
 
 export default function AppGallery({ items }: AppGalleryProps): JSX.Element {

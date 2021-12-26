@@ -1,7 +1,7 @@
 import { useMemo } from 'react'
 import dynamic from 'next/dynamic'
 import useSWRInfinite from 'swr/infinite'
-import { Role, Topic as TopicDTO, UserBase } from 'dto'
+import { RoleDto, TopicDto, UserBaseDto } from 'dto'
 import AppBox from 'components/UI/AppBox'
 import { AppListProps } from 'components/UI/AppList'
 import { getSWRKey, fetcher, checkPartialOnLoadMore } from './helper'
@@ -9,15 +9,15 @@ import { getSWRKey, fetcher, checkPartialOnLoadMore } from './helper'
 const Loader = dynamic(() => import('./components/Loader'))
 const Topic = dynamic(() => import('./components/Topic'))
 const UserCard = dynamic(() => import('components/UserCard'))
-const AppList = dynamic<AppListProps<TopicDTO>>(() => import('components/UI/AppList'))
+const AppList = dynamic<AppListProps<TopicDto>>(() => import('components/UI/AppList'))
 const AppTypography = dynamic(() => import('components/UI/AppTypography'))
 const AppInView = dynamic(() => import('components/UI/AppInView'))
 
 interface DiscussionProps {
   dayId: number
-  role: Role
-  owner: UserBase
-  client: UserBase
+  role: RoleDto
+  owner: UserBaseDto
+  client: UserBaseDto
   count: number
   setDiscussionCount: (count: number) => void
 }
@@ -41,7 +41,7 @@ export default function Discussion({
   const height = !count ? undefined : (!withInput ? 0 : 56) + 540
   const checkOnLoadMore = checkPartialOnLoadMore(data, content)
 
-  const onAdd = async (topic: TopicDTO) => {
+  const onAdd = async (topic: TopicDto) => {
     await mutate([{ content: [topic], last: false }, ...(data || [])], false)
     setDiscussionCount(count + 1)
   }
@@ -58,7 +58,7 @@ export default function Discussion({
     <AppBox flexDirection="column" spacing={2} flex={1} height={height}>
       <>
         {(!count || content) && withInput && (
-          <UserCard tmpl="input" dayId={dayId} user={client as UserBase} onAdd={onAdd} />
+          <UserCard tmpl="input" dayId={dayId} user={client as UserBaseDto} onAdd={onAdd} />
         )}
         {!count ? (
           <AppTypography>Nothing so far...</AppTypography>

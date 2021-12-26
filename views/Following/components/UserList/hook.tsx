@@ -1,6 +1,6 @@
 import { useRef } from 'react'
 import { Button } from '@material-ui/core'
-import { User } from 'dto'
+import { UserDto } from 'dto'
 import useSnackbar from 'hooks/useSnackbar'
 import useSend from 'hooks/useSend'
 import UserService from 'services/UserService'
@@ -8,9 +8,9 @@ import UserService from 'services/UserService'
 type UseRemoveFollowingUser = (id: number) => void
 
 export default function useRemoveFollowing(
-  users: User[],
+  users: UserDto[],
   clientId: number,
-  mutate: (user: User[]) => void,
+  mutate: (user: UserDto[]) => void,
 ): UseRemoveFollowingUser {
   const prevUsersRef = useRef(users)
   const { enqueueSnackbar, closeSnackbar } = useSnackbar()

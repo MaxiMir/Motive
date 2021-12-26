@@ -1,12 +1,12 @@
 import dynamic from 'next/dynamic'
-import { Feedback } from 'dto'
+import { FeedbackDto } from 'dto'
 import AppTypography from 'components/UI/AppTypography'
 
 const AppHeader = dynamic(() => import('components/UI/AppHeader'))
 const AppGallery = dynamic(() => import('components/UI/AppGallery'))
 const AppVideo = dynamic(() => import('components/UI/AppVideo'))
 
-export default function Content({ text, photos, video }: Feedback): JSX.Element {
+export default function Content({ text, photos, video }: FeedbackDto): JSX.Element {
   return (
     <>
       {text && (

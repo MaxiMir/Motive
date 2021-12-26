@@ -1,1 +1,1 @@
-export type Role = 'OWNER' | 'MEMBER' | 'GUEST'
+export type RoleDto = 'OWNER' | 'MEMBER' | 'GUEST'

@@ -1,25 +1,34 @@
 import dynamic from 'next/dynamic'
-import { Task as TaskDTO } from 'dto'
+import clsx from 'clsx'
+import { TaskDto } from 'dto'
 import AppBox from 'components/UI/AppBox'
 import AppEmoji from 'components/UI/AppEmoji'
 import AppTypography from 'components/UI/AppTypography'
+import { makeStyles } from '@material-ui/core'
 
 const TaskDate = dynamic(() => import('./TaskDate'))
 
 interface TaskProps {
-  task: TaskDTO
+  task: TaskDto
 }
 
 export default function Task({ task }: TaskProps): JSX.Element {
-  const { name, date } = task
-
+  const classes = useStyles()
+  const { name, date, completed } = task
+  // todo check on completed
   return (
     <>
       <AppBox alignItems="center" spacing={1}>
-        <AppEmoji name="energy" variant="h6" />
+        <AppEmoji name="energy" variant="h6" className={clsx([!completed && classes.notCompleted])} />
         <AppTypography variant="subtitle1">{name}</AppTypography>
       </AppBox>
       {date && <TaskDate date={date} />}
     </>
   )
 }
+
+const useStyles = makeStyles({
+  notCompleted: {
+    filter: 'grayscale(1)',
+  },
+})

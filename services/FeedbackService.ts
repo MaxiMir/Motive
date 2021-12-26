@@ -1,13 +1,13 @@
 import Axios from 'lib/axios'
-import { Feedback } from 'dto'
+import { FeedbackDto } from 'dto'
 
 export default class FeedbackService {
   /**
-   * /feedback/{id}/
+   * /feedback/{id}
    */
-  static getById(data: { id: number }): Promise<Feedback> {
+  static getById(data: { id: number }): Promise<FeedbackDto> {
     const { id } = data
 
-    return Axios.get(`/feedback/${id}/`)
+    return Axios.get(`/feedback/${id}`)
   }
 }

@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import dynamic from 'next/dynamic'
 import { IconButton, makeStyles, TextField } from '@material-ui/core'
-import { Topic, TopicType, UserBase } from 'dto'
+import { TopicDto, TopicType, UserBaseDto } from 'dto'
 import DayService from 'services/DayService'
 import useSend from 'hooks/useSend'
 import useSnackbar from 'hooks/useSnackbar'
@@ -14,9 +14,9 @@ const AppIcon = dynamic(() => import('components/UI/AppIcon'))
 export interface UserCardInputProps {
   tmpl: 'input'
   dayId: number
-  user: UserBase
+  user: UserBaseDto
   answer?: boolean
-  onAdd: (topic: Topic) => void
+  onAdd: (topic: TopicDto) => void
 }
 
 export default function UserCardInput({ dayId, user, answer, onAdd }: UserCardInputProps): JSX.Element {
@@ -32,7 +32,7 @@ export default function UserCardInput({ dayId, user, answer, onAdd }: UserCardIn
     },
   })
 
-  const onClick = () => send({ dayId, message, type: answer ? TopicType.SUPPORT : TopicType.QUESTION })
+  const onClick = () => send({ id: dayId, message, type: answer ? TopicType.SUPPORT : TopicType.QUESTION })
 
   return (
     <form>

@@ -1,6 +1,6 @@
 import { Fragment } from 'react'
 import { makeStyles } from '@material-ui/core/styles'
-import { User, UserCharacteristicName } from 'dto'
+import { UserDto, UserCharacteristicName } from 'dto'
 import useCharacteristicColors from 'hooks/useCharacteristicColors'
 import { getUserHref } from 'views/User/helper'
 import Characteristic from 'components/Characteristic'
@@ -16,7 +16,7 @@ const LAST_CHARACTERISTIC_INDEX = 3
 
 export interface UserCardFollowingProps {
   tmpl: 'following'
-  user: User
+  user: UserDto
   onRemove: () => void
 }
 

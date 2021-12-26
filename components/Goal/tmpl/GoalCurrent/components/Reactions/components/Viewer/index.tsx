@@ -1,7 +1,7 @@
 import { useMemo } from 'react'
 import produce from 'immer'
 import { Button } from '@material-ui/core'
-import { MainCharacteristicName, DayCharacteristic, UserBase, Goal, Role } from 'dto'
+import { MainCharacteristicName, DayCharacteristicDto, UserBaseDto, GoalDto, RoleDto } from 'dto'
 import { useMutateGoals } from 'views/User/hook'
 import AppBox from 'components/UI/AppBox'
 import AppEmoji from 'components/UI/AppEmoji'
@@ -10,11 +10,11 @@ import Reaction from './components/Reaction'
 
 export interface ViewerProps {
   dayId: number
-  role: Role
-  goal: Goal
-  characteristic: DayCharacteristic | null
-  owner: UserBase
-  client: UserBase
+  role: RoleDto
+  goal: GoalDto
+  characteristic: DayCharacteristicDto | null
+  owner: UserBaseDto
+  client: UserBaseDto
 }
 
 export default function Viewer({ role, dayId, goal, characteristic, owner, client }: ViewerProps): JSX.Element {
@@ -23,7 +23,7 @@ export default function Viewer({ role, dayId, goal, characteristic, owner, clien
 
   const onSet = (value: MainCharacteristicName, increase: boolean) =>
     mutateGoals(
-      produce(goals, (draft: Goal[]) => {
+      produce(goals, (draft: GoalDto[]) => {
         draft[draft.findIndex((g) => g.id === goal.id)].characteristic[value] += increase ? 1 : -1
       }),
     )

@@ -1,22 +1,31 @@
 import Axios from 'lib/axios'
-import { Goal, TopicType, Topic } from 'dto'
+import { TopicType, TopicDto, DayDto } from 'dto'
 
 export default class DayService {
   /**
-   * /days/{id}/{characteristic}/
+   * /goals/{id}
    */
-  static updateCharacteristic(data: { dayId: number; name: string; active: boolean }): Promise<Goal> {
-    const { dayId, name, ...body } = data
+  static getById(data: { id: number }): Promise<DayDto> {
+    const { id } = data
 
-    return Axios.put(`/days/${dayId}/${name}/`, body)
+    return Axios.get(`/days/${id}`)
   }
 
   /**
-   * /days/{id}/discussion/
+   * /days/{id}/{characteristic}
    */
-  static createTopic(data: { dayId: number; type: TopicType; message: string }): Promise<Topic> {
-    const { dayId, ...body } = data
+  static updateCharacteristic(data: { id: number; name: string; active: boolean }): Promise<void> {
+    const { id, name, ...body } = data
 
-    return Axios.post(`/days/${dayId}/discussion/`, body)
+    return Axios.put(`/days/${id}/${name}`, body)
+  }
+
+  /**
+   * /days/{id}/discussion
+   */
+  static createTopic(data: { id: number; type: TopicType; message: string }): Promise<TopicDto> {
+    const { id, ...body } = data
+
+    return Axios.post(`/days/${id}/discussion`, body)
   }
 }

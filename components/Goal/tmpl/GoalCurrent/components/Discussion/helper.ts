@@ -1,5 +1,5 @@
 import { InfiniteKeyLoader } from 'swr/infinite/dist/infinite/types'
-import { Discussion, Topic } from 'dto'
+import { DiscussionDto, TopicDto } from 'dto'
 import PageService from 'services/PageService'
 
 const LIMIT = 25
@@ -9,7 +9,7 @@ const PRELOAD_END_INDEX = 5
 // its return value will be accepted by `fetcher`.
 // If `null` is returned, the request of that page won't start.
 export const getSWRKey = (dayId: string): InfiniteKeyLoader => {
-  return (page: number, previousData: Discussion) => {
+  return (page: number, previousData: DiscussionDto) => {
     if (previousData?.last) {
       return null // reached the end or discussion is empty
     }
@@ -18,9 +18,9 @@ export const getSWRKey = (dayId: string): InfiniteKeyLoader => {
   }
 }
 
-export const fetcher = (url: string): Promise<Discussion> => PageService.getURL(url)
+export const fetcher = (url: string): Promise<DiscussionDto> => PageService.getURL(url)
 
-export const checkPartialOnLoadMore = (data?: Discussion[], content?: Topic[]): ((index: number) => boolean) => {
+export const checkPartialOnLoadMore = (data?: DiscussionDto[], content?: TopicDto[]): ((index: number) => boolean) => {
   const allCount = content?.length
 
   return (index: number) =>

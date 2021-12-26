@@ -1,6 +1,6 @@
 import { useRouter } from 'next/router'
 import { Container } from '@material-ui/core'
-import { MainCharacteristicName, User } from 'dto'
+import { MainCharacteristicName, UserDto } from 'dto'
 import AppHeader from 'components/UI/AppHeader'
 import AppTabs from 'components/UI/AppTabs'
 import AppBox from 'components/UI/AppBox'
@@ -10,7 +10,7 @@ import TabName from './components/TabName'
 const TAB_NAMES: MainCharacteristicName[] = ['motivation', 'creativity', 'support']
 
 type RatingProps = {
-  [k in MainCharacteristicName]: User[]
+  [k in MainCharacteristicName]: UserDto[]
 }
 
 export default function Rating(props: RatingProps): JSX.Element {

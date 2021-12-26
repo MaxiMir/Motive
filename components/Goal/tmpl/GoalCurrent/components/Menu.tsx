@@ -1,7 +1,7 @@
 import { MouseEvent, useState } from 'react'
 import dynamic from 'next/dynamic'
 import { MenuItem } from '@material-ui/core'
-import { Role } from 'dto'
+import { RoleDto } from 'dto'
 import Share from 'components/Share'
 import AppMenuButton from 'components/UI/AppMenuButton'
 
@@ -10,7 +10,7 @@ const MUMenu = dynamic(() => import('@material-ui/core/Menu'))
 interface MenuProps {
   title: string
   href: string
-  role: Role
+  role: RoleDto
 }
 
 export default function Menu({ title, href, role }: MenuProps): JSX.Element {

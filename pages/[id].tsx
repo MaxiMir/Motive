@@ -1,5 +1,5 @@
 import { GetServerSideProps } from 'next'
-import { UserPageSWR } from 'dto'
+import { UserPageSWRDto } from 'dto'
 import { UserPageContext } from 'context/userPageContext'
 import PageService from 'services/PageService'
 import useUserPage from 'hooks/useUserPage'
@@ -7,7 +7,7 @@ import { getUserMeta } from 'views/User/helper'
 import Layout from 'layout'
 import User from 'views/User'
 
-export default function UserDetail({ fallbackData }: UserPageSWR): JSX.Element {
+export default function UserDetail({ fallbackData }: UserPageSWRDto): JSX.Element {
   const { data, error } = useUserPage(fallbackData)
   const userMeta = getUserMeta(data?.content.user)
 

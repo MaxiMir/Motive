@@ -1,6 +1,6 @@
-import { Goal, GoalCreation } from 'dto'
+import { GoalDto, GoalCreationDto } from 'dto'
 
-export const learnFrench: Goal = {
+export const learnFrench: GoalDto = {
   id: 314,
   name: 'learn French',
   started: '2021-10-17T18:31:42',
@@ -51,7 +51,7 @@ export const learnFrench: Goal = {
   ],
 }
 
-export const becomeSenior: Goal = {
+export const becomeSenior: GoalDto = {
   id: 214,
   name: 'become senior',
   started: '2021-09-01T12:31:42',
@@ -84,7 +84,7 @@ export const becomeSenior: Goal = {
   ],
 }
 
-export const getNewGoal = (goalCreation: GoalCreation): Goal => {
+export const getNewGoal = (goalCreation: GoalCreationDto): GoalDto => {
   return {
     id: 413,
     name: goalCreation.name,

@@ -1,7 +1,7 @@
 import React from 'react'
 import dynamic from 'next/dynamic'
 import { useMediaQuery, useTheme } from '@material-ui/core'
-import { UserDetail, UserCharacteristicName, UserBase } from 'dto'
+import { UserDetailDto, UserCharacteristicName, UserBaseDto } from 'dto'
 import { getUserHref } from 'views/User/helper'
 import useCharacteristicColors from 'hooks/useCharacteristicColors'
 import AppBox from 'components/UI/AppBox'
@@ -20,8 +20,8 @@ const CHARACTERISTIC_NAMES: UserCharacteristicName[] = ['motivation', 'creativit
 const SECOND_CHARACTERISTIC_NAMES: UserCharacteristicName[] = ['completed', 'abandoned', 'followers']
 
 export interface DetailProps {
-  user: UserDetail
-  client: UserBase
+  user: UserDetailDto
+  client: UserBaseDto
   favorite: boolean
 }
 

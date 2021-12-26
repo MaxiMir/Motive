@@ -1,35 +1,35 @@
-import { User, UserBase } from './user'
+import { UserDto, UserBaseDto } from './user'
 import { MainCharacteristicName } from './characteristic'
-import { Goal } from './goal'
+import { GoalDto } from './goal'
 
 export type PageSWR<T> = {
   fallbackData: T
 }
 
 type Page<T> = {
-  client: UserBase
+  client: UserBaseDto
   content: T
 }
 
-export type MainPage = Page<null>
+export type MainPageDto = Page<null>
 
-export type MainPageSWR = PageSWR<MainPage>
+export type MainPageSWRDto = PageSWR<MainPageDto>
 
-export type RatingPage = Page<{ [k in MainCharacteristicName]: User[] }>
+export type RatingPageDto = Page<{ [k in MainCharacteristicName]: UserDto[] }>
 
-export type RatingPageSWR = PageSWR<RatingPage>
+export type RatingPageSWRDto = PageSWR<RatingPageDto>
 
-export type FollowingPage = Page<User[]>
+export type FollowingPageDto = Page<UserDto[]>
 
-export type FollowingPageSWR = PageSWR<FollowingPage>
+export type FollowingPageSWRDto = PageSWR<FollowingPageDto>
 
-export type UserPage = Page<{ favorite: boolean; user: UserDetail }>
+export type UserPageDto = Page<{ favorite: boolean; user: UserDetailDto }>
 
-export type UserPageSWR = PageSWR<UserPage>
+export type UserPageSWRDto = PageSWR<UserPageDto>
 
-export interface UserDetail extends User {
+export interface UserDetailDto extends UserDto {
   favorite: boolean
-  goals: Goal[]
+  goals: GoalDto[]
 }
 
 export interface DataWithPagination<T> {

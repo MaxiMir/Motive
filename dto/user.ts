@@ -1,12 +1,12 @@
-import { UserCharacteristic } from './characteristic'
+import { UserCharacteristicDto } from './characteristic'
 
-export interface UserBase {
+export interface UserBaseDto {
   id: number
   nickname: string
   name: string
   avatar: string
 }
 
-export interface User extends UserBase {
-  characteristic: UserCharacteristic
+export interface UserDto extends UserBaseDto {
+  characteristic: UserCharacteristicDto
 }

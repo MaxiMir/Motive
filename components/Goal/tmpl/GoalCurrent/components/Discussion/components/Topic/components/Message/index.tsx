@@ -1,7 +1,7 @@
 import dynamic from 'next/dynamic'
 import formatDistanceToNow from 'date-fns/formatDistanceToNow'
 import { createStyles, makeStyles } from '@material-ui/core'
-import { TopicBase, TopicType, UserBase } from 'dto'
+import { TopicBaseDto, TopicType, UserBaseDto } from 'dto'
 import AppLink from 'components/UI/AppLink'
 import AppBox from 'components/UI/AppBox'
 import AppTypography from 'components/UI/AppTypography'
@@ -12,9 +12,9 @@ import Reply from './components/Reply'
 
 const SupportSign = dynamic(() => import('./components/SupportSign'))
 
-interface MessageProps extends TopicBase {
+interface MessageProps extends TopicBaseDto {
   type?: TopicType
-  owner: UserBase
+  owner: UserBaseDto
   onClick?: () => void
 }
 

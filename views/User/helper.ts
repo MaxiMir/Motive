@@ -1,4 +1,4 @@
-import { UserDetail } from 'dto'
+import { UserDetailDto } from 'dto'
 
 interface UserMeta {
   title?: string
@@ -7,7 +7,7 @@ interface UserMeta {
   type: string
 }
 
-export const getUserMeta = (user?: UserDetail): UserMeta => ({
+export const getUserMeta = (user?: UserDetailDto): UserMeta => ({
   title: user && `${user.name} • profile on ${process.env.NEXT_PUBLIC_APP_NAME}`,
   description: user && `See how ${user.name} (@${user.nickname}) accomplishes his goals`,
   url: user && `${process.env.HOST}/${user.nickname}`,

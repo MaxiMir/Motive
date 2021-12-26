@@ -1,5 +1,5 @@
 import { Container, Grid, makeStyles } from '@material-ui/core'
-import { User, MainCharacteristicName } from 'dto'
+import { UserDto, MainCharacteristicName } from 'dto'
 import useCharacteristicColors from 'hooks/useCharacteristicColors'
 import UserCard from 'components/UserCard'
 import AppBox from 'components/UI/AppBox'
@@ -8,7 +8,7 @@ import AppTypography from 'components/UI/AppTypography'
 
 interface TabContentProps {
   name: MainCharacteristicName
-  users: User[]
+  users: UserDto[]
 }
 
 export default function TabContent({ name, users }: TabContentProps): JSX.Element {
@@ -40,7 +40,7 @@ export default function TabContent({ name, users }: TabContentProps): JSX.Elemen
           </Grid>
         </Container>
       </div>
-      <AppList<User>
+      <AppList<UserDto>
         elements={users}
         keyGetter={(el) => el.id.toString()}
         render={(user, index) => (

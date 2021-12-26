@@ -1,12 +1,12 @@
 import dynamic from 'next/dynamic'
-import { Task } from 'dto'
+import { TaskDto } from 'dto'
 import AppCheckbox from 'components/UI/AppCheckbox'
 import useSetCompleted from './hook'
 
 const TaskDate = dynamic(() => import('../TaskDate'))
 
 interface FormProps {
-  task: Task
+  task: TaskDto
   rest: number
   onSet: (isCompleted: boolean) => void
 }

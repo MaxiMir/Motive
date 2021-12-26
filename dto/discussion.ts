@@ -1,15 +1,15 @@
-import { UserBase } from './user'
+import { UserBaseDto } from './user'
 import { DataWithPagination } from './page'
 
-export interface TopicBase {
+export interface TopicBaseDto {
   id: number
   date: string
   message: string
-  user: UserBase
-  like: Like
+  user: UserBaseDto
+  like: LikeDto
 }
 
-export interface Like {
+export interface LikeDto {
   active: boolean
   count: number
 }
@@ -20,9 +20,9 @@ export enum TopicType {
   SUPPORT = 'support',
 }
 
-export interface Topic extends TopicBase {
+export interface TopicDto extends TopicBaseDto {
   type: TopicType.QUESTION | TopicType.SUPPORT
-  answer: TopicBase | null
+  answer: TopicBaseDto | null
 }
 
-export type Discussion = DataWithPagination<Topic[]>
+export type DiscussionDto = DataWithPagination<TopicDto[]>

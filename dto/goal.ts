@@ -1,39 +1,39 @@
-import { DayCharacteristic, GoalCharacteristic } from './characteristic'
-import { UserBase } from './user'
+import { DayCharacteristicDto, GoalCharacteristicDto } from './characteristic'
+import { UserBaseDto } from './user'
 
-export interface GoalCreation {
+export interface GoalCreationDto {
   name: string
   hashtags: string[]
-  tasks: Array<Omit<Task, 'id' | 'completed' | 'completedByOthers'>>
+  tasks: Array<Omit<TaskDto, 'id' | 'completed' | 'completedByOthers'>>
 }
 
-export interface Goal {
+export interface GoalDto {
   id: number
   name: string
   started: string
-  hashtags: Hashtag[]
-  owner: UserBase
-  characteristic: GoalCharacteristic // count all
-  days: Day[]
+  hashtags: HashtagDto[]
+  owner: UserBaseDto
+  characteristic: GoalCharacteristicDto // count all
+  days: DayDto[]
 }
 
-export interface Hashtag {
+export interface HashtagDto {
   id: number
   name: string
   views: number
 }
 
-interface Day {
+export interface DayDto {
   id: number
   date: string
-  characteristic: DayCharacteristic | null
-  tasks: Task[]
+  characteristic: DayCharacteristicDto | null
+  tasks: TaskDto[]
   discussionCount: number
   feedbackId: number | null
   views: number
 }
 
-export interface Task {
+export interface TaskDto {
   id: number
   name: string
   date?: string
@@ -41,19 +41,19 @@ export interface Task {
   completedByOthers: boolean
 }
 
-export interface Feedback {
+export interface FeedbackDto {
   text: string | null
-  photos: Photo[] | null
+  photos: PhotoDto[] | null
   video: string | null
 }
 
-export interface Photo {
+export interface PhotoDto {
   src: string
   width: number
   height: number
 }
 
-export interface Calendar {
+export interface CalendarDto {
   id: number
   date: string
 }

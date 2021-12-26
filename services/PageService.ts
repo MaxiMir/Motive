@@ -1,20 +1,20 @@
 import Axios from 'lib/axios'
-import { FollowingPage, MainPage, RatingPage, UserPage } from 'dto'
+import { FollowingPageDto, MainPageDto, RatingPageDto, UserPageDto } from 'dto'
 
 export default class PageService {
-  static async getMain(): Promise<MainPage> {
+  static async getMain(): Promise<MainPageDto> {
     return Axios.get('/pages/main')
   }
 
-  static async getRating(): Promise<RatingPage> {
+  static async getRating(): Promise<RatingPageDto> {
     return Axios.get('/pages/rating')
   }
 
-  static async getFollowing(): Promise<FollowingPage> {
+  static async getFollowing(): Promise<FollowingPageDto> {
     return Axios.get('/pages/following')
   }
 
-  static getUser(nicknameUrn: string): Promise<UserPage> {
+  static getUser(nicknameUrn: string): Promise<UserPageDto> {
     return Axios.get(`/pages/users${nicknameUrn}`, { validateStatus: () => true })
   }
 

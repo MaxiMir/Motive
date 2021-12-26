@@ -1,11 +1,11 @@
 import { createStyles, makeStyles } from '@material-ui/core/styles'
-import { UserBase } from 'dto'
+import { UserBaseDto } from 'dto'
 import AppBox from 'components/UI/AppBox'
 import AppEmoji from 'components/UI/AppEmoji'
 import AppTooltip from 'components/UI/AppTooltip'
 
 interface SupportSignProps {
-  owner: UserBase
+  owner: UserBaseDto
 }
 
 export default function SupportSign({ owner }: SupportSignProps): JSX.Element {

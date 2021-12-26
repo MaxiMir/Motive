@@ -31,7 +31,7 @@ export default function useSetReaction(
     },
   })
   const sendWithDebounce = useDebounceCb((value: boolean) => {
-    lastLoadedRef.current !== value && send({ dayId, name, active: value })
+    lastLoadedRef.current !== value && send({ id: dayId, name, active: value })
   })
 
   const onChange = () => {

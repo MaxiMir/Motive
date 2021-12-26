@@ -1,6 +1,6 @@
 import React from 'react'
 import dynamic from 'next/dynamic'
-import { User, UserBase } from 'dto'
+import { UserDto, UserBaseDto } from 'dto'
 import AppHeader from 'components/UI/AppHeader'
 import AppContainer from 'components/UI/AppContainer'
 
@@ -8,9 +8,9 @@ const EmptyList = dynamic(() => import('./components/EmptyList'))
 const UserList = dynamic(() => import('./components/UserList'))
 
 interface FollowingProps {
-  users: User[]
-  client: UserBase
-  mutate: (user: User[]) => void
+  users: UserDto[]
+  client: UserBaseDto
+  mutate: (user: UserDto[]) => void
 }
 
 export default function Following({ users, client, mutate }: FollowingProps): JSX.Element {

@@ -1,12 +1,12 @@
 import { makeStyles } from '@material-ui/core/styles'
-import { UserBase } from 'dto'
+import { UserBaseDto } from 'dto'
 import { getUserHref } from 'views/User/helper'
 import AppLink from 'components/UI/AppLink'
 import AppAvatar from 'components/UI/AppAvatar'
 
 export interface UserCardAvatarProps {
   tmpl: 'avatar'
-  user: UserBase
+  user: UserBaseDto
   size: number
 }
 

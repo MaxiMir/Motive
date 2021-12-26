@@ -1,9 +1,9 @@
 import { createStyles, makeStyles } from '@material-ui/core/styles'
-import { UserBase } from 'dto'
+import { UserBaseDto } from 'dto'
 import UserCard from 'components/UserCard'
 import AppTypography from 'components/UI/AppTypography'
 
-export default function Owner(props: UserBase): JSX.Element {
+export default function Owner(props: UserBaseDto): JSX.Element {
   const classes = useStyles()
 
   return (

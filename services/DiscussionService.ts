@@ -1,13 +1,13 @@
 import Axios from 'lib/axios'
-import { Topic } from 'dto'
+import { TopicDto } from 'dto'
 
 export default class DiscussionService {
   /**
-   * /discussion/${messageId}/
+   * /discussion/${messageId}
    */
-  static setLike(data: { messageId: number; like: boolean }): Promise<Topic> {
+  static setLike(data: { messageId: number; like: boolean }): Promise<TopicDto> {
     const { messageId, like } = data
 
-    return Axios.put(`/discussion/${messageId}/`, { like })
+    return Axios.put(`/discussion/${messageId}`, { like })
   }
 }

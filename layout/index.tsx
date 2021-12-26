@@ -1,6 +1,7 @@
 import React, { FC, useEffect } from 'react'
 import Head from 'next/head'
 import { makeStyles } from '@material-ui/core/styles'
+import { UserBaseDto } from 'dto'
 import useSnackbar from 'hooks/useSnackbar'
 import Header from './Header'
 import Footer from './Footer'
@@ -11,10 +12,20 @@ interface LayoutProps {
   url?: string
   type?: string
   error?: boolean
+  client?: UserBaseDto
   withVerticalPadding?: boolean
 }
 
-const Layout: FC<LayoutProps> = ({ title, description, url, type, withVerticalPadding = true, error, children }) => {
+const Layout: FC<LayoutProps> = ({
+  title,
+  description,
+  url,
+  type,
+  withVerticalPadding = true,
+  error,
+  client,
+  children,
+}) => {
   const { enqueueSnackbar } = useSnackbar()
   const classes = useStyles({ withVerticalPadding })
 
@@ -45,9 +56,9 @@ const Layout: FC<LayoutProps> = ({ title, description, url, type, withVerticalPa
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
         <link rel="icon" type="image/x-icon" href="/favicon.ico" />
       </Head>
-      <Header />
+      <Header isAuthenticated={!!client?.id} />
       {!error && <main className={classes.main}>{children}</main>}
-      <Footer />
+      <Footer nickname={client?.nickname} />
     </>
   )
 }
@@ -60,7 +71,7 @@ const useStyles = makeStyles({
     display: 'flex',
     flexDirection: 'column',
     minHeight: 'calc(100vh - 80px)',
-    padding: (props: { withVerticalPadding: boolean }) => (!props.withVerticalPadding ? '0 0 112px' : '24px 0 112px'),
+    padding: (props: { withVerticalPadding: boolean }) => (!props.withVerticalPadding ? undefined : '24px 0 112px'),
   },
 })
 

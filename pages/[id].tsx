@@ -21,7 +21,7 @@ export default function UserDetail({ fallbackData }: UserPageSWRDto): JSX.Elemen
 
   return (
     <UserPageContext.Provider value={data}>
-      <Layout {...userMeta} error={error}>
+      <Layout {...userMeta} client={client} error={error}>
         {data?.content && <User {...data?.content} client={client} />}
       </Layout>
     </UserPageContext.Provider>

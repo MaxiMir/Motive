@@ -18,7 +18,7 @@ export default function FollowingPage({ fallbackData }: FollowingPageSWRDto): JS
   }
 
   return (
-    <Layout title="Following" error={error}>
+    <Layout title="Following" client={client} error={error}>
       {data && <Following users={data.content} client={client} mutate={mutate} />}
     </Layout>
   )

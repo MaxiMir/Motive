@@ -8,12 +8,19 @@ import Main from 'views/Main'
 export default function HomePage({ fallbackData }: MainPageSWRDto): JSX.Element {
   const { error } = useSWR('home', PageService.getMain, { fallbackData })
 
-  // TODO get client
+  // TODO REMOVE!
+  const client = {
+    id: 1,
+    nickname: 'maximir',
+    name: 'Maxim Minchenko',
+    avatar: '/avatars/6d483e94-a791-4a75-ba15-99ee48276dd4.webp',
+  }
 
   return (
     <Layout
       title={`${process.env.NEXT_PUBLIC_APP_NAME} • your assistant to achieve your goals`}
       error={error}
+      client={client}
       withVerticalPadding={false}
     >
       <Main />

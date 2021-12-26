@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react'
+import React from 'react'
 import { useRouter } from 'next/router'
 import { makeStyles } from '@material-ui/core/styles'
 import { FOLLOWING_ROUTE, PROFILE_ROUTE, RATING_ROUTE, SEARCH_ROUTE, TOP_OF_THE_DAY_ROUTE } from 'route'
@@ -6,6 +6,7 @@ import AppBox from 'components/UI/AppBox'
 import AppLink from 'components/UI/AppLink'
 import AppContainer from 'components/UI/AppContainer'
 import { TopOfTheDayIcon, SearchIcon, RatingIcon, FollowingIcon, ProfileIcon } from 'components/UI/icons'
+import { getUserHref } from '../views/User/helper'
 
 const ROUTES = [
   {
@@ -18,19 +19,18 @@ const ROUTES = [
   { href: FOLLOWING_ROUTE, Icon: FollowingIcon, title: 'following' },
 ]
 
-export default function Footer(): JSX.Element {
-  const profileRef = useRef(PROFILE_ROUTE)
+interface FooterProps {
+  nickname?: string
+}
+
+export default function Footer({ nickname }: FooterProps): JSX.Element {
   const classes = useStyles()
   const { asPath } = useRouter()
   const allRoutes = getAllRoutes()
 
   function getAllRoutes() {
-    return [...ROUTES, { href: profileRef.current, Icon: ProfileIcon, title: 'profile' }]
+    return [...ROUTES, { href: nickname ? getUserHref(nickname) : PROFILE_ROUTE, Icon: ProfileIcon, title: 'profile' }]
   }
-
-  useEffect(() => {
-    profileRef.current = localStorage.getItem('profile') || PROFILE_ROUTE
-  }, [])
 
   return (
     <footer className={classes.root}>

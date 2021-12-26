@@ -9,7 +9,7 @@ interface AppIconProps {
 }
 
 const AppIcon: FC<AppIconProps> = ({ className, color, children }) => {
-  const materialColorClass = color && `MuiTypography-color${toUpperFirstChar(color as string)}`
+  const materialColorClass = color && `MuiTypography-color${toUpperFirstChar(color)}`
 
   return <span className={clsx('material-icons', className, materialColorClass)}>{children}</span>
 }

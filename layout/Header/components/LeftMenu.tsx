@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { makeStyles } from '@material-ui/core/styles'
-import { Drawer, List, Divider, ListItem, IconButton, ListItemText } from '@material-ui/core'
-import { MenuIcon } from 'components/UI/icons'
+import { Drawer, List, Divider, ListItem, ListItemText, Button } from '@material-ui/core'
+import AppIcon from 'components/UI/AppIcon'
 
 export default function LeftMenu(): JSX.Element {
   const classes = useStyles()
@@ -21,9 +21,9 @@ export default function LeftMenu(): JSX.Element {
 
   return (
     <div>
-      <IconButton edge="start" color="inherit" aria-label="open menu" onClick={onOpen}>
-        <MenuIcon />
-      </IconButton>
+      <Button aria-label="open menu" onClick={onOpen}>
+        <AppIcon className={classes.icon}>menu</AppIcon>
+      </Button>
       <Drawer open={open} onClose={onClose}>
         <div role="presentation" className={classes.list} onKeyDown={onKeyDown} onClick={onClose}>
           <List>
@@ -50,5 +50,8 @@ export default function LeftMenu(): JSX.Element {
 const useStyles = makeStyles({
   list: {
     width: 200,
+  },
+  icon: {
+    fontColor: '#ffffff',
   },
 })

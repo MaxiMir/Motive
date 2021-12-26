@@ -1,12 +1,20 @@
 import React from 'react'
+import dynamic from 'next/dynamic'
 import { makeStyles } from '@material-ui/core/styles'
 import { AppBar, Button } from '@material-ui/core'
 import { LOGIN_IN_ROUTE } from 'route'
 import AppContainer from 'components/UI/AppContainer'
 import AppBox from 'components/UI/AppBox'
+import AppIcon from 'components/UI/AppIcon'
 import LeftMenu from './components/LeftMenu'
 
-export default function Header(): JSX.Element {
+const Badge = dynamic(() => import('@material-ui/core/Badge'))
+
+interface HeaderProps {
+  isAuthenticated: boolean
+}
+
+export default function Header({ isAuthenticated }: HeaderProps): JSX.Element {
   const classes = useStyles()
 
   return (
@@ -14,9 +22,17 @@ export default function Header(): JSX.Element {
       <AppContainer>
         <AppBox justifyContent="space-between">
           <LeftMenu />
-          <Button className={classes.button} href={LOGIN_IN_ROUTE}>
-            Log in
-          </Button>
+          {!isAuthenticated ? (
+            <Button href={LOGIN_IN_ROUTE}>
+              <AppIcon className={classes.icon}>login</AppIcon>
+            </Button>
+          ) : (
+            <Button href={LOGIN_IN_ROUTE}>
+              <Badge color="error" badgeContent="" variant="dot" invisible={false}>
+                <AppIcon className={classes.icon}>notifications_none</AppIcon>
+              </Badge>
+            </Button>
+          )}
         </AppBox>
       </AppContainer>
     </AppBar>
@@ -25,13 +41,12 @@ export default function Header(): JSX.Element {
 
 const useStyles = makeStyles({
   appBar: {
-    padding: '32px 0 10px',
+    padding: '16px 0 8px',
     flexGrow: 1,
     backgroundColor: '#121212',
     boxShadow: 'none',
   },
-  button: {
-    fontSize: 18,
-    textTransform: 'none',
+  icon: {
+    fontColor: '#ffffff',
   },
 })

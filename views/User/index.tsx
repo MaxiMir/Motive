@@ -22,10 +22,10 @@ const SECOND_CHARACTERISTIC_NAMES: UserCharacteristicName[] = ['completed', 'aba
 export interface DetailProps {
   user: UserDetailDto
   client: UserBaseDto
-  favorite: boolean
+  isFollowing: boolean
 }
 
-export default function Detail({ user, client, favorite }: DetailProps): JSX.Element {
+export default function Detail({ user, client, isFollowing }: DetailProps): JSX.Element {
   const { id, nickname, name, avatar, characteristic, goals } = user
   const theme = useTheme()
   const characteristicColors = useCharacteristicColors()
@@ -41,7 +41,7 @@ export default function Detail({ user, client, favorite }: DetailProps): JSX.Ele
         <AppTypography variant="h5" component="h1">
           {name}
         </AppTypography>
-        {!isOwner && <Favorite userId={id} favorite={favorite} clientId={client.id} />}
+        {!isOwner && <Favorite userId={id} isFollowing={isFollowing} clientId={client.id} />}
       </AppBox>
       <AppBox flexDirection="column" spacing={3} flex={1}>
         <AppBox spacing={isMobile ? 1 : 4} mb={4}>

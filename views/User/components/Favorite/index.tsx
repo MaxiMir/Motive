@@ -6,11 +6,11 @@ import useUserFavorite from './hook'
 
 interface FavoriteProps {
   clientId: number
-  favorite: boolean
+  isFollowing: boolean
   userId: number
 }
 
-export default function Favorite({ clientId, userId, favorite: initial }: FavoriteProps): JSX.Element {
+export default function Favorite({ clientId, userId, isFollowing: initial }: FavoriteProps): JSX.Element {
   const classes = useStyles()
   const [isFollowing, setIsFollowing] = useUserFavorite(clientId, userId, initial)
 

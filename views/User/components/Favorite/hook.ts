@@ -43,7 +43,7 @@ export default function useUserFavorite(clientId: number, followingId: number, f
   function mutateFavorite(value: boolean) {
     mutate(
       produce(page, (draft) => {
-        draft.content.favorite = value
+        draft.content.isFollowing = value
         draft.content.user.characteristic.followers += value ? 1 : -1
       }),
       false,

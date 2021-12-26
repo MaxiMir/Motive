@@ -17,6 +17,7 @@ export default function Hashtags({ hashtags }: HashtagsProps): JSX.Element {
           component="a"
           label={`#${name}`}
           variant="outlined"
+          color="primary"
           size="small"
           href={`${SEARCH_ROUTE}/?q=${name}&type=tag`}
           className={classes.chip}

@@ -12,9 +12,9 @@ export default class GoalService {
   /**
    * /goals/{id}/calendar
    */
-  static getDates(data: { dayId: number }): Promise<CalendarDto[]> {
-    const { dayId } = data
+  static getCalendar(data: { id: number }): Promise<CalendarDto[]> {
+    const { id } = data
 
-    return Axios.get(`/goals/${dayId}/calendar`)
+    return Axios.get(`/goals/${id}/calendar`)
   }
 }

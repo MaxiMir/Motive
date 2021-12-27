@@ -41,7 +41,7 @@ export interface GoalCurrentProps {
 export default function GoalCurrent({ goal, client, href }: GoalCurrentProps): JSX.Element {
   const currentDate = new Date()
   const { id, name, hashtags, started, characteristic, owner } = goal
-  const calendarSWR = useSWR(`dates-${goal.id}`, () => GoalService.getDates({ dayId: id }))
+  const calendarSWR = useSWR(`calendar-${id}`, () => GoalService.getCalendar({ id }))
   const datesMap = useMemo(getDatesMap, [calendarSWR.data])
   const [day] = goal.days
   const { id: dayId, date, tasks, views, feedbackId } = day

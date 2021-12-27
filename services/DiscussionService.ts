@@ -5,9 +5,9 @@ export default class DiscussionService {
   /**
    * /discussion/${messageId}
    */
-  static setLike(data: { messageId: number; like: boolean }): Promise<TopicDto> {
-    const { messageId, like } = data
+  static setLike(data: { id: number; like: boolean }): Promise<TopicDto> {
+    const { id, like } = data
 
-    return Axios.put(`/discussion/${messageId}`, { like })
+    return Axios.put(`/discussion/${id}`, { like })
   }
 }

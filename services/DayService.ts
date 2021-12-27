@@ -3,7 +3,7 @@ import { TopicType, TopicDto, DayDto } from 'dto'
 
 export default class DayService {
   /**
-   * /goals/{id}
+   * /days/{id}
    */
   static getById(data: { id: number }): Promise<DayDto> {
     const { id } = data
@@ -27,5 +27,14 @@ export default class DayService {
     const { id, ...body } = data
 
     return Axios.post(`/days/${id}/discussion`, body)
+  }
+
+  /**
+   * /days/{id}/views
+   */
+  static incrementViews(data: { id: number }): Promise<void> {
+    const { id } = data
+
+    return Axios.patch(`/days/${id}/views`)
   }
 }

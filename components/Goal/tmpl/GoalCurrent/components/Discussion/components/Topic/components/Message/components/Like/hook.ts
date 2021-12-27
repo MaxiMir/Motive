@@ -3,11 +3,7 @@ import useSend from 'hooks/useSend'
 import useDebounceCb from 'hooks/useDebounceCb'
 import DiscussionService from 'services/DiscussionService'
 
-export default function useSetLike(
-  messageId: number,
-  activeInit: boolean,
-  countInit: number,
-): [boolean, number, () => void] {
+export default function useSetLike(id: number, activeInit: boolean, countInit: number): [boolean, number, () => void] {
   const lastLoadedRef = useRef({ count: countInit, active: activeInit })
   const [active, setActive] = useState(activeInit)
   const [count, setCount] = useState(countInit)
@@ -23,7 +19,7 @@ export default function useSetLike(
     },
   })
   const mutateWithDebounce = useDebounceCb((value: boolean) => {
-    lastLoadedRef.current.active !== value && send({ messageId, like: value })
+    lastLoadedRef.current.active !== value && send({ id, like: value })
   })
 
   const onClick = () => {

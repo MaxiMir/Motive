@@ -2,17 +2,17 @@ import React from 'react'
 import clsx from 'clsx'
 import { makeStyles, IconButton } from '@material-ui/core'
 import AppEmoji from 'components/UI/AppEmoji'
-import useUserFavorite from './hook'
+import useUserFollowing from './hook'
 
 interface FavoriteProps {
-  clientId: number
+  id: number
   isFollowing: boolean
-  userId: number
+  isAuthorized: boolean
 }
 
-export default function Favorite({ clientId, userId, isFollowing: initial }: FavoriteProps): JSX.Element {
+export default function Favorite({ id, isFollowing: initial, isAuthorized }: FavoriteProps): JSX.Element {
   const classes = useStyles()
-  const [isFollowing, setIsFollowing] = useUserFavorite(clientId, userId, initial)
+  const [isFollowing, setIsFollowing] = useUserFollowing(id, initial, isAuthorized)
 
   return (
     <IconButton title={`${isFollowing ? 'Remove from' : 'Add to'} favorite`} onClick={setIsFollowing}>

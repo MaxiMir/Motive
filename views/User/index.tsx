@@ -30,7 +30,8 @@ export default function Detail({ user, client, isFollowing }: DetailProps): JSX.
   const theme = useTheme()
   const characteristicColors = useCharacteristicColors()
   const isMobile = useMediaQuery(theme.breakpoints.down('sm'))
-  const isOwner = id === client.id
+  const isAuthorized = !!client.id // todo check on auth
+  const isOwner = isAuthorized && id === client.id
   const href = getUserHref(nickname)
 
   useScrollToGoal()
@@ -41,7 +42,7 @@ export default function Detail({ user, client, isFollowing }: DetailProps): JSX.
         <AppTypography variant="h5" component="h1">
           {name}
         </AppTypography>
-        {!isOwner && <Favorite userId={id} isFollowing={isFollowing} clientId={client.id} />}
+        {!isOwner && <Favorite id={id} isFollowing={isFollowing} isAuthorized={isAuthorized} />}
       </AppBox>
       <AppBox flexDirection="column" spacing={3} flex={1}>
         <AppBox spacing={isMobile ? 1 : 4} mb={4}>

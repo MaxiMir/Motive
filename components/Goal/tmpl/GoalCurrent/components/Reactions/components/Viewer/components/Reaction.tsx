@@ -27,6 +27,7 @@ const useStyles = makeStyles((theme) => {
       width: 36,
       height: 36,
       minWidth: 'initial',
+      transition: 'all .2s ease-in-out',
       filter: (props: UseStylesProps) => (props.active ? 'initial' : 'grayscale(1)'),
       borderColor: (props: UseStylesProps) => {
         switch (props.name) {

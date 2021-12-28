@@ -1,28 +1,29 @@
 import { useRef } from 'react'
 import { Button } from '@material-ui/core'
 import { UserDto } from 'dto'
+import SubscriptionService from 'services/SubscriptionService'
 import useSnackbar from 'hooks/useSnackbar'
 import useSend from 'hooks/useSend'
-import UserService from 'services/UserService'
 
 type UseRemoveFollowingUser = (id: number) => void
 
 export default function useRemoveFollowing(
   users: UserDto[],
-  clientId: number,
+  isAuthorized: boolean,
   mutate: (user: UserDto[]) => void,
 ): UseRemoveFollowingUser {
   const prevUsersRef = useRef(users)
   const { enqueueSnackbar, closeSnackbar } = useSnackbar()
-  const { send } = useSend(UserService.setFollowing, {
-    onSuccess: (_, { followingId, add }) => {
+
+  const { send } = useSend(SubscriptionService.updateFollowing, {
+    onSuccess: (_, { id, add }) => {
       prevUsersRef.current = users
 
       !add &&
         enqueueSnackbar({
           message: 'Removed from following',
           severity: 'success',
-          action: <Button onClick={() => onUndo(followingId)}>Undo</Button>,
+          action: <Button onClick={() => onUndo(id)}>Undo</Button>,
           icon: 'ninja',
         })
     },
@@ -31,16 +32,21 @@ export default function useRemoveFollowing(
     },
   })
 
-  function onUndo(followingId: number) {
+  function onUndo(id: number) {
     mutate(prevUsersRef.current)
     closeSnackbar()
-    send({ clientId, followingId, add: true })
+    send({ id, add: true })
   }
 
-  return (followingId: number) => {
+  return (id: number) => {
+    if (!isAuthorized) {
+      // TODO for not auth
+      return
+    }
+
     prevUsersRef.current = users
 
-    mutate(users.filter((f) => f.id !== followingId))
-    send({ clientId, followingId, add: false })
+    mutate(users.filter((f) => f.id !== id))
+    send({ id, add: false })
   }
 }

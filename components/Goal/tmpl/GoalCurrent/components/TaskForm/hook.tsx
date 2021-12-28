@@ -16,6 +16,7 @@ export default function useSetCompleted(
   const timerIdRef = useRef<NodeJS.Timeout>()
   const { enqueueSnackbar, closeSnackbar } = useSnackbar()
   const [checked, setChecked] = useState(completed)
+
   const { isLoading, send } = useSend(TaskService.updateTask, {
     onError() {
       onSet(false)

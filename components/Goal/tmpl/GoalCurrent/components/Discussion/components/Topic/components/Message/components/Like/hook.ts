@@ -7,6 +7,7 @@ export default function useSetLike(id: number, activeInit: boolean, countInit: n
   const lastLoadedRef = useRef({ count: countInit, active: activeInit })
   const [active, setActive] = useState(activeInit)
   const [count, setCount] = useState(countInit)
+
   const { send } = useSend(DiscussionService.setLike, {
     onSuccess: (r) => {
       lastLoadedRef.current = { count, active }
@@ -18,6 +19,7 @@ export default function useSetLike(id: number, activeInit: boolean, countInit: n
       setActive(!data.like)
     },
   })
+
   const mutateWithDebounce = useDebounceCb((value: boolean) => {
     lastLoadedRef.current.active !== value && send({ id, like: value })
   })

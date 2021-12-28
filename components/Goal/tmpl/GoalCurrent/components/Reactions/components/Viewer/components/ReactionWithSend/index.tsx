@@ -1,17 +1,17 @@
-import { MainCharacteristicName } from 'dto'
+import { DayCharacteristicName, GoalDto } from 'dto'
 import Reaction from '../Reaction'
 import useSetReaction from './hook'
 
 interface ReactionWithSendProps {
-  dayId: number
-  name: MainCharacteristicName
+  goal: GoalDto
+  name: DayCharacteristicName
   active: boolean
-  onSet: (characteristic: MainCharacteristicName, increase: boolean) => void
+  clientId: number
 }
 
-export default function ReactionWithSend({ dayId, name, active: initial, onSet }: ReactionWithSendProps): JSX.Element {
-  const [active, setActive] = useSetReaction(dayId, name, initial, onSet)
+export default function ReactionWithSend({ goal, name, active, clientId }: ReactionWithSendProps): JSX.Element {
   const title = `${active ? 'Decrease' : 'Increase'} goal's ${name} points`
+  const onSetReaction = useSetReaction(goal, name, active, clientId)
 
-  return <Reaction name={name} active={active} title={title} onClick={setActive} />
+  return <Reaction name={name} active={active} title={title} onClick={onSetReaction} />
 }

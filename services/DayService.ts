@@ -12,15 +12,6 @@ export default class DayService {
   }
 
   /**
-   * /days/{id}/{characteristic}
-   */
-  static updateCharacteristic(data: { id: number; name: string; active: boolean }): Promise<void> {
-    const { id, name, ...body } = data
-
-    return Axios.put(`/days/${id}/${name}`, body)
-  }
-
-  /**
    * /days/{id}/discussion
    */
   static createTopic(data: { id: number; type: TopicType; message: string }): Promise<TopicDto> {

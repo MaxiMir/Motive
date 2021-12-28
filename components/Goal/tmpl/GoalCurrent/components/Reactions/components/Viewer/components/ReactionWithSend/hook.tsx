@@ -1,25 +1,29 @@
-import { useRef, useState } from 'react'
-import { MainCharacteristicName } from 'dto'
-import DayService from 'services/DayService'
+import { useRef } from 'react'
+import produce from 'immer'
+import { DayCharacteristicName, GoalDto } from 'dto'
+import GoalService from 'services/GoalService'
 import useDebounceCb from 'hooks/useDebounceCb'
 import useSnackbar from 'hooks/useSnackbar'
 import useSend from 'hooks/useSend'
+import { useMutateGoals } from 'views/User/hook'
 
 export default function useSetReaction(
-  dayId: number,
-  name: MainCharacteristicName,
-  initial: boolean,
-  onSet: (characteristic: MainCharacteristicName, increase: boolean) => void,
-): [boolean, () => void] {
-  const lastLoadedRef = useRef(initial)
-  const [active, setActive] = useState(initial)
+  goal: GoalDto,
+  name: DayCharacteristicName,
+  active: boolean,
+  clientId: number,
+): () => void {
+  const { id, days } = goal
+  const lastLoadedRef = useRef(active)
   const { enqueueSnackbar } = useSnackbar()
-  const { send } = useSend(DayService.updateCharacteristic, {
-    onSuccess(_, data) {
-      lastLoadedRef.current = data.active
+  const [goals, mutateGoals] = useMutateGoals()
+  const isAuthorized = !!clientId // todo check on auth
 
-      onSet(name, data.active)
-      data.active &&
+  const { send } = useSend(GoalService.updateCharacteristic, {
+    onSuccess(_, data) {
+      lastLoadedRef.current = data.add
+
+      data.add &&
         enqueueSnackbar({
           message: `You have increased goal's ${name} points`,
           severity: 'success',
@@ -27,17 +31,40 @@ export default function useSetReaction(
         })
     },
     onError(_, data) {
-      setActive(!data.active)
+      mutateCharacteristic(!data.add)
     },
   })
-  const sendWithDebounce = useDebounceCb((value: boolean) => {
-    lastLoadedRef.current !== value && send({ id: dayId, name, active: value })
+
+  const sendWithDebounce = useDebounceCb((add: boolean) => {
+    lastLoadedRef.current !== add && send({ id, dayId: days[0].id, name, add })
   })
 
-  const onChange = () => {
-    setActive(!active)
-    sendWithDebounce(!active)
+  const mutateCharacteristic = (add: boolean) => {
+    mutateGoals(
+      produce(goals, (draft: GoalDto[]) => {
+        const draftGoal = draft[draft.findIndex((g) => g.id === id)]
+        const [day] = draftGoal.days
+
+        draftGoal.characteristic[name] += add ? 1 : -1
+        day.characteristic ||= { motivation: [], creativity: [] }
+
+        if (add) {
+          day.characteristic[name].push(clientId)
+          return
+        }
+
+        day.characteristic[name] = day.characteristic[name].filter((u) => u !== clientId)
+      }),
+    )
   }
 
-  return [active, onChange]
+  return () => {
+    if (!isAuthorized) {
+      // TODO for not auth
+      return
+    }
+
+    mutateCharacteristic(!active)
+    sendWithDebounce(!active)
+  }
 }

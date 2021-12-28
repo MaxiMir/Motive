@@ -42,6 +42,7 @@ const useStyles = makeStyles((theme) =>
     },
     buttonNotActive: {
       filter: 'grayscale(1)',
+      transition: 'all .2s ease-in-out',
       '&:hover': {
         filter: 'initial',
       },

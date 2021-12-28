@@ -12,6 +12,9 @@ export type GoalCharacteristicDto = {
   [k in GoalCharacteristicName]: number
 }
 
+export type DayCharacteristicName = 'motivation' | 'creativity'
+
 export type DayCharacteristicDto = {
-  [k in MainCharacteristicName]: number[] | null
+  motivation: number[]
+  creativity: number[]
 }

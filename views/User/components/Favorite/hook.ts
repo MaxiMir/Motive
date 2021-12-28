@@ -1,6 +1,6 @@
 import { useRef } from 'react'
 import produce from 'immer'
-import UserService from 'services/UserService'
+import SubscriptionService from 'services/SubscriptionService'
 import useDebounceCb from 'hooks/useDebounceCb'
 import useSend from 'hooks/useSend'
 import useSnackbar from 'hooks/useSnackbar'
@@ -8,11 +8,12 @@ import { useMutatePage } from 'views/User/hook'
 
 type UseUserFavorite = [boolean, () => void]
 
-export default function useUserFavorite(clientId: number, followingId: number, favorite: boolean): UseUserFavorite {
-  const lastLoadedRef = useRef(favorite)
+export default function useUserFollowing(id: number, following: boolean, isAuthorized: boolean): UseUserFavorite {
+  const lastLoadedRef = useRef(following)
   const [page, mutate] = useMutatePage()
   const { enqueueSnackbar } = useSnackbar()
-  const { send } = useSend(UserService.setFollowing, {
+
+  const { send } = useSend(SubscriptionService.updateFollowing, {
     onSuccess(_, data) {
       const { add } = data
       lastLoadedRef.current = add
@@ -27,17 +28,19 @@ export default function useUserFavorite(clientId: number, followingId: number, f
       mutateFavorite(!data.add)
     },
   })
+
   const sendWithDebounce = useDebounceCb((add: boolean) => {
-    lastLoadedRef.current !== add && send({ clientId, followingId, add })
+    lastLoadedRef.current !== add && send({ id, add })
   })
 
   const onChange = () => {
-    if (clientId) {
-      mutateFavorite(!favorite)
-      sendWithDebounce(!favorite)
+    if (!isAuthorized) {
+      // TODO for not auth
+      return
     }
 
-    // TODO for not auth
+    mutateFavorite(!following)
+    sendWithDebounce(!following)
   }
 
   function mutateFavorite(value: boolean) {
@@ -50,5 +53,5 @@ export default function useUserFavorite(clientId: number, followingId: number, f
     )
   }
 
-  return [favorite, onChange]
+  return [following, onChange]
 }

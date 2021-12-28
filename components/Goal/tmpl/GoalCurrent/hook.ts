@@ -7,6 +7,7 @@ import { getQueryNewState } from './helper'
 
 export default function useChangeDate(goalId: number): [boolean, (dayId: number) => void] {
   const [goals, mutateGoals] = useMutateGoals()
+
   const { isLoading, send } = useSend(DayService.getById, {
     onSuccess: (day) => {
       mutateGoals(

@@ -1,37 +1,26 @@
 import { useMemo } from 'react'
-import produce from 'immer'
 import { Button } from '@material-ui/core'
-import { MainCharacteristicName, DayCharacteristicDto, UserBaseDto, GoalDto, RoleDto } from 'dto'
-import { useMutateGoals } from 'views/User/hook'
+import { DayCharacteristicDto, UserBaseDto, GoalDto, RoleDto, DayCharacteristicName } from 'dto'
 import AppBox from 'components/UI/AppBox'
 import AppEmoji from 'components/UI/AppEmoji'
 import ReactionWithSend from './components/ReactionWithSend'
 import Reaction from './components/Reaction'
 
 export interface ViewerProps {
-  dayId: number
   role: RoleDto
   goal: GoalDto
   characteristic: DayCharacteristicDto | null
   owner: UserBaseDto
-  client: UserBaseDto
+  clientId: number
 }
 
-export default function Viewer({ role, dayId, goal, characteristic, owner, client }: ViewerProps): JSX.Element {
-  const [goals, mutateGoals] = useMutateGoals()
-  const activeMap = useMemo(getActiveMap, [characteristic?.creativity, characteristic?.motivation, client])
-
-  const onSet = (value: MainCharacteristicName, increase: boolean) =>
-    mutateGoals(
-      produce(goals, (draft: GoalDto[]) => {
-        draft[draft.findIndex((g) => g.id === goal.id)].characteristic[value] += increase ? 1 : -1
-      }),
-    )
+export default function Viewer({ role, goal, characteristic, owner, clientId }: ViewerProps): JSX.Element {
+  const activeMap = useMemo(getActiveMap, [characteristic?.creativity, characteristic?.motivation, clientId])
 
   function getActiveMap() {
     return {
-      motivation: Boolean(client && characteristic?.motivation?.includes(client.id)),
-      creativity: Boolean(client && characteristic?.creativity?.includes(client.id)),
+      motivation: Boolean(clientId && characteristic?.motivation?.includes(clientId)),
+      creativity: Boolean(clientId && characteristic?.creativity?.includes(clientId)),
       support: false,
     }
   }
@@ -39,13 +28,13 @@ export default function Viewer({ role, dayId, goal, characteristic, owner, clien
   return (
     <AppBox justifyContent="space-between">
       <AppBox spacing={1}>
-        {(['motivation', 'creativity'] as MainCharacteristicName[]).map((name) => (
-          <ReactionWithSend dayId={dayId} name={name} active={activeMap[name]} key={name} onSet={onSet} />
+        {(['motivation', 'creativity'] as DayCharacteristicName[]).map((name) => (
+          <ReactionWithSend goal={goal} name={name} active={activeMap[name]} clientId={clientId} key={name} />
         ))}
         <Reaction
           name="support"
           active={false}
-          title={`Support ${owner.id}`}
+          title={`Support ${owner.name}`}
           onClick={() => console.log('TODO LOGIC!')}
         />
       </AppBox>

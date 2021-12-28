@@ -1,6 +1,6 @@
 import React from 'react'
 import dynamic from 'next/dynamic'
-import { UserDto, UserBaseDto } from 'dto'
+import { UserDto } from 'dto'
 import AppHeader from 'components/UI/AppHeader'
 import AppContainer from 'components/UI/AppContainer'
 
@@ -9,17 +9,17 @@ const UserList = dynamic(() => import('./components/UserList'))
 
 interface FollowingProps {
   users: UserDto[]
-  client: UserBaseDto
+  isAuthorized: boolean
   mutate: (user: UserDto[]) => void
 }
 
-export default function Following({ users, client, mutate }: FollowingProps): JSX.Element {
+export default function Following({ users, isAuthorized, mutate }: FollowingProps): JSX.Element {
   return (
     <AppContainer withFlexColumn>
       <AppHeader name="following" mb={4}>
         Following
       </AppHeader>
-      {!users.length ? <EmptyList /> : <UserList users={users} clientId={client.id} mutate={mutate} />}
+      {!users.length ? <EmptyList /> : <UserList users={users} isAuthorized={isAuthorized} mutate={mutate} />}
     </AppContainer>
   )
 }

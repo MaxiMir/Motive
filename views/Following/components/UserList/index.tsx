@@ -6,12 +6,12 @@ import useRemoveFollowing from './hook'
 
 interface FavoriteListProps {
   users: UserDto[]
-  clientId: number
+  isAuthorized: boolean
   mutate: (user: UserDto[]) => void
 }
 
-export default function UserList({ users, clientId, mutate }: FavoriteListProps): JSX.Element {
-  const onRemove = useRemoveFollowing(users, clientId, mutate)
+export default function UserList({ users, isAuthorized, mutate }: FavoriteListProps): JSX.Element {
+  const onRemove = useRemoveFollowing(users, isAuthorized, mutate)
 
   return (
     <AppList

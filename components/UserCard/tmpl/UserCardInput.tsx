@@ -24,6 +24,7 @@ export default function UserCardInput({ dayId, user, answer, onAdd }: UserCardIn
   const [message, setMessage] = useState('')
   const { enqueueSnackbar } = useSnackbar()
   const messageType = answer ? 'Answer' : 'Question'
+
   const { isLoading, send } = useSend(DayService.createTopic, {
     onSuccess(topic) {
       enqueueSnackbar({ message: `${messageType} added`, severity: 'success', icon: 'speaker' })

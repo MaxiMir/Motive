@@ -151,14 +151,7 @@ export default function GoalCurrent({ goal, client, href }: GoalCurrentProps): J
             </div>
           </AppBox>
           <AppBox flexDirection="column" spacing={2}>
-            <Reactions
-              role={role}
-              dayId={dayId}
-              goal={goal}
-              characteristic={day.characteristic}
-              owner={owner}
-              client={client}
-            />
+            <Reactions role={role} goal={goal} characteristic={day.characteristic} owner={owner} clientId={client.id} />
             <Views views={views} />
           </AppBox>
         </AppBox>

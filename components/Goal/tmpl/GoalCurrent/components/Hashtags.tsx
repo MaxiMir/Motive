@@ -31,5 +31,9 @@ export default function Hashtags({ hashtags }: HashtagsProps): JSX.Element {
 const useStyles = makeStyles({
   chip: {
     cursor: 'pointer',
+    transition: 'all .2s ease-in-out',
+    '&:hover': {
+      opacity: 0.5,
+    },
   },
 })

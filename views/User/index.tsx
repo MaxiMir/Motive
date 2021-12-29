@@ -11,7 +11,7 @@ import { useScrollToGoal } from './hook'
 import Avatar from './components/Avatar'
 import Characteristic from './components/Characteristic'
 import EmptyGoals from './components/EmptyGoals'
-import Favorite from './components/Favorite'
+import Following from './components/Following'
 
 const AddGoal = dynamic(() => import('./components/AddGoal'))
 const GoalCard = dynamic(() => import('components/Goal'))
@@ -42,7 +42,7 @@ export default function Detail({ user, client, isFollowing }: DetailProps): JSX.
         <AppTypography variant="h5" component="h1">
           {name}
         </AppTypography>
-        {!isOwner && <Favorite id={id} isFollowing={isFollowing} isAuthorized={isAuthorized} />}
+        {!isOwner && <Following id={id} isFollowing={isFollowing} isAuthorized={isAuthorized} />}
       </AppBox>
       <AppBox flexDirection="column" spacing={3} flex={1}>
         <AppBox spacing={isMobile ? 1 : 4} mb={4}>

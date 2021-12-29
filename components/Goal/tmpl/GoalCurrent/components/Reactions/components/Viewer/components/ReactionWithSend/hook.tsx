@@ -43,17 +43,17 @@ export default function useSetReaction(
     mutateGoals(
       produce(goals, (draft: GoalDto[]) => {
         const draftGoal = draft[draft.findIndex((g) => g.id === id)]
-        const [day] = draftGoal.days
+        const [draftDay] = draftGoal.days
 
         draftGoal.characteristic[name] += add ? 1 : -1
-        day.characteristic ||= { motivation: [], creativity: [] }
+        draftDay.characteristic ||= { motivation: [], creativity: [] }
 
         if (add) {
-          day.characteristic[name].push(clientId)
+          draftDay.characteristic[name].push(clientId)
           return
         }
 
-        day.characteristic[name] = day.characteristic[name].filter((u) => u !== clientId)
+        draftDay.characteristic[name] = draftDay.characteristic[name].filter((u) => u !== clientId)
       }),
     )
   }

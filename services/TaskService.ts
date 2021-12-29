@@ -4,9 +4,9 @@ export default class TaskService {
   /**
    * /tasks/{id}/completed
    */
-  static updateTask(data: { id: number }): Promise<void> {
+  static setCompleted(data: { id: number }): Promise<void> {
     const { id } = data
 
-    return Axios.put(`/tasks/${id}/completed`)
+    return Axios.patch(`/tasks/${id}/completed`)
   }
 }

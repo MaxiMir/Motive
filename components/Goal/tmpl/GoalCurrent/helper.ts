@@ -37,3 +37,5 @@ export const getRole = (client: UserBaseDto, goal: GoalDto): RoleDto => {
       return 'GUEST'
   }
 }
+
+export const checkOnTaskForm = (role: RoleDto): boolean => ['OWNER', 'MEMBER'].includes(role)

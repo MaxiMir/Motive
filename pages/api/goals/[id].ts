@@ -14,7 +14,6 @@ export default async (_: NextApiRequest, res: NextApiResponse): Promise<void> =>
         id: 532,
         characteristic: {
           motivation: [],
-          support: [],
           creativity: [],
         },
         tasks: [
@@ -22,21 +21,21 @@ export default async (_: NextApiRequest, res: NextApiResponse): Promise<void> =>
             id: 5,
             name: 'read 30 pages Harry Potter',
             completed: false,
-            completedByOthers: false,
+            completedBy: [],
             date: new Date().toISOString(),
           },
           {
             id: 6,
             name: 'watch Lord of the Rings #1',
             completed: false,
-            completedByOthers: false,
+            completedBy: [],
             date: new Date().toISOString(),
           },
           {
             id: 7,
             name: 'Solve 3 tests',
             completed: false,
-            completedByOthers: false,
+            completedBy: [],
             date: new Date().toISOString(),
           },
         ],

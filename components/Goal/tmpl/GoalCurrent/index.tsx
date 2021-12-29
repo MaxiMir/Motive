@@ -12,7 +12,7 @@ import AppHeader from 'components/UI/AppHeader'
 import AppDot from 'components/UI/AppDot'
 import AppAccordion from 'components/UI/AppAccordion'
 import useChangeDate from './hook'
-import { checkOnWeb, getGoalHref, getRole } from './helper'
+import { checkOnTaskForm, checkOnWeb, getGoalHref, getRole } from './helper'
 import GoalDate from './components/GoalDate'
 import Menu from './components/Menu'
 import Characteristic from './components/Characteristic'
@@ -55,7 +55,7 @@ export default function GoalCurrent({ goal, client, href }: GoalCurrentProps): J
   const showWeb = checkOnWeb(datesMap, date, currentDate)
   const goalHref = getGoalHref(href, goal)
   const role = getRole(client, goal)
-  const withForm = ['OWNER', 'MEMBER'].includes(role)
+  const withForm = checkOnTaskForm(role)
 
   const onSetTask = (isCompleted: boolean) => {
     restRef.current += isCompleted ? -1 : 1
@@ -108,7 +108,7 @@ export default function GoalCurrent({ goal, client, href }: GoalCurrentProps): J
                         {!withForm ? (
                           <Task task={task} />
                         ) : (
-                          <TaskForm task={task} rest={restRef.current} onSet={onSetTask} />
+                          <TaskForm task={task} rest={restRef.current} client={client} role={role} onSet={onSetTask} />
                         )}
                       </Fragment>
                     ))}

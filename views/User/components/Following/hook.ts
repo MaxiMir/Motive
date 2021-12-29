@@ -6,9 +6,7 @@ import useSend from 'hooks/useSend'
 import useSnackbar from 'hooks/useSnackbar'
 import { useMutatePage } from 'views/User/hook'
 
-type UseUserFavorite = [boolean, () => void]
-
-export default function useUserFollowing(id: number, following: boolean, isAuthorized: boolean): UseUserFavorite {
+export default function useSetFollowing(id: number, following: boolean, isAuthorized: boolean): () => void {
   const lastLoadedRef = useRef(following)
   const [page, mutate] = useMutatePage()
   const { enqueueSnackbar } = useSnackbar()
@@ -33,16 +31,6 @@ export default function useUserFollowing(id: number, following: boolean, isAutho
     lastLoadedRef.current !== add && send({ id, add })
   })
 
-  const onChange = () => {
-    if (!isAuthorized) {
-      // TODO for not auth
-      return
-    }
-
-    mutateFavorite(!following)
-    sendWithDebounce(!following)
-  }
-
   function mutateFavorite(value: boolean) {
     mutate(
       produce(page, (draft) => {
@@ -53,5 +41,13 @@ export default function useUserFollowing(id: number, following: boolean, isAutho
     )
   }
 
-  return [following, onChange]
+  return () => {
+    if (!isAuthorized) {
+      // TODO for not auth
+      return
+    }
+
+    mutateFavorite(!following)
+    sendWithDebounce(!following)
+  }
 }

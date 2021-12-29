@@ -6,27 +6,22 @@ import useSetCompleted from './hook'
 const TaskDate = dynamic(() => import('../TaskDate'))
 
 interface FormProps {
+  goalId: number
   task: TaskDto
   rest: number
   role: RoleDto
   client: UserBaseDto
-  onSet: (isCompleted: boolean) => void
 }
 
-export default function TaskForm({ task, rest, client, role, onSet }: FormProps): JSX.Element {
-  const { id, name, completedBy, date } = task
-  const [isLoading, checked, onChange] = useSetCompleted(task, rest, client, role, onSet)
-  const label = name + (completedBy.length && !checked ? ' 🔥' : '')
+export default function TaskForm({ goalId, task, rest, client, role }: FormProps): JSX.Element {
+  const { id, name, completed, completedBy, date } = task
+  const checked = role === 'OWNER' ? completed : completedBy.includes(client.id)
+  const label = name + (completedBy.length && !completed ? ' 🔥' : '')
+  const setCompleted = useSetCompleted(id, goalId, rest)
 
   return (
     <form>
-      <AppCheckbox
-        name={id.toString()}
-        label={label}
-        checked={checked}
-        disabled={checked || isLoading}
-        onChange={onChange}
-      />
+      <AppCheckbox name={id.toString()} label={label} checked={checked} disabled={checked} onChange={setCompleted} />
       {date && <TaskDate date={date} />}
     </form>
   )

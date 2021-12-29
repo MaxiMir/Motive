@@ -31,7 +31,7 @@ export default function useSetFollowing(id: number, following: boolean, isAuthor
     lastLoadedRef.current !== add && send({ id, add })
   })
 
-  function mutateFavorite(value: boolean) {
+  const mutateFavorite = (value: boolean) => {
     mutate(
       produce(page, (draft) => {
         draft.content.isFollowing = value

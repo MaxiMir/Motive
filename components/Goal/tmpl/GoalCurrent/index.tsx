@@ -1,4 +1,4 @@
-import { Fragment, useMemo, useRef, useState } from 'react'
+import { Fragment, useMemo, useState } from 'react'
 import dynamic from 'next/dynamic'
 import differenceInDays from 'date-fns/differenceInDays'
 import useSWR from 'swr'
@@ -47,7 +47,6 @@ export default function GoalCurrent({ goal, client, href }: GoalCurrentProps): J
   const { id: dayId, date, tasks, views, feedbackId } = day
   const classes = useStyles()
   const theme = useTheme()
-  const restRef = useRef(tasks.length - tasks.filter((t) => t.completed).length)
   const colors = useCharacteristicColors()
   const [isLoading, onChangeDate] = useChangeDate(id)
   const [discussionCount, setDiscussionCount] = useState(day.discussionCount)
@@ -56,10 +55,7 @@ export default function GoalCurrent({ goal, client, href }: GoalCurrentProps): J
   const goalHref = getGoalHref(href, goal)
   const role = getRole(client, goal)
   const withForm = checkOnTaskForm(role)
-
-  const onSetTask = (isCompleted: boolean) => {
-    restRef.current += isCompleted ? -1 : 1
-  }
+  const rest = tasks.length - tasks.filter((t) => t.completed).length
 
   function getDatesMap() {
     return calendarSWR.data?.reduce((acc, c) => ({ ...acc, [c.date]: c.id }), {}) || {}
@@ -108,7 +104,7 @@ export default function GoalCurrent({ goal, client, href }: GoalCurrentProps): J
                         {!withForm ? (
                           <Task task={task} />
                         ) : (
-                          <TaskForm task={task} rest={restRef.current} client={client} role={role} onSet={onSetTask} />
+                          <TaskForm goalId={id} task={task} rest={rest} client={client} role={role} />
                         )}
                       </Fragment>
                     ))}

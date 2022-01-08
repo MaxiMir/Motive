@@ -1,24 +1,29 @@
 import React from 'react'
 import dynamic from 'next/dynamic'
 import AppGradientButton from 'components/UI/AppGradientButton'
+import { AppEmojiName } from 'components/UI/AppEmoji'
 
 const CircularProgress = dynamic(() => import('@material-ui/core/CircularProgress'))
 const AppEmoji = dynamic(() => import('components/UI/AppEmoji'))
 
-interface SubmitButtonProps {
+export interface SubmitProps {
+  tmpl: 'submit'
+  emoji: AppEmojiName
+  name: string
+  nameLoading: string
   isLoading: boolean
   onClick: () => void
 }
 
-export default function SubmitButton({ isLoading, onClick }: SubmitButtonProps): JSX.Element {
+export default function Submit({ emoji, name, nameLoading, isLoading, onClick }: SubmitProps): JSX.Element {
   return (
     <AppGradientButton
       type="submit"
       disabled={isLoading}
-      startIcon={isLoading ? <CircularProgress size="0.9rem" color="primary" /> : <AppEmoji name="goal" onlyEmoji />}
+      startIcon={isLoading ? <CircularProgress size="0.9rem" color="primary" /> : <AppEmoji name={emoji} onlyEmoji />}
       onClick={onClick}
     >
-      {isLoading ? 'Creating' : 'Create'}
+      {!isLoading ? name : nameLoading}
     </AppGradientButton>
   )
 }

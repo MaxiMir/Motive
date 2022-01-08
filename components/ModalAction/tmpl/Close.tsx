@@ -2,11 +2,12 @@ import React from 'react'
 import AppEmoji from 'components/UI/AppEmoji'
 import AppGradientButton from 'components/UI/AppGradientButton'
 
-interface CloseButtonProps {
+export interface CloseProps {
+  tmpl: 'close'
   onClick: () => void
 }
 
-export default function CloseButton({ onClick }: CloseButtonProps): JSX.Element {
+export default function Close({ onClick }: CloseProps): JSX.Element {
   return (
     <AppGradientButton startIcon={<AppEmoji name="cancel" onlyEmoji />} onClick={onClick}>
       Cancel

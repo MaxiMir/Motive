@@ -17,9 +17,7 @@ export default function AddGoal(): JSX.Element {
   const [open, setOpen] = useState(false)
   const [goals, mutateGoals] = useMutateGoals()
 
-  const onClick = () => setOpen(true)
-
-  const onClose = () => setOpen(false)
+  const toggle = () => setOpen(!open)
 
   const onSuccess = (goal: GoalDto) => {
     mutateGoals(
@@ -28,7 +26,7 @@ export default function AddGoal(): JSX.Element {
       }),
     )
     enqueueSnackbar({ message: 'The goal is successfully created', severity: 'success', icon: 'goal' })
-    setOpen(false)
+    toggle()
     setTimeout(() => scrollToElem(`goal-${goal.id}`), 500)
   }
 
@@ -40,11 +38,11 @@ export default function AddGoal(): JSX.Element {
         color="secondary"
         className={classes.button}
         startIcon={<AppEmoji name="goal" onlyEmoji />}
-        onClick={onClick}
+        onClick={toggle}
       >
         Create a new goal
       </Button>
-      {open && <Modal onSuccess={onSuccess} onClose={onClose} />}
+      {open && <Modal onSuccess={onSuccess} onClose={toggle} />}
     </>
   )
 }

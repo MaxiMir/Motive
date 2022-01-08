@@ -4,10 +4,12 @@ import { Field, FieldArray, Form, FormikProvider, useFormik } from 'formik'
 import { addDays } from 'date-fns'
 import { makeStyles } from '@material-ui/core/styles'
 import { Accordion, AccordionDetails, AccordionSummary, Button, createStyles } from '@material-ui/core'
-import { GoalDto, GoalCreationDto } from 'dto'
+import { GoalDto, GoalCreationDto, UserCharacteristicName } from 'dto'
 import GoalService from 'services/GoalService'
 import useSend from 'hooks/useSend'
 import useFocus from 'hooks/useFocus'
+import ModalAction from 'components/ModalAction'
+import AppEmoji from 'components/UI/AppEmoji'
 import AppModal from 'components/UI/AppModal'
 import AppHeader from 'components/UI/AppHeader'
 import AppBox from 'components/UI/AppBox'
@@ -16,10 +18,10 @@ import AppTypography from 'components/UI/AppTypography'
 import AppIcon from 'components/UI/AppIcon'
 import { PaulIcon } from 'components/UI/icons'
 import { prepareHashtags, schema } from './helper'
-import SubmitButton from './components/SubmitButton'
-import CloseButton from './components/CloseButton'
 
 const TaskField = dynamic(() => import('./components/TaskField'))
+
+const CHARACTERISTIC_NAMES: UserCharacteristicName[] = ['motivation', 'creativity', 'support']
 
 interface ModalProps {
   onSuccess: (goal: GoalDto) => void
@@ -53,7 +55,17 @@ export default function Modal({ onSuccess, onClose }: ModalProps): JSX.Element {
   return (
     <AppModal
       title="Creating a new goal"
-      actions={[<CloseButton onClick={onClose} />, <SubmitButton isLoading={isLoading} onClick={handleSubmit} />]}
+      actions={[
+        <ModalAction tmpl="close" onClick={onClose} />,
+        <ModalAction
+          tmpl="submit"
+          isLoading={isLoading}
+          name="Create"
+          nameLoading="Creating"
+          emoji="goal"
+          onClick={handleSubmit}
+        />,
+      ]}
       onClose={onClose}
     >
       <FormikProvider value={formik}>
@@ -120,11 +132,18 @@ export default function Modal({ onSuccess, onClose }: ModalProps): JSX.Element {
                   <AppTypography className={classes.hint}>
                     He hunts for abandoned goals.
                     <br />
-                    On the 14th day they get covered with 🕸.
+                    On the 14th day he covers them 🕸.
                     <br />
-                    On the 28th day he eats them.
+                    On the 28th day he eats them 🩸.
                     <br />
-                    And people have to start all over again.
+                    As a result the accumulated points
+                    <br />
+                    {CHARACTERISTIC_NAMES.map((name) => (
+                      <AppEmoji name={name} onlyEmoji key={name} />
+                    ))}
+                    will burn out.
+                    <br />
+                    And the number of abandoned goals increases.
                   </AppTypography>
                 </AccordionDetails>
               </Accordion>
@@ -143,7 +162,7 @@ const useStyles = makeStyles((theme) =>
       textTransform: 'none',
     },
     hint: {
-      fontSize: '0.9rem',
+      // fontSize: '1rem',
       color: theme.text.silent,
     },
   }),

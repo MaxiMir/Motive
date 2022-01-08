@@ -30,6 +30,8 @@ export type AppEmojiName =
   | 'like'
   | 'cup'
   | 'finish'
+  | 'congratulations'
+  | 'tape'
 
 interface AppEmojiProps {
   name: AppEmojiName
@@ -115,6 +117,10 @@ function getContent(name: AppEmojiName) {
       return '🏆'
     case 'views':
       return '👣'
+    case 'congratulations':
+      return '🎉'
+    case 'tape':
+      return '🎞'
     default:
       return ''
   }

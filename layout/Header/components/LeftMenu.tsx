@@ -7,25 +7,23 @@ export default function LeftMenu(): JSX.Element {
   const classes = useStyles()
   const [open, setOpen] = useState(false)
 
+  const toggle = () => setOpen(!open)
+
   const onKeyDown = (event: React.KeyboardEvent) => {
     if (['Tab', 'Shift'].includes(event.key)) {
       return
     }
 
-    setOpen(false)
+    toggle()
   }
-
-  const onOpen = () => setOpen(true)
-
-  const onClose = () => setOpen(false)
 
   return (
     <div>
-      <Button aria-label="open menu" onClick={onOpen}>
+      <Button aria-label="open menu" onClick={toggle}>
         <AppIcon className={classes.icon}>menu</AppIcon>
       </Button>
-      <Drawer open={open} onClose={onClose}>
-        <div role="presentation" className={classes.list} onKeyDown={onKeyDown} onClick={onClose}>
+      <Drawer open={open} onClose={toggle}>
+        <div role="presentation" className={classes.list} onKeyDown={onKeyDown} onClick={toggle}>
           <List>
             {['News', 'How it works', 'Next Features', 'Support us'].map((text) => (
               <ListItem button key={text}>

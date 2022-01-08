@@ -4,12 +4,7 @@ export const learnFrench: GoalDto = {
   id: 314,
   name: 'learn French',
   started: '2021-10-17T18:31:42',
-  hashtags: [
-    { id: 15, name: 'foreignLanguage', views: 0 },
-    { id: 17, name: 'learnFrench', views: 0 },
-    { id: 18, name: 'immigration', views: 1 },
-    { id: 21, name: 'recommendation', views: 0 },
-  ],
+  hashtags: ['foreignLanguage', 'learnFrench', 'immigration', 'recommendation'],
   owner: {
     id: 2,
     nickname: 'juliaz',
@@ -55,10 +50,7 @@ export const becomeSenior: GoalDto = {
   id: 214,
   name: 'become senior',
   started: '2021-09-01T12:31:42',
-  hashtags: [
-    { id: 3, name: 'programming', views: 1 },
-    { id: 4, name: 'knowledge', views: 1 },
-  ],
+  hashtags: ['programming', 'knowledge'],
   owner: {
     id: 1,
     nickname: 'maximir',
@@ -89,7 +81,7 @@ export const getNewGoal = (goalCreation: GoalCreationDto): GoalDto => {
     id: 413,
     name: goalCreation.name,
     started: new Date().toISOString(),
-    hashtags: goalCreation.hashtags.map((name, id) => ({ id, name, views: 0 })),
+    hashtags: goalCreation.hashtags,
     owner: {
       id: 1,
       nickname: 'maximir',

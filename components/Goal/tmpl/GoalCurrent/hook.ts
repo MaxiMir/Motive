@@ -12,7 +12,9 @@ export default function useChangeDate(goalId: number): [boolean, (dayId: number)
     onSuccess: (day) => {
       mutateGoals(
         produce(goals, (draft: GoalDto[]) => {
-          draft[draft.findIndex((g) => g.id === goalId)].days = [day]
+          const draftGoal = draft[draft.findIndex((g) => g.id === goalId)]
+
+          draftGoal.days = [day]
         }),
       )
       window.history.pushState(null, '', getQueryNewState(goals, goalId, day.id))

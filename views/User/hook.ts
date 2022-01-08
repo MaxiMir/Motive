@@ -20,12 +20,12 @@ export const useMutateGoals = (): [GoalDto[], (goals: GoalDto[]) => void] => {
   const mutateGoals = (goals: GoalDto[]) =>
     mutate(
       produce(page, (draft) => {
-        draft.content.user.goals = goals
+        draft.content.goals = goals
       }),
       false,
     )
 
-  return [page.content.user.goals, mutateGoals]
+  return [page.content.goals, mutateGoals]
 }
 
 export const useScrollToGoal = (): void => {

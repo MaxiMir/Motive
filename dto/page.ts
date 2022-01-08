@@ -23,12 +23,14 @@ export type FollowingPageDto = Page<UserDto[]>
 
 export type FollowingPageSWRDto = PageSWR<FollowingPageDto>
 
-export type UserPageDto = Page<{ isFollowing: boolean; user: UserDetailDto }>
+export type UserPageDto = Page<UserDetailDto>
 
 export type UserPageSWRDto = PageSWR<UserPageDto>
 
 export interface UserDetailDto extends UserDto {
+  isFollowing: boolean
   goals: GoalDto[]
+  goalsMember: GoalDto[]
 }
 
 export interface DataWithPagination<T> {

@@ -1,10 +1,9 @@
 import { Chip, makeStyles } from '@material-ui/core'
 import { SEARCH_ROUTE } from 'route'
-import { HashtagDto } from 'dto'
 import AppBox from 'components/UI/AppBox'
 
 interface HashtagsProps {
-  hashtags: HashtagDto[]
+  hashtags: string[]
 }
 
 export default function Hashtags({ hashtags }: HashtagsProps): JSX.Element {
@@ -12,7 +11,7 @@ export default function Hashtags({ hashtags }: HashtagsProps): JSX.Element {
 
   return (
     <AppBox flexWrap="wrap" spacing={1}>
-      {hashtags?.map(({ name }) => (
+      {hashtags?.map((name) => (
         <Chip
           component="a"
           label={`#${name}`}

@@ -11,16 +11,10 @@ export interface GoalDto {
   id: number
   name: string
   started: string
-  hashtags: HashtagDto[]
+  hashtags: string[]
   owner: UserBaseDto
   characteristic: GoalCharacteristicDto // count all
   days: DayDto[]
-}
-
-export interface HashtagDto {
-  id: number
-  name: string
-  views: number
 }
 
 export interface DayDto {

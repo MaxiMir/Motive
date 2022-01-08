@@ -22,11 +22,10 @@ const SECOND_CHARACTERISTIC_NAMES: UserCharacteristicName[] = ['completed', 'aba
 export interface DetailProps {
   user: UserDetailDto
   client: UserBaseDto
-  isFollowing: boolean
 }
 
-export default function Detail({ user, client, isFollowing }: DetailProps): JSX.Element {
-  const { id, nickname, name, avatar, characteristic, goals } = user
+export default function User({ user, client }: DetailProps): JSX.Element {
+  const { id, nickname, name, avatar, characteristic, goals, isFollowing } = user
   const theme = useTheme()
   const characteristicColors = useCharacteristicColors()
   const isMobile = useMediaQuery(theme.breakpoints.down('sm'))

@@ -9,7 +9,7 @@ import User from 'views/User'
 
 export default function UserDetail({ fallbackData }: UserPageSWRDto): JSX.Element {
   const { data, error } = useUserPage(fallbackData)
-  const userMeta = getUserMeta(data?.content.user)
+  const userMeta = getUserMeta(data?.content)
 
   // TODO REMOVE!
   const client = {
@@ -22,7 +22,7 @@ export default function UserDetail({ fallbackData }: UserPageSWRDto): JSX.Elemen
   return (
     <UserPageContext.Provider value={data}>
       <Layout {...userMeta} client={client} error={error}>
-        {data?.content && <User {...data?.content} client={client} />}
+        {data?.content && <User user={data?.content} client={client} />}
       </Layout>
     </UserPageContext.Provider>
   )

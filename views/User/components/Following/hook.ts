@@ -35,7 +35,7 @@ export default function useSetFollowing(id: number, following: boolean, isAuthor
     mutate(
       produce(page, (draft) => {
         draft.content.isFollowing = value
-        draft.content.user.characteristic.followers += value ? 1 : -1
+        draft.content.characteristic.followers += value ? 1 : -1
       }),
       false,
     )

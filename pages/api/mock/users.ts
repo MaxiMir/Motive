@@ -14,8 +14,9 @@ const ME: UserDetailDto = {
     completed: 8,
     abandoned: 0,
   },
-  favorite: false,
+  isFollowing: false,
   goals: [learnFrench, becomeSenior],
+  goalsMember: [],
 }
 
 const JULIA: UserDetailDto = {
@@ -31,7 +32,7 @@ const JULIA: UserDetailDto = {
     completed: 4,
     abandoned: 0,
   },
-  favorite: false,
+  isFollowing: false,
   goals: [
     {
       ...learnFrench,
@@ -43,6 +44,7 @@ const JULIA: UserDetailDto = {
       },
     },
   ],
+  goalsMember: [],
 }
 
 const FRIEND: UserDetailDto = {
@@ -58,7 +60,7 @@ const FRIEND: UserDetailDto = {
     completed: 4,
     abandoned: 1,
   },
-  favorite: false,
+  isFollowing: false,
   goals: [
     {
       ...learnFrench,
@@ -70,6 +72,7 @@ const FRIEND: UserDetailDto = {
       },
     },
   ],
+  goalsMember: [],
 }
 
 const FRIEND1: UserDetailDto = {
@@ -85,8 +88,9 @@ const FRIEND1: UserDetailDto = {
     completed: 13,
     abandoned: 0,
   },
-  favorite: false,
+  isFollowing: false,
   goals: [],
+  goalsMember: [],
 }
 
 const FRIEND2: UserDetailDto = {
@@ -102,8 +106,9 @@ const FRIEND2: UserDetailDto = {
     completed: 12,
     abandoned: 0,
   },
-  favorite: false,
+  isFollowing: false,
   goals: [],
+  goalsMember: [],
 }
 
 export default [ME, JULIA, FRIEND, FRIEND1, FRIEND2]

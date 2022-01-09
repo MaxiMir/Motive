@@ -1,7 +1,8 @@
 import { ChangeEvent, useRef } from 'react'
 import dynamic from 'next/dynamic'
 import { Field, FieldArray, Form, FormikProvider, useFormik } from 'formik'
-import { Button, makeStyles } from '@material-ui/core'
+import { Button, Chip, makeStyles } from '@material-ui/core'
+import { scrollToElem } from 'helpers/dom'
 import useSnackbar from 'hooks/useSnackbar'
 import ModalAction from 'components/ModalAction'
 import AppModal from 'components/UI/AppModal'
@@ -54,6 +55,7 @@ export default function Modal({ onClose }: ModalProps): JSX.Element {
     }
 
     setFieldValue('photos', photos)
+    setTimeout(() => scrollToElem('video'), 500)
   }
 
   const onAddVideo = (e: ChangeEvent<HTMLInputElement>) => {
@@ -138,7 +140,7 @@ export default function Modal({ onClose }: ModalProps): JSX.Element {
               </FieldArray>
               <AppBox flexDirection="column" spacing={2} width="100%">
                 <AppHeader name="video" variant="h6" component="h2" color="primary">
-                  Video
+                  Video <Chip label="Soon" variant="outlined" size="small" className={classes.soon} />
                 </AppHeader>
                 <input
                   ref={videoInputRef}
@@ -148,14 +150,20 @@ export default function Modal({ onClose }: ModalProps): JSX.Element {
                   onChange={onAddVideo}
                 />
                 {values.video ? (
-                  <div className={classes.video}>
+                  <div id="video" className={classes.video}>
                     <AppVideo video={URL.createObjectURL(values.video)} className={classes.videoPlayer} />
                     <IconButton onClick={() => setFieldValue('video', null)} className={classes.remove}>
                       <AppIcon name="cancel" color="secondary" />
                     </IconButton>
                   </div>
                 ) : (
-                  <Button color="secondary" variant="outlined" className={classes.button} aria-label="load video">
+                  <Button
+                    color="secondary"
+                    variant="outlined"
+                    className={classes.button}
+                    aria-label="load video"
+                    disabled
+                  >
                     <AppBox
                       flexDirection="column"
                       justifyContent="center"
@@ -212,5 +220,10 @@ const useStyles = makeStyles({
     position: 'absolute',
     top: -8,
     right: -8,
+  },
+  soon: {
+    marginLeft: 4,
+    borderColor: 'rgba(255, 167, 38, 0.7)',
+    color: 'rgb(255, 167, 38)',
   },
 })

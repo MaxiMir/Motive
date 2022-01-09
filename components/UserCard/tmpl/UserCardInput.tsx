@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
 import dynamic from 'next/dynamic'
 import { IconButton, makeStyles, TextField } from '@material-ui/core'
 import { TopicDto, TopicType, UserBaseDto } from 'dto'
@@ -50,10 +50,10 @@ export default function UserCardInput({ dayId, user, answer, onAdd }: UserCardIn
           onChange={(e) => setMessage(e.target.value)}
         />
         <IconButton className={classes.button} disabled={isLoading || !message} onClick={onClick}>
-          {isLoading ? (
-            <CircularProgress size="0.9rem" color="primary" />
+          {!isLoading ? (
+            <AppIcon name="send" className={classes.icon} />
           ) : (
-            <AppIcon className={classes.icon}>send</AppIcon>
+            <CircularProgress size="0.9rem" color="primary" />
           )}
         </IconButton>
       </AppBox>

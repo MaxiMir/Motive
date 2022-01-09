@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import { useState, useEffect } from 'react'
 import dynamic from 'next/dynamic'
 import { AppProps } from 'next/app'
 import DateFnsUtils from '@date-io/date-fns'
@@ -16,7 +16,7 @@ export default function MyApp({ Component, pageProps }: AppProps): JSX.Element {
 
   const onClose = () => setSnackbarProps(null)
 
-  React.useEffect(() => {
+  useEffect(() => {
     // Remove the server-side injected CSS.
     const jssStyles = document.querySelector('#jss-server-side')
 

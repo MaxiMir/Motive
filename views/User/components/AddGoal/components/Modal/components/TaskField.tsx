@@ -1,11 +1,10 @@
-import React, { ChangeEvent } from 'react'
+import { ChangeEvent } from 'react'
 import dynamic from 'next/dynamic'
 import { Field } from 'formik'
-import { createStyles, FormControlLabel, IconButton, Switch } from '@material-ui/core'
+import { createStyles, FormControlLabel, IconButton, Switch, makeStyles } from '@material-ui/core'
 import AppBox from 'components/UI/AppBox'
 import AppInput from 'components/UI/AppInput'
 import AppIcon from 'components/UI/AppIcon'
-import { makeStyles } from '@material-ui/core/styles'
 
 const KeyboardTimePicker = dynamic(() =>
   import('formik-material-ui-pickers').then(
@@ -47,7 +46,7 @@ export default function TaskField({ index, date, taskCount, onRemove, onToggleDa
           onClick={onRemove}
           className={classes.iconCloseBtn}
         >
-          <AppIcon>close</AppIcon>
+          <AppIcon name="close" />
         </IconButton>
       </AppBox>
       <AppBox height={48} alignItems="center" pl={1} spacing={1}>
@@ -57,7 +56,7 @@ export default function TaskField({ index, date, taskCount, onRemove, onToggleDa
             name={`tasks.${index}.date`}
             ampm={false}
             className={classes.timepicker}
-            keyboardIcon={<span className="material-icons">query_builder</span>}
+            keyboardIcon={<AppIcon name="query_builder" />}
             component={KeyboardTimePicker}
           />
         )}

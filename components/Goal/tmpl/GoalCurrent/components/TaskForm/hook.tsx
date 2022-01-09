@@ -1,4 +1,4 @@
-import React, { useRef } from 'react'
+import { useRef } from 'react'
 import dynamic from 'next/dynamic'
 import produce from 'immer'
 import { GoalDto } from 'dto'

@@ -1,4 +1,4 @@
-import React, { useMemo, useState } from 'react'
+import { useMemo, useState } from 'react'
 import { format } from 'date-fns'
 import { Button, createStyles, IconButton } from '@material-ui/core'
 import { makeStyles } from '@material-ui/core/styles'
@@ -7,6 +7,7 @@ import { MaterialUiPickersDate } from '@material-ui/pickers/typings/date'
 import { toISODateWithZeroTime } from 'helpers/date'
 import useDebounceCb from 'hooks/useDebounceCb'
 import AppBox from 'components/UI/AppBox'
+import AppIcon from 'components/UI/AppIcon'
 
 interface DateProps {
   datesMap: Record<string, number>
@@ -52,7 +53,7 @@ export default function GoalDate({ datesMap, date, onChangeDate }: DateProps): J
   return (
     <AppBox alignSelf="center" alignItems="center" spacing={1}>
       <IconButton className={classes.button} disabled={!prevDate} onClick={() => onClickArrow(prevDate)}>
-        <span className="material-icons">chevron_left</span>
+        <AppIcon name="chevron_left" />
       </IconButton>
       <KeyboardDatePicker
         variant="dialog"
@@ -70,7 +71,7 @@ export default function GoalDate({ datesMap, date, onChangeDate }: DateProps): J
         onClose={toggle}
       />
       <IconButton className={classes.button} disabled={!nextDate} onClick={() => onClickArrow(nextDate)}>
-        <span className="material-icons">chevron_right</span>
+        <AppIcon name="chevron_right" />
       </IconButton>
     </AppBox>
   )

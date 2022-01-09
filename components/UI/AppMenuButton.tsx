@@ -20,9 +20,11 @@ export default function AppMenuButton({
 
   return (
     <IconButton className={classes.button} aria-controls={ariaControls} aria-haspopup="true" {...restProps}>
-      <AppIcon color={color || 'secondary'} className={clsx([compact && classes.icon])}>
-        more_{horizontal ? 'horiz' : 'vert'}
-      </AppIcon>
+      <AppIcon
+        name={`more_${horizontal ? 'horiz' : 'vert'}`}
+        color={color || 'secondary'}
+        className={clsx([compact && classes.icon])}
+      />
     </IconButton>
   )
 }

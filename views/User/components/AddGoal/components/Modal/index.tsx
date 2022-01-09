@@ -1,4 +1,4 @@
-import React, { useMemo } from 'react'
+import { useMemo } from 'react'
 import dynamic from 'next/dynamic'
 import { Field, FieldArray, Form, FormikProvider, useFormik } from 'formik'
 import { addDays } from 'date-fns'
@@ -105,7 +105,7 @@ export default function Modal({ onSuccess, onClose }: ModalProps): JSX.Element {
                     />
                   ))}
                   <Button
-                    startIcon={<AppIcon color="secondary">add</AppIcon>}
+                    startIcon={<AppIcon name="add" color="secondary" />}
                     className={classes.button}
                     onClick={() => push({ name: '', date: undefined })}
                   >
@@ -117,7 +117,7 @@ export default function Modal({ onSuccess, onClose }: ModalProps): JSX.Element {
             <AppBox flexDirection="column" spacing={2}>
               <Accordion>
                 <AccordionSummary
-                  expandIcon={<AppIcon color="primary">expand_more</AppIcon>}
+                  expandIcon={<AppIcon name="expand_more" color="primary" />}
                   aria-controls="old-pitt-note"
                   id="old-pitt-note"
                 >

@@ -1,6 +1,8 @@
-import React, { ChangeEvent, useRef } from 'react'
+import { ChangeEvent, useRef } from 'react'
+import dynamic from 'next/dynamic'
 import { Field, FieldArray, Form, FormikProvider, useFormik } from 'formik'
-import { Button, IconButton, makeStyles } from '@material-ui/core'
+import { Button, makeStyles } from '@material-ui/core'
+import useSnackbar from 'hooks/useSnackbar'
 import ModalAction from 'components/ModalAction'
 import AppModal from 'components/UI/AppModal'
 import AppTypography from 'components/UI/AppTypography'
@@ -8,7 +10,13 @@ import AppEmoji from 'components/UI/AppEmoji'
 import AppBox from 'components/UI/AppBox'
 import AppInput from 'components/UI/AppInput'
 import AppHeader from 'components/UI/AppHeader'
-import Image from './components/Image'
+import AppVideo from 'components/UI/AppVideo'
+
+const IconButton = dynamic(() => import('@material-ui/core/IconButton'))
+const Image = dynamic(() => import('./components/Image'))
+const AppIcon = dynamic(() => import('components/UI/AppIcon'))
+
+const PHOTO_LIMIT = 10
 
 interface ModalProps {
   onClose: () => void
@@ -17,10 +25,13 @@ interface ModalProps {
 export default function Modal({ onClose }: ModalProps): JSX.Element {
   const classes = useStyles()
   const photoInputRef = useRef<HTMLInputElement>(null)
+  const videoInputRef = useRef<HTMLInputElement>(null)
+  const { enqueueSnackbar } = useSnackbar()
   const formik = useFormik({
     initialValues: {
       text: '',
       photos: [],
+      video: null,
     },
     // validationSchema: schema,
     async onSubmit(data) {
@@ -32,17 +43,23 @@ export default function Modal({ onClose }: ModalProps): JSX.Element {
   const isLoading = false
 
   const onAddPhoto = (e: ChangeEvent<HTMLInputElement>) => {
-    const file = e.target.files?.[0]
-
     if (!e.target.files) {
       return
     }
 
-    if (e.target.files.length > 10) {
-      // error
+    const photos = [...values.photos, ...Array.from(e.target.files).slice(0, PHOTO_LIMIT)]
+
+    if (e.target.files.length > PHOTO_LIMIT) {
+      enqueueSnackbar({ message: `You cannot add more than ${PHOTO_LIMIT} photos`, severity: 'error' })
     }
 
-    file && setFieldValue('photos', [...values.photos, file])
+    setFieldValue('photos', photos)
+  }
+
+  const onAddVideo = (e: ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0]
+
+    file && setFieldValue('video', file)
   }
 
   return (
@@ -86,7 +103,9 @@ export default function Modal({ onClose }: ModalProps): JSX.Element {
                         className={classes.buttonContent}
                         onClick={() => photoInputRef.current?.click()}
                       >
-                        <AppTypography color="secondary">+</AppTypography>
+                        <AppTypography color="secondary">
+                          <b>+</b>
+                        </AppTypography>
                         <AppEmoji name="tape" variant="h1" />
                       </AppBox>
                     </Button>
@@ -94,26 +113,64 @@ export default function Modal({ onClose }: ModalProps): JSX.Element {
                       ref={photoInputRef}
                       type="file"
                       accept="image/*"
-                      className={classes.input}
                       multiple
+                      className={classes.input}
                       onChange={onAddPhoto}
                     />
                     {values.photos.map((file, index) => (
-                      <Button color="secondary" variant="outlined" className={classes.button} key={index}>
+                      <Button
+                        color="secondary"
+                        variant="outlined"
+                        className={classes.button}
+                        component="div"
+                        key={index}
+                      >
                         <div className={classes.buttonContent}>
                           <Image file={file} />
-                          <IconButton onClick={() => remove(index)} />
+                          <IconButton onClick={() => remove(index)} className={classes.remove}>
+                            <AppIcon name="cancel" color="secondary" />
+                          </IconButton>
                         </div>
                       </Button>
                     ))}
                   </AppBox>
                 )}
               </FieldArray>
-            </AppBox>
-            <AppBox flexDirection="column" spacing={2} width="100%">
-              <AppHeader name="video" variant="h6" component="h2" color="primary">
-                Videos
-              </AppHeader>
+              <AppBox flexDirection="column" spacing={2} width="100%">
+                <AppHeader name="video" variant="h6" component="h2" color="primary">
+                  Video
+                </AppHeader>
+                <input
+                  ref={videoInputRef}
+                  type="file"
+                  accept=".mov,.mp4"
+                  className={classes.input}
+                  onChange={onAddVideo}
+                />
+                {values.video ? (
+                  <div className={classes.video}>
+                    <AppVideo video={URL.createObjectURL(values.video)} className={classes.videoPlayer} />
+                    <IconButton onClick={() => setFieldValue('video', null)} className={classes.remove}>
+                      <AppIcon name="cancel" color="secondary" />
+                    </IconButton>
+                  </div>
+                ) : (
+                  <Button color="secondary" variant="outlined" className={classes.button} aria-label="load video">
+                    <AppBox
+                      flexDirection="column"
+                      justifyContent="center"
+                      alignItems="center"
+                      className={classes.buttonContent}
+                      onClick={() => videoInputRef.current?.click()}
+                    >
+                      <AppTypography color="secondary">
+                        <b>+</b>
+                      </AppTypography>
+                      <AppEmoji name="cassette" variant="h1" />
+                    </AppBox>
+                  </Button>
+                )}
+              </AppBox>
             </AppBox>
           </AppBox>
         </Form>
@@ -131,9 +188,18 @@ const useStyles = makeStyles({
   },
   button: {
     position: 'relative',
-    width: 'calc((100% - 32px) / 3)',
+    width: 'calc((100% - 48px) / 4)',
     height: 0,
-    paddingBottom: 'calc((100% - 32px) / 3)',
+    paddingBottom: 'calc((100% - 48px) / 4)',
+  },
+  video: {
+    position: 'relative',
+    background: '#000000',
+  },
+  videoPlayer: {
+    border: '1px solid rgba(255, 224, 178, 0.5)',
+    borderRadius: 4,
+    overflow: 'hidden',
   },
   buttonContent: {
     position: 'absolute',
@@ -141,5 +207,10 @@ const useStyles = makeStyles({
     left: 0,
     bottom: 0,
     right: 0,
+  },
+  remove: {
+    position: 'absolute',
+    top: -8,
+    right: -8,
   },
 })

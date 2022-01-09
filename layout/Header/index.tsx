@@ -24,12 +24,12 @@ export default function Header({ isAuthenticated }: HeaderProps): JSX.Element {
           <LeftMenu />
           {!isAuthenticated ? (
             <Button href={LOGIN_IN_ROUTE}>
-              <AppIcon className={classes.icon}>login</AppIcon>
+              <AppIcon name="login" className={classes.icon} />
             </Button>
           ) : (
             <Button href={LOGIN_IN_ROUTE}>
               <Badge color="error" badgeContent="" variant="dot" invisible={false}>
-                <AppIcon className={classes.icon}>notifications_none</AppIcon>
+                <AppIcon name="notifications_none" className={classes.icon} />
               </Badge>
             </Button>
           )}

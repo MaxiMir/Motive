@@ -44,7 +44,7 @@ export default function AppAccordion({
       TransitionProps={!unmountOnExit ? undefined : { unmountOnExit: true }}
     >
       <AccordionSummary
-        expandIcon={<AppIcon color="primary">expand_more</AppIcon>}
+        expandIcon={<AppIcon name="expand_more" color="primary" />}
         id={id}
         aria-controls={ariaControls}
       >

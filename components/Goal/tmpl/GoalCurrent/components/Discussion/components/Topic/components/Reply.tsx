@@ -4,7 +4,7 @@ import AppIcon from 'components/UI/AppIcon'
 export default function Reply(): JSX.Element {
   const classes = useStyles()
 
-  return <AppIcon className={classes.root}>reply</AppIcon>
+  return <AppIcon name="reply" className={classes.root} />
 }
 
 const useStyles = makeStyles({

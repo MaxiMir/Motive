@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import { useState, KeyboardEvent } from 'react'
 import { makeStyles } from '@material-ui/core/styles'
 import { Drawer, List, Divider, ListItem, ListItemText, Button } from '@material-ui/core'
 import AppIcon from 'components/UI/AppIcon'
@@ -9,7 +9,7 @@ export default function LeftMenu(): JSX.Element {
 
   const toggle = () => setOpen(!open)
 
-  const onKeyDown = (event: React.KeyboardEvent) => {
+  const onKeyDown = (event: KeyboardEvent) => {
     if (['Tab', 'Shift'].includes(event.key)) {
       return
     }
@@ -20,7 +20,7 @@ export default function LeftMenu(): JSX.Element {
   return (
     <div>
       <Button aria-label="open menu" onClick={toggle}>
-        <AppIcon className={classes.icon}>menu</AppIcon>
+        <AppIcon name="menu" className={classes.icon} />
       </Button>
       <Drawer open={open} onClose={toggle}>
         <div role="presentation" className={classes.list} onKeyDown={onKeyDown} onClick={toggle}>

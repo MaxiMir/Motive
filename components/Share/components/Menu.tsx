@@ -50,17 +50,17 @@ const Menu = ({ title, url, onCopyEnd, onCopyError, onClose }: MenuProps): JSX.E
       },
       {
         text: 'Send to Email',
-        iconText: <AppIcon color="secondary">email</AppIcon>,
+        iconText: <AppIcon name="email" color="secondary" />,
         onClick: () => clickHandler('email', title, url),
       },
       {
         text: 'Send to SMS',
-        iconText: <AppIcon color="secondary">sms</AppIcon>,
+        iconText: <AppIcon name="sms" color="secondary" />,
         onClick: () => clickHandler('sms', title, url),
       },
       {
         text: 'Copy link',
-        iconText: <AppIcon color="secondary">link</AppIcon>,
+        iconText: <AppIcon name="link" color="secondary" />,
         onClick: () => copyHandler(url, onCopyEnd, onCopyError),
       },
     ]

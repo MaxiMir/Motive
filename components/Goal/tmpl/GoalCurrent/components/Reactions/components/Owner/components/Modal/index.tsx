@@ -2,7 +2,6 @@ import { ChangeEvent, useRef } from 'react'
 import dynamic from 'next/dynamic'
 import { Field, FieldArray, Form, FormikProvider, useFormik } from 'formik'
 import { Button, Chip, makeStyles } from '@material-ui/core'
-import { scrollToElem } from 'helpers/dom'
 import useSnackbar from 'hooks/useSnackbar'
 import ModalAction from 'components/ModalAction'
 import AppModal from 'components/UI/AppModal'
@@ -55,7 +54,6 @@ export default function Modal({ onClose }: ModalProps): JSX.Element {
     }
 
     setFieldValue('photos', photos)
-    setTimeout(() => scrollToElem('video'), 500)
   }
 
   const onAddVideo = (e: ChangeEvent<HTMLInputElement>) => {
@@ -150,7 +148,7 @@ export default function Modal({ onClose }: ModalProps): JSX.Element {
                   onChange={onAddVideo}
                 />
                 {values.video ? (
-                  <div id="video" className={classes.video}>
+                  <div className={classes.video}>
                     <AppVideo video={URL.createObjectURL(values.video)} className={classes.videoPlayer} />
                     <IconButton onClick={() => setFieldValue('video', null)} className={classes.remove}>
                       <AppIcon name="cancel" color="secondary" />

@@ -23,7 +23,7 @@ export interface DayDto {
   characteristic: DayCharacteristicDto | null
   tasks: TaskDto[]
   discussionCount: number
-  feedbackId: number | null
+  feedback: FeedbackDto | null
   views: number
 }
 

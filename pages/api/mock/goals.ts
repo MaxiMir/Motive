@@ -41,7 +41,7 @@ export const learnFrench: GoalDto = {
       ],
       views: 2311,
       discussionCount: 5,
-      feedbackId: 1,
+      feedback: null,
     },
   ],
 }
@@ -71,7 +71,7 @@ export const becomeSenior: GoalDto = {
       tasks: [{ id: 11, name: 'watch video', completed: false, completedBy: [] }],
       views: 123,
       discussionCount: 0,
-      feedbackId: 2,
+      feedback: null,
     },
   ],
 }
@@ -107,7 +107,7 @@ export const getNewGoal = (goalCreation: GoalCreationDto): GoalDto => {
         })),
         views: 0,
         discussionCount: 0,
-        feedbackId: 3,
+        feedback: null,
       },
     ],
   }

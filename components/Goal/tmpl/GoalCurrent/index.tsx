@@ -44,7 +44,7 @@ export default function GoalCurrent({ goal, client, href }: GoalCurrentProps): J
   const calendarSWR = useSWR(`calendar-${id}`, () => GoalService.getCalendar({ id }))
   const datesMap = useMemo(getDatesMap, [calendarSWR.data])
   const [day] = goal.days
-  const { id: dayId, date, tasks, views, feedbackId } = day
+  const { id: dayId, date, tasks, views, feedback } = day
   const classes = useStyles()
   const theme = useTheme()
   const colors = useCharacteristicColors()
@@ -118,7 +118,7 @@ export default function GoalCurrent({ goal, client, href }: GoalCurrentProps): J
                 ariaControls="feedback-content"
                 renderOnClick
                 unmountOnExit
-                details={!feedbackId ? <AppTypography>Coming soon...</AppTypography> : <Feedback id={feedbackId} />}
+                details={!feedback ? <AppTypography>Coming soon...</AppTypography> : <Feedback feedback={feedback} />}
               />
               <AppAccordion
                 name="discussion"

@@ -14,10 +14,14 @@ export default class DayService {
   /**
    * /days/{id}/feedback
    */
-  static createFeedback(data: { id: number; text: string; photos: File[] }): Promise<FeedbackDto> {
-    const { id, ...body } = data
+  static createFeedback(data: { id: number; body: FormData }): Promise<FeedbackDto> {
+    const { id, body } = data
 
-    return Axios.post(`/days/${id}/feedback`, body)
+    return Axios.post(`/days/${id}/feedback`, body, {
+      headers: {
+        'Content-Type': 'multipart/form-data',
+      },
+    })
   }
 
   /**

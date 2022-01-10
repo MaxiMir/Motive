@@ -137,11 +137,10 @@ export default function Modal({ onSuccess, onClose }: ModalProps): JSX.Element {
                     <br />
                     On the 28th day he eats them 🩸.
                     <br />
-                    As a result the accumulated points
-                    <br />
+                    The accumulated points{' '}
                     {CHARACTERISTIC_NAMES.map((name) => (
                       <AppEmoji name={name} onlyEmoji key={name} />
-                    ))}
+                    ))}{' '}
                     will burn out.
                     <br />
                     And the number of abandoned goals increases.

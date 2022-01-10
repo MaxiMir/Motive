@@ -45,7 +45,11 @@ export default function Modal({ goal, onClose }: ModalProps): JSX.Element {
     },
     validationSchema: schema,
     onSubmit(data) {
-      send({ id: goal.days[0].id, ...data })
+      const formData = new FormData()
+
+      formData.append('text', data.text)
+      data.photos.forEach((photo) => formData.append('photos', photo))
+      send({ id: goal.days[0].id, body: formData })
     },
   })
   const { values, setFieldValue, handleSubmit } = formik
@@ -78,7 +82,7 @@ export default function Modal({ goal, onClose }: ModalProps): JSX.Element {
         <ModalAction tmpl="close" onClick={onClose} />,
         <ModalAction
           tmpl="submit"
-          isLoading={isLoading} // todo change
+          isLoading={isLoading}
           name="Add"
           nameLoading="Adding"
           emoji="feedback"

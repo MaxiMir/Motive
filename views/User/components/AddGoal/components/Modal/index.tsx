@@ -4,7 +4,7 @@ import { Field, FieldArray, Form, FormikProvider, useFormik } from 'formik'
 import { addDays } from 'date-fns'
 import { makeStyles } from '@material-ui/core/styles'
 import { Accordion, AccordionDetails, AccordionSummary, Button, createStyles } from '@material-ui/core'
-import { GoalDto, GoalCreationDto, UserCharacteristicName } from 'dto'
+import { GoalDto, UserCharacteristicName } from 'dto'
 import GoalService from 'services/GoalService'
 import useSend from 'hooks/useSend'
 import useFocus from 'hooks/useFocus'
@@ -17,7 +17,8 @@ import AppInput from 'components/UI/AppInput'
 import AppTypography from 'components/UI/AppTypography'
 import AppIcon from 'components/UI/AppIcon'
 import { PaulIcon } from 'components/UI/icons'
-import { prepareHashtags, schema } from './helper'
+import { prepareHashtags } from './helper'
+import schema from './schema'
 
 const TaskField = dynamic(() => import('./components/TaskField'))
 
@@ -28,12 +29,11 @@ interface ModalProps {
   onClose: () => void
 }
 
-// TODO: focus error fields
 export default function Modal({ onSuccess, onClose }: ModalProps): JSX.Element {
   const classes = useStyles()
   const [hashtagsRef, setHashtagsFocus] = useFocus()
   const tomorrow = useMemo(() => addDays(new Date(), 1), [])
-  const { isLoading, send } = useSend<GoalCreationDto, GoalDto>(GoalService.create, { onSuccess })
+  const { isLoading, send } = useSend(GoalService.create, { onSuccess })
   const formik = useFormik({
     initialValues: {
       name: '',
@@ -41,7 +41,7 @@ export default function Modal({ onSuccess, onClose }: ModalProps): JSX.Element {
       tasks: [{ name: '', date: undefined }],
     },
     validationSchema: schema,
-    async onSubmit(data) {
+    onSubmit(data) {
       send({ ...data, hashtags: prepareHashtags(data.hashtags) })
     },
   })
@@ -55,6 +55,7 @@ export default function Modal({ onSuccess, onClose }: ModalProps): JSX.Element {
   return (
     <AppModal
       title="Creating a new goal"
+      maxWidth="xs"
       actions={[
         <ModalAction tmpl="close" onClick={onClose} />,
         <ModalAction

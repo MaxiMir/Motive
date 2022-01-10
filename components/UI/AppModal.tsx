@@ -1,22 +1,23 @@
 import { FC, Fragment } from 'react'
 import dynamic from 'next/dynamic'
 import { makeStyles } from '@material-ui/core/styles'
-import { Dialog, DialogContent, DialogTitle } from '@material-ui/core'
+import { Dialog, DialogContent, DialogProps, DialogTitle } from '@material-ui/core'
 
 const DialogActions = dynamic(() => import('@material-ui/core/DialogActions'))
 const AppBox = dynamic(() => import('./AppBox'))
 
 interface AppModalProps {
   title: string
-  onClose: () => void
+  maxWidth?: DialogProps['maxWidth']
   actions?: JSX.Element[]
+  onClose: () => void
 }
 
-const AppModal: FC<AppModalProps> = ({ title, actions, children, onClose }) => {
+const AppModal: FC<AppModalProps> = ({ title, actions, maxWidth, children, onClose }) => {
   const classes = useStyles()
 
   return (
-    <Dialog classes={{ root: classes.root, paper: classes.paper }} open fullWidth onClose={onClose}>
+    <Dialog classes={{ root: classes.root, paper: classes.paper }} open fullWidth maxWidth={maxWidth} onClose={onClose}>
       <DialogTitle className={classes.title}>{title}</DialogTitle>
       <DialogContent className={classes.content}>{children}</DialogContent>
       {actions && (

@@ -1,8 +1,8 @@
 import dynamic from 'next/dynamic'
 import { FeedbackDto } from 'dto'
-import AppTypography from 'components/UI/AppTypography'
 import AppBox from 'components/UI/AppBox'
 
+const Text = dynamic(() => import('./components/Text'))
 const AppHeader = dynamic(() => import('components/UI/AppHeader'))
 const AppGallery = dynamic(() => import('components/UI/AppGallery'))
 const AppVideo = dynamic(() => import('components/UI/AppVideo'))
@@ -16,7 +16,7 @@ export default function Feedback({ feedback }: FeedbackProps): JSX.Element {
 
   return (
     <AppBox flexDirection="column" spacing={2} flex={1}>
-      {text && <AppTypography>{text}</AppTypography>}
+      {text && <Text text={text} />}
       {photos?.length && (
         <>
           <AppHeader name="photo" variant="h6" component="h3" color="primary">

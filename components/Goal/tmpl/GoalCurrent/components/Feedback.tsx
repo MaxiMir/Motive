@@ -16,12 +16,7 @@ export default function Feedback({ feedback }: FeedbackProps): JSX.Element {
 
   return (
     <AppBox flexDirection="column" spacing={2} flex={1}>
-      {text && (
-        <AppTypography>
-          {/* eslint-disable-next-line react/no-danger */}
-          <span dangerouslySetInnerHTML={{ __html: text.replace(/\\n/g, '<br />') }} />
-        </AppTypography>
-      )}
+      {text && <AppTypography>{text}</AppTypography>}
       {photos?.length && (
         <>
           <AppHeader name="photo" variant="h6" component="h3" color="primary">

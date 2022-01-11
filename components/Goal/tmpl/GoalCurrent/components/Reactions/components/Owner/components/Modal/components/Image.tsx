@@ -1,10 +1,14 @@
-import { useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react'
+import dynamic from 'next/dynamic'
 import { makeStyles } from '@material-ui/core'
+
+const CircularProgress = dynamic(() => import('@material-ui/core/CircularProgress'))
 
 interface ImageProps {
   file: File
 }
 
+// TODO HEIC images https://itnext.io/tackling-iphone-or-ipad-images-support-in-browser-8e3e64e9aaa1
 export default function Image({ file }: ImageProps): JSX.Element {
   const classes = useStyles()
   const [image, setImage] = useState<string>()
@@ -17,7 +21,15 @@ export default function Image({ file }: ImageProps): JSX.Element {
     reader.readAsDataURL(file)
   }, [file])
 
-  return <>{image && <img src={image} alt={file.name} className={classes.root} />}</>
+  return (
+    <>
+      {!image ? (
+        <CircularProgress size="0.9rem" color="primary" />
+      ) : (
+        <img src={image} alt={file.name} className={classes.root} />
+      )}
+    </>
+  )
 }
 
 const useStyles = makeStyles({

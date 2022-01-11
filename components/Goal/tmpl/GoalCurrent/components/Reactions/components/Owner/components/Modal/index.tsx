@@ -117,7 +117,7 @@ export default function Modal({ goal, onClose }: ModalProps): JSX.Element {
                           component="div"
                           key={index}
                         >
-                          <div className={classes.photoContent}>
+                          <AppBox justifyContent="center" alignItems="center" className={classes.photoContent}>
                             <Image file={file} />
                             <IconButton
                               className={classes.remove}
@@ -126,7 +126,7 @@ export default function Modal({ goal, onClose }: ModalProps): JSX.Element {
                             >
                               <AppIcon name="cancel" color="secondary" />
                             </IconButton>
-                          </div>
+                          </AppBox>
                         </Button>
                       ))}
                     </AppBox>

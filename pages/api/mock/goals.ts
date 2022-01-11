@@ -4,7 +4,7 @@ export const learnFrench: GoalDto = {
   id: 314,
   name: 'learn French',
   started: '2021-10-17T18:31:42',
-  hashtags: ['foreignLanguage', 'learnFrench', 'immigration', 'recommendation'],
+  hashtags: ['foreignLanguage', 'french', 'immigration', 'recommendation'],
   owner: {
     id: 2,
     nickname: 'juliaz',

@@ -47,7 +47,7 @@ export default function Modal({ goal, onClose }: ModalProps): JSX.Element {
     onSubmit(data) {
       const formData = new FormData()
 
-      formData.append('text', data.text)
+      formData.append('text', data.text.trim().replace(/\\n/g, '  '))
       data.photos.forEach((photo) => formData.append('photos', photo))
       send({ id: goal.days[0].id, body: formData })
     },

@@ -1,5 +1,6 @@
 import { makeStyles } from '@material-ui/core/styles'
 import Image from 'next/image'
+import { getImageUrl } from 'helpers/url'
 
 interface AppAvatarProps {
   urn: string
@@ -8,7 +9,7 @@ interface AppAvatarProps {
 
 export default function AppAvatar({ urn, size }: AppAvatarProps): JSX.Element {
   const classes = useStyles()
-  const src = process.env.NEXT_PUBLIC_SERVER_BASE_URL + urn
+  const src = getImageUrl(urn)
 
   return <Image src={src} alt="" width={size} height={size} objectFit="cover" className={classes.avatar} />
 }

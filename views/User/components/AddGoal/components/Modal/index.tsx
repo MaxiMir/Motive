@@ -79,7 +79,7 @@ export default function Modal({ onSuccess, onClose }: ModalProps): JSX.Element {
                 label="Hashtags"
                 color="secondary"
                 multiline
-                rows={2}
+                rows={3}
                 inputRef={hashtagsRef}
                 component={AppInput}
               />
@@ -162,7 +162,6 @@ const useStyles = makeStyles((theme) =>
       textTransform: 'none',
     },
     hint: {
-      // fontSize: '1rem',
       color: theme.text.silent,
     },
   }),

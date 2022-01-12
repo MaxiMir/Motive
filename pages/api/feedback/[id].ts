@@ -13,7 +13,6 @@ export default async (req: NextApiRequest, res: NextApiResponse): Promise<void> 
       : {
           text: 'It was a very productive day, learned a lot of new expressions. \n Loved the video with 73 questions with Margot Robbie. \n I got the phrase “I am so excited to be here”.',
           photos: [
-            // TODO npm install probe-image-size
             { src: '/__temp__/9.jpg', width: 4, height: 3 },
             { src: '/__temp__/10.jpeg', width: 4, height: 3 },
           ],

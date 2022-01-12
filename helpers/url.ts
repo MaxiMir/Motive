@@ -48,3 +48,5 @@ export const removeQueryParams = (urn: string, params: string[]): string => {
 
   return toUrl(urlWithoutSearchParams, searchParams)
 }
+
+export const getImageUrl = (urn: string): string => process.env.NEXT_PUBLIC_SERVER_BASE_URL + urn

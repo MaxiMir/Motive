@@ -1,7 +1,7 @@
 import { ChangeEvent } from 'react'
 import dynamic from 'next/dynamic'
 import { Field } from 'formik'
-import { createStyles, FormControlLabel, IconButton, Switch, makeStyles } from '@material-ui/core'
+import { createStyles, FormControlLabel, Switch, makeStyles, IconButton } from '@material-ui/core'
 import AppBox from 'components/UI/AppBox'
 import AppInput from 'components/UI/AppInput'
 import AppIcon from 'components/UI/AppIcon'
@@ -24,11 +24,13 @@ interface TaskFieldProps {
 export default function TaskField({ index, date, taskCount, onRemove, onToggleDate }: TaskFieldProps): JSX.Element {
   const classes = useStyles()
 
-  const onSwitchClick = (_: ChangeEvent<HTMLInputElement>, isChecked: boolean) => onToggleDate(isChecked)
+  const onSwitchClick = (_: ChangeEvent<HTMLInputElement>, isChecked: boolean) => {
+    onToggleDate(isChecked)
+  }
 
   return (
     <>
-      <AppBox alignItems="center" spacing={1}>
+      <AppBox justifyContent="space-between" spacing={1}>
         <Field
           name={`tasks.${index}.name`}
           label="Task *"
@@ -36,8 +38,8 @@ export default function TaskField({ index, date, taskCount, onRemove, onToggleDa
           placeholder="What should be done"
           multiline
           rows={3}
-          component={AppInput}
           autoFocus={!!index && index === taskCount - 1}
+          component={AppInput}
         />
         <IconButton
           disableFocusRipple
@@ -67,10 +69,15 @@ export default function TaskField({ index, date, taskCount, onRemove, onToggleDa
 
 const useStyles = makeStyles((theme) =>
   createStyles({
+    number: {
+      color: theme.text.silent,
+    },
     timepicker: {
       width: 100,
     },
     iconCloseBtn: {
+      alignSelf: 'flex-start;',
+      marginTop: 16,
       color: theme.text.silent,
     },
   }),

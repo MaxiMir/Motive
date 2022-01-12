@@ -3,7 +3,7 @@ import { RenderImageProps } from 'react-photo-gallery'
 import { makeStyles } from '@material-ui/core/styles'
 
 export default function AppGalleryPhoto(props: RenderImageProps): JSX.Element {
-  const { index, onClick, photo } = props
+  const { index, photo, onClick } = props
   const classes = useStyles(props)
 
   return (
@@ -13,7 +13,7 @@ export default function AppGalleryPhoto(props: RenderImageProps): JSX.Element {
         width={photo.width}
         height={photo.height}
         alt=""
-        onClick={(event) => onClick && onClick(event, { index })}
+        onClick={(event) => onClick?.(event, { index })}
       />
     </div>
   )

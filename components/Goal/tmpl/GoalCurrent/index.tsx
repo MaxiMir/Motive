@@ -116,8 +116,6 @@ export default function GoalCurrent({ goal, client, href }: GoalCurrentProps): J
                 header="Feedback"
                 id={`feedbackContent-${dayId}`}
                 ariaControls="feedback-content"
-                renderOnClick
-                unmountOnExit
                 details={!feedback ? <AppTypography>Coming soon...</AppTypography> : <Feedback feedback={feedback} />}
               />
               <AppAccordion

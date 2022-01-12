@@ -4,6 +4,7 @@ import { Field, FieldArray, Form, FormikProvider, useFormik } from 'formik'
 import { Button, Chip, makeStyles } from '@material-ui/core'
 import { GoalDto } from 'dto'
 import useSend from 'hooks/useSend'
+import { useMutateGoals } from 'views/User/hook'
 import { prepareToMarkdown } from 'helpers/prepare'
 import DayService from 'services/DayService'
 import useSnackbar from 'hooks/useSnackbar'
@@ -15,6 +16,7 @@ import AppBox from 'components/UI/AppBox'
 import AppInput from 'components/UI/AppInput'
 import AppHeader from 'components/UI/AppHeader'
 import AppVideo from 'components/UI/AppVideo'
+import produce from 'immer'
 import schema from './schema'
 
 const IconButton = dynamic(() => import('@material-ui/core/IconButton'))
@@ -33,9 +35,20 @@ export default function Modal({ goal, onClose }: ModalProps): JSX.Element {
   const photoInputRef = useRef<HTMLInputElement>(null)
   const videoInputRef = useRef<HTMLInputElement>(null)
   const { enqueueSnackbar } = useSnackbar()
+  const [goals, mutateGoals] = useMutateGoals()
   const { isLoading, send } = useSend(DayService.createFeedback, {
-    onSuccess: (data) => {
-      console.log(data)
+    onSuccess: ({ feedback }) => {
+      mutateGoals(
+        produce(goals, (draft: GoalDto[]) => {
+          const draftGoal = draft[draft.findIndex((g) => g.id === goal.id)]
+          const [draftDay] = draftGoal.days
+
+          draftDay.feedback = feedback
+        }),
+      )
+
+      onClose()
+      enqueueSnackbar({ message: 'Feedback successfully added', severity: 'success', icon: 'feedback' })
     },
   })
   const formik = useFormik({
@@ -45,7 +58,7 @@ export default function Modal({ goal, onClose }: ModalProps): JSX.Element {
       video: null,
     },
     validationSchema: schema,
-    onSubmit(data) {
+    async onSubmit(data) {
       const formData = new FormData()
 
       formData.append('text', prepareToMarkdown(data.text.trim()))
@@ -123,6 +136,7 @@ export default function Modal({ goal, onClose }: ModalProps): JSX.Element {
                             <IconButton
                               className={classes.remove}
                               aria-label="remove photo"
+                              disabled={isLoading}
                               onClick={() => remove(index)}
                             >
                               <AppIcon name="cancel" color="secondary" />
@@ -145,6 +159,7 @@ export default function Modal({ goal, onClose }: ModalProps): JSX.Element {
                   <IconButton
                     className={classes.remove}
                     aria-label="remove video"
+                    disabled={isLoading}
                     onClick={() => setFieldValue('video', null)}
                   >
                     <AppIcon name="cancel" color="secondary" />

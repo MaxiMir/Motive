@@ -2,6 +2,7 @@ import ReactMarkdown from 'react-markdown'
 import clsx from 'clsx'
 import sanitize from 'rehype-sanitize'
 import { makeStyles } from '@material-ui/core/styles'
+import AppTypography from 'components/UI/AppTypography'
 
 interface TextProps {
   text: string
@@ -14,7 +15,8 @@ export default function Text({ text }: TextProps): JSX.Element {
     <ReactMarkdown
       linkTarget="_blank"
       rehypePlugins={[sanitize]}
-      className={clsx(classes.markdown, 'MuiTypography-root', 'MuiTypography-body1')}
+      components={{ p: ({ node, ...props }) => <AppTypography>{props.children}</AppTypography> }}
+      className={clsx(classes.markdown)}
     >
       {text}
     </ReactMarkdown>

@@ -41,7 +41,7 @@ export default function Modal({ onSuccess, onClose }: ModalProps): JSX.Element {
       tasks: [{ name: '', date: undefined }],
     },
     validationSchema: schema,
-    onSubmit(data) {
+    async onSubmit(data) {
       send({ ...data, hashtags: prepareHashtags(data.hashtags) })
     },
   })

@@ -7,7 +7,5 @@ export default function Characteristic(props: CharacteristicUserProps): JSX.Elem
   switch (props.tmpl) {
     case 'user':
       return <CharacteristicUser {...props} />
-    default:
-      return <></>
   }
 }

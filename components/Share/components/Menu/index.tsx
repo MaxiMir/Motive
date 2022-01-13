@@ -4,7 +4,7 @@ import { makeStyles } from '@material-ui/core/styles'
 import AppBox from 'components/UI/AppBox'
 import { FacebookIcon, TelegramIcon, TwitterIcon, VKIcon } from 'components/UI/icons'
 import AppIcon from 'components/UI/AppIcon'
-import { clickHandler, copyHandler } from '../helper'
+import { clickHandler, copyHandler } from './helper'
 
 interface MenuProps {
   title: string

@@ -8,7 +8,7 @@ const OwnerWithFeedback = dynamic(() => import('./components/OwnerWithFeedback')
 export default function Reactions(props: ViewerProps): JSX.Element {
   switch (props.role) {
     case 'OWNER':
-      return !props.goal.days[0].feedbackId ? <Owner goal={props.goal} /> : <OwnerWithFeedback />
+      return !props.goal.days[0].feedback ? <Owner goal={props.goal} /> : <OwnerWithFeedback />
     default:
       return <Viewer {...props} />
   }

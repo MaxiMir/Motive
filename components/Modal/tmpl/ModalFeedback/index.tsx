@@ -25,12 +25,13 @@ const AppIcon = dynamic(() => import('components/UI/AppIcon'))
 
 const PHOTO_LIMIT = 10
 
-interface ModalProps {
+export interface ModalFeedbackProps {
+  tmpl: 'feedback'
   goal: GoalDto
   onClose: () => void
 }
 
-export default function Modal({ goal, onClose }: ModalProps): JSX.Element {
+export default function ModalFeedback({ goal, onClose }: ModalFeedbackProps): JSX.Element {
   const classes = useStyles()
   const photoInputRef = useRef<HTMLInputElement>(null)
   const videoInputRef = useRef<HTMLInputElement>(null)

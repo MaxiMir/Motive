@@ -9,7 +9,7 @@ import { useMutateGoals } from 'views/User/hook'
 import { scrollToElem } from 'helpers/dom'
 import AppEmoji from 'components/UI/AppEmoji'
 
-const Modal = dynamic(() => import('./components/Modal'))
+const Modal = dynamic(() => import('components/Modal'))
 
 export default function AddGoal(): JSX.Element {
   const classes = useStyles()
@@ -42,7 +42,7 @@ export default function AddGoal(): JSX.Element {
       >
         Create a new goal
       </Button>
-      {open && <Modal onSuccess={onSuccess} onClose={toggle} />}
+      {open && <Modal tmpl="goal" onSuccess={onSuccess} onClose={toggle} />}
     </>
   )
 }

@@ -21,7 +21,5 @@ export default function UserCard(
       return <UserCardAvatar {...props} />
     case 'input':
       return <UserCardInput {...props} />
-    default:
-      return <></>
   }
 }

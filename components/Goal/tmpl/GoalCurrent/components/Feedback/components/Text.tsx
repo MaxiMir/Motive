@@ -1,5 +1,4 @@
 import ReactMarkdown from 'react-markdown'
-import clsx from 'clsx'
 import sanitize from 'rehype-sanitize'
 import { makeStyles } from '@material-ui/core/styles'
 import AppTypography from 'components/UI/AppTypography'
@@ -16,7 +15,7 @@ export default function Text({ text }: TextProps): JSX.Element {
       linkTarget="_blank"
       rehypePlugins={[sanitize]}
       components={{ p: ({ node, ...props }) => <AppTypography>{props.children}</AppTypography> }}
-      className={clsx(classes.markdown)}
+      className={classes.markdown}
     >
       {text}
     </ReactMarkdown>

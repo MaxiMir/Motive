@@ -5,7 +5,7 @@ import { GoalDto } from 'dto'
 import AppEmoji from 'components/UI/AppEmoji'
 import AppBox from 'components/UI/AppBox'
 
-const Modal = dynamic(() => import('./components/Modal'))
+const Modal = dynamic(() => import('components/Modal'))
 
 interface OwnerProps {
   goal: GoalDto
@@ -21,7 +21,7 @@ export default function Owner({ goal }: OwnerProps): JSX.Element {
       <Button variant="outlined" color="secondary" startIcon={<AppEmoji name="finish" onlyEmoji />} onClick={toggle}>
         Finish the day
       </Button>
-      {open && <Modal goal={goal} onClose={toggle} />}
+      {open && <Modal tmpl="feedback" goal={goal} onClose={toggle} />}
     </AppBox>
   )
 }

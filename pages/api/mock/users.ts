@@ -22,7 +22,7 @@ const ME: UserDetailDto = {
 const JULIA: UserDetailDto = {
   id: 2,
   nickname: 'yulifleur',
-  name: 'Julia Minchenko',
+  name: 'Julia Z',
   avatar: '/__temp__/2.png',
   characteristic: {
     motivation: 1.0,

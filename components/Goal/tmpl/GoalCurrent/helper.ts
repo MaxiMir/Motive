@@ -22,10 +22,13 @@ export const getQueryNewState = (goals: GoalDto[], goalId: number, dayId: number
   })
 }
 
-export const checkOnWeb = (datesMap: Record<string, number>, dayDate: string, currentDate: Date): boolean => {
+export const checkOnLastDay = (datesMap: Record<string, number>, dayDate: string): boolean => {
   const dates = Object.keys(datesMap)
-  const isLastDate = dates[dates.length - 1] === dayDate
 
+  return dates[dates.length - 1] === dayDate
+}
+
+export const checkOnWeb = (dayDate: string, currentDate: Date, isLastDate: boolean): boolean => {
   return isLastDate && differenceInDays(currentDate, Date.parse(dayDate)) >= SHOW_WEB_AFTER_DAYS
 }
 
@@ -38,4 +41,5 @@ export const getRole = (client: UserBaseDto, goal: GoalDto): RoleDto => {
   }
 }
 
-export const checkOnTaskForm = (role: RoleDto): boolean => ['OWNER', 'MEMBER'].includes(role)
+export const checkOnTaskForm = (role: RoleDto, isLastDay: boolean): boolean =>
+  isLastDay && ['OWNER', 'MEMBER'].includes(role)

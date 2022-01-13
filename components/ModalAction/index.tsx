@@ -1,17 +1,15 @@
 import dynamic from 'next/dynamic'
-import { SubmitProps } from './tmpl/Submit'
-import { CloseProps } from './tmpl/Close'
+import { ModalActionSubmitProps } from './tmpl/ModalActionSubmit'
+import { ModalActionCloseProps } from './tmpl/ModalActionClose'
 
-const Submit = dynamic(() => import('./tmpl/Submit'))
-const Close = dynamic(() => import('./tmpl/Close'))
+const ModalActionSubmit = dynamic(() => import('./tmpl/ModalActionSubmit'))
+const ModalActionClose = dynamic(() => import('./tmpl/ModalActionClose'))
 
-export default function ModalAction(props: SubmitProps | CloseProps): JSX.Element {
+export default function ModalAction(props: ModalActionSubmitProps | ModalActionCloseProps): JSX.Element {
   switch (props.tmpl) {
     case 'submit':
-      return <Submit {...props} />
+      return <ModalActionSubmit {...props} />
     case 'close':
-      return <Close {...props} />
-    default:
-      return <></>
+      return <ModalActionClose {...props} />
   }
 }

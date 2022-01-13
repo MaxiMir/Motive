@@ -1,5 +1,4 @@
 import { useMemo } from 'react'
-import dynamic from 'next/dynamic'
 import { Field, FieldArray, Form, FormikProvider, useFormik } from 'formik'
 import { addDays } from 'date-fns'
 import { makeStyles } from '@material-ui/core/styles'
@@ -9,6 +8,7 @@ import GoalService from 'services/GoalService'
 import useSend from 'hooks/useSend'
 import useFocus from 'hooks/useFocus'
 import ModalAction from 'components/ModalAction'
+import Task from 'components/Task'
 import AppEmoji from 'components/UI/AppEmoji'
 import AppModal from 'components/UI/AppModal'
 import AppHeader from 'components/UI/AppHeader'
@@ -20,16 +20,15 @@ import { PaulIcon } from 'components/UI/icons'
 import { prepareHashtags } from './helper'
 import schema from './schema'
 
-const TaskField = dynamic(() => import('./components/TaskField'))
-
 const CHARACTERISTIC_NAMES: UserCharacteristicName[] = ['motivation', 'creativity', 'support']
 
-interface ModalProps {
+export interface ModalGoalProps {
+  tmpl: 'goal'
   onSuccess: (goal: GoalDto) => void
   onClose: () => void
 }
 
-export default function Modal({ onSuccess, onClose }: ModalProps): JSX.Element {
+export default function ModalGoal({ onSuccess, onClose }: ModalGoalProps): JSX.Element {
   const classes = useStyles()
   const [hashtagsRef, setHashtagsFocus] = useFocus()
   const tomorrow = useMemo(() => addDays(new Date(), 1), [])
@@ -83,38 +82,42 @@ export default function Modal({ onSuccess, onClose }: ModalProps): JSX.Element {
                 inputRef={hashtagsRef}
                 component={AppInput}
               />
-              <Button className={classes.button} variant="outlined" size="small" onClick={onAddHashtag}>
+              <Button variant="outlined" size="small" className={classes.button} onClick={onAddHashtag}>
                 # Hashtag
               </Button>
             </AppBox>
-            <FieldArray name="tasks">
-              {({ push, remove }) => (
-                <AppBox flexDirection="column" spacing={2}>
-                  <AppHeader name="task" variant="h6" component="h2" color="primary">
-                    Tasks for tomorrow
-                  </AppHeader>
-                  {values.tasks.map((task, index) => (
-                    <TaskField
-                      index={index}
-                      taskCount={values.tasks.length}
-                      date={task.date}
-                      key={`tasks.${index}`}
-                      onRemove={() => remove(index)}
-                      onToggleDate={(isChecked) =>
-                        setFieldValue(`tasks.${index}.date`, isChecked ? tomorrow : undefined)
-                      }
-                    />
-                  ))}
-                  <Button
-                    startIcon={<AppIcon name="add" color="secondary" />}
-                    className={classes.button}
-                    onClick={() => push({ name: '', date: undefined })}
-                  >
-                    <AppTypography color="secondary">add task</AppTypography>
-                  </Button>
-                </AppBox>
-              )}
-            </FieldArray>
+            <AppBox flexDirection="column" spacing={2}>
+              <AppHeader name="task" variant="h6" component="h2" color="primary">
+                Tasks for tomorrow
+              </AppHeader>
+              <FieldArray name="tasks">
+                {({ push, remove }) => (
+                  <>
+                    {values.tasks.map((task, index) => (
+                      <Task
+                        tmpl="field"
+                        index={index}
+                        taskCount={values.tasks.length}
+                        date={task.date}
+                        key={`tasks.${index}`}
+                        onRemove={() => remove(index)}
+                        onToggleDate={(isChecked) =>
+                          setFieldValue(`tasks.${index}.date`, isChecked ? tomorrow : undefined)
+                        }
+                      />
+                    ))}
+                    <Button
+                      variant="outlined"
+                      size="small"
+                      className={classes.button}
+                      onClick={() => push({ name: '', date: undefined })}
+                    >
+                      + Add task
+                    </Button>
+                  </>
+                )}
+              </FieldArray>
+            </AppBox>
             <AppBox flexDirection="column" spacing={2}>
               <Accordion>
                 <AccordionSummary

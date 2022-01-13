@@ -12,7 +12,7 @@ import AppHeader from 'components/UI/AppHeader'
 import AppDot from 'components/UI/AppDot'
 import AppAccordion from 'components/UI/AppAccordion'
 import useChangeDate from './hook'
-import { checkOnTaskForm, checkOnWeb, getGoalHref, getRole } from './helper'
+import { checkOnLastDay, checkOnTaskForm, checkOnWeb, getGoalHref, getRole } from './helper'
 import GoalDate from './components/GoalDate'
 import Menu from './components/Menu'
 import Characteristic from './components/Characteristic'
@@ -51,10 +51,11 @@ export default function GoalCurrent({ goal, client, href }: GoalCurrentProps): J
   const [isLoading, onChangeDate] = useChangeDate(id)
   const [discussionCount, setDiscussionCount] = useState(day.discussionCount)
   const days = differenceInDays(currentDate, Date.parse(started))
-  const showWeb = checkOnWeb(datesMap, date, currentDate)
+  const isLastDay = checkOnLastDay(datesMap, date)
+  const showWeb = checkOnWeb(date, currentDate, isLastDay)
   const goalHref = getGoalHref(href, goal)
   const role = getRole(client, goal)
-  const withForm = checkOnTaskForm(role)
+  const withForm = checkOnTaskForm(role, isLastDay)
   const rest = tasks.length - tasks.filter((t) => t.completed).length
 
   function getDatesMap() {

@@ -12,7 +12,5 @@ export default function Goal(props: GoalCurrentProps): JSX.Element {
   switch (props.tmpl) {
     case 'current':
       return <GoalCurrent {...props} />
-    default:
-      return <></>
   }
 }

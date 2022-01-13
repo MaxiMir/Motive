@@ -13,7 +13,8 @@ const KeyboardTimePicker = dynamic(() =>
   ),
 )
 
-interface TaskFieldProps {
+export interface TaskFieldProps {
+  tmpl: 'field'
   index: number
   date?: Date
   taskCount: number

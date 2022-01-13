@@ -42,4 +42,4 @@ export const getRole = (client: UserBaseDto, goal: GoalDto): RoleDto => {
 }
 
 export const checkOnTaskForm = (role: RoleDto, isLastDay: boolean): boolean =>
-  isLastDay && ['OWNER', 'MEMBER'].includes(role)
+  !isLastDay && ['OWNER', 'MEMBER'].includes(role)

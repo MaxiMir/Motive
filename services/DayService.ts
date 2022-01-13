@@ -39,6 +39,6 @@ export default class DayService {
   static incrementViews(data: { id: number }): Promise<void> {
     const { id } = data
 
-    return Axios.post(`/days/${id}/views`)
+    return Axios.patch(`/days/${id}/views`)
   }
 }

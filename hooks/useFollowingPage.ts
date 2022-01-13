@@ -1,7 +1,7 @@
 import useSWR, { SWRResponse } from 'swr'
 import { FollowingPageDto, UserDto } from 'dto'
-import usePartialMutate from 'hooks/usePartialMutate'
 import PageService from 'services/PageService'
+import usePartialMutate from 'hooks/usePartialMutate'
 
 const SWR_KEY = 'FOLLOWING'
 

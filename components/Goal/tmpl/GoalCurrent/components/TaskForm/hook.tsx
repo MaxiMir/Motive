@@ -2,9 +2,9 @@ import { useRef } from 'react'
 import dynamic from 'next/dynamic'
 import produce from 'immer'
 import { GoalDto } from 'dto'
+import TaskService from 'services/TaskService'
 import useSend from 'hooks/useSend'
 import useSnackbar from 'hooks/useSnackbar'
-import TaskService from 'services/TaskService'
 import { useMutateGoals } from 'views/User/hook'
 
 const Button = dynamic(() => import('@material-ui/core/Button'))

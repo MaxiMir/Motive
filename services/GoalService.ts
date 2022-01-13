@@ -1,4 +1,4 @@
-import { CalendarDto, GoalDto, GoalCreationDto } from 'dto'
+import { CalendarDto, GoalDto, GoalCreationDto, TaskCreationDto } from 'dto'
 import Axios from 'lib/axios'
 import { Service } from './Service'
 
@@ -7,7 +7,16 @@ export default class GoalService extends Service {
    * /goals
    */
   static create(data: GoalCreationDto): Promise<GoalDto> {
-    return Axios.post('/goals/', data)
+    return Axios.post('/goals', data)
+  }
+
+  /**
+   * /goals/{id}/days
+   */
+  static addDay(data: { id: number; tasks: TaskCreationDto[] }): Promise<GoalDto> {
+    const { id, ...body } = data
+
+    return Axios.post(`/goals/${id}/days`, body)
   }
 
   /**
@@ -20,12 +29,12 @@ export default class GoalService extends Service {
   }
 
   /**
-   * /goal/{id}/{dayId}/{characteristic}/{add | remove}
+   * /goal/{id}/days/{dayId}/characteristic/{characteristicName}?operation=add|remove
    */
   static updateCharacteristic(data: { id: number; dayId: number; name: string; add: boolean }): Promise<void> {
     const { id, dayId, name, add } = data
     const operation = GoalService.getOperation(add)
 
-    return Axios.post(`/goals/${id}/${dayId}/${name}/${operation}`, { id })
+    return Axios.patch(`/goals/${id}/days/${dayId}/characteristic/${name}/${operation}`, { id })
   }
 }

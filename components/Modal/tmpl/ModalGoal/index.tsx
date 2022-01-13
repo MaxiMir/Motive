@@ -1,9 +1,9 @@
 import { useMemo } from 'react'
 import { Field, FieldArray, Form, FormikProvider, useFormik } from 'formik'
-import { addDays } from 'date-fns'
 import { makeStyles } from '@material-ui/core/styles'
 import { Accordion, AccordionDetails, AccordionSummary, Button, createStyles } from '@material-ui/core'
 import { GoalDto, UserCharacteristicName } from 'dto'
+import { getTomorrow } from 'helpers/date'
 import GoalService from 'services/GoalService'
 import useSend from 'hooks/useSend'
 import useFocus from 'hooks/useFocus'
@@ -31,7 +31,7 @@ export interface ModalGoalProps {
 export default function ModalGoal({ onSuccess, onClose }: ModalGoalProps): JSX.Element {
   const classes = useStyles()
   const [hashtagsRef, setHashtagsFocus] = useFocus()
-  const tomorrow = useMemo(() => addDays(new Date(), 1), [])
+  const tomorrow = useMemo(getTomorrow, [])
   const { isLoading, send } = useSend(GoalService.create, { onSuccess })
   const formik = useFormik({
     initialValues: {

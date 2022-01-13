@@ -3,18 +3,18 @@ import sanitize from 'rehype-sanitize'
 import { makeStyles } from '@material-ui/core/styles'
 import AppTypography from 'components/UI/AppTypography'
 
-interface TextProps {
+interface AppMarkdownProps {
   text: string
 }
 
-export default function Text({ text }: TextProps): JSX.Element {
+export default function AppMarkdown({ text }: AppMarkdownProps): JSX.Element {
   const classes = useStyles()
 
   return (
     <ReactMarkdown
       linkTarget="_blank"
       rehypePlugins={[sanitize]}
-      components={{ p: ({ node, ...props }) => <AppTypography>{props.children}</AppTypography> }}
+      components={{ p: ({ node, ...props }) => <AppTypography variant="subtitle1">{props.children}</AppTypography> }}
       className={classes.markdown}
     >
       {text}

@@ -1,7 +1,7 @@
 import { useRef, useState } from 'react'
+import DiscussionService from 'services/DiscussionService'
 import useSend from 'hooks/useSend'
 import useDebounceCb from 'hooks/useDebounceCb'
-import DiscussionService from 'services/DiscussionService'
 
 export default function useSetLike(id: number, activeInit: boolean, countInit: number): [boolean, number, () => void] {
   const lastLoadedRef = useRef({ count: countInit, active: activeInit })

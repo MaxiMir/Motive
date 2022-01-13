@@ -5,7 +5,6 @@ import { Button, Chip, makeStyles } from '@material-ui/core'
 import { GoalDto } from 'dto'
 import useSend from 'hooks/useSend'
 import { useMutateGoals } from 'views/User/hook'
-import { prepareToMarkdown } from 'helpers/prepare'
 import DayService from 'services/DayService'
 import useSnackbar from 'hooks/useSnackbar'
 import ModalAction from 'components/ModalAction'
@@ -62,7 +61,7 @@ export default function ModalFeedback({ goal, onClose }: ModalFeedbackProps): JS
     async onSubmit(data) {
       const formData = new FormData()
 
-      formData.append('text', prepareToMarkdown(data.text.trim()))
+      formData.append('text', data.text.trim())
       data.photos.forEach((photo) => formData.append('photos', photo))
       send({ id: goal.days[0].id, body: formData })
     },

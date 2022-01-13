@@ -4,7 +4,7 @@ import { UserBaseDto } from './user'
 export interface GoalCreationDto {
   name: string
   hashtags: string[]
-  tasks: Array<Omit<TaskDto, 'id' | 'completed' | 'completedBy'>>
+  tasks: TaskCreationDto[]
 }
 
 export interface GoalDto {
@@ -26,6 +26,8 @@ export interface DayDto {
   feedback: FeedbackDto | null
   views: number
 }
+
+export type TaskCreationDto = Omit<TaskDto, 'id' | 'completed' | 'completedBy'>
 
 export interface TaskDto {
   id: number

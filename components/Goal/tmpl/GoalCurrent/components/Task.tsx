@@ -1,10 +1,10 @@
 import dynamic from 'next/dynamic'
 import clsx from 'clsx'
+import { makeStyles } from '@material-ui/core'
 import { TaskDto } from 'dto'
 import AppBox from 'components/UI/AppBox'
 import AppEmoji from 'components/UI/AppEmoji'
-import AppTypography from 'components/UI/AppTypography'
-import { makeStyles } from '@material-ui/core'
+import AppMarkdown from 'components/UI/AppMarkdown'
 
 const TaskDate = dynamic(() => import('./TaskDate'))
 
@@ -20,7 +20,7 @@ export default function Task({ task }: TaskProps): JSX.Element {
     <>
       <AppBox alignItems="center" spacing={1}>
         <AppEmoji name="energy" variant="h6" className={clsx([!completed && classes.notCompleted])} />
-        <AppTypography variant="subtitle1">{name}</AppTypography>
+        <AppMarkdown text={name} />
       </AppBox>
       {date && <TaskDate date={date} />}
     </>

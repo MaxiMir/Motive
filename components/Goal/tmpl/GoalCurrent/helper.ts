@@ -12,23 +12,20 @@ export const getGoalHref = (userLink: string, goal: GoalDto): string => {
   return setQueryParams(userLink, { [SCROLL_PARAM]: goal.id, [DATES_PARAM]: `${id}:${days[0].id}` })
 }
 
-export const getQueryNewState = (goals: GoalDto[], goalId: number, dayId: number): string => {
+export const getUrn = (asPath: string, goals: GoalDto[], goalId: number, dayId: number): string => {
   const { [DATES_PARAM]: _, ...restParams } = getQueryParams()
   const datesParam = goals.map(({ id, days }) => `${id}:${id !== goalId ? days[0].id : dayId}`).join(',')
 
-  return setQueryParams('', {
+  return setQueryParams(asPath, {
     [DATES_PARAM]: datesParam,
     ...restParams,
   })
 }
 
-export const checkOnLastDay = (datesMap: Record<string, number>, dayDate: string): boolean => {
+export const checkOnWeb = (datesMap: Record<string, number>, dayDate: string, currentDate: Date): boolean => {
   const dates = Object.keys(datesMap)
+  const isLastDate = dates[dates.length - 1] === dayDate
 
-  return dates[dates.length - 1] === dayDate
-}
-
-export const checkOnWeb = (dayDate: string, currentDate: Date, isLastDate: boolean): boolean => {
   return isLastDate && differenceInDays(currentDate, Date.parse(dayDate)) >= SHOW_WEB_AFTER_DAYS
 }
 
@@ -41,5 +38,5 @@ export const getRole = (client: UserBaseDto, goal: GoalDto): RoleDto => {
   }
 }
 
-export const checkOnTaskForm = (role: RoleDto, isLastDay: boolean): boolean =>
-  !isLastDay && ['OWNER', 'MEMBER'].includes(role)
+export const checkOnTaskForm = (role: RoleDto, todayGoal: boolean): boolean =>
+  ['OWNER', 'MEMBER'].includes(role) && todayGoal

@@ -12,10 +12,11 @@ import AppIcon from 'components/UI/AppIcon'
 interface DateProps {
   datesMap: Record<string, number>
   date: string
-  onChangeDate: (id: number) => void
+  isLoading: boolean
+  onChangeDay: (id: number) => void
 }
 
-export default function GoalDate({ datesMap, date, onChangeDate }: DateProps): JSX.Element {
+export default function GoalDate({ datesMap, date, isLoading, onChangeDay }: DateProps): JSX.Element {
   const classes = useStyles()
   const [open, setOpen] = useState(false)
   const [value, setValue] = useState(new Date(date))
@@ -23,16 +24,16 @@ export default function GoalDate({ datesMap, date, onChangeDate }: DateProps): J
   const dates = Object.keys(datesMap)
   const dateIndex = useMemo(getDateIndex, [dates, value])
   const [prevDate, nextDate] = [dates[dateIndex - 1], dates[dateIndex + 1]]
-  const onChangeDateWithDebounce = useDebounceCb(onChangeDate, 1000)
+  const onChangeDayWithDebounce = useDebounceCb(onChangeDay, 1000)
 
   const onClickArrow = (newDate: string) => {
     setValue(new Date(newDate))
-    onChangeDateWithDebounce(datesMap[newDate])
+    onChangeDayWithDebounce(datesMap[newDate])
   }
 
   const onChange = (newDate: Date) => {
     setValue(newDate)
-    onChangeDate(datesMap[toISODateWithZeroTime(newDate)])
+    onChangeDay(datesMap[toISODateWithZeroTime(newDate)])
   }
 
   const checkShouldDisableDate = (checkedDate: MaterialUiPickersDate) => {
@@ -52,7 +53,7 @@ export default function GoalDate({ datesMap, date, onChangeDate }: DateProps): J
 
   return (
     <AppBox alignSelf="center" alignItems="center" spacing={1}>
-      <IconButton className={classes.button} disabled={!prevDate} onClick={() => onClickArrow(prevDate)}>
+      <IconButton className={classes.button} disabled={isLoading || !prevDate} onClick={() => onClickArrow(prevDate)}>
         <AppIcon name="chevron_left" />
       </IconButton>
       <KeyboardDatePicker
@@ -62,7 +63,7 @@ export default function GoalDate({ datesMap, date, onChangeDate }: DateProps): J
         value={value}
         shouldDisableDate={checkShouldDisableDate}
         TextFieldComponent={() => (
-          <Button aria-label="select a goal date" onClick={toggle}>
+          <Button aria-label="select a goal date" disabled={isLoading} onClick={toggle}>
             {formattedDate}
           </Button>
         )}
@@ -70,7 +71,7 @@ export default function GoalDate({ datesMap, date, onChangeDate }: DateProps): J
         onChange={(newDate) => newDate && onChange(newDate)}
         onClose={toggle}
       />
-      <IconButton className={classes.button} disabled={!nextDate} onClick={() => onClickArrow(nextDate)}>
+      <IconButton className={classes.button} disabled={isLoading || !nextDate} onClick={() => onClickArrow(nextDate)}>
         <AppIcon name="chevron_right" />
       </IconButton>
     </AppBox>

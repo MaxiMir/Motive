@@ -11,8 +11,8 @@ import AppBox from 'components/UI/AppBox'
 import AppHeader from 'components/UI/AppHeader'
 import AppDot from 'components/UI/AppDot'
 import AppAccordion from 'components/UI/AppAccordion'
-import useChangeDate from './hook'
-import { checkOnLastDay, checkOnTaskForm, checkOnWeb, getGoalHref, getRole } from './helper'
+import useChangeDay from './hook'
+import { checkOnTaskForm, checkOnWeb, getGoalHref, getRole } from './helper'
 import GoalDate from './components/GoalDate'
 import Menu from './components/Menu'
 import Characteristic from './components/Characteristic'
@@ -26,7 +26,6 @@ const Feedback = dynamic(() => import('./components/Feedback'))
 const Hashtags = dynamic(() => import('./components/Hashtags'))
 const TaskForm = dynamic(() => import('./components/TaskForm'))
 const Web = dynamic(() => import('./components/Web'))
-const Loader = dynamic(() => import('./components/Loader'))
 const AppTypography = dynamic(() => import('components/UI/AppTypography'))
 
 const CHARACTERISTICS: GoalCharacteristicName[] = ['motivation', 'creativity', 'support', 'members']
@@ -48,14 +47,14 @@ export default function GoalCurrent({ goal, client, href }: GoalCurrentProps): J
   const classes = useStyles()
   const theme = useTheme()
   const colors = useCharacteristicColors()
-  const [isLoading, onChangeDate] = useChangeDate(id)
+  const [isLoading, onChangeDay] = useChangeDay(id)
   const [discussionCount, setDiscussionCount] = useState(day.discussionCount)
-  const days = differenceInDays(currentDate, Date.parse(started))
-  const isLastDay = checkOnLastDay(datesMap, date)
-  const showWeb = checkOnWeb(date, currentDate, isLastDay)
+  const runsForDays = differenceInDays(currentDate, Date.parse(started))
+  const todayGoal = !differenceInDays(currentDate, Date.parse(date))
+  const showWeb = checkOnWeb(datesMap, date, currentDate)
   const goalHref = getGoalHref(href, goal)
   const role = getRole(client, goal)
-  const withForm = checkOnTaskForm(role, isLastDay)
+  const withForm = checkOnTaskForm(role, todayGoal)
   const rest = tasks.length - tasks.filter((t) => t.completed).length
 
   function getDatesMap() {
@@ -64,7 +63,7 @@ export default function GoalCurrent({ goal, client, href }: GoalCurrentProps): J
 
   return (
     <AppBox flexDirection="column" spacing={1} id={`goal-${id}`} className={classes.root}>
-      <GoalDate datesMap={datesMap} date={date} onChangeDate={onChangeDate} />
+      <GoalDate datesMap={datesMap} date={date} isLoading={isLoading} onChangeDay={onChangeDay} />
       <div className={classes.wrap}>
         <AppBox flexDirection="column" justifyContent="space-between" spacing={3} className={classes.content}>
           <AppBox flexDirection="column" spacing={3}>
@@ -88,7 +87,7 @@ export default function GoalCurrent({ goal, client, href }: GoalCurrentProps): J
                   <AppDot />
                 </Fragment>
               ))}
-              <Characteristic name="runs for days" value={days} color={theme.palette.text.disabled} />
+              <Characteristic name="runs for days" value={runsForDays} color={theme.palette.text.disabled} />
             </AppBox>
             {hashtags?.length && <Hashtags hashtags={hashtags} />}
             <div>
@@ -146,12 +145,18 @@ export default function GoalCurrent({ goal, client, href }: GoalCurrentProps): J
             </div>
           </AppBox>
           <AppBox flexDirection="column" spacing={2}>
-            <Reactions role={role} goal={goal} characteristic={day.characteristic} owner={owner} clientId={client.id} />
+            <Reactions
+              goal={goal}
+              characteristic={day.characteristic}
+              owner={owner}
+              role={role}
+              clientId={client.id}
+              // todayGoal={todayGoal}
+            />
             <Views views={views} />
           </AppBox>
         </AppBox>
         {showWeb && <Web />}
-        {isLoading && <Loader />}
       </div>
     </AppBox>
   )

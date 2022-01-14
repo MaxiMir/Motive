@@ -43,7 +43,7 @@ export default function Viewer({ role, goal, characteristic, owner, clientId }: 
         color={role === 'MEMBER' ? 'primary' : 'secondary'}
         startIcon={<AppEmoji name={role === 'MEMBER' ? 'unsubscribe' : 'subscribe'} onlyEmoji />}
       >
-        {role === 'MEMBER' ? 'Leave' : 'JOIN'}
+        {role === 'MEMBER' ? 'Leave' : 'Join'}
       </Button>
     </AppBox>
   )

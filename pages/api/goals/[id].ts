@@ -40,7 +40,7 @@ export default async (_: NextApiRequest, res: NextApiResponse): Promise<void> =>
           },
         ],
         discussionCount: 0,
-        feedbackId: null,
+        feedback: null,
       },
     ],
   }

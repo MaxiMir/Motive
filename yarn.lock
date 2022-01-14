@@ -6540,12 +6540,13 @@ next@^12.0.1:
     "@next/swc-win32-ia32-msvc" "12.0.1"
     "@next/swc-win32-x64-msvc" "12.0.1"
 
-nextjs-progressbar@^0.0.10:
-  version "0.0.10"
-  resolved "https://registry.npmjs.org/nextjs-progressbar/-/nextjs-progressbar-0.0.10.tgz"
-  integrity sha512-TDN9xQti3NfzOAGjpFZlZ6fn0qkSMRyj0RJPuhRNbFq9XwngZr6b7XW+eSJrNmvfWNw55LfCyNQ/nyDTa3NJag==
+nextjs-progressbar@^0.0.13:
+  version "0.0.13"
+  resolved "https://registry.yarnpkg.com/nextjs-progressbar/-/nextjs-progressbar-0.0.13.tgz#2bea52d7c09af5edc101e80484103fb7bee04726"
+  integrity sha512-vuE9/j1yaFyHhMVwdlPZbGbcwnvoZZMH8fXUG+HCa+w5uojRNOMO43EL+o9YZ53QwQHsjWdfUapz+J8D/u3jFw==
   dependencies:
     nprogress "^0.2.0"
+    prop-types "^15.7.2"
 
 node-abi@^3.3.0:
   version "3.5.0"
@@ -6650,7 +6651,7 @@ npmlog@^4.0.1:
 
 nprogress@^0.2.0:
   version "0.2.0"
-  resolved "https://registry.npmjs.org/nprogress/-/nprogress-0.2.0.tgz"
+  resolved "https://registry.yarnpkg.com/nprogress/-/nprogress-0.2.0.tgz#cb8f34c53213d895723fcbab907e9422adbcafb1"
   integrity sha1-y480xTIT2JVyP8urkH6UIq28r7E=
 
 number-is-nan@^1.0.0:

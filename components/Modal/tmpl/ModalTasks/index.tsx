@@ -27,7 +27,7 @@ export default function ModalTasks({ goal, onClose }: ModalTasksProps): JSX.Elem
   const changeDayUrl = useChangeDayUrl()
   const { isLoading, send } = useSend(GoalService.addDay, {
     onSuccess(data) {
-      const [day] = data.days
+      const day = data.days[data.days.length - 1]
 
       mutate(
         produce(page, (draft) => {
@@ -37,6 +37,7 @@ export default function ModalTasks({ goal, onClose }: ModalTasksProps): JSX.Elem
           draftGoal.calendar.push({ id: day.id, date: day.date })
           draftGoal.days = [day]
         }),
+        false,
       )
       changeDayUrl(page.content.goals, goal.id, data.days[0].id)
       onClose()

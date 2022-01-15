@@ -36,12 +36,12 @@ export interface GoalCurrentProps {
 
 export default function GoalCurrent({ goal, client, href }: GoalCurrentProps): JSX.Element {
   const { id, name, hashtags, characteristic, owner } = goal
-  const datesMap = useMemo(getDatesMap, [goal.calendar])
   const [day] = goal.days
   const { id: dayId, date, tasks, views, feedback } = day
   const classes = useStyles()
   const theme = useTheme()
   const colors = useCharacteristicColors()
+  const datesMap = useMemo(getDatesMap, [date, dayId, goal.calendar])
   const [isLoading, onChangeDay] = useChangeDay(id)
   const [discussionCount, setDiscussionCount] = useState(day.discussionCount)
   const role = getRole(client, goal)
@@ -50,7 +50,11 @@ export default function GoalCurrent({ goal, client, href }: GoalCurrentProps): J
   const rest = tasks.length - tasks.filter((t) => t.completed).length
 
   function getDatesMap() {
-    return goal.calendar.reduce((acc, c) => ({ ...acc, [c.date]: c.id }), {}) || {}
+    if (!goal.calendar) {
+      return { [date]: dayId }
+    }
+
+    return goal.calendar.reduce((acc, c) => ({ ...acc, [c.date]: c.id }), {})
   }
 
   return (
@@ -81,7 +85,7 @@ export default function GoalCurrent({ goal, client, href }: GoalCurrentProps): J
               ))}
               <Characteristic name="runs for days" value={runsForDays} color={theme.palette.text.disabled} />
             </AppBox>
-            {hashtags?.length && <Hashtags hashtags={hashtags} />}
+            {!!hashtags?.length && <Hashtags hashtags={hashtags} />}
             <div>
               <AppAccordion
                 name="task"

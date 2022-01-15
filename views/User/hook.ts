@@ -18,7 +18,6 @@ export const usePageInfo = (): { nickname: string; swrKey: string } => {
 export const useMutatePage = (): [UserPageDto, PartialMutate] => {
   const { swrKey } = usePageInfo()
   const data = useContext(UserPageContext) as UserPageDto
-  // should match with key in useUserPage.ts:
   const partialMutate = usePartialMutate(swrKey)
 
   return [data, partialMutate]

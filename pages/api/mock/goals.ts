@@ -5,6 +5,7 @@ export const learnFrench: GoalDto = {
   name: 'learn French',
   started: '2021-10-17T18:31:42',
   hashtags: ['foreignLanguage', 'french', 'immigration', 'recommendation'],
+  calendar: [],
   owner: {
     id: 2,
     nickname: 'juliaz',
@@ -51,6 +52,7 @@ export const becomeSenior: GoalDto = {
   name: 'become senior',
   started: '2021-09-01T12:31:42',
   hashtags: ['programming', 'knowledge'],
+  calendar: [],
   owner: {
     id: 1,
     nickname: 'maximir',
@@ -82,6 +84,7 @@ export const getNewGoal = (goalCreation: GoalCreationDto): GoalDto => {
     name: goalCreation.name,
     started: new Date().toISOString(),
     hashtags: goalCreation.hashtags,
+    calendar: [],
     owner: {
       id: 1,
       nickname: 'maximir',

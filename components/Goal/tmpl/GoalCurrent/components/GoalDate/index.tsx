@@ -1,13 +1,12 @@
 import { useMemo, useState } from 'react'
-import { format } from 'date-fns'
-import { Button, createStyles, IconButton } from '@material-ui/core'
-import { makeStyles } from '@material-ui/core/styles'
+import { Button, IconButton, makeStyles, createStyles } from '@material-ui/core'
 import { KeyboardDatePicker } from '@material-ui/pickers'
 import { MaterialUiPickersDate } from '@material-ui/pickers/typings/date'
 import { toISODateWithZeroTime } from 'helpers/date'
 import useDebounceCb from 'hooks/useDebounceCb'
 import AppBox from 'components/UI/AppBox'
 import AppIcon from 'components/UI/AppIcon'
+import { getDateInfo } from './helper'
 
 interface DateProps {
   datesMap: Record<string, number>
@@ -18,21 +17,16 @@ interface DateProps {
 
 export default function GoalDate({ datesMap, date, isLoading, onChangeDay }: DateProps): JSX.Element {
   const classes = useStyles()
-  const [open, setOpen] = useState(false)
-  const [value, setValue] = useState(new Date(date))
-  const formattedDate = format(value, 'MM/dd/yy')
   const dates = Object.keys(datesMap)
-  const dateIndex = useMemo(getDateIndex, [dates, value])
-  const [prevDate, nextDate] = [dates[dateIndex - 1], dates[dateIndex + 1]]
+  const [open, setOpen] = useState(false)
+  const { value, formattedValue, nextValue, prevValue } = useMemo(() => getDateInfo(dates, date), [date, dates])
   const onChangeDayWithDebounce = useDebounceCb(onChangeDay, 1000)
 
   const onClickArrow = (newDate: string) => {
-    setValue(new Date(newDate))
     onChangeDayWithDebounce(datesMap[newDate])
   }
 
   const onChange = (newDate: Date) => {
-    setValue(newDate)
     onChangeDay(datesMap[toISODateWithZeroTime(newDate)])
   }
 
@@ -47,13 +41,9 @@ export default function GoalDate({ datesMap, date, isLoading, onChangeDay }: Dat
 
   const toggle = () => setOpen(!open)
 
-  function getDateIndex() {
-    return dates.findIndex((d) => d === value.toISOString())
-  }
-
   return (
     <AppBox alignSelf="center" alignItems="center" spacing={1}>
-      <IconButton className={classes.button} disabled={isLoading || !prevDate} onClick={() => onClickArrow(prevDate)}>
+      <IconButton className={classes.button} disabled={isLoading || !prevValue} onClick={() => onClickArrow(prevValue)}>
         <AppIcon name="chevron_left" />
       </IconButton>
       <KeyboardDatePicker
@@ -64,14 +54,14 @@ export default function GoalDate({ datesMap, date, isLoading, onChangeDay }: Dat
         shouldDisableDate={checkShouldDisableDate}
         TextFieldComponent={() => (
           <Button aria-label="select a goal date" onClick={toggle}>
-            {formattedDate}
+            {formattedValue}
           </Button>
         )}
         onClick={toggle}
         onChange={(newDate) => newDate && onChange(newDate)}
         onClose={toggle}
       />
-      <IconButton className={classes.button} disabled={isLoading || !nextDate} onClick={() => onClickArrow(nextDate)}>
+      <IconButton className={classes.button} disabled={isLoading || !nextValue} onClick={() => onClickArrow(nextValue)}>
         <AppIcon name="chevron_right" />
       </IconButton>
     </AppBox>

@@ -1,3 +1,8 @@
+export enum SEARCH_PARAMS {
+  SCROLL = 's',
+  DATES = 'd',
+}
+
 /**
  * Returns url information
  */

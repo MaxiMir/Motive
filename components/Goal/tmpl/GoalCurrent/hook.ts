@@ -1,14 +1,13 @@
-import { useRouter } from 'next/router'
 import produce from 'immer'
 import { GoalDto } from 'dto'
 import DayService from 'services/DayService'
 import useSend from 'hooks/useSend'
+import useChangeDayUrl from 'hooks/useChangeDayUrl'
 import { useMutateGoals } from 'views/User/hook'
-import { getUrn } from './helper'
 
 export default function useChangeDay(goalId: number): [boolean, (dayId: number) => void] {
-  const router = useRouter()
   const [goals, mutateGoals] = useMutateGoals()
+  const changeDayUrl = useChangeDayUrl()
   const { isLoading, send } = useSend(DayService.getById, {
     onSuccess: (day) => {
       mutateGoals(
@@ -17,13 +16,11 @@ export default function useChangeDay(goalId: number): [boolean, (dayId: number) 
           draftGoal.days = [day]
         }),
       )
-      router.push(router.pathname, getUrn(router.asPath, goals, goalId, day.id), { shallow: true })
+      changeDayUrl(goals, goalId, day.id)
     },
   })
 
-  const onChangeDate = (dayId: number) => {
-    send({ id: dayId })
-  }
+  const onChangeDate = (dayId: number) => send({ id: dayId })
 
   return [isLoading, onChangeDate]
 }

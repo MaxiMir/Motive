@@ -15,6 +15,7 @@ export interface GoalDto {
   owner: UserBaseDto
   characteristic: GoalCharacteristicDto // count all
   days: DayDto[]
+  calendar: CalendarDto[]
 }
 
 export interface DayDto {

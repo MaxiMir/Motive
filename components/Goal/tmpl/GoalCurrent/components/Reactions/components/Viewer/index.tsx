@@ -11,6 +11,7 @@ export interface ViewerProps {
   goal: GoalDto
   characteristic: DayCharacteristicDto | null
   owner: UserBaseDto
+  lastDay: boolean
   clientId: number
 }
 

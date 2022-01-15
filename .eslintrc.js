@@ -65,6 +65,8 @@ module.exports = {
         'import/no-unresolved': 'off',
         'no-return-await': 'off',
         'no-param-reassign': ['error', { props: true, ignorePropertyModificationsFor: ['draft'] }],
+        'no-shadow': 'off',
+        '@typescript-eslint/no-shadow': ['error'],
 
         // Already handled by TS
         'no-dupe-class-members': 'off',

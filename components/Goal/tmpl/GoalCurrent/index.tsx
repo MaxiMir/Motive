@@ -1,18 +1,15 @@
 import { Fragment, useMemo, useState } from 'react'
 import dynamic from 'next/dynamic'
-import differenceInDays from 'date-fns/differenceInDays'
-import useSWR from 'swr'
 import { createStyles, useTheme } from '@material-ui/core'
 import { makeStyles } from '@material-ui/core/styles'
 import { UserBaseDto, GoalDto, GoalCharacteristicName } from 'dto'
-import GoalService from 'services/GoalService'
 import useCharacteristicColors from 'hooks/useCharacteristicColors'
 import AppBox from 'components/UI/AppBox'
 import AppHeader from 'components/UI/AppHeader'
 import AppDot from 'components/UI/AppDot'
 import AppAccordion from 'components/UI/AppAccordion'
 import useChangeDay from './hook'
-import { checkOnTaskForm, checkOnWeb, getGoalHref, getRole } from './helper'
+import { getGoalHref, getGoalInfo, getRole } from './helper'
 import GoalDate from './components/GoalDate'
 import Menu from './components/Menu'
 import Characteristic from './components/Characteristic'
@@ -38,10 +35,8 @@ export interface GoalCurrentProps {
 }
 
 export default function GoalCurrent({ goal, client, href }: GoalCurrentProps): JSX.Element {
-  const currentDate = new Date()
-  const { id, name, hashtags, started, characteristic, owner } = goal
-  const calendarSWR = useSWR(`calendar-${id}`, () => GoalService.getCalendar({ id }))
-  const datesMap = useMemo(getDatesMap, [calendarSWR.data])
+  const { id, name, hashtags, characteristic, owner } = goal
+  const datesMap = useMemo(getDatesMap, [goal.calendar])
   const [day] = goal.days
   const { id: dayId, date, tasks, views, feedback } = day
   const classes = useStyles()
@@ -49,16 +44,13 @@ export default function GoalCurrent({ goal, client, href }: GoalCurrentProps): J
   const colors = useCharacteristicColors()
   const [isLoading, onChangeDay] = useChangeDay(id)
   const [discussionCount, setDiscussionCount] = useState(day.discussionCount)
-  const runsForDays = differenceInDays(currentDate, Date.parse(started))
-  const todayGoal = !differenceInDays(currentDate, Date.parse(date))
-  const showWeb = checkOnWeb(datesMap, date, currentDate)
-  const goalHref = getGoalHref(href, goal)
   const role = getRole(client, goal)
-  const withForm = checkOnTaskForm(role, todayGoal)
+  const goalHref = getGoalHref(href, goal)
+  const { runsForDays, lastDay, withWeb, withForm } = getGoalInfo(datesMap, goal, role)
   const rest = tasks.length - tasks.filter((t) => t.completed).length
 
   function getDatesMap() {
-    return calendarSWR.data?.reduce((acc, c) => ({ ...acc, [c.date]: c.id }), {}) || {}
+    return goal.calendar.reduce((acc, c) => ({ ...acc, [c.date]: c.id }), {}) || {}
   }
 
   return (
@@ -151,12 +143,12 @@ export default function GoalCurrent({ goal, client, href }: GoalCurrentProps): J
               owner={owner}
               role={role}
               clientId={client.id}
-              // todayGoal={todayGoal}
+              lastDay={lastDay}
             />
             <Views views={views} />
           </AppBox>
         </AppBox>
-        {showWeb && <Web />}
+        {withWeb && <Web />}
       </div>
     </AppBox>
   )
@@ -172,7 +164,6 @@ const useStyles = makeStyles((theme) =>
       },
     },
     wrap: {
-      position: 'relative',
       height: '100%',
       padding: 2,
       background: `linear-gradient(to top left, ${theme.palette.warning.main}, ${theme.palette.success.dark}, ${theme.palette.info.dark})`,

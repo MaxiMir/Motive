@@ -63,7 +63,7 @@ export default function GoalDate({ datesMap, date, isLoading, onChangeDay }: Dat
         value={value}
         shouldDisableDate={checkShouldDisableDate}
         TextFieldComponent={() => (
-          <Button aria-label="select a goal date" disabled={isLoading} onClick={toggle}>
+          <Button aria-label="select a goal date" onClick={toggle}>
             {formattedDate}
           </Button>
         )}

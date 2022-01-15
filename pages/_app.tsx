@@ -28,7 +28,7 @@ export default function MyApp({ Component, pageProps }: AppProps): JSX.Element {
   return (
     <MuiPickersUtilsProvider utils={DateFnsUtils}>
       <ThemeProvider theme={theme}>
-        <NextNprogress color={theme.palette.secondary.main} />
+        <NextNprogress color="#b46a5a" />
         {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
         <CssBaseline />
         <SnackbarContext.Provider value={{ props: snackbarProps, setProps: setSnackbarProps }}>

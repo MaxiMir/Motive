@@ -2,7 +2,7 @@ import { Checkbox, FormControlLabel, makeStyles } from '@material-ui/core'
 import { FormControlLabelProps } from '@material-ui/core/FormControlLabel/FormControlLabel'
 
 type AppCheckboxProps = Omit<FormControlLabelProps, 'control' | 'label'> & {
-  label: string
+  label: JSX.Element | string
 }
 
 export default function AppCheckbox({ label, ...controlProps }: AppCheckboxProps): JSX.Element {
@@ -11,7 +11,7 @@ export default function AppCheckbox({ label, ...controlProps }: AppCheckboxProps
   return (
     <FormControlLabel
       label={label}
-      control={<Checkbox inputProps={{ 'aria-label': label }} />}
+      control={<Checkbox />}
       style={{ textDecoration: !controlProps.checked ? undefined : 'line-through' }}
       className={classes.checkbox}
       {...controlProps}

@@ -14,7 +14,6 @@ export interface LikeDto {
   count: number
 }
 
-// eslint-disable-next-line no-shadow
 export enum TopicType {
   QUESTION = 'question',
   SUPPORT = 'support',

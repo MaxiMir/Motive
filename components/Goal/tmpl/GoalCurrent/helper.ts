@@ -1,33 +1,17 @@
 import differenceInDays from 'date-fns/differenceInDays'
 import { GoalDto, RoleDto, UserBaseDto } from 'dto'
-import { getQueryParams, setQueryParams } from 'helpers/url'
+import { SEARCH_PARAMS, setQueryParams } from 'helpers/url'
 
-const SCROLL_PARAM = 's'
-const DATES_PARAM = 'd'
 const SHOW_WEB_AFTER_DAYS = 14
 
-export const getGoalHref = (userLink: string, goal: GoalDto): string => {
+export const getGoalHref = (userHref: string, goal: GoalDto): string => {
   const { id, days } = goal
 
-  return setQueryParams(userLink, { [SCROLL_PARAM]: goal.id, [DATES_PARAM]: `${id}:${days[0].id}` })
+  return setQueryParams(userHref, { [SEARCH_PARAMS.SCROLL]: goal.id, [SEARCH_PARAMS.DATES]: `${id}:${days[0].id}` })
 }
 
-export const getUrn = (asPath: string, goals: GoalDto[], goalId: number, dayId: number): string => {
-  const { [DATES_PARAM]: _, ...restParams } = getQueryParams()
-  const datesParam = goals.map(({ id, days }) => `${id}:${id !== goalId ? days[0].id : dayId}`).join(',')
-
-  return setQueryParams(asPath, {
-    [DATES_PARAM]: datesParam,
-    ...restParams,
-  })
-}
-
-export const checkOnWeb = (datesMap: Record<string, number>, dayDate: string, currentDate: Date): boolean => {
-  const dates = Object.keys(datesMap)
-  const isLastDate = dates[dates.length - 1] === dayDate
-
-  return isLastDate && differenceInDays(currentDate, Date.parse(dayDate)) >= SHOW_WEB_AFTER_DAYS
-}
+const checkOnWeb = (dayDate: string, currentDate: Date, lastDay: boolean): boolean =>
+  lastDay && differenceInDays(currentDate, Date.parse(dayDate)) >= SHOW_WEB_AFTER_DAYS
 
 export const getRole = (client: UserBaseDto, goal: GoalDto): RoleDto => {
   switch (true) {
@@ -38,5 +22,26 @@ export const getRole = (client: UserBaseDto, goal: GoalDto): RoleDto => {
   }
 }
 
-export const checkOnTaskForm = (role: RoleDto, todayGoal: boolean): boolean =>
-  ['OWNER', 'MEMBER'].includes(role) && todayGoal
+const checkOnTaskForm = (role: RoleDto, todayGoal: boolean): boolean => ['OWNER', 'MEMBER'].includes(role) && todayGoal
+
+export const getGoalInfo = (
+  datesMap: Record<string, number>,
+  goal: GoalDto,
+  role: RoleDto,
+): { runsForDays: number; lastDay: boolean; withWeb: boolean; withForm: boolean } => {
+  const [day] = goal.days
+  const currentDate = new Date()
+  const dates = Object.keys(datesMap)
+  const lastDay = dates[dates.length - 1] === day.date
+  const daysGone = differenceInDays(currentDate, Date.parse(day.date))
+  const runsForDays = differenceInDays(currentDate, Date.parse(goal.started))
+  const withWeb = checkOnWeb(day.date, currentDate, lastDay)
+  const withForm = checkOnTaskForm(role, !daysGone)
+
+  return {
+    runsForDays,
+    lastDay,
+    withWeb,
+    withForm,
+  }
+}

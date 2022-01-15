@@ -1,6 +1,7 @@
 import dynamic from 'next/dynamic'
 import { RoleDto, TaskDto, UserBaseDto } from 'dto'
 import AppCheckbox from 'components/UI/AppCheckbox'
+import AppMarkdown from 'components/UI/AppMarkdown'
 import useSetCompleted from './hook'
 
 const TaskDate = dynamic(() => import('../TaskDate'))
@@ -21,7 +22,13 @@ export default function TaskForm({ goalId, task, rest, client, role }: FormProps
 
   return (
     <form>
-      <AppCheckbox name={id.toString()} label={label} checked={checked} disabled={checked} onChange={setCompleted} />
+      <AppCheckbox
+        name={id.toString()}
+        label={<AppMarkdown text={label} />}
+        checked={checked}
+        disabled={checked}
+        onChange={setCompleted}
+      />
       {date && <TaskDate date={date} />}
     </form>
   )

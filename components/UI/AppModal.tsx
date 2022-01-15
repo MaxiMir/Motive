@@ -7,7 +7,7 @@ const DialogActions = dynamic(() => import('@material-ui/core/DialogActions'))
 const AppBox = dynamic(() => import('./AppBox'))
 
 interface AppModalProps {
-  title: string
+  title: JSX.Element | string
   maxWidth?: DialogProps['maxWidth']
   actions?: JSX.Element[]
   onClose: () => void

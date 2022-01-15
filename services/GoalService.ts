@@ -1,4 +1,4 @@
-import { CalendarDto, GoalDto, GoalCreationDto, TaskCreationDto } from 'dto'
+import { GoalDto, GoalCreationDto, TaskCreationDto } from 'dto'
 import Axios from 'lib/axios'
 import { Service } from './Service'
 
@@ -17,15 +17,6 @@ export default class GoalService extends Service {
     const { id, ...body } = data
 
     return Axios.post(`/goals/${id}/days`, body)
-  }
-
-  /**
-   * /goals/{id}/calendar
-   */
-  static getCalendar(data: { id: number }): Promise<CalendarDto[]> {
-    const { id } = data
-
-    return Axios.get(`/goals/${id}/calendar`)
   }
 
   /**

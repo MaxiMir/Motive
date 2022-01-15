@@ -6,7 +6,8 @@ import { GoalDto } from 'dto'
 import GoalService from 'services/GoalService'
 import { getTomorrow } from 'helpers/date'
 import useSend from 'hooks/useSend'
-import { useMutateGoals } from 'views/User/hook'
+import useChangeDayUrl from 'hooks/useChangeDayUrl'
+import { useMutatePage } from 'views/User/hook'
 import ModalAction from 'components/ModalAction'
 import Task from 'components/Task'
 import AppModal from 'components/UI/AppModal'
@@ -22,16 +23,23 @@ export interface ModalTasksProps {
 export default function ModalTasks({ goal, onClose }: ModalTasksProps): JSX.Element {
   const classes = useStyles()
   const tomorrow = useMemo(getTomorrow, [])
-  const [goals, mutateGoals] = useMutateGoals()
+  const [page, mutate] = useMutatePage()
+  const changeDayUrl = useChangeDayUrl()
   const { isLoading, send } = useSend(GoalService.addDay, {
     onSuccess(data) {
-      // change url + change date
-      mutateGoals(
-        produce(goals, (draft: GoalDto[]) => {
-          const draftGoal = draft[draft.findIndex((g) => g.id === goal.id)]
-          draftGoal.days = data.days
+      const [day] = data.days
+
+      mutate(
+        produce(page, (draft) => {
+          const draftGoals = draft.content.goals
+          const draftGoal = draftGoals[draftGoals.findIndex((g) => g.id === goal.id)]
+
+          draftGoal.calendar.push({ id: day.id, date: day.date })
+          draftGoal.days = [day]
         }),
       )
+      changeDayUrl(page.content.goals, goal.id, data.days[0].id)
+      onClose()
     },
   })
   const formik = useFormik({
@@ -48,7 +56,11 @@ export default function ModalTasks({ goal, onClose }: ModalTasksProps): JSX.Elem
 
   return (
     <AppModal
-      title="Adding tasks for tomorrow"
+      title={
+        <>
+          Adding tasks for <span className={classes.tomorrow}>tomorrow</span>
+        </>
+      }
       maxWidth="xs"
       actions={[
         <ModalAction tmpl="close" onClick={onClose} />,
@@ -100,5 +112,8 @@ const useStyles = makeStyles({
   button: {
     alignSelf: 'baseline',
     textTransform: 'none',
+  },
+  tomorrow: {
+    color: '#ad998b',
   },
 })

@@ -14,7 +14,13 @@ export default function AppMarkdown({ text }: AppMarkdownProps): JSX.Element {
     <ReactMarkdown
       linkTarget="_blank"
       rehypePlugins={[sanitize]}
-      components={{ p: ({ node, ...props }) => <AppTypography variant="subtitle1">{props.children}</AppTypography> }}
+      components={{
+        p: ({ node, ...props }) => (
+          <AppTypography variant="subtitle1" component="p">
+            {props.children}
+          </AppTypography>
+        ),
+      }}
       className={classes.markdown}
     >
       {text}
@@ -25,7 +31,13 @@ export default function AppMarkdown({ text }: AppMarkdownProps): JSX.Element {
 const useStyles = makeStyles({
   markdown: {
     '& p': {
-      margin: 0,
+      margin: '16px 0',
+      '&:first-child': {
+        marginTop: 0,
+      },
+      '&:last-child': {
+        marginBottom: 0,
+      },
     },
     '& a': {
       color: '#9f8e5d',

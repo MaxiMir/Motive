@@ -1,8 +1,11 @@
 import { object, string } from 'yup'
 
 export default object().shape({
-  text: string().when('photos', {
-    is: (photos: File[]) => !photos.length,
-    then: string().min(3).max(256).required('You need to fill in this field or upload a photo'),
-  }),
+  text: string()
+    .min(3)
+    .max(400)
+    .when('photos', {
+      is: (photos: File[]) => !photos.length,
+      then: string().required('You need to fill in this field or upload a photo'),
+    }),
 })

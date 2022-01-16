@@ -1,10 +1,14 @@
 import useSWR, { SWRResponse } from 'swr'
 import { UserPageDto } from 'dto'
+import { usePageSWRConfig } from 'views/User/hook'
 import PageService from 'services/PageService'
-import { usePageInfo } from 'views/User/hook'
 
 export default function useUserPage(fallbackData: UserPageDto): SWRResponse<UserPageDto> {
-  const { swrKey, nickname } = usePageInfo()
+  const { key, urn } = usePageSWRConfig()
 
-  return useSWR(swrKey, () => PageService.getUser(nickname), { fallbackData })
+  return useSWR(
+    key,
+    () => PageService.getUser(typeof window === 'undefined' ? urn : window.location.pathname + window.location.search),
+    { fallbackData },
+  )
 }

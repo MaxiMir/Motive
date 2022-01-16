@@ -14,8 +14,8 @@ export default class PageService {
     return Axios.get('/pages/following')
   }
 
-  static getUser(nicknameUrn: string): Promise<UserPageDto> {
-    return Axios.get(`/pages/users${nicknameUrn}`, { validateStatus: () => true })
+  static getUser(urn: string): Promise<UserPageDto> {
+    return Axios.get(`/pages/users${urn}`, { validateStatus: () => true })
   }
 
   static async getURL<T>(url: string): Promise<T> {

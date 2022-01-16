@@ -6,19 +6,19 @@ import { GoalDto, UserPageDto } from 'dto'
 import { UserPageContext } from 'context/userPageContext'
 import usePartialMutate, { PartialMutate } from 'hooks/usePartialMutate'
 
-export const usePageInfo = (): { nickname: string; swrKey: string } => {
-  const { query, asPath } = useRouter()
+export const usePageSWRConfig = (): { key: string; urn: string } => {
+  const router = useRouter()
 
   return {
-    nickname: asPath,
-    swrKey: query.id as string,
+    key: router.query.id as string,
+    urn: router.asPath,
   }
 }
 
 export const useMutatePage = (): [UserPageDto, PartialMutate] => {
-  const { swrKey } = usePageInfo()
+  const { key } = usePageSWRConfig()
   const data = useContext(UserPageContext) as UserPageDto
-  const partialMutate = usePartialMutate(swrKey)
+  const partialMutate = usePartialMutate(key)
 
   return [data, partialMutate]
 }

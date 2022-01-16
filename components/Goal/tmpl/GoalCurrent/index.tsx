@@ -14,7 +14,6 @@ import GoalDate from './components/GoalDate'
 import Menu from './components/Menu'
 import Characteristic from './components/Characteristic'
 import Discussion from './components/Discussion'
-import Reactions from './components/Reactions'
 import Views from './components/Views'
 
 const Owner = dynamic(() => import('./components/Owner'))
@@ -23,6 +22,7 @@ const Feedback = dynamic(() => import('./components/Feedback'))
 const Hashtags = dynamic(() => import('./components/Hashtags'))
 const TaskForm = dynamic(() => import('./components/TaskForm'))
 const Web = dynamic(() => import('./components/Web'))
+const Reactions = dynamic(() => import('./components/Reactions'))
 const AppTypography = dynamic(() => import('components/UI/AppTypography'))
 
 const CHARACTERISTICS: GoalCharacteristicName[] = ['motivation', 'creativity', 'support', 'members']
@@ -46,7 +46,7 @@ export default function GoalCurrent({ goal, client, href }: GoalCurrentProps): J
   const [discussionCount, setDiscussionCount] = useState(day.discussionCount)
   const role = getRole(client, goal)
   const goalHref = getGoalHref(href, goal)
-  const { runsForDays, lastDay, withWeb, withForm } = getGoalInfo(datesMap, goal, role)
+  const { runsForDays, withWeb, withForm, withReactions, forTomorrow } = getGoalInfo(datesMap, goal, role)
   const rest = tasks.length - tasks.filter((t) => t.completed).length
 
   function getDatesMap() {
@@ -100,7 +100,14 @@ export default function GoalCurrent({ goal, client, href }: GoalCurrentProps): J
                         {!withForm ? (
                           <Task task={task} />
                         ) : (
-                          <TaskForm goalId={id} task={task} rest={rest} client={client} role={role} />
+                          <TaskForm
+                            goalId={id}
+                            task={task}
+                            rest={rest}
+                            client={client}
+                            role={role}
+                            forTomorrow={forTomorrow}
+                          />
                         )}
                       </Fragment>
                     ))}
@@ -141,14 +148,16 @@ export default function GoalCurrent({ goal, client, href }: GoalCurrentProps): J
             </div>
           </AppBox>
           <AppBox flexDirection="column" spacing={2}>
-            <Reactions
-              goal={goal}
-              characteristic={day.characteristic}
-              owner={owner}
-              role={role}
-              clientId={client.id}
-              lastDay={lastDay}
-            />
+            {withReactions && (
+              <Reactions
+                goal={goal}
+                characteristic={day.characteristic}
+                owner={owner}
+                role={role}
+                clientId={client.id}
+                forTomorrow={forTomorrow}
+              />
+            )}
             <Views views={views} />
           </AppBox>
         </AppBox>

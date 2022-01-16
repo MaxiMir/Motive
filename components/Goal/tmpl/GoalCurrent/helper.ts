@@ -1,6 +1,7 @@
 import differenceInDays from 'date-fns/differenceInDays'
 import { GoalDto, RoleDto, UserBaseDto } from 'dto'
 import { SEARCH_PARAMS, setQueryParams } from 'helpers/url'
+import { getCurrentDateWithZeroTime } from 'helpers/date'
 
 const SHOW_WEB_AFTER_DAYS = 14
 
@@ -22,26 +23,38 @@ export const getRole = (client: UserBaseDto, goal: GoalDto): RoleDto => {
   }
 }
 
-const checkOnTaskForm = (role: RoleDto, todayGoal: boolean): boolean => ['OWNER', 'MEMBER'].includes(role) && todayGoal
+const checkOnTaskForm = (role: RoleDto, daysGone: number): boolean =>
+  ['OWNER', 'MEMBER'].includes(role) && [-1, 0].includes(daysGone)
+
+const checkOnReactions = (role: RoleDto, lastDay: boolean): boolean => !(role === 'OWNER' && !lastDay)
 
 export const getGoalInfo = (
   datesMap: Record<string, number>,
   goal: GoalDto,
   role: RoleDto,
-): { runsForDays: number; lastDay: boolean; withWeb: boolean; withForm: boolean } => {
+): {
+  runsForDays: number
+  withWeb: boolean
+  withForm: boolean
+  withReactions: boolean
+  forTomorrow: boolean
+} => {
   const [day] = goal.days
-  const currentDate = new Date()
+  const currentDate = getCurrentDateWithZeroTime()
   const dates = Object.keys(datesMap)
   const lastDay = dates[dates.length - 1] === day.date
   const daysGone = differenceInDays(currentDate, Date.parse(day.date))
+  const forTomorrow = daysGone === -1
   const runsForDays = differenceInDays(currentDate, Date.parse(goal.started))
   const withWeb = checkOnWeb(day.date, currentDate, lastDay)
-  const withForm = checkOnTaskForm(role, !daysGone)
+  const withForm = checkOnTaskForm(role, daysGone)
+  const withReactions = checkOnReactions(role, lastDay)
 
   return {
     runsForDays,
-    lastDay,
     withWeb,
     withForm,
+    withReactions,
+    forTomorrow,
   }
 }

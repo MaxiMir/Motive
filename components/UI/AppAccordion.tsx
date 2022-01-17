@@ -52,7 +52,7 @@ export default function AppAccordion({
           {header}
         </AppHeader>
       </AccordionSummary>
-      <AccordionDetails className={detailsClass}>{withDetails && <>{details}</>}</AccordionDetails>
+      <AccordionDetails className={detailsClass}>{withDetails && details}</AccordionDetails>
     </Accordion>
   )
 }

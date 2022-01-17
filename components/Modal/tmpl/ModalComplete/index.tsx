@@ -1,10 +1,6 @@
 import { Field, FieldArray, Form, FormikProvider, useFormik } from 'formik'
-import produce from 'immer'
 import { makeStyles } from '@material-ui/core'
 import { GoalDto } from 'dto'
-import useSend from 'hooks/useSend'
-import { useMutateGoals } from 'views/User/hook'
-import DayService from 'services/DayService'
 import useSnackbar from 'hooks/useSnackbar'
 import ModalAction from 'components/ModalAction'
 import AppModal from 'components/UI/AppModal'
@@ -15,48 +11,29 @@ import AppHeader from 'components/UI/AppHeader'
 import AppSpinIcon from 'components/UI/AppSpinIcon'
 import Photo from 'components/Photo'
 import Video from 'components/Video'
-import schema from './schema'
 
 const PHOTO_LIMIT = 10
 
-export interface ModalFeedbackProps {
-  tmpl: 'feedback'
+export interface ModalCompleteProps {
+  tmpl: 'complete'
   goal: GoalDto
   onClose: () => void
 }
 
-export default function ModalFeedback({ goal, onClose }: ModalFeedbackProps): JSX.Element {
+export default function ModalComplete({ goal, onClose }: ModalCompleteProps): JSX.Element {
   const classes = useStyles()
+  const isLoading = false
   const { enqueueSnackbar } = useSnackbar()
-  const [goals, mutateGoals] = useMutateGoals()
-  const { isLoading, send } = useSend(DayService.createFeedback, {
-    onSuccess: ({ feedback }) => {
-      mutateGoals(
-        produce(goals, (draft: GoalDto[]) => {
-          const draftGoal = draft[draft.findIndex((g) => g.id === goal.id)]
-          const [draftDay] = draftGoal.days
-
-          draftDay.feedback = feedback
-        }),
-      )
-
-      onClose()
-      enqueueSnackbar({ message: 'Feedback successfully added', severity: 'success', icon: 'feedback' })
-    },
-  })
   const formik = useFormik({
     initialValues: {
-      text: '',
+      id: goal.id,
       photos: [],
       video: '',
     },
-    validationSchema: schema,
+    // validationSchema: schema,
     async onSubmit(data) {
-      const formData = new FormData()
-
-      formData.append('text', data.text.trim())
-      data.photos.forEach((photo) => formData.append('photos', photo))
-      send({ id: goal.days[0].id, body: formData })
+      console.log(data)
+      // send(data)
     },
   })
   const { values, setFieldValue, handleSubmit } = formik
@@ -77,16 +54,16 @@ export default function ModalFeedback({ goal, onClose }: ModalFeedbackProps): JS
 
   return (
     <AppModal
-      title="Adding feedback"
+      title="Completing the goal"
       maxWidth="xs"
       actions={[
         <ModalAction tmpl="close" onClick={onClose} />,
         <ModalAction
           tmpl="submit"
           isLoading={isLoading}
-          name="Add"
-          nameLoading="Adding"
-          emoji="feedback"
+          name="Save"
+          nameLoading="Saving"
+          emoji="completed"
           onClick={handleSubmit}
         />,
       ]}
@@ -96,12 +73,10 @@ export default function ModalFeedback({ goal, onClose }: ModalFeedbackProps): JS
         <Form autoComplete="off">
           <AppBox flexDirection="column" alignItems="center" spacing={3}>
             <AppBox flexDirection="column" alignItems="center" spacing={1}>
-              <AppSpinIcon name="congratulations" />
-              <AppTypography className={classes.congratulations}>
-                Impressive! One step closer to your goal!
-              </AppTypography>
+              <AppSpinIcon name="completed" />
+              <AppTypography className={classes.congratulations}>Congratulations, you did it!</AppTypography>
             </AppBox>
-            <Field name="text" label="How did today's" color="secondary" multiline rows={3} component={AppInput} />
+            <Field name="text" label="How was it" color="secondary" multiline rows={3} component={AppInput} />
             {!!values.photos.length && (
               <AppBox flexDirection="column" spacing={2} width="100%">
                 <AppHeader name="photo" variant="h6" component="h2" color="primary">
@@ -150,6 +125,6 @@ export default function ModalFeedback({ goal, onClose }: ModalFeedbackProps): JS
 
 const useStyles = makeStyles({
   congratulations: {
-    color: '#0386F4',
+    color: '#ffa300',
   },
 })

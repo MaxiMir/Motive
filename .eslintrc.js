@@ -67,6 +67,7 @@ module.exports = {
         'no-param-reassign': ['error', { props: true, ignorePropertyModificationsFor: ['draft'] }],
         'no-shadow': 'off',
         '@typescript-eslint/no-shadow': ['error'],
+        'default-case': 'off',
 
         // Already handled by TS
         'no-dupe-class-members': 'off',

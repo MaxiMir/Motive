@@ -33,6 +33,7 @@ export default function OwnerWithFeedback({ goal }: OwnerWithFeedbackProps): JSX
         Complete
       </Button>
       {openTasks && <Modal tmpl="tasks" goal={goal} onClose={toggleTasks} />}
+      {openComplete && <Modal tmpl="complete" goal={goal} onClose={toggleComplete} />}
     </AppBox>
   )
 }

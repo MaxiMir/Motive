@@ -8,19 +8,10 @@ import Following from 'views/Following'
 
 export default function FollowingPage({ fallbackData }: FollowingPageSWRDto): JSX.Element {
   const [{ data, error }, mutate] = useFollowingPage(fallbackData)
-
-  // TODO REMOVE!
-  const client = {
-    id: 1,
-    nickname: 'maximir',
-    name: 'Maxim Minchenko',
-    avatar: '/avatars/6d483e94-a791-4a75-ba15-99ee48276dd4.webp',
-  }
-
-  const isAuthorized = !!client?.id // todo check on auth
+  const isAuthorized = !!data?.client?.id // todo check on auth
 
   return (
-    <Layout title={`${process.env.NEXT_PUBLIC_APP_NAME} • Following`} client={client} error={error}>
+    <Layout title={`${process.env.NEXT_PUBLIC_APP_NAME} • Following`} client={data?.client} error={error}>
       {data && <Following users={data.content} isAuthorized={isAuthorized} mutate={mutate} />}
     </Layout>
   )

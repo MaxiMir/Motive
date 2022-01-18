@@ -14,29 +14,33 @@ export default function useSetReaction(
   clientId: number,
 ): () => void {
   const { id, days } = goal
-  const lastLoadedRef = useRef(active)
+  const lastGoalRef = useRef(goal)
+  const lastAddRef = useRef(active)
   const { enqueueSnackbar } = useSnackbar()
   const [goals, mutateGoals] = useMutateGoals()
-  const isAuthorized = !!clientId // todo check on auth
-
   const { send } = useSend(GoalService.updateCharacteristic, {
-    onSuccess(_, data) {
-      lastLoadedRef.current = data.add
+    onSuccess(_, request) {
+      lastAddRef.current = request.add
 
-      data.add &&
+      request.add &&
         enqueueSnackbar({
           message: `You have increased goal's ${name} points`,
           severity: 'success',
           icon: 'magic',
         })
     },
-    onError(_, data) {
-      mutateCharacteristic(!data.add)
+    onError() {
+      mutateGoals(
+        produce(goals, (draft: GoalDto[]) => {
+          draft[draft.findIndex((g) => g.id === id)] = lastGoalRef.current
+        }),
+      )
     },
   })
+  const isAuthorized = !!clientId // todo check on auth
 
   const sendWithDebounce = useDebounceCb((add: boolean) => {
-    lastLoadedRef.current !== add && send({ id, dayId: days[0].id, name, add })
+    lastAddRef.current !== add && send({ id, dayId: days[0].id, name, add })
   })
 
   const mutateCharacteristic = (add: boolean) => {
@@ -64,6 +68,7 @@ export default function useSetReaction(
       return
     }
 
+    lastGoalRef.current = goal
     mutateCharacteristic(!active)
     sendWithDebounce(!active)
   }

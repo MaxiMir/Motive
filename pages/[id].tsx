@@ -11,18 +11,10 @@ export default function UserDetail({ fallbackData }: UserPageSWRDto): JSX.Elemen
   const { data, error } = useUserPage(fallbackData)
   const userMeta = getUserMeta(data?.content)
 
-  // TODO REMOVE!
-  const client = {
-    id: 1,
-    nickname: 'maximir',
-    name: 'Maxim Minchenko',
-    avatar: '/avatars/6d483e94-a791-4a75-ba15-99ee48276dd4.webp',
-  }
-
   return (
     <UserPageContext.Provider value={data}>
-      <Layout {...userMeta} client={client} error={error}>
-        {data?.content && <User user={data?.content} client={client} />}
+      <Layout {...userMeta} client={data?.client} error={error}>
+        {data?.content && <User user={data?.content} client={data?.client} />}
       </Layout>
     </UserPageContext.Provider>
   )

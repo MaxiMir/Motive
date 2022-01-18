@@ -8,19 +8,11 @@ import useRatingPage from 'views/Rating/hook'
 export default function RatingPage({ fallbackData }: RatingPageSWRDto): JSX.Element {
   const { data, error } = useRatingPage(fallbackData)
 
-  // TODO REMOVE!
-  const client = {
-    id: 1,
-    nickname: 'maximir',
-    name: 'Maxim Minchenko',
-    avatar: '/avatars/6d483e94-a791-4a75-ba15-99ee48276dd4.webp',
-  }
-
   return (
     <Layout
       title={`${process.env.NEXT_PUBLIC_APP_NAME} • Rating users`}
       description={`${process.env.NEXT_PUBLIC_APP_NAME} • Rating the most motivating, creative, and supportive users`}
-      client={client}
+      client={data?.client}
       error={error}
     >
       {data?.content && <Rating {...data.content} />}

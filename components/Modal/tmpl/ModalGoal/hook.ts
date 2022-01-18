@@ -31,15 +31,15 @@ const useSendCreateGoal = (onClose: () => void) => {
   const [goals, mutateGoals] = useMutateGoals()
 
   return useSend(GoalService.create, {
-    onSuccess(data) {
+    onSuccess(response) {
       mutateGoals(
         produce(goals, (draft: GoalDto[]) => {
-          draft.push(data)
+          draft.push(response)
         }),
       )
       onClose()
       enqueueSnackbar({ message: 'The goal is successfully created', severity: 'success', icon: 'goal' })
-      setTimeout(() => scrollToElem(`goal-${data.id}`), 500)
+      setTimeout(() => scrollToElem(`goal-${response.id}`), 500)
     },
   })
 }

@@ -12,8 +12,8 @@ export default function useSetFollowing(id: number, following: boolean, isAuthor
   const { enqueueSnackbar } = useSnackbar()
 
   const { send } = useSend(SubscriptionService.updateFollowing, {
-    onSuccess(_, data) {
-      const { add } = data
+    onSuccess(_, request) {
+      const { add } = request
       lastLoadedRef.current = add
 
       enqueueSnackbar({
@@ -22,8 +22,8 @@ export default function useSetFollowing(id: number, following: boolean, isAuthor
         icon: add ? 'speaker' : 'ninja',
       })
     },
-    onError(_, data) {
-      mutateFavorite(!data.add)
+    onError() {
+      mutateFavorite(lastLoadedRef.current)
     },
   })
 

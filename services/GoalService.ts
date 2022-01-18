@@ -28,4 +28,13 @@ export default class GoalService extends Service {
 
     return Axios.patch(`/goals/${id}/days/${dayId}/characteristic/${name}/${operation}`, { id })
   }
+
+  /**
+   * /goal/{id}/completed
+   */
+  static setCompleted(data: { id: number; body: FormData }): Promise<GoalDto> {
+    const { id, ...body } = data
+
+    return Axios.post(`/goals/${id}/completed`, body)
+  }
 }

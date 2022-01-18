@@ -17,7 +17,12 @@ export default function RatingPage({ fallbackData }: RatingPageSWRDto): JSX.Elem
   }
 
   return (
-    <Layout title="Rating users" client={client} error={error}>
+    <Layout
+      title={`${process.env.NEXT_PUBLIC_APP_NAME} • Rating users`}
+      description={`${process.env.NEXT_PUBLIC_APP_NAME} • Rating the most motivating, creative, and supportive users`}
+      client={client}
+      error={error}
+    >
       {data?.content && <Rating {...data.content} />}
     </Layout>
   )

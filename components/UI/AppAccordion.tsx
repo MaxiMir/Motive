@@ -1,6 +1,5 @@
 import { ChangeEvent, useState } from 'react'
 import { Accordion, AccordionDetails, AccordionSummary } from '@material-ui/core'
-import { scrollToElem } from 'helpers/dom'
 import AppIcon from './AppIcon'
 import AppHeader from './AppHeader'
 import { AppEmojiName } from './AppEmoji'
@@ -34,7 +33,6 @@ export default function AppAccordion({
   const onChange = (_: ChangeEvent<unknown>, isExpanded: boolean) => {
     !withDetails && setWithDetails(true)
     setExpanded(isExpanded)
-    isExpanded && setTimeout(() => scrollToElem(id), 300)
   }
 
   return (

@@ -1,4 +1,4 @@
-import { Field, FieldArray, Form, FormikProvider, useFormik } from 'formik'
+import { Field, FieldArray, Form, FormikProvider } from 'formik'
 import { makeStyles } from '@material-ui/core'
 import { GoalDto } from 'dto'
 import useSelectPhoto from 'hooks/useSelectPhoto'
@@ -11,6 +11,7 @@ import AppHeader from 'components/UI/AppHeader'
 import AppSpinIcon from 'components/UI/AppSpinIcon'
 import Photo from 'components/Photo'
 import Video from 'components/Video'
+import useForm from './hook'
 
 export interface ModalCompleteProps {
   tmpl: 'complete'
@@ -20,20 +21,7 @@ export interface ModalCompleteProps {
 
 export default function ModalComplete({ goal, onClose }: ModalCompleteProps): JSX.Element {
   const classes = useStyles()
-  const isLoading = false
-  const formik = useFormik({
-    initialValues: {
-      id: goal.id,
-      photos: [],
-      video: '',
-    },
-    // validationSchema: schema,
-    async onSubmit(data) {
-      console.log(data)
-      // send(data)
-    },
-  })
-
+  const { isLoading, formik } = useForm(goal, onClose)
   const { values, setFieldValue, handleSubmit } = formik
 
   const onSelectPhoto = useSelectPhoto(formik)

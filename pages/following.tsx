@@ -20,7 +20,7 @@ export default function FollowingPage({ fallbackData }: FollowingPageSWRDto): JS
   const isAuthorized = !!client?.id // todo check on auth
 
   return (
-    <Layout title="Following" client={client} error={error}>
+    <Layout title={`${process.env.NEXT_PUBLIC_APP_NAME} • Following`} client={client} error={error}>
       {data && <Following users={data.content} isAuthorized={isAuthorized} mutate={mutate} />}
     </Layout>
   )

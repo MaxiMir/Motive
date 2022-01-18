@@ -11,6 +11,7 @@ interface LayoutProps {
   description?: string
   url?: string
   type?: string
+  image?: string
   error?: boolean
   client?: UserBaseDto
   withVerticalPadding?: boolean
@@ -21,6 +22,7 @@ const Layout: FC<LayoutProps> = ({
   description,
   url,
   type,
+  image,
   withVerticalPadding = true,
   error,
   client,
@@ -44,7 +46,7 @@ const Layout: FC<LayoutProps> = ({
         <meta property="og:title" content={title} />
         {description && <meta property="og:description" content={description} />}
         {url && <meta property="og:url" content={url} />}
-        <meta property="og:image" content="/images/app.png" />
+        {image && <meta property="og:image" content={image} />}
         {type && <meta property="og:type" content={type} />}
         <link rel="canonical" href="https://www.instagram.com/astrogks/" />
         <link rel="manifest" href="/manifest.json" />

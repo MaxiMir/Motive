@@ -46,11 +46,6 @@ export interface TaskDto {
   completedBy: number[]
 }
 
-export interface FeedbackCreation {
-  id: number
-  body: FormData
-}
-
 export interface FeedbackDto {
   text: string | null
   photos: PhotoDto[] | null

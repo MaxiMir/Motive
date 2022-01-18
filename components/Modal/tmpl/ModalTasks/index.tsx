@@ -1,18 +1,12 @@
-import { useMemo } from 'react'
-import { FieldArray, Form, FormikProvider, useFormik } from 'formik'
+import { FieldArray, Form, FormikProvider } from 'formik'
 import { makeStyles } from '@material-ui/core/styles'
 import { Button } from '@material-ui/core'
 import { GoalDto } from 'dto'
-import GoalService from 'services/GoalService'
 import { getTomorrow } from 'helpers/date'
-import useSend from 'hooks/useSend'
-import useChangeDayUrl from 'hooks/useChangeDayUrl'
-import { useMutatePage } from 'views/User/hook'
 import ModalAction from 'components/ModalAction'
 import Task from 'components/Task'
 import AppModal from 'components/UI/AppModal'
-import produce from 'immer'
-import schema from './schema'
+import useForm from './hook'
 
 export interface ModalTasksProps {
   tmpl: 'tasks'
@@ -22,37 +16,8 @@ export interface ModalTasksProps {
 
 export default function ModalTasks({ goal, onClose }: ModalTasksProps): JSX.Element {
   const classes = useStyles()
-  const tomorrow = useMemo(getTomorrow, [])
-  const [page, mutate] = useMutatePage()
-  const changeDayUrl = useChangeDayUrl()
-  const { isLoading, send } = useSend(GoalService.addDay, {
-    onSuccess(data) {
-      const day = data.days[data.days.length - 1]
-
-      mutate(
-        produce(page, (draft) => {
-          const draftGoals = draft.content.goals
-          const draftGoal = draftGoals[draftGoals.findIndex((g) => g.id === goal.id)]
-
-          draftGoal.calendar.push({ id: day.id, date: day.date })
-          draftGoal.days = [day]
-        }),
-        false,
-      )
-      changeDayUrl(page.content.goals, goal.id, data.days[0].id)
-      onClose()
-    },
-  })
-  const formik = useFormik({
-    initialValues: {
-      id: goal.id,
-      tasks: [{ name: '', date: undefined }],
-    },
-    validationSchema: schema,
-    async onSubmit(data) {
-      send(data)
-    },
-  })
+  const tomorrow = getTomorrow()
+  const { isLoading, formik } = useForm(goal, onClose)
   const { values, setFieldValue, handleSubmit } = formik
 
   return (

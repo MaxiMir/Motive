@@ -1,11 +1,8 @@
-import { useMemo } from 'react'
-import { Field, FieldArray, Form, FormikProvider, useFormik } from 'formik'
+import { Field, FieldArray, Form, FormikProvider } from 'formik'
 import { makeStyles } from '@material-ui/core/styles'
 import { Accordion, AccordionDetails, AccordionSummary, Button, createStyles } from '@material-ui/core'
-import { GoalDto, UserCharacteristicName } from 'dto'
+import { UserCharacteristicName } from 'dto'
 import { getTomorrow } from 'helpers/date'
-import GoalService from 'services/GoalService'
-import useSend from 'hooks/useSend'
 import useFocus from 'hooks/useFocus'
 import ModalAction from 'components/ModalAction'
 import Task from 'components/Task'
@@ -17,33 +14,20 @@ import AppInput from 'components/UI/AppInput'
 import AppTypography from 'components/UI/AppTypography'
 import AppIcon from 'components/UI/AppIcon'
 import { PaulIcon } from 'components/UI/icons'
-import { prepareHashtags } from './helper'
-import schema from './schema'
+import useForm from './hook'
 
 const CHARACTERISTIC_NAMES: UserCharacteristicName[] = ['motivation', 'creativity', 'support']
 
 export interface ModalGoalProps {
   tmpl: 'goal'
-  onSuccess: (goal: GoalDto) => void
   onClose: () => void
 }
 
-export default function ModalGoal({ onSuccess, onClose }: ModalGoalProps): JSX.Element {
+export default function ModalGoal({ onClose }: ModalGoalProps): JSX.Element {
   const classes = useStyles()
   const [hashtagsRef, setHashtagsFocus] = useFocus()
-  const tomorrow = useMemo(getTomorrow, [])
-  const { isLoading, send } = useSend(GoalService.create, { onSuccess })
-  const formik = useFormik({
-    initialValues: {
-      name: '',
-      hashtags: '',
-      tasks: [{ name: '', date: undefined }],
-    },
-    validationSchema: schema,
-    async onSubmit(data) {
-      send({ ...data, hashtags: prepareHashtags(data.hashtags) })
-    },
-  })
+  const tomorrow = getTomorrow()
+  const { isLoading, formik } = useForm(onClose)
   const { values, setFieldValue, handleSubmit } = formik
 
   const onAddHashtag = () => {

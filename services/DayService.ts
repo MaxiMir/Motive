@@ -1,5 +1,5 @@
 import Axios from 'lib/axios'
-import { TopicType, TopicDto, DayDto } from 'dto'
+import { TopicType, TopicDto, DayDto, FeedbackCreation } from 'dto'
 
 export default class DayService {
   /**
@@ -14,7 +14,7 @@ export default class DayService {
   /**
    * /days/{id}/feedback
    */
-  static createFeedback(data: { id: number; body: FormData }): Promise<DayDto> {
+  static createFeedback(data: FeedbackCreation): Promise<DayDto> {
     const { id, body } = data
 
     return Axios.post(`/days/${id}/feedback`, body, {

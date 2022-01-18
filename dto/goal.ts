@@ -3,7 +3,7 @@ import { UserBaseDto } from './user'
 
 export interface GoalCreationDto {
   name: string
-  hashtags: string[]
+  hashtags: string
   tasks: TaskCreationDto[]
 }
 
@@ -13,9 +13,14 @@ export interface GoalDto {
   started: string
   hashtags: string[]
   owner: UserBaseDto
-  characteristic: GoalCharacteristicDto // count all
+  characteristic: GoalCharacteristicDto
   days: DayDto[]
   calendar: CalendarDto[]
+}
+
+export interface DayCreationDto {
+  id: number
+  tasks: TaskCreationDto[]
 }
 
 export interface DayDto {
@@ -28,14 +33,22 @@ export interface DayDto {
   views: number
 }
 
-export type TaskCreationDto = Omit<TaskDto, 'id' | 'completed' | 'completedBy'>
+export interface TaskCreationDto {
+  name: string
+  date?: Date
+}
 
 export interface TaskDto {
   id: number
   name: string
-  date?: string
+  date: string | null
   completed: boolean
   completedBy: number[]
+}
+
+export interface FeedbackCreation {
+  id: number
+  body: FormData
 }
 
 export interface FeedbackDto {

@@ -1,7 +1,7 @@
 import { Field, FieldArray, Form, FormikProvider, useFormik } from 'formik'
 import { makeStyles } from '@material-ui/core'
 import { GoalDto } from 'dto'
-import useSnackbar from 'hooks/useSnackbar'
+import useSelectPhoto from 'hooks/useSelectPhoto'
 import ModalAction from 'components/ModalAction'
 import AppModal from 'components/UI/AppModal'
 import AppTypography from 'components/UI/AppTypography'
@@ -12,8 +12,6 @@ import AppSpinIcon from 'components/UI/AppSpinIcon'
 import Photo from 'components/Photo'
 import Video from 'components/Video'
 
-const PHOTO_LIMIT = 10
-
 export interface ModalCompleteProps {
   tmpl: 'complete'
   goal: GoalDto
@@ -23,7 +21,6 @@ export interface ModalCompleteProps {
 export default function ModalComplete({ goal, onClose }: ModalCompleteProps): JSX.Element {
   const classes = useStyles()
   const isLoading = false
-  const { enqueueSnackbar } = useSnackbar()
   const formik = useFormik({
     initialValues: {
       id: goal.id,
@@ -36,21 +33,12 @@ export default function ModalComplete({ goal, onClose }: ModalCompleteProps): JS
       // send(data)
     },
   })
+
   const { values, setFieldValue, handleSubmit } = formik
 
-  const onSelectPhoto = (files: File[]) => {
-    const photos = [...values.photos, ...files]
+  const onSelectPhoto = useSelectPhoto(formik)
 
-    if (photos.length > PHOTO_LIMIT) {
-      enqueueSnackbar({ message: `You cannot add more than ${PHOTO_LIMIT} photos`, severity: 'error' })
-    }
-
-    setFieldValue('photos', photos.slice(0, PHOTO_LIMIT))
-  }
-
-  const onSelectVideo = (file: File) => {
-    setFieldValue('video', file)
-  }
+  const onSelectVideo = (file: File) => setFieldValue('video', file)
 
   return (
     <AppModal

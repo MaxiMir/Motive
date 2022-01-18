@@ -1,11 +1,7 @@
-import { Field, FieldArray, Form, FormikProvider, useFormik } from 'formik'
-import produce from 'immer'
+import { Field, FieldArray, Form, FormikProvider } from 'formik'
 import { makeStyles } from '@material-ui/core'
 import { GoalDto } from 'dto'
-import useSend from 'hooks/useSend'
-import { useMutateGoals } from 'views/User/hook'
-import DayService from 'services/DayService'
-import useSnackbar from 'hooks/useSnackbar'
+import useSelectPhoto from 'hooks/useSelectPhoto'
 import ModalAction from 'components/ModalAction'
 import AppModal from 'components/UI/AppModal'
 import AppTypography from 'components/UI/AppTypography'
@@ -15,9 +11,7 @@ import AppHeader from 'components/UI/AppHeader'
 import AppSpinIcon from 'components/UI/AppSpinIcon'
 import Photo from 'components/Photo'
 import Video from 'components/Video'
-import schema from './schema'
-
-const PHOTO_LIMIT = 10
+import useForm from './hook'
 
 export interface ModalFeedbackProps {
   tmpl: 'feedback'
@@ -27,53 +21,12 @@ export interface ModalFeedbackProps {
 
 export default function ModalFeedback({ goal, onClose }: ModalFeedbackProps): JSX.Element {
   const classes = useStyles()
-  const { enqueueSnackbar } = useSnackbar()
-  const [goals, mutateGoals] = useMutateGoals()
-  const { isLoading, send } = useSend(DayService.createFeedback, {
-    onSuccess: ({ feedback }) => {
-      mutateGoals(
-        produce(goals, (draft: GoalDto[]) => {
-          const draftGoal = draft[draft.findIndex((g) => g.id === goal.id)]
-          const [draftDay] = draftGoal.days
-
-          draftDay.feedback = feedback
-        }),
-      )
-
-      onClose()
-      enqueueSnackbar({ message: 'Feedback successfully added', severity: 'success', icon: 'feedback' })
-    },
-  })
-  const formik = useFormik({
-    initialValues: {
-      text: '',
-      photos: [],
-      video: '',
-    },
-    validationSchema: schema,
-    async onSubmit(data) {
-      const formData = new FormData()
-
-      formData.append('text', data.text.trim())
-      data.photos.forEach((photo) => formData.append('photos', photo))
-      send({ id: goal.days[0].id, body: formData })
-    },
-  })
+  const { isLoading, formik } = useForm(goal, onClose)
   const { values, setFieldValue, handleSubmit } = formik
 
-  const onSelectPhoto = (files: File[]) => {
-    const photos = [...values.photos, ...files]
+  const onSelectPhoto = useSelectPhoto(formik)
 
-    if (photos.length > PHOTO_LIMIT) {
-      enqueueSnackbar({ message: `You cannot add more than ${PHOTO_LIMIT} photos`, severity: 'error' })
-    }
-
-    setFieldValue('photos', photos.slice(0, PHOTO_LIMIT))
-  }
-
-  const onSelectVideo = (file: File) => {
-    setFieldValue('video', file)
-  }
+  const onSelectVideo = (file: File) => setFieldValue('video', file)
 
   return (
     <AppModal

@@ -12,13 +12,10 @@ export default function useRemoveFollowing(
   isAuthorized: boolean,
   mutate: (user: UserDto[]) => void,
 ): UseRemoveFollowingUser {
-  const prevUsersRef = useRef(users)
+  const backupRef = useRef(users)
   const { enqueueSnackbar, closeSnackbar } = useSnackbar()
-
   const { send } = useSend(SubscriptionService.updateFollowing, {
     onSuccess: (_, { id, add }) => {
-      prevUsersRef.current = users
-
       !add &&
         enqueueSnackbar({
           message: 'Removed from following',
@@ -28,12 +25,12 @@ export default function useRemoveFollowing(
         })
     },
     onError: () => {
-      mutate(prevUsersRef.current)
+      mutate(backupRef.current)
     },
   })
 
   function onUndo(id: number) {
-    mutate(prevUsersRef.current)
+    mutate(backupRef.current)
     closeSnackbar()
     send({ id, add: true })
   }
@@ -44,8 +41,7 @@ export default function useRemoveFollowing(
       return
     }
 
-    prevUsersRef.current = users
-
+    backupRef.current = users
     mutate(users.filter((f) => f.id !== id))
     send({ id, add: false })
   }

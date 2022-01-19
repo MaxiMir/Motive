@@ -14,8 +14,8 @@ export default function useSetReaction(
   clientId: number,
 ): () => void {
   const { id, days } = goal
-  const lastGoalRef = useRef(goal)
   const lastAddRef = useRef(active)
+  const backupRef = useRef(goal)
   const { enqueueSnackbar } = useSnackbar()
   const [goals, mutateGoals] = useMutateGoals()
   const { send } = useSend(GoalService.updateCharacteristic, {
@@ -30,11 +30,7 @@ export default function useSetReaction(
         })
     },
     onError() {
-      mutateGoals(
-        produce(goals, (draft: GoalDto[]) => {
-          draft[draft.findIndex((g) => g.id === id)] = lastGoalRef.current
-        }),
-      )
+      rollbackCharacteristic()
     },
   })
   const isAuthorized = !!clientId // todo check on auth
@@ -62,13 +58,23 @@ export default function useSetReaction(
     )
   }
 
+  const rollbackCharacteristic = () => {
+    mutateGoals(
+      produce(goals, (draft: GoalDto[]) => {
+        const draftGoal = draft[draft.findIndex((g) => g.id === id)]
+        draftGoal.characteristic = backupRef.current.characteristic
+        draftGoal.days = backupRef.current.days
+      }),
+    )
+  }
+
   return () => {
     if (!isAuthorized) {
       // TODO for not auth
       return
     }
 
-    lastGoalRef.current = goal
+    backupRef.current = goal
     mutateCharacteristic(!active)
     sendWithDebounce(!active)
   }

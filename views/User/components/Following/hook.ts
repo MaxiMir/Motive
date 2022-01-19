@@ -7,14 +7,13 @@ import useSnackbar from 'hooks/useSnackbar'
 import { useMutatePage } from 'views/User/hook'
 
 export default function useSetFollowing(id: number, following: boolean, isAuthorized: boolean): () => void {
-  const lastLoadedRef = useRef(following)
   const [page, mutate] = useMutatePage()
+  const lastFollowingRef = useRef(following)
+  const backupRef = useRef(page)
   const { enqueueSnackbar } = useSnackbar()
-
   const { send } = useSend(SubscriptionService.updateFollowing, {
-    onSuccess(_, request) {
-      const { add } = request
-      lastLoadedRef.current = add
+    onSuccess(_, { add }) {
+      lastFollowingRef.current = add
 
       enqueueSnackbar({
         message: add ? 'Added to favorites' : 'Removed from favorites',
@@ -23,12 +22,12 @@ export default function useSetFollowing(id: number, following: boolean, isAuthor
       })
     },
     onError() {
-      mutateFavorite(lastLoadedRef.current)
+      rollbackFavorite()
     },
   })
 
   const sendWithDebounce = useDebounceCb((add: boolean) => {
-    lastLoadedRef.current !== add && send({ id, add })
+    lastFollowingRef.current !== add && send({ id, add })
   })
 
   const mutateFavorite = (value: boolean) => {
@@ -41,12 +40,25 @@ export default function useSetFollowing(id: number, following: boolean, isAuthor
     )
   }
 
+  const rollbackFavorite = () => {
+    const { isFollowing, characteristic } = backupRef.current.content
+
+    mutate(
+      produce(page, (draft) => {
+        draft.content.isFollowing = isFollowing
+        draft.content.characteristic.followers = characteristic.followers
+      }),
+      false,
+    )
+  }
+
   return () => {
     if (!isAuthorized) {
       // TODO for not auth
       return
     }
 
+    backupRef.current = page
     mutateFavorite(!following)
     sendWithDebounce(!following)
   }

@@ -26,7 +26,7 @@ export default class GoalService extends Service {
     const { id, dayId, name, add } = data
     const operation = GoalService.getOperation(add)
 
-    return Axios.patch(`/goals/${id}/days/${dayId}/characteristic/${name}/${operation}`, { id })
+    return Axios.patch(`/goals/${id}/days/${dayId}/characteristic/${name}${operation}`, { id })
   }
 
   /**

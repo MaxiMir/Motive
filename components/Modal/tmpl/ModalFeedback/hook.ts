@@ -4,9 +4,9 @@ import { GoalDto } from 'dto'
 import DayService from 'services/DayService'
 import useSend from 'hooks/useSend'
 import useSnackbar from 'hooks/useSnackbar'
-import { UseFormType } from 'hooks/useFormType'
+import { UseFormType } from 'types'
 import { useMutateGoals } from 'views/User/hook'
-import schema from './schema'
+import schema from 'schemas/feedback'
 
 interface Values {
   text: string

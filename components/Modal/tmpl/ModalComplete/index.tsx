@@ -1,3 +1,4 @@
+import dynamic from 'next/dynamic'
 import { Field, FieldArray, Form, FormikProvider } from 'formik'
 import { makeStyles } from '@material-ui/core'
 import { GoalDto } from 'dto'
@@ -13,6 +14,8 @@ import Photo from 'components/Photo'
 import Video from 'components/Video'
 import useForm from './hook'
 
+const Alert = dynamic(() => import('@material-ui/lab/Alert'))
+
 export interface ModalCompleteProps {
   tmpl: 'complete'
   goal: GoalDto
@@ -22,7 +25,7 @@ export interface ModalCompleteProps {
 export default function ModalComplete({ goal, onClose }: ModalCompleteProps): JSX.Element {
   const classes = useStyles()
   const { isLoading, formik } = useForm(goal, onClose)
-  const { values, setFieldValue, handleSubmit } = formik
+  const { values, errors, setFieldValue, handleSubmit } = formik
 
   const onSelectPhoto = useSelectPhoto(formik)
 
@@ -52,7 +55,7 @@ export default function ModalComplete({ goal, onClose }: ModalCompleteProps): JS
               <AppSpinIcon name="completed" />
               <AppTypography className={classes.congratulations}>Congratulations, you did it!</AppTypography>
             </AppBox>
-            <Field name="text" label="How was it" color="secondary" multiline rows={3} component={AppInput} />
+            <Field name="description" label="How was it" color="secondary" multiline rows={3} component={AppInput} />
             {!!values.photos.length && (
               <AppBox flexDirection="column" spacing={2} width="100%">
                 <AppHeader name="photo" variant="h6" component="h2" color="primary">
@@ -74,6 +77,11 @@ export default function ModalComplete({ goal, onClose }: ModalCompleteProps): JS
                   )}
                 </FieldArray>
               </AppBox>
+            )}
+            {errors.photos && (
+              <Alert severity="error" variant="outlined" style={{ width: '100%' }}>
+                {errors.photos}
+              </Alert>
             )}
             {values.video && (
               <AppBox flexDirection="column" spacing={2} width="100%">

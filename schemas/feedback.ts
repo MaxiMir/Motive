@@ -2,7 +2,6 @@ import { object, string } from 'yup'
 
 export default object().shape({
   text: string()
-    .min(3)
     .max(400)
     .when('photos', {
       is: (photos: File[]) => !photos.length,

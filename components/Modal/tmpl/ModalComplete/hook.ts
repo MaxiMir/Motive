@@ -1,11 +1,12 @@
 import { useFormik } from 'formik'
 import { GoalDto } from 'dto'
 import GoalService from 'services/GoalService'
-import { UseFormType } from 'hooks/useFormType'
+import { UseFormType } from 'types'
 import useSend from 'hooks/useSend'
+import schema from 'schemas/complete'
 
 interface Values {
-  text: string
+  description: string
   photos: File[]
   video: ''
 }
@@ -14,17 +15,16 @@ export default function useForm(goal: GoalDto, onClose: () => void): UseFormType
   const { isLoading, send } = useSendComplete(onClose)
   const formik = useFormik<Values>({
     initialValues: {
-      text: '',
+      description: '',
       photos: [],
       video: '',
     },
-    // validationSchema: schema,
+    validationSchema: schema,
     async onSubmit(data) {
       const formData = new FormData()
 
-      formData.append('text', data.text.trim())
+      formData.append('description', data.description.trim())
       data.photos.forEach((photo) => formData.append('photos', photo))
-
       send({ id: goal.days[0].id, body: formData })
     },
   })

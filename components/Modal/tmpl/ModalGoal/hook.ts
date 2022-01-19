@@ -4,10 +4,10 @@ import { GoalCreationDto, GoalDto } from 'dto'
 import GoalService from 'services/GoalService'
 import useSend from 'hooks/useSend'
 import useSnackbar from 'hooks/useSnackbar'
-import { UseFormType } from 'hooks/useFormType'
+import { UseFormType } from 'types'
 import { useMutateGoals } from 'views/User/hook'
 import { scrollToElem } from 'helpers/dom'
-import schema from './schema'
+import schema from 'schemas/goal'
 
 export default function useForm(onClose: () => void): UseFormType<GoalCreationDto> {
   const { isLoading, send } = useSendCreateGoal(onClose)

@@ -4,9 +4,9 @@ import { DayCreationDto, GoalDto } from 'dto'
 import GoalService from 'services/GoalService'
 import useSend from 'hooks/useSend'
 import useChangeDayUrl from 'hooks/useChangeDayUrl'
-import { UseFormType } from 'hooks/useFormType'
+import { UseFormType } from 'types'
 import { useMutatePage } from 'views/User/hook'
-import schema from './schema'
+import schema from 'schemas/tasks'
 
 export default function useForm(goal: GoalDto, onClose: () => void): UseFormType<DayCreationDto> {
   const { isLoading, send } = useSendAddDay(goal, onClose)

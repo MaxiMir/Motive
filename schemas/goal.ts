@@ -1,5 +1,5 @@
 import { object, string } from 'yup'
-import { taskSchema } from '../ModalTasks/schema'
+import taskSchema from 'schemas/tasks'
 
 export default object({
   name: string().trim().required('Goal name needed').min(5, "It's too short.").max(32, "It's so long."),

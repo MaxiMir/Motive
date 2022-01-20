@@ -24,12 +24,12 @@ export default function Header({ isAuthenticated }: HeaderProps): JSX.Element {
           <LeftMenu />
           {!isAuthenticated ? (
             <Button href={LOGIN_IN_ROUTE}>
-              <AppIcon name="login" className={classes.icon} />
+              <AppIcon name="login" />
             </Button>
           ) : (
             <Button href={LOGIN_IN_ROUTE}>
               <Badge color="error" badgeContent="" variant="dot" invisible={false}>
-                <AppIcon name="notifications_none" className={classes.icon} />
+                <AppIcon name="notifications_none" />
               </Badge>
             </Button>
           )}
@@ -45,8 +45,5 @@ const useStyles = makeStyles({
     flexGrow: 1,
     backgroundColor: '#121212',
     boxShadow: 'none',
-  },
-  icon: {
-    fontColor: '#ffffff',
   },
 })

@@ -16,4 +16,4 @@ export const getUserMeta = (user?: UserDetailDto): UserMeta => ({
   type: 'profile',
 })
 
-export const getUserHref = (nickname: string): string => `/${nickname}`
+export const getUserHref = (nickname: string): string => `/${nickname}/`

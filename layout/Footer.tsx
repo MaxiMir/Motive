@@ -1,12 +1,13 @@
 import React from 'react'
 import { useRouter } from 'next/router'
+import clsx from 'clsx'
 import { makeStyles } from '@material-ui/core/styles'
 import { FOLLOWING_ROUTE, PROFILE_ROUTE, RATING_ROUTE, SEARCH_ROUTE, TOP_OF_THE_DAY_ROUTE } from 'route'
+import { getUserHref } from 'views/User/helper'
 import AppBox from 'components/UI/AppBox'
 import AppLink from 'components/UI/AppLink'
 import AppContainer from 'components/UI/AppContainer'
 import { TopOfTheDayIcon, SearchIcon, RatingIcon, FollowingIcon, ProfileIcon } from 'components/UI/icons'
-import { getUserHref } from '../views/User/helper'
 
 const ROUTES = [
   {
@@ -35,10 +36,12 @@ export default function Footer({ nickname }: FooterProps): JSX.Element {
   return (
     <footer className={classes.root}>
       <AppContainer>
-        <AppBox justifyContent="space-between" alignItems="center" height={80}>
+        <AppBox justifyContent="space-between" alignItems="center" height={65}>
           {allRoutes.map(({ href, title, Icon }) => (
             <AppLink href={href} key={title} title={title}>
-              <Icon fontSize="large" className={!asPath.includes(href) ? classes.link : classes.currentLink} />
+              <Icon
+                className={clsx([classes.icon, !asPath.includes(href) ? classes.iconDefault : classes.iconSelected])}
+              />
             </AppLink>
           ))}
         </AppBox>
@@ -51,13 +54,16 @@ const useStyles = makeStyles({
   root: {
     backgroundColor: '#121212',
   },
-  link: {
+  icon: {
+    fontSize: '1.9rem',
+  },
+  iconDefault: {
     transition: 'all .2s ease-in-out',
     '&:hover': {
       transform: 'scale(1.1)',
     },
   },
-  currentLink: {
+  iconSelected: {
     opacity: 0.6,
   },
 })

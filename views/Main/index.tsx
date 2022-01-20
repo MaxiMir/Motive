@@ -11,7 +11,7 @@ export default function Main(): JSX.Element {
     <>
       <Slogan />
       {ADVANTAGES.map((advantage) => (
-        <AppBox style={{ height: 'calc((100vh - 256px ) / 4)' }} key={advantage.name}>
+        <AppBox style={{ height: 'calc(25vh - 61.25px)' }} key={advantage.name}>
           <Advantage {...advantage} color={colors[advantage.name]} />
         </AppBox>
       ))}

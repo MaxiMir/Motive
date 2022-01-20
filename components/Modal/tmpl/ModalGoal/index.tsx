@@ -126,8 +126,10 @@ export default function ModalGoal({ onClose }: ModalGoalProps): JSX.Element {
                     <br />
                     The accumulated points{' '}
                     {CHARACTERISTIC_NAMES.map((name) => (
-                      <AppEmoji name={name} onlyEmoji key={name} />
-                    ))}{' '}
+                      <>
+                        <AppEmoji name={name} onlyEmoji key={name} />{' '}
+                      </>
+                    ))}
                     will burn out.
                     <br />
                     And the number of abandoned goals increases.

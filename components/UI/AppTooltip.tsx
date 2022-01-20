@@ -1,7 +1,7 @@
 import { FC } from 'react'
 import { Tooltip, TooltipProps } from '@material-ui/core'
 
-interface AppTooltipProps {
+export interface AppTooltipProps {
   title: TooltipProps['title']
   className?: string
 }

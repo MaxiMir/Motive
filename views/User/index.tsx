@@ -53,6 +53,7 @@ export default function User({ user, client }: DetailProps): JSX.Element {
                   name={characteristicName}
                   value={characteristic[characteristicName]}
                   color={characteristicColors[characteristicName].fontColor}
+                  href={href}
                   key={characteristicName}
                 />
               ))}
@@ -63,6 +64,7 @@ export default function User({ user, client }: DetailProps): JSX.Element {
                   name={characteristicName}
                   value={characteristic[characteristicName]}
                   color={characteristicColors[characteristicName].fontColor}
+                  href={href}
                   key={characteristicName}
                 />
               ))}

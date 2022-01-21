@@ -3,7 +3,7 @@ import { Service } from './Service'
 
 export default class SubscriptionService extends Service {
   /**
-   * /subscription?operation=add|remove
+   * /subscriptions?operation=add|remove
    */
   static updateFollowing(data: { id: number; add: boolean }): Promise<void> {
     const { id, add } = data

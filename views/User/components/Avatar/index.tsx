@@ -24,7 +24,7 @@ export default function Avatar({ avatar, characteristic, characteristicColors }:
         </AppBox>
       ))}
       <AppBox justifyContent="center" alignItems="center" className={classes.circle}>
-        <AppAvatar urn={avatar} size={81} />
+        <AppAvatar src={avatar} size={81} />
       </AppBox>
     </AppBox>
   )

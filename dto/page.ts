@@ -19,9 +19,9 @@ export type RatingPageDto = Page<{ [k in MainCharacteristicName]: UserDto[] }>
 
 export type RatingPageSWRDto = PageSWR<RatingPageDto>
 
-export type FollowingPageDto = Page<UserDto[]>
+export type SubscriptionPageDto = Page<UserDto[]>
 
-export type FollowingPageSWRDto = PageSWR<FollowingPageDto>
+export type SubscriptionPageSWRDto = PageSWR<SubscriptionPageDto>
 
 export type UserPageDto = Page<UserDetailDto>
 

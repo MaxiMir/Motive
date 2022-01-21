@@ -17,7 +17,7 @@ export default function UserCardAvatar({ user, size }: UserCardAvatarProps): JSX
 
   return (
     <AppLink title={name} href={href} className={classes.avatarLink}>
-      <AppAvatar urn={avatar} size={size} />
+      <AppAvatar src={avatar} size={size} />
     </AppLink>
   )
 }

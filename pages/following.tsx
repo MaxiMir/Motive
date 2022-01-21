@@ -1,12 +1,12 @@
 import React from 'react'
 import { GetServerSideProps } from 'next'
-import { FollowingPageSWRDto } from 'dto'
+import { SubscriptionPageSWRDto } from 'dto'
 import PageService from 'services/PageService'
 import useFollowingPage from 'hooks/useFollowingPage'
 import Layout from 'layout'
 import Following from 'views/Following'
 
-export default function FollowingPage({ fallbackData }: FollowingPageSWRDto): JSX.Element {
+export default function FollowingPage({ fallbackData }: SubscriptionPageSWRDto): JSX.Element {
   const [{ data, error }, mutate] = useFollowingPage(fallbackData)
   const isAuthorized = !!data?.client?.id // todo check on auth
 

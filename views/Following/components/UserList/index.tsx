@@ -2,7 +2,9 @@ import React from 'react'
 import { UserDto } from 'dto'
 import UserCard from 'components/UserCard'
 import AppList from 'components/UI/AppList'
+import { getUserHref } from 'views/User/helper'
 import useRemoveFollowing from './hook'
+import Menu from './components/Menu'
 
 interface FavoriteListProps {
   users: UserDto[]
@@ -17,7 +19,13 @@ export default function UserList({ users, isAuthorized, mutate }: FavoriteListPr
     <AppList
       elements={users}
       spacing={4}
-      render={(user) => <UserCard tmpl="following" user={user} onRemove={() => onRemove(user.id)} />}
+      render={(user) => (
+        <UserCard
+          tmpl="characteristic"
+          user={user}
+          menu={<Menu title={user.name} href={getUserHref(user.nickname)} onRemove={() => onRemove(user.id)} />}
+        />
+      )}
       keyGetter={(user) => user.id.toString()}
     />
   )

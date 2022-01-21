@@ -49,7 +49,7 @@ export default function UserCardRating({ user, characteristicName, color, index 
           <Grid item xs={8}>
             <AppBox alignItems="center" spacing={2}>
               <AppLink href={href} className={classes.avatarLink}>
-                <AppAvatar urn={avatar} size={35} />
+                <AppAvatar src={avatar} size={35} />
               </AppLink>
               <AppLink href={href} variant="body1">
                 {name}

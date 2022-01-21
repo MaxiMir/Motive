@@ -1,5 +1,5 @@
 import Axios from 'lib/axios'
-import { FollowingPageDto, GoalDto, MainPageDto, RatingPageDto, UserDto, UserPageDto } from 'dto'
+import { SubscriptionPageDto, GoalDto, MainPageDto, RatingPageDto, UserPageDto } from 'dto'
 
 export default class PageService {
   static async getMain(): Promise<MainPageDto> {
@@ -10,7 +10,7 @@ export default class PageService {
     return Axios.get('/pages/rating')
   }
 
-  static async getFollowing(): Promise<FollowingPageDto> {
+  static async getFollowing(): Promise<SubscriptionPageDto> {
     return Axios.get('/pages/following')
   }
 
@@ -22,7 +22,7 @@ export default class PageService {
     return Axios.get(`/pages/users/${nickname}/completed`, { validateStatus: () => true })
   }
 
-  static getFollowers(nickname: string): Promise<UserDto[]> {
+  static getFollowers(nickname: string): Promise<SubscriptionPageDto> {
     return Axios.get(`/pages/users/${nickname}/followers`, { validateStatus: () => true })
   }
 

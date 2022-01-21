@@ -3,15 +3,15 @@ import Image from 'next/image'
 import { getImageUrl } from 'helpers/url'
 
 interface AppAvatarProps {
-  urn: string
+  src: string
   size: number
 }
 
-export default function AppAvatar({ urn, size }: AppAvatarProps): JSX.Element {
+export default function AppAvatar({ src, size }: AppAvatarProps): JSX.Element {
   const classes = useStyles()
-  const src = getImageUrl(urn)
+  const fullSrc = getImageUrl(src)
 
-  return <Image src={src} alt="" width={size} height={size} objectFit="cover" className={classes.avatar} />
+  return <Image src={fullSrc} alt="" width={size} height={size} objectFit="cover" className={classes.avatar} />
 }
 
 const useStyles = makeStyles({

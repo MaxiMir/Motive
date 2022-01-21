@@ -1,5 +1,4 @@
 import { Fragment } from 'react'
-import { makeStyles } from '@material-ui/core/styles'
 import { UserDto, UserCharacteristicName } from 'dto'
 import useCharacteristicColors from 'hooks/useCharacteristicColors'
 import { getUserHref } from 'views/User/helper'
@@ -9,27 +8,25 @@ import AppLink from 'components/UI/AppLink'
 import AppDot from 'components/UI/AppDot'
 import AppTypography from 'components/UI/AppTypography'
 import AppAvatar from 'components/UI/AppAvatar'
-import Menu from './components/Menu'
 
 const CHARACTERISTICS: UserCharacteristicName[] = ['motivation', 'creativity', 'support', 'completed']
 const LAST_CHARACTERISTIC_INDEX = 3
 
-export interface UserCardFollowingProps {
-  tmpl: 'following'
+export interface UserCardCharacteristicProps {
+  tmpl: 'characteristic'
   user: UserDto
-  onRemove: () => void
+  menu?: JSX.Element
 }
 
-export default function UserCardFollowing({ user, onRemove }: UserCardFollowingProps): JSX.Element {
+export default function UserCardCharacteristic({ user, menu }: UserCardCharacteristicProps): JSX.Element {
   const { nickname, avatar, name, characteristic } = user
-  const classes = useStyles()
   const colors = useCharacteristicColors()
   const href = getUserHref(nickname)
 
   return (
     <AppBox spacing={1}>
-      <AppLink href={href} className={classes.avatarLink}>
-        <AppAvatar urn={avatar} size={55} />
+      <AppLink href={href}>
+        <AppAvatar src={avatar} size={55} />
       </AppLink>
       <AppBox flexDirection="column" justifyContent="space-between" flex={1}>
         <AppBox justifyContent="space-between" alignItems="center">
@@ -38,7 +35,7 @@ export default function UserCardFollowing({ user, onRemove }: UserCardFollowingP
               {name}
             </AppTypography>
           </AppLink>
-          <Menu title={name} href={href} onRemove={onRemove} />
+          {menu}
         </AppBox>
         <AppBox justifyContent="space-between" alignItems="center">
           {CHARACTERISTICS.map((characteristicName, index) => (
@@ -57,10 +54,3 @@ export default function UserCardFollowing({ user, onRemove }: UserCardFollowingP
     </AppBox>
   )
 }
-
-const useStyles = makeStyles({
-  avatarLink: {
-    width: 55,
-    height: 55,
-  },
-})

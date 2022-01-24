@@ -1,3 +1,4 @@
+import { Fragment } from 'react'
 import { Field, FieldArray, Form, FormikProvider } from 'formik'
 import { makeStyles } from '@material-ui/core/styles'
 import { Accordion, AccordionDetails, AccordionSummary, Button, createStyles } from '@material-ui/core'
@@ -102,41 +103,39 @@ export default function ModalGoal({ onClose }: ModalGoalProps): JSX.Element {
                 )}
               </FieldArray>
             </AppBox>
-            <AppBox flexDirection="column" spacing={2}>
-              <Accordion>
-                <AccordionSummary
-                  expandIcon={<AppIcon name="expand_more" color="primary" />}
-                  aria-controls="old-pitt-note"
-                  id="old-pitt-note"
-                >
-                  <AppBox alignItems="center" spacing={1}>
-                    <PaulIcon />
-                    <AppTypography variant="h6" component="h3" color="primary">
-                      Remember Old Pitt!
-                    </AppTypography>
-                  </AppBox>
-                </AccordionSummary>
-                <AccordionDetails>
-                  <AppTypography className={classes.hint}>
-                    He hunts for abandoned goals.
-                    <br />
-                    On the 14th day he covers them 🕸.
-                    <br />
-                    On the 28th day he eats them 🩸.
-                    <br />
-                    The accumulated points{' '}
-                    {CHARACTERISTIC_NAMES.map((name) => (
-                      <>
-                        <AppEmoji name={name} onlyEmoji key={name} />{' '}
-                      </>
-                    ))}
-                    will burn out.
-                    <br />
-                    And the number of abandoned goals increases.
+            <Accordion>
+              <AccordionSummary
+                expandIcon={<AppIcon name="expand_more" color="primary" />}
+                aria-controls="old-pitt-note"
+                id="old-pitt-note"
+              >
+                <AppBox alignItems="center" spacing={1}>
+                  <PaulIcon />
+                  <AppTypography variant="h6" component="h3" color="primary">
+                    Remember Old Pitt!
                   </AppTypography>
-                </AccordionDetails>
-              </Accordion>
-            </AppBox>
+                </AppBox>
+              </AccordionSummary>
+              <AccordionDetails>
+                <AppTypography className={classes.hint}>
+                  He hunts for abandoned goals.
+                  <br />
+                  On the 14th day he covers them 🕸.
+                  <br />
+                  On the 28th day he eats them 🩸.
+                  <br />
+                  The accumulated points{' '}
+                  {CHARACTERISTIC_NAMES.map((name) => (
+                    <Fragment key={name}>
+                      <AppEmoji name={name} onlyEmoji />{' '}
+                    </Fragment>
+                  ))}
+                  will burn out.
+                  <br />
+                  And the number of abandoned goals increases.
+                </AppTypography>
+              </AccordionDetails>
+            </Accordion>
           </AppBox>
         </Form>
       </FormikProvider>

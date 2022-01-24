@@ -7,7 +7,7 @@ export type PageSWR<T> = {
 }
 
 type Page<T> = {
-  client: UserBaseDto
+  client?: UserBaseDto
   content: T
 }
 

@@ -2,10 +2,10 @@ import { GetServerSideProps } from 'next'
 import { UserPageSWRDto } from 'dto'
 import { UserPageContext } from 'context/userPageContext'
 import PageService from 'services/PageService'
-import useUserPage from 'hooks/useUserPage'
-import { getUserMeta } from 'views/User/helper'
+import { getUserMeta } from 'views/UserView/helper'
 import Layout from 'layout'
-import User from 'views/User'
+import UserView from 'views/UserView'
+import useUserPage from 'views/UserView/hook'
 
 export default function UserDetail({ fallbackData }: UserPageSWRDto): JSX.Element {
   const { data, error } = useUserPage(fallbackData)
@@ -14,7 +14,7 @@ export default function UserDetail({ fallbackData }: UserPageSWRDto): JSX.Elemen
   return (
     <UserPageContext.Provider value={data}>
       <Layout {...userMeta} client={data?.client} error={error}>
-        {data?.content && <User user={data?.content} client={data?.client} />}
+        {data?.content && <UserView user={data?.content} client={data?.client} />}
       </Layout>
     </UserPageContext.Provider>
   )

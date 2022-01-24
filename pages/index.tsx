@@ -2,10 +2,10 @@ import { GetServerSideProps } from 'next'
 import { MainPageSWRDto } from 'dto'
 import PageService from 'services/PageService'
 import Layout from 'layout'
-import useHomePage from 'views/Main/hook'
-import Main from 'views/Main'
+import useHomePage from 'views/MainView/hook'
+import MainView from 'views/MainView'
 
-export default function HomePage({ fallbackData }: MainPageSWRDto): JSX.Element {
+export default function MainPage({ fallbackData }: MainPageSWRDto): JSX.Element {
   const { data, error } = useHomePage(fallbackData)
 
   return (
@@ -16,7 +16,7 @@ export default function HomePage({ fallbackData }: MainPageSWRDto): JSX.Element 
       client={data?.client}
       withVerticalPadding={false}
     >
-      <Main />
+      <MainView />
     </Layout>
   )
 }

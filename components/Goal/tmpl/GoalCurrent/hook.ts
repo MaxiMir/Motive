@@ -3,7 +3,7 @@ import { GoalDto } from 'dto'
 import DayService from 'services/DayService'
 import useSend from 'hooks/useSend'
 import useChangeDayUrl from 'hooks/useChangeDayUrl'
-import { useMutateGoals } from 'views/User/hook'
+import { useMutateGoals } from 'views/UserView/hook'
 
 export default function useChangeDay(goalId: number): [boolean, (dayId: number) => void] {
   const [goals, mutateGoals] = useMutateGoals()

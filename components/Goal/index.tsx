@@ -7,7 +7,7 @@ const GoalCurrent = dynamic(() => import('./tmpl/GoalCurrent'))
 export default function Goal(props: GoalCurrentProps): JSX.Element {
   const { client, goal } = props
 
-  useIncreaseViews(client, goal)
+  useIncreaseViews(goal, client)
 
   switch (props.tmpl) {
     case 'current':

@@ -5,7 +5,7 @@ import GoalService from 'services/GoalService'
 import useSend from 'hooks/useSend'
 import useChangeDayUrl from 'hooks/useChangeDayUrl'
 import { UseFormType } from 'types'
-import { useMutatePage } from 'views/User/hook'
+import { useMutatePage } from 'views/UserView/hook'
 import schema from 'schemas/tasks'
 
 export default function useForm(goal: GoalDto, onClose: () => void): UseFormType<DayCreationDto> {

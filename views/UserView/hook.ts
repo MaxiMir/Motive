@@ -1,10 +1,22 @@
 import { useEffect, useContext } from 'react'
 import { useRouter } from 'next/router'
+import useSWR, { SWRResponse } from 'swr'
 import produce from 'immer'
 import { scrollToElem } from 'helpers/dom'
 import { GoalDto, UserPageDto } from 'dto'
 import { UserPageContext } from 'context/userPageContext'
 import usePartialMutate, { PartialMutate } from 'hooks/usePartialMutate'
+import PageService from 'services/PageService'
+
+export default function useUserPage(fallbackData: UserPageDto): SWRResponse<UserPageDto> {
+  const { key, urn } = usePageSWRConfig()
+
+  return useSWR(
+    key,
+    () => PageService.getUser(typeof window === 'undefined' ? urn : window.location.pathname + window.location.search),
+    { fallbackData },
+  )
+}
 
 export const usePageSWRConfig = (): { key: string; urn: string } => {
   const router = useRouter()

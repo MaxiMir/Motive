@@ -1,6 +1,7 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import dynamic from 'next/dynamic'
-import { Button, makeStyles } from '@material-ui/core'
+import { useRouter } from 'next/router'
+import { Button, createStyles, makeStyles } from '@material-ui/core'
 import { UserDetailDto, UserCharacteristicName } from 'dto'
 import CharacteristicBase from 'components/Characteristic'
 import AppBox from 'components/UI/AppBox'
@@ -20,6 +21,7 @@ interface CharacteristicProps {
 
 export default function Characteristic(props: CharacteristicProps): JSX.Element {
   const { user, color, name, title } = props
+  const router = useRouter()
   const classes = useStyles({ color })
   const [modal, setModal] = useState<'followers'>()
 
@@ -31,6 +33,8 @@ export default function Characteristic(props: CharacteristicProps): JSX.Element 
   }
 
   const onClose = () => setModal(undefined)
+
+  useEffect(onClose, [router.asPath])
 
   return (
     <>
@@ -47,12 +51,17 @@ export default function Characteristic(props: CharacteristicProps): JSX.Element 
   )
 }
 
-const useStyles = makeStyles({
-  button: {
-    textTransform: 'none',
-  },
-  title: {
-    fontSize: '0.75rem',
-    color: (props: { color: string }) => props.color,
-  },
-})
+const useStyles = makeStyles((theme) =>
+  createStyles({
+    button: {
+      textTransform: 'none',
+      [theme.breakpoints.down('xs')]: {
+        padding: '6px 4px',
+      },
+    },
+    title: {
+      fontSize: '0.75rem',
+      color: (props: { color: string }) => props.color,
+    },
+  }),
+)

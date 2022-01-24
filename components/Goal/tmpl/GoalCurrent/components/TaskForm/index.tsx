@@ -19,7 +19,7 @@ interface FormProps {
 export default function TaskForm({ goalId, task, rest, client, role, forTomorrow }: FormProps): JSX.Element {
   const { id, name, completed, completedBy, date } = task
   const label = name + (completedBy.length && !completed ? ' 🔥' : '')
-  const checked = role === 'OWNER' ? completed : completedBy.includes(client.id)
+  const checked = role === 'OWNER' ? completed : completedBy.includes(client?.id)
   const setCompleted = useSetCompleted(id, goalId, rest)
 
   return (

@@ -1,7 +1,7 @@
 import { makeStyles } from '@material-ui/core/styles'
 import { Container, Grid } from '@material-ui/core'
 import { UserDto, UserCharacteristicName } from 'dto'
-import { getUserHref } from 'views/User/helper'
+import { getUserHref } from 'views/UserView/helper'
 import AppBox from 'components/UI/AppBox'
 import AppLink from 'components/UI/AppLink'
 import AppTypography from 'components/UI/AppTypography'

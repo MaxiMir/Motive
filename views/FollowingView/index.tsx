@@ -7,19 +7,19 @@ import AppContainer from 'components/UI/AppContainer'
 const EmptyList = dynamic(() => import('./components/EmptyList'))
 const UserList = dynamic(() => import('./components/UserList'))
 
-interface FollowingProps {
+interface FollowingViewProps {
   users: UserDto[]
   isAuthorized: boolean
-  mutate: (user: UserDto[]) => void
+  mutateUsers: (user: UserDto[]) => void
 }
 
-export default function Following({ users, isAuthorized, mutate }: FollowingProps): JSX.Element {
+export default function FollowingView({ users, isAuthorized, mutateUsers }: FollowingViewProps): JSX.Element {
   return (
     <AppContainer flexColumn>
       <AppHeader name="following" mb={4}>
         Following
       </AppHeader>
-      {!users.length ? <EmptyList /> : <UserList users={users} isAuthorized={isAuthorized} mutate={mutate} />}
+      {!users.length ? <EmptyList /> : <UserList users={users} isAuthorized={isAuthorized} mutateUsers={mutateUsers} />}
     </AppContainer>
   )
 }

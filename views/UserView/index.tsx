@@ -2,7 +2,7 @@ import React from 'react'
 import dynamic from 'next/dynamic'
 import { useMediaQuery, useTheme } from '@material-ui/core'
 import { UserDetailDto, UserCharacteristicName, UserBaseDto, MainCharacteristicName } from 'dto'
-import { getCharacteristicsTitle, getUserHref } from 'views/User/helper'
+import { getCharacteristicsTitle, getUserHref } from 'views/UserView/helper'
 import useCharacteristicColors from 'hooks/useCharacteristicColors'
 import AppBox from 'components/UI/AppBox'
 import AppContainer from 'components/UI/AppContainer'
@@ -19,20 +19,20 @@ const Goal = dynamic(() => import('components/Goal'))
 const CHARACTERISTIC_NAMES: MainCharacteristicName[] = ['motivation', 'creativity', 'support']
 const SECOND_CHARACTERISTIC_NAMES: UserCharacteristicName[] = ['completed', 'abandoned', 'followers']
 
-export interface DetailProps {
+export interface UserViewProps {
   user: UserDetailDto
-  client: UserBaseDto
+  client?: UserBaseDto
 }
 
-export default function User({ user, client }: DetailProps): JSX.Element {
+export default function UserView({ user, client }: UserViewProps): JSX.Element {
   const { id, nickname, name, avatar, characteristic, goals, isFollowing } = user
   const theme = useTheme()
   const characteristicColors = useCharacteristicColors()
   const isMobile = useMediaQuery(theme.breakpoints.down('sm'))
-  const isAuthorized = !!client.id // todo check on auth
-  const isOwner = isAuthorized && id === client.id
   const href = getUserHref(nickname)
   const characteristicsTitle = getCharacteristicsTitle()
+  const isAuthorized = !!client
+  const isOwner = isAuthorized && id === client?.id
 
   useScrollToGoal()
 

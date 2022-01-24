@@ -4,7 +4,7 @@ import SubscriptionService from 'services/SubscriptionService'
 import useDebounceCb from 'hooks/useDebounceCb'
 import useSend from 'hooks/useSend'
 import useSnackbar from 'hooks/useSnackbar'
-import { useMutatePage } from 'views/User/hook'
+import { useMutatePage } from 'views/UserView/hook'
 
 export default function useSetFollowing(id: number, following: boolean, isAuthorized: boolean): () => void {
   const [page, mutate] = useMutatePage()

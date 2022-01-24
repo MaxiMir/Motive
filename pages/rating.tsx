@@ -2,8 +2,8 @@ import { GetServerSideProps } from 'next'
 import { RatingPageSWRDto } from 'dto'
 import PageService from 'services/PageService'
 import Layout from 'layout'
-import Rating from 'views/Rating'
-import useRatingPage from 'views/Rating/hook'
+import Rating from 'views/RatingView'
+import useRatingPage from 'views/RatingView/hook'
 
 export default function RatingPage({ fallbackData }: RatingPageSWRDto): JSX.Element {
   const { data, error } = useRatingPage(fallbackData)

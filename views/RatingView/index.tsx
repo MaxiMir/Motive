@@ -9,11 +9,11 @@ import TabName from './components/TabName'
 
 const TAB_NAMES: MainCharacteristicName[] = ['motivation', 'creativity', 'support']
 
-type RatingProps = {
+type RatingViewProps = {
   [k in MainCharacteristicName]: UserDto[]
 }
 
-export default function Rating(props: RatingProps): JSX.Element {
+export default function RatingView(props: RatingViewProps): JSX.Element {
   const { query } = useRouter()
 
   return (

@@ -5,7 +5,7 @@ import GoalService from 'services/GoalService'
 import useSend from 'hooks/useSend'
 import useSnackbar from 'hooks/useSnackbar'
 import { UseFormType } from 'types'
-import { useMutateGoals } from 'views/User/hook'
+import { useMutateGoals } from 'views/UserView/hook'
 import { scrollToElem } from 'helpers/dom'
 import schema from 'schemas/goal'
 

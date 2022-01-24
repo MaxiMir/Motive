@@ -11,16 +11,16 @@ export interface ViewerProps {
   goal: GoalDto
   characteristic: DayCharacteristicDto | null
   owner: UserBaseDto
-  clientId: number
+  client?: UserBaseDto
 }
 
-export default function Viewer({ role, goal, characteristic, owner, clientId }: ViewerProps): JSX.Element {
-  const activeMap = useMemo(getActiveMap, [characteristic?.creativity, characteristic?.motivation, clientId])
+export default function Viewer({ role, goal, characteristic, owner, client }: ViewerProps): JSX.Element {
+  const activeMap = useMemo(getActiveMap, [characteristic?.creativity, characteristic?.motivation, client])
 
   function getActiveMap() {
     return {
-      motivation: Boolean(clientId && characteristic?.motivation?.includes(clientId)),
-      creativity: Boolean(clientId && characteristic?.creativity?.includes(clientId)),
+      motivation: Boolean(client && characteristic?.motivation?.includes(client.id)),
+      creativity: Boolean(client && characteristic?.creativity?.includes(client.id)),
       support: false,
     }
   }
@@ -29,7 +29,7 @@ export default function Viewer({ role, goal, characteristic, owner, clientId }: 
     <AppBox justifyContent="space-between">
       <AppBox spacing={1}>
         {(['motivation', 'creativity'] as DayCharacteristicName[]).map((name) => (
-          <ReactionWithSend goal={goal} name={name} active={activeMap[name]} clientId={clientId} key={name} />
+          <ReactionWithSend goal={goal} name={name} active={activeMap[name]} client={client} key={name} />
         ))}
         <Reaction
           name="support"

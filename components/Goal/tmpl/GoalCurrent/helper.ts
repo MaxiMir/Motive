@@ -14,9 +14,9 @@ export const getGoalHref = (userHref: string, goal: GoalDto): string => {
 const checkOnWeb = (dayDate: string, currentDate: Date, lastDay: boolean): boolean =>
   lastDay && differenceInDays(currentDate, Date.parse(dayDate)) >= SHOW_WEB_AFTER_DAYS
 
-export const getRole = (client: UserBaseDto, goal: GoalDto): RoleDto => {
+export const getRole = (goal: GoalDto, client?: UserBaseDto): RoleDto => {
   switch (true) {
-    case goal.owner.id === client.id:
+    case goal.owner.id === client?.id:
       return 'OWNER'
     default:
       return 'GUEST'

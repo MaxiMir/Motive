@@ -8,7 +8,7 @@ interface ErrorProps {
   code: number
 }
 
-export default function Error({ title, code }: ErrorProps): JSX.Element {
+export default function ErrorView({ title, code }: ErrorProps): JSX.Element {
   return (
     <Container fixed>
       <AppBox alignItems="center" justifyContent="center" height="70vh">

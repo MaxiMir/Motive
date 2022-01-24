@@ -1,17 +1,17 @@
 import { useRef } from 'react'
 import produce from 'immer'
-import { DayCharacteristicName, GoalDto } from 'dto'
+import { DayCharacteristicName, GoalDto, UserBaseDto } from 'dto'
 import GoalService from 'services/GoalService'
 import useDebounceCb from 'hooks/useDebounceCb'
 import useSnackbar from 'hooks/useSnackbar'
 import useSend from 'hooks/useSend'
-import { useMutateGoals } from 'views/User/hook'
+import { useMutateGoals } from 'views/UserView/hook'
 
 export default function useSetReaction(
   goal: GoalDto,
   name: DayCharacteristicName,
   active: boolean,
-  clientId: number,
+  client?: UserBaseDto,
 ): () => void {
   const { id, days } = goal
   const lastAddRef = useRef(active)
@@ -33,7 +33,7 @@ export default function useSetReaction(
       rollbackCharacteristic()
     },
   })
-  const isAuthorized = !!clientId // todo check on auth
+  const isAuthorized = !!client // todo check on auth
 
   const sendWithDebounce = useDebounceCb((add: boolean) => {
     lastAddRef.current !== add && send({ id, dayId: days[0].id, name, add })
@@ -48,12 +48,12 @@ export default function useSetReaction(
         draftGoal.characteristic[name] += add ? 1 : -1
         draftDay.characteristic ||= { motivation: [], creativity: [] }
 
-        if (add) {
-          draftDay.characteristic[name].push(clientId)
+        if (add && client?.id) {
+          draftDay.characteristic[name].push(client.id)
           return
         }
 
-        draftDay.characteristic[name] = draftDay.characteristic[name].filter((u) => u !== clientId)
+        draftDay.characteristic[name] = draftDay.characteristic[name].filter((u) => u !== client?.id)
       }),
     )
   }

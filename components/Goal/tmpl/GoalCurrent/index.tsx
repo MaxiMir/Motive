@@ -30,7 +30,7 @@ const CHARACTERISTICS: GoalCharacteristicName[] = ['motivation', 'creativity', '
 export interface GoalCurrentProps {
   tmpl: 'current'
   goal: GoalDto
-  client: UserBaseDto
+  client?: UserBaseDto
   href: string
 }
 
@@ -44,7 +44,7 @@ export default function GoalCurrent({ goal, client, href }: GoalCurrentProps): J
   const datesMap = useMemo(getDatesMap, [date, dayId, goal.calendar])
   const [isLoading, onChangeDay] = useChangeDay(id)
   const [discussionCount, setDiscussionCount] = useState(day.discussionCount)
-  const role = getRole(client, goal)
+  const role = getRole(goal, client)
   const goalHref = getGoalHref(href, goal)
   const { runsForDays, withWeb, withForm, withReactions, forTomorrow } = getGoalInfo(datesMap, goal, role)
   const rest = tasks.length - tasks.filter((t) => t.completed).length
@@ -104,8 +104,8 @@ export default function GoalCurrent({ goal, client, href }: GoalCurrentProps): J
                             goalId={id}
                             task={task}
                             rest={rest}
-                            client={client}
                             role={role}
+                            client={client as UserBaseDto}
                             forTomorrow={forTomorrow}
                           />
                         )}
@@ -154,7 +154,7 @@ export default function GoalCurrent({ goal, client, href }: GoalCurrentProps): J
                 characteristic={day.characteristic}
                 owner={owner}
                 role={role}
-                clientId={client.id}
+                client={client}
                 forTomorrow={forTomorrow}
               />
             )}

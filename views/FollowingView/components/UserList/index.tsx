@@ -2,18 +2,18 @@ import React from 'react'
 import { UserDto } from 'dto'
 import User from 'components/User'
 import AppList from 'components/UI/AppList'
-import { getUserHref } from 'views/User/helper'
+import { getUserHref } from 'views/UserView/helper'
 import useRemoveFollowing from './hook'
 import Menu from './components/Menu'
 
 interface FavoriteListProps {
   users: UserDto[]
   isAuthorized: boolean
-  mutate: (user: UserDto[]) => void
+  mutateUsers: (user: UserDto[]) => void
 }
 
-export default function UserList({ users, isAuthorized, mutate }: FavoriteListProps): JSX.Element {
-  const onRemove = useRemoveFollowing(users, isAuthorized, mutate)
+export default function UserList({ users, isAuthorized, mutateUsers }: FavoriteListProps): JSX.Element {
+  const onRemove = useRemoveFollowing(users, isAuthorized, mutateUsers)
 
   return (
     <AppList

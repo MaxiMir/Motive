@@ -1,6 +1,6 @@
 import { makeStyles } from '@material-ui/core/styles'
 import { UserBaseDto } from 'dto'
-import { getUserHref } from 'views/User/helper'
+import { getUserHref } from 'views/UserView/helper'
 import AppLink from 'components/UI/AppLink'
 import AppAvatar from 'components/UI/AppAvatar'
 

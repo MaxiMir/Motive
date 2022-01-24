@@ -10,7 +10,7 @@ type UseRemoveFollowingUser = (id: number) => void
 export default function useRemoveFollowing(
   users: UserDto[],
   isAuthorized: boolean,
-  mutate: (user: UserDto[]) => void,
+  mutateUsers: (user: UserDto[]) => void,
 ): UseRemoveFollowingUser {
   const backupRef = useRef(users)
   const { enqueueSnackbar, closeSnackbar } = useSnackbar()
@@ -25,12 +25,12 @@ export default function useRemoveFollowing(
         })
     },
     onError: () => {
-      mutate(backupRef.current)
+      mutateUsers(backupRef.current)
     },
   })
 
   function onUndo(id: number) {
-    mutate(backupRef.current)
+    mutateUsers(backupRef.current)
     closeSnackbar()
     send({ id, add: true })
   }
@@ -42,7 +42,7 @@ export default function useRemoveFollowing(
     }
 
     backupRef.current = users
-    mutate(users.filter((f) => f.id !== id))
+    mutateUsers(users.filter((f) => f.id !== id))
     send({ id, add: false })
   }
 }

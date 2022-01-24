@@ -2,7 +2,7 @@ import { Fragment } from 'react'
 import dynamic from 'next/dynamic'
 import { UserDto, UserCharacteristicName } from 'dto'
 import useCharacteristicColors from 'hooks/useCharacteristicColors'
-import { getUserHref } from 'views/User/helper'
+import { getUserHref } from 'views/UserView/helper'
 import Characteristic from 'components/Characteristic'
 import AppBox from 'components/UI/AppBox'
 import AppLink from 'components/UI/AppLink'
@@ -30,7 +30,7 @@ export default function UserCharacteristic({ user, inView, menu, onView }: UserC
 
   return (
     <>
-      <AppBox spacing={1} height={60}>
+      <AppBox spacing={2} height={60}>
         <AppLink href={href}>
           <AppAvatar src={avatar} size={55} />
         </AppLink>

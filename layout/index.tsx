@@ -12,7 +12,7 @@ interface LayoutProps {
   url?: string
   type?: string
   image?: string
-  error?: boolean
+  error?: Error
   client?: UserBaseDto
   withVerticalPadding?: boolean
 }

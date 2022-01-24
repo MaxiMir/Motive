@@ -5,7 +5,7 @@ import { GoalDto } from 'dto'
 import TaskService from 'services/TaskService'
 import useSend from 'hooks/useSend'
 import useSnackbar from 'hooks/useSnackbar'
-import { useMutateGoals } from 'views/User/hook'
+import { useMutateGoals } from 'views/UserView/hook'
 
 const Button = dynamic(() => import('@material-ui/core/Button'))
 

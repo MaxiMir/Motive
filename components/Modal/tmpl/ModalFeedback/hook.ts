@@ -5,7 +5,7 @@ import DayService from 'services/DayService'
 import useSend from 'hooks/useSend'
 import useSnackbar from 'hooks/useSnackbar'
 import { UseFormType } from 'types'
-import { useMutateGoals } from 'views/User/hook'
+import { useMutateGoals } from 'views/UserView/hook'
 import schema from 'schemas/feedback'
 
 interface Values {

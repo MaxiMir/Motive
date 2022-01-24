@@ -3,16 +3,16 @@ import { GetServerSideProps } from 'next'
 import { SubscriptionPageSWRDto } from 'dto'
 import PageService from 'services/PageService'
 import Layout from 'layout'
-import Following from 'views/Following'
-import useFollowingPage from 'views/Following/hook'
+import FollowingView from 'views/FollowingView'
+import useFollowingPage from 'views/FollowingView/hook'
 
 export default function FollowingPage({ fallbackData }: SubscriptionPageSWRDto): JSX.Element {
-  const [{ data, error }, mutate] = useFollowingPage(fallbackData)
-  const isAuthorized = !!data?.client?.id // todo check on auth
+  const { data, error, mutateUsers } = useFollowingPage(fallbackData)
+  const isAuthorized = !!data?.client
 
   return (
     <Layout title={`${process.env.NEXT_PUBLIC_APP_NAME} • Following`} client={data?.client} error={error}>
-      {data && <Following users={data.content} isAuthorized={isAuthorized} mutate={mutate} />}
+      {data && <FollowingView users={data.content} isAuthorized={isAuthorized} mutateUsers={mutateUsers} />}
     </Layout>
   )
 }

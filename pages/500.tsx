@@ -1,5 +1,5 @@
 import Layout from 'layout'
-import Error from 'views/Error'
+import ErrorView from 'views/ErrorView'
 import useStorageClient from 'hooks/useStorageClient'
 
 export default function Page500(): JSX.Element {
@@ -7,7 +7,7 @@ export default function Page500(): JSX.Element {
 
   return (
     <Layout title="500: Internal Server Error" client={client}>
-      <Error title="Something went wrong..." code={500} />
+      <ErrorView title="Something went wrong..." code={500} />
     </Layout>
   )
 }

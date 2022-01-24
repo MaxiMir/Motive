@@ -2,9 +2,9 @@ import React from 'react'
 import { GetServerSideProps } from 'next'
 import { SubscriptionPageSWRDto } from 'dto'
 import PageService from 'services/PageService'
-import useFollowingPage from 'hooks/useFollowingPage'
 import Layout from 'layout'
 import Following from 'views/Following'
+import useFollowingPage from 'views/Following/hook'
 
 export default function FollowingPage({ fallbackData }: SubscriptionPageSWRDto): JSX.Element {
   const [{ data, error }, mutate] = useFollowingPage(fallbackData)

@@ -20,7 +20,7 @@ export default function useChangeDay(goalId: number): [boolean, (dayId: number) 
     },
   })
 
-  const onChangeDate = (dayId: number) => send({ id: dayId })
+  const onChangeDate = (dayId: number) => send(dayId)
 
   return [isLoading, onChangeDate]
 }

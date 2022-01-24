@@ -21,7 +21,7 @@ export default function useRemoveFollowing(
           message: 'Removed from following',
           severity: 'success',
           action: <Button onClick={() => onUndo(id)}>Undo</Button>,
-          icon: 'ninja',
+          icon: 'speaker',
         })
     },
     onError: () => {

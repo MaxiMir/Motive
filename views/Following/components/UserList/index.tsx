@@ -1,6 +1,6 @@
 import React from 'react'
 import { UserDto } from 'dto'
-import UserCard from 'components/UserCard'
+import User from 'components/User'
 import AppList from 'components/UI/AppList'
 import { getUserHref } from 'views/User/helper'
 import useRemoveFollowing from './hook'
@@ -19,14 +19,16 @@ export default function UserList({ users, isAuthorized, mutate }: FavoriteListPr
     <AppList
       elements={users}
       spacing={4}
+      keyGetter={(user) => user.id}
       render={(user) => (
-        <UserCard
+        <User
           tmpl="characteristic"
           user={user}
           menu={<Menu title={user.name} href={getUserHref(user.nickname)} onRemove={() => onRemove(user.id)} />}
+          inView={false}
+          onView={() => console.log('IN VIEW')}
         />
       )}
-      keyGetter={(user) => user.id.toString()}
     />
   )
 }

@@ -8,10 +8,9 @@ import { getSWRKey, fetcher, checkPartialOnLoadMore } from './helper'
 
 const Loader = dynamic(() => import('./components/Loader'))
 const Topic = dynamic(() => import('./components/Topic'))
-const UserCard = dynamic(() => import('components/UserCard'))
+const User = dynamic(() => import('components/User'))
 const AppList = dynamic<AppListProps<TopicDto>>(() => import('components/UI/AppList'))
 const AppTypography = dynamic(() => import('components/UI/AppTypography'))
-const AppInView = dynamic(() => import('components/UI/AppInView'))
 
 interface DiscussionProps {
   dayId: number
@@ -46,9 +45,7 @@ export default function Discussion({
     setDiscussionCount(count + 1)
   }
 
-  const onLoadMore = (inView: boolean) => {
-    inView && setSize(size + 1)
-  }
+  const onLoadMore = () => setSize(size + 1)
 
   function getContent() {
     return data?.map((d) => d.content).flat()
@@ -58,7 +55,7 @@ export default function Discussion({
     <AppBox flexDirection="column" spacing={2} flex={1} height={height}>
       <>
         {(!count || content) && withInput && (
-          <UserCard tmpl="input" dayId={dayId} user={client as UserBaseDto} onAdd={onAdd} />
+          <User tmpl="input" dayId={dayId} user={client as UserBaseDto} onAdd={onAdd} />
         )}
         {!count ? (
           <AppTypography>Nothing so far...</AppTypography>
@@ -70,13 +67,17 @@ export default function Discussion({
               <AppBox display="block" maxHeight={524} pr={2} overflow="auto">
                 <AppList
                   elements={content}
-                  keyGetter={(topic) => topic.id.toString()}
+                  keyGetter={(topic) => topic.id}
                   spacing={2}
                   render={(topic, index) => (
-                    <>
-                      <Topic dayId={dayId} topic={topic} role={role} owner={owner} />
-                      {checkOnLoadMore(index) && <AppInView onChange={onLoadMore} />}
-                    </>
+                    <Topic
+                      dayId={dayId}
+                      topic={topic}
+                      role={role}
+                      owner={owner}
+                      inView={checkOnLoadMore(index)}
+                      onView={onLoadMore}
+                    />
                   )}
                 />
               </AppBox>

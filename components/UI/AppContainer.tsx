@@ -1,27 +1,29 @@
+import clsx from 'clsx'
 import { Container, ContainerProps } from '@material-ui/core'
 import { makeStyles } from '@material-ui/core/styles'
 
 type AppContainerProps = Omit<ContainerProps, 'fixed'> & {
-  withFlexColumn?: boolean
+  flexColumn?: boolean
 }
 
 export default function AppContainer({
-  withFlexColumn = false,
+  className,
+  flexColumn = false,
   children,
-  ...restProps
+  ...props
 }: AppContainerProps): JSX.Element {
-  const classes = useStyles({ withFlexColumn })
+  const classes = useStyles({ flexColumn })
 
   return (
-    <Container fixed className={classes.container} {...restProps}>
+    <Container fixed className={clsx(classes.container, className)} {...props}>
       {children}
     </Container>
   )
 }
 
 const useStyles = makeStyles({
-  container: (props: { withFlexColumn: boolean }) =>
-    !props.withFlexColumn
+  container: (props: { flexColumn: boolean }) =>
+    !props.flexColumn
       ? {}
       : {
           flex: 1,

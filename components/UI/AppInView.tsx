@@ -2,9 +2,15 @@ import { FC } from 'react'
 import { InView } from 'react-intersection-observer'
 
 interface AppInViewProps {
-  onChange: (inView: boolean) => void
+  onView: () => void
 }
 
-const AppInView: FC<AppInViewProps> = (props): JSX.Element => <InView as="div" {...props} />
+const AppInView: FC<AppInViewProps> = ({ children, onView }): JSX.Element => {
+  return (
+    <InView as="div" onChange={(inView) => inView && onView()}>
+      {children}
+    </InView>
+  )
+}
 
 export default AppInView

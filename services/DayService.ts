@@ -5,9 +5,7 @@ export default class DayService {
   /**
    * /days/{id}
    */
-  static getById(data: { id: number }): Promise<DayDto> {
-    const { id } = data
-
+  static getById(id: number): Promise<DayDto> {
     return Axios.get(`/days/${id}`)
   }
 

@@ -22,7 +22,6 @@ export type AppEmojiName =
   | 'error'
   | 'subscribe'
   | 'unsubscribe'
-  | 'ninja'
   | 'speaker'
   | 'magic'
   | 'keyboard'
@@ -75,6 +74,7 @@ function getContent(name: AppEmojiName) {
     case 'members':
       return '📬'
     case 'followers':
+      return '🥷'
     case 'following':
       return '⭐'
     case 'goal':
@@ -101,8 +101,6 @@ function getContent(name: AppEmojiName) {
       return '📬'
     case 'unsubscribe':
       return '📪'
-    case 'ninja':
-      return '🥷‍'
     case 'speaker':
       return '🧞‍♂️‍'
     case 'magic':

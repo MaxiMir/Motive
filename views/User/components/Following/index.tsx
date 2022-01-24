@@ -15,7 +15,7 @@ export default function Following({ id, isFollowing, isAuthorized }: FollowingPr
   const setIsFollowing = useSetFollowing(id, isFollowing, isAuthorized)
 
   return (
-    <IconButton title={`${isFollowing ? 'Remove from' : 'Add to'} favorite`} onClick={setIsFollowing}>
+    <IconButton title={`${isFollowing ? 'Remove' : 'Add'} following`} onClick={setIsFollowing}>
       <AppEmoji
         name="following"
         variant="h5"

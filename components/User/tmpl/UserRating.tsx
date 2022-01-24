@@ -7,7 +7,7 @@ import AppLink from 'components/UI/AppLink'
 import AppTypography from 'components/UI/AppTypography'
 import AppAvatar from 'components/UI/AppAvatar'
 
-export interface UserCardRatingProps {
+export interface UserRatingProps {
   tmpl: 'rating'
   user: UserDto
   characteristicName: UserCharacteristicName
@@ -15,7 +15,7 @@ export interface UserCardRatingProps {
   index: number
 }
 
-export default function UserCardRating({ user, characteristicName, color, index }: UserCardRatingProps): JSX.Element {
+export default function UserRating({ user, characteristicName, color, index }: UserRatingProps): JSX.Element {
   const { nickname, avatar, name, characteristic } = user
   const classes = useStyles({ color, isEven: index % 2 === 0 })
   const number = getNumber()

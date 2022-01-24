@@ -4,13 +4,13 @@ import { getUserHref } from 'views/User/helper'
 import AppLink from 'components/UI/AppLink'
 import AppAvatar from 'components/UI/AppAvatar'
 
-export interface UserCardAvatarProps {
+export interface UserAvatarProps {
   tmpl: 'avatar'
   user: UserBaseDto
   size: number
 }
 
-export default function UserCardAvatar({ user, size }: UserCardAvatarProps): JSX.Element {
+export default function UserAvatar({ user, size }: UserAvatarProps): JSX.Element {
   const { name, nickname, avatar } = user
   const classes = useStyles({ size })
   const href = getUserHref(nickname)

@@ -11,7 +11,7 @@ export default function EmptyGoals({ isOwner }: AddGoalProps): JSX.Element {
     <>
       <AppBox flexDirection="column" justifyContent="center" alignItems="center" spacing={1} flex={1}>
         <AppTypography variant="h6" component="p" color="primary">
-          {isOwner ? 'You have no goals...' : 'No goals yet...'}
+          {isOwner ? 'You have no goals' : 'No goals yet'}
         </AppTypography>
         {isOwner && <OwnerDescription />}
       </AppBox>

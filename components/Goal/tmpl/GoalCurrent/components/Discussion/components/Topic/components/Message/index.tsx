@@ -5,7 +5,7 @@ import { TopicBaseDto, TopicType, UserBaseDto } from 'dto'
 import AppLink from 'components/UI/AppLink'
 import AppBox from 'components/UI/AppBox'
 import AppTypography from 'components/UI/AppTypography'
-import UserCard from 'components/UserCard'
+import User from 'components/User'
 import Menu from './components/Menu'
 import Like from './components/Like'
 import Reply from './components/Reply'
@@ -27,7 +27,7 @@ export default function Message({ id, date, user, owner, message, like, type, on
     <AppBox flexDirection="column" spacing={1} flex={1}>
       <AppBox flexDirection="column" spacing={2} minWidth={152}>
         <AppBox alignItems="center" spacing={1}>
-          <UserCard tmpl="avatar" user={user} size={26} />
+          <User tmpl="avatar" user={user} size={26} />
           <AppLink href={`/${userId}`} title={name} className={classes.name}>
             <b>{user.name}</b>
           </AppLink>

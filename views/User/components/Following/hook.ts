@@ -16,9 +16,9 @@ export default function useSetFollowing(id: number, following: boolean, isAuthor
       lastFollowingRef.current = add
 
       enqueueSnackbar({
-        message: add ? 'Added to favorites' : 'Removed from favorites',
+        message: add ? 'Added following' : 'Removed following',
         severity: 'success',
-        icon: add ? 'speaker' : 'ninja',
+        icon: 'speaker',
       })
     },
     onError() {

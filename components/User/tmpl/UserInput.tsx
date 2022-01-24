@@ -5,13 +5,13 @@ import { TopicDto, TopicType, UserBaseDto } from 'dto'
 import DayService from 'services/DayService'
 import useSend from 'hooks/useSend'
 import useSnackbar from 'hooks/useSnackbar'
-import UserCardAvatar from 'components/UserCard/tmpl/UserCardAvatar'
+import UserAvatar from 'components/User/tmpl/UserAvatar'
 import AppBox from 'components/UI/AppBox'
 
 const CircularProgress = dynamic(() => import('@material-ui/core/CircularProgress'))
 const AppIcon = dynamic(() => import('components/UI/AppIcon'))
 
-export interface UserCardInputProps {
+export interface UserInputProps {
   tmpl: 'input'
   dayId: number
   user: UserBaseDto
@@ -19,7 +19,7 @@ export interface UserCardInputProps {
   onAdd: (topic: TopicDto) => void
 }
 
-export default function UserCardInput({ dayId, user, answer, onAdd }: UserCardInputProps): JSX.Element {
+export default function UserInput({ dayId, user, answer, onAdd }: UserInputProps): JSX.Element {
   const classes = useStyles()
   const [message, setMessage] = useState('')
   const { enqueueSnackbar } = useSnackbar()
@@ -38,7 +38,7 @@ export default function UserCardInput({ dayId, user, answer, onAdd }: UserCardIn
   return (
     <form>
       <AppBox spacing={2} flex={1} mb={2} pr={2}>
-        <UserCardAvatar tmpl="avatar" user={user} size={32} />
+        <UserAvatar tmpl="avatar" user={user} size={32} />
         <TextField
           placeholder={`Your ${messageType.toLowerCase()}`}
           variant="standard"

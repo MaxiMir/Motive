@@ -15,7 +15,7 @@ interface FollowingProps {
 
 export default function Following({ users, isAuthorized, mutate }: FollowingProps): JSX.Element {
   return (
-    <AppContainer withFlexColumn>
+    <AppContainer flexColumn>
       <AppHeader name="following" mb={4}>
         Following
       </AppHeader>

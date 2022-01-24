@@ -1,7 +1,7 @@
 import { Field, FieldArray, Form, FormikProvider } from 'formik'
 import { makeStyles } from '@material-ui/core/styles'
 import { Accordion, AccordionDetails, AccordionSummary, Button, createStyles } from '@material-ui/core'
-import { UserCharacteristicName } from 'dto'
+import { MainCharacteristicName } from 'dto'
 import { getTomorrow } from 'helpers/date'
 import useFocus from 'hooks/useFocus'
 import ModalAction from 'components/ModalAction'
@@ -16,7 +16,7 @@ import AppIcon from 'components/UI/AppIcon'
 import { PaulIcon } from 'components/UI/icons'
 import useForm from './hook'
 
-const CHARACTERISTIC_NAMES: UserCharacteristicName[] = ['motivation', 'creativity', 'support']
+const CHARACTERISTIC_NAMES: MainCharacteristicName[] = ['motivation', 'creativity', 'support']
 
 export interface ModalGoalProps {
   tmpl: 'goal'

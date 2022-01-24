@@ -1,5 +1,5 @@
 export abstract class Service {
   static getOperation(add: boolean): string {
-    return `?operation=${add ? 'add' : 'remove'}`
+    return `?operation=${add ? 'insert' : 'delete'}`
   }
 }

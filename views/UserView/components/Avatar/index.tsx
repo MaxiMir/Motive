@@ -24,7 +24,7 @@ export default function Avatar({ avatar, characteristic, characteristicColors }:
         </AppBox>
       ))}
       <AppBox justifyContent="center" alignItems="center" className={classes.circle}>
-        <AppAvatar src={avatar} size={81} />
+        <AppAvatar src={avatar} size={80} />
       </AppBox>
     </AppBox>
   )
@@ -38,9 +38,10 @@ const useStyles = makeStyles({
   },
   circle: {
     position: 'absolute',
-    left: '50%',
-    top: '50%',
-    transform: 'translate(-50%,-50%)',
+    top: 0,
+    bottom: 0,
+    left: 0,
+    right: 0,
     width: 126,
     height: 126,
   },

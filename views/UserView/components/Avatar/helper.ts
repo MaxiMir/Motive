@@ -15,21 +15,21 @@ interface CircleItemInit {
 const CIRCLE_ITEMS: CircleItemInit[] = [
   {
     name: 'motivation',
-    size: 99,
-    strokeWidth: 18,
-    strokeWidthBg: 25,
+    size: 98,
+    strokeWidth: 15,
+    strokeWidthBg: 24,
+  },
+  {
+    name: 'support',
+    size: 112,
+    strokeWidth: 13,
+    strokeWidthBg: 23,
   },
   {
     name: 'creativity',
     size: 126,
-    strokeWidth: 15,
-    strokeWidthBg: 21,
-  },
-  {
-    name: 'support',
-    size: 113,
-    strokeWidth: 17,
-    strokeWidthBg: 22,
+    strokeWidth: 12,
+    strokeWidthBg: 19,
   },
 ]
 

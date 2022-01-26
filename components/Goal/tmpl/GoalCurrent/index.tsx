@@ -1,4 +1,4 @@
-import { Fragment, useMemo, useState } from 'react'
+import { Fragment, useMemo } from 'react'
 import dynamic from 'next/dynamic'
 import { createStyles, useTheme } from '@material-ui/core'
 import { makeStyles } from '@material-ui/core/styles'
@@ -37,13 +37,12 @@ export interface GoalCurrentProps {
 export default function GoalCurrent({ goal, client, href }: GoalCurrentProps): JSX.Element {
   const { id, name, hashtags, characteristic, owner } = goal
   const [day] = goal.days
-  const { id: dayId, date, tasks, views, feedback } = day
+  const { id: dayId, date, tasks, views, feedback, topicCount } = day
   const classes = useStyles()
   const theme = useTheme()
   const colors = useCharacteristicColors()
   const datesMap = useMemo(getDatesMap, [date, dayId, goal.calendar])
   const [isLoading, onChangeDay] = useChangeDay(id)
-  const [discussionCount, setDiscussionCount] = useState(day.discussionCount)
   const role = getRole(goal, client)
   const goalHref = getGoalHref(href, goal)
   const { runsForDays, withWeb, withForm, withReactions, forTomorrow } = getGoalInfo(datesMap, goal, role)
@@ -123,27 +122,13 @@ export default function GoalCurrent({ goal, client, href }: GoalCurrentProps): J
               />
               <AppAccordion
                 name="discussion"
-                header={
-                  <>
-                    Discussion{' '}
-                    {!discussionCount ? '' : <span className={classes.discussionCount}>{discussionCount}</span>}
-                  </>
-                }
+                header={<>Discussion {!topicCount ? '' : <span className={classes.topicCount}>{topicCount}</span>}</>}
                 id={`discussionContent-${dayId}`}
                 ariaControls="discussion-content"
                 renderOnClick
                 unmountOnExit
                 detailsClass={classes.discussion}
-                details={
-                  <Discussion
-                    dayId={dayId}
-                    role={role}
-                    owner={owner}
-                    client={client}
-                    count={discussionCount}
-                    setDiscussionCount={setDiscussionCount}
-                  />
-                }
+                details={<Discussion dayId={dayId} role={role} owner={owner} client={client} count={topicCount} />}
               />
             </div>
           </AppBox>
@@ -188,7 +173,7 @@ const useStyles = makeStyles((theme) =>
       background: theme.palette.background.paper,
       borderRadius: 13,
     },
-    discussionCount: {
+    topicCount: {
       color: theme.text.silent,
     },
     discussion: {

@@ -1,7 +1,7 @@
 import differenceInDays from 'date-fns/differenceInDays'
 import { GoalDto, RoleDto, UserBaseDto } from 'dto'
 import { SEARCH_PARAMS, setQueryParams } from 'helpers/url'
-import { getCurrentDateWithZeroTime } from 'helpers/date'
+import { differenceInCalendarDays } from 'date-fns'
 
 const SHOW_WEB_AFTER_DAYS = 14
 
@@ -40,15 +40,15 @@ export const getGoalInfo = (
   forTomorrow: boolean
 } => {
   const [day] = goal.days
-  const currentDate = getCurrentDateWithZeroTime()
+  const currentDate = new Date()
   const dates = Object.keys(datesMap)
   const lastDay = dates[dates.length - 1] === day.date
-  const daysGone = differenceInDays(currentDate, Date.parse(day.date))
-  const forTomorrow = daysGone === -1
-  const runsForDays = differenceInDays(currentDate, Date.parse(goal.started))
+  const daysGone = differenceInCalendarDays(currentDate, Date.parse(day.date))
+  const runsForDays = differenceInCalendarDays(currentDate, Date.parse(goal.started))
   const withWeb = checkOnWeb(day.date, currentDate, lastDay)
   const withForm = checkOnTaskForm(role, daysGone)
   const withReactions = checkOnReactions(role, lastDay)
+  const forTomorrow = daysGone === -1
 
   return {
     runsForDays,

@@ -1,10 +1,8 @@
-import { useMemo } from 'react'
 import dynamic from 'next/dynamic'
-import useSWRInfinite from 'swr/infinite'
 import { RoleDto, TopicDto, UserBaseDto } from 'dto'
 import AppBox from 'components/UI/AppBox'
 import { AppListProps } from 'components/UI/AppList'
-import { getSWRKey, fetcher, checkPartialOnLoadMore } from './helper'
+import useDiscussion from './hook'
 
 const Loader = dynamic(() => import('./components/Loader'))
 const Topic = dynamic(() => import('./components/Topic'))
@@ -18,55 +16,28 @@ interface DiscussionProps {
   owner: UserBaseDto
   client?: UserBaseDto
   count: number
-  setDiscussionCount: (count: number) => void
 }
 
-const VISIBLE_COUNT = 4
-
-export default function Discussion({
-  dayId,
-  role,
-  owner,
-  client,
-  count,
-  setDiscussionCount,
-}: DiscussionProps): JSX.Element {
-  const { data, size, setSize, mutate } = useSWRInfinite(getSWRKey(dayId.toString()), fetcher, {
-    initialSize: !count ? 0 : 1,
-  })
-  const content = useMemo(getContent, [data])
+export default function Discussion({ dayId, role, owner, client, count }: DiscussionProps): JSX.Element {
+  const { topics, onLoadMore, checkOnLoadMore, onAdd } = useDiscussion(dayId, count)
   const withInput = !!client && client.id !== owner.id
-  const shownCount = count >= VISIBLE_COUNT ? VISIBLE_COUNT : count
-  const height = !count ? undefined : (!withInput ? 0 : 56) + 540
-  const checkOnLoadMore = checkPartialOnLoadMore(data, content)
-
-  const onAdd = async (topic: TopicDto) => {
-    await mutate([{ content: [topic], last: false }, ...(data || [])], false)
-    setDiscussionCount(count + 1)
-  }
-
-  const onLoadMore = () => setSize(size + 1)
-
-  function getContent() {
-    return data?.map((d) => d.content).flat()
-  }
 
   return (
-    <AppBox flexDirection="column" spacing={2} flex={1} height={height}>
+    <AppBox flexDirection="column" spacing={2} flex={1}>
       <>
-        {(!count || content) && withInput && (
+        {(!count || topics) && withInput && (
           <User tmpl="input" dayId={dayId} user={client as UserBaseDto} onAdd={onAdd} />
         )}
         {!count ? (
           <AppTypography>Nothing so far...</AppTypography>
         ) : (
           <>
-            {!content ? (
-              <Loader count={shownCount} withInput={withInput} />
+            {!topics ? (
+              <Loader count={count} withInput={withInput} />
             ) : (
               <AppBox display="block" maxHeight={524} pr={2} overflow="auto">
                 <AppList
-                  elements={content}
+                  elements={topics}
                   keyGetter={(topic) => topic.id}
                   spacing={2}
                   render={(topic, index) => (

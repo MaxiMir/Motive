@@ -18,7 +18,7 @@ interface MessageProps extends TopicBaseDto {
   onClick?: () => void
 }
 
-export default function Message({ id, date, user, owner, message, like, type, onClick }: MessageProps): JSX.Element {
+export default function Message({ id, date, user, owner, message, likes, type, onClick }: MessageProps): JSX.Element {
   const classes = useStyles()
   const { id: userId, name } = user
   const dateDifference = formatDistanceToNow(new Date(date), { includeSeconds: true })
@@ -43,7 +43,7 @@ export default function Message({ id, date, user, owner, message, like, type, on
           <span className={classes.date}>{dateDifference} ago</span>
           {onClick && <Reply onClick={onClick} />}
         </AppBox>
-        <Like {...like} messageId={id} />
+        <Like likes={likes} messageId={id} />
       </AppBox>
     </AppBox>
   )

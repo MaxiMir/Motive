@@ -28,7 +28,7 @@ export interface DayDto {
   date: string
   characteristic: DayCharacteristicDto | null
   tasks: TaskDto[]
-  discussionCount: number
+  topicCount: number
   feedback: FeedbackDto | null
   views: number
 }

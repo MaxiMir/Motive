@@ -1,12 +1,16 @@
 import { Skeleton } from '@material-ui/lab'
 import AppBox from 'components/UI/AppBox'
 
+const VISIBLE_COUNT = 4
+
 interface LoaderProps {
   count: number
   withInput: boolean
 }
 
 export default function Loader({ count, withInput }: LoaderProps): JSX.Element {
+  const shownCount = count >= VISIBLE_COUNT ? VISIBLE_COUNT : count
+
   return (
     <>
       {withInput && (
@@ -16,7 +20,7 @@ export default function Loader({ count, withInput }: LoaderProps): JSX.Element {
           <Skeleton animation="wave" width={24} height={16} />
         </AppBox>
       )}
-      {[...new Array(count)].map((_, key) => (
+      {[...new Array(shownCount)].map((_, key) => (
         <AppBox flexDirection="column" spacing={1} flex={1} key={key}>
           <AppBox alignItems="flex-end" spacing={1}>
             <Skeleton animation="wave" variant="circle" width={26} height={26} />

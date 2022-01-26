@@ -1,6 +1,5 @@
 import clsx from 'clsx'
 import { Button, createStyles, makeStyles } from '@material-ui/core'
-import { LikeDto } from 'dto'
 import { numberToShort } from 'helpers/prepare'
 import AppEmoji from 'components/UI/AppEmoji'
 import AppBox from 'components/UI/AppBox'
@@ -8,13 +7,14 @@ import AppTypography from 'components/UI/AppTypography'
 import AppTooltip from 'components/UI/AppTooltip'
 import useSetLike from './hook'
 
-interface LikeProps extends LikeDto {
+interface LikeProps {
   messageId: number
+  likes: number[]
 }
 
-export default function Like({ messageId, count: countInit, active: activeInit }: LikeProps): JSX.Element {
+export default function Like({ messageId, likes }: LikeProps): JSX.Element {
   const classes = useStyles()
-  const [active, count, onClick] = useSetLike(messageId, activeInit, countInit)
+  const [active, count, onClick] = useSetLike(messageId, likes)
 
   return (
     <AppBox alignItems="center">

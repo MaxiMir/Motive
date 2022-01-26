@@ -6,12 +6,7 @@ export interface TopicBaseDto {
   date: string
   message: string
   user: UserBaseDto
-  like: LikeDto
-}
-
-export interface LikeDto {
-  active: boolean
-  count: number
+  likes: number[]
 }
 
 export enum TopicType {

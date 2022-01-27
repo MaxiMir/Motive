@@ -1,7 +1,7 @@
 import produce from 'immer'
 import { useFormik } from 'formik'
 import { GoalDto } from 'dto'
-import DayService from 'services/DayService'
+import FeedbackService from 'services/FeedbackService'
 import useSend from 'hooks/useSend'
 import useSnackbar from 'hooks/useSnackbar'
 import { UseFormType } from 'types'
@@ -26,9 +26,10 @@ export default function useForm(goal: GoalDto, onClose: () => void): UseFormType
     async onSubmit(data) {
       const formData = new FormData()
 
+      formData.append('dayId', goal.days[0].id.toString())
       formData.append('text', data.text.trim())
       data.photos.forEach((photo) => formData.append('photos', photo))
-      send({ id: goal.days[0].id, body: formData })
+      send(formData)
     },
   })
 
@@ -39,8 +40,8 @@ const useSendFeedback = (goal: GoalDto, onClose: () => void) => {
   const { enqueueSnackbar } = useSnackbar()
   const [goals, mutateGoals] = useMutateGoals()
 
-  return useSend(DayService.createFeedback, {
-    onSuccess: ({ feedback }) => {
+  return useSend(FeedbackService.create, {
+    onSuccess: (feedback) => {
       mutateGoals(
         produce(goals, (draft: GoalDto[]) => {
           const draftGoal = draft[draft.findIndex((g) => g.id === goal.id)]

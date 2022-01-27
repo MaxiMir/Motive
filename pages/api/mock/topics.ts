@@ -7,19 +7,13 @@ const question: TopicDto = {
   message: 'What other books do you read?',
   type: TopicType.QUESTION,
   user: users[0],
-  like: {
-    active: true,
-    count: 1344312,
-  },
+  likes: [],
   answer: {
     id: 125,
     date: '2021-10-06T17:00:00.000Z',
     message: 'Typescript for dummies',
     user: users[1],
-    like: {
-      active: false,
-      count: 23,
-    },
+    likes: [],
   },
 }
 
@@ -29,10 +23,7 @@ const support: TopicDto = {
   date: new Date().toISOString(),
   type: TopicType.SUPPORT,
   user: users[2],
-  like: {
-    active: false,
-    count: 2,
-  },
+  likes: [],
   answer: null,
 }
 
@@ -42,20 +33,14 @@ const question2: TopicDto = {
   message: 'What is the test?',
   type: TopicType.QUESTION,
   user: users[3],
-  like: {
-    active: false,
-    count: 1035,
-  },
+  likes: [],
   answer: {
     id: 125,
     date: '2021-10-06T17:00:00.000Z',
     message:
       'I perform various tests. For example, I use the Kahut app. I read the book Sherlock Holmes and there are tests at the end of the chapter, too.',
     user: users[1],
-    like: {
-      active: false,
-      count: 1455,
-    },
+    likes: [],
   },
 }
 
@@ -82,8 +67,5 @@ export const getNewTopic = (message: string, isQuestion: boolean): TopicDto => (
   user: users[4],
   answer: null,
   type: isQuestion ? TopicType.QUESTION : TopicType.SUPPORT,
-  like: {
-    active: false,
-    count: 0,
-  },
+  likes: [],
 })

@@ -1,6 +1,12 @@
 import { UserBaseDto } from './user'
 import { DataWithPagination } from './page'
 
+export interface TopicCreationDto {
+  dayId: number
+  message: string
+  type: TopicType
+}
+
 export interface TopicBaseDto {
   id: number
   date: string

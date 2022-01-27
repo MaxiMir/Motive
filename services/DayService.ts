@@ -1,5 +1,5 @@
 import Axios from 'lib/axios'
-import { TopicType, TopicDto, DayDto } from 'dto'
+import { DayDto } from 'dto'
 
 export default class DayService {
   /**
@@ -7,28 +7,6 @@ export default class DayService {
    */
   static getById(id: number): Promise<DayDto> {
     return Axios.get(`/days/${id}`)
-  }
-
-  /**
-   * /days/{id}/feedback
-   */
-  static createFeedback(data: { id: number; body: FormData }): Promise<DayDto> {
-    const { id, body } = data
-
-    return Axios.post(`/days/${id}/feedback`, body, {
-      headers: {
-        'Content-Type': 'multipart/form-data',
-      },
-    })
-  }
-
-  /**
-   * /days/{id}/discussion
-   */
-  static createTopic(data: { id: number; type: TopicType; message: string }): Promise<TopicDto> {
-    const { id, ...body } = data
-
-    return Axios.post(`/days/${id}/discussion`, body)
   }
 
   /**

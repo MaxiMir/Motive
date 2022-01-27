@@ -2,7 +2,7 @@ import { useState } from 'react'
 import dynamic from 'next/dynamic'
 import { IconButton, makeStyles, TextField } from '@material-ui/core'
 import { TopicDto, TopicType, UserBaseDto } from 'dto'
-import DayService from 'services/DayService'
+import TopicService from 'services/TopicService'
 import useSend from 'hooks/useSend'
 import useSnackbar from 'hooks/useSnackbar'
 import UserAvatar from 'components/User/tmpl/UserAvatar'
@@ -25,7 +25,7 @@ export default function UserInput({ dayId, user, answer, onAdd }: UserInputProps
   const { enqueueSnackbar } = useSnackbar()
   const messageType = answer ? 'Answer' : 'Question'
 
-  const { isLoading, send } = useSend(DayService.createTopic, {
+  const { isLoading, send } = useSend(TopicService.create, {
     onSuccess(response) {
       enqueueSnackbar({ message: `${messageType} added`, severity: 'success', icon: 'speaker' })
       setMessage('')
@@ -33,7 +33,7 @@ export default function UserInput({ dayId, user, answer, onAdd }: UserInputProps
     },
   })
 
-  const onClick = () => send({ id: dayId, message, type: answer ? TopicType.SUPPORT : TopicType.QUESTION })
+  const onClick = () => send({ dayId, message, type: answer ? TopicType.SUPPORT : TopicType.QUESTION })
 
   return (
     <form>

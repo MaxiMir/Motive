@@ -4,7 +4,7 @@ import { createStyles, makeStyles } from '@material-ui/core'
 import { TopicBaseDto, TopicType, UserBaseDto } from 'dto'
 import AppLink from 'components/UI/AppLink'
 import AppBox from 'components/UI/AppBox'
-import AppTypography from 'components/UI/AppTypography'
+import AppMarkdown from 'components/UI/AppMarkdown'
 import User from 'components/User'
 import Menu from './components/Menu'
 import Like from './components/Like'
@@ -34,7 +34,7 @@ export default function Message({ id, date, user, owner, message, likes, type, o
           {type === TopicType.SUPPORT && <SupportSign owner={owner} />}
         </AppBox>
         <AppBox justifyContent="space-between" alignItems="flex-start" spacing={1}>
-          <AppTypography>{message}</AppTypography>
+          <AppMarkdown text={message} />
           <Menu />
         </AppBox>
       </AppBox>

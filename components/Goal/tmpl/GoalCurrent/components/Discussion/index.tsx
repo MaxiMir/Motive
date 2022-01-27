@@ -11,6 +11,7 @@ const AppList = dynamic<AppListProps<TopicDto>>(() => import('components/UI/AppL
 const AppTypography = dynamic(() => import('components/UI/AppTypography'))
 
 interface DiscussionProps {
+  goalId: number
   dayId: number
   role: RoleDto
   owner: UserBaseDto
@@ -18,8 +19,8 @@ interface DiscussionProps {
   count: number
 }
 
-export default function Discussion({ dayId, role, owner, client, count }: DiscussionProps): JSX.Element {
-  const { topics, onLoadMore, checkOnLoadMore, onAdd } = useDiscussion(dayId, count)
+export default function Discussion({ goalId, dayId, role, owner, client, count }: DiscussionProps): JSX.Element {
+  const { topics, onLoadMore, checkOnLoadMore, onAdd } = useDiscussion(goalId, dayId, count)
   const withInput = !!client && client.id !== owner.id
 
   return (

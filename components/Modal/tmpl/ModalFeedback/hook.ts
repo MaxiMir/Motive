@@ -1,10 +1,10 @@
 import produce from 'immer'
 import { useFormik } from 'formik'
 import { GoalDto } from 'dto'
+import { UseFormType } from 'types'
 import FeedbackService from 'services/FeedbackService'
 import useSend from 'hooks/useSend'
 import useSnackbar from 'hooks/useSnackbar'
-import { UseFormType } from 'types'
 import { useMutateGoals } from 'views/UserView/hook'
 import schema from 'schemas/feedback'
 

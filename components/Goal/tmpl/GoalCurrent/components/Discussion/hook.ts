@@ -1,10 +1,13 @@
+import produce from 'immer'
 import useSWRInfinite from 'swr/infinite'
-import { TopicDto } from 'dto'
+import { GoalDto, TopicDto } from 'dto'
 import { getTopicsKey, partialCheckOnLoadMore } from 'helpers/swr'
+import { useMutateGoals } from 'views/UserView/hook'
 import { fetcher } from './helper'
 
 export default function useDiscussion(
-  id: number,
+  goalId: number,
+  dayId: number,
   count: number,
 ): {
   topics?: TopicDto[]
@@ -12,16 +15,24 @@ export default function useDiscussion(
   onLoadMore: () => void
   onAdd: (topic: TopicDto) => void
 } {
-  const { data, size, setSize, mutate } = useSWRInfinite(getTopicsKey(id), fetcher, {
+  const [goals, mutateGoals] = useMutateGoals()
+  const { data, size, setSize, mutate } = useSWRInfinite(getTopicsKey(dayId), fetcher, {
     initialSize: !count ? 0 : 1,
-    revalidateFirstPage: false,
   })
   const topics = data?.flat()
   const checkOnLoadMore = partialCheckOnLoadMore(topics?.length || 0, count)
 
   const onLoadMore = () => setSize(size + 1)
 
-  const onAdd = (topic: TopicDto) => mutate([[topic], ...(data || [])], false)
+  const onAdd = (topic: TopicDto) => {
+    mutate([[topic], ...(data || [])], false)
+    mutateGoals(
+      produce(goals, (draft: GoalDto[]) => {
+        const [draftDay] = draft[draft.findIndex((g) => g.id === goalId)].days
+        draftDay.topicCount += 1
+      }),
+    )
+  }
 
   return { topics, onLoadMore, checkOnLoadMore, onAdd }
 }

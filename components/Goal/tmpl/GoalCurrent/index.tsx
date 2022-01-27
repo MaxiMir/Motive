@@ -128,7 +128,9 @@ export default function GoalCurrent({ goal, client, href }: GoalCurrentProps): J
                 renderOnClick
                 unmountOnExit
                 detailsClass={classes.discussion}
-                details={<Discussion dayId={dayId} role={role} owner={owner} client={client} count={topicCount} />}
+                details={
+                  <Discussion goalId={id} dayId={dayId} role={role} owner={owner} client={client} count={topicCount} />
+                }
               />
             </div>
           </AppBox>

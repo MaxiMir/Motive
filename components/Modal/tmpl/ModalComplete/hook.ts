@@ -1,7 +1,7 @@
 import { useFormik } from 'formik'
 import { GoalDto } from 'dto'
-import GoalService from 'services/GoalService'
 import { UseFormType } from 'types'
+import GoalService from 'services/GoalService'
 import useSend from 'hooks/useSend'
 import schema from 'schemas/complete'
 

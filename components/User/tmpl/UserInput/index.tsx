@@ -1,12 +1,11 @@
-import { useState } from 'react'
 import dynamic from 'next/dynamic'
-import { IconButton, makeStyles, TextField } from '@material-ui/core'
-import { TopicDto, TopicType, UserBaseDto } from 'dto'
-import TopicService from 'services/TopicService'
-import useSend from 'hooks/useSend'
-import useSnackbar from 'hooks/useSnackbar'
+import { Field, Form, FormikProvider } from 'formik'
+import { IconButton, makeStyles } from '@material-ui/core'
+import { TopicDto, UserBaseDto } from 'dto'
 import UserAvatar from 'components/User/tmpl/UserAvatar'
 import AppBox from 'components/UI/AppBox'
+import AppInput from 'components/UI/AppInput'
+import useForm from './hook'
 
 const CircularProgress = dynamic(() => import('@material-ui/core/CircularProgress'))
 const AppIcon = dynamic(() => import('components/UI/AppIcon'))
@@ -21,43 +20,40 @@ export interface UserInputProps {
 
 export default function UserInput({ dayId, user, answer, onAdd }: UserInputProps): JSX.Element {
   const classes = useStyles()
-  const [message, setMessage] = useState('')
-  const { enqueueSnackbar } = useSnackbar()
   const messageType = answer ? 'Answer' : 'Question'
-
-  const { isLoading, send } = useSend(TopicService.create, {
-    onSuccess(response) {
-      enqueueSnackbar({ message: `${messageType} added`, severity: 'success', icon: 'speaker' })
-      setMessage('')
-      onAdd(response)
-    },
-  })
-
-  const onClick = () => send({ dayId, message, type: answer ? TopicType.SUPPORT : TopicType.QUESTION })
+  const { isLoading, formik } = useForm(dayId, answer, messageType, onAdd)
+  const { values, handleSubmit } = formik
 
   return (
-    <form>
-      <AppBox spacing={2} flex={1} mb={2} pr={2}>
-        <UserAvatar tmpl="avatar" user={user} size={32} />
-        <TextField
-          placeholder={`Your ${messageType.toLowerCase()}`}
-          variant="standard"
-          color="secondary"
-          InputLabelProps={{ shrink: false }}
-          value={message}
-          disabled={isLoading}
-          className={classes.input}
-          onChange={(e) => setMessage(e.target.value)}
-        />
-        <IconButton className={classes.button} disabled={isLoading || !message} onClick={onClick}>
-          {!isLoading ? (
-            <AppIcon name="send" className={classes.icon} />
-          ) : (
-            <CircularProgress size="0.9rem" color="primary" />
-          )}
-        </IconButton>
-      </AppBox>
-    </form>
+    <FormikProvider value={formik}>
+      <Form autoComplete="off">
+        <AppBox spacing={2} flex={1} mb={2} pr={2}>
+          <UserAvatar tmpl="avatar" user={user} size={32} />
+          <Field
+            name="message"
+            placeholder={`Your ${messageType.toLowerCase()}`}
+            variant="standard"
+            color="secondary"
+            InputLabelProps={{ shrink: false }}
+            disabled={isLoading}
+            className={classes.input}
+            component={AppInput}
+          />
+          <IconButton
+            type="submit"
+            className={classes.button}
+            disabled={isLoading || !values.message}
+            onClick={() => handleSubmit()}
+          >
+            {!isLoading ? (
+              <AppIcon name="send" className={classes.icon} />
+            ) : (
+              <CircularProgress size="0.9rem" color="primary" />
+            )}
+          </IconButton>
+        </AppBox>
+      </Form>
+    </FormikProvider>
   )
 }
 

@@ -38,7 +38,7 @@ export const getCharacteristicsTitle = (): { [k in UserCharacteristicName]: JSX.
     <>
       Support points are given for: <br />
       • each reply to a user in a discussion on your day <br />
-      • each message of support to another user in his goal <br />
+      • each liked message of support to another user in his goal <br />
     </>
   ),
   abandoned: (

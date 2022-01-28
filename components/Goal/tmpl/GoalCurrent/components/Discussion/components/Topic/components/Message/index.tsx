@@ -12,15 +12,16 @@ import Reply from './components/Reply'
 
 const SupportSign = dynamic(() => import('./components/SupportSign'))
 
-interface MessageProps extends TopicBaseDto {
-  type?: TopicType
+interface MessageProps {
+  message: TopicBaseDto
+  type: TopicType
   owner: UserBaseDto
   onClick?: () => void
 }
 
-export default function Message({ id, date, user, owner, message, likes, type, onClick }: MessageProps): JSX.Element {
+export default function Message({ message, owner, type, onClick }: MessageProps): JSX.Element {
   const classes = useStyles()
-  const { id: userId, name } = user
+  const { id, date, user, text, likes } = message
   const dateDifference = formatDistanceToNow(new Date(date), { includeSeconds: true })
 
   return (
@@ -28,13 +29,13 @@ export default function Message({ id, date, user, owner, message, likes, type, o
       <AppBox flexDirection="column" spacing={2} minWidth={152}>
         <AppBox alignItems="center" spacing={1}>
           <User tmpl="avatar" user={user} size={26} />
-          <AppLink href={`/${userId}`} title={name} className={classes.name}>
+          <AppLink href={`/${user.id}`} title={user.name} className={classes.name}>
             <b>{user.name}</b>
           </AppLink>
           {type === TopicType.SUPPORT && <SupportSign owner={owner} />}
         </AppBox>
         <AppBox justifyContent="space-between" alignItems="flex-start" spacing={1}>
-          <AppMarkdown text={message} />
+          <AppMarkdown text={text} />
           <Menu />
         </AppBox>
       </AppBox>

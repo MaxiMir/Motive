@@ -1,28 +1,29 @@
 import { UserBaseDto } from './user'
 import { DataWithPagination } from './page'
 
+export enum TopicType {
+  QUESTION = 'question',
+  SUPPORT = 'support',
+}
+
 export interface TopicCreationDto {
   dayId: number
-  message: string
+  text: string
+  answer?: number
   type: TopicType
 }
 
 export interface TopicBaseDto {
   id: number
   date: string
-  message: string
+  text: string
   user: UserBaseDto
   likes: number[]
 }
 
-export enum TopicType {
-  QUESTION = 'question',
-  SUPPORT = 'support',
-}
-
 export interface TopicDto extends TopicBaseDto {
-  type: TopicType.QUESTION | TopicType.SUPPORT
-  answer: TopicBaseDto | null
+  type: TopicType
+  answers: TopicBaseDto[] | null
 }
 
 export type DiscussionDto = DataWithPagination<TopicDto[]>

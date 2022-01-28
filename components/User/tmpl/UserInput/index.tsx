@@ -1,7 +1,7 @@
 import dynamic from 'next/dynamic'
 import { Field, Form, FormikProvider } from 'formik'
 import { IconButton, makeStyles } from '@material-ui/core'
-import { TopicDto, UserBaseDto } from 'dto'
+import { TopicDto, TopicType, UserBaseDto } from 'dto'
 import UserAvatar from 'components/User/tmpl/UserAvatar'
 import AppBox from 'components/UI/AppBox'
 import AppInput from 'components/UI/AppInput'
@@ -14,15 +14,15 @@ export interface UserInputProps {
   tmpl: 'input'
   dayId: number
   user: UserBaseDto
-  answer?: boolean
+  type: TopicType
+  answer?: number
   onAdd: (topic: TopicDto) => void
 }
 
-export default function UserInput({ dayId, user, answer, onAdd }: UserInputProps): JSX.Element {
+export default function UserInput({ dayId, user, type, answer, onAdd }: UserInputProps): JSX.Element {
   const classes = useStyles()
-  const messageType = answer ? 'Answer' : 'Question'
-  const { isLoading, formik } = useForm(dayId, answer, messageType, onAdd)
-  const { values, handleSubmit } = formik
+  const { isLoading, formik } = useForm(dayId, answer, type, onAdd)
+  const { values } = formik
 
   return (
     <FormikProvider value={formik}>
@@ -30,8 +30,8 @@ export default function UserInput({ dayId, user, answer, onAdd }: UserInputProps
         <AppBox spacing={2} flex={1} mb={2} pr={2}>
           <UserAvatar tmpl="avatar" user={user} size={32} />
           <Field
-            name="message"
-            placeholder={`Your ${messageType.toLowerCase()}`}
+            name="text"
+            placeholder={`Your ${type === TopicType.QUESTION ? 'question' : 'answer'}`}
             variant="standard"
             color="secondary"
             InputLabelProps={{ shrink: false }}
@@ -39,12 +39,7 @@ export default function UserInput({ dayId, user, answer, onAdd }: UserInputProps
             className={classes.input}
             component={AppInput}
           />
-          <IconButton
-            type="submit"
-            className={classes.button}
-            disabled={isLoading || !values.message}
-            onClick={() => handleSubmit()}
-          >
+          <IconButton type="submit" className={classes.button} disabled={isLoading || !values.text}>
             {!isLoading ? (
               <AppIcon name="send" className={classes.icon} />
             ) : (

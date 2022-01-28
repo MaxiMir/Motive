@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react'
 import dynamic from 'next/dynamic'
 import { AppProps } from 'next/app'
 import DateFnsUtils from '@date-io/date-fns'
+import { SWRConfig } from 'swr'
 import NextNprogress from 'nextjs-progressbar'
 import { MuiPickersUtilsProvider } from '@material-ui/pickers'
 import { ThemeProvider } from '@material-ui/core/styles'
@@ -28,13 +29,21 @@ export default function MyApp({ Component, pageProps }: AppProps): JSX.Element {
   return (
     <MuiPickersUtilsProvider utils={DateFnsUtils}>
       <ThemeProvider theme={theme}>
-        <NextNprogress color="#b46a5a" />
-        {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
-        <CssBaseline />
-        <SnackbarContext.Provider value={{ props: snackbarProps, setProps: setSnackbarProps }}>
-          <Component {...pageProps} />
-        </SnackbarContext.Provider>
-        {snackbarProps && <AppSnackbar {...snackbarProps} onClose={onClose} />}
+        <SWRConfig
+          value={{
+            onError: () => {
+              setSnackbarProps({ message: 'Something went wrong...', severity: 'error' })
+            },
+          }}
+        >
+          <NextNprogress color="#b46a5a" />
+          {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
+          <CssBaseline />
+          <SnackbarContext.Provider value={{ props: snackbarProps, setProps: setSnackbarProps }}>
+            <Component {...pageProps} />
+          </SnackbarContext.Provider>
+          {snackbarProps && <AppSnackbar {...snackbarProps} onClose={onClose} />}
+        </SWRConfig>
       </ThemeProvider>
     </MuiPickersUtilsProvider>
   )

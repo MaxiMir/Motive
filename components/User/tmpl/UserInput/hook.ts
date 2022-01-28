@@ -8,16 +8,17 @@ import schema from 'schemas/topic'
 
 export default function useForm(
   dayId: number,
-  answer: boolean | undefined,
-  messageType: string,
+  answer: number | undefined,
+  type: TopicType,
   onAdd: (topic: TopicDto) => void,
 ): UseFormType<TopicCreationDto> {
-  const { isLoading, send } = useSendTopic(messageType, onSuccess)
+  const { isLoading, send } = useSendTopic(type, onSuccess)
   const formik = useFormik<TopicCreationDto>({
     initialValues: {
       dayId,
-      message: '',
-      type: answer ? TopicType.SUPPORT : TopicType.QUESTION,
+      text: '',
+      answer,
+      type,
     },
     validationSchema: schema,
     async onSubmit(data) {
@@ -33,12 +34,16 @@ export default function useForm(
   return { isLoading, formik }
 }
 
-const useSendTopic = (messageType: string, onSuccess: (topic: TopicDto) => void) => {
+const useSendTopic = (type: TopicType, onSuccess: (topic: TopicDto) => void) => {
   const { enqueueSnackbar } = useSnackbar()
 
   return useSend(TopicService.create, {
     onSuccess(topic) {
-      enqueueSnackbar({ message: `${messageType} added`, severity: 'success', icon: 'speaker' })
+      enqueueSnackbar({
+        message: `${type === TopicType.QUESTION ? 'Question' : 'Answer'} added`,
+        severity: 'success',
+        icon: 'speaker',
+      })
       onSuccess(topic)
     },
   })

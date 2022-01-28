@@ -24,8 +24,8 @@ export default function useDiscussion(
 
   const onLoadMore = () => setSize(size + 1)
 
-  const onAdd = (topic: TopicDto) => {
-    mutate([[topic], ...(data || [])], false)
+  const onAdd = async (topic: TopicDto) => {
+    await mutate([[topic], ...(data || [])], false)
     mutateGoals(
       produce(goals, (draft: GoalDto[]) => {
         const [draftDay] = draft[draft.findIndex((g) => g.id === goalId)].days

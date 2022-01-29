@@ -4,7 +4,7 @@ import useSend from 'hooks/useSend'
 import useDebounceCb from 'hooks/useDebounceCb'
 
 export default function useSetLike(id: number, count: number[]): [boolean, number, () => void] {
-  const active = false
+  const active = count.length >= 1 // TODO change
   const lastLoadedRef = useRef(false)
 
   const { send } = useSend(DiscussionService.setLike, {
@@ -31,5 +31,5 @@ export default function useSetLike(id: number, count: number[]): [boolean, numbe
     mutateWithDebounce(!active)
   }
 
-  return [false, count.length, onClick]
+  return [active, count.length, onClick]
 }

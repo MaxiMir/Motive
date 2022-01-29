@@ -38,7 +38,7 @@ const Menu = ({ title, href, onRemove }: MenuProps): JSX.Element => {
       {anchorEl && (
         <MUMenu id="user-menu" anchorEl={anchorEl} keepMounted open={!!anchorEl} onClose={onCloseMenu}>
           <MenuItem onClick={onShare}>Share</MenuItem>
-          <MenuItem onClick={onRemoveCombine}>Remove from Favorites</MenuItem>
+          <MenuItem onClick={onRemoveCombine}>Remove</MenuItem>
           <MenuItem onClick={onCloseMenu}>Cancel</MenuItem>
         </MUMenu>
       )}

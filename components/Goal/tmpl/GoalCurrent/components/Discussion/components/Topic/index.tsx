@@ -33,7 +33,11 @@ export default function Topic({ dayId, owner, topic, role, inView, onView, onAdd
 
   return (
     <>
-      <Message message={message} type={type} owner={owner} onClick={!showReply ? undefined : onClick} />
+      <Message
+        message={message}
+        supportFor={type !== TopicType.SUPPORT ? undefined : owner.name}
+        onClick={!showReply ? undefined : onClick}
+      />
       {showInput && (
         <User
           tmpl="input"
@@ -47,7 +51,7 @@ export default function Topic({ dayId, owner, topic, role, inView, onView, onAdd
       {answers?.map((answer) => (
         <AppBox alignItems="center" spacing={1} key={answer.id}>
           <Reply />
-          <Message message={answer} type={TopicType.SUPPORT} owner={owner} />
+          <Message message={answer} supportFor={message.user.name} />
         </AppBox>
       ))}
       {inView && <AppInView onView={onView} />}

@@ -6,13 +6,13 @@ import { getUserHref } from 'views/UserView/helper'
 import useRemoveFollowing from './hook'
 import Menu from './components/Menu'
 
-interface FavoriteListProps {
+interface UserListProps {
   users: UserDto[]
   isAuthorized: boolean
   mutateUsers: (user: UserDto[]) => void
 }
 
-export default function UserList({ users, isAuthorized, mutateUsers }: FavoriteListProps): JSX.Element {
+export default function UserList({ users, isAuthorized, mutateUsers }: UserListProps): JSX.Element {
   const onRemove = useRemoveFollowing(users, isAuthorized, mutateUsers)
 
   return (

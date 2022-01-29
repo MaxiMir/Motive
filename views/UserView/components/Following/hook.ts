@@ -22,7 +22,7 @@ export default function useSetFollowing(id: number, following: boolean, isAuthor
       })
     },
     onError() {
-      rollbackFavorite()
+      rollbackFollowing()
     },
   })
 
@@ -30,7 +30,7 @@ export default function useSetFollowing(id: number, following: boolean, isAuthor
     lastFollowingRef.current !== add && send({ id, add })
   })
 
-  const mutateFavorite = (value: boolean) => {
+  const mutateFollowing = (value: boolean) => {
     mutate(
       produce(page, (draft) => {
         draft.content.isFollowing = value
@@ -40,7 +40,7 @@ export default function useSetFollowing(id: number, following: boolean, isAuthor
     )
   }
 
-  const rollbackFavorite = () => {
+  const rollbackFollowing = () => {
     const { isFollowing, characteristic } = backupRef.current.content
 
     mutate(
@@ -59,7 +59,7 @@ export default function useSetFollowing(id: number, following: boolean, isAuthor
     }
 
     backupRef.current = page
-    mutateFavorite(!following)
+    mutateFollowing(!following)
     sendWithDebounce(!following)
   }
 }

@@ -130,9 +130,7 @@ export default function ModalGoal({ onClose }: ModalGoalProps): JSX.Element {
                       <AppEmoji name={name} onlyEmoji />{' '}
                     </Fragment>
                   ))}
-                  will burn out.
-                  <br />
-                  And the number of abandoned goals increases.
+                  will burn out and the number of abandoned goals increases.
                 </AppTypography>
               </AccordionDetails>
             </Accordion>

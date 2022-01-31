@@ -44,11 +44,11 @@ export const getGoalInfo = (
   const dates = Object.keys(datesMap)
   const lastDay = dates[dates.length - 1] === day.date
   const daysGone = differenceInCalendarDays(currentDate, Date.parse(day.date))
-  const runsForDays = differenceInCalendarDays(currentDate, Date.parse(goal.started)) + 1
+  const runsForDays = differenceInCalendarDays(currentDate, Date.parse(goal.started))
   const withWeb = checkOnWeb(day.date, currentDate, lastDay)
   const withForm = checkOnTaskForm(role, daysGone)
   const withReactions = checkOnReactions(role, lastDay)
-  const forTomorrow = daysGone === -1
+  const forTomorrow = !daysGone
 
   return {
     runsForDays,

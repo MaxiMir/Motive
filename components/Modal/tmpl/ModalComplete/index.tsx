@@ -55,7 +55,7 @@ export default function ModalComplete({ goal, onClose }: ModalCompleteProps): JS
               <AppSpinIcon name="completed" />
               <AppTypography className={classes.congratulations}>Congratulations, you did it!</AppTypography>
             </AppBox>
-            <Field name="description" label="How was it" color="secondary" multiline rows={3} component={AppInput} />
+            <Field name="description" label="How it was" color="secondary" multiline rows={3} component={AppInput} />
             {!!values.photos.length && (
               <AppBox flexDirection="column" spacing={2} width="100%">
                 <AppHeader name="photo" variant="h6" component="h2" color="primary">

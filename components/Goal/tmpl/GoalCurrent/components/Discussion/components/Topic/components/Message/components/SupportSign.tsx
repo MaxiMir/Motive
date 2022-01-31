@@ -27,6 +27,9 @@ const useStyles = makeStyles((theme) =>
       height: 21,
       background: theme.palette.info.main,
       borderRadius: '50%',
+      '@supports not (-moz-appearance:none)': {
+        paddingLeft: '3.5px',
+      },
     },
   }),
 )

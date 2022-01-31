@@ -40,7 +40,7 @@ export default function Characteristic(props: CharacteristicProps): JSX.Element 
     <>
       <AppOptionalTooltip title={title}>
         <Button className={classes.button} onClick={onClick}>
-          <AppBox flexDirection="column" spacing={0.5} width={60}>
+          <AppBox flexDirection="column" spacing={0.5} width={70}>
             <AppTypography className={classes.title}>{name}</AppTypography>
             <CharacteristicBase tmpl="user" {...props} />
           </AppBox>
@@ -62,6 +62,9 @@ const useStyles = makeStyles((theme) =>
     title: {
       fontSize: '0.75rem',
       color: (props: { color: string }) => props.color,
+      [theme.breakpoints.up('lg')]: {
+        fontSize: '0.875rem',
+      },
     },
   }),
 )

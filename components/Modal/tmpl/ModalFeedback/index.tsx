@@ -54,7 +54,7 @@ export default function ModalFeedback({ goal, onClose }: ModalFeedbackProps): JS
                 Impressive! One step closer to your goal!
               </AppTypography>
             </AppBox>
-            <Field name="text" label="How did today's" color="secondary" multiline rows={3} component={AppInput} />
+            <Field name="text" label="How it went" color="secondary" multiline rows={3} component={AppInput} />
             {!!values.photos.length && (
               <AppBox flexDirection="column" spacing={2} width="100%">
                 <AppHeader name="photo" variant="h6" component="h2" color="primary">

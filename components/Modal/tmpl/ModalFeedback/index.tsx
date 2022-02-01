@@ -50,7 +50,7 @@ export default function ModalFeedback({ goal, onClose }: ModalFeedbackProps): JS
           <AppBox flexDirection="column" alignItems="center" spacing={3}>
             <AppBox flexDirection="column" alignItems="center" spacing={1}>
               <AppSpinIcon name="congratulations" />
-              <AppTypography className={classes.congratulations}>
+              <AppTypography variant="h6" className={classes.congratulations}>
                 Impressive! One step closer to your goal!
               </AppTypography>
             </AppBox>

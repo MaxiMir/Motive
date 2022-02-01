@@ -48,7 +48,7 @@ export const getGoalInfo = (
   const withWeb = checkOnWeb(day.date, currentDate, lastDay)
   const withForm = checkOnTaskForm(role, daysGone)
   const withReactions = checkOnReactions(role, lastDay)
-  const forTomorrow = !daysGone
+  const forTomorrow = daysGone === -1
 
   return {
     runsForDays,

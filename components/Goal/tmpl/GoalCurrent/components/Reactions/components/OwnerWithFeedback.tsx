@@ -7,33 +7,53 @@ import AppBox from 'components/UI/AppBox'
 
 const Modal = dynamic(() => import('components/Modal'))
 
+type ModalTmpl = 'tasks' | 'stage' | 'complete'
+
 interface OwnerWithFeedbackProps {
   goal: GoalDto
 }
 
 export default function OwnerWithFeedback({ goal }: OwnerWithFeedbackProps): JSX.Element {
-  const [openTasks, setOpenTasks] = useState(false)
-  const [openComplete, setOpenComplete] = useState(false)
+  const { map, current } = goal
+  const [modal, setModal] = useState<ModalTmpl>()
+  const isFinish = !map.length || map.length === current
 
-  const toggleTasks = () => setOpenTasks(!openTasks)
+  const openModal = (tmpl: ModalTmpl) => setModal(tmpl)
 
-  const toggleComplete = () => setOpenComplete(!openComplete)
+  const closeModal = () => setModal(undefined)
 
   return (
     <AppBox justifyContent="space-between">
-      <Button variant="outlined" color="primary" startIcon={<AppEmoji name="task" onlyEmoji />} onClick={toggleTasks}>
-        Add tasks
-      </Button>
       <Button
         variant="outlined"
-        color="secondary"
-        startIcon={<AppEmoji name="cup" onlyEmoji />}
-        onClick={toggleComplete}
+        color="primary"
+        startIcon={<AppEmoji name="task" onlyEmoji />}
+        onClick={() => openModal('tasks')}
       >
-        Complete
+        Add tasks
       </Button>
-      {openTasks && <Modal tmpl="tasks" goal={goal} onClose={toggleTasks} />}
-      {openComplete && <Modal tmpl="complete" goal={goal} onClose={toggleComplete} />}
+      {!isFinish ? (
+        <Button
+          variant="outlined"
+          color="secondary"
+          startIcon={<AppEmoji name="stage" onlyEmoji />}
+          onClick={() => openModal('stage')}
+        >
+          Complete
+        </Button>
+      ) : (
+        <Button
+          variant="outlined"
+          color="secondary"
+          startIcon={<AppEmoji name="cup" onlyEmoji />}
+          onClick={() => openModal('complete')}
+        >
+          Complete
+        </Button>
+      )}
+      {modal === 'tasks' && <Modal tmpl="tasks" goal={goal} onClose={closeModal} />}
+      {modal === 'stage' && <Modal tmpl="stage" goal={goal} onClose={closeModal} />}
+      {modal === 'complete' && <Modal tmpl="complete" goal={goal} onClose={closeModal} />}
     </AppBox>
   )
 }

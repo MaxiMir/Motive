@@ -87,7 +87,7 @@ export default function GoalCurrent({ goal, client, href }: GoalCurrentProps): J
             </AppBox>
             {!!hashtags?.length && <Hashtags hashtags={hashtags} />}
             <div>
-              {map.length && (
+              {!!map.length && (
                 <AppAccordion
                   name="map"
                   header="Map"

@@ -40,8 +40,8 @@ export default function ModalComplete({ goal, onClose }: ModalCompleteProps): JS
         <ModalAction
           tmpl="submit"
           isLoading={isLoading}
-          name="Save"
-          nameLoading="Saving"
+          name="Complete"
+          nameLoading="Completing"
           emoji="completed"
           onClick={handleSubmit}
         />,
@@ -53,7 +53,9 @@ export default function ModalComplete({ goal, onClose }: ModalCompleteProps): JS
           <AppBox flexDirection="column" alignItems="center" spacing={3}>
             <AppBox flexDirection="column" alignItems="center" spacing={1}>
               <AppSpinIcon name="completed" />
-              <AppTypography className={classes.congratulations}>Congratulations, you did it!</AppTypography>
+              <AppTypography variant="h6" className={classes.congratulations}>
+                Congratulations, you did it!
+              </AppTypography>
             </AppBox>
             <Field name="description" label="How it was" color="secondary" multiline rows={3} component={AppInput} />
             {!!values.photos.length && (

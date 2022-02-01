@@ -15,6 +15,7 @@ export default function useForm(onClose: () => void): UseFormType<GoalCreationDt
     initialValues: {
       name: '',
       hashtags: '',
+      map: [],
       tasks: [{ name: '', date: undefined }],
     },
     validationSchema: schema,

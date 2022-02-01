@@ -33,6 +33,7 @@ export type AppEmojiName =
   | 'tape'
   | 'cassette'
   | 'pitt'
+  | 'map'
 
 interface AppEmojiProps {
   name: AppEmojiName
@@ -125,6 +126,8 @@ function getContent(name: AppEmojiName) {
       return '📼'
     case 'pitt':
       return '🕷'
+    case 'map':
+      return '🗺'
     default:
       return ''
   }

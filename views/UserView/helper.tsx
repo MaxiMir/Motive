@@ -23,7 +23,7 @@ export const getCharacteristicsTitle = (): { [k in UserCharacteristicName]: JSX.
   motivation: (
     <>
       Motivation points are given for: <br />
-      • completion goals <br />
+      • goal completion <br />
       • each user who joins your goal <br />
       • every <AppEmoji name="motivation" onlyEmoji /> put on your day <br />
     </>
@@ -36,9 +36,7 @@ export const getCharacteristicsTitle = (): { [k in UserCharacteristicName]: JSX.
   ),
   support: (
     <>
-      Support points are given for: <br />
-      • each reply to a user in a discussion on your day <br />
-      • each liked message of support to another user in his goal <br />
+      Support points are given for: <br />• each support message in discussion with <AppEmoji name="like" onlyEmoji />
     </>
   ),
   abandoned: (

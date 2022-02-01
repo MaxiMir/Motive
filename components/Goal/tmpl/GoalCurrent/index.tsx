@@ -24,6 +24,7 @@ const TaskForm = dynamic(() => import('./components/TaskForm'))
 const Web = dynamic(() => import('./components/Web'))
 const Reactions = dynamic(() => import('./components/Reactions'))
 const AppTypography = dynamic(() => import('components/UI/AppTypography'))
+const AppProgress = dynamic(() => import('components/UI/AppProgress'))
 
 const CHARACTERISTICS: GoalCharacteristicName[] = ['motivation', 'creativity', 'support', 'members']
 
@@ -35,7 +36,7 @@ export interface GoalCurrentProps {
 }
 
 export default function GoalCurrent({ goal, client, href }: GoalCurrentProps): JSX.Element {
-  const { id, name, hashtags, characteristic, owner } = goal
+  const { id, name, hashtags, characteristic, owner, map, current } = goal
   const [day] = goal.days
   const { id: dayId, date, tasks, views, feedback, topicCount } = day
   const classes = useStyles()
@@ -86,6 +87,16 @@ export default function GoalCurrent({ goal, client, href }: GoalCurrentProps): J
             </AppBox>
             {!!hashtags?.length && <Hashtags hashtags={hashtags} />}
             <div>
+              {map.length && (
+                <AppAccordion
+                  name="map"
+                  header="Map"
+                  id={`map-${dayId}`}
+                  ariaControls="map-content"
+                  defaultExpanded
+                  details={<AppProgress steps={map} current={current || undefined} />}
+                />
+              )}
               <AppAccordion
                 name="task"
                 header="Tasks"
@@ -128,9 +139,7 @@ export default function GoalCurrent({ goal, client, href }: GoalCurrentProps): J
                 renderOnClick
                 unmountOnExit
                 detailsClass={classes.discussion}
-                details={
-                  <Discussion goalId={id} dayId={dayId} role={role} owner={owner} client={client} count={topicCount} />
-                }
+                details={<Discussion dayId={dayId} role={role} owner={owner} client={client} count={topicCount} />}
               />
             </div>
           </AppBox>
@@ -147,8 +156,8 @@ export default function GoalCurrent({ goal, client, href }: GoalCurrentProps): J
             )}
             <Views views={views} />
           </AppBox>
+          {withWeb && <Web />}
         </AppBox>
-        {withWeb && <Web />}
       </div>
     </AppBox>
   )
@@ -170,6 +179,7 @@ const useStyles = makeStyles((theme) =>
       borderRadius: 15,
     },
     content: {
+      position: 'relative',
       height: '100%',
       padding: 16,
       background: theme.palette.background.paper,

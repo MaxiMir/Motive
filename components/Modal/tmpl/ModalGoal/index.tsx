@@ -1,4 +1,5 @@
 import { Fragment } from 'react'
+import dynamic from 'next/dynamic'
 import { Field, FieldArray, Form, FormikProvider } from 'formik'
 import { makeStyles } from '@material-ui/core/styles'
 import { Accordion, AccordionDetails, AccordionSummary, Button, createStyles } from '@material-ui/core'
@@ -14,8 +15,12 @@ import AppBox from 'components/UI/AppBox'
 import AppInput from 'components/UI/AppInput'
 import AppTypography from 'components/UI/AppTypography'
 import AppIcon from 'components/UI/AppIcon'
+import AppDot from 'components/UI/AppDot'
+import AppAccordion from 'components/UI/AppAccordion'
 import { PaulIcon } from 'components/UI/icons'
 import useForm from './hook'
+
+const AppCloseButton = dynamic(() => import('components/UI/AppCloseButton'))
 
 const CHARACTERISTIC_NAMES: MainCharacteristicName[] = ['motivation', 'creativity', 'support']
 
@@ -72,6 +77,36 @@ export default function ModalGoal({ onClose }: ModalGoalProps): JSX.Element {
               </Button>
             </AppBox>
             <AppBox flexDirection="column" spacing={2}>
+              <AppHeader name="map" variant="h6" component="h2" color="primary">
+                Map
+              </AppHeader>
+              <FieldArray name="map">
+                {({ push, remove }) => (
+                  <>
+                    {values.map.map((_, index) => (
+                      <AppBox spacing={1} key={index}>
+                        <AppBox alignSelf="flex-start" mt={2}>
+                          <AppDot size={10} />
+                        </AppBox>
+                        <Field
+                          name={`map.${index}`}
+                          autoFocus={index === values.map.length - 1}
+                          color="secondary"
+                          component={AppInput}
+                        />
+                        <AppBox alignSelf="flex-start" mt="-4px">
+                          <AppCloseButton onClick={() => remove(index)} />
+                        </AppBox>
+                      </AppBox>
+                    ))}
+                    <Button variant="outlined" size="small" className={classes.button} onClick={() => push('')}>
+                      + Add item
+                    </Button>
+                  </>
+                )}
+              </FieldArray>
+            </AppBox>
+            <AppBox flexDirection="column" spacing={2}>
               <AppHeader name="task" variant="h6" component="h2" color="primary">
                 Tasks for tomorrow
               </AppHeader>
@@ -103,37 +138,55 @@ export default function ModalGoal({ onClose }: ModalGoalProps): JSX.Element {
                 )}
               </FieldArray>
             </AppBox>
-            <Accordion>
-              <AccordionSummary
-                expandIcon={<AppIcon name="expand_more" color="primary" />}
-                aria-controls="old-pitt-note"
-                id="old-pitt-note"
-              >
-                <AppBox alignItems="center" spacing={1}>
-                  <PaulIcon />
-                  <AppTypography variant="h6" component="h3" color="primary">
-                    Remember Old Pitt!
+            <div>
+              <AppAccordion
+                name="map"
+                header="About Map"
+                id="map"
+                ariaControls="about-map-content"
+                details={
+                  <div>
+                    <AppTypography className={classes.hint}>
+                      We recommend that you divide large goals into stages.
+                    </AppTypography>
+                    <AppTypography className={classes.hint}>
+                      Add the names of these stages to the map list.
+                    </AppTypography>
+                  </div>
+                }
+              />
+              <Accordion>
+                <AccordionSummary
+                  expandIcon={<AppIcon name="expand_more" color="primary" />}
+                  aria-controls="old-pitt-note"
+                  id="old-pitt-note"
+                >
+                  <AppBox alignItems="center" spacing={1}>
+                    <PaulIcon />
+                    <AppTypography variant="h6" component="h3" color="primary">
+                      Remember Old Pitt!
+                    </AppTypography>
+                  </AppBox>
+                </AccordionSummary>
+                <AccordionDetails>
+                  <AppTypography className={classes.hint}>
+                    He hunts for abandoned goals.
+                    <br />
+                    On the 14th day he covers them 🕸.
+                    <br />
+                    On the 28th day he eats them 🩸.
+                    <br />
+                    The accumulated points{' '}
+                    {CHARACTERISTIC_NAMES.map((name) => (
+                      <Fragment key={name}>
+                        <AppEmoji name={name} onlyEmoji />{' '}
+                      </Fragment>
+                    ))}
+                    will burn out and the number of abandoned goals increases.
                   </AppTypography>
-                </AppBox>
-              </AccordionSummary>
-              <AccordionDetails>
-                <AppTypography className={classes.hint}>
-                  He hunts for abandoned goals.
-                  <br />
-                  On the 14th day he covers them 🕸.
-                  <br />
-                  On the 28th day he eats them 🩸.
-                  <br />
-                  The accumulated points{' '}
-                  {CHARACTERISTIC_NAMES.map((name) => (
-                    <Fragment key={name}>
-                      <AppEmoji name={name} onlyEmoji />{' '}
-                    </Fragment>
-                  ))}
-                  will burn out and the number of abandoned goals increases.
-                </AppTypography>
-              </AccordionDetails>
-            </Accordion>
+                </AccordionDetails>
+              </Accordion>
+            </div>
           </AppBox>
         </Form>
       </FormikProvider>

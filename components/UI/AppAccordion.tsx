@@ -46,7 +46,7 @@ export default function AppAccordion({
         expandIcon={<AppIcon name="expand_more" color="primary" />}
         aria-controls={ariaControls}
       >
-        <AppHeader name={name} variant="h6" component="h2" color="primary">
+        <AppHeader name={name} variant="h6" component="h3" color="primary">
           {header}
         </AppHeader>
       </AccordionSummary>

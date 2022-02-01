@@ -1,10 +1,11 @@
 import { ChangeEvent } from 'react'
 import dynamic from 'next/dynamic'
 import { Field } from 'formik'
-import { createStyles, FormControlLabel, Switch, makeStyles, IconButton } from '@material-ui/core'
+import { createStyles, FormControlLabel, Switch, makeStyles } from '@material-ui/core'
 import AppBox from 'components/UI/AppBox'
 import AppInput from 'components/UI/AppInput'
 import AppIcon from 'components/UI/AppIcon'
+import AppCloseButton from 'components/UI/AppCloseButton'
 
 const KeyboardTimePicker = dynamic(() =>
   import('formik-material-ui-pickers').then(
@@ -42,15 +43,9 @@ export default function TaskField({ index, date, taskCount, onToggleDate, onRemo
           autoFocus={!!index && index === taskCount - 1}
           component={AppInput}
         />
-        <IconButton
-          disableFocusRipple
-          aria-label="remove task"
-          disabled={taskCount === 1}
-          onClick={onRemove}
-          className={classes.iconCloseBtn}
-        >
-          <AppIcon name="close" />
-        </IconButton>
+        <AppBox alignSelf="flex-start" mt={2}>
+          <AppCloseButton aria-label="remove task" disabled={taskCount === 1} onClick={onRemove} />
+        </AppBox>
       </AppBox>
       <AppBox height={48} alignItems="center" pl={1} spacing={1}>
         <FormControlLabel control={<Switch size="small" onChange={onSwitchClick} />} label="remind me" />
@@ -75,11 +70,6 @@ const useStyles = makeStyles((theme) =>
     },
     timepicker: {
       width: 100,
-    },
-    iconCloseBtn: {
-      alignSelf: 'flex-start;',
-      marginTop: 16,
-      color: theme.text.silent,
     },
   }),
 )

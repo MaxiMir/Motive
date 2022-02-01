@@ -25,7 +25,7 @@ export default function Message({ message, supportFor, onClick }: MessageProps):
 
   return (
     <AppBox flexDirection="column" spacing={1} flex={1}>
-      <AppBox flexDirection="column" spacing={2} minWidth={152}>
+      <AppBox flexDirection="column" spacing={1} minWidth={152}>
         <AppBox alignItems="center" spacing={1}>
           <User tmpl="avatar" user={user} size={26} />
           <AppLink href={`/${user.id}`} title={user.name} className={classes.name}>

@@ -11,7 +11,6 @@ const AppList = dynamic<AppListProps<TopicDto>>(() => import('components/UI/AppL
 const AppTypography = dynamic(() => import('components/UI/AppTypography'))
 
 interface DiscussionProps {
-  goalId: number
   dayId: number
   role: RoleDto
   owner: UserBaseDto
@@ -19,10 +18,10 @@ interface DiscussionProps {
   count: number
 }
 
-export default function Discussion({ goalId, dayId, role, owner, client, count }: DiscussionProps): JSX.Element {
-  const { topics, onLoadMore, checkOnLoadMore, onAdd } = useDiscussion(goalId, dayId, count)
+export default function Discussion({ dayId, role, owner, client, count }: DiscussionProps): JSX.Element {
+  const { topics, onLoadMore, checkOnLoadMore, onAdd } = useDiscussion(dayId, count)
   const withInput = (!count || !!topics.length) && !!client && client.id !== owner.id
-  const height = !count ? undefined : (!withInput ? 0 : 56) + 540
+  const height = !count ? undefined : (!withInput ? 0 : 56) + 424
 
   return (
     <AppBox flexDirection="column" spacing={2} flex={1} height={height}>

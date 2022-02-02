@@ -53,7 +53,7 @@ export default function ModalComplete({ goal, onClose }: ModalCompleteProps): JS
           <AppBox flexDirection="column" alignItems="center" spacing={3}>
             <AppBox flexDirection="column" alignItems="center" spacing={1}>
               <AppSpinIcon name="completed" />
-              <AppTypography variant="h6" className={classes.congratulations}>
+              <AppTypography variant="subtitle1" className={classes.congratulations}>
                 Congratulations, you did it!
               </AppTypography>
             </AppBox>

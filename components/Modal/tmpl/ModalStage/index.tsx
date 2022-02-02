@@ -13,25 +13,29 @@ export interface ModalStageProps {
 }
 
 export default function ModalStage({ goal, onClose }: ModalStageProps): JSX.Element {
-  const { map, current } = goal
+  const { stages, current } = goal
   const classes = useStyles()
-  const nextStage = map[current || 1]
 
   const isLoading = false
   const handleSubmit = () => false
 
   return (
     <AppModal
-      title="Moving to the next stage"
+      title={
+        <>
+          Completion stage <br />
+          <span className={classes.prevStage}>{stages[current || 0]}</span>
+        </>
+      }
       maxWidth="xs"
       actions={[
         <ModalAction tmpl="close" onClick={onClose} />,
         <ModalAction
           tmpl="submit"
           isLoading={isLoading}
-          name="Move"
-          nameLoading="Moving"
-          emoji="map"
+          name="Complete"
+          nameLoading="Completing"
+          emoji="stage"
           onClick={handleSubmit}
         />,
       ]}
@@ -39,11 +43,12 @@ export default function ModalStage({ goal, onClose }: ModalStageProps): JSX.Elem
     >
       <AppBox flexDirection="column" alignItems="center" spacing={1}>
         <AppFlyIcon name="stage" />
-        <AppTypography variant="h6" className={classes.congratulations}>
-          Ideal! One step behind!
+        <AppTypography variant="subtitle1" className={classes.congratulations}>
+          Excellent! One step behind!
         </AppTypography>
         <AppTypography>
-          Next stage is &quot;<b className={classes.stage}>{nextStage}</b>&quot;
+          {stages.length === current ? 'Final' : 'Next'} stage is{' '}
+          <b className={classes.nextStage}>{stages[current || 1]}</b>
         </AppTypography>
       </AppBox>
     </AppModal>
@@ -52,11 +57,14 @@ export default function ModalStage({ goal, onClose }: ModalStageProps): JSX.Elem
 
 const useStyles = makeStyles((theme) =>
   createStyles({
-    congratulations: {
-      color: '#0386F4',
+    prevStage: {
+      color: theme.text.sand,
     },
-    stage: {
-      color: theme.text.wave,
+    nextStage: {
+      color: theme.text.silent,
+    },
+    congratulations: {
+      color: theme.palette.info.main,
     },
   }),
 )

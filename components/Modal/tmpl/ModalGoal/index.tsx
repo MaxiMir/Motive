@@ -77,20 +77,21 @@ export default function ModalGoal({ onClose }: ModalGoalProps): JSX.Element {
               </Button>
             </AppBox>
             <AppBox flexDirection="column" spacing={2}>
-              <AppHeader name="map" variant="h6" component="h2" color="primary">
-                Map
+              <AppHeader name="stage" variant="h6" component="h2" color="primary">
+                Stages
               </AppHeader>
               <FieldArray name="map">
                 {({ push, remove }) => (
                   <>
-                    {values.map.map((_, index) => (
+                    {values.stages.map((_, index) => (
                       <AppBox spacing={1} key={index}>
                         <AppBox alignSelf="flex-start" mt={2}>
                           <AppDot size={10} />
                         </AppBox>
                         <Field
                           name={`map.${index}`}
-                          autoFocus={index === values.map.length - 1}
+                          label={`${index + 1} stage`}
+                          autoFocus={index === values.stages.length - 1}
                           color="secondary"
                           component={AppInput}
                         />
@@ -140,18 +141,16 @@ export default function ModalGoal({ onClose }: ModalGoalProps): JSX.Element {
             </AppBox>
             <div>
               <AppAccordion
-                name="map"
-                header="About Map"
-                id="map"
-                ariaControls="about-map-content"
+                name="stage"
+                header="About Stages"
+                id="stage"
+                ariaControls="about-stages-content"
                 details={
                   <div>
                     <AppTypography className={classes.hint}>
                       We recommend that you divide large goals into stages.
                     </AppTypography>
-                    <AppTypography className={classes.hint}>
-                      Add the names of these stages to the map list.
-                    </AppTypography>
+                    <AppTypography className={classes.hint}>Add each stage in the field.</AppTypography>
                   </div>
                 }
               />

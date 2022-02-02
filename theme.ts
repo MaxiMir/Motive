@@ -6,12 +6,14 @@ declare module '@material-ui/core/styles/createMuiTheme' {
   interface Theme {
     text: {
       silent: CSSProperties['color']
+      sand: CSSProperties['color']
       wave: CSSProperties['color']
     }
   }
   interface ThemeOptions {
     text: {
       silent: CSSProperties['color']
+      sand: CSSProperties['color']
       wave: CSSProperties['color']
     }
   }
@@ -20,6 +22,7 @@ declare module '@material-ui/core/styles/createMuiTheme' {
 export default createMuiTheme({
   text: {
     silent: '#99989D',
+    sand: '#ad998b',
     wave: '#85dfff',
   },
   palette: {

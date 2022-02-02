@@ -9,26 +9,26 @@ export default function AppFlyIcon({ name }: AppSpinIconProps): JSX.Element {
   const classes = useStyles()
 
   return (
-    <div className={classes.route}>
-      <AppEmoji name={name} variant="h2" className={classes.plane} />
+    <div className={classes.root}>
+      <AppEmoji name={name} variant="h2" className={classes.emoji} />
     </div>
   )
 }
 
 const useStyles = makeStyles({
-  route: {
+  root: {
     height: 180,
     width: 150,
     position: 'relative',
   },
-  plane: {
+  emoji: {
     position: 'absolute',
     transform: 'rotate(-45deg)',
     bottom: 0,
     left: 45,
-    animation: '$path 6s linear infinite',
+    animation: '$fly 6s linear infinite',
   },
-  '@keyframes path': {
+  '@keyframes fly': {
     '0%': {
       bottom: 0,
     },

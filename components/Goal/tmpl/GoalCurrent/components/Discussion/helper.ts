@@ -1,4 +1,4 @@
-import { TopicDto } from 'dto'
+import { GoalDto, TopicDto } from 'dto'
 import PageService from 'services/PageService'
 import produce from 'immer'
 
@@ -18,5 +18,13 @@ export const mergeTopics = (data: TopicDto[][], newTopic: TopicDto): TopicDto[][
     if (draftTopic) {
       draftTopic.answers = newTopic.answers
     }
+  })
+}
+
+export const changeGoals = (goalId: number, goals: GoalDto[]): GoalDto[] => {
+  return produce(goals, (draft: GoalDto[]) => {
+    const draftGoal = draft[draft.findIndex((g) => g.id === goalId)]
+
+    draftGoal.days[0].topicCount += 1
   })
 }

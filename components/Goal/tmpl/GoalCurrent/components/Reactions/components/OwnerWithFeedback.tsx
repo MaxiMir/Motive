@@ -14,9 +14,9 @@ interface OwnerWithFeedbackProps {
 }
 
 export default function OwnerWithFeedback({ goal }: OwnerWithFeedbackProps): JSX.Element {
-  const { map, current } = goal
+  const { stages, current } = goal
   const [modal, setModal] = useState<ModalTmpl>()
-  const isFinish = !map.length || map.length === current
+  const isFinish = !stages.length || stages.length === current
 
   const openModal = (tmpl: ModalTmpl) => setModal(tmpl)
 

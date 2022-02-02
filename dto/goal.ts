@@ -4,7 +4,7 @@ import { UserBaseDto } from './user'
 export interface GoalCreationDto {
   name: string
   hashtags: string
-  map: string[]
+  stages: string[]
   tasks: TaskCreationDto[]
 }
 
@@ -13,8 +13,8 @@ export interface GoalDto {
   name: string
   started: string
   hashtags: string[]
-  map: string[]
-  current: number | null
+  stages: string[]
+  current: number
   owner: UserBaseDto
   characteristic: GoalCharacteristicDto
   days: DayDto[]

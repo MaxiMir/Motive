@@ -1,5 +1,5 @@
 import { Field, FieldArray, Form, FormikProvider } from 'formik'
-import { makeStyles } from '@material-ui/core'
+import { createStyles, makeStyles } from '@material-ui/core'
 import { GoalDto } from 'dto'
 import useSelectPhoto from 'hooks/useSelectPhoto'
 import ModalAction from 'components/ModalAction'
@@ -8,7 +8,7 @@ import AppTypography from 'components/UI/AppTypography'
 import AppBox from 'components/UI/AppBox'
 import AppInput from 'components/UI/AppInput'
 import AppHeader from 'components/UI/AppHeader'
-import AppSpinIcon from 'components/UI/AppSpinIcon'
+import AppShakeIcon from 'components/UI/AppShakeIcon'
 import Photo from 'components/Photo'
 import Video from 'components/Video'
 import useForm from './hook'
@@ -49,8 +49,8 @@ export default function ModalFeedback({ goal, onClose }: ModalFeedbackProps): JS
         <Form autoComplete="off">
           <AppBox flexDirection="column" alignItems="center" spacing={3}>
             <AppBox flexDirection="column" alignItems="center" spacing={1}>
-              <AppSpinIcon name="congratulations" />
-              <AppTypography variant="h6" className={classes.congratulations}>
+              <AppShakeIcon name="congratulations" />
+              <AppTypography variant="subtitle1" className={classes.congratulations}>
                 Impressive! One step closer to your goal!
               </AppTypography>
             </AppBox>
@@ -101,8 +101,10 @@ export default function ModalFeedback({ goal, onClose }: ModalFeedbackProps): JS
   )
 }
 
-const useStyles = makeStyles({
-  congratulations: {
-    color: '#0386F4',
-  },
-})
+const useStyles = makeStyles((theme) =>
+  createStyles({
+    congratulations: {
+      color: theme.palette.info.main,
+    },
+  }),
+)

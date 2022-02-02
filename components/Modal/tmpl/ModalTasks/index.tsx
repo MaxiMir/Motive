@@ -1,6 +1,5 @@
 import { FieldArray, Form, FormikProvider } from 'formik'
-import { makeStyles } from '@material-ui/core/styles'
-import { Button } from '@material-ui/core'
+import { Button, createStyles, makeStyles } from '@material-ui/core'
 import { GoalDto } from 'dto'
 import { getTomorrow } from 'helpers/date'
 import ModalAction from 'components/ModalAction'
@@ -74,12 +73,14 @@ export default function ModalTasks({ goal, onClose }: ModalTasksProps): JSX.Elem
   )
 }
 
-const useStyles = makeStyles({
-  button: {
-    alignSelf: 'baseline',
-    textTransform: 'none',
-  },
-  tomorrow: {
-    color: '#ad998b',
-  },
-})
+const useStyles = makeStyles((theme) =>
+  createStyles({
+    button: {
+      alignSelf: 'baseline',
+      textTransform: 'none',
+    },
+    tomorrow: {
+      color: theme.text.sand,
+    },
+  }),
+)

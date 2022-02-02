@@ -36,7 +36,7 @@ export interface GoalCurrentProps {
 }
 
 export default function GoalCurrent({ goal, client, href }: GoalCurrentProps): JSX.Element {
-  const { id, name, hashtags, characteristic, owner, map, current } = goal
+  const { id, name, hashtags, characteristic, owner, stages, current } = goal
   const [day] = goal.days
   const { id: dayId, date, tasks, views, feedback, topicCount } = day
   const classes = useStyles()
@@ -87,14 +87,14 @@ export default function GoalCurrent({ goal, client, href }: GoalCurrentProps): J
             </AppBox>
             {!!hashtags?.length && <Hashtags hashtags={hashtags} />}
             <div>
-              {!!map.length && (
+              {!!stages.length && (
                 <AppAccordion
-                  name="map"
-                  header="Map"
-                  id={`map-${dayId}`}
-                  ariaControls="map-content"
+                  name="stage"
+                  header="Stages"
+                  id={`stage-${dayId}`}
+                  ariaControls="stages-content"
                   defaultExpanded
-                  details={<AppProgress steps={map} current={current || undefined} />}
+                  details={<AppProgress steps={stages} current={current} />}
                 />
               )}
               <AppAccordion
@@ -139,7 +139,9 @@ export default function GoalCurrent({ goal, client, href }: GoalCurrentProps): J
                 renderOnClick
                 unmountOnExit
                 detailsClass={classes.discussion}
-                details={<Discussion dayId={dayId} role={role} owner={owner} client={client} count={topicCount} />}
+                details={
+                  <Discussion goalId={id} dayId={dayId} role={role} owner={owner} client={client} count={topicCount} />
+                }
               />
             </div>
           </AppBox>

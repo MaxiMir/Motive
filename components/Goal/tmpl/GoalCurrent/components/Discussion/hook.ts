@@ -1,9 +1,11 @@
 import useSWRInfinite from 'swr/infinite'
 import { TopicDto } from 'dto'
 import { getTopicsKey, partialCheckOnLoadMore } from 'helpers/swr'
-import { fetcher, getTopicsCount, mergeTopics } from './helper'
+import { useMutateGoals } from 'views/UserView/hook'
+import { fetcher, getTopicsCount, changeGoals, mergeTopics } from './helper'
 
 export default function useDiscussion(
+  goalId: number,
   dayId: number,
   count: number,
 ): {
@@ -12,6 +14,7 @@ export default function useDiscussion(
   onLoadMore: () => void
   onAdd: (topic: TopicDto) => void
 } {
+  const [goals, mutateGoals] = useMutateGoals()
   const {
     data = [],
     size,
@@ -28,6 +31,7 @@ export default function useDiscussion(
 
   const onAdd = async (topic: TopicDto) => {
     await mutate(mergeTopics(data, topic), false)
+    mutateGoals(changeGoals(goalId, goals))
   }
 
   return { topics, onLoadMore, checkOnLoadMore, onAdd }

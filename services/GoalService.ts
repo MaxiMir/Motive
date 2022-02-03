@@ -1,4 +1,4 @@
-import { GoalDto, GoalCreationDto, DayCreationDto, DayCharacteristicUpdate } from 'dto'
+import { GoalDto, GoalCreationDto, DayCreationDto, DayCharacteristicUpdate, GoalStage } from 'dto'
 import Axios from 'lib/axios'
 import { Service } from './Service'
 
@@ -17,6 +17,15 @@ export default class GoalService extends Service {
     const { id, ...body } = data
 
     return Axios.post(`/goals/${id}/days`, body)
+  }
+
+  /**
+   * /goals/{id}/stage
+   */
+  static updateStage(data: GoalStage): Promise<void> {
+    const { id, ...body } = data
+
+    return Axios.patch(`/goals/${id}/stage`, body)
   }
 
   /**

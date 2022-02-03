@@ -5,6 +5,7 @@ import AppModal from 'components/UI/AppModal'
 import AppTypography from 'components/UI/AppTypography'
 import AppBox from 'components/UI/AppBox'
 import AppFlyIcon from 'components/UI/AppFlyIcon'
+import { useSendStage } from './hook'
 
 export interface ModalStageProps {
   tmpl: 'stage'
@@ -13,18 +14,19 @@ export interface ModalStageProps {
 }
 
 export default function ModalStage({ goal, onClose }: ModalStageProps): JSX.Element {
-  const { stages, current } = goal
+  const { stages, days } = goal
   const classes = useStyles()
-
-  const isLoading = false
-  const handleSubmit = () => false
+  const { isLoading, send } = useSendStage(goal, onClose)
+  const [{ stage }] = days
+  const isFinal = stages.length === stage
+  const nextStage = stage + 1
 
   return (
     <AppModal
       title={
         <>
           Completion stage <br />
-          <span className={classes.prevStage}>{stages[current || 0]}</span>
+          <span className={classes.prevStage}>{stages[stage]}</span>
         </>
       }
       maxWidth="xs"
@@ -36,20 +38,21 @@ export default function ModalStage({ goal, onClose }: ModalStageProps): JSX.Elem
           name="Complete"
           nameLoading="Completing"
           emoji="stage"
-          onClick={handleSubmit}
+          onClick={() => send({ id: goal.id, stage: nextStage })}
         />,
       ]}
       onClose={onClose}
     >
-      <AppBox flexDirection="column" alignItems="center" spacing={1}>
-        <AppFlyIcon name="stage" />
-        <AppTypography variant="subtitle1" className={classes.congratulations}>
-          Excellent! One step behind!
-        </AppTypography>
-        <AppTypography>
-          {stages.length === current ? 'Final' : 'Next'} stage is{' '}
-          <b className={classes.nextStage}>{stages[current || 1]}</b>
-        </AppTypography>
+      <AppBox flexDirection="column" spacing={3}>
+        <AppBox flexDirection="column" alignItems="center" spacing={1}>
+          <AppFlyIcon name="stage" />
+          <AppTypography variant="subtitle1" className={classes.congratulations}>
+            Excellent! One step behind!
+          </AppTypography>
+          <AppTypography>
+            {isFinal ? 'Final' : 'Next'} stage is <b className={classes.nextStage}>{stages[nextStage]}</b>
+          </AppTypography>
+        </AppBox>
       </AppBox>
     </AppModal>
   )

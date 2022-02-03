@@ -14,7 +14,7 @@ export interface GoalDto {
   started: string
   hashtags: string[]
   stages: string[]
-  current: number
+  stage: number
   owner: UserBaseDto
   characteristic: GoalCharacteristicDto
   days: DayDto[]
@@ -28,6 +28,7 @@ export interface DayCreationDto {
 
 export interface DayDto {
   id: number
+  stage: number
   date: string
   characteristic: DayCharacteristicDto | null
   tasks: TaskDto[]
@@ -64,4 +65,9 @@ export interface PhotoDto {
 export interface CalendarDto {
   id: number
   date: string
+}
+
+export interface GoalStage {
+  id: number
+  stage: number
 }

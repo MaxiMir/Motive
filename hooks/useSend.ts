@@ -6,7 +6,7 @@ interface Options<R, D> {
   onError?: (e: unknown, request: D) => void
 }
 
-interface UseSend<D> {
+export interface UseSend<D> {
   isLoading: boolean
   send: (data: D) => void
 }

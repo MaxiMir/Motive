@@ -31,5 +31,6 @@ const useStyles = makeStyles({
     position: (props: RenderImageProps) => (props.direction === 'column' ? 'absolute' : undefined),
     top: (props: RenderImageProps) => (props.direction === 'column' ? props.top : undefined),
     left: (props: RenderImageProps) => (props.direction === 'column' ? props.left : undefined),
+    border: '1px solid #262623',
   },
 })

@@ -1,6 +1,4 @@
-import { GoalDto, GoalCreationDto } from 'dto'
-
-export const learnFrench: GoalDto = {
+export const learnFrench = {
   id: 314,
   name: 'learn French',
   started: '2021-10-17T18:31:42',
@@ -47,7 +45,7 @@ export const learnFrench: GoalDto = {
   ],
 }
 
-export const becomeSenior: GoalDto = {
+export const becomeSenior = {
   id: 214,
   name: 'become senior',
   started: '2021-09-01T12:31:42',
@@ -76,43 +74,4 @@ export const becomeSenior: GoalDto = {
       feedback: null,
     },
   ],
-}
-
-export const getNewGoal = (goalCreation: GoalCreationDto): GoalDto => {
-  return {
-    id: 413,
-    name: goalCreation.name,
-    started: new Date().toISOString(),
-    hashtags: goalCreation.hashtags.split(' '),
-    calendar: [],
-    owner: {
-      id: 1,
-      nickname: 'maximir',
-      name: 'Maxmin Minchenko',
-      avatar: '/__temp__/1.png',
-    },
-    characteristic: {
-      motivation: 0,
-      support: 0,
-      creativity: 0,
-      members: 0,
-    },
-    days: [
-      {
-        id: 653,
-        date: new Date().toISOString(),
-        characteristic: null,
-        tasks: goalCreation.tasks.map((t, id) => ({
-          ...t,
-          id,
-          date: null,
-          completed: false,
-          completedBy: [],
-        })),
-        views: 0,
-        topicCount: 0,
-        feedback: null,
-      },
-    ],
-  }
 }

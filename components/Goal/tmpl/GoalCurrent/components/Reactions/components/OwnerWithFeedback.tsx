@@ -14,9 +14,10 @@ interface OwnerWithFeedbackProps {
 }
 
 export default function OwnerWithFeedback({ goal }: OwnerWithFeedbackProps): JSX.Element {
-  const { stages, current } = goal
+  const { stages, days, stage } = goal
   const [modal, setModal] = useState<ModalTmpl>()
-  const isFinish = !stages.length || stages.length === current
+  const dayStage = days[0].stage
+  const withButton = stage <= dayStage
 
   const openModal = (tmpl: ModalTmpl) => setModal(tmpl)
 
@@ -32,24 +33,28 @@ export default function OwnerWithFeedback({ goal }: OwnerWithFeedbackProps): JSX
       >
         Add tasks
       </Button>
-      {!isFinish ? (
-        <Button
-          variant="outlined"
-          color="secondary"
-          startIcon={<AppEmoji name="stage" onlyEmoji />}
-          onClick={() => openModal('stage')}
-        >
-          Complete
-        </Button>
-      ) : (
-        <Button
-          variant="outlined"
-          color="secondary"
-          startIcon={<AppEmoji name="cup" onlyEmoji />}
-          onClick={() => openModal('complete')}
-        >
-          Complete
-        </Button>
+      {withButton && (
+        <>
+          {stages.length === dayStage ? (
+            <Button
+              variant="outlined"
+              color="secondary"
+              startIcon={<AppEmoji name="cup" onlyEmoji />}
+              onClick={() => openModal('complete')}
+            >
+              Complete
+            </Button>
+          ) : (
+            <Button
+              variant="outlined"
+              color="secondary"
+              startIcon={<AppEmoji name="stage" onlyEmoji />}
+              onClick={() => openModal('stage')}
+            >
+              Complete
+            </Button>
+          )}
+        </>
       )}
       {modal === 'tasks' && <Modal tmpl="tasks" goal={goal} onClose={closeModal} />}
       {modal === 'stage' && <Modal tmpl="stage" goal={goal} onClose={closeModal} />}

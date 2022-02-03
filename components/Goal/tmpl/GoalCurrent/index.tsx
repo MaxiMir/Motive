@@ -36,9 +36,9 @@ export interface GoalCurrentProps {
 }
 
 export default function GoalCurrent({ goal, client, href }: GoalCurrentProps): JSX.Element {
-  const { id, name, hashtags, characteristic, owner, stages, current } = goal
+  const { id, name, hashtags, characteristic, owner, stages } = goal
   const [day] = goal.days
-  const { id: dayId, date, tasks, views, feedback, topicCount } = day
+  const { id: dayId, date, tasks, views, feedback, topicCount, stage } = day
   const classes = useStyles()
   const theme = useTheme()
   const colors = useCharacteristicColors()
@@ -94,7 +94,7 @@ export default function GoalCurrent({ goal, client, href }: GoalCurrentProps): J
                   id={`stage-${dayId}`}
                   ariaControls="stages-content"
                   defaultExpanded
-                  details={<AppProgress steps={stages} current={current} />}
+                  details={<AppProgress steps={stages} current={stage} />}
                 />
               )}
               <AppAccordion

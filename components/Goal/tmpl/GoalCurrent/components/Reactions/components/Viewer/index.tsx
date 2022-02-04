@@ -4,7 +4,7 @@ import { DayCharacteristicDto, UserBaseDto, GoalDto, RoleDto, DayCharacteristicN
 import AppBox from 'components/UI/AppBox'
 import AppEmoji from 'components/UI/AppEmoji'
 import ReactionWithSend from './components/ReactionWithSend'
-import Reaction from './components/Reaction'
+import ReactionSupport from './components/ReactionSupport'
 
 export interface ViewerProps {
   role: RoleDto
@@ -31,12 +31,7 @@ export default function Viewer({ role, goal, characteristic, owner, client }: Vi
         {(['motivation', 'creativity'] as DayCharacteristicName[]).map((name) => (
           <ReactionWithSend goal={goal} name={name} active={activeMap[name]} client={client} key={name} />
         ))}
-        <Reaction
-          name="support"
-          active={false}
-          title={`Support ${owner.name}`}
-          onClick={() => console.log('TODO LOGIC!')}
-        />
+        <ReactionSupport owner={owner} />
       </AppBox>
       <Button
         variant="outlined"

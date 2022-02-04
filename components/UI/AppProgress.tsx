@@ -1,6 +1,6 @@
 import React from 'react'
-import { createStyles, Step, StepLabel, Stepper, makeStyles } from '@material-ui/core'
-import AppIcon from './AppIcon'
+import { createStyles, Step, Stepper, makeStyles } from '@material-ui/core'
+import AppStep from './AppStep'
 
 interface AppProgressProps {
   steps: string[]
@@ -12,9 +12,9 @@ export default function AppProgress({ steps, current }: AppProgressProps): JSX.E
 
   return (
     <Stepper activeStep={current} orientation="vertical" className={classes.root}>
-      {steps.map((step) => (
+      {steps.map((step, index) => (
         <Step key={step}>
-          <StepLabel StepIconComponent={() => <AppIcon name="circle" />}>{step}</StepLabel>
+          <AppStep step={step} current={current === index} completed={current > index} />
         </Step>
       ))}
     </Stepper>
@@ -25,26 +25,6 @@ const useStyles = makeStyles((theme) =>
   createStyles({
     root: {
       padding: 0,
-      '& .MuiStep-root:not(.MuiStep-completed)': {
-        '& .MuiStepLabel-label': {
-          color: theme.text.silent,
-        },
-        '& .material-icons': {
-          color: theme.text.silent,
-        },
-      },
-      '& .MuiStep-completed': {
-        '& .MuiStepLabel-label': {
-          color: theme.text.wave,
-        },
-        '& .material-icons': {
-          color: theme.text.wave,
-        },
-      },
-      '& .material-icons': {
-        fontSize: '0.875rem',
-        marginLeft: 5.7,
-      },
       '& .MuiStepConnector-vertical': {
         padding: 0,
       },

@@ -21,6 +21,11 @@ export interface GoalDto {
   calendar: CalendarDto[]
 }
 
+export interface GoalStageDto {
+  id: number
+  stage: number
+}
+
 export interface DayCreationDto {
   id: number
   tasks: TaskCreationDto[]
@@ -67,7 +72,6 @@ export interface CalendarDto {
   date: string
 }
 
-export interface GoalStage {
-  id: number
-  stage: number
+export interface DaySupportDto {
+  support: string
 }

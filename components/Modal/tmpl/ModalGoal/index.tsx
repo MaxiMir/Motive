@@ -80,7 +80,7 @@ export default function ModalGoal({ onClose }: ModalGoalProps): JSX.Element {
               <AppHeader name="stage" variant="h6" component="h2" color="primary">
                 Stages
               </AppHeader>
-              <FieldArray name="map">
+              <FieldArray name="stages">
                 {({ push, remove }) => (
                   <>
                     {values.stages.map((_, index) => (
@@ -90,7 +90,7 @@ export default function ModalGoal({ onClose }: ModalGoalProps): JSX.Element {
                         </AppBox>
                         <Field
                           name={`map.${index}`}
-                          label={`${index + 1} stage`}
+                          label={`stage ${index + 1}`}
                           autoFocus={index === values.stages.length - 1}
                           color="secondary"
                           component={AppInput}
@@ -101,7 +101,7 @@ export default function ModalGoal({ onClose }: ModalGoalProps): JSX.Element {
                       </AppBox>
                     ))}
                     <Button variant="outlined" size="small" className={classes.button} onClick={() => push('')}>
-                      + Add item
+                      + Add stage
                     </Button>
                   </>
                 )}
@@ -148,9 +148,9 @@ export default function ModalGoal({ onClose }: ModalGoalProps): JSX.Element {
                 details={
                   <div>
                     <AppTypography className={classes.hint}>
-                      We recommend that you divide large goals into stages.
+                      We recommend to divide large goals into stages.
                     </AppTypography>
-                    <AppTypography className={classes.hint}>Add each stage in the field.</AppTypography>
+                    <AppTypography className={classes.hint}>Add each stage in the field above.</AppTypography>
                   </div>
                 }
               />

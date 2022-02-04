@@ -1,11 +1,11 @@
 import produce from 'immer'
-import { GoalDto, GoalStage } from 'dto'
+import { GoalDto, GoalStageDto } from 'dto'
 import useSend, { UseSend } from 'hooks/useSend'
 import GoalService from 'services/GoalService'
 import useSnackbar from 'hooks/useSnackbar'
 import { useMutateGoals } from 'views/UserView/hook'
 
-export const useSendStage = (goal: GoalDto, onClose: () => void): UseSend<GoalStage> => {
+export const useSendStage = (goal: GoalDto, onClose: () => void): UseSend<GoalStageDto> => {
   const [goals, mutateGoals] = useMutateGoals()
   const { enqueueSnackbar } = useSnackbar()
 

@@ -1,15 +1,17 @@
 import { ChangeEvent, useState } from 'react'
+import dynamic from 'next/dynamic'
 import { Accordion, AccordionDetails, AccordionSummary } from '@material-ui/core'
 import AppIcon from './AppIcon'
-import AppHeader from './AppHeader'
 import { AppEmojiName } from './AppEmoji'
+
+const AppHeader = dynamic(() => import('components/UI/AppHeader'))
 
 interface AppAccordionProps {
   id: string
-  name: AppEmojiName
   header: string | JSX.Element
   ariaControls: string
   details: JSX.Element
+  name?: AppEmojiName
   defaultExpanded?: boolean
   unmountOnExit?: boolean
   renderOnClick?: boolean
@@ -46,9 +48,13 @@ export default function AppAccordion({
         expandIcon={<AppIcon name="expand_more" color="primary" />}
         aria-controls={ariaControls}
       >
-        <AppHeader name={name} variant="h6" component="h3" color="primary">
-          {header}
-        </AppHeader>
+        {!name ? (
+          header
+        ) : (
+          <AppHeader name={name} variant="h6" component="h3" color="primary">
+            {header}
+          </AppHeader>
+        )}
       </AccordionSummary>
       <AccordionDetails className={detailsClass}>{withDetails && details}</AccordionDetails>
     </Accordion>

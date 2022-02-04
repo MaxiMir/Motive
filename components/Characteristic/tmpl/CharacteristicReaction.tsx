@@ -2,14 +2,15 @@ import { Button, createStyles, makeStyles } from '@material-ui/core'
 import { MainCharacteristicName } from 'dto'
 import AppEmoji from 'components/UI/AppEmoji'
 
-interface ReactionProps {
+export interface CharacteristicReactionProps {
+  tmpl: 'reaction'
   name: MainCharacteristicName
-  active: boolean
   title: string
+  active?: boolean
   onClick: () => void
 }
 
-export default function Reaction({ name, active, title, onClick }: ReactionProps): JSX.Element {
+export default function Reaction({ name, active, title, onClick }: CharacteristicReactionProps): JSX.Element {
   const classes = useStyles({ name, active })
 
   return (
@@ -19,7 +20,7 @@ export default function Reaction({ name, active, title, onClick }: ReactionProps
   )
 }
 
-type UseStylesProps = Pick<ReactionProps, 'name' | 'active'>
+type UseStylesProps = Pick<CharacteristicReactionProps, 'name' | 'active'>
 
 const useStyles = makeStyles((theme) => {
   return createStyles({

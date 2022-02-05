@@ -89,7 +89,7 @@ export default function ModalGoal({ onClose }: ModalGoalProps): JSX.Element {
                           <AppDot size={10} />
                         </AppBox>
                         <Field
-                          name={`map.${index}`}
+                          name={`stages.${index}`}
                           label={`stage ${index + 1}`}
                           autoFocus={index === values.stages.length - 1}
                           color="secondary"

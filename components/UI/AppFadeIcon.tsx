@@ -13,7 +13,7 @@ export default function AppFadeIcon({ name }: AppSpinIconProps): JSX.Element {
 
 const useStyles = makeStyles({
   emoji: {
-    animation: '$fade 2s cubic-bezier(0.550, 0.085, 0.680, 0.530) both',
+    animation: '$fade 1.4s cubic-bezier(0.550, 0.085, 0.680, 0.530) both',
   },
   '@keyframes fade': {
     '0%': {

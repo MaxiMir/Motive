@@ -26,7 +26,7 @@ export const getRole = (goal: GoalDto, client?: UserBaseDto): RoleDto => {
 const checkOnTaskForm = (role: RoleDto, daysGone: number): boolean =>
   ['OWNER', 'MEMBER'].includes(role) && daysGone <= 0
 
-const checkOnReactions = (role: RoleDto, lastDay: boolean): boolean => !(role === 'OWNER' && !lastDay)
+const checkOnControls = (role: RoleDto, lastDay: boolean): boolean => !(role === 'OWNER' && !lastDay)
 
 export const getGoalInfo = (
   datesMap: Record<string, number>,
@@ -36,7 +36,7 @@ export const getGoalInfo = (
   runsForDays: number
   withWeb: boolean
   withForm: boolean
-  withReactions: boolean
+  withControls: boolean
   forTomorrow: boolean
 } => {
   const [day] = goal.days
@@ -47,14 +47,14 @@ export const getGoalInfo = (
   const runsForDays = differenceInCalendarDays(currentDate, Date.parse(goal.started))
   const withWeb = checkOnWeb(day.date, currentDate, lastDay)
   const withForm = checkOnTaskForm(role, daysGone)
-  const withReactions = checkOnReactions(role, lastDay)
+  const withControls = checkOnControls(role, lastDay)
   const forTomorrow = daysGone === -1
 
   return {
     runsForDays,
     withWeb,
     withForm,
-    withReactions,
+    withControls,
     forTomorrow,
   }
 }

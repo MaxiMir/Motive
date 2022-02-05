@@ -17,6 +17,7 @@ import Discussion from './components/Discussion'
 import Views from './components/Views'
 
 const Owner = dynamic(() => import('./components/Owner'))
+const Stages = dynamic(() => import('./components/Stages'))
 const Task = dynamic(() => import('./components/Task'))
 const Feedback = dynamic(() => import('./components/Feedback'))
 const Hashtags = dynamic(() => import('./components/Hashtags'))
@@ -24,7 +25,6 @@ const TaskForm = dynamic(() => import('./components/TaskForm'))
 const Web = dynamic(() => import('./components/Web'))
 const Reactions = dynamic(() => import('./components/Reactions'))
 const AppTypography = dynamic(() => import('components/UI/AppTypography'))
-const AppProgress = dynamic(() => import('components/UI/AppProgress'))
 
 const CHARACTERISTICS: GoalCharacteristicName[] = ['motivation', 'creativity', 'support', 'members']
 
@@ -38,7 +38,7 @@ export interface GoalCurrentProps {
 export default function GoalCurrent({ goal, client, href }: GoalCurrentProps): JSX.Element {
   const { id, name, hashtags, characteristic, owner, stages } = goal
   const [day] = goal.days
-  const { id: dayId, date, tasks, views, feedback, topicCount, stage } = day
+  const { id: dayId, date, tasks, views, feedback, topicCount } = day
   const classes = useStyles()
   const theme = useTheme()
   const colors = useCharacteristicColors()
@@ -46,7 +46,7 @@ export default function GoalCurrent({ goal, client, href }: GoalCurrentProps): J
   const [isLoading, onChangeDay] = useChangeDay(id)
   const role = getRole(goal, client)
   const goalHref = getGoalHref(href, goal)
-  const { runsForDays, withWeb, withForm, withReactions, forTomorrow } = getGoalInfo(datesMap, goal, role)
+  const { runsForDays, withWeb, withForm, withControls, forTomorrow } = getGoalInfo(datesMap, goal, role)
   const rest = tasks.length - tasks.filter((t) => t.completed).length
 
   function getDatesMap() {
@@ -94,7 +94,7 @@ export default function GoalCurrent({ goal, client, href }: GoalCurrentProps): J
                   id={`stage-${dayId}`}
                   ariaControls="stages-content"
                   defaultExpanded
-                  details={<AppProgress steps={stages} current={stage} />}
+                  details={<Stages goal={goal} completeBtn={withControls && role === 'OWNER'} />}
                 />
               )}
               <AppAccordion
@@ -146,7 +146,7 @@ export default function GoalCurrent({ goal, client, href }: GoalCurrentProps): J
             </div>
           </AppBox>
           <AppBox flexDirection="column" spacing={2}>
-            {withReactions && (
+            {withControls && (
               <Reactions
                 goal={goal}
                 characteristic={day.characteristic}

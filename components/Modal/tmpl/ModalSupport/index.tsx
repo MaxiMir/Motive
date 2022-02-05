@@ -48,6 +48,7 @@ export default function ModalSupport({ owner, onClose }: ModalSupportProps): JSX
             <AppFadeIcon name="support" />
             <Field name="support" label="Your message" color="secondary" multiline rows={3} component={AppInput} />
             <AppAccordion
+              name="pencil"
               header="About Support"
               id="support"
               ariaControls="about-support-content"

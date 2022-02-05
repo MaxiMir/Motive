@@ -7,7 +7,7 @@ import AppBox from 'components/UI/AppBox'
 import AppMarkdown from 'components/UI/AppMarkdown'
 import User from 'components/User'
 import Menu from './components/Menu'
-import Like from './components/Like'
+import Reaction from './components/Reaction'
 import Reply from './components/Reply'
 
 const SupportSign = dynamic(() => import('./components/SupportSign'))
@@ -43,7 +43,7 @@ export default function Message({ message, supportFor, onClick }: MessageProps):
           <span className={classes.date}>{dateDifference} ago</span>
           {onClick && <Reply onClick={onClick} />}
         </AppBox>
-        <Like likes={likes} messageId={id} />
+        <Reaction messageId={id} likes={likes} type={supportFor ? 'support' : 'like'} />
       </AppBox>
     </AppBox>
   )

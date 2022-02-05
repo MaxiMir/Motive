@@ -13,7 +13,7 @@ export default function useSetReaction(
   active: boolean,
   client?: UserBaseDto,
 ): () => void {
-  const { id, days } = goal
+  const { id, day } = goal
   const lastAddRef = useRef(active)
   const backupRef = useRef(goal)
   const { enqueueSnackbar } = useSnackbar()
@@ -36,24 +36,17 @@ export default function useSetReaction(
   const isAuthorized = !!client // todo check on auth
 
   const sendWithDebounce = useDebounceCb((add: boolean) => {
-    lastAddRef.current !== add && send({ id, dayId: days[0].id, name, add })
+    lastAddRef.current !== add && send({ id, dayId: day.id, name, add })
   })
 
   const mutateCharacteristic = (add: boolean) => {
     mutateGoals(
       produce(goals, (draft: GoalDto[]) => {
         const draftGoal = draft[draft.findIndex((g) => g.id === id)]
-        const [draftDay] = draftGoal.days
-
         draftGoal.characteristic[name] += add ? 1 : -1
-        draftDay.characteristic ||= { motivation: [], creativity: [] }
-
-        if (add && client?.id) {
-          draftDay.characteristic[name].push(client.id)
-          return
-        }
-
-        draftDay.characteristic[name] = draftDay.characteristic[name].filter((u) => u !== client?.id)
+        draftGoal.reactions[name] = add
+          ? [...draftGoal.reactions[name], day.id]
+          : draftGoal.reactions[name].filter((r) => r !== day.id)
       }),
     )
   }
@@ -63,7 +56,7 @@ export default function useSetReaction(
       produce(goals, (draft: GoalDto[]) => {
         const draftGoal = draft[draft.findIndex((g) => g.id === id)]
         draftGoal.characteristic = backupRef.current.characteristic
-        draftGoal.days = backupRef.current.days
+        draftGoal.day = backupRef.current.day
       }),
     )
   }

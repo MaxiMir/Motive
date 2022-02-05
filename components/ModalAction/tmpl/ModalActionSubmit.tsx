@@ -1,4 +1,3 @@
-import React from 'react'
 import dynamic from 'next/dynamic'
 import AppGradientButton from 'components/UI/AppGradientButton'
 import { AppEmojiName } from 'components/UI/AppEmoji'

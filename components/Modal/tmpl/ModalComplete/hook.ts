@@ -25,7 +25,7 @@ export default function useForm(goal: GoalDto, onClose: () => void): UseFormType
 
       formData.append('description', data.description.trim())
       data.photos.forEach((photo) => formData.append('photos', photo))
-      send({ id: goal.days[0].id, body: formData })
+      send({ id: goal.day.id, body: formData })
     },
   })
 

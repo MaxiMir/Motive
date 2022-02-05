@@ -1,5 +1,6 @@
 import { DayCharacteristicDto, GoalCharacteristicDto } from './characteristic'
 import { UserBaseDto } from './user'
+import { ReactionsDto } from './reaction'
 
 export interface GoalCreationDto {
   name: string
@@ -17,9 +18,12 @@ export interface GoalDto {
   stage: number
   owner: UserBaseDto
   characteristic: GoalCharacteristicDto
-  days: DayDto[]
+  day: DayDto
   calendar: CalendarDto[]
+  reactions: ReactionsDto
 }
+
+export type CreatedGoal = Omit<GoalDto, 'day'> & { days: DayDto[] }
 
 export interface GoalStageDto {
   id: number
@@ -70,8 +74,4 @@ export interface PhotoDto {
 export interface CalendarDto {
   id: number
   date: string
-}
-
-export interface DaySupportDto {
-  support: string
 }

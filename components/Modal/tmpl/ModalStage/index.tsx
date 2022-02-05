@@ -14,19 +14,18 @@ export interface ModalStageProps {
 }
 
 export default function ModalStage({ goal, onClose }: ModalStageProps): JSX.Element {
-  const { stages, days } = goal
+  const { stages, day } = goal
   const classes = useStyles()
   const { isLoading, send } = useSendStage(goal, onClose)
-  const [{ stage }] = days
-  const isFinal = stages.length === stage
-  const nextStage = stage + 1
+  const isFinal = stages.length === day.stage
+  const nextStage = day.stage + 1
 
   return (
     <AppModal
       title={
         <>
           Completion stage <br />
-          <span className={classes.prevStage}>{stages[stage]}</span>
+          <span className={classes.prevStage}>{stages[day.stage]}</span>
         </>
       }
       maxWidth="xs"

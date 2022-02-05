@@ -15,14 +15,7 @@ export default function useDiscussion(
   onAdd: (topic: TopicDto) => void
 } {
   const [goals, mutateGoals] = useMutateGoals()
-  const {
-    data = [],
-    size,
-    setSize,
-    mutate,
-  } = useSWRInfinite(getTopicsKey(dayId), fetcher, {
-    initialSize: !count ? 0 : 1,
-  })
+  const { data = [], size, setSize, mutate } = useSWRInfinite(getTopicsKey(dayId), fetcher)
   const topics = data.flat()
   const topicsWithAnswers = getTopicsCount(topics)
   const checkOnLoadMore = partialCheckOnLoadMore(topicsWithAnswers, count)

@@ -33,9 +33,10 @@ const useSendCreateGoal = (onClose: () => void) => {
 
   return useSend(GoalService.create, {
     onSuccess(goal) {
+      const { days, ...restGoalData } = goal
       mutateGoals(
         produce(goals, (draft: GoalDto[]) => {
-          draft.push(goal)
+          draft.push({ ...restGoalData, day: days[0] })
         }),
       )
       onClose()

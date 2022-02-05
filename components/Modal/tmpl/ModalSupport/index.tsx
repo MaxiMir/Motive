@@ -12,13 +12,14 @@ import useForm from './hook'
 
 export interface ModalSupportProps {
   tmpl: 'support'
+  dayId: number
   owner: UserBaseDto
   onClose: () => void
 }
 
-export default function ModalSupport({ owner, onClose }: ModalSupportProps): JSX.Element {
+export default function ModalSupport({ dayId, owner, onClose }: ModalSupportProps): JSX.Element {
   const classes = useStyles()
-  const { isLoading, formik } = useForm(onClose)
+  const { isLoading, formik } = useForm(dayId, onClose)
   const { handleSubmit } = formik
 
   return (
@@ -48,16 +49,17 @@ export default function ModalSupport({ owner, onClose }: ModalSupportProps): JSX
             <AppFadeIcon name="support" />
             <Field name="support" label="Your message" color="secondary" multiline rows={3} component={AppInput} />
             <AppAccordion
-              name="pencil"
+              name="feedback"
               header="About Support"
               id="support"
               ariaControls="about-support-content"
               details={
-                <div>
-                  <AppTypography className={classes.hint}>
-                    We recommend to divide large goals into stages.
-                  </AppTypography>
-                  <AppTypography className={classes.hint}>Add each stage in the field above.</AppTypography>
+                <div className={classes.hint}>
+                  <AppTypography>Support is very important for achieving goals.</AppTypography>
+                  <AppTypography>Especially in moments when you want to give up.</AppTypography>
+                  <AppTypography>Therefore support others:</AppTypography>
+                  <AppTypography>&#9679; with advice;</AppTypography>
+                  <AppTypography>&#9679; with words of encouragement.</AppTypography>
                 </div>
               }
             />

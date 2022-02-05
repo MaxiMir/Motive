@@ -28,7 +28,7 @@ export type UserPageDto = Page<UserDetailDto>
 export type UserPageSWRDto = PageSWR<UserPageDto>
 
 export interface UserDetailDto extends UserDto {
-  isFollowing: boolean
+  following: boolean
   goals: GoalDto[]
   goalsMember: GoalDto[]
 }

@@ -6,9 +6,9 @@ import { differenceInCalendarDays } from 'date-fns'
 const SHOW_WEB_AFTER_DAYS = 14
 
 export const getGoalHref = (userHref: string, goal: GoalDto): string => {
-  const { id, days } = goal
+  const { id, day } = goal
 
-  return setQueryParams(userHref, { [SEARCH_PARAMS.SCROLL]: goal.id, [SEARCH_PARAMS.DATES]: `${id}:${days[0].id}` })
+  return setQueryParams(userHref, { [SEARCH_PARAMS.SCROLL]: goal.id, [SEARCH_PARAMS.DATES]: `${id}:${day.id}` })
 }
 
 const checkOnWeb = (dayDate: string, currentDate: Date, lastDay: boolean): boolean =>
@@ -28,33 +28,38 @@ const checkOnTaskForm = (role: RoleDto, daysGone: number): boolean =>
 
 const checkOnControls = (role: RoleDto, lastDay: boolean): boolean => !(role === 'OWNER' && !lastDay)
 
+const checkOnCompleteStage = (reactions: boolean, role: RoleDto): boolean => role === 'OWNER' && reactions
+
 export const getGoalInfo = (
   datesMap: Record<string, number>,
   goal: GoalDto,
   role: RoleDto,
 ): {
   runsForDays: number
-  withWeb: boolean
-  withForm: boolean
-  withControls: boolean
+  web: boolean
+  form: boolean
+  controls: boolean
+  completeStage: boolean
   forTomorrow: boolean
 } => {
-  const [day] = goal.days
+  const { started, day } = goal
   const currentDate = new Date()
   const dates = Object.keys(datesMap)
   const lastDay = dates[dates.length - 1] === day.date
   const daysGone = differenceInCalendarDays(currentDate, Date.parse(day.date))
-  const runsForDays = differenceInCalendarDays(currentDate, Date.parse(goal.started))
-  const withWeb = checkOnWeb(day.date, currentDate, lastDay)
-  const withForm = checkOnTaskForm(role, daysGone)
-  const withControls = checkOnControls(role, lastDay)
+  const runsForDays = differenceInCalendarDays(currentDate, Date.parse(started))
+  const web = checkOnWeb(day.date, currentDate, lastDay)
+  const form = checkOnTaskForm(role, daysGone)
+  const controls = checkOnControls(role, lastDay)
+  const completeStage = checkOnCompleteStage(controls, role)
   const forTomorrow = daysGone === -1
 
   return {
     runsForDays,
-    withWeb,
-    withForm,
-    withControls,
+    web,
+    form,
+    controls,
+    completeStage,
     forTomorrow,
   }
 }

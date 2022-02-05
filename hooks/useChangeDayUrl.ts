@@ -7,7 +7,7 @@ export default function useChangeDayUrl(): (goals: GoalDto[], goalId: number, da
 
   return (goals: GoalDto[], goalId: number, dayId: number) => {
     const { [SEARCH_PARAMS.DATES]: _, ...restParams } = getQueryParams()
-    const datesParam = goals.map(({ id, days }) => `${id}:${id !== goalId ? days[0].id : dayId}`).join(',')
+    const datesParam = goals.map(({ id, day }) => `${id}:${id !== goalId ? day.id : dayId}`).join(',')
     const as = setQueryParams(router.asPath, {
       [SEARCH_PARAMS.DATES]: datesParam,
       ...restParams,

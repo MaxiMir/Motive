@@ -29,20 +29,18 @@ const useSendAddDay = (goal: GoalDto, onClose: () => void) => {
   const changeDayUrl = useChangeDayUrl()
 
   return useSend(GoalService.addDay, {
-    onSuccess(response) {
-      const day = response.days[response.days.length - 1]
-
+    onSuccess({ day }) {
       mutate(
         produce(page, (draft) => {
           const draftGoals = draft.content.goals
           const draftGoal = draftGoals[draftGoals.findIndex((g) => g.id === goal.id)]
 
           draftGoal.calendar.push({ id: day.id, date: day.date })
-          draftGoal.days = [day]
+          draftGoal.day = day
         }),
         false,
       )
-      changeDayUrl(page.content.goals, goal.id, response.days[0].id)
+      changeDayUrl(page.content.goals, goal.id, day.id)
       onClose()
     },
   })

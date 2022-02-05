@@ -1,8 +1,8 @@
 import dynamic from 'next/dynamic'
 import { RoleDto, TaskDto, UserBaseDto } from 'dto'
+import TooltipTomorrow from 'components/Goal/tmpl/GoalCurrent/components/TooltipTomorrow'
 import AppCheckbox from 'components/UI/AppCheckbox'
 import AppMarkdown from 'components/UI/AppMarkdown'
-import AppOptionalTooltip from 'components/UI/AppOptionalTooltip'
 import useSetCompleted from './hook'
 
 const TaskDate = dynamic(() => import('../TaskDate'))
@@ -24,7 +24,7 @@ export default function TaskForm({ goalId, task, rest, client, role, forTomorrow
 
   return (
     <form>
-      <AppOptionalTooltip title={!forTomorrow ? undefined : 'Will be available tomorrow'}>
+      <TooltipTomorrow forTomorrow={forTomorrow}>
         <AppCheckbox
           name={id.toString()}
           label={<AppMarkdown text={label} />}
@@ -32,7 +32,7 @@ export default function TaskForm({ goalId, task, rest, client, role, forTomorrow
           disabled={checked || forTomorrow}
           onChange={setCompleted}
         />
-      </AppOptionalTooltip>
+      </TooltipTomorrow>
       {date && <TaskDate date={date} />}
     </form>
   )

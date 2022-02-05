@@ -14,9 +14,8 @@ interface OwnerWithFeedbackProps {
 }
 
 export default function OwnerWithFeedback({ goal }: OwnerWithFeedbackProps): JSX.Element {
-  const { stages, days } = goal
+  const { stages, day } = goal
   const [modal, setModal] = useState<ModalTmpl>()
-  const dayStage = days[0].stage
 
   const openModal = (tmpl: ModalTmpl) => setModal(tmpl)
 
@@ -32,7 +31,7 @@ export default function OwnerWithFeedback({ goal }: OwnerWithFeedbackProps): JSX
       >
         Add tasks
       </Button>
-      {stages.length === dayStage && (
+      {stages.length === day.stage && (
         <Button
           variant="outlined"
           color="secondary"

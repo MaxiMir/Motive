@@ -7,8 +7,8 @@ import useSnackbar from 'hooks/useSnackbar'
 import { useMutatePage } from 'views/UserView/hook'
 
 export default function useSetFollowing(id: number, following: boolean, isAuthorized: boolean): () => void {
-  const [page, mutate] = useMutatePage()
   const lastFollowingRef = useRef(following)
+  const [page, mutate] = useMutatePage()
   const backupRef = useRef(page)
   const { enqueueSnackbar } = useSnackbar()
   const { send } = useSend(SubscriptionService.updateFollowing, {
@@ -33,7 +33,7 @@ export default function useSetFollowing(id: number, following: boolean, isAuthor
   const mutateFollowing = (value: boolean) => {
     mutate(
       produce(page, (draft) => {
-        draft.content.isFollowing = value
+        draft.content.following = value
         draft.content.characteristic.followers += value ? 1 : -1
       }),
       false,
@@ -41,12 +41,10 @@ export default function useSetFollowing(id: number, following: boolean, isAuthor
   }
 
   const rollbackFollowing = () => {
-    const { isFollowing, characteristic } = backupRef.current.content
-
     mutate(
       produce(page, (draft) => {
-        draft.content.isFollowing = isFollowing
-        draft.content.characteristic.followers = characteristic.followers
+        draft.content.following = backupRef.current.content.following
+        draft.content.characteristic.followers = backupRef.current.content.characteristic.followers
       }),
       false,
     )

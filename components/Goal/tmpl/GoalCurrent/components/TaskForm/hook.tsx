@@ -30,9 +30,7 @@ export default function useSetCompleted(id: number, goalId: number, rest: number
     mutateGoals(
       produce(goals, (draft: GoalDto[]) => {
         const draftGoal = draft[draft.findIndex((g) => g.id === goalId)]
-        const [draftDay] = draftGoal.days
-        const draftTask = draftDay.tasks[draftDay.tasks.findIndex((t) => t.id === id)]
-
+        const draftTask = draftGoal.day.tasks[draftGoal.day.tasks.findIndex((t) => t.id === id)]
         draftTask.completed = value
       }),
     )

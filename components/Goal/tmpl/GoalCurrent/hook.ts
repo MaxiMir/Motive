@@ -13,7 +13,7 @@ export default function useChangeDay(goalId: number): [boolean, (dayId: number) 
       mutateGoals(
         produce(goals, (draft: GoalDto[]) => {
           const draftGoal = draft[draft.findIndex((g) => g.id === goalId)]
-          draftGoal.days = [day]
+          draftGoal.day = day
         }),
       )
       changeDayUrl(goals, goalId, day.id)

@@ -31,13 +31,12 @@ const CHARACTERISTICS: GoalCharacteristicName[] = ['motivation', 'creativity', '
 export interface GoalCurrentProps {
   tmpl: 'current'
   goal: GoalDto
-  client?: UserBaseDto
   href: string
+  client?: UserBaseDto
 }
 
-export default function GoalCurrent({ goal, client, href }: GoalCurrentProps): JSX.Element {
-  const { id, name, hashtags, characteristic, owner, stages } = goal
-  const [day] = goal.days
+export default function GoalCurrent({ goal, href, client }: GoalCurrentProps): JSX.Element {
+  const { id, name, hashtags, characteristic, owner, stages, day } = goal
   const { id: dayId, date, tasks, views, feedback, topicCount } = day
   const classes = useStyles()
   const theme = useTheme()
@@ -46,7 +45,7 @@ export default function GoalCurrent({ goal, client, href }: GoalCurrentProps): J
   const [isLoading, onChangeDay] = useChangeDay(id)
   const role = getRole(goal, client)
   const goalHref = getGoalHref(href, goal)
-  const { runsForDays, withWeb, withForm, withControls, forTomorrow } = getGoalInfo(datesMap, goal, role)
+  const { runsForDays, web, form, controls, completeStage, forTomorrow } = getGoalInfo(datesMap, goal, role)
   const rest = tasks.length - tasks.filter((t) => t.completed).length
 
   function getDatesMap() {
@@ -94,7 +93,7 @@ export default function GoalCurrent({ goal, client, href }: GoalCurrentProps): J
                   id={`stage-${dayId}`}
                   ariaControls="stages-content"
                   defaultExpanded
-                  details={<Stages goal={goal} completeBtn={withControls && role === 'OWNER'} />}
+                  details={<Stages goal={goal} forTomorrow={forTomorrow} completeStage={completeStage} />}
                 />
               )}
               <AppAccordion
@@ -107,7 +106,7 @@ export default function GoalCurrent({ goal, client, href }: GoalCurrentProps): J
                   <AppBox flexDirection="column" spacing={2}>
                     {tasks.map((task) => (
                       <Fragment key={task.id}>
-                        {!withForm ? (
+                        {!form ? (
                           <Task task={task} />
                         ) : (
                           <TaskForm
@@ -146,19 +145,10 @@ export default function GoalCurrent({ goal, client, href }: GoalCurrentProps): J
             </div>
           </AppBox>
           <AppBox flexDirection="column" spacing={2}>
-            {withControls && (
-              <Reactions
-                goal={goal}
-                characteristic={day.characteristic}
-                owner={owner}
-                role={role}
-                client={client}
-                forTomorrow={forTomorrow}
-              />
-            )}
+            {controls && <Reactions goal={goal} owner={owner} role={role} client={client} forTomorrow={forTomorrow} />}
             <Views views={views} />
           </AppBox>
-          {withWeb && <Web />}
+          {web && <Web />}
         </AppBox>
       </div>
     </AppBox>

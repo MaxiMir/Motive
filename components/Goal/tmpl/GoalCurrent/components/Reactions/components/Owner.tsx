@@ -2,9 +2,9 @@ import { useState } from 'react'
 import dynamic from 'next/dynamic'
 import { Button } from '@material-ui/core'
 import { GoalDto } from 'dto'
+import TooltipTomorrow from 'components/Goal/tmpl/GoalCurrent/components/TooltipTomorrow'
 import AppEmoji from 'components/UI/AppEmoji'
 import AppBox from 'components/UI/AppBox'
-import AppOptionalTooltip from 'components/UI/AppOptionalTooltip'
 
 const Modal = dynamic(() => import('components/Modal'))
 
@@ -20,7 +20,7 @@ export default function Owner({ goal, forTomorrow }: OwnerProps): JSX.Element {
 
   return (
     <AppBox justifyContent="flex-end">
-      <AppOptionalTooltip title={!forTomorrow ? undefined : 'Will be available tomorrow'}>
+      <TooltipTomorrow forTomorrow={forTomorrow}>
         <Button
           variant="outlined"
           color="secondary"
@@ -30,7 +30,7 @@ export default function Owner({ goal, forTomorrow }: OwnerProps): JSX.Element {
         >
           Finish the day
         </Button>
-      </AppOptionalTooltip>
+      </TooltipTomorrow>
       {open && <Modal tmpl="feedback" goal={goal} onClose={toggle} />}
     </AppBox>
   )

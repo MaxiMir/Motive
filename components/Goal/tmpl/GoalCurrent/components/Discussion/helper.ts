@@ -25,6 +25,6 @@ export const changeGoals = (goalId: number, goals: GoalDto[]): GoalDto[] => {
   return produce(goals, (draft: GoalDto[]) => {
     const draftGoal = draft[draft.findIndex((g) => g.id === goalId)]
 
-    draftGoal.days[0].topicCount += 1
+    draftGoal.day.topicCount += 1
   })
 }

@@ -15,8 +15,8 @@ export type GoalCharacteristicDto = {
 export type DayCharacteristicName = 'motivation' | 'creativity'
 
 export interface DayCharacteristicDto {
-  motivation: number[]
-  creativity: number[]
+  motivation: number
+  creativity: number
 }
 
 export interface DayCharacteristicUpdate {

@@ -3,7 +3,7 @@ import DiscussionService from 'services/DiscussionService'
 import useSend from 'hooks/useSend'
 import useDebounceCb from 'hooks/useDebounceCb'
 
-export default function useSetLike(id: number, count: number[]): [boolean, number, () => void] {
+export default function useSetReaction(id: number, count: number[]): [boolean, number, () => void] {
   const active = count.length >= 1 // TODO change
   const lastLoadedRef = useRef(false)
 

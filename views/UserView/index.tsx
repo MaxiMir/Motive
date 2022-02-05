@@ -1,4 +1,3 @@
-import React from 'react'
 import dynamic from 'next/dynamic'
 import { useMediaQuery, useTheme } from '@material-ui/core'
 import { UserDetailDto, UserCharacteristicName, UserBaseDto, MainCharacteristicName } from 'dto'
@@ -25,7 +24,7 @@ export interface UserViewProps {
 }
 
 export default function UserView({ user, client }: UserViewProps): JSX.Element {
-  const { id, nickname, name, avatar, characteristic, goals, isFollowing } = user
+  const { id, nickname, name, avatar, characteristic, goals, following, reactions } = user
   const theme = useTheme()
   const characteristicColors = useCharacteristicColors()
   const isMobile = useMediaQuery(theme.breakpoints.down('sm'))
@@ -42,7 +41,7 @@ export default function UserView({ user, client }: UserViewProps): JSX.Element {
         <AppTypography variant="h5" component="h1">
           {name}
         </AppTypography>
-        {!isOwner && <Following id={id} isFollowing={isFollowing} isAuthorized={isAuthorized} />}
+        {!isOwner && <Following id={id} following={following} isAuthorized={isAuthorized} />}
       </AppBox>
       <AppBox flexDirection="column" spacing={3} flex={1}>
         <AppBox spacing={isMobile ? 1 : 4} mb={4}>
@@ -84,7 +83,7 @@ export default function UserView({ user, client }: UserViewProps): JSX.Element {
         ) : (
           <AppBox flexWrap="wrap" spacing={3}>
             {goals.map((goal) => (
-              <Goal tmpl="current" goal={goal} client={client} href={href} key={goal.id} />
+              <Goal tmpl="current" goal={goal} href={href} reactions={reactions} client={client} key={goal.id} />
             ))}
           </AppBox>
         )}

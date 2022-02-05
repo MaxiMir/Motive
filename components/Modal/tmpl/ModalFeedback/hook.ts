@@ -26,7 +26,7 @@ export default function useForm(goal: GoalDto, onClose: () => void): UseFormType
     async onSubmit(data) {
       const formData = new FormData()
 
-      formData.append('dayId', goal.days[0].id.toString())
+      formData.append('dayId', goal.day.id.toString())
       formData.append('text', data.text.trim())
       data.photos.forEach((photo) => formData.append('photos', photo))
       send(formData)
@@ -45,9 +45,7 @@ const useSendFeedback = (goal: GoalDto, onClose: () => void) => {
       mutateGoals(
         produce(goals, (draft: GoalDto[]) => {
           const draftGoal = draft[draft.findIndex((g) => g.id === goal.id)]
-          const [draftDay] = draftGoal.days
-
-          draftDay.feedback = feedback
+          draftGoal.day.feedback = feedback
         }),
       )
 

@@ -5,27 +5,29 @@ import AppEmoji from 'components/UI/AppEmoji'
 import AppBox from 'components/UI/AppBox'
 import AppTypography from 'components/UI/AppTypography'
 import AppTooltip from 'components/UI/AppTooltip'
-import useSetLike from './hook'
+import useSetReaction from './hook'
 
-interface LikeProps {
+interface ReactionProps {
   messageId: number
   likes: number[]
+  type: 'like' | 'support'
 }
 
-export default function Like({ messageId, likes }: LikeProps): JSX.Element {
+export default function Reaction({ messageId, likes, type }: ReactionProps): JSX.Element {
   const classes = useStyles()
-  const [active, count, onClick] = useSetLike(messageId, likes)
+  const [active, count, onClick] = useSetReaction(messageId, likes)
+  const title = type === 'like' ? 'Like the question' : 'Mark as very helpful'
 
   return (
     <AppBox alignItems="center">
-      <AppTooltip title="Like">
+      <AppTooltip title={title}>
         <Button
           size="small"
-          aria-label={`Like this message${!count ? '' : ` along with ${count} other people`}`}
+          aria-label={`${title} ${!count ? '' : ` along with ${count} other people`}`}
           className={clsx([classes.button, !active && classes.buttonNotActive])}
           onClick={onClick}
         >
-          <AppEmoji name="like" onlyEmoji />
+          <AppEmoji name={type} onlyEmoji />
         </Button>
       </AppTooltip>
       <AppTypography className={classes.count}>{numberToShort(count)}</AppTypography>

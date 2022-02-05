@@ -1,4 +1,3 @@
-import React from 'react'
 import { UserDto } from 'dto'
 import User from 'components/User'
 import AppList from 'components/UI/AppList'

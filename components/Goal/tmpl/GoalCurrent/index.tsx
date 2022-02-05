@@ -46,7 +46,7 @@ export default function GoalCurrent({ goal, client, href }: GoalCurrentProps): J
   const [isLoading, onChangeDay] = useChangeDay(id)
   const role = getRole(goal, client)
   const goalHref = getGoalHref(href, goal)
-  const { runsForDays, withWeb, withForm, withControls, forTomorrow } = getGoalInfo(datesMap, goal, role)
+  const { runsForDays, web, form, reactions, completeStage, forTomorrow } = getGoalInfo(datesMap, goal, role)
   const rest = tasks.length - tasks.filter((t) => t.completed).length
 
   function getDatesMap() {
@@ -94,7 +94,7 @@ export default function GoalCurrent({ goal, client, href }: GoalCurrentProps): J
                   id={`stage-${dayId}`}
                   ariaControls="stages-content"
                   defaultExpanded
-                  details={<Stages goal={goal} completeBtn={withControls && role === 'OWNER'} />}
+                  details={<Stages goal={goal} forTomorrow={forTomorrow} completeStage={completeStage} />}
                 />
               )}
               <AppAccordion
@@ -107,7 +107,7 @@ export default function GoalCurrent({ goal, client, href }: GoalCurrentProps): J
                   <AppBox flexDirection="column" spacing={2}>
                     {tasks.map((task) => (
                       <Fragment key={task.id}>
-                        {!withForm ? (
+                        {!form ? (
                           <Task task={task} />
                         ) : (
                           <TaskForm
@@ -146,7 +146,7 @@ export default function GoalCurrent({ goal, client, href }: GoalCurrentProps): J
             </div>
           </AppBox>
           <AppBox flexDirection="column" spacing={2}>
-            {withControls && (
+            {reactions && (
               <Reactions
                 goal={goal}
                 characteristic={day.characteristic}
@@ -158,7 +158,7 @@ export default function GoalCurrent({ goal, client, href }: GoalCurrentProps): J
             )}
             <Views views={views} />
           </AppBox>
-          {withWeb && <Web />}
+          {web && <Web />}
         </AppBox>
       </div>
     </AppBox>

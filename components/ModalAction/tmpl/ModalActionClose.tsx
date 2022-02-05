@@ -1,4 +1,3 @@
-import React from 'react'
 import AppEmoji from 'components/UI/AppEmoji'
 import AppGradientButton from 'components/UI/AppGradientButton'
 

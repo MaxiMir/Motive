@@ -1,4 +1,3 @@
-import React from 'react'
 import dynamic from 'next/dynamic'
 import { useMediaQuery, useTheme } from '@material-ui/core'
 import { UserDetailDto, UserCharacteristicName, UserBaseDto, MainCharacteristicName } from 'dto'

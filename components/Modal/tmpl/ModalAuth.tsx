@@ -1,4 +1,3 @@
-import React from 'react'
 import AppModal from 'components/UI/AppModal'
 import AppGradientButton from 'components/UI/AppGradientButton'
 import AppEmoji from 'components/UI/AppEmoji'

@@ -8,6 +8,7 @@ import AppFadeIcon from 'components/UI/AppFadeIcon'
 import AppInput from 'components/UI/AppInput'
 import AppTypography from 'components/UI/AppTypography'
 import AppAccordion from 'components/UI/AppAccordion'
+import AppEmoji from 'components/UI/AppEmoji'
 import useForm from './hook'
 
 export interface ModalSupportProps {
@@ -48,16 +49,22 @@ export default function ModalSupport({ owner, onClose }: ModalSupportProps): JSX
             <AppFadeIcon name="support" />
             <Field name="support" label="Your message" color="secondary" multiline rows={3} component={AppInput} />
             <AppAccordion
-              name="pencil"
+              name="feedback"
               header="About Support"
               id="support"
               ariaControls="about-support-content"
               details={
-                <div>
-                  <AppTypography className={classes.hint}>
-                    We recommend to divide large goals into stages.
+                <div className={classes.hint}>
+                  <AppTypography>Support is very important for achieving goals.</AppTypography>
+                  <AppTypography>Especially in moments when you want to give up.</AppTypography>
+                  <AppTypography>Therefore support others:</AppTypography>
+                  <AppTypography>&#9679; with advice;</AppTypography>
+                  <AppTypography>&#9679; with words of encouragement.</AppTypography>
+                  <br />
+                  <AppTypography>
+                    For each message with <AppEmoji name="like" onlyEmoji /> you get one{' '}
+                    <AppEmoji name="support" onlyEmoji /> point.
                   </AppTypography>
-                  <AppTypography className={classes.hint}>Add each stage in the field above.</AppTypography>
                 </div>
               }
             />

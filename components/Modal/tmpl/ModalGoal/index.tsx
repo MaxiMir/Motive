@@ -146,11 +146,9 @@ export default function ModalGoal({ onClose }: ModalGoalProps): JSX.Element {
                 id="stage"
                 ariaControls="about-stages-content"
                 details={
-                  <div>
-                    <AppTypography className={classes.hint}>
-                      We recommend to divide large goals into stages.
-                    </AppTypography>
-                    <AppTypography className={classes.hint}>Add each stage in the field above.</AppTypography>
+                  <div className={classes.hint}>
+                    <AppTypography>We recommend to divide large goals into stages.</AppTypography>
+                    <AppTypography>Add each stage in the field above.</AppTypography>
                   </div>
                 }
               />

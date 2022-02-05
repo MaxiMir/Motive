@@ -1,4 +1,3 @@
-import React from 'react'
 import clsx from 'clsx'
 import { makeStyles, IconButton } from '@material-ui/core'
 import AppEmoji from 'components/UI/AppEmoji'

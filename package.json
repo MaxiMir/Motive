@@ -49,6 +49,7 @@
     "react-markdown": "^7.1.2",
     "react-photo-gallery": "^8.0.0",
     "react-player": "^2.9.0",
+    "react-query": "^3.34.14",
     "rehype-sanitize": "^5.0.1",
     "sharp": "^0.29.3",
     "swr": "^1.0.0",

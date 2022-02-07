@@ -29,12 +29,12 @@ export default function useForm(onClose: () => void): UseFormType<GoalCreationDt
 
 const useSendCreateGoal = (onClose: () => void) => {
   const { enqueueSnackbar } = useSnackbar()
-  const [goals, mutateGoals] = useMutateGoals()
+  const [goals, mutate] = useMutateGoals()
 
   return useSend(GoalService.create, {
     onSuccess(goal) {
       const { days, ...restGoalData } = goal
-      mutateGoals(
+      mutate(
         produce(goals, (draft: GoalDto[]) => {
           draft.push({ ...restGoalData, day: days[0] })
         }),

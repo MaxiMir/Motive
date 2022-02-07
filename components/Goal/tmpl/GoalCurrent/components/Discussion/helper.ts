@@ -1,8 +1,8 @@
 import { GoalDto, TopicDto } from 'dto'
-import PageService from 'services/PageService'
 import produce from 'immer'
 
-export const fetcher = (url: string): Promise<TopicDto[]> => PageService.getURL(url)
+export const LIMIT_TOPICS = 4
+export const PRELOAD_DIFF = 1
 
 export const getTopicsCount = (topics: TopicDto[]): number =>
   topics.reduce((acc, t) => acc + (!t.answers?.length ? 1 : 2), 0)

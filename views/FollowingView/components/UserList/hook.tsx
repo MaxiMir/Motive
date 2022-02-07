@@ -1,19 +1,18 @@
 import { useRef } from 'react'
+import { useQueryClient } from 'react-query'
 import { Button } from '@material-ui/core'
 import { UserDto } from 'dto'
 import SubscriptionService from 'services/SubscriptionService'
 import useSnackbar from 'hooks/useSnackbar'
 import useSend from 'hooks/useSend'
+import { QUERY_KEY } from 'views/FollowingView/hook'
 
 type UseRemoveFollowingUser = (id: number) => void
 
-export default function useRemoveFollowing(
-  users: UserDto[],
-  isAuthorized: boolean,
-  mutateUsers: (user: UserDto[]) => void,
-): UseRemoveFollowingUser {
+export default function useRemoveFollowing(users: UserDto[], isAuthorized: boolean): UseRemoveFollowingUser {
   const backupRef = useRef(users)
   const { enqueueSnackbar, closeSnackbar } = useSnackbar()
+  const mutateContent = useMutateContent()
   const { send } = useSend(SubscriptionService.updateFollowing, {
     onSuccess: (_, { id, add }) => {
       !add &&
@@ -25,12 +24,12 @@ export default function useRemoveFollowing(
         })
     },
     onError: () => {
-      mutateUsers(backupRef.current)
+      mutateContent(backupRef.current)
     },
   })
 
   function onUndo(id: number) {
-    mutateUsers(backupRef.current)
+    mutateContent(backupRef.current)
     closeSnackbar()
     send({ id, add: true })
   }
@@ -42,7 +41,14 @@ export default function useRemoveFollowing(
     }
 
     backupRef.current = users
-    mutateUsers(users.filter((f) => f.id !== id))
+    mutateContent(users.filter((f) => f.id !== id))
     send({ id, add: false })
   }
+}
+
+const useMutateContent = () => {
+  const queryClient = useQueryClient()
+  const data = queryClient.getQueriesData(QUERY_KEY)
+
+  return (content: UserDto[]) => queryClient.setQueryData(QUERY_KEY, { ...data, content })
 }

@@ -3,6 +3,7 @@ import dynamic from 'next/dynamic'
 import { AppProps } from 'next/app'
 import DateFnsUtils from '@date-io/date-fns'
 import { SWRConfig } from 'swr'
+import { Hydrate, QueryClient, QueryClientProvider } from 'react-query'
 import NextNprogress from 'nextjs-progressbar'
 import { MuiPickersUtilsProvider } from '@material-ui/pickers'
 import { ThemeProvider } from '@material-ui/core/styles'
@@ -14,6 +15,7 @@ const AppSnackbar = dynamic(() => import('components/UI/AppSnackbar'))
 
 export default function MyApp({ Component, pageProps }: AppProps): JSX.Element {
   const [snackbarProps, setSnackbarProps] = useState<ContextSnackbarProps | null>(null)
+  const [queryClient] = useState(() => new QueryClient())
 
   const onClose = () => setSnackbarProps(null)
 
@@ -27,24 +29,28 @@ export default function MyApp({ Component, pageProps }: AppProps): JSX.Element {
   }, [])
 
   return (
-    <MuiPickersUtilsProvider utils={DateFnsUtils}>
-      <ThemeProvider theme={theme}>
-        <SWRConfig
-          value={{
-            onError: () => {
-              setSnackbarProps({ message: 'Something went wrong...', severity: 'error' })
-            },
-          }}
-        >
-          <NextNprogress color="#b46a5a" />
-          {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
-          <CssBaseline />
-          <SnackbarContext.Provider value={{ props: snackbarProps, setProps: setSnackbarProps }}>
-            <Component {...pageProps} />
-          </SnackbarContext.Provider>
-          {snackbarProps && <AppSnackbar {...snackbarProps} onClose={onClose} />}
-        </SWRConfig>
-      </ThemeProvider>
-    </MuiPickersUtilsProvider>
+    <QueryClientProvider client={queryClient}>
+      <Hydrate state={pageProps.dehydratedState}>
+        <MuiPickersUtilsProvider utils={DateFnsUtils}>
+          <ThemeProvider theme={theme}>
+            <SWRConfig
+              value={{
+                onError: () => {
+                  setSnackbarProps({ message: 'Something went wrong...', severity: 'error' })
+                },
+              }}
+            >
+              <NextNprogress color="#b46a5a" />
+              {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
+              <CssBaseline />
+              <SnackbarContext.Provider value={{ props: snackbarProps, setProps: setSnackbarProps }}>
+                <Component {...pageProps} />
+              </SnackbarContext.Provider>
+              {snackbarProps && <AppSnackbar {...snackbarProps} onClose={onClose} />}
+            </SWRConfig>
+          </ThemeProvider>
+        </MuiPickersUtilsProvider>
+      </Hydrate>
+    </QueryClientProvider>
   )
 }

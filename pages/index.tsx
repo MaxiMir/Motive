@@ -1,12 +1,13 @@
 import { GetServerSideProps } from 'next'
-import { MainPageSWRDto } from 'dto'
 import PageService from 'services/PageService'
 import Layout from 'layout'
-import useHomePage from 'views/MainView/hook'
 import MainView from 'views/MainView'
+import { useHomePage } from 'views/MainView/hook'
+import { dehydrate, QueryClient } from 'react-query'
+import { QUERY_KEY } from '../views/RatingView/hook'
 
-export default function MainPage({ fallbackData }: MainPageSWRDto): JSX.Element {
-  const { data, error } = useHomePage(fallbackData)
+export default function MainPage(): JSX.Element {
+  const { data, error } = useHomePage()
 
   return (
     <Layout
@@ -22,11 +23,12 @@ export default function MainPage({ fallbackData }: MainPageSWRDto): JSX.Element 
 }
 
 export const getServerSideProps: GetServerSideProps = async () => {
-  const data = await PageService.getMain()
+  const queryClient = new QueryClient()
+  await queryClient.prefetchQuery(QUERY_KEY, PageService.getMain)
 
   return {
     props: {
-      fallbackData: data,
+      dehydratedState: dehydrate(queryClient),
     },
   }
 }

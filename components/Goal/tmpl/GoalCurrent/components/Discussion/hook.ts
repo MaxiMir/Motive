@@ -1,31 +1,57 @@
-import useSWRInfinite from 'swr/infinite'
+import { useInfiniteQuery } from 'react-query'
 import { TopicDto } from 'dto'
-import { getTopicsKey, partialCheckOnLoadMore } from 'helpers/swr'
+import TopicService from 'services/TopicService'
 import { useMutateGoals } from 'views/UserView/hook'
-import { fetcher, getTopicsCount, changeGoals, mergeTopics } from './helper'
+import { LIMIT_TOPICS, PRELOAD_DIFF, changeGoals, getTopicsCount } from './helper'
 
 export default function useDiscussion(
   goalId: number,
   dayId: number,
   count: number,
 ): {
+  isLoading: boolean
   topics: TopicDto[]
   checkOnLoadMore: (index: number) => boolean
   onLoadMore: () => void
   onAdd: (topic: TopicDto) => void
 } {
-  const [goals, mutateGoals] = useMutateGoals()
-  const { data = [], size, setSize, mutate } = useSWRInfinite(getTopicsKey(dayId), fetcher)
-  const topics = data.flat()
-  const topicsWithAnswers = getTopicsCount(topics)
-  const checkOnLoadMore = partialCheckOnLoadMore(topicsWithAnswers, count)
+  const { isLoading, data, fetchNextPage, hasNextPage } = useInfiniteQuery(
+    ['discussion', dayId],
+    ({ pageParam = 0 }) => TopicService.get(dayId, pageParam * LIMIT_TOPICS, LIMIT_TOPICS),
+    {
+      getNextPageParam: (_, allPages) => {
+        const allCount = getTopicsCount(allPages.flat())
 
-  const onLoadMore = () => setSize(size + 1)
+        return allCount < count ? allCount / LIMIT_TOPICS : undefined
+      },
+      enabled: !!count,
+    },
+  )
+  const topics = data?.pages.flat() || []
+  const [goals, mutateGoals] = useMutateGoals()
+
+  const onLoadMore = () => fetchNextPage()
+
+  const checkOnLoadMore = (index: number) => !!hasNextPage && topics.length - index === PRELOAD_DIFF
 
   const onAdd = async (topic: TopicDto) => {
-    await mutate(mergeTopics(data, topic), false)
+    // await mutate(mergeTopics(data, topic), false)
     mutateGoals(changeGoals(goalId, goals))
   }
 
-  return { topics, onLoadMore, checkOnLoadMore, onAdd }
+  return { isLoading, topics, checkOnLoadMore, onLoadMore, onAdd }
 }
+//
+// const useMutateDiscussion = (dayId: number) => {
+//   const key = ['discussion', dayId]
+//   const queryClient = useQueryClient()
+//   const state = queryClient.getQueryState<InfiniteData<TopicDto[]>>(key)
+//
+//   const mutate = (topic: TopicDto) =>
+//     queryClient.setQueryData(
+//       key,
+//       produce(state, (draft) => {
+//         // draft.data.pages[draft.data.pages.length - 1].push(topic)
+//       }),
+//     )
+// }

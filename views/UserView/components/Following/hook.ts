@@ -36,7 +36,6 @@ export default function useSetFollowing(id: number, following: boolean, isAuthor
         draft.content.following = value
         draft.content.characteristic.followers += value ? 1 : -1
       }),
-      false,
     )
   }
 
@@ -46,7 +45,6 @@ export default function useSetFollowing(id: number, following: boolean, isAuthor
         draft.content.following = backupRef.current.content.following
         draft.content.characteristic.followers = backupRef.current.content.characteristic.followers
       }),
-      false,
     )
   }
 

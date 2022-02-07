@@ -20,7 +20,7 @@ interface DiscussionProps {
 }
 
 export default function Discussion({ goalId, dayId, role, owner, client, count }: DiscussionProps): JSX.Element {
-  const { topics, onLoadMore, checkOnLoadMore, onAdd } = useDiscussion(goalId, dayId, count)
+  const { isLoading, topics, checkOnLoadMore, onLoadMore, onAdd } = useDiscussion(goalId, dayId, count)
   const withInput = (!count || !!topics.length) && !!client && client.id !== owner.id
   const height = !count ? undefined : (!withInput ? 0 : 56) + 424
 
@@ -34,7 +34,7 @@ export default function Discussion({ goalId, dayId, role, owner, client, count }
           <AppTypography>Nothing so far...</AppTypography>
         ) : (
           <>
-            {!topics.length ? (
+            {isLoading ? (
               <Loader count={count} withInput={withInput} />
             ) : (
               <AppBox display="block" maxHeight={524} pr={2} overflow="auto">

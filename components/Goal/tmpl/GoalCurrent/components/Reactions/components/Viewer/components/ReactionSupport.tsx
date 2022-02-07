@@ -11,7 +11,6 @@ interface ReactionSupportProps {
 }
 
 export default function ReactionSupport({ goal, owner }: ReactionSupportProps): JSX.Element {
-  const { day } = goal
   const [open, setOpen] = useState(false)
 
   const toggleModal = () => setOpen(!open)
@@ -19,7 +18,7 @@ export default function ReactionSupport({ goal, owner }: ReactionSupportProps): 
   return (
     <>
       <Characteristic tmpl="reaction" name="support" title={`Support ${owner.name}`} onClick={toggleModal} />
-      {open && <Modal tmpl="support" dayId={day.id} owner={owner} onClose={toggleModal} />}
+      {open && <Modal tmpl="support" goal={goal} owner={owner} onClose={toggleModal} />}
     </>
   )
 }

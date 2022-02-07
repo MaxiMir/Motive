@@ -1,6 +1,6 @@
 import { Field, Form, FormikProvider } from 'formik'
 import { createStyles, makeStyles } from '@material-ui/core'
-import { UserBaseDto } from 'dto'
+import { GoalDto, UserBaseDto } from 'dto'
 import ModalAction from 'components/ModalAction'
 import AppModal from 'components/UI/AppModal'
 import AppBox from 'components/UI/AppBox'
@@ -12,14 +12,14 @@ import useForm from './hook'
 
 export interface ModalSupportProps {
   tmpl: 'support'
-  dayId: number
+  goal: GoalDto
   owner: UserBaseDto
   onClose: () => void
 }
 
-export default function ModalSupport({ dayId, owner, onClose }: ModalSupportProps): JSX.Element {
+export default function ModalSupport({ goal, owner, onClose }: ModalSupportProps): JSX.Element {
   const classes = useStyles()
-  const { isLoading, formik } = useForm(dayId, onClose)
+  const { isLoading, formik } = useForm(goal, onClose)
   const { handleSubmit } = formik
 
   return (

@@ -1,37 +1,36 @@
 import { GetServerSideProps } from 'next'
-import { UserPageSWRDto } from 'dto'
-import { UserPageContext } from 'context/userPageContext'
+import { dehydrate, QueryClient } from 'react-query'
+import { UserPageDto } from 'dto'
 import PageService from 'services/PageService'
 import { getUserMeta } from 'views/UserView/helper'
 import Layout from 'layout'
 import UserView from 'views/UserView'
-import useUserPage from 'views/UserView/hook'
+import { useUserPage } from 'views/UserView/hook'
 
-export default function UserDetail({ fallbackData }: UserPageSWRDto): JSX.Element {
-  const { data, error } = useUserPage(fallbackData)
+export default function UserDetail(): JSX.Element {
+  const { data, error } = useUserPage()
   const userMeta = getUserMeta(data?.content)
 
   return (
-    <UserPageContext.Provider value={data}>
-      <Layout {...userMeta} client={data?.client} error={error}>
-        {data?.content && <UserView user={data?.content} client={data?.client} />}
-      </Layout>
-    </UserPageContext.Provider>
+    <Layout {...userMeta} client={data?.client} error={error}>
+      {data?.content && <UserView user={data?.content} client={data?.client} />}
+    </Layout>
   )
 }
 
 export const getServerSideProps: GetServerSideProps = async (ctx) => {
   if (ctx.req.url?.includes('_next')) {
     return {
-      props: {
-        fallbackData: null,
-      },
+      props: {},
     }
   }
 
-  const fallbackData = await PageService.getUser(ctx.req.url || '')
+  const queryClient = new QueryClient()
+  const user = ctx.req.url || ''
+  await queryClient.prefetchQuery(user, () => PageService.getUser(user))
+  const state = queryClient.getQueryState<UserPageDto>(user)
 
-  if (!fallbackData.content) {
+  if (!state?.data?.content) {
     return {
       notFound: true,
     }
@@ -39,7 +38,7 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
 
   return {
     props: {
-      fallbackData,
+      dehydratedState: dehydrate(queryClient),
     },
   }
 }

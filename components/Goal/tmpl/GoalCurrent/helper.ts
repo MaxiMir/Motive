@@ -28,7 +28,8 @@ const checkOnTaskForm = (role: RoleDto, daysGone: number): boolean =>
 
 const checkOnControls = (role: RoleDto, lastDay: boolean): boolean => !(role === 'OWNER' && !lastDay)
 
-const checkOnCompleteStage = (reactions: boolean, role: RoleDto): boolean => role === 'OWNER' && reactions
+const checkOnCompleteStage = (reactions: boolean, role: RoleDto, goal: GoalDto): boolean =>
+  role === 'OWNER' && reactions && goal.stage <= goal.day.stage
 
 export const getGoalInfo = (
   datesMap: Record<string, number>,
@@ -51,7 +52,7 @@ export const getGoalInfo = (
   const web = checkOnWeb(day.date, currentDate, lastDay)
   const form = checkOnTaskForm(role, daysGone)
   const controls = checkOnControls(role, lastDay)
-  const completeStage = checkOnCompleteStage(controls, role)
+  const completeStage = checkOnCompleteStage(controls, role, goal)
   const forTomorrow = daysGone === -1
 
   return {

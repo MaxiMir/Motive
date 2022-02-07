@@ -1,15 +1,16 @@
 import { useFormik } from 'formik'
-import { TopicCreationDto, TopicType } from 'dto'
+import { GoalDto, TopicCreationDto, TopicType } from 'dto'
 import { UseFormType } from 'types'
 import TopicService from 'services/TopicService'
 import useSend from 'hooks/useSend'
 import schema from 'schemas/topic'
 
-export default function useForm(dayId: number, onClose: () => void): UseFormType<TopicCreationDto> {
+export default function useForm(goal: GoalDto, onClose: () => void): UseFormType<TopicCreationDto> {
+  const { day } = goal
   const { isLoading, send } = useSendSupport(onClose)
   const formik = useFormik<TopicCreationDto>({
     initialValues: {
-      dayId,
+      dayId: day.id,
       text: '',
       type: TopicType.SUPPORT,
     },

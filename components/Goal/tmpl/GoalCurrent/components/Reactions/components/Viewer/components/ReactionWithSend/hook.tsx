@@ -17,7 +17,7 @@ export default function useSetReaction(
   const lastAddRef = useRef(active)
   const backupRef = useRef(goal)
   const { enqueueSnackbar } = useSnackbar()
-  const [goals, mutateGoals] = useMutateGoals()
+  const [goals, mutate] = useMutateGoals()
   const { send } = useSend(GoalService.updateCharacteristic, {
     onSuccess(_, request) {
       lastAddRef.current = request.add
@@ -40,7 +40,7 @@ export default function useSetReaction(
   })
 
   const mutateCharacteristic = (add: boolean) => {
-    mutateGoals(
+    mutate(
       produce(goals, (draft: GoalDto[]) => {
         const draftGoal = draft[draft.findIndex((g) => g.id === id)]
         draftGoal.characteristic[name] += add ? 1 : -1
@@ -52,7 +52,7 @@ export default function useSetReaction(
   }
 
   const rollbackCharacteristic = () => {
-    mutateGoals(
+    mutate(
       produce(goals, (draft: GoalDto[]) => {
         const draftGoal = draft[draft.findIndex((g) => g.id === id)]
         draftGoal.characteristic = backupRef.current.characteristic

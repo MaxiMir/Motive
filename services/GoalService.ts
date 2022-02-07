@@ -13,7 +13,7 @@ export default class GoalService extends Service {
   /**
    * /goals/{id}/days
    */
-  static addDay(data: DayCreationDto): Promise<GoalDto> {
+  static addDay(data: DayCreationDto): Promise<CreatedGoal> {
     const { id, ...body } = data
 
     return Axios.post(`/goals/${id}/days`, body)

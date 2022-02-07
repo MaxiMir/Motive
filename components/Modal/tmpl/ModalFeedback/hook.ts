@@ -38,11 +38,11 @@ export default function useForm(goal: GoalDto, onClose: () => void): UseFormType
 
 const useSendFeedback = (goal: GoalDto, onClose: () => void) => {
   const { enqueueSnackbar } = useSnackbar()
-  const [goals, mutateGoals] = useMutateGoals()
+  const [goals, mutate] = useMutateGoals()
 
   return useSend(FeedbackService.create, {
     onSuccess: (feedback) => {
-      mutateGoals(
+      mutate(
         produce(goals, (draft: GoalDto[]) => {
           const draftGoal = draft[draft.findIndex((g) => g.id === goal.id)]
           draftGoal.day.feedback = feedback

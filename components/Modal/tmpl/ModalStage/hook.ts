@@ -6,12 +6,12 @@ import useSnackbar from 'hooks/useSnackbar'
 import { useMutateGoals } from 'views/UserView/hook'
 
 export const useSendStage = (goal: GoalDto, onClose: () => void): UseSend<GoalStageDto> => {
-  const [goals, mutateGoals] = useMutateGoals()
+  const [goals, mutate] = useMutateGoals()
   const { enqueueSnackbar } = useSnackbar()
 
   return useSend(GoalService.updateStage, {
     onSuccess() {
-      mutateGoals(
+      mutate(
         produce(goals, (draft: GoalDto[]) => {
           const draftGoal = draft[draft.findIndex((g) => g.id === goal.id)]
           draftGoal.stage += 1

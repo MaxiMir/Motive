@@ -6,11 +6,11 @@ import useChangeDayUrl from 'hooks/useChangeDayUrl'
 import { useMutateGoals } from 'views/UserView/hook'
 
 export default function useChangeDay(goalId: number): [boolean, (dayId: number) => void] {
-  const [goals, mutateGoals] = useMutateGoals()
+  const [goals, mutate] = useMutateGoals()
   const changeDayUrl = useChangeDayUrl()
   const { isLoading, send } = useSend(DayService.getById, {
     onSuccess: (day) => {
-      mutateGoals(
+      mutate(
         produce(goals, (draft: GoalDto[]) => {
           const draftGoal = draft[draft.findIndex((g) => g.id === goalId)]
           draftGoal.day = day

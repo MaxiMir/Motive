@@ -1,15 +1,10 @@
-import useSWR from 'swr'
-import { SubscriptionPageDto, UserDto } from 'dto'
+import { useQuery, UseQueryResult } from 'react-query'
+import { SubscriptionPageDto } from 'dto'
 import PageService from 'services/PageService'
 
-const SWR_KEY = 'FOLLOWING'
+export const QUERY_KEY = 'following'
 
-type UseFollowingPage = { data?: SubscriptionPageDto; error: Error; mutateUsers: (user: UserDto[]) => void }
-
-export default function useFollowingPage(fallbackData: SubscriptionPageDto): UseFollowingPage {
-  const { data, error, mutate } = useSWR(SWR_KEY, PageService.getFollowing, { fallbackData })
-
-  const mutateUsers = (content: UserDto[]) => mutate({ ...data, content }, false)
-
-  return { data, error, mutateUsers }
-}
+export const useFollowingPage = (): UseQueryResult<SubscriptionPageDto> =>
+  useQuery(QUERY_KEY, PageService.getFollowing, {
+    staleTime: 30_000,
+  })

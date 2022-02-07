@@ -1,12 +1,12 @@
 import { GetServerSideProps } from 'next'
-import { RatingPageSWRDto } from 'dto'
+import { dehydrate, QueryClient } from 'react-query'
 import PageService from 'services/PageService'
 import Layout from 'layout'
 import Rating from 'views/RatingView'
-import useRatingPage from 'views/RatingView/hook'
+import { QUERY_KEY, useRatingPage } from 'views/RatingView/hook'
 
-export default function RatingPage({ fallbackData }: RatingPageSWRDto): JSX.Element {
-  const { data, error } = useRatingPage(fallbackData)
+export default function RatingPage(): JSX.Element {
+  const { data, error } = useRatingPage()
 
   return (
     <Layout
@@ -21,11 +21,12 @@ export default function RatingPage({ fallbackData }: RatingPageSWRDto): JSX.Elem
 }
 
 export const getServerSideProps: GetServerSideProps = async () => {
-  const fallbackData = await PageService.getRating()
+  const queryClient = new QueryClient()
+  await queryClient.prefetchQuery(QUERY_KEY, PageService.getRating)
 
   return {
     props: {
-      fallbackData,
+      dehydratedState: dehydrate(queryClient),
     },
   }
 }

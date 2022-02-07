@@ -9,6 +9,6 @@ export default class SubscriptionService extends Service {
     const { id, add } = data
     const operation = SubscriptionService.getOperation(add)
 
-    return Axios.patch(`/subscriptions${operation}`, { id })
+    return Axios.put(`/subscriptions${operation}`, { id })
   }
 }

@@ -1,7 +1,7 @@
-import useSWR, { SWRResponse } from 'swr'
+import { useQuery, UseQueryResult } from 'react-query'
 import { RatingPageDto } from 'dto'
 import PageService from 'services/PageService'
 
-export default function useRatingPage(fallbackData: RatingPageDto): SWRResponse<RatingPageDto> {
-  return useSWR('Rating', PageService.getRating, { fallbackData })
-}
+export const QUERY_KEY = 'rating'
+
+export const useRatingPage = (): UseQueryResult<RatingPageDto> => useQuery(QUERY_KEY, PageService.getRating)

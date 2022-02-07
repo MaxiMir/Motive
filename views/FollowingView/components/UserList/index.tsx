@@ -8,11 +8,10 @@ import Menu from './components/Menu'
 interface UserListProps {
   users: UserDto[]
   isAuthorized: boolean
-  mutateUsers: (user: UserDto[]) => void
 }
 
-export default function UserList({ users, isAuthorized, mutateUsers }: UserListProps): JSX.Element {
-  const onRemove = useRemoveFollowing(users, isAuthorized, mutateUsers)
+export default function UserList({ users, isAuthorized }: UserListProps): JSX.Element {
+  const onRemove = useRemoveFollowing(users, isAuthorized)
 
   return (
     <AppList

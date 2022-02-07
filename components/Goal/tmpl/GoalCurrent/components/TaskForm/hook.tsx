@@ -12,7 +12,7 @@ const Button = dynamic(() => import('@material-ui/core/Button'))
 export default function useSetCompleted(id: number, goalId: number, rest: number): () => void {
   const timerIdRef = useRef<NodeJS.Timeout>()
   const { enqueueSnackbar, closeSnackbar } = useSnackbar()
-  const [goals, mutateGoals] = useMutateGoals()
+  const [goals, mutate] = useMutateGoals()
 
   const { send } = useSend(TaskService.setCompleted, {
     onError() {
@@ -27,7 +27,7 @@ export default function useSetCompleted(id: number, goalId: number, rest: number
   }
 
   const mutateCompleted = (value: boolean) => {
-    mutateGoals(
+    mutate(
       produce(goals, (draft: GoalDto[]) => {
         const draftGoal = draft[draft.findIndex((g) => g.id === goalId)]
         const draftTask = draftGoal.day.tasks[draftGoal.day.tasks.findIndex((t) => t.id === id)]

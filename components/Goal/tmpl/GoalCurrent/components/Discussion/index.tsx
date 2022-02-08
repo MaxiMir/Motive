@@ -2,7 +2,7 @@ import dynamic from 'next/dynamic'
 import { RoleDto, TopicDto, TopicType, UserBaseDto } from 'dto'
 import AppBox from 'components/UI/AppBox'
 import { AppListProps } from 'components/UI/AppList'
-import useDiscussion from './hook'
+import { useDiscussion, useAddTopic } from './hook'
 
 const Loader = dynamic(() => import('./components/Loader'))
 const Topic = dynamic(() => import('./components/Topic'))
@@ -20,7 +20,8 @@ interface DiscussionProps {
 }
 
 export default function Discussion({ goalId, dayId, role, owner, client, count }: DiscussionProps): JSX.Element {
-  const { isLoading, topics, checkOnLoadMore, onLoadMore, onAdd } = useDiscussion(goalId, dayId, count)
+  const { isLoading, topics, checkOnLoadMore, fetchNextPage } = useDiscussion(dayId, count)
+  const onAdd = useAddTopic(goalId, dayId)
   const withInput = (!count || !!topics.length) && !!client && client.id !== owner.id
   const height = !count ? undefined : (!withInput ? 0 : 56) + 424
 
@@ -49,7 +50,7 @@ export default function Discussion({ goalId, dayId, role, owner, client, count }
                       role={role}
                       owner={owner}
                       inView={checkOnLoadMore(index)}
-                      onView={onLoadMore}
+                      onView={fetchNextPage}
                       onAdd={onAdd}
                     />
                   )}

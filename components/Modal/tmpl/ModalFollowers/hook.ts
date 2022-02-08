@@ -1,21 +1,22 @@
-import useSWRInfinite from 'swr/infinite'
+import { useInfiniteQuery } from 'react-query'
 import { UserDetailDto, UserDto } from 'dto'
-import { getFollowersKey, partialCheckOnLoadMore } from 'helpers/swr'
-import { fetcher } from './helper'
+import { PRELOAD_DIFF, partialFetcher, partialGetNextPageParam } from './helper'
 
 export default function useFollowers(user: UserDetailDto): {
+  isLoading: boolean
   followers?: UserDto[]
   checkOnLoadMore: (index: number) => boolean
-  onLoadMore: () => void
+  fetchNextPage: () => void
 } {
-  const { data, size, setSize } = useSWRInfinite(getFollowersKey(user.id), fetcher, {
-    initialSize: !user.characteristic.followers ? 0 : 1,
-    revalidateFirstPage: false,
+  const fetcher = partialFetcher(user.id)
+  const getNextPageParam = partialGetNextPageParam(user.characteristic.followers)
+  const { isLoading, data, fetchNextPage, hasNextPage } = useInfiniteQuery(['followers', user.id], fetcher, {
+    getNextPageParam,
+    enabled: !!user.characteristic.followers,
   })
-  const followers = data?.flat()
-  const checkOnLoadMore = partialCheckOnLoadMore(followers?.length || 0, user.characteristic.followers)
+  const followers = data?.pages.flat() || []
 
-  const onLoadMore = () => setSize(size + 1)
+  const checkOnLoadMore = (index: number) => !!hasNextPage && followers.length - index === PRELOAD_DIFF
 
-  return { followers, onLoadMore, checkOnLoadMore }
+  return { isLoading, followers, checkOnLoadMore, fetchNextPage }
 }

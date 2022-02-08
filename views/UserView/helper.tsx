@@ -9,13 +9,19 @@ interface UserMeta {
   image?: string
 }
 
-export const getUserMeta = (user?: UserDetailDto): UserMeta => ({
-  title: user && `${user.name} • profile on ${process.env.NEXT_PUBLIC_APP_NAME}`,
-  description: user && `See how ${user.name} (@${user.nickname}) accomplishes his goals`,
-  url: user && `${process.env.HOST}/${user.nickname}`,
-  image: user?.avatar,
-  type: 'profile',
-})
+export const getUserMeta = (user?: UserDetailDto): UserMeta | null => {
+  if (!user) {
+    return null
+  }
+
+  return {
+    title: `${user.name} • profile on ${process.env.NEXT_PUBLIC_APP_NAME}`,
+    description: `See how ${user.name} (@${user.nickname}) accomplishes his goals`,
+    url: `${process.env.HOST}/${user.nickname}`,
+    image: user.avatar,
+    type: 'profile',
+  }
+}
 
 export const getUserHref = (nickname: string): string => `/${nickname}/`
 

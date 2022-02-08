@@ -9,7 +9,7 @@ interface SupportSignProps {
 
 export default function SupportSign({ supportFor }: SupportSignProps): JSX.Element {
   const classes = useStyles()
-  const title = `Support for ${supportFor}`
+  const title = `Support ${supportFor}`
 
   return (
     <AppTooltip title={title} aria-label={title}>
@@ -27,9 +27,6 @@ const useStyles = makeStyles((theme) =>
       height: 21,
       background: theme.palette.info.main,
       borderRadius: '50%',
-      '@supports not (-moz-appearance:none)': {
-        paddingLeft: '3.5px',
-      },
     },
   }),
 )

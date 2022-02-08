@@ -2,6 +2,16 @@ import { UserDto, UserBaseDto } from './user'
 import { MainCharacteristicName } from './characteristic'
 import { GoalDto } from './goal'
 
+export interface PageStatus {
+  statusCode: number
+}
+
+export interface PossiblePageError {
+  message?: {
+    statusCode: number
+  }
+}
+
 type Page<T> = {
   client?: UserBaseDto
   content: T

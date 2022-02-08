@@ -11,18 +11,18 @@ interface UserListProps {
 }
 
 export default function UserList({ users, isAuthorized }: UserListProps): JSX.Element {
-  const onRemove = useRemoveFollowing(users, isAuthorized)
-
+  const onRemove = useRemoveFollowing(isAuthorized)
+  // todo infinite scroll
   return (
     <AppList
       elements={users}
       spacing={4}
       keyGetter={(user) => user.id}
-      render={(user) => (
+      render={(user, index) => (
         <User
           tmpl="characteristic"
           user={user}
-          menu={<Menu title={user.name} href={getUserHref(user.nickname)} onRemove={() => onRemove(user.id)} />}
+          menu={<Menu title={user.name} href={getUserHref(user.nickname)} onRemove={() => onRemove(user, index)} />}
           inView={false}
           onView={() => console.log('IN VIEW')}
         />

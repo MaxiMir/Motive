@@ -1,22 +1,36 @@
-import { GoalDto, TopicDto } from 'dto'
 import produce from 'immer'
+import { GetNextPageParamFunction, InfiniteData, QueryFunctionContext } from 'react-query'
+import { GoalDto, TopicDto } from 'dto'
+import TopicService from 'services/TopicService'
 
-export const LIMIT_TOPICS = 4
-export const PRELOAD_DIFF = 1
+const TAKE = 20
+export const PRELOAD_DIFF = 5
 
-export const getTopicsCount = (topics: TopicDto[]): number =>
-  topics.reduce((acc, t) => acc + (!t.answers?.length ? 1 : 2), 0)
+export const partialFetcher = (dayId: number): ((ctx: QueryFunctionContext) => Promise<TopicDto[]>) => {
+  return ({ pageParam = 0 }: QueryFunctionContext) => TopicService.get(dayId, pageParam, TAKE)
+}
 
-export const mergeTopics = (data: TopicDto[][], newTopic: TopicDto): TopicDto[][] => {
-  if (!newTopic.answers?.length) {
-    return [[newTopic], ...data]
+export const partialGetNextPageParam = (count: number): GetNextPageParamFunction<TopicDto[]> | undefined => {
+  return (_: TopicDto[], allPages: TopicDto[][]) => {
+    const allCount = getTopicsCount(allPages.flat())
+
+    return allCount < count ? allCount / TAKE : undefined
   }
+}
 
+const getTopicsCount = (topics: TopicDto[]): number => topics.reduce((acc, t) => acc + (!t.answers?.length ? 1 : 2), 0)
+
+export const addTopic = (data: InfiniteData<TopicDto[]>, topic: TopicDto): InfiniteData<TopicDto[]> => {
   return produce(data, (draft) => {
-    const draftTopic = draft.flat().find((t) => t.id === newTopic.id)
+    if (!topic.answers?.length) {
+      draft.pages = [[topic], ...draft.pages]
+      return
+    }
+
+    const draftTopic = draft.pages.flat().find((t) => t.id === topic.id)
 
     if (draftTopic) {
-      draftTopic.answers = newTopic.answers
+      draftTopic.answers = topic.answers
     }
   })
 }

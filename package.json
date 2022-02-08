@@ -52,7 +52,6 @@
     "react-query": "^3.34.14",
     "rehype-sanitize": "^5.0.1",
     "sharp": "^0.29.3",
-    "swr": "^1.0.0",
     "yup": "^0.32.9"
   },
   "devDependencies": {

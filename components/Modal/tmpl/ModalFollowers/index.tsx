@@ -17,19 +17,19 @@ export interface ModalFollowersProps {
 
 export default function ModalFollowers({ user, onClose }: ModalFollowersProps): JSX.Element {
   const classes = useStyles()
-  const { followers, onLoadMore, checkOnLoadMore } = useFollowers(user)
+  const { isLoading, followers, checkOnLoadMore, fetchNextPage } = useFollowers(user)
 
   return (
     <AppModal title="Followers" maxWidth="xs" onClose={onClose}>
       <AppContainer flexColumn className={classes.container}>
-        {!followers ? (
+        {isLoading ? (
           <Loader count={user.characteristic.followers} />
         ) : (
           <>
             {!followers?.length ? (
               <EmptyList />
             ) : (
-              <UserList users={followers} checkOnLoadMore={checkOnLoadMore} onLoadMore={onLoadMore} />
+              <UserList users={followers} checkOnLoadMore={checkOnLoadMore} onLoadMore={fetchNextPage} />
             )}
           </>
         )}

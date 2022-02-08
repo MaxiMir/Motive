@@ -1,10 +1,12 @@
-import { FC, useEffect } from 'react'
+import { FC } from 'react'
 import Head from 'next/head'
+import dynamic from 'next/dynamic'
 import { makeStyles } from '@material-ui/core/styles'
 import { UserBaseDto } from 'dto'
-import useSnackbar from 'hooks/useSnackbar'
 import Header from './Header'
 import Footer from './Footer'
+
+const Error = dynamic(() => import('pages/_error'))
 
 interface LayoutProps {
   title?: string
@@ -12,7 +14,7 @@ interface LayoutProps {
   url?: string
   type?: string
   image?: string
-  error?: unknown
+  statusCode?: number
   client?: UserBaseDto
   withVerticalPadding?: boolean
 }
@@ -24,17 +26,11 @@ const Layout: FC<LayoutProps> = ({
   type,
   image,
   withVerticalPadding = true,
-  error,
+  statusCode,
   client,
   children,
 }) => {
-  const { enqueueSnackbar } = useSnackbar()
   const classes = useStyles({ withVerticalPadding })
-
-  useEffect(() => {
-    error && enqueueSnackbar({ message: 'Something went wrong...', severity: 'error' })
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [error])
 
   return (
     <>
@@ -59,7 +55,7 @@ const Layout: FC<LayoutProps> = ({
         <link rel="icon" type="image/x-icon" href="/favicon.ico" />
       </Head>
       <Header isAuthenticated={!!client?.id} />
-      {!error && <main className={classes.main}>{children}</main>}
+      {statusCode === 200 ? <main className={classes.main}>{children}</main> : <Error statusCode={statusCode} />}
       <Footer nickname={client?.nickname} />
     </>
   )

@@ -26,7 +26,7 @@ export default function ModalSupport({ goal, owner, onClose }: ModalSupportProps
     <AppModal
       title={
         <>
-          Support for <span className={classes.owner}>{owner.name}</span>
+          Support <span className={classes.owner}>{owner.name}</span>
         </>
       }
       maxWidth="xs"
@@ -56,7 +56,7 @@ export default function ModalSupport({ goal, owner, onClose }: ModalSupportProps
               details={
                 <div className={classes.hint}>
                   <AppTypography>Support is very important for achieving goals.</AppTypography>
-                  <AppTypography>Especially in moments when you want to give up.</AppTypography>
+                  <AppTypography>Especially at times when you want to give up.</AppTypography>
                   <AppTypography>Therefore support others:</AppTypography>
                   <AppTypography>&#9679; with advice;</AppTypography>
                   <AppTypography>&#9679; with words of encouragement.</AppTypography>

@@ -34,6 +34,7 @@ export type AppEmojiName =
   | 'cassette'
   | 'pitt'
   | 'stage'
+  | 'tired'
 
 interface AppEmojiProps {
   name: AppEmojiName
@@ -128,6 +129,8 @@ function getContent(name: AppEmojiName) {
       return '🕷'
     case 'stage':
       return '🚀'
+    case 'tired':
+      return '😮‍💨'
     default:
       return ''
   }

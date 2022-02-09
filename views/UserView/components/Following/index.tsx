@@ -11,10 +11,10 @@ interface FollowingProps {
 
 export default function Following({ id, following, isAuthorized }: FollowingProps): JSX.Element {
   const classes = useStyles()
-  const setIsFollowing = useSetFollowing(id, following, isAuthorized)
+  const setFollowing = useSetFollowing(id, following, isAuthorized)
 
   return (
-    <IconButton title={`${following ? 'Remove' : 'Add'} following`} onClick={setIsFollowing}>
+    <IconButton title={`${following ? 'Remove' : 'Add'} following`} onClick={setFollowing}>
       <AppEmoji name="following" variant="h5" className={clsx([classes.emoji, !following && classes.emojiNotActive])} />
     </IconButton>
   )

@@ -28,9 +28,10 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
   }
 
   const queryClient = new QueryClient()
-  const user = ctx.req.url || ''
-  await queryClient.prefetchQuery(user, () => PageService.getUser(user))
-  const state = queryClient.getQueryState<PossiblePageError>(user)
+  const userHref = ctx.req.url || ''
+  const nickname = ctx.params?.id || ''
+  await queryClient.prefetchQuery(nickname, () => PageService.getUser(userHref))
+  const state = queryClient.getQueryState<PossiblePageError>(nickname)
   const statusCode = state?.data?.message?.statusCode || 200
 
   if (statusCode === 404) {

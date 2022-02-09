@@ -1,13 +1,14 @@
 import { useFormik } from 'formik'
+import { useMutation } from 'react-query'
 import { GoalDto, TopicCreationDto, TopicType } from 'dto'
 import { UseFormType } from 'types'
 import TopicService from 'services/TopicService'
-import useSend from 'hooks/useSend'
-import schema from 'schemas/topic'
+import { useAddTopic } from 'components/Goal/tmpl/GoalCurrent/components/Discussion/hook'
+import schema from 'schemas/support'
 
 export default function useForm(goal: GoalDto, onClose: () => void): UseFormType<TopicCreationDto> {
   const { day } = goal
-  const { isLoading, send } = useSendSupport(onClose)
+  const { isLoading, mutate } = useSendSupport(goal, onClose)
   const formik = useFormik<TopicCreationDto>({
     initialValues: {
       dayId: day.id,
@@ -16,16 +17,18 @@ export default function useForm(goal: GoalDto, onClose: () => void): UseFormType
     },
     validationSchema: schema,
     async onSubmit(data) {
-      send(data)
+      mutate(data)
     },
   })
 
   return { isLoading, formik }
 }
 
-const useSendSupport = (onClose: () => void) => {
-  return useSend(TopicService.create, {
-    onSuccess(_) {
+const useSendSupport = (goal: GoalDto, onClose: () => void) => {
+  const addTopic = useAddTopic(goal.id, goal.day.id)
+  return useMutation('topic-create', TopicService.create, {
+    onSuccess(topic) {
+      addTopic(topic)
       onClose()
     },
   })

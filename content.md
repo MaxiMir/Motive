@@ -16,3 +16,7 @@ Pictures are reduced to 1280px and converted to webp. To display on the front I 
 # Day 3
 
 
+Alexei Kopeychik
+Valya Ulyanova
+Artyom Arzunyan
+Emil Evil

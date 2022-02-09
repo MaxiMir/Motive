@@ -1,11 +1,10 @@
-import produce from 'immer'
 import { AxiosError } from 'axios'
 import { useMutation, useQueryClient } from 'react-query'
 import { Button } from '@material-ui/core'
 import { SubscriptionPageDto, UserDto } from 'dto'
 import useSnackbar from 'hooks/useSnackbar'
 import { QUERY_KEY } from 'views/FollowingView/hook'
-import { Options, Context, fetcher } from './helper'
+import { Options, Context, fetcher, getNextState } from './helper'
 
 export default function useRemoveFollowing(isAuthorized: boolean): (user: UserDto, index: number) => void {
   const queryClient = useQueryClient()
@@ -16,15 +15,7 @@ export default function useRemoveFollowing(isAuthorized: boolean): (user: UserDt
       const previous = queryClient.getQueryData<SubscriptionPageDto>(QUERY_KEY)
 
       if (previous) {
-        const next = produce(previous, (draft) => {
-          if (add) {
-            draft.content.splice(index, 0, user)
-            return
-          }
-
-          draft.content = draft.content.filter((u) => u.id !== user.id)
-        })
-        queryClient.setQueryData<SubscriptionPageDto>(QUERY_KEY, next)
+        queryClient.setQueryData(QUERY_KEY, getNextState(previous, user, index, add))
       }
 
       return { previous }
@@ -36,7 +27,7 @@ export default function useRemoveFollowing(isAuthorized: boolean): (user: UserDt
 
       enqueueSnackbar({ severity: 'error' })
     },
-    onSuccess(_, { user, index, add }) {
+    async onSuccess(_, { user, index, add }) {
       !add &&
         enqueueSnackbar({
           message: 'Removed from following',

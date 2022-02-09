@@ -7,14 +7,14 @@ import PageService from 'services/PageService'
 import { scrollToElem } from 'helpers/dom'
 
 export const useUserPage = (): UseQueryResult<UserPageDto> => {
-  const { key, urn } = usePageConfig()
+  const { key, urn } = useUserPageConfig()
 
   return useQuery(key, () => PageService.getUser(urn), {
     staleTime: 30_000,
   })
 }
 
-export const usePageConfig = (): { key: string; urn: string } => {
+export const useUserPageConfig = (): { key: string; urn: string } => {
   const router = useRouter()
 
   return {
@@ -23,9 +23,9 @@ export const usePageConfig = (): { key: string; urn: string } => {
   }
 }
 
-export const useMutatePage = (): [UserPageDto, (page: UserPageDto) => void] => {
+export const useMutateUserPage = (): [UserPageDto, (page: UserPageDto) => void] => {
   const queryClient = useQueryClient()
-  const { key } = usePageConfig()
+  const { key } = useUserPageConfig()
   const state = queryClient.getQueryState<UserPageDto>(key)
 
   const mutate = (page: UserPageDto) => queryClient.setQueryData(key, page)
@@ -34,7 +34,7 @@ export const useMutatePage = (): [UserPageDto, (page: UserPageDto) => void] => {
 }
 
 export const useMutateGoals = (): [GoalDto[], (goals: GoalDto[]) => void] => {
-  const [page, mutate] = useMutatePage()
+  const [page, mutate] = useMutateUserPage()
 
   const mutateGoals = (goals: GoalDto[]) =>
     mutate(

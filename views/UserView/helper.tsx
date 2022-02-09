@@ -9,14 +9,20 @@ interface UserMeta {
   image?: string
 }
 
+const getGoalsDescription = (user: UserDetailDto) => user.goals.map((g) => g.name).join(', ')
+
 export const getUserMeta = (user?: UserDetailDto): UserMeta | null => {
   if (!user) {
     return null
   }
 
+  const goalsDescription = getGoalsDescription(user)
+
   return {
     title: `${user.name} • profile on ${process.env.NEXT_PUBLIC_APP_NAME}`,
-    description: `See how ${user.name} (@${user.nickname}) accomplishes his goals`,
+    description: `See how ${user.name} (@${user.nickname}) accomplishes goals${
+      !goalsDescription ? '' : `: ${goalsDescription}`
+    }`,
     url: `${process.env.HOST}/${user.nickname}`,
     image: user.avatar,
     type: 'profile',

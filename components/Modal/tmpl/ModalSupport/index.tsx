@@ -8,6 +8,7 @@ import AppFadeIcon from 'components/UI/AppFadeIcon'
 import AppInput from 'components/UI/AppInput'
 import AppTypography from 'components/UI/AppTypography'
 import AppAccordion from 'components/UI/AppAccordion'
+import AppEmoji from 'components/UI/AppEmoji'
 import useForm from './hook'
 
 export interface ModalSupportProps {
@@ -47,22 +48,28 @@ export default function ModalSupport({ goal, owner, onClose }: ModalSupportProps
         <Form autoComplete="off">
           <AppBox flexDirection="column" alignItems="center" spacing={3}>
             <AppFadeIcon name="support" />
-            <Field name="support" label="Your message" color="secondary" multiline rows={3} component={AppInput} />
-            <AppAccordion
-              name="feedback"
-              header="About Support"
-              id="support"
-              ariaControls="about-support-content"
-              details={
-                <div className={classes.hint}>
-                  <AppTypography>Support is very important for achieving goals.</AppTypography>
-                  <AppTypography>Especially at times when you want to give up.</AppTypography>
-                  <AppTypography>Therefore support others:</AppTypography>
-                  <AppTypography>&#9679; with advice;</AppTypography>
-                  <AppTypography>&#9679; with words of encouragement.</AppTypography>
-                </div>
-              }
-            />
+            <Field name="text" label="Your message" color="secondary" multiline rows={3} component={AppInput} />
+            <div className={classes.accordionWrap}>
+              <AppAccordion
+                name="feedback"
+                header="About Support"
+                id="support"
+                ariaControls="about-support-content"
+                details={
+                  <div className={classes.hint}>
+                    <AppTypography>
+                      Support is very important for achieving goals <AppEmoji name="goal" onlyEmoji />.
+                    </AppTypography>
+                    <AppTypography>
+                      Especially at times when you want to give up <AppEmoji name="tired" onlyEmoji />.
+                    </AppTypography>
+                    <AppTypography>Therefore support others:</AppTypography>
+                    <AppTypography>&#9679; with advice;</AppTypography>
+                    <AppTypography>&#9679; with words of encouragement.</AppTypography>
+                  </div>
+                }
+              />
+            </div>
           </AppBox>
         </Form>
       </FormikProvider>
@@ -75,6 +82,9 @@ const useStyles = makeStyles((theme) =>
     button: {
       alignSelf: 'baseline',
       textTransform: 'none',
+    },
+    accordionWrap: {
+      width: '100%',
     },
     owner: {
       color: theme.text.sand,

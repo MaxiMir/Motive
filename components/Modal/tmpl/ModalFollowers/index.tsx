@@ -16,8 +16,9 @@ export interface ModalFollowersProps {
 }
 
 export default function ModalFollowers({ user, onClose }: ModalFollowersProps): JSX.Element {
+  const { id, characteristic } = user
   const classes = useStyles()
-  const { isLoading, followers, checkOnLoadMore, fetchNextPage } = useFollowers(user)
+  const { isLoading, followers, checkOnLoadMore, fetchNextPage } = useFollowers(id, characteristic.followers)
 
   return (
     <AppModal title="Followers" maxWidth="xs" onClose={onClose}>

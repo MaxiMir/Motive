@@ -10,9 +10,9 @@ export default function useSetFollowing(id: number, following: boolean, isAuthor
   const queryClient = useQueryClient()
   const { key } = useUserPageConfig()
   const { enqueueSnackbar } = useSnackbar()
-
   const { mutate } = useMutation<void, AxiosError, Options, Context>(fetcher, {
     async onMutate({ add }: Options) {
+      await queryClient.cancelQueries(key)
       const previous = queryClient.getQueryData<UserPageDto>(key)
 
       if (previous) {
@@ -36,13 +36,14 @@ export default function useSetFollowing(id: number, following: boolean, isAuthor
       })
     },
   })
+  const sendWithDebounce = useDebounceCb((add: boolean) => mutate({ id, add }))
 
-  return useDebounceCb<void>(() => {
+  return () => {
     if (!isAuthorized) {
       // TODO for not auth
       return
     }
 
-    mutate({ id, add: !following })
-  }, 500)
+    sendWithDebounce(!following)
+  }
 }

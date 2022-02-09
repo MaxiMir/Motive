@@ -1,8 +1,8 @@
 import { useFormik } from 'formik'
+import { useMutation } from 'react-query'
 import { GoalDto } from 'dto'
 import { UseFormType } from 'types'
 import GoalService from 'services/GoalService'
-import useSend from 'hooks/useSend'
 import schema from 'schemas/complete'
 
 interface Values {
@@ -12,7 +12,7 @@ interface Values {
 }
 
 export default function useForm(goal: GoalDto, onClose: () => void): UseFormType<Values> {
-  const { isLoading, send } = useSendComplete(onClose)
+  const { isLoading, mutate } = useSendComplete(onClose)
   const formik = useFormik<Values>({
     initialValues: {
       description: '',
@@ -25,7 +25,7 @@ export default function useForm(goal: GoalDto, onClose: () => void): UseFormType
 
       formData.append('description', data.description.trim())
       data.photos.forEach((photo) => formData.append('photos', photo))
-      send({ id: goal.day.id, body: formData })
+      mutate({ id: goal.day.id, body: formData })
     },
   })
 
@@ -33,7 +33,7 @@ export default function useForm(goal: GoalDto, onClose: () => void): UseFormType
 }
 
 const useSendComplete = (onClose: () => void) => {
-  return useSend(GoalService.setCompleted, {
+  return useMutation(GoalService.setCompleted, {
     onSuccess() {
       onClose()
     },

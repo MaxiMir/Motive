@@ -1,15 +1,15 @@
 import produce from 'immer'
 import { useFormik } from 'formik'
+import { useMutation } from 'react-query'
 import { DayCreationDto, GoalDto } from 'dto'
 import { UseFormType } from 'types'
 import GoalService from 'services/GoalService'
-import useSend from 'hooks/useSend'
 import useChangeDayUrl from 'hooks/useChangeDayUrl'
 import { useMutateGoals } from 'views/UserView/hook'
 import schema from 'schemas/tasks'
 
 export default function useForm(goal: GoalDto, onClose: () => void): UseFormType<DayCreationDto> {
-  const { isLoading, send } = useSendAddDay(goal, onClose)
+  const { isLoading, mutate } = useSendAddDay(goal, onClose)
   const formik = useFormik<DayCreationDto>({
     initialValues: {
       id: goal.id,
@@ -17,7 +17,7 @@ export default function useForm(goal: GoalDto, onClose: () => void): UseFormType
     },
     validationSchema: schema,
     async onSubmit(data) {
-      send(data)
+      mutate(data)
     },
   })
 
@@ -28,7 +28,7 @@ const useSendAddDay = (goal: GoalDto, onClose: () => void) => {
   const [goals, mutate] = useMutateGoals()
   const changeDayUrl = useChangeDayUrl()
 
-  return useSend(GoalService.addDay, {
+  return useMutation(GoalService.addDay, {
     onSuccess({ days }) {
       const day = days[days.length - 1]
 

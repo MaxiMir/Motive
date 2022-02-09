@@ -1,9 +1,9 @@
 import produce from 'immer'
 import { useFormik } from 'formik'
+import { useMutation } from 'react-query'
 import { GoalDto } from 'dto'
 import { UseFormType } from 'types'
 import FeedbackService from 'services/FeedbackService'
-import useSend from 'hooks/useSend'
 import useSnackbar from 'hooks/useSnackbar'
 import { useMutateGoals } from 'views/UserView/hook'
 import schema from 'schemas/feedback'
@@ -15,7 +15,7 @@ interface Values {
 }
 
 export default function useForm(goal: GoalDto, onClose: () => void): UseFormType<Values> {
-  const { isLoading, send } = useSendFeedback(goal, onClose)
+  const { isLoading, mutate } = useSendFeedback(goal, onClose)
   const formik = useFormik<Values>({
     initialValues: {
       text: '',
@@ -29,7 +29,7 @@ export default function useForm(goal: GoalDto, onClose: () => void): UseFormType
       formData.append('dayId', goal.day.id.toString())
       formData.append('text', data.text.trim())
       data.photos.forEach((photo) => formData.append('photos', photo))
-      send(formData)
+      mutate(formData)
     },
   })
 
@@ -40,7 +40,7 @@ const useSendFeedback = (goal: GoalDto, onClose: () => void) => {
   const { enqueueSnackbar } = useSnackbar()
   const [goals, mutate] = useMutateGoals()
 
-  return useSend(FeedbackService.create, {
+  return useMutation(FeedbackService.create, {
     onSuccess: (feedback) => {
       mutate(
         produce(goals, (draft: GoalDto[]) => {

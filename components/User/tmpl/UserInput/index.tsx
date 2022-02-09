@@ -39,7 +39,7 @@ export default function UserInput({ dayId, user, type, answer, onAdd }: UserInpu
             className={classes.input}
             component={AppInput}
           />
-          <IconButton type="submit" className={classes.button} disabled={isLoading || !values.text}>
+          <IconButton className={classes.button} disabled={isLoading || !values.text}>
             {!isLoading ? (
               <AppIcon name="send" className={classes.icon} />
             ) : (

@@ -1,9 +1,13 @@
 import { format } from 'date-fns'
 
-export const getDateInfo = (
-  dates: string[],
-  date: string,
-): { value: Date; formattedValue: string; prevValue: string; nextValue: string } => {
+type DateInfo = {
+  value: Date
+  formattedValue: string
+  prevValue: string
+  nextValue: string
+}
+
+export const getDateInfo = (dates: string[], date: string): DateInfo => {
   const value = new Date(date)
   const formattedValue = format(value, 'MM/dd/yy')
   const valueIndex = dates.findIndex((d) => d === value.toISOString())

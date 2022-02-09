@@ -3,15 +3,14 @@ import { TopicDto } from 'dto'
 import { useMutateGoals } from 'views/UserView/hook'
 import { PRELOAD_DIFF, changeGoals, partialFetcher, partialGetNextPageParam, addTopic } from './helper'
 
-export const useDiscussion = (
-  dayId: number,
-  count: number,
-): {
+type UseDiscussion = {
   isLoading: boolean
   topics: TopicDto[]
   checkOnLoadMore: (index: number) => boolean
   fetchNextPage: () => void
-} => {
+}
+
+export const useDiscussion = (dayId: number, count: number): UseDiscussion => {
   const fetcher = partialFetcher(dayId)
   const getNextPageParam = partialGetNextPageParam(count)
   const { isLoading, data, fetchNextPage, hasNextPage } = useInfiniteQuery(['discussion', dayId], fetcher, {

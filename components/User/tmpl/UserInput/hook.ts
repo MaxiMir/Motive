@@ -1,7 +1,7 @@
 import { useFormik } from 'formik'
+import { useMutation } from 'react-query'
 import { TopicCreationDto, TopicDto, TopicType } from 'dto'
 import { UseFormType } from 'types'
-import useSend from 'hooks/useSend'
 import TopicService from 'services/TopicService'
 import useSnackbar from 'hooks/useSnackbar'
 import schema from 'schemas/topic'
@@ -12,7 +12,7 @@ export default function useForm(
   type: TopicType,
   onAdd: (topic: TopicDto) => void,
 ): UseFormType<TopicCreationDto> {
-  const { isLoading, send } = useSendTopic(type, onSuccess)
+  const { isLoading, mutate } = useSendTopic(type, onSuccess)
   const formik = useFormik<TopicCreationDto>({
     initialValues: {
       dayId,
@@ -22,7 +22,7 @@ export default function useForm(
     },
     validationSchema: schema,
     async onSubmit(data) {
-      send(data)
+      mutate(data)
     },
   })
 
@@ -37,7 +37,7 @@ export default function useForm(
 const useSendTopic = (type: TopicType, onSuccess: (topic: TopicDto) => void) => {
   const { enqueueSnackbar } = useSnackbar()
 
-  return useSend(TopicService.create, {
+  return useMutation(TopicService.create, {
     onSuccess(topic) {
       enqueueSnackbar({
         message: `${type === TopicType.QUESTION ? 'Question' : 'Answer'} added`,

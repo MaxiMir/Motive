@@ -7,11 +7,11 @@ export type CharacteristicColor = {
   end: string
 }
 
-export type CharacteristicColors = ReturnType<typeof useCharacteristicColors>
-
-export default function useCharacteristicColors(): {
+type UseCharacteristicColors = {
   [k in UserCharacteristicName | GoalCharacteristicName]: CharacteristicColor
-} {
+}
+
+export default function useCharacteristicColors(): UseCharacteristicColors {
   const { palette } = useTheme()
 
   return {

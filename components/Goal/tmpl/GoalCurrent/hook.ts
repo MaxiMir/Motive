@@ -1,16 +1,16 @@
 import produce from 'immer'
+import { useMutation } from 'react-query'
 import { GoalDto } from 'dto'
 import DayService from 'services/DayService'
-import useSend from 'hooks/useSend'
 import useChangeDayUrl from 'hooks/useChangeDayUrl'
 import { useMutateGoals } from 'views/UserView/hook'
 
 export default function useChangeDay(goalId: number): [boolean, (dayId: number) => void] {
-  const [goals, mutate] = useMutateGoals()
+  const [goals, mutateGoals] = useMutateGoals()
   const changeDayUrl = useChangeDayUrl()
-  const { isLoading, send } = useSend(DayService.getById, {
+  const { isLoading, mutate } = useMutation(DayService.getById, {
     onSuccess: (day) => {
-      mutate(
+      mutateGoals(
         produce(goals, (draft: GoalDto[]) => {
           const draftGoal = draft[draft.findIndex((g) => g.id === goalId)]
           draftGoal.day = day
@@ -20,7 +20,5 @@ export default function useChangeDay(goalId: number): [boolean, (dayId: number) 
     },
   })
 
-  const onChangeDate = (dayId: number) => send(dayId)
-
-  return [isLoading, onChangeDate]
+  return [isLoading, mutate]
 }

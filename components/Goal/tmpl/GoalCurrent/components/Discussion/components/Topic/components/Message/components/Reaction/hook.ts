@@ -1,13 +1,13 @@
 import { useRef } from 'react'
+import { useMutation } from 'react-query'
 import DiscussionService from 'services/DiscussionService'
-import useSend from 'hooks/useSend'
 import useDebounceCb from 'hooks/useDebounceCb'
 
 export default function useSetReaction(id: number, count: number[]): [boolean, number, () => void] {
   const active = count.length >= 1 // TODO change
   const lastLoadedRef = useRef(false)
 
-  const { send } = useSend(DiscussionService.setLike, {
+  const { mutate } = useMutation(DiscussionService.setLike, {
     onSuccess: (r) => {
       // lastLoadedRef.current = { count, active }
       console.log(r)
@@ -21,8 +21,7 @@ export default function useSetReaction(id: number, count: number[]): [boolean, n
   })
 
   const mutateWithDebounce = useDebounceCb((value: boolean) => {
-    console.log('mutateWithDebounce')
-    lastLoadedRef.current !== value && send({ id, like: value })
+    lastLoadedRef.current !== value && mutate({ id, like: value })
   })
 
   const onClick = () => {

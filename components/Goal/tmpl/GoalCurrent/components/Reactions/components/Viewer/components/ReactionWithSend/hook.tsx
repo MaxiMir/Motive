@@ -1,11 +1,11 @@
-import { useRef } from 'react'
-import produce from 'immer'
-import { DayCharacteristicName, GoalDto, UserBaseDto } from 'dto'
+import { AxiosError } from 'axios'
+import { useMutation, useQueryClient } from 'react-query'
+import { DayCharacteristicName, DayCharacteristicUpdate, GoalDto, UserBaseDto, UserPageDto } from 'dto'
 import GoalService from 'services/GoalService'
 import useDebounceCb from 'hooks/useDebounceCb'
 import useSnackbar from 'hooks/useSnackbar'
-import useSend from 'hooks/useSend'
-import { useMutateGoals } from 'views/UserView/hook'
+import { useUserPageConfig } from 'views/UserView/hook'
+import { Context, getNextState } from './helper'
 
 export default function useSetReaction(
   goal: GoalDto,
@@ -14,52 +14,39 @@ export default function useSetReaction(
   client?: UserBaseDto,
 ): () => void {
   const { id, day } = goal
-  const lastAddRef = useRef(active)
-  const backupRef = useRef(goal)
+  const queryClient = useQueryClient()
+  const { key } = useUserPageConfig()
   const { enqueueSnackbar } = useSnackbar()
-  const [goals, mutate] = useMutateGoals()
-  const { send } = useSend(GoalService.updateCharacteristic, {
-    onSuccess(_, request) {
-      lastAddRef.current = request.add
+  const { mutate } = useMutation<void, AxiosError, DayCharacteristicUpdate, Context>(GoalService.updateCharacteristic, {
+    async onMutate(data: DayCharacteristicUpdate) {
+      await queryClient.cancelQueries(key)
+      const previous = queryClient.getQueryData<UserPageDto>(key)
 
-      request.add &&
+      if (previous) {
+        queryClient.setQueryData(key, getNextState(previous, data))
+      }
+
+      return { previous }
+    },
+    onSuccess(_, { add }) {
+      add &&
         enqueueSnackbar({
           message: `You have increased goal's ${name} points`,
           severity: 'success',
           icon: 'magic',
         })
     },
-    onError() {
-      rollbackCharacteristic()
+    onError(_, __, context) {
+      if (context?.previous) {
+        queryClient.setQueryData(key, context?.previous)
+      }
+
+      enqueueSnackbar({ severity: 'error' })
     },
   })
   const isAuthorized = !!client // todo check on auth
 
-  const sendWithDebounce = useDebounceCb((add: boolean) => {
-    lastAddRef.current !== add && send({ id, dayId: day.id, name, add })
-  })
-
-  const mutateCharacteristic = (add: boolean) => {
-    mutate(
-      produce(goals, (draft: GoalDto[]) => {
-        const draftGoal = draft[draft.findIndex((g) => g.id === id)]
-        draftGoal.characteristic[name] += add ? 1 : -1
-        draftGoal.reactions[name] = add
-          ? [...draftGoal.reactions[name], day.id]
-          : draftGoal.reactions[name].filter((r) => r !== day.id)
-      }),
-    )
-  }
-
-  const rollbackCharacteristic = () => {
-    mutate(
-      produce(goals, (draft: GoalDto[]) => {
-        const draftGoal = draft[draft.findIndex((g) => g.id === id)]
-        draftGoal.characteristic = backupRef.current.characteristic
-        draftGoal.day = backupRef.current.day
-      }),
-    )
-  }
+  const sendWithDebounce = useDebounceCb((add: boolean) => mutate({ id, dayId: day.id, name, add }))
 
   return () => {
     if (!isAuthorized) {
@@ -67,8 +54,6 @@ export default function useSetReaction(
       return
     }
 
-    backupRef.current = goal
-    mutateCharacteristic(!active)
     sendWithDebounce(!active)
   }
 }

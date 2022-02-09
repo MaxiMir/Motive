@@ -1,22 +1,20 @@
-import produce from 'immer'
+import { AxiosError } from 'axios'
+import { useMutation, UseMutationResult } from 'react-query'
 import { GoalDto, GoalStageDto } from 'dto'
-import useSend, { UseSend } from 'hooks/useSend'
 import GoalService from 'services/GoalService'
 import useSnackbar from 'hooks/useSnackbar'
 import { useMutateGoals } from 'views/UserView/hook'
+import { getNextState } from './helper'
 
-export const useSendStage = (goal: GoalDto, onClose: () => void): UseSend<GoalStageDto> => {
+type UseSendStage = UseMutationResult<void, AxiosError, GoalStageDto>
+
+export const useSendStage = (goal: GoalDto, onClose: () => void): UseSendStage => {
   const [goals, mutate] = useMutateGoals()
   const { enqueueSnackbar } = useSnackbar()
 
-  return useSend(GoalService.updateStage, {
+  return useMutation(GoalService.updateStage, {
     onSuccess() {
-      mutate(
-        produce(goals, (draft: GoalDto[]) => {
-          const draftGoal = draft[draft.findIndex((g) => g.id === goal.id)]
-          draftGoal.stage += 1
-        }),
-      )
+      mutate(getNextState(goals, goal))
       onClose()
       enqueueSnackbar({
         message: 'The stage for the next day has been successfully set',

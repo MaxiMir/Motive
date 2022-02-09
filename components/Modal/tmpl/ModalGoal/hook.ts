@@ -1,16 +1,16 @@
 import produce from 'immer'
 import { useFormik } from 'formik'
+import { useMutation } from 'react-query'
 import { GoalCreationDto, GoalDto } from 'dto'
 import { UseFormType } from 'types'
 import GoalService from 'services/GoalService'
-import useSend from 'hooks/useSend'
 import useSnackbar from 'hooks/useSnackbar'
 import { useMutateGoals } from 'views/UserView/hook'
 import { scrollToElem } from 'helpers/dom'
 import schema from 'schemas/goal'
 
 export default function useForm(onClose: () => void): UseFormType<GoalCreationDto> {
-  const { isLoading, send } = useSendCreateGoal(onClose)
+  const { isLoading, mutate } = useSendCreateGoal(onClose)
   const formik = useFormik<GoalCreationDto>({
     initialValues: {
       name: '',
@@ -20,7 +20,7 @@ export default function useForm(onClose: () => void): UseFormType<GoalCreationDt
     },
     validationSchema: schema,
     async onSubmit(data) {
-      send(data)
+      mutate(data)
     },
   })
 
@@ -31,7 +31,7 @@ const useSendCreateGoal = (onClose: () => void) => {
   const { enqueueSnackbar } = useSnackbar()
   const [goals, mutate] = useMutateGoals()
 
-  return useSend(GoalService.create, {
+  return useMutation(GoalService.create, {
     onSuccess(goal) {
       const { days, ...restGoalData } = goal
       mutate(

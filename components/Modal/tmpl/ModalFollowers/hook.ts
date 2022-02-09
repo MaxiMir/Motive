@@ -1,18 +1,20 @@
 import { useInfiniteQuery } from 'react-query'
-import { UserDetailDto, UserDto } from 'dto'
+import { UserDto } from 'dto'
 import { PRELOAD_DIFF, partialFetcher, partialGetNextPageParam } from './helper'
 
-export default function useFollowers(user: UserDetailDto): {
+type UseFollowers = {
   isLoading: boolean
   followers?: UserDto[]
   checkOnLoadMore: (index: number) => boolean
   fetchNextPage: () => void
-} {
-  const fetcher = partialFetcher(user.id)
-  const getNextPageParam = partialGetNextPageParam(user.characteristic.followers)
-  const { isLoading, data, fetchNextPage, hasNextPage } = useInfiniteQuery(['followers', user.id], fetcher, {
+}
+
+export default function useFollowers(id: number, count: number): UseFollowers {
+  const fetcher = partialFetcher(id)
+  const getNextPageParam = partialGetNextPageParam(count)
+  const { isLoading, data, fetchNextPage, hasNextPage } = useInfiniteQuery(['followers', id, count], fetcher, {
     getNextPageParam,
-    enabled: !!user.characteristic.followers,
+    enabled: !!count,
   })
   const followers = data?.pages.flat() || []
 

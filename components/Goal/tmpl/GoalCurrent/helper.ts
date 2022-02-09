@@ -31,18 +31,16 @@ const checkOnControls = (role: RoleDto, lastDay: boolean): boolean => !(role ===
 const checkOnCompleteStage = (reactions: boolean, role: RoleDto, goal: GoalDto): boolean =>
   role === 'OWNER' && reactions && goal.stage <= goal.day.stage
 
-export const getGoalInfo = (
-  datesMap: Record<string, number>,
-  goal: GoalDto,
-  role: RoleDto,
-): {
+type GoalInfo = {
   runsForDays: number
   web: boolean
   form: boolean
   controls: boolean
   completeStage: boolean
   forTomorrow: boolean
-} => {
+}
+
+export const getGoalInfo = (datesMap: Record<string, number>, goal: GoalDto, role: RoleDto): GoalInfo => {
   const { started, day } = goal
   const currentDate = new Date()
   const dates = Object.keys(datesMap)

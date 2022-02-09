@@ -31,7 +31,7 @@ export default class GoalService extends Service {
   /**
    * /goal/{id}/days/{dayId}/characteristic/{characteristicName}?operation=insert|delete
    */
-  static updateCharacteristic(data: DayCharacteristicUpdate): Promise<GoalDto> {
+  static updateCharacteristic(data: DayCharacteristicUpdate): Promise<void> {
     const { id, dayId, name, add } = data
     const params = GoalService.getOperationParams(add)
 

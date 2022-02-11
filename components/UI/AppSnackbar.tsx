@@ -11,14 +11,13 @@ export interface AppSnackbarProps {
   severity: AlertProps['severity']
   icon?: AppEmojiName
   action?: SnackbarProps['action']
-  message?: string
+  message: string
   onClose: () => void
 }
 
 export default function AppSnackbar({ icon, message, severity, onClose, ...props }: AppSnackbarProps): JSX.Element {
   const classes = useStyles()
   const iconContent = getIconContent()
-  const messageContent = getMessageContent()
 
   const handleClose = (_event?: SyntheticEvent, reason?: string) => reason !== 'clickaway' && onClose()
 
@@ -30,14 +29,6 @@ export default function AppSnackbar({ icon, message, severity, onClose, ...props
     return icon && <AppEmoji name={icon} onlyEmoji />
   }
 
-  function getMessageContent() {
-    if (severity === 'error' && !message) {
-      return 'Something went wrong...'
-    }
-
-    return message
-  }
-
   return (
     <Snackbar open className={classes.root} autoHideDuration={3000} onClose={handleClose}>
       <Alert
@@ -47,7 +38,7 @@ export default function AppSnackbar({ icon, message, severity, onClose, ...props
         severity={severity}
         color={severity === 'success' ? 'info' : undefined}
       >
-        {messageContent}
+        {message}
       </Alert>
     </Snackbar>
   )

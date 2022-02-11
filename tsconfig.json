@@ -25,12 +25,13 @@
     "jsx": "preserve",
     "noUnusedLocals": true,
     "noUnusedParameters": true,
-    "baseUrl": ".",
+    "baseUrl": "."
   },
   "include": [
     "next-env.d.ts",
     "**/*.ts",
-    "**/*.tsx"
+    "**/*.tsx",
+    "node_modules/eslint-plugin-react/lib/types.d.ts"
   ],
   "exclude": [
     "node_modules"

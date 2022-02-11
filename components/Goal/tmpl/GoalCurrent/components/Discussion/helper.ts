@@ -18,11 +18,11 @@ export const partialGetNextPageParam = (count: number): GetNextPageParamFunction
   }
 }
 
-const getTopicsCount = (topics: TopicDto[]): number => topics.reduce((acc, t) => acc + (!t.answers?.length ? 1 : 2), 0)
+const getTopicsCount = (topics: TopicDto[]): number => topics.reduce((acc, t) => acc + (!t.answer ? 1 : 2), 0)
 
 export const addTopic = (data: InfiniteData<TopicDto[]>, topic: TopicDto): InfiniteData<TopicDto[]> => {
   return produce(data, (draft) => {
-    if (!topic.answers?.length) {
+    if (!topic.answer) {
       draft.pages = [[topic], ...draft.pages]
       return
     }
@@ -30,7 +30,7 @@ export const addTopic = (data: InfiniteData<TopicDto[]>, topic: TopicDto): Infin
     const draftTopic = draft.pages.flat().find((t) => t.id === topic.id)
 
     if (draftTopic) {
-      draftTopic.answers = topic.answers
+      draftTopic.answer = topic.answer
     }
   })
 }

@@ -20,7 +20,7 @@ interface MessageProps {
 
 export default function Message({ message, supportFor, onClick }: MessageProps): JSX.Element {
   const classes = useStyles()
-  const { id, date, user, text, likes } = message
+  const { id, date, user, text, like, likeCount } = message
   const dateDifference = formatDistanceToNow(new Date(date), { includeSeconds: true })
 
   return (
@@ -43,7 +43,7 @@ export default function Message({ message, supportFor, onClick }: MessageProps):
           <span className={classes.date}>{dateDifference} ago</span>
           {onClick && <Reply onClick={onClick} />}
         </AppBox>
-        <Reaction messageId={id} likes={likes} type={supportFor ? 'support' : 'like'} />
+        <Reaction id={id} like={like} likeCount={likeCount} type={supportFor ? 'support' : 'like'} />
       </AppBox>
     </AppBox>
   )

@@ -25,8 +25,6 @@ export default function useSetFollowing(id: number, following: boolean, isAuthor
       if (context?.previous) {
         queryClient.setQueryData(key, context?.previous)
       }
-
-      enqueueSnackbar({ severity: 'error' })
     },
     onSuccess(_, { add }) {
       enqueueSnackbar({

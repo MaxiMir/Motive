@@ -24,8 +24,6 @@ export default function useRemoveFollowing(isAuthorized: boolean): (user: UserDt
       if (context?.previous) {
         queryClient.setQueryData<SubscriptionPageDto>(QUERY_KEY, context.previous)
       }
-
-      enqueueSnackbar({ severity: 'error' })
     },
     async onSuccess(_, { user, index, add }) {
       !add &&

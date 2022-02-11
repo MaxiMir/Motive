@@ -8,7 +8,7 @@ import schema from 'schemas/topic'
 
 export default function useForm(
   dayId: number,
-  answer: number | undefined,
+  topicId: number | undefined,
   type: TopicType,
   onAdd: (topic: TopicDto) => void,
 ): UseFormType<TopicCreationDto> {
@@ -17,7 +17,7 @@ export default function useForm(
     initialValues: {
       dayId,
       text: '',
-      answer,
+      topicId,
       type,
     },
     validationSchema: schema,

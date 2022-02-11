@@ -6,31 +6,33 @@ import AppBox from 'components/UI/AppBox'
 import AppTypography from 'components/UI/AppTypography'
 import AppTooltip from 'components/UI/AppTooltip'
 import useSetReaction from './hook'
+import { getTitle } from './helper'
 
 interface ReactionProps {
-  messageId: number
-  likes: number[]
+  id: number
   type: 'like' | 'support'
+  like?: boolean
+  likeCount: number
 }
 
-export default function Reaction({ messageId, likes, type }: ReactionProps): JSX.Element {
+export default function Reaction({ id, like, likeCount, type }: ReactionProps): JSX.Element {
   const classes = useStyles()
-  const [active, count, onClick] = useSetReaction(messageId, likes)
-  const title = type === 'like' ? 'Like the question' : 'Mark as very helpful'
+  const onClick = useSetReaction(id, false)
+  const title = getTitle(type, like)
 
   return (
     <AppBox alignItems="center">
       <AppTooltip title={title}>
         <Button
           size="small"
-          aria-label={`${title} ${!count ? '' : ` along with ${count} other people`}`}
-          className={clsx([classes.button, !active && classes.buttonNotActive])}
+          aria-label={`${title} ${!likeCount ? '' : ` along with ${likeCount} other people`}`}
+          className={clsx([classes.button, !like && classes.buttonNotActive])}
           onClick={onClick}
         >
           <AppEmoji name={type} onlyEmoji />
         </Button>
       </AppTooltip>
-      <AppTypography className={classes.count}>{numberToShort(count)}</AppTypography>
+      <AppTypography className={classes.count}>{numberToShort(likeCount)}</AppTypography>
     </AppBox>
   )
 }

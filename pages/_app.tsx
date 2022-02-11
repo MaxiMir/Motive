@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react'
 import dynamic from 'next/dynamic'
 import { AppProps } from 'next/app'
 import DateFnsUtils from '@date-io/date-fns'
-import { Hydrate, QueryCache, QueryClient, QueryClientProvider } from 'react-query'
+import { Hydrate, MutationCache, QueryCache, QueryClient, QueryClientProvider } from 'react-query'
 import NextNprogress from 'nextjs-progressbar'
 import { MuiPickersUtilsProvider } from '@material-ui/pickers'
 import { ThemeProvider } from '@material-ui/core/styles'
@@ -18,6 +18,11 @@ export default function MyApp({ Component, pageProps }: AppProps): JSX.Element {
     () =>
       new QueryClient({
         queryCache: new QueryCache({
+          onError() {
+            setSnackbarProps({ message: 'Something went wrong...', severity: 'error' })
+          },
+        }),
+        mutationCache: new MutationCache({
           onError() {
             setSnackbarProps({ message: 'Something went wrong...', severity: 'error' })
           },

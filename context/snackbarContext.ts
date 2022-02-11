@@ -3,7 +3,7 @@ import { AppEmojiName } from 'components/UI/AppEmoji'
 
 export interface ContextSnackbarProps {
   severity: 'success' | 'error' | 'warning'
-  message?: string
+  message: string
   icon?: AppEmojiName
   action?: ReactNode
 }

@@ -7,6 +7,8 @@ export type CharacteristicColor = {
   end: string
 }
 
+export type CharacteristicColors = ReturnType<typeof useCharacteristicColors>
+
 type UseCharacteristicColors = {
   [k in UserCharacteristicName | GoalCharacteristicName]: CharacteristicColor
 }

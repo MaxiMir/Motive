@@ -15,14 +15,14 @@ export interface UserInputProps {
   dayId: number
   user: UserBaseDto
   type: TopicType
-  answer?: number
+  topicId?: number
   onAdd: (topic: TopicDto) => void
 }
 
-export default function UserInput({ dayId, user, type, answer, onAdd }: UserInputProps): JSX.Element {
+export default function UserInput({ dayId, user, type, topicId, onAdd }: UserInputProps): JSX.Element {
   const classes = useStyles()
-  const { isLoading, formik } = useForm(dayId, answer, type, onAdd)
-  const { values } = formik
+  const { isLoading, formik } = useForm(dayId, topicId, type, onAdd)
+  const { values, handleSubmit } = formik
 
   return (
     <FormikProvider value={formik}>
@@ -39,7 +39,7 @@ export default function UserInput({ dayId, user, type, answer, onAdd }: UserInpu
             className={classes.input}
             component={AppInput}
           />
-          <IconButton className={classes.button} disabled={isLoading || !values.text}>
+          <IconButton className={classes.button} disabled={isLoading || !values.text} onClick={() => handleSubmit()}>
             {!isLoading ? (
               <AppIcon name="send" className={classes.icon} />
             ) : (

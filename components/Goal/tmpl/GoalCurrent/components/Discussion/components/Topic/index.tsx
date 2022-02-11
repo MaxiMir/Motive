@@ -20,7 +20,7 @@ interface TopicProps {
 }
 
 export default function Topic({ dayId, owner, topic, role, inView, onView, onAdd }: TopicProps): JSX.Element {
-  const { type, answers, ...message } = topic
+  const { type, answer, ...message } = topic
   const [showInput, setShowInput] = useState(false)
   const showReply = checkOnReply(role, topic)
 
@@ -43,17 +43,17 @@ export default function Topic({ dayId, owner, topic, role, inView, onView, onAdd
           tmpl="input"
           user={owner}
           dayId={dayId}
-          answer={message.id}
-          type={TopicType.SUPPORT}
+          topicId={message.id}
+          type={TopicType.ANSWER}
           onAdd={onAddCombine}
         />
       )}
-      {answers?.map((answer) => (
-        <AppBox alignItems="center" spacing={1} key={answer.id}>
+      {answer && (
+        <AppBox alignItems="center" spacing={1}>
           <Reply />
           <Message message={answer} supportFor={message.user.name} />
         </AppBox>
-      ))}
+      )}
       {inView && <AppInView onView={onView} />}
     </>
   )

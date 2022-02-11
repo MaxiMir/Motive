@@ -18,12 +18,12 @@ export default function useSetReaction(
   const { key } = useUserPageConfig()
   const { enqueueSnackbar } = useSnackbar()
   const { mutate } = useMutation<void, AxiosError, DayCharacteristicUpdate, Context>(GoalService.updateCharacteristic, {
-    async onMutate(data: DayCharacteristicUpdate) {
+    async onMutate(options: DayCharacteristicUpdate) {
       await queryClient.cancelQueries(key)
       const previous = queryClient.getQueryData<UserPageDto>(key)
 
       if (previous) {
-        queryClient.setQueryData(key, getNextState(previous, data))
+        queryClient.setQueryData(key, getNextState(previous, options))
       }
 
       return { previous }
@@ -40,8 +40,6 @@ export default function useSetReaction(
       if (context?.previous) {
         queryClient.setQueryData(key, context?.previous)
       }
-
-      enqueueSnackbar({ severity: 'error' })
     },
   })
   const isAuthorized = !!client // todo check on auth

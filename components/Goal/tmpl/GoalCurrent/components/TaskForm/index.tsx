@@ -8,7 +8,7 @@ import useSetCompleted from './hook'
 const TaskDate = dynamic(() => import('../TaskDate'))
 
 interface FormProps {
-  goalId: number
+  goalID: number
   task: TaskDto
   rest: number
   role: RoleDto
@@ -16,11 +16,11 @@ interface FormProps {
   forTomorrow: boolean
 }
 
-export default function TaskForm({ goalId, task, rest, client, role, forTomorrow }: FormProps): JSX.Element {
+export default function TaskForm({ goalID, task, rest, client, role, forTomorrow }: FormProps): JSX.Element {
   const { id, name, completed, completedBy, date } = task
   const label = name + (completedBy.length && !completed ? ' 🔥' : '')
   const checked = role === 'OWNER' ? completed : completedBy.includes(client?.id)
-  const setCompleted = useSetCompleted(id, goalId, rest)
+  const setCompleted = useSetCompleted(id, goalID, rest)
 
   return (
     <form>

@@ -1,13 +1,13 @@
 import { useRef } from 'react'
 
 export default function useDebounceCb<T>(cb: (t: T) => void, delay = 500): (t: T) => void {
-  const timerIdRef = useRef<NodeJS.Timeout>()
+  const timerRef = useRef<NodeJS.Timeout>()
 
   return (arg: T) => {
-    if (timerIdRef.current) {
-      clearTimeout(timerIdRef.current)
+    if (timerRef.current) {
+      clearTimeout(timerRef.current)
     }
 
-    timerIdRef.current = setTimeout(() => cb(arg), delay)
+    timerRef.current = setTimeout(() => cb(arg), delay)
   }
 }

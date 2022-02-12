@@ -9,8 +9,8 @@ import { useMutateGoals } from 'views/UserView/hook'
 
 const Button = dynamic(() => import('@material-ui/core/Button'))
 
-export default function useSetCompleted(id: number, goalId: number, rest: number): () => void {
-  const timerIdRef = useRef<NodeJS.Timeout>()
+export default function useSetCompleted(id: number, goalID: number, rest: number): () => void {
+  const timerRef = useRef<NodeJS.Timeout>()
   const { enqueueSnackbar, closeSnackbar } = useSnackbar()
   const [goals, mutateGoals] = useMutateGoals()
   const { mutate } = useMutation(TaskService.setCompleted, {
@@ -20,7 +20,7 @@ export default function useSetCompleted(id: number, goalId: number, rest: number
   })
 
   function onUndo() {
-    timerIdRef.current && clearTimeout(timerIdRef.current)
+    timerRef.current && clearTimeout(timerRef.current)
     mutateCompleted(false)
     closeSnackbar()
   }
@@ -28,7 +28,7 @@ export default function useSetCompleted(id: number, goalId: number, rest: number
   const mutateCompleted = (value: boolean) => {
     mutateGoals(
       produce(goals, (draft: GoalDto[]) => {
-        const draftGoal = draft[draft.findIndex((g) => g.id === goalId)]
+        const draftGoal = draft[draft.findIndex((g) => g.id === goalID)]
         const draftTask = draftGoal.day.tasks[draftGoal.day.tasks.findIndex((t) => t.id === id)]
         draftTask.completed = value
       }),
@@ -45,6 +45,6 @@ export default function useSetCompleted(id: number, goalId: number, rest: number
       icon: !newRest ? 'motivation-tech' : 'energy',
       action: <Button onClick={onUndo}>Undo</Button>,
     })
-    timerIdRef.current = setTimeout(() => mutate(id), 4000)
+    timerRef.current = setTimeout(() => mutate(id), 4000)
   }
 }

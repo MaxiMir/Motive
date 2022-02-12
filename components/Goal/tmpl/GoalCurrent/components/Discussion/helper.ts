@@ -6,8 +6,8 @@ import TopicService from 'services/TopicService'
 const TAKE = 20
 export const PRELOAD_DIFF = 5
 
-export const partialFetcher = (dayId: number): ((ctx: QueryFunctionContext) => Promise<TopicDto[]>) => {
-  return ({ pageParam = 0 }: QueryFunctionContext) => TopicService.get(dayId, pageParam, TAKE)
+export const partialFetcher = (dayID: number): ((ctx: QueryFunctionContext) => Promise<TopicDto[]>) => {
+  return ({ pageParam = 0 }: QueryFunctionContext) => TopicService.get(dayID, pageParam, TAKE)
 }
 
 export const partialGetNextPageParam = (count: number): GetNextPageParamFunction<TopicDto[]> | undefined => {
@@ -35,9 +35,9 @@ export const addTopic = (data: InfiniteData<TopicDto[]>, topic: TopicDto): Infin
   })
 }
 
-export const changeGoals = (goalId: number, goals: GoalDto[]): GoalDto[] => {
+export const changeGoals = (goalID: number, goals: GoalDto[]): GoalDto[] => {
   return produce(goals, (draft: GoalDto[]) => {
-    const draftGoal = draft[draft.findIndex((g) => g.id === goalId)]
+    const draftGoal = draft[draft.findIndex((g) => g.id === goalID)]
 
     draftGoal.day.topicCount += 1
   })

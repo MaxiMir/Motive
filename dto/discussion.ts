@@ -7,9 +7,9 @@ export enum TopicType {
 }
 
 export interface TopicCreationDto {
-  dayId: number
+  dayID: number
   text: string
-  topicId?: number
+  topicID?: number
   type: TopicType
 }
 

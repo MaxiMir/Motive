@@ -4,13 +4,13 @@ import { Service } from './Service'
 
 export default class TopicService extends Service {
   /**
-   * '/topics?where[day]={dayId}&skip={skip}&take={take}
+   * '/topics?where[day]={dayID}&skip={skip}&take={take}
    */
-  static get(dayId: number, page: number, take: number): Promise<TopicDto[]> {
+  static get(dayID: number, page: number, take: number): Promise<TopicDto[]> {
     const pagination = Service.getPaginationParams(page, take)
 
     return Axios.get('/topics', {
-      params: { 'where[day]': dayId, ...pagination },
+      params: { 'where[day]': dayID, ...pagination },
     })
   }
 
@@ -19,5 +19,14 @@ export default class TopicService extends Service {
    */
   static create(data: TopicCreationDto): Promise<TopicDto> {
     return Axios.post('/topics', data)
+  }
+
+  /**
+   * /topics/${id}/likes?operation=insert|delete
+   */
+  static updateFollowing(id: number, add: boolean): Promise<void> {
+    const params = TopicService.getOperationParams(add)
+
+    return Axios.put(`/topics/${id}`, { params })
   }
 }

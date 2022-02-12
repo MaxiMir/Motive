@@ -10,10 +10,10 @@ type UseDiscussion = {
   fetchNextPage: () => void
 }
 
-export const useDiscussion = (dayId: number, count: number): UseDiscussion => {
-  const fetcher = partialFetcher(dayId)
+export const useDiscussion = (dayID: number, count: number): UseDiscussion => {
+  const fetcher = partialFetcher(dayID)
   const getNextPageParam = partialGetNextPageParam(count)
-  const { isLoading, data, fetchNextPage, hasNextPage } = useInfiniteQuery(['discussion', dayId], fetcher, {
+  const { isLoading, data, fetchNextPage, hasNextPage } = useInfiniteQuery(['discussion', dayID], fetcher, {
     getNextPageParam,
     enabled: !!count,
   })
@@ -24,14 +24,14 @@ export const useDiscussion = (dayId: number, count: number): UseDiscussion => {
   return { isLoading, topics, checkOnLoadMore, fetchNextPage }
 }
 
-export const useAddTopic = (goalId: number, dayId: number): ((topic: TopicDto) => void) => {
+export const useAddTopic = (goalID: number, dayID: number): ((topic: TopicDto) => void) => {
   const queryClient = useQueryClient()
   const [goals, mutateGoals] = useMutateGoals()
 
   return (topic: TopicDto) => {
-    mutateGoals(changeGoals(goalId, goals))
+    mutateGoals(changeGoals(goalID, goals))
     queryClient.setQueryData<InfiniteData<TopicDto[]> | undefined>(
-      ['discussion', dayId],
+      ['discussion', dayID],
       (prev) => prev && addTopic(prev, topic),
     )
   }

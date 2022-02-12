@@ -27,6 +27,7 @@ export default function Reaction({ id, like, likeCount, type }: ReactionProps): 
           size="small"
           aria-label={`${title} ${!likeCount ? '' : ` along with ${likeCount} other people`}`}
           className={clsx([classes.button, !like && classes.buttonNotActive])}
+          // style={{ backgroundColor: 'transparent' }}
           onClick={onClick}
         >
           <AppEmoji name={type} onlyEmoji />

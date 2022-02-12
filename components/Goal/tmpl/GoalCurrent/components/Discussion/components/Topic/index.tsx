@@ -10,7 +10,7 @@ const AppBox = dynamic(() => import('components/UI/AppBox'))
 const Reply = dynamic(() => import('./components/Reply'))
 
 interface TopicProps {
-  dayId: number
+  dayID: number
   owner: UserBaseDto
   topic: TopicDto
   role: RoleDto
@@ -19,7 +19,7 @@ interface TopicProps {
   onAdd: (topic: TopicDto) => void
 }
 
-export default function Topic({ dayId, owner, topic, role, inView, onView, onAdd }: TopicProps): JSX.Element {
+export default function Topic({ dayID, owner, topic, role, inView, onView, onAdd }: TopicProps): JSX.Element {
   const { type, answer, ...message } = topic
   const [showInput, setShowInput] = useState(false)
   const showReply = checkOnReply(role, topic)
@@ -42,8 +42,8 @@ export default function Topic({ dayId, owner, topic, role, inView, onView, onAdd
         <User
           tmpl="input"
           user={owner}
-          dayId={dayId}
-          topicId={message.id}
+          dayID={dayID}
+          topicID={message.id}
           type={TopicType.ANSWER}
           onAdd={onAddCombine}
         />

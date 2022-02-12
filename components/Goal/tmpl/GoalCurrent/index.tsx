@@ -37,11 +37,11 @@ export interface GoalCurrentProps {
 
 export default function GoalCurrent({ goal, href, client }: GoalCurrentProps): JSX.Element {
   const { id, name, hashtags, characteristic, owner, stages, day } = goal
-  const { id: dayId, date, tasks, views, feedback, topicCount } = day
+  const { id: dayID, date, tasks, views, feedback, topicCount } = day
   const classes = useStyles()
   const theme = useTheme()
   const colors = useCharacteristicColors()
-  const datesMap = useMemo(getDatesMap, [date, dayId, goal.calendar])
+  const datesMap = useMemo(getDatesMap, [date, dayID, goal.calendar])
   const [isLoading, onChangeDay] = useChangeDay(id)
   const role = getRole(goal, client)
   const goalHref = getGoalHref(href, goal)
@@ -50,7 +50,7 @@ export default function GoalCurrent({ goal, href, client }: GoalCurrentProps): J
 
   function getDatesMap() {
     if (!goal.calendar) {
-      return { [date]: dayId }
+      return { [date]: dayID }
     }
 
     return goal.calendar.reduce((acc, c) => ({ ...acc, [c.date]: c.id }), {})
@@ -90,7 +90,7 @@ export default function GoalCurrent({ goal, href, client }: GoalCurrentProps): J
                 <AppAccordion
                   name="stage"
                   header="Stages"
-                  id={`stage-${dayId}`}
+                  id={`stage-${dayID}`}
                   ariaControls="stages-content"
                   defaultExpanded
                   details={<Stages goal={goal} forTomorrow={forTomorrow} completeStage={completeStage} />}
@@ -99,7 +99,7 @@ export default function GoalCurrent({ goal, href, client }: GoalCurrentProps): J
               <AppAccordion
                 name="task"
                 header="Tasks"
-                id={`tasksContent-${dayId}`}
+                id={`tasksContent-${dayID}`}
                 ariaControls="tasks-content"
                 defaultExpanded
                 details={
@@ -110,7 +110,7 @@ export default function GoalCurrent({ goal, href, client }: GoalCurrentProps): J
                           <Task task={task} />
                         ) : (
                           <TaskForm
-                            goalId={id}
+                            goalID={id}
                             task={task}
                             rest={rest}
                             role={role}
@@ -126,20 +126,20 @@ export default function GoalCurrent({ goal, href, client }: GoalCurrentProps): J
               <AppAccordion
                 name="feedback"
                 header="Feedback"
-                id={`feedbackContent-${dayId}`}
+                id={`feedbackContent-${dayID}`}
                 ariaControls="feedback-content"
                 details={!feedback ? <AppTypography>Coming soon...</AppTypography> : <Feedback feedback={feedback} />}
               />
               <AppAccordion
                 name="discussion"
                 header={<>Discussion {!topicCount ? '' : <span className={classes.topicCount}>{topicCount}</span>}</>}
-                id={`discussionContent-${dayId}`}
+                id={`discussionContent-${dayID}`}
                 ariaControls="discussion-content"
                 renderOnClick
                 unmountOnExit
                 detailsClass={classes.discussion}
                 details={
-                  <Discussion goalId={id} dayId={dayId} role={role} owner={owner} client={client} count={topicCount} />
+                  <Discussion goalID={id} dayID={dayID} role={role} owner={owner} client={client} count={topicCount} />
                 }
               />
             </div>

@@ -4,12 +4,12 @@ import AppEmoji from 'components/UI/AppEmoji'
 import AppTooltip from 'components/UI/AppTooltip'
 
 interface SupportSignProps {
-  supportFor: string
+  name: string
 }
 
-export default function SupportSign({ supportFor }: SupportSignProps): JSX.Element {
+export default function SupportSign({ name }: SupportSignProps): JSX.Element {
   const classes = useStyles()
-  const title = `Support ${supportFor}`
+  const title = `Support ${name}`
 
   return (
     <AppTooltip title={title} aria-label={title}>

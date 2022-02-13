@@ -4,11 +4,11 @@ import AppBox from 'components/UI/AppBox'
 import { AppListProps } from 'components/UI/AppList'
 import { useDiscussion, useAddTopic } from './hook'
 
-const Loader = dynamic(() => import('./components/Loader'))
-const Topic = dynamic(() => import('./components/Topic'))
 const User = dynamic(() => import('components/User'))
 const AppList = dynamic<AppListProps<TopicDto>>(() => import('components/UI/AppList'))
 const AppTypography = dynamic(() => import('components/UI/AppTypography'))
+const Loader = dynamic(() => import('./components/Loader'))
+const Topic = dynamic(() => import('./components/Topic'))
 
 interface DiscussionProps {
   goalID: number
@@ -22,8 +22,9 @@ interface DiscussionProps {
 export default function Discussion({ goalID, dayID, role, owner, client, count }: DiscussionProps): JSX.Element {
   const { isLoading, topics, checkOnLoadMore, fetchNextPage } = useDiscussion(dayID, count)
   const onAdd = useAddTopic(goalID, dayID)
-  const withInput = (!count || !!topics.length) && !!client && client.id !== owner.id
-  const height = !count ? undefined : (!withInput ? 0 : 56) + 424
+  const notOwner = !!client && client.id !== owner.id
+  const withInput = (!count || !!topics.length) && notOwner
+  const height = !count ? undefined : (!withInput ? 0 : 56) + 496
 
   return (
     <AppBox flexDirection="column" spacing={2} flex={1} height={height}>
@@ -36,7 +37,7 @@ export default function Discussion({ goalID, dayID, role, owner, client, count }
         ) : (
           <>
             {isLoading ? (
-              <Loader count={count} withInput={withInput} />
+              <Loader count={count} withInput={notOwner} />
             ) : (
               <AppBox display="block" maxHeight={524} pr={2} overflow="auto">
                 <AppList

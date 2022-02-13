@@ -13,16 +13,17 @@ export interface TopicCreationDto {
   type: TopicType
 }
 
-export interface TopicBaseDto {
+export interface MessageDto {
   id: number
   date: string
   text: string
   user: UserBaseDto
   like?: boolean
   likeCount: number
+  type: TopicType
 }
 
-export interface TopicDto extends TopicBaseDto {
+export interface TopicDto extends MessageDto {
   type: TopicType
-  answer: TopicBaseDto | null
+  answer: MessageDto | null
 }

@@ -1,26 +1,28 @@
 import dynamic from 'next/dynamic'
 import formatDistanceToNow from 'date-fns/formatDistanceToNow'
 import { createStyles, makeStyles } from '@material-ui/core'
-import { TopicBaseDto } from 'dto'
+import { MessageDto } from 'dto'
 import AppLink from 'components/UI/AppLink'
 import AppBox from 'components/UI/AppBox'
 import AppMarkdown from 'components/UI/AppMarkdown'
 import User from 'components/User'
 import Menu from './components/Menu'
-import Reaction from './components/Reaction'
+import Like from './components/Like'
 import Reply from './components/Reply'
 
 const SupportSign = dynamic(() => import('./components/SupportSign'))
 
 interface MessageProps {
-  message: TopicBaseDto
+  dayID: number
+  message: MessageDto
+  answerFor?: number
   supportFor?: string
   onClick?: () => void
 }
 
-export default function Message({ message, supportFor, onClick }: MessageProps): JSX.Element {
+export default function Message({ dayID, message, answerFor, supportFor, onClick }: MessageProps): JSX.Element {
   const classes = useStyles()
-  const { id, date, user, text, like, likeCount } = message
+  const { date, user, text } = message
   const dateDifference = formatDistanceToNow(new Date(date), { includeSeconds: true })
 
   return (
@@ -31,7 +33,7 @@ export default function Message({ message, supportFor, onClick }: MessageProps):
           <AppLink href={`/${user.id}`} title={user.name} className={classes.name}>
             <b>{user.name}</b>
           </AppLink>
-          {supportFor && <SupportSign supportFor={supportFor} />}
+          {supportFor && <SupportSign name={supportFor} />}
         </AppBox>
         <AppBox justifyContent="space-between" alignItems="flex-start" spacing={1}>
           <AppMarkdown text={text} />
@@ -43,7 +45,7 @@ export default function Message({ message, supportFor, onClick }: MessageProps):
           <span className={classes.date}>{dateDifference} ago</span>
           {onClick && <Reply onClick={onClick} />}
         </AppBox>
-        <Reaction id={id} like={like} likeCount={likeCount} type={supportFor ? 'support' : 'like'} />
+        <Like dayID={dayID} message={message} answerFor={answerFor} icon={supportFor ? 'support' : 'like'} />
       </AppBox>
     </AppBox>
   )

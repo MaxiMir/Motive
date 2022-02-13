@@ -16,6 +16,7 @@ import Characteristic from './components/Characteristic'
 import Discussion from './components/Discussion'
 import Views from './components/Views'
 
+const AppTypography = dynamic(() => import('components/UI/AppTypography'))
 const Owner = dynamic(() => import('./components/Owner'))
 const Stages = dynamic(() => import('./components/Stages'))
 const Task = dynamic(() => import('./components/Task'))
@@ -24,7 +25,6 @@ const Hashtags = dynamic(() => import('./components/Hashtags'))
 const TaskForm = dynamic(() => import('./components/TaskForm'))
 const Web = dynamic(() => import('./components/Web'))
 const Reactions = dynamic(() => import('./components/Reactions'))
-const AppTypography = dynamic(() => import('components/UI/AppTypography'))
 
 const CHARACTERISTICS: GoalCharacteristicName[] = ['motivation', 'creativity', 'support', 'members']
 

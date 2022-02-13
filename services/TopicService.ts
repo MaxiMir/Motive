@@ -24,9 +24,9 @@ export default class TopicService extends Service {
   /**
    * /topics/${id}/likes?operation=insert|delete
    */
-  static updateFollowing(id: number, add: boolean): Promise<void> {
+  static updateLike(id: number, add: boolean): Promise<void> {
     const params = TopicService.getOperationParams(add)
 
-    return Axios.put(`/topics/${id}`, { params })
+    return Axios.patch(`/topics/${id}/likes`, undefined, { params })
   }
 }

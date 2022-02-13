@@ -20,8 +20,8 @@ export const partialGetNextPageParam = (count: number): GetNextPageParamFunction
 
 const getTopicsCount = (topics: TopicDto[]): number => topics.reduce((acc, t) => acc + (!t.answer ? 1 : 2), 0)
 
-export const addTopic = (data: InfiniteData<TopicDto[]>, topic: TopicDto): InfiniteData<TopicDto[]> => {
-  return produce(data, (draft) => {
+export const addTopic = (discussion: InfiniteData<TopicDto[]>, topic: TopicDto): InfiniteData<TopicDto[]> => {
+  return produce(discussion, (draft) => {
     if (!topic.answer) {
       draft.pages = [[topic], ...draft.pages]
       return

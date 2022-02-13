@@ -17,7 +17,7 @@ export default function Loader({ count, withInput }: LoaderProps): JSX.Element {
         <AppBox spacing={2} alignItems="flex-end" mb={2}>
           <Skeleton animation="wave" variant="circle" width={32} height={32} />
           <Skeleton animation="wave" width="calc(100% - 112px)" height={3} />
-          <Skeleton animation="wave" width={24} height={16} />
+          <Skeleton animation="wave" width={24} height={24} />
         </AppBox>
       )}
       {[...new Array(shownCount)].map((_, key) => (
@@ -25,7 +25,6 @@ export default function Loader({ count, withInput }: LoaderProps): JSX.Element {
           <AppBox alignItems="flex-end" spacing={1}>
             <Skeleton animation="wave" variant="circle" width={26} height={26} />
             <Skeleton animation="wave" width={100} height={16} />
-            <Skeleton animation="wave" variant="circle" width={21} height={21} />
           </AppBox>
           <AppBox justifyContent="space-between" spacing={2}>
             <Skeleton animation="wave" width="100%" height={32} />

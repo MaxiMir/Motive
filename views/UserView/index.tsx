@@ -12,8 +12,8 @@ import Characteristic from './components/Characteristic'
 import EmptyGoals from './components/EmptyGoals'
 import Following from './components/Following'
 
-const AddGoal = dynamic(() => import('./components/AddGoal'))
 const Goal = dynamic(() => import('components/Goal'))
+const AddGoal = dynamic(() => import('./components/AddGoal'))
 
 const CHARACTERISTIC_NAMES: MainCharacteristicName[] = ['motivation', 'creativity', 'support']
 const SECOND_CHARACTERISTIC_NAMES: UserCharacteristicName[] = ['completed', 'abandoned', 'followers']

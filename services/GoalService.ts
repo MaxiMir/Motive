@@ -44,6 +44,6 @@ export default class GoalService extends Service {
   static setCompleted(data: { id: number; body: FormData }): Promise<GoalDto> {
     const { id, ...body } = data
 
-    return Axios.post(`/goals/${id}/completed`, body)
+    return Axios.patch(`/goals/${id}/completed`, body)
   }
 }

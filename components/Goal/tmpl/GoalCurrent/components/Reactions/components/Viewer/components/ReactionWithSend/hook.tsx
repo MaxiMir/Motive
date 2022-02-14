@@ -44,7 +44,7 @@ export default function useSetReaction(
   })
   const isAuthorized = !!client // todo check on auth
 
-  const sendWithDebounce = useDebounceCb((add: boolean) => mutate({ id, dayID: day.id, name, add }))
+  const sendWithDebounce = useDebounceCb((add: boolean) => mutate({ id, dayId: day.id, name, add }))
 
   return () => {
     if (!isAuthorized) {

@@ -4,13 +4,13 @@ import { Service } from './Service'
 
 export default class TopicService extends Service {
   /**
-   * '/topics?where[day]={dayID}&skip={skip}&take={take}
+   * '/topics?where[day]={dayId}&skip={skip}&take={take}
    */
-  static get(dayID: number, page: number, take: number): Promise<TopicDto[]> {
+  static get(dayId: number, page: number, take: number): Promise<TopicDto[]> {
     const pagination = Service.getPaginationParams(page, take)
 
     return Axios.get('/topics', {
-      params: { 'where[day]': dayID, ...pagination },
+      params: { 'where[day]': dayId, ...pagination },
     })
   }
 

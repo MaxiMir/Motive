@@ -21,17 +21,17 @@ export default function useSetFollowing(id: number, following: boolean, isAuthor
 
       return { previous }
     },
-    onError(_, __, context) {
-      if (context?.previous) {
-        queryClient.setQueryData(key, context?.previous)
-      }
-    },
     onSuccess(_, { add }) {
       enqueueSnackbar({
         message: add ? 'Added following' : 'Removed following',
         severity: 'success',
         icon: 'speaker',
       })
+    },
+    onError(_, __, context) {
+      if (context?.previous) {
+        queryClient.setQueryData(key, context?.previous)
+      }
     },
   })
   const sendWithDebounce = useDebounceCb((add: boolean) => mutate({ id, add }))

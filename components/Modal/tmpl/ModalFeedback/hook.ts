@@ -1,4 +1,3 @@
-import produce from 'immer'
 import { useFormik } from 'formik'
 import { useMutation } from 'react-query'
 import { GoalDto } from 'dto'
@@ -7,6 +6,7 @@ import FeedbackService from 'services/FeedbackService'
 import useSnackbar from 'hooks/useSnackbar'
 import { useMutateGoals } from 'views/UserView/hook'
 import schema from 'schemas/feedback'
+import { getGoalNextState } from './helper'
 
 interface Values {
   text: string
@@ -15,7 +15,8 @@ interface Values {
 }
 
 export default function useForm(goal: GoalDto, onClose: () => void): UseFormType<Values> {
-  const { isLoading, mutate } = useSendFeedback(goal, onClose)
+  const { id } = goal
+  const { isLoading, mutate } = useSendFeedback(id, onClose)
   const formik = useFormik<Values>({
     initialValues: {
       text: '',
@@ -26,7 +27,7 @@ export default function useForm(goal: GoalDto, onClose: () => void): UseFormType
     async onSubmit(data) {
       const formData = new FormData()
 
-      formData.append('dayID', goal.day.id.toString())
+      formData.append('dayId', goal.day.id.toString())
       formData.append('text', data.text.trim())
       data.photos.forEach((photo) => formData.append('photos', photo))
       mutate(formData)
@@ -36,19 +37,13 @@ export default function useForm(goal: GoalDto, onClose: () => void): UseFormType
   return { isLoading, formik }
 }
 
-const useSendFeedback = (goal: GoalDto, onClose: () => void) => {
+const useSendFeedback = (goalId: number, onClose: () => void) => {
   const { enqueueSnackbar } = useSnackbar()
   const [goals, mutate] = useMutateGoals()
 
   return useMutation(FeedbackService.create, {
     onSuccess: (feedback) => {
-      mutate(
-        produce(goals, (draft: GoalDto[]) => {
-          const draftGoal = draft[draft.findIndex((g) => g.id === goal.id)]
-          draftGoal.day.feedback = feedback
-        }),
-      )
-
+      mutate(getGoalNextState(goals, goalId, feedback))
       onClose()
       enqueueSnackbar({ message: 'Feedback successfully added', severity: 'success', icon: 'feedback' })
     },

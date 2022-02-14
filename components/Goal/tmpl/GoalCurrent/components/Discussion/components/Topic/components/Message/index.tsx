@@ -13,14 +13,15 @@ import Reply from './components/Reply'
 const SupportSign = dynamic(() => import('./components/SupportSign'))
 
 interface MessageProps {
-  dayID: number
+  goalId: number
+  dayId: number
   message: MessageDto
   answerFor?: number
   supportFor?: string
   onClick?: () => void
 }
 
-export default function Message({ dayID, message, answerFor, supportFor, onClick }: MessageProps): JSX.Element {
+export default function Message({ goalId, dayId, message, answerFor, supportFor, onClick }: MessageProps): JSX.Element {
   const classes = useStyles()
   const { date, user, text } = message
   const dateDifference = formatDistanceToNow(new Date(date), { includeSeconds: true })
@@ -45,7 +46,13 @@ export default function Message({ dayID, message, answerFor, supportFor, onClick
           <span className={classes.date}>{dateDifference} ago</span>
           {onClick && <Reply onClick={onClick} />}
         </AppBox>
-        <Like dayID={dayID} message={message} answerFor={answerFor} icon={supportFor ? 'support' : 'like'} />
+        <Like
+          goalId={goalId}
+          dayId={dayId}
+          message={message}
+          answerFor={answerFor}
+          icon={supportFor ? 'support' : 'like'}
+        />
       </AppBox>
     </AppBox>
   )

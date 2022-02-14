@@ -1,17 +1,20 @@
-import { InfiniteData, useMutation, useQueryClient } from 'react-query'
 import { AxiosError } from 'axios'
+import { InfiniteData, useMutation, useQueryClient } from 'react-query'
 import { MessageDto, TopicDto } from 'dto'
 import useDebounceCb from 'hooks/useDebounceCb'
-import { Options, Context, fetcher, getNextState } from './helper'
+import { useMutateGoals } from 'views/UserView/hook'
+import { Options, Context, fetcher, getNextState, getGoalNextState } from './helper'
 
 export default function useSetLike(
-  dayID: number,
+  goalId: number,
+  dayId: number,
   message: MessageDto,
   answerFor: number | undefined,
   isAuthorized: boolean,
 ): () => void {
-  const key = ['discussion', dayID]
+  const key = ['discussion', dayId]
   const { like } = message
+  const [goals, mutateGoals] = useMutateGoals()
   const queryClient = useQueryClient()
   const { mutate } = useMutation<void, AxiosError, Options, Context>(fetcher, {
     async onMutate(options: Options) {
@@ -26,6 +29,11 @@ export default function useSetLike(
       }
 
       return { previous }
+    },
+    onSuccess(_, { add }) {
+      if (answerFor) {
+        mutateGoals(getGoalNextState(goals, goalId, add))
+      }
     },
     onError(_, __, context) {
       if (context?.previous) {

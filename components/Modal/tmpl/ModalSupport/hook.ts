@@ -11,7 +11,7 @@ export default function useForm(goal: GoalDto, onClose: () => void): UseFormType
   const { isLoading, mutate } = useSendSupport(goal, onClose)
   const formik = useFormik<TopicCreationDto>({
     initialValues: {
-      dayID: day.id,
+      dayId: day.id,
       text: '',
       type: TopicType.SUPPORT,
     },

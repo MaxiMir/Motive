@@ -1,7 +1,8 @@
 import differenceInDays from 'date-fns/differenceInDays'
-import { GoalDto, RoleDto, UserBaseDto } from 'dto'
+import { DayDto, GoalDto, RoleDto, UserBaseDto } from 'dto'
 import { SEARCH_PARAMS, setQueryParams } from 'helpers/url'
 import { differenceInCalendarDays } from 'date-fns'
+import produce from 'immer'
 
 const SHOW_WEB_AFTER_DAYS = 14
 
@@ -62,3 +63,9 @@ export const getGoalInfo = (datesMap: Record<string, number>, goal: GoalDto, rol
     forTomorrow,
   }
 }
+
+export const getGoalNextState = (goals: GoalDto[], goalId: number, day: DayDto): GoalDto[] =>
+  produce(goals, (draft: GoalDto[]) => {
+    const draftGoal = draft[draft.findIndex((g) => g.id === goalId)]
+    draftGoal.day = day
+  })

@@ -10,7 +10,8 @@ const AppBox = dynamic(() => import('components/UI/AppBox'))
 const Reply = dynamic(() => import('./components/Reply'))
 
 interface TopicProps {
-  dayID: number
+  goalId: number
+  dayId: number
   owner: UserBaseDto
   topic: TopicDto
   role: RoleDto
@@ -19,7 +20,7 @@ interface TopicProps {
   onAdd: (topic: TopicDto) => void
 }
 
-export default function Topic({ dayID, owner, topic, role, inView, onView, onAdd }: TopicProps): JSX.Element {
+export default function Topic({ goalId, dayId, owner, topic, role, inView, onView, onAdd }: TopicProps): JSX.Element {
   const { answer, ...message } = topic
   const [showInput, setShowInput] = useState(false)
   const showReply = checkOnReply(role, topic)
@@ -34,7 +35,8 @@ export default function Topic({ dayID, owner, topic, role, inView, onView, onAdd
   return (
     <>
       <Message
-        dayID={dayID}
+        goalId={goalId}
+        dayId={dayId}
         message={message}
         supportFor={message.type !== TopicType.SUPPORT ? undefined : owner.name}
         onClick={!showReply ? undefined : onClick}
@@ -43,8 +45,8 @@ export default function Topic({ dayID, owner, topic, role, inView, onView, onAdd
         <User
           tmpl="input"
           user={owner}
-          dayID={dayID}
-          topicID={message.id}
+          dayId={dayId}
+          topicId={message.id}
           type={TopicType.ANSWER}
           onAdd={onAddCombine}
         />
@@ -52,7 +54,13 @@ export default function Topic({ dayID, owner, topic, role, inView, onView, onAdd
       {answer && (
         <AppBox alignItems="center" spacing={1}>
           <Reply />
-          <Message dayID={dayID} message={answer} answerFor={message.id} supportFor={message.user.name} />
+          <Message
+            goalId={goalId}
+            dayId={dayId}
+            message={answer}
+            answerFor={message.id}
+            supportFor={message.user.name}
+          />
         </AppBox>
       )}
       {inView && <AppInView onView={onView} />}

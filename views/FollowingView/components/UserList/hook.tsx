@@ -20,12 +20,7 @@ export default function useRemoveFollowing(isAuthorized: boolean): (user: UserDt
 
       return { previous }
     },
-    onError(_, __, context) {
-      if (context?.previous) {
-        queryClient.setQueryData<SubscriptionPageDto>(QUERY_KEY, context.previous)
-      }
-    },
-    async onSuccess(_, { user, index, add }) {
+    onSuccess(_, { user, index, add }) {
       !add &&
         enqueueSnackbar({
           message: 'Removed from following',
@@ -33,6 +28,11 @@ export default function useRemoveFollowing(isAuthorized: boolean): (user: UserDt
           action: <Button onClick={() => onUndo(user, index)}>Undo</Button>,
           icon: 'speaker',
         })
+    },
+    onError(_, __, context) {
+      if (context?.previous) {
+        queryClient.setQueryData<SubscriptionPageDto>(QUERY_KEY, context.previous)
+      }
     },
   })
 

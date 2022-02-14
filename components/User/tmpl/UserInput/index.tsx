@@ -12,16 +12,16 @@ const AppIcon = dynamic(() => import('components/UI/AppIcon'))
 
 export interface UserInputProps {
   tmpl: 'input'
-  dayID: number
+  dayId: number
   user: UserBaseDto
   type: TopicType
-  topicID?: number
+  topicId?: number
   onAdd: (topic: TopicDto) => void
 }
 
-export default function UserInput({ dayID, user, type, topicID, onAdd }: UserInputProps): JSX.Element {
+export default function UserInput({ dayId, user, type, topicId, onAdd }: UserInputProps): JSX.Element {
   const classes = useStyles()
-  const { isLoading, formik } = useForm(dayID, topicID, type, onAdd)
+  const { isLoading, formik } = useForm(dayId, topicId, type, onAdd)
   const { values, handleSubmit } = formik
 
   return (

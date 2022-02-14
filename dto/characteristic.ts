@@ -21,7 +21,7 @@ export interface DayCharacteristicDto {
 
 export interface DayCharacteristicUpdate {
   id: number
-  dayID: number
+  dayId: number
   name: DayCharacteristicName
   add: boolean
 }

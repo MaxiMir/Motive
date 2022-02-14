@@ -1,15 +1,14 @@
 import { useRef } from 'react'
 import dynamic from 'next/dynamic'
-import produce from 'immer'
 import { useMutation } from 'react-query'
-import { GoalDto } from 'dto'
 import TaskService from 'services/TaskService'
 import useSnackbar from 'hooks/useSnackbar'
 import { useMutateGoals } from 'views/UserView/hook'
+import { getGoalNextState } from './helper'
 
 const Button = dynamic(() => import('@material-ui/core/Button'))
 
-export default function useSetCompleted(id: number, goalID: number, rest: number): () => void {
+export default function useSetCompleted(goalId: number, id: number, rest: number): () => void {
   const timerRef = useRef<NodeJS.Timeout>()
   const { enqueueSnackbar, closeSnackbar } = useSnackbar()
   const [goals, mutateGoals] = useMutateGoals()
@@ -26,13 +25,7 @@ export default function useSetCompleted(id: number, goalID: number, rest: number
   }
 
   const mutateCompleted = (value: boolean) => {
-    mutateGoals(
-      produce(goals, (draft: GoalDto[]) => {
-        const draftGoal = draft[draft.findIndex((g) => g.id === goalID)]
-        const draftTask = draftGoal.day.tasks[draftGoal.day.tasks.findIndex((t) => t.id === id)]
-        draftTask.completed = value
-      }),
-    )
+    mutateGoals(getGoalNextState(goals, goalId, id, value))
   }
 
   return () => {

@@ -29,13 +29,13 @@ export default class GoalService extends Service {
   }
 
   /**
-   * /goal/{id}/days/{dayID}/characteristic/{characteristicName}?operation=insert|delete
+   * /goal/{id}/days/{dayId}/characteristic/{characteristicName}?operation=insert|delete
    */
   static updateCharacteristic(data: DayCharacteristicUpdate): Promise<void> {
-    const { id, dayID, name, add } = data
+    const { id, dayId, name, add } = data
     const params = GoalService.getOperationParams(add)
 
-    return Axios.patch(`/goals/${id}/days/${dayID}/characteristic/${name}`, { id }, { params })
+    return Axios.patch(`/goals/${id}/days/${dayId}/characteristic/${name}`, { id }, { params })
   }
 
   /**

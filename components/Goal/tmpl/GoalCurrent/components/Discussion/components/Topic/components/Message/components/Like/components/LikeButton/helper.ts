@@ -1,6 +1,6 @@
-import { InfiniteData } from 'react-query'
 import produce from 'immer'
-import { MessageDto, TopicDto } from 'dto'
+import { InfiniteData } from 'react-query'
+import { GoalDto, MessageDto, TopicDto } from 'dto'
 import TopicService from 'services/TopicService'
 
 export type Options = { message: MessageDto; answerFor?: number; add: boolean }
@@ -30,5 +30,8 @@ export const getNextState = (discussion: InfiniteData<TopicDto[]>, options: Opti
   })
 }
 
-export const getTitle = (icon: 'like' | 'support', like?: boolean): string =>
-  icon === 'like' ? `Like${!like ? '' : 'd'} the question` : `Mark${!like ? '' : 'ed'} as very helpful`
+export const getGoalNextState = (goals: GoalDto[], goalId: number, add: boolean): GoalDto[] =>
+  produce(goals, (draft: GoalDto[]) => {
+    const draftGoal = draft[draft.findIndex((g) => g.id === goalId)]
+    draftGoal.characteristic.support += add ? 1 : -1
+  })

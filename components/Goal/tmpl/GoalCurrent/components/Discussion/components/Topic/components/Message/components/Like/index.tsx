@@ -5,30 +5,40 @@ import { numberToShort } from 'helpers/prepare'
 import AppBox from 'components/UI/AppBox'
 import AppTypography from 'components/UI/AppTypography'
 import { useUserPage } from 'views/UserView/hook'
-import { checkOnOwner } from './helper'
+import { checkOnText, getTitle } from './helper'
 
 const LikeText = dynamic(() => import('./components/LikeText'))
 const LikeButton = dynamic(() => import('./components/LikeButton'))
 
 interface LikeProps {
-  dayID: number
+  goalId: number
+  dayId: number
   message: MessageDto
   answerFor?: number
   icon: 'like' | 'support'
 }
 
-export default function Like({ dayID, message, answerFor, icon }: LikeProps): JSX.Element {
+export default function Like({ goalId, dayId, message, answerFor, icon }: LikeProps): JSX.Element {
   const classes = useStyles()
   const { data } = useUserPage()
-  const owner = checkOnOwner(message, data?.client)
+  const text = checkOnText(message, data?.client)
+  const title = getTitle(icon, message.like)
   const shortNumber = numberToShort(message.likeCount)
 
   return (
     <AppBox alignItems="center">
-      {owner ? (
-        <LikeText icon={icon} />
+      {text ? (
+        <LikeText message={message} title={title} icon={icon} />
       ) : (
-        <LikeButton dayID={dayID} message={message} answerFor={answerFor} icon={icon} isAuthorized={!!data?.client} />
+        <LikeButton
+          goalId={goalId}
+          dayId={dayId}
+          message={message}
+          title={title}
+          answerFor={answerFor}
+          icon={icon}
+          isAuthorized={!!data?.client}
+        />
       )}
       <AppTypography className={classes.count}>{shortNumber}</AppTypography>
     </AppBox>

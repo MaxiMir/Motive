@@ -7,17 +7,17 @@ import useSnackbar from 'hooks/useSnackbar'
 import schema from 'schemas/topic'
 
 export default function useForm(
-  dayID: number,
-  topicID: number | undefined,
+  dayId: number,
+  topicId: number | undefined,
   type: TopicType,
   onAdd: (topic: TopicDto) => void,
 ): UseFormType<TopicCreationDto> {
   const { isLoading, mutate } = useSendTopic(type, onSuccess)
   const formik = useFormik<TopicCreationDto>({
     initialValues: {
-      dayID,
+      dayId,
       text: '',
-      topicID,
+      topicId,
       type,
     },
     validationSchema: schema,

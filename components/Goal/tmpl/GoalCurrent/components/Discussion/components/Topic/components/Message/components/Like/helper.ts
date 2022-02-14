@@ -1,3 +1,8 @@
-import { MessageDto, UserBaseDto } from 'dto'
+import { MessageDto, TopicType, UserBaseDto } from 'dto'
 
-export const checkOnOwner = (message: MessageDto, client?: UserBaseDto): boolean => message.user.id === client?.id
+export const checkOnText = (message: MessageDto, client?: UserBaseDto): boolean => {
+  return message.user.id === client?.id || (!!message.like && message.type === TopicType.SUPPORT)
+}
+
+export const getTitle = (icon: 'like' | 'support', like?: boolean): string =>
+  icon === 'like' ? `Like${!like ? '' : 'd'} the question` : `Mark${!like ? '' : 'ed'} as very helpful`

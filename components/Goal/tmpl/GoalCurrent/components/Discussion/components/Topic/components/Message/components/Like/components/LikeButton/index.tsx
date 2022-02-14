@@ -3,22 +3,30 @@ import { Button, makeStyles } from '@material-ui/core'
 import { MessageDto } from 'dto'
 import AppEmoji from 'components/UI/AppEmoji'
 import AppTooltip from 'components/UI/AppTooltip'
-import { getTitle } from './helper'
 import useSetLike from './hook'
 
 interface LikeButtonProps {
-  dayID: number
+  goalId: number
+  dayId: number
   message: MessageDto
+  title: string
   answerFor?: number
   icon: 'like' | 'support'
   isAuthorized: boolean
 }
 
-export default function LikeButton({ dayID, message, answerFor, icon, isAuthorized }: LikeButtonProps): JSX.Element {
+export default function LikeButton({
+  goalId,
+  dayId,
+  message,
+  title,
+  answerFor,
+  icon,
+  isAuthorized,
+}: LikeButtonProps): JSX.Element {
   const { like, likeCount } = message
   const classes = useStyles()
-  const title = getTitle(icon, like)
-  const onClick = useSetLike(dayID, message, answerFor, isAuthorized)
+  const onClick = useSetLike(goalId, dayId, message, answerFor, isAuthorized)
 
   return (
     <AppTooltip title={title}>

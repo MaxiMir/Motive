@@ -1,19 +1,19 @@
 import { useFormik } from 'formik'
 import { useMutation } from 'react-query'
-import { TopicCreationDto, TopicDto, MessageType } from 'dto'
+import { CreateTopicDto, TopicDto, MessageType } from 'dto'
 import { UseFormType } from 'types'
 import TopicService from 'services/TopicService'
 import useSnackbar from 'hooks/useSnackbar'
-import schema from 'schemas/topic'
+import schema from 'schemas/message'
 
 export default function useForm(
   dayId: number,
   topicId: number | undefined,
   type: MessageType,
   onAdd: (topic: TopicDto) => void,
-): UseFormType<TopicCreationDto> {
+): UseFormType<CreateTopicDto> {
   const { isLoading, mutate } = useSendTopic(type, onSuccess)
-  const formik = useFormik<TopicCreationDto>({
+  const formik = useFormik<CreateTopicDto>({
     initialValues: {
       dayId,
       text: '',

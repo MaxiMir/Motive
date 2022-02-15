@@ -9,9 +9,6 @@ export default class SubscriptionService extends Service {
     return Axios.get(`/subscriptions/${id}/followers`, { params })
   }
 
-  /**
-   * /subscriptions?operation=insert|delete
-   */
   static updateFollowing(id: number, add: boolean): Promise<void> {
     const params = SubscriptionService.getOperationParams(add)
 

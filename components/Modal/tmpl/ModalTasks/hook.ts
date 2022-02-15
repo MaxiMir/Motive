@@ -1,6 +1,6 @@
 import { useFormik } from 'formik'
 import { useMutation } from 'react-query'
-import { DayCreationDto, GoalDto } from 'dto'
+import { CreateDayDto, GoalDto } from 'dto'
 import { UseFormType } from 'types'
 import GoalService from 'services/GoalService'
 import useChangeDayUrl from 'hooks/useChangeDayUrl'
@@ -8,10 +8,10 @@ import { useMutateGoals } from 'views/UserView/hook'
 import schema from 'schemas/tasks'
 import { getGoalNextState } from './helper'
 
-export default function useForm(goal: GoalDto, onClose: () => void): UseFormType<DayCreationDto> {
+export default function useForm(goal: GoalDto, onClose: () => void): UseFormType<CreateDayDto> {
   const { id } = goal
   const { isLoading, mutate } = useSendAddDay(id, onClose)
-  const formik = useFormik<DayCreationDto>({
+  const formik = useFormik<CreateDayDto>({
     initialValues: {
       id,
       tasks: [{ name: '', date: undefined }],

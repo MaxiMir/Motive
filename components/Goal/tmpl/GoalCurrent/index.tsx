@@ -69,7 +69,7 @@ export default function GoalCurrent({ goal, href, client }: GoalCurrentProps): J
                 </AppHeader>
                 {role === 'MEMBER' && <Owner {...owner} />}
               </AppBox>
-              <Menu title={name} href={goalHref} role={role} />
+              <Menu goalId={id} title={name} href={goalHref} role={role} client={client} />
             </AppBox>
             <AppBox justifyContent="space-between" alignItems="center">
               {CHARACTERISTICS.map((characteristicName) => (

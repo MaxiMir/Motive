@@ -22,8 +22,7 @@ interface DiscussionProps {
 export default function Discussion({ goalId, dayId, role, owner, client, count }: DiscussionProps): JSX.Element {
   const { isLoading, topics, checkOnLoadMore, fetchNextPage } = useDiscussion(dayId, count)
   const onAdd = useAddTopic(goalId, dayId)
-  const notOwner = !!client && client.id !== owner.id
-  const withInput = (!count || !!topics.length) && notOwner
+  const withInput = (!count || !!topics.length) && role !== 'OWNER'
   const height = !count ? undefined : (!withInput ? 0 : 56) + 496
 
   return (
@@ -37,7 +36,7 @@ export default function Discussion({ goalId, dayId, role, owner, client, count }
         ) : (
           <>
             {isLoading ? (
-              <Loader count={count} withInput={notOwner} />
+              <Loader count={count} withInput={role !== 'OWNER'} />
             ) : (
               <AppBox display="block" maxHeight={524} pr={2} overflow="auto">
                 <AppList
@@ -51,6 +50,7 @@ export default function Discussion({ goalId, dayId, role, owner, client, count }
                       topic={topic}
                       role={role}
                       owner={owner}
+                      client={client}
                       inView={checkOnLoadMore(index)}
                       onView={fetchNextPage}
                       onAdd={onAdd}

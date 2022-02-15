@@ -7,12 +7,14 @@ import useSnackbar from 'hooks/useSnackbar'
 import { useUserPageConfig } from 'views/UserView/hook'
 import { Context, getNextState } from './helper'
 
+type SetReaction = () => void
+
 export default function useSetReaction(
   goal: GoalDto,
   name: DayCharacteristicName,
   active: boolean,
   client?: UserBaseDto,
-): () => void {
+): SetReaction {
   const { id, day } = goal
   const queryClient = useQueryClient()
   const { key } = useUserPageConfig()

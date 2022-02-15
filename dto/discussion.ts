@@ -6,11 +6,16 @@ export enum MessageType {
   SUPPORT = 'support',
 }
 
-export interface TopicCreationDto {
+export interface CreateTopicDto {
   dayId: number
   text: string
   topicId?: number
   type: MessageType
+}
+
+export interface TopicUpdateDto {
+  id: number
+  text: string
 }
 
 export interface MessageDto {

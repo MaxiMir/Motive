@@ -1,12 +1,9 @@
 import Axios from 'lib/axios'
-import { TopicCreationDto, TopicDto } from 'dto'
+import { CreateTopicDto, TopicDto, TopicUpdateDto } from 'dto'
 import { Service } from './Service'
 
 export default class TopicService extends Service {
-  /**
-   * '/topics?where[day]={dayId}&skip={skip}&take={take}
-   */
-  static get(dayId: number, page: number, take: number): Promise<TopicDto[]> {
+  static getByDayId(dayId: number, page: number, take: number): Promise<TopicDto[]> {
     const pagination = Service.getPaginationParams(page, take)
 
     return Axios.get('/topics', {
@@ -14,16 +11,14 @@ export default class TopicService extends Service {
     })
   }
 
-  /**
-   * /topics
-   */
-  static create(data: TopicCreationDto): Promise<TopicDto> {
+  static create(data: CreateTopicDto): Promise<TopicDto> {
     return Axios.post('/topics', data)
   }
 
-  /**
-   * /topics/${id}/likes?operation=insert|delete
-   */
+  static update(data: TopicUpdateDto): Promise<TopicDto> {
+    return Axios.put('/topics', data)
+  }
+
   static updateLike(id: number, add: boolean): Promise<void> {
     const params = TopicService.getOperationParams(add)
 

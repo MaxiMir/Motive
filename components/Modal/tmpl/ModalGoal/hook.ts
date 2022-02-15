@@ -1,6 +1,6 @@
 import { useFormik } from 'formik'
 import { useMutation } from 'react-query'
-import { GoalCreationDto } from 'dto'
+import { CreateGoalDto } from 'dto'
 import { UseFormType } from 'types'
 import GoalService from 'services/GoalService'
 import useSnackbar from 'hooks/useSnackbar'
@@ -9,9 +9,9 @@ import { scrollToElem } from 'helpers/dom'
 import schema from 'schemas/goal'
 import { getGoalNextState } from './helper'
 
-export default function useForm(onClose: () => void): UseFormType<GoalCreationDto> {
+export default function useForm(onClose: () => void): UseFormType<CreateGoalDto> {
   const { isLoading, mutate } = useSendCreateGoal(onClose)
-  const formik = useFormik<GoalCreationDto>({
+  const formik = useFormik<CreateGoalDto>({
     initialValues: {
       name: '',
       hashtags: '',

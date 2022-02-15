@@ -7,6 +7,7 @@ import { ModalCompleteProps } from './tmpl/ModalComplete'
 import { ModalFollowersProps } from './tmpl/ModalFollowers'
 import { ModalStageProps } from './tmpl/ModalStage'
 import { ModalSupportProps } from './tmpl/ModalSupport'
+import { ModalEditTopicProps } from './tmpl/ModalEditTopic'
 
 const ModalAuth = dynamic(() => import('./tmpl/ModalAuth'))
 const ModalGoal = dynamic(() => import('./tmpl/ModalGoal'))
@@ -16,6 +17,7 @@ const ModalComplete = dynamic(() => import('./tmpl/ModalComplete'))
 const ModalFollowers = dynamic(() => import('./tmpl/ModalFollowers'))
 const ModalStage = dynamic(() => import('./tmpl/ModalStage'))
 const ModalSupport = dynamic(() => import('./tmpl/ModalSupport'))
+const ModalEditTopic = dynamic(() => import('./tmpl/ModalEditTopic'))
 
 export default function Modal(
   props:
@@ -26,7 +28,8 @@ export default function Modal(
     | ModalCompleteProps
     | ModalFollowersProps
     | ModalStageProps
-    | ModalSupportProps,
+    | ModalSupportProps
+    | ModalEditTopicProps,
 ): JSX.Element {
   switch (props.tmpl) {
     case 'auth':
@@ -45,5 +48,7 @@ export default function Modal(
       return <ModalStage {...props} />
     case 'support':
       return <ModalSupport {...props} />
+    case 'edit-message':
+      return <ModalEditTopic {...props} />
   }
 }

@@ -7,7 +7,7 @@ const TAKE = 20
 export const PRELOAD_DIFF = 5
 
 export const partialFetcher = (dayId: number): ((ctx: QueryFunctionContext) => Promise<TopicDto[]>) => {
-  return ({ pageParam = 0 }: QueryFunctionContext) => TopicService.get(dayId, pageParam, TAKE)
+  return ({ pageParam = 0 }: QueryFunctionContext) => TopicService.getByDayId(dayId, pageParam, TAKE)
 }
 
 export const partialGetNextPageParam = (count: number): GetNextPageParamFunction<TopicDto[]> | undefined => {

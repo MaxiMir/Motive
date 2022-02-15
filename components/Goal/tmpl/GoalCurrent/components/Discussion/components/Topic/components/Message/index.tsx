@@ -1,7 +1,7 @@
 import dynamic from 'next/dynamic'
 import formatDistanceToNow from 'date-fns/formatDistanceToNow'
 import { createStyles, makeStyles } from '@material-ui/core'
-import { MessageDto } from 'dto'
+import { MessageDto, UserBaseDto } from 'dto'
 import AppLink from 'components/UI/AppLink'
 import AppBox from 'components/UI/AppBox'
 import AppMarkdown from 'components/UI/AppMarkdown'
@@ -18,10 +18,19 @@ interface MessageProps {
   message: MessageDto
   answerFor?: number
   supportFor?: string
+  client?: UserBaseDto
   onClick?: () => void
 }
 
-export default function Message({ goalId, dayId, message, answerFor, supportFor, onClick }: MessageProps): JSX.Element {
+export default function Message({
+  goalId,
+  dayId,
+  message,
+  answerFor,
+  supportFor,
+  client,
+  onClick,
+}: MessageProps): JSX.Element {
   const classes = useStyles()
   const { date, user, text } = message
   const dateDifference = formatDistanceToNow(new Date(date), { includeSeconds: true })
@@ -38,7 +47,7 @@ export default function Message({ goalId, dayId, message, answerFor, supportFor,
         </AppBox>
         <AppBox justifyContent="space-between" alignItems="flex-start" spacing={1}>
           <AppMarkdown text={text} />
-          <Menu />
+          <Menu topicId={message.id} message={message} client={client} />
         </AppBox>
       </AppBox>
       <AppBox justifyContent="space-between" alignItems="center" pr={1}>

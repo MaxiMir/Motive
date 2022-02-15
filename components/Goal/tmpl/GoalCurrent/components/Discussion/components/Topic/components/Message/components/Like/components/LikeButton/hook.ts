@@ -5,13 +5,15 @@ import useDebounceCb from 'hooks/useDebounceCb'
 import { useMutateGoals } from 'views/UserView/hook'
 import { Options, Context, fetcher, getNextState, getGoalNextState } from './helper'
 
+type SetLike = () => void
+
 export default function useSetLike(
   goalId: number,
   dayId: number,
   message: MessageDto,
   answerFor: number | undefined,
   isAuthorized: boolean,
-): () => void {
+): SetLike {
   const key = ['discussion', dayId]
   const { like } = message
   const [goals, mutateGoals] = useMutateGoals()

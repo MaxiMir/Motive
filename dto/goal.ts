@@ -2,11 +2,11 @@ import { DayCharacteristicDto, GoalCharacteristicDto } from './characteristic'
 import { UserBaseDto } from './user'
 import { ReactionsDto } from './reaction'
 
-export interface GoalCreationDto {
+export interface CreateGoalDto {
   name: string
   hashtags: string
   stages: string[]
-  tasks: TaskCreationDto[]
+  tasks: CreateTaskDto[]
 }
 
 export interface GoalDto {
@@ -30,9 +30,9 @@ export interface GoalStageDto {
   stage: number
 }
 
-export interface DayCreationDto {
+export interface CreateDayDto {
   id: number
-  tasks: TaskCreationDto[]
+  tasks: CreateTaskDto[]
 }
 
 export interface DayDto {
@@ -46,7 +46,7 @@ export interface DayDto {
   views: number
 }
 
-export interface TaskCreationDto {
+export interface CreateTaskDto {
   name: string
   date?: Date
 }

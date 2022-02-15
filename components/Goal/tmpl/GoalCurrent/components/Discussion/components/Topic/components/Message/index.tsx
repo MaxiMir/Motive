@@ -11,6 +11,7 @@ import Like from './components/Like'
 import Reply from './components/Reply'
 
 const SupportSign = dynamic(() => import('./components/SupportSign'))
+const Edited = dynamic(() => import('./components/Edited'))
 
 interface MessageProps {
   goalId: number
@@ -32,7 +33,7 @@ export default function Message({
   onClick,
 }: MessageProps): JSX.Element {
   const classes = useStyles()
-  const { date, user, text } = message
+  const { date, user, text, edited } = message
   const dateDifference = formatDistanceToNow(new Date(date), { includeSeconds: true })
 
   return (
@@ -44,6 +45,7 @@ export default function Message({
             <b>{user.name}</b>
           </AppLink>
           {supportFor && <SupportSign name={supportFor} />}
+          {edited && <Edited />}
         </AppBox>
         <AppBox justifyContent="space-between" alignItems="flex-start" spacing={1}>
           <AppMarkdown text={text} />

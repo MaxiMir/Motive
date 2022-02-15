@@ -16,7 +16,9 @@ export default class TopicService extends Service {
   }
 
   static update(data: TopicUpdateDto): Promise<TopicDto> {
-    return Axios.put('/topics', data)
+    const { id, text } = data
+
+    return Axios.put(`/topics/${id}`, { text })
   }
 
   static updateLike(id: number, add: boolean): Promise<void> {

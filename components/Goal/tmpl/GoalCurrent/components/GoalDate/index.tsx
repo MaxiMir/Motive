@@ -36,6 +36,7 @@ export default function GoalDate({ datesMap, date, isLoading, onChangeDay }: Dat
     }
 
     const formattedCheckedDate = toISODateWithZeroTime(checkedDate)
+
     return !dates.some((d) => d === formattedCheckedDate)
   }
 

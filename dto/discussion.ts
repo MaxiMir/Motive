@@ -26,6 +26,7 @@ export interface MessageDto {
   like?: boolean
   likeCount: number
   type: MessageType
+  edited: boolean
 }
 
 export interface TopicDto extends MessageDto {

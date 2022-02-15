@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import dynamic from 'next/dynamic'
-import { RoleDto, TopicDto, TopicType, UserBaseDto } from 'dto'
+import { RoleDto, TopicDto, MessageType, UserBaseDto } from 'dto'
 import Message from './components/Message'
 import { checkOnReply } from './helper'
 
@@ -38,7 +38,7 @@ export default function Topic({ goalId, dayId, owner, topic, role, inView, onVie
         goalId={goalId}
         dayId={dayId}
         message={message}
-        supportFor={message.type !== TopicType.SUPPORT ? undefined : owner.name}
+        supportFor={message.type !== MessageType.SUPPORT ? undefined : owner.name}
         onClick={!showReply ? undefined : onClick}
       />
       {showInput && (
@@ -47,20 +47,14 @@ export default function Topic({ goalId, dayId, owner, topic, role, inView, onVie
           user={owner}
           dayId={dayId}
           topicId={message.id}
-          type={TopicType.ANSWER}
+          type={MessageType.ANSWER}
           onAdd={onAddCombine}
         />
       )}
       {answer && (
         <AppBox alignItems="center" spacing={1}>
           <Reply />
-          <Message
-            goalId={goalId}
-            dayId={dayId}
-            message={answer}
-            answerFor={message.id}
-            supportFor={message.user.name}
-          />
+          <Message goalId={goalId} dayId={dayId} message={answer} answerFor={message.id} />
         </AppBox>
       )}
       {inView && <AppInView onView={onView} />}

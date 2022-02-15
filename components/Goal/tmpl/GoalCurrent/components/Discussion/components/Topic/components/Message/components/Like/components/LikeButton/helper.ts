@@ -35,3 +35,6 @@ export const getGoalNextState = (goals: GoalDto[], goalId: number, add: boolean)
     const draftGoal = draft[draft.findIndex((g) => g.id === goalId)]
     draftGoal.characteristic.support += add ? 1 : -1
   })
+
+export const getTitle = (icon: 'like' | 'support', like?: boolean): string =>
+  icon === 'like' ? `${!like ? 'Like' : 'Unlike'}` : `${!like ? 'Mark' : 'Unmark'} as very helpful`

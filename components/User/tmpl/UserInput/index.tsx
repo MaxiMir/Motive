@@ -1,7 +1,7 @@
 import dynamic from 'next/dynamic'
 import { Field, Form, FormikProvider } from 'formik'
 import { IconButton, makeStyles } from '@material-ui/core'
-import { TopicDto, TopicType, UserBaseDto } from 'dto'
+import { TopicDto, MessageType, UserBaseDto } from 'dto'
 import UserAvatar from 'components/User/tmpl/UserAvatar'
 import AppBox from 'components/UI/AppBox'
 import AppInput from 'components/UI/AppInput'
@@ -14,7 +14,7 @@ export interface UserInputProps {
   tmpl: 'input'
   dayId: number
   user: UserBaseDto
-  type: TopicType
+  type: MessageType
   topicId?: number
   onAdd: (topic: TopicDto) => void
 }
@@ -31,7 +31,7 @@ export default function UserInput({ dayId, user, type, topicId, onAdd }: UserInp
           <UserAvatar tmpl="avatar" user={user} size={32} />
           <Field
             name="text"
-            placeholder={`Your ${type === TopicType.QUESTION ? 'question' : 'answer'}`}
+            placeholder={`Your ${type === MessageType.QUESTION ? 'question' : 'answer'}`}
             variant="standard"
             color="secondary"
             InputLabelProps={{ shrink: false }}

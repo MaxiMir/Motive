@@ -7,15 +7,14 @@ import { MessageDto } from 'dto'
 
 interface LikeTextProps {
   message: MessageDto
-  title: string
   icon: 'like' | 'support'
 }
 
-export default function LikeText({ message, title, icon }: LikeTextProps): JSX.Element {
+export default function LikeText({ message, icon }: LikeTextProps): JSX.Element {
   const classes = useStyles()
 
   return (
-    <AppOptionalTooltip title={!message.like ? undefined : title}>
+    <AppOptionalTooltip title={!message.like ? undefined : 'Marked as very helpful'}>
       <AppBox
         justifyContent="center"
         alignItems="center"

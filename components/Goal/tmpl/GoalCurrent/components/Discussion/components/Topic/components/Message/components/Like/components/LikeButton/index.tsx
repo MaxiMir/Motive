@@ -3,13 +3,13 @@ import { Button, makeStyles } from '@material-ui/core'
 import { MessageDto } from 'dto'
 import AppEmoji from 'components/UI/AppEmoji'
 import AppTooltip from 'components/UI/AppTooltip'
+import { getTitle } from './helper'
 import useSetLike from './hook'
 
 interface LikeButtonProps {
   goalId: number
   dayId: number
   message: MessageDto
-  title: string
   answerFor?: number
   icon: 'like' | 'support'
   isAuthorized: boolean
@@ -19,20 +19,20 @@ export default function LikeButton({
   goalId,
   dayId,
   message,
-  title,
   answerFor,
   icon,
   isAuthorized,
 }: LikeButtonProps): JSX.Element {
   const { like, likeCount } = message
   const classes = useStyles()
+  const title = getTitle(icon, message.like)
   const onClick = useSetLike(goalId, dayId, message, answerFor, isAuthorized)
 
   return (
     <AppTooltip title={title}>
       <Button
         size="small"
-        aria-label={`${title} ${!likeCount ? '' : ` along with ${likeCount} other people`}`}
+        aria-label={`${title} ${!likeCount || like ? '' : ` along with ${likeCount} other people`}`}
         className={clsx([classes.button, !like && classes.buttonNotActive])}
         onClick={onClick}
       >

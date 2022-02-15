@@ -1,6 +1,6 @@
 import { useFormik } from 'formik'
 import { useMutation } from 'react-query'
-import { GoalDto, TopicCreationDto, TopicType } from 'dto'
+import { GoalDto, TopicCreationDto, MessageType } from 'dto'
 import { UseFormType } from 'types'
 import TopicService from 'services/TopicService'
 import { useAddTopic } from 'components/Goal/tmpl/GoalCurrent/components/Discussion/hook'
@@ -13,7 +13,7 @@ export default function useForm(goal: GoalDto, onClose: () => void): UseFormType
     initialValues: {
       dayId: day.id,
       text: '',
-      type: TopicType.SUPPORT,
+      type: MessageType.SUPPORT,
     },
     validationSchema: schema,
     async onSubmit(data) {

@@ -46,13 +46,7 @@ export default function Message({ goalId, dayId, message, answerFor, supportFor,
           <span className={classes.date}>{dateDifference} ago</span>
           {onClick && <Reply onClick={onClick} />}
         </AppBox>
-        <Like
-          goalId={goalId}
-          dayId={dayId}
-          message={message}
-          answerFor={answerFor}
-          icon={supportFor ? 'support' : 'like'}
-        />
+        <Like goalId={goalId} dayId={dayId} message={message} answerFor={answerFor} />
       </AppBox>
     </AppBox>
   )

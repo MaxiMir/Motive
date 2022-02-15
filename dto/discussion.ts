@@ -1,6 +1,6 @@
 import { UserBaseDto } from './user'
 
-export enum TopicType {
+export enum MessageType {
   QUESTION = 'question',
   ANSWER = 'answer',
   SUPPORT = 'support',
@@ -10,7 +10,7 @@ export interface TopicCreationDto {
   dayId: number
   text: string
   topicId?: number
-  type: TopicType
+  type: MessageType
 }
 
 export interface MessageDto {
@@ -20,10 +20,10 @@ export interface MessageDto {
   user: UserBaseDto
   like?: boolean
   likeCount: number
-  type: TopicType
+  type: MessageType
 }
 
 export interface TopicDto extends MessageDto {
-  type: TopicType
+  type: MessageType
   answer: MessageDto | null
 }

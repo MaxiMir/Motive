@@ -7,15 +7,9 @@ import { Options, Context, fetcher, getNextState, getGoalNextState } from './hel
 
 type SetLike = () => void
 
-export default function useSetLike(
-  goalId: number,
-  dayId: number,
-  message: MessageDto,
-  answerFor: number | undefined,
-  isAuthorized: boolean,
-): SetLike {
+export default function useSetLike(message: MessageDto, answerFor: number | undefined, isAuthorized: boolean): SetLike {
+  const { like, dayId, goalId } = message
   const key = ['discussion', dayId]
-  const { like } = message
   const [goals, mutateGoals] = useMutateGoals()
   const queryClient = useQueryClient()
   const { mutate } = useMutation<void, AxiosError, Options, Context>(fetcher, {

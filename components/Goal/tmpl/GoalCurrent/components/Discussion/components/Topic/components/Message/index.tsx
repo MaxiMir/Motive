@@ -14,8 +14,6 @@ const SupportSign = dynamic(() => import('./components/SupportSign'))
 const Edited = dynamic(() => import('./components/Edited'))
 
 interface MessageProps {
-  goalId: number
-  dayId: number
   message: MessageDto
   answerFor?: number
   supportFor?: string
@@ -23,15 +21,7 @@ interface MessageProps {
   onClick?: () => void
 }
 
-export default function Message({
-  goalId,
-  dayId,
-  message,
-  answerFor,
-  supportFor,
-  client,
-  onClick,
-}: MessageProps): JSX.Element {
+export default function Message({ message, answerFor, supportFor, client, onClick }: MessageProps): JSX.Element {
   const classes = useStyles()
   const { date, user, text, edited } = message
   const dateDifference = formatDistanceToNow(new Date(date), { includeSeconds: true })
@@ -49,7 +39,7 @@ export default function Message({
         </AppBox>
         <AppBox justifyContent="space-between" alignItems="flex-start" spacing={1}>
           <AppMarkdown text={text} />
-          <Menu topicId={message.id} message={message} client={client} />
+          <Menu message={message} client={client} />
         </AppBox>
       </AppBox>
       <AppBox justifyContent="space-between" alignItems="center" pr={1}>
@@ -57,7 +47,7 @@ export default function Message({
           <span className={classes.date}>{dateDifference} ago</span>
           {onClick && <Reply onClick={onClick} />}
         </AppBox>
-        <Like goalId={goalId} dayId={dayId} message={message} answerFor={answerFor} />
+        <Like message={message} answerFor={answerFor} />
       </AppBox>
     </AppBox>
   )

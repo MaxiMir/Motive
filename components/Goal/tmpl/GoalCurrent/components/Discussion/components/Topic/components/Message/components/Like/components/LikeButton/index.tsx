@@ -7,26 +7,17 @@ import { getTitle } from './helper'
 import useSetLike from './hook'
 
 interface LikeButtonProps {
-  goalId: number
-  dayId: number
   message: MessageDto
   answerFor?: number
   icon: 'like' | 'support'
   isAuthorized: boolean
 }
 
-export default function LikeButton({
-  goalId,
-  dayId,
-  message,
-  answerFor,
-  icon,
-  isAuthorized,
-}: LikeButtonProps): JSX.Element {
+export default function LikeButton({ message, answerFor, icon, isAuthorized }: LikeButtonProps): JSX.Element {
   const { like, likeCount } = message
   const classes = useStyles()
   const title = getTitle(icon, message.like)
-  const onClick = useSetLike(goalId, dayId, message, answerFor, isAuthorized)
+  const onClick = useSetLike(message, answerFor, isAuthorized)
 
   return (
     <AppTooltip title={title}>

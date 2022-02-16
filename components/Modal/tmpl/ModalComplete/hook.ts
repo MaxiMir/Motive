@@ -11,8 +11,8 @@ interface Values {
   video: ''
 }
 
-export default function useForm(goal: GoalDto, onClose: () => void): UseFormType<Values> {
-  const { isLoading, mutate } = useSendComplete(onClose)
+export default function useForm(goal: GoalDto, onSuccess: () => void): UseFormType<Values> {
+  const { isLoading, mutate } = useSendComplete(onSuccess)
   const formik = useFormik<Values>({
     initialValues: {
       description: '',
@@ -32,10 +32,8 @@ export default function useForm(goal: GoalDto, onClose: () => void): UseFormType
   return { isLoading, formik }
 }
 
-const useSendComplete = (onClose: () => void) => {
+const useSendComplete = (onSuccess: () => void) => {
   return useMutation(GoalService.setCompleted, {
-    onSuccess() {
-      onClose()
-    },
+    onSuccess,
   })
 }

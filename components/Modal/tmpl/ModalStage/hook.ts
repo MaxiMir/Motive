@@ -8,14 +8,14 @@ import { getNextState } from './helper'
 
 type UseSendStage = UseMutationResult<void, AxiosError, GoalStageDto>
 
-export const useSendStage = (goal: GoalDto, onClose: () => void): UseSendStage => {
+export const useSendStage = (goal: GoalDto, onSuccess: () => void): UseSendStage => {
   const [goals, mutate] = useMutateGoals()
   const { enqueueSnackbar } = useSnackbar()
 
   return useMutation(GoalService.updateStage, {
     onSuccess() {
       mutate(getNextState(goals, goal))
-      onClose()
+      onSuccess()
       enqueueSnackbar({
         message: 'The stage for the next day has been successfully set',
         severity: 'success',

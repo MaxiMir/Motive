@@ -14,9 +14,9 @@ interface Values {
   video: ''
 }
 
-export default function useForm(goal: GoalDto, onClose: () => void): UseFormType<Values> {
+export default function useForm(goal: GoalDto, onSuccess: () => void): UseFormType<Values> {
   const { id } = goal
-  const { isLoading, mutate } = useSendFeedback(id, onClose)
+  const { isLoading, mutate } = useSendFeedback(id, onSuccess)
   const formik = useFormik<Values>({
     initialValues: {
       text: '',
@@ -37,14 +37,14 @@ export default function useForm(goal: GoalDto, onClose: () => void): UseFormType
   return { isLoading, formik }
 }
 
-const useSendFeedback = (goalId: number, onClose: () => void) => {
+const useSendFeedback = (goalId: number, onSuccess: () => void) => {
   const { enqueueSnackbar } = useSnackbar()
   const [goals, mutate] = useMutateGoals()
 
   return useMutation(FeedbackService.create, {
     onSuccess: (feedback) => {
       mutate(getGoalNextState(goals, goalId, feedback))
-      onClose()
+      onSuccess()
       enqueueSnackbar({ message: 'Feedback successfully added', severity: 'success', icon: 'feedback' })
     },
   })

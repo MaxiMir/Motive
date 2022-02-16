@@ -1,5 +1,5 @@
 import Axios from 'lib/axios'
-import { CreateTopicDto, TopicDto, TopicUpdateDto } from 'dto'
+import { CreateMessageDto, TopicDto, UpdateMessageDto } from 'dto'
 import { Service } from './Service'
 
 export default class TopicService extends Service {
@@ -11,14 +11,12 @@ export default class TopicService extends Service {
     })
   }
 
-  static create(data: CreateTopicDto): Promise<TopicDto> {
+  static create(data: CreateMessageDto): Promise<TopicDto> {
     return Axios.post('/topics', data)
   }
 
-  static update(data: TopicUpdateDto): Promise<TopicDto> {
-    const { id, text } = data
-
-    return Axios.put(`/topics/${id}`, { text })
+  static update(id: number, data: UpdateMessageDto): Promise<void> {
+    return Axios.put(`/topics/${id}`, data)
   }
 
   static updateLike(id: number, add: boolean): Promise<void> {

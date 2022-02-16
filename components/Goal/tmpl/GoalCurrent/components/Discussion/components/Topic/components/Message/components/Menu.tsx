@@ -9,12 +9,11 @@ const Report = dynamic(() => import('components/Report'))
 const Modal = dynamic(() => import('components/Modal'))
 
 interface MenuProps {
-  topicId: number
   message: MessageDto
   client?: UserBaseDto
 }
 
-export default function Menu({ topicId, message, client }: MenuProps): JSX.Element {
+export default function Menu({ message, client }: MenuProps): JSX.Element {
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null)
   const [withReport, setWithReport] = useState(false)
   const [withEdit, setWithEdit] = useState(false)
@@ -55,7 +54,7 @@ export default function Menu({ topicId, message, client }: MenuProps): JSX.Eleme
             <MenuItem onClick={onCloseMenu}>Cancel</MenuItem>
           </MUMenu>
           {withReport && (
-            <Report entityId={topicId} type="message" anchorEl={anchorEl} client={client} onClose={onCloseReport} />
+            <Report entityId={message.id} type="message" anchorEl={anchorEl} client={client} onClose={onCloseReport} />
           )}
           {withEdit && <Modal tmpl="edit-message" message={message} onClose={onCloseModal} />}
         </>

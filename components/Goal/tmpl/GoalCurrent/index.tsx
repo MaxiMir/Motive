@@ -1,4 +1,4 @@
-import { Fragment, useMemo } from 'react'
+import { Fragment } from 'react'
 import dynamic from 'next/dynamic'
 import { createStyles, useTheme } from '@material-ui/core'
 import { makeStyles } from '@material-ui/core/styles'
@@ -9,7 +9,7 @@ import AppHeader from 'components/UI/AppHeader'
 import AppDot from 'components/UI/AppDot'
 import AppAccordion from 'components/UI/AppAccordion'
 import useChangeDay from './hook'
-import { getGoalHref, getGoalInfo, getRole } from './helper'
+import { getDatesMap, getGoalHref, getGoalInfo, getRole } from './helper'
 import GoalDate from './components/GoalDate'
 import Menu from './components/Menu'
 import Characteristic from './components/Characteristic'
@@ -41,20 +41,12 @@ export default function GoalCurrent({ goal, href, client }: GoalCurrentProps): J
   const classes = useStyles()
   const theme = useTheme()
   const colors = useCharacteristicColors()
-  const datesMap = useMemo(getDatesMap, [date, dayId, goal.calendar])
+  const datesMap = getDatesMap(goal)
   const [isLoading, onChangeDay] = useChangeDay(id)
   const role = getRole(goal, client)
   const goalHref = getGoalHref(href, goal)
   const { runsForDays, web, form, controls, completeStage, forTomorrow } = getGoalInfo(datesMap, goal, role)
   const rest = tasks.length - tasks.filter((t) => t.completed).length
-
-  function getDatesMap() {
-    if (!goal.calendar) {
-      return { [date]: dayId }
-    }
-
-    return goal.calendar.reduce((acc, c) => ({ ...acc, [c.date]: c.id }), {})
-  }
 
   return (
     <AppBox flexDirection="column" spacing={1} id={`goal-${id}`} className={classes.root}>
@@ -138,9 +130,7 @@ export default function GoalCurrent({ goal, href, client }: GoalCurrentProps): J
                 renderOnClick
                 unmountOnExit
                 detailsClass={classes.discussion}
-                details={
-                  <Discussion goalId={id} dayId={dayId} role={role} owner={owner} client={client} count={topicCount} />
-                }
+                details={<Discussion dayId={dayId} role={role} owner={owner} client={client} count={topicCount} />}
               />
             </div>
           </AppBox>

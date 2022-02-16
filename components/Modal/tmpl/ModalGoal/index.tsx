@@ -32,7 +32,7 @@ export interface ModalGoalProps {
 export default function ModalGoal({ onClose }: ModalGoalProps): JSX.Element {
   const classes = useStyles()
   const [hashtagsRef, setHashtagsFocus] = useFocus()
-  const tomorrow = getTomorrow()
+  const date = getTomorrow()
   const { isLoading, formik } = useForm(onClose)
   const { values, setFieldValue, handleSubmit } = formik
 
@@ -122,9 +122,7 @@ export default function ModalGoal({ onClose }: ModalGoalProps): JSX.Element {
                         date={task.date}
                         key={`tasks.${index}`}
                         onRemove={() => remove(index)}
-                        onToggleDate={(isChecked) =>
-                          setFieldValue(`tasks.${index}.date`, isChecked ? tomorrow : undefined)
-                        }
+                        onToggleDate={(isChecked) => setFieldValue(`tasks.${index}.date`, isChecked ? date : undefined)}
                       />
                     ))}
                     <Button

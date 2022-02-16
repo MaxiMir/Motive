@@ -11,13 +11,11 @@ const LikeText = dynamic(() => import('./components/LikeText'))
 const LikeButton = dynamic(() => import('./components/LikeButton'))
 
 interface LikeProps {
-  goalId: number
-  dayId: number
   message: MessageDto
   answerFor?: number
 }
 
-export default function Like({ goalId, dayId, message, answerFor }: LikeProps): JSX.Element {
+export default function Like({ message, answerFor }: LikeProps): JSX.Element {
   const classes = useStyles()
   const { data } = useUserPage()
   const text = checkOnText(message, data?.client)
@@ -29,14 +27,7 @@ export default function Like({ goalId, dayId, message, answerFor }: LikeProps): 
       {text ? (
         <LikeText message={message} icon={icon} />
       ) : (
-        <LikeButton
-          goalId={goalId}
-          dayId={dayId}
-          message={message}
-          icon={icon}
-          answerFor={answerFor}
-          isAuthorized={!!data?.client}
-        />
+        <LikeButton message={message} icon={icon} answerFor={answerFor} isAuthorized={!!data?.client} />
       )}
       <AppTypography className={classes.count}>{shortNumber}</AppTypography>
     </AppBox>

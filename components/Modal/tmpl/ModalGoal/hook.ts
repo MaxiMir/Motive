@@ -9,8 +9,8 @@ import { scrollToElem } from 'helpers/dom'
 import schema from 'schemas/goal'
 import { getGoalNextState } from './helper'
 
-export default function useForm(onClose: () => void): UseFormType<CreateGoalDto> {
-  const { isLoading, mutate } = useSendCreateGoal(onClose)
+export default function useForm(onSuccess: () => void): UseFormType<CreateGoalDto> {
+  const { isLoading, mutate } = useSendCreateGoal(onSuccess)
   const formik = useFormik<CreateGoalDto>({
     initialValues: {
       name: '',
@@ -27,14 +27,14 @@ export default function useForm(onClose: () => void): UseFormType<CreateGoalDto>
   return { isLoading, formik }
 }
 
-const useSendCreateGoal = (onClose: () => void) => {
+const useSendCreateGoal = (onSuccess: () => void) => {
   const { enqueueSnackbar } = useSnackbar()
   const [goals, mutate] = useMutateGoals()
 
   return useMutation(GoalService.create, {
     onSuccess(goal) {
       mutate(getGoalNextState(goals, goal))
-      onClose()
+      onSuccess()
       enqueueSnackbar({ message: 'The goal is successfully created', severity: 'success', icon: 'goal' })
       setTimeout(() => scrollToElem(`goal-${goal.id}`), 500)
     },

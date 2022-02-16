@@ -2,7 +2,7 @@ import dynamic from 'next/dynamic'
 import { RoleDto, TopicDto, MessageType, UserBaseDto } from 'dto'
 import AppBox from 'components/UI/AppBox'
 import { AppListProps } from 'components/UI/AppList'
-import { useDiscussion, useAddTopic } from './hook'
+import { useDiscussion, useAddMessage } from './hook'
 
 const User = dynamic(() => import('components/User'))
 const AppList = dynamic<AppListProps<TopicDto>>(() => import('components/UI/AppList'))
@@ -11,7 +11,6 @@ const Loader = dynamic(() => import('./components/Loader'))
 const Topic = dynamic(() => import('./components/Topic'))
 
 interface DiscussionProps {
-  goalId: number
   dayId: number
   role: RoleDto
   owner: UserBaseDto
@@ -19,9 +18,9 @@ interface DiscussionProps {
   count: number
 }
 
-export default function Discussion({ goalId, dayId, role, owner, client, count }: DiscussionProps): JSX.Element {
+export default function Discussion({ dayId, role, owner, client, count }: DiscussionProps): JSX.Element {
   const { isLoading, topics, checkOnLoadMore, fetchNextPage } = useDiscussion(dayId, count)
-  const onAdd = useAddTopic(goalId, dayId)
+  const onAdd = useAddMessage()
   const withInput = (!count || !!topics.length) && role !== 'OWNER'
   const height = !count ? undefined : (!withInput ? 0 : 56) + 496
 
@@ -45,8 +44,6 @@ export default function Discussion({ goalId, dayId, role, owner, client, count }
                   spacing={2}
                   render={(topic, index) => (
                     <Topic
-                      goalId={goalId}
-                      dayId={dayId}
                       topic={topic}
                       role={role}
                       owner={owner}

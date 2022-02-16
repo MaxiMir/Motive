@@ -1,8 +1,8 @@
-import differenceInDays from 'date-fns/differenceInDays'
+import produce from 'immer'
+import { differenceInCalendarDays, format, differenceInDays } from 'date-fns'
 import { DayDto, GoalDto, RoleDto, UserBaseDto } from 'dto'
 import { SEARCH_PARAMS, setQueryParams } from 'helpers/url'
-import { differenceInCalendarDays } from 'date-fns'
-import produce from 'immer'
+import { FORMAT } from './components/GoalDate/helper'
 
 const SHOW_WEB_AFTER_DAYS = 14
 
@@ -41,11 +41,21 @@ type GoalInfo = {
   forTomorrow: boolean
 }
 
+export const getDatesMap = (goal: GoalDto): Record<string, number> => {
+  const { day } = goal
+
+  if (!goal.calendar) {
+    return { [new Date(day.date).toLocaleDateString()]: day.id }
+  }
+
+  return goal.calendar.reduce((acc, { id, date }) => ({ ...acc, [new Date(date).toLocaleDateString()]: id }), {})
+}
+
 export const getGoalInfo = (datesMap: Record<string, number>, goal: GoalDto, role: RoleDto): GoalInfo => {
   const { started, day } = goal
   const currentDate = new Date()
   const dates = Object.keys(datesMap)
-  const lastDay = dates[dates.length - 1] === day.date
+  const lastDay = dates[dates.length - 1] === format(new Date(day.date), FORMAT)
   const daysGone = differenceInCalendarDays(currentDate, Date.parse(day.date))
   const runsForDays = differenceInCalendarDays(currentDate, Date.parse(started))
   const web = checkOnWeb(day.date, currentDate, lastDay)

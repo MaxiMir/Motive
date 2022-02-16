@@ -6,15 +6,14 @@ export enum MessageType {
   SUPPORT = 'support',
 }
 
-export interface CreateTopicDto {
+export interface CreateMessageDto {
   dayId: number
   text: string
   topicId?: number
   type: MessageType
 }
 
-export interface TopicUpdateDto {
-  id: number
+export interface UpdateMessageDto {
   text: string
 }
 
@@ -25,6 +24,9 @@ export interface MessageDto {
   user: UserBaseDto
   like?: boolean
   likeCount: number
+  goalId: number
+  dayId: number
+  replyId: number | null
   type: MessageType
   edited: boolean
 }

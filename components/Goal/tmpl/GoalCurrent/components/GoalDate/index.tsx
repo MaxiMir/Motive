@@ -1,12 +1,12 @@
 import { useMemo, useState } from 'react'
+import { format } from 'date-fns'
 import { Button, IconButton, makeStyles, createStyles } from '@material-ui/core'
 import { KeyboardDatePicker } from '@material-ui/pickers'
 import { MaterialUiPickersDate } from '@material-ui/pickers/typings/date'
-import { toISODateWithZeroTime } from 'helpers/date'
 import useDebounceCb from 'hooks/useDebounceCb'
 import AppBox from 'components/UI/AppBox'
 import AppIcon from 'components/UI/AppIcon'
-import { getDateInfo } from './helper'
+import { FORMAT, getDateInfo } from './helper'
 
 interface DateProps {
   datesMap: Record<string, number>
@@ -27,7 +27,7 @@ export default function GoalDate({ datesMap, date, isLoading, onChangeDay }: Dat
   }
 
   const onChange = (newDate: Date) => {
-    onChangeDay(datesMap[toISODateWithZeroTime(newDate)])
+    onChangeDay(datesMap[format(newDate, FORMAT)])
   }
 
   const checkShouldDisableDate = (checkedDate: MaterialUiPickersDate) => {
@@ -35,7 +35,7 @@ export default function GoalDate({ datesMap, date, isLoading, onChangeDay }: Dat
       return false
     }
 
-    const formattedCheckedDate = toISODateWithZeroTime(checkedDate)
+    const formattedCheckedDate = format(checkedDate, FORMAT)
 
     return !dates.some((d) => d === formattedCheckedDate)
   }

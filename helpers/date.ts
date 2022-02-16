@@ -1,5 +1,3 @@
-import { addDays, format } from 'date-fns'
-
-export const toISODateWithZeroTime = (date: Date): string => format(date, 'yyyy-MM-dd')
+import { addDays } from 'date-fns'
 
 export const getTomorrow = (): Date => addDays(new Date(), 1)

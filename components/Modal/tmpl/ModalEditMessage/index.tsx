@@ -8,13 +8,13 @@ import AppBox from 'components/UI/AppBox'
 import AppInput from 'components/UI/AppInput'
 import useForm from './hook'
 
-export interface ModalEditTopicProps {
+export interface ModalEditMessageProps {
   tmpl: 'edit-message'
   message: MessageDto
   onClose: () => void
 }
 
-export default function ModalEditTopic({ message, onClose }: ModalEditTopicProps): JSX.Element {
+export default function ModalEditMessage({ message, onClose }: ModalEditMessageProps): JSX.Element {
   const classes = useStyles()
   const { isLoading, formik } = useForm(message, onClose)
   const { handleSubmit } = formik

@@ -8,9 +8,9 @@ import { useMutateGoals } from 'views/UserView/hook'
 import schema from 'schemas/tasks'
 import { getGoalNextState } from './helper'
 
-export default function useForm(goal: GoalDto, onClose: () => void): UseFormType<CreateDayDto> {
+export default function useForm(goal: GoalDto, onSuccess: () => void): UseFormType<CreateDayDto> {
   const { id } = goal
-  const { isLoading, mutate } = useSendAddDay(id, onClose)
+  const { isLoading, mutate } = useSendNewDay(id, onSuccess)
   const formik = useFormik<CreateDayDto>({
     initialValues: {
       id,
@@ -25,7 +25,7 @@ export default function useForm(goal: GoalDto, onClose: () => void): UseFormType
   return { isLoading, formik }
 }
 
-const useSendAddDay = (goalId: number, onClose: () => void) => {
+const useSendNewDay = (goalId: number, onSuccess: () => void) => {
   const [goals, mutate] = useMutateGoals()
   const changeDayUrl = useChangeDayUrl()
 
@@ -35,7 +35,7 @@ const useSendAddDay = (goalId: number, onClose: () => void) => {
 
       mutate(getGoalNextState(goals, goalId, day))
       changeDayUrl(goals, goalId, day.id)
-      onClose()
+      onSuccess()
     },
   })
 }

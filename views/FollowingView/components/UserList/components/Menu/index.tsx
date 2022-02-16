@@ -1,10 +1,9 @@
 import { useState, MouseEvent } from 'react'
 import dynamic from 'next/dynamic'
-import { MenuItem } from '@material-ui/core'
 import Share from 'components/Share'
 import AppMenuButton from 'components/UI/AppMenuButton'
 
-const MUMenu = dynamic(() => import('@material-ui/core/Menu'))
+const MenuList = dynamic(() => import('./components/MenuList'))
 
 interface MenuProps {
   title: string
@@ -16,32 +15,26 @@ const Menu = ({ title, href, onRemove }: MenuProps): JSX.Element => {
   const [anchorEl, setAnchorEl] = useState<HTMLElement | null>(null)
   const [withShare, setWithShare] = useState(false)
 
+  const onOpen = (e: MouseEvent<HTMLButtonElement>) => setAnchorEl(e.currentTarget)
+
+  const onClose = () => setAnchorEl(null)
+
   const onShare = () => {
-    onCloseMenu()
+    onClose()
     setWithShare(true)
   }
 
   const onRemoveCombine = () => {
-    onCloseMenu()
+    onClose()
     onRemove()
   }
-
-  const onOpenMenu = (e: MouseEvent<HTMLButtonElement>) => setAnchorEl(e.currentTarget)
-
-  const onCloseMenu = () => setAnchorEl(null)
 
   const onCloseShare = () => setWithShare(false)
 
   return (
     <>
-      <AppMenuButton ariaControls="user-menu" title="open user menu" horizontal onClick={onOpenMenu} />
-      {anchorEl && (
-        <MUMenu id="user-menu" anchorEl={anchorEl} keepMounted open={!!anchorEl} onClose={onCloseMenu}>
-          <MenuItem onClick={onShare}>Share</MenuItem>
-          <MenuItem onClick={onRemoveCombine}>Remove</MenuItem>
-          <MenuItem onClick={onCloseMenu}>Cancel</MenuItem>
-        </MUMenu>
-      )}
+      <AppMenuButton ariaControls="user-menu" title="open user menu" horizontal onClick={onOpen} />
+      {anchorEl && <MenuList anchorEl={anchorEl} onShare={onShare} onRemove={onRemoveCombine} onClose={onClose} />}
       <Share open={withShare} title={title} href={href} onClose={onCloseShare} />
     </>
   )

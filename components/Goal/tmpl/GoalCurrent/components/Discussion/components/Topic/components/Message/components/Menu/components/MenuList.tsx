@@ -5,18 +5,17 @@ import { MessageDto, UserBaseDto } from 'dto'
 import AppMenuItemContent from 'components/UI/AppMenuItemContent'
 
 const Report = dynamic(() => import('components/Report'))
-const Modal = dynamic(() => import('components/Modal'))
 
 interface MenuListProps {
   anchorEl: HTMLElement
   message: MessageDto
   client?: UserBaseDto
+  onOpenModal: () => void
   onClose: () => void
 }
 
-export default function MenuList({ anchorEl, message, client, onClose }: MenuListProps): JSX.Element {
+export default function MenuList({ anchorEl, message, client, onOpenModal, onClose }: MenuListProps): JSX.Element {
   const [withReport, setWithReport] = useState(false)
-  const [withEdit, setWithEdit] = useState(false)
 
   const onOpenReport = () => setWithReport(true)
 
@@ -25,16 +24,11 @@ export default function MenuList({ anchorEl, message, client, onClose }: MenuLis
     onClose()
   }
 
-  const onCloseModal = () => {
-    setWithEdit(false)
-    onClose()
-  }
-
   return (
     <>
       <Menu id="goal-menu" anchorEl={anchorEl} keepMounted open onClose={onClose}>
         {message.user.id === client?.id ? (
-          <MenuItem onClick={() => setWithEdit(true)}>
+          <MenuItem onClick={onOpenModal}>
             <AppMenuItemContent icon="edit" text="Edit" />
           </MenuItem>
         ) : (
@@ -49,7 +43,6 @@ export default function MenuList({ anchorEl, message, client, onClose }: MenuLis
       {withReport && (
         <Report entityId={message.id} type="message" anchorEl={anchorEl} client={client} onClose={onCloseReport} />
       )}
-      {withEdit && <Modal tmpl="edit-message" message={message} onClose={onCloseModal} />}
     </>
   )
 }

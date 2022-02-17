@@ -37,7 +37,7 @@ export default function Topic({ owner, topic, role, client, inView, onView, onAd
         message={message}
         supportFor={message.type !== MessageType.SUPPORT ? undefined : owner.name}
         client={client}
-        onClick={!showReply ? undefined : onClick}
+        onReply={!showReply ? undefined : onClick}
       />
       {showInput && (
         <User

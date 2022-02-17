@@ -19,10 +19,10 @@ interface MessageProps {
   answerFor?: number
   supportFor?: string
   client?: UserBaseDto
-  onClick?: () => void
+  onReply?: () => void
 }
 
-export default function Message({ message, answerFor, supportFor, client, onClick }: MessageProps): JSX.Element {
+export default function Message({ message, answerFor, supportFor, client, onReply }: MessageProps): JSX.Element {
   const classes = useStyles()
   const { date, user, text, edited } = message
   const dateDifference = formatDistanceToNow(new Date(date), { includeSeconds: true })
@@ -47,7 +47,7 @@ export default function Message({ message, answerFor, supportFor, client, onClic
       <AppBox justifyContent="space-between" alignItems="center" pr={1}>
         <AppBox alignItems="center" spacing={1}>
           <span className={classes.date}>{dateDifference} ago</span>
-          {onClick && <Reply onClick={onClick} />}
+          {onReply && <Reply onClick={onReply} />}
         </AppBox>
         <Like message={message} answerFor={answerFor} />
       </AppBox>

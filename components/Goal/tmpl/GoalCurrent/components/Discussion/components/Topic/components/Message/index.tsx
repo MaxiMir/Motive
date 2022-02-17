@@ -5,6 +5,7 @@ import { MessageDto, UserBaseDto } from 'dto'
 import AppLink from 'components/UI/AppLink'
 import AppBox from 'components/UI/AppBox'
 import AppMarkdown from 'components/UI/AppMarkdown'
+import { getUserHref } from 'views/UserView/helper'
 import User from 'components/User'
 import Menu from './components/Menu'
 import Like from './components/Like'
@@ -25,13 +26,14 @@ export default function Message({ message, answerFor, supportFor, client, onClic
   const classes = useStyles()
   const { date, user, text, edited } = message
   const dateDifference = formatDistanceToNow(new Date(date), { includeSeconds: true })
+  const href = getUserHref(user.nickname)
 
   return (
     <AppBox flexDirection="column" spacing={1} flex={1}>
       <AppBox flexDirection="column" spacing={1} minWidth={152}>
         <AppBox alignItems="center" spacing={1}>
           <User tmpl="avatar" user={user} size={26} />
-          <AppLink href={`/${user.id}`} title={user.name} className={classes.name}>
+          <AppLink href={href} title={user.name} className={classes.name}>
             <b>{user.name}</b>
           </AppLink>
           {supportFor && <SupportSign name={supportFor} />}

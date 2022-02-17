@@ -1,4 +1,4 @@
-import { Fragment } from 'react'
+import { Fragment, useMemo } from 'react'
 import dynamic from 'next/dynamic'
 import { createStyles, useTheme } from '@material-ui/core'
 import { makeStyles } from '@material-ui/core/styles'
@@ -9,8 +9,8 @@ import AppHeader from 'components/UI/AppHeader'
 import AppDot from 'components/UI/AppDot'
 import AppAccordion from 'components/UI/AppAccordion'
 import useChangeDay from './hook'
-import { getDatesMap, getGoalHref, getGoalInfo, getRole } from './helper'
-import GoalDate from './components/GoalDate'
+import { getGoalHref, getGoalInfo, getRole } from './helper'
+import Calendar from './components/Calendar'
 import Menu from './components/Menu'
 import Characteristic from './components/Characteristic'
 import Discussion from './components/Discussion'
@@ -41,16 +41,15 @@ export default function GoalCurrent({ goal, href, client }: GoalCurrentProps): J
   const classes = useStyles()
   const theme = useTheme()
   const colors = useCharacteristicColors()
-  const datesMap = getDatesMap(goal)
   const [isLoading, onChangeDay] = useChangeDay(id)
   const role = getRole(goal, client)
   const goalHref = getGoalHref(href, goal)
-  const { runsForDays, web, form, controls, completeStage, forTomorrow } = getGoalInfo(datesMap, goal, role)
+  const goalInfo = useMemo(() => getGoalInfo(goal, role), [goal, role])
   const rest = tasks.length - tasks.filter((t) => t.completed).length
 
   return (
     <AppBox flexDirection="column" spacing={1} id={`goal-${id}`} className={classes.root}>
-      <GoalDate datesMap={datesMap} date={date} isLoading={isLoading} onChangeDay={onChangeDay} />
+      <Calendar datesMap={goalInfo.datesMap} date={date} isLoading={isLoading} onChangeDay={onChangeDay} />
       <div className={classes.wrap}>
         <AppBox flexDirection="column" justifyContent="space-between" spacing={3} className={classes.content}>
           <AppBox flexDirection="column" spacing={3}>
@@ -74,7 +73,7 @@ export default function GoalCurrent({ goal, href, client }: GoalCurrentProps): J
                   <AppDot />
                 </Fragment>
               ))}
-              <Characteristic name="runs for days" value={runsForDays} color={theme.palette.text.disabled} />
+              <Characteristic name="runs for days" value={goalInfo.runsForDays} color={theme.palette.text.disabled} />
             </AppBox>
             {!!hashtags?.length && <Hashtags hashtags={hashtags} />}
             <div>
@@ -85,7 +84,9 @@ export default function GoalCurrent({ goal, href, client }: GoalCurrentProps): J
                   id={`stage-${dayId}`}
                   ariaControls="stages-content"
                   defaultExpanded
-                  details={<Stages goal={goal} forTomorrow={forTomorrow} completeStage={completeStage} />}
+                  details={
+                    <Stages goal={goal} forTomorrow={goalInfo.forTomorrow} completeStage={goalInfo.completeStage} />
+                  }
                 />
               )}
               <AppAccordion
@@ -98,7 +99,7 @@ export default function GoalCurrent({ goal, href, client }: GoalCurrentProps): J
                   <AppBox flexDirection="column" spacing={2}>
                     {tasks.map((task) => (
                       <Fragment key={task.id}>
-                        {!form ? (
+                        {!goalInfo.form ? (
                           <Task task={task} />
                         ) : (
                           <TaskForm
@@ -107,7 +108,7 @@ export default function GoalCurrent({ goal, href, client }: GoalCurrentProps): J
                             rest={rest}
                             role={role}
                             client={client as UserBaseDto}
-                            forTomorrow={forTomorrow}
+                            forTomorrow={goalInfo.forTomorrow}
                           />
                         )}
                       </Fragment>
@@ -135,10 +136,12 @@ export default function GoalCurrent({ goal, href, client }: GoalCurrentProps): J
             </div>
           </AppBox>
           <AppBox flexDirection="column" spacing={2}>
-            {controls && <Reactions goal={goal} owner={owner} role={role} client={client} forTomorrow={forTomorrow} />}
+            {goalInfo.controls && (
+              <Reactions goal={goal} owner={owner} role={role} client={client} forTomorrow={goalInfo.forTomorrow} />
+            )}
             <Views views={views} />
           </AppBox>
-          {web && <Web />}
+          {goalInfo.web && <Web />}
         </AppBox>
       </div>
     </AppBox>

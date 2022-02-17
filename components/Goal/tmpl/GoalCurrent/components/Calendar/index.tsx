@@ -1,21 +1,20 @@
 import { useMemo, useState } from 'react'
-import { format } from 'date-fns'
 import { Button, IconButton, makeStyles, createStyles } from '@material-ui/core'
 import { KeyboardDatePicker } from '@material-ui/pickers'
 import { MaterialUiPickersDate } from '@material-ui/pickers/typings/date'
 import useDebounceCb from 'hooks/useDebounceCb'
 import AppBox from 'components/UI/AppBox'
 import AppIcon from 'components/UI/AppIcon'
-import { FORMAT, getDateInfo } from './helper'
+import { getDateInfo, getDateKey } from './helper'
 
-interface DateProps {
+interface CalendarProps {
   datesMap: Record<string, number>
   date: string
   isLoading: boolean
   onChangeDay: (id: number) => void
 }
 
-export default function GoalDate({ datesMap, date, isLoading, onChangeDay }: DateProps): JSX.Element {
+export default function Calendar({ datesMap, date, isLoading, onChangeDay }: CalendarProps): JSX.Element {
   const classes = useStyles()
   const dates = Object.keys(datesMap)
   const [open, setOpen] = useState(false)
@@ -27,7 +26,7 @@ export default function GoalDate({ datesMap, date, isLoading, onChangeDay }: Dat
   }
 
   const onChange = (newDate: Date) => {
-    onChangeDay(datesMap[format(newDate, FORMAT)])
+    onChangeDay(datesMap[getDateKey(newDate)])
   }
 
   const checkShouldDisableDate = (checkedDate: MaterialUiPickersDate) => {
@@ -35,7 +34,7 @@ export default function GoalDate({ datesMap, date, isLoading, onChangeDay }: Dat
       return false
     }
 
-    const formattedCheckedDate = format(checkedDate, FORMAT)
+    const formattedCheckedDate = getDateKey(checkedDate)
 
     return !dates.some((d) => d === formattedCheckedDate)
   }

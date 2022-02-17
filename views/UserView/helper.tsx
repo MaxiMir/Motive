@@ -29,7 +29,7 @@ export const getUserMeta = (user?: UserDetailDto): UserMeta | null => {
   }
 }
 
-export const getUserHref = (nickname: string): string => `/${nickname}/`
+export const getUserHref = (nickname: string): string => `/${nickname}`
 
 export const getCharacteristicsTitle = (): { [k in UserCharacteristicName]: JSX.Element | undefined } => ({
   motivation: (

@@ -1,6 +1,7 @@
 import ReactMarkdown from 'react-markdown'
 import sanitize from 'rehype-sanitize'
 import { makeStyles } from '@material-ui/core/styles'
+import { toMarkdown } from 'helpers/prepare'
 import AppTypography from 'components/UI/AppTypography'
 
 interface AppMarkdownProps {
@@ -8,6 +9,7 @@ interface AppMarkdownProps {
 }
 
 export default function AppMarkdown({ text }: AppMarkdownProps): JSX.Element {
+  const markdown = toMarkdown(text)
   const classes = useStyles()
 
   return (
@@ -23,7 +25,7 @@ export default function AppMarkdown({ text }: AppMarkdownProps): JSX.Element {
       }}
       className={classes.markdown}
     >
-      {text}
+      {markdown}
     </ReactMarkdown>
   )
 }

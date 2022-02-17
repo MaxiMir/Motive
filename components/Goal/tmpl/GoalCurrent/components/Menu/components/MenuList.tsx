@@ -1,8 +1,8 @@
 import { useState } from 'react'
 import dynamic from 'next/dynamic'
-import { Menu } from '@material-ui/core'
+import { Menu, MenuItem } from '@material-ui/core'
 import { RoleDto, UserBaseDto } from 'dto'
-import AppMenuItem from 'components/UI/AppMenuItem'
+import AppMenuItemContent from 'components/UI/AppMenuItemContent'
 
 const Report = dynamic(() => import('components/Report'))
 
@@ -28,9 +28,17 @@ export default function MenuList({ anchorEl, goalId, client, role, onShare, onCl
   return (
     <>
       <Menu id="goal-menu" anchorEl={anchorEl} keepMounted open={!!anchorEl} onClose={onClose}>
-        <AppMenuItem icon="share" text="Share" onClick={onShare} />
-        {role !== 'OWNER' && <AppMenuItem icon="outlined_flag" text="Report" onClick={onOpenReport} />}
-        <AppMenuItem icon="not_interested" text="Cancel" onClick={onClose} />
+        <MenuItem onClick={onShare}>
+          <AppMenuItemContent icon="share" text="Share" />
+        </MenuItem>
+        {role !== 'OWNER' && (
+          <MenuItem onClick={onOpenReport}>
+            <AppMenuItemContent icon="outlined_flag" text="Report" />
+          </MenuItem>
+        )}
+        <MenuItem onClick={onClose}>
+          <AppMenuItemContent icon="not_interested" text="Cancel" />
+        </MenuItem>
       </Menu>
       {withReport && (
         <Report entityId={goalId} type="goal" anchorEl={anchorEl} client={client} onClose={onCloseReport} />

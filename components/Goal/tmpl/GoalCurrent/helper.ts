@@ -1,10 +1,18 @@
 import produce from 'immer'
-import { differenceInCalendarDays, format, differenceInDays } from 'date-fns'
-import { DayDto, GoalDto, RoleDto, UserBaseDto } from 'dto'
+import { differenceInCalendarDays, differenceInDays } from 'date-fns'
+import { CalendarDto, DayDto, GoalDto, RoleDto, UserBaseDto } from 'dto'
 import { SEARCH_PARAMS, setQueryParams } from 'helpers/url'
-import { FORMAT } from './components/GoalDate/helper'
+import { getDateKey } from './components/Calendar/helper'
 
 const SHOW_WEB_AFTER_DAYS = 14
+
+export const getDatesMap = (day: DayDto, calendar?: CalendarDto[]): Record<string, number> => {
+  if (!calendar) {
+    return { [getDateKey(day.date)]: day.id }
+  }
+
+  return calendar.reduce((acc, { id, date }) => ({ ...acc, [getDateKey(date)]: id }), {})
+}
 
 export const getGoalHref = (userHref: string, goal: GoalDto): string => {
   const { id, day } = goal
@@ -33,6 +41,7 @@ const checkOnCompleteStage = (reactions: boolean, role: RoleDto, goal: GoalDto):
   role === 'OWNER' && reactions && goal.stage <= goal.day.stage
 
 type GoalInfo = {
+  datesMap: Record<string, number>
   runsForDays: number
   web: boolean
   form: boolean
@@ -41,21 +50,12 @@ type GoalInfo = {
   forTomorrow: boolean
 }
 
-export const getDatesMap = (goal: GoalDto): Record<string, number> => {
-  const { day } = goal
-
-  if (!goal.calendar) {
-    return { [new Date(day.date).toLocaleDateString()]: day.id }
-  }
-
-  return goal.calendar.reduce((acc, { id, date }) => ({ ...acc, [new Date(date).toLocaleDateString()]: id }), {})
-}
-
-export const getGoalInfo = (datesMap: Record<string, number>, goal: GoalDto, role: RoleDto): GoalInfo => {
-  const { started, day } = goal
+export const getGoalInfo = (goal: GoalDto, role: RoleDto): GoalInfo => {
+  const { started, day, calendar } = goal
   const currentDate = new Date()
+  const datesMap = getDatesMap(day, calendar)
   const dates = Object.keys(datesMap)
-  const lastDay = dates[dates.length - 1] === format(new Date(day.date), FORMAT)
+  const lastDay = dates[dates.length - 1] === getDateKey(day.date)
   const daysGone = differenceInCalendarDays(currentDate, Date.parse(day.date))
   const runsForDays = differenceInCalendarDays(currentDate, Date.parse(started))
   const web = checkOnWeb(day.date, currentDate, lastDay)
@@ -65,6 +65,7 @@ export const getGoalInfo = (datesMap: Record<string, number>, goal: GoalDto, rol
   const forTomorrow = daysGone === -1
 
   return {
+    datesMap,
     runsForDays,
     web,
     form,

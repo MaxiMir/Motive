@@ -40,3 +40,6 @@ export const parseJSON = (string: string): unknown | null => {
 
   return result
 }
+
+export const toMarkdown = (value: string): string =>
+  value.replace(/(https?:\/\/[^\s]+)/g, '[$1]($1)').replace(/\\n/g, '  ')

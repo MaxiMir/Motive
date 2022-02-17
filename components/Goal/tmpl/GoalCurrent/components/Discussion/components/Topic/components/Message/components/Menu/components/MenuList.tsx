@@ -1,8 +1,8 @@
 import { useState } from 'react'
 import dynamic from 'next/dynamic'
-import { Menu } from '@material-ui/core'
+import { Menu, MenuItem } from '@material-ui/core'
 import { MessageDto, UserBaseDto } from 'dto'
-import AppMenuItem from 'components/UI/AppMenuItem'
+import AppMenuItemContent from 'components/UI/AppMenuItemContent'
 
 const Report = dynamic(() => import('components/Report'))
 const Modal = dynamic(() => import('components/Modal'))
@@ -34,11 +34,17 @@ export default function MenuList({ anchorEl, message, client, onClose }: MenuLis
     <>
       <Menu id="goal-menu" anchorEl={anchorEl} keepMounted open onClose={onClose}>
         {message.user.id === client?.id ? (
-          <AppMenuItem icon="edit" text="Edit" onClick={() => setWithEdit(true)} />
+          <MenuItem onClick={() => setWithEdit(true)}>
+            <AppMenuItemContent icon="edit" text="Edit" />
+          </MenuItem>
         ) : (
-          <AppMenuItem icon="outlined_flag" text="Report" onClick={onOpenReport} />
+          <MenuItem onClick={onOpenReport}>
+            <AppMenuItemContent icon="outlined_flag" text="Report" />
+          </MenuItem>
         )}
-        <AppMenuItem icon="not_interested" text="Cancel" onClick={onClose} />
+        <MenuItem onClick={onClose}>
+          <AppMenuItemContent icon="not_interested" text="Cancel" />
+        </MenuItem>
       </Menu>
       {withReport && (
         <Report entityId={message.id} type="message" anchorEl={anchorEl} client={client} onClose={onCloseReport} />

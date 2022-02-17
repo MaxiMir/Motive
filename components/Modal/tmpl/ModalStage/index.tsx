@@ -16,9 +16,11 @@ export interface ModalStageProps {
 export default function ModalStage({ goal, onClose }: ModalStageProps): JSX.Element {
   const { stages, day } = goal
   const classes = useStyles()
-  const { isLoading, send } = useSendStage(goal, onClose)
+  const { isLoading, mutate } = useSendStage(goal, onClose)
   const isFinal = stages.length === day.stage
   const nextStage = day.stage + 1
+
+  const onClick = () => mutate({ id: goal.id, stage: nextStage })
 
   return (
     <AppModal
@@ -37,7 +39,7 @@ export default function ModalStage({ goal, onClose }: ModalStageProps): JSX.Elem
           name="Complete"
           nameLoading="Completing"
           emoji="stage"
-          onClick={() => send({ id: goal.id, stage: nextStage })}
+          onClick={onClick}
         />,
       ]}
       onClose={onClose}

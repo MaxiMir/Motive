@@ -26,7 +26,7 @@ export interface MessageDto {
   likeCount: number
   goalId: number
   dayId: number
-  replyId: number | null
+  parentId: number | null
   type: MessageType
   edited: boolean
 }

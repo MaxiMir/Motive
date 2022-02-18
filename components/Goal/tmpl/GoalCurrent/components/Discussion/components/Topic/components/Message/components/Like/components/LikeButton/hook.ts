@@ -1,9 +1,10 @@
 import { AxiosError } from 'axios'
 import { InfiniteData, useMutation, useQueryClient } from 'react-query'
-import { MessageDto, TopicDto } from 'dto'
+import { MessageDto, MessageType, TopicDto } from 'dto'
+import useSnackbar from 'hooks/useSnackbar'
 import useDebounceCb from 'hooks/useDebounceCb'
 import { useMutateGoals } from 'views/UserView/hook'
-import { Options, Context, fetcher, getNextState, getGoalNextState } from './helper'
+import { Context, fetcher, getGoalNextState, getNextState, Options } from './helper'
 
 type SetLike = () => void
 
@@ -12,6 +13,7 @@ export default function useSetLike(message: MessageDto, answerFor: number | unde
   const key = ['discussion', dayId]
   const [goals, mutateGoals] = useMutateGoals()
   const queryClient = useQueryClient()
+  const { enqueueSnackbar } = useSnackbar()
   const { mutate } = useMutation<void, AxiosError, Options, Context>(fetcher, {
     async onMutate(options: Options) {
       await queryClient.cancelQueries(key)
@@ -27,8 +29,21 @@ export default function useSetLike(message: MessageDto, answerFor: number | unde
       return { previous }
     },
     onSuccess(_, { add }) {
+      if (message.type === MessageType.SUPPORT) {
+        enqueueSnackbar({
+          message: `You have increased ${message.user.name} support points`,
+          severity: 'success',
+          icon: 'magic',
+        })
+      }
+
       if (answerFor) {
         mutateGoals(getGoalNextState(goals, goalId, add))
+        enqueueSnackbar({
+          message: "You have increased goal's support points",
+          severity: 'success',
+          icon: 'magic',
+        })
       }
     },
     onError(_, __, context) {

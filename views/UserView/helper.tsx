@@ -36,13 +36,13 @@ export const getCharacteristicsTitle = (): { [k in UserCharacteristicName]: JSX.
     <>
       Motivation points are given for: <br />
       • goal completion <br />
-      • every <AppEmoji name="motivation" onlyEmoji /> put on your day <br />
+      • every <AppEmoji name="motivation" onlyEmoji /> put on your goal <br />
     </>
   ),
   creativity: (
     <>
       Creativity points are given for: <br />
-      • every <AppEmoji name="creativity" onlyEmoji /> put on your day <br />
+      • every <AppEmoji name="creativity" onlyEmoji /> put on your goal <br />
     </>
   ),
   support: (

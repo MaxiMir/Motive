@@ -18,9 +18,9 @@ const LAST_CHARACTERISTIC_INDEX = 3
 export interface UserCharacteristicProps {
   tmpl: 'characteristic'
   user: UserDto
-  inView: boolean
+  inView?: boolean
   menu?: JSX.Element
-  onView: () => void
+  onView?: () => void
 }
 
 export default function UserCharacteristic({ user, inView, menu, onView }: UserCharacteristicProps): JSX.Element {
@@ -58,7 +58,7 @@ export default function UserCharacteristic({ user, inView, menu, onView }: UserC
           </AppBox>
         </AppBox>
       </AppBox>
-      {inView && <AppInView onView={onView} />}
+      {onView && <>{inView && <AppInView onView={onView} />}</>}
     </>
   )
 }

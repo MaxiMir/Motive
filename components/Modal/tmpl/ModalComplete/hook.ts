@@ -3,6 +3,7 @@ import { useMutation } from 'react-query'
 import { GoalDto } from 'dto'
 import { UseFormType } from 'types'
 import GoalService from 'services/GoalService'
+import { useUserPage } from 'views/UserView/hook'
 import schema from 'schemas/complete'
 
 interface Values {
@@ -33,7 +34,12 @@ export default function useForm(goal: GoalDto, onSuccess: () => void): UseFormTy
 }
 
 const useSendComplete = (onSuccess: () => void) => {
+  const { refetch } = useUserPage()
+
   return useMutation(GoalService.setCompleted, {
-    onSuccess,
+    async onSuccess() {
+      await refetch()
+      onSuccess()
+    },
   })
 }

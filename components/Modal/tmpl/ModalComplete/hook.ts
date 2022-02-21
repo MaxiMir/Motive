@@ -3,20 +3,21 @@ import { useMutation } from 'react-query'
 import { GoalDto } from 'dto'
 import { UseFormType } from 'types'
 import GoalService from 'services/GoalService'
+import useSnackbar from 'hooks/useSnackbar'
 import { useUserPage } from 'views/UserView/hook'
 import schema from 'schemas/complete'
 
 interface Values {
-  description: string
+  text: string
   photos: File[]
   video: ''
 }
 
 export default function useForm(goal: GoalDto, onSuccess: () => void): UseFormType<Values> {
-  const { isLoading, mutate } = useSendComplete(onSuccess)
+  const { isLoading, mutate } = useSendConfirmation(onSuccess)
   const formik = useFormik<Values>({
     initialValues: {
-      description: '',
+      text: '',
       photos: [],
       video: '',
     },
@@ -24,21 +25,23 @@ export default function useForm(goal: GoalDto, onSuccess: () => void): UseFormTy
     async onSubmit(data) {
       const formData = new FormData()
 
-      formData.append('description', data.description.trim())
+      formData.append('text', data.text.trim())
       data.photos.forEach((photo) => formData.append('photos', photo))
-      mutate({ id: goal.day.id, body: formData })
+      mutate({ id: goal.id, body: formData })
     },
   })
 
   return { isLoading, formik }
 }
 
-const useSendComplete = (onSuccess: () => void) => {
+const useSendConfirmation = (onSuccess: () => void) => {
   const { refetch } = useUserPage()
+  const { enqueueSnackbar } = useSnackbar()
 
-  return useMutation(GoalService.setCompleted, {
+  return useMutation(GoalService.updateConfirmation, {
     async onSuccess() {
       await refetch()
+      enqueueSnackbar({ message: 'Your characteristics have been increased', severity: 'success', icon: 'magic' })
       onSuccess()
     },
   })

@@ -62,7 +62,7 @@ export default function ModalComplete({ goal, onClose }: ModalCompleteProps): JS
                 Congratulations, you did it!
               </AppTypography>
             </AppBox>
-            <Field name="description" label="How it was" color="secondary" multiline rows={3} component={AppInput} />
+            <Field name="text" label="How it was" color="secondary" multiline rows={3} component={AppInput} />
             {!!values.photos.length && (
               <AppBox flexDirection="column" spacing={2} width="100%">
                 <AppHeader name="photo" variant="h6" component="h2" color="primary">
@@ -125,7 +125,7 @@ export default function ModalComplete({ goal, onClose }: ModalCompleteProps): JS
                       ,
                     </AppTypography>
                     <AppTypography>
-                      You get an additional <b className={classes.count}>5</b> points{' '}
+                      You get an extra <b className={classes.count}>5</b> points{' '}
                       <AppEmoji name="motivation" onlyEmoji /> for completing the goal.
                     </AppTypography>
                   </div>

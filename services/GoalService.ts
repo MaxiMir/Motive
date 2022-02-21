@@ -36,11 +36,11 @@ export default class GoalService extends Service {
   }
 
   /**
-   * /goal/{id}/completed
+   * /goal/{id}/confirmation
    */
-  static setCompleted(data: { id: number; body: FormData }): Promise<GoalDto> {
-    const { id, ...body } = data
+  static updateConfirmation(data: { id: number; body: FormData }): Promise<GoalDto> {
+    const { id, body } = data
 
-    return Axios.patch(`/goals/${id}/completed`, body)
+    return Axios.patch(`/goals/${id}/confirmation`, body)
   }
 }

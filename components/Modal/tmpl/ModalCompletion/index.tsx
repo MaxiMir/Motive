@@ -21,13 +21,13 @@ const Alert = dynamic(() => import('@material-ui/lab/Alert'))
 
 const CHARACTERISTIC_NAMES: MainCharacteristicName[] = ['motivation', 'creativity', 'support']
 
-export interface ModalCompleteProps {
-  tmpl: 'complete'
+export interface ModalCompletionProps {
+  tmpl: 'completion'
   goal: GoalDto
   onClose: () => void
 }
 
-export default function ModalComplete({ goal, onClose }: ModalCompleteProps): JSX.Element {
+export default function ModalCompletion({ goal, onClose }: ModalCompletionProps): JSX.Element {
   const classes = useStyles()
   const { isLoading, formik } = useForm(goal, onClose)
   const { values, touched, errors, setFieldValue, handleSubmit } = formik

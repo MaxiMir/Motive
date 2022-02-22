@@ -1,5 +1,6 @@
 import { InfiniteData, useInfiniteQuery, useQueryClient } from 'react-query'
 import { TopicDto } from 'dto'
+import { partialCheckOnLoadMore } from 'helpers/fetcher'
 import { useMutateGoals } from 'views/UserView/hook'
 import { PRELOAD_DIFF, getGoalNextState, partialFetcher, partialGetNextPageParam, getNextState } from './helper'
 
@@ -18,8 +19,7 @@ export const useDiscussion = (dayId: number, count: number): UseDiscussion => {
     enabled: !!count,
   })
   const topics = data?.pages.flat() || []
-
-  const checkOnLoadMore = (index: number) => !!hasNextPage && topics.length - index === PRELOAD_DIFF
+  const checkOnLoadMore = partialCheckOnLoadMore(topics.length, hasNextPage, PRELOAD_DIFF)
 
   return { isLoading, topics, checkOnLoadMore, fetchNextPage }
 }

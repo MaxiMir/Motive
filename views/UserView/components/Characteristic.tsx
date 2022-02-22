@@ -23,11 +23,12 @@ export default function Characteristic(props: CharacteristicProps): JSX.Element 
   const { user, color, name, title } = props
   const router = useRouter()
   const classes = useStyles({ color })
-  const [modal, setModal] = useState<'followers'>()
+  const [modal, setModal] = useState<'followers' | 'completed'>()
 
   const onClick = () => {
     switch (name) {
       case 'followers':
+      case 'completed':
         setModal(name)
     }
   }

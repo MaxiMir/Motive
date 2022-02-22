@@ -4,7 +4,7 @@ import { Service } from './Service'
 
 export default class TopicService extends Service {
   static getByDayId(dayId: number, page: number, take: number): Promise<TopicDto[]> {
-    const pagination = Service.getPaginationParams(page, take)
+    const pagination = TopicService.getPaginationParams(page, take)
 
     return Axios.get('/topics', {
       params: { 'where[day]': dayId, ...pagination },

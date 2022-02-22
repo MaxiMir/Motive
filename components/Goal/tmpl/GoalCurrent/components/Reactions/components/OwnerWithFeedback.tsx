@@ -7,7 +7,7 @@ import AppBox from 'components/UI/AppBox'
 
 const Modal = dynamic(() => import('components/Modal'))
 
-type ModalTmpl = 'tasks' | 'complete'
+type ModalTmpl = 'tasks' | 'completion'
 
 interface OwnerWithFeedbackProps {
   goal: GoalDto
@@ -36,13 +36,13 @@ export default function OwnerWithFeedback({ goal }: OwnerWithFeedbackProps): JSX
           variant="outlined"
           color="secondary"
           startIcon={<AppEmoji name="cup" onlyEmoji />}
-          onClick={() => openModal('complete')}
+          onClick={() => openModal('completion')}
         >
           Complete
         </Button>
       )}
       {modal === 'tasks' && <Modal tmpl="tasks" goal={goal} onClose={closeModal} />}
-      {modal === 'complete' && <Modal tmpl="complete" goal={goal} onClose={closeModal} />}
+      {modal === 'completion' && <Modal tmpl="completion" goal={goal} onClose={closeModal} />}
     </AppBox>
   )
 }

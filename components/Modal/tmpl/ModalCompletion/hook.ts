@@ -6,7 +6,7 @@ import GoalService from 'services/GoalService'
 import useSnackbar from 'hooks/useSnackbar'
 import { scrollToElem } from 'helpers/dom'
 import { useUserPage } from 'views/UserView/hook'
-import schema from 'schemas/complete'
+import schema from 'schemas/completion'
 
 interface Values {
   text: string

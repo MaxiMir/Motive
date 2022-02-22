@@ -3,25 +3,24 @@ import Axios from 'lib/axios'
 import { Service } from './Service'
 
 export default class GoalService extends Service {
-  /**
-   * /goals
-   */
   static create(data: CreateGoalDto): Promise<CreatedGoal> {
     return Axios.post('/goals', data)
   }
 
-  /**
-   * /goals/{id}/days
-   */
+  static get(owner: number, confirmation: boolean, page: number, take: number): Promise<GoalDto[]> {
+    const pagination = GoalService.getPaginationParams(page, take)
+
+    return Axios.get('/goals', {
+      params: { 'where[owner]': owner, 'where[confirmation]': confirmation, ...pagination },
+    })
+  }
+
   static addDay(data: CreateDayDto): Promise<CreatedGoal> {
     const { id, ...body } = data
 
     return Axios.post(`/goals/${id}/days`, body)
   }
 
-  /**
-   * /goals/{id}/stage
-   */
   static updateStage(data: GoalStageDto): Promise<void> {
     const { id, ...body } = data
 
@@ -35,9 +34,6 @@ export default class GoalService extends Service {
     return Axios.patch(`/goals/${id}/days/${dayId}/characteristic/${name}`, { id }, { params })
   }
 
-  /**
-   * /goal/{id}/confirmation
-   */
   static updateConfirmation(data: { id: number; body: FormData }): Promise<GoalDto> {
     const { id, body } = data
 

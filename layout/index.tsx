@@ -55,7 +55,13 @@ const Layout: FC<LayoutProps> = ({
         <link rel="icon" type="image/x-icon" href="/favicon.ico" />
       </Head>
       <Header isAuthenticated={!!client?.id} />
-      {statusCode === 200 ? <main className={classes.main}>{children}</main> : <Error statusCode={statusCode} />}
+      {statusCode !== 200 ? (
+        <Error statusCode={statusCode} />
+      ) : (
+        <main id="main" className={classes.main}>
+          {children}
+        </main>
+      )}
       <Footer nickname={client?.nickname} />
     </>
   )

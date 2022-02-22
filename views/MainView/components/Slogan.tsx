@@ -8,7 +8,7 @@ export default function Slogan(): JSX.Element {
   return (
     <AppBox alignItems="center" justifyContent="center" className={classes.root}>
       <AppBox flexDirection="column" alignItems="center">
-        <AppTypography variant="h4" align="center" component="h1" className={classes.header}>
+        <AppTypography variant="h4" align="center" component="h1" className={classes.name}>
           {process.env.NEXT_PUBLIC_APP_NAME?.toUpperCase()}
         </AppTypography>
         <AppTypography align="center" className={classes.subheader}>
@@ -25,7 +25,7 @@ const useStyles = makeStyles((theme) =>
       height: 120,
       backgroundColor: '#ffffff',
     },
-    header: {
+    name: {
       background: `linear-gradient(90deg, ${theme.palette.warning.main}, ${theme.palette.success.dark}, ${theme.palette.info.dark})`,
       '-webkit-background-clip': 'text',
       '-webkit-text-fill-color': 'transparent',

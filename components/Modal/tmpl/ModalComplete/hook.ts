@@ -4,6 +4,7 @@ import { GoalDto } from 'dto'
 import { UseFormType } from 'types'
 import GoalService from 'services/GoalService'
 import useSnackbar from 'hooks/useSnackbar'
+import { scrollToElem } from 'helpers/dom'
 import { useUserPage } from 'views/UserView/hook'
 import schema from 'schemas/complete'
 
@@ -39,10 +40,11 @@ const useSendConfirmation = (onSuccess: () => void) => {
   const { enqueueSnackbar } = useSnackbar()
 
   return useMutation(GoalService.updateConfirmation, {
-    async onSuccess() {
-      await refetch()
-      enqueueSnackbar({ message: 'Your characteristics have been increased', severity: 'success', icon: 'magic' })
+    onSuccess() {
       onSuccess()
+      setTimeout(() => scrollToElem('main'), 0)
+      setTimeout(refetch, 300)
+      enqueueSnackbar({ message: 'Your characteristics have been increased', severity: 'success', icon: 'bug' })
     },
   })
 }

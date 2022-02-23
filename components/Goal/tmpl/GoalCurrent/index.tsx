@@ -8,13 +8,14 @@ import AppBox from 'components/UI/AppBox'
 import AppHeader from 'components/UI/AppHeader'
 import AppDot from 'components/UI/AppDot'
 import AppAccordion from 'components/UI/AppAccordion'
-import { getGoalHref, getGoalInfo, getRole } from './helper'
+import { getRole } from 'components/Goal/helper'
+import { useChangeDay, useIncreaseViews } from './hook'
+import { getGoalHref, getGoalInfo } from './helper'
+import Characteristic from 'components/Characteristic'
 import Calendar from './components/Calendar'
 import Menu from './components/Menu'
 import Discussion from './components/Discussion'
 import Views from './components/Views'
-import Characteristic from 'components/Characteristic'
-import { useChangeDay, useIncreaseViews } from './hook'
 
 const AppTypography = dynamic(() => import('components/UI/AppTypography'))
 const Owner = dynamic(() => import('./components/Owner'))

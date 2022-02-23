@@ -1,6 +1,6 @@
 import produce from 'immer'
 import { differenceInCalendarDays, differenceInDays } from 'date-fns'
-import { CalendarDto, DayDto, GoalDto, RoleDto, UserBaseDto } from 'dto'
+import { CalendarDto, DayDto, GoalDto, RoleDto } from 'dto'
 import { SEARCH_PARAMS, setQueryParams } from 'helpers/url'
 import { getDateKey } from './components/Calendar/helper'
 
@@ -22,15 +22,6 @@ export const getGoalHref = (userHref: string, goal: GoalDto): string => {
 
 const checkOnWeb = (dayDate: string, currentDate: Date, lastDay: boolean): boolean =>
   lastDay && differenceInDays(currentDate, Date.parse(dayDate)) >= SHOW_WEB_AFTER_DAYS
-
-export const getRole = (goal: GoalDto, client?: UserBaseDto): RoleDto => {
-  switch (true) {
-    case goal.owner.id === client?.id:
-      return 'OWNER'
-    default:
-      return 'GUEST'
-  }
-}
 
 const checkOnTaskForm = (role: RoleDto, daysGone: number): boolean =>
   ['OWNER', 'MEMBER'].includes(role) && daysGone <= 0

@@ -3,6 +3,7 @@ import { createStyles, makeStyles } from '@material-ui/core'
 import { UserDetailDto } from 'dto'
 import AppModal from 'components/UI/AppModal'
 import AppContainer from 'components/UI/AppContainer'
+import { useUserPage } from 'views/UserView/hook'
 import useGoals from './hook'
 
 const Loader = dynamic(() => import('./components/Loader'))
@@ -18,6 +19,7 @@ export interface ModalCompletedProps {
 export default function ModalCompleted({ user, onClose }: ModalCompletedProps): JSX.Element {
   const { id, characteristic } = user
   const classes = useStyles()
+  const { data } = useUserPage()
   const { isLoading, goals, checkOnLoadMore, fetchNextPage } = useGoals(id, characteristic.completed)
 
   return (
@@ -38,7 +40,7 @@ export default function ModalCompleted({ user, onClose }: ModalCompletedProps): 
             {!goals?.length ? (
               <EmptyList />
             ) : (
-              <GoalList goals={goals} checkOnLoadMore={checkOnLoadMore} onView={fetchNextPage} />
+              <GoalList goals={goals} client={data?.client} checkOnLoadMore={checkOnLoadMore} onView={fetchNextPage} />
             )}
           </>
         )}
@@ -50,6 +52,7 @@ export default function ModalCompleted({ user, onClose }: ModalCompletedProps): 
 const useStyles = makeStyles((theme) =>
   createStyles({
     container: {
+      minHeight: 440,
       padding: 0,
     },
     completed: {

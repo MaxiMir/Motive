@@ -23,4 +23,4 @@ export const getDateInfo = (dates: string[], date: string): DateInfo => {
 }
 
 export const getDateKey = (date: string | Date): string =>
-  format(date instanceof Date ? date : new Date(date), 'dd.MM.yyyy')
+  format(date instanceof Date ? date : new Date(date), 'MM/dd/yyyy')

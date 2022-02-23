@@ -5,6 +5,7 @@ import AppModal from 'components/UI/AppModal'
 import AppContainer from 'components/UI/AppContainer'
 import useGoals from './hook'
 
+const Loader = dynamic(() => import('./components/Loader'))
 const EmptyList = dynamic(() => import('./components/EmptyList'))
 const GoalList = dynamic(() => import('./components/GoalList'))
 
@@ -31,13 +32,13 @@ export default function ModalCompleted({ user, onClose }: ModalCompletedProps): 
     >
       <AppContainer flexColumn className={classes.container}>
         {isLoading ? (
-          <>Loading...</>
+          <Loader count={characteristic.completed} />
         ) : (
           <>
             {!goals?.length ? (
               <EmptyList />
             ) : (
-              <GoalList goals={goals} checkOnLoadMore={checkOnLoadMore} onLoadMore={fetchNextPage} />
+              <GoalList goals={goals} checkOnLoadMore={checkOnLoadMore} onView={fetchNextPage} />
             )}
           </>
         )}
@@ -48,13 +49,11 @@ export default function ModalCompleted({ user, onClose }: ModalCompletedProps): 
 
 const useStyles = makeStyles((theme) =>
   createStyles({
+    container: {
+      padding: 0,
+    },
     completed: {
       color: theme.text.sand,
-    },
-    container: {
-      height: 440,
-      padding: 0,
-      overflow: 'scroll',
     },
   }),
 )

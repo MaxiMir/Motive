@@ -1,16 +1,16 @@
 import { useInfiniteQuery } from 'react-query'
-import { GoalDto } from 'dto'
+import { GoalCompletedDto } from 'dto'
 import { partialCheckOnLoadMore, partialGetNextPageParam } from 'helpers/fetcher'
 import { PRELOAD_DIFF, TAKE, partialFetcher } from './helper'
 
-type UseFollowers = {
+type UseGoals = {
   isLoading: boolean
-  goals?: GoalDto[]
+  goals?: GoalCompletedDto[]
   checkOnLoadMore: (index: number) => boolean
   fetchNextPage: () => void
 }
 
-export default function useGoals(userId: number, count: number): UseFollowers {
+export default function useGoals(userId: number, count: number): UseGoals {
   const fetcher = partialFetcher(userId)
   const getNextPageParam = partialGetNextPageParam(count, TAKE)
   const { isLoading, data, fetchNextPage, hasNextPage } = useInfiniteQuery(['completed', userId, count], fetcher, {

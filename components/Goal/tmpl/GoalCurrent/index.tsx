@@ -11,10 +11,10 @@ import AppAccordion from 'components/UI/AppAccordion'
 import { getGoalHref, getGoalInfo, getRole } from './helper'
 import Calendar from './components/Calendar'
 import Menu from './components/Menu'
-import Characteristic from './components/Characteristic'
 import Discussion from './components/Discussion'
 import Views from './components/Views'
-import useChangeDay from './hook'
+import Characteristic from 'components/Characteristic'
+import { useChangeDay, useIncreaseViews } from './hook'
 
 const AppTypography = dynamic(() => import('components/UI/AppTypography'))
 const Owner = dynamic(() => import('./components/Owner'))
@@ -47,6 +47,8 @@ export default function GoalCurrent({ goal, href, client }: GoalCurrentProps): J
   const goalInfo = useMemo(() => getGoalInfo(goal, role), [goal, role])
   const rest = tasks.length - tasks.filter((t) => t.completed).length
 
+  useIncreaseViews(goal, client)
+
   return (
     <AppBox flexDirection="column" spacing={1} id={`goal-${id}`} className={classes.root}>
       <Calendar datesMap={goalInfo.datesMap} date={date} isLoading={isLoading} onChangeDay={onChangeDay} />
@@ -66,6 +68,7 @@ export default function GoalCurrent({ goal, href, client }: GoalCurrentProps): J
               {CHARACTERISTICS.map((characteristicName) => (
                 <Fragment key={characteristicName}>
                   <Characteristic
+                    tmpl="goal"
                     name={characteristicName}
                     value={characteristic[characteristicName]}
                     color={colors[characteristicName].fontColor}
@@ -73,7 +76,7 @@ export default function GoalCurrent({ goal, href, client }: GoalCurrentProps): J
                   <AppDot />
                 </Fragment>
               ))}
-              <Characteristic name="runs for days" value={goalInfo.runsForDays} color={theme.palette.text.disabled} />
+              <Characteristic tmpl="goal" name="runs for days" value={goalInfo.runsForDays} color={theme.palette.text.disabled} />
             </AppBox>
             {!!hashtags?.length && <Hashtags hashtags={hashtags} />}
             <div>

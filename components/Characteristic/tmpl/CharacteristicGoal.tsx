@@ -5,13 +5,14 @@ import AppBox from 'components/UI/AppBox'
 import AppTooltip from 'components/UI/AppTooltip'
 import AppTypography from 'components/UI/AppTypography'
 
-interface CharacteristicProps {
+export interface CharacteristicGoalProps {
+  tmpl: 'goal'
   name: GoalCharacteristicName | 'runs for days'
   value: number
   color: string
 }
 
-export default function Characteristic({ name, value, color }: CharacteristicProps): JSX.Element {
+export default function CharacteristicGoal({ name, value, color }: CharacteristicGoalProps): JSX.Element {
   const title = toUpperFirstChar(name)
   const shortValue = numberToShort(value)
 

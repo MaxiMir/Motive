@@ -1,4 +1,12 @@
-import { GoalDto, CreateGoalDto, CreateDayDto, DayCharacteristicUpdate, GoalStageDto, CreatedGoal } from 'dto'
+import {
+  GoalDto,
+  CreateGoalDto,
+  CreateDayDto,
+  DayCharacteristicUpdate,
+  GoalStageDto,
+  CreatedGoal,
+  GoalCompletedDto,
+} from 'dto'
 import Axios from 'lib/axios'
 import { Service } from './Service'
 
@@ -7,11 +15,11 @@ export default class GoalService extends Service {
     return Axios.post('/goals', data)
   }
 
-  static get(owner: number, confirmation: boolean, page: number, take: number): Promise<GoalDto[]> {
+  static getCompleted(owner: number, page: number, take: number): Promise<GoalCompletedDto[]> {
     const pagination = GoalService.getPaginationParams(page, take)
 
     return Axios.get('/goals', {
-      params: { 'where[owner]': owner, 'where[confirmation]': confirmation, ...pagination },
+      params: { 'where[owner]': owner, 'where[confirmation]': true, ...pagination },
     })
   }
 

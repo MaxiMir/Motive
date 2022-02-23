@@ -22,7 +22,7 @@ const AppModal: FC<AppModalProps> = ({ title, actions, maxWidth, children, onClo
       <DialogContent className={classes.content}>{children}</DialogContent>
       {actions && (
         <DialogActions>
-          <AppBox flex={1} justifyContent="space-between" pb={1} px={1}>
+          <AppBox flex={1} justifyContent="space-between" pb={2} px={1}>
             {actions.map((a, key) => (
               <Fragment key={key}>{a}</Fragment>
             ))}
@@ -54,8 +54,8 @@ const useStyles = makeStyles({
     textTransform: 'uppercase',
   },
   content: {
-    padding: '16px 16px 24px',
     paddingBottom: 24,
+    overflow: 'scroll',
   },
 })
 

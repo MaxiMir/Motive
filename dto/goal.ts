@@ -23,6 +23,10 @@ export interface GoalDto {
   reactions: ReactionsDto
 }
 
+export interface GoalCompletedDto extends GoalDto {
+  confirmation: ConfirmationDto
+}
+
 export type CreatedGoal = Omit<GoalDto, 'day'> & { days: DayDto[] }
 
 export interface GoalStageDto {
@@ -65,10 +69,18 @@ export interface FeedbackDto {
   video: string | null
 }
 
+export interface ConfirmationDto extends FeedbackDto {
+  date: string
+}
+
 export interface PhotoDto {
   src: string
   width: number
   height: number
+}
+
+export interface PhotoWithSourceDto extends PhotoDto {
+  source: string
 }
 
 export interface CalendarDto {

@@ -1,19 +1,21 @@
-import { GoalDto } from 'dto'
+import { GoalCompletedDto } from 'dto'
 import AppList from 'components/UI/AppList'
+import Goal from 'components/Goal'
 
 interface UserListProps {
-  goals: GoalDto[]
+  goals: GoalCompletedDto[]
   checkOnLoadMore: (index: number) => boolean
-  onLoadMore: () => void
+  onView: () => void
 }
 
-export default function GoalList({ goals, checkOnLoadMore, onLoadMore }: UserListProps): JSX.Element {
+export default function GoalList({ goals, checkOnLoadMore, onView }: UserListProps): JSX.Element {
   return (
     <AppList
       elements={goals}
-      spacing={2}
+      flexDirection="column"
+      spacing={3}
       keyGetter={(goal) => goal.id}
-      render={(goal, index) => <div key={index}>{goal.name}</div>}
+      render={(goal, index) => <Goal tmpl="completed" goal={goal} inView={checkOnLoadMore(index)} onView={onView} />}
     />
   )
 }

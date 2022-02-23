@@ -1,20 +1,26 @@
-import Image from 'next/image'
+import dynamic from 'next/dynamic'
 import { RenderImageProps } from 'react-photo-gallery'
 import { makeStyles } from '@material-ui/core/styles'
+import GalleryImage from './components/GalleryImage'
 
-export default function AppGalleryPhoto(props: RenderImageProps): JSX.Element {
-  const { index, photo, onClick } = props
+const AppImageZoom = dynamic(() => import('components/UI/AppImageZoom'))
+
+interface GalleryPhotoProps extends RenderImageProps {
+  animation?: boolean
+}
+
+export default function GallerySlide({ animation, ...props }: GalleryPhotoProps): JSX.Element {
   const classes = useStyles(props)
 
   return (
     <div aria-label="open gallery" className={classes.container}>
-      <Image
-        src={photo.src}
-        width={photo.width}
-        height={photo.height}
-        alt=""
-        onClick={(event) => onClick?.(event, { index })}
-      />
+      {!animation ? (
+        <GalleryImage {...props} />
+      ) : (
+        <AppImageZoom>
+          <GalleryImage {...props} />
+        </AppImageZoom>
+      )}
     </div>
   )
 }

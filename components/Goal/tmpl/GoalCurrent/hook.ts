@@ -1,10 +1,11 @@
-import { useMutation } from 'react-query'
+import { useMutation, useQuery } from 'react-query'
+import { GoalDto, UserBaseDto } from 'dto'
 import DayService from 'services/DayService'
 import useChangeDayUrl from 'hooks/useChangeDayUrl'
 import { useMutateGoals } from 'views/UserView/hook'
 import { getGoalNextState } from './helper'
 
-export default function useChangeDay(goalId: number): [boolean, (dayId: number) => void] {
+export const useChangeDay = (goalId: number): [boolean, (dayId: number) => void] => {
   const [goals, mutateGoals] = useMutateGoals()
   const changeDayUrl = useChangeDayUrl()
   const { isLoading, mutate } = useMutation(DayService.getById, {
@@ -15,4 +16,14 @@ export default function useChangeDay(goalId: number): [boolean, (dayId: number) 
   })
 
   return [isLoading, mutate]
+}
+
+export const useIncreaseViews = (goal: GoalDto, client?: UserBaseDto): void => {
+  const { id } = goal.day
+
+  useQuery(['views', id], () => DayService.incrementViews({ id }), {
+    refetchOnWindowFocus: false,
+    refetchOnReconnect: false,
+    enabled: client && client.id !== goal.owner.id,
+  })
 }

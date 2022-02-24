@@ -1,7 +1,7 @@
 import { useRouter } from 'next/router'
 import { Container } from '@material-ui/core'
 import { MainCharacteristicName, UserDto } from 'dto'
-import AppHeader from 'components/UI/AppHeader'
+import AppTitle from 'components/UI/AppTitle'
 import AppTabs from 'components/UI/AppTabs'
 import AppBox from 'components/UI/AppBox'
 import TabContent from './components/TabContent'
@@ -19,7 +19,7 @@ export default function RatingView(props: RatingViewProps): JSX.Element {
   return (
     <>
       <Container fixed>
-        <AppHeader name="completed">Rating</AppHeader>
+        <AppTitle name="completed">Rating</AppTitle>
       </Container>
       <AppBox flexDirection="column" spacing={2} mt={4}>
         <AppTabs

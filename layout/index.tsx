@@ -1,6 +1,7 @@
 import { FC } from 'react'
 import Head from 'next/head'
 import dynamic from 'next/dynamic'
+import { useSession } from 'next-auth/react'
 import { makeStyles } from '@material-ui/core/styles'
 import { UserBaseDto } from 'dto'
 import Header from './Header'
@@ -31,6 +32,8 @@ const Layout: FC<LayoutProps> = ({
   children,
 }) => {
   const classes = useStyles({ withVerticalPadding })
+  const { status } = useSession()
+  const authenticated = status === 'authenticated'
 
   return (
     <>
@@ -54,7 +57,7 @@ const Layout: FC<LayoutProps> = ({
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
         <link rel="icon" type="image/x-icon" href="/favicon.ico" />
       </Head>
-      <Header isAuthenticated={!!client?.id} />
+      <Header authenticated={authenticated} />
       {statusCode !== 200 ? (
         <Error statusCode={statusCode} />
       ) : (

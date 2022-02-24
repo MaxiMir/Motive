@@ -1,37 +1,28 @@
+import { useRouter } from 'next/router'
 import dynamic from 'next/dynamic'
 import { makeStyles } from '@material-ui/core/styles'
-import { AppBar, Button } from '@material-ui/core'
+import { AppBar } from '@material-ui/core'
 import { LOGIN_IN_ROUTE } from 'route'
 import AppContainer from 'components/UI/AppContainer'
 import AppBox from 'components/UI/AppBox'
-import AppIcon from 'components/UI/AppIcon'
 import LeftMenu from './components/LeftMenu'
 
-const Badge = dynamic(() => import('@material-ui/core/Badge'))
+const RightIcon = dynamic(() => import('./components/RightIcon'))
 
 interface HeaderProps {
-  isAuthenticated: boolean
+  authenticated: boolean
 }
 
-export default function Header({ isAuthenticated }: HeaderProps): JSX.Element {
+export default function Header({ authenticated }: HeaderProps): JSX.Element {
   const classes = useStyles()
+  const { route } = useRouter()
 
   return (
     <AppBar position="fixed" className={classes.appBar}>
       <AppContainer>
         <AppBox justifyContent="space-between">
           <LeftMenu />
-          {!isAuthenticated ? (
-            <Button href={LOGIN_IN_ROUTE}>
-              <AppIcon name="login" />
-            </Button>
-          ) : (
-            <Button href={LOGIN_IN_ROUTE}>
-              <Badge color="error" badgeContent="" variant="dot" invisible={false}>
-                <AppIcon name="notifications_none" />
-              </Badge>
-            </Button>
-          )}
+          {route !== LOGIN_IN_ROUTE && <RightIcon authenticated={authenticated} />}
         </AppBox>
       </AppContainer>
     </AppBar>

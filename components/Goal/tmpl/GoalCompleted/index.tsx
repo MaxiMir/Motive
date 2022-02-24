@@ -4,7 +4,7 @@ import { GoalCharacteristicName, GoalCompletedDto, UserBaseDto } from 'dto'
 import { makeStyles, createStyles } from '@material-ui/core/styles'
 import useCharacteristicColors from 'hooks/useCharacteristicColors'
 import { getRole } from 'components/Goal/helper'
-import AppHeader from 'components/UI/AppHeader'
+import AppTitle from 'components/UI/AppTitle'
 import AppBox from 'components/UI/AppBox'
 import AppDot from 'components/UI/AppDot'
 import AppTooltip from 'components/UI/AppTooltip'
@@ -37,13 +37,13 @@ export default function GoalCompleted({ goal, client, inView, onView }: GoalComp
   return (
     <div className={classes.wrap}>
       <AppBox flexDirection="column" spacing={2} className={classes.content}>
-        <AppHeader name="cup" variant="h6" component="h3">
+        <AppTitle name="cup" variant="h6" component="h3">
           {name}{' '}
           <span className={classes.runsForDays}>
             {' '}
             in <AppTooltip title={interval}>{duration}</AppTooltip>
           </span>
-        </AppHeader>
+        </AppTitle>
         {mainPhoto && <Gallery photos={[mainPhoto]} animation />}
         <AppBox justifyContent="space-between" alignItems="center">
           {CHARACTERISTICS.map((characteristicName) => (

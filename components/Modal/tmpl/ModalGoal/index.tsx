@@ -10,7 +10,7 @@ import ModalAction from 'components/ModalAction'
 import Task from 'components/Task'
 import AppEmoji from 'components/UI/AppEmoji'
 import AppModal from 'components/UI/AppModal'
-import AppHeader from 'components/UI/AppHeader'
+import AppTitle from 'components/UI/AppTitle'
 import AppBox from 'components/UI/AppBox'
 import AppInput from 'components/UI/AppInput'
 import AppTypography from 'components/UI/AppTypography'
@@ -77,9 +77,9 @@ export default function ModalGoal({ onClose }: ModalGoalProps): JSX.Element {
               </Button>
             </AppBox>
             <AppBox flexDirection="column" spacing={2}>
-              <AppHeader name="stage" variant="h6" component="h2" color="primary">
+              <AppTitle name="stage" variant="h6" component="h2" color="primary">
                 Stages
-              </AppHeader>
+              </AppTitle>
               <FieldArray name="stages">
                 {({ push, remove }) => (
                   <>
@@ -108,9 +108,9 @@ export default function ModalGoal({ onClose }: ModalGoalProps): JSX.Element {
               </FieldArray>
             </AppBox>
             <AppBox flexDirection="column" spacing={2}>
-              <AppHeader name="task" variant="h6" component="h2" color="primary">
+              <AppTitle name="task" variant="h6" component="h2" color="primary">
                 Tasks for tomorrow
-              </AppHeader>
+              </AppTitle>
               <FieldArray name="tasks">
                 {({ push, remove }) => (
                   <>

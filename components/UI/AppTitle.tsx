@@ -7,7 +7,7 @@ interface AppHeaderProps extends AppTypographyProps {
   mb?: number
 }
 
-export default function AppHeader({
+export default function AppTitle({
   name,
   variant = 'h1',
   component = 'h1',

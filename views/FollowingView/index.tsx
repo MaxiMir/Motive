@@ -1,6 +1,6 @@
 import dynamic from 'next/dynamic'
 import { UserDto } from 'dto'
-import AppHeader from 'components/UI/AppHeader'
+import AppTitle from 'components/UI/AppTitle'
 import AppContainer from 'components/UI/AppContainer'
 
 const EmptyList = dynamic(() => import('./components/EmptyList'))
@@ -14,9 +14,9 @@ interface FollowingViewProps {
 export default function FollowingView({ users, isAuthorized }: FollowingViewProps): JSX.Element {
   return (
     <AppContainer flexColumn>
-      <AppHeader name="following" mb={4}>
+      <AppTitle name="following" mb={4}>
         Following
-      </AppHeader>
+      </AppTitle>
       {!users.length ? <EmptyList /> : <UserList users={users} isAuthorized={isAuthorized} />}
     </AppContainer>
   )

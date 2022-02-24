@@ -7,7 +7,7 @@ import AppModal from 'components/UI/AppModal'
 import AppTypography from 'components/UI/AppTypography'
 import AppBox from 'components/UI/AppBox'
 import AppInput from 'components/UI/AppInput'
-import AppHeader from 'components/UI/AppHeader'
+import AppTitle from 'components/UI/AppTitle'
 import AppShakeIcon from 'components/UI/AppShakeIcon'
 import Photo from 'components/Photo'
 import Video from 'components/Video'
@@ -57,9 +57,9 @@ export default function ModalFeedback({ goal, onClose }: ModalFeedbackProps): JS
             <Field name="text" label="How it went" color="secondary" multiline rows={3} component={AppInput} />
             {!!values.photos.length && (
               <AppBox flexDirection="column" spacing={2} width="100%">
-                <AppHeader name="photo" variant="h6" component="h2" color="primary">
+                <AppTitle name="photo" variant="h6" component="h2" color="primary">
                   Photos
-                </AppHeader>
+                </AppTitle>
                 <FieldArray name="photos">
                   {({ remove }) => (
                     <AppBox flexWrap="wrap" spacing={2}>
@@ -79,9 +79,9 @@ export default function ModalFeedback({ goal, onClose }: ModalFeedbackProps): JS
             )}
             {values.video && (
               <AppBox flexDirection="column" spacing={2} width="100%">
-                <AppHeader name="video" variant="h6" component="h2" color="primary">
+                <AppTitle name="video" variant="h6" component="h2" color="primary">
                   Video
-                </AppHeader>
+                </AppTitle>
                 <Video
                   tmpl="preview"
                   video={values.video}

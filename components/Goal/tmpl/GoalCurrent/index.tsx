@@ -5,7 +5,7 @@ import { makeStyles } from '@material-ui/core/styles'
 import { UserBaseDto, GoalDto, GoalCharacteristicName } from 'dto'
 import useCharacteristicColors from 'hooks/useCharacteristicColors'
 import AppBox from 'components/UI/AppBox'
-import AppHeader from 'components/UI/AppHeader'
+import AppTitle from 'components/UI/AppTitle'
 import AppDot from 'components/UI/AppDot'
 import AppAccordion from 'components/UI/AppAccordion'
 import { getRole } from 'components/Goal/helper'
@@ -58,9 +58,9 @@ export default function GoalCurrent({ goal, href, client }: GoalCurrentProps): J
           <AppBox flexDirection="column" spacing={3}>
             <AppBox justifyContent="space-between" alignItems="center">
               <AppBox alignItems="center" spacing={1}>
-                <AppHeader name="goal" variant="h6" component="h3">
+                <AppTitle name="goal" variant="h6" component="h3">
                   {name}
-                </AppHeader>
+                </AppTitle>
                 {role === 'MEMBER' && <Owner {...owner} />}
               </AppBox>
               <Menu goalId={id} title={name} href={goalHref} role={role} client={client} />

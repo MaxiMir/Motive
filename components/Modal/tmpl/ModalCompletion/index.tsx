@@ -11,7 +11,7 @@ import AppBox from 'components/UI/AppBox'
 import AppEmoji from 'components/UI/AppEmoji'
 import AppAccordion from 'components/UI/AppAccordion'
 import AppInput from 'components/UI/AppInput'
-import AppHeader from 'components/UI/AppHeader'
+import AppTitle from 'components/UI/AppTitle'
 import AppSpinIcon from 'components/UI/AppSpinIcon'
 import Photo from 'components/Photo'
 import Video from 'components/Video'
@@ -65,9 +65,9 @@ export default function ModalCompletion({ goal, onClose }: ModalCompletionProps)
             <Field name="text" label="How it was" color="secondary" multiline rows={3} component={AppInput} />
             {!!values.photos.length && (
               <AppBox flexDirection="column" spacing={2} width="100%">
-                <AppHeader name="photo" variant="h6" component="h2" color="primary">
+                <AppTitle name="photo" variant="h6" component="h2" color="primary">
                   Photos
-                </AppHeader>
+                </AppTitle>
                 <FieldArray name="photos">
                   {({ remove }) => (
                     <AppBox flexWrap="wrap" spacing={2}>
@@ -87,9 +87,9 @@ export default function ModalCompletion({ goal, onClose }: ModalCompletionProps)
             )}
             {values.video && (
               <AppBox flexDirection="column" spacing={2} width="100%">
-                <AppHeader name="video" variant="h6" component="h2" color="primary">
+                <AppTitle name="video" variant="h6" component="h2" color="primary">
                   Video
-                </AppHeader>
+                </AppTitle>
                 <Video
                   tmpl="preview"
                   video={values.video}

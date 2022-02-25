@@ -1,13 +1,14 @@
 import { GetServerSideProps } from 'next'
 import { dehydrate, QueryClient } from 'react-query'
-import { PageStatus, PossiblePageError } from 'dto'
+import { getProviders } from 'next-auth/react'
+import { PageProps, PossiblePageError } from 'dto'
 import PageService from 'services/PageService'
 import Layout from 'layout'
 import MainView from 'views/MainView'
 import { useHomePage } from 'views/MainView/hook'
 import { QUERY_KEY } from 'views/RatingView/hook'
 
-export default function MainPage({ statusCode }: PageStatus): JSX.Element {
+export default function MainPage({ providers, statusCode }: PageProps): JSX.Element {
   const { data } = useHomePage()
 
   return (
@@ -15,6 +16,7 @@ export default function MainPage({ statusCode }: PageStatus): JSX.Element {
       title={`${process.env.NEXT_PUBLIC_APP_NAME} • a social network for achieving goals`}
       description={`${process.env.NEXT_PUBLIC_APP_NAME} • your assistant to achieve your goals`}
       client={data?.client}
+      providers={providers}
       statusCode={statusCode}
       withVerticalPadding={false}
     >
@@ -24,6 +26,7 @@ export default function MainPage({ statusCode }: PageStatus): JSX.Element {
 }
 
 export const getServerSideProps: GetServerSideProps = async () => {
+  const providers = await getProviders()
   const queryClient = new QueryClient()
   await queryClient.prefetchQuery(QUERY_KEY, PageService.getMain)
   const state = queryClient.getQueryState<PossiblePageError>(QUERY_KEY)
@@ -31,6 +34,7 @@ export const getServerSideProps: GetServerSideProps = async () => {
 
   return {
     props: {
+      providers,
       statusCode,
       dehydratedState: dehydrate(queryClient),
     },

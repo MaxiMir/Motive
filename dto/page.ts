@@ -1,10 +1,14 @@
+import { Provider } from 'next-auth/providers'
 import { UserDto, UserBaseDto } from './user'
 import { MainCharacteristicName } from './characteristic'
 import { GoalDto } from './goal'
 
-export interface PageStatus {
+export interface PageProps {
+  providers: Providers
   statusCode: number
 }
+
+export type Providers = Record<string, Provider>
 
 export interface PossiblePageError {
   message?: {

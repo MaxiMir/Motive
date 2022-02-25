@@ -51,7 +51,8 @@ export default function LeftMenu(): JSX.Element {
 
 const useStyles = makeStyles({
   list: {
-    width: 200,
+    paddingTop: 60,
+    minWidth: 200,
   },
   icon: {
     fontColor: '#ffffff',

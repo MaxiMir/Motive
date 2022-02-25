@@ -3,7 +3,7 @@ import Head from 'next/head'
 import dynamic from 'next/dynamic'
 import { useSession } from 'next-auth/react'
 import { makeStyles } from '@material-ui/core/styles'
-import { UserBaseDto } from 'dto'
+import { Providers, UserBaseDto } from 'dto'
 import Header from './Header'
 import Footer from './Footer'
 
@@ -17,6 +17,7 @@ interface LayoutProps {
   image?: string
   statusCode?: number
   client?: UserBaseDto
+  providers?: Providers
   withVerticalPadding?: boolean
 }
 
@@ -29,6 +30,7 @@ const Layout: FC<LayoutProps> = ({
   withVerticalPadding = true,
   statusCode,
   client,
+  providers,
   children,
 }) => {
   const classes = useStyles({ withVerticalPadding })
@@ -57,7 +59,7 @@ const Layout: FC<LayoutProps> = ({
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
         <link rel="icon" type="image/x-icon" href="/favicon.ico" />
       </Head>
-      <Header authenticated={authenticated} />
+      <Header authenticated={authenticated} providers={providers} />
       {statusCode !== 200 ? (
         <Error statusCode={statusCode} />
       ) : (
@@ -65,7 +67,7 @@ const Layout: FC<LayoutProps> = ({
           {children}
         </main>
       )}
-      <Footer nickname={client?.nickname} />
+      <Footer nickname={client?.nickname} providers={providers} />
     </>
   )
 }

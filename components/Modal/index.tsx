@@ -1,5 +1,5 @@
 import dynamic from 'next/dynamic'
-import { ModalAuthProps } from './tmpl/ModalAuth'
+import { ModalSignInProps } from './tmpl/ModalSignIn'
 import { ModalGoalProps } from './tmpl/ModalGoal'
 import { ModalFeedbackProps } from './tmpl/ModalFeedback'
 import { ModalTasksProps } from './tmpl/ModalTasks'
@@ -10,7 +10,7 @@ import { ModalSupportProps } from './tmpl/ModalSupport'
 import { ModalEditMessageProps } from './tmpl/ModalEditMessage'
 import { ModalCompletedProps } from './tmpl/ModalCompleted'
 
-const ModalAuth = dynamic(() => import('./tmpl/ModalAuth'))
+const ModalSignIn = dynamic(() => import('./tmpl/ModalSignIn'))
 const ModalGoal = dynamic(() => import('./tmpl/ModalGoal'))
 const ModalFeedback = dynamic(() => import('./tmpl/ModalFeedback'))
 const ModalTasks = dynamic(() => import('./tmpl/ModalTasks'))
@@ -23,7 +23,7 @@ const ModalCompleted = dynamic(() => import('./tmpl/ModalCompleted'))
 
 export default function Modal(
   props:
-    | ModalAuthProps
+    | ModalSignInProps
     | ModalGoalProps
     | ModalFeedbackProps
     | ModalTasksProps
@@ -35,8 +35,8 @@ export default function Modal(
     | ModalCompletedProps,
 ): JSX.Element {
   switch (props.tmpl) {
-    case 'auth':
-      return <ModalAuth {...props} />
+    case 'signIn':
+      return <ModalSignIn {...props} />
     case 'goal':
       return <ModalGoal {...props} />
     case 'feedback':

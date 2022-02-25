@@ -25,8 +25,6 @@
     "url": "https://github.com/MaxiMir/Motive/issues"
   },
   "dependencies": {
-    "@commitlint/cli": "^13.1.0",
-    "@commitlint/config-conventional": "^13.1.0",
     "@date-io/date-fns": "1.x",
     "@material-ui/core": "^4.11.4",
     "@material-ui/lab": "^4.0.0-alpha.58",
@@ -52,10 +50,11 @@
     "react-player": "^2.9.0",
     "react-query": "^3.34.14",
     "rehype-sanitize": "^5.0.1",
-    "sharp": "^0.29.3",
     "yup": "^0.32.9"
   },
   "devDependencies": {
+    "@commitlint/cli": "^16.2.1",
+    "@commitlint/config-conventional": "^16.2.1",
     "@types/jest": "^26.0.23",
     "@types/node": "^15.12.1",
     "@types/react": "^17.0.9",

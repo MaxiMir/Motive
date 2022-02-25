@@ -14,7 +14,7 @@ export interface ModalSignInProps {
 export default function ModalSignIn({ providers, onClose }: ModalSignInProps): JSX.Element {
   return (
     <AppModal title="Sign In" maxWidth="xs" onClose={onClose}>
-      <AppBox flexDirection="column" spacing={2} mt={1} alignSelf="stretch">
+      <AppBox flexDirection="column" alignSelf="stretch" spacing={2} mt={1} mb={1}>
         {Object.values(providers).map(({ id, name }) => (
           <Button
             variant="outlined"

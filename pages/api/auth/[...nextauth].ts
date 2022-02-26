@@ -2,6 +2,7 @@ import NextAuth from 'next-auth'
 import AppleProvider from 'next-auth/providers/apple'
 import GoogleProvider from 'next-auth/providers/google'
 import GithubProvider from 'next-auth/providers/github'
+import UserService from 'services/UserService'
 
 export default NextAuth({
   providers: [
@@ -24,5 +25,23 @@ export default NextAuth({
   },
   pages: {
     error: '/500',
+  },
+  callbacks: {
+    async session({ session, token }) {
+      const { id, name, avatar, nickname } = token
+
+      return Promise.resolve({ ...session, id, name, avatar, nickname })
+    },
+    async jwt({ token, account }) {
+      const { id, name, avatar, nickname } = await UserService.findOrCreate({
+        name: token.name || 'unknown',
+        email: token.email,
+        sub: token.sub,
+        avatar: token.picture,
+        provider: account?.provider,
+      })
+
+      return Promise.resolve({ ...token, id, name, avatar, nickname })
+    },
   },
 })

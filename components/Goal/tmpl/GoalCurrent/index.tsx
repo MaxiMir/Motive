@@ -1,5 +1,6 @@
 import { Fragment, useMemo } from 'react'
 import dynamic from 'next/dynamic'
+import { Session } from 'next-auth'
 import { createStyles, useTheme } from '@material-ui/core'
 import { makeStyles } from '@material-ui/core/styles'
 import { UserBaseDto, GoalDto, GoalCharacteristicName } from 'dto'
@@ -33,22 +34,22 @@ export interface GoalCurrentProps {
   tmpl: 'current'
   goal: GoalDto
   href: string
-  client?: UserBaseDto
+  session: Session | null
 }
 
-export default function GoalCurrent({ goal, href, client }: GoalCurrentProps): JSX.Element {
+export default function GoalCurrent({ goal, href, session }: GoalCurrentProps): JSX.Element {
   const { id, name, hashtags, characteristic, owner, stages, day } = goal
   const { id: dayId, date, tasks, views, feedback, topicCount } = day
   const classes = useStyles()
   const theme = useTheme()
   const colors = useCharacteristicColors()
   const [isLoading, onChangeDay] = useChangeDay(id)
-  const role = getRole(goal, client)
+  const role = getRole(goal, session)
   const goalHref = getGoalHref(href, goal)
   const goalInfo = useMemo(() => getGoalInfo(goal, role), [goal, role])
   const rest = tasks.length - tasks.filter((t) => t.completed).length
 
-  useIncreaseViews(goal, client)
+  useIncreaseViews(goal, session)
 
   return (
     <AppBox flexDirection="column" spacing={1} id={`goal-${id}`} className={classes.root}>

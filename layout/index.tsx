@@ -3,7 +3,7 @@ import Head from 'next/head'
 import dynamic from 'next/dynamic'
 import { useSession } from 'next-auth/react'
 import { makeStyles } from '@material-ui/core/styles'
-import { Providers, UserBaseDto } from 'dto'
+import { Providers } from 'dto'
 import Header from './Header'
 import Footer from './Footer'
 
@@ -16,7 +16,6 @@ interface LayoutProps {
   type?: string
   image?: string
   statusCode?: number
-  client?: UserBaseDto
   providers?: Providers
   withVerticalPadding?: boolean
 }
@@ -29,12 +28,11 @@ const Layout: FC<LayoutProps> = ({
   image,
   withVerticalPadding = true,
   statusCode,
-  client,
   providers,
   children,
 }) => {
   const classes = useStyles({ withVerticalPadding })
-  const { status } = useSession()
+  const { data, status } = useSession()
   const authenticated = status === 'authenticated'
 
   return (
@@ -67,7 +65,7 @@ const Layout: FC<LayoutProps> = ({
           {children}
         </main>
       )}
-      <Footer nickname={client?.nickname} providers={providers} />
+      <Footer session={data} providers={providers} />
     </>
   )
 }

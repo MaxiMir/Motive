@@ -9,16 +9,10 @@ import { QUERY_KEY, useFollowingPage } from 'views/FollowingView/hook'
 
 export default function FollowingPage({ providers, statusCode }: PageProps): JSX.Element {
   const { data } = useFollowingPage()
-  const isAuthorized = !!data?.client
 
   return (
-    <Layout
-      title={`${process.env.NEXT_PUBLIC_APP_NAME} • Following`}
-      client={data?.client}
-      providers={providers}
-      statusCode={statusCode}
-    >
-      {data?.content && <FollowingView users={data.content} isAuthorized={isAuthorized} />}
+    <Layout title={`${process.env.NEXT_PUBLIC_APP_NAME} • Following`} providers={providers} statusCode={statusCode}>
+      {data?.content && <FollowingView users={data.content} />}
     </Layout>
   )
 }

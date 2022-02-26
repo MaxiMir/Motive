@@ -1,6 +1,7 @@
 import dynamic from 'next/dynamic'
+import { useSession } from 'next-auth/react'
 import { useMediaQuery, useTheme } from '@material-ui/core'
-import { UserDetailDto, UserCharacteristicName, UserBaseDto, MainCharacteristicName } from 'dto'
+import { UserDetailDto, UserCharacteristicName, MainCharacteristicName } from 'dto'
 import { getCharacteristicsTitle, getUserHref } from 'views/UserView/helper'
 import useCharacteristicColors from 'hooks/useCharacteristicColors'
 import AppBox from 'components/UI/AppBox'
@@ -20,18 +21,18 @@ const SECOND_CHARACTERISTIC_NAMES: UserCharacteristicName[] = ['completed', 'aba
 
 export interface UserViewProps {
   user: UserDetailDto
-  client?: UserBaseDto
 }
 
-export default function UserView({ user, client }: UserViewProps): JSX.Element {
+export default function UserView({ user }: UserViewProps): JSX.Element {
   const { id, nickname, name, avatar, characteristic, goals, following } = user
   const theme = useTheme()
+  const { data, status } = useSession()
   const characteristicColors = useCharacteristicColors()
   const isMobile = useMediaQuery(theme.breakpoints.down('sm'))
   const href = getUserHref(nickname)
   const characteristicsTitle = getCharacteristicsTitle()
-  const isAuthorized = !!client
-  const isOwner = isAuthorized && id === client?.id
+  const isAuthorized = status === 'authenticated'
+  const isOwner = isAuthorized && id === data?.id
 
   useScrollToGoal()
 
@@ -83,7 +84,7 @@ export default function UserView({ user, client }: UserViewProps): JSX.Element {
         ) : (
           <AppBox flexWrap="wrap" spacing={3}>
             {goals.map((goal) => (
-              <Goal tmpl="current" goal={goal} href={href} client={client} key={goal.id} />
+              <Goal tmpl="current" goal={goal} href={href} client={data} key={goal.id} />
             ))}
           </AppBox>
         )}

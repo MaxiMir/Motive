@@ -5,8 +5,8 @@ import { MessageDto, UserBaseDto } from 'dto'
 import AppLink from 'components/UI/AppLink'
 import AppBox from 'components/UI/AppBox'
 import AppMarkdown from 'components/UI/AppMarkdown'
+import AppAvatar from 'components/UI/AppAvatar'
 import { getUserHref } from 'views/UserView/helper'
-import User from 'components/User'
 import Menu from './components/Menu'
 import Like from './components/Like'
 import Reply from './components/Reply'
@@ -32,7 +32,9 @@ export default function Message({ message, answerFor, supportFor, client, onRepl
     <AppBox flexDirection="column" spacing={1} flex={1}>
       <AppBox flexDirection="column" spacing={1} minWidth={152}>
         <AppBox alignItems="center" spacing={1}>
-          <User tmpl="avatar" user={user} size={26} />
+          <AppLink href={href}>
+            <AppAvatar src={user.avatar} size={26} />
+          </AppLink>
           <AppLink href={href} title={user.name} className={classes.name}>
             <b>{user.name}</b>
           </AppLink>

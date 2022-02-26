@@ -1,8 +1,5 @@
 import Layout from 'layout'
-import useStorageClient from 'hooks/useStorageClient'
 
 export default function Page404(): JSX.Element {
-  const client = useStorageClient()
-
-  return <Layout title="404: This page could not be found" client={client} statusCode={404} />
+  return <Layout title="404: This page could not be found" statusCode={404} />
 }

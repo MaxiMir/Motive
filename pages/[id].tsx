@@ -1,20 +1,20 @@
 import { GetServerSideProps } from 'next'
 import { dehydrate, QueryClient } from 'react-query'
+import { getProviders } from 'next-auth/react'
 import { PageProps, PossiblePageError } from 'dto'
 import PageService from 'services/PageService'
 import { getUserMeta } from 'views/UserView/helper'
 import Layout from 'layout'
 import UserView from 'views/UserView'
 import { useUserPage } from 'views/UserView/hook'
-import { getProviders } from 'next-auth/react'
 
 export default function UserDetail({ providers, statusCode }: PageProps): JSX.Element {
   const { data } = useUserPage()
   const userMeta = getUserMeta(data?.content)
 
   return (
-    <Layout {...userMeta} client={data?.client} statusCode={statusCode} providers={providers}>
-      {data?.content && <UserView user={data.content} client={data?.client} />}
+    <Layout {...userMeta} statusCode={statusCode} providers={providers}>
+      {data?.content && <UserView user={data.content} />}
     </Layout>
   )
 }

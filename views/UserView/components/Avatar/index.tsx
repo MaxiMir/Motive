@@ -7,7 +7,7 @@ import AppAvatar from 'components/UI/AppAvatar'
 import { getCircleItems } from './helper'
 
 interface AvatarProps {
-  avatar: string
+  avatar?: string | null
   characteristic: UserCharacteristicDto
   characteristicColors: CharacteristicColors
 }

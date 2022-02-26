@@ -10,6 +10,6 @@ module.exports = withPWA({
     runtimeCaching,
   },
   images: {
-    domains: ['localhost'], // TODO REPLACE
+    domains: ['localhost', 'avatars.githubusercontent.com'], // TODO REPLACE
   },
 })

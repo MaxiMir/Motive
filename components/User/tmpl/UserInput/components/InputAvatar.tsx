@@ -4,26 +4,24 @@ import { getUserHref } from 'views/UserView/helper'
 import AppLink from 'components/UI/AppLink'
 import AppAvatar from 'components/UI/AppAvatar'
 
-export interface UserAvatarProps {
-  tmpl: 'avatar'
+export interface InputAvatarProps {
   user: UserBaseDto
-  size: number
 }
 
-export default function UserAvatar({ user, size }: UserAvatarProps): JSX.Element {
-  const { name, nickname, avatar } = user
-  const classes = useStyles({ size })
+export default function InputAvatar({ user }: InputAvatarProps): JSX.Element {
+  const { name, nickname } = user
+  const classes = useStyles()
   const href = getUserHref(nickname)
 
   return (
     <AppLink title={name} href={href} className={classes.avatarLink}>
-      <AppAvatar src={avatar} size={size} />
+      <AppAvatar src={user.avatar} size={32} />
     </AppLink>
   )
 }
 
 const useStyles = makeStyles({
   avatarLink: {
-    height: (props: { size: number }) => props.size,
+    height: 32,
   },
 })

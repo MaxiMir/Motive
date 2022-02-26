@@ -8,16 +8,15 @@ const UserList = dynamic(() => import('./components/UserList'))
 
 interface FollowingViewProps {
   users: UserDto[]
-  isAuthorized: boolean
 }
 
-export default function FollowingView({ users, isAuthorized }: FollowingViewProps): JSX.Element {
+export default function FollowingView({ users }: FollowingViewProps): JSX.Element {
   return (
     <AppContainer flexColumn>
       <AppTitle name="following" mb={4}>
         Following
       </AppTitle>
-      {!users.length ? <EmptyList /> : <UserList users={users} isAuthorized={isAuthorized} />}
+      {!users.length ? <EmptyList /> : <UserList users={users} />}
     </AppContainer>
   )
 }

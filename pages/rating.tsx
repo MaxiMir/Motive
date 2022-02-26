@@ -14,7 +14,6 @@ export default function RatingPage({ providers, statusCode }: PageProps): JSX.El
     <Layout
       title={`${process.env.NEXT_PUBLIC_APP_NAME} • Rating users`}
       description={`${process.env.NEXT_PUBLIC_APP_NAME} • Rating the most motivating, creative, and supportive users`}
-      client={data?.client}
       providers={providers}
       statusCode={statusCode}
     >

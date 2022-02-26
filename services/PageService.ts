@@ -1,11 +1,7 @@
 import Axios from 'lib/axios'
-import { SubscriptionPageDto, MainPageDto, RatingPageDto, UserPageDto } from 'dto'
+import { SubscriptionPageDto, RatingPageDto, UserPageDto } from 'dto'
 
 export default class PageService {
-  static async getMain(): Promise<MainPageDto> {
-    return Axios.get('/pages/main')
-  }
-
   static async getRating(): Promise<RatingPageDto> {
     return Axios.get('/pages/rating')
   }

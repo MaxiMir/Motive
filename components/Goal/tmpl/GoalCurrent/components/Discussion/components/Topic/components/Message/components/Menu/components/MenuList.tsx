@@ -33,9 +33,13 @@ export default function MenuList({ anchorEl, message, onOpenModal, onClose }: Me
             <AppMenuItemContent icon="edit" text="Edit" />
           </MenuItem>
         ) : (
-          <MenuItem onClick={onOpenReport}>
-            <AppMenuItemContent icon="outlined_flag" text="Report" />
-          </MenuItem>
+          <>
+            {client && (
+              <MenuItem onClick={onOpenReport}>
+                <AppMenuItemContent icon="outlined_flag" text="Report" />
+              </MenuItem>
+            )}
+          </>
         )}
         <MenuItem onClick={onClose}>
           <AppMenuItemContent icon="not_interested" text="Cancel" />

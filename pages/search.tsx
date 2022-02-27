@@ -10,7 +10,7 @@ export default function SearchPage(): JSX.Element {
   return (
     <Layout title={`${process.env.NEXT_PUBLIC_APP_NAME} • Search`} statusCode={200}>
       <Container fixed>
-        <AppTitle name="runs for days" mb={4}>
+        <AppTitle name="search" mb={4}>
           Search
         </AppTitle>
         <AppBox alignItems="center" justifyContent="center" flex={1} height="80vh">

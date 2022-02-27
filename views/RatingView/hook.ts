@@ -4,4 +4,8 @@ import PageService from 'services/PageService'
 
 export const QUERY_KEY = 'rating'
 
-export const useRatingPage = (): UseQueryResult<RatingPageDto> => useQuery(QUERY_KEY, PageService.getRating)
+export const useRatingPage = (): UseQueryResult<RatingPageDto> => {
+  return useQuery(QUERY_KEY, PageService.getRating, {
+    staleTime: 30_000,
+  })
+}

@@ -1,5 +1,5 @@
 import { Button } from '@material-ui/core'
-import useSignInModal from 'hooks/useSignInModal'
+import useOpenSignIn from 'hooks/useOpenSignIn'
 import { ProfileIcon } from 'components/UI/icons'
 import { getUserHref } from 'views/UserView/helper'
 import FooterIcon from './FooterIcon'
@@ -10,12 +10,16 @@ interface FooterProfileProps {
 }
 
 export default function FooterProfile({ nickname, asPath }: FooterProfileProps): JSX.Element {
-  const signIn = useSignInModal()
+  const openSignIn = useOpenSignIn()
   const href = !nickname ? undefined : getUserHref(nickname)
   const selected = !href ? false : asPath.includes(href)
 
+  const onClick = () => {
+    openSignIn({ callbackUrl: '/' })
+  }
+
   return (
-    <Button href={href} onClick={href ? undefined : signIn}>
+    <Button href={href} onClick={href ? undefined : onClick}>
       <FooterIcon Icon={ProfileIcon} selected={selected} />
     </Button>
   )

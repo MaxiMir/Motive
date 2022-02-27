@@ -3,14 +3,14 @@ import { useMutation } from 'react-query'
 import { CreateReportDto, ReportType } from 'dto'
 import useSnackbar from 'hooks/useSnackbar'
 import useClient from 'hooks/useClient'
-import useSignInModal from 'hooks/useSignInModal'
+import useOpenSignIn from 'hooks/useOpenSignIn'
 import { ReportService } from 'services/ReportService'
 
 type SendReport = (reason: string) => void
 
 export default function useSendReport(entityId: number, type: ReportType, onSettled: () => void): SendReport {
   const client = useClient()
-  const signIn = useSignInModal()
+  const openSignIn = useOpenSignIn()
   const { enqueueSnackbar } = useSnackbar()
   const { mutate } = useMutation<void, AxiosError, CreateReportDto>(ReportService.create, {
     onSuccess() {
@@ -21,7 +21,7 @@ export default function useSendReport(entityId: number, type: ReportType, onSett
 
   return (reason: string) => {
     if (!client) {
-      signIn()
+      openSignIn({ callbackUrl: window.location.href })
       return
     }
 

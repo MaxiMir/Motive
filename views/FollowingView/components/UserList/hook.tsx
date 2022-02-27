@@ -3,14 +3,14 @@ import { useMutation, useQueryClient } from 'react-query'
 import { Button } from '@material-ui/core'
 import { SubscriptionPageDto, UserDto } from 'dto'
 import useSnackbar from 'hooks/useSnackbar'
-import useSignInModal from 'hooks/useSignInModal'
+import useOpenSignIn from 'hooks/useOpenSignIn'
 import useClient from 'hooks/useClient'
 import { QUERY_KEY } from 'views/FollowingView/hook'
 import { Options, Context, fetcher, getNextState } from './helper'
 
 export default function useRemoveFollowing(): (user: UserDto, index: number) => void {
   const client = useClient()
-  const signIn = useSignInModal()
+  const openSignIn = useOpenSignIn()
   const queryClient = useQueryClient()
   const { enqueueSnackbar, closeSnackbar } = useSnackbar()
   const { mutate } = useMutation<void, AxiosError, Options, Context>(fetcher, {
@@ -47,7 +47,7 @@ export default function useRemoveFollowing(): (user: UserDto, index: number) => 
 
   return (user: UserDto, index: number) => {
     if (!client) {
-      signIn()
+      openSignIn({ callbackUrl: window.location.href })
       return
     }
 

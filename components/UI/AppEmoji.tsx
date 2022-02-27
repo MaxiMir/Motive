@@ -38,6 +38,7 @@ export type AppEmojiName =
   | 'save'
   | 'switch'
   | 'bug'
+  | 'search'
 
 interface AppEmojiProps {
   name: AppEmojiName
@@ -140,6 +141,8 @@ function getContent(name: AppEmojiName) {
       return '🕹'
     case 'bug':
       return '👾'
+    case 'search':
+      return '🔎'
     default:
       return ''
   }

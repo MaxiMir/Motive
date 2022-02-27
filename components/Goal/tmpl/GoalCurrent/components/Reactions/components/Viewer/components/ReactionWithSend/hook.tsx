@@ -5,7 +5,7 @@ import GoalService from 'services/GoalService'
 import useDebounceCb from 'hooks/useDebounceCb'
 import useSnackbar from 'hooks/useSnackbar'
 import useClient from 'hooks/useClient'
-import useSignInModal from 'hooks/useSignInModal'
+import useOpenSignIn from 'hooks/useOpenSignIn'
 import { useUserPageConfig } from 'views/UserView/hook'
 import { Context, getNextState } from './helper'
 
@@ -14,7 +14,7 @@ type SetReaction = () => void
 export default function useSetReaction(goal: GoalDto, name: DayCharacteristicName, active: boolean): SetReaction {
   const { id, day } = goal
   const client = useClient()
-  const signIn = useSignInModal()
+  const openSignIn = useOpenSignIn()
   const queryClient = useQueryClient()
   const { key } = useUserPageConfig()
   const { enqueueSnackbar } = useSnackbar()
@@ -47,7 +47,7 @@ export default function useSetReaction(goal: GoalDto, name: DayCharacteristicNam
 
   return () => {
     if (!client) {
-      signIn()
+      openSignIn({ callbackUrl: window.location.href })
       return
     }
 

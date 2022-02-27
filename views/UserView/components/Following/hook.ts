@@ -3,14 +3,14 @@ import { useMutation, useQueryClient } from 'react-query'
 import { UserPageDto } from 'dto'
 import useSnackbar from 'hooks/useSnackbar'
 import useDebounceCb from 'hooks/useDebounceCb'
-import useSignInModal from 'hooks/useSignInModal'
+import useOpenSignIn from 'hooks/useOpenSignIn'
 import useClient from 'hooks/useClient'
 import { useUserPageConfig } from 'views/UserView/hook'
 import { Options, Context, fetcher, getNextState } from './helper'
 
 export default function useSetFollowing(id: number, following: boolean): () => void {
   const client = useClient()
-  const signIn = useSignInModal()
+  const openSignIn = useOpenSignIn()
   const queryClient = useQueryClient()
   const { key } = useUserPageConfig()
   const { enqueueSnackbar } = useSnackbar()
@@ -42,7 +42,7 @@ export default function useSetFollowing(id: number, following: boolean): () => v
 
   return () => {
     if (!client) {
-      signIn()
+      openSignIn({ callbackUrl: window.location.href })
       return
     }
 

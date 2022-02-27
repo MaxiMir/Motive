@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 import dynamic from 'next/dynamic'
 import { AppProps } from 'next/app'
-import { SessionProvider } from 'next-auth/react'
+import { SessionProvider, SignInOptions } from 'next-auth/react'
 import DateFnsUtils from '@date-io/date-fns'
 import { Hydrate, MutationCache, QueryCache, QueryClient, QueryClientProvider } from 'react-query'
 import NextNprogress from 'nextjs-progressbar'
@@ -17,7 +17,7 @@ const Modal = dynamic(() => import('components/Modal'))
 
 export default function MyApp({ Component, pageProps: { session, providers, ...pageProps } }: AppProps): JSX.Element {
   const [snackbarProps, setSnackbarProps] = useState<ContextSnackbarProps | null>(null)
-  const [open, setOpen] = useState(false)
+  const [options, setOptions] = useState<SignInOptions>()
   const [queryClient] = useState(
     () =>
       new QueryClient({
@@ -34,9 +34,9 @@ export default function MyApp({ Component, pageProps: { session, providers, ...p
       }),
   )
 
-  const toggle = () => setOpen(!open)
+  const onCloseSignIn = () => setOptions(undefined)
 
-  const onClose = () => setSnackbarProps(null)
+  const onCloseSnackbar = () => setSnackbarProps(null)
 
   useEffect(() => {
     // Remove the server-side injected CSS.
@@ -56,13 +56,13 @@ export default function MyApp({ Component, pageProps: { session, providers, ...p
               <NextNprogress color="#b46a5a" />
               {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
               <CssBaseline />
-              <ModalSignInContext.Provider value={{ open, providers: pageProps.providers, toggle }}>
+              <ModalSignInContext.Provider value={{ options, providers: pageProps.providers, setOptions }}>
                 <SnackbarContext.Provider value={{ props: snackbarProps, setProps: setSnackbarProps }}>
                   <Component {...pageProps} />
                 </SnackbarContext.Provider>
               </ModalSignInContext.Provider>
-              {snackbarProps && <AppSnackbar {...snackbarProps} onClose={onClose} />}
-              {open && <Modal tmpl="signIn" providers={providers} onClose={toggle} />}
+              {snackbarProps && <AppSnackbar {...snackbarProps} onClose={onCloseSnackbar} />}
+              {options && <Modal tmpl="signIn" options={options} providers={providers} onClose={onCloseSignIn} />}
             </ThemeProvider>
           </MuiPickersUtilsProvider>
         </Hydrate>

@@ -29,18 +29,6 @@ const truncated = (num: number, decimalPlaces = 1): number => {
 
 export const toUpperFirstChar = (string: string): string => string[0].toUpperCase() + string.slice(1)
 
-export const parseJSON = (string: string): unknown | null => {
-  let result
-
-  try {
-    result = JSON.parse(string)
-  } catch {
-    result = null
-  }
-
-  return result
-}
-
 export const toMarkdown = (value: string): string =>
   value
     .replace(

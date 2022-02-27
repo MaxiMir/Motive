@@ -1,6 +1,8 @@
 import { AxiosError } from 'axios'
 import { InfiniteData, useMutation, useQueryClient } from 'react-query'
 import { MessageDto, MessageType, TopicDto } from 'dto'
+import useClient from 'hooks/useClient'
+import useOpenSignIn from 'hooks/useOpenSignIn'
 import useSnackbar from 'hooks/useSnackbar'
 import useDebounceCb from 'hooks/useDebounceCb'
 import { useMutateGoals } from 'views/UserView/hook'
@@ -8,9 +10,11 @@ import { Context, fetcher, getGoalNextState, getNextState, Options } from './hel
 
 type SetLike = () => void
 
-export default function useSetLike(message: MessageDto, answerFor: number | undefined, isAuthorized: boolean): SetLike {
+export default function useSetLike(message: MessageDto, answerFor: number | undefined): SetLike {
   const { like, dayId, goalId } = message
   const key = ['discussion', dayId]
+  const client = useClient()
+  const openSignIn = useOpenSignIn()
   const [goals, mutateGoals] = useMutateGoals()
   const queryClient = useQueryClient()
   const { enqueueSnackbar } = useSnackbar()
@@ -56,8 +60,8 @@ export default function useSetLike(message: MessageDto, answerFor: number | unde
   const mutateWithDebounce = useDebounceCb((value: boolean) => mutate({ message, answerFor, add: value }))
 
   return () => {
-    if (!isAuthorized) {
-      // TODO for not auth
+    if (!client) {
+      openSignIn({ callbackUrl: window.location.href })
       return
     }
 

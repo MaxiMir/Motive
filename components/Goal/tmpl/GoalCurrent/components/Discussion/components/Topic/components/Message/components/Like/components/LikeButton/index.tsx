@@ -10,14 +10,13 @@ interface LikeButtonProps {
   message: MessageDto
   answerFor?: number
   icon: 'like' | 'support'
-  isAuthorized: boolean
 }
 
-export default function LikeButton({ message, answerFor, icon, isAuthorized }: LikeButtonProps): JSX.Element {
+export default function LikeButton({ message, answerFor, icon }: LikeButtonProps): JSX.Element {
   const { like, likeCount } = message
   const classes = useStyles()
   const title = getTitle(icon, message.like)
-  const onClick = useSetLike(message, answerFor, isAuthorized)
+  const onClick = useSetLike(message, answerFor)
 
   return (
     <AppTooltip title={title}>

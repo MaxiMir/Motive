@@ -1,10 +1,10 @@
 import dynamic from 'next/dynamic'
 import { createStyles, makeStyles } from '@material-ui/core'
 import { MessageDto, MessageType } from 'dto'
+import useClient from 'hooks/useClient'
 import { numberToShort } from 'helpers/prepare'
 import AppBox from 'components/UI/AppBox'
 import AppTypography from 'components/UI/AppTypography'
-import { useUserPage } from 'views/UserView/hook'
 import { checkOnText } from './helper'
 
 const LikeText = dynamic(() => import('./components/LikeText'))
@@ -17,8 +17,8 @@ interface LikeProps {
 
 export default function Like({ message, answerFor }: LikeProps): JSX.Element {
   const classes = useStyles()
-  const { data } = useUserPage()
-  const text = checkOnText(message, data?.client)
+  const client = useClient()
+  const text = checkOnText(message, client)
   const shortNumber = numberToShort(message.likeCount)
   const icon = message.type === MessageType.QUESTION ? 'like' : 'support'
 
@@ -27,7 +27,7 @@ export default function Like({ message, answerFor }: LikeProps): JSX.Element {
       {text ? (
         <LikeText message={message} icon={icon} />
       ) : (
-        <LikeButton message={message} icon={icon} answerFor={answerFor} isAuthorized={!!data?.client} />
+        <LikeButton message={message} icon={icon} answerFor={answerFor} />
       )}
       <AppTypography className={classes.count}>{shortNumber}</AppTypography>
     </AppBox>

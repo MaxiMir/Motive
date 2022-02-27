@@ -19,13 +19,13 @@ export default function MainPage(): JSX.Element {
 export const getServerSideProps: GetServerSideProps = async (ctx) => {
   const session = await getSession(ctx)
   const providers = session ? null : await getProviders()
-  const client = session?.client as ClientDto | undefined
+  const client = session?.user as ClientDto | undefined
 
   if (client) {
     return {
       redirect: {
         permanent: false,
-        destination: client?.nickname,
+        destination: client.nickname,
         basePath: false,
       },
     }

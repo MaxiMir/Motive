@@ -3,7 +3,7 @@ import { ClientDto } from 'dto'
 
 export default function useClient(): ClientDto | undefined {
   const { data, status } = useSession()
-  const user = data?.client as ClientDto | undefined
+  const user = data?.user as ClientDto | undefined
 
   return status !== 'authenticated' || !user
     ? undefined

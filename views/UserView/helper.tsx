@@ -24,7 +24,7 @@ export const getUserMeta = (user?: UserDetailDto): UserMeta | null => {
       !goalsDescription ? '' : `: ${goalsDescription}`
     }`,
     url: `${process.env.HOST}/${user.nickname}`,
-    image: user.avatar,
+    image: user.avatar || undefined,
     type: 'profile',
   }
 }

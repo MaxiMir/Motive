@@ -1,15 +1,14 @@
 import Layout from 'layout'
 import { GetServerSideProps } from 'next'
-import { getProviders } from 'next-auth/react'
+import { getProviders, getSession } from 'next-auth/react'
 import { Container } from '@material-ui/core'
-import { PageProps } from 'dto'
 import AppTitle from 'components/UI/AppTitle'
 import AppTypography from 'components/UI/AppTypography'
 import AppBox from 'components/UI/AppBox'
 
-export default function SearchPage({ providers }: PageProps): JSX.Element {
+export default function SearchPage(): JSX.Element {
   return (
-    <Layout title={`${process.env.NEXT_PUBLIC_APP_NAME} • Top of the day`} providers={providers} statusCode={200}>
+    <Layout title={`${process.env.NEXT_PUBLIC_APP_NAME} • Top of the day`} statusCode={200}>
       <Container fixed>
         <AppTitle name="runs for days" mb={4}>
           Top of the day
@@ -22,11 +21,13 @@ export default function SearchPage({ providers }: PageProps): JSX.Element {
   )
 }
 
-export const getServerSideProps: GetServerSideProps = async () => {
-  const providers = await getProviders()
+export const getServerSideProps: GetServerSideProps = async (ctx) => {
+  const session = await getSession(ctx)
+  const providers = session ? null : await getProviders()
 
   return {
     props: {
+      session,
       providers,
     },
   }

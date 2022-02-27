@@ -1,13 +1,13 @@
 import Image from 'next/image'
 import { Button } from '@material-ui/core'
 import { signIn } from 'next-auth/react'
-import { Providers } from 'dto'
+import { Provider } from 'next-auth/providers'
 import AppModal from 'components/UI/AppModal'
 import AppBox from 'components/UI/AppBox'
 
 export interface ModalSignInProps {
   tmpl: 'signIn'
-  providers: Providers
+  providers: Record<string, Provider>
   onClose: () => void
 }
 

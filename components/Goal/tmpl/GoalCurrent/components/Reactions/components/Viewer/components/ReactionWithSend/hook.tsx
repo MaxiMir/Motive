@@ -1,21 +1,20 @@
 import { AxiosError } from 'axios'
 import { useMutation, useQueryClient } from 'react-query'
-import { DayCharacteristicName, DayCharacteristicUpdate, GoalDto, UserBaseDto, UserPageDto } from 'dto'
+import { DayCharacteristicName, DayCharacteristicUpdate, GoalDto, UserPageDto } from 'dto'
 import GoalService from 'services/GoalService'
 import useDebounceCb from 'hooks/useDebounceCb'
 import useSnackbar from 'hooks/useSnackbar'
+import useClient from 'hooks/useClient'
+import useSignInModal from 'hooks/useSignInModal'
 import { useUserPageConfig } from 'views/UserView/hook'
 import { Context, getNextState } from './helper'
 
 type SetReaction = () => void
 
-export default function useSetReaction(
-  goal: GoalDto,
-  name: DayCharacteristicName,
-  active: boolean,
-  client?: UserBaseDto,
-): SetReaction {
+export default function useSetReaction(goal: GoalDto, name: DayCharacteristicName, active: boolean): SetReaction {
   const { id, day } = goal
+  const client = useClient()
+  const signIn = useSignInModal()
   const queryClient = useQueryClient()
   const { key } = useUserPageConfig()
   const { enqueueSnackbar } = useSnackbar()
@@ -44,13 +43,11 @@ export default function useSetReaction(
       }
     },
   })
-  const isAuthorized = !!client // todo check on auth
-
   const sendWithDebounce = useDebounceCb((add: boolean) => mutate({ id, dayId: day.id, name, add }))
 
   return () => {
-    if (!isAuthorized) {
-      // TODO for not auth
+    if (!client) {
+      signIn()
       return
     }
 

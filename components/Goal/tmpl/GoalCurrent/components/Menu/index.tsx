@@ -1,6 +1,6 @@
 import { MouseEvent, useState } from 'react'
 import dynamic from 'next/dynamic'
-import { RoleDto, UserBaseDto } from 'dto'
+import { RoleDto } from 'dto'
 import Share from 'components/Share'
 import AppMenuButton from 'components/UI/AppMenuButton'
 
@@ -11,10 +11,9 @@ interface MenuProps {
   title: string
   href: string
   role: RoleDto
-  client?: UserBaseDto
 }
 
-export default function Menu({ goalId, title, href, role, client }: MenuProps): JSX.Element {
+export default function Menu({ goalId, title, href, role }: MenuProps): JSX.Element {
   const [anchorEl, setAnchorEl] = useState<HTMLElement | null>(null)
   const [withShare, setWithShare] = useState(false)
 
@@ -30,9 +29,7 @@ export default function Menu({ goalId, title, href, role, client }: MenuProps): 
   return (
     <>
       <AppMenuButton ariaControls="goal-menu" title="open goal menu" onClick={onOpen} />
-      {anchorEl && (
-        <MenuList anchorEl={anchorEl} goalId={goalId} client={client} role={role} onShare={onShare} onClose={onClose} />
-      )}
+      {anchorEl && <MenuList anchorEl={anchorEl} goalId={goalId} role={role} onShare={onShare} onClose={onClose} />}
       <Share open={withShare} title={title} href={href} onClose={() => setWithShare(false)} />
     </>
   )

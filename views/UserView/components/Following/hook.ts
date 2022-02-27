@@ -3,10 +3,14 @@ import { useMutation, useQueryClient } from 'react-query'
 import { UserPageDto } from 'dto'
 import useSnackbar from 'hooks/useSnackbar'
 import useDebounceCb from 'hooks/useDebounceCb'
+import useSignInModal from 'hooks/useSignInModal'
+import useClient from 'hooks/useClient'
 import { useUserPageConfig } from 'views/UserView/hook'
 import { Options, Context, fetcher, getNextState } from './helper'
 
-export default function useSetFollowing(id: number, following: boolean, isAuthorized: boolean): () => void {
+export default function useSetFollowing(id: number, following: boolean): () => void {
+  const client = useClient()
+  const signIn = useSignInModal()
   const queryClient = useQueryClient()
   const { key } = useUserPageConfig()
   const { enqueueSnackbar } = useSnackbar()
@@ -37,8 +41,8 @@ export default function useSetFollowing(id: number, following: boolean, isAuthor
   const sendWithDebounce = useDebounceCb((add: boolean) => mutate({ id, add }))
 
   return () => {
-    if (!isAuthorized) {
-      // TODO for not auth
+    if (!client) {
+      signIn()
       return
     }
 

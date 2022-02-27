@@ -1,17 +1,17 @@
 import dynamic from 'next/dynamic'
-import { useSession } from 'next-auth/react'
 import { useMediaQuery, useTheme } from '@material-ui/core'
 import { UserDetailDto, UserCharacteristicName, MainCharacteristicName } from 'dto'
 import { getCharacteristicsTitle, getUserHref } from 'views/UserView/helper'
 import useCharacteristicColors from 'hooks/useCharacteristicColors'
+import useClient from 'hooks/useClient'
 import AppBox from 'components/UI/AppBox'
 import AppContainer from 'components/UI/AppContainer'
 import AppTypography from 'components/UI/AppTypography'
-import { useScrollToGoal } from './hook'
 import Avatar from './components/Avatar'
 import Characteristic from './components/Characteristic'
 import EmptyGoals from './components/EmptyGoals'
 import Following from './components/Following'
+import { useScrollToGoal } from './hook'
 
 const Goal = dynamic(() => import('components/Goal'))
 const AddGoal = dynamic(() => import('./components/AddGoal'))
@@ -24,15 +24,14 @@ export interface UserViewProps {
 }
 
 export default function UserView({ user }: UserViewProps): JSX.Element {
-  const { id, nickname, name, avatar, characteristic, goals, following } = user
+  const { nickname, name, avatar, characteristic, goals, following } = user
   const theme = useTheme()
-  const { data, status } = useSession()
+  const client = useClient()
   const characteristicColors = useCharacteristicColors()
   const isMobile = useMediaQuery(theme.breakpoints.down('sm'))
   const href = getUserHref(nickname)
   const characteristicsTitle = getCharacteristicsTitle()
-  const isAuthorized = status === 'authenticated'
-  const isOwner = isAuthorized && id === data?.id
+  const isOwner = user.id === client?.id
 
   useScrollToGoal()
 
@@ -42,7 +41,7 @@ export default function UserView({ user }: UserViewProps): JSX.Element {
         <AppTypography variant="h5" component="h1">
           {name}
         </AppTypography>
-        {!isOwner && <Following id={id} following={following} isAuthorized={isAuthorized} />}
+        {!isOwner && <Following id={user.id} following={following} />}
       </AppBox>
       <AppBox flexDirection="column" spacing={3} flex={1}>
         <AppBox spacing={isMobile ? 1 : 4} mb={4}>
@@ -84,7 +83,7 @@ export default function UserView({ user }: UserViewProps): JSX.Element {
         ) : (
           <AppBox flexWrap="wrap" spacing={3}>
             {goals.map((goal) => (
-              <Goal tmpl="current" goal={goal} href={href} client={data} key={goal.id} />
+              <Goal tmpl="current" goal={goal} href={href} client={client} key={goal.id} />
             ))}
           </AppBox>
         )}

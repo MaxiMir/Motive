@@ -1,13 +1,14 @@
 import { useState, KeyboardEvent } from 'react'
-import { signOut, useSession } from 'next-auth/react'
+import { signOut } from 'next-auth/react'
 import { makeStyles } from '@material-ui/core/styles'
 import { Drawer, List, Divider, ListItem, ListItemText, Button } from '@material-ui/core'
+import useClient from 'hooks/useClient'
 import AppIcon from 'components/UI/AppIcon'
 
 export default function LeftMenu(): JSX.Element {
   const classes = useStyles()
+  const client = useClient()
   const [open, setOpen] = useState(false)
-  const { status } = useSession()
 
   const toggle = () => setOpen(!open)
 
@@ -33,7 +34,7 @@ export default function LeftMenu(): JSX.Element {
               </ListItem>
             ))}
           </List>
-          {status === 'authenticated' && (
+          {client && (
             <>
               <Divider />
               <List>

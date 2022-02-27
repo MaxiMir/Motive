@@ -1,5 +1,5 @@
 import dynamic from 'next/dynamic'
-import { RoleDto, TaskDto, UserBaseDto } from 'dto'
+import { RoleDto, TaskDto } from 'dto'
 import TooltipTomorrow from 'components/Goal/tmpl/GoalCurrent/components/TooltipTomorrow'
 import AppCheckbox from 'components/UI/AppCheckbox'
 import AppMarkdown from 'components/UI/AppMarkdown'
@@ -12,14 +12,14 @@ interface FormProps {
   task: TaskDto
   rest: number
   role: RoleDto
-  client: UserBaseDto
+  clientId: number
   forTomorrow: boolean
 }
 
-export default function TaskForm({ goalId, task, rest, client, role, forTomorrow }: FormProps): JSX.Element {
+export default function TaskForm({ goalId, task, rest, clientId, role, forTomorrow }: FormProps): JSX.Element {
   const { id, name, completed, completedBy, date } = task
   const label = name + (completedBy.length && !completed ? ' 🔥' : '')
-  const checked = role === 'OWNER' ? completed : completedBy.includes(client?.id)
+  const checked = role === 'OWNER' ? completed : completedBy.includes(clientId)
   const setCompleted = useSetCompleted(goalId, id, rest)
 
   return (

@@ -28,12 +28,10 @@ export default NextAuth({
   },
   callbacks: {
     async session({ session, token }) {
-      const { id, name, avatar, nickname } = token
-
-      return Promise.resolve({ ...session, id, name, avatar, nickname })
+      return Promise.resolve({ ...session, client: token.client })
     },
     async jwt({ token, account }) {
-      const { id, name, avatar, nickname } = await UserService.findOrCreate({
+      const client = await UserService.findOrCreate({
         name: token.name || 'unknown',
         email: token.email,
         sub: token.sub,
@@ -41,7 +39,7 @@ export default NextAuth({
         provider: account?.provider,
       })
 
-      return Promise.resolve({ ...token, id, name, avatar, nickname })
+      return Promise.resolve({ ...token, client })
     },
   },
 })

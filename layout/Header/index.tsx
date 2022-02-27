@@ -1,7 +1,6 @@
 import dynamic from 'next/dynamic'
 import { makeStyles } from '@material-ui/core/styles'
 import { AppBar } from '@material-ui/core'
-import { Providers } from 'dto'
 import AppContainer from 'components/UI/AppContainer'
 import AppBox from 'components/UI/AppBox'
 import LeftMenu from './components/LeftMenu'
@@ -11,10 +10,9 @@ const Notification = dynamic(() => import('./components/Notification'))
 
 interface HeaderProps {
   authenticated: boolean
-  providers?: Providers
 }
 
-export default function Header({ authenticated, providers }: HeaderProps): JSX.Element {
+export default function Header({ authenticated }: HeaderProps): JSX.Element {
   const classes = useStyles()
 
   return (
@@ -22,7 +20,7 @@ export default function Header({ authenticated, providers }: HeaderProps): JSX.E
       <AppContainer>
         <AppBox justifyContent="space-between">
           <LeftMenu />
-          {authenticated ? <Notification /> : <>{providers && <SignIn providers={providers} />}</>}
+          {authenticated ? <Notification /> : <SignIn />}
         </AppBox>
       </AppContainer>
     </AppBar>

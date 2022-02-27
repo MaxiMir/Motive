@@ -1,14 +1,14 @@
+import { Session } from 'next-auth'
 import { Provider } from 'next-auth/providers'
-import { UserDto, UserBaseDto } from './user'
+import { UserDto } from './user'
 import { MainCharacteristicName } from './characteristic'
 import { GoalDto } from './goal'
 
 export interface PageProps {
-  providers: Providers
-  statusCode: number
+  session: Session | null
+  statusCode?: number
+  providers: Record<string, Provider> | null
 }
-
-export type Providers = Record<string, Provider>
 
 export interface PossiblePageError {
   message?: {
@@ -17,11 +17,8 @@ export interface PossiblePageError {
 }
 
 type Page<T> = {
-  client?: UserBaseDto
   content: T
 }
-
-export type MainPageDto = Page<null>
 
 export type RatingPageDto = Page<{ [k in MainCharacteristicName]: UserDto[] }>
 
@@ -33,9 +30,4 @@ export interface UserDetailDto extends UserDto {
   following: boolean
   goals: GoalDto[]
   goalsMember: GoalDto[]
-}
-
-export interface DataWithPagination<T> {
-  content: T
-  last: boolean
 }

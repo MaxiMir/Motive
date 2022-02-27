@@ -1,18 +1,17 @@
 import { Fragment, useMemo } from 'react'
 import dynamic from 'next/dynamic'
-import { Session } from 'next-auth'
 import { createStyles, useTheme } from '@material-ui/core'
 import { makeStyles } from '@material-ui/core/styles'
-import { UserBaseDto, GoalDto, GoalCharacteristicName } from 'dto'
+import { GoalDto, GoalCharacteristicName, ClientDto } from 'dto'
 import useCharacteristicColors from 'hooks/useCharacteristicColors'
 import AppBox from 'components/UI/AppBox'
 import AppTitle from 'components/UI/AppTitle'
 import AppDot from 'components/UI/AppDot'
 import AppAccordion from 'components/UI/AppAccordion'
 import { getRole } from 'components/Goal/helper'
+import Characteristic from 'components/Characteristic'
 import { useChangeDay, useIncreaseViews } from './hook'
 import { getGoalHref, getGoalInfo } from './helper'
-import Characteristic from 'components/Characteristic'
 import Calendar from './components/Calendar'
 import Menu from './components/Menu'
 import Discussion from './components/Discussion'
@@ -34,22 +33,22 @@ export interface GoalCurrentProps {
   tmpl: 'current'
   goal: GoalDto
   href: string
-  session: Session | null
+  client?: ClientDto
 }
 
-export default function GoalCurrent({ goal, href, session }: GoalCurrentProps): JSX.Element {
+export default function GoalCurrent({ goal, href, client }: GoalCurrentProps): JSX.Element {
   const { id, name, hashtags, characteristic, owner, stages, day } = goal
   const { id: dayId, date, tasks, views, feedback, topicCount } = day
   const classes = useStyles()
   const theme = useTheme()
   const colors = useCharacteristicColors()
   const [isLoading, onChangeDay] = useChangeDay(id)
-  const role = getRole(goal, session)
+  const role = getRole(goal, client)
   const goalHref = getGoalHref(href, goal)
   const goalInfo = useMemo(() => getGoalInfo(goal, role), [goal, role])
   const rest = tasks.length - tasks.filter((t) => t.completed).length
 
-  useIncreaseViews(goal, session)
+  useIncreaseViews(goal, client)
 
   return (
     <AppBox flexDirection="column" spacing={1} id={`goal-${id}`} className={classes.root}>
@@ -64,7 +63,7 @@ export default function GoalCurrent({ goal, href, session }: GoalCurrentProps): 
                 </AppTitle>
                 {role === 'MEMBER' && <Owner {...owner} />}
               </AppBox>
-              <Menu goalId={id} title={name} href={goalHref} role={role} client={client} />
+              <Menu goalId={id} title={name} href={goalHref} role={role} />
             </AppBox>
             <AppBox justifyContent="space-between" alignItems="center">
               {CHARACTERISTICS.map((characteristicName) => (
@@ -78,7 +77,12 @@ export default function GoalCurrent({ goal, href, session }: GoalCurrentProps): 
                   <AppDot />
                 </Fragment>
               ))}
-              <Characteristic tmpl="goal" name="runs for days" value={goalInfo.runsForDays} color={theme.palette.text.disabled} />
+              <Characteristic
+                tmpl="goal"
+                name="runs for days"
+                value={goalInfo.runsForDays}
+                color={theme.palette.text.disabled}
+              />
             </AppBox>
             {!!hashtags?.length && <Hashtags hashtags={hashtags} />}
             <div>
@@ -112,7 +116,7 @@ export default function GoalCurrent({ goal, href, session }: GoalCurrentProps): 
                             task={task}
                             rest={rest}
                             role={role}
-                            client={client as UserBaseDto}
+                            clientId={client?.id as number}
                             forTomorrow={goalInfo.forTomorrow}
                           />
                         )}
@@ -136,13 +140,13 @@ export default function GoalCurrent({ goal, href, session }: GoalCurrentProps): 
                 renderOnClick
                 unmountOnExit
                 detailsClass={classes.discussion}
-                details={<Discussion dayId={dayId} role={role} owner={owner} client={client} count={topicCount} />}
+                details={<Discussion dayId={dayId} role={role} owner={owner} count={topicCount} />}
               />
             </div>
           </AppBox>
           <AppBox flexDirection="column" spacing={2}>
             {goalInfo.controls && (
-              <Reactions goal={goal} owner={owner} role={role} client={client} forTomorrow={goalInfo.forTomorrow} />
+              <Reactions goal={goal} owner={owner} role={role} forTomorrow={goalInfo.forTomorrow} />
             )}
             <Views views={views} />
           </AppBox>

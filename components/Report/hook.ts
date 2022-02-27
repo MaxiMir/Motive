@@ -1,17 +1,16 @@
 import { AxiosError } from 'axios'
 import { useMutation } from 'react-query'
-import { CreateReportDto, ReportType, UserBaseDto } from 'dto'
+import { CreateReportDto, ReportType } from 'dto'
 import useSnackbar from 'hooks/useSnackbar'
+import useClient from 'hooks/useClient'
+import useSignInModal from 'hooks/useSignInModal'
 import { ReportService } from 'services/ReportService'
 
 type SendReport = (reason: string) => void
 
-export default function useSendReport(
-  entityId: number,
-  type: ReportType,
-  client: UserBaseDto | undefined,
-  onSettled: () => void,
-): SendReport {
+export default function useSendReport(entityId: number, type: ReportType, onSettled: () => void): SendReport {
+  const client = useClient()
+  const signIn = useSignInModal()
   const { enqueueSnackbar } = useSnackbar()
   const { mutate } = useMutation<void, AxiosError, CreateReportDto>(ReportService.create, {
     onSuccess() {
@@ -19,11 +18,10 @@ export default function useSendReport(
     },
     onSettled,
   })
-  const isAuthorized = !!client // todo check on auth
 
   return (reason: string) => {
-    if (!isAuthorized) {
-      // TODO for not auth
+    if (!client) {
+      signIn()
       return
     }
 

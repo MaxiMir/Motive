@@ -6,12 +6,11 @@ import useSetFollowing from './hook'
 interface FollowingProps {
   id: number
   following: boolean
-  isAuthorized: boolean
 }
 
-export default function Following({ id, following, isAuthorized }: FollowingProps): JSX.Element {
+export default function Following({ id, following }: FollowingProps): JSX.Element {
   const classes = useStyles()
-  const setFollowing = useSetFollowing(id, following, isAuthorized)
+  const setFollowing = useSetFollowing(id, following)
 
   return (
     <IconButton title={`${following ? 'Remove' : 'Add'} following`} onClick={setFollowing}>

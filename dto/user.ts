@@ -15,3 +15,10 @@ export type CreateUserDto = Omit<UserBaseDto, 'id' | 'nickname'>
 export interface UserDto extends UserBaseDto {
   characteristic: UserCharacteristicDto
 }
+
+export interface ClientDto {
+  id: number
+  nickname: string
+  name: string
+  avatar: string | null
+}

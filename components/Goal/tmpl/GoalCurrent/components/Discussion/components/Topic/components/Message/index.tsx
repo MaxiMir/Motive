@@ -1,12 +1,12 @@
 import dynamic from 'next/dynamic'
 import formatDistanceToNow from 'date-fns/formatDistanceToNow'
 import { createStyles, makeStyles } from '@material-ui/core'
-import { MessageDto, UserBaseDto } from 'dto'
+import { MessageDto } from 'dto'
+import { getUserHref } from 'views/UserView/helper'
 import AppLink from 'components/UI/AppLink'
 import AppBox from 'components/UI/AppBox'
 import AppMarkdown from 'components/UI/AppMarkdown'
 import AppAvatar from 'components/UI/AppAvatar'
-import { getUserHref } from 'views/UserView/helper'
 import Menu from './components/Menu'
 import Like from './components/Like'
 import Reply from './components/Reply'
@@ -18,11 +18,10 @@ interface MessageProps {
   message: MessageDto
   answerFor?: number
   supportFor?: string
-  client?: UserBaseDto
   onReply?: () => void
 }
 
-export default function Message({ message, answerFor, supportFor, client, onReply }: MessageProps): JSX.Element {
+export default function Message({ message, answerFor, supportFor, onReply }: MessageProps): JSX.Element {
   const classes = useStyles()
   const { date, user, text, edited } = message
   const dateDifference = formatDistanceToNow(new Date(date), { includeSeconds: true })
@@ -43,7 +42,7 @@ export default function Message({ message, answerFor, supportFor, client, onRepl
         </AppBox>
         <AppBox justifyContent="space-between" alignItems="flex-start" spacing={1}>
           <AppMarkdown text={text} />
-          <Menu message={message} client={client} />
+          <Menu message={message} />
         </AppBox>
       </AppBox>
       <AppBox justifyContent="space-between" alignItems="center" pr={1}>

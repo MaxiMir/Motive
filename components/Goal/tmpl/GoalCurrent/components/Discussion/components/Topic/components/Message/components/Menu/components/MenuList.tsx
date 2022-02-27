@@ -1,7 +1,8 @@
 import { useState } from 'react'
 import dynamic from 'next/dynamic'
 import { Menu, MenuItem } from '@material-ui/core'
-import { MessageDto, UserBaseDto } from 'dto'
+import { MessageDto } from 'dto'
+import useClient from 'hooks/useClient'
 import AppMenuItemContent from 'components/UI/AppMenuItemContent'
 
 const Report = dynamic(() => import('components/Report'))
@@ -9,12 +10,12 @@ const Report = dynamic(() => import('components/Report'))
 interface MenuListProps {
   anchorEl: HTMLElement
   message: MessageDto
-  client?: UserBaseDto
   onOpenModal: () => void
   onClose: () => void
 }
 
-export default function MenuList({ anchorEl, message, client, onOpenModal, onClose }: MenuListProps): JSX.Element {
+export default function MenuList({ anchorEl, message, onOpenModal, onClose }: MenuListProps): JSX.Element {
+  const client = useClient()
   const [withReport, setWithReport] = useState(false)
 
   const onOpenReport = () => setWithReport(true)
@@ -40,9 +41,7 @@ export default function MenuList({ anchorEl, message, client, onOpenModal, onClo
           <AppMenuItemContent icon="not_interested" text="Cancel" />
         </MenuItem>
       </Menu>
-      {withReport && (
-        <Report entityId={message.id} type="message" anchorEl={anchorEl} client={client} onClose={onCloseReport} />
-      )}
+      {withReport && <Report entityId={message.id} type="message" anchorEl={anchorEl} onClose={onCloseReport} />}
     </>
   )
 }

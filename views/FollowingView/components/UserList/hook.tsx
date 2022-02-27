@@ -1,15 +1,17 @@
 import { AxiosError } from 'axios'
-import { useSession } from 'next-auth/react'
 import { useMutation, useQueryClient } from 'react-query'
 import { Button } from '@material-ui/core'
 import { SubscriptionPageDto, UserDto } from 'dto'
 import useSnackbar from 'hooks/useSnackbar'
+import useSignInModal from 'hooks/useSignInModal'
+import useClient from 'hooks/useClient'
 import { QUERY_KEY } from 'views/FollowingView/hook'
 import { Options, Context, fetcher, getNextState } from './helper'
 
 export default function useRemoveFollowing(): (user: UserDto, index: number) => void {
+  const client = useClient()
+  const signIn = useSignInModal()
   const queryClient = useQueryClient()
-  const { status } = useSession()
   const { enqueueSnackbar, closeSnackbar } = useSnackbar()
   const { mutate } = useMutation<void, AxiosError, Options, Context>(fetcher, {
     async onMutate({ user, index, add }: Options) {
@@ -44,8 +46,8 @@ export default function useRemoveFollowing(): (user: UserDto, index: number) => 
   }
 
   return (user: UserDto, index: number) => {
-    if (status === 'unauthenticated') {
-      // TODO for not auth
+    if (!client) {
+      signIn()
       return
     }
 

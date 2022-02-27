@@ -1,7 +1,5 @@
 import { useRouter } from 'next/router'
-import { Session } from 'next-auth'
 import { Button, makeStyles } from '@material-ui/core'
-import { Providers } from 'dto'
 import { FOLLOWING_ROUTE, RATING_ROUTE, SEARCH_ROUTE, TOP_OF_THE_DAY_ROUTE } from 'route'
 import AppBox from 'components/UI/AppBox'
 import AppContainer from 'components/UI/AppContainer'
@@ -21,14 +19,12 @@ const ROUTES = [
 ]
 
 interface FooterProps {
-  session: Session | null
-  providers?: Providers
+  nickname?: string
 }
 
-export default function Footer({ session, providers }: FooterProps): JSX.Element {
+export default function Footer({ nickname }: FooterProps): JSX.Element {
   const classes = useStyles()
   const { asPath } = useRouter()
-  const nickname = session?.nickname as string | undefined
 
   return (
     <footer className={classes.root}>
@@ -39,7 +35,7 @@ export default function Footer({ session, providers }: FooterProps): JSX.Element
               <FooterIcon Icon={Icon} selected={asPath.includes(href)} key={href} />
             </Button>
           ))}
-          <FooterProfile nickname={nickname} asPath={asPath} providers={providers} />
+          <FooterProfile nickname={nickname} asPath={asPath} />
         </AppBox>
       </AppContainer>
     </footer>

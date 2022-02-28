@@ -43,14 +43,12 @@ const Layout: FC<LayoutProps> = ({
         {url && <meta property="og:url" content={url} />}
         {image && <meta property="og:image" content={image} />}
         {type && <meta property="og:type" content={type} />}
-        <link rel="canonical" href="https://www.instagram.com/astrogks/" />
+        <link rel="canonical" href={url} />
         <link rel="manifest" href="/manifest.json" />
         <link rel="apple-touch-icon" href="/apple-icon.png" />
         {/* PWA primary color */}
         <meta name="theme-color" content="#4DA0EC" />
         <meta charSet="UTF-8" />
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" />
-        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
         <link rel="icon" type="image/x-icon" href="/favicon.ico" />
       </Head>
       <Header authenticated={!!client} />
@@ -61,6 +59,8 @@ const Layout: FC<LayoutProps> = ({
           {children}
         </main>
       )}
+      <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" />
+      <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
       <Footer nickname={client?.nickname} />
     </>
   )

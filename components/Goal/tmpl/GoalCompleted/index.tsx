@@ -1,6 +1,6 @@
 import { Fragment } from 'react'
 import dynamic from 'next/dynamic'
-import { GoalCharacteristicName, GoalCompletedDto, UserBaseDto } from 'dto'
+import { ClientDto, GoalCharacteristicName, GoalCompletedDto } from 'dto'
 import { makeStyles, createStyles } from '@material-ui/core/styles'
 import useCharacteristicColors from 'hooks/useCharacteristicColors'
 import { getRole } from 'components/Goal/helper'
@@ -22,7 +22,7 @@ const CHARACTERISTICS: GoalCharacteristicName[] = ['motivation', 'creativity', '
 export interface GoalCompletedProps {
   tmpl: 'completed'
   goal: GoalCompletedDto
-  client?: UserBaseDto
+  client?: ClientDto
   inView: boolean
   onView: () => void
 }

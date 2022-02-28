@@ -28,7 +28,9 @@ export default NextAuth({
   },
   callbacks: {
     async session({ session, token }) {
-      return Promise.resolve({ ...session, ...token })
+      const { id, name, nickname, avatar } = token
+
+      return Promise.resolve({ ...session, user: { id, name, nickname, avatar } })
     },
     async jwt({ token, account }) {
       const { id, name, nickname, avatar } = await UserService.findOrCreate({
@@ -39,7 +41,7 @@ export default NextAuth({
         provider: account?.provider,
       })
 
-      return Promise.resolve({ ...token, user: { id, name, nickname, avatar } })
+      return Promise.resolve({ ...token, id, name, nickname, avatar })
     },
   },
 })

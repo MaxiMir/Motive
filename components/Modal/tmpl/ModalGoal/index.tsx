@@ -4,7 +4,6 @@ import { Field, FieldArray, Form, FormikProvider } from 'formik'
 import { makeStyles } from '@material-ui/core/styles'
 import { Accordion, AccordionDetails, AccordionSummary, Button, createStyles } from '@material-ui/core'
 import { MainCharacteristicName } from 'dto'
-import { getTomorrow } from 'helpers/date'
 import useFocus from 'hooks/useFocus'
 import ModalAction from 'components/ModalAction'
 import Task from 'components/Task'
@@ -32,7 +31,6 @@ export interface ModalGoalProps {
 export default function ModalGoal({ onClose }: ModalGoalProps): JSX.Element {
   const classes = useStyles()
   const [hashtagsRef, setHashtagsFocus] = useFocus()
-  const date = getTomorrow()
   const { isLoading, formik } = useForm(onClose)
   const { values, setFieldValue, handleSubmit } = formik
 
@@ -122,7 +120,9 @@ export default function ModalGoal({ onClose }: ModalGoalProps): JSX.Element {
                         date={task.date}
                         key={`tasks.${index}`}
                         onRemove={() => remove(index)}
-                        onToggleDate={(isChecked) => setFieldValue(`tasks.${index}.date`, isChecked ? date : undefined)}
+                        onToggleDate={(isChecked) =>
+                          setFieldValue(`tasks.${index}.date`, isChecked ? values.date : undefined)
+                        }
                       />
                     ))}
                     <Button

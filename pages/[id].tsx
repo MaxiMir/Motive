@@ -30,7 +30,7 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
 
   const { headers } = ctx.req
   const session = await getSession(ctx)
-  const providers = session ? null : await getProviders()
+  const providers = await getProviders()
   const queryClient = new QueryClient()
   const userHref = ctx.req.url || ''
   const nickname = ctx.params?.id || ''

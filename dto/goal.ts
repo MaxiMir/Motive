@@ -4,8 +4,10 @@ import { ReactionsDto } from './reaction'
 
 export interface CreateGoalDto {
   name: string
+  started: Date
   hashtags: string
   stages: string[]
+  date: Date
   tasks: CreateTaskDto[]
 }
 
@@ -36,6 +38,7 @@ export interface GoalStageDto {
 
 export interface CreateDayDto {
   id: number
+  date: Date
   tasks: CreateTaskDto[]
 }
 

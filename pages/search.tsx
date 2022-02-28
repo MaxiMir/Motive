@@ -23,7 +23,7 @@ export default function SearchPage(): JSX.Element {
 
 export const getServerSideProps: GetServerSideProps = async (ctx) => {
   const session = await getSession(ctx)
-  const providers = session ? null : await getProviders()
+  const providers = await getProviders()
 
   return {
     props: {

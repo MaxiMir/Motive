@@ -1,7 +1,6 @@
 import { FieldArray, Form, FormikProvider } from 'formik'
 import { Button, createStyles, makeStyles } from '@material-ui/core'
 import { GoalDto } from 'dto'
-import { getTomorrow } from 'helpers/date'
 import ModalAction from 'components/ModalAction'
 import Task from 'components/Task'
 import AppModal from 'components/UI/AppModal'
@@ -15,7 +14,6 @@ export interface ModalTasksProps {
 
 export default function ModalTasks({ goal, onClose }: ModalTasksProps): JSX.Element {
   const classes = useStyles()
-  const tomorrow = getTomorrow()
   const { isLoading, formik } = useForm(goal, onClose)
   const { values, setFieldValue, handleSubmit } = formik
 
@@ -53,7 +51,9 @@ export default function ModalTasks({ goal, onClose }: ModalTasksProps): JSX.Elem
                     date={task.date}
                     key={`tasks.${index}`}
                     onRemove={() => remove(index)}
-                    onToggleDate={(isChecked) => setFieldValue(`tasks.${index}.date`, isChecked ? tomorrow : undefined)}
+                    onToggleDate={(isChecked) =>
+                      setFieldValue(`tasks.${index}.date`, isChecked ? values.date : undefined)
+                    }
                   />
                 ))}
                 <Button

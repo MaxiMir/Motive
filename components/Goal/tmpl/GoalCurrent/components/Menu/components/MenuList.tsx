@@ -2,7 +2,6 @@ import { useState } from 'react'
 import dynamic from 'next/dynamic'
 import { Menu, MenuItem } from '@material-ui/core'
 import { RoleDto } from 'dto'
-import useClient from 'hooks/useClient'
 import AppMenuItemContent from 'components/UI/AppMenuItemContent'
 
 const Report = dynamic(() => import('components/Report'))
@@ -16,9 +15,7 @@ interface MenuListProps {
 }
 
 export default function MenuList({ anchorEl, goalId, role, onShare, onClose }: MenuListProps): JSX.Element {
-  const client = useClient()
   const [withReport, setWithReport] = useState(false)
-  const withReportMenu = client && role !== 'OWNER'
 
   const onOpenReport = () => setWithReport(true)
 
@@ -33,7 +30,7 @@ export default function MenuList({ anchorEl, goalId, role, onShare, onClose }: M
         <MenuItem onClick={onShare}>
           <AppMenuItemContent icon="share" text="Share" />
         </MenuItem>
-        {withReportMenu && (
+        {role !== 'OWNER' && (
           <MenuItem onClick={onOpenReport}>
             <AppMenuItemContent icon="outlined_flag" text="Report" />
           </MenuItem>

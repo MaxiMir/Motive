@@ -3,6 +3,7 @@ import { useMutation } from 'react-query'
 import { CreateDayDto, GoalDto } from 'dto'
 import { UseFormType } from 'types'
 import GoalService from 'services/GoalService'
+import { getTomorrow } from 'helpers/date'
 import useChangeDayUrl from 'hooks/useChangeDayUrl'
 import { useMutateGoals } from 'views/UserView/hook'
 import schema from 'schemas/tasks'
@@ -14,6 +15,7 @@ export default function useForm(goal: GoalDto, onSuccess: () => void): UseFormTy
   const formik = useFormik<CreateDayDto>({
     initialValues: {
       id,
+      date: getTomorrow(),
       tasks: [{ name: '', date: undefined }],
     },
     validationSchema: schema,

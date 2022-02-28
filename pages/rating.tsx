@@ -24,7 +24,7 @@ export default function RatingPage({ statusCode }: PageProps): JSX.Element {
 export const getServerSideProps: GetServerSideProps = async (ctx) => {
   const { headers } = ctx.req
   const session = await getSession(ctx)
-  const providers = session ? null : await getProviders()
+  const providers = await getProviders()
   const queryClient = new QueryClient()
   await queryClient.prefetchQuery(QUERY_KEY, () => PageService.getRating({ headers }))
   const state = queryClient.getQueryState<PossiblePageError>(QUERY_KEY)

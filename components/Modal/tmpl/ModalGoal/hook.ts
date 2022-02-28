@@ -5,6 +5,7 @@ import { UseFormType } from 'types'
 import GoalService from 'services/GoalService'
 import useSnackbar from 'hooks/useSnackbar'
 import { useMutateGoals } from 'views/UserView/hook'
+import { getToday, getTomorrow } from 'helpers/date'
 import { scrollToElem } from 'helpers/dom'
 import schema from 'schemas/goal'
 import { getGoalNextState } from './helper'
@@ -13,9 +14,11 @@ export default function useForm(onSuccess: () => void): UseFormType<CreateGoalDt
   const { isLoading, mutate } = useSendCreateGoal(onSuccess)
   const formik = useFormik<CreateGoalDto>({
     initialValues: {
+      started: getToday(),
       name: '',
       hashtags: '',
       stages: [],
+      date: getTomorrow(),
       tasks: [{ name: '', date: undefined }],
     },
     validationSchema: schema,

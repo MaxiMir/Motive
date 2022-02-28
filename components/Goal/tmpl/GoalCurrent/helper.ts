@@ -20,8 +20,8 @@ export const getGoalHref = (userHref: string, goal: GoalDto): string => {
   return setQueryParams(userHref, { [SEARCH_PARAMS.SCROLL]: goal.id, [SEARCH_PARAMS.DATES]: `${id}:${day.id}` })
 }
 
-const checkOnWeb = (dayDate: string, currentDate: Date, lastDay: boolean): boolean =>
-  lastDay && differenceInDays(currentDate, Date.parse(dayDate)) >= SHOW_WEB_AFTER_DAYS
+const checkOnWeb = (dayDate: string, today: Date, lastDay: boolean): boolean =>
+  lastDay && differenceInDays(today, Date.parse(dayDate)) >= SHOW_WEB_AFTER_DAYS
 
 const checkOnTaskForm = (role: RoleDto, daysGone: number): boolean =>
   ['OWNER', 'MEMBER'].includes(role) && daysGone <= 0
@@ -43,13 +43,13 @@ type GoalInfo = {
 
 export const getGoalInfo = (goal: GoalDto, role: RoleDto): GoalInfo => {
   const { started, day, calendar } = goal
-  const currentDate = new Date()
+  const today = new Date()
   const datesMap = getDatesMap(day, calendar)
   const dates = Object.keys(datesMap)
   const lastDay = dates[dates.length - 1] === getDateKey(day.date)
-  const daysGone = differenceInCalendarDays(currentDate, Date.parse(day.date))
-  const runsForDays = differenceInCalendarDays(currentDate, Date.parse(started))
-  const web = checkOnWeb(day.date, currentDate, lastDay)
+  const daysGone = differenceInCalendarDays(today, Date.parse(day.date))
+  const runsForDays = differenceInCalendarDays(today, Date.parse(started))
+  const web = checkOnWeb(day.date, today, lastDay)
   const form = checkOnTaskForm(role, daysGone)
   const controls = checkOnControls(role, lastDay)
   const completeStage = checkOnCompleteStage(controls, role, goal)

@@ -4,6 +4,7 @@ const runtimeCaching = require('next-pwa/cache')
 /* eslint-disable @typescript-eslint/no-var-requires */
 
 module.exports = withPWA({
+  swcMinify: true, // minification using SWC as part of the Next.js Compiler
   pwa: {
     disable: process.env.NODE_ENV === 'development',
     dest: 'public',
@@ -11,5 +12,8 @@ module.exports = withPWA({
   },
   images: {
     domains: ['localhost', 'avatars.githubusercontent.com'], // TODO REPLACE
+  },
+  experimental: {
+    outputStandalone: true,
   },
 })

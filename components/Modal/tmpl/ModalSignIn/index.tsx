@@ -1,32 +1,40 @@
-import Image from 'next/image'
-import { Button } from '@material-ui/core'
-import { SignInOptions, signIn } from 'next-auth/react'
-import { Provider } from 'next-auth/providers'
+import { useEffect, useState } from 'react'
+import dynamic from 'next/dynamic'
+import { BuiltInProviderType } from 'next-auth/providers'
+import { SignInOptions, getProviders, LiteralUnion, ClientSafeProvider } from 'next-auth/react'
 import AppModal from 'components/UI/AppModal'
 import AppBox from 'components/UI/AppBox'
+
+const Loader = dynamic(() => import('./components/Loader'))
+const Provider = dynamic(() => import('./components/Provider'))
+
+type Providers = Record<LiteralUnion<BuiltInProviderType, string>, ClientSafeProvider> | null
 
 export interface ModalSignInProps {
   tmpl: 'signIn'
   options: SignInOptions
-  providers: Record<string, Provider>
   onClose: () => void
 }
 
-export default function ModalSignIn({ options, providers, onClose }: ModalSignInProps): JSX.Element {
+export default function ModalSignIn({ options, onClose }: ModalSignInProps): JSX.Element {
+  const [providers, setProviders] = useState<Providers>()
+
+  useEffect(() => {
+    getProviders().then(setProviders)
+  }, [])
+
   return (
     <AppModal title="Sign In" maxWidth="xs" onClose={onClose}>
       <AppBox flexDirection="column" alignSelf="stretch" spacing={2} mt={1} mb={1}>
-        {Object.values(providers).map(({ id, name }) => (
-          <Button
-            variant="outlined"
-            color="primary"
-            startIcon={<Image src={`/images/svg/${id}.svg`} alt={name} width={24} height={24} />}
-            key={id}
-            onClick={() => signIn(id, options)}
-          >
-            with {name}
-          </Button>
-        ))}
+        {!providers ? (
+          <Loader count={3} />
+        ) : (
+          <>
+            {Object.values(providers).map((provider) => (
+              <Provider provider={provider} options={options} key={provider.id} />
+            ))}
+          </>
+        )}
       </AppBox>
     </AppModal>
   )

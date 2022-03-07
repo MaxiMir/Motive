@@ -1,5 +1,5 @@
 import { GetServerSideProps } from 'next'
-import { getProviders, getSession } from 'next-auth/react'
+import { getSession } from 'next-auth/react'
 import { dehydrate, QueryClient } from 'react-query'
 import { PageProps, PossiblePageError } from 'dto'
 import PageService from 'services/PageService'
@@ -20,7 +20,6 @@ export default function FollowingPage({ statusCode }: PageProps): JSX.Element {
 export const getServerSideProps: GetServerSideProps = async (ctx) => {
   const { headers } = ctx.req
   const session = await getSession(ctx)
-  const providers = await getProviders()
   const queryClient = new QueryClient()
   await queryClient.prefetchQuery(QUERY_KEY, () => PageService.getFollowing({ headers }))
   const state = queryClient.getQueryState<PossiblePageError>(QUERY_KEY)
@@ -29,7 +28,6 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
   return {
     props: {
       session,
-      providers,
       statusCode,
       dehydratedState: dehydrate(queryClient),
     },

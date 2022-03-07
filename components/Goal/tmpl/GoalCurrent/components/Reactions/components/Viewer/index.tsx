@@ -1,17 +1,17 @@
 import { Button } from '@material-ui/core'
-import { UserBaseDto, GoalDto, RoleDto, DayCharacteristicName } from 'dto'
+import { UserBaseDto, GoalDto, DayCharacteristicName } from 'dto'
 import AppBox from 'components/UI/AppBox'
 import AppEmoji from 'components/UI/AppEmoji'
 import ReactionWithSend from './components/ReactionWithSend'
 import ReactionSupport from './components/ReactionSupport'
 
 export interface ViewerProps {
-  role: RoleDto
   goal: GoalDto
   owner: UserBaseDto
+  isPageOwner: boolean
 }
 
-export default function Viewer({ role, goal, owner }: ViewerProps): JSX.Element {
+export default function Viewer({ goal, owner, isPageOwner }: ViewerProps): JSX.Element {
   return (
     <AppBox justifyContent="space-between">
       <AppBox spacing={1}>
@@ -22,10 +22,10 @@ export default function Viewer({ role, goal, owner }: ViewerProps): JSX.Element 
       </AppBox>
       <Button
         variant="outlined"
-        color={role === 'MEMBER' ? 'primary' : 'secondary'}
-        startIcon={<AppEmoji name={role === 'MEMBER' ? 'unsubscribe' : 'subscribe'} onlyEmoji />}
+        color={isPageOwner ? 'primary' : 'secondary'}
+        startIcon={<AppEmoji name={isPageOwner ? 'unsubscribe' : 'subscribe'} onlyEmoji />}
       >
-        {role === 'MEMBER' ? 'Leave' : 'Join'}
+        {isPageOwner ? 'Leave' : 'Join'}
       </Button>
     </AppBox>
   )

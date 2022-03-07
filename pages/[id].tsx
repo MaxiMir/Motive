@@ -1,6 +1,6 @@
 import { GetServerSideProps } from 'next'
 import { dehydrate, QueryClient } from 'react-query'
-import { getProviders, getSession } from 'next-auth/react'
+import { getSession } from 'next-auth/react'
 import { PageProps, PossiblePageError } from 'dto'
 import PageService from 'services/PageService'
 import { getUserMeta } from 'views/UserView/helper'
@@ -30,7 +30,6 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
 
   const { headers } = ctx.req
   const session = await getSession(ctx)
-  const providers = await getProviders()
   const queryClient = new QueryClient()
   const userHref = ctx.req.url || ''
   const nickname = ctx.params?.id || ''
@@ -47,7 +46,6 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
   return {
     props: {
       session,
-      providers,
       statusCode,
       dehydratedState: dehydrate(queryClient),
     },

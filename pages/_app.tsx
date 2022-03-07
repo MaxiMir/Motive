@@ -15,7 +15,7 @@ import theme from 'theme'
 const AppSnackbar = dynamic(() => import('components/UI/AppSnackbar'))
 const Modal = dynamic(() => import('components/Modal'))
 
-export default function MyApp({ Component, pageProps: { session, providers, ...pageProps } }: AppProps): JSX.Element {
+export default function MyApp({ Component, pageProps: { session, ...pageProps } }: AppProps): JSX.Element {
   const [snackbarProps, setSnackbarProps] = useState<ContextSnackbarProps | null>(null)
   const [options, setOptions] = useState<SignInOptions>()
   const [queryClient] = useState(
@@ -62,7 +62,7 @@ export default function MyApp({ Component, pageProps: { session, providers, ...p
                 </SnackbarContext.Provider>
               </ModalSignInContext.Provider>
               {snackbarProps && <AppSnackbar {...snackbarProps} onClose={onCloseSnackbar} />}
-              {options && <Modal tmpl="signIn" options={options} providers={providers} onClose={onCloseSignIn} />}
+              {options && <Modal tmpl="signIn" options={options} onClose={onCloseSignIn} />}
             </ThemeProvider>
           </MuiPickersUtilsProvider>
         </Hydrate>

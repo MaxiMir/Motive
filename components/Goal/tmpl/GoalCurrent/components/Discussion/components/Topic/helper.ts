@@ -1,4 +1,4 @@
-import { RoleDto, TopicDto, MessageType } from 'dto'
+import { TopicDto, MessageType } from 'dto'
 
-export const checkOnReply = (role: RoleDto, topic: TopicDto): boolean =>
-  role === 'OWNER' && !topic.answer && topic.type === MessageType.QUESTION
+export const checkOnReply = (isGoalOwner: boolean, topic: TopicDto): boolean =>
+  isGoalOwner && !topic.answer && topic.type === MessageType.QUESTION

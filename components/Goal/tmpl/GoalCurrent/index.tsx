@@ -33,10 +33,11 @@ export interface GoalCurrentProps {
   tmpl: 'current'
   goal: GoalDto
   href: string
+  isPageOwner: boolean
   client?: ClientDto
 }
 
-export default function GoalCurrent({ goal, href, client }: GoalCurrentProps): JSX.Element {
+export default function GoalCurrent({ goal, href, isPageOwner, client }: GoalCurrentProps): JSX.Element {
   const { id, name, hashtags, characteristic, owner, stages, day } = goal
   const { id: dayId, date, tasks, views, feedback, topicCount } = day
   const classes = useStyles()
@@ -47,6 +48,7 @@ export default function GoalCurrent({ goal, href, client }: GoalCurrentProps): J
   const goalHref = getGoalHref(href, goal)
   const goalInfo = useMemo(() => getGoalInfo(goal, role), [goal, role])
   const rest = tasks.length - tasks.filter((t) => t.completed).length
+  const isGoalOwner = role === 'OWNER'
 
   useIncreaseViews(goal, client)
 
@@ -140,13 +142,19 @@ export default function GoalCurrent({ goal, href, client }: GoalCurrentProps): J
                 renderOnClick
                 unmountOnExit
                 detailsClass={classes.discussion}
-                details={<Discussion dayId={dayId} role={role} owner={owner} count={topicCount} />}
+                details={<Discussion dayId={dayId} owner={owner} count={topicCount} isGoalOwner={isGoalOwner} />}
               />
             </div>
           </AppBox>
           <AppBox flexDirection="column" spacing={2}>
             {goalInfo.controls && (
-              <Reactions goal={goal} owner={owner} role={role} forTomorrow={goalInfo.forTomorrow} />
+              <Reactions
+                goal={goal}
+                owner={owner}
+                isGoalOwner={isGoalOwner}
+                forTomorrow={goalInfo.forTomorrow}
+                isPageOwner={isPageOwner}
+              />
             )}
             <Views views={views} />
           </AppBox>

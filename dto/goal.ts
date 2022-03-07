@@ -23,6 +23,7 @@ export interface GoalDto {
   day: DayDto
   calendar: CalendarDto[]
   reactions: ReactionsDto
+  member: boolean
 }
 
 export interface GoalCompletedDto extends GoalDto {

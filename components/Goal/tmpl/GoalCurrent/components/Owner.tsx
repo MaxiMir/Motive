@@ -5,7 +5,7 @@ import AppTypography from 'components/UI/AppTypography'
 import AppAvatar from 'components/UI/AppAvatar'
 import AppLink from 'components/UI/AppLink'
 
-export default function Owner({ nickname, avatar }: UserBaseDto): JSX.Element {
+export default function Owner({ nickname, name, avatar }: UserBaseDto): JSX.Element {
   const classes = useStyles()
   const href = getUserHref(nickname)
 
@@ -14,8 +14,7 @@ export default function Owner({ nickname, avatar }: UserBaseDto): JSX.Element {
       <AppTypography variant="h6" className={classes.withText}>
         with
       </AppTypography>
-      <AppAvatar src={avatar} size={26} />
-      <AppLink href={href}>
+      <AppLink href={href} title={name}>
         <AppAvatar src={avatar} size={26} />
       </AppLink>
     </>

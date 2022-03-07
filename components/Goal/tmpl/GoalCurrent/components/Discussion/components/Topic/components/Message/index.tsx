@@ -31,7 +31,7 @@ export default function Message({ message, answerFor, supportFor, onReply }: Mes
     <AppBox flexDirection="column" spacing={1} flex={1}>
       <AppBox flexDirection="column" spacing={1} minWidth={152}>
         <AppBox alignItems="center" spacing={1}>
-          <AppLink href={href}>
+          <AppLink href={href} title={user.name}>
             <AppAvatar src={user.avatar} size={26} />
           </AppLink>
           <AppLink href={href} title={user.name} className={classes.name}>

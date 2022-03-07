@@ -31,12 +31,12 @@ export default function UserCharacteristic({ user, inView, menu, onView }: UserC
   return (
     <>
       <AppBox spacing={2} height={60}>
-        <AppLink href={href}>
+        <AppLink href={href} title={name}>
           <AppAvatar src={avatar} size={55} />
         </AppLink>
         <AppBox flexDirection="column" justifyContent="space-between" flex={1}>
           <AppBox justifyContent="space-between" alignItems="center">
-            <AppLink href={href}>
+            <AppLink href={href} title={name}>
               <AppTypography variant="subtitle1" component="p">
                 {name}
               </AppTypography>

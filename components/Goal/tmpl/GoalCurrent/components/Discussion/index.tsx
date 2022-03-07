@@ -1,5 +1,5 @@
 import dynamic from 'next/dynamic'
-import { RoleDto, TopicDto, MessageType, UserBaseDto, ClientDto } from 'dto'
+import { TopicDto, MessageType, UserBaseDto, ClientDto } from 'dto'
 import useClient from 'hooks/useClient'
 import AppBox from 'components/UI/AppBox'
 import { AppListProps } from 'components/UI/AppList'
@@ -13,16 +13,16 @@ const Topic = dynamic(() => import('./components/Topic'))
 
 interface DiscussionProps {
   dayId: number
-  role: RoleDto
   owner: UserBaseDto
   count: number
+  isGoalOwner: boolean
 }
 
-export default function Discussion({ dayId, role, owner, count }: DiscussionProps): JSX.Element {
+export default function Discussion({ dayId, owner, count, isGoalOwner }: DiscussionProps): JSX.Element {
   const client = useClient()
   const { isLoading, topics, checkOnLoadMore, fetchNextPage } = useDiscussion(dayId, count)
   const onAdd = useAddMessage()
-  const withInput = !!client && (!count || !!topics.length) && role !== 'OWNER'
+  const withInput = !!client && (!count || !!topics.length) && !isGoalOwner
   const height = !count ? undefined : 496 + (!withInput ? 0 : 56)
 
   return (
@@ -36,7 +36,7 @@ export default function Discussion({ dayId, role, owner, count }: DiscussionProp
         ) : (
           <>
             {isLoading ? (
-              <Loader count={count} withInput={role !== 'OWNER'} />
+              <Loader count={count} withInput={!isGoalOwner} />
             ) : (
               <AppBox display="block" maxHeight={524} pr={2} overflow="auto">
                 <AppList
@@ -46,8 +46,8 @@ export default function Discussion({ dayId, role, owner, count }: DiscussionProp
                   render={(topic, index) => (
                     <Topic
                       topic={topic}
-                      role={role}
                       owner={owner}
+                      isGoalOwner={isGoalOwner}
                       inView={checkOnLoadMore(index)}
                       onView={fetchNextPage}
                       onAdd={onAdd}

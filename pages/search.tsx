@@ -1,6 +1,6 @@
 import Layout from 'layout'
 import { GetServerSideProps } from 'next'
-import { getProviders, getSession } from 'next-auth/react'
+import { getSession } from 'next-auth/react'
 import { Container } from '@material-ui/core'
 import AppTitle from 'components/UI/AppTitle'
 import AppTypography from 'components/UI/AppTypography'
@@ -23,12 +23,10 @@ export default function SearchPage(): JSX.Element {
 
 export const getServerSideProps: GetServerSideProps = async (ctx) => {
   const session = await getSession(ctx)
-  const providers = await getProviders()
 
   return {
     props: {
       session,
-      providers,
     },
   }
 }

@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import dynamic from 'next/dynamic'
-import { RoleDto, TopicDto, MessageType, UserBaseDto } from 'dto'
+import { TopicDto, MessageType, UserBaseDto } from 'dto'
 import Message from './components/Message'
 import { checkOnReply } from './helper'
 
@@ -12,16 +12,16 @@ const Reply = dynamic(() => import('./components/Reply'))
 interface TopicProps {
   owner: UserBaseDto
   topic: TopicDto
-  role: RoleDto
   inView: boolean
   onView: () => void
+  isGoalOwner: boolean
   onAdd: (topic: TopicDto) => void
 }
 
-export default function Topic({ owner, topic, role, inView, onView, onAdd }: TopicProps): JSX.Element {
+export default function Topic({ owner, topic, isGoalOwner, inView, onView, onAdd }: TopicProps): JSX.Element {
   const { answer, ...message } = topic
   const [showInput, setShowInput] = useState(false)
-  const showReply = checkOnReply(role, topic)
+  const showReply = checkOnReply(isGoalOwner, topic)
 
   const onClick = () => setShowInput(true)
 

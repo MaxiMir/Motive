@@ -26,7 +26,7 @@ export default function LeftMenu(): JSX.Element {
         <AppIcon name="menu" className={classes.icon} />
       </Button>
       <Drawer open={open} onClose={toggle}>
-        <div role="presentation" className={classes.list} onKeyDown={onKeyDown} onClick={toggle}>
+        <div role="presentation" className={classes.list} onKeyDown={onKeyDown}>
           <List>
             {['News', 'How it works', 'Next Features', 'Support us'].map((text) => (
               <ListItem button key={text}>
@@ -38,8 +38,8 @@ export default function LeftMenu(): JSX.Element {
             <>
               <Divider />
               <List>
-                <ListItem button>
-                  <ListItemText primary="Sign out" onClick={() => signOut()} />
+                <ListItem button onClick={() => signOut()}>
+                  <ListItemText primary="Sign out" />
                 </ListItem>
               </List>
             </>

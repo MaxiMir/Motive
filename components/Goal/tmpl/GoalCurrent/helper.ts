@@ -33,6 +33,7 @@ const checkOnCompleteStage = (reactions: boolean, role: RoleDto, goal: GoalDto):
 
 type GoalInfo = {
   datesMap: Record<string, number>
+  daysGone: number
   runsForDays: number
   web: boolean
   form: boolean
@@ -57,6 +58,7 @@ export const getGoalInfo = (goal: GoalDto, role: RoleDto): GoalInfo => {
 
   return {
     datesMap,
+    daysGone,
     runsForDays,
     web,
     form,

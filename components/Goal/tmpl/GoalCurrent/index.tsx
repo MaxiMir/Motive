@@ -117,8 +117,7 @@ export default function GoalCurrent({ goal, href, isPageOwner, client }: GoalCur
                             goalId={id}
                             task={task}
                             rest={rest}
-                            role={role}
-                            clientId={client?.id as number}
+                            daysGone={goalInfo.daysGone}
                             forTomorrow={goalInfo.forTomorrow}
                           />
                         )}

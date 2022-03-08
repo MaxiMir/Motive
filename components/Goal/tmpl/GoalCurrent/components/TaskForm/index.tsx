@@ -1,35 +1,40 @@
 import dynamic from 'next/dynamic'
-import { RoleDto, TaskDto } from 'dto'
+import { TaskDto } from 'dto'
 import TooltipTomorrow from 'components/Goal/tmpl/GoalCurrent/components/TooltipTomorrow'
+import AppBox from 'components/UI/AppBox'
 import AppCheckbox from 'components/UI/AppCheckbox'
 import AppMarkdown from 'components/UI/AppMarkdown'
 import useSetCompleted from './hook'
 
 const TaskDate = dynamic(() => import('../TaskDate'))
+const CompletedByOther = dynamic(() => import('./components/CompletedByOther'))
 
 interface FormProps {
   goalId: number
   task: TaskDto
   rest: number
-  role: RoleDto
-  clientId: number
+  daysGone: number
   forTomorrow: boolean
 }
 
-export default function TaskForm({ goalId, task, rest, clientId, role, forTomorrow }: FormProps): JSX.Element {
-  const { id, name, completed, completedBy, date } = task
-  const label = name + (completedBy.length && !completed ? ' 🔥' : '')
-  const checked = role === 'OWNER' ? completed : completedBy.includes(clientId)
+export default function TaskForm({ goalId, task, rest, daysGone, forTomorrow }: FormProps): JSX.Element {
+  const { id, name, completed, completedByOther, date } = task
   const setCompleted = useSetCompleted(goalId, id, rest)
+  const withFire = !daysGone && completedByOther && !completed
 
   return (
     <form>
       <TooltipTomorrow forTomorrow={forTomorrow}>
         <AppCheckbox
           name={id.toString()}
-          label={<AppMarkdown text={label} />}
-          checked={checked}
-          disabled={checked || forTomorrow}
+          label={
+            <AppBox alignItems="center" spacing={1}>
+              <AppMarkdown text={name} />
+              {withFire && <CompletedByOther />}
+            </AppBox>
+          }
+          checked={completed}
+          disabled={completed || forTomorrow}
           onChange={setCompleted}
         />
       </TooltipTomorrow>

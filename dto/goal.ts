@@ -64,7 +64,7 @@ export interface TaskDto {
   name: string
   date: string | null
   completed: boolean
-  completedBy: number[]
+  completedByOther: boolean
 }
 
 export interface FeedbackDto {

@@ -4,19 +4,22 @@ import { Button } from '@material-ui/core'
 import { GoalDto } from 'dto'
 import useClient from 'hooks/useClient'
 import useOpenSignIn from 'hooks/useOpenSignIn'
+import { useUserPage } from 'views/UserView/hook'
 import AppEmoji from 'components/UI/AppEmoji'
+import { checkOnMember } from './helper'
 
 const Modal = dynamic(() => import('components/Modal'))
 
 interface MembershipProps {
   goal: GoalDto
-  member: boolean
 }
 
-export default function Membership({ goal, member }: MembershipProps): JSX.Element {
+export default function Membership({ goal }: MembershipProps): JSX.Element {
   const client = useClient()
+  const page = useUserPage()
   const openSignIn = useOpenSignIn()
   const [modal, setModal] = useState<'subscribe' | 'unsubscribe'>()
+  const member = checkOnMember(goal, undefined, client)
 
   const onClick = () => {
     if (!client) {
@@ -33,11 +36,11 @@ export default function Membership({ goal, member }: MembershipProps): JSX.Eleme
     <>
       <Button
         variant="outlined"
-        color={member ? 'secondary' : 'primary'}
+        color={member ? 'primary' : 'secondary'}
         startIcon={<AppEmoji name={member ? 'unsubscribe' : 'subscribe'} onlyEmoji />}
         onClick={onClick}
       >
-        {member ? 'Join' : 'Leave'}
+        {member ? 'Leave' : 'Join'}
       </Button>
       {modal && <Modal tmpl={modal} goal={goal} onClose={onClose} />}
     </>

@@ -1,7 +1,7 @@
 export type ReportType = 'goal' | 'message'
 
 export interface CreateReportDto {
-  entityId: number
-  type: ReportType
-  reason: string
+  readonly entityId: number
+  readonly type: ReportType
+  readonly reason: string
 }

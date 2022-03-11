@@ -27,7 +27,7 @@ export default function ModalSubscribe({ goal, onClose }: ModalSubscribeProps): 
   const { isSubmitting, values, setFieldValue, handleSubmit } = form
 
   const onChange = (e: ChangeEvent<HTMLInputElement>) => {
-    setFieldValue('start', e.currentTarget.value)
+    setFieldValue('dayId', e.currentTarget.value)
   }
 
   return (
@@ -53,7 +53,7 @@ export default function ModalSubscribe({ goal, onClose }: ModalSubscribeProps): 
     >
       <FormikProvider value={form}>
         <Form autoComplete="off">
-          <RadioGroup name="start" value={values.start.toString()} onChange={onChange}>
+          <RadioGroup name="dayId" value={values.dayId.toString()} onChange={onChange}>
             <FormControlLabel
               value={oneDayGoal ? 'none' : beginningDay.toString()}
               control={<Radio />}

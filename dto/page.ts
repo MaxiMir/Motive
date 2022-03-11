@@ -2,6 +2,7 @@ import { Session } from 'next-auth'
 import { UserDto } from './user'
 import { MainCharacteristicName } from './characteristic'
 import { GoalDto } from './goal'
+import { Member } from './member'
 
 export interface PageProps {
   session: Session | null
@@ -27,4 +28,5 @@ export type UserPageDto = Page<UserDetailDto>
 export interface UserDetailDto extends UserDto {
   following: boolean
   goals: GoalDto[]
+  membership: Member[]
 }

@@ -14,7 +14,7 @@ export default function useForm(goal: GoalDto): FormikProps<CreateMemberDto> {
   return useFormik<CreateMemberDto>({
     initialValues: {
       goalId: id,
-      start: calendar[0].id.toString(),
+      dayId: calendar[0].id.toString(),
     },
     validationSchema: schema,
     async onSubmit(data) {

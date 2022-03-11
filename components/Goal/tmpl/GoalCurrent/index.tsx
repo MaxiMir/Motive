@@ -37,7 +37,7 @@ export interface GoalCurrentProps {
 }
 
 export default function GoalCurrent({ goal, href, client }: GoalCurrentProps): JSX.Element {
-  const { id, name, hashtags, characteristic, owner, stages, day, member } = goal
+  const { id, name, hashtags, characteristic, owner, stages, day } = goal
   const { id: dayId, date, tasks, views, feedback, topicCount } = day
   const classes = useStyles()
   const theme = useTheme()
@@ -146,13 +146,7 @@ export default function GoalCurrent({ goal, href, client }: GoalCurrentProps): J
           </AppBox>
           <AppBox flexDirection="column" spacing={2}>
             {goalInfo.controls && (
-              <Controls
-                goal={goal}
-                owner={owner}
-                isGoalOwner={isGoalOwner}
-                forTomorrow={goalInfo.forTomorrow}
-                member={member}
-              />
+              <Controls goal={goal} owner={owner} isGoalOwner={isGoalOwner} forTomorrow={goalInfo.forTomorrow} />
             )}
             <Views views={views} />
           </AppBox>

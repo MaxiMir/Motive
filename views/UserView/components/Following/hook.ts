@@ -8,7 +8,7 @@ import useClient from 'hooks/useClient'
 import { useUserPageConfig } from 'views/UserView/hook'
 import { Options, Context, fetcher, getNextState } from './helper'
 
-export default function useSetFollowing(id: number, following: boolean): () => void {
+export default function useSetFollowing(userId: number, following: boolean): () => void {
   const client = useClient()
   const openSignIn = useOpenSignIn()
   const queryClient = useQueryClient()
@@ -38,7 +38,7 @@ export default function useSetFollowing(id: number, following: boolean): () => v
       }
     },
   })
-  const sendWithDebounce = useDebounceCb((add: boolean) => mutate({ id, add }))
+  const sendWithDebounce = useDebounceCb((add: boolean) => mutate({ userId, add }))
 
   return () => {
     if (!client) {

@@ -7,31 +7,31 @@ export enum MessageType {
 }
 
 export interface CreateMessageDto {
-  dayId: number
-  topicId?: number
-  type: MessageType
-  text: string
+  readonly dayId: number
+  readonly topicId?: number
+  readonly type: MessageType
+  readonly text: string
 }
 
 export interface UpdateMessageDto {
-  text: string
+  readonly text: string
 }
 
 export interface MessageDto {
-  id: number
-  date: string
-  text: string
-  user: UserBaseDto
-  like?: boolean
-  likeCount: number
-  goalId: number
-  dayId: number
-  parentId: number | null
-  type: MessageType
-  edited: boolean
+  readonly id: number
+  readonly date: string
+  readonly text: string
+  readonly user: UserBaseDto
+  readonly like?: boolean
+  readonly likeCount: number
+  readonly goalId: number
+  readonly dayId: number
+  readonly parentId: number | null
+  readonly type: MessageType
+  readonly edited: boolean
 }
 
 export interface TopicDto extends MessageDto {
-  type: MessageType
-  answer: MessageDto | null
+  readonly type: MessageType
+  readonly answer: MessageDto | null
 }

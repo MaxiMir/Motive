@@ -7,10 +7,9 @@ import Membership from './components/Membership'
 export interface ViewerProps {
   goal: GoalDto
   owner: UserBaseDto
-  member: boolean
 }
 
-export default function Viewer({ goal, owner, member }: ViewerProps): JSX.Element {
+export default function Viewer({ goal, owner }: ViewerProps): JSX.Element {
   return (
     <AppBox justifyContent="space-between">
       <AppBox spacing={1}>
@@ -19,7 +18,7 @@ export default function Viewer({ goal, owner, member }: ViewerProps): JSX.Elemen
         ))}
         <ReactionSupport goal={goal} owner={owner} />
       </AppBox>
-      <Membership member={member} goal={goal} />
+      <Membership goal={goal} />
     </AppBox>
   )
 }

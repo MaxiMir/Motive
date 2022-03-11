@@ -3,91 +3,91 @@ import { UserBaseDto } from './user'
 import { ReactionsDto } from './reaction'
 
 export interface CreateGoalDto {
-  name: string
-  started: Date
-  hashtags: string
-  stages: string[]
-  date: Date
-  tasks: CreateTaskDto[]
+  readonly name: string
+  readonly started: Date
+  readonly hashtags: string
+  readonly stages: string[]
+  readonly date: Date
+  readonly tasks: CreateTaskDto[]
 }
 
 export interface GoalDto {
-  id: number
-  name: string
-  started: string
-  hashtags: string[]
-  stages: string[]
-  stage: number
-  owner: UserBaseDto
-  characteristic: GoalCharacteristicDto
-  day: DayDto
-  calendar: CalendarDto[]
-  reactions: ReactionsDto
-  member: boolean
+  readonly id: number
+  readonly name: string
+  readonly started: string
+  readonly hashtags: string[]
+  readonly stages: string[]
+  readonly stage: number
+  readonly owner: UserBaseDto
+  readonly characteristic: GoalCharacteristicDto
+  readonly day: DayDto
+  readonly calendar: CalendarDto[]
+  readonly reactions: ReactionsDto
+  readonly member: boolean
 }
 
 export interface GoalCompletedDto extends GoalDto {
-  confirmation: ConfirmationDto
+  readonly confirmation: ConfirmationDto
 }
 
-export type CreatedGoal = Omit<GoalDto, 'day'> & { days: DayDto[] }
+export type CreatedGoal = Readonly<Omit<GoalDto, 'day'> & { days: DayDto[] }>
 
 export interface GoalStageDto {
-  id: number
-  stage: number
+  readonly id: number
+  readonly stage: number
 }
 
 export interface CreateDayDto {
-  id: number
-  date: Date
-  tasks: CreateTaskDto[]
+  readonly id: number
+  readonly date: Date
+  readonly tasks: CreateTaskDto[]
 }
 
 export interface DayDto {
-  id: number
-  stage: number
-  date: string
-  characteristic: DayCharacteristicDto | null
-  tasks: TaskDto[]
-  topicCount: number
-  feedback: FeedbackDto | null
-  views: number
+  readonly id: number
+  readonly stage: number
+  readonly date: string
+  readonly characteristic: DayCharacteristicDto | null
+  readonly tasks: TaskDto[]
+  readonly topicCount: number
+  readonly feedback: FeedbackDto | null
+  readonly views: number
 }
 
 export interface CreateTaskDto {
-  name: string
-  date?: Date
+  readonly name: string
+  readonly date?: Date
 }
 
 export interface TaskDto {
-  id: number
-  name: string
-  date: string | null
-  completed: boolean
-  completedByOther: boolean
+  readonly id: number
+  readonly name: string
+  readonly date: string | null
+  readonly completed: boolean
+  readonly completedByOther: boolean
 }
 
 export interface FeedbackDto {
-  text: string | null
-  photos: PhotoDto[] | null
-  video: string | null
+  readonly text: string | null
+  readonly photos: PhotoDto[] | null
+  readonly video: string | null
 }
 
 export interface ConfirmationDto extends FeedbackDto {
-  date: string
+  readonly date: string
 }
 
 export interface PhotoDto {
-  src: string
-  width: number
-  height: number
+  readonly src: string
+  readonly width: number
+  readonly height: number
 }
 
 export interface PhotoWithSourceDto extends PhotoDto {
-  source: string
+  readonly source: string
 }
 
 export interface CalendarDto {
-  id: number
-  date: string
+  readonly id: number
+  readonly date: string
 }

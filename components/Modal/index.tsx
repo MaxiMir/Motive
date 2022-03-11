@@ -9,6 +9,8 @@ import { ModalStageProps } from './tmpl/ModalStage'
 import { ModalSupportProps } from './tmpl/ModalSupport'
 import { ModalEditMessageProps } from './tmpl/ModalEditMessage'
 import { ModalCompletedProps } from './tmpl/ModalCompleted'
+import { ModalSubscribeProps } from './tmpl/ModalSubscribe'
+import { ModalUnsubscribeProps } from './tmpl/ModalUnsubscribe'
 
 const ModalSignIn = dynamic(() => import('./tmpl/ModalSignIn'))
 const ModalGoal = dynamic(() => import('./tmpl/ModalGoal'))
@@ -20,6 +22,8 @@ const ModalStage = dynamic(() => import('./tmpl/ModalStage'))
 const ModalSupport = dynamic(() => import('./tmpl/ModalSupport'))
 const ModalEditMessage = dynamic(() => import('./tmpl/ModalEditMessage'))
 const ModalCompleted = dynamic(() => import('./tmpl/ModalCompleted'))
+const ModalSubscribe = dynamic(() => import('./tmpl/ModalSubscribe'))
+const ModalUnsubscribe = dynamic(() => import('./tmpl/ModalUnsubscribe'))
 
 export default function Modal(
   props:
@@ -32,7 +36,9 @@ export default function Modal(
     | ModalStageProps
     | ModalSupportProps
     | ModalEditMessageProps
-    | ModalCompletedProps,
+    | ModalCompletedProps
+    | ModalSubscribeProps
+    | ModalUnsubscribeProps,
 ): JSX.Element {
   switch (props.tmpl) {
     case 'signIn':
@@ -55,5 +61,9 @@ export default function Modal(
       return <ModalEditMessage {...props} />
     case 'completed':
       return <ModalCompleted {...props} />
+    case 'subscribe':
+      return <ModalSubscribe {...props} />
+    case 'unsubscribe':
+      return <ModalUnsubscribe {...props} />
   }
 }

@@ -1,17 +1,16 @@
-import { Button } from '@material-ui/core'
 import { UserBaseDto, GoalDto, DayCharacteristicName } from 'dto'
 import AppBox from 'components/UI/AppBox'
-import AppEmoji from 'components/UI/AppEmoji'
 import ReactionWithSend from './components/ReactionWithSend'
 import ReactionSupport from './components/ReactionSupport'
+import Membership from './components/Membership'
 
 export interface ViewerProps {
   goal: GoalDto
   owner: UserBaseDto
-  isPageOwner: boolean
+  member: boolean
 }
 
-export default function Viewer({ goal, owner, isPageOwner }: ViewerProps): JSX.Element {
+export default function Viewer({ goal, owner, member }: ViewerProps): JSX.Element {
   return (
     <AppBox justifyContent="space-between">
       <AppBox spacing={1}>
@@ -20,13 +19,7 @@ export default function Viewer({ goal, owner, isPageOwner }: ViewerProps): JSX.E
         ))}
         <ReactionSupport goal={goal} owner={owner} />
       </AppBox>
-      <Button
-        variant="outlined"
-        color={isPageOwner ? 'primary' : 'secondary'}
-        startIcon={<AppEmoji name={isPageOwner ? 'unsubscribe' : 'subscribe'} onlyEmoji />}
-      >
-        {isPageOwner ? 'Leave' : 'Join'}
-      </Button>
+      <Membership member={member} goal={goal} />
     </AppBox>
   )
 }

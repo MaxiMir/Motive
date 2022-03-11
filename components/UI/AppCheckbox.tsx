@@ -5,16 +5,16 @@ type AppCheckboxProps = Omit<FormControlLabelProps, 'control' | 'label'> & {
   label: JSX.Element | string
 }
 
-export default function AppCheckbox({ label, ...controlProps }: AppCheckboxProps): JSX.Element {
+export default function AppCheckbox({ label, ...props }: AppCheckboxProps): JSX.Element {
   const classes = useStyles()
 
   return (
     <FormControlLabel
       label={label}
       control={<Checkbox />}
-      style={{ textDecoration: !controlProps.checked ? undefined : 'line-through' }}
+      style={{ textDecoration: !props.checked ? undefined : 'line-through' }}
       className={classes.checkbox}
-      {...controlProps}
+      {...props}
     />
   )
 }

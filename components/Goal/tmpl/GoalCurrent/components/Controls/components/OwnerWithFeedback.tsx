@@ -7,17 +7,13 @@ import AppBox from 'components/UI/AppBox'
 
 const Modal = dynamic(() => import('components/Modal'))
 
-type ModalTmpl = 'tasks' | 'completion'
-
 interface OwnerWithFeedbackProps {
   goal: GoalDto
 }
 
 export default function OwnerWithFeedback({ goal }: OwnerWithFeedbackProps): JSX.Element {
   const { stages, day } = goal
-  const [modal, setModal] = useState<ModalTmpl>()
-
-  const openModal = (tmpl: ModalTmpl) => setModal(tmpl)
+  const [modal, setModal] = useState<'tasks' | 'completion'>()
 
   const closeModal = () => setModal(undefined)
 
@@ -27,7 +23,7 @@ export default function OwnerWithFeedback({ goal }: OwnerWithFeedbackProps): JSX
         variant="outlined"
         color="primary"
         startIcon={<AppEmoji name="task" onlyEmoji />}
-        onClick={() => openModal('tasks')}
+        onClick={() => setModal('tasks')}
       >
         Add tasks
       </Button>
@@ -36,7 +32,7 @@ export default function OwnerWithFeedback({ goal }: OwnerWithFeedbackProps): JSX
           variant="outlined"
           color="secondary"
           startIcon={<AppEmoji name="cup" onlyEmoji />}
-          onClick={() => openModal('completion')}
+          onClick={() => setModal('completion')}
         >
           Complete
         </Button>

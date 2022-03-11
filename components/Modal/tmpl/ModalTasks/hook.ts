@@ -28,14 +28,14 @@ export default function useForm(goal: GoalDto, onSuccess: () => void): UseFormTy
 }
 
 const useSendNewDay = (goalId: number, onSuccess: () => void) => {
-  const [goals, mutate] = useMutateGoals()
+  const [goals, mutateGoals] = useMutateGoals()
   const changeDayUrl = useChangeDayUrl()
 
   return useMutation(GoalService.addDay, {
     onSuccess({ days }) {
       const day = days[days.length - 1]
 
-      mutate(getGoalNextState(goals, goalId, day))
+      mutateGoals(getGoalNextState(goals, goalId, day))
       changeDayUrl(goals, goalId, day.id)
       onSuccess()
     },

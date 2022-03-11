@@ -25,7 +25,7 @@ const Feedback = dynamic(() => import('./components/Feedback'))
 const Hashtags = dynamic(() => import('./components/Hashtags'))
 const TaskForm = dynamic(() => import('./components/TaskForm'))
 const Web = dynamic(() => import('./components/Web'))
-const Reactions = dynamic(() => import('./components/Reactions'))
+const Controls = dynamic(() => import('./components/Controls'))
 
 const CHARACTERISTICS: GoalCharacteristicName[] = ['motivation', 'creativity', 'support', 'members']
 
@@ -33,12 +33,11 @@ export interface GoalCurrentProps {
   tmpl: 'current'
   goal: GoalDto
   href: string
-  isPageOwner: boolean
   client?: ClientDto
 }
 
-export default function GoalCurrent({ goal, href, isPageOwner, client }: GoalCurrentProps): JSX.Element {
-  const { id, name, hashtags, characteristic, owner, stages, day } = goal
+export default function GoalCurrent({ goal, href, client }: GoalCurrentProps): JSX.Element {
+  const { id, name, hashtags, characteristic, owner, stages, day, member } = goal
   const { id: dayId, date, tasks, views, feedback, topicCount } = day
   const classes = useStyles()
   const theme = useTheme()
@@ -147,12 +146,12 @@ export default function GoalCurrent({ goal, href, isPageOwner, client }: GoalCur
           </AppBox>
           <AppBox flexDirection="column" spacing={2}>
             {goalInfo.controls && (
-              <Reactions
+              <Controls
                 goal={goal}
                 owner={owner}
                 isGoalOwner={isGoalOwner}
                 forTomorrow={goalInfo.forTomorrow}
-                isPageOwner={isPageOwner}
+                member={member}
               />
             )}
             <Views views={views} />

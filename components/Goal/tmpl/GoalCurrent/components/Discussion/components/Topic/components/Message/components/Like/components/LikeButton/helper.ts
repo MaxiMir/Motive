@@ -15,9 +15,7 @@ export const getNextState = (discussion: InfiniteData<TopicDto[]>, options: Opti
   return produce(discussion, (draft) => {
     const draftTopic = draft.pages.flat().find((t) => t.id === searchId)
 
-    if (!draftTopic) {
-      return
-    }
+    if (!draftTopic) return
 
     if (answerFor && draftTopic.answer) {
       draftTopic.answer.like = add

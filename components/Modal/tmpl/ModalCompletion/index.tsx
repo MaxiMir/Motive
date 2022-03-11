@@ -1,4 +1,3 @@
-import { Fragment } from 'react'
 import dynamic from 'next/dynamic'
 import { Field, FieldArray, Form, FormikProvider } from 'formik'
 import { createStyles, makeStyles } from '@material-ui/core'
@@ -8,7 +7,7 @@ import ModalAction from 'components/ModalAction'
 import AppModal from 'components/UI/AppModal'
 import AppTypography from 'components/UI/AppTypography'
 import AppBox from 'components/UI/AppBox'
-import AppEmoji from 'components/UI/AppEmoji'
+import AppDecorEmoji from 'components/UI/AppDecorEmoji'
 import AppAccordion from 'components/UI/AppAccordion'
 import AppInput from 'components/UI/AppInput'
 import AppTitle from 'components/UI/AppTitle'
@@ -29,10 +28,10 @@ export interface ModalCompletionProps {
 
 export default function ModalCompletion({ goal, onClose }: ModalCompletionProps): JSX.Element {
   const classes = useStyles()
-  const { isLoading, formik } = useForm(goal, onClose)
-  const { values, touched, errors, setFieldValue, handleSubmit } = formik
+  const form = useForm(goal, onClose)
+  const { isSubmitting, values, touched, errors, setFieldValue, handleSubmit } = form
 
-  const onSelectPhoto = useSelectPhoto(formik)
+  const onSelectPhoto = useSelectPhoto(form)
 
   const onSelectVideo = (file: File) => setFieldValue('video', file)
 
@@ -44,7 +43,7 @@ export default function ModalCompletion({ goal, onClose }: ModalCompletionProps)
         <ModalAction tmpl="close" onClick={onClose} />,
         <ModalAction
           tmpl="submit"
-          isLoading={isLoading}
+          isLoading={isSubmitting}
           name="Complete"
           nameLoading="Completing"
           emoji="completed"
@@ -53,7 +52,7 @@ export default function ModalCompletion({ goal, onClose }: ModalCompletionProps)
       ]}
       onClose={onClose}
     >
-      <FormikProvider value={formik}>
+      <FormikProvider value={form}>
         <Form autoComplete="off">
           <AppBox flexDirection="column" alignItems="center" spacing={3}>
             <AppBox flexDirection="column" alignItems="center" spacing={1}>
@@ -75,7 +74,7 @@ export default function ModalCompletion({ goal, onClose }: ModalCompletionProps)
                         <Photo
                           tmpl="button"
                           file={file}
-                          disabled={isLoading}
+                          disabled={isSubmitting}
                           key={index}
                           onClick={() => remove(index)}
                         />
@@ -93,13 +92,13 @@ export default function ModalCompletion({ goal, onClose }: ModalCompletionProps)
                 <Video
                   tmpl="preview"
                   video={values.video}
-                  disabled={isLoading}
+                  disabled={isSubmitting}
                   onRemove={() => setFieldValue('video', null)}
                 />
               </AppBox>
             )}
             <AppBox spacing={2} width="100%">
-              <Photo tmpl="input" disabled={isLoading} onSelect={onSelectPhoto} />
+              <Photo tmpl="input" disabled={isSubmitting} onSelect={onSelectPhoto} />
               <Video tmpl="input" disabled onSelect={onSelectVideo} />
             </AppBox>
             {touched.photos && errors.photos && (
@@ -110,7 +109,7 @@ export default function ModalCompletion({ goal, onClose }: ModalCompletionProps)
             <div className={classes.accordionWrap}>
               <AppAccordion
                 name="switch"
-                header="About goal completion"
+                header="About Goal Completion"
                 id="goal"
                 ariaControls="about-goal-completion"
                 details={
@@ -118,15 +117,13 @@ export default function ModalCompletion({ goal, onClose }: ModalCompletionProps)
                     <AppTypography>
                       In addition to the points you receive{' '}
                       {CHARACTERISTIC_NAMES.map((name) => (
-                        <Fragment key={name}>
-                          <AppEmoji name={name} onlyEmoji />{' '}
-                        </Fragment>
+                        <AppDecorEmoji name={name} key={name} />
                       ))}
                       ,
                     </AppTypography>
                     <AppTypography>
-                      You get an extra <b className={classes.count}>5</b> points{' '}
-                      <AppEmoji name="motivation" onlyEmoji /> for completing the goal.
+                      You get an extra <b className={classes.count}>5</b> points <AppDecorEmoji name="motivation" /> for
+                      completing the goal.
                     </AppTypography>
                   </div>
                 }

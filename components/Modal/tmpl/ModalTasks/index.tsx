@@ -14,8 +14,8 @@ export interface ModalTasksProps {
 
 export default function ModalTasks({ goal, onClose }: ModalTasksProps): JSX.Element {
   const classes = useStyles()
-  const { isLoading, formik } = useForm(goal, onClose)
-  const { values, setFieldValue, handleSubmit } = formik
+  const form = useForm(goal, onClose)
+  const { isSubmitting, values, setFieldValue, handleSubmit } = form
 
   return (
     <AppModal
@@ -29,7 +29,7 @@ export default function ModalTasks({ goal, onClose }: ModalTasksProps): JSX.Elem
         <ModalAction tmpl="close" onClick={onClose} />,
         <ModalAction
           tmpl="submit"
-          isLoading={isLoading}
+          isLoading={isSubmitting}
           name="Add"
           nameLoading="Adding"
           emoji="feedback"
@@ -38,7 +38,7 @@ export default function ModalTasks({ goal, onClose }: ModalTasksProps): JSX.Elem
       ]}
       onClose={onClose}
     >
-      <FormikProvider value={formik}>
+      <FormikProvider value={form}>
         <Form autoComplete="off">
           <FieldArray name="tasks">
             {({ push, remove }) => (

@@ -41,6 +41,10 @@ export type AppEmojiName =
   | 'search'
   | 'serenity'
   | 'blast'
+  | 'knot'
+  | 'helmet'
+  | 'blood'
+  | 'web'
 
 interface AppEmojiProps {
   name: AppEmojiName
@@ -149,6 +153,14 @@ function getContent(name: AppEmojiName) {
       return '🗻'
     case 'blast':
       return '🌋'
+    case 'knot':
+      return '🪢'
+    case 'helmet':
+      return '⛑'
+    case 'blood':
+      return '🩸'
+    case 'web':
+      return '🕸'
     default:
       return ''
   }

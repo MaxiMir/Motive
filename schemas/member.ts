@@ -1,6 +1,6 @@
 import { object, string } from 'yup'
 
 export default object({
-  id: string().required(),
+  goalId: string().required(),
   start: string().required(),
 })

@@ -1,4 +1,3 @@
-import { Fragment } from 'react'
 import dynamic from 'next/dynamic'
 import { Field, FieldArray, Form, FormikProvider } from 'formik'
 import { makeStyles } from '@material-ui/core/styles'
@@ -7,7 +6,7 @@ import { MainCharacteristicName } from 'dto'
 import useFocus from 'hooks/useFocus'
 import ModalAction from 'components/ModalAction'
 import Task from 'components/Task'
-import AppEmoji from 'components/UI/AppEmoji'
+import AppDecorEmoji from 'components/UI/AppDecorEmoji'
 import AppModal from 'components/UI/AppModal'
 import AppTitle from 'components/UI/AppTitle'
 import AppBox from 'components/UI/AppBox'
@@ -31,8 +30,8 @@ export interface ModalGoalProps {
 export default function ModalGoal({ onClose }: ModalGoalProps): JSX.Element {
   const classes = useStyles()
   const [hashtagsRef, setHashtagsFocus] = useFocus()
-  const { isLoading, formik } = useForm(onClose)
-  const { values, setFieldValue, handleSubmit } = formik
+  const form = useForm(onClose)
+  const { isSubmitting, values, setFieldValue, handleSubmit } = form
 
   const onAddHashtag = () => {
     setFieldValue('hashtags', !values.hashtags ? '#' : [values.hashtags, '#'].join(' '))
@@ -47,7 +46,7 @@ export default function ModalGoal({ onClose }: ModalGoalProps): JSX.Element {
         <ModalAction tmpl="close" onClick={onClose} />,
         <ModalAction
           tmpl="submit"
-          isLoading={isLoading}
+          isLoading={isSubmitting}
           name="Create"
           nameLoading="Creating"
           emoji="goal"
@@ -56,7 +55,7 @@ export default function ModalGoal({ onClose }: ModalGoalProps): JSX.Element {
       ]}
       onClose={onClose}
     >
-      <FormikProvider value={formik}>
+      <FormikProvider value={form}>
         <Form autoComplete="off">
           <AppBox flexDirection="column" spacing={3}>
             <Field name="name" label="Name *" color="secondary" component={AppInput} />
@@ -167,15 +166,13 @@ export default function ModalGoal({ onClose }: ModalGoalProps): JSX.Element {
                   <AppTypography className={classes.hint}>
                     He hunts for abandoned goals.
                     <br />
-                    On the 14th day he covers them 🕸.
+                    On the 14th day he covers them <AppDecorEmoji name="web" />.
                     <br />
-                    On the 28th day he eats them 🩸.
+                    On the 28th day he eats them <AppDecorEmoji name="blood" />.
                     <br />
                     The accumulated points{' '}
                     {CHARACTERISTIC_NAMES.map((name) => (
-                      <Fragment key={name}>
-                        <AppEmoji name={name} onlyEmoji />{' '}
-                      </Fragment>
+                      <AppDecorEmoji name={name} key={name} />
                     ))}
                     will burn out and the number of abandoned goals increases.
                   </AppTypography>

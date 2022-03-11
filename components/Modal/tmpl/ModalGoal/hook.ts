@@ -1,18 +1,18 @@
-import { useFormik } from 'formik'
+import produce from 'immer'
+import { FormikProps, useFormik } from 'formik'
 import { useMutation } from 'react-query'
-import { CreateGoalDto } from 'dto'
-import { UseFormType } from 'types'
+import { CreateGoalDto, GoalDto } from 'dto'
 import GoalService from 'services/GoalService'
 import useSnackbar from 'hooks/useSnackbar'
 import { useMutateGoals } from 'views/UserView/hook'
 import { getToday, getTomorrow } from 'helpers/date'
 import { scrollToElem } from 'helpers/dom'
 import schema from 'schemas/goal'
-import { getGoalNextState } from './helper'
 
-export default function useForm(onSuccess: () => void): UseFormType<CreateGoalDto> {
-  const { isLoading, mutate } = useSendCreateGoal(onSuccess)
-  const formik = useFormik<CreateGoalDto>({
+export default function useForm(onSuccess: () => void): FormikProps<CreateGoalDto> {
+  const { mutateAsync } = useSendCreateGoal(onSuccess)
+
+  return useFormik<CreateGoalDto>({
     initialValues: {
       started: getToday(),
       name: '',
@@ -23,20 +23,22 @@ export default function useForm(onSuccess: () => void): UseFormType<CreateGoalDt
     },
     validationSchema: schema,
     async onSubmit(data) {
-      mutate(data)
+      await mutateAsync(data)
     },
   })
-
-  return { isLoading, formik }
 }
 
 const useSendCreateGoal = (onSuccess: () => void) => {
   const { enqueueSnackbar } = useSnackbar()
-  const [goals, mutate] = useMutateGoals()
+  const [goals, mutateGoal] = useMutateGoals()
 
   return useMutation(GoalService.create, {
     onSuccess(goal) {
-      mutate(getGoalNextState(goals, goal))
+      mutateGoal(
+        produce(goals, (draft: GoalDto[]) => {
+          draft.push({ ...goal, day: goal.days[0] })
+        }),
+      )
       onSuccess()
       enqueueSnackbar({ message: 'The goal is successfully created', severity: 'success', icon: 'goal' })
       setTimeout(() => scrollToElem(`goal-${goal.id}`), 500)

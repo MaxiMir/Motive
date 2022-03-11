@@ -1,7 +1,6 @@
-import { useFormik } from 'formik'
+import { FormikProps, useFormik } from 'formik'
 import { useMutation } from 'react-query'
 import { GoalDto } from 'dto'
-import { UseFormType } from 'types'
 import GoalService from 'services/GoalService'
 import useSnackbar from 'hooks/useSnackbar'
 import { scrollToElem } from 'helpers/dom'
@@ -14,9 +13,10 @@ interface Values {
   video: ''
 }
 
-export default function useForm(goal: GoalDto, onSuccess: () => void): UseFormType<Values> {
-  const { isLoading, mutate } = useSendConfirmation(onSuccess)
-  const formik = useFormik<Values>({
+export default function useForm(goal: GoalDto, onSuccess: () => void): FormikProps<Values> {
+  const { mutateAsync } = useSendConfirmation(onSuccess)
+
+  return useFormik<Values>({
     initialValues: {
       text: '',
       photos: [],
@@ -28,11 +28,9 @@ export default function useForm(goal: GoalDto, onSuccess: () => void): UseFormTy
 
       formData.append('text', data.text.trim())
       data.photos.forEach((photo) => formData.append('photos', photo))
-      mutate({ id: goal.id, body: formData })
+      await mutateAsync({ id: goal.id, body: formData })
     },
   })
-
-  return { isLoading, formik }
 }
 
 const useSendConfirmation = (onSuccess: () => void) => {

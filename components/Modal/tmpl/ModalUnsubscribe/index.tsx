@@ -11,7 +11,7 @@ export interface ModalUnsubscribeProps {
 export default function ModalUnsubscribe({ goal, onClose }: ModalUnsubscribeProps): JSX.Element {
   const isLoading = false
   const handleSubmit = () => false
-  console.log(goal)
+
   return (
     <AppModal
       title="Start from this day or start from the beginning?"

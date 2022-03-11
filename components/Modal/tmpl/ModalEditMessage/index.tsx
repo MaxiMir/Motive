@@ -16,8 +16,8 @@ export interface ModalEditMessageProps {
 
 export default function ModalEditMessage({ message, onClose }: ModalEditMessageProps): JSX.Element {
   const classes = useStyles()
-  const { isLoading, formik } = useForm(message, onClose)
-  const { handleSubmit } = formik
+  const form = useForm(message, onClose)
+  const { isSubmitting, handleSubmit } = form
 
   const onFocus = (e: FocusEvent<HTMLInputElement>) => {
     e.currentTarget.setSelectionRange(e.currentTarget.value.length, e.currentTarget.value.length)
@@ -35,7 +35,7 @@ export default function ModalEditMessage({ message, onClose }: ModalEditMessageP
         <ModalAction tmpl="close" onClick={onClose} />,
         <ModalAction
           tmpl="submit"
-          isLoading={isLoading}
+          isLoading={isSubmitting}
           name="Save"
           nameLoading="Saving"
           emoji="save"
@@ -44,7 +44,7 @@ export default function ModalEditMessage({ message, onClose }: ModalEditMessageP
       ]}
       onClose={onClose}
     >
-      <FormikProvider value={formik}>
+      <FormikProvider value={form}>
         <Form autoComplete="off">
           <AppBox flexDirection="column" alignItems="center" spacing={3}>
             <Field

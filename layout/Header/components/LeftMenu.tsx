@@ -13,9 +13,7 @@ export default function LeftMenu(): JSX.Element {
   const toggle = () => setOpen(!open)
 
   const onKeyDown = (event: KeyboardEvent) => {
-    if (['Tab', 'Shift'].includes(event.key)) {
-      return
-    }
+    if (['Tab', 'Shift'].includes(event.key)) return
 
     toggle()
   }

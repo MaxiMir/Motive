@@ -19,9 +19,7 @@ const Menu = ({ title, url, onCopyEnd, onCopyError, onClose }: MenuProps): JSX.E
   const shareItems = getShareItems()
 
   const onKeyDown = (event: KeyboardEvent) => {
-    if (['Tab', 'Shift'].includes(event.key)) {
-      return
-    }
+    if (['Tab', 'Shift'].includes(event.key)) return
 
     onClose()
   }

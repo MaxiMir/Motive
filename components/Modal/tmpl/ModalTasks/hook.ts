@@ -1,18 +1,18 @@
-import { useFormik } from 'formik'
+import produce from 'immer'
+import { FormikProps, useFormik } from 'formik'
 import { useMutation } from 'react-query'
 import { CreateDayDto, GoalDto } from 'dto'
-import { UseFormType } from 'types'
 import GoalService from 'services/GoalService'
 import { getTomorrow } from 'helpers/date'
 import useChangeDayUrl from 'hooks/useChangeDayUrl'
 import { useMutateGoals } from 'views/UserView/hook'
 import schema from 'schemas/tasks'
-import { getGoalNextState } from './helper'
 
-export default function useForm(goal: GoalDto, onSuccess: () => void): UseFormType<CreateDayDto> {
+export default function useForm(goal: GoalDto, onSuccess: () => void): FormikProps<CreateDayDto> {
   const { id } = goal
-  const { isLoading, mutate } = useSendNewDay(id, onSuccess)
-  const formik = useFormik<CreateDayDto>({
+  const { mutateAsync } = useSendNewDay(id, onSuccess)
+
+  return useFormik<CreateDayDto>({
     initialValues: {
       id,
       date: getTomorrow(),
@@ -20,11 +20,9 @@ export default function useForm(goal: GoalDto, onSuccess: () => void): UseFormTy
     },
     validationSchema: schema,
     async onSubmit(data) {
-      mutate(data)
+      await mutateAsync(data)
     },
   })
-
-  return { isLoading, formik }
 }
 
 const useSendNewDay = (goalId: number, onSuccess: () => void) => {
@@ -35,7 +33,13 @@ const useSendNewDay = (goalId: number, onSuccess: () => void) => {
     onSuccess({ days }) {
       const day = days[days.length - 1]
 
-      mutateGoals(getGoalNextState(goals, goalId, day))
+      mutateGoals(
+        produce(goals, (draft: GoalDto[]) => {
+          const draftGoal = draft[draft.findIndex((g) => g.id === goalId)]
+          draftGoal.calendar.push({ id: day.id, date: day.date })
+          draftGoal.day = day
+        }),
+      )
       changeDayUrl(goals, goalId, day.id)
       onSuccess()
     },

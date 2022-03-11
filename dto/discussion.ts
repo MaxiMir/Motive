@@ -8,9 +8,9 @@ export enum MessageType {
 
 export interface CreateMessageDto {
   dayId: number
-  text: string
   topicId?: number
   type: MessageType
+  text: string
 }
 
 export interface UpdateMessageDto {

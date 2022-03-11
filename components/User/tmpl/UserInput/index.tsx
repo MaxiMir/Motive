@@ -21,11 +21,11 @@ export interface UserInputProps {
 
 export default function UserInput({ dayId, user, type, topicId, onAdd }: UserInputProps): JSX.Element {
   const classes = useStyles()
-  const { isLoading, formik } = useForm(dayId, topicId, type, onAdd)
-  const { values, handleSubmit } = formik
+  const form = useForm(dayId, topicId, type, onAdd)
+  const { isSubmitting, values, handleSubmit } = form
 
   return (
-    <FormikProvider value={formik}>
+    <FormikProvider value={form}>
       <Form autoComplete="off">
         <AppBox spacing={2} flex={1} mb={2} pr={2}>
           <InputAvatar user={user} />
@@ -35,12 +35,12 @@ export default function UserInput({ dayId, user, type, topicId, onAdd }: UserInp
             variant="standard"
             color="secondary"
             InputLabelProps={{ shrink: false }}
-            disabled={isLoading}
+            disabled={isSubmitting}
             className={classes.input}
             component={AppInput}
           />
-          <IconButton className={classes.button} disabled={isLoading || !values.text} onClick={() => handleSubmit()}>
-            {!isLoading ? (
+          <IconButton className={classes.button} disabled={isSubmitting || !values.text} onClick={() => handleSubmit()}>
+            {!isSubmitting ? (
               <AppIcon name="send" className={classes.icon} />
             ) : (
               <CircularProgress size="0.9rem" color="primary" />

@@ -1,12 +1,11 @@
-import { useFormik } from 'formik'
+import produce from 'immer'
+import { FormikProps, useFormik } from 'formik'
 import { useMutation } from 'react-query'
 import { GoalDto } from 'dto'
-import { UseFormType } from 'types'
 import FeedbackService from 'services/FeedbackService'
 import useSnackbar from 'hooks/useSnackbar'
 import { useMutateGoals } from 'views/UserView/hook'
 import schema from 'schemas/feedback'
-import { getGoalNextState } from './helper'
 
 interface Values {
   text: string
@@ -14,10 +13,11 @@ interface Values {
   video: ''
 }
 
-export default function useForm(goal: GoalDto, onSuccess: () => void): UseFormType<Values> {
+export default function useForm(goal: GoalDto, onSuccess: () => void): FormikProps<Values> {
   const { id } = goal
-  const { isLoading, mutate } = useSendFeedback(id, onSuccess)
-  const formik = useFormik<Values>({
+  const { mutateAsync } = useSendFeedback(id)
+
+  return useFormik<Values>({
     initialValues: {
       text: '',
       photos: [],
@@ -30,21 +30,24 @@ export default function useForm(goal: GoalDto, onSuccess: () => void): UseFormTy
       formData.append('dayId', goal.day.id.toString())
       formData.append('text', data.text.trim())
       data.photos.forEach((photo) => formData.append('photos', photo))
-      mutate(formData)
+      await mutateAsync(formData)
+      onSuccess()
     },
   })
-
-  return { isLoading, formik }
 }
 
-const useSendFeedback = (goalId: number, onSuccess: () => void) => {
+const useSendFeedback = (goalId: number) => {
   const { enqueueSnackbar } = useSnackbar()
-  const [goals, mutate] = useMutateGoals()
+  const [goals, mutateGoals] = useMutateGoals()
 
   return useMutation(FeedbackService.create, {
     onSuccess: (feedback) => {
-      mutate(getGoalNextState(goals, goalId, feedback))
-      onSuccess()
+      mutateGoals(
+        produce(goals, (draft: GoalDto[]) => {
+          const draftGoal = draft[draft.findIndex((g) => g.id === goalId)]
+          draftGoal.day.feedback = feedback
+        }),
+      )
       enqueueSnackbar({ message: 'Feedback successfully added', severity: 'success', icon: 'feedback' })
     },
   })

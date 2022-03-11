@@ -21,10 +21,10 @@ export interface ModalFeedbackProps {
 
 export default function ModalFeedback({ goal, onClose }: ModalFeedbackProps): JSX.Element {
   const classes = useStyles()
-  const { isLoading, formik } = useForm(goal, onClose)
-  const { values, setFieldValue, handleSubmit } = formik
+  const form = useForm(goal, onClose)
+  const { isSubmitting, values, setFieldValue, handleSubmit } = form
 
-  const onSelectPhoto = useSelectPhoto(formik)
+  const onSelectPhoto = useSelectPhoto(form)
 
   const onSelectVideo = (file: File) => setFieldValue('video', file)
 
@@ -36,7 +36,7 @@ export default function ModalFeedback({ goal, onClose }: ModalFeedbackProps): JS
         <ModalAction tmpl="close" onClick={onClose} />,
         <ModalAction
           tmpl="submit"
-          isLoading={isLoading}
+          isLoading={isSubmitting}
           name="Add"
           nameLoading="Adding"
           emoji="feedback"
@@ -45,7 +45,7 @@ export default function ModalFeedback({ goal, onClose }: ModalFeedbackProps): JS
       ]}
       onClose={onClose}
     >
-      <FormikProvider value={formik}>
+      <FormikProvider value={form}>
         <Form autoComplete="off">
           <AppBox flexDirection="column" alignItems="center" spacing={3}>
             <AppBox flexDirection="column" alignItems="center" spacing={1}>
@@ -67,7 +67,7 @@ export default function ModalFeedback({ goal, onClose }: ModalFeedbackProps): JS
                         <Photo
                           tmpl="button"
                           file={file}
-                          disabled={isLoading}
+                          disabled={isSubmitting}
                           key={index}
                           onClick={() => remove(index)}
                         />
@@ -85,13 +85,13 @@ export default function ModalFeedback({ goal, onClose }: ModalFeedbackProps): JS
                 <Video
                   tmpl="preview"
                   video={values.video}
-                  disabled={isLoading}
+                  disabled={isSubmitting}
                   onRemove={() => setFieldValue('video', null)}
                 />
               </AppBox>
             )}
             <AppBox spacing={2} width="100%">
-              <Photo tmpl="input" disabled={isLoading} onSelect={onSelectPhoto} />
+              <Photo tmpl="input" disabled={isSubmitting} onSelect={onSelectPhoto} />
               <Video tmpl="input" disabled onSelect={onSelectVideo} />
             </AppBox>
           </AppBox>

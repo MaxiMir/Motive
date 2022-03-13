@@ -31,7 +31,7 @@ export default function UserView({ user }: UserViewProps): JSX.Element {
   const isMobile = useMediaQuery(theme.breakpoints.down('sm'))
   const href = getUserHref(nickname)
   const characteristicsTitle = getCharacteristicsTitle()
-  const isPageOwner = user.id === client?.id
+  const clientPage = user.id === client?.id
 
   useScrollToGoal()
 
@@ -41,7 +41,7 @@ export default function UserView({ user }: UserViewProps): JSX.Element {
         <AppTypography variant="h5" component="h1">
           {name}
         </AppTypography>
-        {!isPageOwner && <Following id={user.id} following={following} />}
+        {!clientPage && <Following id={user.id} following={following} />}
       </AppBox>
       <AppBox flexDirection="column" spacing={3} flex={1}>
         <AppBox spacing={isMobile ? 1 : 4} mb={4}>
@@ -73,17 +73,25 @@ export default function UserView({ user }: UserViewProps): JSX.Element {
             </AppBox>
           </AppBox>
         </AppBox>
-        {isPageOwner && (
+        {clientPage && (
           <AppBox justifyContent="center">
             <AddGoal />
           </AppBox>
         )}
         {!goals.length ? (
-          <EmptyGoals isPageOwner={isPageOwner} />
+          <EmptyGoals clientPage={clientPage} />
         ) : (
           <AppBox flexWrap="wrap" spacing={3}>
             {goals.map((goal) => (
-              <Goal tmpl="current" goal={goal} href={href} client={client} membership={membership} key={goal.id} />
+              <Goal
+                tmpl="current"
+                goal={goal}
+                href={href}
+                client={client}
+                clientPage={clientPage}
+                membership={membership}
+                key={goal.id}
+              />
             ))}
           </AppBox>
         )}

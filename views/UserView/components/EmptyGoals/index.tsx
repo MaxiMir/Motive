@@ -4,18 +4,18 @@ import AppFadeIcon from 'components/UI/AppFadeIcon'
 import OwnerDescription from './components/OwnerDescription'
 
 interface AddGoalProps {
-  isPageOwner: boolean
+  clientPage: boolean
 }
 
-export default function EmptyGoals({ isPageOwner }: AddGoalProps): JSX.Element {
+export default function EmptyGoals({ clientPage }: AddGoalProps): JSX.Element {
   return (
     <>
       <AppBox flexDirection="column" justifyContent="center" alignItems="center" spacing={1} flex={1}>
         <AppTypography variant="h6" component="p" color="primary">
-          {isPageOwner ? 'You have no goals' : 'No goals yet'}
+          {clientPage ? 'You have no goals' : 'No goals yet'}
         </AppTypography>
         <AppFadeIcon name="goal" />
-        {isPageOwner && <OwnerDescription />}
+        {clientPage && <OwnerDescription />}
       </AppBox>
     </>
   )

@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import dynamic from 'next/dynamic'
 import { Button } from '@material-ui/core'
-import { GoalDto, Member } from 'dto'
+import { GoalDto, MemberDto } from 'dto'
 import useClient from 'hooks/useClient'
 import useOpenSignIn from 'hooks/useOpenSignIn'
 import AppEmoji from 'components/UI/AppEmoji'
@@ -10,7 +10,7 @@ const Modal = dynamic(() => import('components/Modal'))
 
 interface MembershipProps {
   goal: GoalDto
-  member?: Member
+  member?: MemberDto
 }
 
 export default function Membership({ goal, member }: MembershipProps): JSX.Element {

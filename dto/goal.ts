@@ -23,7 +23,7 @@ export interface GoalDto {
   readonly day: DayDto
   readonly calendar: CalendarDto[]
   readonly reactions: ReactionsDto
-  readonly member: boolean
+  readonly inherited: boolean
 }
 
 export interface GoalCompletedDto extends GoalDto {

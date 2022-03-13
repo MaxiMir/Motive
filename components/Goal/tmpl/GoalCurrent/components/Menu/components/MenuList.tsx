@@ -8,12 +8,12 @@ const Report = dynamic(() => import('components/Report'))
 interface MenuListProps {
   anchorEl: HTMLElement
   goalId: number
-  isOwner: boolean
+  clientGoal: boolean
   onShare: () => void
   onClose: () => void
 }
 
-export default function MenuList({ anchorEl, goalId, isOwner, onShare, onClose }: MenuListProps): JSX.Element {
+export default function MenuList({ anchorEl, goalId, clientGoal, onShare, onClose }: MenuListProps): JSX.Element {
   const [withReport, setWithReport] = useState(false)
 
   const onOpenReport = () => setWithReport(true)
@@ -29,7 +29,7 @@ export default function MenuList({ anchorEl, goalId, isOwner, onShare, onClose }
         <MenuItem onClick={onShare}>
           <AppMenuItemContent icon="share" text="Share" />
         </MenuItem>
-        {!isOwner && (
+        {!clientGoal && (
           <MenuItem onClick={onOpenReport}>
             <AppMenuItemContent icon="outlined_flag" text="Report" />
           </MenuItem>

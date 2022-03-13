@@ -15,14 +15,14 @@ interface DiscussionProps {
   dayId: number
   owner: UserBaseDto
   count: number
-  isOwner: boolean
+  clientGoal: boolean
 }
 
-export default function Discussion({ dayId, owner, count, isOwner }: DiscussionProps): JSX.Element {
+export default function Discussion({ dayId, owner, count, clientGoal }: DiscussionProps): JSX.Element {
   const client = useClient()
   const { isLoading, topics, checkOnLoadMore, fetchNextPage } = useDiscussion(dayId, count)
   const onAdd = useAddMessage()
-  const withInput = !!client && (!count || !!topics.length) && !isOwner
+  const withInput = !!client && (!count || !!topics.length) && !clientGoal
   const height = !count ? undefined : 496 + (!withInput ? 0 : 56)
 
   return (
@@ -36,7 +36,7 @@ export default function Discussion({ dayId, owner, count, isOwner }: DiscussionP
         ) : (
           <>
             {isLoading ? (
-              <Loader count={count} withInput={!isOwner} />
+              <Loader count={count} withInput={!clientGoal} />
             ) : (
               <AppBox display="block" maxHeight={524} pr={2} overflow="auto">
                 <AppList
@@ -47,7 +47,7 @@ export default function Discussion({ dayId, owner, count, isOwner }: DiscussionP
                     <Topic
                       topic={topic}
                       owner={owner}
-                      isOwner={isOwner}
+                      isOwner={clientGoal}
                       inView={checkOnLoadMore(index)}
                       onView={fetchNextPage}
                       onAdd={onAdd}

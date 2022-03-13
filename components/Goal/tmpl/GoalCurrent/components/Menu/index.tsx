@@ -9,10 +9,10 @@ interface MenuProps {
   goalId: number
   title: string
   href: string
-  isOwner: boolean
+  clientGoal: boolean
 }
 
-export default function Menu({ goalId, title, href, isOwner }: MenuProps): JSX.Element {
+export default function Menu({ goalId, title, href, clientGoal }: MenuProps): JSX.Element {
   const [anchorEl, setAnchorEl] = useState<HTMLElement | null>(null)
   const [withShare, setWithShare] = useState(false)
 
@@ -29,7 +29,7 @@ export default function Menu({ goalId, title, href, isOwner }: MenuProps): JSX.E
     <>
       <AppMenuButton ariaControls="goal-menu" title="open goal menu" onClick={onOpen} />
       {anchorEl && (
-        <MenuList anchorEl={anchorEl} goalId={goalId} isOwner={isOwner} onShare={onShare} onClose={onClose} />
+        <MenuList anchorEl={anchorEl} goalId={goalId} clientGoal={clientGoal} onShare={onShare} onClose={onClose} />
       )}
       <Share open={withShare} title={title} href={href} onClose={() => setWithShare(false)} />
     </>

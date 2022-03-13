@@ -3,7 +3,7 @@ export interface CreateMemberDto {
   readonly dayId: string
 }
 
-export interface Member {
+export interface MemberDto {
   readonly id: number
   readonly completedTasks: number[]
   readonly goalId: number

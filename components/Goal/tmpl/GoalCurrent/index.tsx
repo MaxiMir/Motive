@@ -2,16 +2,15 @@ import { Fragment, useMemo } from 'react'
 import dynamic from 'next/dynamic'
 import { createStyles, useTheme } from '@material-ui/core'
 import { makeStyles } from '@material-ui/core/styles'
-import { GoalDto, GoalCharacteristicName, ClientDto, Member } from 'dto'
+import { GoalDto, GoalCharacteristicName, ClientDto, MemberDto } from 'dto'
 import useCharacteristicColors from 'hooks/useCharacteristicColors'
 import AppBox from 'components/UI/AppBox'
 import AppTitle from 'components/UI/AppTitle'
 import AppDot from 'components/UI/AppDot'
 import AppAccordion from 'components/UI/AppAccordion'
-import { checkOnOwner } from 'components/Goal/helper'
 import Characteristic from 'components/Characteristic'
 import { useChangeDay, useIncreaseViews } from './hook'
-import { getClientMember, getGoalHref, getGoalInfo } from './helper'
+import { getMember, getGoalHref, getGoalInfo } from './helper'
 import Calendar from './components/Calendar'
 import Menu from './components/Menu'
 import Discussion from './components/Discussion'
@@ -21,9 +20,9 @@ const AppTypography = dynamic(() => import('components/UI/AppTypography'))
 const Owner = dynamic(() => import('./components/Owner'))
 const Stages = dynamic(() => import('./components/Stages'))
 const Task = dynamic(() => import('./components/Task'))
+const TaskForm = dynamic(() => import('./components/TaskForm'))
 const Feedback = dynamic(() => import('./components/Feedback'))
 const Hashtags = dynamic(() => import('./components/Hashtags'))
-const TaskForm = dynamic(() => import('./components/TaskForm'))
 const Web = dynamic(() => import('./components/Web'))
 const Controls = dynamic(() => import('./components/Controls'))
 
@@ -33,21 +32,25 @@ export interface GoalCurrentProps {
   tmpl: 'current'
   goal: GoalDto
   href: string
-  membership: Member[]
+  clientPage: boolean
+  membership: MemberDto[]
   client?: ClientDto
 }
 
-export default function GoalCurrent({ goal, href, client, membership }: GoalCurrentProps): JSX.Element {
-  const { id, name, hashtags, characteristic, owner, stages, day, member } = goal
+export default function GoalCurrent({ goal, href, clientPage, membership, client }: GoalCurrentProps): JSX.Element {
+  const { id, name, hashtags, characteristic, owner, stages, day, inherited } = goal
   const { id: dayId, date, tasks, views, feedback, topicCount } = day
   const classes = useStyles()
   const theme = useTheme()
   const colors = useCharacteristicColors()
   const [isLoading, onChangeDay] = useChangeDay(id)
-  const isOwner = checkOnOwner(owner, client)
+  const clientGoal = owner.id === client?.id
   const goalHref = getGoalHref(href, goal)
-  const clientMember = getClientMember(goal, membership, client)
-  const goalInfo = useMemo(() => getGoalInfo(goal, clientMember, isOwner), [clientMember, goal, isOwner])
+  const member = getMember(goal, membership, client)
+  const goalInfo = useMemo(
+    () => getGoalInfo(goal, clientGoal, clientPage, member),
+    [goal, clientGoal, clientPage, member],
+  )
   const rest = tasks.length - tasks.filter((t) => t.completed).length
 
   useIncreaseViews(goal, client)
@@ -63,9 +66,9 @@ export default function GoalCurrent({ goal, href, client, membership }: GoalCurr
                 <AppTitle name="goal" variant="h6" component="h3">
                   {name}
                 </AppTitle>
-                {member && <Owner {...owner} />}
+                {inherited && <Owner {...owner} />}
               </AppBox>
-              <Menu goalId={id} title={name} href={goalHref} isOwner={isOwner} />
+              <Menu goalId={id} title={name} href={goalHref} clientGoal={clientGoal} />
             </AppBox>
             <AppBox justifyContent="space-between" alignItems="center">
               {CHARACTERISTICS.map((characteristicName) => (
@@ -111,12 +114,13 @@ export default function GoalCurrent({ goal, href, client, membership }: GoalCurr
                     {tasks.map((task) => (
                       <Fragment key={task.id}>
                         {!goalInfo.form ? (
-                          <Task task={task} />
+                          <Task task={task} member={member} clientPage={clientPage} />
                         ) : (
                           <TaskForm
                             goalId={id}
                             task={task}
-                            member={clientMember}
+                            clientPage={clientPage}
+                            member={member}
                             rest={rest}
                             daysGone={goalInfo.daysGone}
                             forTomorrow={goalInfo.forTomorrow}
@@ -142,7 +146,7 @@ export default function GoalCurrent({ goal, href, client, membership }: GoalCurr
                 renderOnClick
                 unmountOnExit
                 detailsClass={classes.discussion}
-                details={<Discussion dayId={dayId} owner={owner} count={topicCount} isOwner={isOwner} />}
+                details={<Discussion dayId={dayId} owner={owner} count={topicCount} clientGoal={clientGoal} />}
               />
             </div>
           </AppBox>
@@ -151,8 +155,8 @@ export default function GoalCurrent({ goal, href, client, membership }: GoalCurr
               <Controls
                 goal={goal}
                 owner={owner}
-                member={clientMember}
-                isOwner={isOwner}
+                member={member}
+                clientGoal={clientGoal}
                 forTomorrow={goalInfo.forTomorrow}
               />
             )}

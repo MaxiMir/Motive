@@ -1,6 +1,6 @@
 import produce from 'immer'
 import { differenceInCalendarDays, differenceInDays } from 'date-fns'
-import { CalendarDto, ClientDto, DayDto, GoalDto, Member } from 'dto'
+import { CalendarDto, ClientDto, DayDto, GoalDto, MemberDto, TaskDto } from 'dto'
 import { SEARCH_PARAMS, setQueryParams } from 'helpers/url'
 import { getDateKey } from './components/Calendar/helper'
 
@@ -20,24 +20,17 @@ export const getGoalHref = (userHref: string, goal: GoalDto): string => {
   return setQueryParams(userHref, { [SEARCH_PARAMS.SCROLL]: goal.id, [SEARCH_PARAMS.DATES]: `${id}:${day.id}` })
 }
 
-export const getClientMember = (goal: GoalDto, membership: Member[], client?: ClientDto): Member | undefined =>
+export const getMember = (goal: GoalDto, membership: MemberDto[], client?: ClientDto): MemberDto | undefined =>
   client && membership.find((m) => m.userId === client.id && m.goalId === goal.id)
 
-const checkOnWeb = (dayDate: string, today: Date, lastDay: boolean): boolean =>
-  lastDay && differenceInDays(today, Date.parse(dayDate)) >= SHOW_WEB_AFTER_DAYS
+export const checkOnCompleted = (task: TaskDto, clientPage: boolean, member?: MemberDto): boolean =>
+  !member || !clientPage ? task.completed : member.completedTasks.includes(task.id)
 
-const checkOnTaskForm = (day: DayDto, member: Member | undefined, daysGone: number, isOwner: boolean): boolean => {
-  if (member) {
-    return member.dayId === day.id
-  }
+export const checkOnFire = (task: TaskDto, daysGone: number): boolean =>
+  !daysGone && task.completedByOther && !task.completed
 
-  return isOwner && daysGone <= 0
-}
-
-const checkOnControls = (lastDay: boolean, isOwner: boolean): boolean => !(isOwner && !lastDay)
-
-const checkOnCompleteStage = (reactions: boolean, goal: GoalDto, isOwner: boolean): boolean =>
-  isOwner && reactions && goal.stage <= goal.day.stage
+const checkOnCompleteStage = (reactions: boolean, goal: GoalDto, clientGoal: boolean): boolean =>
+  clientGoal && reactions && goal.stage <= goal.day.stage
 
 type GoalInfo = {
   datesMap: Record<string, number>
@@ -50,7 +43,7 @@ type GoalInfo = {
   forTomorrow: boolean
 }
 
-export const getGoalInfo = (goal: GoalDto, member: Member | undefined, isOwner: boolean): GoalInfo => {
+export const getGoalInfo = (goal: GoalDto, clientGoal: boolean, clientPage: boolean, member?: MemberDto): GoalInfo => {
   const { started, day, calendar } = goal
   const today = new Date()
   const datesMap = getDatesMap(day, calendar)
@@ -58,11 +51,19 @@ export const getGoalInfo = (goal: GoalDto, member: Member | undefined, isOwner: 
   const lastDay = dates[dates.length - 1] === getDateKey(day.date)
   const daysGone = differenceInCalendarDays(today, Date.parse(day.date))
   const runsForDays = differenceInCalendarDays(today, Date.parse(started))
-  const web = checkOnWeb(day.date, today, lastDay)
-  const form = checkOnTaskForm(day, member, daysGone, isOwner)
-  const controls = checkOnControls(lastDay, isOwner)
-  const completeStage = checkOnCompleteStage(controls, goal, isOwner)
+  const web = lastDay && differenceInDays(today, Date.parse(day.date)) >= SHOW_WEB_AFTER_DAYS
+  const form = checkOnTaskForm()
+  const controls = !clientGoal || lastDay
+  const completeStage = checkOnCompleteStage(controls, goal, clientGoal)
   const forTomorrow = daysGone === -1
+
+  function checkOnTaskForm() {
+    if (clientPage && member) {
+      return member.dayId === day.id
+    }
+
+    return clientGoal && daysGone <= 0
+  }
 
   return {
     datesMap,

@@ -1,29 +1,38 @@
 import dynamic from 'next/dynamic'
-import { Member, TaskDto } from 'dto'
+import { MemberDto, TaskDto } from 'dto'
+import { checkOnCompleted, checkOnFire } from 'components/Goal/tmpl/GoalCurrent/helper'
 import TooltipTomorrow from 'components/Goal/tmpl/GoalCurrent/components/TooltipTomorrow'
 import AppBox from 'components/UI/AppBox'
 import AppCheckbox from 'components/UI/AppCheckbox'
 import AppMarkdown from 'components/UI/AppMarkdown'
 import useSetCompleted from './hook'
-import { checkOnCompleted } from './helper'
 
 const TaskDate = dynamic(() => import('../TaskDate'))
-const CompletedByOther = dynamic(() => import('./components/CompletedByOther'))
+const CompletedByOther = dynamic(() => import('../CompletedByOther'))
 
 interface TaskFormProps {
   goalId: number
   task: TaskDto
-  member?: Member
+  member?: MemberDto
   rest: number
   daysGone: number
   forTomorrow: boolean
+  clientPage: boolean
 }
 
-export default function TaskForm({ goalId, task, member, rest, daysGone, forTomorrow }: TaskFormProps): JSX.Element {
-  const { id, name, completedByOther, date } = task
+export default function TaskForm({
+  goalId,
+  task,
+  member,
+  rest,
+  daysGone,
+  forTomorrow,
+  clientPage,
+}: TaskFormProps): JSX.Element {
+  const { id, name, date } = task
   const setCompleted = useSetCompleted(goalId, id, rest)
-  const completed = checkOnCompleted(task, member)
-  const withFire = !daysGone && completedByOther && !completed
+  const completed = checkOnCompleted(task, clientPage, member)
+  const withFire = checkOnFire(task, daysGone)
 
   return (
     <form>

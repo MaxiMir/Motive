@@ -1,7 +1,7 @@
 import produce from 'immer'
 import { FormikProps, useFormik } from 'formik'
 import { useMutation } from 'react-query'
-import { CreateGoalDto, GoalDto } from 'dto'
+import { CreateGoalDto } from 'dto'
 import GoalService from 'services/GoalService'
 import useSnackbar from 'hooks/useSnackbar'
 import { useMutateGoals } from 'views/UserView/hook'
@@ -35,7 +35,7 @@ const useSendCreateGoal = (onSuccess: () => void) => {
   return useMutation(GoalService.create, {
     onSuccess(goal) {
       mutateGoal(
-        produce(goals, (draft: GoalDto[]) => {
+        produce(goals, (draft) => {
           draft.push({ ...goal, day: goal.days[0] })
         }),
       )

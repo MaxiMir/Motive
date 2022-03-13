@@ -17,7 +17,7 @@ export default function SecondPhotos({ id, photos }: SecondPhotosProps): JSX.Ele
       ariaControls="completed-goal-photos"
       details={
         <AppBox display="block" flex={1}>
-          <Gallery photos={photos} />
+          <Gallery tmpl="simple" photos={photos} animation />
         </AppBox>
       }
     />

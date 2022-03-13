@@ -1,25 +1,22 @@
 import { useState } from 'react'
 import dynamic from 'next/dynamic'
 import { Button } from '@material-ui/core'
-import { GoalDto } from 'dto'
+import { GoalDto, Member } from 'dto'
 import useClient from 'hooks/useClient'
 import useOpenSignIn from 'hooks/useOpenSignIn'
-import { useUserPage } from 'views/UserView/hook'
 import AppEmoji from 'components/UI/AppEmoji'
-import { checkOnMember } from './helper'
 
 const Modal = dynamic(() => import('components/Modal'))
 
 interface MembershipProps {
   goal: GoalDto
+  member?: Member
 }
 
-export default function Membership({ goal }: MembershipProps): JSX.Element {
+export default function Membership({ goal, member }: MembershipProps): JSX.Element {
   const client = useClient()
-  const page = useUserPage()
   const openSignIn = useOpenSignIn()
   const [modal, setModal] = useState<'subscribe' | 'unsubscribe'>()
-  const member = checkOnMember(goal, undefined, client)
 
   const onClick = () => {
     if (!client) {

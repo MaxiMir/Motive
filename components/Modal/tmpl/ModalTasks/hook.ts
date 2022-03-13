@@ -34,7 +34,7 @@ const useSendNewDay = (goalId: number, onSuccess: () => void) => {
       const day = days[days.length - 1]
 
       mutateGoals(
-        produce(goals, (draft: GoalDto[]) => {
+        produce(goals, (draft) => {
           const draftGoal = draft[draft.findIndex((g) => g.id === goalId)]
           draftGoal.calendar.push({ id: day.id, date: day.date })
           draftGoal.day = day

@@ -1,14 +1,15 @@
 import { useCallback, useState } from 'react'
+import { PhotoDto } from 'dto'
 import Carousel, { Modal, ModalGateway } from 'react-images'
-import { PhotoWithSourceDto } from 'dto'
-import SimpleGallery from './SimpleGallery'
+import GallerySimple from './GallerySimple'
 
-interface GalleryViewerProps {
-  photos: PhotoWithSourceDto[]
+export interface GalleryViewerProps {
+  tmpl: 'viewer'
+  photos: PhotoDto[]
   animation?: boolean
 }
 
-export default function GalleryViewer({ photos, animation }: GalleryViewerProps): JSX.Element {
+export default function Index({ photos, animation }: GalleryViewerProps): JSX.Element {
   const [currentImage, setCurrentImage] = useState(0)
   const [viewerIsOpen, setViewerIsOpen] = useState(false)
 
@@ -27,11 +28,11 @@ export default function GalleryViewer({ photos, animation }: GalleryViewerProps)
       <ModalGateway>
         {viewerIsOpen && (
           <Modal onClose={closeViewer}>
-            <Carousel currentIndex={currentImage} views={photos} />
+            <Carousel currentIndex={currentImage} views={photos.map((p) => ({ ...p, source: p.src }))} />
           </Modal>
         )}
       </ModalGateway>
-      <SimpleGallery photos={photos} animation={animation} onClick={openViewer} />
+      <GallerySimple tmpl="simple" photos={photos} animation={animation} onClick={openViewer} />
     </>
   )
 }

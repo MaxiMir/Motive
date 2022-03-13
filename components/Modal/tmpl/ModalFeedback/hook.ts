@@ -43,7 +43,7 @@ const useSendFeedback = (goalId: number) => {
   return useMutation(FeedbackService.create, {
     onSuccess: (feedback) => {
       mutateGoals(
-        produce(goals, (draft: GoalDto[]) => {
+        produce(goals, (draft) => {
           const draftGoal = draft[draft.findIndex((g) => g.id === goalId)]
           draftGoal.day.feedback = feedback
         }),

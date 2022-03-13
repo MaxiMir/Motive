@@ -14,14 +14,14 @@ interface TopicProps {
   topic: TopicDto
   inView: boolean
   onView: () => void
-  isGoalOwner: boolean
+  isOwner: boolean
   onAdd: (topic: TopicDto) => void
 }
 
-export default function Topic({ owner, topic, isGoalOwner, inView, onView, onAdd }: TopicProps): JSX.Element {
+export default function Topic({ owner, topic, isOwner, inView, onView, onAdd }: TopicProps): JSX.Element {
   const { answer, ...message } = topic
   const [showInput, setShowInput] = useState(false)
-  const showReply = checkOnReply(isGoalOwner, topic)
+  const showReply = checkOnReply(isOwner, topic)
 
   const onClick = () => setShowInput(true)
 

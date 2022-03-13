@@ -29,7 +29,7 @@ export const getNextState = (discussion: InfiniteData<TopicDto[]>, options: Opti
 }
 
 export const getGoalNextState = (goals: GoalDto[], goalId: number, add: boolean): GoalDto[] =>
-  produce(goals, (draft: GoalDto[]) => {
+  produce(goals, (draft) => {
     const draftGoal = draft[draft.findIndex((g) => g.id === goalId)]
     draftGoal.characteristic.support += add ? 1 : -1
   })

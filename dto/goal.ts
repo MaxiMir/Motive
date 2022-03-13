@@ -83,10 +83,6 @@ export interface PhotoDto {
   readonly height: number
 }
 
-export interface PhotoWithSourceDto extends PhotoDto {
-  readonly source: string
-}
-
 export interface CalendarDto {
   readonly id: number
   readonly date: string

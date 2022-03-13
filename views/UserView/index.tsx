@@ -24,7 +24,7 @@ export interface UserViewProps {
 }
 
 export default function UserView({ user }: UserViewProps): JSX.Element {
-  const { nickname, name, avatar, characteristic, goals, following } = user
+  const { nickname, name, avatar, characteristic, goals, following, membership } = user
   const theme = useTheme()
   const client = useClient()
   const characteristicColors = useCharacteristicColors()
@@ -83,7 +83,7 @@ export default function UserView({ user }: UserViewProps): JSX.Element {
         ) : (
           <AppBox flexWrap="wrap" spacing={3}>
             {goals.map((goal) => (
-              <Goal tmpl="current" goal={goal} href={href} client={client} key={goal.id} />
+              <Goal tmpl="current" goal={goal} href={href} client={client} membership={membership} key={goal.id} />
             ))}
           </AppBox>
         )}

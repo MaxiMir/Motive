@@ -2,16 +2,16 @@ import { Fragment, useMemo } from 'react'
 import dynamic from 'next/dynamic'
 import { createStyles, useTheme } from '@material-ui/core'
 import { makeStyles } from '@material-ui/core/styles'
-import { GoalDto, GoalCharacteristicName, ClientDto } from 'dto'
+import { GoalDto, GoalCharacteristicName, ClientDto, Member } from 'dto'
 import useCharacteristicColors from 'hooks/useCharacteristicColors'
 import AppBox from 'components/UI/AppBox'
 import AppTitle from 'components/UI/AppTitle'
 import AppDot from 'components/UI/AppDot'
 import AppAccordion from 'components/UI/AppAccordion'
-import { getRole } from 'components/Goal/helper'
+import { checkOnOwner } from 'components/Goal/helper'
 import Characteristic from 'components/Characteristic'
 import { useChangeDay, useIncreaseViews } from './hook'
-import { getGoalHref, getGoalInfo } from './helper'
+import { getClientMember, getGoalHref, getGoalInfo } from './helper'
 import Calendar from './components/Calendar'
 import Menu from './components/Menu'
 import Discussion from './components/Discussion'
@@ -33,21 +33,22 @@ export interface GoalCurrentProps {
   tmpl: 'current'
   goal: GoalDto
   href: string
+  membership: Member[]
   client?: ClientDto
 }
 
-export default function GoalCurrent({ goal, href, client }: GoalCurrentProps): JSX.Element {
-  const { id, name, hashtags, characteristic, owner, stages, day } = goal
+export default function GoalCurrent({ goal, href, client, membership }: GoalCurrentProps): JSX.Element {
+  const { id, name, hashtags, characteristic, owner, stages, day, member } = goal
   const { id: dayId, date, tasks, views, feedback, topicCount } = day
   const classes = useStyles()
   const theme = useTheme()
   const colors = useCharacteristicColors()
   const [isLoading, onChangeDay] = useChangeDay(id)
-  const role = getRole(goal, client)
+  const isOwner = checkOnOwner(owner, client)
   const goalHref = getGoalHref(href, goal)
-  const goalInfo = useMemo(() => getGoalInfo(goal, role), [goal, role])
+  const clientMember = getClientMember(goal, membership, client)
+  const goalInfo = useMemo(() => getGoalInfo(goal, clientMember, isOwner), [clientMember, goal, isOwner])
   const rest = tasks.length - tasks.filter((t) => t.completed).length
-  const isGoalOwner = role === 'OWNER'
 
   useIncreaseViews(goal, client)
 
@@ -62,9 +63,9 @@ export default function GoalCurrent({ goal, href, client }: GoalCurrentProps): J
                 <AppTitle name="goal" variant="h6" component="h3">
                   {name}
                 </AppTitle>
-                {role === 'MEMBER' && <Owner {...owner} />}
+                {member && <Owner {...owner} />}
               </AppBox>
-              <Menu goalId={id} title={name} href={goalHref} role={role} />
+              <Menu goalId={id} title={name} href={goalHref} isOwner={isOwner} />
             </AppBox>
             <AppBox justifyContent="space-between" alignItems="center">
               {CHARACTERISTICS.map((characteristicName) => (
@@ -115,6 +116,7 @@ export default function GoalCurrent({ goal, href, client }: GoalCurrentProps): J
                           <TaskForm
                             goalId={id}
                             task={task}
+                            member={clientMember}
                             rest={rest}
                             daysGone={goalInfo.daysGone}
                             forTomorrow={goalInfo.forTomorrow}
@@ -140,13 +142,19 @@ export default function GoalCurrent({ goal, href, client }: GoalCurrentProps): J
                 renderOnClick
                 unmountOnExit
                 detailsClass={classes.discussion}
-                details={<Discussion dayId={dayId} owner={owner} count={topicCount} isGoalOwner={isGoalOwner} />}
+                details={<Discussion dayId={dayId} owner={owner} count={topicCount} isOwner={isOwner} />}
               />
             </div>
           </AppBox>
           <AppBox flexDirection="column" spacing={2}>
             {goalInfo.controls && (
-              <Controls goal={goal} owner={owner} isGoalOwner={isGoalOwner} forTomorrow={goalInfo.forTomorrow} />
+              <Controls
+                goal={goal}
+                owner={owner}
+                member={clientMember}
+                isOwner={isOwner}
+                forTomorrow={goalInfo.forTomorrow}
+              />
             )}
             <Views views={views} />
           </AppBox>

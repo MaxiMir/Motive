@@ -15,7 +15,7 @@ export const useSendStage = (goal: GoalDto, onSuccess: () => void): UseSendStage
   return useMutation(GoalService.updateStage, {
     onSuccess() {
       mutateGoals(
-        produce(goals, (draft: GoalDto[]) => {
+        produce(goals, (draft) => {
           const draftGoal = draft[draft.findIndex((g) => g.id === goal.id)]
           draftGoal.stage += 1
         }),

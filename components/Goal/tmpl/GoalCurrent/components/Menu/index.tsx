@@ -1,6 +1,5 @@
 import { MouseEvent, useState } from 'react'
 import dynamic from 'next/dynamic'
-import { RoleDto } from 'dto'
 import Share from 'components/Share'
 import AppMenuButton from 'components/UI/AppMenuButton'
 
@@ -10,10 +9,10 @@ interface MenuProps {
   goalId: number
   title: string
   href: string
-  role: RoleDto
+  isOwner: boolean
 }
 
-export default function Menu({ goalId, title, href, role }: MenuProps): JSX.Element {
+export default function Menu({ goalId, title, href, isOwner }: MenuProps): JSX.Element {
   const [anchorEl, setAnchorEl] = useState<HTMLElement | null>(null)
   const [withShare, setWithShare] = useState(false)
 
@@ -29,7 +28,9 @@ export default function Menu({ goalId, title, href, role }: MenuProps): JSX.Elem
   return (
     <>
       <AppMenuButton ariaControls="goal-menu" title="open goal menu" onClick={onOpen} />
-      {anchorEl && <MenuList anchorEl={anchorEl} goalId={goalId} role={role} onShare={onShare} onClose={onClose} />}
+      {anchorEl && (
+        <MenuList anchorEl={anchorEl} goalId={goalId} isOwner={isOwner} onShare={onShare} onClose={onClose} />
+      )}
       <Share open={withShare} title={title} href={href} onClose={() => setWithShare(false)} />
     </>
   )

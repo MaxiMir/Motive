@@ -1,12 +1,3 @@
-import { GoalDto, RoleDto, ClientDto } from 'dto'
+import { ClientDto, UserBaseDto } from 'dto'
 
-export const getRole = (goal: GoalDto, client?: ClientDto): RoleDto => {
-  switch (true) {
-    case goal.owner.id === client?.id:
-      return 'OWNER'
-    case goal.member:
-      return 'MEMBER'
-    default:
-      return 'GUEST'
-  }
-}
+export const checkOnOwner = (owner: UserBaseDto, client?: ClientDto): boolean => owner.id === client?.id

@@ -3,7 +3,7 @@ import dynamic from 'next/dynamic'
 import { ClientDto, GoalCharacteristicName, GoalCompletedDto } from 'dto'
 import { makeStyles, createStyles } from '@material-ui/core/styles'
 import useCharacteristicColors from 'hooks/useCharacteristicColors'
-import { getRole } from 'components/Goal/helper'
+import { checkOnOwner } from 'components/Goal/helper'
 import AppTitle from 'components/UI/AppTitle'
 import AppBox from 'components/UI/AppBox'
 import AppDot from 'components/UI/AppDot'
@@ -29,9 +29,9 @@ export interface GoalCompletedProps {
 
 export default function GoalCompleted({ goal, client, inView, onView }: GoalCompletedProps): JSX.Element {
   const classes = useStyles()
-  const { name, characteristic, confirmation } = goal
+  const { name, characteristic, confirmation, owner } = goal
   const colors = useCharacteristicColors()
-  const role = getRole(goal, client)
+  const isOwner = checkOnOwner(owner, client)
   const { duration, mainPhoto, secondPhotos, interval } = getGoalInfo(goal)
 
   return (
@@ -44,7 +44,7 @@ export default function GoalCompleted({ goal, client, inView, onView }: GoalComp
             in <AppTooltip title={interval}>{duration}</AppTooltip>
           </span>
         </AppTitle>
-        {mainPhoto && <Gallery photos={[mainPhoto]} animation />}
+        {mainPhoto && <Gallery tmpl="simple" photos={[mainPhoto]} animation />}
         <AppBox justifyContent="space-between" alignItems="center">
           {CHARACTERISTICS.map((characteristicName) => (
             <Fragment key={characteristicName}>
@@ -60,7 +60,7 @@ export default function GoalCompleted({ goal, client, inView, onView }: GoalComp
         </AppBox>
         {confirmation.text && <AppTypography>{confirmation.text}</AppTypography>}
         {!!secondPhotos?.length && <SecondPhotos id={goal.id} photos={secondPhotos} />}
-        {role !== 'OWNER' && <Repeat />}
+        {!isOwner && <Repeat />}
       </AppBox>
       {onView && <>{inView && <AppInView onView={onView} />}</>}
     </div>

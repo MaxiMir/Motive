@@ -10,3 +10,9 @@ export interface MemberDto {
   readonly dayId: number
   readonly userId: number
 }
+
+export interface OwnershipDto {
+  readonly page: boolean
+  readonly goal: boolean
+  readonly member?: MemberDto
+}

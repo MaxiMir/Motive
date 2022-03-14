@@ -24,14 +24,14 @@ export interface UserViewProps {
 }
 
 export default function UserView({ user }: UserViewProps): JSX.Element {
-  const { nickname, name, avatar, characteristic, goals, following, membership } = user
+  const { id, nickname, name, avatar, characteristic, goals, following, userMembership, clientMembership } = user
   const theme = useTheme()
   const client = useClient()
   const characteristicColors = useCharacteristicColors()
   const isMobile = useMediaQuery(theme.breakpoints.down('sm'))
   const href = getUserHref(nickname)
   const characteristicsTitle = getCharacteristicsTitle()
-  const clientPage = user.id === client?.id
+  const clientPage = id === client?.id
 
   useScrollToGoal()
 
@@ -87,9 +87,11 @@ export default function UserView({ user }: UserViewProps): JSX.Element {
                 tmpl="current"
                 goal={goal}
                 href={href}
-                client={client}
+                userId={id}
+                userMembership={userMembership}
+                clientId={client?.id}
                 clientPage={clientPage}
-                membership={membership}
+                clientMembership={clientMembership}
                 key={goal.id}
               />
             ))}

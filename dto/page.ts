@@ -28,5 +28,6 @@ export type UserPageDto = Page<UserDetailDto>
 export interface UserDetailDto extends UserDto {
   following: boolean
   goals: GoalDto[]
-  membership: MemberDto[]
+  userMembership: MemberDto[]
+  clientMembership: MemberDto[]
 }

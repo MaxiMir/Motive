@@ -1,4 +1,4 @@
-import { UserBaseDto, GoalDto, DayCharacteristicName, MemberDto } from 'dto'
+import { UserBaseDto, GoalDto, DayCharacteristicName, MemberDto, OwnershipDto } from 'dto'
 import AppBox from 'components/UI/AppBox'
 import ReactionWithSend from './components/ReactionWithSend'
 import ReactionSupport from './components/ReactionSupport'
@@ -7,10 +7,11 @@ import Membership from './components/Membership'
 export interface ViewerProps {
   goal: GoalDto
   owner: UserBaseDto
-  member?: MemberDto
+  clientMember?: MemberDto
+  clientOwnership: OwnershipDto
 }
 
-export default function Viewer({ goal, owner, member }: ViewerProps): JSX.Element {
+export default function Viewer({ goal, owner, clientOwnership }: ViewerProps): JSX.Element {
   return (
     <AppBox justifyContent="space-between">
       <AppBox spacing={1}>
@@ -19,7 +20,7 @@ export default function Viewer({ goal, owner, member }: ViewerProps): JSX.Elemen
         ))}
         <ReactionSupport goal={goal} owner={owner} />
       </AppBox>
-      <Membership goal={goal} member={member} />
+      <Membership goal={goal} clientOwnership={clientOwnership} />
     </AppBox>
   )
 }

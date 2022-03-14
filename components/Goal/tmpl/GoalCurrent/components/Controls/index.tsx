@@ -6,11 +6,9 @@ const Viewer = dynamic(() => import('./components/Viewer'))
 const Owner = dynamic(() => import('./components/Owner'))
 const OwnerWithFeedback = dynamic(() => import('./components/OwnerWithFeedback'))
 
-type ReactionsProps = ViewerProps & OwnerProps & { clientGoal: boolean }
-
-export default function Controls({ clientGoal, goal, owner, member, forTomorrow }: ReactionsProps): JSX.Element {
-  if (!clientGoal) {
-    return <Viewer goal={goal} owner={owner} member={member} />
+export default function Controls({ goal, owner, forTomorrow, clientOwnership }: ViewerProps & OwnerProps): JSX.Element {
+  if (!clientOwnership.goal) {
+    return <Viewer goal={goal} owner={owner} clientOwnership={clientOwnership} />
   }
 
   return goal.day.feedback ? <OwnerWithFeedback goal={goal} /> : <Owner goal={goal} forTomorrow={forTomorrow} />

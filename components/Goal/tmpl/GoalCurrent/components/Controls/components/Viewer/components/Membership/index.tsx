@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import dynamic from 'next/dynamic'
 import { Button } from '@material-ui/core'
-import { GoalDto, MemberDto } from 'dto'
+import { GoalDto, OwnershipDto } from 'dto'
 import useClient from 'hooks/useClient'
 import useOpenSignIn from 'hooks/useOpenSignIn'
 import AppEmoji from 'components/UI/AppEmoji'
@@ -10,10 +10,10 @@ const Modal = dynamic(() => import('components/Modal'))
 
 interface MembershipProps {
   goal: GoalDto
-  member?: MemberDto
+  clientOwnership: OwnershipDto
 }
 
-export default function Membership({ goal, member }: MembershipProps): JSX.Element {
+export default function Membership({ goal, clientOwnership }: MembershipProps): JSX.Element {
   const client = useClient()
   const openSignIn = useOpenSignIn()
   const [modal, setModal] = useState<'subscribe' | 'unsubscribe'>()
@@ -24,7 +24,7 @@ export default function Membership({ goal, member }: MembershipProps): JSX.Eleme
       return
     }
 
-    setModal(!member ? 'subscribe' : 'unsubscribe')
+    setModal(!clientOwnership.member ? 'subscribe' : 'unsubscribe')
   }
 
   const onClose = () => setModal(undefined)
@@ -33,11 +33,11 @@ export default function Membership({ goal, member }: MembershipProps): JSX.Eleme
     <>
       <Button
         variant="outlined"
-        color={member ? 'primary' : 'secondary'}
-        startIcon={<AppEmoji name={member ? 'unsubscribe' : 'subscribe'} onlyEmoji />}
+        color={clientOwnership.member ? 'primary' : 'secondary'}
+        startIcon={<AppEmoji name={clientOwnership.member ? 'unsubscribe' : 'subscribe'} onlyEmoji />}
         onClick={onClick}
       >
-        {member ? 'Leave' : 'Join'}
+        {clientOwnership.member ? 'Leave' : 'Join'}
       </Button>
       {modal && <Modal tmpl={modal} goal={goal} onClose={onClose} />}
     </>

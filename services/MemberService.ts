@@ -3,6 +3,10 @@ import { CreateMemberDto } from 'dto'
 
 export default class MemberService {
   static add(data: CreateMemberDto): Promise<void> {
-    return Axios.post(`/members`, data)
+    return Axios.post('/members', data)
+  }
+
+  static delete(id: number): Promise<void> {
+    return Axios.delete(`/members/${id}`)
   }
 }

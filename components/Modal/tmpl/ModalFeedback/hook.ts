@@ -37,7 +37,7 @@ export default function useForm(goal: GoalDto, onSuccess: () => void): FormikPro
 }
 
 const useSendFeedback = (goalId: number) => {
-  const { enqueueSnackbar } = useSnackbar()
+  const [enqueueSnackbar] = useSnackbar()
   const [goals, mutateGoals] = useMutateGoals()
 
   return useMutation(FeedbackService.create, {

@@ -35,7 +35,7 @@ export default function useForm(goal: GoalDto, onSuccess: () => void): FormikPro
 
 const useSendConfirmation = (onSuccess: () => void) => {
   const { refetch } = useUserPage()
-  const { enqueueSnackbar } = useSnackbar()
+  const [enqueueSnackbar] = useSnackbar()
 
   return useMutation(GoalService.updateConfirmation, {
     onSuccess() {

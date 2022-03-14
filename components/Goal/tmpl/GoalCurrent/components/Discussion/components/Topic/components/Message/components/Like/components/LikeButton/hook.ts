@@ -17,7 +17,7 @@ export default function useSetLike(message: MessageDto, answerFor: number | unde
   const openSignIn = useOpenSignIn()
   const [goals, mutateGoals] = useMutateGoals()
   const queryClient = useQueryClient()
-  const { enqueueSnackbar } = useSnackbar()
+  const [enqueueSnackbar] = useSnackbar()
   const { mutate } = useMutation<void, AxiosError, Options, Context>(fetcher, {
     async onMutate(options: Options) {
       await queryClient.cancelQueries(key)

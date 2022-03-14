@@ -12,7 +12,7 @@ export default function useRemoveFollowing(): (user: UserDto, index: number) => 
   const client = useClient()
   const openSignIn = useOpenSignIn()
   const queryClient = useQueryClient()
-  const { enqueueSnackbar, closeSnackbar } = useSnackbar()
+  const [enqueueSnackbar, closeSnackbar] = useSnackbar()
   const { mutate } = useMutation<void, AxiosError, Options, Context>(fetcher, {
     async onMutate({ user, index, add }: Options) {
       await queryClient.cancelQueries(QUERY_KEY)

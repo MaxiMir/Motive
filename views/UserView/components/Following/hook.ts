@@ -13,7 +13,7 @@ export default function useSetFollowing(userId: number, following: boolean): () 
   const openSignIn = useOpenSignIn()
   const queryClient = useQueryClient()
   const { key } = useUserPageConfig()
-  const { enqueueSnackbar } = useSnackbar()
+  const [enqueueSnackbar] = useSnackbar()
   const { mutate } = useMutation<void, AxiosError, Options, Context>(fetcher, {
     async onMutate({ add }: Options) {
       await queryClient.cancelQueries(key)

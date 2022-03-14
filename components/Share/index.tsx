@@ -13,7 +13,7 @@ interface ShareProps {
 
 export default function Share({ open, title, href, onClose }: ShareProps): JSX.Element {
   const withNavigatorShare = useRef(false)
-  const { enqueueSnackbar, closeSnackbar } = useSnackbar()
+  const [enqueueSnackbar, closeSnackbar] = useSnackbar()
   const [withMenu, setWithMenu] = useState(false)
   const url = process.env.NEXT_PUBLIC_CLIENT_BASE_URL + href
 

@@ -45,6 +45,7 @@ export type AppEmojiName =
   | 'helmet'
   | 'blood'
   | 'web'
+  | 'scared'
 
 interface AppEmojiProps {
   name: AppEmojiName
@@ -161,6 +162,8 @@ function getContent(name: AppEmojiName) {
       return '🩸'
     case 'web':
       return '🕸'
+    case 'scared':
+      return '😱'
     default:
       return ''
   }

@@ -1,4 +1,4 @@
-import { UserBaseDto, GoalDto, DayCharacteristicName, MemberDto, OwnershipDto } from 'dto'
+import { UserBaseDto, GoalDto, DayCharacteristicName, OwnershipDto } from 'dto'
 import AppBox from 'components/UI/AppBox'
 import ReactionWithSend from './components/ReactionWithSend'
 import ReactionSupport from './components/ReactionSupport'
@@ -7,7 +7,6 @@ import Membership from './components/Membership'
 export interface ViewerProps {
   goal: GoalDto
   owner: UserBaseDto
-  clientMember?: MemberDto
   clientOwnership: OwnershipDto
 }
 

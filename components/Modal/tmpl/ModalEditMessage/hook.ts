@@ -21,7 +21,7 @@ export default function useForm(initialValues: MessageDto, onSuccess: () => void
 }
 
 const useSendUpdateMessage = () => {
-  const { enqueueSnackbar } = useSnackbar()
+  const [enqueueSnackbar] = useSnackbar()
   const queryClient = useQueryClient()
 
   return useMutation<void, AxiosError, MessageDto>(({ id, text }) => TopicService.update(id, { text }), {

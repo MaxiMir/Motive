@@ -10,7 +10,7 @@ type UseSendStage = UseMutationResult<void, AxiosError, GoalStageDto>
 
 export const useSendStage = (goal: GoalDto, onSuccess: () => void): UseSendStage => {
   const [goals, mutateGoals] = useMutateGoals()
-  const { enqueueSnackbar } = useSnackbar()
+  const [enqueueSnackbar] = useSnackbar()
 
   return useMutation(GoalService.updateStage, {
     onSuccess() {

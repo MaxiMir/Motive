@@ -30,7 +30,7 @@ export default function useForm(
 }
 
 const useSendTopic = (type: MessageType) => {
-  const { enqueueSnackbar } = useSnackbar()
+  const [enqueueSnackbar] = useSnackbar()
 
   return useMutation(TopicService.create, {
     onSuccess() {

@@ -4,7 +4,7 @@ import useSnackbar from 'hooks/useSnackbar'
 const PHOTO_LIMIT = 10
 
 export default function useSelectPhoto<T>(formik: FormikProps<T & { photos: File[] }>): (files: File[]) => void {
-  const { enqueueSnackbar } = useSnackbar()
+  const [enqueueSnackbar] = useSnackbar()
 
   return (files: File[]) => {
     const photos = [...formik.values.photos, ...files]

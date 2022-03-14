@@ -39,7 +39,7 @@ export default function Membership({ goal, clientOwnership }: MembershipProps): 
       >
         {clientOwnership.member ? 'Leave' : 'Join'}
       </Button>
-      {modal && <Modal tmpl={modal} goal={goal} onClose={onClose} />}
+      {modal && <Modal tmpl={modal} goal={goal} clientOwnership={clientOwnership} onClose={onClose} />}
     </>
   )
 }

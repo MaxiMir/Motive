@@ -29,7 +29,7 @@ export default function useForm(onSuccess: () => void): FormikProps<CreateGoalDt
 }
 
 const useSendCreateGoal = (onSuccess: () => void) => {
-  const { enqueueSnackbar } = useSnackbar()
+  const [enqueueSnackbar] = useSnackbar()
   const [goals, mutateGoal] = useMutateGoals()
 
   return useMutation(GoalService.create, {

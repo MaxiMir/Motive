@@ -10,7 +10,7 @@ const Button = dynamic(() => import('@material-ui/core/Button'))
 
 export default function useSetCompleted(goalId: number, id: number, rest: number): () => void {
   const timerRef = useRef<NodeJS.Timeout>()
-  const { enqueueSnackbar, closeSnackbar } = useSnackbar()
+  const [enqueueSnackbar, closeSnackbar] = useSnackbar()
   const [goals, mutateGoals] = useMutateGoals()
   const { mutate } = useMutation(TaskService.setCompleted, {
     onError() {

@@ -1,5 +1,5 @@
 import { DayCharacteristicName, GoalDto } from 'dto'
-import Characteristic from 'components/Characteristic'
+import Action from 'components/Action'
 import useSetReaction from './hook'
 import { checkOnActive } from './helper'
 
@@ -13,5 +13,5 @@ export default function ReactionWithSend({ goal, name }: ReactionWithSendProps):
   const title = `${active ? 'Decrease' : 'Increase'} goal's ${name} points`
   const onSetReaction = useSetReaction(goal, name, active)
 
-  return <Characteristic tmpl="reaction" name={name} active={active} title={title} onClick={onSetReaction} />
+  return <Action tmpl="goal" name={name} active={active} title={title} onClick={onSetReaction} />
 }

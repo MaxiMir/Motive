@@ -28,7 +28,7 @@ export default function Owner({ goal, forTomorrow }: OwnerProps): JSX.Element {
           disabled={forTomorrow}
           onClick={toggle}
         >
-          Finish the day
+          EndOfDay
         </Button>
       </TooltipTomorrow>
       {open && <Modal tmpl="feedback" goal={goal} onClose={toggle} />}

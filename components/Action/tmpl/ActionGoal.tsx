@@ -1,16 +1,15 @@
 import { Button, createStyles, makeStyles } from '@material-ui/core'
-import { MainCharacteristicName } from 'dto'
-import AppEmoji from 'components/UI/AppEmoji'
+import AppEmoji, { AppEmojiName } from 'components/UI/AppEmoji'
 
-export interface CharacteristicReactionProps {
-  tmpl: 'reaction'
-  name: MainCharacteristicName
+export interface ActionGoalProps {
+  tmpl: 'goal'
+  name: AppEmojiName
   title: string
   active?: boolean
   onClick: () => void
 }
 
-export default function Reaction({ name, active, title, onClick }: CharacteristicReactionProps): JSX.Element {
+export default function ActionGoal({ name, active, title, onClick }: ActionGoalProps): JSX.Element {
   const classes = useStyles({ name, active })
 
   return (
@@ -20,7 +19,7 @@ export default function Reaction({ name, active, title, onClick }: Characteristi
   )
 }
 
-type UseStylesProps = Pick<CharacteristicReactionProps, 'name' | 'active'>
+type UseStylesProps = Pick<ActionGoalProps, 'name' | 'active'>
 
 const useStyles = makeStyles((theme) => {
   return createStyles({

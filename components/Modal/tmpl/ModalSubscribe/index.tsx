@@ -2,7 +2,7 @@ import { ChangeEvent } from 'react'
 import { Form, FormikProvider } from 'formik'
 import { createStyles, FormControlLabel, makeStyles, Radio, RadioGroup } from '@material-ui/core'
 import { GoalDto } from 'dto'
-import ModalAction from 'components/ModalAction'
+import Action from 'components/Action'
 import AppModal from 'components/UI/AppModal'
 import AppBox from 'components/UI/AppBox'
 import AppEmoji from 'components/UI/AppEmoji'
@@ -39,8 +39,8 @@ export default function ModalSubscribe({ goal, onClose }: ModalSubscribeProps): 
       }
       maxWidth="xs"
       actions={[
-        <ModalAction tmpl="close" onClick={onClose} />,
-        <ModalAction
+        <Action tmpl="close" onClick={onClose} />,
+        <Action
           tmpl="submit"
           isLoading={isSubmitting}
           name="Join"

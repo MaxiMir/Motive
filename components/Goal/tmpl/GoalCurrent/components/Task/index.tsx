@@ -38,6 +38,7 @@ export default function Task({
           rest={rest}
           forTomorrow={forTomorrow}
           completedByOther={completedByOther}
+          clientMember={clientOwnership.member}
         />
       )}
     </>

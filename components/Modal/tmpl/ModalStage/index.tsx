@@ -1,6 +1,6 @@
 import { createStyles, makeStyles } from '@material-ui/core'
 import { GoalDto } from 'dto'
-import ModalAction from 'components/ModalAction'
+import Action from 'components/Action'
 import AppModal from 'components/UI/AppModal'
 import AppTypography from 'components/UI/AppTypography'
 import AppBox from 'components/UI/AppBox'
@@ -32,8 +32,8 @@ export default function ModalStage({ goal, onClose }: ModalStageProps): JSX.Elem
       }
       maxWidth="xs"
       actions={[
-        <ModalAction tmpl="close" onClick={onClose} />,
-        <ModalAction
+        <Action tmpl="close" onClick={onClose} />,
+        <Action
           tmpl="submit"
           isLoading={isLoading}
           name="Complete"

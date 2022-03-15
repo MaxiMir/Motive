@@ -5,7 +5,7 @@ import { AppEmojiName } from 'components/UI/AppEmoji'
 const CircularProgress = dynamic(() => import('@material-ui/core/CircularProgress'))
 const AppEmoji = dynamic(() => import('components/UI/AppEmoji'))
 
-export interface ModalActionSubmitProps {
+export interface ActionSubmitProps {
   tmpl: 'submit'
   emoji: AppEmojiName
   name: string
@@ -14,13 +14,7 @@ export interface ModalActionSubmitProps {
   onClick: () => void
 }
 
-export default function ModalActionSubmit({
-  emoji,
-  name,
-  nameLoading,
-  isLoading,
-  onClick,
-}: ModalActionSubmitProps): JSX.Element {
+export default function ActionSubmit({ emoji, name, nameLoading, isLoading, onClick }: ActionSubmitProps): JSX.Element {
   return (
     <AppGradientButton
       type="submit"

@@ -34,7 +34,8 @@ export const useSendUnsubscribe = (
             return
           }
 
-          const draftGoal = draft.content.goals[draft.content.goals.findIndex((g) => g.id === goalId)]
+          const draftGoals = draft.content.goals
+          const draftGoal = draftGoals[draftGoals.findIndex((g) => g.id === goalId)]
           draftGoal.characteristic.members -= 1
         })
       })

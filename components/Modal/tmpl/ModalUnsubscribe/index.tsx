@@ -1,6 +1,6 @@
 import { createStyles, makeStyles } from '@material-ui/core'
 import { GoalDto, OwnershipDto } from 'dto'
-import ModalAction from 'components/ModalAction'
+import Action from 'components/Action'
 import AppModal from 'components/UI/AppModal'
 import AppTypography from 'components/UI/AppTypography'
 import AppBox from 'components/UI/AppBox'
@@ -34,8 +34,8 @@ export default function ModalUnsubscribe({ goal, clientOwnership, onClose }: Mod
       }
       maxWidth="xs"
       actions={[
-        <ModalAction tmpl="close" onClick={onClose} />,
-        <ModalAction
+        <Action tmpl="close" onClick={onClose} />,
+        <Action
           tmpl="submit"
           isLoading={isLoading}
           name="Leave"

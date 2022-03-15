@@ -4,7 +4,7 @@ import { makeStyles } from '@material-ui/core/styles'
 import { Accordion, AccordionDetails, AccordionSummary, Button, createStyles } from '@material-ui/core'
 import { MainCharacteristicName } from 'dto'
 import useFocus from 'hooks/useFocus'
-import ModalAction from 'components/ModalAction'
+import Action from 'components/Action'
 import Task from 'components/Task'
 import AppDecorEmoji from 'components/UI/AppDecorEmoji'
 import AppModal from 'components/UI/AppModal'
@@ -43,8 +43,8 @@ export default function ModalGoal({ onClose }: ModalGoalProps): JSX.Element {
       title="Creating a new goal"
       maxWidth="xs"
       actions={[
-        <ModalAction tmpl="close" onClick={onClose} />,
-        <ModalAction
+        <Action tmpl="close" onClick={onClose} />,
+        <Action
           tmpl="submit"
           isLoading={isSubmitting}
           name="Create"

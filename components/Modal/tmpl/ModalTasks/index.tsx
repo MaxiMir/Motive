@@ -1,7 +1,7 @@
 import { FieldArray, Form, FormikProvider } from 'formik'
 import { Button, createStyles, makeStyles } from '@material-ui/core'
 import { GoalDto } from 'dto'
-import ModalAction from 'components/ModalAction'
+import Action from 'components/Action'
 import Task from 'components/Task'
 import AppModal from 'components/UI/AppModal'
 import useForm from './hook'
@@ -26,8 +26,8 @@ export default function ModalTasks({ goal, onClose }: ModalTasksProps): JSX.Elem
       }
       maxWidth="xs"
       actions={[
-        <ModalAction tmpl="close" onClick={onClose} />,
-        <ModalAction
+        <Action tmpl="close" onClick={onClose} />,
+        <Action
           tmpl="submit"
           isLoading={isSubmitting}
           name="Add"

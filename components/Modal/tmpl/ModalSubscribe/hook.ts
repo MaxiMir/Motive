@@ -3,9 +3,9 @@ import { FormikProps, useFormik } from 'formik'
 import { useMutation } from 'react-query'
 import { CreateMemberDto, GoalDto } from 'dto'
 import MemberService from 'services/MemberService'
+import { SEARCH_PARAMS, setQueryParams } from 'helpers/url'
 import useClient from 'hooks/useClient'
 import { getUserHref } from 'views/UserView/helper'
-import { SEARCH_PARAMS, setQueryParams } from 'helpers/url'
 import schema from 'schemas/member'
 
 export default function useForm(goal: GoalDto): FormikProps<CreateMemberDto> {
@@ -27,7 +27,7 @@ const useSendSubscribe = (goal: GoalDto) => {
   const client = useClient()
   const router = useRouter()
 
-  return useMutation(MemberService.add, {
+  return useMutation(MemberService.create, {
     onSuccess() {
       if (!client) {
         return

@@ -2,7 +2,7 @@ import { Field, FieldArray, Form, FormikProvider } from 'formik'
 import { createStyles, makeStyles } from '@material-ui/core'
 import { GoalDto } from 'dto'
 import useSelectPhoto from 'hooks/useSelectPhoto'
-import ModalAction from 'components/ModalAction'
+import Action from 'components/Action'
 import AppModal from 'components/UI/AppModal'
 import AppTypography from 'components/UI/AppTypography'
 import AppBox from 'components/UI/AppBox'
@@ -33,8 +33,8 @@ export default function ModalFeedback({ goal, onClose }: ModalFeedbackProps): JS
       title="Adding feedback"
       maxWidth="xs"
       actions={[
-        <ModalAction tmpl="close" onClick={onClose} />,
-        <ModalAction
+        <Action tmpl="close" onClick={onClose} />,
+        <Action
           tmpl="submit"
           isLoading={isSubmitting}
           name="Add"

@@ -1,19 +1,24 @@
 import { useState, MouseEvent } from 'react'
 import dynamic from 'next/dynamic'
+import { UserDto } from 'dto'
+import { getUserHref } from 'views/UserView/helper'
 import Share from 'components/Share'
 import AppMenuButton from 'components/UI/AppMenuButton'
+import useRemoveFollowing from './hook'
 
 const MenuList = dynamic(() => import('./components/MenuList'))
 
 interface MenuProps {
-  title: string
-  href: string
-  onRemove: () => void
+  user: UserDto
+  index: number
 }
 
-const Menu = ({ title, href, onRemove }: MenuProps): JSX.Element => {
+const Menu = ({ user, index }: MenuProps): JSX.Element => {
+  const { name, nickname } = user
   const [anchorEl, setAnchorEl] = useState<HTMLElement | null>(null)
   const [withShare, setWithShare] = useState(false)
+  const onRemove = useRemoveFollowing()
+  const href = getUserHref(nickname)
 
   const onOpen = (e: MouseEvent<HTMLButtonElement>) => setAnchorEl(e.currentTarget)
 
@@ -26,7 +31,7 @@ const Menu = ({ title, href, onRemove }: MenuProps): JSX.Element => {
 
   const onRemoveCombine = () => {
     onClose()
-    onRemove()
+    onRemove(user, index)
   }
 
   const onCloseShare = () => setWithShare(false)
@@ -35,7 +40,7 @@ const Menu = ({ title, href, onRemove }: MenuProps): JSX.Element => {
     <>
       <AppMenuButton ariaControls="user-menu" title="open user menu" horizontal onClick={onOpen} />
       {anchorEl && <MenuList anchorEl={anchorEl} onShare={onShare} onRemove={onRemoveCombine} onClose={onClose} />}
-      <Share open={withShare} title={title} href={href} onClose={onCloseShare} />
+      <Share open={withShare} title={name} href={href} onClose={onCloseShare} />
     </>
   )
 }

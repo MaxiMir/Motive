@@ -3,7 +3,7 @@ import dynamic from 'next/dynamic'
 import { GoalDto, UserBaseDto } from 'dto'
 import useClient from 'hooks/useClient'
 import useOpenSignIn from 'hooks/useOpenSignIn'
-import Characteristic from 'components/Characteristic'
+import Action from 'components/Action'
 
 const Modal = dynamic(() => import('components/Modal'))
 
@@ -30,7 +30,7 @@ export default function ReactionSupport({ goal, owner }: ReactionSupportProps): 
 
   return (
     <>
-      <Characteristic tmpl="reaction" name="support" title={`Support ${owner.name}`} onClick={onClick} />
+      <Action tmpl="goal" name="support" title={`Support ${owner.name}`} onClick={onClick} />
       {open && <Modal tmpl="support" goal={goal} owner={owner} onClose={toggleModal} />}
     </>
   )

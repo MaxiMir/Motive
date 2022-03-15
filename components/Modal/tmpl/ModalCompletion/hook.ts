@@ -4,6 +4,7 @@ import { GoalDto } from 'dto'
 import GoalService from 'services/GoalService'
 import useSnackbar from 'hooks/useSnackbar'
 import { scrollToElem } from 'helpers/dom'
+import { getToday } from 'helpers/date'
 import { useUserPage } from 'views/UserView/hook'
 import schema from 'schemas/completion'
 
@@ -11,6 +12,7 @@ interface Values {
   text: string
   photos: File[]
   video: ''
+  date: Date
 }
 
 export default function useForm(goal: GoalDto, onSuccess: () => void): FormikProps<Values> {
@@ -21,6 +23,7 @@ export default function useForm(goal: GoalDto, onSuccess: () => void): FormikPro
       text: '',
       photos: [],
       video: '',
+      date: getToday(),
     },
     validationSchema: schema,
     async onSubmit(data) {

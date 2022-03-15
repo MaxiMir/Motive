@@ -1,7 +1,7 @@
 import { Field, Form, FormikProvider } from 'formik'
 import { createStyles, makeStyles } from '@material-ui/core'
 import { GoalDto, UserBaseDto } from 'dto'
-import ModalAction from 'components/ModalAction'
+import Action from 'components/Action'
 import AppModal from 'components/UI/AppModal'
 import AppBox from 'components/UI/AppBox'
 import AppFadeIcon from 'components/UI/AppFadeIcon'
@@ -32,8 +32,8 @@ export default function ModalSupport({ goal, owner, onClose }: ModalSupportProps
       }
       maxWidth="xs"
       actions={[
-        <ModalAction tmpl="close" onClick={onClose} />,
-        <ModalAction
+        <Action tmpl="close" onClick={onClose} />,
+        <Action
           tmpl="submit"
           isLoading={isSubmitting}
           name="Support"

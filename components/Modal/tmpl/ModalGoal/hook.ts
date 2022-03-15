@@ -18,7 +18,7 @@ export default function useForm(onSuccess: () => void): FormikProps<CreateGoalDt
       name: '',
       hashtags: '',
       stages: [],
-      date: getTomorrow(),
+      tasksDate: getTomorrow(),
       tasks: [{ name: '', date: undefined }],
     },
     validationSchema: schema,

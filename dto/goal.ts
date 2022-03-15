@@ -1,14 +1,16 @@
-import { DayCharacteristicDto, GoalCharacteristicDto } from './characteristic'
+import { GoalCharacteristicDto } from './characteristic'
 import { UserBaseDto } from './user'
 import { ReactionsDto } from './reaction'
+import { CreateTaskDto } from './task'
+import { DayDto, FeedbackDto } from './day'
 
 export interface CreateGoalDto {
   readonly name: string
   readonly started: Date
   readonly hashtags: string
   readonly stages: string[]
-  readonly date: Date
   readonly tasks: CreateTaskDto[]
+  readonly tasksDate: Date
 }
 
 export interface GoalDto {
@@ -43,44 +45,8 @@ export interface CreateDayDto {
   readonly tasks: CreateTaskDto[]
 }
 
-export interface DayDto {
-  readonly id: number
-  readonly stage: number
-  readonly date: string
-  readonly characteristic: DayCharacteristicDto | null
-  readonly tasks: TaskDto[]
-  readonly topicCount: number
-  readonly feedback: FeedbackDto | null
-  readonly views: number
-}
-
-export interface CreateTaskDto {
-  readonly name: string
-  readonly date?: Date
-}
-
-export interface TaskDto {
-  readonly id: number
-  readonly name: string
-  readonly date: string | null
-  readonly completed: boolean
-  readonly completedByOther: boolean
-}
-
-export interface FeedbackDto {
-  readonly text: string | null
-  readonly photos: PhotoDto[] | null
-  readonly video: string | null
-}
-
 export interface ConfirmationDto extends FeedbackDto {
   readonly date: string
-}
-
-export interface PhotoDto {
-  readonly src: string
-  readonly width: number
-  readonly height: number
 }
 
 export interface CalendarDto {

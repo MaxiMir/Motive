@@ -1,10 +1,10 @@
 import { QueryFunctionContext } from 'react-query'
-import { GoalCompletedDto } from 'dto'
-import GoalService from 'services/GoalService'
+import { ConfirmationDto } from 'dto'
+import ConfirmationService from 'services/ConfirmationService'
 
 export const TAKE = 10
 export const PRELOAD_DIFF = 3
 
-export const partialFetcher = (userId: number): ((c: QueryFunctionContext) => Promise<GoalCompletedDto[]>) => {
-  return ({ pageParam = 0 }: QueryFunctionContext) => GoalService.getCompleted(userId, pageParam, TAKE)
+export const partialFetcher = (userId: number): ((c: QueryFunctionContext) => Promise<ConfirmationDto[]>) => {
+  return ({ pageParam = 0 }: QueryFunctionContext) => ConfirmationService.getByUser(userId, pageParam, TAKE)
 }

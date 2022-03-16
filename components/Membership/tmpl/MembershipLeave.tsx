@@ -5,12 +5,13 @@ import Action from 'components/Action'
 
 const Modal = dynamic(() => import('components/Modal'))
 
-interface LeaveProps {
+export interface MembershipLeaveProps {
+  tmpl: 'leave'
   goal: GoalDto
   clientOwnership: OwnershipDto
 }
 
-export default function Leave({ goal, clientOwnership }: LeaveProps): JSX.Element {
+export default function MembershipLeave({ goal, clientOwnership }: MembershipLeaveProps): JSX.Element {
   const [open, setOpen] = useState(false)
 
   const toggleModal = () => setOpen(!open)

@@ -19,7 +19,7 @@ export default function Completion({ goal, forTomorrow, clientMember }: Completi
       {!nextDayId ? (
         <Complete goal={goal} forTomorrow={forTomorrow} />
       ) : (
-        <EndOfDay goal={goal} nextDayId={nextDayId} clientMember={clientMember} />
+        <EndOfDay goal={goal} nextDayId={nextDayId} forTomorrow={forTomorrow} clientMember={clientMember} />
       )}
     </>
   )

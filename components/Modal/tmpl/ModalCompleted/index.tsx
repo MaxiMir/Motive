@@ -7,7 +7,7 @@ import useGoals from './hook'
 
 const Loader = dynamic(() => import('./components/Loader'))
 const EmptyList = dynamic(() => import('./components/EmptyList'))
-const GoalList = dynamic(() => import('./components/GoalList'))
+const ConfirmationsList = dynamic(() => import('./components/ConfirmationsList'))
 
 export interface ModalCompletedProps {
   tmpl: 'completed'
@@ -18,7 +18,7 @@ export interface ModalCompletedProps {
 export default function ModalCompleted({ user, onClose }: ModalCompletedProps): JSX.Element {
   const { id, characteristic } = user
   const classes = useStyles()
-  const { isLoading, goals, checkOnLoadMore, fetchNextPage } = useGoals(id, characteristic.completed)
+  const { isLoading, confirmations, checkOnLoadMore, fetchNextPage } = useGoals(id, characteristic.completed)
 
   return (
     <AppModal
@@ -35,10 +35,14 @@ export default function ModalCompleted({ user, onClose }: ModalCompletedProps): 
           <Loader count={characteristic.completed} />
         ) : (
           <>
-            {!goals?.length ? (
+            {!confirmations?.length ? (
               <EmptyList />
             ) : (
-              <GoalList goals={goals} checkOnLoadMore={checkOnLoadMore} onView={fetchNextPage} />
+              <ConfirmationsList
+                confirmations={confirmations}
+                checkOnLoadMore={checkOnLoadMore}
+                onView={fetchNextPage}
+              />
             )}
           </>
         )}

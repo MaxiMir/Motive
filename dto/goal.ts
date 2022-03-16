@@ -46,7 +46,11 @@ export interface CreateDayDto {
 }
 
 export interface ConfirmationDto extends FeedbackDto {
-  readonly date: string
+  readonly id: number
+  readonly started: string
+  readonly end: string
+  readonly goal: GoalDto
+  readonly owner: UserBaseDto
 }
 
 export interface CalendarDto {

@@ -1,44 +1,45 @@
 import { Fragment } from 'react'
 import dynamic from 'next/dynamic'
-import { ClientDto, GoalCharacteristicName, GoalCompletedDto } from 'dto'
+import { ConfirmationDto, GoalCharacteristicName } from 'dto'
 import { makeStyles, createStyles } from '@material-ui/core/styles'
 import useCharacteristicColors from 'hooks/useCharacteristicColors'
+import useClient from 'hooks/useClient'
 import { checkOnOwner } from 'components/Goal/helper'
 import AppTitle from 'components/UI/AppTitle'
 import AppBox from 'components/UI/AppBox'
 import AppDot from 'components/UI/AppDot'
 import AppTooltip from 'components/UI/AppTooltip'
 import Characteristic from 'components/Characteristic'
-import Repeat from './components/Repeat'
 import { getGoalInfo } from './helper'
 
 const AppTypography = dynamic(() => import('components/UI/AppTypography'))
 const AppInView = dynamic(() => import('components/UI/AppInView'))
 const Gallery = dynamic(() => import('components/Gallery'))
+const Membership = dynamic(() => import('components/Membership'))
 const SecondPhotos = dynamic(() => import('./components/SecondPhotos'))
 
 const CHARACTERISTICS: GoalCharacteristicName[] = ['motivation', 'creativity', 'support', 'members']
 
 export interface GoalCompletedProps {
   tmpl: 'completed'
-  goal: GoalCompletedDto
-  client?: ClientDto
+  confirmation: ConfirmationDto
   inView: boolean
   onView: () => void
 }
 
-export default function GoalCompleted({ goal, client, inView, onView }: GoalCompletedProps): JSX.Element {
+export default function GoalCompleted({ confirmation, inView, onView }: GoalCompletedProps): JSX.Element {
   const classes = useStyles()
-  const { name, characteristic, confirmation, owner } = goal
+  const { goal, owner } = confirmation
+  const client = useClient()
   const colors = useCharacteristicColors()
   const isOwner = checkOnOwner(owner, client)
-  const { duration, mainPhoto, secondPhotos, interval } = getGoalInfo(goal)
+  const { duration, mainPhoto, secondPhotos, interval } = getGoalInfo(confirmation)
 
   return (
     <div className={classes.wrap}>
       <AppBox flexDirection="column" spacing={2} className={classes.content}>
         <AppTitle name="cup" variant="h6" component="h3">
-          {name}{' '}
+          {goal.name}{' '}
           <span className={classes.runsForDays}>
             {' '}
             in <AppTooltip title={interval}>{duration}</AppTooltip>
@@ -51,7 +52,7 @@ export default function GoalCompleted({ goal, client, inView, onView }: GoalComp
               <Characteristic
                 tmpl="goal"
                 name={characteristicName}
-                value={characteristic[characteristicName]}
+                value={goal.characteristic[characteristicName]}
                 color={colors[characteristicName].fontColor}
               />
               {characteristicName !== 'members' && <AppDot />}
@@ -60,7 +61,11 @@ export default function GoalCompleted({ goal, client, inView, onView }: GoalComp
         </AppBox>
         {confirmation.text && <AppTypography>{confirmation.text}</AppTypography>}
         {!!secondPhotos?.length && <SecondPhotos id={goal.id} photos={secondPhotos} />}
-        {!isOwner && <Repeat />}
+        {!isOwner && (
+          <AppBox justifyContent="flex-end">
+            <Membership tmpl="join" goal={goal} />
+          </AppBox>
+        )}
       </AppBox>
       {onView && <>{inView && <AppInView onView={onView} />}</>}
     </div>

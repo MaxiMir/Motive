@@ -1,28 +1,29 @@
-import produce from 'immer'
 import { AxiosError } from 'axios'
 import { useMutation, UseMutationResult } from 'react-query'
 import { GoalDto, MemberDto, UpdateMemberDto } from 'dto'
 import { clickOnElem } from 'helpers/dom'
+import { toShortUserName } from 'helpers/prepare'
+import useSnackbar from 'hooks/useSnackbar'
+import useClient from 'hooks/useClient'
 import { useMutateUserPage } from 'views/UserView/hook'
 import MemberService from 'services/MemberService'
+import { getNextState } from './helper'
 
 export const useSendEndOfDay = (goal: GoalDto): UseMutationResult<MemberDto, AxiosError, UpdateMemberDto> => {
+  const client = useClient()
   const [page, mutatePage] = useMutateUserPage()
+  const [enqueueSnackbar] = useSnackbar()
 
   return useMutation(MemberService.update, {
-    onSuccess(response) {
-      mutatePage(
-        produce(page, (draft) => {
-          const draftMember = draft.content.clientMembership.find((m) => m.id === response.id)
+    onSuccess(member) {
+      mutatePage(getNextState(page, member))
+      setTimeout(() => clickOnElem(`next-${goal.id}`), 1)
 
-          if (!draftMember) return
-
-          draftMember.dayId = response.dayId
-          draftMember.lastEndOfDay = response.lastEndOfDay
-
-          setTimeout(() => clickOnElem(`next-${goal.id}`), 1)
-        }),
-      )
+      enqueueSnackbar({
+        message: `Excellent, ${toShortUserName(client?.name)}! Uploaded your following tasks.`,
+        severity: 'success',
+        icon: 'speaker',
+      })
     },
   })
 }

@@ -20,7 +20,7 @@ export default function TaskText({ task, completedByOther }: TaskTextProps): JSX
 
   return (
     <>
-      <AppBox alignItems="center" spacing={1}>
+      <AppBox alignItems="center" height={42} spacing={1}>
         <AppEmoji name="energy" variant="h6" className={clsx([!completed && classes.notCompleted])} />
         <AppMarkdown text={name} />
         {completedByOther && <CompletedByOther />}

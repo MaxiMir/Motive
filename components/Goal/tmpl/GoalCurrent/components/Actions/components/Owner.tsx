@@ -16,7 +16,7 @@ export interface OwnerProps {
 export default function Owner({ goal, forTomorrow }: OwnerProps): JSX.Element {
   const [open, setOpen] = useState(false)
 
-  const toggle = () => setOpen(!open)
+  const toggleModal = () => setOpen(!open)
 
   return (
     <AppBox justifyContent="flex-end">
@@ -26,12 +26,12 @@ export default function Owner({ goal, forTomorrow }: OwnerProps): JSX.Element {
           color="secondary"
           startIcon={<AppEmoji name="finish" onlyEmoji />}
           disabled={forTomorrow}
-          onClick={toggle}
+          onClick={toggleModal}
         >
-          EndOfDay
+          End of day
         </Button>
       </TooltipTomorrow>
-      {open && <Modal tmpl="feedback" goal={goal} onClose={toggle} />}
+      {open && <Modal tmpl="feedback" goal={goal} onClose={toggleModal} />}
     </AppBox>
   )
 }

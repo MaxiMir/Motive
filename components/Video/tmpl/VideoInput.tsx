@@ -16,6 +16,8 @@ export default function VideoInput({ disabled, onSelect }: VideoInputProps): JSX
     e.target.files?.[0] && onSelect(e.target.files?.[0])
   }
 
+  const onClick = () => videoInputRef.current?.click()
+
   return (
     <>
       <Button
@@ -25,7 +27,7 @@ export default function VideoInput({ disabled, onSelect }: VideoInputProps): JSX
         title="load video"
         aria-label="load video"
         disabled={disabled}
-        onClick={() => videoInputRef.current?.click()}
+        onClick={onClick}
       >
         <AppEmoji name="cassette" variant="h1" />
         <Chip label="Soon" size="small" className={classes.soon} />

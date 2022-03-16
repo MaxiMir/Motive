@@ -8,13 +8,14 @@ import AppIcon from 'components/UI/AppIcon'
 import { getDateInfo, getDateKey } from './helper'
 
 interface CalendarProps {
+  goalId: number
   datesMap: Record<string, number>
   date: string
   isLoading: boolean
   onChangeDay: (id: number) => void
 }
 
-export default function Calendar({ datesMap, date, isLoading, onChangeDay }: CalendarProps): JSX.Element {
+export default function Calendar({ goalId, datesMap, date, isLoading, onChangeDay }: CalendarProps): JSX.Element {
   const classes = useStyles()
   const dates = Object.keys(datesMap)
   const [open, setOpen] = useState(false)
@@ -39,7 +40,7 @@ export default function Calendar({ datesMap, date, isLoading, onChangeDay }: Cal
     return !dates.some((d) => d === formattedCheckedDate)
   }
 
-  const toggle = () => setOpen(!open)
+  const toggleModal = () => setOpen(!open)
 
   return (
     <AppBox alignSelf="center" alignItems="center" spacing={1}>
@@ -53,15 +54,20 @@ export default function Calendar({ datesMap, date, isLoading, onChangeDay }: Cal
         value={value}
         shouldDisableDate={checkShouldDisableDate}
         TextFieldComponent={() => (
-          <Button aria-label="select a goal date" onClick={toggle}>
+          <Button aria-label="select a goal date" onClick={toggleModal}>
             {formattedValue}
           </Button>
         )}
-        onClick={toggle}
+        onClick={toggleModal}
         onChange={(newDate) => newDate && onChange(newDate)}
-        onClose={toggle}
+        onClose={toggleModal}
       />
-      <IconButton className={classes.button} disabled={isLoading || !nextValue} onClick={() => onClickArrow(nextValue)}>
+      <IconButton
+        id={`next-${goalId}`}
+        className={classes.button}
+        disabled={isLoading || !nextValue}
+        onClick={() => onClickArrow(nextValue)}
+      >
         <AppIcon name="chevron_right" />
       </IconButton>
     </AppBox>

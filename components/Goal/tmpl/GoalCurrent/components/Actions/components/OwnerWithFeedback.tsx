@@ -14,26 +14,21 @@ interface OwnerWithFeedbackProps {
 export default function OwnerWithFeedback({ goal }: OwnerWithFeedbackProps): JSX.Element {
   const { stages, day } = goal
   const [modal, setModal] = useState<'tasks' | 'completion'>()
+  const isComplete = stages.length === day.stage
+
+  const onAddTasks = () => setModal('tasks')
+
+  const onComplete = () => setModal('completion')
 
   const closeModal = () => setModal(undefined)
 
   return (
     <AppBox justifyContent="space-between">
-      <Button
-        variant="outlined"
-        color="primary"
-        startIcon={<AppEmoji name="task" onlyEmoji />}
-        onClick={() => setModal('tasks')}
-      >
+      <Button variant="outlined" color="primary" startIcon={<AppEmoji name="task" onlyEmoji />} onClick={onAddTasks}>
         Add tasks
       </Button>
-      {stages.length === day.stage && (
-        <Button
-          variant="outlined"
-          color="secondary"
-          startIcon={<AppEmoji name="cup" onlyEmoji />}
-          onClick={() => setModal('completion')}
-        >
+      {isComplete && (
+        <Button variant="outlined" color="secondary" startIcon={<AppEmoji name="cup" onlyEmoji />} onClick={onComplete}>
           Complete
         </Button>
       )}

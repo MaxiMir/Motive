@@ -49,9 +49,34 @@ export const getMember = (goal: GoalDto, membership: MemberDto[], userId?: numbe
 const checkOnCompleteStage = (reactions: boolean, goal: GoalDto, clientGoal: boolean): boolean =>
   clientGoal && reactions && goal.stage <= goal.day.stage
 
-type GoalInfo = {
+const getDaysGone = (clientOwnership: OwnershipDto, daysGoneForOwner: number, today: Date) => {
+  if (!clientOwnership.member) {
+    return daysGoneForOwner
+  }
+
+  if (!clientOwnership.member.lastEndOfDay) {
+    return 0
+  }
+
+  return differenceInCalendarDays(Date.parse(clientOwnership.member.lastEndOfDay), today)
+}
+
+function checkOnForTomorrow(clientOwnership: OwnershipDto, today: Date, daysGone: number) {
+  if (!clientOwnership.member) {
+    return daysGone === -1
+  }
+
+  if (!clientOwnership.member.lastEndOfDay) {
+    return false
+  }
+
+  return !differenceInCalendarDays(Date.parse(clientOwnership.member.lastEndOfDay), today)
+}
+
+export type GoalInfo = {
   datesMap: Record<string, number>
   daysGone: number
+  daysGoneForOwner: number
   runsForDays: number
   web: boolean
   form: boolean
@@ -66,25 +91,19 @@ export const getGoalInfo = (goal: GoalDto, clientOwnership: OwnershipDto): GoalI
   const datesMap = getDatesMap(day, calendar)
   const dates = Object.keys(datesMap)
   const lastDay = dates[dates.length - 1] === getDateKey(day.date)
-  const daysGone = differenceInCalendarDays(today, Date.parse(day.date))
+  const daysGoneForOwner = differenceInCalendarDays(today, Date.parse(day.date))
+  const daysGone = getDaysGone(clientOwnership, daysGoneForOwner, today)
   const runsForDays = differenceInCalendarDays(today, Date.parse(started))
   const web = lastDay && differenceInDays(today, Date.parse(day.date)) >= SHOW_WEB_AFTER_DAYS
-  const form = checkOnTaskForm()
+  const form = daysGone <= 0
   const controls = !clientOwnership.goal || lastDay
   const completeStage = checkOnCompleteStage(controls, goal, clientOwnership.goal)
-  const forTomorrow = daysGone === -1
-
-  function checkOnTaskForm() {
-    if (clientOwnership.page && clientOwnership.member) {
-      return clientOwnership.member.dayId === day.id
-    }
-
-    return clientOwnership.goal && daysGone <= 0
-  }
+  const forTomorrow = checkOnForTomorrow(clientOwnership, today, daysGone)
 
   return {
     datesMap,
     daysGone,
+    daysGoneForOwner,
     runsForDays,
     web,
     form,

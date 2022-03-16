@@ -24,6 +24,8 @@ export default function UserInput({ dayId, user, type, topicId, onAdd }: UserInp
   const form = useForm(dayId, topicId, type, onAdd)
   const { isSubmitting, values, handleSubmit } = form
 
+  const onClick = () => handleSubmit()
+
   return (
     <FormikProvider value={form}>
       <Form autoComplete="off">
@@ -39,7 +41,7 @@ export default function UserInput({ dayId, user, type, topicId, onAdd }: UserInp
             className={classes.input}
             component={AppInput}
           />
-          <IconButton className={classes.button} disabled={isSubmitting || !values.text} onClick={() => handleSubmit()}>
+          <IconButton className={classes.button} disabled={isSubmitting || !values.text} onClick={onClick}>
             {!isSubmitting ? (
               <AppIcon name="send" className={classes.icon} />
             ) : (

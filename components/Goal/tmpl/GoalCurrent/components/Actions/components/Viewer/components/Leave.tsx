@@ -13,12 +13,12 @@ interface LeaveProps {
 export default function Leave({ goal, clientOwnership }: LeaveProps): JSX.Element {
   const [open, setOpen] = useState(false)
 
-  const toggle = () => setOpen(!open)
+  const toggleModal = () => setOpen(!open)
 
   return (
     <>
-      <Action tmpl="goal" name="unsubscribe" active={false} title="Leave" onClick={toggle} />
-      {open && <Modal tmpl="unsubscribe" goal={goal} clientOwnership={clientOwnership} onClose={toggle} />}
+      <Action tmpl="goal" name="unsubscribe" active={false} title="Leave" onClick={toggleModal} />
+      {open && <Modal tmpl="unsubscribe" goal={goal} clientOwnership={clientOwnership} onClose={toggleModal} />}
     </>
   )
 }

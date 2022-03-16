@@ -1,35 +1,26 @@
 import dynamic from 'next/dynamic'
-import { OwnershipDto, TaskDto } from 'dto'
-import { checkOnCompletedByOther, checkOnTaskForm } from './helper'
+import { MemberDto, TaskDto } from 'dto'
+import { GoalInfo } from 'components/Goal/tmpl/GoalCurrent/helper'
+import { checkOnCompletedByOther } from './helper'
 
 const TaskText = dynamic(() => import('./components/TaskText'))
 const TaskForm = dynamic(() => import('./components/TaskForm'))
 
 interface TaskProps {
   goalId: number
-  dayId: number
   task: TaskDto
   rest: number
-  daysGone: number
-  forTomorrow: boolean
-  clientOwnership: OwnershipDto
+  goalInfo: GoalInfo
+  clientMember?: MemberDto
 }
 
-export default function Task({
-  goalId,
-  dayId,
-  task,
-  rest,
-  daysGone,
-  forTomorrow,
-  clientOwnership,
-}: TaskProps): JSX.Element {
-  const isForm = checkOnTaskForm(dayId, daysGone, clientOwnership)
-  const completedByOther = checkOnCompletedByOther(task, daysGone)
+export default function Task({ goalId, task, rest, goalInfo, clientMember }: TaskProps): JSX.Element {
+  const { form, forTomorrow, daysGoneForOwner } = goalInfo
+  const completedByOther = checkOnCompletedByOther(task, daysGoneForOwner)
 
   return (
     <>
-      {!isForm ? (
+      {!form ? (
         <TaskText task={task} completedByOther={completedByOther} />
       ) : (
         <TaskForm
@@ -38,7 +29,7 @@ export default function Task({
           rest={rest}
           forTomorrow={forTomorrow}
           completedByOther={completedByOther}
-          clientMember={clientOwnership.member}
+          clientMember={clientMember}
         />
       )}
     </>

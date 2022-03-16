@@ -2,7 +2,7 @@ import {
   GoalDto,
   CreateGoalDto,
   CreateDayDto,
-  DayCharacteristicUpdate,
+  DayCharacteristicUpdateDto,
   GoalStageDto,
   CreatedGoal,
   GoalCompletedDto,
@@ -23,20 +23,20 @@ export default class GoalService extends Service {
     })
   }
 
-  static addDay(data: CreateDayDto): Promise<CreatedGoal> {
-    const { id, ...body } = data
+  static addDay(dto: CreateDayDto): Promise<CreatedGoal> {
+    const { id, ...data } = dto
 
-    return Axios.post(`/goals/${id}/days`, body)
+    return Axios.post(`/goals/${id}/days`, data)
   }
 
-  static updateStage(data: GoalStageDto): Promise<void> {
-    const { id, ...body } = data
+  static updateStage(dto: GoalStageDto): Promise<void> {
+    const { id, ...data } = dto
 
-    return Axios.patch(`/goals/${id}/stage`, body)
+    return Axios.patch(`/goals/${id}/stage`, data)
   }
 
-  static updateCharacteristic(data: DayCharacteristicUpdate): Promise<void> {
-    const { id, dayId, name, add } = data
+  static updateCharacteristic(dto: DayCharacteristicUpdateDto): Promise<void> {
+    const { id, dayId, name, add } = dto
     const params = GoalService.getOperationParams(add)
 
     return Axios.patch(`/goals/${id}/days/${dayId}/characteristic/${name}`, { id }, { params })

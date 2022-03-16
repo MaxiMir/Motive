@@ -5,7 +5,7 @@ import { PageProps, PossiblePageError } from 'dto'
 import PageService from 'services/PageService'
 import Layout from 'layout'
 import FollowingView from 'views/FollowingView'
-import { QUERY_KEY, useFollowingPage } from 'views/FollowingView/hook'
+import { useFollowingPage, QUERY_KEY } from 'views/FollowingView/hook'
 
 export default function FollowingPage({ statusCode }: PageProps): JSX.Element {
   const { data } = useFollowingPage()

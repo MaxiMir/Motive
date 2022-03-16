@@ -10,7 +10,7 @@ export default function AddGoal(): JSX.Element {
   const classes = useStyles()
   const [open, setOpen] = useState(false)
 
-  const toggle = () => setOpen(!open)
+  const toggleModal = () => setOpen(!open)
 
   return (
     <>
@@ -20,11 +20,11 @@ export default function AddGoal(): JSX.Element {
         color="secondary"
         className={classes.button}
         startIcon={<AppEmoji name="goal" onlyEmoji />}
-        onClick={toggle}
+        onClick={toggleModal}
       >
         Create a new goal
       </Button>
-      {open && <Modal tmpl="goal" onClose={toggle} />}
+      {open && <Modal tmpl="goal" onClose={toggleModal} />}
     </>
   )
 }

@@ -10,7 +10,7 @@ import schema from 'schemas/member'
 
 export default function useForm(goal: GoalDto): FormikProps<CreateMemberDto> {
   const { id, calendar } = goal
-  const { mutateAsync } = useSendSubscribe(goal)
+  const { mutateAsync } = useSendSubscribe()
   return useFormik<CreateMemberDto>({
     initialValues: {
       goalId: id,
@@ -23,18 +23,18 @@ export default function useForm(goal: GoalDto): FormikProps<CreateMemberDto> {
   })
 }
 
-const useSendSubscribe = (goal: GoalDto) => {
+const useSendSubscribe = () => {
   const client = useClient()
   const router = useRouter()
 
   return useMutation(MemberService.create, {
-    onSuccess() {
+    onSuccess(_, { goalId, dayId }) {
       if (!client) {
         return
       }
 
       const userHref = getUserHref(client.nickname)
-      const params = { [SEARCH_PARAMS.DATES]: `${goal.id}:${goal.day.id}` }
+      const params = { [SEARCH_PARAMS.DATES]: `${goalId}:${dayId}` }
 
       router.push(setQueryParams(userHref, params))
     },

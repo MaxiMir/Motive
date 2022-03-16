@@ -1,12 +1,14 @@
 import Axios from 'lib/axios'
-import { CreateMemberDto, UpdateMemberDto } from 'dto'
+import { CreateMemberDto, MemberDto, UpdateMemberDto } from 'dto'
 
 export default class MemberService {
   static create(data: CreateMemberDto): Promise<void> {
     return Axios.post('/members', data)
   }
 
-  static update(id: number, data: UpdateMemberDto): Promise<void> {
+  static update(dto: UpdateMemberDto): Promise<MemberDto> {
+    const { id, ...data } = dto
+
     return Axios.patch(`/members/${id}`, data)
   }
 

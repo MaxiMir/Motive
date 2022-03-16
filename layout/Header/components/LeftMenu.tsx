@@ -10,20 +10,22 @@ export default function LeftMenu(): JSX.Element {
   const client = useClient()
   const [open, setOpen] = useState(false)
 
-  const toggle = () => setOpen(!open)
+  const toggleModal = () => setOpen(!open)
 
   const onKeyDown = (event: KeyboardEvent) => {
     if (['Tab', 'Shift'].includes(event.key)) return
 
-    toggle()
+    toggleModal()
   }
+
+  const onSignOut = () => signOut()
 
   return (
     <div>
-      <Button aria-label="open menu" onClick={toggle}>
+      <Button aria-label="open menu" onClick={toggleModal}>
         <AppIcon name="menu" className={classes.icon} />
       </Button>
-      <Drawer open={open} onClose={toggle}>
+      <Drawer open={open} onClose={toggleModal}>
         <div role="presentation" className={classes.list} onKeyDown={onKeyDown}>
           <List>
             {['News', 'How it works', 'Next Features', 'Support us'].map((text) => (
@@ -36,7 +38,7 @@ export default function LeftMenu(): JSX.Element {
             <>
               <Divider />
               <List>
-                <ListItem button onClick={() => signOut()}>
+                <ListItem button onClick={onSignOut}>
                   <ListItemText primary="Sign out" />
                 </ListItem>
               </List>

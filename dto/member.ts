@@ -4,8 +4,9 @@ export interface CreateMemberDto {
 }
 
 export interface UpdateMemberDto {
-  readonly dayId: string
-  readonly date: Date
+  readonly id: number
+  readonly dayId: number
+  readonly lastEndOfDay: Date
 }
 
 export interface MemberDto {

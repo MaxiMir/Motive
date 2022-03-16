@@ -22,7 +22,7 @@ export default function ModalSubscribe({ goal, onClose }: ModalSubscribeProps): 
   const { calendar, day } = goal
   const beginningDay = calendar[0].id
   const thisDay = day.id
-  const oneDayGoal = calendar.length === 1
+  const disableBeginning = calendar.length === 1 || beginningDay === thisDay
   const form = useForm(goal)
   const { isSubmitting, values, setFieldValue, handleSubmit } = form
 
@@ -55,9 +55,9 @@ export default function ModalSubscribe({ goal, onClose }: ModalSubscribeProps): 
         <Form autoComplete="off">
           <RadioGroup name="dayId" value={values.dayId.toString()} onChange={onChange}>
             <FormControlLabel
-              value={oneDayGoal ? 'none' : beginningDay.toString()}
+              value={disableBeginning ? 'none' : beginningDay.toString()}
               control={<Radio />}
-              disabled={isSubmitting || oneDayGoal}
+              disabled={isSubmitting || disableBeginning}
               label={
                 <AppBox spacing={1}>
                   The beginning <AppEmoji name="serenity" onlyEmoji />

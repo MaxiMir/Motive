@@ -1,9 +1,9 @@
 import produce from 'immer'
-import { DayCharacteristicName, DayCharacteristicUpdate, GoalDto, UserPageDto } from 'dto'
+import { DayCharacteristicName, DayCharacteristicUpdateDto, GoalDto, UserPageDto } from 'dto'
 
 export type Context = { previous?: UserPageDto }
 
-export const getNextState = (previous: UserPageDto, options: DayCharacteristicUpdate): UserPageDto => {
+export const getNextState = (previous: UserPageDto, options: DayCharacteristicUpdateDto): UserPageDto => {
   const { id, dayId, add, name } = options
 
   return produce(previous, (draft) => {

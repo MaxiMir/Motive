@@ -23,7 +23,7 @@ const Stages = dynamic(() => import('./components/Stages'))
 const Feedback = dynamic(() => import('./components/Feedback'))
 const Hashtags = dynamic(() => import('./components/Hashtags'))
 const Web = dynamic(() => import('./components/Web'))
-const Controls = dynamic(() => import('./components/Controls'))
+const Actions = dynamic(() => import('./components/Actions'))
 
 const CHARACTERISTICS: GoalCharacteristicName[] = ['motivation', 'creativity', 'support', 'members']
 
@@ -64,7 +64,7 @@ export default function GoalCurrent({
 
   return (
     <AppBox flexDirection="column" spacing={1} id={`goal-${id}`} className={classes.root}>
-      <Calendar datesMap={goalInfo.datesMap} date={date} isLoading={isLoading} onChangeDay={onChangeDay} />
+      <Calendar goalId={id} datesMap={goalInfo.datesMap} date={date} isLoading={isLoading} onChangeDay={onChangeDay} />
       <div className={classes.wrap}>
         <AppBox flexDirection="column" justifyContent="space-between" spacing={3} className={classes.content}>
           <AppBox flexDirection="column" spacing={3}>
@@ -121,12 +121,10 @@ export default function GoalCurrent({
                     {redefinedGoals.map((task) => (
                       <Task
                         goalId={id}
-                        dayId={dayId}
                         task={task}
                         rest={rest}
-                        daysGone={goalInfo.daysGone}
-                        forTomorrow={goalInfo.forTomorrow}
-                        clientOwnership={clientOwnership}
+                        goalInfo={goalInfo}
+                        clientMember={clientOwnership.member}
                         key={task.id}
                       />
                     ))}
@@ -156,12 +154,7 @@ export default function GoalCurrent({
           </AppBox>
           <AppBox flexDirection="column" spacing={2}>
             {goalInfo.controls && (
-              <Controls
-                goal={goal}
-                owner={owner}
-                forTomorrow={goalInfo.forTomorrow}
-                clientOwnership={clientOwnership}
-              />
+              <Actions goal={goal} owner={owner} forTomorrow={goalInfo.forTomorrow} clientOwnership={clientOwnership} />
             )}
             <Views views={views} />
           </AppBox>

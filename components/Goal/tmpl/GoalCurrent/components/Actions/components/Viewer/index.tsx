@@ -6,15 +6,16 @@ import ReactionSupport from './components/ReactionSupport'
 
 const Join = dynamic(() => import('./components/Join'))
 const Leave = dynamic(() => import('./components/Leave'))
-const Finish = dynamic(() => import('./components/Finish'))
+const Completion = dynamic(() => import('./components/Completion'))
 
 export interface ViewerProps {
   goal: GoalDto
   owner: UserBaseDto
+  forTomorrow: boolean
   clientOwnership: OwnershipDto
 }
 
-export default function Viewer({ goal, owner, clientOwnership }: ViewerProps): JSX.Element {
+export default function Viewer({ goal, owner, forTomorrow, clientOwnership }: ViewerProps): JSX.Element {
   return (
     <AppBox justifyContent="space-between">
       <AppBox spacing={1}>
@@ -28,7 +29,9 @@ export default function Viewer({ goal, owner, clientOwnership }: ViewerProps): J
         <Join goal={goal} />
       ) : (
         <>
-          {goal.day.id === clientOwnership.member.dayId && <Finish goal={goal} clientMember={clientOwnership.member} />}
+          {goal.day.id === clientOwnership.member.dayId && (
+            <Completion goal={goal} forTomorrow={forTomorrow} clientMember={clientOwnership.member} />
+          )}
         </>
       )}
     </AppBox>

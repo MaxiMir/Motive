@@ -1,6 +1,6 @@
 import { AxiosError } from 'axios'
 import { useMutation, useQueryClient } from 'react-query'
-import { DayCharacteristicName, DayCharacteristicUpdate, GoalDto, UserPageDto } from 'dto'
+import { DayCharacteristicName, DayCharacteristicUpdateDto, GoalDto, UserPageDto } from 'dto'
 import GoalService from 'services/GoalService'
 import useDebounceCb from 'hooks/useDebounceCb'
 import useSnackbar from 'hooks/useSnackbar'
@@ -18,31 +18,34 @@ export default function useSetReaction(goal: GoalDto, name: DayCharacteristicNam
   const queryClient = useQueryClient()
   const { key } = useUserPageConfig() // TODO other page
   const [enqueueSnackbar] = useSnackbar()
-  const { mutate } = useMutation<void, AxiosError, DayCharacteristicUpdate, Context>(GoalService.updateCharacteristic, {
-    async onMutate(options: DayCharacteristicUpdate) {
-      await queryClient.cancelQueries(key)
-      const previous = queryClient.getQueryData<UserPageDto>(key)
+  const { mutate } = useMutation<void, AxiosError, DayCharacteristicUpdateDto, Context>(
+    GoalService.updateCharacteristic,
+    {
+      async onMutate(options: DayCharacteristicUpdateDto) {
+        await queryClient.cancelQueries(key)
+        const previous = queryClient.getQueryData<UserPageDto>(key)
 
-      if (previous) {
-        queryClient.setQueryData(key, getNextState(previous, options))
-      }
+        if (previous) {
+          queryClient.setQueryData(key, getNextState(previous, options))
+        }
 
-      return { previous }
+        return { previous }
+      },
+      onSuccess(_, { add }) {
+        add &&
+          enqueueSnackbar({
+            message: `You have increased goal's ${name} points`,
+            severity: 'success',
+            icon: 'magic',
+          })
+      },
+      onError(_, __, context) {
+        if (context?.previous) {
+          queryClient.setQueryData(key, context?.previous)
+        }
+      },
     },
-    onSuccess(_, { add }) {
-      add &&
-        enqueueSnackbar({
-          message: `You have increased goal's ${name} points`,
-          severity: 'success',
-          icon: 'magic',
-        })
-    },
-    onError(_, __, context) {
-      if (context?.previous) {
-        queryClient.setQueryData(key, context?.previous)
-      }
-    },
-  })
+  )
   const sendWithDebounce = useDebounceCb((add: boolean) => mutate({ id, dayId: day.id, name, add }))
 
   return () => {

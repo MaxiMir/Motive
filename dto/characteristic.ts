@@ -23,7 +23,7 @@ export interface DayCharacteristicDto {
   readonly creativity: number
 }
 
-export interface DayCharacteristicUpdate {
+export interface DayCharacteristicUpdateDto {
   readonly id: number
   readonly dayId: number
   readonly name: DayCharacteristicName

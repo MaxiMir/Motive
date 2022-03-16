@@ -16,6 +16,8 @@ export default function PhotoInput({ disabled, onSelect }: PhotoInputProps): JSX
     e.target.files && onSelect(Array.from(e.target.files))
   }
 
+  const onClick = () => photoInputRef.current?.click()
+
   return (
     <>
       <Button
@@ -25,7 +27,7 @@ export default function PhotoInput({ disabled, onSelect }: PhotoInputProps): JSX
         title="load photo"
         aria-label="load photo"
         disabled={disabled}
-        onClick={() => photoInputRef.current?.click()}
+        onClick={onClick}
       >
         <AppEmoji name="tape" variant="h1" />
       </Button>

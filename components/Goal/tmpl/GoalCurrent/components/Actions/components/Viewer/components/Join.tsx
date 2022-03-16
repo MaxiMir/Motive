@@ -17,7 +17,7 @@ export default function Join({ goal }: JoinProps): JSX.Element {
   const openSignIn = useOpenSignIn()
   const [open, setOpen] = useState(false)
 
-  const toggle = () => setOpen(!open)
+  const toggleModal = () => setOpen(!open)
 
   const onClick = () => {
     if (!client) {
@@ -25,7 +25,7 @@ export default function Join({ goal }: JoinProps): JSX.Element {
       return
     }
 
-    toggle()
+    toggleModal()
   }
 
   return (
@@ -38,7 +38,7 @@ export default function Join({ goal }: JoinProps): JSX.Element {
       >
         Join
       </Button>
-      {open && <Modal tmpl="subscribe" goal={goal} onClose={toggle} />}
+      {open && <Modal tmpl="subscribe" goal={goal} onClose={toggleModal} />}
     </>
   )
 }

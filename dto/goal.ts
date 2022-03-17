@@ -13,23 +13,22 @@ export interface CreateGoalDto {
   readonly tasksDate: Date
 }
 
-export interface GoalDto {
+export interface GoalBaseDto {
   readonly id: number
   readonly name: string
   readonly started: string
   readonly hashtags: string[]
   readonly stages: string[]
   readonly stage: number
-  readonly owner: UserBaseDto
   readonly characteristic: GoalCharacteristicDto
+}
+
+export interface GoalDto extends GoalBaseDto {
+  readonly owner: UserBaseDto
   readonly day: DayDto
   readonly calendar: CalendarDto[]
   readonly reactions: ReactionsDto
   readonly inherited: boolean
-}
-
-export interface GoalCompletedDto extends GoalDto {
-  readonly confirmation: ConfirmationDto
 }
 
 export type CreatedGoal = Readonly<Omit<GoalDto, 'day'> & { days: DayDto[] }>
@@ -49,8 +48,9 @@ export interface ConfirmationDto extends FeedbackDto {
   readonly id: number
   readonly started: string
   readonly end: string
-  readonly goal: GoalDto
+  readonly goal: GoalBaseDto
   readonly owner: UserBaseDto
+  readonly inherited: boolean
 }
 
 export interface CalendarDto {

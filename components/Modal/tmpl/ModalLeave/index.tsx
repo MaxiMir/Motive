@@ -5,19 +5,19 @@ import AppModal from 'components/UI/AppModal'
 import AppTypography from 'components/UI/AppTypography'
 import AppBox from 'components/UI/AppBox'
 import AppFadeIcon from 'components/UI/AppFadeIcon'
-import { useSendUnsubscribe } from './hook'
+import { useSendRemoveMember } from './hook'
 
-export interface ModalUnsubscribeProps {
-  tmpl: 'unsubscribe'
+export interface ModalLeaveProps {
+  tmpl: 'leave'
   goal: GoalDto
   clientOwnership: OwnershipDto
   onClose: () => void
 }
 
-export default function ModalUnsubscribe({ goal, clientOwnership, onClose }: ModalUnsubscribeProps): JSX.Element {
+export default function ModalLeave({ goal, clientOwnership, onClose }: ModalLeaveProps): JSX.Element {
   const { id, name } = goal
   const classes = useStyles()
-  const { isLoading, mutateAsync } = useSendUnsubscribe(id, clientOwnership.page)
+  const { isLoading, mutateAsync } = useSendRemoveMember(id, clientOwnership.page)
 
   const onClick = () => {
     if (clientOwnership.member) {
@@ -40,7 +40,7 @@ export default function ModalUnsubscribe({ goal, clientOwnership, onClose }: Mod
           isLoading={isLoading}
           name="Leave"
           nameLoading="Leaving"
-          emoji="unsubscribe"
+          emoji="leave"
           onClick={onClick}
         />,
       ]}

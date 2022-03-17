@@ -2,7 +2,7 @@ import Axios from 'lib/axios'
 import { CreateMemberDto, MemberDto, UpdateMemberDto } from 'dto'
 
 export default class MemberService {
-  static create(data: CreateMemberDto): Promise<void> {
+  static create(data: CreateMemberDto): Promise<MemberDto> {
     return Axios.post('/members', data)
   }
 

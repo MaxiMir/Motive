@@ -8,7 +8,7 @@ import useClient from 'hooks/useClient'
 import useSnackbar from 'hooks/useSnackbar'
 import { useUserPageConfig } from 'views/UserView/hook'
 
-export const useSendUnsubscribe = (
+export const useSendRemoveMember = (
   goalId: number,
   clientPage: boolean,
 ): UseMutationResult<void, AxiosError, number> => {
@@ -19,9 +19,7 @@ export const useSendUnsubscribe = (
 
   return useMutation(MemberService.delete, {
     onSuccess(_, id) {
-      if (!client) {
-        return
-      }
+      if (!client) return
 
       queryClient.setQueriesData(key, (page) => {
         if (!page) return page

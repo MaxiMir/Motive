@@ -4,8 +4,7 @@ import { useMutation } from 'react-query'
 import { CreateDayDto, GoalDto } from 'dto'
 import GoalService from 'services/GoalService'
 import { getTomorrow } from 'helpers/date'
-import useChangeDayUrl from 'hooks/useChangeDayUrl'
-import { useMutateGoals } from 'views/UserView/hook'
+import { useChangeDayUrl, useMutateGoals } from 'views/UserView/hook'
 import schema from 'schemas/tasks'
 
 export default function useForm(goal: GoalDto, onSuccess: () => void): FormikProps<CreateDayDto> {

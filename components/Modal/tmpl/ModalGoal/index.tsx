@@ -120,7 +120,7 @@ export default function ModalGoal({ onClose }: ModalGoalProps): JSX.Element {
                         key={`tasks.${index}`}
                         onRemove={() => remove(index)}
                         onToggleDate={(isChecked) =>
-                          setFieldValue(`tasks.${index}.date`, isChecked ? values.date : undefined)
+                          setFieldValue(`tasks.${index}.date`, isChecked ? values.tasksDate : undefined)
                         }
                       />
                     ))}

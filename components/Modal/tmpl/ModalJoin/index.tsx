@@ -11,19 +11,19 @@ import AppTypography from 'components/UI/AppTypography'
 import AppDecorEmoji from 'components/UI/AppDecorEmoji'
 import useForm from './hook'
 
-export interface ModalSubscribeProps {
-  tmpl: 'subscribe'
+export interface ModalJoinProps {
+  tmpl: 'join'
   goal: GoalDto
   onClose: () => void
 }
 
-export default function ModalSubscribe({ goal, onClose }: ModalSubscribeProps): JSX.Element {
+export default function ModalJoin({ goal, onClose }: ModalJoinProps): JSX.Element {
   const classes = useStyles()
-  const { calendar, day } = goal
+  const { id, calendar, day } = goal
   const beginningDay = calendar[0].id
   const thisDay = day.id
-  const disableBeginning = calendar.length === 1 || beginningDay === thisDay
-  const form = useForm(goal)
+  const disableBeginning = beginningDay === thisDay
+  const form = useForm(id, beginningDay)
   const { isSubmitting, values, setFieldValue, handleSubmit } = form
 
   const onChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -45,7 +45,7 @@ export default function ModalSubscribe({ goal, onClose }: ModalSubscribeProps): 
           isLoading={isSubmitting}
           name="Join"
           nameLoading="Joining"
-          emoji="subscribe"
+          emoji="join"
           onClick={handleSubmit}
         />,
       ]}
@@ -53,7 +53,7 @@ export default function ModalSubscribe({ goal, onClose }: ModalSubscribeProps): 
     >
       <FormikProvider value={form}>
         <Form autoComplete="off">
-          <RadioGroup name="dayId" value={values.dayId.toString()} onChange={onChange}>
+          <RadioGroup name="dayId" value={values.dayId?.toString()} onChange={onChange}>
             <FormControlLabel
               value={disableBeginning ? 'none' : beginningDay.toString()}
               control={<Radio />}

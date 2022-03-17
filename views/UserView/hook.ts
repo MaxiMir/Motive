@@ -1,17 +1,21 @@
 import { useEffect } from 'react'
 import { useRouter } from 'next/router'
 import produce from 'immer'
-import { useQuery, useQueryClient, UseQueryResult } from 'react-query'
-import { GoalDto, UserPageDto } from 'dto'
+import { AxiosError } from 'axios'
+import { useMutation, useQuery, useQueryClient, UseQueryResult } from 'react-query'
+import { UseMutationResult } from 'react-query/types/react/types'
+import { CreateMemberDto, GoalDto, MemberDto, UserPageDto } from 'dto'
 import PageService from 'services/PageService'
+import MemberService from 'services/MemberService'
 import { scrollToElem } from 'helpers/dom'
+import { getQueryParams, SEARCH_PARAMS, setQueryParams } from 'helpers/url'
+import useClient from 'hooks/useClient'
+import { getUserHref } from './helper'
 
 export const useUserPage = (): UseQueryResult<UserPageDto> => {
   const { key, urn } = useUserPageConfig()
 
-  return useQuery(key, () => PageService.getUser(urn), {
-    staleTime: 30_000,
-  })
+  return useQuery(key, () => PageService.getUser(urn))
 }
 
 export const useUserPageConfig = (): { key: string; urn: string } => {
@@ -52,4 +56,35 @@ export const useScrollToGoal = (): void => {
   useEffect(() => {
     query.s && scrollToElem(`goal-${query.s}`)
   }, [query])
+}
+
+export const useChangeDayUrl = (): ((goals: GoalDto[], goalId: number, dayId: number) => void) => {
+  const router = useRouter()
+
+  return (goals: GoalDto[], goalId: number, dayId: number) => {
+    const { [SEARCH_PARAMS.DATES]: _, ...restParams } = getQueryParams()
+    const datesParam = goals.map(({ id, day }) => `${id}:${id !== goalId ? day.id : dayId}`).join(',')
+    const as = setQueryParams(router.asPath, {
+      [SEARCH_PARAMS.DATES]: datesParam,
+      ...restParams,
+    })
+
+    router.push(router.pathname, as, { shallow: true })
+  }
+}
+
+export const useSendCreateMember = (): UseMutationResult<MemberDto, AxiosError, CreateMemberDto> => {
+  const client = useClient()
+  const router = useRouter()
+
+  return useMutation(MemberService.create, {
+    onSuccess({ goalId, dayId }) {
+      if (!client) return
+
+      const userHref = getUserHref(client.nickname)
+      const params = { [SEARCH_PARAMS.DATES]: `${goalId}:${dayId}` }
+
+      router.push(setQueryParams(userHref, params))
+    },
+  })
 }

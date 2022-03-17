@@ -1,6 +1,6 @@
 export interface CreateMemberDto {
   readonly goalId: number
-  readonly dayId: string
+  readonly dayId?: string
 }
 
 export interface UpdateMemberDto {

@@ -20,8 +20,8 @@ export type AppEmojiName =
   | 'photo'
   | 'video'
   | 'error'
-  | 'subscribe'
-  | 'unsubscribe'
+  | 'join'
+  | 'leave'
   | 'speaker'
   | 'magic'
   | 'keyboard'
@@ -110,9 +110,9 @@ function getContent(name: AppEmojiName) {
       return '🎬'
     case 'error':
       return '👺'
-    case 'subscribe':
+    case 'join':
       return '📬'
-    case 'unsubscribe':
+    case 'leave':
       return '📪'
     case 'speaker':
       return '🧞‍♂️‍'

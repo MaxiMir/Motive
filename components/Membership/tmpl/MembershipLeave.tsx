@@ -18,8 +18,8 @@ export default function MembershipLeave({ goal, clientOwnership }: MembershipLea
 
   return (
     <>
-      <Action tmpl="goal" name="unsubscribe" active={false} title="Leave" onClick={toggleModal} />
-      {open && <Modal tmpl="unsubscribe" goal={goal} clientOwnership={clientOwnership} onClose={toggleModal} />}
+      <Action tmpl="goal" name="leave" active={false} title="Leave" onClick={toggleModal} />
+      {open && <Modal tmpl="leave" goal={goal} clientOwnership={clientOwnership} onClose={toggleModal} />}
     </>
   )
 }

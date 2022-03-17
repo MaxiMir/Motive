@@ -31,15 +31,10 @@ export default function MembershipJoin({ goal }: MembershipJoinProps): JSX.Eleme
 
   return (
     <>
-      <Button
-        variant="outlined"
-        color="secondary"
-        startIcon={<AppEmoji name="subscribe" onlyEmoji />}
-        onClick={onClick}
-      >
+      <Button variant="outlined" color="secondary" startIcon={<AppEmoji name="join" onlyEmoji />} onClick={onClick}>
         Join
       </Button>
-      {open && <Modal tmpl="subscribe" goal={goal} onClose={toggleModal} />}
+      {open && <Modal tmpl="join" goal={goal} onClose={toggleModal} />}
     </>
   )
 }

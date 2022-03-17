@@ -1,8 +1,7 @@
 import { useMutation, useQuery } from 'react-query'
 import { GoalDto } from 'dto'
 import DayService from 'services/DayService'
-import useChangeDayUrl from 'hooks/useChangeDayUrl'
-import { useMutateGoals } from 'views/UserView/hook'
+import { useChangeDayUrl, useMutateGoals } from 'views/UserView/hook'
 import { getGoalNextState } from './helper'
 
 export const useChangeDay = (goalId: number): [boolean, (dayId: number) => void] => {

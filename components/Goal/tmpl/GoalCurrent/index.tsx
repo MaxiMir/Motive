@@ -18,7 +18,7 @@ import Views from './components/Views'
 import Task from './components/Task'
 
 const AppTypography = dynamic(() => import('components/UI/AppTypography'))
-const Owner = dynamic(() => import('./components/Owner'))
+const User = dynamic(() => import('components/User'))
 const Stages = dynamic(() => import('./components/Stages'))
 const Feedback = dynamic(() => import('./components/Feedback'))
 const Hashtags = dynamic(() => import('./components/Hashtags'))
@@ -73,7 +73,7 @@ export default function GoalCurrent({
                 <AppTitle name="goal" variant="h6" component="h3">
                   {name}
                 </AppTitle>
-                {inherited && <Owner {...owner} />}
+                {inherited && <User tmpl="owner" user={owner} />}
               </AppBox>
               <Menu goalId={id} title={name} href={goalHref} clientGoal={clientOwnership.goal} />
             </AppBox>

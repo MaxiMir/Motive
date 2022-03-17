@@ -1,14 +1,28 @@
-import { Button } from '@material-ui/core'
-import AppEmoji from 'components/UI/AppEmoji'
+import { useSendCreateMember } from 'views/UserView/hook'
 import AppBox from 'components/UI/AppBox'
+import Action from 'components/Action'
 
-export default function Repeat(): JSX.Element {
-  // todo add hook
+interface RepeatProps {
+  goalId: number
+}
+
+export default function Repeat({ goalId }: RepeatProps): JSX.Element {
+  const { isLoading, mutate } = useSendCreateMember()
+
+  const onClick = () => {
+    mutate({ goalId })
+  }
+
   return (
     <AppBox justifyContent="flex-end">
-      <Button variant="outlined" color="secondary" startIcon={<AppEmoji name="members" onlyEmoji />}>
-        Repeat
-      </Button>
+      <Action
+        tmpl="submit"
+        isLoading={isLoading}
+        name="Repeat"
+        nameLoading="Repeating"
+        emoji="join"
+        onClick={onClick}
+      />
     </AppBox>
   )
 }

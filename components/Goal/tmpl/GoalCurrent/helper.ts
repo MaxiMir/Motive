@@ -1,5 +1,5 @@
 import produce from 'immer'
-import { differenceInCalendarDays, differenceInDays } from 'date-fns'
+import { differenceInCalendarDays } from 'date-fns'
 import { CalendarDto, DayDto, GoalDto, MemberDto, OwnershipDto, TaskDto } from 'dto'
 import { SEARCH_PARAMS, setQueryParams } from 'helpers/url'
 import { getDateKey } from './components/Calendar/helper'
@@ -46,41 +46,6 @@ export const getGoalHref = (userHref: string, goal: GoalDto): string => {
 export const getMember = (goal: GoalDto, membership: MemberDto[], userId?: number): MemberDto | undefined =>
   (userId && membership.find((m) => m.userId === userId && m.goalId === goal.id)) || undefined
 
-const checkOnCompleteStage = (reactions: boolean, goal: GoalDto, clientGoal: boolean) =>
-  clientGoal && reactions && goal.stage <= goal.day.stage
-
-const checkOnForm = (clientOwnership: OwnershipDto, day: DayDto, daysGone: number) => {
-  if (clientOwnership.page && clientOwnership.member) {
-    return clientOwnership.member.dayId === day.id && daysGone <= 0
-  }
-
-  return clientOwnership.goal && daysGone <= 0
-}
-
-const getDaysGone = (clientOwnership: OwnershipDto, daysGoneForOwner: number, today: Date) => {
-  if (!clientOwnership.member) {
-    return daysGoneForOwner
-  }
-
-  if (!clientOwnership.member.lastEndOfDay) {
-    return 0
-  }
-
-  return differenceInCalendarDays(Date.parse(clientOwnership.member.lastEndOfDay), today)
-}
-
-function checkOnForTomorrow(clientOwnership: OwnershipDto, today: Date, daysGone: number) {
-  if (!clientOwnership.member) {
-    return daysGone === -1
-  }
-
-  if (!clientOwnership.member.lastEndOfDay) {
-    return false
-  }
-
-  return !differenceInCalendarDays(Date.parse(clientOwnership.member.lastEndOfDay), today)
-}
-
 export type GoalInfo = {
   datesMap: Record<string, number>
   daysGone: number
@@ -99,14 +64,54 @@ export const getGoalInfo = (goal: GoalDto, clientOwnership: OwnershipDto): GoalI
   const datesMap = getDatesMap(day, calendar)
   const dates = Object.keys(datesMap)
   const lastDay = dates[dates.length - 1] === getDateKey(day.date)
-  const daysGoneForOwner = differenceInCalendarDays(today, Date.parse(day.date))
-  const daysGone = getDaysGone(clientOwnership, daysGoneForOwner, today)
-  const runsForDays = differenceInCalendarDays(today, Date.parse(started))
-  const web = lastDay && differenceInDays(today, Date.parse(day.date)) >= SHOW_WEB_AFTER_DAYS
-  const form = checkOnForm(clientOwnership, day, daysGone)
   const controls = !clientOwnership.goal || lastDay
-  const completeStage = checkOnCompleteStage(controls, goal, clientOwnership.goal)
-  const forTomorrow = checkOnForTomorrow(clientOwnership, today, daysGone)
+  const completeStage = clientOwnership.goal && controls && goal.stage <= goal.day.stage
+  const daysGoneForOwner = differenceInCalendarDays(today, Date.parse(day.date))
+  const runsForDays = differenceInCalendarDays(today, Date.parse(started))
+  const daysGone = getDaysGone()
+  const web = checkOnWeb()
+  const form = checkOnForm()
+  const forTomorrow = checkOnForTomorrow()
+
+  function getDaysGone() {
+    if (!clientOwnership.member) {
+      return daysGoneForOwner
+    }
+
+    if (!clientOwnership.member.lastEndOfDay) {
+      return 0
+    }
+
+    return differenceInCalendarDays(Date.parse(clientOwnership.member.lastEndOfDay), new Date())
+  }
+
+  function checkOnWeb() {
+    if (clientOwnership.member) {
+      return clientOwnership.member.dayId === day.id && daysGone >= SHOW_WEB_AFTER_DAYS
+    }
+
+    return lastDay && daysGoneForOwner >= SHOW_WEB_AFTER_DAYS
+  }
+
+  function checkOnForm() {
+    if (clientOwnership.page && clientOwnership.member) {
+      return clientOwnership.member.dayId === day.id && daysGone <= 0
+    }
+
+    return clientOwnership.goal && daysGone <= 0
+  }
+
+  function checkOnForTomorrow() {
+    if (!clientOwnership.member) {
+      return daysGone === -1
+    }
+
+    if (!clientOwnership.member.lastEndOfDay) {
+      return false
+    }
+
+    return !differenceInCalendarDays(Date.parse(clientOwnership.member.lastEndOfDay), today)
+  }
 
   return {
     datesMap,

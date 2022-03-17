@@ -4,7 +4,6 @@ import { ConfirmationDto, GoalCharacteristicName } from 'dto'
 import { makeStyles, createStyles } from '@material-ui/core/styles'
 import useCharacteristicColors from 'hooks/useCharacteristicColors'
 import useClient from 'hooks/useClient'
-import { checkOnOwner } from 'components/Goal/helper'
 import AppTitle from 'components/UI/AppTitle'
 import AppBox from 'components/UI/AppBox'
 import AppDot from 'components/UI/AppDot'
@@ -14,37 +13,49 @@ import { getGoalInfo } from './helper'
 
 const AppTypography = dynamic(() => import('components/UI/AppTypography'))
 const AppInView = dynamic(() => import('components/UI/AppInView'))
+const User = dynamic(() => import('components/User'))
 const Gallery = dynamic(() => import('components/Gallery'))
-const Membership = dynamic(() => import('components/Membership'))
 const SecondPhotos = dynamic(() => import('./components/SecondPhotos'))
+const Repeat = dynamic(() => import('./components/Repeat'))
 
 const CHARACTERISTICS: GoalCharacteristicName[] = ['motivation', 'creativity', 'support', 'members']
 
 export interface GoalCompletedProps {
   tmpl: 'completed'
   confirmation: ConfirmationDto
+  userId: number
   inView: boolean
   onView: () => void
 }
 
-export default function GoalCompleted({ confirmation, inView, onView }: GoalCompletedProps): JSX.Element {
+export default function GoalCompleted({ confirmation, userId, inView, onView }: GoalCompletedProps): JSX.Element {
   const classes = useStyles()
-  const { goal, owner } = confirmation
+  const { goal, owner, inherited } = confirmation
   const client = useClient()
   const colors = useCharacteristicColors()
-  const isOwner = checkOnOwner(owner, client)
   const { duration, mainPhoto, secondPhotos, interval } = getGoalInfo(confirmation)
+  const isOwner = owner.id === client?.id
+  const clientPage = userId === client?.id
+  const renderRepeat = !clientPage && !isOwner
 
   return (
     <div className={classes.wrap}>
       <AppBox flexDirection="column" spacing={2} className={classes.content}>
-        <AppTitle name="cup" variant="h6" component="h3">
-          {goal.name}{' '}
-          <span className={classes.runsForDays}>
-            {' '}
-            in <AppTooltip title={interval}>{duration}</AppTooltip>
-          </span>
-        </AppTitle>
+        <AppBox flexDirection="column" spacing={1}>
+          <AppTitle name="cup" variant="h6" component="h3">
+            {goal.name}{' '}
+            <span className={classes.runsForDays}>
+              {' '}
+              in <AppTooltip title={interval}>{duration}</AppTooltip>
+            </span>
+          </AppTitle>
+          {inherited && (
+            <AppBox spacing={1} alignItems="center">
+              <AppTypography variant="h6">Complete</AppTypography>
+              <User tmpl="owner" user={owner} />
+            </AppBox>
+          )}
+        </AppBox>
         {mainPhoto && <Gallery tmpl="simple" photos={[mainPhoto]} animation />}
         <AppBox justifyContent="space-between" alignItems="center">
           {CHARACTERISTICS.map((characteristicName) => (
@@ -61,11 +72,7 @@ export default function GoalCompleted({ confirmation, inView, onView }: GoalComp
         </AppBox>
         {confirmation.text && <AppTypography>{confirmation.text}</AppTypography>}
         {!!secondPhotos?.length && <SecondPhotos id={goal.id} photos={secondPhotos} />}
-        {!isOwner && (
-          <AppBox justifyContent="flex-end">
-            <Membership tmpl="join" goal={goal} />
-          </AppBox>
-        )}
+        {renderRepeat && <Repeat goalId={goal.id} />}
       </AppBox>
       {onView && <>{inView && <AppInView onView={onView} />}</>}
     </div>

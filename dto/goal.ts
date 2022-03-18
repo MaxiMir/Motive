@@ -21,6 +21,7 @@ export interface GoalBaseDto {
   readonly stages: string[]
   readonly stage: number
   readonly characteristic: GoalCharacteristicDto
+  readonly owner: UserBaseDto
 }
 
 export interface GoalDto extends GoalBaseDto {
@@ -49,7 +50,6 @@ export interface ConfirmationDto extends FeedbackDto {
   readonly started: string
   readonly end: string
   readonly goal: GoalBaseDto
-  readonly owner: UserBaseDto
   readonly inherited: boolean
 }
 

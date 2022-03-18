@@ -1,4 +1,5 @@
 export interface CreateMemberDto {
+  readonly started: Date
   readonly goalId: number
   readonly dayId?: string
 }

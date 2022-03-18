@@ -1,3 +1,4 @@
+import { getToday } from 'helpers/date'
 import { useSendCreateMember } from 'views/UserView/hook'
 import AppBox from 'components/UI/AppBox'
 import Action from 'components/Action'
@@ -10,7 +11,7 @@ export default function Repeat({ goalId }: RepeatProps): JSX.Element {
   const { isLoading, mutate } = useSendCreateMember()
 
   const onClick = () => {
-    mutate({ goalId })
+    mutate({ goalId, started: getToday() })
   }
 
   return (

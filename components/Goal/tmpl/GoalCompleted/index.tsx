@@ -30,11 +30,11 @@ export interface GoalCompletedProps {
 
 export default function GoalCompleted({ confirmation, userId, inView, onView }: GoalCompletedProps): JSX.Element {
   const classes = useStyles()
-  const { goal, owner, inherited } = confirmation
+  const { goal, inherited } = confirmation
   const client = useClient()
   const colors = useCharacteristicColors()
   const { duration, mainPhoto, secondPhotos, interval } = getGoalInfo(confirmation)
-  const isOwner = owner.id === client?.id
+  const isOwner = goal.owner.id === client?.id
   const clientPage = userId === client?.id
   const renderRepeat = !clientPage && !isOwner
 
@@ -49,7 +49,7 @@ export default function GoalCompleted({ confirmation, userId, inView, onView }: 
               in <AppTooltip title={interval}>{duration}</AppTooltip>
             </span>
           </AppTitle>
-          {inherited && <Inheritance owner={owner} />}
+          {inherited && <Inheritance owner={goal.owner} />}
         </AppBox>
         {mainPhoto && <Gallery tmpl="simple" photos={[mainPhoto]} animation />}
         <AppBox justifyContent="space-between" alignItems="center">

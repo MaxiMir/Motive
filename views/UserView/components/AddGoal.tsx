@@ -35,7 +35,6 @@ const useStyles = makeStyles({
     borderRadius: 5,
     border: '1px solid #4DA0EC',
     color: '#4DA0EC',
-
     '&:hover': {
       border: '1px solid #4DA0EC',
     },

@@ -2,8 +2,8 @@ import { useState, MouseEvent } from 'react'
 import dynamic from 'next/dynamic'
 import { UserDto } from 'dto'
 import { getUserHref } from 'views/UserView/helper'
-import Share from 'components/Share'
 import AppMenuButton from 'components/UI/AppMenuButton'
+import Share from 'components/Share'
 import useRemoveFollowing from './hook'
 
 const MenuList = dynamic(() => import('./components/MenuList'))

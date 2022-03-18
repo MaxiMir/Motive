@@ -84,13 +84,13 @@ export default function ModalJoin({ goal, onClose }: ModalJoinProps): JSX.Elemen
               details={
                 <div className={classes.hint}>
                   <AppTypography>
-                    Put <AppDecorEmoji name="motivation" /> days that are motivating.
+                    Click <AppDecorEmoji name="motivation" /> for days that are motivating.
                   </AppTypography>
                   <AppTypography>
-                    Put <AppDecorEmoji name="creativity" /> days with creative tasks.
+                    Click <AppDecorEmoji name="creativity" /> for days with creative tasks.
                   </AppTypography>
                   <AppTypography>
-                    Supportive <span className={classes.owner}>{goal.owner.name}</span> when needed.
+                    Support <span className={classes.owner}>{goal.owner.name}</span> when needed.
                   </AppTypography>
                   <AppTypography>
                     Ask questions in the discussion <AppDecorEmoji name="discussion" />.

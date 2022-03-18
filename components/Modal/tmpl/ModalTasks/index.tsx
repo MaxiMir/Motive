@@ -1,9 +1,9 @@
 import { FieldArray, Form, FormikProvider } from 'formik'
 import { Button, createStyles, makeStyles } from '@material-ui/core'
 import { GoalDto } from 'dto'
+import AppModal from 'components/UI/AppModal'
 import Action from 'components/Action'
 import Task from 'components/Task'
-import AppModal from 'components/UI/AppModal'
 import useForm from './hook'
 
 export interface ModalTasksProps {

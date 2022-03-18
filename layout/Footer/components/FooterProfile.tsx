@@ -1,7 +1,7 @@
 import { Button } from '@material-ui/core'
 import useOpenSignIn from 'hooks/useOpenSignIn'
-import { ProfileIcon } from 'components/UI/icons'
 import { getUserHref } from 'views/UserView/helper'
+import { ProfileIcon } from 'components/UI/icons'
 import FooterIcon from './FooterIcon'
 
 interface FooterProfileProps {

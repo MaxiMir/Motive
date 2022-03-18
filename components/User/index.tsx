@@ -2,15 +2,15 @@ import dynamic from 'next/dynamic'
 import { UserRatingProps } from './tmpl/UserRating'
 import { UserInputProps } from './tmpl/UserInput'
 import { UserCharacteristicProps } from './tmpl/UserCharacteristic'
-import { UserOwnerProps } from './tmpl/UserOwner'
+import { UserAvatarProps } from './tmpl/UserAvatar'
 
 const UserRating = dynamic(() => import('./tmpl/UserRating'))
 const UserInput = dynamic(() => import('./tmpl/UserInput'))
 const UserCharacteristic = dynamic(() => import('./tmpl/UserCharacteristic'))
-const UserOwner = dynamic(() => import('./tmpl/UserOwner'))
+const UserAvatar = dynamic(() => import('./tmpl/UserAvatar'))
 
 export default function User(
-  props: UserRatingProps | UserInputProps | UserCharacteristicProps | UserOwnerProps,
+  props: UserRatingProps | UserInputProps | UserCharacteristicProps | UserAvatarProps,
 ): JSX.Element {
   switch (props.tmpl) {
     case 'rating':
@@ -19,7 +19,7 @@ export default function User(
       return <UserInput {...props} />
     case 'characteristic':
       return <UserCharacteristic {...props} />
-    case 'owner':
-      return <UserOwner {...props} />
+    case 'avatar':
+      return <UserAvatar {...props} />
   }
 }

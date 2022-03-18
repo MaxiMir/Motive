@@ -1,7 +1,7 @@
 import { Fragment } from 'react'
 import dynamic from 'next/dynamic'
+import { createStyles, makeStyles } from '@material-ui/core'
 import { ConfirmationDto, GoalCharacteristicName } from 'dto'
-import { makeStyles, createStyles } from '@material-ui/core/styles'
 import useCharacteristicColors from 'hooks/useCharacteristicColors'
 import useClient from 'hooks/useClient'
 import AppTitle from 'components/UI/AppTitle'
@@ -13,8 +13,8 @@ import { getGoalInfo } from './helper'
 
 const AppTypography = dynamic(() => import('components/UI/AppTypography'))
 const AppInView = dynamic(() => import('components/UI/AppInView'))
-const User = dynamic(() => import('components/User'))
 const Gallery = dynamic(() => import('components/Gallery'))
+const Inheritance = dynamic(() => import('./components/Inheritance'))
 const SecondPhotos = dynamic(() => import('./components/SecondPhotos'))
 const Repeat = dynamic(() => import('./components/Repeat'))
 
@@ -49,12 +49,7 @@ export default function GoalCompleted({ confirmation, userId, inView, onView }: 
               in <AppTooltip title={interval}>{duration}</AppTooltip>
             </span>
           </AppTitle>
-          {inherited && (
-            <AppBox spacing={1} alignItems="center">
-              <AppTypography variant="h6">Complete</AppTypography>
-              <User tmpl="owner" user={owner} />
-            </AppBox>
-          )}
+          {inherited && <Inheritance owner={owner} />}
         </AppBox>
         {mainPhoto && <Gallery tmpl="simple" photos={[mainPhoto]} animation />}
         <AppBox justifyContent="space-between" alignItems="center">

@@ -1,6 +1,5 @@
 import dynamic from 'next/dynamic'
-import { makeStyles } from '@material-ui/core/styles'
-import { AppBar } from '@material-ui/core'
+import { AppBar, makeStyles } from '@material-ui/core'
 import AppContainer from 'components/UI/AppContainer'
 import AppBox from 'components/UI/AppBox'
 import LeftMenu from './components/LeftMenu'

@@ -5,8 +5,8 @@ import AppBox from 'components/UI/AppBox'
 import { AppListProps } from 'components/UI/AppList'
 import { useDiscussion, useAddMessage } from './hook'
 
-const User = dynamic(() => import('components/User'))
 const AppList = dynamic<AppListProps<TopicDto>>(() => import('components/UI/AppList'))
+const User = dynamic(() => import('components/User'))
 const AppTypography = dynamic(() => import('components/UI/AppTypography'))
 const Loader = dynamic(() => import('./components/Loader'))
 const Topic = dynamic(() => import('./components/Topic'))

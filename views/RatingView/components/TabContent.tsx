@@ -1,10 +1,10 @@
 import { Container, Grid, makeStyles } from '@material-ui/core'
 import { UserDto, MainCharacteristicName } from 'dto'
 import useCharacteristicColors from 'hooks/useCharacteristicColors'
-import User from 'components/User'
 import AppBox from 'components/UI/AppBox'
 import AppList from 'components/UI/AppList'
 import AppTypography from 'components/UI/AppTypography'
+import User from 'components/User'
 
 interface TabContentProps {
   name: MainCharacteristicName

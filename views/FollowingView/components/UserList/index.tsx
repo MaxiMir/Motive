@@ -1,6 +1,6 @@
 import { UserDto } from 'dto'
-import User from 'components/User'
 import AppList from 'components/UI/AppList'
+import User from 'components/User'
 import Menu from './components/Menu'
 
 interface UserListProps {

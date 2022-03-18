@@ -1,15 +1,18 @@
-import produce from 'immer'
 import { FormikProps, useFormik } from 'formik'
 import { useMutation } from 'react-query'
 import { CreateDayDto, GoalDto } from 'dto'
 import GoalService from 'services/GoalService'
 import { getTomorrow } from 'helpers/date'
+import { toShortUserName } from 'helpers/prepare'
+import useClient from 'hooks/useClient'
+import useSnackbar from 'hooks/useSnackbar'
 import { useChangeDayUrl, useMutateGoals } from 'views/UserView/hook'
 import schema from 'schemas/tasks'
+import { getNextState } from './helper'
 
 export default function useForm(goal: GoalDto, onSuccess: () => void): FormikProps<CreateDayDto> {
   const { id } = goal
-  const { mutateAsync } = useSendNewDay(id, onSuccess)
+  const { mutateAsync } = useSendAddDay()
 
   return useFormik<CreateDayDto>({
     initialValues: {
@@ -20,27 +23,28 @@ export default function useForm(goal: GoalDto, onSuccess: () => void): FormikPro
     validationSchema: schema,
     async onSubmit(data) {
       await mutateAsync(data)
+      onSuccess()
     },
   })
 }
 
-const useSendNewDay = (goalId: number, onSuccess: () => void) => {
+const useSendAddDay = () => {
+  const client = useClient()
+  const [enqueueSnackbar] = useSnackbar()
   const [goals, mutateGoals] = useMutateGoals()
   const changeDayUrl = useChangeDayUrl()
 
   return useMutation(GoalService.addDay, {
-    onSuccess({ days }) {
+    onSuccess({ days }, { id }) {
       const day = days[days.length - 1]
 
-      mutateGoals(
-        produce(goals, (draft) => {
-          const draftGoal = draft[draft.findIndex((g) => g.id === goalId)]
-          draftGoal.calendar.push({ id: day.id, date: day.date })
-          draftGoal.day = day
-        }),
-      )
-      changeDayUrl(goals, goalId, day.id)
-      onSuccess()
+      mutateGoals(getNextState(goals, day, id))
+      changeDayUrl(goals, id, day.id)
+      enqueueSnackbar({
+        message: `${toShortUserName(client?.name)}, uploaded your next tasks`,
+        severity: 'success',
+        icon: 'speaker',
+      })
     },
   })
 }

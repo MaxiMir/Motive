@@ -11,5 +11,5 @@ interface AppIconProps {
 export default function AppIcon({ className, color, name }: AppIconProps): JSX.Element {
   const materialColorClass = color && `MuiTypography-color${toUpperFirstChar(color)}`
 
-  return <span className={clsx('material-icons', className, materialColorClass)}>{name}</span>
+  return <span className={clsx('material-icons', materialColorClass, className)}>{name}</span>
 }

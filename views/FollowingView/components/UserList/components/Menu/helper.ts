@@ -8,12 +8,12 @@ export type Context = { previous?: SubscriptionPageDto }
 export const fetcher = ({ user, add }: Options): Promise<void> => SubscriptionService.updateFollowing(user.id, add)
 
 export const getNextState = (
-  previous: SubscriptionPageDto,
+  page: SubscriptionPageDto,
   user: UserDto,
   index: number,
   add: boolean,
 ): SubscriptionPageDto =>
-  produce(previous, (draft) => {
+  produce(page, (draft) => {
     if (add) {
       draft.content.splice(index, 0, user)
       return

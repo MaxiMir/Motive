@@ -7,8 +7,8 @@ export type Context = { previous?: UserPageDto }
 
 export const fetcher = ({ userId, add }: Options): Promise<void> => SubscriptionService.updateFollowing(userId, add)
 
-export const getNextState = (previous: UserPageDto, add: boolean): UserPageDto =>
-  produce(previous, (draft) => {
+export const getNextState = (page: UserPageDto, add: boolean): UserPageDto =>
+  produce(page, (draft) => {
     draft.content.following = add
     draft.content.characteristic.followers += add ? 1 : -1
   })

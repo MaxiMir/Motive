@@ -3,10 +3,10 @@ import { DayCharacteristicName, DayCharacteristicUpdateDto, GoalDto, UserPageDto
 
 export type Context = { previous?: UserPageDto }
 
-export const getNextState = (previous: UserPageDto, options: DayCharacteristicUpdateDto): UserPageDto => {
+export const getNextState = (page: UserPageDto, options: DayCharacteristicUpdateDto): UserPageDto => {
   const { id, dayId, add, name } = options
 
-  return produce(previous, (draft) => {
+  return produce(page, (draft) => {
     const draftGoals = draft.content.goals
     const draftGoal = draftGoals[draftGoals.findIndex((g) => g.id === id)]
     draftGoal.characteristic[name] += add ? 1 : -1

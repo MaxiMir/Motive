@@ -70,7 +70,7 @@ export const getDesignTokens = (type: PaletteType): ThemeOptions => {
       MuiCssBaseline: {
         '@global': {
           html: {
-            // background: '#19191A',
+            background: '#19191A',
           },
           body: {
             margin: 0,
@@ -88,7 +88,7 @@ export const getDesignTokens = (type: PaletteType): ThemeOptions => {
           },
           '@supports not (-moz-appearance:none)': {
             body: {
-              // background: 'linear-gradient(#19191A, #0A0A0A 60%)',
+              background: 'linear-gradient(#19191A, #0A0A0A 60%)',
             },
           },
         },

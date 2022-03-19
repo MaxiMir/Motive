@@ -3,6 +3,7 @@ import { Button, makeStyles } from '@material-ui/core'
 import { FOLLOWING_ROUTE, RATING_ROUTE, SEARCH_ROUTE, TOP_OF_THE_DAY_ROUTE } from 'route'
 import AppBox from 'components/UI/AppBox'
 import AppContainer from 'components/UI/AppContainer'
+import AppLink from 'components/UI/AppLink'
 import { TopOfTheDayIcon, SearchIcon, RatingIcon, FollowingIcon } from 'components/UI/icons'
 import FooterIcon from './components/FooterIcon'
 import FooterProfile from './components/FooterProfile'
@@ -31,9 +32,11 @@ export default function Footer({ nickname }: FooterProps): JSX.Element {
       <AppContainer>
         <AppBox justifyContent="space-between" alignItems="center" height={65}>
           {ROUTES.map(({ href, title, Icon }) => (
-            <Button href={href} title={title} key={title}>
-              <FooterIcon Icon={Icon} selected={asPath.includes(href)} key={href} />
-            </Button>
+            <AppLink href={href} title={title} key={title}>
+              <Button>
+                <FooterIcon Icon={Icon} selected={asPath.includes(href)} key={href} />
+              </Button>
+            </AppLink>
           ))}
           <FooterProfile nickname={nickname} asPath={asPath} />
         </AppBox>

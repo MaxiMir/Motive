@@ -31,7 +31,7 @@ export default function ModalSignIn({ options, onClose }: ModalSignInProps): JSX
         ) : (
           <>
             {Object.values(providers).map((provider) => (
-              <Provider provider={provider} options={options} key={provider.id} />
+              <Provider provider={provider} options={options} disabled={provider.id === 'apple'} key={provider.id} />
             ))}
           </>
         )}

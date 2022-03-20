@@ -5,7 +5,7 @@ import { createStyles, FormControlLabel, Switch, makeStyles } from '@material-ui
 import AppBox from 'components/UI/AppBox'
 import AppInput from 'components/UI/AppInput'
 import AppIcon from 'components/UI/AppIcon'
-import AppCloseButton from 'components/UI/AppCloseButton'
+import AppIconButton from 'components/UI/AppIconButton'
 
 const KeyboardTimePicker = dynamic(() =>
   import('formik-material-ui-pickers').then(
@@ -44,7 +44,7 @@ export default function TaskField({ index, date, taskCount, onToggleDate, onRemo
           component={AppInput}
         />
         <AppBox alignSelf="flex-start" mt={2}>
-          <AppCloseButton aria-label="remove task" disabled={taskCount === 1} onClick={onRemove} />
+          <AppIconButton name="close" aria-label="remove task" disabled={taskCount === 1} onClick={onRemove} />
         </AppBox>
       </AppBox>
       <AppBox height={48} alignItems="center" pl={1} spacing={1}>

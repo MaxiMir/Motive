@@ -19,11 +19,12 @@ export const useUserPage = (): UseQueryResult<UserPageDto> => {
 }
 
 export const useUserPageConfig = (): { key: string; urn: string } => {
-  const router = useRouter()
+  const { query, asPath } = useRouter()
+  const id = Array.isArray(query.id) ? query.id[0] : query.id
 
   return {
-    key: router.query.id as string,
-    urn: router.asPath,
+    key: id || 'detail',
+    urn: asPath,
   }
 }
 

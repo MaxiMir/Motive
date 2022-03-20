@@ -1,8 +1,8 @@
 import { FormikProps, useFormik } from 'formik'
 import { CreateMemberDto } from 'dto'
+import schema from 'schemas/member'
 import { getToday } from 'helpers/date'
 import { useSendCreateMember } from 'views/UserView/hook'
-import schema from 'schemas/member'
 
 export default function useForm(goalId: number, dayId: number): FormikProps<CreateMemberDto> {
   const { mutateAsync } = useSendCreateMember()

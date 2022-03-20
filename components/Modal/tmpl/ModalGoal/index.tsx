@@ -18,7 +18,7 @@ import Action from 'components/Action'
 import Task from 'components/Task'
 import useForm from './hook'
 
-const AppCloseButton = dynamic(() => import('components/UI/AppCloseButton'))
+const AppIconButton = dynamic(() => import('components/UI/AppIconButton'))
 
 const CHARACTERISTIC_NAMES: MainCharacteristicName[] = ['motivation', 'creativity', 'support']
 
@@ -93,7 +93,7 @@ export default function ModalGoal({ onClose }: ModalGoalProps): JSX.Element {
                           component={AppInput}
                         />
                         <AppBox alignSelf="flex-start" mt="-4px">
-                          <AppCloseButton onClick={() => remove(index)} />
+                          <AppIconButton name="close" onClick={() => remove(index)} />
                         </AppBox>
                       </AppBox>
                     ))}

@@ -1,11 +1,11 @@
-import produce from 'immer'
 import { FormikProps, useFormik } from 'formik'
 import { useMutation } from 'react-query'
 import { GoalDto } from 'dto'
+import schema from 'schemas/feedback'
 import FeedbackService from 'services/FeedbackService'
 import useSnackbar from 'hooks/useSnackbar'
 import { useMutateGoals } from 'views/UserView/hook'
-import schema from 'schemas/feedback'
+import { getNextState } from './helper'
 
 interface Values {
   text: string
@@ -41,12 +41,7 @@ const useSendFeedback = (goalId: number) => {
 
   return useMutation(FeedbackService.create, {
     onSuccess: (feedback) => {
-      mutateGoals(
-        produce(goals, (draft) => {
-          const draftGoal = draft[draft.findIndex((g) => g.id === goalId)]
-          draftGoal.day.feedback = feedback
-        }),
-      )
+      mutateGoals(getNextState(goals, goalId, feedback))
       enqueueSnackbar({ message: 'Feedback successfully added', severity: 'success', icon: 'feedback' })
     },
   })

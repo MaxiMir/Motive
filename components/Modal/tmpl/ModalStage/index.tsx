@@ -16,7 +16,7 @@ export interface ModalStageProps {
 export default function ModalStage({ goal, onClose }: ModalStageProps): JSX.Element {
   const { stages, day } = goal
   const classes = useStyles()
-  const { isLoading, mutate } = useSendStage(goal, onClose)
+  const { isLoading, mutate } = useSendStage(onClose)
   const isFinal = stages.length === day.stage
   const nextStage = day.stage + 1
 

@@ -2,7 +2,7 @@ import AppBox from './AppBox'
 import AppEmoji, { AppEmojiName } from './AppEmoji'
 import AppTypography, { AppTypographyProps } from './AppTypography'
 
-interface AppHeaderProps extends AppTypographyProps {
+interface AppTitleProps extends AppTypographyProps {
   name: AppEmojiName
   mb?: number
 }
@@ -14,9 +14,9 @@ export default function AppTitle({
   color = 'initial',
   mb,
   children,
-}: AppHeaderProps): JSX.Element {
+}: AppTitleProps): JSX.Element {
   return (
-    <AppBox alignItems="center" spacing={1} mb={mb}>
+    <AppBox alignItems="center" spacing={2} mb={mb}>
       <AppEmoji name={name} variant={variant} />
       <AppTypography variant={variant} component={component} color={color}>
         {children}

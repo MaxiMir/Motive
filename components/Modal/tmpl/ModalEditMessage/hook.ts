@@ -2,9 +2,9 @@ import { AxiosError } from 'axios'
 import { InfiniteData, useMutation, useQueryClient } from 'react-query'
 import { FormikProps, useFormik } from 'formik'
 import { MessageDto, TopicDto } from 'dto'
+import schema from 'schemas/message'
 import useSnackbar from 'hooks/useSnackbar'
 import TopicService from 'services/TopicService'
-import schema from 'schemas/message'
 import { getNextState } from './helper'
 
 export default function useForm(initialValues: MessageDto, onSuccess: () => void): FormikProps<MessageDto> {

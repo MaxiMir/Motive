@@ -1,9 +1,9 @@
 import { FormikProps, useFormik } from 'formik'
 import { useMutation } from 'react-query'
 import { GoalDto, CreateMessageDto, MessageType } from 'dto'
+import schema from 'schemas/message'
 import TopicService from 'services/TopicService'
 import { useAddMessage } from 'components/Goal/tmpl/GoalCurrent/components/Discussion/hook'
-import schema from 'schemas/message'
 
 export default function useForm(goal: GoalDto, onSuccess: () => void): FormikProps<CreateMessageDto> {
   const { day } = goal

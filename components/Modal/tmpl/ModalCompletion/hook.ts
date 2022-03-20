@@ -1,12 +1,12 @@
 import { FormikProps, useFormik } from 'formik'
 import { useMutation } from 'react-query'
 import { GoalDto } from 'dto'
+import schema from 'schemas/completion'
 import ConfirmationService from 'services/ConfirmationService'
 import useSnackbar from 'hooks/useSnackbar'
 import { scrollToElem } from 'helpers/dom'
 import { getToday } from 'helpers/date'
 import { useUserPage } from 'views/UserView/hook'
-import schema from 'schemas/completion'
 
 interface Values {
   text: string

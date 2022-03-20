@@ -1,13 +1,13 @@
 import { FormikProps, useFormik } from 'formik'
 import { useMutation } from 'react-query'
 import { CreateDayDto, GoalDto } from 'dto'
+import schema from 'schemas/tasks'
 import GoalService from 'services/GoalService'
 import { getTomorrow } from 'helpers/date'
 import { toShortUserName } from 'helpers/prepare'
 import useClient from 'hooks/useClient'
 import useSnackbar from 'hooks/useSnackbar'
 import { useChangeDayUrl, useMutateGoals } from 'views/UserView/hook'
-import schema from 'schemas/tasks'
 import { getNextState } from './helper'
 
 export default function useForm(goal: GoalDto, onSuccess: () => void): FormikProps<CreateDayDto> {

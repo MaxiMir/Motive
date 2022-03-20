@@ -25,13 +25,15 @@ export default function Menu({ goalId, title, href, clientGoal }: MenuProps): JS
     setWithShare(true)
   }
 
+  const onCloseShare = () => setWithShare(false)
+
   return (
     <>
       <AppMenuButton ariaControls="goal-menu" title="open goal menu" onClick={onOpen} />
       {anchorEl && (
         <MenuList anchorEl={anchorEl} goalId={goalId} clientGoal={clientGoal} onShare={onShare} onClose={onClose} />
       )}
-      <Share open={withShare} title={title} href={href} onClose={() => setWithShare(false)} />
+      <Share open={withShare} title={title} href={href} onClose={onCloseShare} />
     </>
   )
 }

@@ -38,7 +38,6 @@ export const getNextState = (discussion: InfiniteData<TopicDto[]>, topic: TopicD
 export const getGoalNextState = (goalId: number, goals: GoalDto[]): GoalDto[] => {
   return produce(goals, (draft) => {
     const draftGoal = draft[draft.findIndex((g) => g.id === goalId)]
-
     draftGoal.day.topicCount += 1
   })
 }

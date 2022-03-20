@@ -29,9 +29,7 @@ export const getClientOwnership = (
 export const redefineTasks = (tasks: TaskDto[], userMember?: MemberDto): TaskDto[] =>
   tasks.map((task) =>
     produce(task, (draft) => {
-      if (!userMember) {
-        return
-      }
+      if (!userMember) return
 
       draft.completed = userMember.completedTasks.includes(draft.id)
     }),

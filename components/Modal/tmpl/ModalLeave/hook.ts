@@ -1,4 +1,3 @@
-import produce, { Draft } from 'immer'
 import { useMutation, useQueryClient } from 'react-query'
 import { UseMutationResult } from 'react-query/types/react/types'
 import { AxiosError } from 'axios'
@@ -7,6 +6,7 @@ import MemberService from 'services/MemberService'
 import useClient from 'hooks/useClient'
 import useSnackbar from 'hooks/useSnackbar'
 import { useUserPageConfig } from 'views/UserView/hook'
+import { getNextState } from './helper'
 
 export const useSendRemoveMember = (
   goalId: number,
@@ -21,22 +21,10 @@ export const useSendRemoveMember = (
     onSuccess(_, id) {
       if (!client) return
 
-      queryClient.setQueriesData(key, (page) => {
-        if (!page) return page
-
-        return produce(page, (draft: Draft<UserPageDto>) => {
-          draft.content.clientMembership = draft.content.clientMembership.filter((o) => o.id !== id)
-
-          if (clientPage) {
-            draft.content.goals = draft.content.goals.filter((g) => g.id !== goalId)
-            return
-          }
-
-          const draftGoals = draft.content.goals
-          const draftGoal = draftGoals[draftGoals.findIndex((g) => g.id === goalId)]
-          draftGoal.characteristic.members -= 1
-        })
-      })
+      queryClient.setQueriesData<UserPageDto | undefined>(
+        key,
+        (page) => page && getNextState(page, goalId, id, clientPage),
+      )
       enqueueSnackbar({ message: 'Successfully left', severity: 'success', icon: 'speaker' })
     },
   })

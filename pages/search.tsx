@@ -1,22 +1,28 @@
 import Layout from 'layout'
 import { GetServerSideProps } from 'next'
 import { getSession } from 'next-auth/react'
-import { Container } from '@material-ui/core'
-import AppTitle from 'components/UI/AppTitle'
-import AppTypography from 'components/UI/AppTypography'
-import AppBox from 'components/UI/AppBox'
+import SearchView from 'views/SearchView'
 
 export default function SearchPage(): JSX.Element {
+  const mockData = {
+    hashtags: [
+      { name: 'motivation', count: Math.trunc(Math.random() * 10000) },
+      { name: 'develop', count: Math.trunc(Math.random() * 10000) },
+      { name: 'health', count: Math.trunc(Math.random() * 10000) },
+      { name: 'typescript', count: Math.trunc(Math.random() * 10000) },
+      { name: 'relocate', count: Math.trunc(Math.random() * 10000) },
+      { name: 'portugal', count: Math.trunc(Math.random() * 10000) },
+      { name: 'slimming', count: Math.trunc(Math.random() * 10000) },
+      { name: 'run', count: Math.trunc(Math.random() * 10000) },
+      { name: 'backend', count: Math.trunc(Math.random() * 10000) },
+      { name: 'frontend', count: Math.trunc(Math.random() * 10000) },
+      { name: 'promotion', count: Math.trunc(Math.random() * 10000) },
+      { name: 'english', count: Math.trunc(Math.random() * 10000) },
+    ],
+  }
   return (
     <Layout title={`${process.env.NEXT_PUBLIC_APP_NAME} • Search`} statusCode={200}>
-      <Container fixed>
-        <AppTitle name="search" mb={4}>
-          Search
-        </AppTitle>
-        <AppBox alignItems="center" justifyContent="center" flex={1} height="80vh">
-          <AppTypography variant="h5">In the process...</AppTypography>
-        </AppBox>
-      </Container>
+      <SearchView hashtags={mockData.hashtags} />
     </Layout>
   )
 }

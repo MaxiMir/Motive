@@ -1,15 +1,20 @@
+import { HashtagDto, UserDto } from 'dto'
 import AppTitle from 'components/UI/AppTitle'
 import AppContainer from 'components/UI/AppContainer'
 import AppBox from 'components/UI/AppBox'
+import AppList from 'components/UI/AppList'
 import Hashtag from 'components/Hashtag'
+import User from 'components/User'
 import SearchForm from './components/SearchForm'
 import { getGradients } from './helper'
 
 interface SearchViewProps {
-  hashtags: { name: string; count: number }[]
+  q: string
+  hashtags: HashtagDto[]
+  users: UserDto[]
 }
 
-export default function SearchView({ hashtags }: SearchViewProps): JSX.Element {
+export default function SearchView({ q, hashtags, users }: SearchViewProps): JSX.Element {
   const gradients = getGradients()
 
   return (
@@ -18,16 +23,32 @@ export default function SearchView({ hashtags }: SearchViewProps): JSX.Element {
         Search
       </AppTitle>
       <AppBox flexDirection="column" spacing={4}>
-        <SearchForm q="" />
+        <SearchForm q={q} />
+        <AppBox flexDirection="column" spacing={2}>
+          <AppTitle variant="h4" component="h2" name="followers">
+            Users
+          </AppTitle>
+          <AppList<UserDto>
+            flexDirection="row"
+            elements={users}
+            keyGetter={(el) => el.id}
+            render={(user) => <User tmpl="search" user={user} />}
+          />
+        </AppBox>
         <AppBox flexDirection="column" spacing={2}>
           <AppTitle variant="h4" component="h2" name="popular">
             Popular
           </AppTitle>
           <AppBox flexWrap="wrap" spacing={2}>
-            {hashtags.map(({ name, count }, key) => (
-              <Hashtag tmpl="gradient" name={name} count={count} gradient={gradients[key]} key={name} />
+            {hashtags.map(({ name, views }, key) => (
+              <Hashtag tmpl="gradient" name={name} views={views} gradient={gradients[key]} key={name} />
             ))}
           </AppBox>
+        </AppBox>
+        <AppBox flexDirection="column" spacing={2}>
+          <AppTitle variant="h4" component="h2" name="goal">
+            Goals
+          </AppTitle>
         </AppBox>
       </AppBox>
     </AppContainer>

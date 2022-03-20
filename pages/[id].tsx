@@ -29,11 +29,11 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
   }
 
   const { headers } = ctx.req
-  const session = await getSession(ctx)
   const queryClient = new QueryClient()
-  const userHref = ctx.req.url || ''
+  const session = await getSession(ctx)
+  const urn = ctx.req.url || ''
   const nickname = ctx.params?.id || ''
-  await queryClient.prefetchQuery(nickname, () => PageService.getUser(userHref, { headers }))
+  await queryClient.prefetchQuery(nickname, () => PageService.getUser(urn, { headers }))
   const state = queryClient.getQueryState<PossiblePageError>(nickname)
   const statusCode = state?.data?.message?.statusCode || 200
 

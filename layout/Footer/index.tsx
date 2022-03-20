@@ -1,6 +1,6 @@
 import { useRouter } from 'next/router'
 import { Button, makeStyles } from '@material-ui/core'
-import { FOLLOWING_ROUTE, RATING_ROUTE, SEARCH_ROUTE, TOP_OF_THE_DAY_ROUTE } from 'route'
+import { FOLLOWING, RATING, SEARCH, TOP_OF_THE_DAY } from 'route'
 import AppBox from 'components/UI/AppBox'
 import AppContainer from 'components/UI/AppContainer'
 import AppLink from 'components/UI/AppLink'
@@ -10,13 +10,13 @@ import FooterProfile from './components/FooterProfile'
 
 const ROUTES = [
   {
-    href: TOP_OF_THE_DAY_ROUTE,
+    href: TOP_OF_THE_DAY,
     title: 'top of the day',
     Icon: TopOfTheDayIcon,
   },
-  { href: SEARCH_ROUTE, title: 'search', Icon: SearchIcon },
-  { href: RATING_ROUTE, title: 'rating', Icon: RatingIcon },
-  { href: FOLLOWING_ROUTE, title: 'following', Icon: FollowingIcon },
+  { href: SEARCH, title: 'search', Icon: SearchIcon },
+  { href: RATING, title: 'rating', Icon: RatingIcon },
+  { href: FOLLOWING, title: 'following', Icon: FollowingIcon },
 ]
 
 interface FooterProps {

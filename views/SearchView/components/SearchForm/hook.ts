@@ -1,11 +1,13 @@
 import { FormikProps, useFormik } from 'formik'
 import { useMutation } from 'react-query'
 import { SearchDto } from 'dto'
+import { SEARCH } from 'route'
 import schema from 'schemas/search'
-import TopicService from 'services/TopicService'
+import PageService from 'services/PageService'
+import { setQueryParams } from 'helpers/url'
 
 export default function useForm(q: string): FormikProps<SearchDto> {
-  const { mutateAsync } = useSendSupport()
+  const { mutateAsync } = useSendSearch()
 
   return useFormik<SearchDto>({
     initialValues: {
@@ -13,17 +15,15 @@ export default function useForm(q: string): FormikProps<SearchDto> {
     },
     validationSchema: schema,
     async onSubmit(data) {
-      await new Promise((r) => setTimeout(r, 3000))
-      // await mutateAsync(data)
+      await mutateAsync(data)
     },
   })
 }
 
-const useSendSupport = () => {
-  // const addTopic = useAddMessage()
-
-  return useMutation(TopicService.create, {
-    onSuccess(topic) {
+const useSendSearch = () => {
+  return useMutation(({ q }: SearchDto) => PageService.get(setQueryParams(SEARCH, { q })), {
+    onSuccess(data) {
+      console.log('data', data)
       // addTopic(topic)
     },
   })

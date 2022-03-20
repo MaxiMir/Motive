@@ -3,19 +3,19 @@ import { Button, createStyles, makeStyles } from '@material-ui/core'
 import { numberToShort } from 'helpers/prepare'
 import AppBox from 'components/UI/AppBox'
 import AppTypography from 'components/UI/AppTypography'
-import { getHashtagHref } from '../helper'
+import { getHashtagHref } from './helper'
 
 export interface HashtagGradientProps {
   tmpl: 'gradient'
   name: string
   gradient?: string
-  count: number
+  views: number
 }
 
-export default function HashtagGradient({ name, gradient, count }: HashtagGradientProps): JSX.Element {
+export default function HashtagGradient({ name, gradient, views }: HashtagGradientProps): JSX.Element {
   const classes = useStyles({ gradient })
   const router = useRouter()
-  const shortCount = numberToShort(count)
+  const shortViews = numberToShort(views)
 
   const onClick = () => {
     const href = getHashtagHref(name)
@@ -26,12 +26,20 @@ export default function HashtagGradient({ name, gradient, count }: HashtagGradie
   return (
     <Button onClick={onClick} className={classes.button}>
       <AppBox className={classes.wrap}>
-        <AppBox flexDirection="column" justifyContent="center" alignItems="center" spacing={1} p={2} width="100%">
+        <AppBox
+          alignItems="flex-start"
+          justifyContent="space-between"
+          flexDirection="column"
+          spacing={1}
+          p={2}
+          width="100%"
+          height="100%"
+        >
           <AppTypography variant="h6" component="p">
             {name}
           </AppTypography>
-          <AppTypography component="p" className={classes.count}>
-            <b>{shortCount}</b>
+          <AppTypography variant="h4" component="p" className={classes.count}>
+            <b>{shortViews}</b>
           </AppTypography>
         </AppBox>
       </AppBox>
@@ -70,6 +78,7 @@ const useStyles = makeStyles((theme) =>
       background: 'rgba(1, 1, 1, 0.1)',
     },
     count: {
+      alignSelf: 'flex-end',
       opacity: 0.5,
     },
   }),

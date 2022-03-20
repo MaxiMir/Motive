@@ -166,7 +166,7 @@ function getContent(name: AppEmojiName) {
     case 'scared':
       return '😱'
     case 'popular':
-      return '📈'
+      return '📃'
     default:
       return ''
   }

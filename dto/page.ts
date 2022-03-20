@@ -3,6 +3,7 @@ import { UserDto } from './user'
 import { MainCharacteristicName } from './characteristic'
 import { GoalDto } from './goal'
 import { MemberDto } from './member'
+import { HashtagDto } from './hashtag'
 
 export interface PageProps {
   session: Session | null
@@ -19,11 +20,20 @@ type Page<T> = {
   content: T
 }
 
-export type RatingPageDto = Page<{ [k in MainCharacteristicName]: UserDto[] }>
-
-export type SubscriptionPageDto = Page<UserDto[]>
-
+export type SearchPageDto = Page<SearchPageContent>
+export type RatingPageDto = Page<RatingPageContent>
+export type SubscriptionPageDto = Page<SubscriptionPageContent>
 export type UserPageDto = Page<UserDetailDto>
+
+interface SearchPageContent {
+  q: string
+  hashtags: HashtagDto[]
+  goals: GoalDto[]
+  users: UserDto[]
+}
+
+type RatingPageContent = { [k in MainCharacteristicName]: UserDto[] }
+type SubscriptionPageContent = UserDto[]
 
 export interface UserDetailDto extends UserDto {
   following: boolean

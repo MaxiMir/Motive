@@ -1,6 +1,6 @@
 import { useRouter } from 'next/router'
 import { Chip, makeStyles } from '@material-ui/core'
-import { getHashtagHref } from '../helper'
+import { getHashtagHref } from './helper'
 
 export interface HashtagChipProps {
   tmpl: 'chip'

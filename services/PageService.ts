@@ -1,14 +1,10 @@
 import { AxiosRequestConfig } from 'axios'
 import Axios from 'lib/axios'
-import { SubscriptionPageDto, RatingPageDto, UserPageDto } from 'dto'
+import { UserPageDto } from 'dto'
 
 export default class PageService {
-  static async getRating(options?: AxiosRequestConfig): Promise<RatingPageDto> {
-    return Axios.get('/pages/rating', options)
-  }
-
-  static async getFollowing(options?: AxiosRequestConfig): Promise<SubscriptionPageDto> {
-    return Axios.get('/pages/following', options)
+  static get<T>(urn: string, options?: AxiosRequestConfig): Promise<T> {
+    return Axios.get(`/pages${urn}`, options)
   }
 
   static getUser(urn: string, options?: AxiosRequestConfig): Promise<UserPageDto> {

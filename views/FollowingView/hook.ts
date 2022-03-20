@@ -1,10 +1,10 @@
 import { useQuery, UseQueryResult } from 'react-query'
 import { SubscriptionPageDto } from 'dto'
+import { FOLLOWING } from 'route'
 import PageService from 'services/PageService'
 
-export const QUERY_KEY = 'following'
-
-export const useFollowingPage = (): UseQueryResult<SubscriptionPageDto> =>
-  useQuery(QUERY_KEY, () => PageService.getFollowing(), {
+export default function useFollowingPage(): UseQueryResult<SubscriptionPageDto> {
+  return useQuery(FOLLOWING, () => PageService.get(FOLLOWING), {
     staleTime: 30_000,
   })
+}

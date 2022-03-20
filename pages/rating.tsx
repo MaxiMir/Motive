@@ -2,10 +2,11 @@ import { GetServerSideProps } from 'next'
 import { dehydrate, QueryClient } from 'react-query'
 import { getSession } from 'next-auth/react'
 import { PageProps, PossiblePageError } from 'dto'
+import { RATING } from 'route'
 import PageService from 'services/PageService'
 import Layout from 'layout'
 import Rating from 'views/RatingView'
-import { QUERY_KEY, useRatingPage } from 'views/RatingView/hook'
+import useRatingPage from 'views/RatingView/hook'
 
 export default function RatingPage({ statusCode }: PageProps): JSX.Element {
   const { data } = useRatingPage()
@@ -22,11 +23,21 @@ export default function RatingPage({ statusCode }: PageProps): JSX.Element {
 }
 
 export const getServerSideProps: GetServerSideProps = async (ctx) => {
-  const { headers } = ctx.req
-  const session = await getSession(ctx)
+  const { url, headers } = ctx.req
+
+  if (url?.includes('_next')) {
+    return {
+      props: {
+        statusCode: 200,
+      },
+    }
+  }
+
+  const urn = url || RATING
   const queryClient = new QueryClient()
-  await queryClient.prefetchQuery(QUERY_KEY, () => PageService.getRating({ headers }))
-  const state = queryClient.getQueryState<PossiblePageError>(QUERY_KEY)
+  const session = await getSession(ctx)
+  await queryClient.prefetchQuery(urn, () => PageService.get(urn, { headers }))
+  const state = queryClient.getQueryState<PossiblePageError>(RATING)
   const statusCode = state?.data?.message?.statusCode || 200
 
   return {

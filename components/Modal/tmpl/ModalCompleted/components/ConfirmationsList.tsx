@@ -18,7 +18,6 @@ export default function ConfirmationsList({
   return (
     <AppList
       elements={confirmations}
-      flexDirection="column"
       spacing={3}
       keyGetter={(confirmation) => confirmation.id}
       render={(confirmation, index) => (

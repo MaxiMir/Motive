@@ -2,10 +2,10 @@ import { AxiosError } from 'axios'
 import { useMutation, useQueryClient } from 'react-query'
 import { Button } from '@material-ui/core'
 import { SubscriptionPageDto, UserDto } from 'dto'
+import { FOLLOWING } from 'route'
 import useSnackbar from 'hooks/useSnackbar'
 import useOpenSignIn from 'hooks/useOpenSignIn'
 import useClient from 'hooks/useClient'
-import { QUERY_KEY } from 'views/FollowingView/hook'
 import { Options, Context, fetcher, getNextState } from './helper'
 
 export default function useRemoveFollowing(): (user: UserDto, index: number) => void {
@@ -15,11 +15,11 @@ export default function useRemoveFollowing(): (user: UserDto, index: number) => 
   const [enqueueSnackbar, closeSnackbar] = useSnackbar()
   const { mutate } = useMutation<void, AxiosError, Options, Context>(fetcher, {
     async onMutate({ user, index, add }: Options) {
-      await queryClient.cancelQueries(QUERY_KEY)
-      const previous = queryClient.getQueryData<SubscriptionPageDto>(QUERY_KEY)
+      await queryClient.cancelQueries(FOLLOWING)
+      const previous = queryClient.getQueryData<SubscriptionPageDto>(FOLLOWING)
 
       if (previous) {
-        queryClient.setQueryData(QUERY_KEY, getNextState(previous, user, index, add))
+        queryClient.setQueryData(FOLLOWING, getNextState(previous, user, index, add))
       }
 
       return { previous }
@@ -35,7 +35,7 @@ export default function useRemoveFollowing(): (user: UserDto, index: number) => 
     },
     onError(_, __, context) {
       if (context?.previous) {
-        queryClient.setQueryData<SubscriptionPageDto>(QUERY_KEY, context.previous)
+        queryClient.setQueryData<SubscriptionPageDto>(FOLLOWING, context.previous)
       }
     },
   })

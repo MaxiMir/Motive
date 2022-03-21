@@ -39,9 +39,3 @@ export const toMarkdown = (value: string): string =>
       '[$1]($1)',
     )
     .replace(/\\n/g, '  ')
-
-export const getRandomSort = <T>(array: T[]): T[] =>
-  array
-    .map((value) => ({ value, sort: Math.random() }))
-    .sort((a, b) => a.sort - b.sort)
-    .map(({ value }) => value)

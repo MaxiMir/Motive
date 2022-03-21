@@ -1,6 +1,4 @@
-import { getRandomSort } from 'helpers/prepare'
-
-const GRADIENTS = [
+export const getGradients = (): string[] => [
   'linear-gradient(to top left, rgba(16, 114, 236, 0.3) 0%, rgb(16, 114, 236) 100%)',
   'linear-gradient(to top left, rgba(39, 133, 106, 0.3) 0%, rgb(39, 133, 106) 100%)',
   'linear-gradient(to top left, rgba(212, 0, 255, 0.3) 0%, rgb(212, 0, 255) 100%)',
@@ -14,5 +12,3 @@ const GRADIENTS = [
   'linear-gradient(to top left, rgba(236, 255, 229, 0.3) 0%, rgb(236, 255, 229) 100%)',
   'linear-gradient(to top left, rgba(140, 25, 50, 0.3) 0%, rgb(140, 25, 50) 100%)',
 ]
-
-export const getGradients = (): string[] => getRandomSort(GRADIENTS)

@@ -15,7 +15,9 @@ import { getUserHref } from './helper'
 export const useUserPage = (): UseQueryResult<UserPageDto> => {
   const { key, urn } = useUserPageConfig()
 
-  return useQuery(key, () => PageService.getUser(urn))
+  return useQuery(key, () => PageService.getUser(urn), {
+    staleTime: 5_000,
+  })
 }
 
 export const useUserPageConfig = (): { key: string; urn: string } => {

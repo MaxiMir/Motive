@@ -5,6 +5,6 @@ import PageService from 'services/PageService'
 
 export default function useRatingPage(): UseQueryResult<RatingPageDto> {
   return useQuery(RATING, () => PageService.get(RATING), {
-    staleTime: 30_000,
+    staleTime: 5_000,
   })
 }

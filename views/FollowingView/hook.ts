@@ -5,6 +5,6 @@ import PageService from 'services/PageService'
 
 export default function useFollowingPage(): UseQueryResult<SubscriptionPageDto> {
   return useQuery(FOLLOWING, () => PageService.get(FOLLOWING), {
-    staleTime: 30_000,
+    staleTime: 5_000,
   })
 }

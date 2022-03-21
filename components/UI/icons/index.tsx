@@ -1,5 +1,5 @@
 export { default as TopOfTheDayIcon } from './TopOfTheDayIcon'
-export { default as MenuIcon } from './MenuIcon'
+export { default as LinkedInIcon } from './LinkedInIcon'
 export { default as SearchIcon } from './SearchIcon'
 export { default as RatingIcon } from './RatingIcon'
 export { default as FollowingIcon } from './FollowingIcon'

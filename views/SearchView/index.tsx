@@ -2,7 +2,6 @@ import { HashtagDto, UserDto } from 'dto'
 import AppTitle from 'components/UI/AppTitle'
 import AppContainer from 'components/UI/AppContainer'
 import AppBox from 'components/UI/AppBox'
-import AppList from 'components/UI/AppList'
 import Hashtag from 'components/Hashtag'
 import User from 'components/User'
 import SearchForm from './components/SearchForm'
@@ -28,12 +27,11 @@ export default function SearchView({ q, hashtags, users }: SearchViewProps): JSX
           <AppTitle variant="h4" component="h2" name="followers">
             Users
           </AppTitle>
-          <AppList<UserDto>
-            flexDirection="row"
-            elements={users}
-            keyGetter={(el) => el.id}
-            render={(user) => <User tmpl="search" user={user} />}
-          />
+          <AppBox flexWrap="wrap" spacing={2}>
+            {users.map((user) => (
+              <User tmpl="search" user={user} key={user.id} />
+            ))}
+          </AppBox>
         </AppBox>
         <AppBox flexDirection="column" spacing={2}>
           <AppTitle variant="h4" component="h2" name="popular">

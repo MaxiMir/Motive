@@ -7,6 +7,6 @@ export default function useSearchPage(): UseQueryResult<SearchPageDto> {
   const { asPath } = useRouter()
 
   return useQuery(asPath, () => PageService.get(asPath), {
-    staleTime: 30_000,
+    staleTime: 5_000,
   })
 }

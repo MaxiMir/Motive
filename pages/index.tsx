@@ -8,7 +8,6 @@ export default function MainPage(): JSX.Element {
   return (
     <Layout
       title={`${process.env.NEXT_PUBLIC_APP_NAME} • a social network for achieving goals`}
-      description={`${process.env.NEXT_PUBLIC_APP_NAME} • your assistant to achieve your goals`}
       withVerticalPadding={false}
     >
       <MainView />

@@ -25,23 +25,20 @@ export default function HashtagGradient({ name, gradient, views }: HashtagGradie
 
   return (
     <Button onClick={onClick} className={classes.button}>
-      <AppBox className={classes.wrap}>
-        <AppBox
-          alignItems="flex-start"
-          justifyContent="space-between"
-          flexDirection="column"
-          spacing={1}
-          p={2}
-          width="100%"
-          height="100%"
-        >
-          <AppTypography variant="h6" component="p">
-            {name}
-          </AppTypography>
-          <AppTypography variant="h4" component="p" className={classes.count}>
-            <b>{shortViews}</b>
-          </AppTypography>
-        </AppBox>
+      <AppBox
+        alignItems="flex-start"
+        justifyContent="space-between"
+        flexDirection="column"
+        spacing={1}
+        p={2}
+        className={classes.wrap}
+      >
+        <AppTypography variant="h6" component="p">
+          {name}
+        </AppTypography>
+        <AppTypography variant="h4" component="p" className={classes.count}>
+          <b>{shortViews}</b>
+        </AppTypography>
       </AppBox>
     </Button>
   )

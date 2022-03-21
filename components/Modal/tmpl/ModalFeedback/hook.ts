@@ -26,6 +26,7 @@ export default function useForm(goal: GoalDto, onSuccess: () => void): FormikPro
     validationSchema: schema,
     async onSubmit(data) {
       const formData = new FormData()
+
       formData.append('dayId', goal.day.id.toString())
       formData.append('text', data.text.trim())
       data.photos.forEach((photo) => formData.append('photos', photo))

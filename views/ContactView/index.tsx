@@ -5,6 +5,7 @@ import AppBox from 'components/UI/AppBox'
 import AppTypography from 'components/UI/AppTypography'
 import { TelegramIcon, LinkedInIcon } from 'components/UI/icons'
 import AppIcon from 'components/UI/AppIcon'
+import AppEmoji from '../../components/UI/AppEmoji'
 
 export default function ContactView(): JSX.Element {
   const classes = useStyles()
@@ -23,7 +24,9 @@ export default function ContactView(): JSX.Element {
         Contact Us
       </AppTitle>
       <AppBox flexDirection="column" spacing={2}>
-        <AppTypography>Write to us with or without cause. Any feedback from you is welcome 😉.</AppTypography>
+        <AppTypography>
+          Write to us with or without cause. Any feedback from you is welcome <AppEmoji name="wink" onlyEmoji />.
+        </AppTypography>
         <AppBox flexWrap="wrap" spacing={2}>
           <Button className={classes.button} onClick={onClickEmail}>
             <AppBox alignItems="center" justifyContent="center" className={classes.wrap}>

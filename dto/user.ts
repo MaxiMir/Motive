@@ -2,15 +2,21 @@ import { UserCharacteristicDto } from './characteristic'
 
 export interface UserBaseDto {
   readonly id: number
-  readonly nickname: string
   readonly name: string
+  readonly nickname: string
   readonly avatar?: string | null
   readonly email?: string | null
   readonly sub?: string | null
   readonly provider?: string
 }
 
-export type CreateUserDto = Readonly<Omit<UserBaseDto, 'id' | 'nickname'>>
+export type CreateUserDto = Omit<UserBaseDto, 'id' | 'nickname'>
+
+export interface UpdateUserDto {
+  name: UserBaseDto['name']
+  nickname: UserBaseDto['nickname']
+  avatar?: File | string | null
+}
 
 export interface UserDto extends UserBaseDto {
   readonly characteristic: UserCharacteristicDto

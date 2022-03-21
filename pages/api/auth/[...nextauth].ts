@@ -33,13 +33,20 @@ export default NextAuth({
       return Promise.resolve({ ...session, user: { id, name, nickname, avatar } })
     },
     async jwt({ token, account }) {
-      const { id, name, nickname, avatar } = await UserService.findOrCreate({
-        name: token.name || 'unknown',
-        email: token.email,
-        sub: token.sub,
-        avatar: token.picture,
-        provider: account?.provider,
-      })
+      if (!token.email) {
+        return token
+      }
+
+      const [candidate] = await UserService.find({ email: token.email }, 0, 1)
+      const { id, name, nickname, avatar } =
+        candidate ||
+        (await UserService.create({
+          name: token.name || 'unknown',
+          email: token.email,
+          sub: token.sub,
+          avatar: token.picture,
+          provider: account?.provider,
+        }))
 
       return Promise.resolve({ ...token, id, name, nickname, avatar })
     },

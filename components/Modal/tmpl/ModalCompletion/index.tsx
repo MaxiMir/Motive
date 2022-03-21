@@ -73,7 +73,7 @@ export default function ModalCompletion({ goal, onClose }: ModalCompletionProps)
                       {values.photos.map((file, index) => (
                         <Photo
                           tmpl="button"
-                          file={file}
+                          image={file}
                           disabled={isSubmitting}
                           key={index}
                           onClick={() => remove(index)}
@@ -98,7 +98,7 @@ export default function ModalCompletion({ goal, onClose }: ModalCompletionProps)
               </AppBox>
             )}
             <AppBox spacing={2} width="100%">
-              <Photo tmpl="input" disabled={isSubmitting} onSelect={onSelectPhoto} />
+              <Photo tmpl="input" disabled={isSubmitting} multiple onSelect={onSelectPhoto} />
               <Video tmpl="input" disabled onSelect={onSelectVideo} />
             </AppBox>
             {touched.photos && errors.photos && (

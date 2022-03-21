@@ -41,10 +41,10 @@ export const useMutateUserPage = (): [UserPageDto, (page: UserPageDto) => void] 
 }
 
 export const useMutateGoals = (): [GoalDto[], (goals: GoalDto[]) => void] => {
-  const [page, mutate] = useMutateUserPage()
+  const [page, mutatePage] = useMutateUserPage()
 
   const mutateGoals = (goals: GoalDto[]) =>
-    mutate(
+    mutatePage(
       produce(page, (draft) => {
         draft.content.goals = goals
       }),
@@ -63,7 +63,6 @@ export const useScrollToGoal = (): void => {
 
 export const useChangeDayUrl = (): ((goals: GoalDto[], goalId: number, dayId: number) => void) => {
   const router = useRouter()
-
   return (goals: GoalDto[], goalId: number, dayId: number) => {
     const { [SEARCH_PARAMS.DATES]: _, ...restParams } = getQueryParams()
     const datesParam = goals.map(({ id, day }) => `${id}:${id !== goalId ? day.id : dayId}`).join(',')

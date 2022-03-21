@@ -1,4 +1,6 @@
 import { Button, createStyles, makeStyles } from '@material-ui/core'
+import { numberToShort } from 'helpers/prepare'
+import AppBox from 'components/UI/AppBox'
 import AppEmoji, { AppEmojiName } from 'components/UI/AppEmoji'
 
 export interface ActionGoalProps {
@@ -6,15 +8,27 @@ export interface ActionGoalProps {
   name: AppEmojiName
   title: string
   active?: boolean
+  count?: number
   onClick: () => void
 }
 
-export default function ActionGoal({ name, active, title, onClick }: ActionGoalProps): JSX.Element {
+export default function ActionGoal({ name, active, title, count, onClick }: ActionGoalProps): JSX.Element {
   const classes = useStyles({ name, active })
+  const countShort = !count ? null : numberToShort(count)
 
   return (
-    <Button variant="outlined" className={classes.button} title={title} aria-label={title} onClick={onClick}>
-      <AppEmoji name={name} variant="h6" className={classes.buttonContent} />
+    <Button
+      variant="outlined"
+      size="small"
+      className={classes.button}
+      title={title}
+      aria-label={title}
+      onClick={onClick}
+    >
+      <AppBox spacing={1}>
+        <AppEmoji name={name} />
+        {countShort}
+      </AppBox>
     </Button>
   )
 }
@@ -24,8 +38,7 @@ type UseStylesProps = Pick<ActionGoalProps, 'name' | 'active'>
 const useStyles = makeStyles((theme) => {
   return createStyles({
     button: {
-      width: 36,
-      height: 36,
+      height: 36.5,
       minWidth: 'initial',
       transition: 'all .2s ease-in-out',
       filter: (props: UseStylesProps) => (props.active ? 'initial' : 'grayscale(1)'),

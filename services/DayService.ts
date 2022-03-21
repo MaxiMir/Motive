@@ -6,9 +6,7 @@ export default class DayService {
     return Axios.get(`/days/${id}`)
   }
 
-  static incrementViews(data: { id: number }): Promise<void> {
-    const { id } = data
-
+  static incrementViews(id: number): Promise<void> {
     return Axios.patch(`/days/${id}/views`)
   }
 }

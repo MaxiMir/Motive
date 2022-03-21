@@ -25,7 +25,7 @@ export default function Menu({ message }: MenuProps): JSX.Element {
 
   return (
     <>
-      <AppMenuButton color="primary" ariaControls="message-menu" title="open message menu" compact onClick={onOpen} />
+      <AppMenuButton color="primary" ariaControls="message-menu" title="Open message menu" compact onClick={onOpen} />
       {anchorEl && <MenuList anchorEl={anchorEl} message={message} onOpenModal={toggleModal} onClose={onClose} />}
       {withModal && <Modal tmpl="edit-message" message={message} onClose={toggleModal} />}
     </>

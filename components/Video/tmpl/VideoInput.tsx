@@ -24,8 +24,8 @@ export default function VideoInput({ disabled, onSelect }: VideoInputProps): JSX
         color="secondary"
         variant="outlined"
         className={classes.control}
-        title="load video"
-        aria-label="load video"
+        title="Load video"
+        aria-label="Load video"
         disabled={disabled}
         onClick={onClick}
       >

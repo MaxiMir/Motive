@@ -14,6 +14,7 @@ import Following from './components/Following'
 import { useScrollToGoal } from './hook'
 
 const Goal = dynamic(() => import('components/Goal'))
+const Edit = dynamic(() => import('./components/Edit'))
 const AddGoal = dynamic(() => import('./components/AddGoal'))
 
 const CHARACTERISTIC_NAMES: MainCharacteristicName[] = ['motivation', 'creativity', 'support']
@@ -41,7 +42,7 @@ export default function UserView({ user }: UserViewProps): JSX.Element {
         <AppTypography variant="h5" component="h1">
           {name}
         </AppTypography>
-        {!clientPage && <Following id={user.id} following={following} />}
+        {clientPage ? <Edit user={user} /> : <Following id={user.id} following={following} />}
       </AppBox>
       <AppBox flexDirection="column" spacing={3} flex={1}>
         <AppBox spacing={isMobile ? 1 : 4} mb={4}>

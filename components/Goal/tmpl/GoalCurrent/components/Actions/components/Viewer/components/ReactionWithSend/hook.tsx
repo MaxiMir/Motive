@@ -34,7 +34,7 @@ export default function useSetReaction(goal: GoalDto, name: DayCharacteristicNam
       onSuccess(_, { add }) {
         add &&
           enqueueSnackbar({
-            message: `You have increased goal's ${name} points`,
+            message: `You have increased day's ${name} points`,
             severity: 'success',
             icon: 'magic',
           })

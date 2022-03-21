@@ -20,7 +20,7 @@ export const useChangeDay = (goalId: number): [boolean, (dayId: number) => void]
 export const useIncreaseViews = (goal: GoalDto, clientId?: number): void => {
   const { id } = goal.day
 
-  useQuery(['views', id, clientId], () => DayService.incrementViews({ id }), {
+  useQuery(['views', id, clientId], () => DayService.incrementViews(id), {
     refetchOnWindowFocus: false,
     refetchOnReconnect: false,
     enabled: !!clientId && clientId !== goal.owner.id,

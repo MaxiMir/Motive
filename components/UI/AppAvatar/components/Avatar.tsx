@@ -1,17 +1,15 @@
-import Image from 'next/image'
 import { makeStyles } from '@material-ui/core/styles'
-import { getImageUrl } from 'helpers/url'
+import AppImage from 'components/UI/AppImage'
 
 interface AvatarProps {
   src: string
-  size: 80 | 55 | 35 | 32 | 26
+  size: number
 }
 
 export default function Avatar({ src, size }: AvatarProps): JSX.Element {
   const classes = useStyles()
-  const srcFull = src.includes('https://') ? src : getImageUrl(src)
 
-  return <Image src={srcFull} alt="avatar" width={size} height={size} objectFit="cover" className={classes.avatar} />
+  return <AppImage src={src} alt="avatar" width={size} height={size} objectFit="cover" className={classes.avatar} />
 }
 
 const useStyles = makeStyles({

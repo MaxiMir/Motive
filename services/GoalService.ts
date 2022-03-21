@@ -3,11 +3,11 @@ import Axios from 'lib/axios'
 import { Service } from './Service'
 
 export default class GoalService extends Service {
-  static create(data: CreateGoalDto): Promise<CreatedGoal> {
-    return Axios.post('/goals', data)
+  static create(dto: CreateGoalDto): Promise<CreatedGoal> {
+    return Axios.post('/goals', dto)
   }
 
-  static addDay(dto: CreateDayDto): Promise<CreatedGoal> {
+  static createDay(dto: CreateDayDto): Promise<CreatedGoal> {
     const { id, ...data } = dto
 
     return Axios.post(`/goals/${id}/days`, data)

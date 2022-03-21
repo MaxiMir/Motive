@@ -11,6 +11,7 @@ import { ModalEditMessageProps } from './tmpl/ModalEditMessage'
 import { ModalCompletedProps } from './tmpl/ModalCompleted'
 import { ModalJoinProps } from './tmpl/ModalJoin'
 import { ModalLeaveProps } from './tmpl/ModalLeave'
+import { ModalProfileProps } from './tmpl/ModalProfile'
 
 const ModalSignIn = dynamic(() => import('./tmpl/ModalSignIn'))
 const ModalGoal = dynamic(() => import('./tmpl/ModalGoal'))
@@ -24,6 +25,7 @@ const ModalEditMessage = dynamic(() => import('./tmpl/ModalEditMessage'))
 const ModalCompleted = dynamic(() => import('./tmpl/ModalCompleted'))
 const ModalJoin = dynamic(() => import('./tmpl/ModalJoin'))
 const ModalLeave = dynamic(() => import('./tmpl/ModalLeave'))
+const ModalProfile = dynamic(() => import('./tmpl/ModalProfile'))
 
 export default function Modal(
   props:
@@ -38,7 +40,8 @@ export default function Modal(
     | ModalEditMessageProps
     | ModalCompletedProps
     | ModalJoinProps
-    | ModalLeaveProps,
+    | ModalLeaveProps
+    | ModalProfileProps,
 ): JSX.Element {
   switch (props.tmpl) {
     case 'signIn':
@@ -65,5 +68,7 @@ export default function Modal(
       return <ModalJoin {...props} />
     case 'leave':
       return <ModalLeave {...props} />
+    case 'profile':
+      return <ModalProfile {...props} />
   }
 }

@@ -5,6 +5,6 @@ import ConfirmationService from 'services/ConfirmationService'
 export const TAKE = 10
 export const PRELOAD_DIFF = 3
 
-export const partialFetcher = (userId: number): ((c: QueryFunctionContext) => Promise<ConfirmationDto[]>) => {
-  return ({ pageParam = 0 }: QueryFunctionContext) => ConfirmationService.getByUser(userId, pageParam, TAKE)
+export const partialFetcher = (user: number): ((c: QueryFunctionContext) => Promise<ConfirmationDto[]>) => {
+  return ({ pageParam = 0 }: QueryFunctionContext) => ConfirmationService.get({ user }, pageParam, TAKE)
 }

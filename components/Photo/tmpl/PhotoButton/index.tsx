@@ -1,23 +1,30 @@
+import dynamic from 'next/dynamic'
 import { Button, IconButton, makeStyles } from '@material-ui/core'
 import AppBox from 'components/UI/AppBox'
 import AppIcon from 'components/UI/AppIcon'
-import Image from './components/Image'
+
+const AppImage = dynamic(() => import('components/UI/AppImage'))
+const LocalImage = dynamic(() => import('./components/LocalImage'))
 
 export interface PhotoButtonProps {
   tmpl: 'button'
-  file: File
+  image: File | string
   disabled: boolean
   onClick: () => void
 }
 
-export default function PhotoButton({ file, disabled, onClick }: PhotoButtonProps): JSX.Element {
+export default function PhotoButton({ image, disabled, onClick }: PhotoButtonProps): JSX.Element {
   const classes = useStyles()
 
   return (
     <Button color="secondary" variant="outlined" className={classes.photo} component="div">
-      <AppBox justifyContent="center" alignItems="center" className={classes.photoContent}>
-        <Image file={file} />
-        <IconButton className={classes.remove} aria-label="remove photo" disabled={disabled} onClick={onClick}>
+      <AppBox justifyContent="center" alignItems="center" className={classes.photoContent} position="relative">
+        {image instanceof File ? (
+          <LocalImage file={image} />
+        ) : (
+          <AppImage src={image} layout="fill" objectFit="contain" />
+        )}
+        <IconButton className={classes.remove} aria-label="Remove photo" disabled={disabled} onClick={onClick}>
           <AppIcon name="cancel" color="secondary" />
         </IconButton>
       </AppBox>

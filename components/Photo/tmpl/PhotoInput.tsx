@@ -4,11 +4,12 @@ import AppEmoji from 'components/UI/AppEmoji'
 
 export interface PhotoInputProps {
   tmpl: 'input'
+  multiple?: boolean
   disabled: boolean
   onSelect: (photos: File[]) => void
 }
 
-export default function PhotoInput({ disabled, onSelect }: PhotoInputProps): JSX.Element {
+export default function PhotoInput({ multiple, disabled, onSelect }: PhotoInputProps): JSX.Element {
   const classes = useStyles()
   const photoInputRef = useRef<HTMLInputElement>(null)
 
@@ -24,8 +25,8 @@ export default function PhotoInput({ disabled, onSelect }: PhotoInputProps): JSX
         color="secondary"
         variant="outlined"
         className={classes.control}
-        title="load photo"
-        aria-label="load photo"
+        title="Load photo"
+        aria-label="Load photo"
         disabled={disabled}
         onClick={onClick}
       >
@@ -35,7 +36,7 @@ export default function PhotoInput({ disabled, onSelect }: PhotoInputProps): JSX
         ref={photoInputRef}
         type="file"
         accept="image/*"
-        multiple
+        multiple={multiple}
         className={classes.input}
         onChange={onAddPhoto}
       />

@@ -29,7 +29,7 @@ export default function Menu({ goalId, title, href, clientGoal }: MenuProps): JS
 
   return (
     <>
-      <AppMenuButton ariaControls="goal-menu" title="open goal menu" onClick={onOpen} />
+      <AppMenuButton ariaControls="goal-menu" title="Open goal menu" onClick={onOpen} />
       {anchorEl && (
         <MenuList anchorEl={anchorEl} goalId={goalId} clientGoal={clientGoal} onShare={onShare} onClose={onClose} />
       )}

@@ -54,7 +54,7 @@ export default function Calendar({ goalId, datesMap, date, isLoading, onChangeDa
         value={value}
         shouldDisableDate={checkShouldDisableDate}
         TextFieldComponent={() => (
-          <Button aria-label="select a goal date" onClick={toggleModal}>
+          <Button aria-label="Select a goal date" onClick={toggleModal}>
             {formattedValue}
           </Button>
         )}

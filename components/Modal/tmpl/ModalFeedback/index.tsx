@@ -66,7 +66,7 @@ export default function ModalFeedback({ goal, onClose }: ModalFeedbackProps): JS
                       {values.photos.map((file, index) => (
                         <Photo
                           tmpl="button"
-                          file={file}
+                          image={file}
                           disabled={isSubmitting}
                           key={index}
                           onClick={() => remove(index)}
@@ -91,7 +91,7 @@ export default function ModalFeedback({ goal, onClose }: ModalFeedbackProps): JS
               </AppBox>
             )}
             <AppBox spacing={2} width="100%">
-              <Photo tmpl="input" disabled={isSubmitting} onSelect={onSelectPhoto} />
+              <Photo tmpl="input" multiple disabled={isSubmitting} onSelect={onSelectPhoto} />
               <Video tmpl="input" disabled onSelect={onSelectVideo} />
             </AppBox>
           </AppBox>

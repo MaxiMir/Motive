@@ -34,7 +34,7 @@ const useSendAddDay = () => {
   const [goals, mutateGoals] = useMutateGoals()
   const changeDayUrl = useChangeDayUrl()
 
-  return useMutation(GoalService.addDay, {
+  return useMutation(GoalService.createDay, {
     onSuccess({ days }, { id }) {
       const day = days[days.length - 1]
 

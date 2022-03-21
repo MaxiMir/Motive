@@ -36,7 +36,7 @@ export default function LeftMenu(): JSX.Element {
 
   return (
     <div>
-      <Button aria-label="open menu" onClick={toggleModal}>
+      <Button aria-label="Open menu" onClick={toggleModal}>
         <AppIcon name="menu" />
       </Button>
       <Drawer open={open} onClose={toggleModal}>

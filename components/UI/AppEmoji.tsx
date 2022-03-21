@@ -35,6 +35,7 @@ export type AppEmojiName =
   | 'pitt'
   | 'stage'
   | 'tired'
+  | 'wink'
   | 'save'
   | 'switch'
   | 'bug'
@@ -144,6 +145,8 @@ function getContent(name: AppEmojiName) {
       return '🕷'
     case 'stage':
       return '🚀'
+    case 'wink':
+      return '😉'
     case 'tired':
       return '😮‍💨'
     case 'switch':

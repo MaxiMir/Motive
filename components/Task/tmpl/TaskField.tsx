@@ -44,7 +44,7 @@ export default function TaskField({ index, date, taskCount, onToggleDate, onRemo
           component={AppInput}
         />
         <AppBox alignSelf="flex-start" mt={2}>
-          <AppIconButton name="close" aria-label="remove task" disabled={taskCount === 1} onClick={onRemove} />
+          <AppIconButton name="close" aria-label="Remove task" disabled={taskCount === 1} onClick={onRemove} />
         </AppBox>
       </AppBox>
       <AppBox height={48} alignItems="center" pl={1} spacing={1}>

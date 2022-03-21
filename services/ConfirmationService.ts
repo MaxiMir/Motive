@@ -1,17 +1,18 @@
 import Axios from 'lib/axios'
 import { ConfirmationDto } from 'dto'
-import { Service } from './Service'
+import { Service, WhereParams } from './Service'
 
 export default class ConfirmationService extends Service {
   static create(data: FormData): Promise<void> {
     return Axios.post('/confirmations', data)
   }
 
-  static getByUser(user: number, page: number, take: number): Promise<ConfirmationDto[]> {
-    const pagination = ConfirmationService.getPaginationParams(page, take)
+  static get(where: WhereParams, page: number, take: number): Promise<ConfirmationDto[]> {
+    const whereParams = ConfirmationService.getWhereParams(where)
+    const paginationParams = ConfirmationService.getPaginationParams(page, take)
 
     return Axios.get('/confirmations', {
-      params: { 'where[user]': user, ...pagination },
+      params: { ...whereParams, ...paginationParams },
     })
   }
 }

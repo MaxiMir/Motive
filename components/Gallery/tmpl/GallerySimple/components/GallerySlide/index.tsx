@@ -13,7 +13,7 @@ export default function GallerySlide({ animation, ...props }: GalleryPhotoProps)
   const classes = useStyles(props)
 
   return (
-    <div aria-label="open gallery" className={classes.container}>
+    <div aria-label="Open gallery" className={classes.container}>
       {!animation ? (
         <GalleryImage {...props} />
       ) : (

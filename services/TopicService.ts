@@ -1,13 +1,14 @@
 import Axios from 'lib/axios'
 import { CreateMessageDto, TopicDto, UpdateMessageDto } from 'dto'
-import { Service } from './Service'
+import { Service, WhereParams } from './Service'
 
 export default class TopicService extends Service {
-  static getByDayId(dayId: number, page: number, take: number): Promise<TopicDto[]> {
-    const pagination = TopicService.getPaginationParams(page, take)
+  static get(where: WhereParams, page: number, take: number): Promise<TopicDto[]> {
+    const whereParams = TopicService.getWhereParams(where)
+    const paginationParams = TopicService.getPaginationParams(page, take)
 
     return Axios.get('/topics', {
-      params: { 'where[day]': dayId, ...pagination },
+      params: { ...whereParams, ...paginationParams },
     })
   }
 

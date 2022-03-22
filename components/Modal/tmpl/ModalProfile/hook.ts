@@ -10,22 +10,31 @@ import { useMutateUserPage } from 'views/UserView/hook'
 import { getNextState } from './helper'
 
 export default function useForm(user: UserBaseDto, onSuccess: () => void): FormikProps<UpdateUserDto> {
-  const { id, name, nickname, avatar } = user
   const { mutateAsync } = useSendUpdateUser()
   return useFormik<UpdateUserDto>({
     initialValues: {
-      name,
-      nickname,
-      avatar,
+      name: user.name,
+      nickname: user.nickname,
+      avatar: user.avatar,
     },
     validationSchema: schema,
-    async onSubmit(data) {
-      const formData = new FormData()
+    async onSubmit(data, { setFieldError }) {
+      const { id } = user
+      const { name, nickname, avatar } = data
+      const usersDB = user.nickname === nickname ? null : await UserService.find({ nickname }, 0, 1)
 
-      formData.append('name', data.name)
-      formData.append('nickname', data.nickname)
-      formData.append('avatar', data.avatar || '')
-      await mutateAsync({ id, formData })
+      if (usersDB?.length) {
+        setFieldError('nickname', 'nickname is busy')
+        return
+      }
+
+      if (avatar instanceof File) {
+        const formData = new FormData()
+        formData.append('avatar', avatar)
+        await UserService.updateAvatar({ id, formData })
+      }
+
+      await mutateAsync({ id, data: { name, nickname } })
       onSuccess()
     },
   })
@@ -39,8 +48,8 @@ const useSendUpdateUser = () => {
     async onSuccess(user) {
       const userBaseHref = getUserHref(user.nickname)
       const as = setQueryParams(userBaseHref, getQueryParams())
-      mutatePage(getNextState(page, user))
 
+      mutatePage(getNextState(page, user))
       await router.push(as, as, { shallow: true })
     },
   })

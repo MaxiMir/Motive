@@ -30,7 +30,6 @@ export default function useForm(goal: GoalDto, onSuccess: () => void): FormikPro
     validationSchema: schema,
     async onSubmit(data) {
       const formData = new FormData()
-
       formData.append('text', data.text.trim())
       formData.append('end', data.end.toISOString())
       formData.append('goalId', data.goalId.toString())

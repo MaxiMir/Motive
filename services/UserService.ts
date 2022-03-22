@@ -1,6 +1,9 @@
 import Axios from 'lib/axios'
-import { CreateUserDto, UserBaseDto } from 'dto'
+import { CreateUserDto, UpdateUserDto, UserBaseDto } from 'dto'
 import { Service, WhereParams } from './Service'
+
+type UpdateParams = { id: number; data: UpdateUserDto }
+type UpdateAvatarParams = { id: number; formData: FormData }
 
 export default class UserService extends Service {
   static create(dto: CreateUserDto): Promise<UserBaseDto> {
@@ -16,7 +19,11 @@ export default class UserService extends Service {
     })
   }
 
-  static update({ id, formData }: { id: number; formData: FormData }): Promise<UserBaseDto> {
-    return Axios.patch(`/users/${id}`, formData)
+  static update({ id, data }: UpdateParams): Promise<UserBaseDto> {
+    return Axios.put(`/users/${id}`, data)
+  }
+
+  static updateAvatar({ id, formData }: UpdateAvatarParams): Promise<UserBaseDto> {
+    return Axios.patch(`/users/${id}/avatar`, formData)
   }
 }

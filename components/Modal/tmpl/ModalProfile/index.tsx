@@ -1,3 +1,4 @@
+import dynamic from 'next/dynamic'
 import { Field, Form, FormikProvider } from 'formik'
 import { createStyles, makeStyles } from '@material-ui/core'
 import { UserBaseDto } from 'dto'
@@ -8,6 +9,8 @@ import AppInput from 'components/UI/AppInput'
 import AppBox from 'components/UI/AppBox'
 import useForm from './hook'
 
+const Alert = dynamic(() => import('@material-ui/lab/Alert'))
+
 export interface ModalProfileProps {
   tmpl: 'profile'
   user: UserBaseDto
@@ -17,7 +20,7 @@ export interface ModalProfileProps {
 export default function ModalProfile({ user, onClose }: ModalProfileProps): JSX.Element {
   const classes = useStyles()
   const form = useForm(user, onClose)
-  const { isSubmitting, values, setFieldValue, handleSubmit } = form
+  const { isSubmitting, values, touched, errors, setFieldValue, handleSubmit } = form
 
   const setAvatar = (files: File[]) => setFieldValue('avatar', files[0])
 
@@ -53,6 +56,11 @@ export default function ModalProfile({ user, onClose }: ModalProfileProps): JSX.
               <Photo tmpl="input" disabled={isSubmitting} onSelect={setAvatar} />
             ) : (
               <Photo tmpl="button" image={values.avatar} disabled={isSubmitting} onClick={clearAvatar} />
+            )}
+            {touched.avatar && errors.avatar && (
+              <Alert severity="error" variant="outlined" style={{ width: '100%' }}>
+                {errors.avatar}
+              </Alert>
             )}
           </AppBox>
         </Form>

@@ -10,9 +10,7 @@ interface RepeatProps {
 export default function Repeat({ goalId }: RepeatProps): JSX.Element {
   const { isLoading, mutate } = useSendCreateMember()
 
-  const onClick = () => {
-    mutate({ goalId, started: getToday() })
-  }
+  const onClick = () => mutate({ goalId, started: getToday() })
 
   return (
     <AppBox justifyContent="flex-end">

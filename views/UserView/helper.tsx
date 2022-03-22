@@ -1,5 +1,13 @@
-import { UserCharacteristicName, UserDetailDto } from 'dto'
+import produce from 'immer'
+import { GoalDto, UserCharacteristicName, UserDetailDto, UserPageDto } from 'dto'
 import AppEmoji from 'components/UI/AppEmoji'
+
+export const getNextState = (page: UserPageDto, goals: GoalDto[]): UserPageDto =>
+  produce(page, (draft) => {
+    draft.content.goals = goals
+  })
+
+const getGoalsDescription = (user: UserDetailDto) => user.goals.map((g) => g.name).join(', ')
 
 interface UserMeta {
   title?: string
@@ -8,8 +16,6 @@ interface UserMeta {
   type: string
   image?: string
 }
-
-const getGoalsDescription = (user: UserDetailDto) => user.goals.map((g) => g.name).join(', ')
 
 export const getUserMeta = (user?: UserDetailDto): UserMeta | null => {
   if (!user) {

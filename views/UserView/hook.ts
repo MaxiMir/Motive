@@ -1,6 +1,5 @@
 import { useEffect } from 'react'
 import { useRouter } from 'next/router'
-import produce from 'immer'
 import { AxiosError } from 'axios'
 import { useMutation, useQuery, useQueryClient, UseQueryResult } from 'react-query'
 import { UseMutationResult } from 'react-query/types/react/types'
@@ -10,7 +9,7 @@ import MemberService from 'services/MemberService'
 import { scrollToElem } from 'helpers/dom'
 import { getQueryParams, SEARCH_PARAMS, setQueryParams } from 'helpers/url'
 import useClient from 'hooks/useClient'
-import { getUserHref } from './helper'
+import { getNextState, getUserHref } from './helper'
 
 export const useUserPage = (): UseQueryResult<UserPageDto> => {
   const { key, urn } = useUserPageConfig()
@@ -43,12 +42,9 @@ export const useMutateUserPage = (): [UserPageDto, (page: UserPageDto) => void] 
 export const useMutateGoals = (): [GoalDto[], (goals: GoalDto[]) => void] => {
   const [page, mutatePage] = useMutateUserPage()
 
-  const mutateGoals = (goals: GoalDto[]) =>
-    mutatePage(
-      produce(page, (draft) => {
-        draft.content.goals = goals
-      }),
-    )
+  const mutateGoals = (goals: GoalDto[]) => {
+    mutatePage(getNextState(page, goals))
+  }
 
   return [page.content.goals, mutateGoals]
 }
@@ -63,6 +59,7 @@ export const useScrollToGoal = (): void => {
 
 export const useChangeDayUrl = (): ((goals: GoalDto[], goalId: number, dayId: number) => void) => {
   const router = useRouter()
+
   return (goals: GoalDto[], goalId: number, dayId: number) => {
     const { [SEARCH_PARAMS.DATES]: _, ...restParams } = getQueryParams()
     const datesParam = goals.map(({ id, day }) => `${id}:${id !== goalId ? day.id : dayId}`).join(',')

@@ -23,9 +23,7 @@ export default function AppTabs({ tabs, content, ariaLabel, initial = 0 }: AppTa
     'aria-labelledby': `simple-tab-${index}`,
   })
 
-  const onChange = (_event: ChangeEvent<unknown>, newValue: number) => {
-    setValue(newValue)
-  }
+  const onChange = (_event: ChangeEvent<unknown>, newValue: number) => setValue(newValue)
 
   return (
     <>

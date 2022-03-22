@@ -16,9 +16,7 @@ export default function LocalImage({ file }: LocalImageProps): JSX.Element {
   useEffect(() => {
     const reader = new FileReader()
 
-    reader.onloadend = () => {
-      setSource(reader.result as string)
-    }
+    reader.onloadend = () => setSource(reader.result as string)
 
     reader.readAsDataURL(file)
   }, [file])

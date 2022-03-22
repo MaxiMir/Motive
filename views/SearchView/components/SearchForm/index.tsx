@@ -14,9 +14,7 @@ export default function SearchForm({ q }: SearchFormProps): JSX.Element {
   const form = useForm(q || '')
   const { values, setFieldValue } = form
 
-  const onClickClose = () => {
-    setFieldValue('q', '')
-  }
+  const onClickClose = () => setFieldValue('q', '')
 
   return (
     <FormikProvider value={form}>

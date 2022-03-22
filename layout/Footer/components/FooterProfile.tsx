@@ -14,9 +14,7 @@ export default function FooterProfile({ nickname, asPath }: FooterProfileProps):
   const href = !nickname ? undefined : getUserHref(nickname)
   const selected = !href ? false : asPath.includes(href)
 
-  const onClick = () => {
-    openSignIn({ callbackUrl: '/' })
-  }
+  const onClick = () => openSignIn({ callbackUrl: '/' })
 
   return (
     <Button href={href} onClick={href ? undefined : onClick}>

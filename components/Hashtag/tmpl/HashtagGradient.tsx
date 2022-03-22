@@ -27,18 +27,18 @@ export default function HashtagGradient({ name, gradient, views }: HashtagGradie
     <Button onClick={onClick} className={classes.button}>
       <AppBox
         alignItems="flex-start"
-        justifyContent="space-between"
         flexDirection="column"
-        spacing={1}
+        justifyContent="space-between"
         p={2}
         className={classes.wrap}
       >
-        <AppTypography variant="h6" component="p">
-          {name}
+        <AppTypography variant="subtitle1" component="p">
+          <b>{name}</b>
         </AppTypography>
-        <AppTypography variant="h4" component="p" className={classes.count}>
-          <b>{shortViews}</b>
+        <AppTypography variant="h4" component="p" className={classes.shortName}>
+          <b>{name}</b>
         </AppTypography>
+        <AppTypography className={classes.count}>{shortViews}</AppTypography>
       </AppBox>
     </Button>
   )
@@ -72,11 +72,17 @@ const useStyles = makeStyles((theme) =>
       bottom: 0,
       left: 0,
       right: 0,
-      background: 'rgba(1, 1, 1, 0.1)',
+      overflow: 'hidden',
     },
     count: {
-      alignSelf: 'flex-end',
       opacity: 0.5,
+    },
+    shortName: {
+      background: 'linear-gradient(to right, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.01))',
+      '-webkit-background-clip': 'text',
+      '-webkit-text-fill-color': 'transparent',
+      color: 'rgba(255, 255, 255, 0.05)',
+      position: 'relative',
     },
   }),
 )

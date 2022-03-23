@@ -7,12 +7,12 @@ import AppEmoji from 'components/UI/AppEmoji'
 
 const Modal = dynamic(() => import('components/Modal'))
 
-interface CompleteProps {
+interface EndOfGoalProps {
   goal: GoalDto
   forTomorrow: boolean
 }
 
-export default function Complete({ goal, forTomorrow }: CompleteProps): JSX.Element {
+export default function EndOfGoal({ goal, forTomorrow }: EndOfGoalProps): JSX.Element {
   const [open, setOpen] = useState(false)
 
   const toggleModal = () => setOpen(!open)
@@ -26,7 +26,7 @@ export default function Complete({ goal, forTomorrow }: CompleteProps): JSX.Elem
         startIcon={<AppEmoji name="cup" onlyEmoji />}
         onClick={toggleModal}
       >
-        Complete
+        End
       </Button>
       {open && <Modal tmpl="completion" goal={goal} onClose={toggleModal} />}
     </TooltipTomorrow>

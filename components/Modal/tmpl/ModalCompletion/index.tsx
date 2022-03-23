@@ -109,7 +109,7 @@ export default function ModalCompletion({ goal, onClose }: ModalCompletionProps)
             <div className={classes.accordionWrap}>
               <AppAccordion
                 name="switch"
-                header="About Goal Completion"
+                header="Goal Completion"
                 id="goal"
                 ariaControls="about-goal-completion"
                 details={

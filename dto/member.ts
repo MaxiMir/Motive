@@ -16,7 +16,8 @@ export interface MemberDto {
   readonly goalId: number
   readonly dayId: number
   readonly userId: number
-  readonly lastEndOfDay: string
+  readonly started: string
+  readonly lastEndOfDay: string | null
 }
 
 export interface OwnershipDto {

@@ -43,13 +43,15 @@ export default function GoalCompleted({ confirmation, userId, inView, onView }: 
       <AppBox flexDirection="column" spacing={2} className={classes.content}>
         <AppBox flexDirection="column" spacing={1}>
           <AppTitle name="cup" variant="h6" component="h3">
-            {goal.name}{' '}
-            <span className={classes.runsForDays}>
-              {' '}
-              in <AppTooltip title={interval}>{duration}</AppTooltip>
-            </span>
+            {goal.name}
           </AppTitle>
           {inherited && <Inheritance owner={goal.owner} />}
+          <AppTypography variant="caption">
+            Duration:{' '}
+            <AppTooltip title={interval}>
+              <b className={classes.runsForDays}>{duration}</b>
+            </AppTooltip>
+          </AppTypography>
         </AppBox>
         {mainPhoto && <Gallery tmpl="simple" photos={[mainPhoto]} animation />}
         <AppBox justifyContent="space-between" alignItems="center">

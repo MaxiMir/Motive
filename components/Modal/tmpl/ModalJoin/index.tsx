@@ -78,7 +78,7 @@ export default function ModalJoin({ goal, onClose }: ModalJoinProps): JSX.Elemen
           <div>
             <AppAccordion
               name="knot"
-              header="About Membership"
+              header="Membership"
               id="tips"
               ariaControls="a-couple-of-important-words"
               details={

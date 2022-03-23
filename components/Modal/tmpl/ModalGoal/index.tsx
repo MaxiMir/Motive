@@ -139,7 +139,7 @@ export default function ModalGoal({ onClose }: ModalGoalProps): JSX.Element {
             <div>
               <AppAccordion
                 name="stage"
-                header="About Stages"
+                header="Stages"
                 id="stage"
                 ariaControls="about-stages-content"
                 details={

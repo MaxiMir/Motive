@@ -3,7 +3,7 @@ import { GoalDto, MemberDto } from 'dto'
 import { getNextDayId } from './helper'
 
 const EndOfDay = dynamic(() => import('./components/EndOfDay'))
-const Complete = dynamic(() => import('./components/Complete'))
+const EndOfGoal = dynamic(() => import('./components/EndOfGoal'))
 
 interface CompletionProps {
   goal: GoalDto
@@ -17,7 +17,7 @@ export default function Completion({ goal, forTomorrow, clientMember }: Completi
   return (
     <>
       {!nextDayId ? (
-        <Complete goal={goal} forTomorrow={forTomorrow} />
+        <EndOfGoal goal={goal} forTomorrow={forTomorrow} />
       ) : (
         <EndOfDay goal={goal} nextDayId={nextDayId} forTomorrow={forTomorrow} clientMember={clientMember} />
       )}

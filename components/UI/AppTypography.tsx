@@ -3,7 +3,7 @@ import { Typography, TypographyProps } from '@material-ui/core'
 import { createStyles, makeStyles } from '@material-ui/core/styles'
 
 export type AppTypographyProps = Omit<TypographyProps, 'variant' | 'color'> & {
-  variant?: 'h1' | 'h2' | 'h4' | 'h5' | 'h6' | 'subtitle1'
+  variant?: 'h1' | 'h2' | 'h4' | 'h5' | 'h6' | 'subtitle1' | 'caption'
   component?: ElementType
   color?: TypographyProps['color']
 }
@@ -44,6 +44,9 @@ const useStyles = makeStyles((theme) =>
     h6: {
       fontSize: '1.15rem',
       lineHeight: 1.6,
+    },
+    caption: {
+      fontSize: '0.75rem',
     },
   }),
 )

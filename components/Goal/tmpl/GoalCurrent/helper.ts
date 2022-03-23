@@ -123,9 +123,3 @@ export const getGoalInfo = (goal: GoalDto, clientOwnership: OwnershipDto): GoalI
     forTomorrow,
   }
 }
-
-export const getGoalNextState = (goals: GoalDto[], goalId: number, day: DayDto): GoalDto[] =>
-  produce(goals, (draft) => {
-    const draftGoal = draft[draft.findIndex((g) => g.id === goalId)]
-    draftGoal.day = day
-  })

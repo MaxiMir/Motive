@@ -1,33 +1,32 @@
-import { useMemo, useState } from 'react'
-import { Button, IconButton, makeStyles, createStyles } from '@material-ui/core'
-import { KeyboardDatePicker } from '@material-ui/pickers'
+import { Button, createStyles, makeStyles, Paper } from '@material-ui/core'
+import { Calendar as MuiCalendar } from '@material-ui/pickers'
 import { MaterialUiPickersDate } from '@material-ui/pickers/typings/date'
 import useDebounceCb from 'hooks/useDebounceCb'
 import AppBox from 'components/UI/AppBox'
 import AppIcon from 'components/UI/AppIcon'
-import { getDateInfo, getDateKey } from './helper'
+import { getBorders, getDateKey } from './helper'
+import { useChangeDay } from './hook'
 
 interface CalendarProps {
   goalId: number
+  current: string
   datesMap: Record<string, number>
-  date: string
-  isLoading: boolean
-  onChangeDay: (id: number) => void
 }
 
-export default function Calendar({ goalId, datesMap, date, isLoading, onChangeDay }: CalendarProps): JSX.Element {
+export default function Calendar({ goalId, datesMap, current }: CalendarProps): JSX.Element {
   const classes = useStyles()
   const dates = Object.keys(datesMap)
-  const [open, setOpen] = useState(false)
-  const { value, formattedValue, nextValue, prevValue } = useMemo(() => getDateInfo(dates, date), [date, dates])
-  const onChangeDayWithDebounce = useDebounceCb(onChangeDay, 1000)
+  const date = new Date(current)
+  const { isLoading, mutate } = useChangeDay(goalId)
+  const onChangeDayWithDebounce = useDebounceCb(mutate, 1000)
+  const [prevValue, nextValue] = getBorders(dates, date)
+
+  const onChange = (newDate: Date) => {
+    mutate(datesMap[getDateKey(newDate)])
+  }
 
   const onClickArrow = (newDate: string) => {
     onChangeDayWithDebounce(datesMap[newDate])
-  }
-
-  const onChange = (newDate: Date) => {
-    onChangeDay(datesMap[getDateKey(newDate)])
   }
 
   const checkShouldDisableDate = (checkedDate: MaterialUiPickersDate) => {
@@ -40,42 +39,45 @@ export default function Calendar({ goalId, datesMap, date, isLoading, onChangeDa
     return !dates.some((d) => d === formattedCheckedDate)
   }
 
-  const toggleModal = () => setOpen(!open)
-
   return (
-    <AppBox alignSelf="center" alignItems="center" spacing={1}>
-      <IconButton className={classes.button} disabled={isLoading || !prevValue} onClick={() => onClickArrow(prevValue)}>
-        <AppIcon name="chevron_left" />
-      </IconButton>
-      <KeyboardDatePicker
-        variant="dialog"
-        format="MM/dd/yy"
-        open={open}
-        value={value}
-        shouldDisableDate={checkShouldDisableDate}
-        TextFieldComponent={() => (
-          <Button aria-label="Select a goal date" onClick={toggleModal}>
-            {formattedValue}
-          </Button>
-        )}
-        onClick={toggleModal}
-        onChange={(newDate) => newDate && onChange(newDate)}
-        onClose={toggleModal}
-      />
-      <IconButton
-        id={`next-${goalId}`}
-        className={classes.button}
-        disabled={isLoading || !nextValue}
-        onClick={() => onClickArrow(nextValue)}
-      >
-        <AppIcon name="chevron_right" />
-      </IconButton>
+    <AppBox flexDirection="column" alignItems="center" spacing={2} flex={1}>
+      <Paper className={classes.paper}>
+        <MuiCalendar
+          date={date}
+          shouldDisableDate={checkShouldDisableDate}
+          onChange={(newDate) => newDate && onChange(newDate)}
+        />
+      </Paper>
+      <AppBox spacing={4}>
+        <Button
+          size="small"
+          startIcon={<AppIcon name="chevron_left" />}
+          className={classes.button}
+          disabled={isLoading || !prevValue}
+          onClick={() => onClickArrow(prevValue)}
+        >
+          prev day
+        </Button>
+        <Button
+          id={`next-${goalId}`}
+          size="small"
+          endIcon={<AppIcon name="chevron_right" />}
+          className={classes.button}
+          disabled={isLoading || !nextValue}
+          onClick={() => onClickArrow(nextValue)}
+        >
+          next day
+        </Button>
+      </AppBox>
     </AppBox>
   )
 }
 
 const useStyles = makeStyles((theme) =>
   createStyles({
+    paper: {
+      overflow: 'hidden',
+    },
     button: {
       color: theme.text.silent,
     },

@@ -1,7 +1,7 @@
 import { ChangeEvent } from 'react'
 import dynamic from 'next/dynamic'
 import { Field } from 'formik'
-import { createStyles, FormControlLabel, Switch, makeStyles } from '@material-ui/core'
+import { createStyles, FormControlLabel, Switch, makeStyles, Tooltip } from '@material-ui/core'
 import AppBox from 'components/UI/AppBox'
 import AppInput from 'components/UI/AppInput'
 import AppIcon from 'components/UI/AppIcon'
@@ -47,8 +47,11 @@ export default function TaskField({ index, date, taskCount, onToggleDate, onRemo
           <AppIconButton name="close" aria-label="Remove task" disabled={taskCount === 1} onClick={onRemove} />
         </AppBox>
       </AppBox>
-      <AppBox height={48} alignItems="center" pl={1} spacing={1}>
-        <FormControlLabel control={<Switch size="small" onChange={onSwitchClick} />} label="remind me" />
+      <AppBox alignItems="center" spacing={1} pl={1} height={48}>
+        {/* TODO ADD  */}
+        <Tooltip title="soon">
+          <FormControlLabel label="remind me" disabled control={<Switch size="small" onChange={onSwitchClick} />} />
+        </Tooltip>
         {date && (
           <Field
             name={`tasks.${index}.date`}

@@ -3,7 +3,7 @@ import { UserBaseDto, GoalDto, DayCharacteristicName, OwnershipDto } from 'dto'
 import AppBox from 'components/UI/AppBox'
 import ReactionWithSend from './components/ReactionWithSend'
 import ReactionSupport from './components/ReactionSupport'
-import { checkOnRenderCompletion } from './helper'
+import { checkOnCompletion } from './helper'
 
 const Membership = dynamic(() => import('components/Membership'))
 const Completion = dynamic(() => import('./components/Completion'))
@@ -16,10 +16,10 @@ export interface ViewerProps {
 }
 
 export default function Viewer({ goal, owner, forTomorrow, clientOwnership }: ViewerProps): JSX.Element {
-  const renderCompletion = checkOnRenderCompletion(clientOwnership, goal)
+  const completion = checkOnCompletion(clientOwnership, goal)
 
   return (
-    <AppBox justifyContent="space-between">
+    <AppBox justifyContent="space-between" flexWrap="wrap">
       <AppBox spacing={1}>
         {(['motivation', 'creativity'] as DayCharacteristicName[]).map((name) => (
           <ReactionWithSend goal={goal} name={name} key={name} />
@@ -30,11 +30,7 @@ export default function Viewer({ goal, owner, forTomorrow, clientOwnership }: Vi
       {!clientOwnership.member ? (
         <Membership tmpl="join" goal={goal} />
       ) : (
-        <>
-          {renderCompletion && (
-            <Completion goal={goal} forTomorrow={forTomorrow} clientMember={clientOwnership.member} />
-          )}
-        </>
+        <>{completion && <Completion goal={goal} forTomorrow={forTomorrow} clientMember={clientOwnership.member} />}</>
       )}
     </AppBox>
   )

@@ -33,7 +33,7 @@ export default function EndOfDay({ goal, nextDayId, forTomorrow, clientMember }:
         }
         onClick={onClick}
       >
-        End of day
+        Next
       </Button>
     </TooltipTomorrow>
   )

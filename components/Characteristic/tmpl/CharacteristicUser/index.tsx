@@ -15,14 +15,14 @@ export interface CharacteristicUserProps {
 }
 
 export default function CharacteristicUser({ name, value, color }: CharacteristicUserProps): JSX.Element {
-  const preparedCb = name !== 'followers' ? Math.floor : numberToShort
+  const preparedValue = name !== 'followers' ? Math.floor(value) : numberToShort(value)
 
   return (
     <AppBox alignItems="baseline" spacing={0.5}>
       <AppEmoji name={name} variant="subtitle1" />
       <AppBox width={32}>
         <AppTypography variant="h6" component="p" style={{ color }}>
-          {preparedCb(value)}
+          {preparedValue}
           {!['completed', 'abandoned', 'followers'].includes(name) && <Level />}
         </AppTypography>
       </AppBox>

@@ -52,7 +52,7 @@ export default function ModalSupport({ goal, owner, onClose }: ModalSupportProps
             <div className={classes.accordionWrap}>
               <AppAccordion
                 name="helmet"
-                header="About Support"
+                header="Support"
                 id="support"
                 ariaControls="about-support-content"
                 details={

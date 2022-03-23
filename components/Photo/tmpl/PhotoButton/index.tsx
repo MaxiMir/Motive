@@ -17,8 +17,8 @@ export default function PhotoButton({ image, disabled, onClick }: PhotoButtonPro
   const classes = useStyles()
 
   return (
-    <Button color="secondary" variant="outlined" className={classes.photo} component="div">
-      <AppBox justifyContent="center" alignItems="center" className={classes.photoContent} position="relative">
+    <Button color="secondary" variant="outlined" className={classes.button} component="div">
+      <AppBox justifyContent="center" alignItems="center" className={classes.content} position="relative">
         {image instanceof File ? (
           <LocalImage file={image} />
         ) : (
@@ -33,12 +33,14 @@ export default function PhotoButton({ image, disabled, onClick }: PhotoButtonPro
 }
 
 const useStyles = makeStyles({
-  photo: {
+  button: {
     position: 'relative',
-    width: 'calc(25% - 12px)',
-    height: 120,
+    flex: '1 1 calc(33% - 12px)',
+    paddingBottom: 'calc(40% - 12px)',
+    maxWidth: 'calc(33% - 12px)',
+    overflow: 'hidden',
   },
-  photoContent: {
+  content: {
     position: 'absolute',
     top: 0,
     left: 0,

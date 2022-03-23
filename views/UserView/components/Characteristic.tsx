@@ -41,7 +41,7 @@ export default function Characteristic(props: CharacteristicProps): JSX.Element 
     <>
       <AppOptionalTooltip title={title}>
         <Button className={classes.button} onClick={onClick}>
-          <AppBox flexDirection="column" spacing={0.5} width={70}>
+          <AppBox flexDirection="column" alignItems="flex-start" spacing={0.5}>
             <AppTypography className={classes.title}>{name}</AppTypography>
             <CharacteristicBase tmpl="user" {...props} />
           </AppBox>

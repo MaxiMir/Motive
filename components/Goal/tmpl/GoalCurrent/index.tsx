@@ -9,7 +9,7 @@ import AppTitle from 'components/UI/AppTitle'
 import AppDot from 'components/UI/AppDot'
 import AppAccordion from 'components/UI/AppAccordion'
 import Characteristic from 'components/Characteristic'
-import { useChangeDay, useIncreaseViews } from './hook'
+import { useIncreaseViews } from './hook'
 import { getMember, getGoalHref, getGoalInfo, redefineTasks, getClientOwnership } from './helper'
 import Calendar from './components/Calendar'
 import Menu from './components/Menu'
@@ -52,7 +52,6 @@ export default function GoalCurrent({
   const classes = useStyles()
   const theme = useTheme()
   const colors = useCharacteristicColors()
-  const [isLoading, onChangeDay] = useChangeDay(id)
   const userMember = getMember(goal, userMembership, userId)
   const clientOwnership = getClientOwnership(goal, clientId, clientPage, clientMembership)
   const goalHref = getGoalHref(href, goal)
@@ -63,18 +62,15 @@ export default function GoalCurrent({
   useIncreaseViews(goal, clientId)
 
   return (
-    <AppBox flexDirection="column" spacing={1} id={`goal-${id}`} className={classes.root}>
-      <Calendar goalId={id} datesMap={goalInfo.datesMap} date={date} isLoading={isLoading} onChangeDay={onChangeDay} />
+    <AppBox flexDirection="column" spacing={2} id={`goal-${id}`} className={classes.root} mt={2}>
       <div className={classes.wrap}>
         <AppBox flexDirection="column" justifyContent="space-between" spacing={3} className={classes.content}>
+          {inherited && <Inheritance owner={owner} />}
           <AppBox flexDirection="column" spacing={3}>
             <AppBox justifyContent="space-between" alignItems="center">
-              <AppBox alignItems="center" spacing={1}>
-                <AppTitle name="goal" variant="h6" component="h3">
-                  {name}
-                </AppTitle>
-                {inherited && <Inheritance owner={owner} />}
-              </AppBox>
+              <AppTitle name="goal" variant="h6" component="h3">
+                <b>{name}</b>
+              </AppTitle>
               <Menu goalId={id} title={name} href={goalHref} clientGoal={clientOwnership.goal} />
             </AppBox>
             <AppBox justifyContent="space-between" alignItems="center">
@@ -98,6 +94,16 @@ export default function GoalCurrent({
             </AppBox>
             {!!hashtags?.length && <Hashtags hashtags={hashtags} />}
             <div>
+              <AppBox flexDirection="column" justifyContent="center">
+                <AppAccordion
+                  name="calendar"
+                  header="Calendar"
+                  id={`calendar-${dayId}`}
+                  ariaControls="calendar-content"
+                  detailsClass={classes.calendar}
+                  details={<Calendar goalId={id} datesMap={goalInfo.datesMap} current={date} />}
+                />
+              </AppBox>
               {!!stages.length && (
                 <AppAccordion
                   name="stage"
@@ -183,12 +189,15 @@ const useStyles = makeStyles((theme) =>
     content: {
       position: 'relative',
       height: '100%',
-      padding: 16,
+      padding: '24px 16px 16px',
       background: theme.palette.background.paper,
       borderRadius: 13,
     },
     topicCount: {
       color: theme.text.silent,
+    },
+    calendar: {
+      padding: '8px 0 16px 0',
     },
     discussion: {
       padding: '8px 0 16px 16px',

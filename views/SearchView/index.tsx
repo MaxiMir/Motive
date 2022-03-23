@@ -24,14 +24,9 @@ export default function SearchView({ q, hashtags, users }: SearchViewProps): JSX
       <AppBox flexDirection="column" spacing={4}>
         <SearchForm q={q} />
         <AppBox flexDirection="column" spacing={2}>
-          <AppTitle variant="h4" component="h2" name="followers">
-            Users
+          <AppTitle variant="h4" component="h2" name="goal">
+            Goals
           </AppTitle>
-          <AppBox flexWrap="wrap" spacing={2}>
-            {users.map((user) => (
-              <User tmpl="search" user={user} key={user.id} />
-            ))}
-          </AppBox>
         </AppBox>
         <AppBox flexDirection="column" spacing={2}>
           <AppTitle variant="h4" component="h2" name="popular">
@@ -44,9 +39,14 @@ export default function SearchView({ q, hashtags, users }: SearchViewProps): JSX
           </AppBox>
         </AppBox>
         <AppBox flexDirection="column" spacing={2}>
-          <AppTitle variant="h4" component="h2" name="goal">
-            Goals
+          <AppTitle variant="h4" component="h2" name="followers">
+            Users
           </AppTitle>
+          <AppBox flexWrap="wrap" spacing={2}>
+            {users.map((user) => (
+              <User tmpl="search" user={user} key={user.id} />
+            ))}
+          </AppBox>
         </AppBox>
       </AppBox>
     </AppContainer>

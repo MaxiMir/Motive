@@ -2,13 +2,23 @@ import produce from 'immer'
 import { format } from 'date-fns'
 import { DayDto, GoalDto } from 'dto'
 
-export const getBorders = (dates: string[], date: Date): [string, string] => {
+type CalendarInfo = {
+  formattedValue: string
+  prevValue: string
+  nextValue: string
+}
+
+export const getCalendarInfo = (dates: string[], date: Date): CalendarInfo => {
   const formattedValue = getDateKey(date)
   const valueIndex = dates.findIndex((d) => d === formattedValue)
   const prevValue = dates[valueIndex - 1]
   const nextValue = dates[valueIndex + 1]
 
-  return [prevValue, nextValue]
+  return {
+    formattedValue,
+    prevValue,
+    nextValue,
+  }
 }
 
 export const getDateKey = (date: string | Date): string =>

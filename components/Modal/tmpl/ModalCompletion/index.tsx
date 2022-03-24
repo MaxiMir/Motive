@@ -119,11 +119,8 @@ export default function ModalCompletion({ goal, onClose }: ModalCompletionProps)
                       {CHARACTERISTIC_NAMES.map((name) => (
                         <AppDecorEmoji name={name} key={name} />
                       ))}
-                      ,
-                    </AppTypography>
-                    <AppTypography>
-                      You get an extra <b className={classes.count}>5</b> points <AppDecorEmoji name="motivation" /> for
-                      completing the goal.
+                      , you get an extra <b className={classes.count}>5</b> points <AppDecorEmoji name="motivation" />{' '}
+                      for completing the goal.
                     </AppTypography>
                   </div>
                 }

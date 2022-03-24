@@ -41,7 +41,7 @@ const useSendAddDay = () => {
       mutateGoals(getNextState(goals, day, id))
       changeDayUrl(goals, id, day.id)
       enqueueSnackbar({
-        message: `${toShortUserName(client?.name)}, uploaded your next tasks`,
+        message: `${toShortUserName(client?.name)}, uploading your next tasks`,
         severity: 'success',
         icon: 'speaker',
       })

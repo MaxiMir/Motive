@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import dynamic from 'next/dynamic'
 import { Menu, MenuItem } from '@material-ui/core'
+import { OwnershipDto } from 'dto'
 import AppMenuItemContent from 'components/UI/AppMenuItemContent'
 
 const Report = dynamic(() => import('components/Report'))
@@ -8,12 +9,20 @@ const Report = dynamic(() => import('components/Report'))
 interface MenuListProps {
   anchorEl: HTMLElement
   goalId: number
-  clientGoal: boolean
+  clientOwnership: OwnershipDto
   onShare: () => void
+  onLeave: () => void
   onClose: () => void
 }
 
-export default function MenuList({ anchorEl, goalId, clientGoal, onShare, onClose }: MenuListProps): JSX.Element {
+export default function MenuList({
+  anchorEl,
+  goalId,
+  clientOwnership,
+  onShare,
+  onLeave,
+  onClose,
+}: MenuListProps): JSX.Element {
   const [withReport, setWithReport] = useState(false)
 
   const onOpenReport = () => setWithReport(true)
@@ -29,9 +38,14 @@ export default function MenuList({ anchorEl, goalId, clientGoal, onShare, onClos
         <MenuItem onClick={onShare}>
           <AppMenuItemContent icon="share" text="Share" />
         </MenuItem>
-        {!clientGoal && (
+        {!clientOwnership.goal && (
           <MenuItem onClick={onOpenReport}>
             <AppMenuItemContent icon="outlined_flag" text="Report" />
+          </MenuItem>
+        )}
+        {clientOwnership.member && (
+          <MenuItem onClick={onLeave}>
+            <AppMenuItemContent icon="logout" text="Leave" />
           </MenuItem>
         )}
         <MenuItem onClick={onClose}>

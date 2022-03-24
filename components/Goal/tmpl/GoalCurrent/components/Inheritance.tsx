@@ -13,9 +13,9 @@ export default function Inheritance({ owner }: InheritedProps): JSX.Element {
 
   return (
     <AppBox justifyContent="center" className={classes.root}>
-      <AppBox alignItems="center" spacing={1}>
-        <AppTypography variant="caption" className={classes.creator}>
-          with
+      <AppBox alignItems="center" spacing={0.5}>
+        <AppTypography variant="caption">
+          <b>with</b>
         </AppTypography>
         <User tmpl="avatar" user={owner} />
       </AppBox>
@@ -27,17 +27,13 @@ const useStyles = makeStyles((theme) =>
   createStyles({
     root: {
       position: 'absolute',
-      top: -21,
+      top: -19,
       left: '50%',
-      width: 80,
+      width: 90,
       padding: 4,
       transform: 'translateX(-50%)',
       borderRadius: 20,
-      background: `linear-gradient(90deg, ${theme.palette.success.main} 0%, ${theme.palette.success.dark} 100%)`,
-    },
-    creator: {
-      fontWeight: 'bold',
-      color: '#FFFF',
+      background: `linear-gradient(90deg, ${theme.palette.info.dark} 0%, ${theme.palette.success.dark} 100%)`,
     },
   }),
 )

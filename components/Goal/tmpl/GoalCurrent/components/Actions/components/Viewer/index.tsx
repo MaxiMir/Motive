@@ -5,7 +5,7 @@ import ReactionWithSend from './components/ReactionWithSend'
 import ReactionSupport from './components/ReactionSupport'
 import { checkOnCompletion } from './helper'
 
-const Membership = dynamic(() => import('components/Membership'))
+const Join = dynamic(() => import('./components/Join'))
 const Completion = dynamic(() => import('./components/Completion'))
 
 export interface ViewerProps {
@@ -25,10 +25,9 @@ export default function Viewer({ goal, owner, forTomorrow, clientOwnership }: Vi
           <ReactionWithSend goal={goal} name={name} key={name} />
         ))}
         <ReactionSupport goal={goal} owner={owner} />
-        {clientOwnership.member && <Membership tmpl="leave" goal={goal} clientOwnership={clientOwnership} />}
       </AppBox>
       {!clientOwnership.member ? (
-        <Membership tmpl="join" goal={goal} />
+        <Join goal={goal} />
       ) : (
         <>{completion && <Completion goal={goal} forTomorrow={forTomorrow} clientMember={clientOwnership.member} />}</>
       )}

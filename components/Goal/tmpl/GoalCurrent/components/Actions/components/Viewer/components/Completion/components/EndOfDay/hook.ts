@@ -20,7 +20,7 @@ export const useSendEndOfDay = (goal: GoalDto): UseMutationResult<MemberDto, Axi
       setTimeout(() => clickOnElem(`next-${goal.id}`), 1)
 
       enqueueSnackbar({
-        message: `Excellent, ${toShortUserName(client?.name)}! Uploaded your next tasks`,
+        message: `Excellent, ${toShortUserName(client?.name)}! Uploading your next tasks`,
         severity: 'success',
         icon: 'speaker',
       })

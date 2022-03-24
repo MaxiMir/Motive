@@ -71,7 +71,7 @@ export default function GoalCurrent({
               <AppTitle name="goal" variant="h6" component="h3">
                 <b>{name}</b>
               </AppTitle>
-              <Menu goalId={id} title={name} href={goalHref} clientGoal={clientOwnership.goal} />
+              <Menu goal={goal} title={name} href={goalHref} clientOwnership={clientOwnership} />
             </AppBox>
             <AppBox justifyContent="space-between" alignItems="center">
               {CHARACTERISTICS.map((characteristicName) => (
@@ -93,17 +93,8 @@ export default function GoalCurrent({
               />
             </AppBox>
             {!!hashtags?.length && <Hashtags hashtags={hashtags} />}
+            <Calendar goalId={id} datesMap={goalInfo.datesMap} current={date} />
             <div>
-              <AppBox flexDirection="column" justifyContent="center">
-                <AppAccordion
-                  name="calendar"
-                  header="Calendar"
-                  id={`calendar-${dayId}`}
-                  ariaControls="calendar-content"
-                  detailsClass={classes.calendar}
-                  details={<Calendar goalId={id} datesMap={goalInfo.datesMap} current={date} />}
-                />
-              </AppBox>
               {!!stages.length && (
                 <AppAccordion
                   name="stage"

@@ -8,12 +8,11 @@ import AppEmoji from 'components/UI/AppEmoji'
 
 const Modal = dynamic(() => import('components/Modal'))
 
-export interface MembershipJoinProps {
-  tmpl: 'join'
+export interface JoinProps {
   goal: GoalDto
 }
 
-export default function MembershipJoin({ goal }: MembershipJoinProps): JSX.Element {
+export default function Join({ goal }: JoinProps): JSX.Element {
   const client = useClient()
   const openSignIn = useOpenSignIn()
   const [open, setOpen] = useState(false)

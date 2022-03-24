@@ -1,5 +1,5 @@
 import dynamic from 'next/dynamic'
-import { AppBar, makeStyles } from '@material-ui/core'
+import { AppBar, Chip, makeStyles } from '@material-ui/core'
 import AppContainer from 'components/UI/AppContainer'
 import AppBox from 'components/UI/AppBox'
 import LeftMenu from './components/LeftMenu'
@@ -17,8 +17,9 @@ export default function Header({ authenticated }: HeaderProps): JSX.Element {
   return (
     <AppBar position="fixed" className={classes.appBar}>
       <AppContainer>
-        <AppBox justifyContent="space-between">
+        <AppBox justifyContent="space-between" alignItems="center">
           <LeftMenu />
+          <Chip label="Beta version" variant="outlined" />
           {authenticated ? <Notification /> : <SignIn />}
         </AppBox>
       </AppContainer>

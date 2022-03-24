@@ -49,7 +49,6 @@ export type AppEmojiName =
   | 'scared'
   | 'popular'
   | 'contact'
-  | 'calendar'
 
 interface AppEmojiProps {
   name: AppEmojiName
@@ -174,8 +173,6 @@ function getContent(name: AppEmojiName) {
       return '📃'
     case 'contact':
       return '📮'
-    case 'calendar':
-      return '🪡'
     default:
       return ''
   }

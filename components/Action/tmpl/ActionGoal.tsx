@@ -14,15 +14,15 @@ export interface ActionGoalProps {
 
 export default function ActionGoal({ name, active, title, count, onClick }: ActionGoalProps): JSX.Element {
   const classes = useStyles({ name, active })
-  const countShort = !count ? null : numberToShort(count)
+  const countShort = count && numberToShort(count)
 
   return (
     <Button
       variant="outlined"
-      size="small"
-      className={classes.button}
       title={title}
+      size="small"
       aria-label={title}
+      className={classes.button}
       onClick={onClick}
     >
       <AppBox spacing={1}>

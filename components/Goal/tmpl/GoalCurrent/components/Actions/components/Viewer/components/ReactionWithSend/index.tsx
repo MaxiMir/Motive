@@ -9,8 +9,8 @@ interface ReactionWithSendProps {
 }
 
 export default function ReactionWithSend({ goal, name }: ReactionWithSendProps): JSX.Element {
-  const active = checkOnActive(name, goal)
-  const count = getCount(name, goal)
+  const active = checkOnActive(goal, name)
+  const count = getCount(goal, name)
   const title = `${active ? 'Decrease' : 'Increase'} day's ${name} points`
   const onSetReaction = useSetReaction(goal, name, active)
 

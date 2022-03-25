@@ -7,8 +7,9 @@ import AppBox from 'components/UI/AppBox'
 import SearchForm from './components/SearchForm'
 import { getGradients } from './helper'
 
-const User = dynamic(() => import('components/User'))
 const Hashtag = dynamic(() => import('components/Hashtag'))
+const UsersList = dynamic(() => import('./components/UsersList'))
+const GoalsList = dynamic(() => import('./components/GoalsList'))
 const NoResult = dynamic(() => import('./components/NoResult'))
 
 interface SearchViewProps {
@@ -20,6 +21,7 @@ interface SearchViewProps {
 
 export default function SearchView({ q, hashtags, goals, users }: SearchViewProps): JSX.Element {
   const gradients = getGradients()
+  const noResult = !users.length && !goals.length
 
   return (
     <AppContainer flexColumn>
@@ -28,35 +30,8 @@ export default function SearchView({ q, hashtags, goals, users }: SearchViewProp
       </AppTitle>
       <AppBox flexDirection="column" spacing={4}>
         <SearchForm q={q} />
-        {!!goals.length && (
-          <AppBox flexDirection="column" spacing={2}>
-            <AppTitle variant="h4" component="h2" name="goal">
-              Goals
-            </AppTitle>
-            <Grid container spacing={2}>
-              {goals.map((goal) => (
-                <Grid item xs={12} sm={6} md={3} lg={2} key={goal.id}>
-                  GOAL
-                </Grid>
-              ))}
-            </Grid>
-          </AppBox>
-        )}
-        {!!users.length && (
-          <AppBox flexDirection="column" spacing={2}>
-            <AppTitle variant="h4" component="h2" name="followers">
-              Users
-            </AppTitle>
-            <Grid container spacing={2}>
-              {users.map((user) => (
-                <Grid item xs={12} sm={6} md={3} lg={2} key={user.id}>
-                  <User tmpl="search" user={user} />
-                </Grid>
-              ))}
-            </Grid>
-          </AppBox>
-        )}
-        {!users.length && !goals.length && <NoResult phrase={q} />}
+        {!!users.length && <UsersList users={users} />}
+        {noResult && <NoResult phrase={q} />}
         <AppBox flexDirection="column" spacing={2}>
           <AppTitle variant="h4" component="h2" name="trending">
             Trending
@@ -69,6 +44,7 @@ export default function SearchView({ q, hashtags, goals, users }: SearchViewProp
             ))}
           </Grid>
         </AppBox>
+        {!!goals.length && <GoalsList goals={goals} />}
       </AppBox>
     </AppContainer>
   )

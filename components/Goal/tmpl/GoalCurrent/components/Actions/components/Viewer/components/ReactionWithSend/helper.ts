@@ -3,10 +3,10 @@ import { DayCharacteristicName, DayCharacteristicUpdateDto, GoalDto, UserPageDto
 
 export type Context = { previous?: UserPageDto }
 
-export const checkOnActive = (name: DayCharacteristicName, goal: GoalDto): boolean =>
+export const checkOnActive = (goal: GoalDto, name: DayCharacteristicName): boolean =>
   goal.reactions?.[name].some((d) => d === goal.day.id) || false
 
-export const getCount = (name: DayCharacteristicName, goal: GoalDto): number | undefined => {
+export const getCount = (goal: GoalDto, name: DayCharacteristicName): number | undefined => {
   if (!['motivation', 'creativity'].includes(name)) {
     return undefined
   }

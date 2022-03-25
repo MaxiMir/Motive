@@ -29,7 +29,7 @@ export default function OwnerWithFeedback({ goal }: OwnerWithFeedbackProps): JSX
       </Button>
       {isComplete && (
         <Button variant="outlined" color="secondary" startIcon={<AppEmoji name="cup" onlyEmoji />} onClick={onComplete}>
-          Complete
+          Done
         </Button>
       )}
       {modal === 'tasks' && <Modal tmpl="tasks" goal={goal} onClose={closeModal} />}

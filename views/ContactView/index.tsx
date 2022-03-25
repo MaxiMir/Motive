@@ -1,11 +1,12 @@
-import { Button, createStyles, makeStyles } from '@material-ui/core'
+import clsx from 'clsx'
+import { Button, createStyles, Grid, makeStyles } from '@material-ui/core'
 import AppContainer from 'components/UI/AppContainer'
 import AppTitle from 'components/UI/AppTitle'
 import AppBox from 'components/UI/AppBox'
 import AppTypography from 'components/UI/AppTypography'
 import { TelegramIcon, LinkedInIcon } from 'components/UI/icons'
 import AppIcon from 'components/UI/AppIcon'
-import AppEmoji from '../../components/UI/AppEmoji'
+import AppEmoji from 'components/UI/AppEmoji'
 
 export default function ContactView(): JSX.Element {
   const classes = useStyles()
@@ -27,38 +28,44 @@ export default function ContactView(): JSX.Element {
         <AppTypography>
           Write to us with or without cause. Any feedback from you is welcome <AppEmoji name="wink" onlyEmoji />.
         </AppTypography>
-        <AppBox flexWrap="wrap" spacing={2}>
-          <Button className={classes.button} onClick={onClickEmail}>
-            <AppBox alignItems="center" justifyContent="center" className={classes.wrap}>
-              <AppBox flexDirection="column" alignItems="center" spacing={2}>
-                <AppTypography variant="h5" component="p">
-                  Email
-                </AppTypography>
-                <AppIcon name="email" className={classes.icon} />
+        <Grid container spacing={2}>
+          <Grid item xs={6} sm={4} md={3} lg={2}>
+            <Button className={clsx(classes.button, classes.buttonEmail)} onClick={onClickEmail}>
+              <AppBox alignItems="center" justifyContent="center" className={classes.wrap}>
+                <AppBox flexDirection="column" alignItems="center" spacing={2}>
+                  <AppTypography variant="h5" component="p">
+                    Email
+                  </AppTypography>
+                  <AppIcon name="email" className={classes.icon} />
+                </AppBox>
               </AppBox>
-            </AppBox>
-          </Button>
-          <Button className={classes.button} onClick={onClickTelegram}>
-            <AppBox alignItems="center" justifyContent="center" className={classes.wrap}>
-              <AppBox flexDirection="column" alignItems="center" spacing={2}>
-                <AppTypography variant="h5" component="p">
-                  Telegram
-                </AppTypography>
-                <TelegramIcon className={classes.icon} />
+            </Button>
+          </Grid>
+          <Grid item xs={6} sm={4} md={3} lg={2}>
+            <Button className={clsx(classes.button, classes.buttonTelegram)} onClick={onClickTelegram}>
+              <AppBox alignItems="center" justifyContent="center" className={classes.wrap}>
+                <AppBox flexDirection="column" alignItems="center" spacing={2}>
+                  <AppTypography variant="h5" component="p">
+                    Telegram
+                  </AppTypography>
+                  <TelegramIcon className={classes.icon} />
+                </AppBox>
               </AppBox>
-            </AppBox>
-          </Button>
-          <Button className={classes.button} onClick={onClickLinkedIn}>
-            <AppBox alignItems="center" justifyContent="center" className={classes.wrap}>
-              <AppBox flexDirection="column" alignItems="center" spacing={2}>
-                <AppTypography variant="h5" component="p">
-                  LinkedIn
-                </AppTypography>
-                <LinkedInIcon className={classes.icon} />
+            </Button>
+          </Grid>
+          <Grid item xs={6} sm={4} md={3} lg={2}>
+            <Button className={clsx(classes.button, classes.buttonLinkedIn)} onClick={onClickLinkedIn}>
+              <AppBox alignItems="center" justifyContent="center" className={classes.wrap}>
+                <AppBox flexDirection="column" alignItems="center" spacing={2}>
+                  <AppTypography variant="h5" component="p">
+                    LinkedIn
+                  </AppTypography>
+                  <LinkedInIcon className={classes.icon} />
+                </AppBox>
               </AppBox>
-            </AppBox>
-          </Button>
-        </AppBox>
+            </Button>
+          </Grid>
+        </Grid>
       </AppBox>
     </AppContainer>
   )
@@ -67,27 +74,21 @@ export default function ContactView(): JSX.Element {
 const useStyles = makeStyles((theme) =>
   createStyles({
     button: {
-      flex: '1 1 calc(25% - 12px)',
-      paddingBottom: 'calc(25% - 12px)',
-      maxWidth: 'calc(25% - 12px)',
-      height: 0,
-      flexGrow: 0,
+      width: '100%',
+      aspectRatio: '1',
       borderRadius: 12,
-      background: `linear-gradient(to top left, ${theme.palette.warning.light}, ${theme.palette.warning.dark})`,
       '&:hover': {
         opacity: 0.8,
       },
-      '&:nth-child(2)': {
-        background: `linear-gradient(to top left, ${theme.palette.success.light}, ${theme.palette.success.dark})`,
-      },
-      '&:last-child': {
-        background: `linear-gradient(to top left, ${theme.palette.info.light}, ${theme.palette.info.dark})`,
-      },
-      [theme.breakpoints.down('xs')]: {
-        flex: '1 1 calc(100% - 12px)',
-        paddingBottom: 'calc(100% - 12px)',
-        maxWidth: 'initial',
-      },
+    },
+    buttonEmail: {
+      background: `linear-gradient(to top left, ${theme.palette.warning.light}, ${theme.palette.warning.dark})`,
+    },
+    buttonTelegram: {
+      background: `linear-gradient(to top left, ${theme.palette.success.light}, ${theme.palette.success.dark})`,
+    },
+    buttonLinkedIn: {
+      background: `linear-gradient(to top left, ${theme.palette.info.light}, ${theme.palette.info.dark})`,
     },
     wrap: {
       width: '100%',

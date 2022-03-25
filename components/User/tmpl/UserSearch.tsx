@@ -1,60 +1,51 @@
-import { makeStyles } from '@material-ui/core'
-import { UserBaseDto } from 'dto'
-import AppLink from 'components/UI/AppLink'
+import { Button, makeStyles } from '@material-ui/core'
+import { UserCharacteristicName, UserDto } from 'dto'
+import useCharacteristicColors from 'hooks/useCharacteristicColors'
 import AppAvatar from 'components/UI/AppAvatar'
 import AppBox from 'components/UI/AppBox'
+import AppTypography from 'components/UI/AppTypography'
 import { getUserHref } from 'views/UserView/helper'
+import Characteristic from 'components/Characteristic'
+
+const CHARACTERISTICS: UserCharacteristicName[] = ['motivation', 'creativity', 'support']
 
 export interface UserSearchProps {
   tmpl: 'search'
-  user: UserBaseDto
+  user: UserDto
 }
 
 export default function UserSearch({ user }: UserSearchProps): JSX.Element {
   const classes = useStyles()
   const { nickname, avatar, name, characteristic } = user
+  const colors = useCharacteristicColors()
   const href = getUserHref(nickname)
 
   return (
-    <AppBox flexDirection="column" className={classes.root}>
-      <AppLink href={href}>
-        <AppAvatar src={avatar} size={80} />
-      </AppLink>
-      <AppLink href={href} variant="body1">
-        {name}
-      </AppLink>
-    </AppBox>
+    <Button variant="outlined" color="primary" href={href} className={classes.button}>
+      <AppBox flexDirection="column" alignItems="center" spacing={2}>
+        <AppAvatar src={avatar} size={120} />
+        <AppTypography>{name}</AppTypography>
+        <AppBox justifyContent="space-between" alignItems="center">
+          {CHARACTERISTICS.map((characteristicName) => (
+            <Characteristic
+              tmpl="user"
+              name={characteristicName}
+              value={characteristic[characteristicName]}
+              color={colors[characteristicName].fontColor}
+              key={characteristicName}
+            />
+          ))}
+        </AppBox>
+      </AppBox>
+    </Button>
   )
 }
 
 const useStyles = makeStyles({
-  root: {
-    flex: '1 1 calc(16% - 13px)',
-    paddingBottom: 'calc(16% - 13px)',
-    height: 0,
-    flexGrow: 0,
-    borderRadius: 12,
-    // [theme.breakpoints.between('sm', 'md')]: {
-    //   flex: '1 1 calc(25% - 12px)',
-    //   paddingBottom: 'calc(25% - 12px)',
-    //   maxWidth: 'calc(25% - 12px)',
-    // },
-    // [theme.breakpoints.down('xs')]: {
-    //   flex: '1 1 calc(50% - 12px)',
-    //   paddingBottom: 'calc(50% - 12px)',
-    // },
-  },
-  wrap: {
+  button: {
     width: '100%',
-    position: 'absolute',
-    top: 0,
-    bottom: 0,
-    left: 0,
-    right: 0,
-    background: 'rgba(1, 1, 1, 0.1)',
-  },
-  count: {
-    alignSelf: 'flex-end',
-    opacity: 0.5,
+    textTransform: 'none',
+    padding: 16,
+    borderRadius: 12,
   },
 })

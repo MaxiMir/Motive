@@ -35,9 +35,8 @@ export default function PhotoButton({ image, disabled, onClick }: PhotoButtonPro
 const useStyles = makeStyles({
   button: {
     position: 'relative',
-    flex: '1 1 calc(33% - 12px)',
-    paddingBottom: 'calc(40% - 12px)',
-    maxWidth: 'calc(33% - 12px)',
+    width: '100%',
+    aspectRatio: '3/4',
     overflow: 'hidden',
   },
   content: {

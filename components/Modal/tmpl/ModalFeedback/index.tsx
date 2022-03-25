@@ -1,5 +1,5 @@
 import { Field, FieldArray, Form, FormikProvider } from 'formik'
-import { createStyles, makeStyles } from '@material-ui/core'
+import { createStyles, Grid, makeStyles } from '@material-ui/core'
 import { GoalDto } from 'dto'
 import useSelectPhoto from 'hooks/useSelectPhoto'
 import Action from 'components/Action'
@@ -62,17 +62,13 @@ export default function ModalFeedback({ goal, onClose }: ModalFeedbackProps): JS
                 </AppTitle>
                 <FieldArray name="photos">
                   {({ remove }) => (
-                    <AppBox flexWrap="wrap" spacing={2}>
+                    <Grid container spacing={2}>
                       {values.photos.map((file, index) => (
-                        <Photo
-                          tmpl="button"
-                          image={file}
-                          disabled={isSubmitting}
-                          key={index}
-                          onClick={() => remove(index)}
-                        />
+                        <Grid item xs={4} key={index}>
+                          <Photo tmpl="button" image={file} disabled={isSubmitting} onClick={() => remove(index)} />
+                        </Grid>
                       ))}
-                    </AppBox>
+                    </Grid>
                   )}
                 </FieldArray>
               </AppBox>

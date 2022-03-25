@@ -45,13 +45,13 @@ export default function Calendar({ goalId, datesMap, current }: CalendarProps): 
 
   return (
     <AppBox justifyContent="space-between" alignItems="center" spacing={2}>
+      <Divider light className={classes.divider} />
       <AppIconButton
         size="small"
         name="chevron_left"
         disabled={isLoading || !prevValue}
         onClick={() => onClickArrow(prevValue)}
       />
-      <Divider className={classes.divider} />
       <KeyboardDatePicker
         variant="dialog"
         format="MM/dd/yy"
@@ -67,7 +67,6 @@ export default function Calendar({ goalId, datesMap, current }: CalendarProps): 
         onChange={(newDate) => newDate && onChange(newDate)}
         onClose={toggleModal}
       />
-      <Divider className={classes.divider} />
       <AppIconButton
         id={`next-${goalId}`}
         size="small"
@@ -75,6 +74,7 @@ export default function Calendar({ goalId, datesMap, current }: CalendarProps): 
         disabled={isLoading || !nextValue}
         onClick={() => onClickArrow(nextValue)}
       />
+      <Divider light className={classes.divider} />
     </AppBox>
   )
 }

@@ -1,5 +1,5 @@
 import { useRouter } from 'next/router'
-import { Button, createStyles, makeStyles } from '@material-ui/core'
+import { Button, makeStyles } from '@material-ui/core'
 import { numberToShort } from 'helpers/prepare'
 import AppBox from 'components/UI/AppBox'
 import AppTypography from 'components/UI/AppTypography'
@@ -32,8 +32,8 @@ export default function HashtagGradient({ name, gradient, views }: HashtagGradie
         p={2}
         className={classes.wrap}
       >
-        <AppTypography variant="subtitle1" component="p">
-          <b>{name}</b>
+        <AppTypography variant="subtitle1" component="p" className={classes.name}>
+          <b>#{name}</b>
         </AppTypography>
         <AppTypography variant="h4" component="p" className={classes.shortName}>
           <b>{name}</b>
@@ -46,43 +46,33 @@ export default function HashtagGradient({ name, gradient, views }: HashtagGradie
 
 type StylesProps = Pick<HashtagGradientProps, 'gradient'>
 
-const useStyles = makeStyles((theme) =>
-  createStyles({
-    button: {
-      flex: '1 1 calc(16% - 13px)',
-      paddingBottom: 'calc(16% - 13px)',
-      height: 0,
-      flexGrow: 0,
-      borderRadius: 12,
-      backgroundImage: (props: StylesProps) => props.gradient,
-      [theme.breakpoints.between('sm', 'md')]: {
-        flex: '1 1 calc(25% - 12px)',
-        paddingBottom: 'calc(25% - 12px)',
-        maxWidth: 'calc(25% - 12px)',
-      },
-      [theme.breakpoints.down('xs')]: {
-        flex: '1 1 calc(50% - 12px)',
-        paddingBottom: 'calc(50% - 12px)',
-      },
-    },
-    wrap: {
-      width: '100%',
-      position: 'absolute',
-      top: 0,
-      bottom: 0,
-      left: 0,
-      right: 0,
-      overflow: 'hidden',
-    },
-    count: {
-      opacity: 0.5,
-    },
-    shortName: {
-      background: 'linear-gradient(to right, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.01))',
-      '-webkit-background-clip': 'text',
-      '-webkit-text-fill-color': 'transparent',
-      color: 'rgba(255, 255, 255, 0.05)',
-      position: 'relative',
-    },
-  }),
-)
+const useStyles = makeStyles({
+  button: {
+    width: '100%',
+    aspectRatio: '1',
+    borderRadius: 12,
+    backgroundImage: (props: StylesProps) => props.gradient,
+  },
+  wrap: {
+    width: '100%',
+    position: 'absolute',
+    top: 0,
+    bottom: 0,
+    left: 0,
+    right: 0,
+    overflow: 'hidden',
+  },
+  name: {
+    textTransform: 'none',
+  },
+  shortName: {
+    background: 'linear-gradient(to right, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.01))',
+    '-webkit-background-clip': 'text',
+    '-webkit-text-fill-color': 'transparent',
+    color: 'rgba(255, 255, 255, 0.05)',
+    position: 'relative',
+  },
+  count: {
+    opacity: 0.5,
+  },
+})

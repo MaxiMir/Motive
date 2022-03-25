@@ -19,7 +19,7 @@ export default function Header({ authenticated }: HeaderProps): JSX.Element {
       <AppContainer>
         <AppBox justifyContent="space-between" alignItems="center">
           <LeftMenu />
-          <Chip label="Beta version" variant="outlined" />
+          <Chip label="Beta 1.0.0" variant="outlined" />
           {authenticated ? <Notification /> : <SignIn />}
         </AppBox>
       </AppContainer>

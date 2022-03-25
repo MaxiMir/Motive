@@ -1,6 +1,6 @@
 import dynamic from 'next/dynamic'
 import { Field, Form, FormikProvider } from 'formik'
-import { createStyles, makeStyles } from '@material-ui/core'
+import { createStyles, Grid, makeStyles } from '@material-ui/core'
 import { UserBaseDto } from 'dto'
 import Action from 'components/Action'
 import Photo from 'components/Photo'
@@ -52,11 +52,15 @@ export default function ModalProfile({ user, onClose }: ModalProfileProps): JSX.
           <AppBox flexDirection="column" spacing={3}>
             <Field name="name" label="Name" color="secondary" component={AppInput} />
             <Field name="nickname" label="Nickname" color="secondary" component={AppInput} />
-            {!values.avatar ? (
-              <Photo tmpl="input" disabled={isSubmitting} onSelect={setAvatar} />
-            ) : (
-              <Photo tmpl="button" image={values.avatar} disabled={isSubmitting} onClick={clearAvatar} />
-            )}
+            <Grid container spacing={2}>
+              <Grid item xs={4}>
+                {!values.avatar ? (
+                  <Photo tmpl="input" disabled={isSubmitting} onSelect={setAvatar} />
+                ) : (
+                  <Photo tmpl="button" image={values.avatar} disabled={isSubmitting} onClick={clearAvatar} />
+                )}
+              </Grid>
+            </Grid>
             {touched.avatar && errors.avatar && (
               <Alert severity="error" variant="outlined" style={{ width: '100%' }}>
                 {errors.avatar}

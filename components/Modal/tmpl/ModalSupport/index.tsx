@@ -58,10 +58,12 @@ export default function ModalSupport({ goal, owner, onClose }: ModalSupportProps
                 details={
                   <div className={classes.hint}>
                     <AppTypography>
-                      Support is very important for achieving goals <AppDecorEmoji name="goal" />.
+                      Support is very important for achieving goals.
+                      <AppDecorEmoji name="goal" />.
                     </AppTypography>
                     <AppTypography>
-                      Especially at times when you want to give up <AppDecorEmoji name="tired" />.
+                      Especially at times when you want to give up
+                      <AppDecorEmoji name="tired" />.
                     </AppTypography>
                     <AppTypography>Therefore support others:</AppTypography>
                     <AppTypography>&#9679; with advice;</AppTypography>

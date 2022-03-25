@@ -3,7 +3,7 @@ import AppEmoji from 'components/UI/AppEmoji'
 import AppBox from 'components/UI/AppBox'
 
 interface NoAvatarProps {
-  size: 80 | 55 | 35 | 32 | 26
+  size: number
 }
 
 export default function NoAvatar({ size }: NoAvatarProps): JSX.Element {
@@ -24,6 +24,7 @@ const useStyles = makeStyles({
   avatar: {
     fontSize: ({ size }: NoAvatarProps) => {
       switch (size) {
+        case 120:
         case 80:
           return 40
         case 55:

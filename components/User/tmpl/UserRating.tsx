@@ -6,6 +6,7 @@ import AppBox from 'components/UI/AppBox'
 import AppLink from 'components/UI/AppLink'
 import AppTypography from 'components/UI/AppTypography'
 import AppAvatar from 'components/UI/AppAvatar'
+import AppEmoji from 'components/UI/AppEmoji'
 
 export interface UserRatingProps {
   tmpl: 'rating'
@@ -27,11 +28,11 @@ export default function UserRating({ user, characteristicName, color, index }: U
 
     switch (incrementedNumber) {
       case 1:
-        return '🥇'
+        return <AppEmoji name="first" onlyEmoji />
       case 2:
-        return '🥈'
+        return <AppEmoji name="second" onlyEmoji />
       case 3:
-        return '🥉'
+        return <AppEmoji name="third" onlyEmoji />
       default:
         return incrementedNumber
     }

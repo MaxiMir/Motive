@@ -47,8 +47,11 @@ export type AppEmojiName =
   | 'blood'
   | 'web'
   | 'scared'
-  | 'popular'
+  | 'trending'
   | 'contact'
+  | 'first'
+  | 'second'
+  | 'third'
 
 interface AppEmojiProps {
   name: AppEmojiName
@@ -169,10 +172,16 @@ function getContent(name: AppEmojiName) {
       return '🕸'
     case 'scared':
       return '😱'
-    case 'popular':
-      return '📃'
+    case 'trending':
+      return '👑'
     case 'contact':
       return '📮'
+    case 'first':
+      return '🥇'
+    case 'second':
+      return '🥈'
+    case 'third':
+      return '🥉'
     default:
       return ''
   }

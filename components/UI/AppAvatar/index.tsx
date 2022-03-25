@@ -5,7 +5,7 @@ const NoAvatar = dynamic(() => import('./components/NoAvatar'))
 
 export interface UserAvatarProps {
   src?: string | null
-  size: 80 | 55 | 35 | 32 | 26
+  size: 120 | 80 | 55 | 35 | 32 | 26
 }
 
 export default function AppAvatar({ src, size }: UserAvatarProps): JSX.Element {

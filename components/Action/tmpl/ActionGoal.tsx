@@ -59,9 +59,6 @@ const useStyles = makeStyles((theme) => {
         background: getBackground,
       },
     },
-    buttonContent: {
-      width: 20,
-    },
   })
 })
 

@@ -1,5 +1,5 @@
 import useCharacteristicColors from 'hooks/useCharacteristicColors'
-import { Grid } from '@material-ui/core'
+import AppBox from 'components/UI/AppBox'
 import Slogan from './components/Slogan'
 import Advantage from './components/Advantage'
 import ADVANTAGES from './helper'
@@ -10,13 +10,11 @@ export default function MainView(): JSX.Element {
   return (
     <>
       <Slogan />
-      <Grid container direction="column" style={{ flex: 1 }}>
+      <AppBox flexDirection="column" flex={1}>
         {ADVANTAGES.map((advantage) => (
-          <Grid item xs key={advantage.name}>
-            <Advantage {...advantage} color={colors[advantage.name]} />
-          </Grid>
+          <Advantage {...advantage} color={colors[advantage.name]} />
         ))}
-      </Grid>
+      </AppBox>
     </>
   )
 }

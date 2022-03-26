@@ -5,11 +5,13 @@ import { GoalDto } from 'dto'
 import Action from 'components/Action'
 import AppModal from 'components/UI/AppModal'
 import AppBox from 'components/UI/AppBox'
-import AppEmoji from 'components/UI/AppEmoji'
+import AppEmoji, { AppEmojiName } from 'components/UI/AppEmoji'
 import AppAccordion from 'components/UI/AppAccordion'
 import AppTypography from 'components/UI/AppTypography'
 import AppDecorEmoji from 'components/UI/AppDecorEmoji'
 import useForm from './hook'
+
+const CHARACTERISTIC_NAMES: AppEmojiName[] = ['motivation', 'creativity']
 
 export interface ModalJoinProps {
   tmpl: 'join'
@@ -80,7 +82,7 @@ export default function ModalJoin({ goal, onClose }: ModalJoinProps): JSX.Elemen
               name="knot"
               header="Membership"
               id="tips"
-              ariaControls="a-couple-of-important-words"
+              ariaControls="about-membership"
               details={
                 <div className={classes.hint}>
                   <AppTypography>
@@ -95,6 +97,24 @@ export default function ModalJoin({ goal, onClose }: ModalJoinProps): JSX.Elemen
                   <AppTypography>
                     Ask questions in the discussion <AppDecorEmoji name="discussion" />.
                   </AppTypography>
+                </div>
+              }
+            />
+            <AppAccordion
+              name="bullseye"
+              header="Points in completed goals"
+              id="points"
+              ariaControls="about-points-in-completed-goals"
+              details={
+                <div className={classes.hint}>
+                  <AppTypography>
+                    In completed goals, each click on{' '}
+                    {CHARACTERISTIC_NAMES.map((name) => (
+                      <AppDecorEmoji name={name} key={name} />
+                    ))}{' '}
+                    immediately increases the the experience of the goal creator.
+                  </AppTypography>
+                  <AppTypography>Therefore, you cannot remove points that have already been set.</AppTypography>
                 </div>
               }
             />

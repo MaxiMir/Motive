@@ -18,7 +18,7 @@ export default function Advantage({ name, title, subtitle, href, color }: Advant
   const classes = useStyles({ color })
 
   return (
-    <AppBox justifyContent="center" alignItems="center" className={classes.root}>
+    <AppBox justifyContent="center" alignItems="center" className={classes.root} flex={1}>
       <AppBox alignItems="center" spacing={3}>
         <AppLink href={href} className={classes.imageLink}>
           <AppEmoji name={name} variant="h2" />

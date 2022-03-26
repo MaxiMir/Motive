@@ -8,11 +8,12 @@ export interface ActionGoalProps {
   name: AppEmojiName
   title: string
   active?: boolean
+  disabled?: boolean
   count?: number
   onClick: () => void
 }
 
-export default function ActionGoal({ name, active, title, count, onClick }: ActionGoalProps): JSX.Element {
+export default function ActionGoal({ name, active, title, count, disabled, onClick }: ActionGoalProps): JSX.Element {
   const classes = useStyles({ name, active })
   const countShort = count && numberToShort(count)
 
@@ -22,6 +23,7 @@ export default function ActionGoal({ name, active, title, count, onClick }: Acti
       title={title}
       size="small"
       aria-label={title}
+      disabled={disabled}
       className={classes.button}
       onClick={onClick}
     >

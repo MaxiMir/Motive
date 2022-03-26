@@ -30,6 +30,7 @@ export interface GoalDto extends GoalBaseDto {
   readonly calendar: CalendarDto[]
   readonly reactions: ReactionsDto
   readonly inherited: boolean
+  readonly completed: boolean
 }
 
 export type CreatedGoal = Readonly<Omit<GoalDto, 'day'> & { days: DayDto[] }>

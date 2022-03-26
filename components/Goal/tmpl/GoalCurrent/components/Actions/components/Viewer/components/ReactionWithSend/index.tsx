@@ -11,8 +11,19 @@ interface ReactionWithSendProps {
 export default function ReactionWithSend({ goal, name }: ReactionWithSendProps): JSX.Element {
   const active = checkOnActive(goal, name)
   const count = getCount(goal, name)
+  const disabled = active && goal.completed
   const title = `${active ? 'Decrease' : 'Increase'} day's ${name} points`
   const onSetReaction = useSetReaction(goal, name, active)
 
-  return <Action tmpl="goal" name={name} active={active} title={title} count={count} onClick={onSetReaction} />
+  return (
+    <Action
+      tmpl="goal"
+      name={name}
+      active={active}
+      title={title}
+      count={count}
+      disabled={disabled}
+      onClick={onSetReaction}
+    />
+  )
 }

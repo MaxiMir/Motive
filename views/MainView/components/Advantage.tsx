@@ -36,12 +36,13 @@ export default function Advantage({ name, title, subtitle, href, color }: Advant
   )
 }
 
+type UseStylesProps = Pick<AdvantageProps, 'color'>
+
 const useStyles = makeStyles({
   root: {
     width: '100%',
     height: '100%',
-    background: (props: { color: CharacteristicColor }) =>
-      `linear-gradient(90deg, ${props.color.start} 0%, ${props.color.end} 100%)`,
+    background: (props: UseStylesProps) => `linear-gradient(90deg, ${props.color.start} 0%, ${props.color.end} 100%)`,
   },
   imageLink: {
     '&:hover': {

@@ -38,8 +38,8 @@ export default function SearchView({ q, hashtags, goals, users }: SearchViewProp
           </AppTitle>
           <Grid container spacing={2}>
             {hashtags.map(({ name, views }, key) => (
-              <Grid item xs={12} sm={6} md={3} lg={2} key={name}>
-                <Hashtag tmpl="gradient" name={name} views={views} gradient={gradients[key]} />
+              <Grid item xs={6} md={3} lg={2} key={name}>
+                <Hashtag tmpl="search" name={name} views={views} gradient={gradients[key]} />
               </Grid>
             ))}
           </Grid>

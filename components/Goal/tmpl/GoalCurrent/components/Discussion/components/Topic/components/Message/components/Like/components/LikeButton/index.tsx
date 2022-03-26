@@ -1,34 +1,38 @@
 import clsx from 'clsx'
 import { Button, makeStyles } from '@material-ui/core'
-import { MessageDto } from 'dto'
+import { MessageDto, MessageType } from 'dto'
+import useClient from 'hooks/useClient'
 import AppEmoji from 'components/UI/AppEmoji'
-import AppTooltip from 'components/UI/AppTooltip'
-import { getTitle } from './helper'
+import AppOptionalTooltip from 'components/UI/AppOptionalTooltip'
+import { checkOnDisabled, getAreaLabel, getTitle } from './helper'
 import useSetLike from './hook'
 
 interface LikeButtonProps {
   message: MessageDto
   answerFor?: number
-  icon: 'like' | 'support'
 }
 
-export default function LikeButton({ message, answerFor, icon }: LikeButtonProps): JSX.Element {
-  const { like, likeCount } = message
+export default function LikeButton({ message, answerFor }: LikeButtonProps): JSX.Element {
   const classes = useStyles()
-  const title = getTitle(icon, message.like)
+  const client = useClient()
+  const disabled = checkOnDisabled(message, client)
+  const title = getTitle(message, disabled)
+  const ariaLabel = getAreaLabel(message, title)
   const onClick = useSetLike(message, answerFor)
+  const icon = message.type === MessageType.QUESTION ? 'like' : 'support'
 
   return (
-    <AppTooltip title={title}>
+    <AppOptionalTooltip title={title}>
       <Button
         size="small"
-        aria-label={`${title} ${!likeCount || like ? '' : ` along with ${likeCount} other people`}`}
-        className={clsx([classes.button, !like && classes.buttonNotActive])}
+        aria-label={ariaLabel}
+        disabled={disabled}
+        className={clsx([classes.button, !message.like && classes.buttonNotActive])}
         onClick={onClick}
       >
         <AppEmoji name={icon} onlyEmoji />
       </Button>
-    </AppTooltip>
+    </AppOptionalTooltip>
   )
 }
 

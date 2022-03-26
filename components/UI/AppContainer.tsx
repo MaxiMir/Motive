@@ -21,8 +21,10 @@ export default function AppContainer({
   )
 }
 
+type UseStylesProps = Pick<AppContainerProps, 'flexColumn'>
+
 const useStyles = makeStyles({
-  container: (props: { flexColumn: boolean }) =>
+  container: (props: UseStylesProps) =>
     !props.flexColumn
       ? {}
       : {

@@ -10,11 +10,11 @@ export default function SearchPage(): JSX.Element {
   return (
     <Layout title={`${process.env.NEXT_PUBLIC_APP_NAME} • Top of the day`} statusCode={200}>
       <Container fixed>
-        <AppTitle name="runs for days" mb={4}>
+        <AppTitle name="web" mb={4}>
           Top of the day
         </AppTitle>
         <AppBox alignItems="center" justifyContent="center" flex={1} height="80vh">
-          <AppTypography variant="h5">In the process...</AppTypography>
+          <AppTypography variant="h5">In development</AppTypography>
         </AppBox>
       </Container>
     </Layout>

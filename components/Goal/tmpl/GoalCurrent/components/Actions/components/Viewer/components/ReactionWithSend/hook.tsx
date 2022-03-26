@@ -16,7 +16,7 @@ export default function useSetReaction(goal: GoalDto, name: DayCharacteristicNam
   const client = useClient()
   const openSignIn = useOpenSignIn()
   const queryClient = useQueryClient()
-  const { key } = useUserPageConfig() // TODO other page
+  const { key } = useUserPageConfig()
   const [enqueueSnackbar] = useSnackbar()
   const { mutate } = useMutation<void, AxiosError, DayCharacteristicUpdateDto, Context>(
     GoalService.updateCharacteristic,

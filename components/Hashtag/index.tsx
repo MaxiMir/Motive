@@ -1,15 +1,15 @@
 import dynamic from 'next/dynamic'
 import { HashtagChipProps } from './tmpl/HashtagChip'
-import { HashtagGradientProps } from './tmpl/HashtagGradient'
+import { HashtagSearchProps } from './tmpl/HashtagSearch'
 
 const HashtagChip = dynamic(() => import('./tmpl/HashtagChip'))
-const HashtagGradient = dynamic(() => import('./tmpl/HashtagGradient'))
+const HashtagSearch = dynamic(() => import('./tmpl/HashtagSearch'))
 
-export default function Hashtag(props: HashtagChipProps | HashtagGradientProps): JSX.Element {
+export default function Hashtag(props: HashtagChipProps | HashtagSearchProps): JSX.Element {
   switch (props.tmpl) {
     case 'chip':
       return <HashtagChip {...props} />
-    case 'gradient':
-      return <HashtagGradient {...props} />
+    case 'search':
+      return <HashtagSearch {...props} />
   }
 }

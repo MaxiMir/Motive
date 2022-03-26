@@ -20,7 +20,7 @@ export default function GoalSearch({ goal }: GoalSearchProps): JSX.Element {
   const colors = useCharacteristicColors()
 
   return (
-    <Button variant="outlined" color="secondary" href="###" className={classes.button}>
+    <Button variant="outlined" color="primary" href="#" className={classes.button}>
       <AppBox flexDirection="column" alignItems="center" spacing={2}>
         <AppTypography>{name}</AppTypography>
         <AppBox justifyContent="flex-start" flex={1}>

@@ -7,14 +7,13 @@ export interface ActionGoalProps {
   tmpl: 'goal'
   name: AppEmojiName
   title: string
-  active?: boolean
-  disabled?: boolean
   count?: number
+  disabled?: boolean
   onClick: () => void
 }
 
-export default function ActionGoal({ name, active, title, count, disabled, onClick }: ActionGoalProps): JSX.Element {
-  const classes = useStyles({ name, active })
+export default function ActionGoal({ name, title, count, disabled, onClick }: ActionGoalProps): JSX.Element {
+  const classes = useStyles({ name })
   const countShort = count && numberToShort(count)
 
   return (
@@ -35,7 +34,7 @@ export default function ActionGoal({ name, active, title, count, disabled, onCli
   )
 }
 
-type UseStylesProps = Pick<ActionGoalProps, 'name' | 'active'>
+type UseStylesProps = Pick<ActionGoalProps, 'name'>
 
 const useStyles = makeStyles((theme) => {
   return createStyles({
@@ -43,7 +42,6 @@ const useStyles = makeStyles((theme) => {
       height: 36.5,
       minWidth: 'initial',
       transition: 'all .2s ease-in-out',
-      filter: (props: UseStylesProps) => (props.active ? 'initial' : 'grayscale(1)'),
       borderColor: (props: UseStylesProps) => {
         switch (props.name) {
           case 'motivation':
@@ -56,23 +54,6 @@ const useStyles = makeStyles((theme) => {
             return ''
         }
       },
-      '&:hover': {
-        filter: 'initial',
-        background: getBackground,
-      },
     },
   })
 })
-
-const getBackground = (props: UseStylesProps): string => {
-  switch (props.name) {
-    case 'motivation':
-      return '#ff980033'
-    case 'creativity':
-      return '#be99fe4d'
-    case 'support':
-      return '#00a9f44d'
-    default:
-      return ''
-  }
-}

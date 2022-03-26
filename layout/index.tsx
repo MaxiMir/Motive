@@ -72,12 +72,14 @@ const Layout: FC<LayoutProps> = ({
 // TODO https://shivamethical.medium.com/creating-web-page-preview-while-sharing-url-via-social-applications-like-whats-app-fb-cd2e19b11bf2
 // TODO https://developer.mozilla.org/ru/docs/Web/Progressive_web_apps/Installable_PWAs
 
+type UseStylesProps = Pick<LayoutProps, 'withVerticalPadding'>
+
 const useStyles = makeStyles({
   main: {
     display: 'flex',
     flexDirection: 'column',
     minHeight: 'calc(100vh - 65px)',
-    padding: (props: { withVerticalPadding: boolean }) => (!props.withVerticalPadding ? '60px 0 0' : '84px 0 112px'),
+    padding: (props: UseStylesProps) => (!props.withVerticalPadding ? '60px 0 0' : '84px 0 112px'),
   },
 })
 

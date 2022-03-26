@@ -55,7 +55,7 @@ export default function LeftMenu(): JSX.Element {
               </List>
               {client && (
                 <>
-                  <Divider />
+                  <Divider light />
                   <List>
                     <ListItem button onClick={onSignOut}>
                       <ListItemText primary="Sign out" />

@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import dynamic from 'next/dynamic'
-import { Menu, MenuItem } from '@material-ui/core'
+import { Divider, Menu, MenuItem } from '@material-ui/core'
 import { OwnershipDto } from 'dto'
 import AppMenuItemContent from 'components/UI/AppMenuItemContent'
 
@@ -48,6 +48,7 @@ export default function MenuList({
             <AppMenuItemContent icon="logout" text="Leave" />
           </MenuItem>
         )}
+        <Divider light />
         <MenuItem onClick={onClose}>
           <AppMenuItemContent icon="not_interested" text="Cancel" />
         </MenuItem>

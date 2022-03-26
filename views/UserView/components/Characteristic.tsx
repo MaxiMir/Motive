@@ -52,6 +52,8 @@ export default function Characteristic(props: CharacteristicProps): JSX.Element 
   )
 }
 
+type UseStylesProps = Pick<CharacteristicProps, 'color'>
+
 const useStyles = makeStyles((theme) =>
   createStyles({
     button: {
@@ -62,7 +64,7 @@ const useStyles = makeStyles((theme) =>
     },
     title: {
       fontSize: '0.75rem',
-      color: (props: { color: string }) => props.color,
+      color: (props: UseStylesProps) => props.color,
       [theme.breakpoints.up('lg')]: {
         fontSize: '0.875rem',
       },

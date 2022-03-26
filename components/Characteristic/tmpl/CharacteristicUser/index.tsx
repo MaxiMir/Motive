@@ -32,8 +32,10 @@ export default function CharacteristicUser({ name, value, color }: Characteristi
   )
 }
 
+type UseStylesProps = Pick<CharacteristicUserProps, 'color'>
+
 const useStyles = makeStyles({
   shortValue: {
-    color: (props: { color: string }) => props.color,
+    color: (props: UseStylesProps) => props.color,
   },
 })

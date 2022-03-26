@@ -33,8 +33,10 @@ export default function CharacteristicGoal({ name, value, color }: Characteristi
   )
 }
 
+type UseStylesProps = Pick<CharacteristicGoalProps, 'color'>
+
 const useStyles = makeStyles({
   shortValue: {
-    color: (props: { color: string }) => props.color,
+    color: (props: UseStylesProps) => props.color,
   },
 })

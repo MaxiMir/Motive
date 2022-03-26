@@ -1,4 +1,5 @@
 import dynamic from 'next/dynamic'
+import { makeStyles } from '@material-ui/core/styles'
 import { numberToShort } from 'helpers/prepare'
 import { UserCharacteristicName } from 'dto'
 import AppEmoji from 'components/UI/AppEmoji'
@@ -15,17 +16,24 @@ export interface CharacteristicUserProps {
 }
 
 export default function CharacteristicUser({ name, value, color }: CharacteristicUserProps): JSX.Element {
-  const preparedValue = name !== 'followers' ? Math.floor(value) : numberToShort(value)
+  const classes = useStyles({ color })
+  const shortValue = name !== 'followers' ? Math.floor(value) : numberToShort(value)
 
   return (
     <AppBox alignItems="baseline" spacing={0.5}>
       <AppEmoji name={name} variant="subtitle1" />
       <AppBox width={32}>
-        <AppTypography variant="h6" component="p" style={{ color }}>
-          {preparedValue}
+        <AppTypography variant="h6" component="p" className={classes.shortValue}>
+          {shortValue}
           {!['completed', 'abandoned', 'followers'].includes(name) && <Level />}
         </AppTypography>
       </AppBox>
     </AppBox>
   )
 }
+
+const useStyles = makeStyles({
+  shortValue: {
+    color: (props: { color: string }) => props.color,
+  },
+})

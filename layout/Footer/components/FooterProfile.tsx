@@ -1,3 +1,4 @@
+import { useRouter } from 'next/router'
 import { Button } from '@material-ui/core'
 import useOpenSignIn from 'hooks/useOpenSignIn'
 import { getUserHref } from 'views/UserView/helper'
@@ -10,14 +11,22 @@ interface FooterProfileProps {
 }
 
 export default function FooterProfile({ nickname, asPath }: FooterProfileProps): JSX.Element {
+  const router = useRouter()
   const openSignIn = useOpenSignIn()
   const href = !nickname ? undefined : getUserHref(nickname)
   const selected = !href ? false : asPath.includes(href)
 
-  const onClick = () => openSignIn({ callbackUrl: '/' })
+  const onClick = () => {
+    if (href) {
+      router.push(href)
+      return
+    }
+
+    openSignIn({ callbackUrl: '/' })
+  }
 
   return (
-    <Button href={href} onClick={href ? undefined : onClick}>
+    <Button onClick={onClick}>
       <FooterIcon Icon={ProfileIcon} selected={selected} />
     </Button>
   )

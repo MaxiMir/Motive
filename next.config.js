@@ -11,7 +11,7 @@ module.exports = withPWA({
     runtimeCaching,
   },
   images: {
-    domains: ['localhost', 'avatars.githubusercontent.com', 'lh3.googleusercontent.com'], // TODO REPLACE
+    domains: ['localhost', '2bebetter.pro', 'avatars.githubusercontent.com', 'lh3.googleusercontent.com'],
   },
   experimental: {
     outputStandalone: true,

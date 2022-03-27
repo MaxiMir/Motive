@@ -23,18 +23,6 @@ export const clickHandler = (type: ShareType, title: string, url: string): void 
 }
 
 /**
- * Handler for copying text to the clipboard
- */
-export const copyHandler = async (text: string, onEnd: () => void, onError: (err: unknown) => void): Promise<void> => {
-  try {
-    await navigator.clipboard.writeText(text)
-    onEnd()
-  } catch (err) {
-    onError(err)
-  }
-}
-
-/**
  * Social Networks
  */
 const SHARERS: { [k: string]: (u: string, quote: string) => [string, boolean] } = {

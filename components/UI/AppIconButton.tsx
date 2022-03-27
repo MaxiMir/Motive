@@ -10,7 +10,7 @@ export default function AppIconButton({ name, className, ...props }: AppIconButt
   const classes = useStyles()
 
   return (
-    <IconButton disableFocusRipple className={clsx([classes.button, className])} {...props}>
+    <IconButton disableFocusRipple className={clsx([classes.silent, className])} {...props}>
       <AppIcon name={name} />
     </IconButton>
   )
@@ -18,7 +18,7 @@ export default function AppIconButton({ name, className, ...props }: AppIconButt
 
 const useStyles = makeStyles((theme) =>
   createStyles({
-    button: {
+    silent: {
       color: theme.text.silent,
     },
   }),

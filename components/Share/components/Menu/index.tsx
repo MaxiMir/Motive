@@ -1,10 +1,11 @@
 import { KeyboardEvent } from 'react'
 import { createStyles, Drawer, List, ListItem, ListItemIcon, ListItemText } from '@material-ui/core'
 import { makeStyles } from '@material-ui/core/styles'
+import { copyHandler } from 'helpers/dom'
 import AppBox from 'components/UI/AppBox'
 import { FacebookIcon, TelegramIcon, TwitterIcon, VKIcon } from 'components/UI/icons'
 import AppIcon from 'components/UI/AppIcon'
-import { clickHandler, copyHandler } from './helper'
+import { clickHandler } from './helper'
 
 interface MenuProps {
   title: string
@@ -58,7 +59,7 @@ const Menu = ({ title, url, onCopyEnd, onCopyError, onClose }: MenuProps): JSX.E
       },
       {
         text: 'Copy link',
-        iconText: <AppIcon name="link" color="secondary" />,
+        iconText: <AppIcon name="content_copy" color="secondary" />,
         onClick: () => copyHandler(url, onCopyEnd, onCopyError),
       },
     ]

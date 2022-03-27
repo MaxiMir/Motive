@@ -16,10 +16,9 @@ export default function AppTitle({
   children,
 }: AppTitleProps): JSX.Element {
   return (
-    <AppBox alignItems="center" spacing={1} mb={mb}>
-      <AppEmoji name={name} variant={variant} />
+    <AppBox alignItems="center" spacing={2} mb={mb}>
       <AppTypography variant={variant} component={component} color={color}>
-        {children}
+        <AppEmoji name={name} onlyEmoji /> {children}
       </AppTypography>
     </AppBox>
   )

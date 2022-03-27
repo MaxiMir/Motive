@@ -1,3 +1,4 @@
+import dynamic from 'next/dynamic'
 import clsx from 'clsx'
 import { Button, createStyles, Grid, makeStyles } from '@material-ui/core'
 import AppContainer from 'components/UI/AppContainer'
@@ -7,6 +8,15 @@ import AppTypography from 'components/UI/AppTypography'
 import { TelegramIcon, LinkedInIcon } from 'components/UI/icons'
 import AppIcon from 'components/UI/AppIcon'
 import AppEmoji from 'components/UI/AppEmoji'
+
+const Wallet = dynamic(() => import('./components/Wallet'))
+
+const CRYPTOS = [
+  { name: 'BTC', wallet: '1AmJZzeVH6wkJZ6a1FojJbHD1im9UZBar7' },
+  { name: 'ETH', wallet: '0xc7a7b4c59999c27aaae8affcd9bd9eb1f4724806' },
+  { name: 'LTC', wallet: 'LLspFKQebdgpq1YECXfjdkQKWTXZnmDBRA' },
+  { name: 'DOGE', wallet: 'D9btjbEFVpCStxQAaCdUGw9AjMnvsAUvbr' },
+]
 
 export default function ContactView(): JSX.Element {
   const classes = useStyles()
@@ -66,6 +76,14 @@ export default function ContactView(): JSX.Element {
             </Button>
           </Grid>
         </Grid>
+        <AppBox flexDirection="column" spacing={1} mt={4}>
+          <AppTitle name="coin" variant="h1" component="h3">
+            Support us
+          </AppTitle>
+          {CRYPTOS.map(({ name, wallet }) => (
+            <Wallet name={name} wallet={wallet} key={name} />
+          ))}
+        </AppBox>
       </AppBox>
     </AppContainer>
   )

@@ -15,7 +15,7 @@ export default function Share({ open, title, href, onClose }: ShareProps): JSX.E
   const withNavigatorShare = useRef(false)
   const [enqueueSnackbar, closeSnackbar] = useSnackbar()
   const [withMenu, setWithMenu] = useState(false)
-  const url = process.env.NEXT_PUBLIC_CLIENT_BASE_URL + href
+  const url = process.env.NEXT_PUBLIC_APP_URL + href
 
   const onCopyEnd = () => enqueueSnackbar({ message: 'Copied', severity: 'success', icon: 'keyboard' })
 

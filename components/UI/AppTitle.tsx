@@ -15,10 +15,13 @@ export default function AppTitle({
   mb,
   children,
 }: AppTitleProps): JSX.Element {
+  const spacing = variant === 'h1' ? 2 : 1
+
   return (
-    <AppBox alignItems="center" spacing={2} mb={mb}>
+    <AppBox alignItems="center" spacing={spacing} mb={mb}>
+      <AppEmoji name={name} variant={variant} />
       <AppTypography variant={variant} component={component} color={color}>
-        <AppEmoji name={name} onlyEmoji /> {children}
+        {children}
       </AppTypography>
     </AppBox>
   )

@@ -1,13 +1,11 @@
 ```shell
-docker build -t maxiimir/2bebetter:1.0.0 .
-docker push maxiimir/2bebetter:1.0.0
-docker run -d -p 3000:3000 maxiimir/2bebetter:1.0.0
+docker build -t maximir/frontend:1.0.0 .
+docker push maximir/frontend:1.0.0
+docker run -d -p 3000:3000 maximir/frontend:1.0.0
 
-docker tag <IMAGE_ID> maximir.jfrog.io/default-docker-virtual/2bebetter:1.0.0
-docker push maximir.jfrog.io/default-docker-virtual/2bebetter:1.0.0
-docker pull maximir.jfrog.io/default-docker-virtual/2bebetter:1.0.0
-
-docker run -d -p 3000:3000 maximir.jfrog.io/default-docker-virtual/2bebetter:1.0.0
+docker tag <IMAGE_ID> maximir.jfrog.io/default-docker-virtual/frontend:1.0.0
+docker push maximir.jfrog.io/default-docker-virtual/frontend:1.0.0
+docker pull maximir.jfrog.io/default-docker-virtual/frontend:1.0.0
 
 ssh root@37.46.131.41
 
@@ -28,11 +26,11 @@ server {
         server_name 2bebetter.pro www.2bebetter.pro;
 
         location /backend {
-           proxy_pass http://localhost:4000
+           proxy_pass http://localhost:4000;
         }
 
         location / {
-           proxy_pass http://localhost:3000
+           proxy_pass http://localhost:3000;
         }
 }
 

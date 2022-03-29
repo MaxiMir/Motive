@@ -12,7 +12,7 @@ export default function MainView(): JSX.Element {
       <Slogan />
       <AppBox flexDirection="column" flex={1}>
         {ADVANTAGES.map((advantage) => (
-          <Advantage {...advantage} color={colors[advantage.name]} />
+          <Advantage {...advantage} color={colors[advantage.name]} key={advantage.name} />
         ))}
       </AppBox>
     </>

@@ -44,7 +44,7 @@ export default function SearchView({ q, hashtags, goals, users }: SearchViewProp
             ))}
           </Grid>
         </AppBox>
-        {!!goals.length && <GoalsList goals={goals} />}
+        {!!goals.length && false && <GoalsList goals={goals} />}
       </AppBox>
     </AppContainer>
   )

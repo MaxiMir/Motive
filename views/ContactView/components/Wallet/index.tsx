@@ -15,7 +15,7 @@ export default function Wallet({ name, wallet }: WalletProps): JSX.Element {
   const classes = useStyles()
   const theme = useTheme()
   const [enqueueSnackbar] = useSnackbar()
-  const isMobile = useMediaQuery(theme.breakpoints.down('xs'), { noSsr: true })
+  const isMobile = useMediaQuery(theme.breakpoints.down('xs'))
 
   const onCopySuccess = () => enqueueSnackbar({ message: 'Copied', severity: 'success', icon: 'keyboard' })
 

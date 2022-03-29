@@ -35,10 +35,7 @@ const Layout: FC<LayoutProps> = ({
     <>
       <Head>
         <title>{title || process.env.NEXT_PUBLIC_APP_NAME}</title>
-        <meta
-          name="description"
-          content={description || `${process.env.NEXT_PUBLIC_APP_NAME} • your assistant to achieve your goals`}
-        />
+        {description && <meta name="description" content={description} />}
         <meta name="robots" content="index, follow" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <meta property="og:title" content={title} />

@@ -29,7 +29,7 @@ export default function UserView({ user }: UserViewProps): JSX.Element {
   const theme = useTheme()
   const client = useClient()
   const characteristicColors = useCharacteristicColors()
-  const isMobile = useMediaQuery(theme.breakpoints.down('sm'), { noSsr: true })
+  const isMobile = useMediaQuery(theme.breakpoints.down('sm'))
   const href = getUserHref(nickname)
   const characteristicsTitle = getCharacteristicsTitle()
   const clientPage = id === client?.id

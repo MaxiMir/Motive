@@ -23,7 +23,7 @@ export default function Advantage({ name, title, subtitle, href, color }: Advant
         <AppLink href={href} className={classes.imageLink}>
           <AppEmoji name={name} variant="h2" />
         </AppLink>
-        <AppBox flexDirection="column" spacing={1}>
+        <AppBox flexDirection="column" spacing={2}>
           <AppLink href={href}>
             <AppTypography variant="h5" className={classes.title}>
               {title}

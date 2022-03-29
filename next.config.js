@@ -16,12 +16,4 @@ module.exports = withPWA({
   experimental: {
     outputStandalone: true,
   },
-  async rewrites() {
-    return [
-      {
-        source: '/backend/:path*',
-        destination: 'http://2bebetter.pro/backend/:path*', // Proxy to Backend
-      },
-    ]
-  },
 })

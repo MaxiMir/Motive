@@ -25,6 +25,7 @@ export default function SearchForm({ q }: SearchFormProps): JSX.Element {
           color="secondary"
           component={AppInput}
           InputProps={{
+            disabled: true,
             startAdornment: <AppIconButton name="search" disabled className={classes.button} />,
             endAdornment: values.q && <AppIconButton name="close" className={classes.button} onClick={onClickClose} />,
           }}

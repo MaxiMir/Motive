@@ -14,7 +14,9 @@ export default function SearchPage(): JSX.Element {
           Top of the day
         </AppTitle>
         <AppBox alignItems="center" justifyContent="center" flex={1} height="80vh">
-          <AppTypography variant="h5">In development</AppTypography>
+          <AppTypography variant="h5" style={{ color: 'gray' }}>
+            In development
+          </AppTypography>
         </AppBox>
       </Container>
     </Layout>

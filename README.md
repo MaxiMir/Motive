@@ -24,6 +24,7 @@ services:
     environment:
       - PORT=4000
       - CLIENT=https://2bebetter.pro
+      - NEXTAUTH_COOKIE=__Secure-next-auth.session-token
       - NEXTAUTH_SECRET=LlEderlgdhSaJS6yeP2JtPiz5h60ZyanzvAmYyOjG0w=
       - POSTGRES_HOST=188.225.37.43
       - POSTGRES_USER=gen_user

@@ -13,13 +13,6 @@ version: '3.3'
 services:
   frontend:
     image: maximir.jfrog.io/default-docker-virtual/frontend:1.0.0
-    environment:
-      - NEXTAUTH_URL=https://2bebetter.pro
-      - NEXTAUTH_SECRET=LlEderlgdhSaJS6yeP2JtPiz5h60ZyanzvAmYyOjG0w=
-      - GITHUB_ID=Iv1.783b28b16644a42a
-      - GITHUB_SECRET=932f94d4af139288422f81ec2dc9dd61d2ace0d9
-      - GOOGLE_ID=773653438269-1emlak7ceb4e55k82vcog6flv59c5e0e.apps.googleusercontent.com
-      - GOOGLE_SECRET=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
     depends_on:
       - backend
     restart: unless-stopped
@@ -29,6 +22,8 @@ services:
   backend:
     image: maximir.jfrog.io/default-docker-virtual/backend:1.0.0
     environment:
+      - PORT=4000
+      - CLIENT=https://2bebetter.pro
       - NEXTAUTH_SECRET=LlEderlgdhSaJS6yeP2JtPiz5h60ZyanzvAmYyOjG0w=
       - POSTGRES_HOST=188.225.37.43
       - POSTGRES_USER=gen_user

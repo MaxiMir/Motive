@@ -18,7 +18,6 @@ export default function AddGoal(): JSX.Element {
         variant="outlined"
         size="small"
         color="secondary"
-        id="create"
         className={classes.button}
         startIcon={<AppEmoji name="goal" onlyEmoji />}
         onClick={toggleModal}

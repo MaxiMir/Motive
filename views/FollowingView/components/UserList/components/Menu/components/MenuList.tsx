@@ -1,4 +1,4 @@
-import { Divider, Menu, MenuItem } from '@material-ui/core'
+import { Menu, MenuItem } from '@material-ui/core'
 import AppMenuItemContent from 'components/UI/AppMenuItemContent'
 
 interface MenuListProps {
@@ -16,10 +16,6 @@ export default function MenuList({ anchorEl, onShare, onRemove, onClose }: MenuL
       </MenuItem>
       <MenuItem onClick={onRemove}>
         <AppMenuItemContent icon="remove_circle_outline" text="Remove" />
-      </MenuItem>
-      <Divider light />
-      <MenuItem onClick={onClose}>
-        <AppMenuItemContent icon="not_interested" text="Cancel" />
       </MenuItem>
     </Menu>
   )

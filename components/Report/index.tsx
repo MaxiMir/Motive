@@ -1,4 +1,4 @@
-import { Divider, Menu, MenuItem } from '@material-ui/core'
+import { Menu, MenuItem } from '@material-ui/core'
 import { ReportType } from 'dto'
 import AppMenuItemContent from 'components/UI/AppMenuItemContent'
 import useSendReport from './hook'
@@ -21,10 +21,6 @@ export default function Report({ entityId, type, anchorEl, onClose }: ReportProp
           <AppMenuItemContent icon="outlined_flag" text={name} />
         </MenuItem>
       ))}
-      <Divider light />
-      <MenuItem onClick={onClose}>
-        <AppMenuItemContent icon="not_interested" text="Cancel" />
-      </MenuItem>
     </Menu>
   )
 }

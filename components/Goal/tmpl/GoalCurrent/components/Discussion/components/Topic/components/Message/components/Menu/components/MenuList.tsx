@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import dynamic from 'next/dynamic'
-import { Divider, Menu, MenuItem } from '@material-ui/core'
+import { Menu, MenuItem } from '@material-ui/core'
 import { MessageDto } from 'dto'
 import useClient from 'hooks/useClient'
 import AppMenuItemContent from 'components/UI/AppMenuItemContent'
@@ -37,10 +37,6 @@ export default function MenuList({ anchorEl, message, onOpenModal, onClose }: Me
             <AppMenuItemContent icon="outlined_flag" text="Report" />
           </MenuItem>
         )}
-        <Divider light />
-        <MenuItem onClick={onClose}>
-          <AppMenuItemContent icon="not_interested" text="Cancel" />
-        </MenuItem>
       </Menu>
       {withReport && <Report entityId={message.id} type="message" anchorEl={anchorEl} onClose={onCloseReport} />}
     </>

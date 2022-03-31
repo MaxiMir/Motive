@@ -2,6 +2,7 @@ import { GetServerSideProps } from 'next'
 import { dehydrate, QueryClient } from 'react-query'
 import { getSession } from 'next-auth/react'
 import { PageProps, PossiblePageError } from 'dto'
+import { getSearchParam } from 'helpers/url'
 import PageService from 'services/PageService'
 import { getUserMeta } from 'views/UserView/helper'
 import Layout from 'layout'
@@ -20,18 +21,11 @@ export default function UserDetail({ statusCode }: PageProps): JSX.Element {
 }
 
 export const getServerSideProps: GetServerSideProps = async (ctx) => {
-  if (ctx.req.url?.includes('_next')) {
-    return {
-      props: {
-        statusCode: 200,
-      },
-    }
-  }
-
-  const { headers } = ctx.req
+  const { headers, url = '' } = ctx.req
+  const isClient = ctx.req.url?.includes('_next')
+  const urn = !isClient ? url : `/${getSearchParam(url, 'id')}`
   const queryClient = new QueryClient()
   const session = await getSession(ctx)
-  const urn = ctx.req.url || ''
   const nickname = ctx.params?.id || ''
   await queryClient.prefetchQuery(nickname, () => PageService.getUser(urn, { headers }))
   const state = queryClient.getQueryState<PossiblePageError>(nickname)

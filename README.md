@@ -1,11 +1,11 @@
 ```shell
-docker build -t maximir/frontend:1.0.0 .
-docker push maximir/frontend:1.0.0
-docker run -d -p 3000:3000 maximir/frontend:1.0.0
+docker build -t maximir/frontend:1.0.1 .
+docker push maximir/frontend:1.0.1
+docker run -d -p 3000:3000 maximir/frontend:1.0.1
 
-docker tag <IMAGE_ID> maximir.jfrog.io/default-docker-virtual/frontend:1.0.0
-docker push maximir.jfrog.io/default-docker-virtual/frontend:1.0.0
-docker pull maximir.jfrog.io/default-docker-virtual/frontend:1.0.0
+docker tag <IMAGE_ID> maximir.jfrog.io/default-docker-virtual/frontend:1.0.1
+docker push maximir.jfrog.io/default-docker-virtual/frontend:1.0.1
+docker pull maximir.jfrog.io/default-docker-virtual/frontend:1.0.1
 ```
 ```yaml
 version: '3.3'

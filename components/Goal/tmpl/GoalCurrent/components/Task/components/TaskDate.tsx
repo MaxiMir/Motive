@@ -8,10 +8,12 @@ interface TaskDateProps {
 }
 
 export default function TaskDate({ date }: TaskDateProps): JSX.Element {
+  const formattedDate = format(new Date(date), 'hh:mm')
+
   return (
     <AppBox alignItems="center" color="#99989D" spacing={1} marginLeft={3}>
       <AppIcon name="schedule" />
-      <AppTypography>{format(new Date(date), 'hh:mm')}</AppTypography>
+      <AppTypography>{formattedDate}</AppTypography>
     </AppBox>
   )
 }

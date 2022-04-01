@@ -1,10 +1,12 @@
 import dynamic from 'next/dynamic'
 import { MemberDto, TaskDto } from 'dto'
 import { GoalInfo } from 'components/Goal/tmpl/GoalCurrent/helper'
+import AppBox from 'components/UI/AppBox'
 import { checkOnCompletedByOther } from './helper'
 
 const TaskText = dynamic(() => import('./components/TaskText'))
 const TaskForm = dynamic(() => import('./components/TaskForm'))
+const TaskDate = dynamic(() => import('./components/TaskDate'))
 
 interface TaskProps {
   goalId: number
@@ -15,11 +17,12 @@ interface TaskProps {
 }
 
 export default function Task({ goalId, task, rest, goalInfo, clientMember }: TaskProps): JSX.Element {
+  const { date } = task
   const { form, forTomorrow, daysGoneForOwner } = goalInfo
   const completedByOther = checkOnCompletedByOther(task, daysGoneForOwner)
 
   return (
-    <>
+    <AppBox alignItems="center" height={42} spacing={1}>
       {!form ? (
         <TaskText task={task} completedByOther={completedByOther} />
       ) : (
@@ -32,6 +35,7 @@ export default function Task({ goalId, task, rest, goalInfo, clientMember }: Tas
           clientMember={clientMember}
         />
       )}
-    </>
+      {date && <TaskDate date={date} />}
+    </AppBox>
   )
 }

@@ -14,13 +14,15 @@ export default function Views({ views }: GoalViewsProps): JSX.Element {
   const shortViews = numberToShort(views)
 
   return (
-    <AppBox alignItems="center" alignSelf="end" spacing={1}>
-      <AppTooltip title="Day Views">
-        <AppEmoji name="views" variant="h5" />
-      </AppTooltip>
-      <AppTypography variant="subtitle1" component="p" className={classes.views}>
-        {shortViews}
-      </AppTypography>
+    <AppBox justifyContent="flex-end">
+      <AppBox alignItems="center" spacing={1}>
+        <AppTooltip title="Day Views">
+          <AppEmoji name="views" variant="h5" />
+        </AppTooltip>
+        <AppTypography variant="subtitle1" component="p" className={classes.views}>
+          {shortViews}
+        </AppTypography>
+      </AppBox>
     </AppBox>
   )
 }

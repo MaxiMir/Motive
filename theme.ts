@@ -75,6 +75,7 @@ export const getDesignTokens = (type: PaletteType): ThemeOptions => {
           body: {
             margin: 0,
             padding: 0,
+            minHeight: '100vh',
           },
           snackbar: {
             bottom: '100px !important',

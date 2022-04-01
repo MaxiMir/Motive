@@ -6,8 +6,7 @@ import AppCheckbox from 'components/UI/AppCheckbox'
 import AppMarkdown from 'components/UI/AppMarkdown'
 import useSetCompleted from './hook'
 
-const TaskDate = dynamic(() => import('../TaskDate'))
-const CompletedByOther = dynamic(() => import('components/Goal/tmpl/GoalCurrent/components/CompletedByOther'))
+const CompletedByOther = dynamic(() => import('../CompletedByOther'))
 
 interface TaskFormProps {
   goalId: number
@@ -26,7 +25,7 @@ export default function TaskForm({
   completedByOther,
   clientMember,
 }: TaskFormProps): JSX.Element {
-  const { id, name, date, completed } = task
+  const { id, name, completed } = task
   const setCompleted = useSetCompleted(goalId, id, rest, clientMember)
 
   return (
@@ -45,7 +44,6 @@ export default function TaskForm({
           onChange={setCompleted}
         />
       </TooltipTomorrow>
-      {date && <TaskDate date={date} />}
     </form>
   )
 }

@@ -15,7 +15,6 @@ import Calendar from './components/Calendar'
 import Menu from './components/Menu'
 import Discussion from './components/Discussion'
 import Views from './components/Views'
-import Task from './components/Task'
 
 const AppTypography = dynamic(() => import('components/UI/AppTypography'))
 const Inheritance = dynamic(() => import('./components/Inheritance'))
@@ -24,6 +23,7 @@ const Feedback = dynamic(() => import('./components/Feedback'))
 const Hashtags = dynamic(() => import('./components/Hashtags'))
 const Web = dynamic(() => import('./components/Web'))
 const Actions = dynamic(() => import('./components/Actions'))
+const Task = dynamic(() => import('./components/Task'), { ssr: false })
 
 const CHARACTERISTICS: GoalCharacteristicName[] = ['motivation', 'creativity', 'support', 'members']
 

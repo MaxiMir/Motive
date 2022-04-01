@@ -9,7 +9,7 @@ interface AvatarProps {
 export default function Avatar({ src, size }: AvatarProps): JSX.Element {
   const classes = useStyles()
 
-  return <AppImage src={src} alt="avatar" width={size} height={size} objectFit="cover" className={classes.avatar} />
+  return <AppImage src={src} alt="" width={size} height={size} objectFit="cover" className={classes.avatar} />
 }
 
 const useStyles = makeStyles({

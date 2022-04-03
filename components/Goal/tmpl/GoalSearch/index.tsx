@@ -15,8 +15,8 @@ export interface GoalSearchProps {
 
 export default function GoalSearch({ goal }: GoalSearchProps): JSX.Element {
   const { name, characteristic, owner } = goal
-  const classes = useStyles()
   const theme = useTheme()
+  const classes = useStyles()
   const colors = useCharacteristicColors()
 
   return (

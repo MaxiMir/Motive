@@ -12,8 +12,8 @@ interface WalletProps {
 }
 
 export default function Wallet({ name, wallet }: WalletProps): JSX.Element {
-  const classes = useStyles()
   const theme = useTheme()
+  const classes = useStyles()
   const [enqueueSnackbar] = useSnackbar()
   const isMobile = useMediaQuery(theme.breakpoints.down('xs'))
 

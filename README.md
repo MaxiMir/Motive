@@ -1,11 +1,11 @@
 ```shell
-docker build -t maximir/frontend:1.0.1 .
-docker push maximir/frontend:1.0.1
-docker run -d -p 3000:3000 maximir/frontend:1.0.1
+docker build -t maximir/frontend:1.0.2 .
+docker push maximir/frontend:1.0.2
+docker run -d -p 3000:3000 maximir/frontend:1.0.2
 
-docker tag <IMAGE_ID> maximir.jfrog.io/default-docker-virtual/frontend:1.0.1
-docker push maximir.jfrog.io/default-docker-virtual/frontend:1.0.1
-docker pull maximir.jfrog.io/default-docker-virtual/frontend:1.0.1
+docker tag <IMAGE_ID> maximir.jfrog.io/default-docker-virtual/frontend:1.0.2
+docker push maximir.jfrog.io/default-docker-virtual/frontend:1.0.2
+docker pull maximir.jfrog.io/default-docker-virtual/frontend:1.0.2
 
 # copy
 docker cp <IMAGE_ID>:/home/node/client /home # <-

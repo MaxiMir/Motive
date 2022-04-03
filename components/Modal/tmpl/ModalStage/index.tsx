@@ -48,7 +48,7 @@ export default function ModalStage({ goal, onClose }: ModalStageProps): JSX.Elem
         <AppBox flexDirection="column" alignItems="center" spacing={1}>
           <AppFlyIcon name="stage" />
           <AppTypography variant="subtitle1" className={classes.congratulations}>
-            Excellent! One step behind!
+            Excellent! One stage behind!
           </AppTypography>
           <AppTypography>
             {isFinal ? 'Final' : 'Next'} stage is <b className={classes.nextStage}>{stages[nextStage]}</b>

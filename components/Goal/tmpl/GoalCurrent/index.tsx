@@ -15,6 +15,7 @@ import Calendar from './components/Calendar'
 import Menu from './components/Menu'
 import Discussion from './components/Discussion'
 import Views from './components/Views'
+import Task from './components/Task'
 
 const AppTypography = dynamic(() => import('components/UI/AppTypography'))
 const Inheritance = dynamic(() => import('./components/Inheritance'))
@@ -23,7 +24,6 @@ const Feedback = dynamic(() => import('./components/Feedback'))
 const Hashtags = dynamic(() => import('./components/Hashtags'))
 const Web = dynamic(() => import('./components/Web'))
 const Actions = dynamic(() => import('./components/Actions'))
-const Task = dynamic(() => import('./components/Task'), { ssr: false })
 
 const CHARACTERISTICS: GoalCharacteristicName[] = ['motivation', 'creativity', 'support', 'members']
 
@@ -49,8 +49,8 @@ export default function GoalCurrent({
 }: GoalCurrentProps): JSX.Element {
   const { id, name, hashtags, characteristic, owner, stages, day, inherited } = goal
   const { id: dayId, date, tasks, views, feedback, topicCount } = day
-  const classes = useStyles()
   const theme = useTheme()
+  const classes = useStyles()
   const colors = useCharacteristicColors()
   const userMember = getMember(goal, userMembership, userId)
   const clientOwnership = getClientOwnership(goal, clientId, clientPage, clientMembership)

@@ -2,10 +2,11 @@ import dynamic from 'next/dynamic'
 import { MemberDto, TaskDto } from 'dto'
 import { GoalInfo } from 'components/Goal/tmpl/GoalCurrent/helper'
 import AppBox from 'components/UI/AppBox'
-import { checkOnCompletedByOther } from './helper'
+import AppCheckbox from 'components/UI/AppCheckbox'
+import useSetCompleted from './hook'
+import TooltipTomorrow from '../TooltipTomorrow'
+import TaskLabel from './components/TaskLabel'
 
-const TaskText = dynamic(() => import('./components/TaskText'))
-const TaskForm = dynamic(() => import('./components/TaskForm'))
 const TaskDate = dynamic(() => import('./components/TaskDate'))
 
 interface TaskProps {
@@ -17,24 +18,24 @@ interface TaskProps {
 }
 
 export default function Task({ goalId, task, rest, goalInfo, clientMember }: TaskProps): JSX.Element {
-  const { date } = task
+  const { id, date, completed } = task
   const { form, forTomorrow, daysGoneForOwner } = goalInfo
-  const completedByOther = checkOnCompletedByOther(task, daysGoneForOwner)
+  const setCompleted = useSetCompleted(goalId, id, rest, clientMember)
+  const disabled = completed || forTomorrow || !form
 
   return (
-    <AppBox alignItems="center" height={42} spacing={1}>
-      {!form ? (
-        <TaskText task={task} completedByOther={completedByOther} />
-      ) : (
-        <TaskForm
-          goalId={goalId}
-          task={task}
-          rest={rest}
-          forTomorrow={forTomorrow}
-          completedByOther={completedByOther}
-          clientMember={clientMember}
-        />
-      )}
+    <AppBox flexDirection="column" spacing={1}>
+      <form>
+        <TooltipTomorrow forTomorrow={forTomorrow}>
+          <AppCheckbox
+            name={id.toString()}
+            label={<TaskLabel task={task} daysGoneForOwner={daysGoneForOwner} />}
+            checked={completed}
+            disabled={disabled}
+            onChange={setCompleted}
+          />
+        </TooltipTomorrow>
+      </form>
       {date && <TaskDate date={date} />}
     </AppBox>
   )

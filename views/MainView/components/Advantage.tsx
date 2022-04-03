@@ -23,13 +23,13 @@ export default function Advantage({ name, title, subtitle, href, color }: Advant
         <AppLink href={href} className={classes.imageLink}>
           <AppEmoji name={name} variant="h2" />
         </AppLink>
-        <AppBox flexDirection="column" spacing={2}>
+        <AppBox flexDirection="column" alignItems="space-between">
           <AppLink href={href}>
             <AppTypography variant="h5" className={classes.title}>
               {title}
             </AppTypography>
           </AppLink>
-          <AppTypography>{subtitle}</AppTypography>
+          <AppTypography className={classes.subtitle}>{subtitle}</AppTypography>
         </AppBox>
       </AppBox>
     </AppBox>
@@ -40,7 +40,6 @@ type UseStylesProps = Pick<AdvantageProps, 'color'>
 
 const useStyles = makeStyles({
   root: {
-    width: '100%',
     height: '100%',
     background: (props: UseStylesProps) => `linear-gradient(90deg, ${props.color.start} 0%, ${props.color.end} 100%)`,
   },
@@ -53,5 +52,8 @@ const useStyles = makeStyles({
     width: 215,
     textTransform: 'uppercase',
     fontWeight: 500,
+  },
+  subtitle: {
+    color: '#f5f5f799',
   },
 })

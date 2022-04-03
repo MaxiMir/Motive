@@ -11,7 +11,7 @@ export default function Slogan(): JSX.Element {
         <AppTypography variant="h4" align="center" component="h1" className={classes.name}>
           {process.env.NEXT_PUBLIC_APP_NAME}
         </AppTypography>
-        <AppTypography align="center" className={classes.subheader}>
+        <AppTypography variant="caption" align="center" className={classes.subheader}>
           your assistant to achieve your goals
         </AppTypography>
       </AppBox>
@@ -22,7 +22,7 @@ export default function Slogan(): JSX.Element {
 const useStyles = makeStyles((theme) =>
   createStyles({
     root: {
-      height: 120,
+      height: 100,
       backgroundColor: '#ffffff',
     },
     name: {

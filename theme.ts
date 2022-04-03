@@ -70,12 +70,13 @@ export const getDesignTokens = (type: PaletteType): ThemeOptions => {
       MuiCssBaseline: {
         '@global': {
           html: {
-            background: '#19191A',
+            background: '#121212',
           },
           body: {
             margin: 0,
             padding: 0,
             minHeight: '100vh',
+            background: '#121212',
           },
           snackbar: {
             bottom: '100px !important',

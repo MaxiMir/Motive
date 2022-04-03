@@ -47,7 +47,7 @@ const Layout: FC<LayoutProps> = ({
         <link rel="manifest" href="/manifest.json" />
         <link rel="apple-touch-icon" href="/apple-icon.png" />
         {/* PWA primary color */}
-        <meta name="theme-color" content="#4DA0EC" />
+        <meta name="theme-color" content="#121212" />
         <meta charSet="UTF-8" />
         <link rel="icon" type="image/x-icon" href="/favicon.ico" />
       </Head>
@@ -76,7 +76,7 @@ const useStyles = makeStyles({
     display: 'flex',
     flexDirection: 'column',
     minHeight: 'calc(100vh - 65px)',
-    padding: (props: UseStylesProps) => (!props.withVerticalPadding ? '60px 0 0' : '84px 0 112px'),
+    padding: (props: UseStylesProps) => (!props.withVerticalPadding ? undefined : '24px 0 112px'),
   },
 })
 

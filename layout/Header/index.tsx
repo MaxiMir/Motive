@@ -15,7 +15,7 @@ export default function Header({ authenticated }: HeaderProps): JSX.Element {
   const classes = useStyles()
 
   return (
-    <AppBar position="fixed" className={classes.appBar}>
+    <AppBar position="sticky" className={classes.appBar}>
       <AppContainer>
         <AppBox justifyContent="space-between" alignItems="center">
           <LeftMenu />

@@ -1,5 +1,5 @@
 import dynamic from 'next/dynamic'
-import { AppBar, Chip, makeStyles } from '@material-ui/core'
+import { AppBar, Chip, createStyles, makeStyles } from '@material-ui/core'
 import AppContainer from 'components/UI/AppContainer'
 import AppBox from 'components/UI/AppBox'
 import LeftMenu from './components/LeftMenu'
@@ -15,7 +15,7 @@ export default function Header({ authenticated }: HeaderProps): JSX.Element {
   const classes = useStyles()
 
   return (
-    <AppBar position="sticky" className={classes.appBar}>
+    <AppBar position="sticky" className={classes.root}>
       <AppContainer>
         <AppBox justifyContent="space-between" alignItems="center">
           <LeftMenu />
@@ -27,11 +27,13 @@ export default function Header({ authenticated }: HeaderProps): JSX.Element {
   )
 }
 
-const useStyles = makeStyles({
-  appBar: {
-    padding: '16px 0 8px',
-    flexGrow: 1,
-    backgroundColor: '#121212',
-    boxShadow: 'none',
-  },
-})
+const useStyles = makeStyles((theme) =>
+  createStyles({
+    root: {
+      padding: '16px 0 8px',
+      flexGrow: 1,
+      backgroundColor: theme.block.menu,
+      boxShadow: 'none',
+    },
+  }),
+)

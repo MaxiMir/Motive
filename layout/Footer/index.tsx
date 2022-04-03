@@ -1,5 +1,5 @@
 import { useRouter } from 'next/router'
-import { Button, makeStyles } from '@material-ui/core'
+import { Button, createStyles, makeStyles } from '@material-ui/core'
 import { FOLLOWING, RATING, SEARCH, TOP_OF_THE_DAY } from 'route'
 import AppBox from 'components/UI/AppBox'
 import AppContainer from 'components/UI/AppContainer'
@@ -45,8 +45,10 @@ export default function Footer({ nickname }: FooterProps): JSX.Element {
   )
 }
 
-const useStyles = makeStyles({
-  root: {
-    backgroundColor: '#121212',
-  },
-})
+const useStyles = makeStyles((theme) =>
+  createStyles({
+    root: {
+      backgroundColor: theme.block.menu,
+    },
+  }),
+)

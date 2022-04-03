@@ -21,7 +21,7 @@ export default function UserSearch({ user }: UserSearchProps): JSX.Element {
   const href = getUserHref(nickname)
 
   return (
-    <Button variant="outlined" color="primary" href={href} className={classes.button}>
+    <Button variant="outlined" href={href} className={classes.button}>
       <AppBox flexDirection="column" alignItems="center" spacing={2}>
         <AppAvatar src={avatar} size={120} />
         <AppTypography>{name}</AppTypography>

@@ -36,8 +36,8 @@ export default function ActionGoal({ name, title, count, disabled, onClick }: Ac
 
 type UseStylesProps = Pick<ActionGoalProps, 'name'>
 
-const useStyles = makeStyles((theme) => {
-  return createStyles({
+const useStyles = makeStyles((theme) =>
+  createStyles({
     button: {
       height: 36.5,
       minWidth: 'initial',
@@ -55,5 +55,5 @@ const useStyles = makeStyles((theme) => {
         }
       },
     },
-  })
-})
+  }),
+)

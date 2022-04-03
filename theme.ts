@@ -5,16 +5,24 @@ import { ThemeOptions } from '@material-ui/core/styles/createMuiTheme'
 declare module '@material-ui/core/styles/createMuiTheme' {
   interface Theme {
     text: {
+      white: CSSProperties['color']
       silent: CSSProperties['color']
       sand: CSSProperties['color']
       wave: CSSProperties['color']
     }
+    block: {
+      menu: CSSProperties['color']
+    }
   }
   interface ThemeOptions {
     text: {
+      white: CSSProperties['color']
       silent: CSSProperties['color']
       sand: CSSProperties['color']
       wave: CSSProperties['color']
+    }
+    block: {
+      menu: CSSProperties['color']
     }
   }
 }
@@ -24,9 +32,13 @@ export type PaletteType = 'light' | 'dark'
 export const getDesignTokens = (type: PaletteType): ThemeOptions => {
   return {
     text: {
+      white: '#F5F5F7',
       silent: '#99989D',
       sand: '#ad998b',
       wave: '#85dfff',
+    },
+    block: {
+      menu: type === 'dark' ? '#121212' : '#d7d7d7',
     },
     palette: {
       type,

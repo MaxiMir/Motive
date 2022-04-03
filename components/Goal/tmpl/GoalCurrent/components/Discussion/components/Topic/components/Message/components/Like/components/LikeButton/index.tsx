@@ -1,4 +1,3 @@
-import clsx from 'clsx'
 import { Button, makeStyles } from '@material-ui/core'
 import { MessageDto, MessageType } from 'dto'
 import useClient from 'hooks/useClient'
@@ -23,13 +22,7 @@ export default function LikeButton({ message, answerFor }: LikeButtonProps): JSX
 
   return (
     <AppOptionalTooltip title={title}>
-      <Button
-        size="small"
-        aria-label={ariaLabel}
-        disabled={disabled}
-        className={clsx([classes.button, !message.like && classes.buttonNotActive])}
-        onClick={onClick}
-      >
+      <Button size="small" aria-label={ariaLabel} disabled={disabled} className={classes.button} onClick={onClick}>
         <AppEmoji name={icon} onlyEmoji />
       </Button>
     </AppOptionalTooltip>
@@ -41,12 +34,5 @@ const useStyles = makeStyles({
     width: 24,
     height: 24,
     minWidth: 'initial',
-  },
-  buttonNotActive: {
-    filter: 'grayscale(1)',
-    transition: 'all .2s ease-in-out',
-    '&:hover': {
-      filter: 'initial',
-    },
   },
 })

@@ -3,26 +3,9 @@ import { SvgIcon, SvgIconProps } from '@material-ui/core'
 export default function TopOfTheDayIcon(props: SvgIconProps): JSX.Element {
   return (
     <SvgIcon {...props}>
-      <rect x="1" y="1" width="14.6667" height="14.6667" rx="4" fill="#121212" stroke="white" strokeWidth="2" />
-      <rect
-        x="4.6665"
-        y="4.66675"
-        width="14.6667"
-        height="14.6667"
-        rx="4"
-        fill="#121212"
-        stroke="white"
-        strokeWidth="2"
-      />
-      <rect
-        x="8.3335"
-        y="8.3335"
-        width="14.6667"
-        height="14.6667"
-        rx="4"
-        fill="#121212"
-        stroke="white"
-        strokeWidth="2"
+      <path
+        fillRule="evenodd"
+        d="M9.002 2.5a.75.75 0 0 1 .691.464l6.302 15.305l2.56-6.301a.75.75 0 0 1 .695-.468h4a.75.75 0 0 1 0 1.5h-3.495l-3.06 7.532a.75.75 0 0 1-1.389.004L8.997 5.21l-3.054 7.329A.75.75 0 0 1 5.25 13H.75a.75.75 0 0 1 0-1.5h4l3.558-8.538a.75.75 0 0 1 .694-.462z"
       />
     </SvgIcon>
   )

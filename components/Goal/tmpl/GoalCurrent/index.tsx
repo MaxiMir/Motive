@@ -114,7 +114,7 @@ export default function GoalCurrent({
                 ariaControls="tasks-content"
                 defaultExpanded
                 details={
-                  <AppBox flexDirection="column" spacing={2}>
+                  <AppBox flexDirection="column" spacing={1}>
                     {redefinedGoals.map((task) => (
                       <Task
                         goalId={id}

@@ -133,6 +133,7 @@ export default function GoalCurrent({
                 header="Feedback"
                 id={`feedbackContent-${dayId}`}
                 ariaControls="feedback-content"
+                defaultExpanded={!!feedback}
                 details={!feedback ? <AppTypography>Coming soon...</AppTypography> : <Feedback feedback={feedback} />}
               />
               <AppAccordion

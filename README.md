@@ -114,6 +114,13 @@ server {
            expires 30d;
         }
 }
+
+server {
+    listen 80;
+
+    server_name 2bebetter.pro www.2bebetter.pro;
+    return 301 https://2bebetter.pro;
+}
 ```
 ```shell
 ssh root@37.46.131.41

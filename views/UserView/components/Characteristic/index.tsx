@@ -25,7 +25,7 @@ interface CharacteristicProps {
 export default function Characteristic(props: CharacteristicProps): JSX.Element {
   const { user, color, name, locale } = props
   const router = useRouter()
-  const classes = useStyles({ color })
+  const classes = useStyles({ color, locale })
   const [modal, setModal] = useState<'followers' | 'completed'>()
   const title = i18nAll[locale][name]
   const tooltip = i18n[locale][name]
@@ -47,7 +47,9 @@ export default function Characteristic(props: CharacteristicProps): JSX.Element 
       <AppOptionalTooltip title={tooltip}>
         <Button className={classes.button} onClick={onClick}>
           <AppBox flexDirection="column" alignItems="flex-start" spacing={0.5}>
-            <AppTypography className={classes.title}>{title}</AppTypography>
+            <AppTypography variant="caption" className={classes.title}>
+              {title}
+            </AppTypography>
             <CharacteristicBase tmpl="user" {...props} />
           </AppBox>
         </Button>
@@ -57,7 +59,7 @@ export default function Characteristic(props: CharacteristicProps): JSX.Element 
   )
 }
 
-type UseStylesProps = Pick<CharacteristicProps, 'color'>
+type UseStylesProps = Pick<CharacteristicProps, 'color' | 'locale'>
 
 const useStyles = makeStyles((theme) =>
   createStyles({
@@ -68,10 +70,10 @@ const useStyles = makeStyles((theme) =>
       },
     },
     title: {
-      fontSize: '0.75rem',
+      fontSize: '0.8rem',
       color: (props: UseStylesProps) => props.color,
-      [theme.breakpoints.up('lg')]: {
-        fontSize: '0.875rem',
+      [theme.breakpoints.down('xs')]: {
+        fontSize: (props: UseStylesProps) => (props.locale === 'ru' ? '0.6rem' : '0.75rem'),
       },
     },
   }),

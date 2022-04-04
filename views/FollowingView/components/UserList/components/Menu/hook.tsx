@@ -3,12 +3,14 @@ import { useMutation, useQueryClient } from 'react-query'
 import { Button } from '@material-ui/core'
 import { SubscriptionPageDto, UserDto } from 'dto'
 import { FOLLOWING } from 'route'
+import { Locale } from 'hooks/useLocale'
 import useSnackbar from 'hooks/useSnackbar'
 import useOpenSignIn from 'hooks/useOpenSignIn'
 import useClient from 'hooks/useClient'
 import { Options, Context, fetcher, getNextState } from './helper'
+import i18n from './i18n'
 
-export default function useRemoveFollowing(): (user: UserDto, index: number) => void {
+export default function useRemoveFollowing(locale: Locale): (user: UserDto, index: number) => void {
   const client = useClient()
   const openSignIn = useOpenSignIn()
   const queryClient = useQueryClient()
@@ -25,11 +27,13 @@ export default function useRemoveFollowing(): (user: UserDto, index: number) => 
       return { previous }
     },
     onSuccess(_, { user, index, add }) {
+      const { message, undo } = i18n[locale]
+
       !add &&
         enqueueSnackbar({
-          message: 'Removed from following',
+          message,
           severity: 'success',
-          action: <Button onClick={() => onUndo(user, index)}>Undo</Button>,
+          action: <Button onClick={() => onUndo(user, index)}>{undo}</Button>,
           icon: 'speaker',
         })
     },

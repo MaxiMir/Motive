@@ -1,16 +1,26 @@
 import { GetServerSideProps } from 'next'
 import { getSession } from 'next-auth/react'
 import { ClientDto } from 'dto'
+import useLocale from 'hooks/useLocale'
 import Layout from 'layout'
 import MainView from 'views/MainView'
 
+const i18n = {
+  en: {
+    title: 'A social network for achieving goals',
+  },
+  ru: {
+    title: 'Социальная сеть для достижения целей',
+  },
+}
+
 export default function MainPage(): JSX.Element {
+  const { locale } = useLocale()
+  const { title } = i18n[locale]
+
   return (
-    <Layout
-      title={`${process.env.NEXT_PUBLIC_APP_NAME} • a social network for achieving goals`}
-      withVerticalPadding={false}
-    >
-      <MainView />
+    <Layout title={title} withVerticalPadding={false}>
+      <MainView locale={locale} />
     </Layout>
   )
 }

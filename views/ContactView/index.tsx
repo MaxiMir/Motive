@@ -1,6 +1,7 @@
 import dynamic from 'next/dynamic'
 import clsx from 'clsx'
 import { Button, createStyles, Grid, makeStyles } from '@material-ui/core'
+import useLocale from 'hooks/useLocale'
 import AppContainer from 'components/UI/AppContainer'
 import AppTitle from 'components/UI/AppTitle'
 import AppBox from 'components/UI/AppBox'
@@ -8,6 +9,7 @@ import AppTypography from 'components/UI/AppTypography'
 import { TelegramIcon, LinkedInIcon } from 'components/UI/icons'
 import AppIcon from 'components/UI/AppIcon'
 import AppEmoji from 'components/UI/AppEmoji'
+import i18n from './i18n'
 
 const Wallet = dynamic(() => import('./components/Wallet'))
 
@@ -20,6 +22,8 @@ const CRYPTOS = [
 
 export default function ContactView(): JSX.Element {
   const classes = useStyles()
+  const { locale } = useLocale()
+  const { header, subheader, support } = i18n[locale]
 
   const openBlank = (url: string) => window.open(url, '_blank')
 
@@ -32,11 +36,11 @@ export default function ContactView(): JSX.Element {
   return (
     <AppContainer flexColumn>
       <AppTitle name="contact" mb={4}>
-        Contact Us
+        {header}
       </AppTitle>
       <AppBox flexDirection="column" spacing={2}>
         <AppTypography>
-          Write to us with or without cause. Any feedback from you is welcome <AppEmoji name="wink" onlyEmoji />.
+          {subheader} <AppEmoji name="wink" onlyEmoji />.
         </AppTypography>
         <Grid container spacing={2}>
           <Grid item xs={6} sm={4} md={3} lg={2}>
@@ -78,7 +82,7 @@ export default function ContactView(): JSX.Element {
         </Grid>
         <AppBox flexDirection="column" spacing={1} mt={4}>
           <AppTitle name="coin" variant="h1" component="h3">
-            Support us
+            {support}
           </AppTitle>
           {CRYPTOS.map(({ name, wallet }) => (
             <Wallet name={name} wallet={wallet} key={name} />

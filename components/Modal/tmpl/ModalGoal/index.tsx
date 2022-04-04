@@ -4,6 +4,7 @@ import { makeStyles } from '@material-ui/core/styles'
 import { Accordion, AccordionDetails, AccordionSummary, Button, createStyles } from '@material-ui/core'
 import { MainCharacteristicName } from 'dto'
 import useFocus from 'hooks/useFocus'
+import { Locale } from 'hooks/useLocale'
 import AppDecorEmoji from 'components/UI/AppDecorEmoji'
 import AppModal from 'components/UI/AppModal'
 import AppTitle from 'components/UI/AppTitle'
@@ -17,6 +18,7 @@ import { PaulIcon } from 'components/UI/icons'
 import Action from 'components/Action'
 import Task from 'components/Task'
 import useForm from './hook'
+import i18n from './i18n'
 
 const AppIconButton = dynamic(() => import('components/UI/AppIconButton'))
 
@@ -24,14 +26,16 @@ const CHARACTERISTIC_NAMES: MainCharacteristicName[] = ['motivation', 'creativit
 
 export interface ModalGoalProps {
   tmpl: 'goal'
+  locale: Locale
   onClose: () => void
 }
 
-export default function ModalGoal({ onClose }: ModalGoalProps): JSX.Element {
+export default function ModalGoal({ locale, onClose }: ModalGoalProps): JSX.Element {
   const classes = useStyles()
   const [hashtagsRef, setHashtagsFocus] = useFocus()
   const form = useForm(onClose)
   const { isSubmitting, values, setFieldValue, handleSubmit } = form
+  const { title, name, hashtag, hashtags, button, buttonLoading, stages, stageButton, tasksTitle } = i18n[locale]
 
   const onAddHashtag = () => {
     setFieldValue('hashtags', !values.hashtags ? '#' : [values.hashtags, '#'].join(' '))
@@ -40,15 +44,15 @@ export default function ModalGoal({ onClose }: ModalGoalProps): JSX.Element {
 
   return (
     <AppModal
-      title="Creating a new goal"
+      title={title}
       maxWidth="xs"
       actions={[
         <Action tmpl="close" onClick={onClose} />,
         <Action
           tmpl="submit"
           isLoading={isSubmitting}
-          name="Create"
-          nameLoading="Creating"
+          name={button}
+          nameLoading={buttonLoading}
           emoji="goal"
           onClick={handleSubmit}
         />,
@@ -58,11 +62,11 @@ export default function ModalGoal({ onClose }: ModalGoalProps): JSX.Element {
       <FormikProvider value={form}>
         <Form autoComplete="off">
           <AppBox flexDirection="column" spacing={3}>
-            <Field name="name" label="Name *" color="secondary" component={AppInput} />
+            <Field name="name" label={name} color="secondary" component={AppInput} />
             <AppBox flexDirection="column" spacing={1}>
               <Field
                 name="hashtags"
-                label="Hashtags"
+                label={hashtags}
                 color="secondary"
                 multiline
                 rows={3}
@@ -70,12 +74,12 @@ export default function ModalGoal({ onClose }: ModalGoalProps): JSX.Element {
                 component={AppInput}
               />
               <Button variant="outlined" size="small" className={classes.button} onClick={onAddHashtag}>
-                # Hashtag
+                # {hashtag}
               </Button>
             </AppBox>
             <AppBox flexDirection="column" spacing={2}>
               <AppTitle name="stage" variant="h6" component="h2" color="primary">
-                Stages
+                {stages}
               </AppTitle>
               <FieldArray name="stages">
                 {({ push, remove }) => (
@@ -98,7 +102,7 @@ export default function ModalGoal({ onClose }: ModalGoalProps): JSX.Element {
                       </AppBox>
                     ))}
                     <Button variant="outlined" size="small" className={classes.button} onClick={() => push('')}>
-                      + Add stage
+                      + {stageButton}
                     </Button>
                   </>
                 )}
@@ -106,7 +110,7 @@ export default function ModalGoal({ onClose }: ModalGoalProps): JSX.Element {
             </AppBox>
             <AppBox flexDirection="column" spacing={2}>
               <AppTitle name="task" variant="h6" component="h2" color="primary">
-                Tasks for tomorrow
+                {tasksTitle}
               </AppTitle>
               <FieldArray name="tasks">
                 {({ push, remove }) => (
@@ -171,8 +175,8 @@ export default function ModalGoal({ onClose }: ModalGoalProps): JSX.Element {
                     On the 28th day he eats them <AppDecorEmoji name="blood" />.
                     <br />
                     The accumulated points{' '}
-                    {CHARACTERISTIC_NAMES.map((name) => (
-                      <AppDecorEmoji name={name} key={name} />
+                    {CHARACTERISTIC_NAMES.map((characteristic) => (
+                      <AppDecorEmoji name={characteristic} key={characteristic} />
                     ))}
                     will burn out and the number of abandoned goals increases.
                   </AppTypography>

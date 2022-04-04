@@ -4,6 +4,7 @@ import { AxiosError } from 'axios'
 import { useMutation, useQuery, useQueryClient, UseQueryResult } from 'react-query'
 import { UseMutationResult } from 'react-query/types/react/types'
 import { CreateMemberDto, GoalDto, MemberDto, UserPageDto } from 'dto'
+import useLocale from 'hooks/useLocale'
 import PageService from 'services/PageService'
 import MemberService from 'services/MemberService'
 import { scrollToElem } from 'helpers/dom'
@@ -59,6 +60,7 @@ export const useScrollToGoal = (): void => {
 
 export const useChangeDayUrl = (): ((goals: GoalDto[], goalId: number, dayId: number) => void) => {
   const router = useRouter()
+  const { locale } = useLocale()
 
   return (goals: GoalDto[], goalId: number, dayId: number) => {
     const { [SEARCH_PARAMS.DATES]: _, ...restParams } = getQueryParams()
@@ -68,13 +70,13 @@ export const useChangeDayUrl = (): ((goals: GoalDto[], goalId: number, dayId: nu
       ...restParams,
     })
 
-    router.push(router.pathname, as, { shallow: true })
+    router.push(router.pathname, as, { shallow: true, locale })
   }
 }
 
 export const useSendCreateMember = (): UseMutationResult<MemberDto, AxiosError, CreateMemberDto> => {
   const client = useClient()
-  const router = useRouter()
+  const { jump } = useLocale()
 
   return useMutation(MemberService.create, {
     onSuccess({ goalId, dayId }) {
@@ -83,7 +85,7 @@ export const useSendCreateMember = (): UseMutationResult<MemberDto, AxiosError, 
       const userHref = getUserHref(client.nickname)
       const params = { [SEARCH_PARAMS.DATES]: `${goalId}:${dayId}` }
 
-      router.push(setQueryParams(userHref, params))
+      jump(setQueryParams(userHref, params))
     },
   })
 }

@@ -3,6 +3,7 @@ import { FormikProps, useFormik } from 'formik'
 import { useMutation } from 'react-query'
 import { UpdateUserDto, UserBaseDto } from 'dto'
 import schema from 'schemas/profile'
+import useLocale from 'hooks/useLocale'
 import UserService from 'services/UserService'
 import { getQueryParams, setQueryParams } from 'helpers/url'
 import { getUserHref } from 'views/UserView/helper'
@@ -42,6 +43,7 @@ export default function useForm(user: UserBaseDto, onSuccess: () => void): Formi
 
 const useSendUpdateUser = () => {
   const router = useRouter()
+  const { locale } = useLocale()
   const [page, mutatePage] = useMutateUserPage()
 
   return useMutation(UserService.update, {
@@ -50,7 +52,7 @@ const useSendUpdateUser = () => {
       const as = setQueryParams(userBaseHref, getQueryParams())
 
       mutatePage(getNextState(page, user))
-      await router.push(as, as, { shallow: true })
+      await router.push(as, as, { shallow: true, locale })
     },
   })
 }

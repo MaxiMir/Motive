@@ -1,6 +1,8 @@
 import { createStyles, makeStyles } from '@material-ui/core'
+import useLocale from 'hooks/useLocale'
 import AppTypography from 'components/UI/AppTypography'
 import AppBox from 'components/UI/AppBox'
+import i18n from './i18n'
 
 interface NoResultProps {
   phrase: string
@@ -8,13 +10,15 @@ interface NoResultProps {
 
 export default function NoResult({ phrase }: NoResultProps): JSX.Element {
   const classes = useStyles()
+  const { locale } = useLocale()
+  const { description, hint } = i18n[locale]
 
   return (
     <AppBox flexDirection="column" spacing={1}>
       <AppTypography variant="h5" component="p">
-        No results found for &#171;<span className={classes.search}>{phrase}</span>&#187;.
+        {description} &#171;<span className={classes.search}>{phrase}</span>&#187;.
       </AppTypography>
-      <AppTypography className={classes.description}>Try changing the search phrase</AppTypography>
+      <AppTypography className={classes.description}>{hint}</AppTypography>
     </AppBox>
   )
 }

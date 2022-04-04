@@ -3,21 +3,31 @@ import { dehydrate, QueryClient } from 'react-query'
 import { getSession } from 'next-auth/react'
 import { PageProps, PossiblePageError } from 'dto'
 import { RATING } from 'route'
+import useLocale from 'hooks/useLocale'
 import PageService from 'services/PageService'
 import Layout from 'layout'
 import Rating from 'views/RatingView'
 import useRatingPage from 'views/RatingView/hook'
 
+const i18n = {
+  en: {
+    title: 'Rating users',
+    description: 'Rating the most motivating, creative, and supportive users',
+  },
+  ru: {
+    title: 'Рейтинг пользователей',
+    description: 'Рейтинг самых мотивирующих, творческих и поддерживающих пользователей',
+  },
+}
+
 export default function RatingPage({ statusCode }: PageProps): JSX.Element {
+  const { locale } = useLocale()
+  const { title, description } = i18n[locale]
   const { data } = useRatingPage()
 
   return (
-    <Layout
-      title={`${process.env.NEXT_PUBLIC_APP_NAME} • Rating users`}
-      description={`${process.env.NEXT_PUBLIC_APP_NAME} • Rating the most motivating, creative, and supportive users`}
-      statusCode={statusCode}
-    >
-      {data?.content && <Rating {...data.content} />}
+    <Layout title={title} description={description} statusCode={statusCode}>
+      {data?.content && <Rating {...data.content} locale={locale} />}
     </Layout>
   )
 }

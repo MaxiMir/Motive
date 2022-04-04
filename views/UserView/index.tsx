@@ -1,9 +1,10 @@
 import dynamic from 'next/dynamic'
 import { useMediaQuery, useTheme } from '@material-ui/core'
 import { UserDetailDto, UserCharacteristicName, MainCharacteristicName } from 'dto'
-import { getCharacteristicsTitle, getUserHref } from 'views/UserView/helper'
+import { getUserHref } from 'views/UserView/helper'
 import useCharacteristicColors from 'hooks/useCharacteristicColors'
 import useClient from 'hooks/useClient'
+import { Locale } from 'hooks/useLocale'
 import AppBox from 'components/UI/AppBox'
 import AppContainer from 'components/UI/AppContainer'
 import AppTypography from 'components/UI/AppTypography'
@@ -22,16 +23,16 @@ const SECOND_CHARACTERISTIC_NAMES: UserCharacteristicName[] = ['completed', 'aba
 
 export interface UserViewProps {
   user: UserDetailDto
+  locale: Locale
 }
 
-export default function UserView({ user }: UserViewProps): JSX.Element {
+export default function UserView({ user, locale }: UserViewProps): JSX.Element {
   const { id, nickname, name, avatar, characteristic, goals, following, userMembership, clientMembership } = user
   const theme = useTheme()
   const client = useClient()
   const characteristicColors = useCharacteristicColors()
   const isMobile = useMediaQuery(theme.breakpoints.down('sm'))
   const href = getUserHref(nickname)
-  const characteristicsTitle = getCharacteristicsTitle()
   const clientPage = id === client?.id
 
   useScrollToGoal()
@@ -42,7 +43,11 @@ export default function UserView({ user }: UserViewProps): JSX.Element {
         <AppTypography variant="h5" component="h1">
           {name}
         </AppTypography>
-        {clientPage ? <Edit user={user} /> : <Following id={user.id} following={following} />}
+        {clientPage ? (
+          <Edit user={user} locale={locale} />
+        ) : (
+          <Following id={user.id} following={following} locale={locale} />
+        )}
       </AppBox>
       <AppBox flexDirection="column" spacing={3} flex={1}>
         <AppBox spacing={isMobile ? 1 : 4} mb={4}>
@@ -54,8 +59,8 @@ export default function UserView({ user }: UserViewProps): JSX.Element {
                   user={user}
                   name={characteristicName}
                   value={characteristic[characteristicName]}
-                  title={characteristicsTitle[characteristicName]}
                   color={characteristicColors[characteristicName].fontColor}
+                  locale={locale}
                   key={characteristicName}
                 />
               ))}
@@ -66,8 +71,8 @@ export default function UserView({ user }: UserViewProps): JSX.Element {
                   user={user}
                   name={characteristicName}
                   value={characteristic[characteristicName]}
-                  title={characteristicsTitle[characteristicName]}
                   color={characteristicColors[characteristicName].fontColor}
+                  locale={locale}
                   key={characteristicName}
                 />
               ))}
@@ -76,7 +81,7 @@ export default function UserView({ user }: UserViewProps): JSX.Element {
         </AppBox>
         {clientPage && (
           <AppBox justifyContent="center">
-            <AddGoal />
+            <AddGoal locale={locale} />
           </AppBox>
         )}
         {!goals.length ? (

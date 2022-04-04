@@ -1,5 +1,5 @@
-import { useRouter } from 'next/router'
 import { Chip, makeStyles } from '@material-ui/core'
+import useLocale from 'hooks/useLocale'
 import { getHashtagHref } from './helper'
 
 export interface HashtagChipProps {
@@ -9,12 +9,12 @@ export interface HashtagChipProps {
 
 export default function HashtagChip({ name }: HashtagChipProps): JSX.Element {
   const classes = useStyles()
-  const router = useRouter()
+  const { jump } = useLocale()
 
   const onClick = () => {
     const href = getHashtagHref(name)
 
-    router.push(href)
+    jump(href)
   }
 
   return (

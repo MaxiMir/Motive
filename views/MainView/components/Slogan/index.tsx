@@ -1,9 +1,16 @@
 import { createStyles, makeStyles } from '@material-ui/core/styles'
+import { Locale } from 'hooks/useLocale'
 import AppBox from 'components/UI/AppBox'
 import AppTypography from 'components/UI/AppTypography'
+import i18n from './i18n'
 
-export default function Slogan(): JSX.Element {
+interface SloganProps {
+  locale: Locale
+}
+
+export default function Slogan({ locale }: SloganProps): JSX.Element {
   const classes = useStyles()
+  const { subheader } = i18n[locale]
 
   return (
     <AppBox alignItems="center" justifyContent="center" className={classes.root}>
@@ -12,7 +19,7 @@ export default function Slogan(): JSX.Element {
           {process.env.NEXT_PUBLIC_APP_NAME}
         </AppTypography>
         <AppTypography variant="caption" align="center" className={classes.subheader}>
-          your assistant to achieve your goals
+          {subheader}
         </AppTypography>
       </AppBox>
     </AppBox>

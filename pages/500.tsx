@@ -1,5 +1,18 @@
 import Layout from 'layout'
+import useLocale from 'hooks/useLocale'
+
+const i18n = {
+  en: {
+    title: '500: Sorry, something went wrong...',
+  },
+  ru: {
+    title: '500: Что-то пошло не так...',
+  },
+}
 
 export default function Page500(): JSX.Element {
-  return <Layout title="500: Sorry, something went wrong..." statusCode={500} />
+  const { locale } = useLocale()
+  const { title } = i18n[locale]
+
+  return <Layout title={title} statusCode={500} />
 }

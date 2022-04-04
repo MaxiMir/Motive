@@ -2,18 +2,30 @@ import Layout from 'layout'
 import { GetServerSideProps } from 'next'
 import { getSession } from 'next-auth/react'
 import { dehydrate, QueryClient } from 'react-query'
-import { PageProps, PossiblePageError } from 'dto'
 import { SEARCH } from 'route'
+import { PageProps, PossiblePageError } from 'dto'
+import useLocale from 'hooks/useLocale'
 import PageService from 'services/PageService'
 import SearchView from 'views/SearchView'
 import useSearchPage from 'views/SearchView/hook'
 
+const i18n = {
+  en: {
+    title: 'Search',
+  },
+  ru: {
+    title: 'Поиск',
+  },
+}
+
 export default function SearchPage({ statusCode }: PageProps): JSX.Element {
+  const { locale } = useLocale()
+  const { title } = i18n[locale]
   const { data } = useSearchPage()
 
   return (
-    <Layout title={`${process.env.NEXT_PUBLIC_APP_NAME} • Search`} statusCode={statusCode}>
-      {data?.content && <SearchView {...data.content} />}
+    <Layout title={title} statusCode={statusCode}>
+      {data?.content && <SearchView {...data.content} locale={locale} />}
     </Layout>
   )
 }

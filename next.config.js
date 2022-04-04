@@ -16,4 +16,8 @@ module.exports = withPWA({
   experimental: {
     outputStandalone: true,
   },
+  i18n: {
+    locales: ['en', 'ru'],
+    defaultLocale: 'ru',
+  },
 })

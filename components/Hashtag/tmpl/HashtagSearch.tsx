@@ -1,6 +1,6 @@
-import { useRouter } from 'next/router'
 import { Button, makeStyles } from '@material-ui/core'
 import { numberToShort } from 'helpers/prepare'
+import useLocale from 'hooks/useLocale'
 import AppBox from 'components/UI/AppBox'
 import AppTypography from 'components/UI/AppTypography'
 import { getHashtagHref } from './helper'
@@ -14,13 +14,13 @@ export interface HashtagSearchProps {
 
 export default function HashtagSearch({ name, gradient, views }: HashtagSearchProps): JSX.Element {
   const classes = useStyles({ gradient })
-  const router = useRouter()
+  const { jump } = useLocale()
   const shortViews = numberToShort(views)
 
   const onClick = () => {
     const href = getHashtagHref(name)
 
-    router.push(href)
+    jump(href)
   }
 
   return (

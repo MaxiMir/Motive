@@ -1,14 +1,20 @@
 import { useState } from 'react'
 import dynamic from 'next/dynamic'
-import { makeStyles } from '@material-ui/core/styles'
-import { Button } from '@material-ui/core'
+import { Button, makeStyles } from '@material-ui/core'
+import { Locale } from 'hooks/useLocale'
 import AppEmoji from 'components/UI/AppEmoji'
+import i18n from './i18n'
 
 const Modal = dynamic(() => import('components/Modal'))
 
-export default function AddGoal(): JSX.Element {
+interface AddGoalProps {
+  locale: Locale
+}
+
+export default function AddGoal({ locale }: AddGoalProps): JSX.Element {
   const classes = useStyles()
   const [open, setOpen] = useState(false)
+  const { name } = i18n[locale]
 
   const toggleModal = () => setOpen(!open)
 
@@ -22,9 +28,9 @@ export default function AddGoal(): JSX.Element {
         startIcon={<AppEmoji name="goal" onlyEmoji />}
         onClick={toggleModal}
       >
-        Create a new goal
+        {name}
       </Button>
-      {open && <Modal tmpl="goal" onClose={toggleModal} />}
+      {open && <Modal tmpl="goal" locale={locale} onClose={toggleModal} />}
     </>
   )
 }

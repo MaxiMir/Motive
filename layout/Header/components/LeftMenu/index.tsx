@@ -1,29 +1,27 @@
 import { useState, KeyboardEvent, useContext } from 'react'
-import { useRouter } from 'next/router'
 import { signOut } from 'next-auth/react'
 import { makeStyles } from '@material-ui/core/styles'
 import { Drawer, List, Divider, ListItem, Button, ListItemText, ListItemIcon } from '@material-ui/core'
+import useLocale from 'hooks/useLocale'
 import useClient from 'hooks/useClient'
 import useDebounceCb from 'hooks/useDebounceCb'
 import { ThemeContext } from 'context/themeContext'
 import AppIcon from 'components/UI/AppIcon'
 import AppBox from 'components/UI/AppBox'
-
-const MENU = [
-  { name: 'News', icon: 'newspaper', link: '' },
-  { name: 'Next Features', icon: 'dynamic_form', link: '' },
-  { name: 'Contact us', icon: 'all_inbox', link: 'contact' },
-]
+import { MENU } from './helper'
+import i18n from './i18n'
 
 export default function LeftMenu(): JSX.Element {
   const classes = useStyles()
+  const { locale, jump, next } = useLocale()
   const client = useClient()
-  const router = useRouter()
   const { type, toggle } = useContext(ThemeContext)
   const [open, setOpen] = useState(false)
   const isLight = type === 'light'
-  const toggleWithDebounce = useDebounceCb(toggle)
-
+  const i18nElements = i18n[locale]
+  const { ariaLabel, language, logOut, getTheme } = i18nElements
+  const themePrimary = getTheme(isLight)
+  const changeThemeDebounce = useDebounceCb(toggle)
   const toggleModal = () => setOpen(!open)
 
   const onKeyDown = (event: KeyboardEvent) => {
@@ -36,7 +34,7 @@ export default function LeftMenu(): JSX.Element {
 
   return (
     <div>
-      <Button aria-label="Open menu" onClick={toggleModal}>
+      <Button aria-label={ariaLabel} onClick={toggleModal}>
         <AppIcon name="menu" />
       </Button>
       <Drawer open={open} onClose={toggleModal}>
@@ -44,9 +42,9 @@ export default function LeftMenu(): JSX.Element {
           <AppBox flexDirection="column" justifyContent="space-between" height="100%">
             <div>
               <List>
-                {MENU.map(({ name, icon, link }) => (
-                  <ListItem button disabled={!link} onClick={() => router.push(link)} key={name}>
-                    <ListItemText primary={name} />
+                {MENU.map(({ id, icon, link }) => (
+                  <ListItem button disabled={!link} onClick={() => jump(link)} key={id}>
+                    <ListItemText primary={i18nElements[id]} />
                     <ListItemIcon>
                       <AppIcon name={icon} />
                     </ListItemIcon>
@@ -58,18 +56,26 @@ export default function LeftMenu(): JSX.Element {
                   <Divider light />
                   <List>
                     <ListItem button onClick={onSignOut}>
-                      <ListItemText primary="Sign out" />
+                      <ListItemText primary={logOut} />
                     </ListItem>
                   </List>
                 </>
               )}
             </div>
-            <ListItem button disabled onClick={toggleWithDebounce}>
-              <ListItemText primary={`Dark theme: ${isLight ? 'Off' : 'On'}`} />
-              <ListItemIcon>
-                <AppIcon name={isLight ? 'light_mode' : 'dark_mode'} />
-              </ListItemIcon>
-            </ListItem>
+            <div>
+              <ListItem button onClick={next}>
+                <ListItemText primary={language} />
+                <ListItemIcon>
+                  <AppIcon name="language" />
+                </ListItemIcon>
+              </ListItem>
+              <ListItem button disabled onClick={changeThemeDebounce}>
+                <ListItemText primary={themePrimary} className={classes.theme} />
+                <ListItemIcon>
+                  <AppIcon name={isLight ? 'light_mode' : 'dark_mode'} />
+                </ListItemIcon>
+              </ListItem>
+            </div>
           </AppBox>
         </div>
       </Drawer>
@@ -82,5 +88,8 @@ const useStyles = makeStyles({
     height: '100%',
     padding: '60px 0 8px',
     minWidth: 220,
+  },
+  theme: {
+    width: 150,
   },
 })

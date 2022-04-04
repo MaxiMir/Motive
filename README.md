@@ -1,13 +1,13 @@
 ```shell
-docker build -t maximir/frontend:1.0.2 .
-docker push maximir/frontend:1.0.2
-docker run -d -p 3000:3000 maximir/frontend:1.0.2
+docker build -t maximir/frontend:1.0.3 .
+docker push maximir/frontend:1.0.3
+docker run -d -p 3000:3000 maximir/frontend:1.0.3
+# artifactory:
+docker tag <IMAGE_ID> maximir.jfrog.io/default-docker-virtual/frontend:1.0.3
+docker push maximir.jfrog.io/default-docker-virtual/frontend:1.0.3
+docker pull maximir.jfrog.io/default-docker-virtual/frontend:1.0.3
 
-docker tag <IMAGE_ID> maximir.jfrog.io/default-docker-virtual/frontend:1.0.2
-docker push maximir.jfrog.io/default-docker-virtual/frontend:1.0.2
-docker pull maximir.jfrog.io/default-docker-virtual/frontend:1.0.2
-
-# copy
+# copy:
 docker cp <IMAGE_ID>:/home/node/client /home # <-
 docker cp /home/client <IMAGE_ID>:/home/node # ->
 ```
@@ -21,7 +21,7 @@ services:
       - backend
     restart: unless-stopped
     ports:
-      - "3000:3000"
+      - "127.0.0.1:3000:3000"
 
   backend:
     image: maximir.jfrog.io/default-docker-virtual/backend:1.0.0
@@ -39,7 +39,7 @@ services:
       - /home/client:/home/node/client
     restart: unless-stopped
     ports:
-      - "4000:4000"
+      - "127.0.0.1:4000:4000"
 ```
 ```shell
 ##
@@ -111,10 +111,10 @@ server {
 
         location /static/ {
            root /home/client;
+           expires 30d;
         }
 }
 ```
-
 ```shell
 ssh root@37.46.131.41
 

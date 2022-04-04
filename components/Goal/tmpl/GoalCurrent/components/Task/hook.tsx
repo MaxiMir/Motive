@@ -6,8 +6,10 @@ import TaskService from 'services/TaskService'
 import { toShortUserName } from 'helpers/prepare'
 import useSnackbar from 'hooks/useSnackbar'
 import useClient from 'hooks/useClient'
+import useLocale from 'hooks/useLocale'
 import { useMutateUserPage } from 'views/UserView/hook'
 import { getGoalNextState } from './helper'
+import i18n from './i18n'
 
 const Button = dynamic(() => import('@material-ui/core/Button'))
 
@@ -18,6 +20,7 @@ export default function useSetCompleted(
   clientMember?: MemberDto,
 ): () => void {
   const timerRef = useRef<NodeJS.Timeout>()
+  const { locale } = useLocale()
   const client = useClient()
   const [enqueueSnackbar, closeSnackbar] = useSnackbar()
   const [page, mutatePage] = useMutateUserPage()
@@ -39,17 +42,17 @@ export default function useSetCompleted(
 
   return () => {
     const newRest = rest - 1
+    const { getMessage, undo } = i18n[locale]
+    const message = getMessage(toShortUserName(client?.name), newRest)
 
     mutateCompleted(true)
     timerRef.current = setTimeout(() => mutate(id), 4000)
 
     enqueueSnackbar({
-      message: !newRest
-        ? `Well done, ${toShortUserName(client?.name)}! All tasks are completed`
-        : `Do it, ${toShortUserName(client?.name)}! Remains to be done: ${newRest}`,
+      message,
       severity: 'success',
       icon: !newRest ? 'motivation-tech' : 'energy',
-      action: <Button onClick={onUndo}>Undo</Button>,
+      action: <Button onClick={onUndo}>{undo}</Button>,
     })
   }
 }

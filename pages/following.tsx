@@ -3,17 +3,29 @@ import { getSession } from 'next-auth/react'
 import { dehydrate, QueryClient } from 'react-query'
 import { PageProps, PossiblePageError } from 'dto'
 import { RATING } from 'route'
+import useLocale from 'hooks/useLocale'
 import PageService from 'services/PageService'
 import Layout from 'layout'
 import FollowingView from 'views/FollowingView'
 import useFollowingPage from 'views/FollowingView/hook'
 
+const i18n = {
+  en: {
+    title: 'Following',
+  },
+  ru: {
+    title: 'Подписки',
+  },
+}
+
 export default function FollowingPage({ statusCode }: PageProps): JSX.Element {
+  const { locale } = useLocale()
+  const { title } = i18n[locale]
   const { data } = useFollowingPage()
 
   return (
-    <Layout title={`${process.env.NEXT_PUBLIC_APP_NAME} • Following`} statusCode={statusCode}>
-      {data?.content && <FollowingView users={data.content} />}
+    <Layout title={title} statusCode={statusCode}>
+      {data?.content && <FollowingView users={data.content} locale={locale} />}
     </Layout>
   )
 }

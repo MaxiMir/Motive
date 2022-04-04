@@ -1,6 +1,7 @@
 import { useState, MouseEvent } from 'react'
 import dynamic from 'next/dynamic'
 import { UserDto } from 'dto'
+import useLocale from 'hooks/useLocale'
 import { getUserHref } from 'views/UserView/helper'
 import AppMenuButton from 'components/UI/AppMenuButton'
 import Share from 'components/Share'
@@ -15,9 +16,10 @@ interface MenuProps {
 
 const Menu = ({ user, index }: MenuProps): JSX.Element => {
   const { name, nickname } = user
+  const { locale } = useLocale()
   const [anchorEl, setAnchorEl] = useState<HTMLElement | null>(null)
   const [withShare, setWithShare] = useState(false)
-  const onRemove = useRemoveFollowing()
+  const onRemove = useRemoveFollowing(locale)
   const href = getUserHref(nickname)
 
   const onOpen = (e: MouseEvent<HTMLButtonElement>) => setAnchorEl(e.currentTarget)
@@ -39,8 +41,10 @@ const Menu = ({ user, index }: MenuProps): JSX.Element => {
   return (
     <>
       <AppMenuButton ariaControls="user-menu" title="open user menu" horizontal onClick={onOpen} />
-      {anchorEl && <MenuList anchorEl={anchorEl} onShare={onShare} onRemove={onRemoveCombine} onClose={onClose} />}
-      <Share open={withShare} title={name} href={href} onClose={onCloseShare} />
+      {anchorEl && (
+        <MenuList anchorEl={anchorEl} locale={locale} onShare={onShare} onRemove={onRemoveCombine} onClose={onClose} />
+      )}
+      <Share open={withShare} title={name} href={href} locale={locale} onClose={onCloseShare} />
     </>
   )
 }

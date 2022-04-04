@@ -1,14 +1,28 @@
 import { Container } from '@material-ui/core'
+import useLocale from 'hooks/useLocale'
 import AppBox from 'components/UI/AppBox'
 import AppTypography from 'components/UI/AppTypography'
 import AppEmoji from 'components/UI/AppEmoji'
+
+const i18n = {
+  en: {
+    notFound: 'Page Not Found',
+    default: 'Something went wrong...',
+  },
+  ru: {
+    notFound: 'Страница не найдена',
+    default: 'Что-то пошло не так...',
+  },
+}
 
 interface CustomErrorProps {
   statusCode?: number
 }
 
 export default function CustomError({ statusCode = 500 }: CustomErrorProps): JSX.Element {
-  const title = statusCode === 404 ? 'Page Not Found' : 'Something went wrong...'
+  const { locale } = useLocale()
+  const errorKey = statusCode === 404 ? 'notFound' : 'default'
+  const title = i18n[locale][errorKey]
 
   return (
     <Container fixed>

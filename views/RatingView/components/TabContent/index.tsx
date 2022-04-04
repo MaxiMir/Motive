@@ -1,19 +1,23 @@
 import { Container, Grid, makeStyles } from '@material-ui/core'
 import { UserDto, MainCharacteristicName } from 'dto'
 import useCharacteristicColors from 'hooks/useCharacteristicColors'
+import { Locale } from 'hooks/useLocale'
 import AppBox from 'components/UI/AppBox'
 import AppList from 'components/UI/AppList'
 import AppTypography from 'components/UI/AppTypography'
 import User from 'components/User'
+import i18n from './i18n'
 
 interface TabContentProps {
   name: MainCharacteristicName
   users: UserDto[]
+  locale: Locale
 }
 
-export default function TabContent({ name, users }: TabContentProps): JSX.Element {
+export default function TabContent({ name, users, locale }: TabContentProps): JSX.Element {
   const classes = useStyles()
   const colors = useCharacteristicColors()
+  const { userCol, lvlCol } = i18n[locale]
 
   return (
     <>
@@ -29,12 +33,12 @@ export default function TabContent({ name, users }: TabContentProps): JSX.Elemen
             </Grid>
             <Grid item xs={8}>
               <AppTypography variant="subtitle1" component="p">
-                <b>User</b>
+                <b>{userCol}</b>
               </AppTypography>
             </Grid>
             <Grid item xs>
               <AppTypography variant="subtitle1" component="p" align="right">
-                <b>Level</b>
+                <b>{lvlCol}</b>
               </AppTypography>
             </Grid>
           </Grid>

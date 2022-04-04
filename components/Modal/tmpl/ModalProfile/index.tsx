@@ -2,24 +2,28 @@ import dynamic from 'next/dynamic'
 import { Field, Form, FormikProvider } from 'formik'
 import { createStyles, Grid, makeStyles } from '@material-ui/core'
 import { UserBaseDto } from 'dto'
+import { Locale } from 'hooks/useLocale'
 import Action from 'components/Action'
 import Photo from 'components/Photo'
 import AppModal from 'components/UI/AppModal'
 import AppInput from 'components/UI/AppInput'
 import AppBox from 'components/UI/AppBox'
 import useForm from './hook'
+import i18n from './i18n'
 
 const Alert = dynamic(() => import('@material-ui/lab/Alert'))
 
 export interface ModalProfileProps {
   tmpl: 'profile'
   user: UserBaseDto
+  locale: Locale
   onClose: () => void
 }
 
-export default function ModalProfile({ user, onClose }: ModalProfileProps): JSX.Element {
+export default function ModalProfile({ user, locale, onClose }: ModalProfileProps): JSX.Element {
   const classes = useStyles()
   const form = useForm(user, onClose)
+  const { action, profile, name, nickname, button, buttonLoading } = i18n[locale]
   const { isSubmitting, values, touched, errors, setFieldValue, handleSubmit } = form
 
   const setAvatar = (files: File[]) => setFieldValue('avatar', files[0])
@@ -30,7 +34,7 @@ export default function ModalProfile({ user, onClose }: ModalProfileProps): JSX.
     <AppModal
       title={
         <>
-          Edit <span className={classes.profile}>profile</span>
+          {action} <span className={classes.profile}>{profile}</span>
         </>
       }
       maxWidth="xs"
@@ -39,8 +43,8 @@ export default function ModalProfile({ user, onClose }: ModalProfileProps): JSX.
         <Action
           tmpl="submit"
           isLoading={isSubmitting}
-          name="Save"
-          nameLoading="Saving"
+          name={button}
+          nameLoading={buttonLoading}
           emoji="followers"
           onClick={handleSubmit}
         />,
@@ -50,8 +54,8 @@ export default function ModalProfile({ user, onClose }: ModalProfileProps): JSX.
       <FormikProvider value={form}>
         <Form autoComplete="off">
           <AppBox flexDirection="column" spacing={3}>
-            <Field name="name" label="Name" color="secondary" component={AppInput} />
-            <Field name="nickname" label="Nickname" color="secondary" component={AppInput} />
+            <Field name="name" label={name} color="secondary" component={AppInput} />
+            <Field name="nickname" label={nickname} color="secondary" component={AppInput} />
             <Grid container spacing={2}>
               <Grid item xs={4}>
                 {!values.avatar ? (

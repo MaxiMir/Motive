@@ -1,27 +1,29 @@
 import { makeStyles } from '@material-ui/core/styles'
-import { UserCharacteristicName } from 'dto'
+import { MainCharacteristicName } from 'dto'
 import { CharacteristicColor } from 'hooks/useCharacteristicColors'
+import { Locale } from 'hooks/useLocale'
 import AppBox from 'components/UI/AppBox'
 import AppEmoji from 'components/UI/AppEmoji'
 import AppLink from 'components/UI/AppLink'
 import AppTypography from 'components/UI/AppTypography'
+import i18n from './i18n'
 
 export interface AdvantageProps {
-  name: UserCharacteristicName
-  title: string
-  subtitle: string
+  id: MainCharacteristicName | 'completed'
   href: string
   color: CharacteristicColor
+  locale: Locale
 }
 
-export default function Advantage({ name, title, subtitle, href, color }: AdvantageProps): JSX.Element {
+export default function Advantage({ id, href, color, locale }: AdvantageProps): JSX.Element {
   const classes = useStyles({ color })
+  const { title, subtitle } = i18n[locale][id]
 
   return (
     <AppBox justifyContent="center" alignItems="center" className={classes.root} flex={1}>
       <AppBox alignItems="center" spacing={3}>
         <AppLink href={href} className={classes.imageLink}>
-          <AppEmoji name={name} variant="h2" />
+          <AppEmoji name={id} variant="h2" />
         </AppLink>
         <AppBox flexDirection="column" alignItems="space-between">
           <AppLink href={href}>
@@ -50,7 +52,7 @@ const useStyles = makeStyles({
   },
   title: {
     color: '#F5F5F7',
-    width: 215,
+    width: 245,
     textTransform: 'uppercase',
     fontWeight: 500,
   },

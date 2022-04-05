@@ -15,7 +15,7 @@ export default function MenuList({ anchorEl, locale, onShare, onRemove, onClose 
   const { share, remove } = i18n[locale]
 
   return (
-    <Menu id="user-menu" anchorEl={anchorEl} keepMounted open={!!anchorEl} onClose={onClose}>
+    <Menu id="user-menu" anchorEl={anchorEl} open={!!anchorEl} onClose={onClose}>
       <MenuItem onClick={onShare}>
         <AppMenuItemContent icon="share" text={share} />
       </MenuItem>

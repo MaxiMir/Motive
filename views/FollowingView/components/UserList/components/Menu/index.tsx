@@ -4,9 +4,9 @@ import { UserDto } from 'dto'
 import useLocale from 'hooks/useLocale'
 import { getUserHref } from 'views/UserView/helper'
 import AppMenuButton from 'components/UI/AppMenuButton'
-import Share from 'components/Share'
 import useRemoveFollowing from './hook'
 
+const Share = dynamic(() => import('components/Share'))
 const MenuList = dynamic(() => import('./components/MenuList'))
 
 interface MenuProps {
@@ -44,7 +44,7 @@ const Menu = ({ user, index }: MenuProps): JSX.Element => {
       {anchorEl && (
         <MenuList anchorEl={anchorEl} locale={locale} onShare={onShare} onRemove={onRemoveCombine} onClose={onClose} />
       )}
-      <Share open={withShare} title={name} href={href} locale={locale} onClose={onCloseShare} />
+      {withShare && <Share title={name} href={href} locale={locale} onClose={onCloseShare} />}
     </>
   )
 }

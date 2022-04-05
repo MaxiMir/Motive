@@ -1,17 +1,17 @@
 import { useState } from 'react'
 import dynamic from 'next/dynamic'
 import { Menu, MenuItem } from '@material-ui/core'
+import i18n from 'constants/i18n'
 import { OwnershipDto } from 'dto'
 import { Locale } from 'hooks/useLocale'
 import AppMenuItemContent from 'components/UI/AppMenuItemContent'
-import i18n from 'constants/i18n'
 
 const Report = dynamic(() => import('components/Report'))
 
 interface MenuListProps {
-  anchorEl: HTMLElement
   goalId: number
   clientOwnership: OwnershipDto
+  anchorEl: HTMLElement
   locale: Locale
   onShare: () => void
   onLeave: () => void
@@ -19,9 +19,9 @@ interface MenuListProps {
 }
 
 export default function MenuList({
-  anchorEl,
   goalId,
   clientOwnership,
+  anchorEl,
   locale,
   onShare,
   onLeave,
@@ -39,7 +39,7 @@ export default function MenuList({
 
   return (
     <>
-      <Menu id="goal-menu" anchorEl={anchorEl} keepMounted open={!!anchorEl} onClose={onClose}>
+      <Menu open anchorEl={anchorEl} onClose={onClose}>
         <MenuItem onClick={onShare}>
           <AppMenuItemContent icon="share" text={share} />
         </MenuItem>

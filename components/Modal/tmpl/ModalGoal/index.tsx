@@ -35,7 +35,24 @@ export default function ModalGoal({ locale, onClose }: ModalGoalProps): JSX.Elem
   const [hashtagsRef, setHashtagsFocus] = useFocus()
   const form = useForm(onClose)
   const { isSubmitting, values, setFieldValue, handleSubmit } = form
-  const { title, name, hashtag, hashtags, button, buttonLoading, stages, stageButton, tasksTitle } = i18n[locale]
+  const {
+    title,
+    name,
+    hashtag,
+    hashtags,
+    button,
+    buttonLoading,
+    stages,
+    stage,
+    stageButton,
+    stageAria,
+    stageHints,
+    tasksTitle,
+    addTask,
+    pitt,
+    pittAria,
+    pittHints,
+  } = i18n[locale]
 
   const onAddHashtag = () => {
     setFieldValue('hashtags', !values.hashtags ? '#' : [values.hashtags, '#'].join(' '))
@@ -91,7 +108,7 @@ export default function ModalGoal({ locale, onClose }: ModalGoalProps): JSX.Elem
                         </AppBox>
                         <Field
                           name={`stages.${index}`}
-                          label={`stage ${index + 1}`}
+                          label={`${stage} ${index + 1}`}
                           autoFocus={index === values.stages.length - 1}
                           color="secondary"
                           component={AppInput}
@@ -121,6 +138,7 @@ export default function ModalGoal({ locale, onClose }: ModalGoalProps): JSX.Elem
                         index={index}
                         taskCount={values.tasks.length}
                         date={task.date}
+                        locale={locale}
                         key={`tasks.${index}`}
                         onRemove={() => remove(index)}
                         onToggleDate={(isChecked) =>
@@ -134,7 +152,7 @@ export default function ModalGoal({ locale, onClose }: ModalGoalProps): JSX.Elem
                       className={classes.button}
                       onClick={() => push({ name: '', date: undefined })}
                     >
-                      + Add task
+                      + {addTask}
                     </Button>
                   </>
                 )}
@@ -143,42 +161,43 @@ export default function ModalGoal({ locale, onClose }: ModalGoalProps): JSX.Elem
             <div>
               <AppAccordion
                 name="stage"
-                header="Stages"
+                header={stages}
                 id="stage"
-                ariaControls="about-stages-content"
+                ariaControls={stageAria}
                 details={
                   <div className={classes.hint}>
-                    <AppTypography>We recommend to divide large goals into stages.</AppTypography>
-                    <AppTypography>Add each stage in the field above.</AppTypography>
+                    {stageHints.map((hint, key) => (
+                      <AppTypography key={key}>{hint}</AppTypography>
+                    ))}
                   </div>
                 }
               />
               <Accordion>
                 <AccordionSummary
                   expandIcon={<AppIcon name="expand_more" color="primary" />}
-                  aria-controls="old-pitt-note"
+                  aria-controls={pittAria}
                   id="old-pitt-note"
                 >
                   <AppBox alignItems="center" spacing={1}>
                     <PaulIcon />
                     <AppTypography variant="h6" component="h3" color="primary">
-                      Remember Old Pitt!
+                      {pitt}
                     </AppTypography>
                   </AppBox>
                 </AccordionSummary>
                 <AccordionDetails>
                   <AppTypography className={classes.hint}>
-                    He hunts for abandoned goals.
+                    {pittHints[0]}
                     <br />
-                    On the 14th day he covers them <AppDecorEmoji name="web" />.
+                    {pittHints[1]} <AppDecorEmoji name="web" />.
                     <br />
-                    On the 28th day he eats them <AppDecorEmoji name="blood" />.
+                    {pittHints[2]} <AppDecorEmoji name="blood" />.
                     <br />
-                    The accumulated points{' '}
+                    {pittHints[3]}{' '}
                     {CHARACTERISTIC_NAMES.map((characteristic) => (
                       <AppDecorEmoji name={characteristic} key={characteristic} />
                     ))}
-                    will burn out and the number of abandoned goals increases.
+                    {pittHints[4]}
                   </AppTypography>
                 </AccordionDetails>
               </Accordion>

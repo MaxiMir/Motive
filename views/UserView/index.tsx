@@ -50,7 +50,7 @@ export default function UserView({ user, locale }: UserViewProps): JSX.Element {
         )}
       </AppBox>
       <AppBox flexDirection="column" spacing={3} flex={1}>
-        <AppBox spacing={isMobile ? 1 : 4} mb={4}>
+        <AppBox spacing={isMobile ? 1 : 4}>
           <Avatar avatar={avatar} characteristic={characteristic} characteristicColors={characteristicColors} />
           <AppBox flexDirection="column" justifyContent="space-between" flex={1}>
             <AppBox justifyContent="space-between">
@@ -79,13 +79,9 @@ export default function UserView({ user, locale }: UserViewProps): JSX.Element {
             </AppBox>
           </AppBox>
         </AppBox>
-        {clientPage && (
-          <AppBox justifyContent="center">
-            <AddGoal locale={locale} />
-          </AppBox>
-        )}
+        {clientPage && <AddGoal locale={locale} />}
         {!goals.length ? (
-          <EmptyGoals clientPage={clientPage} />
+          <EmptyGoals clientPage={clientPage} locale={locale} />
         ) : (
           <AppBox flexWrap="wrap" spacing={3}>
             {goals.map((goal) => (

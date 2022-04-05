@@ -1,6 +1,7 @@
 import { FieldArray, Form, FormikProvider } from 'formik'
 import { Button, createStyles, makeStyles } from '@material-ui/core'
 import { GoalDto } from 'dto'
+import useLocale from 'hooks/useLocale'
 import AppModal from 'components/UI/AppModal'
 import Action from 'components/Action'
 import Task from 'components/Task'
@@ -14,6 +15,7 @@ export interface ModalTasksProps {
 
 export default function ModalTasks({ goal, onClose }: ModalTasksProps): JSX.Element {
   const classes = useStyles()
+  const { locale } = useLocale()
   const form = useForm(goal, onClose)
   const { isSubmitting, values, setFieldValue, handleSubmit } = form
 
@@ -49,6 +51,7 @@ export default function ModalTasks({ goal, onClose }: ModalTasksProps): JSX.Elem
                     index={index}
                     taskCount={values.tasks.length}
                     date={task.date}
+                    locale={locale}
                     key={`tasks.${index}`}
                     onRemove={() => remove(index)}
                     onToggleDate={(isChecked) =>

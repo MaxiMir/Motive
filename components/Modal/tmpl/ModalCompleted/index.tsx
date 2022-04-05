@@ -1,6 +1,7 @@
 import dynamic from 'next/dynamic'
 import { createStyles, makeStyles } from '@material-ui/core'
 import { UserDetailDto } from 'dto'
+import { Locale } from 'hooks/useLocale'
 import AppModal from 'components/UI/AppModal'
 import AppContainer from 'components/UI/AppContainer'
 import useGoals from './hook'
@@ -12,6 +13,7 @@ const ConfirmationsList = dynamic(() => import('./components/ConfirmationsList')
 export interface ModalCompletedProps {
   tmpl: 'completed'
   user: UserDetailDto
+  locale: Locale
   onClose: () => void
 }
 

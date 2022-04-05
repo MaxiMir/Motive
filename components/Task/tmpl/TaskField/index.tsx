@@ -2,10 +2,12 @@ import { ChangeEvent } from 'react'
 import dynamic from 'next/dynamic'
 import { Field } from 'formik'
 import { createStyles, FormControlLabel, Switch, makeStyles, Tooltip } from '@material-ui/core'
+import { Locale } from 'hooks/useLocale'
 import AppBox from 'components/UI/AppBox'
 import AppInput from 'components/UI/AppInput'
 import AppIcon from 'components/UI/AppIcon'
 import AppIconButton from 'components/UI/AppIconButton'
+import i18n from './i18n'
 
 const KeyboardTimePicker = dynamic(() =>
   import('formik-material-ui-pickers').then(
@@ -19,12 +21,21 @@ export interface TaskFieldProps {
   index: number
   date?: Date
   taskCount: number
+  locale: Locale
   onToggleDate: (isChecked: boolean) => void
   onRemove: () => void
 }
 
-export default function TaskField({ index, date, taskCount, onToggleDate, onRemove }: TaskFieldProps): JSX.Element {
+export default function TaskField({
+  index,
+  date,
+  taskCount,
+  locale,
+  onToggleDate,
+  onRemove,
+}: TaskFieldProps): JSX.Element {
   const classes = useStyles()
+  const { label, placeholder, close, remind, tooltip } = i18n[locale]
 
   const onSwitchClick = (_: ChangeEvent<HTMLInputElement>, isChecked: boolean) => {
     onToggleDate(isChecked)
@@ -35,22 +46,22 @@ export default function TaskField({ index, date, taskCount, onToggleDate, onRemo
       <AppBox justifyContent="space-between" spacing={1}>
         <Field
           name={`tasks.${index}.name`}
-          label="Task *"
+          label={label}
           color="secondary"
-          placeholder="What should be done"
+          placeholder={placeholder}
           multiline
           rows={3}
           autoFocus={!!index && index === taskCount - 1}
           component={AppInput}
         />
         <AppBox alignSelf="flex-start" mt={2}>
-          <AppIconButton name="close" aria-label="Remove task" disabled={taskCount === 1} onClick={onRemove} />
+          <AppIconButton name="close" aria-label={close} disabled={taskCount === 1} onClick={onRemove} />
         </AppBox>
       </AppBox>
       <AppBox alignItems="center" spacing={1} pl={1} height={48}>
         {/* TODO ADD  */}
-        <Tooltip title="soon">
-          <FormControlLabel label="remind me" disabled control={<Switch size="small" onChange={onSwitchClick} />} />
+        <Tooltip title={tooltip}>
+          <FormControlLabel label={remind} disabled control={<Switch size="small" onChange={onSwitchClick} />} />
         </Tooltip>
         {date && (
           <Field

@@ -54,7 +54,7 @@ export default function Characteristic(props: CharacteristicProps): JSX.Element 
           </AppBox>
         </Button>
       </AppOptionalTooltip>
-      {modal && <Modal tmpl={modal} user={user} onClose={onClose} />}
+      {modal && <Modal tmpl={modal} user={user} locale={locale} onClose={onClose} />}
     </>
   )
 }

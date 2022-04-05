@@ -27,7 +27,7 @@ export default function MenuList({ anchorEl, message, onOpenModal, onClose }: Me
 
   return (
     <>
-      <Menu id="goal-menu" anchorEl={anchorEl} keepMounted open onClose={onClose}>
+      <Menu id="goal-menu" anchorEl={anchorEl} open onClose={onClose}>
         {message.user.id === client?.id ? (
           <MenuItem onClick={onOpenModal}>
             <AppMenuItemContent icon="edit" text="Edit" />

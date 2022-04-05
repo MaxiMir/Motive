@@ -2,11 +2,11 @@ import { MouseEvent, useState } from 'react'
 import dynamic from 'next/dynamic'
 import { GoalDto, OwnershipDto } from 'dto'
 import useLocale from 'hooks/useLocale'
-import Share from 'components/Share'
 import AppMenuButton from 'components/UI/AppMenuButton'
 import i18n from './i18n'
 
 const Modal = dynamic(() => import('components/Modal'))
+const Share = dynamic(() => import('components/Share'))
 const MenuList = dynamic(() => import('./components/MenuList'))
 
 interface MenuProps {
@@ -21,7 +21,7 @@ export default function Menu({ goal, title, href, clientOwnership }: MenuProps):
   const [anchorEl, setAnchorEl] = useState<HTMLElement | null>(null)
   const [withShare, setWithShare] = useState(false)
   const [withLeave, setWithLeave] = useState(false)
-  const { buttonTitle } = i18n[locale]
+  const { buttonTitle, buttonAria } = i18n[locale]
 
   const onOpen = (e: MouseEvent<HTMLButtonElement>) => setAnchorEl(e.currentTarget)
 
@@ -43,7 +43,7 @@ export default function Menu({ goal, title, href, clientOwnership }: MenuProps):
 
   return (
     <>
-      <AppMenuButton ariaControls="goal-menu" title={buttonTitle} onClick={onOpen} />
+      <AppMenuButton ariaControls={buttonAria} title={buttonTitle} onClick={onOpen} />
       {anchorEl && (
         <MenuList
           anchorEl={anchorEl}
@@ -55,7 +55,7 @@ export default function Menu({ goal, title, href, clientOwnership }: MenuProps):
           onClose={onClose}
         />
       )}
-      <Share open={withShare} title={title} href={href} locale={locale} onClose={onCloseShare} />
+      {withShare && <Share title={title} href={href} locale={locale} onClose={onCloseShare} />}
       {withLeave && <Modal tmpl="leave" goal={goal} clientOwnership={clientOwnership} onClose={onLeaveClose} />}
     </>
   )

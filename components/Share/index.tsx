@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useState } from 'react'
 import dynamic from 'next/dynamic'
 import i18n from 'constants/i18n'
 import useSnackbar from 'hooks/useSnackbar'
@@ -7,15 +7,13 @@ import { Locale } from 'hooks/useLocale'
 const Menu = dynamic(() => import('./components/Menu'))
 
 interface ShareProps {
-  open: boolean
   title: string
   href: string
   locale: Locale
   onClose: () => void
 }
 
-export default function Share({ open, title, href, locale, onClose }: ShareProps): JSX.Element {
-  const withNavigatorShare = useRef(false)
+export default function Share({ title, href, locale, onClose }: ShareProps): JSX.Element {
   const [enqueueSnackbar, closeSnackbar] = useSnackbar()
   const [withMenu, setWithMenu] = useState(false)
   const url = process.env.NEXT_PUBLIC_APP_URL + href
@@ -31,18 +29,13 @@ export default function Share({ open, title, href, locale, onClose }: ShareProps
   }
 
   useEffect(() => {
-    if (!open) {
-      withNavigatorShare.current = !!navigator.share
-      return
-    }
-
-    if (!withNavigatorShare.current) {
+    if (!navigator.share) {
       setWithMenu(true)
       return
     }
 
     navigator.share({ title, url }).catch(onClose)
-  }, [onClose, open, title, url])
+  }, [onClose, title, url])
 
   useEffect(() => {
     withMenu && closeSnackbar()

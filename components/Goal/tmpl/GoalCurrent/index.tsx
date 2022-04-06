@@ -1,6 +1,6 @@
 import { Fragment, useMemo } from 'react'
 import dynamic from 'next/dynamic'
-import { Theme, useTheme } from '@mui/material'
+import { Theme } from '@mui/material'
 import { createStyles, makeStyles } from '@mui/styles'
 import { GoalDto, GoalCharacteristicName, MemberDto } from 'dto'
 import AppBox from 'components/UI/AppBox'
@@ -48,9 +48,7 @@ export default function GoalCurrent({
 }: GoalCurrentProps): JSX.Element {
   const { id, name, hashtags, characteristic, owner, stages, day, inherited } = goal
   const { id: dayId, date, tasks, views, feedback, topicCount } = day
-  const theme = useTheme()
   const classes = useStyles()
-  const colors = useCharacteristicColors()
   const userMember = getMember(goal, userMembership, userId)
   const clientOwnership = getClientOwnership(goal, clientId, clientPage, clientMembership)
   const goalHref = getGoalHref(href, goal)
@@ -75,21 +73,11 @@ export default function GoalCurrent({
             <AppBox justifyContent="space-between" alignItems="center">
               {CHARACTERISTICS.map((characteristicName) => (
                 <Fragment key={characteristicName}>
-                  <Characteristic
-                    tmpl="goal"
-                    name={characteristicName}
-                    value={characteristic[characteristicName]}
-                    color={colors[characteristicName].fontColor}
-                  />
+                  <Characteristic tmpl="goal" name={characteristicName} value={characteristic[characteristicName]} />
                   <AppDot />
                 </Fragment>
               ))}
-              <Characteristic
-                tmpl="goal"
-                name="runs for days"
-                value={goalInfo.runsForDays}
-                color={theme.palette.text.disabled}
-              />
+              <Characteristic tmpl="goal" name="runs for days" value={goalInfo.runsForDays} />
             </AppBox>
             {!!hashtags?.length && <Hashtags hashtags={hashtags} />}
             <Calendar goalId={id} datesMap={goalInfo.datesMap} current={date} />

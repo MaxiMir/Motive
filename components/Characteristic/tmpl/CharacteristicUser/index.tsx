@@ -1,5 +1,5 @@
 import dynamic from 'next/dynamic'
-import { Typography } from '@mui/material'
+import { Typography, useTheme } from '@mui/material'
 import { numberToShort } from 'helpers/prepare'
 import { UserCharacteristicName } from 'dto'
 import AppEmoji from 'components/UI/AppEmoji'
@@ -11,11 +11,12 @@ export interface CharacteristicUserProps {
   tmpl: 'user'
   name: UserCharacteristicName
   value: number
-  color: string
 }
 
-export default function CharacteristicUser({ name, value, color }: CharacteristicUserProps): JSX.Element {
+export default function CharacteristicUser({ name, value }: CharacteristicUserProps): JSX.Element {
+  const theme = useTheme()
   const shortValue = name !== 'followers' ? Math.floor(value) : numberToShort(value)
+  const color = theme.characteristic[name].main
 
   return (
     <AppBox alignItems="baseline" gap={0.5}>

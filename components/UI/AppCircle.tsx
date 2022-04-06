@@ -1,8 +1,11 @@
+import { CSSProperties } from 'react'
+
 interface CircleProps {
   offset: number
   radius: number
   dasharray: number
-  color: CharacteristicColor
+  light: CSSProperties['color']
+  dark: CSSProperties['color']
   size: number
   strokeWidth: number
   strokeWidthBg: number
@@ -13,18 +16,19 @@ export default function AppCircle({
   radius,
   dasharray,
   size,
-  color,
+  light,
+  dark,
   strokeWidth,
   strokeWidthBg,
 }: CircleProps): JSX.Element {
   return (
     <>
       <svg width={size} height={size} viewBox="-25 -25 400 400">
-        <circle stroke={color.start} cx={radius} cy={radius} r={radius} strokeWidth={strokeWidthBg} fill="none" />
+        <circle stroke={light} cx={radius} cy={radius} r={radius} strokeWidth={strokeWidthBg} fill="none" />
         {offset < dasharray && (
           <circle
             className="circle"
-            stroke={color.end}
+            stroke={dark}
             transform="rotate(-90 175 175)"
             cx={radius}
             cy={radius}

@@ -15,7 +15,6 @@ export interface UserSearchProps {
 
 export default function UserSearch({ user }: UserSearchProps): JSX.Element {
   const { nickname, avatar, name, characteristic } = user
-  const colors = useCharacteristicColors()
   const href = getUserHref(nickname)
 
   return (
@@ -38,7 +37,6 @@ export default function UserSearch({ user }: UserSearchProps): JSX.Element {
               tmpl="user"
               name={characteristicName}
               value={characteristic[characteristicName]}
-              color={colors[characteristicName].fontColor}
               key={characteristicName}
             />
           ))}

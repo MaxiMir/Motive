@@ -11,9 +11,9 @@ const AppGradientButton: FC<AppGradientButtonProps> = (props) => {
     <AppBox
       display={undefined}
       sx={{
-        padding: 1,
+        padding: '1px',
         background: `linear-gradient(to top left, ${theme.characteristic.creativity.dark}, ${theme.characteristic.support.dark})`,
-        borderRadius: 5,
+        borderRadius: '5px',
       }}
     >
       <Button
@@ -21,7 +21,7 @@ const AppGradientButton: FC<AppGradientButtonProps> = (props) => {
         color="primary"
         size="small"
         sx={{
-          minWidth: 120,
+          minWidth: '120px',
           textTransform: 'none',
           background: theme.palette.background.default,
           '&:disabled': {

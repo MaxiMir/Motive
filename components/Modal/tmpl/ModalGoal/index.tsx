@@ -80,15 +80,7 @@ export default function ModalGoal({ locale, onClose }: ModalGoalProps): JSX.Elem
           <AppBox flexDirection="column" gap={3}>
             <Field name="name" label={name} color="secondary" component={AppInput} />
             <AppBox flexDirection="column" gap={1}>
-              <Field
-                name="hashtags"
-                label={hashtags}
-                color="secondary"
-                multiline
-                rows={3}
-                inputRef={hashtagsRef}
-                component={AppInput}
-              />
+              <Field name="hashtags" label={hashtags} multiline rows={3} inputRef={hashtagsRef} component={AppInput} />
               <Button variant="outlined" size="small" className={classes.button} onClick={onAddHashtag}>
                 # {hashtag}
               </Button>
@@ -117,7 +109,13 @@ export default function ModalGoal({ locale, onClose }: ModalGoalProps): JSX.Elem
                         </AppBox>
                       </AppBox>
                     ))}
-                    <Button variant="outlined" size="small" className={classes.button} onClick={() => push('')}>
+                    <Button
+                      variant="outlined"
+                      color="warning"
+                      size="small"
+                      className={classes.button}
+                      onClick={() => push('')}
+                    >
                       + {stageButton}
                     </Button>
                   </>
@@ -173,7 +171,7 @@ export default function ModalGoal({ locale, onClose }: ModalGoalProps): JSX.Elem
               />
               <Accordion>
                 <AccordionSummary
-                  expandIcon={<AppIcon name="expand_more" color="primary" />}
+                  expandIcon={<AppIcon name="expand_more" />}
                   aria-controls={pittAria}
                   id="old-pitt-note"
                 >

@@ -1,8 +1,7 @@
 import { useEffect, useState } from 'react'
 import dynamic from 'next/dynamic'
 import { useRouter } from 'next/router'
-import { Typography, Button, Theme } from '@mui/material'
-import { createStyles, makeStyles } from '@mui/styles'
+import { Typography, Button, useTheme } from '@mui/material'
 import i18nAll from 'constants/i18n'
 import { UserDetailDto, UserCharacteristicName } from 'dto'
 import { Locale } from 'hooks/useLocale'
@@ -17,18 +16,18 @@ interface CharacteristicProps {
   user: UserDetailDto
   name: UserCharacteristicName
   value: number
-  color: string
   locale: Locale
   onClick?: () => void
 }
 
 export default function Characteristic(props: CharacteristicProps): JSX.Element {
-  const { user, color, name, locale } = props
+  const { user, name, locale } = props
+  const theme = useTheme()
   const router = useRouter()
-  const classes = useStyles({ color, locale })
   const [modal, setModal] = useState<'followers' | 'completed'>()
   const title = i18nAll[locale][name]
   const tooltip = i18n[locale][name]
+  const color = theme.characteristic[name].main
 
   const onClick = () => {
     switch (name) {
@@ -45,9 +44,27 @@ export default function Characteristic(props: CharacteristicProps): JSX.Element 
   return (
     <>
       <AppOptionalTooltip title={tooltip}>
-        <Button className={classes.button} onClick={onClick}>
+        <Button
+          sx={{
+            textTransform: 'none',
+            padding: {
+              xs: '6px 4px',
+              md: undefined,
+            },
+          }}
+          onClick={onClick}
+        >
           <AppBox flexDirection="column" alignItems="flex-start" gap={0.5}>
-            <Typography variant="caption" className={classes.title}>
+            <Typography
+              variant="caption"
+              sx={{
+                color,
+                fontSize: {
+                  xs: locale === 'ru' ? '0.6rem' : '0.75rem',
+                  md: '0.8rem',
+                },
+              }}
+            >
               {title}
             </Typography>
             <CharacteristicBase tmpl="user" {...props} />
@@ -58,23 +75,3 @@ export default function Characteristic(props: CharacteristicProps): JSX.Element 
     </>
   )
 }
-
-type UseStylesProps = Pick<CharacteristicProps, 'color' | 'locale'>
-
-const useStyles = makeStyles((theme: Theme) =>
-  createStyles({
-    button: {
-      textTransform: 'none',
-      [theme.breakpoints.down('xs')]: {
-        padding: '6px 4px',
-      },
-    },
-    title: {
-      fontSize: '0.8rem',
-      color: (props: UseStylesProps) => props.color,
-      [theme.breakpoints.down('xs')]: {
-        fontSize: (props: UseStylesProps) => (props.locale === 'ru' ? '0.6rem' : '0.75rem'),
-      },
-    },
-  }),
-)

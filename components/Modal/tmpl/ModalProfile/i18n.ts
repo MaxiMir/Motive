@@ -6,6 +6,7 @@ export default {
     nickname: 'Nickname',
     button: 'Save',
     buttonLoading: 'Saving',
+    nicknameError: 'nickname is busy',
   },
   ru: {
     action: 'Редактирование',
@@ -14,5 +15,6 @@ export default {
     nickname: 'Никнейм',
     button: 'Сохранить',
     buttonLoading: 'Сохранение',
+    nicknameError: 'Никнейм занят',
   },
 }

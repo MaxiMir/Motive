@@ -1,5 +1,5 @@
 import dynamic from 'next/dynamic'
-import { Typography, useMediaQuery, useTheme } from '@mui/material'
+import { Typography } from '@mui/material'
 import { UserDetailDto, UserCharacteristicName, MainCharacteristicName } from 'dto'
 import { getUserHref } from 'views/UserView/helper'
 import useClient from 'hooks/useClient'
@@ -26,10 +26,7 @@ export interface UserViewProps {
 
 export default function UserView({ user, locale }: UserViewProps): JSX.Element {
   const { id, nickname, name, avatar, characteristic, goals, following, userMembership, clientMembership } = user
-  const theme = useTheme()
   const client = useClient()
-  const characteristicColors = useCharacteristicColors()
-  const isMobile = useMediaQuery(theme.breakpoints.down('sm'))
   const href = getUserHref(nickname)
   const clientPage = id === client?.id
 
@@ -48,8 +45,15 @@ export default function UserView({ user, locale }: UserViewProps): JSX.Element {
         )}
       </AppBox>
       <AppBox flexDirection="column" gap={3} flex={1}>
-        <AppBox gap={isMobile ? 1 : 4}>
-          <Avatar avatar={avatar} characteristic={characteristic} characteristicColors={characteristicColors} />
+        <AppBox
+          sx={{
+            gap: {
+              xs: 1,
+              md: 4,
+            },
+          }}
+        >
+          <Avatar avatar={avatar} characteristic={characteristic} />
           <AppBox flexDirection="column" justifyContent="space-between" flex={1}>
             <AppBox justifyContent="space-between">
               {CHARACTERISTIC_NAMES.map((characteristicName) => (
@@ -57,7 +61,6 @@ export default function UserView({ user, locale }: UserViewProps): JSX.Element {
                   user={user}
                   name={characteristicName}
                   value={characteristic[characteristicName]}
-                  color={characteristicColors[characteristicName].fontColor}
                   locale={locale}
                   key={characteristicName}
                 />
@@ -69,7 +72,6 @@ export default function UserView({ user, locale }: UserViewProps): JSX.Element {
                   user={user}
                   name={characteristicName}
                   value={characteristic[characteristicName]}
-                  color={characteristicColors[characteristicName].fontColor}
                   locale={locale}
                   key={characteristicName}
                 />

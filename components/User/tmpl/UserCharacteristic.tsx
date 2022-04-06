@@ -24,7 +24,6 @@ export interface UserCharacteristicProps {
 
 export default function UserCharacteristic({ user, inView, menu, onView }: UserCharacteristicProps): JSX.Element {
   const { nickname, avatar, name, characteristic } = user
-  const colors = useCharacteristicColors()
   const href = getUserHref(nickname)
 
   return (
@@ -45,12 +44,7 @@ export default function UserCharacteristic({ user, inView, menu, onView }: UserC
           <AppBox justifyContent="space-between" alignItems="center">
             {CHARACTERISTICS.map((characteristicName, index) => (
               <Fragment key={characteristicName}>
-                <Characteristic
-                  tmpl="user"
-                  name={characteristicName}
-                  value={characteristic[characteristicName]}
-                  color={colors[characteristicName].fontColor}
-                />
+                <Characteristic tmpl="user" name={characteristicName} value={characteristic[characteristicName]} />
                 {index !== LAST_CHARACTERISTIC_INDEX && <AppDot />}
               </Fragment>
             ))}

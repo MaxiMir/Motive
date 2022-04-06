@@ -1,4 +1,4 @@
-import { Container, Typography, Grid } from '@mui/material'
+import { Container, Typography, Grid, useTheme } from '@mui/material'
 import { UserDto, UserCharacteristicName } from 'dto'
 import { getUserHref } from 'views/UserView/helper'
 import AppBox from 'components/UI/AppBox'
@@ -10,15 +10,16 @@ export interface UserRatingProps {
   tmpl: 'rating'
   user: UserDto
   characteristicName: UserCharacteristicName
-  color: string
   index: number
 }
 
-export default function UserRating({ user, characteristicName, color, index }: UserRatingProps): JSX.Element {
+export default function UserRating({ user, characteristicName, index }: UserRatingProps): JSX.Element {
+  const theme = useTheme()
   const { nickname, avatar, name, characteristic } = user
   const number = getNumber()
   const href = getUserHref(nickname)
   const ratingValue = Math.floor(characteristic[characteristicName])
+  const color = theme.characteristic[characteristicName].main
   const isEven = index % 2 === 0
 
   function getNumber() {

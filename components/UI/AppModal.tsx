@@ -27,13 +27,11 @@ const AppModal: FC<AppModalProps> = ({ title, actions, maxWidth, children, onClo
       }}
       onClose={onClose}
     >
-      <DialogTitle sx={{ padding: '24px 16px 0', textAlign: 'center', textTransform: 'uppercase' }}>
-        {title}
-      </DialogTitle>
-      <DialogContent sx={{ paddingBottom: 3, overflow: 'scroll' }}>{children}</DialogContent>
+      <DialogTitle sx={{ textAlign: 'center', textTransform: 'uppercase' }}>{title}</DialogTitle>
+      <DialogContent sx={{ padding: '12px 24px 24px !important' }}>{children}</DialogContent>
       {actions && (
         <DialogActions>
-          <AppBox flex={1} justifyContent="space-between" pb={2} px={1}>
+          <AppBox flex={1} justifyContent="space-between" pb={2} px={2}>
             {actions.map((a, key) => (
               <Fragment key={key}>{a}</Fragment>
             ))}

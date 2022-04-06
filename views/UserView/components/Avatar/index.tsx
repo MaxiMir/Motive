@@ -1,6 +1,6 @@
-import { makeStyles } from '@mui/styles'
+import { useTheme } from '@mui/material'
+import { styled } from '@mui/system'
 import { UserCharacteristicDto } from 'dto'
-import { CharacteristicColors } from 'hooks/useCharacteristicColors'
 import AppBox from 'components/UI/AppBox'
 import AppCircle from 'components/UI/AppCircle'
 import AppAvatar from 'components/UI/AppAvatar'
@@ -9,40 +9,32 @@ import { getCircleItems } from './helper'
 interface AvatarProps {
   avatar?: string | null
   characteristic: UserCharacteristicDto
-  characteristicColors: CharacteristicColors
 }
 
-export default function Avatar({ avatar, characteristic, characteristicColors }: AvatarProps): JSX.Element {
-  const classes = useStyles()
+export default function Avatar({ avatar, characteristic }: AvatarProps): JSX.Element {
+  const theme = useTheme()
   const circleItems = getCircleItems(characteristic)
 
   return (
-    <AppBox className={classes.root}>
+    <AppBox sx={{ position: 'relative', width: 126, height: 126 }}>
       {circleItems.map(({ name, ...props }) => (
-        <AppBox justifyContent="center" alignItems="center" className={classes.circle} key={name}>
-          <AppCircle color={characteristicColors[name]} {...props} />
-        </AppBox>
+        <Circle justifyContent="center" alignItems="center" key={name}>
+          <AppCircle light={theme.characteristic[name].light} dark={theme.characteristic[name].dark} {...props} />
+        </Circle>
       ))}
-      <AppBox justifyContent="center" alignItems="center" className={classes.circle}>
+      <Circle justifyContent="center" alignItems="center">
         <AppAvatar src={avatar} size={80} />
-      </AppBox>
+      </Circle>
     </AppBox>
   )
 }
 
-const useStyles = makeStyles({
-  root: {
-    position: 'relative',
-    width: 126,
-    height: 126,
-  },
-  circle: {
-    position: 'absolute',
-    top: 0,
-    bottom: 0,
-    left: 0,
-    right: 0,
-    width: 126,
-    height: 126,
-  },
+const Circle = styled(AppBox)({
+  position: 'absolute',
+  top: 0,
+  bottom: 0,
+  left: 0,
+  right: 0,
+  width: 126,
+  height: 126,
 })

@@ -3,15 +3,17 @@ import { FormikProps, useFormik } from 'formik'
 import { useMutation } from 'react-query'
 import { UpdateUserDto, UserBaseDto } from 'dto'
 import schema from 'schemas/profile'
-import useLocale from 'hooks/useLocale'
+import { Locale } from 'hooks/useLocale'
 import UserService from 'services/UserService'
 import { getQueryParams, setQueryParams } from 'helpers/url'
 import { getUserHref } from 'views/UserView/helper'
 import { useMutateUserPage } from 'views/UserView/hook'
 import { getNextState } from './helper'
+import i18n from './i18n'
 
-export default function useForm(user: UserBaseDto, onSuccess: () => void): FormikProps<UpdateUserDto> {
-  const { mutateAsync } = useSendUpdateUser()
+export default function useForm(user: UserBaseDto, locale: Locale, onSuccess: () => void): FormikProps<UpdateUserDto> {
+  const { mutateAsync } = useSendUpdateUser(locale)
+  const { nicknameError } = i18n[locale]
   return useFormik<UpdateUserDto>({
     initialValues: {
       name: user.name,
@@ -25,7 +27,7 @@ export default function useForm(user: UserBaseDto, onSuccess: () => void): Formi
       const usersDB = user.nickname === nickname ? null : await UserService.find({ nickname }, 0, 1)
 
       if (usersDB?.length) {
-        setFieldError('nickname', 'nickname is busy')
+        setFieldError('nickname', nicknameError)
         return
       }
 
@@ -41,9 +43,8 @@ export default function useForm(user: UserBaseDto, onSuccess: () => void): Formi
   })
 }
 
-const useSendUpdateUser = () => {
+const useSendUpdateUser = (locale: Locale) => {
   const router = useRouter()
-  const { locale } = useLocale()
   const [page, mutatePage] = useMutateUserPage()
 
   return useMutation(UserService.update, {

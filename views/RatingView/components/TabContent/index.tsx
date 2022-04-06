@@ -13,7 +13,6 @@ interface TabContentProps {
 }
 
 export default function TabContent({ name, users, locale }: TabContentProps): JSX.Element {
-  const colors = useCharacteristicColors()
   const { userColumn, lvlColumn } = i18n[locale]
 
   return (
@@ -44,9 +43,7 @@ export default function TabContent({ name, users, locale }: TabContentProps): JS
       <AppList<UserDto>
         elements={users}
         keyGetter={(el) => el.id}
-        render={(user, index) => (
-          <User tmpl="rating" user={user} characteristicName={name} color={colors[name].fontColor} index={index} />
-        )}
+        render={(user, index) => <User tmpl="rating" user={user} characteristicName={name} index={index} />}
       />
     </>
   )

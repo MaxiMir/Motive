@@ -1,15 +1,13 @@
-import clsx from 'clsx'
-import { TypographyProps } from '@material-ui/core'
-import { toUpperFirstChar } from 'helpers/prepare'
+import AppBox from './AppBox'
 
 interface AppIconProps {
   name: string
-  color?: TypographyProps['color']
-  className?: string
 }
 
-export default function AppIcon({ className, color, name }: AppIconProps): JSX.Element {
-  const materialColorClass = color && `MuiTypography-color${toUpperFirstChar(color)}`
-
-  return <span className={clsx('material-icons', materialColorClass, className)}>{name}</span>
+export default function AppIcon({ name }: AppIconProps): JSX.Element {
+  return (
+    <AppBox component="span" display={undefined} className="material-icons">
+      {name}
+    </AppBox>
+  )
 }

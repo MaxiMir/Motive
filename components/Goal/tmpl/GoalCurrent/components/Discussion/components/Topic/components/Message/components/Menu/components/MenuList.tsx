@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import dynamic from 'next/dynamic'
-import { Menu, MenuItem } from '@material-ui/core'
+import { Menu, MenuItem } from '@mui/material'
 import { MessageDto } from 'dto'
 import useClient from 'hooks/useClient'
 import AppMenuItemContent from 'components/UI/AppMenuItemContent'

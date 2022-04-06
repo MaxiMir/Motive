@@ -1,4 +1,3 @@
-import { makeStyles } from '@material-ui/core/styles'
 import AppBox from './AppBox'
 
 interface AppDotProps {
@@ -6,14 +5,14 @@ interface AppDotProps {
 }
 
 export default function AppDot({ size = 3 }: AppDotProps): JSX.Element {
-  const classes = useStyles()
-
-  return <AppBox width={size} height={size} className={classes.root} />
+  return (
+    <AppBox
+      width={size}
+      height={size}
+      sx={{
+        borderRadius: '50%',
+        backgroundColor: '#424242',
+      }}
+    />
+  )
 }
-
-const useStyles = makeStyles({
-  root: {
-    borderRadius: '50%',
-    backgroundColor: '#424242',
-  },
-})

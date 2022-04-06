@@ -1,27 +1,18 @@
-import { createStyles, makeStyles } from '@material-ui/core'
+import { Typography, useTheme } from '@mui/material'
 import AppBox from 'components/UI/AppBox'
-import AppTypography from 'components/UI/AppTypography'
 
 interface WalletAddressProps {
   wallet: string
 }
 
 export default function WalletAddress({ wallet }: WalletAddressProps): JSX.Element {
-  const classes = useStyles()
+  const theme = useTheme()
 
   return (
     <AppBox alignItems="flex-end" height={24}>
-      <AppTypography variant="caption" className={classes.wallet}>
+      <Typography variant="caption" sx={{ color: theme.text.silent }}>
         {wallet}
-      </AppTypography>
+      </Typography>
     </AppBox>
   )
 }
-
-const useStyles = makeStyles((theme) =>
-  createStyles({
-    wallet: {
-      color: theme.text.silent,
-    },
-  }),
-)

@@ -1,7 +1,7 @@
 import dynamic from 'next/dynamic'
 import { Field, FieldArray, Form, FormikProvider } from 'formik'
-import { makeStyles } from '@material-ui/core/styles'
-import { Accordion, AccordionDetails, AccordionSummary, Button, createStyles } from '@material-ui/core'
+import { AccordionSummary, Button, Typography, Accordion, AccordionDetails, Theme } from '@mui/material'
+import { createStyles, makeStyles } from '@mui/styles'
 import { MainCharacteristicName } from 'dto'
 import useFocus from 'hooks/useFocus'
 import { Locale } from 'hooks/useLocale'
@@ -10,7 +10,6 @@ import AppModal from 'components/UI/AppModal'
 import AppTitle from 'components/UI/AppTitle'
 import AppBox from 'components/UI/AppBox'
 import AppInput from 'components/UI/AppInput'
-import AppTypography from 'components/UI/AppTypography'
 import AppIcon from 'components/UI/AppIcon'
 import AppDot from 'components/UI/AppDot'
 import AppAccordion from 'components/UI/AppAccordion'
@@ -78,9 +77,9 @@ export default function ModalGoal({ locale, onClose }: ModalGoalProps): JSX.Elem
     >
       <FormikProvider value={form}>
         <Form autoComplete="off">
-          <AppBox flexDirection="column" spacing={3}>
+          <AppBox flexDirection="column" gap={3}>
             <Field name="name" label={name} color="secondary" component={AppInput} />
-            <AppBox flexDirection="column" spacing={1}>
+            <AppBox flexDirection="column" gap={1}>
               <Field
                 name="hashtags"
                 label={hashtags}
@@ -94,7 +93,7 @@ export default function ModalGoal({ locale, onClose }: ModalGoalProps): JSX.Elem
                 # {hashtag}
               </Button>
             </AppBox>
-            <AppBox flexDirection="column" spacing={2}>
+            <AppBox flexDirection="column" gap={2}>
               <AppTitle name="stage" variant="h6" component="h2" color="primary">
                 {stages}
               </AppTitle>
@@ -102,7 +101,7 @@ export default function ModalGoal({ locale, onClose }: ModalGoalProps): JSX.Elem
                 {({ push, remove }) => (
                   <>
                     {values.stages.map((_, index) => (
-                      <AppBox spacing={1} key={index}>
+                      <AppBox gap={1} key={index}>
                         <AppBox alignSelf="flex-start" mt={2}>
                           <AppDot size={10} />
                         </AppBox>
@@ -125,7 +124,7 @@ export default function ModalGoal({ locale, onClose }: ModalGoalProps): JSX.Elem
                 )}
               </FieldArray>
             </AppBox>
-            <AppBox flexDirection="column" spacing={2}>
+            <AppBox flexDirection="column" gap={2}>
               <AppTitle name="task" variant="h6" component="h2" color="primary">
                 {tasksTitle}
               </AppTitle>
@@ -167,7 +166,7 @@ export default function ModalGoal({ locale, onClose }: ModalGoalProps): JSX.Elem
                 details={
                   <div className={classes.hint}>
                     {stageHints.map((hint, key) => (
-                      <AppTypography key={key}>{hint}</AppTypography>
+                      <Typography key={key}>{hint}</Typography>
                     ))}
                   </div>
                 }
@@ -178,15 +177,15 @@ export default function ModalGoal({ locale, onClose }: ModalGoalProps): JSX.Elem
                   aria-controls={pittAria}
                   id="old-pitt-note"
                 >
-                  <AppBox alignItems="center" spacing={1}>
+                  <AppBox alignItems="center" gap={1}>
                     <PaulIcon />
-                    <AppTypography variant="h6" component="h3" color="primary">
+                    <Typography variant="h6" component="h3" color="primary">
                       {pitt}
-                    </AppTypography>
+                    </Typography>
                   </AppBox>
                 </AccordionSummary>
                 <AccordionDetails>
-                  <AppTypography className={classes.hint}>
+                  <Typography className={classes.hint}>
                     {pittHints[0]}
                     <br />
                     {pittHints[1]} <AppDecorEmoji name="web" />.
@@ -198,7 +197,7 @@ export default function ModalGoal({ locale, onClose }: ModalGoalProps): JSX.Elem
                       <AppDecorEmoji name={characteristic} key={characteristic} />
                     ))}
                     {pittHints[4]}
-                  </AppTypography>
+                  </Typography>
                 </AccordionDetails>
               </Accordion>
             </div>
@@ -209,7 +208,7 @@ export default function ModalGoal({ locale, onClose }: ModalGoalProps): JSX.Elem
   )
 }
 
-const useStyles = makeStyles((theme) =>
+const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     button: {
       alignSelf: 'baseline',

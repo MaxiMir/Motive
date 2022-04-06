@@ -1,12 +1,12 @@
 import { Field, Form, FormikProvider } from 'formik'
-import { createStyles, makeStyles } from '@material-ui/core'
+import { Typography, Theme } from '@mui/material'
+import { createStyles, makeStyles } from '@mui/styles'
 import { GoalDto, UserBaseDto } from 'dto'
 import Action from 'components/Action'
 import AppModal from 'components/UI/AppModal'
 import AppBox from 'components/UI/AppBox'
 import AppFadeIcon from 'components/UI/AppFadeIcon'
 import AppInput from 'components/UI/AppInput'
-import AppTypography from 'components/UI/AppTypography'
 import AppAccordion from 'components/UI/AppAccordion'
 import AppDecorEmoji from 'components/UI/AppDecorEmoji'
 import useForm from './hook'
@@ -46,7 +46,7 @@ export default function ModalSupport({ goal, owner, onClose }: ModalSupportProps
     >
       <FormikProvider value={form}>
         <Form autoComplete="off">
-          <AppBox flexDirection="column" alignItems="center" spacing={3}>
+          <AppBox flexDirection="column" alignItems="center" gap={3}>
             <AppFadeIcon name="support" />
             <Field name="text" label="Your message" color="secondary" multiline rows={3} component={AppInput} />
             <div className={classes.accordionWrap}>
@@ -57,17 +57,17 @@ export default function ModalSupport({ goal, owner, onClose }: ModalSupportProps
                 ariaControls="about-support-content"
                 details={
                   <div className={classes.hint}>
-                    <AppTypography>
+                    <Typography>
                       Support is very important for achieving goals.
                       <AppDecorEmoji name="goal" />.
-                    </AppTypography>
-                    <AppTypography>
+                    </Typography>
+                    <Typography>
                       Especially at times when you want to give up
                       <AppDecorEmoji name="tired" />.
-                    </AppTypography>
-                    <AppTypography>Therefore support others:</AppTypography>
-                    <AppTypography>&#9679; with advice;</AppTypography>
-                    <AppTypography>&#9679; with words of encouragement.</AppTypography>
+                    </Typography>
+                    <Typography>Therefore support others:</Typography>
+                    <Typography>&#9679; with advice;</Typography>
+                    <Typography>&#9679; with words of encouragement.</Typography>
                   </div>
                 }
               />
@@ -79,7 +79,7 @@ export default function ModalSupport({ goal, owner, onClose }: ModalSupportProps
   )
 }
 
-const useStyles = makeStyles((theme) =>
+const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     button: {
       alignSelf: 'baseline',

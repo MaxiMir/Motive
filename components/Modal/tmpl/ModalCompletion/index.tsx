@@ -1,11 +1,11 @@
 import dynamic from 'next/dynamic'
 import { Field, FieldArray, Form, FormikProvider } from 'formik'
-import { createStyles, Grid, makeStyles } from '@material-ui/core'
+import { Grid, Typography, Theme } from '@mui/material'
+import { createStyles, makeStyles } from '@mui/styles'
 import { GoalDto, MainCharacteristicName } from 'dto'
 import useSelectPhoto from 'hooks/useSelectPhoto'
 import Action from 'components/Action'
 import AppModal from 'components/UI/AppModal'
-import AppTypography from 'components/UI/AppTypography'
 import AppBox from 'components/UI/AppBox'
 import AppDecorEmoji from 'components/UI/AppDecorEmoji'
 import AppAccordion from 'components/UI/AppAccordion'
@@ -16,7 +16,7 @@ import Photo from 'components/Photo'
 import Video from 'components/Video'
 import useForm from './hook'
 
-const Alert = dynamic(() => import('@material-ui/lab/Alert'))
+const Alert = dynamic(() => import('@mui/material/Alert'))
 
 const CHARACTERISTIC_NAMES: MainCharacteristicName[] = ['motivation', 'creativity', 'support']
 
@@ -54,16 +54,16 @@ export default function ModalCompletion({ goal, onClose }: ModalCompletionProps)
     >
       <FormikProvider value={form}>
         <Form autoComplete="off">
-          <AppBox flexDirection="column" alignItems="center" spacing={3}>
-            <AppBox flexDirection="column" alignItems="center" spacing={1}>
+          <AppBox flexDirection="column" alignItems="center" gap={3}>
+            <AppBox flexDirection="column" alignItems="center" gap={1}>
               <AppSpinIcon name="completed" />
-              <AppTypography variant="subtitle1" className={classes.congratulations}>
+              <Typography variant="subtitle1" className={classes.congratulations}>
                 Congratulations, you did it!
-              </AppTypography>
+              </Typography>
             </AppBox>
             <Field name="text" label="How it was" color="secondary" multiline rows={3} component={AppInput} />
             {!!values.photos.length && (
-              <AppBox flexDirection="column" spacing={2} width="100%">
+              <AppBox flexDirection="column" gap={2} width="100%">
                 <AppTitle name="photo" variant="h6" component="h2" color="primary">
                   Photos
                 </AppTitle>
@@ -81,7 +81,7 @@ export default function ModalCompletion({ goal, onClose }: ModalCompletionProps)
               </AppBox>
             )}
             {values.video && (
-              <AppBox flexDirection="column" spacing={2} width="100%">
+              <AppBox flexDirection="column" gap={2} width="100%">
                 <AppTitle name="video" variant="h6" component="h2" color="primary">
                   Video
                 </AppTitle>
@@ -93,12 +93,12 @@ export default function ModalCompletion({ goal, onClose }: ModalCompletionProps)
                 />
               </AppBox>
             )}
-            <AppBox spacing={2} width="100%">
+            <AppBox gap={2} width="100%">
               <Photo tmpl="input" disabled={isSubmitting} multiple onSelect={onSelectPhoto} />
               <Video tmpl="input" disabled onSelect={onSelectVideo} />
             </AppBox>
             {touched.photos && errors.photos && (
-              <Alert severity="error" variant="outlined" style={{ width: '100%' }}>
+              <Alert severity="error" variant="outlined" sx={{ width: '100%' }}>
                 {errors.photos}
               </Alert>
             )}
@@ -110,14 +110,14 @@ export default function ModalCompletion({ goal, onClose }: ModalCompletionProps)
                 ariaControls="about-goal-completion"
                 details={
                   <div className={classes.hint}>
-                    <AppTypography>
+                    <Typography>
                       In addition to the points you receive{' '}
                       {CHARACTERISTIC_NAMES.map((name) => (
                         <AppDecorEmoji name={name} key={name} />
                       ))}
                       , you get an extra <b className={classes.count}>5</b> points <AppDecorEmoji name="motivation" />{' '}
                       for completing the goal.
-                    </AppTypography>
+                    </Typography>
                   </div>
                 }
               />
@@ -129,7 +129,7 @@ export default function ModalCompletion({ goal, onClose }: ModalCompletionProps)
   )
 }
 
-const useStyles = makeStyles((theme) =>
+const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     congratulations: {
       color: '#ffa300',

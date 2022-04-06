@@ -1,4 +1,4 @@
-import { Menu, MenuItem } from '@material-ui/core'
+import { Menu, MenuItem } from '@mui/material'
 import { ReportType } from 'dto'
 import useLocale from 'hooks/useLocale'
 import AppMenuItemContent from 'components/UI/AppMenuItemContent'

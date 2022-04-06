@@ -1,28 +1,23 @@
+import { ElementType } from 'react'
+import { Typography, TypographyProps } from '@mui/material'
 import AppBox from './AppBox'
 import AppEmoji, { AppEmojiName } from './AppEmoji'
-import AppTypography, { AppTypographyProps } from './AppTypography'
 
-interface AppTitleProps extends AppTypographyProps {
+interface AppTitleProps extends TypographyProps {
   name: AppEmojiName
+  component?: ElementType
   mb?: number
 }
 
-export default function AppTitle({
-  name,
-  variant = 'h1',
-  component = 'h1',
-  color = 'initial',
-  mb,
-  children,
-}: AppTitleProps): JSX.Element {
-  const spacing = variant === 'h1' ? 2 : 1
+export default function AppTitle({ name, variant = 'h1', component = 'h1', mb, children }: AppTitleProps): JSX.Element {
+  const gap = variant === 'h1' ? 2 : 1
 
   return (
-    <AppBox alignItems="center" spacing={spacing} mb={mb}>
+    <AppBox alignItems="center" gap={gap} mb={mb}>
       <AppEmoji name={name} variant={variant} />
-      <AppTypography variant={variant} component={component} color={color}>
+      <Typography variant={variant} component={component}>
         {children}
-      </AppTypography>
+      </Typography>
     </AppBox>
   )
 }

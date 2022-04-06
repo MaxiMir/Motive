@@ -1,8 +1,8 @@
-import { createStyles, makeStyles } from '@material-ui/core'
+import { Typography, Theme } from '@mui/material'
+import { createStyles, makeStyles } from '@mui/styles'
 import { GoalDto, OwnershipDto } from 'dto'
 import Action from 'components/Action'
 import AppModal from 'components/UI/AppModal'
-import AppTypography from 'components/UI/AppTypography'
 import AppBox from 'components/UI/AppBox'
 import AppFadeIcon from 'components/UI/AppFadeIcon'
 import { useSendRemoveMember } from './hook'
@@ -46,15 +46,15 @@ export default function ModalLeave({ goal, clientOwnership, onClose }: ModalLeav
       ]}
       onClose={onClose}
     >
-      <AppBox flexDirection="column" justifyItems="center" alignItems="center" spacing={1}>
-        <AppTypography>You will lose all progress...</AppTypography>
+      <AppBox flexDirection="column" justifyItems="center" alignItems="center" gap={1}>
+        <Typography>You will lose all progress...</Typography>
         <AppFadeIcon name="scared" />
       </AppBox>
     </AppModal>
   )
 }
 
-const useStyles = makeStyles((theme) =>
+const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     goal: {
       color: theme.text.sand,

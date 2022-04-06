@@ -1,8 +1,8 @@
 import { Fragment } from 'react'
 import dynamic from 'next/dynamic'
-import { createStyles, makeStyles } from '@material-ui/core'
+import { Theme } from '@mui/material'
+import { createStyles, makeStyles } from '@mui/styles'
 import { ConfirmationDto, GoalCharacteristicName } from 'dto'
-import useCharacteristicColors from 'hooks/useCharacteristicColors'
 import useClient from 'hooks/useClient'
 import AppTitle from 'components/UI/AppTitle'
 import AppBox from 'components/UI/AppBox'
@@ -11,7 +11,7 @@ import AppTooltip from 'components/UI/AppTooltip'
 import Characteristic from 'components/Characteristic'
 import { getGoalInfo } from './helper'
 
-const AppTypography = dynamic(() => import('components/UI/AppTypography'))
+const Typography = dynamic(() => import('@mui/material/Typography'))
 const AppInView = dynamic(() => import('components/UI/AppInView'))
 const Gallery = dynamic(() => import('components/Gallery'))
 const Inheritance = dynamic(() => import('./components/Inheritance'))
@@ -32,7 +32,6 @@ export default function GoalCompleted({ confirmation, userId, inView, onView }: 
   const classes = useStyles()
   const { goal, inherited } = confirmation
   const client = useClient()
-  const colors = useCharacteristicColors()
   const { duration, mainPhoto, secondPhotos, interval } = getGoalInfo(confirmation)
   const isOwner = goal.owner.id === client?.id
   const clientPage = userId === client?.id
@@ -40,34 +39,29 @@ export default function GoalCompleted({ confirmation, userId, inView, onView }: 
 
   return (
     <div className={classes.wrap}>
-      <AppBox flexDirection="column" spacing={2} className={classes.content}>
-        <AppBox flexDirection="column" spacing={1}>
+      <AppBox flexDirection="column" gap={2} className={classes.content}>
+        <AppBox flexDirection="column" gap={1}>
           <AppTitle name="cup" variant="h6" component="h3">
             {goal.name}
           </AppTitle>
           {inherited && <Inheritance owner={goal.owner} />}
-          <AppTypography variant="caption">
+          <Typography variant="caption">
             Duration:{' '}
             <AppTooltip title={interval}>
               <b className={classes.runsForDays}>{duration}</b>
             </AppTooltip>
-          </AppTypography>
+          </Typography>
         </AppBox>
         {mainPhoto && <Gallery tmpl="simple" photos={[mainPhoto]} animation />}
         <AppBox justifyContent="space-between" alignItems="center">
           {CHARACTERISTICS.map((characteristicName) => (
             <Fragment key={characteristicName}>
-              <Characteristic
-                tmpl="goal"
-                name={characteristicName}
-                value={goal.characteristic[characteristicName]}
-                color={colors[characteristicName].fontColor}
-              />
+              <Characteristic tmpl="goal" name={characteristicName} value={goal.characteristic[characteristicName]} />
               {characteristicName !== 'members' && <AppDot />}
             </Fragment>
           ))}
         </AppBox>
-        {confirmation.text && <AppTypography>{confirmation.text}</AppTypography>}
+        {confirmation.text && <Typography>{confirmation.text}</Typography>}
         {!!secondPhotos?.length && <SecondPhotos id={goal.id} photos={secondPhotos} />}
         {renderRepeat && <Repeat goalId={goal.id} />}
       </AppBox>
@@ -76,7 +70,7 @@ export default function GoalCompleted({ confirmation, userId, inView, onView }: 
   )
 }
 
-const useStyles = makeStyles((theme) =>
+const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     wrap: {
       flex: 1,

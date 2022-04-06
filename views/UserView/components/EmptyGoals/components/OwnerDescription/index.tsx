@@ -1,7 +1,7 @@
-import { makeStyles } from '@material-ui/core'
+import { Typography } from '@mui/material'
+import { makeStyles } from '@mui/styles'
 import { SEARCH } from 'route'
 import { Locale } from 'hooks/useLocale'
-import AppTypography from 'components/UI/AppTypography'
 import AppLink from 'components/UI/AppLink'
 import i18n from './i18n'
 
@@ -15,15 +15,15 @@ export default function OwnerDescription({ locale }: OwnerDescriptionProps): JSX
 
   return (
     <>
-      <AppTypography>
+      <Typography>
         {description[0]} <span className={classes.own}>{description[1]}</span>
-      </AppTypography>
-      <AppTypography>
+      </Typography>
+      <Typography>
         {description[2]}{' '}
         <AppLink href={SEARCH} className={classes.link}>
           {description[3]}
         </AppLink>
-      </AppTypography>
+      </Typography>
     </>
   )
 }

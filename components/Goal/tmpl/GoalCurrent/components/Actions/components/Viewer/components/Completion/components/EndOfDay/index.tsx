@@ -1,12 +1,12 @@
 import dynamic from 'next/dynamic'
-import { Button } from '@material-ui/core'
+import { Button } from '@mui/material'
 import { GoalDto, MemberDto } from 'dto'
 import AppEmoji from 'components/UI/AppEmoji'
 import TooltipTomorrow from 'components/Goal/tmpl/GoalCurrent/components/TooltipTomorrow'
 import { getToday } from 'helpers/date'
 import { useSendEndOfDay } from './hook'
 
-const CircularProgress = dynamic(() => import('@material-ui/core/CircularProgress'))
+const CircularProgress = dynamic(() => import('@mui/material/CircularProgress'))
 
 interface EndOfDayProps {
   goal: GoalDto

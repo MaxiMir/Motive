@@ -28,7 +28,7 @@ export default {
     },
     support: {
       title: 'Быть поддержкой',
-      subtitle: 'нуждающимся людям',
+      subtitle: 'для нуждающихся',
     },
     completed: {
       title: 'Рейтинг',

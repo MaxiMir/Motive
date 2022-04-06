@@ -1,7 +1,7 @@
 import { useState, KeyboardEvent, useContext } from 'react'
 import { signOut } from 'next-auth/react'
-import { makeStyles } from '@material-ui/core/styles'
-import { Drawer, List, Divider, ListItem, Button, ListItemText, ListItemIcon } from '@material-ui/core'
+import { common } from '@mui/material/colors'
+import { Drawer, List, Divider, ListItem, Button, ListItemText, ListItemIcon } from '@mui/material'
 import useLocale from 'hooks/useLocale'
 import useClient from 'hooks/useClient'
 import useDebounceCb from 'hooks/useDebounceCb'
@@ -12,16 +12,16 @@ import { MENU } from './helper'
 import i18n from './i18n'
 
 export default function LeftMenu(): JSX.Element {
-  const classes = useStyles()
   const { locale, jump, next } = useLocale()
   const client = useClient()
-  const { type, toggle } = useContext(ThemeContext)
+  const { mode, toggle } = useContext(ThemeContext)
   const [open, setOpen] = useState(false)
-  const isLight = type === 'light'
+  const isLight = mode === 'light'
   const i18nElements = i18n[locale]
   const { ariaLabel, language, logOut, getTheme } = i18nElements
   const themePrimary = getTheme(isLight)
   const changeThemeDebounce = useDebounceCb(toggle)
+
   const toggleModal = () => setOpen(!open)
 
   const onKeyDown = (event: KeyboardEvent) => {
@@ -34,11 +34,16 @@ export default function LeftMenu(): JSX.Element {
 
   return (
     <div>
-      <Button aria-label={ariaLabel} onClick={toggleModal}>
+      <Button aria-label={ariaLabel} sx={{ color: common.white }} onClick={toggleModal}>
         <AppIcon name="menu" />
       </Button>
       <Drawer open={open} onClose={toggleModal}>
-        <div role="presentation" className={classes.list} onKeyDown={onKeyDown}>
+        <AppBox
+          display="block"
+          role="presentation"
+          sx={{ height: '100%', padding: '60px 0 8px' }}
+          onKeyDown={onKeyDown}
+        >
           <AppBox flexDirection="column" justifyContent="space-between" height="100%">
             <div>
               <List>
@@ -70,26 +75,15 @@ export default function LeftMenu(): JSX.Element {
                 </ListItemIcon>
               </ListItem>
               <ListItem button disabled onClick={changeThemeDebounce}>
-                <ListItemText primary={themePrimary} className={classes.theme} />
+                <ListItemText primary={themePrimary} sx={{ width: 150 }} />
                 <ListItemIcon>
                   <AppIcon name={isLight ? 'light_mode' : 'dark_mode'} />
                 </ListItemIcon>
               </ListItem>
             </div>
           </AppBox>
-        </div>
+        </AppBox>
       </Drawer>
     </div>
   )
 }
-
-const useStyles = makeStyles({
-  list: {
-    height: '100%',
-    padding: '60px 0 8px',
-    minWidth: 220,
-  },
-  theme: {
-    width: 150,
-  },
-})

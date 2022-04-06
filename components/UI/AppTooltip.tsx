@@ -1,5 +1,5 @@
 import { FC } from 'react'
-import { Tooltip, TooltipProps } from '@material-ui/core'
+import { Tooltip, TooltipProps } from '@mui/material'
 
 export interface AppTooltipProps {
   title: TooltipProps['title']

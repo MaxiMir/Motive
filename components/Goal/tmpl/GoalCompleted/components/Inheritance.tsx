@@ -1,5 +1,5 @@
+import { Typography } from '@mui/material'
 import { UserBaseDto } from 'dto'
-import AppTypography from 'components/UI/AppTypography'
 import AppBox from 'components/UI/AppBox'
 import User from 'components/User'
 
@@ -9,8 +9,8 @@ interface InheritedProps {
 
 export default function Inheritance({ owner }: InheritedProps): JSX.Element {
   return (
-    <AppBox alignItems="center" spacing={1}>
-      <AppTypography variant="caption">Creator:</AppTypography>
+    <AppBox alignItems="center" gap={1}>
+      <Typography variant="caption">Creator:</Typography>
       <User tmpl="avatar" user={owner} />
     </AppBox>
   )

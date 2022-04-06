@@ -1,12 +1,12 @@
 import { FC } from 'react'
 import Head from 'next/head'
 import dynamic from 'next/dynamic'
-import { makeStyles } from '@material-ui/core/styles'
 import useClient from 'hooks/useClient'
 import Header from './Header'
 import Footer from './Footer'
 
 const Error = dynamic(() => import('pages/_error'))
+const AppBox = dynamic(() => import('components/UI/AppBox'))
 
 interface LayoutProps {
   title?: string
@@ -15,7 +15,7 @@ interface LayoutProps {
   type?: string
   image?: string
   statusCode?: number
-  withVerticalPadding?: boolean
+  mainPage?: boolean
 }
 
 const Layout: FC<LayoutProps> = ({
@@ -24,12 +24,12 @@ const Layout: FC<LayoutProps> = ({
   url,
   type,
   image,
-  withVerticalPadding = true,
+  mainPage = false,
   statusCode = 200,
   children,
 }) => {
-  const classes = useStyles({ withVerticalPadding })
   const client = useClient()
+  const padding = mainPage ? undefined : '24px 0'
 
   return (
     <>
@@ -55,9 +55,14 @@ const Layout: FC<LayoutProps> = ({
       {statusCode !== 200 ? (
         <Error statusCode={statusCode} />
       ) : (
-        <main id="main" className={classes.main}>
+        <AppBox
+          component="main"
+          id="main"
+          flexDirection="column"
+          sx={{ height: 'calc(100vh - 125px)', overflow: 'scroll', padding }}
+        >
           {children}
-        </main>
+        </AppBox>
       )}
       <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" />
       <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
@@ -68,16 +73,5 @@ const Layout: FC<LayoutProps> = ({
 
 // TODO https://shivamethical.medium.com/creating-web-page-preview-while-sharing-url-via-social-applications-like-whats-app-fb-cd2e19b11bf2
 // TODO https://developer.mozilla.org/ru/docs/Web/Progressive_web_apps/Installable_PWAs
-
-type UseStylesProps = Pick<LayoutProps, 'withVerticalPadding'>
-
-const useStyles = makeStyles({
-  main: {
-    display: 'flex',
-    flexDirection: 'column',
-    minHeight: 'calc(100vh - 65px)',
-    padding: (props: UseStylesProps) => (!props.withVerticalPadding ? undefined : '24px 0 112px'),
-  },
-})
 
 export default Layout

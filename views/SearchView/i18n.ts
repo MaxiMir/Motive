@@ -1,14 +1,14 @@
 export default {
   en: {
     header: 'Search',
-    trend: 'Trending',
-    usersList: 'Users',
-    goalsList: 'Goals',
+    trendTitle: 'Trending',
+    userTitle: 'Users',
+    goalTitle: 'Goals',
   },
   ru: {
     header: 'Поиск',
-    trend: 'Тренды',
-    usersList: 'Пользователи',
-    goalsList: 'Цели',
+    trendTitle: 'Тренды',
+    userTitle: 'Пользователи',
+    goalTitle: 'Цели',
   },
 }

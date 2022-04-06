@@ -1,8 +1,8 @@
 import dynamic from 'next/dynamic'
+import { TypographyProps } from '@mui/material'
 import { GoalCharacteristicName, UserCharacteristicName } from 'dto'
-import { AppTypographyProps } from './AppTypography'
 
-const AppTypography = dynamic(() => import('./AppTypography'))
+const Typography = dynamic(() => import('@mui/material/Typography'))
 
 export type AppEmojiName =
   | UserCharacteristicName
@@ -57,9 +57,10 @@ export type AppEmojiName =
 
 interface AppEmojiProps {
   name: AppEmojiName
-  variant?: AppTypographyProps['variant']
+  variant?: TypographyProps['variant']
   className?: string
   onlyEmoji?: boolean
+  sx?: TypographyProps['sx']
 }
 
 export default function AppEmoji({ name, onlyEmoji = false, ...restProps }: AppEmojiProps): JSX.Element {
@@ -70,9 +71,9 @@ export default function AppEmoji({ name, onlyEmoji = false, ...restProps }: AppE
       {onlyEmoji ? (
         content
       ) : (
-        <AppTypography component="p" role="img" aria-label={name} {...restProps}>
+        <Typography role="img" aria-label={name} {...restProps}>
           {content}
-        </AppTypography>
+        </Typography>
       )}
     </>
   )

@@ -1,5 +1,6 @@
 import { ChangeEvent, useRef } from 'react'
-import { Button, Chip, makeStyles } from '@material-ui/core'
+import { Button, Chip } from '@mui/material'
+import { makeStyles } from '@mui/styles'
 import AppEmoji from 'components/UI/AppEmoji'
 
 export interface VideoInputProps {

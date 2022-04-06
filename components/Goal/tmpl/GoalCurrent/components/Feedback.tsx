@@ -14,7 +14,7 @@ export default function Feedback({ feedback }: FeedbackProps): JSX.Element {
   const { text, photos, video } = feedback
 
   return (
-    <AppBox flexDirection="column" spacing={2} flex={1}>
+    <AppBox flexDirection="column" gap={2} flex={1}>
       {text && <AppMarkdown text={text} />}
       {photos?.length && <Gallery tmpl="viewer" photos={photos} />}
       {video && <AppVideo video={video} />}

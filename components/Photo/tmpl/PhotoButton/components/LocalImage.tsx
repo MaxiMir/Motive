@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import dynamic from 'next/dynamic'
-import { makeStyles } from '@material-ui/core'
+import { makeStyles } from '@mui/styles'
 
-const CircularProgress = dynamic(() => import('@material-ui/core/CircularProgress'))
+const CircularProgress = dynamic(() => import('@mui/material/CircularProgress'))
 
 interface LocalImageProps {
   file: File

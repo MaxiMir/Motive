@@ -1,4 +1,5 @@
-import { IconButton, makeStyles } from '@material-ui/core'
+import { IconButton } from '@mui/material'
+import { makeStyles } from '@mui/styles'
 import AppVideo from 'components/UI/AppVideo'
 import AppIcon from 'components/UI/AppIcon'
 

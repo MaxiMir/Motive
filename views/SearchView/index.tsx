@@ -1,5 +1,5 @@
 import dynamic from 'next/dynamic'
-import { Grid } from '@material-ui/core'
+import { Grid } from '@mui/material'
 import { GoalDto, HashtagDto, UserDto } from 'dto'
 import { Locale } from 'hooks/useLocale'
 import AppTitle from 'components/UI/AppTitle'
@@ -23,7 +23,7 @@ interface SearchViewProps {
 }
 
 export default function SearchView({ q, hashtags, goals, users, locale }: SearchViewProps): JSX.Element {
-  const { header, trend, usersList, goalsList } = i18n[locale]
+  const { header, trendTitle, userTitle, goalTitle } = i18n[locale]
   const gradients = getGradients()
   const noResult = !users.length && !goals.length
 
@@ -32,12 +32,12 @@ export default function SearchView({ q, hashtags, goals, users, locale }: Search
       <AppTitle name="search" mb={4}>
         {header}
       </AppTitle>
-      <AppBox flexDirection="column" spacing={4}>
+      <AppBox flexDirection="column" gap={4}>
         <SearchForm q={q} />
         {!!users.length && (
-          <AppBox flexDirection="column" spacing={2}>
+          <AppBox flexDirection="column" gap={2}>
             <AppTitle variant="h4" component="h2" name="followers">
-              {usersList}
+              {userTitle}
             </AppTitle>
             <Grid container spacing={2}>
               {users.map((user) => (
@@ -49,9 +49,9 @@ export default function SearchView({ q, hashtags, goals, users, locale }: Search
           </AppBox>
         )}
         {noResult && <NoResult phrase={q} />}
-        <AppBox flexDirection="column" spacing={2}>
+        <AppBox flexDirection="column" gap={2}>
           <AppTitle variant="h4" component="h2" name="trending">
-            {trend}
+            {trendTitle}
           </AppTitle>
           <Grid container spacing={2}>
             {hashtags.map(({ name, views }, key) => (
@@ -62,9 +62,9 @@ export default function SearchView({ q, hashtags, goals, users, locale }: Search
           </Grid>
         </AppBox>
         {!!goals.length && false && (
-          <AppBox flexDirection="column" spacing={2}>
+          <AppBox flexDirection="column" gap={2}>
             <AppTitle variant="h4" component="h2" name="goal">
-              {goalsList}
+              {goalTitle}
             </AppTitle>
             <Grid container spacing={2}>
               {goals.map((goal) => (

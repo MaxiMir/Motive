@@ -1,10 +1,10 @@
 export default {
   en: {
-    description: 'No results found for',
-    hint: 'Try changing the search phrase',
+    title: 'No results found for',
+    description: 'Try changing the search phrase',
   },
   ru: {
-    description: 'Не найдено результатов для',
-    hint: 'Попробуйте изменить поисковую фразу',
+    title: 'Не найдено результатов для',
+    description: 'Попробуйте изменить поисковую фразу',
   },
 }

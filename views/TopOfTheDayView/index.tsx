@@ -1,7 +1,6 @@
-import { Container } from '@material-ui/core'
+import { Container, Typography } from '@mui/material'
 import { Locale } from 'hooks/useLocale'
 import AppTitle from 'components/UI/AppTitle'
-import AppTypography from 'components/UI/AppTypography'
 import AppBox from 'components/UI/AppBox'
 import i18n from './i18n'
 
@@ -18,7 +17,7 @@ export default function TopOfTheDayView({ locale }: TopOfTheDayViewProps): JSX.E
         {title}
       </AppTitle>
       <AppBox alignItems="center" justifyContent="center" flex={1} height="80vh">
-        <AppTypography variant="h5">{text}</AppTypography>
+        <Typography variant="h5">{text}</Typography>
       </AppBox>
     </Container>
   )

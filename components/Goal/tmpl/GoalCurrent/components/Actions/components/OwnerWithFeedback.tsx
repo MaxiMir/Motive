@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import dynamic from 'next/dynamic'
-import { Button } from '@material-ui/core'
+import { Button } from '@mui/material'
 import { GoalDto } from 'dto'
 import AppEmoji from 'components/UI/AppEmoji'
 import AppBox from 'components/UI/AppBox'

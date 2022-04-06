@@ -1,4 +1,5 @@
-import { Button, makeStyles } from '@material-ui/core'
+import { Button } from '@mui/material'
+import { makeStyles } from '@mui/styles'
 import { MessageDto, MessageType } from 'dto'
 import useClient from 'hooks/useClient'
 import AppEmoji from 'components/UI/AppEmoji'

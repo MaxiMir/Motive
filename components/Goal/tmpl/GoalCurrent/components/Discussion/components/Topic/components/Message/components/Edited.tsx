@@ -1,4 +1,5 @@
-import { createStyles, makeStyles } from '@material-ui/core'
+import { Theme } from '@mui/material'
+import { createStyles, makeStyles } from '@mui/styles'
 
 export default function Edited(): JSX.Element {
   const classes = useStyles()
@@ -6,7 +7,7 @@ export default function Edited(): JSX.Element {
   return <span className={classes.edited}>(edited)</span>
 }
 
-const useStyles = makeStyles((theme) =>
+const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     edited: {
       fontSize: '0.6875rem',

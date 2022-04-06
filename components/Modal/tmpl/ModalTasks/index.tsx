@@ -1,5 +1,6 @@
 import { FieldArray, Form, FormikProvider } from 'formik'
-import { Button, createStyles, makeStyles } from '@material-ui/core'
+import { Button, Theme } from '@mui/material'
+import { createStyles, makeStyles } from '@mui/styles'
 import { GoalDto } from 'dto'
 import useLocale from 'hooks/useLocale'
 import AppModal from 'components/UI/AppModal'
@@ -76,7 +77,7 @@ export default function ModalTasks({ goal, onClose }: ModalTasksProps): JSX.Elem
   )
 }
 
-const useStyles = makeStyles((theme) =>
+const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     button: {
       alignSelf: 'baseline',

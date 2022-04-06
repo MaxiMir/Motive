@@ -1,5 +1,4 @@
-import clsx from 'clsx'
-import { makeStyles, SvgIconProps } from '@material-ui/core'
+import { SvgIconProps } from '@mui/material'
 
 interface FooterLinkProps {
   Icon: (props: SvgIconProps) => JSX.Element
@@ -7,16 +6,5 @@ interface FooterLinkProps {
 }
 
 export default function FooterIcon({ Icon, selected }: FooterLinkProps): JSX.Element {
-  const classes = useStyles()
-
-  return <Icon className={clsx([classes.icon, selected && classes.iconSelected])} />
+  return <Icon sx={{ fontSize: '1.9rem', opacity: selected ? 0.6 : 1 }} />
 }
-
-const useStyles = makeStyles({
-  icon: {
-    fontSize: '1.9rem',
-  },
-  iconSelected: {
-    opacity: 0.6,
-  },
-})

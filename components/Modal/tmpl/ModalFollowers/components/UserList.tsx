@@ -12,7 +12,7 @@ export default function UserList({ users, checkOnLoadMore, onView }: UserListPro
   return (
     <AppList
       elements={users}
-      spacing={2}
+      gap={2}
       keyGetter={(user) => user.id}
       render={(user, index) => (
         <User tmpl="characteristic" user={user} inView={checkOnLoadMore(index)} onView={onView} />

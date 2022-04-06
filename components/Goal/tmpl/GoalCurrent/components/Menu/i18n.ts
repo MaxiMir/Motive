@@ -1,10 +1,10 @@
 export default {
   en: {
     buttonTitle: 'Open goal menu',
-    buttonAria: 'goal-menu',
+    ariaControls: 'goal-menu',
   },
   ru: {
     buttonTitle: 'Открыть меню цели',
-    buttonAria: 'меню-цели',
+    ariaControls: 'меню-цели',
   },
 }

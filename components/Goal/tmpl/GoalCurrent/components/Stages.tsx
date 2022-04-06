@@ -2,11 +2,11 @@ import { useState } from 'react'
 import dynamic from 'next/dynamic'
 import clsx from 'clsx'
 import { GoalDto } from 'dto'
-import { createStyles, makeStyles, Step, StepContent, StepLabel, Stepper } from '@material-ui/core'
+import { Step, StepContent, Stepper, Typography, StepLabel, Theme } from '@mui/material'
+import { createStyles, makeStyles } from '@mui/styles'
 import AppIcon from 'components/UI/AppIcon'
-import AppTypography from 'components/UI/AppTypography'
 
-const Button = dynamic(() => import('@material-ui/core/Button'))
+const Button = dynamic(() => import('@mui/material/Button'))
 const TooltipTomorrow = dynamic(() => import('components/Goal/tmpl/GoalCurrent/components/TooltipTomorrow'))
 
 const Modal = dynamic(() => import('components/Modal'))
@@ -32,7 +32,7 @@ export default function Stages({ goal, forTomorrow, completeStage }: AppStagesPr
           <Step key={stage} className={clsx([activeStep >= index ? classes.colored : classes.default])}>
             <StepLabel
               StepIconComponent={() => <AppIcon name={activeStep > index ? 'task_alt' : 'radio_button_unchecked'} />}
-              optional={<AppTypography>{stage}</AppTypography>}
+              optional={<Typography>{stage}</Typography>}
             />
             {!completeStage ? (
               <StepContent />
@@ -53,7 +53,7 @@ export default function Stages({ goal, forTomorrow, completeStage }: AppStagesPr
   )
 }
 
-const useStyles = makeStyles((theme) =>
+const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     root: {
       padding: 0,

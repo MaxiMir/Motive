@@ -29,13 +29,19 @@ export default function ModalSignIn({ options, onClose }: ModalSignInProps): JSX
 
   return (
     <AppModal title={title} maxWidth="xs" onClose={onClose}>
-      <AppBox flexDirection="column" alignSelf="stretch" spacing={2} mt={1} mb={1}>
+      <AppBox flexDirection="column" alignSelf="stretch" gap={2} mt={1} mb={1}>
         {!providers ? (
           <Loader count={3} />
         ) : (
           <>
             {Object.values(providers).map((provider) => (
-              <Provider provider={provider} options={options} disabled={provider.id === 'apple'} key={provider.id} />
+              <Provider
+                provider={provider}
+                options={options}
+                locale={locale}
+                disabled={provider.id === 'apple'}
+                key={provider.id}
+              />
             ))}
           </>
         )}

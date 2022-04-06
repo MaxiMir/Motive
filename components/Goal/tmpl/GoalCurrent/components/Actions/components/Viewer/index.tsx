@@ -20,7 +20,7 @@ export default function Viewer({ goal, owner, forTomorrow, clientOwnership }: Vi
 
   return (
     <AppBox justifyContent="space-between" flexWrap="wrap">
-      <AppBox spacing={1}>
+      <AppBox gap={1}>
         {(['motivation', 'creativity'] as DayCharacteristicName[]).map((name) => (
           <ReactionWithSend goal={goal} name={name} key={name} />
         ))}

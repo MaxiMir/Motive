@@ -11,7 +11,7 @@ import { useMutateUserPage } from 'views/UserView/hook'
 import { getGoalNextState } from './helper'
 import i18n from './i18n'
 
-const Button = dynamic(() => import('@material-ui/core/Button'))
+const Button = dynamic(() => import('@mui/material/Button'))
 
 export default function useSetCompleted(
   goalId: number,
@@ -52,7 +52,11 @@ export default function useSetCompleted(
       message,
       severity: 'success',
       icon: !newRest ? 'motivation-tech' : 'energy',
-      action: <Button onClick={onUndo}>{undo}</Button>,
+      action: (
+        <Button variant="outlined" onClick={onUndo}>
+          {undo}
+        </Button>
+      ),
     })
   }
 }

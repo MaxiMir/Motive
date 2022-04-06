@@ -1,7 +1,8 @@
 import { ChangeEvent } from 'react'
 import dynamic from 'next/dynamic'
 import { Field } from 'formik'
-import { createStyles, FormControlLabel, Switch, makeStyles, Tooltip } from '@material-ui/core'
+import { FormControlLabel, Switch, Tooltip, Theme } from '@mui/material'
+import { createStyles, makeStyles } from '@mui/styles'
 import { Locale } from 'hooks/useLocale'
 import AppBox from 'components/UI/AppBox'
 import AppInput from 'components/UI/AppInput'
@@ -9,12 +10,7 @@ import AppIcon from 'components/UI/AppIcon'
 import AppIconButton from 'components/UI/AppIconButton'
 import i18n from './i18n'
 
-const KeyboardTimePicker = dynamic(() =>
-  import('formik-material-ui-pickers').then(
-    (m) => m.KeyboardTimePicker,
-    () => null as never,
-  ),
-)
+const TimePicker = dynamic(() => import('@mui/lab/TimePicker'))
 
 export interface TaskFieldProps {
   tmpl: 'field'
@@ -43,7 +39,7 @@ export default function TaskField({
 
   return (
     <>
-      <AppBox justifyContent="space-between" spacing={1}>
+      <AppBox justifyContent="space-between" gap={1}>
         <Field
           name={`tasks.${index}.name`}
           label={label}
@@ -58,7 +54,7 @@ export default function TaskField({
           <AppIconButton name="close" aria-label={close} disabled={taskCount === 1} onClick={onRemove} />
         </AppBox>
       </AppBox>
-      <AppBox alignItems="center" spacing={1} pl={1} height={48}>
+      <AppBox alignItems="center" gap={1} pl={1} height={48}>
         {/* TODO ADD  */}
         <Tooltip title={tooltip}>
           <FormControlLabel label={remind} disabled control={<Switch size="small" onChange={onSwitchClick} />} />
@@ -69,7 +65,7 @@ export default function TaskField({
             ampm={false}
             className={classes.timepicker}
             keyboardIcon={<AppIcon name="query_builder" />}
-            component={KeyboardTimePicker}
+            component={TimePicker}
           />
         )}
       </AppBox>
@@ -77,7 +73,7 @@ export default function TaskField({
   )
 }
 
-const useStyles = makeStyles((theme) =>
+const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     number: {
       color: theme.text.silent,

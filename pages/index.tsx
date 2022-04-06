@@ -19,7 +19,7 @@ export default function MainPage(): JSX.Element {
   const { title } = i18n[locale]
 
   return (
-    <Layout title={title} withVerticalPadding={false}>
+    <Layout title={title} mainPage>
       <MainView locale={locale} />
     </Layout>
   )

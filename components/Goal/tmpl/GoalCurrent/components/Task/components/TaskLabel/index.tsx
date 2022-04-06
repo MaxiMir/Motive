@@ -15,7 +15,7 @@ export default function TaskLabel({ task, daysGoneForOwner }: TaskLabelProps): J
   const completedByOther = checkOnCompletedByOther(task, daysGoneForOwner)
 
   return (
-    <AppBox alignItems="center" spacing={1}>
+    <AppBox alignItems="center" gap={1}>
       <AppMarkdown text={task.name} />
       {completedByOther && <CompletedByOther />}
     </AppBox>

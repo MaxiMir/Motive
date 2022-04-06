@@ -1,4 +1,4 @@
-import { makeStyles } from '@material-ui/core'
+import { makeStyles } from '@mui/styles'
 import AppIcon from 'components/UI/AppIcon'
 
 export default function Reply(): JSX.Element {

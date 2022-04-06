@@ -1,5 +1,5 @@
 import { ChangeEvent, useState } from 'react'
-import { Accordion, AccordionDetails, AccordionSummary } from '@material-ui/core'
+import { Accordion, AccordionDetails, AccordionSummary } from '@mui/material'
 import AppIcon from './AppIcon'
 import AppTitle from './AppTitle'
 import { AppEmojiName } from './AppEmoji'
@@ -41,11 +41,7 @@ export default function AppAccordion({
       onChange={onChange}
       TransitionProps={!unmountOnExit ? undefined : { unmountOnExit: true }}
     >
-      <AccordionSummary
-        id={id}
-        expandIcon={<AppIcon name="expand_more" color="primary" />}
-        aria-controls={ariaControls}
-      >
+      <AccordionSummary id={id} expandIcon={<AppIcon name="expand_more" />} aria-controls={ariaControls}>
         <AppTitle name={name} variant="h6" component="h4" color="primary">
           {header}
         </AppTitle>

@@ -1,8 +1,8 @@
-import { Button, makeStyles } from '@material-ui/core'
+import { Button, Typography } from '@mui/material'
+import { common } from '@mui/material/colors'
 import { numberToShort } from 'helpers/prepare'
 import useLocale from 'hooks/useLocale'
 import AppBox from 'components/UI/AppBox'
-import AppTypography from 'components/UI/AppTypography'
 import { getHashtagHref } from './helper'
 
 export interface HashtagSearchProps {
@@ -13,7 +13,6 @@ export interface HashtagSearchProps {
 }
 
 export default function HashtagSearch({ name, gradient, views }: HashtagSearchProps): JSX.Element {
-  const classes = useStyles({ gradient })
   const { jump } = useLocale()
   const shortViews = numberToShort(views)
 
@@ -24,53 +23,46 @@ export default function HashtagSearch({ name, gradient, views }: HashtagSearchPr
   }
 
   return (
-    <Button onClick={onClick} className={classes.button}>
+    <Button
+      sx={{
+        width: '100%',
+        aspectRatio: '1',
+        borderRadius: '12px',
+        backgroundImage: gradient,
+        '& .MuiButton-label': {
+          height: '100%',
+        },
+      }}
+      onClick={onClick}
+    >
       <AppBox
         alignItems="flex-start"
         flexDirection="column"
         justifyContent="space-between"
         p={1}
-        className={classes.wrap}
+        sx={{
+          width: '100%',
+          height: '100%',
+          overflow: 'hidden',
+        }}
       >
-        <AppTypography variant="subtitle1" component="p" className={classes.name}>
+        <Typography variant="subtitle1" component="p" sx={{ color: common.white, textTransform: 'none' }}>
           <b>#{name}</b>
-        </AppTypography>
-        <AppTypography variant="h4" component="p" className={classes.shortName}>
+        </Typography>
+        <Typography
+          variant="h4"
+          component="p"
+          sx={{
+            background: 'linear-gradient(to right, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.01))',
+            WebkitBackgroundClip: 'text',
+            WebkitTextFillColor: 'transparent',
+            color: 'rgba(255, 255, 255, 0.05)',
+          }}
+        >
           <b>{name}</b>
-        </AppTypography>
-        <AppTypography className={classes.count}>{shortViews}</AppTypography>
+        </Typography>
+        <Typography sx={{ opacity: 0.5 }}>{shortViews}</Typography>
       </AppBox>
     </Button>
   )
 }
-
-type StylesProps = Pick<HashtagSearchProps, 'gradient'>
-
-const useStyles = makeStyles({
-  button: {
-    width: '100%',
-    aspectRatio: '1',
-    borderRadius: 12,
-    backgroundImage: (props: StylesProps) => props.gradient,
-    '& .MuiButton-label': {
-      height: '100%',
-    },
-  },
-  wrap: {
-    width: '100%',
-    height: '100%',
-    overflow: 'hidden',
-  },
-  name: {
-    textTransform: 'none',
-  },
-  shortName: {
-    background: 'linear-gradient(to right, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.01))',
-    '-webkit-background-clip': 'text',
-    '-webkit-text-fill-color': 'transparent',
-    color: 'rgba(255, 255, 255, 0.05)',
-  },
-  count: {
-    opacity: 0.5,
-  },
-})

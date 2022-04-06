@@ -1,5 +1,4 @@
 import dynamic from 'next/dynamic'
-import { makeStyles } from '@material-ui/core'
 import { UserDetailDto } from 'dto'
 import { Locale } from 'hooks/useLocale'
 import AppModal from 'components/UI/AppModal'
@@ -20,13 +19,12 @@ export interface ModalFollowersProps {
 
 export default function ModalFollowers({ user, locale, onClose }: ModalFollowersProps): JSX.Element {
   const { id, characteristic } = user
-  const classes = useStyles()
   const { isLoading, followers, checkOnLoadMore, fetchNextPage } = useFollowers(id, characteristic.followers)
   const { title } = i18n[locale]
 
   return (
     <AppModal title={title} maxWidth="xs" onClose={onClose}>
-      <AppContainer flexColumn className={classes.container}>
+      <AppContainer flexColumn style={{ height: 440, padding: 0, overflow: 'scroll' }}>
         {isLoading ? (
           <Loader count={user.characteristic.followers} />
         ) : (
@@ -42,11 +40,3 @@ export default function ModalFollowers({ user, locale, onClose }: ModalFollowers
     </AppModal>
   )
 }
-
-const useStyles = makeStyles({
-  container: {
-    height: 440,
-    padding: 0,
-    overflow: 'scroll',
-  },
-})

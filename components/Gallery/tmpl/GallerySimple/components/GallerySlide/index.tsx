@@ -1,6 +1,6 @@
 import dynamic from 'next/dynamic'
 import { RenderImageProps } from 'react-photo-gallery'
-import { makeStyles } from '@material-ui/core/styles'
+import { makeStyles } from '@mui/styles'
 import GalleryImage from './components/GalleryImage'
 
 const AppImageZoom = dynamic(() => import('components/UI/AppImageZoom'))

@@ -1,6 +1,7 @@
 import dynamic from 'next/dynamic'
 import { Field, Form, FormikProvider } from 'formik'
-import { createStyles, Grid, makeStyles } from '@material-ui/core'
+import { Grid, Theme } from '@mui/material'
+import { createStyles, makeStyles } from '@mui/styles'
 import { UserBaseDto } from 'dto'
 import { Locale } from 'hooks/useLocale'
 import Action from 'components/Action'
@@ -11,7 +12,7 @@ import AppBox from 'components/UI/AppBox'
 import useForm from './hook'
 import i18n from './i18n'
 
-const Alert = dynamic(() => import('@material-ui/lab/Alert'))
+const Alert = dynamic(() => import('@mui/material/Alert'))
 
 export interface ModalProfileProps {
   tmpl: 'profile'
@@ -53,10 +54,10 @@ export default function ModalProfile({ user, locale, onClose }: ModalProfileProp
     >
       <FormikProvider value={form}>
         <Form autoComplete="off">
-          <AppBox flexDirection="column" spacing={3}>
+          <AppBox flexDirection="column" gap={3}>
             <Field name="name" label={name} color="secondary" component={AppInput} />
             <Field name="nickname" label={nickname} color="secondary" component={AppInput} />
-            <Grid container spacing={2}>
+            <Grid container gap={2}>
               <Grid item xs={4}>
                 {!values.avatar ? (
                   <Photo tmpl="input" disabled={isSubmitting} onSelect={setAvatar} />
@@ -77,7 +78,7 @@ export default function ModalProfile({ user, locale, onClose }: ModalProfileProp
   )
 }
 
-const useStyles = makeStyles((theme) =>
+const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     profile: {
       color: theme.text.sand,

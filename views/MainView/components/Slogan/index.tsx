@@ -1,7 +1,7 @@
-import { createStyles, makeStyles } from '@material-ui/core/styles'
+import { useTheme, Typography } from '@mui/material'
+import { common } from '@mui/material/colors'
 import { Locale } from 'hooks/useLocale'
 import AppBox from 'components/UI/AppBox'
-import AppTypography from 'components/UI/AppTypography'
 import i18n from './i18n'
 
 interface SloganProps {
@@ -9,38 +9,30 @@ interface SloganProps {
 }
 
 export default function Slogan({ locale }: SloganProps): JSX.Element {
-  const classes = useStyles()
+  const theme = useTheme()
   const { subheader } = i18n[locale]
 
   return (
-    <AppBox alignItems="center" justifyContent="center" className={classes.root}>
+    <AppBox alignItems="center" justifyContent="center" sx={{ height: 100, backgroundColor: common.white }}>
       <AppBox flexDirection="column" alignItems="center">
-        <AppTypography variant="h4" align="center" component="h1" className={classes.name}>
+        <Typography
+          variant="h4"
+          align="center"
+          component="h1"
+          sx={{
+            background: `linear-gradient(90deg, ${theme.characteristic.motivation.main}, ${theme.characteristic.creativity.dark}, ${theme.characteristic.support.dark})`,
+            WebkitBackgroundClip: 'text',
+            WebkitTextFillColor: 'transparent',
+            color: theme.characteristic.support.dark,
+            fontWeight: 500,
+          }}
+        >
           {process.env.NEXT_PUBLIC_APP_NAME}
-        </AppTypography>
-        <AppTypography variant="caption" align="center" className={classes.subheader}>
+        </Typography>
+        <Typography variant="caption" align="center" sx={{ color: '#A1A1A6' }}>
           {subheader}
-        </AppTypography>
+        </Typography>
       </AppBox>
     </AppBox>
   )
 }
-
-const useStyles = makeStyles((theme) =>
-  createStyles({
-    root: {
-      height: 100,
-      backgroundColor: '#ffffff',
-    },
-    name: {
-      background: `linear-gradient(90deg, ${theme.palette.warning.main}, ${theme.palette.success.dark}, ${theme.palette.info.dark})`,
-      '-webkit-background-clip': 'text',
-      '-webkit-text-fill-color': 'transparent',
-      color: theme.palette.info.dark,
-      fontWeight: 500,
-    },
-    subheader: {
-      color: '#A1A1A6',
-    },
-  }),
-)

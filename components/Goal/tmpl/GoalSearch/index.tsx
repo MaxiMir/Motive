@@ -1,8 +1,7 @@
-import { Button, makeStyles, useTheme } from '@material-ui/core'
+import { Button, Typography, useTheme } from '@mui/material'
+import { makeStyles } from '@mui/styles'
 import { GoalCharacteristicName, GoalDto } from 'dto'
-import useCharacteristicColors from 'hooks/useCharacteristicColors'
 import AppBox from 'components/UI/AppBox'
-import AppTypography from 'components/UI/AppTypography'
 import Characteristic from 'components/Characteristic'
 import User from 'components/User'
 
@@ -21,14 +20,14 @@ export default function GoalSearch({ goal }: GoalSearchProps): JSX.Element {
 
   return (
     <Button variant="outlined" color="primary" href="#" className={classes.button}>
-      <AppBox flexDirection="column" alignItems="center" spacing={2}>
-        <AppTypography>{name}</AppTypography>
+      <AppBox flexDirection="column" alignItems="center" gap={2}>
+        <Typography>{name}</Typography>
         <AppBox justifyContent="flex-start" flex={1}>
-          <AppTypography variant="caption">Completed: +</AppTypography>
+          <Typography variant="caption">Completed: +</Typography>
         </AppBox>
-        <AppBox alignItems="center" spacing={1}>
+        <AppBox alignItems="center" gap={1}>
           <User tmpl="avatar" user={owner} />
-          <AppTypography variant="caption">{owner.name}</AppTypography>
+          <Typography variant="caption">{owner.name}</Typography>
         </AppBox>
         <AppBox justifyContent="space-between" alignItems="center">
           {CHARACTERISTICS.map((characteristicName) => (

@@ -1,4 +1,5 @@
-import { ListItemIcon, ListItemText } from '@material-ui/core'
+import { ListItemIcon, ListItemText } from '@mui/material'
+import { styled } from '@mui/system'
 import AppIcon from './AppIcon'
 
 interface AppMenuItemContentProps {
@@ -9,10 +10,16 @@ interface AppMenuItemContentProps {
 export default function AppMenuItemContent({ icon, text }: AppMenuItemContentProps): JSX.Element {
   return (
     <>
-      <ListItemIcon>
+      <ListItemIconCompact>
         <AppIcon name={icon} />
-      </ListItemIcon>
+      </ListItemIconCompact>
       <ListItemText>{text}</ListItemText>
     </>
   )
 }
+
+const ListItemIconCompact = styled(ListItemIcon)({
+  '& .material-icons': {
+    fontSize: 18,
+  },
+})

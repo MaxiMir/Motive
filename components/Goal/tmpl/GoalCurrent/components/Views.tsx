@@ -1,7 +1,7 @@
-import { makeStyles } from '@material-ui/core'
+import { Typography } from '@mui/material'
+import { makeStyles } from '@mui/styles'
 import { numberToShort } from 'helpers/prepare'
 import AppTooltip from 'components/UI/AppTooltip'
-import AppTypography from 'components/UI/AppTypography'
 import AppBox from 'components/UI/AppBox'
 import AppEmoji from 'components/UI/AppEmoji'
 
@@ -15,13 +15,13 @@ export default function Views({ views }: GoalViewsProps): JSX.Element {
 
   return (
     <AppBox justifyContent="flex-end">
-      <AppBox alignItems="center" spacing={1}>
+      <AppBox alignItems="center" gap={1}>
         <AppTooltip title="Day Views">
           <AppEmoji name="views" variant="h5" />
         </AppTooltip>
-        <AppTypography variant="subtitle1" component="p" className={classes.views}>
+        <Typography variant="subtitle1" component="p" className={classes.views}>
           {shortViews}
-        </AppTypography>
+        </Typography>
       </AppBox>
     </AppBox>
   )

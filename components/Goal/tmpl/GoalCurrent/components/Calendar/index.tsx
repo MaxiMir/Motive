@@ -1,7 +1,8 @@
 import { useState } from 'react'
-import { Button, Divider, makeStyles } from '@material-ui/core'
-import { KeyboardDatePicker } from '@material-ui/pickers'
-import { MaterialUiPickersDate } from '@material-ui/pickers/typings/date'
+import { Button, Divider } from '@mui/material'
+import { makeStyles } from '@mui/styles'
+// import { KeyboardDatePicker } from '@material-ui/pickers'
+// import { MaterialUiPickersDate } from '@material-ui/pickers/typings/date'
 import useDebounceCb from 'hooks/useDebounceCb'
 import AppBox from 'components/UI/AppBox'
 import AppIconButton from 'components/UI/AppIconButton'
@@ -31,7 +32,7 @@ export default function Calendar({ goalId, datesMap, current }: CalendarProps): 
     mutate(datesMap[getDateKey(newDate)])
   }
 
-  const checkShouldDisableDate = (checkedDate: MaterialUiPickersDate) => {
+  const checkShouldDisableDate = (checkedDate: any) => {
     if (!checkedDate) {
       return false
     }
@@ -44,7 +45,7 @@ export default function Calendar({ goalId, datesMap, current }: CalendarProps): 
   const toggleModal = () => setOpen(!open)
 
   return (
-    <AppBox justifyContent="space-between" alignItems="center" spacing={2}>
+    <AppBox justifyContent="space-between" alignItems="center" gap={2}>
       <Divider light className={classes.divider} />
       <AppIconButton
         size="small"
@@ -52,21 +53,21 @@ export default function Calendar({ goalId, datesMap, current }: CalendarProps): 
         disabled={isLoading || !prevValue}
         onClick={() => onClickArrow(prevValue)}
       />
-      <KeyboardDatePicker
-        variant="dialog"
-        format="MM/dd/yy"
-        open={open}
-        value={date}
-        shouldDisableDate={checkShouldDisableDate}
-        TextFieldComponent={() => (
-          <Button aria-label="select a goal date" onClick={toggleModal}>
-            {formattedValue}
-          </Button>
-        )}
-        onClick={toggleModal}
-        onChange={(newDate) => newDate && onChange(newDate)}
-        onClose={toggleModal}
-      />
+      {/*<KeyboardDatePicker*/}
+      {/*  variant="dialog"*/}
+      {/*  format="MM/dd/yy"*/}
+      {/*  open={open}*/}
+      {/*  value={date}*/}
+      {/*  shouldDisableDate={checkShouldDisableDate}*/}
+      {/*  TextFieldComponent={() => (*/}
+      {/*    <Button aria-label="select a goal date" onClick={toggleModal}>*/}
+      {/*      {formattedValue}*/}
+      {/*    </Button>*/}
+      {/*  )}*/}
+      {/*  onClick={toggleModal}*/}
+      {/*  onChange={(newDate) => newDate && onChange(newDate)}*/}
+      {/*  onClose={toggleModal}*/}
+      {/*/>*/}
       <AppIconButton
         id={`next-${goalId}`}
         size="small"

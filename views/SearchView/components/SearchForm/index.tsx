@@ -1,5 +1,5 @@
 import { Field, Form, FormikProvider } from 'formik'
-import { makeStyles } from '@material-ui/core'
+import { styled } from '@mui/system'
 import useLocale from 'hooks/useLocale'
 import AppInput from 'components/UI/AppInput'
 import AppIconButton from 'components/UI/AppIconButton'
@@ -12,7 +12,6 @@ interface SearchFormProps {
 }
 
 export default function SearchForm({ q }: SearchFormProps): JSX.Element {
-  const classes = useStyles()
   const form = useForm(q || '')
   const { locale } = useLocale()
   const { label } = i18n[locale]
@@ -30,8 +29,8 @@ export default function SearchForm({ q }: SearchFormProps): JSX.Element {
           component={AppInput}
           InputProps={{
             disabled: true,
-            startAdornment: <AppIconButton name="search" disabled className={classes.button} />,
-            endAdornment: values.q && <AppIconButton name="close" className={classes.button} onClick={onClickClose} />,
+            startAdornment: <InputButton name="search" disabled />,
+            endAdornment: values.q && <InputButton name="close" onClick={onClickClose} />,
           }}
         />
         <AutoSend />
@@ -40,10 +39,8 @@ export default function SearchForm({ q }: SearchFormProps): JSX.Element {
   )
 }
 
-const useStyles = makeStyles({
-  button: {
-    '&:hover': {
-      background: 'none',
-    },
+const InputButton = styled(AppIconButton)({
+  '&:hover': {
+    background: 'none',
   },
 })

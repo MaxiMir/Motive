@@ -1,20 +1,17 @@
-import { IconButton, makeStyles } from '@material-ui/core'
+import { IconButton } from '@mui/material'
 import AppIcon from 'components/UI/AppIcon'
 
 export default function CloseButton(): JSX.Element {
-  const classes = useStyles()
-
   return (
-    <IconButton disableFocusRipple className={classes.button}>
+    <IconButton
+      disableFocusRipple
+      sx={{
+        '&:hover': {
+          background: 'none',
+        },
+      }}
+    >
       <AppIcon name="close" />
     </IconButton>
   )
 }
-
-const useStyles = makeStyles({
-  button: {
-    '&:hover': {
-      background: 'none',
-    },
-  },
-})

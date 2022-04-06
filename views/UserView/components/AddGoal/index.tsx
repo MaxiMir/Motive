@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import dynamic from 'next/dynamic'
-import { Button, makeStyles } from '@material-ui/core'
+import { Button } from '@mui/material'
+import { makeStyles } from '@mui/styles'
 import { Locale } from 'hooks/useLocale'
 import AppEmoji from 'components/UI/AppEmoji'
 import AppBox from 'components/UI/AppBox'

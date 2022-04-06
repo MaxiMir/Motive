@@ -2,7 +2,7 @@ import dynamic from 'next/dynamic'
 import AppGradientButton from 'components/UI/AppGradientButton'
 import { AppEmojiName } from 'components/UI/AppEmoji'
 
-const CircularProgress = dynamic(() => import('@material-ui/core/CircularProgress'))
+const CircularProgress = dynamic(() => import('@mui/material/CircularProgress'))
 const AppEmoji = dynamic(() => import('components/UI/AppEmoji'))
 
 export interface ActionSubmitProps {

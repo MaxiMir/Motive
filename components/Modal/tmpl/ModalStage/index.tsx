@@ -1,8 +1,8 @@
-import { createStyles, makeStyles } from '@material-ui/core'
+import { Theme, Typography } from '@mui/material'
+import { createStyles, makeStyles } from '@mui/styles'
 import { GoalDto } from 'dto'
 import Action from 'components/Action'
 import AppModal from 'components/UI/AppModal'
-import AppTypography from 'components/UI/AppTypography'
 import AppBox from 'components/UI/AppBox'
 import AppFlyIcon from 'components/UI/AppFlyIcon'
 import { useSendStage } from './hook'
@@ -44,22 +44,22 @@ export default function ModalStage({ goal, onClose }: ModalStageProps): JSX.Elem
       ]}
       onClose={onClose}
     >
-      <AppBox flexDirection="column" spacing={3}>
-        <AppBox flexDirection="column" alignItems="center" spacing={1}>
+      <AppBox flexDirection="column" gap={3}>
+        <AppBox flexDirection="column" alignItems="center" gap={1}>
           <AppFlyIcon name="stage" />
-          <AppTypography variant="subtitle1" className={classes.congratulations}>
+          <Typography variant="subtitle1" className={classes.congratulations}>
             Excellent! One stage behind!
-          </AppTypography>
-          <AppTypography>
+          </Typography>
+          <Typography>
             {isFinal ? 'Final' : 'Next'} stage is <b className={classes.nextStage}>{stages[nextStage]}</b>
-          </AppTypography>
+          </Typography>
         </AppBox>
       </AppBox>
     </AppModal>
   )
 }
 
-const useStyles = makeStyles((theme) =>
+const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     prevStage: {
       color: theme.text.sand,
@@ -68,7 +68,7 @@ const useStyles = makeStyles((theme) =>
       color: theme.text.silent,
     },
     congratulations: {
-      color: theme.palette.info.main,
+      color: theme.characteristic.support.main,
     },
   }),
 )

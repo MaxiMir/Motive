@@ -1,5 +1,3 @@
-import { CharacteristicColor } from 'hooks/useCharacteristicColors'
-
 interface CircleProps {
   offset: number
   radius: number

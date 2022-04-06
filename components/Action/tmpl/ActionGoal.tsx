@@ -1,4 +1,5 @@
-import { Button, createStyles, makeStyles } from '@material-ui/core'
+import { Button, Theme } from '@mui/material'
+import { createStyles, makeStyles } from '@mui/styles'
 import { numberToShort } from 'helpers/prepare'
 import AppBox from 'components/UI/AppBox'
 import AppEmoji, { AppEmojiName } from 'components/UI/AppEmoji'
@@ -26,7 +27,7 @@ export default function ActionGoal({ name, title, count, disabled, onClick }: Ac
       className={classes.button}
       onClick={onClick}
     >
-      <AppBox spacing={1}>
+      <AppBox gap={1}>
         <AppEmoji name={name} />
         {countShort}
       </AppBox>
@@ -36,7 +37,7 @@ export default function ActionGoal({ name, title, count, disabled, onClick }: Ac
 
 type UseStylesProps = Pick<ActionGoalProps, 'name'>
 
-const useStyles = makeStyles((theme) =>
+const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     button: {
       height: 36.5,
@@ -45,11 +46,11 @@ const useStyles = makeStyles((theme) =>
       borderColor: (props: UseStylesProps) => {
         switch (props.name) {
           case 'motivation':
-            return theme.palette.warning.main
+            return theme.characteristic.motivation.main
           case 'creativity':
-            return theme.palette.success.main
+            return theme.characteristic.creativity.main
           case 'support':
-            return theme.palette.info.main
+            return theme.characteristic.support.main
           default:
             return ''
         }

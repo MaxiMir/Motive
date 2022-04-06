@@ -1,9 +1,10 @@
 import dynamic from 'next/dynamic'
-import { createStyles, makeStyles } from '@material-ui/core'
+import { useTheme } from '@mui/material'
 import { UserDetailDto } from 'dto'
 import { Locale } from 'hooks/useLocale'
 import AppModal from 'components/UI/AppModal'
 import AppContainer from 'components/UI/AppContainer'
+import AppBox from 'components/UI/AppBox'
 import useGoals from './hook'
 
 const Loader = dynamic(() => import('./components/Loader'))
@@ -19,20 +20,23 @@ export interface ModalCompletedProps {
 
 export default function ModalCompleted({ user, onClose }: ModalCompletedProps): JSX.Element {
   const { id, characteristic } = user
-  const classes = useStyles()
+  const theme = useTheme()
   const { isLoading, confirmations, checkOnLoadMore, fetchNextPage } = useGoals(id, characteristic.completed)
 
   return (
     <AppModal
       title={
         <>
-          <span className={classes.completed}>Completed</span> goals
+          <AppBox component="span" display={undefined} sx={{ color: theme.text.sand }}>
+            Completed
+          </AppBox>{' '}
+          goals
         </>
       }
       maxWidth="xs"
       onClose={onClose}
     >
-      <AppContainer flexColumn className={classes.container}>
+      <AppContainer flexColumn sx={{ minHeight: 440, padding: 0 }}>
         {isLoading ? (
           <Loader count={characteristic.completed} />
         ) : (
@@ -53,15 +57,3 @@ export default function ModalCompleted({ user, onClose }: ModalCompletedProps): 
     </AppModal>
   )
 }
-
-const useStyles = makeStyles((theme) =>
-  createStyles({
-    container: {
-      minHeight: 440,
-      padding: 0,
-    },
-    completed: {
-      color: theme.text.sand,
-    },
-  }),
-)

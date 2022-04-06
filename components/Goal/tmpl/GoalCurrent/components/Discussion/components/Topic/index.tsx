@@ -48,7 +48,7 @@ export default function Topic({ owner, topic, isOwner, inView, onView, onAdd }: 
         />
       )}
       {answer && (
-        <AppBox alignItems="center" spacing={1}>
+        <AppBox alignItems="center" gap={1}>
           <Reply />
           <Message message={answer} answerFor={message.id} />
         </AppBox>

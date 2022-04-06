@@ -1,10 +1,10 @@
 import { Field, FieldArray, Form, FormikProvider } from 'formik'
-import { createStyles, Grid, makeStyles } from '@material-ui/core'
+import { Grid, Typography, Theme } from '@mui/material'
+import { createStyles, makeStyles } from '@mui/styles'
 import { GoalDto } from 'dto'
 import useSelectPhoto from 'hooks/useSelectPhoto'
 import Action from 'components/Action'
 import AppModal from 'components/UI/AppModal'
-import AppTypography from 'components/UI/AppTypography'
 import AppBox from 'components/UI/AppBox'
 import AppInput from 'components/UI/AppInput'
 import AppTitle from 'components/UI/AppTitle'
@@ -47,16 +47,16 @@ export default function ModalFeedback({ goal, onClose }: ModalFeedbackProps): JS
     >
       <FormikProvider value={form}>
         <Form autoComplete="off">
-          <AppBox flexDirection="column" alignItems="center" spacing={3}>
-            <AppBox flexDirection="column" alignItems="center" spacing={1}>
+          <AppBox flexDirection="column" alignItems="center" gap={3}>
+            <AppBox flexDirection="column" alignItems="center" gap={1}>
               <AppShakeIcon name="congratulations" />
-              <AppTypography variant="subtitle1" className={classes.congratulations}>
+              <Typography variant="subtitle1" className={classes.congratulations}>
                 Impressive! One step closer to your goal!
-              </AppTypography>
+              </Typography>
             </AppBox>
             <Field name="text" label="How it went" color="secondary" multiline rows={3} component={AppInput} />
             {!!values.photos.length && (
-              <AppBox flexDirection="column" spacing={2} width="100%">
+              <AppBox flexDirection="column" gap={2} width="100%">
                 <AppTitle name="photo" variant="h6" component="h2" color="primary">
                   Photos
                 </AppTitle>
@@ -74,7 +74,7 @@ export default function ModalFeedback({ goal, onClose }: ModalFeedbackProps): JS
               </AppBox>
             )}
             {values.video && (
-              <AppBox flexDirection="column" spacing={2} width="100%">
+              <AppBox flexDirection="column" gap={2} width="100%">
                 <AppTitle name="video" variant="h6" component="h2" color="primary">
                   Video
                 </AppTitle>
@@ -86,7 +86,7 @@ export default function ModalFeedback({ goal, onClose }: ModalFeedbackProps): JS
                 />
               </AppBox>
             )}
-            <AppBox spacing={2} width="100%">
+            <AppBox gap={2} width="100%">
               <Photo tmpl="input" multiple disabled={isSubmitting} onSelect={onSelectPhoto} />
               <Video tmpl="input" disabled onSelect={onSelectVideo} />
             </AppBox>
@@ -97,10 +97,10 @@ export default function ModalFeedback({ goal, onClose }: ModalFeedbackProps): JS
   )
 }
 
-const useStyles = makeStyles((theme) =>
+const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     congratulations: {
-      color: theme.palette.info.main,
+      color: theme.characteristic.support.main,
     },
   }),
 )

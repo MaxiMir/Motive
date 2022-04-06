@@ -1,11 +1,5 @@
-import { Box, BoxProps } from '@material-ui/core'
+import { Box, BoxProps } from '@mui/material'
 
-export type Spacing = 0.5 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10
-
-interface AppBoxProps extends BoxProps {
-  spacing?: Spacing
-}
-
-export default function AppBox({ spacing, ...props }: AppBoxProps): JSX.Element {
-  return <Box display="flex" gridGap={spacing && spacing * 8} {...props} />
+export default function AppBox({ gap, ...props }: BoxProps): JSX.Element {
+  return <Box display="flex" gap={gap} {...props} />
 }

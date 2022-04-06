@@ -1,4 +1,4 @@
-import { makeStyles } from '@material-ui/core/styles'
+import { makeStyles } from '@mui/styles'
 import { UserCharacteristicDto } from 'dto'
 import { CharacteristicColors } from 'hooks/useCharacteristicColors'
 import AppBox from 'components/UI/AppBox'

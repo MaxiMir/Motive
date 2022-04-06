@@ -1,6 +1,6 @@
 import { AxiosError } from 'axios'
 import { useMutation, useQueryClient } from 'react-query'
-import { Button } from '@material-ui/core'
+import { Button } from '@mui/material'
 import { SubscriptionPageDto, UserDto } from 'dto'
 import { FOLLOWING } from 'route'
 import { Locale } from 'hooks/useLocale'
@@ -33,7 +33,11 @@ export default function useRemoveFollowing(locale: Locale): (user: UserDto, inde
         enqueueSnackbar({
           message,
           severity: 'success',
-          action: <Button onClick={() => onUndo(user, index)}>{undo}</Button>,
+          action: (
+            <Button variant="outlined" color="primary" onClick={() => onUndo(user, index)}>
+              {undo}
+            </Button>
+          ),
           icon: 'speaker',
         })
     },

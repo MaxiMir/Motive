@@ -1,5 +1,5 @@
 import { useRouter } from 'next/router'
-import { Container } from '@material-ui/core'
+import { Container } from '@mui/material'
 import { MainCharacteristicName, UserDto } from 'dto'
 import { Locale } from 'hooks/useLocale'
 import AppTitle from 'components/UI/AppTitle'
@@ -24,7 +24,7 @@ export default function RatingView({ locale, ...props }: RatingViewProps): JSX.E
       <Container fixed>
         <AppTitle name="completed">{header}</AppTitle>
       </Container>
-      <AppBox flexDirection="column" spacing={2} mt={4}>
+      <AppBox flexDirection="column" gap={2} mt={4}>
         <AppTabs
           initial={!query.tab ? undefined : +query.tab}
           ariaLabel={ariaLabel}

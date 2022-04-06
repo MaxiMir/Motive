@@ -1,10 +1,8 @@
-import { Container, Grid, makeStyles } from '@material-ui/core'
+import { Container, Typography, Grid } from '@mui/material'
 import { UserDto, MainCharacteristicName } from 'dto'
-import useCharacteristicColors from 'hooks/useCharacteristicColors'
 import { Locale } from 'hooks/useLocale'
 import AppBox from 'components/UI/AppBox'
 import AppList from 'components/UI/AppList'
-import AppTypography from 'components/UI/AppTypography'
 import User from 'components/User'
 import i18n from './i18n'
 
@@ -15,35 +13,34 @@ interface TabContentProps {
 }
 
 export default function TabContent({ name, users, locale }: TabContentProps): JSX.Element {
-  const classes = useStyles()
   const colors = useCharacteristicColors()
-  const { userCol, lvlCol } = i18n[locale]
+  const { userColumn, lvlColumn } = i18n[locale]
 
   return (
     <>
-      <div className={classes.root}>
+      <AppBox display={undefined} sx={{ background: '#21262C' }}>
         <Container fixed>
-          <Grid container alignItems="center" className={classes.container}>
+          <Grid container alignItems="center" sx={{ height: 55 }}>
             <Grid item xs>
               <AppBox justifyContent="center" width={22}>
-                <AppTypography variant="subtitle1" component="p">
+                <Typography variant="subtitle1" component="p">
                   <b>№</b>
-                </AppTypography>
+                </Typography>
               </AppBox>
             </Grid>
             <Grid item xs={8}>
-              <AppTypography variant="subtitle1" component="p">
-                <b>{userCol}</b>
-              </AppTypography>
+              <Typography variant="subtitle1" component="p">
+                <b>{userColumn}</b>
+              </Typography>
             </Grid>
             <Grid item xs>
-              <AppTypography variant="subtitle1" component="p" align="right">
-                <b>{lvlCol}</b>
-              </AppTypography>
+              <Typography variant="subtitle1" component="p" align="right">
+                <b>{lvlColumn}</b>
+              </Typography>
             </Grid>
           </Grid>
         </Container>
-      </div>
+      </AppBox>
       <AppList<UserDto>
         elements={users}
         keyGetter={(el) => el.id}
@@ -54,12 +51,3 @@ export default function TabContent({ name, users, locale }: TabContentProps): JS
     </>
   )
 }
-
-const useStyles = makeStyles({
-  root: {
-    background: '#21262C',
-  },
-  container: {
-    height: 55,
-  },
-})

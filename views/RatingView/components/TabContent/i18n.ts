@@ -1,10 +1,10 @@
 export default {
   en: {
-    userCol: 'User',
-    lvlCol: 'Level',
+    userColumn: 'User',
+    lvlColumn: 'Level',
   },
   ru: {
-    userCol: 'Пользователь',
-    lvlCol: 'Уровень',
+    userColumn: 'Пользователь',
+    lvlColumn: 'Уровень',
   },
 }

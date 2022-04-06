@@ -1,4 +1,4 @@
-import { makeStyles } from '@material-ui/core/styles'
+import { makeStyles } from '@mui/styles'
 import { UserBaseDto } from 'dto'
 import { getUserHref } from 'views/UserView/helper'
 import AppAvatar from 'components/UI/AppAvatar'

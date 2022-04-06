@@ -1,12 +1,12 @@
 import { createContext } from 'react'
-import { PaletteType } from 'theme'
+import { PaletteMode } from '@mui/material'
 
 interface ThemeContextType {
-  type: PaletteType
+  mode: PaletteMode
   toggle: () => void
 }
 
 export const ThemeContext = createContext<ThemeContextType>({
-  type: 'dark',
+  mode: 'dark',
   toggle: () => false,
 })

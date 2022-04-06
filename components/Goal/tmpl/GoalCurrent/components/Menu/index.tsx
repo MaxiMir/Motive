@@ -21,7 +21,7 @@ export default function Menu({ goal, title, href, clientOwnership }: MenuProps):
   const [anchorEl, setAnchorEl] = useState<HTMLElement | null>(null)
   const [withShare, setWithShare] = useState(false)
   const [withLeave, setWithLeave] = useState(false)
-  const { buttonTitle, buttonAria } = i18n[locale]
+  const { buttonTitle, ariaControls } = i18n[locale]
 
   const onOpen = (e: MouseEvent<HTMLButtonElement>) => setAnchorEl(e.currentTarget)
 
@@ -43,7 +43,7 @@ export default function Menu({ goal, title, href, clientOwnership }: MenuProps):
 
   return (
     <>
-      <AppMenuButton ariaControls={buttonAria} title={buttonTitle} onClick={onOpen} />
+      <AppMenuButton ariaControls={ariaControls} title={buttonTitle} onClick={onOpen} />
       {anchorEl && (
         <MenuList
           anchorEl={anchorEl}

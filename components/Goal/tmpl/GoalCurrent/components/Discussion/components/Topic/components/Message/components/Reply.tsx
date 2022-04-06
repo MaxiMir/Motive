@@ -1,4 +1,5 @@
-import { Button, createStyles, makeStyles } from '@material-ui/core'
+import { Button, Theme } from '@mui/material'
+import { createStyles, makeStyles } from '@mui/styles'
 
 interface ReplyProps {
   onClick: () => void
@@ -14,10 +15,10 @@ export default function Reply({ onClick }: ReplyProps): JSX.Element {
   )
 }
 
-const useStyles = makeStyles((theme) =>
+const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     root: {
-      color: theme.palette.info.main,
+      color: theme.characteristic.support.main,
     },
   }),
 )

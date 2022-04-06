@@ -1,4 +1,4 @@
-import { Chip, makeStyles } from '@material-ui/core'
+import { Chip } from '@mui/material'
 import useLocale from 'hooks/useLocale'
 import { getHashtagHref } from './helper'
 
@@ -8,7 +8,6 @@ export interface HashtagChipProps {
 }
 
 export default function HashtagChip({ name }: HashtagChipProps): JSX.Element {
-  const classes = useStyles()
   const { jump } = useLocale()
 
   const onClick = () => {
@@ -24,17 +23,13 @@ export default function HashtagChip({ name }: HashtagChipProps): JSX.Element {
       color="primary"
       size="small"
       onClick={onClick}
-      className={classes.chip}
+      sx={{
+        cursor: 'pointer',
+        transition: 'all .2s ease-in-out',
+        '&:hover': {
+          opacity: 0.5,
+        },
+      }}
     />
   )
 }
-
-const useStyles = makeStyles({
-  chip: {
-    cursor: 'pointer',
-    transition: 'all .2s ease-in-out',
-    '&:hover': {
-      opacity: 0.5,
-    },
-  },
-})

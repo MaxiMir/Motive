@@ -1,9 +1,8 @@
 import { Fragment, useMemo } from 'react'
 import dynamic from 'next/dynamic'
-import { createStyles, useTheme } from '@material-ui/core'
-import { makeStyles } from '@material-ui/core/styles'
+import { Theme, useTheme } from '@mui/material'
+import { createStyles, makeStyles } from '@mui/styles'
 import { GoalDto, GoalCharacteristicName, MemberDto } from 'dto'
-import useCharacteristicColors from 'hooks/useCharacteristicColors'
 import AppBox from 'components/UI/AppBox'
 import AppTitle from 'components/UI/AppTitle'
 import AppDot from 'components/UI/AppDot'
@@ -17,7 +16,7 @@ import Discussion from './components/Discussion'
 import Views from './components/Views'
 import Task from './components/Task'
 
-const AppTypography = dynamic(() => import('components/UI/AppTypography'))
+const Typography = dynamic(() => import('@mui/material/Typography'))
 const Inheritance = dynamic(() => import('./components/Inheritance'))
 const Stages = dynamic(() => import('./components/Stages'))
 const Feedback = dynamic(() => import('./components/Feedback'))
@@ -62,11 +61,11 @@ export default function GoalCurrent({
   useIncreaseViews(goal, clientId)
 
   return (
-    <AppBox flexDirection="column" spacing={2} id={`goal-${id}`} className={classes.root} mt={2}>
+    <AppBox flexDirection="column" gap={2} id={`goal-${id}`} className={classes.root} mt={2}>
       <div className={classes.wrap}>
-        <AppBox flexDirection="column" justifyContent="space-between" spacing={3} className={classes.content}>
+        <AppBox flexDirection="column" justifyContent="space-between" gap={3} className={classes.content}>
           {inherited && <Inheritance owner={owner} />}
-          <AppBox flexDirection="column" spacing={3}>
+          <AppBox flexDirection="column" gap={3}>
             <AppBox justifyContent="space-between" alignItems="center">
               <AppTitle name="goal" variant="h6" component="h3">
                 <b>{name}</b>
@@ -114,7 +113,7 @@ export default function GoalCurrent({
                 ariaControls="tasks-content"
                 defaultExpanded
                 details={
-                  <AppBox flexDirection="column" spacing={1}>
+                  <AppBox flexDirection="column" gap={1}>
                     {redefinedGoals.map((task) => (
                       <Task
                         goalId={id}
@@ -134,7 +133,7 @@ export default function GoalCurrent({
                 id={`feedbackContent-${dayId}`}
                 ariaControls="feedback-content"
                 defaultExpanded={!!feedback}
-                details={!feedback ? <AppTypography>Coming soon...</AppTypography> : <Feedback feedback={feedback} />}
+                details={!feedback ? <Typography>Coming soon...</Typography> : <Feedback feedback={feedback} />}
               />
               <AppAccordion
                 name="discussion"
@@ -150,7 +149,7 @@ export default function GoalCurrent({
               />
             </div>
           </AppBox>
-          <AppBox flexDirection="column" spacing={2}>
+          <AppBox flexDirection="column" gap={2}>
             {goalInfo.controls && (
               <Actions goal={goal} owner={owner} forTomorrow={goalInfo.forTomorrow} clientOwnership={clientOwnership} />
             )}
@@ -163,7 +162,7 @@ export default function GoalCurrent({
   )
 }
 
-const useStyles = makeStyles((theme) =>
+const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     root: {
       flex: '0 0 100%',
@@ -175,7 +174,7 @@ const useStyles = makeStyles((theme) =>
     wrap: {
       height: '100%',
       padding: 2,
-      background: `linear-gradient(to top left, ${theme.palette.warning.main}, ${theme.palette.success.dark}, ${theme.palette.info.dark})`,
+      background: `linear-gradient(to top left, ${theme.characteristic.motivation.main}, ${theme.characteristic.creativity.dark}, ${theme.characteristic.support.dark})`,
       borderRadius: 15,
     },
     content: {

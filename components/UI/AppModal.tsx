@@ -1,9 +1,9 @@
 import { FC, Fragment } from 'react'
 import dynamic from 'next/dynamic'
-import { makeStyles } from '@material-ui/core/styles'
-import { Dialog, DialogContent, DialogProps, DialogTitle } from '@material-ui/core'
+import { Dialog, DialogContent, DialogProps, DialogTitle } from '@mui/material'
+import { styled } from '@mui/system'
 
-const DialogActions = dynamic(() => import('@material-ui/core/DialogActions'))
+const DialogActions = dynamic(() => import('@mui/material/DialogActions'))
 const AppBox = dynamic(() => import('./AppBox'))
 
 interface AppModalProps {
@@ -14,12 +14,23 @@ interface AppModalProps {
 }
 
 const AppModal: FC<AppModalProps> = ({ title, actions, maxWidth, children, onClose }) => {
-  const classes = useStyles()
-
   return (
-    <Dialog classes={{ root: classes.root, paper: classes.paper }} open fullWidth maxWidth={maxWidth} onClose={onClose}>
-      <DialogTitle className={classes.title}>{title}</DialogTitle>
-      <DialogContent className={classes.content}>{children}</DialogContent>
+    <DialogWithBackdrop
+      open
+      fullWidth
+      maxWidth={maxWidth}
+      sx={{
+        '&.MuiBackdrop': {
+          background: 'rgba(34, 34, 34, 0.75)',
+          backdropFilter: 'blur(10px)',
+        },
+      }}
+      onClose={onClose}
+    >
+      <DialogTitle sx={{ padding: '24px 16px 0', textAlign: 'center', textTransform: 'uppercase' }}>
+        {title}
+      </DialogTitle>
+      <DialogContent sx={{ paddingBottom: 3, overflow: 'scroll' }}>{children}</DialogContent>
       {actions && (
         <DialogActions>
           <AppBox flex={1} justifyContent="space-between" pb={2} px={1}>
@@ -29,33 +40,14 @@ const AppModal: FC<AppModalProps> = ({ title, actions, maxWidth, children, onClo
           </AppBox>
         </DialogActions>
       )}
-    </Dialog>
+    </DialogWithBackdrop>
   )
 }
 
-const useStyles = makeStyles({
-  root: {
-    '@global': {
-      '.MuiBackdrop-root': {
-        background: 'rgba(34, 34, 34, 0.75)',
-        backdropFilter: 'blur(10px)',
-      },
-    },
-  },
-  paper: {
-    border: '1px solid #F5F5F7',
-    borderRadius: 10,
-    margin: 16,
-    width: 'calc(100% - 16px)',
-  },
-  title: {
-    padding: '24px 16px 0',
-    textAlign: 'center',
-    textTransform: 'uppercase',
-  },
-  content: {
-    paddingBottom: 24,
-    overflow: 'scroll',
+const DialogWithBackdrop = styled(Dialog)({
+  '& .MuiBackdrop-root': {
+    background: 'rgba(34, 34, 34, 0.75)',
+    backdropFilter: 'blur(10px)',
   },
 })
 

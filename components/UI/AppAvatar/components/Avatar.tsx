@@ -1,5 +1,5 @@
-import { makeStyles } from '@material-ui/core/styles'
 import AppImage from 'components/UI/AppImage'
+import AppBox from 'components/UI/AppBox'
 
 interface AvatarProps {
   src: string
@@ -7,13 +7,9 @@ interface AvatarProps {
 }
 
 export default function Avatar({ src, size }: AvatarProps): JSX.Element {
-  const classes = useStyles()
-
-  return <AppImage src={src} alt="" width={size} height={size} objectFit="cover" className={classes.avatar} />
+  return (
+    <AppBox justifyContent="center" alignItems="center" sx={{ borderRadius: '50%', overflow: 'hidden' }}>
+      <AppImage src={src} alt="" width={size} height={size} objectFit="cover" />
+    </AppBox>
+  )
 }
-
-const useStyles = makeStyles({
-  avatar: {
-    borderRadius: '50%',
-  },
-})

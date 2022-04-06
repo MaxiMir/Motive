@@ -1,8 +1,8 @@
-import { createStyles, makeStyles } from '@material-ui/core'
+import { Theme, Typography } from '@mui/material'
+import { createStyles, makeStyles } from '@mui/styles'
 import { MessageDto } from 'dto'
 import { numberToShort } from 'helpers/prepare'
 import AppBox from 'components/UI/AppBox'
-import AppTypography from 'components/UI/AppTypography'
 import LikeButton from './components/LikeButton'
 
 interface LikeProps {
@@ -17,12 +17,12 @@ export default function Like({ message, answerFor }: LikeProps): JSX.Element {
   return (
     <AppBox alignItems="center">
       <LikeButton message={message} answerFor={answerFor} />
-      <AppTypography className={classes.count}>{shortNumber}</AppTypography>
+      <Typography className={classes.count}>{shortNumber}</Typography>
     </AppBox>
   )
 }
 
-const useStyles = makeStyles((theme) =>
+const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     count: {
       fontSize: '0.875rem',

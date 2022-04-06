@@ -1,18 +1,16 @@
-import { makeStyles } from '@material-ui/core/styles'
-import { createStyles } from '@material-ui/core'
+import { useTheme } from '@mui/material'
+import AppBox from 'components/UI/AppBox'
 
 export default function Level(): JSX.Element {
-  const classes = useStyles()
+  const theme = useTheme()
 
-  return <sup className={classes.root}>lvl</sup>
+  return (
+    <AppBox
+      component="sup"
+      display={undefined}
+      sx={{ marginLeft: '2px', fontSize: '0.625rem', color: theme.palette.text.disabled }}
+    >
+      lvl
+    </AppBox>
+  )
 }
-
-const useStyles = makeStyles((theme) =>
-  createStyles({
-    root: {
-      marginLeft: 2,
-      fontSize: '0.625rem',
-      color: theme.palette.text.disabled,
-    },
-  }),
-)

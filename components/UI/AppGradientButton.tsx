@@ -1,36 +1,37 @@
 import { FC } from 'react'
-import { Button, ButtonProps, createStyles } from '@material-ui/core'
-import { makeStyles } from '@material-ui/core/styles'
+import { Button, ButtonProps, useTheme } from '@mui/material'
+import AppBox from './AppBox'
 
 type AppGradientButtonProps = Omit<ButtonProps, 'variant' | 'color' | 'className'>
 
 const AppGradientButton: FC<AppGradientButtonProps> = (props) => {
-  const classes = useStyles()
+  const theme = useTheme()
 
   return (
-    <div className={classes.buttonWrap}>
-      <Button variant="text" color="primary" size="small" className={classes.button} {...props} />
-    </div>
+    <AppBox
+      display={undefined}
+      sx={{
+        padding: 1,
+        background: `linear-gradient(to top left, ${theme.characteristic.creativity.dark}, ${theme.characteristic.support.dark})`,
+        borderRadius: 5,
+      }}
+    >
+      <Button
+        variant="text"
+        color="primary"
+        size="small"
+        sx={{
+          minWidth: 120,
+          textTransform: 'none',
+          background: theme.palette.background.default,
+          '&:disabled': {
+            color: theme.palette.secondary.dark,
+          },
+        }}
+        {...props}
+      />
+    </AppBox>
   )
 }
-
-const useStyles = makeStyles((theme) =>
-  createStyles({
-    buttonWrap: {
-      padding: 1,
-      background: `linear-gradient(to top left, ${theme.palette.success.dark}, ${theme.palette.info.dark})`,
-      borderRadius: 5,
-    },
-    button: {
-      minWidth: 120,
-      textTransform: 'none',
-      background: theme.palette.background.default,
-
-      '&:disabled': {
-        color: theme.palette.secondary.dark,
-      },
-    },
-  }),
-)
 
 export default AppGradientButton

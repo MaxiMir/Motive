@@ -7,7 +7,7 @@ interface HashtagsProps {
 
 export default function Hashtags({ hashtags }: HashtagsProps): JSX.Element {
   return (
-    <AppBox flexWrap="wrap" spacing={1}>
+    <AppBox flexWrap="wrap" gap={1}>
       {hashtags?.map((hashtag) => (
         <Hashtag tmpl="chip" name={hashtag} key={hashtag} />
       ))}

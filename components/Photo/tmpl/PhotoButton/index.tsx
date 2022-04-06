@@ -1,5 +1,6 @@
 import dynamic from 'next/dynamic'
-import { Button, IconButton, makeStyles } from '@material-ui/core'
+import { Button, IconButton } from '@mui/material'
+import { makeStyles } from '@mui/styles'
 import AppBox from 'components/UI/AppBox'
 import AppIcon from 'components/UI/AppIcon'
 

@@ -13,7 +13,7 @@ export default function UserList({ users }: UserListProps): JSX.Element {
   return (
     <AppList
       elements={users}
-      spacing={4}
+      gap={4}
       keyGetter={keyGetter}
       render={(user, index) => <User tmpl="characteristic" user={user} menu={<Menu user={user} index={index} />} />}
     />

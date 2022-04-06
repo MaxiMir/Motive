@@ -24,7 +24,7 @@ export default function Task({ goalId, task, rest, goalInfo, clientMember }: Tas
   const disabled = completed || forTomorrow || !form
 
   return (
-    <AppBox flexDirection="column" spacing={1}>
+    <AppBox flexDirection="column" gap={1}>
       <form>
         <TooltipTomorrow forTomorrow={forTomorrow}>
           <AppCheckbox

@@ -1,13 +1,12 @@
 import { Fragment } from 'react'
 import dynamic from 'next/dynamic'
+import { Typography } from '@mui/material'
 import { UserDto, UserCharacteristicName } from 'dto'
-import useCharacteristicColors from 'hooks/useCharacteristicColors'
 import { getUserHref } from 'views/UserView/helper'
 import Characteristic from 'components/Characteristic'
 import AppBox from 'components/UI/AppBox'
 import AppLink from 'components/UI/AppLink'
 import AppDot from 'components/UI/AppDot'
-import AppTypography from 'components/UI/AppTypography'
 import AppAvatar from 'components/UI/AppAvatar'
 
 const AppInView = dynamic(() => import('components/UI/AppInView'))
@@ -30,16 +29,16 @@ export default function UserCharacteristic({ user, inView, menu, onView }: UserC
 
   return (
     <>
-      <AppBox spacing={2} height={60}>
+      <AppBox gap={2} height={60}>
         <AppLink href={href} title={name}>
           <AppAvatar src={avatar} size={55} />
         </AppLink>
         <AppBox flexDirection="column" justifyContent="space-between" flex={1}>
           <AppBox justifyContent="space-between" alignItems="center">
-            <AppLink href={href} title={name}>
-              <AppTypography variant="subtitle1" component="p">
+            <AppLink href={href} title={name} sx={{ textDecoration: 'none' }}>
+              <Typography variant="subtitle1" component="p">
                 {name}
-              </AppTypography>
+              </Typography>
             </AppLink>
             {menu}
           </AppBox>

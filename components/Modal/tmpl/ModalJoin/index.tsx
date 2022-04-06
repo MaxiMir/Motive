@@ -1,13 +1,13 @@
 import { ChangeEvent } from 'react'
 import { Form, FormikProvider } from 'formik'
-import { createStyles, FormControlLabel, makeStyles, Radio, RadioGroup } from '@material-ui/core'
+import { FormControlLabel, Radio, RadioGroup, Typography, Theme } from '@mui/material'
+import { createStyles, makeStyles } from '@mui/styles'
 import { GoalDto } from 'dto'
 import Action from 'components/Action'
 import AppModal from 'components/UI/AppModal'
 import AppBox from 'components/UI/AppBox'
 import AppEmoji from 'components/UI/AppEmoji'
 import AppAccordion from 'components/UI/AppAccordion'
-import AppTypography from 'components/UI/AppTypography'
 import AppDecorEmoji from 'components/UI/AppDecorEmoji'
 import useForm from './hook'
 
@@ -59,7 +59,7 @@ export default function ModalJoin({ goal, onClose }: ModalJoinProps): JSX.Elemen
               control={<Radio />}
               disabled={isSubmitting || disableBeginning}
               label={
-                <AppBox spacing={1}>
+                <AppBox gap={1}>
                   The beginning <AppEmoji name="serenity" onlyEmoji />
                 </AppBox>
               }
@@ -69,7 +69,7 @@ export default function ModalJoin({ goal, onClose }: ModalJoinProps): JSX.Elemen
               control={<Radio />}
               disabled={isSubmitting}
               label={
-                <AppBox spacing={1}>
+                <AppBox gap={1}>
                   This day <AppEmoji name="blast" onlyEmoji />
                 </AppBox>
               }
@@ -83,18 +83,18 @@ export default function ModalJoin({ goal, onClose }: ModalJoinProps): JSX.Elemen
               ariaControls="about-membership"
               details={
                 <div className={classes.hint}>
-                  <AppTypography>
+                  <Typography>
                     Click <AppDecorEmoji name="motivation" /> for days that are motivating.
-                  </AppTypography>
-                  <AppTypography>
+                  </Typography>
+                  <Typography>
                     Click <AppDecorEmoji name="creativity" /> for days with creative tasks.
-                  </AppTypography>
-                  <AppTypography>
+                  </Typography>
+                  <Typography>
                     Support <span className={classes.owner}>{goal.owner.name}</span> when needed.
-                  </AppTypography>
-                  <AppTypography>
+                  </Typography>
+                  <Typography>
                     Ask questions in the discussion <AppDecorEmoji name="discussion" />.
-                  </AppTypography>
+                  </Typography>
                 </div>
               }
             />
@@ -105,13 +105,13 @@ export default function ModalJoin({ goal, onClose }: ModalJoinProps): JSX.Elemen
   )
 }
 
-const useStyles = makeStyles((theme) =>
+const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     start: {
       color: theme.text.sand,
     },
     owner: {
-      color: theme.palette.info.main,
+      color: theme.characteristic.support.main,
     },
     hint: {
       color: theme.text.silent,

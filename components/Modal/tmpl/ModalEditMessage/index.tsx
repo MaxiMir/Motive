@@ -1,6 +1,7 @@
 import { FocusEvent } from 'react'
 import { Field, Form, FormikProvider } from 'formik'
-import { createStyles, makeStyles } from '@material-ui/core'
+import { Theme } from '@mui/material'
+import { createStyles, makeStyles } from '@mui/styles'
 import { MessageDto } from 'dto'
 import Action from 'components/Action'
 import AppModal from 'components/UI/AppModal'
@@ -46,7 +47,7 @@ export default function ModalEditMessage({ message, onClose }: ModalEditMessageP
     >
       <FormikProvider value={form}>
         <Form autoComplete="off">
-          <AppBox flexDirection="column" alignItems="center" spacing={3}>
+          <AppBox flexDirection="column" alignItems="center" gap={3}>
             <Field
               name="text"
               label="Your message"
@@ -64,7 +65,7 @@ export default function ModalEditMessage({ message, onClose }: ModalEditMessageP
   )
 }
 
-const useStyles = makeStyles((theme) =>
+const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     message: {
       color: theme.text.sand,

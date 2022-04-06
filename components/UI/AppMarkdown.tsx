@@ -1,8 +1,8 @@
 import ReactMarkdown from 'react-markdown'
 import sanitize from 'rehype-sanitize'
-import { makeStyles } from '@material-ui/core/styles'
+import { Typography } from '@mui/material'
 import { toMarkdown } from 'helpers/prepare'
-import AppTypography from 'components/UI/AppTypography'
+import AppBox from './AppBox'
 
 interface AppMarkdownProps {
   text: string
@@ -10,39 +10,38 @@ interface AppMarkdownProps {
 
 export default function AppMarkdown({ text }: AppMarkdownProps): JSX.Element {
   const markdown = toMarkdown(text)
-  const classes = useStyles()
 
   return (
-    <ReactMarkdown
-      linkTarget="_blank"
-      rehypePlugins={[sanitize]}
-      components={{
-        p: ({ node, ...props }) => (
-          <AppTypography variant="subtitle1" component="p">
-            {props.children}
-          </AppTypography>
-        ),
+    <AppBox
+      display={undefined}
+      sx={{
+        '& p': {
+          margin: '16px 0',
+          '&:first-child': {
+            marginTop: 0,
+          },
+          '&:last-child': {
+            marginBottom: 0,
+          },
+        },
+        '& a': {
+          color: '#9f8e5d',
+        },
       }}
-      className={classes.markdown}
     >
-      {markdown}
-    </ReactMarkdown>
+      <ReactMarkdown
+        linkTarget="_blank"
+        rehypePlugins={[sanitize]}
+        components={{
+          p: ({ node, ...props }) => (
+            <Typography variant="subtitle1" component="p">
+              {props.children}
+            </Typography>
+          ),
+        }}
+      >
+        {markdown}
+      </ReactMarkdown>
+    </AppBox>
   )
 }
-
-const useStyles = makeStyles({
-  markdown: {
-    '& p': {
-      margin: '16px 0',
-      '&:first-child': {
-        marginTop: 0,
-      },
-      '&:last-child': {
-        marginBottom: 0,
-      },
-    },
-    '& a': {
-      color: '#9f8e5d',
-    },
-  },
-})

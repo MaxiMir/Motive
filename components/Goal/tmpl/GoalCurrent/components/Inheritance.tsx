@@ -1,6 +1,6 @@
+import { Theme, Typography } from '@mui/material'
+import { createStyles, makeStyles } from '@mui/styles'
 import { UserBaseDto } from 'dto'
-import { createStyles, makeStyles } from '@material-ui/core/styles'
-import AppTypography from 'components/UI/AppTypography'
 import User from 'components/User'
 import AppBox from 'components/UI/AppBox'
 
@@ -13,17 +13,17 @@ export default function Inheritance({ owner }: InheritedProps): JSX.Element {
 
   return (
     <AppBox justifyContent="center" className={classes.root}>
-      <AppBox alignItems="center" spacing={0.5}>
-        <AppTypography variant="caption">
+      <AppBox alignItems="center" gap={0.5}>
+        <Typography variant="caption">
           <b>with</b>
-        </AppTypography>
+        </Typography>
         <User tmpl="avatar" user={owner} />
       </AppBox>
     </AppBox>
   )
 }
 
-const useStyles = makeStyles((theme) =>
+const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     root: {
       position: 'absolute',
@@ -33,7 +33,7 @@ const useStyles = makeStyles((theme) =>
       padding: 4,
       transform: 'translateX(-50%)',
       borderRadius: 20,
-      background: `linear-gradient(90deg, ${theme.palette.info.dark} 0%, ${theme.palette.success.dark} 100%)`,
+      background: `linear-gradient(90deg, ${theme.characteristic.support.dark} 0%, ${theme.characteristic.creativity.dark} 100%)`,
     },
   }),
 )

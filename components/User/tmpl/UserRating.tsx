@@ -1,10 +1,8 @@
-import { makeStyles } from '@material-ui/core/styles'
-import { Container, Grid } from '@material-ui/core'
+import { Container, Typography, Grid } from '@mui/material'
 import { UserDto, UserCharacteristicName } from 'dto'
 import { getUserHref } from 'views/UserView/helper'
 import AppBox from 'components/UI/AppBox'
 import AppLink from 'components/UI/AppLink'
-import AppTypography from 'components/UI/AppTypography'
 import AppAvatar from 'components/UI/AppAvatar'
 import AppEmoji from 'components/UI/AppEmoji'
 
@@ -18,10 +16,10 @@ export interface UserRatingProps {
 
 export default function UserRating({ user, characteristicName, color, index }: UserRatingProps): JSX.Element {
   const { nickname, avatar, name, characteristic } = user
-  const classes = useStyles({ color, isEven: index % 2 === 0 })
   const number = getNumber()
-  const ratingValue = Math.floor(characteristic[characteristicName])
   const href = getUserHref(nickname)
+  const ratingValue = Math.floor(characteristic[characteristicName])
+  const isEven = index % 2 === 0
 
   function getNumber() {
     const incrementedNumber = index + 1
@@ -39,49 +37,31 @@ export default function UserRating({ user, characteristicName, color, index }: U
   }
 
   return (
-    <div className={classes.root}>
+    <AppBox display={undefined} sx={{ background: isEven ? 'initial' : '#21262C' }}>
       <Container fixed>
-        <Grid container alignItems="center" className={classes.container}>
+        <Grid container alignItems="center" sx={{ height: 55 }}>
           <Grid item xs>
             <AppBox justifyContent="center" width={22}>
-              <AppTypography variant={index <= 2 ? 'h5' : undefined}>{number}</AppTypography>
+              <Typography variant={index <= 2 ? 'h5' : undefined}>{number}</Typography>
             </AppBox>
           </Grid>
           <Grid item xs={8}>
-            <AppBox alignItems="center" spacing={2}>
-              <AppLink href={href} className={classes.avatarLink}>
+            <AppBox alignItems="center" gap={2}>
+              <AppLink href={href} sx={{ marginRight: 1 }}>
                 <AppAvatar src={avatar} size={35} />
               </AppLink>
-              <AppLink href={href} variant="body1">
+              <AppLink href={href} variant="body1" sx={{ textDecoration: 'none' }}>
                 {name}
               </AppLink>
             </AppBox>
           </Grid>
           <Grid item xs>
-            <AppTypography variant="subtitle1" component="p" align="right" className={classes.ratingValue}>
+            <Typography variant="subtitle1" component="p" align="right" sx={{ color }}>
               <b>{ratingValue}</b>
-            </AppTypography>
+            </Typography>
           </Grid>
         </Grid>
       </Container>
-    </div>
+    </AppBox>
   )
 }
-
-type UseStylesProps = { color: string; isEven: boolean }
-
-const useStyles = makeStyles({
-  root: {
-    background: (props: UseStylesProps) => (props.isEven ? 'initial' : '#21262C'),
-  },
-  container: {
-    height: 55,
-  },
-  avatarLink: {
-    marginRight: 8,
-    height: 35,
-  },
-  ratingValue: {
-    color: (props: UseStylesProps) => props.color,
-  },
-})

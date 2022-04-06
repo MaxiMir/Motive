@@ -1,5 +1,6 @@
 import { useRouter } from 'next/router'
-import { Button, createStyles, makeStyles } from '@material-ui/core'
+import { Button, useTheme } from '@mui/material'
+import { common } from '@mui/material/colors'
 import { FOLLOWING, RATING, SEARCH, TOP_OF_THE_DAY } from 'route'
 import AppBox from 'components/UI/AppBox'
 import AppContainer from 'components/UI/AppContainer'
@@ -24,16 +25,23 @@ interface FooterProps {
 }
 
 export default function Footer({ nickname }: FooterProps): JSX.Element {
-  const classes = useStyles()
+  const theme = useTheme()
   const { asPath } = useRouter()
 
   return (
-    <footer className={classes.root}>
+    <AppBox
+      component="footer"
+      display={undefined}
+      sx={{
+        zIndex: 16,
+        backgroundColor: theme.block.menu,
+      }}
+    >
       <AppContainer>
         <AppBox justifyContent="space-between" alignItems="center" height={65}>
           {ROUTES.map(({ href, title, Icon }) => (
             <AppLink href={href} title={title} key={title}>
-              <Button>
+              <Button sx={{ color: common.white }}>
                 <FooterIcon Icon={Icon} selected={asPath.includes(href)} key={href} />
               </Button>
             </AppLink>
@@ -41,14 +49,6 @@ export default function Footer({ nickname }: FooterProps): JSX.Element {
           <FooterProfile nickname={nickname} asPath={asPath} />
         </AppBox>
       </AppContainer>
-    </footer>
+    </AppBox>
   )
 }
-
-const useStyles = makeStyles((theme) =>
-  createStyles({
-    root: {
-      backgroundColor: theme.block.menu,
-    },
-  }),
-)

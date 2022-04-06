@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import dynamic from 'next/dynamic'
-import { Menu, MenuItem } from '@material-ui/core'
+import { Menu, MenuItem } from '@mui/material'
 import i18n from 'constants/i18n'
 import { OwnershipDto } from 'dto'
 import { Locale } from 'hooks/useLocale'

@@ -1,5 +1,6 @@
 import clsx from 'clsx'
-import { makeStyles, IconButton } from '@material-ui/core'
+import { IconButton } from '@mui/material'
+import { makeStyles } from '@mui/styles'
 import { Locale } from 'hooks/useLocale'
 import AppEmoji from 'components/UI/AppEmoji'
 import useSetFollowing from './hook'

@@ -1,13 +1,13 @@
 import { useEffect, useState } from 'react'
 import dynamic from 'next/dynamic'
 import { useRouter } from 'next/router'
+import { Typography, Button, Theme } from '@mui/material'
+import { createStyles, makeStyles } from '@mui/styles'
 import i18nAll from 'constants/i18n'
-import { Button, createStyles, makeStyles } from '@material-ui/core'
 import { UserDetailDto, UserCharacteristicName } from 'dto'
 import { Locale } from 'hooks/useLocale'
 import CharacteristicBase from 'components/Characteristic'
 import AppBox from 'components/UI/AppBox'
-import AppTypography from 'components/UI/AppTypography'
 import AppOptionalTooltip from 'components/UI/AppOptionalTooltip'
 import i18n from './i18n'
 
@@ -46,10 +46,10 @@ export default function Characteristic(props: CharacteristicProps): JSX.Element 
     <>
       <AppOptionalTooltip title={tooltip}>
         <Button className={classes.button} onClick={onClick}>
-          <AppBox flexDirection="column" alignItems="flex-start" spacing={0.5}>
-            <AppTypography variant="caption" className={classes.title}>
+          <AppBox flexDirection="column" alignItems="flex-start" gap={0.5}>
+            <Typography variant="caption" className={classes.title}>
               {title}
-            </AppTypography>
+            </Typography>
             <CharacteristicBase tmpl="user" {...props} />
           </AppBox>
         </Button>
@@ -61,7 +61,7 @@ export default function Characteristic(props: CharacteristicProps): JSX.Element 
 
 type UseStylesProps = Pick<CharacteristicProps, 'color' | 'locale'>
 
-const useStyles = makeStyles((theme) =>
+const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     button: {
       textTransform: 'none',

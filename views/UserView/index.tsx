@@ -1,13 +1,11 @@
 import dynamic from 'next/dynamic'
-import { useMediaQuery, useTheme } from '@material-ui/core'
+import { Typography, useMediaQuery, useTheme } from '@mui/material'
 import { UserDetailDto, UserCharacteristicName, MainCharacteristicName } from 'dto'
 import { getUserHref } from 'views/UserView/helper'
-import useCharacteristicColors from 'hooks/useCharacteristicColors'
 import useClient from 'hooks/useClient'
 import { Locale } from 'hooks/useLocale'
 import AppBox from 'components/UI/AppBox'
 import AppContainer from 'components/UI/AppContainer'
-import AppTypography from 'components/UI/AppTypography'
 import Avatar from './components/Avatar'
 import Characteristic from './components/Characteristic'
 import EmptyGoals from './components/EmptyGoals'
@@ -39,18 +37,18 @@ export default function UserView({ user, locale }: UserViewProps): JSX.Element {
 
   return (
     <AppContainer flexColumn>
-      <AppBox alignItems="center" spacing={1} mb={2}>
-        <AppTypography variant="h5" component="h1">
+      <AppBox alignItems="center" gap={1} mb={2}>
+        <Typography variant="h5" component="h1">
           {name}
-        </AppTypography>
+        </Typography>
         {clientPage ? (
           <Edit user={user} locale={locale} />
         ) : (
           <Following id={user.id} following={following} locale={locale} />
         )}
       </AppBox>
-      <AppBox flexDirection="column" spacing={3} flex={1}>
-        <AppBox spacing={isMobile ? 1 : 4}>
+      <AppBox flexDirection="column" gap={3} flex={1}>
+        <AppBox gap={isMobile ? 1 : 4}>
           <Avatar avatar={avatar} characteristic={characteristic} characteristicColors={characteristicColors} />
           <AppBox flexDirection="column" justifyContent="space-between" flex={1}>
             <AppBox justifyContent="space-between">
@@ -83,7 +81,7 @@ export default function UserView({ user, locale }: UserViewProps): JSX.Element {
         {!goals.length ? (
           <EmptyGoals clientPage={clientPage} locale={locale} />
         ) : (
-          <AppBox flexWrap="wrap" spacing={3}>
+          <AppBox flexWrap="wrap" gap={3}>
             {goals.map((goal) => (
               <Goal
                 tmpl="current"

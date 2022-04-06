@@ -1,4 +1,4 @@
-import { Button, makeStyles } from '@material-ui/core'
+import { Button } from '@mui/material'
 import AppEmoji, { AppEmojiName } from './AppEmoji'
 
 interface AppDecorEmojiProps {
@@ -6,19 +6,9 @@ interface AppDecorEmojiProps {
 }
 
 export default function AppDecorEmoji({ name }: AppDecorEmojiProps): JSX.Element {
-  const classes = useStyles()
-
   return (
-    <Button className={classes.button}>
+    <Button sx={{ width: 24, height: 24, minWidth: 'initial' }}>
       <AppEmoji name={name} onlyEmoji />
     </Button>
   )
 }
-
-const useStyles = makeStyles({
-  button: {
-    width: 24,
-    height: 24,
-    minWidth: 'initial',
-  },
-})

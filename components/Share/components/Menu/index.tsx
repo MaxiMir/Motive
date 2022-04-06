@@ -1,6 +1,5 @@
 import { KeyboardEvent } from 'react'
-import { createStyles, Drawer, List, ListItem, ListItemIcon, ListItemText } from '@material-ui/core'
-import { makeStyles } from '@material-ui/core/styles'
+import { Drawer, List, ListItem, ListItemIcon, ListItemText, useTheme } from '@mui/material'
 import { copyHandler } from 'helpers/dom'
 import { Locale } from 'hooks/useLocale'
 import AppBox from 'components/UI/AppBox'
@@ -19,7 +18,7 @@ interface MenuProps {
 }
 
 const Menu = ({ title, url, locale, onCopyEnd, onCopyError, onClose }: MenuProps): JSX.Element => {
-  const classes = useStyles()
+  const theme = useTheme()
   const { share, send, link } = i18n[locale]
   const shareItems = getShareItems()
 
@@ -53,17 +52,17 @@ const Menu = ({ title, url, locale, onCopyEnd, onCopyError, onClose }: MenuProps
       },
       {
         text: `${send} Email`,
-        iconText: <AppIcon name="email" color="secondary" />,
+        iconText: <AppIcon name="email" sx={{ color: theme.palette.secondary.main }} />,
         onClick: () => clickHandler('email', title, url),
       },
       {
         text: `${send} SMS`,
-        iconText: <AppIcon name="sms" color="secondary" />,
+        iconText: <AppIcon name="sms" sx={{ color: theme.palette.secondary.main }} />,
         onClick: () => clickHandler('sms', title, url),
       },
       {
         text: link,
-        iconText: <AppIcon name="content_copy" color="secondary" />,
+        iconText: <AppIcon name="content_copy" sx={{ color: theme.palette.secondary.main }} />,
         onClick: () => copyHandler(url, onCopyEnd, onCopyError),
       },
     ]
@@ -74,10 +73,10 @@ const Menu = ({ title, url, locale, onCopyEnd, onCopyError, onClose }: MenuProps
       <div role="presentation" onKeyDown={onKeyDown} onClick={onClose}>
         <List>
           {shareItems.map(({ text, Icon, iconText, onClick }) => (
-            <ListItem button onClick={onClick} className={classes.listItem} key={text}>
-              <AppBox alignItems="center" className={classes.listBox}>
+            <ListItem button sx={{ height: 65 }} key={text} onClick={onClick}>
+              <AppBox alignItems="center" sx={{ width: 240, margin: '0 auto' }}>
                 <ListItemIcon>{Icon ? <Icon color="secondary" /> : iconText}</ListItemIcon>
-                <ListItemText primary={text} className={classes.text} />
+                <ListItemText primary={text} sx={{ color: theme.palette.text.disabled }} />
               </AppBox>
             </ListItem>
           ))}
@@ -86,20 +85,5 @@ const Menu = ({ title, url, locale, onCopyEnd, onCopyError, onClose }: MenuProps
     </Drawer>
   )
 }
-
-const useStyles = makeStyles((theme) =>
-  createStyles({
-    listItem: {
-      height: 65,
-    },
-    listBox: {
-      width: 240,
-      margin: '0 auto',
-    },
-    text: {
-      color: theme.palette.text.disabled,
-    },
-  }),
-)
 
 export default Menu

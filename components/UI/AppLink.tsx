@@ -1,7 +1,7 @@
 import { FC } from 'react'
 import Link from 'next/link'
-import MaterialLink from '@material-ui/core/Link'
-import { TypographyProps } from '@material-ui/core'
+import MaterialLink from '@mui/material/Link'
+import { TypographyProps } from '@mui/material'
 import useLocale from 'hooks/useLocale'
 
 interface AppLinkProps {
@@ -9,6 +9,7 @@ interface AppLinkProps {
   title?: string
   className?: string
   variant?: TypographyProps['variant']
+  sx?: TypographyProps['sx']
 }
 
 const AppLink: FC<AppLinkProps> = ({ href, title, className, ...restProps }) => {

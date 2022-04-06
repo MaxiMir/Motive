@@ -1,6 +1,5 @@
 import { ChangeEvent, useState } from 'react'
-import { Container, createStyles, Tab, Tabs } from '@material-ui/core'
-import { makeStyles } from '@material-ui/core/styles'
+import { Container, Tab, Tabs, useTheme } from '@mui/material'
 
 interface AppTabsProps {
   tabs: string[] | JSX.Element[]
@@ -10,17 +9,17 @@ interface AppTabsProps {
 }
 
 export default function AppTabs({ tabs, content, ariaLabel, initial = 0 }: AppTabsProps): JSX.Element {
-  const classes = useStyles()
+  const theme = useTheme()
   const [value, setValue] = useState(initial)
 
   const getA11yTabProps = (index: number) => ({
     id: `simple-tab-${index}`,
-    'aria-controls': `simple-tabpanel-${index}`,
+    'aria-controls': `tabpanel-${index}`,
   })
 
   const getA11yContentProps = (index: number) => ({
-    id: `simple-tabpanel-${index}`,
-    'aria-labelledby': `simple-tab-${index}`,
+    id: `tabpanel-${index}`,
+    'aria-labelledby': `tab-${index}`,
   })
 
   const onChange = (_event: ChangeEvent<unknown>, newValue: number) => setValue(newValue)
@@ -31,8 +30,12 @@ export default function AppTabs({ tabs, content, ariaLabel, initial = 0 }: AppTa
         <Tabs
           value={value}
           aria-label={ariaLabel}
-          classes={{ indicator: classes.indicator }}
           variant="fullWidth"
+          sx={{
+            '.MuiTabs-indicator': {
+              background: `linear-gradient(to right, ${theme.characteristic.motivation.main}, ${theme.characteristic.creativity.dark}, ${theme.characteristic.support.dark})`,
+            },
+          }}
           onChange={onChange}
         >
           {tabs.map((tab, index) => {
@@ -54,11 +57,3 @@ export default function AppTabs({ tabs, content, ariaLabel, initial = 0 }: AppTa
     </>
   )
 }
-
-const useStyles = makeStyles((theme) =>
-  createStyles({
-    indicator: {
-      background: `linear-gradient(to right, ${theme.palette.warning.main}, ${theme.palette.success.dark}, ${theme.palette.info.dark})`,
-    },
-  }),
-)

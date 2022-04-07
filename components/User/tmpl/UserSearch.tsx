@@ -1,5 +1,4 @@
 import { Typography, Button } from '@mui/material'
-import { common } from '@mui/material/colors'
 import { UserCharacteristicName, UserDto } from 'dto'
 import AppAvatar from 'components/UI/AppAvatar'
 import AppBox from 'components/UI/AppBox'
@@ -30,7 +29,7 @@ export default function UserSearch({ user }: UserSearchProps): JSX.Element {
     >
       <AppBox flexDirection="column" alignItems="center" gap={2}>
         <AppAvatar src={avatar} size={120} />
-        <Typography sx={{ color: common.white }}>{name}</Typography>
+        <Typography sx={{ color: 'common.white' }}>{name}</Typography>
         <AppBox justifyContent="space-between" alignItems="center">
           {CHARACTERISTICS.map((characteristicName) => (
             <Characteristic

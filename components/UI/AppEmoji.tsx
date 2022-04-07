@@ -71,7 +71,7 @@ export default function AppEmoji({ name, onlyEmoji = false, ...restProps }: AppE
       {onlyEmoji ? (
         content
       ) : (
-        <Typography role="img" aria-label={name} {...restProps}>
+        <Typography paragraph role="img" aria-label={name} m={0} {...restProps}>
           {content}
         </Typography>
       )}

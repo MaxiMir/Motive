@@ -23,7 +23,7 @@ export default function TaskDate({ date }: TaskDateProps): JSX.Element {
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     root: {
-      color: theme.text.silent,
+      color: theme.palette.zen.silent,
     },
   }),
 )

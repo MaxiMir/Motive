@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import dynamic from 'next/dynamic'
 import { useRouter } from 'next/router'
-import { Typography, Button, useTheme } from '@mui/material'
+import { Typography, Button } from '@mui/material'
 import i18nAll from 'constants/i18n'
 import { UserDetailDto, UserCharacteristicName } from 'dto'
 import { Locale } from 'hooks/useLocale'
@@ -22,12 +22,10 @@ interface CharacteristicProps {
 
 export default function Characteristic(props: CharacteristicProps): JSX.Element {
   const { user, name, locale } = props
-  const theme = useTheme()
   const router = useRouter()
   const [modal, setModal] = useState<'followers' | 'completed'>()
   const title = i18nAll[locale][name]
   const tooltip = i18n[locale][name]
-  const color = theme.characteristic[name].main
 
   const onClick = () => {
     switch (name) {
@@ -58,9 +56,9 @@ export default function Characteristic(props: CharacteristicProps): JSX.Element 
             <Typography
               variant="caption"
               sx={{
-                color,
+                color: `${name}.main`,
                 fontSize: {
-                  xs: locale === 'ru' ? '0.6rem' : '0.75rem',
+                  xs: locale === 'ru' ? '0.55rem' : '0.75rem',
                   md: '0.8rem',
                 },
               }}

@@ -28,7 +28,7 @@ export default function UserCharacteristic({ user, inView, menu, onView }: UserC
 
   return (
     <>
-      <AppBox gap={2} height={60}>
+      <AppBox alignItems="center" gap={2} height={60}>
         <AppLink href={href} title={name}>
           <AppAvatar src={avatar} size={55} />
         </AppLink>

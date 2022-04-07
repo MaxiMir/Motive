@@ -3,9 +3,9 @@ import { useTheme } from '@mui/material'
 import { UserDetailDto } from 'dto'
 import { Locale } from 'hooks/useLocale'
 import AppModal from 'components/UI/AppModal'
-import AppContainer from 'components/UI/AppContainer'
 import AppBox from 'components/UI/AppBox'
 import useGoals from './hook'
+import i18n from './i18n'
 
 const Loader = dynamic(() => import('./components/Loader'))
 const EmptyList = dynamic(() => import('./components/EmptyList'))
@@ -18,31 +18,32 @@ export interface ModalCompletedProps {
   onClose: () => void
 }
 
-export default function ModalCompleted({ user, onClose }: ModalCompletedProps): JSX.Element {
+export default function ModalCompleted({ user, locale, onClose }: ModalCompletedProps): JSX.Element {
   const { id, characteristic } = user
   const theme = useTheme()
   const { isLoading, confirmations, checkOnLoadMore, fetchNextPage } = useGoals(id, characteristic.completed)
+  const { title, subtitle } = i18n[locale]
 
   return (
     <AppModal
       title={
         <>
-          <AppBox component="span" display={undefined} sx={{ color: theme.text.sand }}>
-            Completed
+          <AppBox component="span" display={undefined} sx={{ color: theme.palette.zen.sand }}>
+            {title}
           </AppBox>{' '}
-          goals
+          {subtitle}
         </>
       }
       maxWidth="xs"
       onClose={onClose}
     >
-      <AppContainer flexColumn sx={{ minHeight: 440, padding: 0 }}>
+      <AppBox flexDirection="column" gap={2} sx={{ minHeight: 400, overflow: 'scroll' }}>
         {isLoading ? (
           <Loader count={characteristic.completed} />
         ) : (
           <>
             {!confirmations?.length ? (
-              <EmptyList />
+              <EmptyList locale={locale} />
             ) : (
               <ConfirmationsList
                 confirmations={confirmations}
@@ -53,7 +54,7 @@ export default function ModalCompleted({ user, onClose }: ModalCompletedProps): 
             )}
           </>
         )}
-      </AppContainer>
+      </AppBox>
     </AppModal>
   )
 }

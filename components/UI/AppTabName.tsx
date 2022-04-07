@@ -1,4 +1,4 @@
-import { Typography } from '@mui/material'
+import { Typography, useTheme } from '@mui/material'
 import i18n from 'constants/i18n'
 import { MainCharacteristicName } from 'dto'
 import { Locale } from 'hooks/useLocale'
@@ -12,6 +12,7 @@ export interface AppTabNameProps {
 }
 
 export default function AppTabName({ name, emoji, locale }: AppTabNameProps): JSX.Element {
+  const theme = useTheme()
   const tabName = i18n[locale][name]
 
   return (
@@ -20,11 +21,8 @@ export default function AppTabName({ name, emoji, locale }: AppTabNameProps): JS
       <Typography
         sx={{
           textTransform: 'none',
-          fontSize: {
-            xs: locale === 'ru' ? '0.75rem!important' : '0.875rem',
-            md: '1rem',
-            lg: '1rem',
-            xl: '1rem',
+          [theme.breakpoints.only('xs')]: {
+            fontSize: locale === 'ru' ? '0.75rem!important' : '0.875rem',
           },
         }}
       >

@@ -15,21 +15,10 @@ interface LayoutProps {
   type?: string
   image?: string
   statusCode?: number
-  mainPage?: boolean
 }
 
-const Layout: FC<LayoutProps> = ({
-  title,
-  description,
-  url,
-  type,
-  image,
-  mainPage = false,
-  statusCode = 200,
-  children,
-}) => {
+const Layout: FC<LayoutProps> = ({ title, description, url, type, image, statusCode = 200, children }) => {
   const client = useClient()
-  const padding = mainPage ? undefined : '24px 0'
 
   return (
     <>
@@ -47,7 +36,7 @@ const Layout: FC<LayoutProps> = ({
         <link rel="manifest" href="/manifest.json" />
         <link rel="apple-touch-icon" href="/apple-icon.png" />
         {/* PWA primary color */}
-        <meta name="theme-color" content="#121212" />
+        <meta name="theme-color" content="rgba(0, 0, 0, 0.3)" />
         <meta charSet="UTF-8" />
         <link rel="icon" type="image/x-icon" href="/favicon.ico" />
       </Head>
@@ -59,7 +48,15 @@ const Layout: FC<LayoutProps> = ({
           component="main"
           id="main"
           flexDirection="column"
-          sx={{ height: 'calc(100vh - 125px)', overflow: 'scroll', padding }}
+          sx={{
+            height: 'calc(100vh - 125px)',
+            overflow: 'scroll',
+            background: (theme) => (theme.palette.mode === 'dark' ? '#19191A' : undefined),
+            '@supports not (-moz-appearance:none)': {
+              background: (theme) =>
+                theme.palette.mode === 'dark' ? 'linear-gradient(#19191A, #0A0A0A 60%)' : undefined,
+            },
+          }}
         >
           {children}
         </AppBox>

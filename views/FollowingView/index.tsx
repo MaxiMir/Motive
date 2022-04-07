@@ -17,7 +17,7 @@ export default function FollowingView({ users, locale }: FollowingViewProps): JS
   const { header } = i18n[locale]
 
   return (
-    <AppContainer flexColumn>
+    <AppContainer>
       <AppTitle name="following" mb={4}>
         {header}
       </AppTitle>

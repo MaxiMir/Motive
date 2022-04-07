@@ -1,7 +1,6 @@
 import dynamic from 'next/dynamic'
 import { Button, Grid, Typography, useTheme } from '@mui/material'
 import { styled } from '@mui/system'
-import { common } from '@mui/material/colors'
 import useLocale from 'hooks/useLocale'
 import AppContainer from 'components/UI/AppContainer'
 import AppTitle from 'components/UI/AppTitle'
@@ -34,8 +33,8 @@ export default function ContactView(): JSX.Element {
   const onClickLinkedIn = () => openBlank('https://www.linkedin.com/in/maxim-minchenko-085b26149/')
 
   return (
-    <AppContainer flexColumn>
-      <AppTitle name="contact" mb={4}>
+    <AppContainer>
+      <AppTitle name="contact" mb={3}>
         {header}
       </AppTitle>
       <AppBox flexDirection="column" gap={2}>
@@ -46,7 +45,7 @@ export default function ContactView(): JSX.Element {
           <Grid item xs={6} sm={4} md={3} lg={2}>
             <ButtonLink
               sx={{
-                background: `linear-gradient(to top left, ${theme.characteristic.motivation.light}, ${theme.characteristic.motivation.dark})`,
+                background: `linear-gradient(to top left, ${theme.palette.motivation.light}, ${theme.palette.motivation.dark})`,
               }}
               onClick={onClickEmail}
             >
@@ -63,7 +62,7 @@ export default function ContactView(): JSX.Element {
           <Grid item xs={6} sm={4} md={3} lg={2}>
             <ButtonLink
               sx={{
-                background: `linear-gradient(to top left, ${theme.characteristic.creativity.light}, ${theme.characteristic.creativity.dark})`,
+                background: `linear-gradient(to top left, ${theme.palette.creativity.light}, ${theme.palette.creativity.dark})`,
               }}
               onClick={onClickTelegram}
             >
@@ -80,7 +79,7 @@ export default function ContactView(): JSX.Element {
           <Grid item xs={6} sm={4} md={3} lg={2}>
             <ButtonLink
               sx={{
-                background: `linear-gradient(to top left, ${theme.characteristic.support.light}, ${theme.characteristic.support.dark})`,
+                background: `linear-gradient(to top left, ${theme.palette.support.light}, ${theme.palette.support.dark})`,
               }}
               onClick={onClickLinkedIn}
             >
@@ -95,8 +94,8 @@ export default function ContactView(): JSX.Element {
             </ButtonLink>
           </Grid>
         </Grid>
-        <AppBox flexDirection="column" gap={1} mt={4}>
-          <AppTitle name="coin" variant="h1" component="h3">
+        <AppBox flexDirection="column" gap={1} mt={3}>
+          <AppTitle name="coin" variant="h1" component="h3" mb={3}>
             {support}
           </AppTitle>
           {CRYPTOS.map(({ name, wallet }) => (
@@ -108,10 +107,11 @@ export default function ContactView(): JSX.Element {
   )
 }
 
-const ButtonLink = styled(Button)({
+const ButtonLink = styled(Button)(({ theme }) => ({
   width: '100%',
   aspectRatio: '1',
   borderRadius: 12,
+  color: theme.palette.common.white,
   '&:hover': {
     opacity: 0.8,
   },
@@ -121,7 +121,7 @@ const ButtonLink = styled(Button)({
   '& svg': {
     fontSize: '4em',
   },
-})
+}))
 
 const ButtonContent = styled(AppBox)({
   width: '100%',
@@ -130,5 +130,5 @@ const ButtonContent = styled(AppBox)({
   bottom: 0,
   left: 0,
   right: 0,
-  color: common.white,
+  color: 'common.white',
 })

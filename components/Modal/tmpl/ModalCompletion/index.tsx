@@ -138,7 +138,7 @@ const useStyles = makeStyles((theme: Theme) =>
       width: '100%',
     },
     hint: {
-      color: theme.text.silent,
+      color: theme.palette.zen.silent,
     },
     count: {
       color: theme.palette.text.primary,

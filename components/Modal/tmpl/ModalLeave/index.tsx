@@ -57,7 +57,7 @@ export default function ModalLeave({ goal, clientOwnership, onClose }: ModalLeav
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     goal: {
-      color: theme.text.sand,
+      color: theme.palette.zen.sand,
     },
   }),
 )

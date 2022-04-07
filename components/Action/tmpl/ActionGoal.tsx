@@ -1,5 +1,4 @@
-import { Button, Theme } from '@mui/material'
-import { createStyles, makeStyles } from '@mui/styles'
+import { Button } from '@mui/material'
 import { numberToShort } from 'helpers/prepare'
 import AppBox from 'components/UI/AppBox'
 import AppEmoji, { AppEmojiName } from 'components/UI/AppEmoji'
@@ -14,7 +13,6 @@ export interface ActionGoalProps {
 }
 
 export default function ActionGoal({ name, title, count, disabled, onClick }: ActionGoalProps): JSX.Element {
-  const classes = useStyles({ name })
   const countShort = count && numberToShort(count)
 
   return (
@@ -24,7 +22,12 @@ export default function ActionGoal({ name, title, count, disabled, onClick }: Ac
       size="small"
       aria-label={title}
       disabled={disabled}
-      className={classes.button}
+      sx={{
+        height: 36.5,
+        minWidth: 'initial',
+        transition: 'all .2s ease-in-out',
+        borderColor: `${name}.main`,
+      }}
       onClick={onClick}
     >
       <AppBox gap={1}>
@@ -34,27 +37,3 @@ export default function ActionGoal({ name, title, count, disabled, onClick }: Ac
     </Button>
   )
 }
-
-type UseStylesProps = Pick<ActionGoalProps, 'name'>
-
-const useStyles = makeStyles((theme: Theme) =>
-  createStyles({
-    button: {
-      height: 36.5,
-      minWidth: 'initial',
-      transition: 'all .2s ease-in-out',
-      borderColor: (props: UseStylesProps) => {
-        switch (props.name) {
-          case 'motivation':
-            return theme.characteristic.motivation.main
-          case 'creativity':
-            return theme.characteristic.creativity.main
-          case 'support':
-            return theme.characteristic.support.main
-          default:
-            return ''
-        }
-      },
-    },
-  }),
-)

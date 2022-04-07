@@ -1,5 +1,4 @@
 import { Button, Typography } from '@mui/material'
-import { common } from '@mui/material/colors'
 import { numberToShort } from 'helpers/prepare'
 import useLocale from 'hooks/useLocale'
 import AppBox from 'components/UI/AppBox'
@@ -46,7 +45,7 @@ export default function HashtagSearch({ name, gradient, views }: HashtagSearchPr
           overflow: 'hidden',
         }}
       >
-        <Typography variant="subtitle1" component="p" sx={{ color: common.white, textTransform: 'none' }}>
+        <Typography variant="subtitle1" component="p" sx={{ color: 'common.white', textTransform: 'none' }}>
           <b>#{name}</b>
         </Typography>
         <Typography

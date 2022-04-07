@@ -14,31 +14,41 @@ import CssBaseline from '@mui/material/CssBaseline'
 import { ContextSnackbarProps, SnackbarContext } from 'context/snackbarContext'
 import { ThemeContext } from 'context/themeContext'
 import { ModalSignInContext } from 'context/modalSignInContext'
-
-const generateClassName = createGenerateClassName({
-  productionPrefix: 'b',
-})
+import useLocale from 'hooks/useLocale'
 
 const AppSnackbar = dynamic(() => import('components/UI/AppSnackbar'))
 const Modal = dynamic(() => import('components/Modal'))
 
+const generateClassName = createGenerateClassName({ productionPrefix: 'be' })
+
+const i18n = {
+  en: {
+    error: 'Sorry, something went wrong...',
+  },
+  ru: {
+    error: 'Что-то пошло не так...',
+  },
+}
+
 export default function MyApp({ Component, pageProps: { session, ...pageProps } }: AppProps): JSX.Element {
+  const { locale } = useLocale()
   const prefersDarkMode = useMediaQuery('(prefers-color-scheme: dark)')
   console.log(`prefersDarkMode: ${prefersDarkMode}`) // TODO REMOVE
   const [mode, setMode] = useState<PaletteMode>('dark') // TODO change prefersDarkMode
   const [snackbarProps, setSnackbarProps] = useState<ContextSnackbarProps | null>(null)
   const [options, setOptions] = useState<SignInOptions>()
+  const { error } = i18n[locale]
   const [queryClient] = useState(
     () =>
       new QueryClient({
         queryCache: new QueryCache({
           onError() {
-            setSnackbarProps({ message: 'Something went wrong...', severity: 'error' })
+            setSnackbarProps({ message: error, severity: 'error' })
           },
         }),
         mutationCache: new MutationCache({
           onError() {
-            setSnackbarProps({ message: 'Something went wrong...', severity: 'error' })
+            setSnackbarProps({ message: error, severity: 'error' })
           },
         }),
       }),

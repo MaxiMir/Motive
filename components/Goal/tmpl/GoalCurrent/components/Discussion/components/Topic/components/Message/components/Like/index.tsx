@@ -26,7 +26,7 @@ const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     count: {
       fontSize: '0.875rem',
-      color: theme.text.silent,
+      color: theme.palette.zen.silent,
     },
   }),
 )

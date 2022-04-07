@@ -11,7 +11,7 @@ export default function Loader({ count }: LoaderProps): JSX.Element {
   const displayedCount = count > VISIBLE_QUANTITY ? VISIBLE_QUANTITY : count
 
   return (
-    <AppBox flexDirection="column" gap={2}>
+    <AppBox flexDirection="column" gap={2} flex={1}>
       {[...new Array(displayedCount)].map((_, key) => (
         <AppBox gap={1} height={60} key={key}>
           <Skeleton animation="wave" variant="circular" width={55} height={55} />

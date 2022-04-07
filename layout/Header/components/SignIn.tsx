@@ -1,5 +1,4 @@
 import { Button } from '@mui/material'
-import { common } from '@mui/material/colors'
 import useOpenSignIn from 'hooks/useOpenSignIn'
 import AppIcon from 'components/UI/AppIcon'
 
@@ -11,7 +10,7 @@ export default function SignIn(): JSX.Element {
   }
 
   return (
-    <Button sx={{ color: common.white }} onClick={onClick}>
+    <Button sx={{ color: 'common.white' }} onClick={onClick}>
       <AppIcon name="login" />
     </Button>
   )

@@ -68,7 +68,7 @@ export default function ModalEditMessage({ message, onClose }: ModalEditMessageP
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     message: {
-      color: theme.text.sand,
+      color: theme.palette.zen.sand,
     },
   }),
 )

@@ -1,9 +1,7 @@
 import { useRouter } from 'next/router'
-import { Button, useTheme } from '@mui/material'
-import { common } from '@mui/material/colors'
+import { Container, Button } from '@mui/material'
 import { FOLLOWING, RATING, SEARCH, TOP_OF_THE_DAY } from 'route'
 import AppBox from 'components/UI/AppBox'
-import AppContainer from 'components/UI/AppContainer'
 import AppLink from 'components/UI/AppLink'
 import { TopOfTheDayIcon, SearchIcon, RatingIcon, FollowingIcon } from 'components/UI/icons'
 import FooterIcon from './components/FooterIcon'
@@ -25,7 +23,6 @@ interface FooterProps {
 }
 
 export default function Footer({ nickname }: FooterProps): JSX.Element {
-  const theme = useTheme()
   const { asPath } = useRouter()
 
   return (
@@ -33,22 +30,21 @@ export default function Footer({ nickname }: FooterProps): JSX.Element {
       component="footer"
       display={undefined}
       sx={{
-        zIndex: 16,
-        backgroundColor: theme.block.menu,
+        backgroundColor: 'navigation',
       }}
     >
-      <AppContainer>
+      <Container fixed>
         <AppBox justifyContent="space-between" alignItems="center" height={65}>
           {ROUTES.map(({ href, title, Icon }) => (
             <AppLink href={href} title={title} key={title}>
-              <Button sx={{ color: common.white }}>
+              <Button>
                 <FooterIcon Icon={Icon} selected={asPath.includes(href)} key={href} />
               </Button>
             </AppLink>
           ))}
           <FooterProfile nickname={nickname} asPath={asPath} />
         </AppBox>
-      </AppContainer>
+      </Container>
     </AppBox>
   )
 }

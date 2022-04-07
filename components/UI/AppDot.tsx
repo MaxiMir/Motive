@@ -12,6 +12,10 @@ export default function AppDot({ size = 3 }: AppDotProps): JSX.Element {
       sx={{
         borderRadius: '50%',
         backgroundColor: '#424242',
+        display: {
+          xs: 'none',
+          md: 'block',
+        },
       }}
     />
   )

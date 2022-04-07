@@ -59,15 +59,15 @@ const useStyles = makeStyles((theme: Theme) =>
       padding: 0,
       '& .MuiStepConnector-completed': {
         '& .MuiStepConnector-line': {
-          borderColor: theme.text.wave,
+          borderColor: theme.palette.zen.wave,
         },
       },
     },
     default: {
-      color: theme.text.silent,
+      color: theme.palette.zen.silent,
     },
     colored: {
-      color: theme.text.wave,
+      color: theme.palette.zen.wave,
     },
   }),
 )

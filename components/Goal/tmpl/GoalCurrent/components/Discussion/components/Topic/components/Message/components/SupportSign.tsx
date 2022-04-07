@@ -19,7 +19,7 @@ export default function SupportSign({ name }: SupportSignProps): JSX.Element {
         sx={{
           width: 21,
           height: 21,
-          background: theme.characteristic.support.main,
+          background: theme.palette.support.main,
           borderRadius: '50%',
         }}
       >

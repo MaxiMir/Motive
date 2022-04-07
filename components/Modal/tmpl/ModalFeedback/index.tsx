@@ -100,7 +100,7 @@ export default function ModalFeedback({ goal, onClose }: ModalFeedbackProps): JS
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     congratulations: {
-      color: theme.characteristic.support.main,
+      color: theme.palette.support.main,
     },
   }),
 )

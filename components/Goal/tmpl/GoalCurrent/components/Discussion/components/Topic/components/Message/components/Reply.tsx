@@ -18,7 +18,7 @@ export default function Reply({ onClick }: ReplyProps): JSX.Element {
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     root: {
-      color: theme.characteristic.support.main,
+      color: theme.palette.support.main,
     },
   }),
 )

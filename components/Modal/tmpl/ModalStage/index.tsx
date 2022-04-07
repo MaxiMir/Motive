@@ -62,13 +62,13 @@ export default function ModalStage({ goal, onClose }: ModalStageProps): JSX.Elem
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     prevStage: {
-      color: theme.text.sand,
+      color: theme.palette.zen.sand,
     },
     nextStage: {
-      color: theme.text.silent,
+      color: theme.palette.zen.silent,
     },
     congratulations: {
-      color: theme.characteristic.support.main,
+      color: theme.palette.support.main,
     },
   }),
 )

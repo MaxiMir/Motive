@@ -33,7 +33,7 @@ export default function AppTabs({ tabs, content, ariaLabel, initial = 0 }: AppTa
           variant="fullWidth"
           sx={{
             '.MuiTabs-indicator': {
-              background: `linear-gradient(to right, ${theme.characteristic.motivation.main}, ${theme.characteristic.creativity.dark}, ${theme.characteristic.support.dark})`,
+              background: `linear-gradient(to right, ${theme.palette.motivation.main}, ${theme.palette.creativity.dark}, ${theme.palette.support.dark})`,
             },
           }}
           onChange={onChange}

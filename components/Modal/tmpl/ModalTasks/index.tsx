@@ -84,7 +84,7 @@ const useStyles = makeStyles((theme: Theme) =>
       textTransform: 'none',
     },
     tomorrow: {
-      color: theme.text.sand,
+      color: theme.palette.zen.sand,
     },
   }),
 )

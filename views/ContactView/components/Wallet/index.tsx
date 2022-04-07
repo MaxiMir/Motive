@@ -1,5 +1,5 @@
 import Image from 'next/image'
-import { Typography, useTheme } from '@mui/material'
+import { Typography } from '@mui/material'
 import i18n from 'constants/i18n'
 import { copyHandler } from 'helpers/dom'
 import useSnackbar from 'hooks/useSnackbar'
@@ -13,7 +13,6 @@ interface WalletProps {
 }
 
 export default function Wallet({ name, wallet }: WalletProps): JSX.Element {
-  const theme = useTheme()
   const { locale } = useLocale()
   const [enqueueSnackbar] = useSnackbar()
   const { copy, error } = i18n[locale]
@@ -31,10 +30,13 @@ export default function Wallet({ name, wallet }: WalletProps): JSX.Element {
         alignItems="flex-end"
         height={24}
         sx={{
-          display: { xs: 'none', md: 'block' },
+          display: {
+            xs: 'none',
+            md: 'block',
+          },
         }}
       >
-        <Typography variant="caption" sx={{ color: theme.text.silent }}>
+        <Typography variant="caption" sx={{ color: 'zen.silent' }}>
           {wallet}
         </Typography>
       </AppBox>

@@ -11,7 +11,7 @@ const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     edited: {
       fontSize: '0.6875rem',
-      color: theme.text.silent,
+      color: theme.palette.zen.silent,
     },
   }),
 )

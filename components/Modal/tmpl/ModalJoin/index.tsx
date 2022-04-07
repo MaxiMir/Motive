@@ -108,13 +108,13 @@ export default function ModalJoin({ goal, onClose }: ModalJoinProps): JSX.Elemen
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     start: {
-      color: theme.text.sand,
+      color: theme.palette.zen.sand,
     },
     owner: {
-      color: theme.characteristic.support.main,
+      color: theme.palette.support.main,
     },
     hint: {
-      color: theme.text.silent,
+      color: theme.palette.zen.silent,
     },
   }),
 )

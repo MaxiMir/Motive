@@ -13,7 +13,6 @@ interface AppAccordionProps {
   defaultExpanded?: boolean
   unmountOnExit?: boolean
   renderOnClick?: boolean
-  detailsClass?: string
 }
 
 export default function AppAccordion({
@@ -25,7 +24,6 @@ export default function AppAccordion({
   defaultExpanded,
   unmountOnExit,
   renderOnClick,
-  detailsClass,
 }: AppAccordionProps): JSX.Element {
   const [expanded, setExpanded] = useState(defaultExpanded || false)
   const [withDetails, setWithDetails] = useState(!renderOnClick)
@@ -46,7 +44,7 @@ export default function AppAccordion({
           {header}
         </AppTitle>
       </AccordionSummary>
-      <AccordionDetails className={detailsClass}>{withDetails && details}</AccordionDetails>
+      <AccordionDetails>{withDetails && details}</AccordionDetails>
     </Accordion>
   )
 }

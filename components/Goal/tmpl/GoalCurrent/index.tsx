@@ -162,7 +162,7 @@ const useStyles = makeStyles((theme: Theme) =>
     wrap: {
       height: '100%',
       padding: 2,
-      background: `linear-gradient(to top left, ${theme.characteristic.motivation.main}, ${theme.characteristic.creativity.dark}, ${theme.characteristic.support.dark})`,
+      background: `linear-gradient(to top left, ${theme.palette.motivation.main}, ${theme.palette.creativity.dark}, ${theme.palette.support.dark})`,
       borderRadius: 15,
     },
     content: {
@@ -173,7 +173,7 @@ const useStyles = makeStyles((theme: Theme) =>
       borderRadius: 13,
     },
     topicCount: {
-      color: theme.text.silent,
+      color: theme.palette.zen.silent,
     },
     calendar: {
       padding: '8px 0 16px 0',

@@ -3,18 +3,25 @@ import { PaletteMode, ThemeOptions } from '@mui/material'
 
 // Override Mui theme typings to include the new theme property
 declare module '@mui/material/styles' {
-  interface CustomText {
-    white: CSSProperties['color']
+  interface ZenColor {
     silent: CSSProperties['color']
     sand: CSSProperties['color']
     wave: CSSProperties['color']
+    tender: CSSProperties['color']
   }
 
-  interface CustomBlock {
-    menu: CSSProperties['color']
+  interface CustomCharacteristicValue {
+    light: CSSProperties['color']
+    main: CSSProperties['color']
+    dark: CSSProperties['color']
   }
 
-  interface CustomCharacteristic {
+  interface Palette {
+    navigation: CSSProperties['color']
+    content: CSSProperties['color']
+
+    zen: ZenColor
+
     motivation: CustomCharacteristicValue
     support: CustomCharacteristicValue
     creativity: CustomCharacteristicValue
@@ -24,37 +31,34 @@ declare module '@mui/material/styles' {
     members: CustomCharacteristicValue
   }
 
-  interface CustomCharacteristicValue {
-    light: CSSProperties['color']
-    main: CSSProperties['color']
-    dark: CSSProperties['color']
-  }
+  interface PaletteOptions {
+    navigation: CSSProperties['color']
+    content: CSSProperties['color']
 
-  interface Theme {
-    text: CustomText
-    block: CustomBlock
-    characteristic: CustomCharacteristic
-  }
+    zen: ZenColor
 
-  interface ThemeOptions {
-    text: CustomText
-    block: CustomBlock
-    characteristic: CustomCharacteristic
+    motivation: CustomCharacteristicValue
+    support: CustomCharacteristicValue
+    creativity: CustomCharacteristicValue
+    completed: CustomCharacteristicValue
+    followers: CustomCharacteristicValue
+    abandoned: CustomCharacteristicValue
+    members: CustomCharacteristicValue
   }
 }
 
 export const getDesignTokens = (mode: PaletteMode): ThemeOptions => {
   return {
-    text: {
-      white: '#F5F5F7',
-      silent: '#99989D',
-      sand: '#ad998b',
-      wave: '#85dfff',
-    },
-    block: {
-      menu: mode === 'dark' ? '#121212' : '#d7d7d7',
-    },
-    characteristic: {
+    palette: {
+      mode,
+      navigation: mode === 'dark' ? '#121212' : '#d7d7d7',
+      content: mode === 'dark' ? '#1C1C1E' : '#d7d7d7',
+      zen: {
+        silent: '#99989D',
+        sand: '#ad998b',
+        tender: '#C8B1BB',
+        wave: '#85dfff',
+      },
       motivation: {
         light: '#FFE0B2',
         main: '#FF9800', // шрифт
@@ -90,15 +94,9 @@ export const getDesignTokens = (mode: PaletteMode): ThemeOptions => {
         main: '#EF8277',
         dark: '',
       },
-    },
-    palette: {
-      mode,
       ...(mode === 'dark' &&
         {
-          // text: {
-          //   // primary: '#F5F5F7',
-          //   // disabled: '#BDB5B5',
-          // },
+          //
         }),
     },
     components: {
@@ -180,28 +178,19 @@ export const getDesignTokens = (mode: PaletteMode): ThemeOptions => {
         styleOverrides: {
           paper: {
             backgroundImage: 'none',
-            border: '1px solid #F5F5F7',
-            borderRadius: 10,
-            margin: 16,
+            borderRadius: '12px',
             width: 'calc(100% - 16px)',
+            maxHeight: 'calc(100% - 157px)',
+            margin: '16px',
           },
         },
       },
       MuiCssBaseline: {
         styleOverrides: {
-          html: {
-            background: '#121212',
-          },
           body: {
             margin: 0,
             padding: 0,
             minHeight: '100vh',
-            background: '#121212',
-          },
-          '@supports not (-moz-appearance:none)': {
-            body: {
-              background: 'linear-gradient(#19191A, #0A0A0A 60%)',
-            },
           },
         },
       },

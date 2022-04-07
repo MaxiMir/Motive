@@ -2,10 +2,10 @@ import dynamic from 'next/dynamic'
 import { UserDetailDto } from 'dto'
 import { Locale } from 'hooks/useLocale'
 import AppModal from 'components/UI/AppModal'
-import AppBox from 'components/UI/AppBox'
 import useFollowers from './hook'
 import Loader from './components/Loader'
 import i18n from './i18n'
+import AppBox from '../../../UI/AppBox'
 
 const EmptyList = dynamic(() => import('./components/EmptyList'))
 const UserList = dynamic(() => import('./components/UserList'))
@@ -24,7 +24,18 @@ export default function ModalFollowers({ user, locale, onClose }: ModalFollowers
 
   return (
     <AppModal title={title} maxWidth="xs" onClose={onClose}>
-      <AppBox flexDirection="column" sx={{ height: 440, paddingRight: 2, overflow: 'scroll' }}>
+      <AppBox
+        minHeight={400}
+        flex={1}
+        sx={{
+          '& sup': {
+            display: {
+              xs: 'none',
+              sm: 'inline-block',
+            },
+          },
+        }}
+      >
         {isLoading ? (
           <Loader count={user.characteristic.followers} />
         ) : (

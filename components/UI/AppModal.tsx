@@ -15,19 +15,8 @@ interface AppModalProps {
 
 const AppModal: FC<AppModalProps> = ({ title, actions, maxWidth, children, onClose }) => {
   return (
-    <DialogWithBackdrop
-      open
-      fullWidth
-      maxWidth={maxWidth}
-      sx={{
-        '&.MuiBackdrop': {
-          background: 'rgba(34, 34, 34, 0.75)',
-          backdropFilter: 'blur(10px)',
-        },
-      }}
-      onClose={onClose}
-    >
-      <DialogTitle sx={{ textAlign: 'center', textTransform: 'uppercase' }}>{title}</DialogTitle>
+    <DialogWithBackdrop open fullWidth maxWidth={maxWidth} onClose={onClose}>
+      <DialogTitle sx={{ padding: '16px 24px 8px', textAlign: 'center', textTransform: 'uppercase' }}>{title}</DialogTitle>
       <DialogContent sx={{ padding: '12px 24px 24px !important' }}>{children}</DialogContent>
       {actions && (
         <DialogActions>
@@ -45,7 +34,7 @@ const AppModal: FC<AppModalProps> = ({ title, actions, maxWidth, children, onClo
 const DialogWithBackdrop = styled(Dialog)({
   '& .MuiBackdrop-root': {
     background: 'rgba(34, 34, 34, 0.75)',
-    backdropFilter: 'blur(10px)',
+    backdropFilter: 'blur(5px)',
   },
 })
 

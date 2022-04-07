@@ -20,14 +20,7 @@ export default function AddGoal({ locale }: AddGoalProps): JSX.Element {
 
   return (
     <AppBox justifyContent="center">
-      <Button
-        variant="outlined"
-        size="small"
-        color="info"
-        startIcon={<AppEmoji name="goal" onlyEmoji />}
-        sx={{ width: 200 }}
-        onClick={toggleModal}
-      >
+      <Button variant="outlined" color="info" startIcon={<AppEmoji name="goal" onlyEmoji />} onClick={toggleModal}>
         {name}
       </Button>
       {open && <Modal tmpl="goal" locale={locale} onClose={toggleModal} />}

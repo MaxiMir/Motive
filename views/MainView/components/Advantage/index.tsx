@@ -15,7 +15,7 @@ export interface AdvantageProps {
 export default function Advantage({ id, href, locale }: AdvantageProps): JSX.Element {
   const theme = useTheme()
   const { title, subtitle } = i18n[locale][id]
-  const { light, dark } = theme.characteristic[id]
+  const { light, dark } = theme.palette[id]
 
   return (
     <AppBox

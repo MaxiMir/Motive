@@ -33,7 +33,7 @@ export default function UserView({ user, locale }: UserViewProps): JSX.Element {
   useScrollToGoal()
 
   return (
-    <AppContainer flexColumn>
+    <AppContainer>
       <AppBox alignItems="center" gap={1} mb={2}>
         <Typography variant="h5" component="h1">
           {name}

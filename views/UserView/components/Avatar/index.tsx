@@ -19,7 +19,7 @@ export default function Avatar({ avatar, characteristic }: AvatarProps): JSX.Ele
     <AppBox sx={{ position: 'relative', width: 126, height: 126 }}>
       {circleItems.map(({ name, ...props }) => (
         <Circle justifyContent="center" alignItems="center" key={name}>
-          <AppCircle light={theme.characteristic[name].light} dark={theme.characteristic[name].dark} {...props} />
+          <AppCircle light={theme.palette[name].light} dark={theme.palette[name].dark} {...props} />
         </Circle>
       ))}
       <Circle justifyContent="center" alignItems="center">

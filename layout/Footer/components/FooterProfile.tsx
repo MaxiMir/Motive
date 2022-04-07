@@ -1,5 +1,4 @@
 import { Button } from '@mui/material'
-import { common } from '@mui/material/colors'
 import useOpenSignIn from 'hooks/useOpenSignIn'
 import useLocale from 'hooks/useLocale'
 import { getUserHref } from 'views/UserView/helper'
@@ -27,7 +26,7 @@ export default function FooterProfile({ nickname, asPath }: FooterProfileProps):
   }
 
   return (
-    <Button sx={{ color: common.white }} onClick={onClick}>
+    <Button onClick={onClick}>
       <FooterIcon Icon={ProfileIcon} selected={selected} />
     </Button>
   )

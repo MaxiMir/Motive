@@ -12,7 +12,7 @@ const AppGradientButton: FC<AppGradientButtonProps> = (props) => {
       display={undefined}
       sx={{
         padding: '1px',
-        background: `linear-gradient(to top left, ${theme.characteristic.creativity.dark}, ${theme.characteristic.support.dark})`,
+        background: `linear-gradient(to top left, ${theme.palette.creativity.dark}, ${theme.palette.support.dark})`,
         borderRadius: '5px',
       }}
     >

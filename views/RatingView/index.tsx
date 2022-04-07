@@ -21,10 +21,10 @@ export default function RatingView({ locale, ...props }: RatingViewProps): JSX.E
 
   return (
     <>
-      <Container fixed>
+      <Container fixed sx={{ mt: 3 }}>
         <AppTitle name="completed">{header}</AppTitle>
       </Container>
-      <AppBox flexDirection="column" gap={2} mt={4}>
+      <AppBox flexDirection="column" gap={2} mt={4} mb={3}>
         <AppTabs
           initial={!query.tab ? undefined : +query.tab}
           ariaLabel={ariaLabel}

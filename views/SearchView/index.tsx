@@ -28,7 +28,7 @@ export default function SearchView({ q, hashtags, goals, users, locale }: Search
   const noResult = !users.length && !goals.length
 
   return (
-    <AppContainer flexColumn>
+    <AppContainer>
       <AppTitle name="search" mb={4}>
         {header}
       </AppTitle>

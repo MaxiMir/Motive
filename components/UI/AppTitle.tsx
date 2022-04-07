@@ -10,7 +10,8 @@ interface AppTitleProps extends TypographyProps {
 }
 
 export default function AppTitle({ name, variant = 'h1', component = 'h1', mb, children }: AppTitleProps): JSX.Element {
-  const gap = variant === 'h1' ? 2 : 1
+  const isH1 = variant === 'h1'
+  const gap = isH1 ? 2 : 1
 
   return (
     <AppBox alignItems="center" gap={gap} mb={mb}>

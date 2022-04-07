@@ -18,7 +18,7 @@ export default function ConfirmationsList({
   return (
     <AppList
       elements={confirmations}
-      gap={3}
+      gap={2}
       keyGetter={(confirmation) => confirmation.id}
       render={(confirmation, index) => (
         <Goal

@@ -19,7 +19,7 @@ export default function UserRating({ user, characteristicName, index }: UserRati
   const number = getNumber()
   const href = getUserHref(nickname)
   const ratingValue = Math.floor(characteristic[characteristicName])
-  const color = theme.characteristic[characteristicName].main
+  const color = theme.palette[characteristicName].main
   const isEven = index % 2 === 0
 
   function getNumber() {

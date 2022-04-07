@@ -89,10 +89,10 @@ const useStyles = makeStyles((theme: Theme) =>
       width: '100%',
     },
     owner: {
-      color: theme.text.sand,
+      color: theme.palette.zen.sand,
     },
     hint: {
-      color: theme.text.silent,
+      color: theme.palette.zen.silent,
     },
   }),
 )

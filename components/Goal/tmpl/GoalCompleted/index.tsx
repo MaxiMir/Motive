@@ -1,15 +1,16 @@
 import { Fragment } from 'react'
 import dynamic from 'next/dynamic'
-import { Theme } from '@mui/material'
-import { createStyles, makeStyles } from '@mui/styles'
+import { useTheme } from '@mui/material'
 import { ConfirmationDto, GoalCharacteristicName } from 'dto'
 import useClient from 'hooks/useClient'
+import useLocale from 'hooks/useLocale'
 import AppTitle from 'components/UI/AppTitle'
 import AppBox from 'components/UI/AppBox'
 import AppDot from 'components/UI/AppDot'
 import AppTooltip from 'components/UI/AppTooltip'
 import Characteristic from 'components/Characteristic'
 import { getGoalInfo } from './helper'
+import i18n from './i18n'
 
 const Typography = dynamic(() => import('@mui/material/Typography'))
 const AppInView = dynamic(() => import('components/UI/AppInView'))
@@ -29,26 +30,48 @@ export interface GoalCompletedProps {
 }
 
 export default function GoalCompleted({ confirmation, userId, inView, onView }: GoalCompletedProps): JSX.Element {
-  const classes = useStyles()
   const { goal, inherited } = confirmation
+  const theme = useTheme()
   const client = useClient()
+  const { locale } = useLocale()
   const { duration, mainPhoto, secondPhotos, interval } = getGoalInfo(confirmation)
   const isOwner = goal.owner.id === client?.id
   const clientPage = userId === client?.id
   const renderRepeat = !clientPage && !isOwner
+  const { durationTitle } = i18n[locale]
 
   return (
-    <div className={classes.wrap}>
-      <AppBox flexDirection="column" gap={2} className={classes.content}>
+    <AppBox
+      display={undefined}
+      sx={{
+        padding: '3px',
+        background: `linear-gradient(to top left, #fde76c, #813203, #ce8c00)`,
+        borderRadius: '13px',
+      }}
+    >
+      <AppBox
+        flexDirection="column"
+        gap={2}
+        sx={{
+          position: 'relative',
+          height: '100%',
+          padding: 2,
+          paddingBottom: 3,
+          background: theme.palette.content,
+          borderRadius: '11px',
+        }}
+      >
         <AppBox flexDirection="column" gap={1}>
           <AppTitle name="cup" variant="h6" component="h3">
             {goal.name}
           </AppTitle>
-          {inherited && <Inheritance owner={goal.owner} />}
+          {inherited && <Inheritance owner={goal.owner} locale={locale} />}
           <Typography variant="caption">
-            Duration:{' '}
+            {durationTitle}{' '}
             <AppTooltip title={interval}>
-              <b className={classes.runsForDays}>{duration}</b>
+              <AppBox display={undefined} component="b" color="zen.silent">
+                {duration}
+              </AppBox>
             </AppTooltip>
           </Typography>
         </AppBox>
@@ -62,34 +85,10 @@ export default function GoalCompleted({ confirmation, userId, inView, onView }: 
           ))}
         </AppBox>
         {confirmation.text && <Typography>{confirmation.text}</Typography>}
-        {!!secondPhotos?.length && <SecondPhotos id={goal.id} photos={secondPhotos} />}
-        {renderRepeat && <Repeat goalId={goal.id} />}
+        {!!secondPhotos?.length && <SecondPhotos id={goal.id} photos={secondPhotos} locale={locale} />}
+        {renderRepeat && <Repeat goalId={goal.id} locale={locale} />}
       </AppBox>
       {onView && <>{inView && <AppInView onView={onView} />}</>}
-    </div>
+    </AppBox>
   )
 }
-
-const useStyles = makeStyles((theme: Theme) =>
-  createStyles({
-    wrap: {
-      flex: 1,
-      height: '100%',
-      marginTop: 8,
-      padding: 2,
-      background: `linear-gradient(to top left, #fde76c, #813203, #ce8c00)`,
-      borderRadius: 15,
-    },
-    content: {
-      position: 'relative',
-      height: '100%',
-      padding: 16,
-      paddingBottom: 24,
-      background: theme.palette.background.paper,
-      borderRadius: 13,
-    },
-    runsForDays: {
-      color: theme.text.silent,
-    },
-  }),
-)

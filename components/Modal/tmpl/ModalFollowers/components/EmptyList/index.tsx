@@ -13,7 +13,7 @@ export default function EmptyList({ locale }: EmptyListProps): JSX.Element {
 
   return (
     <AppBox flexDirection="column" alignItems="center" justifyContent="center" flex={1} gap={2}>
-      <Typography color="primary" variant="h6">
+      <Typography variant="h6" color="zen.tender">
         {title}
       </Typography>
       <AppFadeIcon name="followers" />

@@ -64,7 +64,7 @@ const useStyles = makeStyles((theme: Theme) =>
     },
     date: {
       fontSize: '0.6875rem',
-      color: theme.text.silent,
+      color: theme.palette.zen.silent,
     },
   }),
 )

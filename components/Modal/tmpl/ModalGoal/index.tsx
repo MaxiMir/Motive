@@ -1,7 +1,7 @@
 import dynamic from 'next/dynamic'
 import { Field, FieldArray, Form, FormikProvider } from 'formik'
-import { AccordionSummary, Button, Typography, Accordion, AccordionDetails, Theme } from '@mui/material'
-import { createStyles, makeStyles } from '@mui/styles'
+import { AccordionSummary, Button, Typography, Accordion, AccordionDetails } from '@mui/material'
+import { styled } from '@mui/system'
 import { MainCharacteristicName } from 'dto'
 import useFocus from 'hooks/useFocus'
 import { Locale } from 'hooks/useLocale'
@@ -30,7 +30,6 @@ export interface ModalGoalProps {
 }
 
 export default function ModalGoal({ locale, onClose }: ModalGoalProps): JSX.Element {
-  const classes = useStyles()
   const [hashtagsRef, setHashtagsFocus] = useFocus()
   const form = useForm(onClose)
   const { isSubmitting, values, setFieldValue, handleSubmit } = form
@@ -78,12 +77,20 @@ export default function ModalGoal({ locale, onClose }: ModalGoalProps): JSX.Elem
       <FormikProvider value={form}>
         <Form autoComplete="off">
           <AppBox flexDirection="column" gap={3}>
-            <Field name="name" label={name} color="secondary" component={AppInput} />
+            <Field name="name" label={name} component={AppInput} />
             <AppBox flexDirection="column" gap={1}>
-              <Field name="hashtags" label={hashtags} multiline rows={3} inputRef={hashtagsRef} component={AppInput} />
-              <Button variant="outlined" size="small" className={classes.button} onClick={onAddHashtag}>
+              <Field
+                name="hashtags"
+                color="secondary"
+                label={hashtags}
+                multiline
+                rows={2}
+                inputRef={hashtagsRef}
+                component={AppInput}
+              />
+              <ButtonCompact variant="outlined" color="secondary" size="small" onClick={onAddHashtag}>
                 # {hashtag}
-              </Button>
+              </ButtonCompact>
             </AppBox>
             <AppBox flexDirection="column" gap={2}>
               <AppTitle name="stage" variant="h6" component="h2" color="primary">
@@ -94,30 +101,24 @@ export default function ModalGoal({ locale, onClose }: ModalGoalProps): JSX.Elem
                   <>
                     {values.stages.map((_, index) => (
                       <AppBox gap={1} key={index}>
-                        <AppBox alignSelf="flex-start" mt={2}>
+                        <AppBox height={40} alignItems="center" alignSelf="flex-start">
                           <AppDot size={10} />
                         </AppBox>
                         <Field
                           name={`stages.${index}`}
                           label={`${stage} ${index + 1}`}
                           autoFocus={index === values.stages.length - 1}
-                          color="secondary"
+                          color="warning"
                           component={AppInput}
                         />
-                        <AppBox alignSelf="flex-start" mt="-4px">
+                        <AppBox alignSelf="flex-start">
                           <AppIconButton name="close" onClick={() => remove(index)} />
                         </AppBox>
                       </AppBox>
                     ))}
-                    <Button
-                      variant="outlined"
-                      color="warning"
-                      size="small"
-                      className={classes.button}
-                      onClick={() => push('')}
-                    >
+                    <ButtonCompact variant="outlined" color="warning" size="small" onClick={() => push('')}>
                       + {stageButton}
-                    </Button>
+                    </ButtonCompact>
                   </>
                 )}
               </FieldArray>
@@ -143,14 +144,9 @@ export default function ModalGoal({ locale, onClose }: ModalGoalProps): JSX.Elem
                         }
                       />
                     ))}
-                    <Button
-                      variant="outlined"
-                      size="small"
-                      className={classes.button}
-                      onClick={() => push({ name: '', date: undefined })}
-                    >
+                    <ButtonCompact variant="outlined" size="small" onClick={() => push({ name: '', date: undefined })}>
                       + {addTask}
-                    </Button>
+                    </ButtonCompact>
                   </>
                 )}
               </FieldArray>
@@ -162,11 +158,13 @@ export default function ModalGoal({ locale, onClose }: ModalGoalProps): JSX.Elem
                 id="stage"
                 ariaControls={stageAria}
                 details={
-                  <div className={classes.hint}>
+                  <>
                     {stageHints.map((hint, key) => (
-                      <Typography key={key}>{hint}</Typography>
+                      <Typography color="gray" key={key}>
+                        {hint}
+                      </Typography>
                     ))}
-                  </div>
+                  </>
                 }
               />
               <Accordion>
@@ -177,13 +175,13 @@ export default function ModalGoal({ locale, onClose }: ModalGoalProps): JSX.Elem
                 >
                   <AppBox alignItems="center" gap={1}>
                     <PaulIcon />
-                    <Typography variant="h6" component="h3" color="primary">
+                    <Typography variant="h6" component="h3">
                       {pitt}
                     </Typography>
                   </AppBox>
                 </AccordionSummary>
                 <AccordionDetails>
-                  <Typography className={classes.hint}>
+                  <Typography color="gray">
                     {pittHints[0]}
                     <br />
                     {pittHints[1]} <AppDecorEmoji name="web" />.
@@ -206,14 +204,7 @@ export default function ModalGoal({ locale, onClose }: ModalGoalProps): JSX.Elem
   )
 }
 
-const useStyles = makeStyles((theme: Theme) =>
-  createStyles({
-    button: {
-      alignSelf: 'baseline',
-      textTransform: 'none',
-    },
-    hint: {
-      color: theme.text.silent,
-    },
-  }),
-)
+const ButtonCompact = styled(Button)({
+  alignSelf: 'baseline',
+  textTransform: 'none',
+})

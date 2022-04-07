@@ -33,7 +33,7 @@ const useStyles = makeStyles((theme: Theme) =>
       padding: 4,
       transform: 'translateX(-50%)',
       borderRadius: 20,
-      background: `linear-gradient(90deg, ${theme.characteristic.support.dark} 0%, ${theme.characteristic.creativity.dark} 100%)`,
+      background: `linear-gradient(90deg, ${theme.palette.support.dark} 0%, ${theme.palette.creativity.dark} 100%)`,
     },
   }),
 )

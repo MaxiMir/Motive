@@ -1,7 +1,9 @@
 import dynamic from 'next/dynamic'
 import { RenderImageProps } from 'react-photo-gallery'
-import { makeStyles } from '@mui/styles'
+import useLocale from 'hooks/useLocale'
+import AppBox from 'components/UI/AppBox'
 import GalleryImage from './components/GalleryImage'
+import i18n from './i18n'
 
 const AppImageZoom = dynamic(() => import('components/UI/AppImageZoom'))
 
@@ -10,10 +12,26 @@ interface GalleryPhotoProps extends RenderImageProps {
 }
 
 export default function GallerySlide({ animation, ...props }: GalleryPhotoProps): JSX.Element {
-  const classes = useStyles(props)
+  const { locale } = useLocale()
+  const { ariaLabel } = i18n[locale]
 
   return (
-    <div aria-label="Open gallery" className={classes.container}>
+    <AppBox
+      display={undefined}
+      aria-label={ariaLabel}
+      sx={{
+        width: props.photo.width,
+        height: props.photo.height,
+        margin: !props.margin ? undefined : `${props.margin}px`,
+        overflow: 'hidden',
+        borderRadius: 1,
+        cursor: !props.onClick ? undefined : 'pointer',
+        border: '1px solid #262623',
+        position: props.direction === 'column' ? 'absolute' : undefined,
+        top: props.direction === 'column' ? props.top : undefined,
+        left: props.direction === 'column' ? props.left : undefined,
+      }}
+    >
       {!animation ? (
         <GalleryImage {...props} />
       ) : (
@@ -21,22 +39,6 @@ export default function GallerySlide({ animation, ...props }: GalleryPhotoProps)
           <GalleryImage {...props} />
         </AppImageZoom>
       )}
-    </div>
+    </AppBox>
   )
 }
-
-const useStyles = makeStyles({
-  container: {
-    display: 'block',
-    width: (props: RenderImageProps) => props.photo.width,
-    height: (props: RenderImageProps) => props.photo.height,
-    borderRadius: 8,
-    overflow: 'hidden',
-    cursor: (props: RenderImageProps) => (!props.onClick ? undefined : 'pointer'),
-    margin: (props: RenderImageProps) => props.margin,
-    position: (props: RenderImageProps) => (props.direction === 'column' ? 'absolute' : undefined),
-    top: (props: RenderImageProps) => (props.direction === 'column' ? props.top : undefined),
-    left: (props: RenderImageProps) => (props.direction === 'column' ? props.left : undefined),
-    border: '1px solid #262623',
-  },
-})

@@ -1,5 +1,4 @@
 import { Typography } from '@mui/material'
-import { makeStyles } from '@mui/styles'
 import { GoalCharacteristicName } from 'dto'
 import { numberToShort } from 'helpers/prepare'
 import AppEmoji from 'components/UI/AppEmoji'
@@ -16,7 +15,6 @@ export interface CharacteristicGoalProps {
 export default function CharacteristicGoal({ name, value }: CharacteristicGoalProps): JSX.Element {
   const tooltipTitle = getTitle(name)
   const shortValue = numberToShort(value)
-  const color = 'red'
 
   return (
     <AppBox flexDirection="column" alignItems="center" gap={1} width={40}>
@@ -24,18 +22,10 @@ export default function CharacteristicGoal({ name, value }: CharacteristicGoalPr
         <AppEmoji name={name} variant="h5" />
       </AppTooltip>
       <AppBox>
-        <Typography component="p" sx={{ color }}>
+        <Typography component="p" sx={{ color: `${name}.main` }}>
           {shortValue}
         </Typography>
       </AppBox>
     </AppBox>
   )
 }
-
-type UseStylesProps = Pick<CharacteristicGoalProps, 'color'>
-
-const useStyles = makeStyles({
-  shortValue: {
-    color: (props: UseStylesProps) => props.color,
-  },
-})

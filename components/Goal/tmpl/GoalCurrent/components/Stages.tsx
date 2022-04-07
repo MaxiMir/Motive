@@ -1,9 +1,7 @@
 import { useState } from 'react'
 import dynamic from 'next/dynamic'
-import clsx from 'clsx'
 import { GoalDto } from 'dto'
-import { Step, StepContent, Stepper, Typography, StepLabel, Theme } from '@mui/material'
-import { createStyles, makeStyles } from '@mui/styles'
+import { Step, StepContent, Stepper, Typography, StepLabel } from '@mui/material'
 import AppIcon from 'components/UI/AppIcon'
 
 const Button = dynamic(() => import('@mui/material/Button'))
@@ -19,7 +17,6 @@ interface AppStagesProps {
 
 export default function Stages({ goal, forTomorrow, completeStage }: AppStagesProps): JSX.Element {
   const { day, stages } = goal
-  const classes = useStyles()
   const [open, setOpen] = useState(false)
   const activeStep = day.stage
 
@@ -27,9 +24,23 @@ export default function Stages({ goal, forTomorrow, completeStage }: AppStagesPr
 
   return (
     <>
-      <Stepper activeStep={activeStep} orientation="vertical" className={classes.root}>
+      <Stepper
+        activeStep={activeStep}
+        orientation="vertical"
+        sx={{
+          padding: 0,
+          '& .Mui-completed': {
+            '& .MuiStepConnector-line': {
+              borderColor: 'zen.wave',
+            },
+            '& .MuiTypography-root': {
+              color: 'zen.wave',
+            },
+          },
+        }}
+      >
         {stages.map((stage, index) => (
-          <Step key={stage} className={clsx([activeStep >= index ? classes.colored : classes.default])}>
+          <Step key={stage} sx={{ color: activeStep >= index ? 'zen.wave' : 'zen.silent' }}>
             <StepLabel
               StepIconComponent={() => <AppIcon name={activeStep > index ? 'task_alt' : 'radio_button_unchecked'} />}
               optional={<Typography>{stage}</Typography>}
@@ -52,22 +63,3 @@ export default function Stages({ goal, forTomorrow, completeStage }: AppStagesPr
     </>
   )
 }
-
-const useStyles = makeStyles((theme: Theme) =>
-  createStyles({
-    root: {
-      padding: 0,
-      '& .MuiStepConnector-completed': {
-        '& .MuiStepConnector-line': {
-          borderColor: theme.palette.zen.wave,
-        },
-      },
-    },
-    default: {
-      color: theme.palette.zen.silent,
-    },
-    colored: {
-      color: theme.palette.zen.wave,
-    },
-  }),
-)

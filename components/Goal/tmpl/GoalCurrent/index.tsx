@@ -1,7 +1,6 @@
 import { Fragment, useMemo } from 'react'
 import dynamic from 'next/dynamic'
-import { Theme } from '@mui/material'
-import { createStyles, makeStyles } from '@mui/styles'
+import { useTheme } from '@mui/material'
 import { GoalDto, GoalCharacteristicName, MemberDto } from 'dto'
 import AppBox from 'components/UI/AppBox'
 import AppTitle from 'components/UI/AppTitle'
@@ -48,7 +47,7 @@ export default function GoalCurrent({
 }: GoalCurrentProps): JSX.Element {
   const { id, name, hashtags, characteristic, owner, stages, day, inherited } = goal
   const { id: dayId, date, tasks, views, feedback, topicCount } = day
-  const classes = useStyles()
+  const theme = useTheme()
   const userMember = getMember(goal, userMembership, userId)
   const clientOwnership = getClientOwnership(goal, clientId, clientPage, clientMembership)
   const goalHref = getGoalHref(href, goal)
@@ -59,9 +58,39 @@ export default function GoalCurrent({
   useIncreaseViews(goal, clientId)
 
   return (
-    <AppBox flexDirection="column" gap={2} id={`goal-${id}`} className={classes.root} mt={2}>
-      <div className={classes.wrap}>
-        <AppBox flexDirection="column" justifyContent="space-between" gap={3} className={classes.content}>
+    <AppBox
+      flexDirection="column"
+      gap={2}
+      id={`goal-${id}`}
+      mt={2}
+      sx={{
+        flex: {
+          xs: '0 0 100%',
+          md: '1 1 calc(50% - 12px)',
+        },
+      }}
+    >
+      <AppBox
+        display={undefined}
+        sx={{
+          padding: '3px',
+          height: '100%',
+          background: `linear-gradient(to top left, ${theme.palette.motivation.main}, ${theme.palette.creativity.dark}, ${theme.palette.support.dark})`,
+          borderRadius: '15px',
+        }}
+      >
+        <AppBox
+          flexDirection="column"
+          justifyContent="space-between"
+          gap={3}
+          sx={{
+            position: 'relative',
+            height: '100%',
+            padding: '24px 16px 16px',
+            background: theme.palette.content,
+            borderRadius: '13px',
+          }}
+        >
           {inherited && <Inheritance owner={owner} />}
           <AppBox flexDirection="column" gap={3}>
             <AppBox justifyContent="space-between" alignItems="center">
@@ -125,12 +154,22 @@ export default function GoalCurrent({
               />
               <AppAccordion
                 name="discussion"
-                header={<>Discussion {!topicCount ? '' : <span className={classes.topicCount}>{topicCount}</span>}</>}
+                header={
+                  <>
+                    Discussion{' '}
+                    {!topicCount ? (
+                      ''
+                    ) : (
+                      <AppBox display={undefined} component="span" color="zen.silent">
+                        {topicCount}
+                      </AppBox>
+                    )}
+                  </>
+                }
                 id={`discussionContent-${dayId}`}
                 ariaControls="discussion-content"
                 renderOnClick
                 unmountOnExit
-                detailsClass={classes.discussion}
                 details={
                   <Discussion dayId={dayId} owner={owner} count={topicCount} clientGoal={clientOwnership.goal} />
                 }
@@ -145,41 +184,7 @@ export default function GoalCurrent({
           </AppBox>
           {goalInfo.web && <Web />}
         </AppBox>
-      </div>
+      </AppBox>
     </AppBox>
   )
 }
-
-const useStyles = makeStyles((theme: Theme) =>
-  createStyles({
-    root: {
-      flex: '0 0 100%',
-      [theme.breakpoints.up('md')]: {
-        flex: '1 1 calc(50% - 12px)',
-        flexGrow: 0,
-      },
-    },
-    wrap: {
-      height: '100%',
-      padding: 2,
-      background: `linear-gradient(to top left, ${theme.palette.motivation.main}, ${theme.palette.creativity.dark}, ${theme.palette.support.dark})`,
-      borderRadius: 15,
-    },
-    content: {
-      position: 'relative',
-      height: '100%',
-      padding: '24px 16px 16px',
-      background: theme.palette.background.paper,
-      borderRadius: 13,
-    },
-    topicCount: {
-      color: theme.palette.zen.silent,
-    },
-    calendar: {
-      padding: '8px 0 16px 0',
-    },
-    discussion: {
-      padding: '8px 0 16px 16px',
-    },
-  }),
-)

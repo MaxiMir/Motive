@@ -44,7 +44,7 @@ export default function AppAccordion({
           {header}
         </AppTitle>
       </AccordionSummary>
-      <AccordionDetails>{withDetails && details}</AccordionDetails>
+      <AccordionDetails sx={{ maxHeight: 524, overflow: 'auto' }}>{withDetails && details}</AccordionDetails>
     </Accordion>
   )
 }

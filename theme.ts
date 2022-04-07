@@ -57,7 +57,7 @@ export const getDesignTokens = (mode: PaletteMode): ThemeOptions => {
         silent: '#99989D',
         sand: '#ad998b',
         tender: '#C8B1BB',
-        wave: '#85dfff',
+        wave: '#80cbc4',
       },
       motivation: {
         light: '#FFE0B2',

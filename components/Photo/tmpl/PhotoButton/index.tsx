@@ -1,6 +1,5 @@
 import dynamic from 'next/dynamic'
 import { Button, IconButton } from '@mui/material'
-import { makeStyles } from '@mui/styles'
 import AppBox from 'components/UI/AppBox'
 import AppIcon from 'components/UI/AppIcon'
 
@@ -15,41 +14,47 @@ export interface PhotoButtonProps {
 }
 
 export default function PhotoButton({ image, disabled, onClick }: PhotoButtonProps): JSX.Element {
-  const classes = useStyles()
-
   return (
-    <Button color="secondary" variant="outlined" className={classes.button} component="div">
-      <AppBox justifyContent="center" alignItems="center" className={classes.content} position="relative">
+    <Button
+      color="secondary"
+      variant="outlined"
+      component="div"
+      sx={{
+        position: 'relative',
+        width: '100%',
+        aspectRatio: '3/4',
+        overflow: 'hidden',
+      }}
+    >
+      <AppBox
+        justifyContent="center"
+        alignItems="center"
+        sx={{
+          position: 'absolute',
+          top: 0,
+          left: 0,
+          bottom: 0,
+          right: 0,
+        }}
+      >
         {image instanceof File ? (
           <LocalImage file={image} />
         ) : (
           <AppImage src={image} layout="fill" objectFit="contain" />
         )}
-        <IconButton className={classes.remove} aria-label="Remove photo" disabled={disabled} onClick={onClick}>
-          <AppIcon name="cancel" color="secondary" />
+        <IconButton
+          aria-label="Remove photo"
+          disabled={disabled}
+          sx={{
+            position: 'absolute',
+            top: -8,
+            right: -8,
+          }}
+          onClick={onClick}
+        >
+          <AppIcon name="cancel" />
         </IconButton>
       </AppBox>
     </Button>
   )
 }
-
-const useStyles = makeStyles({
-  button: {
-    position: 'relative',
-    width: '100%',
-    aspectRatio: '3/4',
-    overflow: 'hidden',
-  },
-  content: {
-    position: 'absolute',
-    top: 0,
-    left: 0,
-    bottom: 0,
-    right: 0,
-  },
-  remove: {
-    position: 'absolute',
-    top: -8,
-    right: -8,
-  },
-})

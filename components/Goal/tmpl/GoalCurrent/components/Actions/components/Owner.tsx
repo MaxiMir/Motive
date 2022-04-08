@@ -23,7 +23,7 @@ export default function Owner({ goal, forTomorrow }: OwnerProps): JSX.Element {
       <TooltipTomorrow forTomorrow={forTomorrow}>
         <Button
           variant="outlined"
-          color="secondary"
+          color="warning"
           startIcon={<AppEmoji name="finish" onlyEmoji />}
           disabled={forTomorrow}
           onClick={toggleModal}

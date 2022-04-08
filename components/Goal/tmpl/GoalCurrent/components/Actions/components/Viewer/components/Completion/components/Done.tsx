@@ -21,7 +21,7 @@ export default function Done({ goal, forTomorrow }: DoneProps): JSX.Element {
     <TooltipTomorrow forTomorrow={forTomorrow}>
       <Button
         variant="outlined"
-        color="secondary"
+        color="warning"
         disabled={forTomorrow}
         startIcon={<AppEmoji name="cup" onlyEmoji />}
         onClick={toggleModal}

@@ -1,7 +1,7 @@
 import { ChangeEvent, useRef } from 'react'
 import { Button, Chip } from '@mui/material'
-import { makeStyles } from '@mui/styles'
 import AppEmoji from 'components/UI/AppEmoji'
+import { styled } from '@mui/system'
 
 export interface VideoInputProps {
   tmpl: 'input'
@@ -10,7 +10,6 @@ export interface VideoInputProps {
 }
 
 export default function VideoInput({ disabled, onSelect }: VideoInputProps): JSX.Element {
-  const classes = useStyles()
   const videoInputRef = useRef<HTMLInputElement>(null)
 
   const onAddVideo = (e: ChangeEvent<HTMLInputElement>) => {
@@ -24,34 +23,34 @@ export default function VideoInput({ disabled, onSelect }: VideoInputProps): JSX
       <Button
         color="secondary"
         variant="outlined"
-        className={classes.control}
         title="Load video"
         aria-label="Load video"
         disabled={disabled}
+        sx={{
+          position: 'relative',
+          width: 80,
+          height: 80,
+        }}
         onClick={onClick}
       >
         <AppEmoji name="cassette" variant="h1" />
-        <Chip label="Soon" size="small" className={classes.soon} />
+        <Chip
+          label="Soon"
+          size="small"
+          sx={{
+            position: 'absolute',
+            top: -12,
+            right: 12,
+            borderColor: 'rgba(255, 167, 38, 0.7)',
+            color: 'rgb(255, 167, 38)',
+          }}
+        />
       </Button>
-      <input ref={videoInputRef} type="file" accept=".mov,.mp4" className={classes.input} onChange={onAddVideo} />
+      <Input ref={videoInputRef} type="file" accept=".mov,.mp4" onChange={onAddVideo} />
     </>
   )
 }
 
-const useStyles = makeStyles({
-  input: {
-    display: 'none',
-  },
-  control: {
-    position: 'relative',
-    width: 80,
-    height: 80,
-  },
-  soon: {
-    position: 'absolute',
-    top: -12,
-    right: 12,
-    borderColor: 'rgba(255, 167, 38, 0.7)',
-    color: 'rgb(255, 167, 38)',
-  },
+const Input = styled('input')({
+  display: 'none',
 })

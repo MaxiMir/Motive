@@ -24,11 +24,11 @@ export default function OwnerWithFeedback({ goal }: OwnerWithFeedbackProps): JSX
 
   return (
     <AppBox justifyContent="space-between">
-      <Button variant="outlined" color="primary" startIcon={<AppEmoji name="task" onlyEmoji />} onClick={onAddTasks}>
+      <Button variant="outlined" color="error" startIcon={<AppEmoji name="task" onlyEmoji />} onClick={onAddTasks}>
         Add tasks
       </Button>
       {isComplete && (
-        <Button variant="outlined" color="secondary" startIcon={<AppEmoji name="cup" onlyEmoji />} onClick={onComplete}>
+        <Button variant="outlined" color="warning" startIcon={<AppEmoji name="cup" onlyEmoji />} onClick={onComplete}>
           Done
         </Button>
       )}

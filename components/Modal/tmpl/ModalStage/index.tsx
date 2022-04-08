@@ -1,11 +1,12 @@
-import { Theme, Typography } from '@mui/material'
-import { createStyles, makeStyles } from '@mui/styles'
+import { Typography } from '@mui/material'
 import { GoalDto } from 'dto'
+import useLocale from 'hooks/useLocale'
 import Action from 'components/Action'
 import AppModal from 'components/UI/AppModal'
 import AppBox from 'components/UI/AppBox'
 import AppFlyIcon from 'components/UI/AppFlyIcon'
 import { useSendStage } from './hook'
+import i18n from './i18n'
 
 export interface ModalStageProps {
   tmpl: 'stage'
@@ -15,9 +16,11 @@ export interface ModalStageProps {
 
 export default function ModalStage({ goal, onClose }: ModalStageProps): JSX.Element {
   const { stages, day } = goal
-  const classes = useStyles()
+  const { locale } = useLocale()
   const { isLoading, mutate } = useSendStage(onClose)
+  const { title, behind, buttonName, buttonLoading, getNextTitle } = i18n[locale]
   const isFinal = stages.length === day.stage
+  const nextTitle = getNextTitle(isFinal)
   const nextStage = day.stage + 1
 
   const onClick = () => mutate({ id: goal.id, stage: nextStage })
@@ -26,8 +29,10 @@ export default function ModalStage({ goal, onClose }: ModalStageProps): JSX.Elem
     <AppModal
       title={
         <>
-          Completion stage <br />
-          <span className={classes.prevStage}>{stages[day.stage]}</span>
+          {title} <br />
+          <AppBox display={undefined} component="span" sx={{ color: 'zen.sand' }}>
+            {stages[day.stage]}
+          </AppBox>
         </>
       }
       maxWidth="xs"
@@ -36,8 +41,8 @@ export default function ModalStage({ goal, onClose }: ModalStageProps): JSX.Elem
         <Action
           tmpl="submit"
           isLoading={isLoading}
-          name="Complete"
-          nameLoading="Completing"
+          name={buttonName}
+          nameLoading={buttonLoading}
           emoji="stage"
           onClick={onClick}
         />,
@@ -47,28 +52,17 @@ export default function ModalStage({ goal, onClose }: ModalStageProps): JSX.Elem
       <AppBox flexDirection="column" gap={3}>
         <AppBox flexDirection="column" alignItems="center" gap={1}>
           <AppFlyIcon name="stage" />
-          <Typography variant="subtitle1" className={classes.congratulations}>
-            Excellent! One stage behind!
+          <Typography variant="subtitle1" sx={{ color: 'support.main' }}>
+            <b>{behind}</b>
           </Typography>
           <Typography>
-            {isFinal ? 'Final' : 'Next'} stage is <b className={classes.nextStage}>{stages[nextStage]}</b>
+            {nextTitle}{' '}
+            <AppBox display={undefined} component="b" sx={{ color: 'zen.wave' }}>
+              {stages[nextStage]}
+            </AppBox>
           </Typography>
         </AppBox>
       </AppBox>
     </AppModal>
   )
 }
-
-const useStyles = makeStyles((theme: Theme) =>
-  createStyles({
-    prevStage: {
-      color: theme.palette.zen.sand,
-    },
-    nextStage: {
-      color: theme.palette.zen.silent,
-    },
-    congratulations: {
-      color: theme.palette.support.main,
-    },
-  }),
-)

@@ -22,6 +22,7 @@ export default {
       'The accumulated points',
       'will burn out and the number of abandoned goals increases.',
     ],
+    message: 'The goal is successfully created',
   },
   ru: {
     title: 'Создание цели',
@@ -29,7 +30,7 @@ export default {
     hashtag: 'Хэштег',
     hashtags: 'Хэштеги',
     button: 'Создать',
-    buttonLoading: 'Создание',
+    buttonLoading: 'Создаю',
     stageAria: 'про-этапы',
     stages: 'Этапы',
     stage: 'этап',
@@ -46,5 +47,6 @@ export default {
       'Накопленные баллы',
       'сгорают и количество заброшенных целей увеличивается.',
     ],
+    message: 'Цель успешно создана',
   },
 }

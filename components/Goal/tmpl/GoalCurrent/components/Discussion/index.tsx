@@ -23,9 +23,10 @@ export default function Discussion({ dayId, owner, count, clientGoal }: Discussi
   const { isLoading, topics, checkOnLoadMore, fetchNextPage } = useDiscussion(dayId, count)
   const onAdd = useAddMessage()
   const withInput = !!client && (!count || !!topics.length) && !clientGoal
+  const height = !count ? undefined : 548
 
   return (
-    <AppBox flexDirection="column" gap={2} flex={1} height={524}>
+    <AppBox flexDirection="column" gap={2} flex={1} height={height}>
       <>
         {withInput && (
           <User tmpl="input" dayId={dayId} user={client as ClientDto} type={MessageType.QUESTION} onAdd={onAdd} />

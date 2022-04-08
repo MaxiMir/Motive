@@ -19,7 +19,7 @@ export default function ContactPage(): JSX.Element {
 
   return (
     <Layout title={title}>
-      <ContactView />
+      <ContactView locale={locale} />
     </Layout>
   )
 }

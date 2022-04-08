@@ -18,7 +18,7 @@ export default function VideoPreview({ video, disabled, onRemove }: VideoPreview
     <div className={classes.video}>
       <AppVideo video={url} className={classes.videoPlayer} />
       <IconButton className={classes.remove} aria-label="Remove video" disabled={disabled} onClick={onRemove}>
-        <AppIcon name="cancel" color="secondary" />
+        <AppIcon name="cancel" />
       </IconButton>
     </div>
   )

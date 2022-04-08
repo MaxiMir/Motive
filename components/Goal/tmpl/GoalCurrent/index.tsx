@@ -2,11 +2,11 @@ import { Fragment, useMemo } from 'react'
 import dynamic from 'next/dynamic'
 import { useTheme } from '@mui/material'
 import { GoalDto, GoalCharacteristicName, MemberDto } from 'dto'
+import Characteristic from 'components/Characteristic'
 import AppBox from 'components/UI/AppBox'
 import AppTitle from 'components/UI/AppTitle'
 import AppDot from 'components/UI/AppDot'
 import AppAccordion from 'components/UI/AppAccordion'
-import Characteristic from 'components/Characteristic'
 import { useIncreaseViews } from './hook'
 import { getMember, getGoalHref, getGoalInfo, redefineTasks, getClientOwnership } from './helper'
 import Calendar from './components/Calendar'
@@ -67,6 +67,9 @@ export default function GoalCurrent({
         flex: {
           xs: '0 0 100%',
           md: '1 1 calc(50% - 12px)',
+        },
+        flexGrow: {
+          md: 1,
         },
       }}
     >

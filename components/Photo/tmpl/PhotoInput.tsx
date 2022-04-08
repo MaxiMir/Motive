@@ -1,6 +1,6 @@
 import { ChangeEvent, useRef } from 'react'
 import { Button } from '@mui/material'
-import { makeStyles } from '@mui/styles'
+import { styled } from '@mui/system'
 import AppEmoji from 'components/UI/AppEmoji'
 
 export interface PhotoInputProps {
@@ -11,7 +11,6 @@ export interface PhotoInputProps {
 }
 
 export default function PhotoInput({ multiple, disabled, onSelect }: PhotoInputProps): JSX.Element {
-  const classes = useStyles()
   const photoInputRef = useRef<HTMLInputElement>(null)
 
   const onAddPhoto = (e: ChangeEvent<HTMLInputElement>) => {
@@ -25,33 +24,23 @@ export default function PhotoInput({ multiple, disabled, onSelect }: PhotoInputP
       <Button
         color="secondary"
         variant="outlined"
-        className={classes.control}
         title="Load photo"
         aria-label="Load photo"
         disabled={disabled}
+        sx={{
+          position: 'relative',
+          width: 80,
+          height: 80,
+        }}
         onClick={onClick}
       >
         <AppEmoji name="tape" variant="h1" />
       </Button>
-      <input
-        ref={photoInputRef}
-        type="file"
-        accept="image/*"
-        multiple={multiple}
-        className={classes.input}
-        onChange={onAddPhoto}
-      />
+      <Input ref={photoInputRef} type="file" accept="image/*" multiple={multiple} onChange={onAddPhoto} />
     </>
   )
 }
 
-const useStyles = makeStyles({
-  input: {
-    display: 'none',
-  },
-  control: {
-    position: 'relative',
-    width: 80,
-    height: 80,
-  },
+const Input = styled('input')({
+  display: 'none',
 })

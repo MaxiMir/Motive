@@ -35,7 +35,7 @@ export default function Message({ message, answerFor, supportFor, onReply }: Mes
           <AppLink href={href} title={user.name}>
             <AppAvatar src={user.avatar} size={26} />
           </AppLink>
-          <AppLink href={href} title={user.name} className={classes.name}>
+          <AppLink href={href} title={user.name} className={classes.name} sx={{ textDecoration: 'none' }}>
             <b>{user.name}</b>
           </AppLink>
           {supportFor && <SupportSign name={supportFor} />}

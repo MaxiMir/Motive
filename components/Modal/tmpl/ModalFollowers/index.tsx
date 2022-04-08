@@ -1,11 +1,11 @@
 import dynamic from 'next/dynamic'
 import { UserDetailDto } from 'dto'
-import { Locale } from 'hooks/useLocale'
+import useLocale from 'hooks/useLocale'
 import AppModal from 'components/UI/AppModal'
+import AppBox from 'components/UI/AppBox'
 import useFollowers from './hook'
 import Loader from './components/Loader'
 import i18n from './i18n'
-import AppBox from '../../../UI/AppBox'
 
 const EmptyList = dynamic(() => import('./components/EmptyList'))
 const UserList = dynamic(() => import('./components/UserList'))
@@ -13,12 +13,12 @@ const UserList = dynamic(() => import('./components/UserList'))
 export interface ModalFollowersProps {
   tmpl: 'followers'
   user: UserDetailDto
-  locale: Locale
   onClose: () => void
 }
 
-export default function ModalFollowers({ user, locale, onClose }: ModalFollowersProps): JSX.Element {
+export default function ModalFollowers({ user, onClose }: ModalFollowersProps): JSX.Element {
   const { id, characteristic } = user
+  const { locale } = useLocale()
   const { isLoading, followers, checkOnLoadMore, fetchNextPage } = useFollowers(id, characteristic.followers)
   const { title } = i18n[locale]
 

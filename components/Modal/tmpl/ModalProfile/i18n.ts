@@ -14,7 +14,7 @@ export default {
     name: 'Имя',
     nickname: 'Никнейм',
     button: 'Сохранить',
-    buttonLoading: 'Сохранение',
+    buttonLoading: 'Сохраняю',
     nicknameError: 'Никнейм занят',
   },
 }

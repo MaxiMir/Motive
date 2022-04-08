@@ -79,7 +79,7 @@ export default function UserView({ user, locale }: UserViewProps): JSX.Element {
             </AppBox>
           </AppBox>
         </AppBox>
-        {clientPage && <AddGoal locale={locale} />}
+        {clientPage && <AddGoal />}
         {!goals.length ? (
           <EmptyGoals clientPage={clientPage} locale={locale} />
         ) : (

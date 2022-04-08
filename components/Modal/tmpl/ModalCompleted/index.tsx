@@ -1,7 +1,7 @@
 import dynamic from 'next/dynamic'
 import { useTheme } from '@mui/material'
 import { UserDetailDto } from 'dto'
-import { Locale } from 'hooks/useLocale'
+import useLocale from 'hooks/useLocale'
 import AppModal from 'components/UI/AppModal'
 import AppBox from 'components/UI/AppBox'
 import useGoals from './hook'
@@ -14,13 +14,13 @@ const ConfirmationsList = dynamic(() => import('./components/ConfirmationsList')
 export interface ModalCompletedProps {
   tmpl: 'completed'
   user: UserDetailDto
-  locale: Locale
   onClose: () => void
 }
 
-export default function ModalCompleted({ user, locale, onClose }: ModalCompletedProps): JSX.Element {
+export default function ModalCompleted({ user, onClose }: ModalCompletedProps): JSX.Element {
   const { id, characteristic } = user
   const theme = useTheme()
+  const { locale } = useLocale()
   const { isLoading, confirmations, checkOnLoadMore, fetchNextPage } = useGoals(id, characteristic.completed)
   const { title, subtitle } = i18n[locale]
 

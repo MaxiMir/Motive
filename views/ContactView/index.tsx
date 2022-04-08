@@ -1,7 +1,7 @@
 import dynamic from 'next/dynamic'
 import { Button, Grid, Typography, useTheme } from '@mui/material'
 import { styled } from '@mui/system'
-import useLocale from 'hooks/useLocale'
+import { Locale } from 'hooks/useLocale'
 import AppContainer from 'components/UI/AppContainer'
 import AppTitle from 'components/UI/AppTitle'
 import AppBox from 'components/UI/AppBox'
@@ -19,9 +19,12 @@ const CRYPTOS = [
   { name: 'DOGE', wallet: 'D9btjbEFVpCStxQAaCdUGw9AjMnvsAUvbr' },
 ]
 
-export default function ContactView(): JSX.Element {
+interface ContactViewProps {
+  locale: Locale
+}
+
+export default function ContactView({ locale }: ContactViewProps): JSX.Element {
   const theme = useTheme()
-  const { locale } = useLocale()
   const { header, subheader, support } = i18n[locale]
 
   const openBlank = (url: string) => window.open(url, '_blank')

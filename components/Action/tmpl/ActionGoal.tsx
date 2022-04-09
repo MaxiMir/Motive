@@ -27,6 +27,7 @@ export default function ActionGoal({ name, title, count, disabled, onClick }: Ac
         minWidth: 'initial',
         transition: 'all .2s ease-in-out',
         borderColor: `${name}.main`,
+        color: 'common.white',
       }}
       onClick={onClick}
     >

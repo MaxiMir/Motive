@@ -43,7 +43,7 @@ export default function useSetFollowing(userId: number, following: boolean, loca
       }
     },
   })
-  const sendWithDebounce = useDebounceCb((add: boolean) => mutate({ userId, add }))
+  const sendDebounce = useDebounceCb((add: boolean) => mutate({ userId, add }))
 
   return () => {
     if (!client) {
@@ -51,6 +51,6 @@ export default function useSetFollowing(userId: number, following: boolean, loca
       return
     }
 
-    sendWithDebounce(!following)
+    sendDebounce(!following)
   }
 }

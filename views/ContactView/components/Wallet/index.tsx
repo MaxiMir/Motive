@@ -40,7 +40,7 @@ export default function Wallet({ name, wallet }: WalletProps): JSX.Element {
           {wallet}
         </Typography>
       </AppBox>
-      <AppIconButton name="content_copy" onClick={onClick} />
+      <AppIconButton name="content_copy" sx={{ color: 'zen.silent' }} onClick={onClick} />
     </AppBox>
   )
 }

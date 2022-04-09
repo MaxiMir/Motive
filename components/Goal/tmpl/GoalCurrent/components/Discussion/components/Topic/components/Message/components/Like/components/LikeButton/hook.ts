@@ -57,7 +57,7 @@ export default function useSetLike(message: MessageDto, answerFor: number | unde
     },
   })
 
-  const mutateWithDebounce = useDebounceCb((value: boolean) => mutate({ message, answerFor, add: value }))
+  const mutateDebounce = useDebounceCb((value: boolean) => mutate({ message, answerFor, add: value }))
 
   return () => {
     if (!client) {
@@ -65,6 +65,6 @@ export default function useSetLike(message: MessageDto, answerFor: number | unde
       return
     }
 
-    mutateWithDebounce(!like)
+    mutateDebounce(!like)
   }
 }

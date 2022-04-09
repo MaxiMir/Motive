@@ -46,7 +46,13 @@ export default function TaskField({
           component={AppInput}
         />
         <AppBox alignSelf="flex-start">
-          <AppIconButton name="close" aria-label={close} disabled={taskCount === 1} onClick={onRemove} />
+          <AppIconButton
+            name="close"
+            aria-label={close}
+            disabled={taskCount === 1}
+            sx={{ color: 'zen.silent' }}
+            onClick={onRemove}
+          />
         </AppBox>
       </AppBox>
       <AppBox alignItems="center" gap={1} pl={1} height={48}>

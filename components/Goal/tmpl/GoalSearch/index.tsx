@@ -1,4 +1,4 @@
-import { Button, Typography, useTheme } from '@mui/material'
+import { Button, Typography } from '@mui/material'
 import { makeStyles } from '@mui/styles'
 import { GoalCharacteristicName, GoalDto } from 'dto'
 import AppBox from 'components/UI/AppBox'
@@ -14,9 +14,7 @@ export interface GoalSearchProps {
 
 export default function GoalSearch({ goal }: GoalSearchProps): JSX.Element {
   const { name, characteristic, owner } = goal
-  const theme = useTheme()
   const classes = useStyles()
-  const colors = useCharacteristicColors()
 
   return (
     <Button variant="outlined" color="primary" href="#" className={classes.button}>
@@ -35,11 +33,10 @@ export default function GoalSearch({ goal }: GoalSearchProps): JSX.Element {
               tmpl="goal"
               name={characteristicName}
               value={characteristic[characteristicName]}
-              color={colors[characteristicName].fontColor}
               key={characteristicName}
             />
           ))}
-          <Characteristic tmpl="goal" name="runs for days" value={231} color={theme.palette.text.disabled} />
+          <Characteristic tmpl="goal" name="runningDays" value={231} />
         </AppBox>
       </AppBox>
     </Button>

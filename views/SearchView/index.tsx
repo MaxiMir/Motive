@@ -23,14 +23,14 @@ interface SearchViewProps {
 }
 
 export default function SearchView({ q, hashtags, goals, users, locale }: SearchViewProps): JSX.Element {
-  const { header, trendTitle, userTitle, goalTitle } = i18n[locale]
+  const { title, trendTitle, userTitle, goalTitle } = i18n[locale]
   const gradients = getGradients()
   const noResult = !users.length && !goals.length
 
   return (
     <AppContainer>
       <AppTitle name="search" mb={4}>
-        {header}
+        {title}
       </AppTitle>
       <AppBox flexDirection="column" gap={4}>
         <SearchForm q={q} />

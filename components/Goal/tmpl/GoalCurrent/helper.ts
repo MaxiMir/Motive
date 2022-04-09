@@ -1,18 +1,9 @@
 import produce from 'immer'
 import { differenceInCalendarDays } from 'date-fns'
-import { CalendarDto, DayDto, GoalDto, MemberDto, OwnershipDto, TaskDto } from 'dto'
+import { GoalDto, MemberDto, OwnershipDto, TaskDto } from 'dto'
 import { SEARCH_PARAMS, setQueryParams } from 'helpers/url'
-import { getDateKey } from './components/Calendar/helper'
 
 const SHOW_WEB_AFTER_DAYS = 14
-
-export const getDatesMap = (day: DayDto, calendar?: CalendarDto[]): Record<string, number> => {
-  if (!calendar) {
-    return { [getDateKey(day.date)]: day.id }
-  }
-
-  return calendar.reduce((acc, { id, date }) => ({ ...acc, [getDateKey(date)]: id }), {})
-}
 
 export const getClientOwnership = (
   goal: GoalDto,
@@ -45,10 +36,9 @@ export const getMember = (goal: GoalDto, membership: MemberDto[], userId?: numbe
   (userId && membership.find((m) => m.userId === userId && m.goalId === goal.id)) || undefined
 
 export type GoalInfo = {
-  datesMap: Record<string, number>
   daysGone: number
   daysGoneForOwner: number
-  runsForDays: number
+  daysPassed: number
   web: boolean
   form: boolean
   controls: boolean
@@ -59,13 +49,11 @@ export type GoalInfo = {
 export const getGoalInfo = (goal: GoalDto, clientOwnership: OwnershipDto): GoalInfo => {
   const { started, day, calendar } = goal
   const today = new Date()
-  const datesMap = getDatesMap(day, calendar)
-  const dates = Object.keys(datesMap)
-  const lastDay = dates[dates.length - 1] === getDateKey(day.date)
+  const lastDay = calendar[calendar.length - 1].date === day.date
   const controls = !clientOwnership.goal || lastDay
   const completeStage = clientOwnership.goal && controls && goal.stage <= goal.day.stage
   const daysGoneForOwner = differenceInCalendarDays(today, Date.parse(day.date))
-  const runsForDays = differenceInCalendarDays(today, Date.parse(started))
+  const daysPassed = differenceInCalendarDays(today, Date.parse(started))
   const daysGone = getDaysGone()
   const web = checkOnWeb()
   const form = checkOnForm()
@@ -110,10 +98,9 @@ export const getGoalInfo = (goal: GoalDto, clientOwnership: OwnershipDto): GoalI
   }
 
   return {
-    datesMap,
     daysGone,
     daysGoneForOwner,
-    runsForDays,
+    daysPassed,
     web,
     form,
     controls,

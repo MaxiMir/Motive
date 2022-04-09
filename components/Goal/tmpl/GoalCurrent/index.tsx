@@ -2,6 +2,7 @@ import { Fragment, useMemo } from 'react'
 import dynamic from 'next/dynamic'
 import { useTheme } from '@mui/material'
 import { GoalDto, GoalCharacteristicName, MemberDto } from 'dto'
+import useLocale from 'hooks/useLocale'
 import Characteristic from 'components/Characteristic'
 import AppBox from 'components/UI/AppBox'
 import AppTitle from 'components/UI/AppTitle'
@@ -14,6 +15,7 @@ import Menu from './components/Menu'
 import Discussion from './components/Discussion'
 import Views from './components/Views'
 import Task from './components/Task'
+import i18n from './i18n'
 
 const Typography = dynamic(() => import('@mui/material/Typography'))
 const Inheritance = dynamic(() => import('./components/Inheritance'))
@@ -46,14 +48,16 @@ export default function GoalCurrent({
   clientMembership,
 }: GoalCurrentProps): JSX.Element {
   const { id, name, hashtags, characteristic, owner, stages, day, inherited } = goal
-  const { id: dayId, date, tasks, views, feedback, topicCount } = day
+  const { id: dayId, tasks, views, feedback, topicCount } = day
   const theme = useTheme()
+  const { locale } = useLocale()
   const userMember = getMember(goal, userMembership, userId)
   const clientOwnership = getClientOwnership(goal, clientId, clientPage, clientMembership)
   const goalHref = getGoalHref(href, goal)
   const goalInfo = useMemo(() => getGoalInfo(goal, clientOwnership), [goal, clientOwnership])
   const redefinedGoals = redefineTasks(tasks, userMember)
   const rest = redefinedGoals.length - redefinedGoals.filter((t) => t.completed).length
+  const { stagesHeader, tasksHeader, soon, feedbackHeader, discussionHeader } = i18n[locale]
 
   useIncreaseViews(goal, clientId)
 
@@ -69,7 +73,8 @@ export default function GoalCurrent({
           md: '1 1 calc(50% - 12px)',
         },
         flexGrow: {
-          md: 1,
+          xs: 1,
+          md: 0,
         },
       }}
     >
@@ -109,15 +114,15 @@ export default function GoalCurrent({
                   <AppDot />
                 </Fragment>
               ))}
-              <Characteristic tmpl="goal" name="runs for days" value={goalInfo.runsForDays} />
+              <Characteristic tmpl="goal" name="runningDays" value={goalInfo.daysPassed} />
             </AppBox>
             {!!hashtags?.length && <Hashtags hashtags={hashtags} />}
-            <Calendar goalId={id} datesMap={goalInfo.datesMap} current={date} />
+            <Calendar goal={goal} />
             <div>
               {!!stages.length && (
                 <AppAccordion
                   name="stage"
-                  header="Stages"
+                  header={stagesHeader}
                   id={`stage-${dayId}`}
                   ariaControls="stages-content"
                   defaultExpanded
@@ -128,7 +133,7 @@ export default function GoalCurrent({
               )}
               <AppAccordion
                 name="task"
-                header="Tasks"
+                header={tasksHeader}
                 id={`tasksContent-${dayId}`}
                 ariaControls="tasks-content"
                 defaultExpanded
@@ -149,24 +154,20 @@ export default function GoalCurrent({
               />
               <AppAccordion
                 name="feedback"
-                header="Feedback"
+                header={feedbackHeader}
                 id={`feedbackContent-${dayId}`}
                 ariaControls="feedback-content"
                 defaultExpanded={!!feedback}
-                details={!feedback ? <Typography>Coming soon...</Typography> : <Feedback feedback={feedback} />}
+                details={!feedback ? <Typography>{soon}</Typography> : <Feedback feedback={feedback} />}
               />
               <AppAccordion
                 name="discussion"
                 header={
                   <>
-                    Discussion{' '}
-                    {!topicCount ? (
-                      ''
-                    ) : (
-                      <AppBox display={undefined} component="span" color="zen.silent">
-                        {topicCount}
-                      </AppBox>
-                    )}
+                    {discussionHeader}{' '}
+                    <AppBox display={undefined} component="span" color="zen.silent">
+                      {topicCount}
+                    </AppBox>
                   </>
                 }
                 id={`discussionContent-${dayId}`}

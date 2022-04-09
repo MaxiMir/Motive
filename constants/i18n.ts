@@ -13,6 +13,7 @@ export default {
     report: 'Report',
     leave: 'Leave',
     remove: 'Remove',
+    format: 'MM/dd/yyyy',
   },
   ru: {
     copy: 'Скопировано',
@@ -28,5 +29,6 @@ export default {
     report: 'Пожаловаться',
     leave: 'Покинуть',
     remove: 'Удалить',
+    format: 'dd/MM/yyyy',
   },
 }

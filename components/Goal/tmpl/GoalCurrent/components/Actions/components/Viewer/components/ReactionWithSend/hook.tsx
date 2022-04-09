@@ -46,7 +46,7 @@ export default function useSetReaction(goal: GoalDto, name: DayCharacteristicNam
       },
     },
   )
-  const sendWithDebounce = useDebounceCb((add: boolean) => mutate({ id, dayId: day.id, name, add }))
+  const sendDebounce = useDebounceCb((add: boolean) => mutate({ id, dayId: day.id, name, add }))
 
   return () => {
     if (!client) {
@@ -54,6 +54,6 @@ export default function useSetReaction(goal: GoalDto, name: DayCharacteristicNam
       return
     }
 
-    sendWithDebounce(!active)
+    sendDebounce(!active)
   }
 }

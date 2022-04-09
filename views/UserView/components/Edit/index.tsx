@@ -20,7 +20,7 @@ export default function Edit({ user, locale }: EditProps): JSX.Element {
 
   return (
     <>
-      <AppIconButton name="edit" title={title} onClick={toggleModal} />
+      <AppIconButton name="edit" title={title} sx={{ color: 'zen.silent' }} onClick={toggleModal} />
       {open && <Modal tmpl="profile" user={user} locale={locale} onClose={toggleModal} />}
     </>
   )

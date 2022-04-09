@@ -1,11 +1,10 @@
 import { Field, FieldArray, Form, FormikProvider } from 'formik'
-import { Grid, Typography, Theme } from '@mui/material'
+import { Grid, Box, Typography, Theme } from '@mui/material'
 import { createStyles, makeStyles } from '@mui/styles'
 import { GoalDto } from 'dto'
 import useSelectPhoto from 'hooks/useSelectPhoto'
 import Action from 'components/Action'
 import AppModal from 'components/UI/AppModal'
-import AppBox from 'components/UI/AppBox'
 import AppInput from 'components/UI/AppInput'
 import AppTitle from 'components/UI/AppTitle'
 import AppShakeIcon from 'components/UI/AppShakeIcon'
@@ -47,16 +46,16 @@ export default function ModalFeedback({ goal, onClose }: ModalFeedbackProps): JS
     >
       <FormikProvider value={form}>
         <Form autoComplete="off">
-          <AppBox flexDirection="column" alignItems="center" gap={3}>
-            <AppBox flexDirection="column" alignItems="center" gap={1}>
+          <Box display="flex" flexDirection="column" alignItems="center" gap={3}>
+            <Box display="flex" flexDirection="column" alignItems="center" gap={1}>
               <AppShakeIcon name="congratulations" />
               <Typography variant="subtitle1" className={classes.congratulations}>
                 Impressive! One step closer to your goal!
               </Typography>
-            </AppBox>
+            </Box>
             <Field name="text" label="How it went" color="secondary" multiline rows={3} component={AppInput} />
             {!!values.photos.length && (
-              <AppBox flexDirection="column" gap={2} width="100%">
+              <Box display="flex" flexDirection="column" gap={2} width="100%">
                 <AppTitle name="photo" variant="h6" component="h2" color="primary">
                   Photos
                 </AppTitle>
@@ -71,10 +70,10 @@ export default function ModalFeedback({ goal, onClose }: ModalFeedbackProps): JS
                     </Grid>
                   )}
                 </FieldArray>
-              </AppBox>
+              </Box>
             )}
             {values.video && (
-              <AppBox flexDirection="column" gap={2} width="100%">
+              <Box display="flex" flexDirection="column" gap={2} width="100%">
                 <AppTitle name="video" variant="h6" component="h2" color="primary">
                   Video
                 </AppTitle>
@@ -84,13 +83,13 @@ export default function ModalFeedback({ goal, onClose }: ModalFeedbackProps): JS
                   disabled={isSubmitting}
                   onRemove={() => setFieldValue('video', null)}
                 />
-              </AppBox>
+              </Box>
             )}
-            <AppBox gap={2} width="100%">
+            <Box display="flex" gap={2} width="100%">
               <Photo tmpl="input" multiple disabled={isSubmitting} onSelect={onSelectPhoto} />
               <Video tmpl="input" disabled onSelect={onSelectVideo} />
-            </AppBox>
-          </AppBox>
+            </Box>
+          </Box>
         </Form>
       </FormikProvider>
     </AppModal>

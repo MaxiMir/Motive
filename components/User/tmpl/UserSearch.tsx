@@ -1,7 +1,6 @@
-import { Typography, Button } from '@mui/material'
+import { Box, Typography, Button } from '@mui/material'
 import { UserCharacteristicName, UserDto } from 'dto'
 import AppAvatar from 'components/UI/AppAvatar'
-import AppBox from 'components/UI/AppBox'
 import { getUserHref } from 'views/UserView/helper'
 import Characteristic from 'components/Characteristic'
 
@@ -27,10 +26,10 @@ export default function UserSearch({ user }: UserSearchProps): JSX.Element {
         borderRadius: '12px',
       }}
     >
-      <AppBox flexDirection="column" alignItems="center" gap={2}>
+      <Box display="flex" flexDirection="column" alignItems="center" gap={2}>
         <AppAvatar src={avatar} size={120} />
         <Typography sx={{ color: 'common.white' }}>{name}</Typography>
-        <AppBox justifyContent="space-between" alignItems="center">
+        <Box display="flex" justifyContent="space-between" alignItems="center">
           {CHARACTERISTICS.map((characteristicName) => (
             <Characteristic
               tmpl="user"
@@ -39,8 +38,8 @@ export default function UserSearch({ user }: UserSearchProps): JSX.Element {
               key={characteristicName}
             />
           ))}
-        </AppBox>
-      </AppBox>
+        </Box>
+      </Box>
     </Button>
   )
 }

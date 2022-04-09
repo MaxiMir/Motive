@@ -1,6 +1,5 @@
-import { Button } from '@mui/material'
+import { Box, Button } from '@mui/material'
 import { numberToShort } from 'helpers/prepare'
-import AppBox from 'components/UI/AppBox'
 import AppEmoji, { AppEmojiName } from 'components/UI/AppEmoji'
 
 export interface ActionGoalProps {
@@ -31,10 +30,10 @@ export default function ActionGoal({ name, title, count, disabled, onClick }: Ac
       }}
       onClick={onClick}
     >
-      <AppBox gap={1}>
+      <Box display="flex" gap={1}>
         <AppEmoji name={name} />
         {countShort}
-      </AppBox>
+      </Box>
     </Button>
   )
 }

@@ -6,7 +6,7 @@ import Header from './Header'
 import Footer from './Footer'
 
 const Error = dynamic(() => import('pages/_error'))
-const AppBox = dynamic(() => import('components/UI/AppBox'))
+const Box = dynamic(() => import('@mui/material/Box'))
 
 interface LayoutProps {
   title?: string
@@ -44,9 +44,10 @@ const Layout: FC<LayoutProps> = ({ title, description, url, type, image, statusC
       {statusCode !== 200 ? (
         <Error statusCode={statusCode} />
       ) : (
-        <AppBox
+        <Box
           component="main"
           id="main"
+          display="flex"
           flexDirection="column"
           sx={{
             height: 'calc(100vh - 125px)',
@@ -59,7 +60,7 @@ const Layout: FC<LayoutProps> = ({ title, description, url, type, image, statusC
           }}
         >
           {children}
-        </AppBox>
+        </Box>
       )}
       <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" />
       <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />

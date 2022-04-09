@@ -4,6 +4,8 @@ import { CreateMessageDto, MessageType, TopicDto } from 'dto'
 import schema from 'schemas/message'
 import TopicService from 'services/TopicService'
 import useSnackbar from 'hooks/useSnackbar'
+import useLocale from 'hooks/useLocale'
+import i18n from './i18n'
 
 export default function useForm(
   dayId: number,
@@ -30,12 +32,15 @@ export default function useForm(
 }
 
 const useSendTopic = (type: MessageType) => {
+  const { locale } = useLocale()
   const [enqueueSnackbar] = useSnackbar()
+  const { getMessage } = i18n[locale]
+  const message = getMessage(type === MessageType.QUESTION)
 
   return useMutation(TopicService.create, {
     onSuccess() {
       enqueueSnackbar({
-        message: `${type === MessageType.QUESTION ? 'Question' : 'Answer'} added`,
+        message,
         severity: 'success',
         icon: 'speaker',
       })

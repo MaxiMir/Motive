@@ -1,11 +1,10 @@
 import { ChangeEvent } from 'react'
 import { Form, FormikProvider } from 'formik'
-import { FormControlLabel, Radio, RadioGroup, Typography, Theme } from '@mui/material'
+import { Box, FormControlLabel, Radio, RadioGroup, Typography, Theme } from '@mui/material'
 import { createStyles, makeStyles } from '@mui/styles'
 import { GoalDto } from 'dto'
 import Action from 'components/Action'
 import AppModal from 'components/UI/AppModal'
-import AppBox from 'components/UI/AppBox'
 import AppEmoji from 'components/UI/AppEmoji'
 import AppAccordion from 'components/UI/AppAccordion'
 import AppDecorEmoji from 'components/UI/AppDecorEmoji'
@@ -59,9 +58,9 @@ export default function ModalJoin({ goal, onClose }: ModalJoinProps): JSX.Elemen
               control={<Radio />}
               disabled={isSubmitting || disableBeginning}
               label={
-                <AppBox gap={1}>
+                <Box display="flex" gap={1}>
                   The beginning <AppEmoji name="serenity" onlyEmoji />
-                </AppBox>
+                </Box>
               }
             />
             <FormControlLabel
@@ -69,9 +68,9 @@ export default function ModalJoin({ goal, onClose }: ModalJoinProps): JSX.Elemen
               control={<Radio />}
               disabled={isSubmitting}
               label={
-                <AppBox gap={1}>
+                <Box display="flex" gap={1}>
                   This day <AppEmoji name="blast" onlyEmoji />
-                </AppBox>
+                </Box>
               }
             />
           </RadioGroup>

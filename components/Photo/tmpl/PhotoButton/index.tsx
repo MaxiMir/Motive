@@ -1,6 +1,5 @@
 import dynamic from 'next/dynamic'
-import { Button, IconButton } from '@mui/material'
-import AppBox from 'components/UI/AppBox'
+import { Box, Button, IconButton } from '@mui/material'
 import AppIcon from 'components/UI/AppIcon'
 
 const AppImage = dynamic(() => import('components/UI/AppImage'))
@@ -26,7 +25,8 @@ export default function PhotoButton({ image, disabled, onClick }: PhotoButtonPro
         overflow: 'hidden',
       }}
     >
-      <AppBox
+      <Box
+        display="flex"
         justifyContent="center"
         alignItems="center"
         sx={{
@@ -54,7 +54,7 @@ export default function PhotoButton({ image, disabled, onClick }: PhotoButtonPro
         >
           <AppIcon name="cancel" />
         </IconButton>
-      </AppBox>
+      </Box>
     </Button>
   )
 }

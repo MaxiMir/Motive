@@ -1,9 +1,8 @@
 import { ChangeEvent } from 'react'
 import dynamic from 'next/dynamic'
 import { Field } from 'formik'
-import { Switch, Tooltip, FormControlLabel } from '@mui/material'
+import { Box, Switch, Tooltip, FormControlLabel } from '@mui/material'
 import { Locale } from 'hooks/useLocale'
-import AppBox from 'components/UI/AppBox'
 import AppInput from 'components/UI/AppInput'
 import AppIcon from 'components/UI/AppIcon'
 import AppIconButton from 'components/UI/AppIconButton'
@@ -37,7 +36,7 @@ export default function TaskField({
 
   return (
     <>
-      <AppBox justifyContent="space-between" gap={1}>
+      <Box display="flex" justifyContent="space-between" gap={1}>
         <Field
           name={`tasks.${index}.name`}
           label={label}
@@ -45,7 +44,7 @@ export default function TaskField({
           autoFocus={!!index && index === taskCount - 1}
           component={AppInput}
         />
-        <AppBox alignSelf="flex-start">
+        <Box display="flex" alignSelf="flex-start">
           <AppIconButton
             name="close"
             aria-label={close}
@@ -53,9 +52,9 @@ export default function TaskField({
             sx={{ color: 'zen.silent' }}
             onClick={onRemove}
           />
-        </AppBox>
-      </AppBox>
-      <AppBox alignItems="center" gap={1} pl={1} height={48}>
+        </Box>
+      </Box>
+      <Box display="flex" alignItems="center" gap={1} pl={1} height={48}>
         {/* TODO ADD  */}
         <Tooltip title={tooltip}>
           <FormControlLabel label={remind} disabled control={<Switch size="small" onChange={onSwitchClick} />} />
@@ -69,7 +68,7 @@ export default function TaskField({
             sx={{ width: 100 }}
           />
         )}
-      </AppBox>
+      </Box>
     </>
   )
 }

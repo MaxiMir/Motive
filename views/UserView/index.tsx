@@ -1,10 +1,9 @@
 import dynamic from 'next/dynamic'
-import { Typography } from '@mui/material'
+import { Box, Typography } from '@mui/material'
 import { UserDetailDto, UserCharacteristicName, MainCharacteristicName } from 'dto'
 import { getUserHref } from 'views/UserView/helper'
 import useClient from 'hooks/useClient'
 import { Locale } from 'hooks/useLocale'
-import AppBox from 'components/UI/AppBox'
 import AppContainer from 'components/UI/AppContainer'
 import Avatar from './components/Avatar'
 import Characteristic from './components/Characteristic'
@@ -34,7 +33,7 @@ export default function UserView({ user, locale }: UserViewProps): JSX.Element {
 
   return (
     <AppContainer>
-      <AppBox alignItems="center" gap={1} mb={2}>
+      <Box display="flex" alignItems="center" gap={1} mb={2}>
         <Typography variant="h5" component="h1">
           {name}
         </Typography>
@@ -43,9 +42,10 @@ export default function UserView({ user, locale }: UserViewProps): JSX.Element {
         ) : (
           <Following id={user.id} following={following} locale={locale} />
         )}
-      </AppBox>
-      <AppBox flexDirection="column" gap={3} flex={1}>
-        <AppBox
+      </Box>
+      <Box display="flex" flexDirection="column" gap={3} flex={1}>
+        <Box
+          display="flex"
           sx={{
             gap: {
               xs: 1,
@@ -54,8 +54,8 @@ export default function UserView({ user, locale }: UserViewProps): JSX.Element {
           }}
         >
           <Avatar avatar={avatar} characteristic={characteristic} />
-          <AppBox flexDirection="column" justifyContent="space-between" flex={1}>
-            <AppBox justifyContent="space-between">
+          <Box display="flex" flexDirection="column" justifyContent="space-between" flex={1}>
+            <Box display="flex" justifyContent="space-between">
               {CHARACTERISTIC_NAMES.map((characteristicName) => (
                 <Characteristic
                   user={user}
@@ -65,8 +65,8 @@ export default function UserView({ user, locale }: UserViewProps): JSX.Element {
                   key={characteristicName}
                 />
               ))}
-            </AppBox>
-            <AppBox justifyContent="space-between">
+            </Box>
+            <Box display="flex" justifyContent="space-between">
               {SECOND_CHARACTERISTIC_NAMES.map((characteristicName) => (
                 <Characteristic
                   user={user}
@@ -76,14 +76,14 @@ export default function UserView({ user, locale }: UserViewProps): JSX.Element {
                   key={characteristicName}
                 />
               ))}
-            </AppBox>
-          </AppBox>
-        </AppBox>
+            </Box>
+          </Box>
+        </Box>
         {clientPage && <AddGoal />}
         {!goals.length ? (
           <EmptyGoals clientPage={clientPage} locale={locale} />
         ) : (
-          <AppBox flexWrap="wrap" gap={3}>
+          <Box display="flex" flexWrap="wrap" gap={3}>
             {goals.map((goal) => (
               <Goal
                 tmpl="current"
@@ -97,9 +97,9 @@ export default function UserView({ user, locale }: UserViewProps): JSX.Element {
                 key={goal.id}
               />
             ))}
-          </AppBox>
+          </Box>
         )}
-      </AppBox>
+      </Box>
     </AppContainer>
   )
 }

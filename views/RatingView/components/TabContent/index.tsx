@@ -1,7 +1,6 @@
 import { Container, Grid, Box, Typography } from '@mui/material'
 import { UserDto, MainCharacteristicName } from 'dto'
 import { Locale } from 'hooks/useLocale'
-import AppBox from 'components/UI/AppBox'
 import AppList from 'components/UI/AppList'
 import User from 'components/User'
 import i18n from './i18n'
@@ -21,11 +20,11 @@ export default function TabContent({ name, users, locale }: TabContentProps): JS
         <Container fixed>
           <Grid container alignItems="center" sx={{ height: 55 }}>
             <Grid item xs>
-              <AppBox justifyContent="center" width={22}>
+              <Box display="flex" justifyContent="center" width={22}>
                 <Typography variant="subtitle1" component="p">
                   <b>№</b>
                 </Typography>
-              </AppBox>
+              </Box>
             </Grid>
             <Grid item xs={8}>
               <Typography variant="subtitle1" component="p">

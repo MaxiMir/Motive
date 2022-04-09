@@ -1,7 +1,7 @@
+import { Box } from '@mui/material'
 import { getToday } from 'helpers/date'
 import { useSendCreateMember } from 'views/UserView/hook'
 import { Locale } from 'hooks/useLocale'
-import AppBox from 'components/UI/AppBox'
 import Action from 'components/Action'
 import i18n from './i18n'
 
@@ -17,7 +17,7 @@ export default function Repeat({ goalId, locale }: RepeatProps): JSX.Element {
   const onClick = () => mutate({ goalId, started: getToday() })
 
   return (
-    <AppBox justifyContent="flex-end">
+    <Box display="flex" justifyContent="flex-end">
       <Action
         tmpl="submit"
         isLoading={isLoading}
@@ -26,6 +26,6 @@ export default function Repeat({ goalId, locale }: RepeatProps): JSX.Element {
         emoji="join"
         onClick={onClick}
       />
-    </AppBox>
+    </Box>
   )
 }

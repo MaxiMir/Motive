@@ -1,4 +1,4 @@
-import AppBox from 'components/UI/AppBox'
+import { Box } from '@mui/material'
 import Hashtag from 'components/Hashtag'
 
 interface HashtagsProps {
@@ -7,10 +7,10 @@ interface HashtagsProps {
 
 export default function Hashtags({ hashtags }: HashtagsProps): JSX.Element {
   return (
-    <AppBox flexWrap="wrap" gap={1}>
+    <Box display="flex" flexWrap="wrap" gap={1}>
       {hashtags?.map((hashtag) => (
         <Hashtag tmpl="chip" name={hashtag} key={hashtag} />
       ))}
-    </AppBox>
+    </Box>
   )
 }

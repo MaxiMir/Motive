@@ -1,9 +1,8 @@
 import Image from 'next/image'
 import { signIn, SignInOptions } from 'next-auth/react'
 import { ClientSafeProvider } from 'next-auth/react/types'
-import { Button } from '@mui/material'
+import { Box, Button } from '@mui/material'
 import { Locale } from 'hooks/useLocale'
-import AppBox from 'components/UI/AppBox'
 import i18n from './i18n'
 
 interface ProviderProps {
@@ -26,9 +25,9 @@ export default function Provider({ provider, options, disabled, locale }: Provid
       key={id}
       onClick={() => signIn(id, options)}
     >
-      <AppBox width={120} justifyContent="flex-start">
+      <Box display="flex" width={120} justifyContent="flex-start">
         {pretext} {name}
-      </AppBox>
+      </Box>
     </Button>
   )
 }

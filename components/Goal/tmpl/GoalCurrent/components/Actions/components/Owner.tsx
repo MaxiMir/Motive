@@ -1,10 +1,9 @@
 import { useState } from 'react'
 import dynamic from 'next/dynamic'
-import { Button } from '@mui/material'
+import { Box, Button } from '@mui/material'
 import { GoalDto } from 'dto'
 import TooltipTomorrow from 'components/Goal/tmpl/GoalCurrent/components/TooltipTomorrow'
 import AppEmoji from 'components/UI/AppEmoji'
-import AppBox from 'components/UI/AppBox'
 
 const Modal = dynamic(() => import('components/Modal'))
 
@@ -19,7 +18,7 @@ export default function Owner({ goal, forTomorrow }: OwnerProps): JSX.Element {
   const toggleModal = () => setOpen(!open)
 
   return (
-    <AppBox justifyContent="flex-end">
+    <Box display="flex" justifyContent="flex-end">
       <TooltipTomorrow forTomorrow={forTomorrow}>
         <Button
           variant="outlined"
@@ -32,6 +31,6 @@ export default function Owner({ goal, forTomorrow }: OwnerProps): JSX.Element {
         </Button>
       </TooltipTomorrow>
       {open && <Modal tmpl="feedback" goal={goal} onClose={toggleModal} />}
-    </AppBox>
+    </Box>
   )
 }

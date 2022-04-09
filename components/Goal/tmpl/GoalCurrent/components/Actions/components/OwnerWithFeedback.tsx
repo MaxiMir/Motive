@@ -1,9 +1,8 @@
 import { useState } from 'react'
 import dynamic from 'next/dynamic'
-import { Button } from '@mui/material'
+import { Box, Button } from '@mui/material'
 import { GoalDto } from 'dto'
 import AppEmoji from 'components/UI/AppEmoji'
-import AppBox from 'components/UI/AppBox'
 
 const Modal = dynamic(() => import('components/Modal'))
 
@@ -23,7 +22,7 @@ export default function OwnerWithFeedback({ goal }: OwnerWithFeedbackProps): JSX
   const closeModal = () => setModal(undefined)
 
   return (
-    <AppBox justifyContent="space-between">
+    <Box display="flex" justifyContent="space-between">
       <Button variant="outlined" color="error" startIcon={<AppEmoji name="task" onlyEmoji />} onClick={onAddTasks}>
         Add tasks
       </Button>
@@ -34,6 +33,6 @@ export default function OwnerWithFeedback({ goal }: OwnerWithFeedbackProps): JSX
       )}
       {modal === 'tasks' && <Modal tmpl="tasks" goal={goal} onClose={closeModal} />}
       {modal === 'completion' && <Modal tmpl="completion" goal={goal} onClose={closeModal} />}
-    </AppBox>
+    </Box>
   )
 }

@@ -1,6 +1,6 @@
 import dynamic from 'next/dynamic'
 import { Field, FieldArray, Form, FormikProvider } from 'formik'
-import { AccordionSummary, Button, Typography, Accordion, AccordionDetails } from '@mui/material'
+import { Box, AccordionSummary, Button, Typography, Accordion, AccordionDetails } from '@mui/material'
 import { styled } from '@mui/system'
 import { MainCharacteristicName } from 'dto'
 import useFocus from 'hooks/useFocus'
@@ -8,7 +8,6 @@ import { Locale } from 'hooks/useLocale'
 import AppDecorEmoji from 'components/UI/AppDecorEmoji'
 import AppModal from 'components/UI/AppModal'
 import AppTitle from 'components/UI/AppTitle'
-import AppBox from 'components/UI/AppBox'
 import AppInput from 'components/UI/AppInput'
 import AppIcon from 'components/UI/AppIcon'
 import AppDot from 'components/UI/AppDot'
@@ -76,9 +75,9 @@ export default function ModalGoal({ locale, onClose }: ModalGoalProps): JSX.Elem
     >
       <FormikProvider value={form}>
         <Form autoComplete="off">
-          <AppBox flexDirection="column" gap={3}>
+          <Box display="flex" flexDirection="column" gap={3}>
             <Field name="name" label={name} component={AppInput} />
-            <AppBox flexDirection="column" gap={1}>
+            <Box display="flex" flexDirection="column" gap={1}>
               <Field
                 name="hashtags"
                 color="secondary"
@@ -91,8 +90,8 @@ export default function ModalGoal({ locale, onClose }: ModalGoalProps): JSX.Elem
               <ButtonCompact variant="outlined" color="secondary" size="small" onClick={onAddHashtag}>
                 # {hashtag}
               </ButtonCompact>
-            </AppBox>
-            <AppBox flexDirection="column" gap={2}>
+            </Box>
+            <Box display="flex" flexDirection="column" gap={2}>
               <AppTitle name="stage" variant="h6" component="h2" color="primary">
                 {stages}
               </AppTitle>
@@ -100,10 +99,10 @@ export default function ModalGoal({ locale, onClose }: ModalGoalProps): JSX.Elem
                 {({ push, remove }) => (
                   <>
                     {values.stages.map((_, index) => (
-                      <AppBox gap={1} key={index}>
-                        <AppBox height={40} alignItems="center" alignSelf="flex-start">
+                      <Box display="flex" gap={1} key={index}>
+                        <Box display="flex" height={40} alignItems="center" alignSelf="flex-start">
                           <AppDot size={10} />
-                        </AppBox>
+                        </Box>
                         <Field
                           name={`stages.${index}`}
                           label={`${stage} ${index + 1}`}
@@ -111,10 +110,10 @@ export default function ModalGoal({ locale, onClose }: ModalGoalProps): JSX.Elem
                           color="warning"
                           component={AppInput}
                         />
-                        <AppBox alignSelf="flex-start">
+                        <Box display="flex" alignSelf="flex-start">
                           <AppIconButton name="close" onClick={() => remove(index)} />
-                        </AppBox>
-                      </AppBox>
+                        </Box>
+                      </Box>
                     ))}
                     <ButtonCompact variant="outlined" color="warning" size="small" onClick={() => push('')}>
                       + {stageButton}
@@ -122,8 +121,8 @@ export default function ModalGoal({ locale, onClose }: ModalGoalProps): JSX.Elem
                   </>
                 )}
               </FieldArray>
-            </AppBox>
-            <AppBox flexDirection="column" gap={2}>
+            </Box>
+            <Box display="flex" flexDirection="column" gap={2}>
               <AppTitle name="task" variant="h6" component="h2" color="primary">
                 {tasksTitle}
               </AppTitle>
@@ -150,7 +149,7 @@ export default function ModalGoal({ locale, onClose }: ModalGoalProps): JSX.Elem
                   </>
                 )}
               </FieldArray>
-            </AppBox>
+            </Box>
             <div>
               <AppAccordion
                 name="stage"
@@ -173,12 +172,12 @@ export default function ModalGoal({ locale, onClose }: ModalGoalProps): JSX.Elem
                   aria-controls={pittAria}
                   id="old-pitt-note"
                 >
-                  <AppBox alignItems="center" gap={1}>
+                  <Box display="flex" alignItems="center" gap={1}>
                     <PaulIcon />
                     <Typography variant="h6" component="h3">
                       {pitt}
                     </Typography>
-                  </AppBox>
+                  </Box>
                 </AccordionSummary>
                 <AccordionDetails>
                   <Typography color="gray">
@@ -197,7 +196,7 @@ export default function ModalGoal({ locale, onClose }: ModalGoalProps): JSX.Elem
                 </AccordionDetails>
               </Accordion>
             </div>
-          </AppBox>
+          </Box>
         </Form>
       </FormikProvider>
     </AppModal>

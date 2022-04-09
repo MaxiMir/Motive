@@ -1,5 +1,5 @@
+import { Box } from '@mui/material'
 import AppImage from 'components/UI/AppImage'
-import AppBox from 'components/UI/AppBox'
 
 interface AvatarProps {
   src: string
@@ -8,7 +8,8 @@ interface AvatarProps {
 
 export default function Avatar({ src, size }: AvatarProps): JSX.Element {
   return (
-    <AppBox
+    <Box
+      display="flex"
       justifyContent="center"
       alignItems="center"
       width={size}
@@ -16,6 +17,6 @@ export default function Avatar({ src, size }: AvatarProps): JSX.Element {
       sx={{ borderRadius: '50%', overflow: 'hidden' }}
     >
       <AppImage src={src} alt="" width={size} height={size} objectFit="cover" />
-    </AppBox>
+    </Box>
   )
 }

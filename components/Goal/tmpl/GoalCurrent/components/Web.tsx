@@ -1,10 +1,10 @@
 import Image from 'next/image'
-import AppBox from 'components/UI/AppBox'
+import { Box } from '@mui/material'
 
 export default function Web(): JSX.Element {
   return (
-    <AppBox position="absolute" right={16} top={48}>
+    <Box display="flex" position="absolute" right={16} top={48}>
       <Image src="/images/svg/web.svg" alt="Pitt's web" width={211} height={202} priority />
-    </AppBox>
+    </Box>
   )
 }

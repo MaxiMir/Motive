@@ -1,4 +1,3 @@
-import { makeStyles } from '@mui/styles'
 import { UserBaseDto } from 'dto'
 import { getUserHref } from 'views/UserView/helper'
 import AppAvatar from 'components/UI/AppAvatar'
@@ -11,18 +10,11 @@ export interface UserAvatarProps {
 
 export default function UserAvatar({ user }: UserAvatarProps): JSX.Element {
   const { nickname, name, avatar } = user
-  const classes = useStyles()
   const href = getUserHref(nickname)
 
   return (
-    <AppLink href={href} title={name} className={classes.link}>
+    <AppLink href={href} title={name} sx={{ height: 26 }}>
       <AppAvatar src={avatar} size={26} />
     </AppLink>
   )
 }
-
-const useStyles = makeStyles({
-  link: {
-    height: 26,
-  },
-})

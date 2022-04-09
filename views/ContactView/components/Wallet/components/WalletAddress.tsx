@@ -1,5 +1,4 @@
-import { Typography } from '@mui/material'
-import AppBox from 'components/UI/AppBox'
+import { Box, Typography } from '@mui/material'
 
 interface WalletAddressProps {
   wallet: string
@@ -7,10 +6,10 @@ interface WalletAddressProps {
 
 export default function WalletAddress({ wallet }: WalletAddressProps): JSX.Element {
   return (
-    <AppBox alignItems="flex-end" height={24}>
+    <Box display="flex" alignItems="flex-end" height={24}>
       <Typography variant="caption" sx={{ color: 'zen.silent' }}>
         {wallet}
       </Typography>
-    </AppBox>
+    </Box>
   )
 }

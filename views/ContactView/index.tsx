@@ -1,10 +1,9 @@
 import dynamic from 'next/dynamic'
-import { Button, Grid, Typography, useTheme } from '@mui/material'
+import { Grid, Box, Button, Typography, useTheme } from '@mui/material'
 import { styled } from '@mui/system'
 import { Locale } from 'hooks/useLocale'
 import AppContainer from 'components/UI/AppContainer'
 import AppTitle from 'components/UI/AppTitle'
-import AppBox from 'components/UI/AppBox'
 import { TelegramIcon, LinkedInIcon } from 'components/UI/icons'
 import AppIcon from 'components/UI/AppIcon'
 import AppEmoji from 'components/UI/AppEmoji'
@@ -40,7 +39,7 @@ export default function ContactView({ locale }: ContactViewProps): JSX.Element {
       <AppTitle name="contact" mb={3}>
         {header}
       </AppTitle>
-      <AppBox flexDirection="column" gap={2}>
+      <Box display="flex" flexDirection="column" gap={2}>
         <Typography>
           {subheader} <AppEmoji name="wink" onlyEmoji />.
         </Typography>
@@ -52,13 +51,13 @@ export default function ContactView({ locale }: ContactViewProps): JSX.Element {
               }}
               onClick={onClickEmail}
             >
-              <ButtonContent alignItems="center" justifyContent="center">
-                <AppBox flexDirection="column" alignItems="center" gap={2}>
+              <ButtonContent display="flex" alignItems="center" justifyContent="center">
+                <Box display="flex" flexDirection="column" alignItems="center" gap={2}>
                   <Typography variant="h5" component="p">
                     Email
                   </Typography>
                   <AppIcon name="email" />
-                </AppBox>
+                </Box>
               </ButtonContent>
             </ButtonLink>
           </Grid>
@@ -69,13 +68,13 @@ export default function ContactView({ locale }: ContactViewProps): JSX.Element {
               }}
               onClick={onClickTelegram}
             >
-              <ButtonContent alignItems="center" justifyContent="center">
-                <AppBox flexDirection="column" alignItems="center" gap={2}>
+              <ButtonContent display="flex" alignItems="center" justifyContent="center">
+                <Box display="flex" flexDirection="column" alignItems="center" gap={2}>
                   <Typography variant="h5" component="p">
                     Telegram
                   </Typography>
                   <TelegramIcon />
-                </AppBox>
+                </Box>
               </ButtonContent>
             </ButtonLink>
           </Grid>
@@ -86,26 +85,26 @@ export default function ContactView({ locale }: ContactViewProps): JSX.Element {
               }}
               onClick={onClickLinkedIn}
             >
-              <ButtonContent alignItems="center" justifyContent="center">
-                <AppBox flexDirection="column" alignItems="center" gap={2}>
+              <ButtonContent display="flex" alignItems="center" justifyContent="center">
+                <Box display="flex" flexDirection="column" alignItems="center" gap={2}>
                   <Typography variant="h5" component="p">
                     LinkedIn
                   </Typography>
                   <LinkedInIcon />
-                </AppBox>
+                </Box>
               </ButtonContent>
             </ButtonLink>
           </Grid>
         </Grid>
-        <AppBox flexDirection="column" gap={1} mt={3}>
+        <Box display="flex" flexDirection="column" gap={1} mt={3}>
           <AppTitle name="coin" variant="h1" component="h3" mb={3}>
             {support}
           </AppTitle>
           {CRYPTOS.map(({ name, wallet }) => (
             <Wallet name={name} wallet={wallet} key={name} />
           ))}
-        </AppBox>
-      </AppBox>
+        </Box>
+      </Box>
     </AppContainer>
   )
 }
@@ -126,7 +125,7 @@ const ButtonLink = styled(Button)(({ theme }) => ({
   },
 }))
 
-const ButtonContent = styled(AppBox)({
+const ButtonContent = styled(Box)({
   width: '100%',
   position: 'absolute',
   top: 0,

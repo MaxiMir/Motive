@@ -1,4 +1,4 @@
-import AppBox from './AppBox'
+import { Box } from '@mui/material'
 
 interface AppDotProps {
   size?: number
@@ -6,7 +6,8 @@ interface AppDotProps {
 
 export default function AppDot({ size = 3 }: AppDotProps): JSX.Element {
   return (
-    <AppBox
+    <Box
+      display="flex"
       width={size}
       height={size}
       sx={{

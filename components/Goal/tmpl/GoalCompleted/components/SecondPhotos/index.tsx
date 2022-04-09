@@ -1,7 +1,7 @@
+import { Box } from '@mui/material'
 import { PhotoDto } from 'dto'
 import { Locale } from 'hooks/useLocale'
 import AppAccordion from 'components/UI/AppAccordion'
-import AppBox from 'components/UI/AppBox'
 import Gallery from 'components/Gallery'
 import i18n from './i18n'
 
@@ -21,9 +21,9 @@ export default function SecondPhotos({ id, photos, locale }: SecondPhotosProps):
       id={`completed-goal-photos-${id}`}
       ariaControls={ariaControls}
       details={
-        <AppBox display="block" flex={1}>
+        <Box flex={1}>
           <Gallery tmpl="simple" photos={photos} animation />
-        </AppBox>
+        </Box>
       }
     />
   )

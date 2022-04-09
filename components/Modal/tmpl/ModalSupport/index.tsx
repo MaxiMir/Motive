@@ -1,10 +1,9 @@
 import { Field, Form, FormikProvider } from 'formik'
-import { Typography, Theme } from '@mui/material'
+import { Box, Typography, Theme } from '@mui/material'
 import { createStyles, makeStyles } from '@mui/styles'
 import { GoalDto, UserBaseDto } from 'dto'
 import Action from 'components/Action'
 import AppModal from 'components/UI/AppModal'
-import AppBox from 'components/UI/AppBox'
 import AppFadeIcon from 'components/UI/AppFadeIcon'
 import AppInput from 'components/UI/AppInput'
 import AppAccordion from 'components/UI/AppAccordion'
@@ -46,7 +45,7 @@ export default function ModalSupport({ goal, owner, onClose }: ModalSupportProps
     >
       <FormikProvider value={form}>
         <Form autoComplete="off">
-          <AppBox flexDirection="column" alignItems="center" gap={3}>
+          <Box display="flex" flexDirection="column" alignItems="center" gap={3}>
             <AppFadeIcon name="support" />
             <Field name="text" label="Your message" color="secondary" multiline rows={3} component={AppInput} />
             <div className={classes.accordionWrap}>
@@ -72,7 +71,7 @@ export default function ModalSupport({ goal, owner, onClose }: ModalSupportProps
                 }
               />
             </div>
-          </AppBox>
+          </Box>
         </Form>
       </FormikProvider>
     </AppModal>

@@ -1,7 +1,6 @@
-import { Button, Typography } from '@mui/material'
+import { Box, Button, Typography } from '@mui/material'
 import { numberToShort } from 'helpers/prepare'
 import useLocale from 'hooks/useLocale'
-import AppBox from 'components/UI/AppBox'
 import { getHashtagHref } from './helper'
 
 export interface HashtagSearchProps {
@@ -34,7 +33,8 @@ export default function HashtagSearch({ name, gradient, views }: HashtagSearchPr
       }}
       onClick={onClick}
     >
-      <AppBox
+      <Box
+        display="flex"
         alignItems="flex-start"
         flexDirection="column"
         justifyContent="space-between"
@@ -61,7 +61,7 @@ export default function HashtagSearch({ name, gradient, views }: HashtagSearchPr
           <b>{name}</b>
         </Typography>
         <Typography sx={{ opacity: 0.5 }}>{shortViews}</Typography>
-      </AppBox>
+      </Box>
     </Button>
   )
 }

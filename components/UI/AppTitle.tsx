@@ -1,6 +1,5 @@
 import { ElementType } from 'react'
-import { Typography, TypographyProps } from '@mui/material'
-import AppBox from './AppBox'
+import { Box, Typography, TypographyProps } from '@mui/material'
 import AppEmoji, { AppEmojiName } from './AppEmoji'
 
 interface AppTitleProps extends TypographyProps {
@@ -14,11 +13,11 @@ export default function AppTitle({ name, variant = 'h1', component = 'h1', mb, c
   const gap = isH1 ? 2 : 1
 
   return (
-    <AppBox alignItems="center" gap={gap} mb={mb}>
+    <Box display="flex" alignItems="center" gap={gap} mb={mb}>
       <AppEmoji name={name} variant={variant} />
       <Typography variant={variant} component={component}>
         {children}
       </Typography>
-    </AppBox>
+    </Box>
   )
 }

@@ -4,7 +4,6 @@ import { Box, useTheme } from '@mui/material'
 import { GoalDto, GoalCharacteristicName, MemberDto } from 'dto'
 import useLocale from 'hooks/useLocale'
 import Characteristic from 'components/Characteristic'
-import AppBox from 'components/UI/AppBox'
 import AppTitle from 'components/UI/AppTitle'
 import AppDot from 'components/UI/AppDot'
 import AppAccordion from 'components/UI/AppAccordion'
@@ -72,7 +71,8 @@ export default function GoalCurrent({
   useIncreaseViews(goal, clientId)
 
   return (
-    <AppBox
+    <Box
+      display="flex"
       flexDirection="column"
       gap={2}
       id={`goal-${id}`}
@@ -96,7 +96,8 @@ export default function GoalCurrent({
           borderRadius: '15px',
         }}
       >
-        <AppBox
+        <Box
+          display="flex"
           flexDirection="column"
           justifyContent="space-between"
           gap={3}
@@ -109,14 +110,14 @@ export default function GoalCurrent({
           }}
         >
           {inherited && <Inheritance owner={owner} />}
-          <AppBox flexDirection="column" gap={3}>
-            <AppBox justifyContent="space-between" alignItems="center">
+          <Box display="flex" flexDirection="column" gap={3}>
+            <Box display="flex" justifyContent="space-between" alignItems="center">
               <AppTitle name="goal" variant="h6" component="h3">
                 <b>{name}</b>
               </AppTitle>
               <Menu goal={goal} title={name} href={goalHref} clientOwnership={clientOwnership} />
-            </AppBox>
-            <AppBox justifyContent="space-between" alignItems="center">
+            </Box>
+            <Box display="flex" justifyContent="space-between" alignItems="center">
               {CHARACTERISTICS.map((characteristicName) => (
                 <Fragment key={characteristicName}>
                   <Characteristic tmpl="goal" name={characteristicName} value={characteristic[characteristicName]} />
@@ -124,7 +125,7 @@ export default function GoalCurrent({
                 </Fragment>
               ))}
               <Characteristic tmpl="goal" name="runningDays" value={goalInfo.daysPassed} />
-            </AppBox>
+            </Box>
             {!!hashtags?.length && <Hashtags hashtags={hashtags} />}
             <Calendar goal={goal} />
             <div>
@@ -147,7 +148,7 @@ export default function GoalCurrent({
                 ariaControls={tasksAria}
                 defaultExpanded
                 details={
-                  <AppBox flexDirection="column" gap={1}>
+                  <Box display="flex" flexDirection="column" gap={1}>
                     {redefinedGoals.map((task) => (
                       <Task
                         goalId={id}
@@ -158,7 +159,7 @@ export default function GoalCurrent({
                         key={task.id}
                       />
                     ))}
-                  </AppBox>
+                  </Box>
                 }
               />
               <AppAccordion
@@ -188,16 +189,16 @@ export default function GoalCurrent({
                 }
               />
             </div>
-          </AppBox>
-          <AppBox flexDirection="column" gap={2}>
+          </Box>
+          <Box display="flex" flexDirection="column" gap={2}>
             {goalInfo.controls && (
               <Actions goal={goal} owner={owner} forTomorrow={goalInfo.forTomorrow} clientOwnership={clientOwnership} />
             )}
             <Views views={views} />
-          </AppBox>
+          </Box>
           {goalInfo.web && <Web />}
-        </AppBox>
+        </Box>
       </Box>
-    </AppBox>
+    </Box>
   )
 }

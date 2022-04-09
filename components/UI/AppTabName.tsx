@@ -1,9 +1,8 @@
-import { Typography, useTheme } from '@mui/material'
+import { Box, Typography, useTheme } from '@mui/material'
 import i18n from 'constants/i18n'
 import { MainCharacteristicName } from 'dto'
 import { Locale } from 'hooks/useLocale'
 import AppEmoji, { AppEmojiName } from 'components/UI/AppEmoji'
-import AppBox from 'components/UI/AppBox'
 
 export interface AppTabNameProps {
   name: MainCharacteristicName
@@ -16,7 +15,7 @@ export default function AppTabName({ name, emoji, locale }: AppTabNameProps): JS
   const tabName = i18n[locale][name]
 
   return (
-    <AppBox alignItems="center" gap={1}>
+    <Box display="flex" alignItems="center" gap={1}>
       <AppEmoji name={emoji} variant="h6" />
       <Typography
         sx={{
@@ -28,6 +27,6 @@ export default function AppTabName({ name, emoji, locale }: AppTabNameProps): JS
       >
         {tabName}
       </Typography>
-    </AppBox>
+    </Box>
   )
 }

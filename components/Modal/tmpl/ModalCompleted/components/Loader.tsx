@@ -1,5 +1,4 @@
-import { Skeleton } from '@mui/material'
-import AppBox from 'components/UI/AppBox'
+import { Box, Skeleton } from '@mui/material'
 
 const VISIBLE_QUANTITY = 2
 
@@ -11,20 +10,20 @@ export default function Loader({ count }: LoaderProps): JSX.Element {
   const displayedCount = count > VISIBLE_QUANTITY ? VISIBLE_QUANTITY : count
 
   return (
-    <AppBox flexDirection="column" gap={2} padding={2}>
+    <Box display="flex" flexDirection="column" gap={2} padding={2}>
       {[...new Array(displayedCount)].map((_, key) => (
-        <AppBox flexDirection="column" justifyContent="space-between" flex={1} gap={3} key={key}>
+        <Box display="flex" flexDirection="column" justifyContent="space-between" flex={1} gap={3} key={key}>
           <Skeleton animation="wave" width={100} height={16} />
           <Skeleton animation="wave" variant="rectangular" width="100%" height={200} />
-          <AppBox justifyContent="space-between">
+          <Box display="flex" justifyContent="space-between">
             <Skeleton animation="wave" width={50} height={30} />
             <Skeleton animation="wave" width={50} height={30} />
             <Skeleton animation="wave" width={50} height={30} />
             <Skeleton animation="wave" width={50} height={30} />
-          </AppBox>
+          </Box>
           <Skeleton animation="wave" width={100} height={16} />
-        </AppBox>
+        </Box>
       ))}
-    </AppBox>
+    </Box>
   )
 }

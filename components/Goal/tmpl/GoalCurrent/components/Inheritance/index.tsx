@@ -1,9 +1,8 @@
-import { Typography } from '@mui/material'
+import { Box, Typography } from '@mui/material'
 import { styled } from '@mui/system'
 import { UserBaseDto } from 'dto'
 import useLocale from 'hooks/useLocale'
 import User from 'components/User'
-import AppBox from 'components/UI/AppBox'
 import i18n from './i18n'
 
 interface InheritedProps {
@@ -16,18 +15,18 @@ export default function Inheritance({ owner }: InheritedProps): JSX.Element {
   const width = locale === 'ru' ? 100 : 90
 
   return (
-    <InheritanceBox justifyContent="center" width={width}>
-      <AppBox alignItems="center" gap={0.5}>
+    <InheritanceBox display="flex" justifyContent="center" width={width}>
+      <Box display="flex" alignItems="center" gap={0.5}>
         <Typography variant="caption">
           <b>{title}</b>
         </Typography>
         <User tmpl="avatar" user={owner} />
-      </AppBox>
+      </Box>
     </InheritanceBox>
   )
 }
 
-const InheritanceBox = styled(AppBox)(({ theme }) => ({
+const InheritanceBox = styled(Box)(({ theme }) => ({
   position: 'absolute',
   top: -19,
   left: '50%',

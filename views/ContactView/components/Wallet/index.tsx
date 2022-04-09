@@ -1,10 +1,9 @@
 import Image from 'next/image'
-import { Typography } from '@mui/material'
+import { Box, Typography } from '@mui/material'
 import i18n from 'constants/i18n'
 import { copyHandler } from 'helpers/dom'
 import useSnackbar from 'hooks/useSnackbar'
 import useLocale from 'hooks/useLocale'
-import AppBox from 'components/UI/AppBox'
 import AppIconButton from 'components/UI/AppIconButton'
 
 interface WalletProps {
@@ -23,10 +22,11 @@ export default function Wallet({ name, wallet }: WalletProps): JSX.Element {
   const onClick = () => copyHandler(wallet, onCopySuccess, onCopyError)
 
   return (
-    <AppBox flexWrap="wrap" alignItems="center" gap={1}>
+    <Box display="flex" flexWrap="wrap" alignItems="center" gap={1}>
       <Image src={`/images/svg/${name}.svg`} alt="" width={32} height={32} />
       <Typography>{name}:</Typography>
-      <AppBox
+      <Box
+        display="flex"
         alignItems="flex-end"
         height={24}
         sx={{
@@ -39,8 +39,8 @@ export default function Wallet({ name, wallet }: WalletProps): JSX.Element {
         <Typography variant="caption" sx={{ color: 'zen.silent' }}>
           {wallet}
         </Typography>
-      </AppBox>
+      </Box>
       <AppIconButton name="content_copy" sx={{ color: 'zen.silent' }} onClick={onClick} />
-    </AppBox>
+    </Box>
   )
 }

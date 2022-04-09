@@ -1,11 +1,10 @@
 import { KeyboardEvent } from 'react'
-import { Drawer, List, ListItem, ListItemIcon, ListItemText, useTheme } from '@mui/material'
+import { Box, Drawer, List, ListItem, ListItemIcon, ListItemText, useTheme } from '@mui/material'
 import EmailIcon from '@mui/icons-material/Email'
 import SMS from '@mui/icons-material/Textsms'
 import ContentCopyIcon from '@mui/icons-material/ContentCopy'
 import { copyHandler } from 'helpers/dom'
 import { Locale } from 'hooks/useLocale'
-import AppBox from 'components/UI/AppBox'
 import { FacebookIcon, TelegramIcon, TwitterIcon, VKIcon } from 'components/UI/icons'
 import { clickHandler } from './helper'
 import i18n from './i18n'
@@ -76,12 +75,12 @@ const Menu = ({ title, url, locale, onCopyEnd, onCopyError, onClose }: MenuProps
         <List>
           {shareItems.map(({ text, Icon, onClick }) => (
             <ListItem button sx={{ height: 65 }} key={text} onClick={onClick}>
-              <AppBox alignItems="center" sx={{ width: 240, margin: '0 auto' }}>
+              <Box display="flex" alignItems="center" sx={{ width: 240, margin: '0 auto' }}>
                 <ListItemIcon>
                   <Icon color="secondary" />
                 </ListItemIcon>
                 <ListItemText primary={text} sx={{ color: theme.palette.text.disabled }} />
-              </AppBox>
+              </Box>
             </ListItem>
           ))}
         </List>

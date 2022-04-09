@@ -1,7 +1,8 @@
-import { useTheme } from '@mui/material'
-import AppBox from 'components/UI/AppBox'
+import { Box, useTheme } from '@mui/material'
+import useLocale from 'hooks/useLocale'
 import AppEmoji from 'components/UI/AppEmoji'
 import AppTooltip from 'components/UI/AppTooltip'
+import i18n from './i18n'
 
 interface SupportSignProps {
   name: string
@@ -9,11 +10,14 @@ interface SupportSignProps {
 
 export default function SupportSign({ name }: SupportSignProps): JSX.Element {
   const theme = useTheme()
-  const title = `Support ${name}`
+  const { locale } = useLocale()
+  const { getTitle } = i18n[locale]
+  const title = getTitle(name)
 
   return (
     <AppTooltip title={title} aria-label={title}>
-      <AppBox
+      <Box
+        display="flex"
         justifyContent="center"
         alignItems="center"
         sx={{
@@ -24,7 +28,7 @@ export default function SupportSign({ name }: SupportSignProps): JSX.Element {
         }}
       >
         <AppEmoji name="support" onlyEmoji />
-      </AppBox>
+      </Box>
     </AppTooltip>
   )
 }

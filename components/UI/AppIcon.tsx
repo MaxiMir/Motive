@@ -1,12 +1,12 @@
-import { Box } from '@mui/material'
+import { Box, BoxProps } from '@mui/material'
 
-interface AppIconProps {
+interface AppIconProps extends BoxProps {
   name: string
 }
 
-export default function AppIcon({ name }: AppIconProps): JSX.Element {
+export default function AppIcon({ name, ...props }: AppIconProps): JSX.Element {
   return (
-    <Box component="span" className="material-icons">
+    <Box component="span" className="material-icons" {...props}>
       {name}
     </Box>
   )

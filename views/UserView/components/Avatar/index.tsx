@@ -1,7 +1,6 @@
-import { useTheme } from '@mui/material'
+import { Box, useTheme } from '@mui/material'
 import { styled } from '@mui/system'
 import { UserCharacteristicDto } from 'dto'
-import AppBox from 'components/UI/AppBox'
 import AppCircle from 'components/UI/AppCircle'
 import AppAvatar from 'components/UI/AppAvatar'
 import { getCircleItems } from './helper'
@@ -16,20 +15,20 @@ export default function Avatar({ avatar, characteristic }: AvatarProps): JSX.Ele
   const circleItems = getCircleItems(characteristic)
 
   return (
-    <AppBox sx={{ position: 'relative', width: 126, height: 126 }}>
+    <Box sx={{ position: 'relative', width: 126, height: 126 }}>
       {circleItems.map(({ name, ...props }) => (
-        <Circle justifyContent="center" alignItems="center" key={name}>
+        <Circle display="flex" justifyContent="center" alignItems="center" key={name}>
           <AppCircle light={theme.palette[name].light} dark={theme.palette[name].dark} {...props} />
         </Circle>
       ))}
-      <Circle justifyContent="center" alignItems="center">
+      <Circle display="flex" justifyContent="center" alignItems="center">
         <AppAvatar src={avatar} size={80} />
       </Circle>
-    </AppBox>
+    </Box>
   )
 }
 
-const Circle = styled(AppBox)({
+const Circle = styled(Box)({
   position: 'absolute',
   top: 0,
   bottom: 0,

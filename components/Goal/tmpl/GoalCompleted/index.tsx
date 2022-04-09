@@ -5,7 +5,6 @@ import { ConfirmationDto, GoalCharacteristicName } from 'dto'
 import useClient from 'hooks/useClient'
 import useLocale from 'hooks/useLocale'
 import AppTitle from 'components/UI/AppTitle'
-import AppBox from 'components/UI/AppBox'
 import AppDot from 'components/UI/AppDot'
 import AppTooltip from 'components/UI/AppTooltip'
 import Characteristic from 'components/Characteristic'
@@ -48,7 +47,8 @@ export default function GoalCompleted({ confirmation, userId, inView, onView }: 
         borderRadius: '13px',
       }}
     >
-      <AppBox
+      <Box
+        display="flex"
         flexDirection="column"
         gap={2}
         sx={{
@@ -60,7 +60,7 @@ export default function GoalCompleted({ confirmation, userId, inView, onView }: 
           borderRadius: '11px',
         }}
       >
-        <AppBox flexDirection="column" gap={1}>
+        <Box display="flex" flexDirection="column" gap={1}>
           <AppTitle name="cup" variant="h6" component="h3">
             {goal.name}
           </AppTitle>
@@ -73,20 +73,20 @@ export default function GoalCompleted({ confirmation, userId, inView, onView }: 
               </Box>
             </AppTooltip>
           </Typography>
-        </AppBox>
+        </Box>
         {mainPhoto && <Gallery tmpl="simple" photos={[mainPhoto]} animation />}
-        <AppBox justifyContent="space-between" alignItems="center">
+        <Box display="flex" justifyContent="space-between" alignItems="center">
           {CHARACTERISTICS.map((characteristicName) => (
             <Fragment key={characteristicName}>
               <Characteristic tmpl="goal" name={characteristicName} value={goal.characteristic[characteristicName]} />
               {characteristicName !== 'members' && <AppDot />}
             </Fragment>
           ))}
-        </AppBox>
+        </Box>
         {confirmation.text && <Typography>{confirmation.text}</Typography>}
         {!!secondPhotos?.length && <SecondPhotos id={goal.id} photos={secondPhotos} locale={locale} />}
         {renderRepeat && <Repeat goalId={goal.id} locale={locale} />}
-      </AppBox>
+      </Box>
       {onView && <>{inView && <AppInView onView={onView} />}</>}
     </Box>
   )

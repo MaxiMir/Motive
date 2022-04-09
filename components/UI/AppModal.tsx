@@ -4,7 +4,7 @@ import { Dialog, DialogContent, DialogProps, DialogTitle } from '@mui/material'
 import { styled } from '@mui/system'
 
 const DialogActions = dynamic(() => import('@mui/material/DialogActions'))
-const AppBox = dynamic(() => import('./AppBox'))
+const Box = dynamic(() => import('@mui/material/Box'))
 
 interface AppModalProps {
   title: JSX.Element | string
@@ -16,15 +16,17 @@ interface AppModalProps {
 const AppModal: FC<AppModalProps> = ({ title, actions, maxWidth, children, onClose }) => {
   return (
     <DialogWithBackdrop open fullWidth maxWidth={maxWidth} onClose={onClose}>
-      <DialogTitle sx={{ padding: '16px 24px 8px', textAlign: 'center', textTransform: 'uppercase' }}>{title}</DialogTitle>
+      <DialogTitle sx={{ padding: '16px 24px 8px', textAlign: 'center', textTransform: 'uppercase' }}>
+        {title}
+      </DialogTitle>
       <DialogContent sx={{ padding: '12px 24px 24px !important' }}>{children}</DialogContent>
       {actions && (
         <DialogActions>
-          <AppBox flex={1} justifyContent="space-between" pb={2} px={2}>
+          <Box display="flex" flex={1} justifyContent="space-between" pb={2} px={2}>
             {actions.map((a, key) => (
               <Fragment key={key}>{a}</Fragment>
             ))}
-          </AppBox>
+          </Box>
         </DialogActions>
       )}
     </DialogWithBackdrop>

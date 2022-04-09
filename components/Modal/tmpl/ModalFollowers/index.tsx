@@ -1,8 +1,8 @@
 import dynamic from 'next/dynamic'
+import { Box } from '@mui/material'
 import { UserDetailDto } from 'dto'
 import useLocale from 'hooks/useLocale'
 import AppModal from 'components/UI/AppModal'
-import AppBox from 'components/UI/AppBox'
 import useFollowers from './hook'
 import Loader from './components/Loader'
 import i18n from './i18n'
@@ -24,7 +24,8 @@ export default function ModalFollowers({ user, onClose }: ModalFollowersProps): 
 
   return (
     <AppModal title={title} maxWidth="xs" onClose={onClose}>
-      <AppBox
+      <Box
+        display="flex"
         minHeight={400}
         flex={1}
         sx={{
@@ -47,7 +48,7 @@ export default function ModalFollowers({ user, onClose }: ModalFollowersProps): 
             )}
           </>
         )}
-      </AppBox>
+      </Box>
     </AppModal>
   )
 }

@@ -1,6 +1,5 @@
-import { Container, Typography } from '@mui/material'
+import { Container, Box, Typography } from '@mui/material'
 import useLocale from 'hooks/useLocale'
-import AppBox from 'components/UI/AppBox'
 import AppEmoji from 'components/UI/AppEmoji'
 
 const i18n = {
@@ -25,8 +24,8 @@ export default function CustomError({ statusCode = 500 }: CustomErrorProps): JSX
 
   return (
     <Container fixed>
-      <AppBox alignItems="center" justifyContent="center" height="100vh">
-        <AppBox flexDirection="column" alignItems="center" justifyContent="space-between">
+      <Box display="flex" alignItems="center" justifyContent="center" height="100vh">
+        <Box display="flex" flexDirection="column" alignItems="center" justifyContent="space-between">
           <Typography component="h1" variant="h4">
             {title}
           </Typography>
@@ -34,8 +33,8 @@ export default function CustomError({ statusCode = 500 }: CustomErrorProps): JSX
           <Typography style={{ fontSize: '10em' }}>
             <AppEmoji name="error" onlyEmoji />
           </Typography>
-        </AppBox>
-      </AppBox>
+        </Box>
+      </Box>
     </Container>
   )
 }

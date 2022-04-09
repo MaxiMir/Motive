@@ -1,12 +1,11 @@
 import { KeyboardEvent, useContext } from 'react'
 import { signOut } from 'next-auth/react'
-import { Drawer, List, Divider, ListItem, ListItemText, ListItemIcon } from '@mui/material'
+import { Box, List, Divider, ListItem, Drawer, ListItemText, ListItemIcon } from '@mui/material'
 import useLocale from 'hooks/useLocale'
 import useClient from 'hooks/useClient'
 import useDebounceCb from 'hooks/useDebounceCb'
 import { ThemeContext } from 'context/themeContext'
 import AppIcon from 'components/UI/AppIcon'
-import AppBox from 'components/UI/AppBox'
 import { MENU } from './helper'
 import i18n from './i18n'
 
@@ -34,8 +33,8 @@ export default function MenuModal({ onClose }: MenuModalProps): JSX.Element {
 
   return (
     <Drawer open onClose={onClose}>
-      <AppBox display="block" role="presentation" sx={{ height: '100%', padding: '60px 0 8px' }} onKeyDown={onKeyDown}>
-        <AppBox flexDirection="column" justifyContent="space-between" height="100%">
+      <Box role="presentation" sx={{ height: '100%', padding: '60px 0 8px' }} onKeyDown={onKeyDown}>
+        <Box display="flex" flexDirection="column" justifyContent="space-between" height="100%">
           <div>
             <List>
               {MENU.map(({ id, icon, link }) => (
@@ -72,8 +71,8 @@ export default function MenuModal({ onClose }: MenuModalProps): JSX.Element {
               </ListItemIcon>
             </ListItem>
           </div>
-        </AppBox>
-      </AppBox>
+        </Box>
+      </Box>
     </Drawer>
   )
 }

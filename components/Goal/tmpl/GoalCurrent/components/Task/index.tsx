@@ -1,7 +1,7 @@
 import dynamic from 'next/dynamic'
+import { Box } from '@mui/material'
 import { MemberDto, TaskDto } from 'dto'
 import { GoalInfo } from 'components/Goal/tmpl/GoalCurrent/helper'
-import AppBox from 'components/UI/AppBox'
 import AppCheckbox from 'components/UI/AppCheckbox'
 import useSetCompleted from './hook'
 import TooltipTomorrow from '../TooltipTomorrow'
@@ -24,7 +24,7 @@ export default function Task({ goalId, task, rest, goalInfo, clientMember }: Tas
   const disabled = completed || forTomorrow || !form
 
   return (
-    <AppBox flexDirection="column" gap={1}>
+    <Box display="flex" flexDirection="column" gap={1}>
       <form>
         <TooltipTomorrow forTomorrow={forTomorrow}>
           <AppCheckbox
@@ -37,6 +37,6 @@ export default function Task({ goalId, task, rest, goalInfo, clientMember }: Tas
         </TooltipTomorrow>
       </form>
       {date && <TaskDate date={date} />}
-    </AppBox>
+    </Box>
   )
 }

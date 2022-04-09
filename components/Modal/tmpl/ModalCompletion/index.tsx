@@ -1,12 +1,11 @@
 import dynamic from 'next/dynamic'
 import { Field, FieldArray, Form, FormikProvider } from 'formik'
-import { Grid, Typography, Theme } from '@mui/material'
+import { Grid, Box, Typography, Theme } from '@mui/material'
 import { createStyles, makeStyles } from '@mui/styles'
 import { GoalDto, MainCharacteristicName } from 'dto'
 import useSelectPhoto from 'hooks/useSelectPhoto'
 import Action from 'components/Action'
 import AppModal from 'components/UI/AppModal'
-import AppBox from 'components/UI/AppBox'
 import AppDecorEmoji from 'components/UI/AppDecorEmoji'
 import AppAccordion from 'components/UI/AppAccordion'
 import AppInput from 'components/UI/AppInput'
@@ -54,16 +53,16 @@ export default function ModalCompletion({ goal, onClose }: ModalCompletionProps)
     >
       <FormikProvider value={form}>
         <Form autoComplete="off">
-          <AppBox flexDirection="column" alignItems="center" gap={3}>
-            <AppBox flexDirection="column" alignItems="center" gap={1}>
+          <Box display="flex" flexDirection="column" alignItems="center" gap={3}>
+            <Box display="flex" flexDirection="column" alignItems="center" gap={1}>
               <AppSpinIcon name="completed" />
               <Typography variant="subtitle1" className={classes.congratulations}>
                 Congratulations, you did it!
               </Typography>
-            </AppBox>
+            </Box>
             <Field name="text" label="How it was" color="secondary" multiline rows={3} component={AppInput} />
             {!!values.photos.length && (
-              <AppBox flexDirection="column" gap={2} width="100%">
+              <Box display="flex" flexDirection="column" gap={2} width="100%">
                 <AppTitle name="photo" variant="h6" component="h2" color="primary">
                   Photos
                 </AppTitle>
@@ -78,10 +77,10 @@ export default function ModalCompletion({ goal, onClose }: ModalCompletionProps)
                     </Grid>
                   )}
                 </FieldArray>
-              </AppBox>
+              </Box>
             )}
             {values.video && (
-              <AppBox flexDirection="column" gap={2} width="100%">
+              <Box display="flex" flexDirection="column" gap={2} width="100%">
                 <AppTitle name="video" variant="h6" component="h2" color="primary">
                   Video
                 </AppTitle>
@@ -91,12 +90,12 @@ export default function ModalCompletion({ goal, onClose }: ModalCompletionProps)
                   disabled={isSubmitting}
                   onRemove={() => setFieldValue('video', null)}
                 />
-              </AppBox>
+              </Box>
             )}
-            <AppBox gap={2} width="100%">
+            <Box display="flex" gap={2} width="100%">
               <Photo tmpl="input" disabled={isSubmitting} multiple onSelect={onSelectPhoto} />
               <Video tmpl="input" disabled onSelect={onSelectVideo} />
-            </AppBox>
+            </Box>
             {touched.photos && errors.photos && (
               <Alert severity="error" variant="outlined" sx={{ width: '100%' }}>
                 {errors.photos}
@@ -122,7 +121,7 @@ export default function ModalCompletion({ goal, onClose }: ModalCompletionProps)
                 }
               />
             </div>
-          </AppBox>
+          </Box>
         </Form>
       </FormikProvider>
     </AppModal>

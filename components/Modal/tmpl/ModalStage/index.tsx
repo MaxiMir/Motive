@@ -3,7 +3,6 @@ import { GoalDto } from 'dto'
 import useLocale from 'hooks/useLocale'
 import Action from 'components/Action'
 import AppModal from 'components/UI/AppModal'
-import AppBox from 'components/UI/AppBox'
 import AppFlyIcon from 'components/UI/AppFlyIcon'
 import { useSendStage } from './hook'
 import i18n from './i18n'
@@ -49,8 +48,8 @@ export default function ModalStage({ goal, onClose }: ModalStageProps): JSX.Elem
       ]}
       onClose={onClose}
     >
-      <AppBox flexDirection="column" gap={3}>
-        <AppBox flexDirection="column" alignItems="center" gap={1}>
+      <Box display="flex" flexDirection="column" gap={3}>
+        <Box display="flex" flexDirection="column" alignItems="center" gap={1}>
           <AppFlyIcon name="stage" />
           <Typography variant="subtitle1" sx={{ color: 'support.main' }}>
             <b>{behind}</b>
@@ -61,8 +60,8 @@ export default function ModalStage({ goal, onClose }: ModalStageProps): JSX.Elem
               {stages[nextStage]}
             </Box>
           </Typography>
-        </AppBox>
-      </AppBox>
+        </Box>
+      </Box>
     </AppModal>
   )
 }

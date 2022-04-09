@@ -1,12 +1,11 @@
 import { useEffect, useState } from 'react'
 import dynamic from 'next/dynamic'
 import { useRouter } from 'next/router'
-import { Typography, Button } from '@mui/material'
+import { Box, Typography, Button } from '@mui/material'
 import i18nAll from 'constants/i18n'
 import { UserDetailDto, UserCharacteristicName } from 'dto'
 import { Locale } from 'hooks/useLocale'
 import CharacteristicBase from 'components/Characteristic'
-import AppBox from 'components/UI/AppBox'
 import AppOptionalTooltip from 'components/UI/AppOptionalTooltip'
 import i18n from './i18n'
 
@@ -52,7 +51,7 @@ export default function Characteristic(props: CharacteristicProps): JSX.Element 
           }}
           onClick={onClick}
         >
-          <AppBox flexDirection="column" alignItems="flex-start" gap={0.5}>
+          <Box display="flex" flexDirection="column" alignItems="flex-start" gap={0.5}>
             <Typography
               variant="caption"
               sx={{
@@ -66,7 +65,7 @@ export default function Characteristic(props: CharacteristicProps): JSX.Element 
               {title}
             </Typography>
             <CharacteristicBase tmpl="user" {...props} />
-          </AppBox>
+          </Box>
         </Button>
       </AppOptionalTooltip>
       {modal && <Modal tmpl={modal} user={user} onClose={onClose} />}

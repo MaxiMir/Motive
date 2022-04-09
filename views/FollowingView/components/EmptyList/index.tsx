@@ -1,6 +1,5 @@
 import { Locale } from 'hooks/useLocale'
-import { Typography } from '@mui/material'
-import AppBox from 'components/UI/AppBox'
+import { Box, Typography } from '@mui/material'
 import i18n from './i18n'
 
 interface EmptyListProps {
@@ -11,14 +10,14 @@ const EmptyList = ({ locale }: EmptyListProps): JSX.Element => {
   const { description, hint } = i18n[locale]
 
   return (
-    <AppBox alignItems="center" justifyContent="center" flex={1}>
-      <AppBox flexDirection="column" alignItems="center" width="100%">
+    <Box display="flex" alignItems="center" justifyContent="center" flex={1}>
+      <Box display="flex" flexDirection="column" alignItems="center" width="100%">
         <Typography variant="h5" color="primary">
           {description}
         </Typography>
         <Typography>{hint}</Typography>
-      </AppBox>
-    </AppBox>
+      </Box>
+    </Box>
   )
 }
 

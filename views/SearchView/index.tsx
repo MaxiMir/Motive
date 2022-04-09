@@ -1,10 +1,9 @@
 import dynamic from 'next/dynamic'
-import { Grid } from '@mui/material'
+import { Grid, Box } from '@mui/material'
 import { GoalDto, HashtagDto, UserDto } from 'dto'
 import { Locale } from 'hooks/useLocale'
 import AppTitle from 'components/UI/AppTitle'
 import AppContainer from 'components/UI/AppContainer'
-import AppBox from 'components/UI/AppBox'
 import SearchForm from './components/SearchForm'
 import { getGradients } from './helper'
 import i18n from './i18n'
@@ -32,10 +31,10 @@ export default function SearchView({ q, hashtags, goals, users, locale }: Search
       <AppTitle name="search" mb={4}>
         {title}
       </AppTitle>
-      <AppBox flexDirection="column" gap={4}>
+      <Box display="flex" flexDirection="column" gap={4}>
         <SearchForm q={q} />
         {!!users.length && (
-          <AppBox flexDirection="column" gap={2}>
+          <Box display="flex" flexDirection="column" gap={2}>
             <AppTitle variant="h4" component="h2" name="followers">
               {userTitle}
             </AppTitle>
@@ -46,10 +45,10 @@ export default function SearchView({ q, hashtags, goals, users, locale }: Search
                 </Grid>
               ))}
             </Grid>
-          </AppBox>
+          </Box>
         )}
         {noResult && <NoResult phrase={q} />}
-        <AppBox flexDirection="column" gap={2}>
+        <Box display="flex" flexDirection="column" gap={2}>
           <AppTitle variant="h4" component="h2" name="trending">
             {trendTitle}
           </AppTitle>
@@ -60,9 +59,9 @@ export default function SearchView({ q, hashtags, goals, users, locale }: Search
               </Grid>
             ))}
           </Grid>
-        </AppBox>
+        </Box>
         {!!goals.length && false && (
-          <AppBox flexDirection="column" gap={2}>
+          <Box display="flex" flexDirection="column" gap={2}>
             <AppTitle variant="h4" component="h2" name="goal">
               {goalTitle}
             </AppTitle>
@@ -73,9 +72,9 @@ export default function SearchView({ q, hashtags, goals, users, locale }: Search
                 </Grid>
               ))}
             </Grid>
-          </AppBox>
+          </Box>
         )}
-      </AppBox>
+      </Box>
     </AppContainer>
   )
 }

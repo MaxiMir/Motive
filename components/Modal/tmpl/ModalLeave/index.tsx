@@ -1,9 +1,8 @@
-import { Typography, Theme } from '@mui/material'
+import { Box, Typography, Theme } from '@mui/material'
 import { createStyles, makeStyles } from '@mui/styles'
 import { GoalDto, OwnershipDto } from 'dto'
 import Action from 'components/Action'
 import AppModal from 'components/UI/AppModal'
-import AppBox from 'components/UI/AppBox'
 import AppFadeIcon from 'components/UI/AppFadeIcon'
 import { useSendRemoveMember } from './hook'
 
@@ -46,10 +45,10 @@ export default function ModalLeave({ goal, clientOwnership, onClose }: ModalLeav
       ]}
       onClose={onClose}
     >
-      <AppBox flexDirection="column" justifyItems="center" alignItems="center" gap={1}>
+      <Box display="flex" flexDirection="column" justifyItems="center" alignItems="center" gap={1}>
         <Typography>You will lose all progress...</Typography>
         <AppFadeIcon name="scared" />
-      </AppBox>
+      </Box>
     </AppModal>
   )
 }

@@ -1,11 +1,10 @@
+import { Box, Badge, Divider, TextField } from '@mui/material'
 import { DatePicker } from '@mui/x-date-pickers/DatePicker'
-import { Badge, Divider, TextField } from '@mui/material'
-import { makeStyles } from '@mui/styles'
 import { PickersDay } from '@mui/x-date-pickers'
+import { styled } from '@mui/system'
 import { GoalDto } from 'dto'
 import useDebounceCb from 'hooks/useDebounceCb'
 import useLocale from 'hooks/useLocale'
-import AppBox from 'components/UI/AppBox'
 import AppIconButton from 'components/UI/AppIconButton'
 import AppEmoji from 'components/UI/AppEmoji'
 import { getCalendarInfo, getDateKey, getDatesMap } from './helper'
@@ -18,7 +17,6 @@ interface CalendarProps {
 
 export default function Calendar({ goal }: CalendarProps): JSX.Element {
   const { id, day, calendar } = goal
-  const classes = useStyles()
   const { locale } = useLocale()
   const date = new Date(day.date)
   const { isLoading, mutate } = useChangeDay(id)
@@ -58,8 +56,8 @@ export default function Calendar({ goal }: CalendarProps): JSX.Element {
   }
 
   return (
-    <AppBox justifyContent="space-between" alignItems="center" position="relative" gap={2}>
-      <Divider light className={classes.divider} />
+    <Box display="flex" justifyContent="space-between" alignItems="center" position="relative" gap={2}>
+      <PartDivider light sx={{ flex: 1 }} />
       <AppIconButton
         size="small"
         name="chevron_left"
@@ -104,13 +102,11 @@ export default function Calendar({ goal }: CalendarProps): JSX.Element {
         disabled={isLoading || !next}
         onClick={() => onClickArrow(next)}
       />
-      <Divider light className={classes.divider} />
-    </AppBox>
+      <PartDivider light />
+    </Box>
   )
 }
 
-const useStyles = makeStyles({
-  divider: {
-    flex: 1,
-  },
+const PartDivider = styled(Divider)({
+  flex: 1,
 })

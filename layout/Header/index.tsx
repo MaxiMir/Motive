@@ -1,6 +1,5 @@
 import dynamic from 'next/dynamic'
-import { AppBar, Chip, Container } from '@mui/material'
-import AppBox from 'components/UI/AppBox'
+import { Box, AppBar, Chip, Container } from '@mui/material'
 import LeftMenu from './components/LeftMenu'
 
 const SignIn = dynamic(() => import('./components/SignIn'))
@@ -23,11 +22,11 @@ export default function Header({ authenticated }: HeaderProps): JSX.Element {
       }}
     >
       <Container fixed>
-        <AppBox justifyContent="space-between" alignItems="center">
+        <Box display="flex" justifyContent="space-between" alignItems="center">
           <LeftMenu />
           <Chip label="Alpha 1.0.4" variant="outlined" />
           {authenticated ? <Notification /> : <SignIn />}
-        </AppBox>
+        </Box>
       </Container>
     </AppBar>
   )

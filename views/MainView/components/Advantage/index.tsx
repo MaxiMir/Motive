@@ -1,7 +1,6 @@
-import { Typography, useTheme } from '@mui/material'
+import { Box, Typography, useTheme } from '@mui/material'
 import { MainCharacteristicName } from 'dto'
 import { Locale } from 'hooks/useLocale'
-import AppBox from 'components/UI/AppBox'
 import AppEmoji from 'components/UI/AppEmoji'
 import AppLink from 'components/UI/AppLink'
 import i18n from './i18n'
@@ -18,7 +17,8 @@ export default function Advantage({ id, href, locale }: AdvantageProps): JSX.Ele
   const { light, dark } = theme.palette[id]
 
   return (
-    <AppBox
+    <Box
+      display="flex"
       justifyContent="center"
       alignItems="center"
       sx={{
@@ -26,7 +26,7 @@ export default function Advantage({ id, href, locale }: AdvantageProps): JSX.Ele
         background: `linear-gradient(90deg, ${light} 0%, ${dark} 100%)`,
       }}
     >
-      <AppBox alignItems="center" gap={2}>
+      <Box display="flex" alignItems="center" gap={2}>
         <AppLink
           href={href}
           sx={{
@@ -38,7 +38,7 @@ export default function Advantage({ id, href, locale }: AdvantageProps): JSX.Ele
         >
           <AppEmoji name={id} variant="h2" />
         </AppLink>
-        <AppBox flexDirection="column" alignItems="space-between">
+        <Box display="flex" flexDirection="column" alignItems="space-between">
           <AppLink
             href={href}
             variant="h5"
@@ -53,8 +53,8 @@ export default function Advantage({ id, href, locale }: AdvantageProps): JSX.Ele
             {title}
           </AppLink>
           <Typography sx={{ color: '#f5f5f799' }}>{subtitle}</Typography>
-        </AppBox>
-      </AppBox>
-    </AppBox>
+        </Box>
+      </Box>
+    </Box>
   )
 }

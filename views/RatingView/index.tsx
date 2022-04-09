@@ -1,10 +1,9 @@
 import { useRouter } from 'next/router'
-import { Container } from '@mui/material'
+import { Container, Box } from '@mui/material'
 import { MainCharacteristicName, UserDto } from 'dto'
 import { Locale } from 'hooks/useLocale'
 import AppTitle from 'components/UI/AppTitle'
 import AppTabs from 'components/UI/AppTabs'
-import AppBox from 'components/UI/AppBox'
 import AppTabName from 'components/UI/AppTabName'
 import TabContent from './components/TabContent'
 import i18n from './i18n'
@@ -24,7 +23,7 @@ export default function RatingView({ locale, ...props }: RatingViewProps): JSX.E
       <Container fixed sx={{ mt: 3 }}>
         <AppTitle name="completed">{header}</AppTitle>
       </Container>
-      <AppBox flexDirection="column" gap={2} mt={4} mb={3}>
+      <Box display="flex" flexDirection="column" gap={2} mt={4} mb={3}>
         <AppTabs
           initial={!query.tab ? undefined : +query.tab}
           ariaLabel={ariaLabel}
@@ -35,7 +34,7 @@ export default function RatingView({ locale, ...props }: RatingViewProps): JSX.E
             <TabContent name={name} users={props[name]} locale={locale} key={name} />
           ))}
         />
-      </AppBox>
+      </Box>
     </>
   )
 }

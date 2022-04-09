@@ -1,11 +1,12 @@
 import dynamic from 'next/dynamic'
 import { Field, Form, FormikProvider } from 'formik'
-import { IconButton } from '@mui/material'
+import { Box, IconButton } from '@mui/material'
 import { TopicDto, MessageType, ClientDto, UserBaseDto } from 'dto'
-import AppBox from 'components/UI/AppBox'
+import useLocale from 'hooks/useLocale'
 import AppInput from 'components/UI/AppInput'
 import InputAvatar from './components/InputAvatar'
 import useForm from './hook'
+import i18n from './i18n'
 
 const CircularProgress = dynamic(() => import('@mui/material/CircularProgress'))
 const AppIcon = dynamic(() => import('components/UI/AppIcon'))
@@ -22,17 +23,20 @@ export interface UserInputProps {
 export default function UserInput({ dayId, user, type, topicId, onAdd }: UserInputProps): JSX.Element {
   const form = useForm(dayId, topicId, type, onAdd)
   const { isSubmitting, values, handleSubmit } = form
+  const { locale } = useLocale()
+  const { getPlaceholder } = i18n[locale]
+  const placeholder = getPlaceholder(type === MessageType.QUESTION)
 
   const onClick = () => handleSubmit()
 
   return (
     <FormikProvider value={form}>
       <Form autoComplete="off">
-        <AppBox gap={2} flex={1} mb={2} pr={2}>
+        <Box display="flex" gap={2} flex={1} mb={2} pr={2}>
           <InputAvatar user={user} />
           <Field
             name="text"
-            placeholder={`Your ${type === MessageType.QUESTION ? 'question' : 'answer'}`}
+            placeholder={placeholder}
             variant="standard"
             color="secondary"
             InputLabelProps={{ shrink: false }}
@@ -47,7 +51,7 @@ export default function UserInput({ dayId, user, type, topicId, onAdd }: UserInp
               <CircularProgress size="0.9rem" color="primary" />
             )}
           </IconButton>
-        </AppBox>
+        </Box>
       </Form>
     </FormikProvider>
   )

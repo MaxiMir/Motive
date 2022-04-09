@@ -1,6 +1,5 @@
 import { Fragment } from 'react'
-import { BoxProps } from '@mui/material'
-import AppBox from './AppBox'
+import { Box, BoxProps } from '@mui/material'
 
 export interface AppListProps<T> {
   elements: T[]
@@ -12,10 +11,10 @@ export interface AppListProps<T> {
 
 export default function AppList<T>({ elements, gap, render, keyGetter }: AppListProps<T>): JSX.Element {
   return (
-    <AppBox flexDirection="column" flexWrap="wrap" flex={1} gap={gap}>
+    <Box display="flex" flexDirection="column" flexWrap="wrap" flex={1} gap={gap}>
       {elements.map((element, key) => (
         <Fragment key={keyGetter(element).toString()}>{render(element, key)}</Fragment>
       ))}
-    </AppBox>
+    </Box>
   )
 }

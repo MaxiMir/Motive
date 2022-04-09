@@ -1,6 +1,6 @@
 import dynamic from 'next/dynamic'
 import { Field, Form, FormikProvider } from 'formik'
-import { Grid, Theme } from '@mui/material'
+import { Grid, Box, Theme } from '@mui/material'
 import { createStyles, makeStyles } from '@mui/styles'
 import { UserBaseDto } from 'dto'
 import { Locale } from 'hooks/useLocale'
@@ -8,7 +8,6 @@ import Action from 'components/Action'
 import Photo from 'components/Photo'
 import AppModal from 'components/UI/AppModal'
 import AppInput from 'components/UI/AppInput'
-import AppBox from 'components/UI/AppBox'
 import useForm from './hook'
 import i18n from './i18n'
 
@@ -54,7 +53,7 @@ export default function ModalProfile({ user, locale, onClose }: ModalProfileProp
     >
       <FormikProvider value={form}>
         <Form autoComplete="off">
-          <AppBox flexDirection="column" gap={3}>
+          <Box display="flex" flexDirection="column" gap={3}>
             <Field name="name" label={name} color="primary" component={AppInput} />
             <Field name="nickname" label={nickname} color="primary" component={AppInput} />
             <Grid container gap={2}>
@@ -71,7 +70,7 @@ export default function ModalProfile({ user, locale, onClose }: ModalProfileProp
                 {errors.avatar}
               </Alert>
             )}
-          </AppBox>
+          </Box>
         </Form>
       </FormikProvider>
     </AppModal>

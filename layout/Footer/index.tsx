@@ -1,7 +1,6 @@
 import { useRouter } from 'next/router'
 import { Container, Box, Button } from '@mui/material'
 import { FOLLOWING, RATING, SEARCH, TOP_OF_THE_DAY } from 'route'
-import AppBox from 'components/UI/AppBox'
 import AppLink from 'components/UI/AppLink'
 import { TopOfTheDayIcon, SearchIcon, RatingIcon, FollowingIcon } from 'components/UI/icons'
 import FooterIcon from './components/FooterIcon'
@@ -33,7 +32,7 @@ export default function Footer({ nickname }: FooterProps): JSX.Element {
       }}
     >
       <Container fixed>
-        <AppBox justifyContent="space-between" alignItems="center" height={65}>
+        <Box display="flex" justifyContent="space-between" alignItems="center" height={65}>
           {ROUTES.map(({ href, title, Icon }) => (
             <AppLink href={href} title={title} key={title}>
               <Button>
@@ -42,7 +41,7 @@ export default function Footer({ nickname }: FooterProps): JSX.Element {
             </AppLink>
           ))}
           <FooterProfile nickname={nickname} asPath={asPath} />
-        </AppBox>
+        </Box>
       </Container>
     </Box>
   )

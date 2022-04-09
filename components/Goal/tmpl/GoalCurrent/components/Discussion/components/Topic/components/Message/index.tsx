@@ -1,11 +1,9 @@
 import dynamic from 'next/dynamic'
 import formatDistanceToNow from 'date-fns/formatDistanceToNow'
-import { Theme } from '@mui/material'
-import { createStyles, makeStyles } from '@mui/styles'
+import { Box } from '@mui/material'
 import { MessageDto } from 'dto'
 import { getUserHref } from 'views/UserView/helper'
 import AppLink from 'components/UI/AppLink'
-import AppBox from 'components/UI/AppBox'
 import AppMarkdown from 'components/UI/AppMarkdown'
 import AppAvatar from 'components/UI/AppAvatar'
 import Menu from './components/Menu'
@@ -23,48 +21,37 @@ interface MessageProps {
 }
 
 export default function Message({ message, answerFor, supportFor, onReply }: MessageProps): JSX.Element {
-  const classes = useStyles()
   const { date, user, text, edited } = message
   const dateDifference = formatDistanceToNow(new Date(date), { includeSeconds: true })
   const href = getUserHref(user.nickname)
 
   return (
-    <AppBox flexDirection="column" gap={1} flex={1}>
-      <AppBox flexDirection="column" gap={1} minWidth={152}>
-        <AppBox alignItems="center" gap={1}>
+    <Box display="flex" flexDirection="column" gap={1} flex={1}>
+      <Box display="flex" flexDirection="column" gap={1} minWidth={152}>
+        <Box display="flex" alignItems="center" gap={1}>
           <AppLink href={href} title={user.name}>
             <AppAvatar src={user.avatar} size={26} />
           </AppLink>
-          <AppLink href={href} title={user.name} className={classes.name} sx={{ textDecoration: 'none' }}>
+          <AppLink href={href} title={user.name} sx={{ lineHeight: '20px', textDecoration: 'none' }}>
             <b>{user.name}</b>
           </AppLink>
           {supportFor && <SupportSign name={supportFor} />}
           {edited && <Edited />}
-        </AppBox>
-        <AppBox justifyContent="space-between" alignItems="flex-start" gap={1}>
+        </Box>
+        <Box display="flex" justifyContent="space-between" alignItems="flex-start" gap={1}>
           <AppMarkdown text={text} />
           <Menu message={message} />
-        </AppBox>
-      </AppBox>
-      <AppBox justifyContent="space-between" alignItems="center" pr={1}>
-        <AppBox alignItems="center" gap={1}>
-          <span className={classes.date}>{dateDifference} ago</span>
+        </Box>
+      </Box>
+      <Box display="flex" justifyContent="space-between" alignItems="center" pr={1}>
+        <Box display="flex" alignItems="center" gap={1}>
+          <Box component="span" sx={{ fontSize: '0.6875rem', color: 'zen.silent' }}>
+            {dateDifference} ago
+          </Box>
           {onReply && <Reply onClick={onReply} />}
-        </AppBox>
+        </Box>
         <Like message={message} answerFor={answerFor} />
-      </AppBox>
-    </AppBox>
+      </Box>
+    </Box>
   )
 }
-
-const useStyles = makeStyles((theme: Theme) =>
-  createStyles({
-    name: {
-      lineHeight: '20px',
-    },
-    date: {
-      fontSize: '0.6875rem',
-      color: theme.palette.zen.silent,
-    },
-  }),
-)

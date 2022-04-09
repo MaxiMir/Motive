@@ -3,7 +3,6 @@ import { Box, useTheme } from '@mui/material'
 import { UserDetailDto } from 'dto'
 import useLocale from 'hooks/useLocale'
 import AppModal from 'components/UI/AppModal'
-import AppBox from 'components/UI/AppBox'
 import useGoals from './hook'
 import i18n from './i18n'
 
@@ -37,7 +36,7 @@ export default function ModalCompleted({ user, onClose }: ModalCompletedProps): 
       maxWidth="xs"
       onClose={onClose}
     >
-      <AppBox flexDirection="column" gap={2} sx={{ minHeight: 400, overflow: 'scroll' }}>
+      <Box display="flex" flexDirection="column" gap={2} sx={{ minHeight: 400, overflow: 'scroll' }}>
         {isLoading ? (
           <Loader count={characteristic.completed} />
         ) : (
@@ -54,7 +53,7 @@ export default function ModalCompleted({ user, onClose }: ModalCompletedProps): 
             )}
           </>
         )}
-      </AppBox>
+      </Box>
     </AppModal>
   )
 }

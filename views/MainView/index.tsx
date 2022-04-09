@@ -1,5 +1,5 @@
+import { Box } from '@mui/material'
 import { Locale } from 'hooks/useLocale'
-import AppBox from 'components/UI/AppBox'
 import Slogan from './components/Slogan'
 import Advantage from './components/Advantage'
 import ADVANTAGES from './helper'
@@ -12,11 +12,11 @@ export default function MainView({ locale }: MainViewProps): JSX.Element {
   return (
     <>
       <Slogan locale={locale} />
-      <AppBox flexDirection="column">
+      <Box display="flex" flexDirection="column">
         {ADVANTAGES.map((advantage) => (
           <Advantage {...advantage} locale={locale} key={advantage.id} />
         ))}
-      </AppBox>
+      </Box>
     </>
   )
 }

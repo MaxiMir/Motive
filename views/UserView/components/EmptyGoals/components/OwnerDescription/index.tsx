@@ -1,8 +1,7 @@
-import { Typography } from '@mui/material'
+import { Box, Typography } from '@mui/material'
 import { SEARCH } from 'route'
 import { Locale } from 'hooks/useLocale'
 import AppLink from 'components/UI/AppLink'
-import AppBox from 'components/UI/AppBox'
 import i18n from './i18n'
 
 interface OwnerDescriptionProps {
@@ -16,9 +15,9 @@ export default function OwnerDescription({ locale }: OwnerDescriptionProps): JSX
     <>
       <Typography>
         {description[0]}{' '}
-        <AppBox display={undefined} component="span" sx={{ color: 'primary' }}>
+        <Box component="span" sx={{ color: 'primary' }}>
           {description[1]}
-        </AppBox>
+        </Box>
       </Typography>
       <Typography>
         {description[2]}{' '}

@@ -1,4 +1,4 @@
-import { Container, Typography, Grid } from '@mui/material'
+import { Container, Grid, Box, Typography } from '@mui/material'
 import { UserDto, MainCharacteristicName } from 'dto'
 import { Locale } from 'hooks/useLocale'
 import AppBox from 'components/UI/AppBox'
@@ -17,7 +17,7 @@ export default function TabContent({ name, users, locale }: TabContentProps): JS
 
   return (
     <>
-      <AppBox display={undefined} sx={{ background: '#21262C' }}>
+      <Box sx={{ background: '#21262C' }}>
         <Container fixed>
           <Grid container alignItems="center" sx={{ height: 55 }}>
             <Grid item xs>
@@ -39,7 +39,7 @@ export default function TabContent({ name, users, locale }: TabContentProps): JS
             </Grid>
           </Grid>
         </Container>
-      </AppBox>
+      </Box>
       <AppList<UserDto>
         elements={users}
         keyGetter={(el) => el.id}

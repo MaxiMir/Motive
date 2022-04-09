@@ -1,6 +1,6 @@
 import { Fragment } from 'react'
 import dynamic from 'next/dynamic'
-import { useTheme } from '@mui/material'
+import { Box, useTheme } from '@mui/material'
 import { ConfirmationDto, GoalCharacteristicName } from 'dto'
 import useClient from 'hooks/useClient'
 import useLocale from 'hooks/useLocale'
@@ -41,8 +41,7 @@ export default function GoalCompleted({ confirmation, userId, inView, onView }: 
   const { durationTitle } = i18n[locale]
 
   return (
-    <AppBox
-      display={undefined}
+    <Box
       sx={{
         padding: '3px',
         background: `linear-gradient(to top left, #fde76c, #813203, #ce8c00)`,
@@ -69,9 +68,9 @@ export default function GoalCompleted({ confirmation, userId, inView, onView }: 
           <Typography variant="caption">
             {durationTitle}{' '}
             <AppTooltip title={interval}>
-              <AppBox display={undefined} component="b" color="zen.silent">
+              <Box component="b" color="zen.silent">
                 {duration}
-              </AppBox>
+              </Box>
             </AppTooltip>
           </Typography>
         </AppBox>
@@ -89,6 +88,6 @@ export default function GoalCompleted({ confirmation, userId, inView, onView }: 
         {renderRepeat && <Repeat goalId={goal.id} locale={locale} />}
       </AppBox>
       {onView && <>{inView && <AppInView onView={onView} />}</>}
-    </AppBox>
+    </Box>
   )
 }

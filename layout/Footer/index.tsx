@@ -1,5 +1,5 @@
 import { useRouter } from 'next/router'
-import { Container, Button } from '@mui/material'
+import { Container, Box, Button } from '@mui/material'
 import { FOLLOWING, RATING, SEARCH, TOP_OF_THE_DAY } from 'route'
 import AppBox from 'components/UI/AppBox'
 import AppLink from 'components/UI/AppLink'
@@ -26,9 +26,8 @@ export default function Footer({ nickname }: FooterProps): JSX.Element {
   const { asPath } = useRouter()
 
   return (
-    <AppBox
+    <Box
       component="footer"
-      display={undefined}
       sx={{
         backgroundColor: 'navigation',
       }}
@@ -45,6 +44,6 @@ export default function Footer({ nickname }: FooterProps): JSX.Element {
           <FooterProfile nickname={nickname} asPath={asPath} />
         </AppBox>
       </Container>
-    </AppBox>
+    </Box>
   )
 }

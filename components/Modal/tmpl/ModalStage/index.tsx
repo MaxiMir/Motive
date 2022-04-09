@@ -1,4 +1,4 @@
-import { Typography } from '@mui/material'
+import { Box, Typography } from '@mui/material'
 import { GoalDto } from 'dto'
 import useLocale from 'hooks/useLocale'
 import Action from 'components/Action'
@@ -30,9 +30,9 @@ export default function ModalStage({ goal, onClose }: ModalStageProps): JSX.Elem
       title={
         <>
           {title} <br />
-          <AppBox display={undefined} component="span" sx={{ color: 'zen.sand' }}>
+          <Box component="span" sx={{ color: 'zen.sand' }}>
             {stages[day.stage]}
-          </AppBox>
+          </Box>
         </>
       }
       maxWidth="xs"
@@ -57,9 +57,9 @@ export default function ModalStage({ goal, onClose }: ModalStageProps): JSX.Elem
           </Typography>
           <Typography>
             {nextTitle}{' '}
-            <AppBox display={undefined} component="b" sx={{ color: 'zen.wave' }}>
+            <Box component="b" sx={{ color: 'zen.wave' }}>
               {stages[nextStage]}
-            </AppBox>
+            </Box>
           </Typography>
         </AppBox>
       </AppBox>

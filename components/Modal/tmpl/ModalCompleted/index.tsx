@@ -1,5 +1,5 @@
 import dynamic from 'next/dynamic'
-import { useTheme } from '@mui/material'
+import { Box, useTheme } from '@mui/material'
 import { UserDetailDto } from 'dto'
 import useLocale from 'hooks/useLocale'
 import AppModal from 'components/UI/AppModal'
@@ -28,9 +28,9 @@ export default function ModalCompleted({ user, onClose }: ModalCompletedProps): 
     <AppModal
       title={
         <>
-          <AppBox component="span" display={undefined} sx={{ color: theme.palette.zen.sand }}>
+          <Box component="span" sx={{ color: theme.palette.zen.sand }}>
             {title}
-          </AppBox>{' '}
+          </Box>{' '}
           {subtitle}
         </>
       }

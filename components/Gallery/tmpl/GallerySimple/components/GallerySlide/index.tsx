@@ -1,7 +1,7 @@
 import dynamic from 'next/dynamic'
 import { RenderImageProps } from 'react-photo-gallery'
+import { Box } from '@mui/material'
 import useLocale from 'hooks/useLocale'
-import AppBox from 'components/UI/AppBox'
 import GalleryImage from './components/GalleryImage'
 import i18n from './i18n'
 
@@ -16,8 +16,7 @@ export default function GallerySlide({ animation, ...props }: GalleryPhotoProps)
   const { ariaLabel } = i18n[locale]
 
   return (
-    <AppBox
-      display={undefined}
+    <Box
       aria-label={ariaLabel}
       sx={{
         width: props.photo.width,
@@ -39,6 +38,6 @@ export default function GallerySlide({ animation, ...props }: GalleryPhotoProps)
           <GalleryImage {...props} />
         </AppImageZoom>
       )}
-    </AppBox>
+    </Box>
   )
 }

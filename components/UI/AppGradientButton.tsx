@@ -1,6 +1,5 @@
 import { FC } from 'react'
-import { Button, ButtonProps, useTheme } from '@mui/material'
-import AppBox from './AppBox'
+import { Box, Button, ButtonProps, useTheme } from '@mui/material'
 
 type AppGradientButtonProps = Omit<ButtonProps, 'variant' | 'color' | 'className'>
 
@@ -8,8 +7,7 @@ const AppGradientButton: FC<AppGradientButtonProps> = (props) => {
   const theme = useTheme()
 
   return (
-    <AppBox
-      display={undefined}
+    <Box
       sx={{
         padding: '1px',
         background: `linear-gradient(to top left, ${theme.palette.creativity.dark}, ${theme.palette.support.dark})`,
@@ -30,7 +28,7 @@ const AppGradientButton: FC<AppGradientButtonProps> = (props) => {
         }}
         {...props}
       />
-    </AppBox>
+    </Box>
   )
 }
 

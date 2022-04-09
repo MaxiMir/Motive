@@ -1,10 +1,9 @@
 import { FC } from 'react'
-import AppBox from './AppBox'
+import { Box } from '@mui/material'
 
 const AppImageZoom: FC = ({ children }) => {
   return (
-    <AppBox
-      display={undefined}
+    <Box
       sx={{
         width: '100%',
         animation: 'zoom-in 10s ease-in infinite',
@@ -23,8 +22,7 @@ const AppImageZoom: FC = ({ children }) => {
         },
       }}
     >
-      <AppBox
-        display={undefined}
+      <Box
         sx={{
           animation: 'zoom-out 10s ease-in infinite',
           transition: 'all .5s ease-in-out',
@@ -43,8 +41,8 @@ const AppImageZoom: FC = ({ children }) => {
         }}
       >
         {children}
-      </AppBox>
-    </AppBox>
+      </Box>
+    </Box>
   )
 }
 

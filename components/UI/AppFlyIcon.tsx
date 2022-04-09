@@ -1,5 +1,5 @@
+import { Box } from '@mui/material'
 import AppEmoji, { AppEmojiName } from 'components/UI/AppEmoji'
-import AppBox from './AppBox'
 
 interface AppSpinIconProps {
   name: AppEmojiName
@@ -7,8 +7,7 @@ interface AppSpinIconProps {
 
 export default function AppFlyIcon({ name }: AppSpinIconProps): JSX.Element {
   return (
-    <AppBox
-      display={undefined}
+    <Box
       sx={{
         height: 180,
         width: 150,
@@ -42,6 +41,6 @@ export default function AppFlyIcon({ name }: AppSpinIconProps): JSX.Element {
           },
         }}
       />
-    </AppBox>
+    </Box>
   )
 }

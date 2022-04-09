@@ -1,6 +1,6 @@
 import { Fragment, useMemo } from 'react'
 import dynamic from 'next/dynamic'
-import { useTheme } from '@mui/material'
+import { Box, useTheme } from '@mui/material'
 import { GoalDto, GoalCharacteristicName, MemberDto } from 'dto'
 import useLocale from 'hooks/useLocale'
 import Characteristic from 'components/Characteristic'
@@ -57,7 +57,17 @@ export default function GoalCurrent({
   const goalInfo = useMemo(() => getGoalInfo(goal, clientOwnership), [goal, clientOwnership])
   const redefinedGoals = redefineTasks(tasks, userMember)
   const rest = redefinedGoals.length - redefinedGoals.filter((t) => t.completed).length
-  const { stagesHeader, tasksHeader, soon, feedbackHeader, discussionHeader } = i18n[locale]
+  const {
+    stagesHeader,
+    stagesAria,
+    tasksHeader,
+    tasksAria,
+    soon,
+    feedbackHeader,
+    feedbackAria,
+    discussionHeader,
+    discussionAria,
+  } = i18n[locale]
 
   useIncreaseViews(goal, clientId)
 
@@ -78,8 +88,7 @@ export default function GoalCurrent({
         },
       }}
     >
-      <AppBox
-        display={undefined}
+      <Box
         sx={{
           padding: '3px',
           height: '100%',
@@ -124,7 +133,7 @@ export default function GoalCurrent({
                   name="stage"
                   header={stagesHeader}
                   id={`stage-${dayId}`}
-                  ariaControls="stages-content"
+                  ariaControls={stagesAria}
                   defaultExpanded
                   details={
                     <Stages goal={goal} forTomorrow={goalInfo.forTomorrow} completeStage={goalInfo.completeStage} />
@@ -135,7 +144,7 @@ export default function GoalCurrent({
                 name="task"
                 header={tasksHeader}
                 id={`tasksContent-${dayId}`}
-                ariaControls="tasks-content"
+                ariaControls={tasksAria}
                 defaultExpanded
                 details={
                   <AppBox flexDirection="column" gap={1}>
@@ -156,7 +165,7 @@ export default function GoalCurrent({
                 name="feedback"
                 header={feedbackHeader}
                 id={`feedbackContent-${dayId}`}
-                ariaControls="feedback-content"
+                ariaControls={feedbackAria}
                 defaultExpanded={!!feedback}
                 details={!feedback ? <Typography>{soon}</Typography> : <Feedback feedback={feedback} />}
               />
@@ -165,13 +174,13 @@ export default function GoalCurrent({
                 header={
                   <>
                     {discussionHeader}{' '}
-                    <AppBox display={undefined} component="span" color="zen.silent">
+                    <Box component="span" color="zen.silent">
                       {topicCount}
-                    </AppBox>
+                    </Box>
                   </>
                 }
                 id={`discussionContent-${dayId}`}
-                ariaControls="discussion-content"
+                ariaControls={discussionAria}
                 renderOnClick
                 unmountOnExit
                 details={
@@ -188,7 +197,7 @@ export default function GoalCurrent({
           </AppBox>
           {goalInfo.web && <Web />}
         </AppBox>
-      </AppBox>
+      </Box>
     </AppBox>
   )
 }

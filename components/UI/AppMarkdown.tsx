@@ -1,8 +1,7 @@
 import ReactMarkdown from 'react-markdown'
 import sanitize from 'rehype-sanitize'
-import { Typography } from '@mui/material'
+import { Box, Typography } from '@mui/material'
 import { toMarkdown } from 'helpers/prepare'
-import AppBox from './AppBox'
 
 interface AppMarkdownProps {
   text: string
@@ -12,8 +11,7 @@ export default function AppMarkdown({ text }: AppMarkdownProps): JSX.Element {
   const markdown = toMarkdown(text)
 
   return (
-    <AppBox
-      display={undefined}
+    <Box
       sx={{
         '& p': {
           margin: '16px 0',
@@ -42,6 +40,6 @@ export default function AppMarkdown({ text }: AppMarkdownProps): JSX.Element {
       >
         {markdown}
       </ReactMarkdown>
-    </AppBox>
+    </Box>
   )
 }

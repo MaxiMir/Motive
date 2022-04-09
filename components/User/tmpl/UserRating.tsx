@@ -1,4 +1,4 @@
-import { Container, Typography, Grid, useTheme } from '@mui/material'
+import { Container, Typography, Grid, Box, useTheme } from '@mui/material'
 import { UserDto, UserCharacteristicName } from 'dto'
 import { getUserHref } from 'views/UserView/helper'
 import AppBox from 'components/UI/AppBox'
@@ -38,7 +38,7 @@ export default function UserRating({ user, characteristicName, index }: UserRati
   }
 
   return (
-    <AppBox display={undefined} sx={{ background: isEven ? 'initial' : '#21262C' }}>
+    <Box sx={{ background: isEven ? 'initial' : '#21262C' }}>
       <Container fixed>
         <Grid container alignItems="center" sx={{ height: 55 }}>
           <Grid item xs>
@@ -63,6 +63,6 @@ export default function UserRating({ user, characteristicName, index }: UserRati
           </Grid>
         </Grid>
       </Container>
-    </AppBox>
+    </Box>
   )
 }

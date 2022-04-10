@@ -34,7 +34,7 @@ export default function Join({ goal, locale }: JoinProps): JSX.Element {
 
   return (
     <>
-      <Button variant="outlined" color="secondary" startIcon={<AppEmoji name="join" onlyEmoji />} onClick={onClick}>
+      <Button variant="outlined" color="primary" startIcon={<AppEmoji name="join" onlyEmoji />} onClick={onClick}>
         {buttonName}
       </Button>
       {open && <Modal tmpl="join" goal={goal} onClose={toggleModal} />}

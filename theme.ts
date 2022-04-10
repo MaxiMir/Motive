@@ -192,6 +192,11 @@ export const getDesignTokens = (mode: PaletteMode): ThemeOptions => {
             padding: 0,
             minHeight: '100vh',
           },
+          '#__next': {
+            display: 'flex',
+            flexDirection: 'column',
+            height: '100vh',
+          },
         },
       },
     },

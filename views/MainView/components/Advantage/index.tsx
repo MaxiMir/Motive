@@ -21,8 +21,10 @@ export default function Advantage({ id, href, locale }: AdvantageProps): JSX.Ele
       display="flex"
       justifyContent="center"
       alignItems="center"
+      justifySelf="stretch"
+      alignSelf="stretch"
       sx={{
-        height: 'calc(25vh - 56.25px)',
+        flex: 1,
         background: `linear-gradient(90deg, ${light} 0%, ${dark} 100%)`,
       }}
     >

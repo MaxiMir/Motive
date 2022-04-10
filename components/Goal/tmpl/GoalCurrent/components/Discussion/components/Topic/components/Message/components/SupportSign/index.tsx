@@ -25,6 +25,7 @@ export default function SupportSign({ name, locale }: SupportSignProps): JSX.Ele
           height: 21,
           background: theme.palette.support.main,
           borderRadius: '50%',
+          fontSize: '0.875rem',
         }}
       >
         <AppEmoji name="support" onlyEmoji />

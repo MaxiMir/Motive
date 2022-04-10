@@ -40,7 +40,7 @@ export default function SearchView({ q, hashtags, goals, users, locale }: Search
             </AppTitle>
             <Grid container spacing={2}>
               {users.map((user) => (
-                <Grid item xs={6} sm={6} md={3} lg={2} key={user.id}>
+                <Grid item xs={12} sm={6} md={3} lg={2} key={user.id}>
                   <User tmpl="search" user={user} />
                 </Grid>
               ))}

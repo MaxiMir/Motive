@@ -12,19 +12,21 @@ import useSearchPage from 'views/SearchView/hook'
 const i18n = {
   en: {
     title: 'Search',
+    description: 'Search by user 🥷, target 💎, or hashtag',
   },
   ru: {
     title: 'Поиск',
+    description: 'Поиск по пользователям 🥷, целям 💎 или хэштегам',
   },
 }
 
 export default function SearchPage({ statusCode }: PageProps): JSX.Element {
   const { locale } = useLocale()
-  const { title } = i18n[locale]
+  const { title, description } = i18n[locale]
   const { data } = useSearchPage()
 
   return (
-    <Layout title={title} statusCode={statusCode}>
+    <Layout title={title} description={description} statusCode={statusCode}>
       {data?.content && <SearchView {...data.content} locale={locale} />}
     </Layout>
   )
@@ -33,6 +35,7 @@ export default function SearchPage({ statusCode }: PageProps): JSX.Element {
 export const getServerSideProps: GetServerSideProps = async (ctx) => {
   const { url, headers } = ctx.req
 
+  // TODO:
   if (ctx.req.url?.includes('_next')) {
     return {
       props: {

@@ -1,4 +1,3 @@
-import { Box } from '@mui/material'
 import { Locale } from 'hooks/useLocale'
 import Slogan from './components/Slogan'
 import Advantage from './components/Advantage'
@@ -12,11 +11,9 @@ export default function MainView({ locale }: MainViewProps): JSX.Element {
   return (
     <>
       <Slogan locale={locale} />
-      <Box display="flex" flexDirection="column">
-        {ADVANTAGES.map((advantage) => (
-          <Advantage {...advantage} locale={locale} key={advantage.id} />
-        ))}
-      </Box>
+      {ADVANTAGES.map((advantage) => (
+        <Advantage {...advantage} locale={locale} key={advantage.id} />
+      ))}
     </>
   )
 }

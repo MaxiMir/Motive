@@ -29,6 +29,9 @@ export default function Footer({ nickname }: FooterProps): JSX.Element {
       component="footer"
       sx={{
         backgroundColor: 'navigation',
+        position: 'sticky',
+        bottom: 0,
+        width: '100%',
       }}
     >
       <Container fixed>

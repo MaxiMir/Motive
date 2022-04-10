@@ -70,7 +70,7 @@ export default function Calendar({ goal }: CalendarProps): JSX.Element {
         inputFormat="MM/dd/yyyy"
         views={['day']}
         value={date}
-        disabled={dates.length === 1 || isLoading}
+        disabled={isLoading}
         shouldDisableDate={shouldDisableDate}
         minDate={min}
         maxDate={max}

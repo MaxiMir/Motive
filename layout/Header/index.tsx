@@ -15,7 +15,6 @@ export default function Header({ authenticated }: HeaderProps): JSX.Element {
       position="sticky"
       sx={{
         padding: '16px 0 8px',
-        flexGrow: 1,
         backgroundColor: 'navigation',
         backgroundImage: 'none',
         boxShadow: 'none',
@@ -24,7 +23,7 @@ export default function Header({ authenticated }: HeaderProps): JSX.Element {
       <Container fixed>
         <Box display="flex" justifyContent="space-between" alignItems="center">
           <LeftMenu />
-          <Chip label="Alpha 1.0.4" variant="outlined" />
+          <Chip label="Alpha 1.0.5" variant="outlined" />
           {authenticated ? <Notification /> : <SignIn />}
         </Box>
       </Container>

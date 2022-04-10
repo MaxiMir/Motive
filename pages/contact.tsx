@@ -7,18 +7,20 @@ import ContactView from 'views/ContactView'
 const i18n = {
   en: {
     title: 'Contact us',
+    description: 'Contact us ✉️. Support us 🪙',
   },
   ru: {
     title: 'Контакты',
+    description: 'Связаться с нами ✉️. Поддержать нас 🪙',
   },
 }
 
 export default function ContactPage(): JSX.Element {
   const { locale } = useLocale()
-  const { title } = i18n[locale]
+  const { title, description } = i18n[locale]
 
   return (
-    <Layout title={title}>
+    <Layout title={title} description={description}>
       <ContactView locale={locale} />
     </Layout>
   )

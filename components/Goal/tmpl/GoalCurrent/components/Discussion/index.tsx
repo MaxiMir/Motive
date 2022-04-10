@@ -47,6 +47,7 @@ export default function Discussion({ dayId, owner, count, clientGoal }: Discussi
                   elements={topics}
                   keyGetter={(topic) => topic.id}
                   gap={2}
+                  pb={2}
                   render={(topic, index) => (
                     <Topic
                       topic={topic}

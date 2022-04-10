@@ -14,10 +14,11 @@ export const useSendStage = (onSuccess: () => void): UseSendStage => {
   const { locale } = useLocale()
   const [goals, mutateGoals] = useMutateGoals()
   const [enqueueSnackbar] = useSnackbar()
-  const { message } = i18n[locale]
 
   return useMutation(GoalService.updateStage, {
     onSuccess(_, { id }) {
+      const { message } = i18n[locale]
+
       mutateGoals(getNextState(goals, id))
       onSuccess()
       enqueueSnackbar({

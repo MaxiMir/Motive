@@ -38,7 +38,6 @@ export default function UserInput({ dayId, user, type, topicId, onAdd }: UserInp
             name="text"
             placeholder={placeholder}
             variant="standard"
-            color="secondary"
             InputLabelProps={{ shrink: false }}
             disabled={isSubmitting}
             sx={{ flex: 1 }}

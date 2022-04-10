@@ -1,7 +1,6 @@
 import { FocusEvent } from 'react'
 import { Field, Form, FormikProvider } from 'formik'
-import { Box, Theme } from '@mui/material'
-import { createStyles, makeStyles } from '@mui/styles'
+import { Box } from '@mui/material'
 import { MessageDto } from 'dto'
 import Action from 'components/Action'
 import AppModal from 'components/UI/AppModal'
@@ -15,7 +14,6 @@ export interface ModalEditMessageProps {
 }
 
 export default function ModalEditMessage({ message, onClose }: ModalEditMessageProps): JSX.Element {
-  const classes = useStyles()
   const form = useForm(message, onClose)
   const { isSubmitting, handleSubmit } = form
 
@@ -27,7 +25,10 @@ export default function ModalEditMessage({ message, onClose }: ModalEditMessageP
     <AppModal
       title={
         <>
-          Editing the <span className={classes.message}>message</span>
+          Editing the{' '}
+          <Box component="span" sx={{ color: 'zen.sand' }}>
+            message
+          </Box>
         </>
       }
       maxWidth="xs"
@@ -50,7 +51,6 @@ export default function ModalEditMessage({ message, onClose }: ModalEditMessageP
             <Field
               name="text"
               label="Your message"
-              color="secondary"
               multiline
               rows={3}
               inputRef={(input: HTMLInputElement | null) => input?.focus()}
@@ -63,11 +63,3 @@ export default function ModalEditMessage({ message, onClose }: ModalEditMessageP
     </AppModal>
   )
 }
-
-const useStyles = makeStyles((theme: Theme) =>
-  createStyles({
-    message: {
-      color: theme.palette.zen.sand,
-    },
-  }),
-)

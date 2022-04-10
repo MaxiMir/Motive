@@ -5,9 +5,9 @@ import Message from './components/Message'
 import { checkOnReply } from './helper'
 
 const Box = dynamic(() => import('@mui/material/Box'))
+const AppIcon = dynamic(() => import('components/UI/AppIcon'))
 const AppInView = dynamic(() => import('components/UI/AppInView'))
 const User = dynamic(() => import('components/User'))
-const Reply = dynamic(() => import('./components/Reply'))
 
 interface TopicProps {
   owner: UserBaseDto
@@ -49,7 +49,7 @@ export default function Topic({ owner, topic, isOwner, inView, onView, onAdd }: 
       )}
       {answer && (
         <Box display="flex" alignItems="center" gap={1}>
-          <Reply />
+          <AppIcon name="reply" sx={{ color: '#606061', marginRight: 1 }} />
           <Message message={answer} answerFor={message.id} />
         </Box>
       )}

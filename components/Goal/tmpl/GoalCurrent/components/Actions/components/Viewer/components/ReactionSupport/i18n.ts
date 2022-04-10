@@ -6,7 +6,7 @@ export default {
   },
   ru: {
     getTitle(name: string): string {
-      return `Поддержка ${name}`
+      return `Поддержать ${name}`
     },
   },
 }

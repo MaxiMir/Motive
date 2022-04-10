@@ -34,10 +34,11 @@ const useSendCreateGoal = (onSuccess: () => void) => {
   const { locale } = useLocale()
   const [enqueueSnackbar] = useSnackbar()
   const [goals, mutateGoal] = useMutateGoals()
-  const { message } = i18n[locale]
 
   return useMutation(GoalService.create, {
     onSuccess(goal) {
+      const { message } = i18n[locale]
+
       mutateGoal(getNextState(goals, goal))
       onSuccess()
       enqueueSnackbar({ message, severity: 'success', icon: 'goal' })

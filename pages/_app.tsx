@@ -4,6 +4,7 @@ import { AppProps } from 'next/app'
 import { SessionProvider, SignInOptions } from 'next-auth/react'
 import { Hydrate, MutationCache, QueryCache, QueryClient, QueryClientProvider } from 'react-query'
 import NextNprogress from 'nextjs-progressbar'
+import { enUS, ru } from 'date-fns/locale'
 import { StylesProvider, createGenerateClassName } from '@mui/styles'
 import { createTheme, ThemeProvider } from '@mui/material/styles'
 import { PaletteMode, useMediaQuery } from '@mui/material'
@@ -37,6 +38,7 @@ export default function MyApp({ Component, pageProps: { session, ...pageProps } 
   const [mode, setMode] = useState<PaletteMode>('dark') // TODO change prefersDarkMode
   const [snackbarProps, setSnackbarProps] = useState<ContextSnackbarProps | null>(null)
   const [options, setOptions] = useState<SignInOptions>()
+  const fnsLocale = locale === 'ru' ? ru : enUS
   const { error } = i18n[locale]
   const [queryClient] = useState(
     () =>
@@ -75,7 +77,7 @@ export default function MyApp({ Component, pageProps: { session, ...pageProps } 
     <SessionProvider session={session} refetchOnWindowFocus>
       <QueryClientProvider client={queryClient}>
         <Hydrate state={pageProps.dehydratedState}>
-          <LocalizationProvider dateAdapter={AdapterDateFns}>
+          <LocalizationProvider dateAdapter={AdapterDateFns} locale={fnsLocale}>
             <ThemeContext.Provider value={{ mode, toggle }}>
               <StylesProvider generateClassName={generateClassName}>
                 <ThemeProvider theme={theme}>

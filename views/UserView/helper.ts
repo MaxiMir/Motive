@@ -1,7 +1,20 @@
 import produce from 'immer'
 import { GoalDto, UserDetailDto, UserPageDto } from 'dto'
+import { getSearchParams, setQueryParams } from 'helpers/url'
 import { Locale } from 'hooks/useLocale'
 import i18n from './i18n'
+
+export const getServerSideUrl = (url: string): string => {
+  const isClient = url?.includes('_next')
+
+  if (!isClient) {
+    return url
+  }
+
+  const { id, ...params } = getSearchParams(url)
+
+  return setQueryParams(`/${id}`, params)
+}
 
 export const getNextState = (page: UserPageDto, goals: GoalDto[]): UserPageDto =>
   produce(page, (draft) => {

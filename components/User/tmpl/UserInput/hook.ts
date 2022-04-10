@@ -34,11 +34,12 @@ export default function useForm(
 const useSendTopic = (type: MessageType) => {
   const { locale } = useLocale()
   const [enqueueSnackbar] = useSnackbar()
-  const { getMessage } = i18n[locale]
-  const message = getMessage(type === MessageType.QUESTION)
 
   return useMutation(TopicService.create, {
     onSuccess() {
+      const { getMessage } = i18n[locale]
+      const message = getMessage(type === MessageType.QUESTION)
+
       enqueueSnackbar({
         message,
         severity: 'success',

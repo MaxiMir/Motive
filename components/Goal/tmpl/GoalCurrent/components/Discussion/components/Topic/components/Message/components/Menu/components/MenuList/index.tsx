@@ -3,20 +3,24 @@ import dynamic from 'next/dynamic'
 import { Menu, MenuItem } from '@mui/material'
 import { MessageDto } from 'dto'
 import useClient from 'hooks/useClient'
+import { Locale } from 'hooks/useLocale'
 import AppMenuItemContent from 'components/UI/AppMenuItemContent'
+import i18n from './i18n'
 
 const Report = dynamic(() => import('components/Report'))
 
 interface MenuListProps {
   anchorEl: HTMLElement
   message: MessageDto
+  locale: Locale
   onOpenModal: () => void
   onClose: () => void
 }
 
-export default function MenuList({ anchorEl, message, onOpenModal, onClose }: MenuListProps): JSX.Element {
+export default function MenuList({ anchorEl, message, locale, onOpenModal, onClose }: MenuListProps): JSX.Element {
   const client = useClient()
   const [withReport, setWithReport] = useState(false)
+  const { edit, report } = i18n[locale]
 
   const onOpenReport = () => setWithReport(true)
 
@@ -30,11 +34,11 @@ export default function MenuList({ anchorEl, message, onOpenModal, onClose }: Me
       <Menu id="goal-menu" anchorEl={anchorEl} open onClose={onClose}>
         {message.user.id === client?.id ? (
           <MenuItem onClick={onOpenModal}>
-            <AppMenuItemContent icon="edit" text="Edit" />
+            <AppMenuItemContent icon="edit" text={edit} />
           </MenuItem>
         ) : (
           <MenuItem onClick={onOpenReport}>
-            <AppMenuItemContent icon="outlined_flag" text="Report" />
+            <AppMenuItemContent icon="outlined_flag" text={report} />
           </MenuItem>
         )}
       </Menu>

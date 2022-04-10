@@ -1,7 +1,9 @@
 import produce from 'immer'
 import { InfiniteData } from 'react-query'
 import { ClientDto, GoalDto, MessageDto, MessageType, TopicDto } from 'dto'
+import { Locale } from 'hooks/useLocale'
 import TopicService from 'services/TopicService'
+import i18n from './i18n'
 
 export type Options = { message: MessageDto; answerFor?: number; add: boolean }
 export type Context = { previous?: InfiniteData<TopicDto[]> }
@@ -37,18 +39,20 @@ export const getGoalNextState = (goals: GoalDto[], goalId: number, add: boolean)
     draftGoal.characteristic.support += add ? 1 : -1
   })
 
-export const getTitle = (message: MessageDto, disabled: boolean): string | undefined => {
+export const getTitle = (message: MessageDto, disabled: boolean, locale: Locale): string | undefined => {
   const { like, type } = message
+  const { helpful, getLike, getMark } = i18n[locale]
 
   if (disabled) {
-    return !like ? undefined : 'Marked as very helpful'
+    return !like ? undefined : helpful
   }
 
-  return type === MessageType.QUESTION ? `${!like ? 'Like' : 'Unlike'}` : `${!like ? 'Mark' : 'Unmark'} as very helpful`
+  return type === MessageType.QUESTION ? getLike(like) : getMark(like)
 }
 
-export const getAreaLabel = (message: MessageDto, title?: string): string | undefined => {
+export const getAreaLabel = (message: MessageDto, title: string | undefined, locale: Locale): string | undefined => {
   const { like, likeCount } = message
+  const { getArea } = i18n[locale]
 
-  return title && `${title} ${!likeCount || like ? '' : ` along with ${likeCount} other people`}`
+  return title && `${title}${!likeCount || like ? '' : getArea(likeCount)}`
 }

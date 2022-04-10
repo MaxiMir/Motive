@@ -13,10 +13,10 @@ const getUrnData = (urn: string) => {
   return { base, searchParams }
 }
 
-export const getSearchParam = (urn: string, key: string): string | null => {
+export const getSearchParams = (urn: string): Record<string, string> => {
   const { searchParams } = getUrnData(urn)
 
-  return searchParams.get(key)
+  return Object.fromEntries(searchParams)
 }
 
 const toUrl = (url: string, searchParams: URLSearchParams) =>

@@ -26,18 +26,40 @@ export default function UserSearch({ user }: UserSearchProps): JSX.Element {
         borderRadius: '12px',
       }}
     >
-      <Box display="flex" flexDirection="column" alignItems="center" gap={2}>
+      <Box
+        display="flex"
+        alignItems="center"
+        gap={2}
+        sx={{
+          flexDirection: {
+            xs: 'row',
+            md: 'column',
+          },
+        }}
+      >
         <AppAvatar src={avatar} size={120} />
-        <Typography sx={{ color: 'common.white' }}>{name}</Typography>
-        <Box display="flex" justifyContent="space-between" alignItems="center">
-          {CHARACTERISTICS.map((characteristicName) => (
-            <Characteristic
-              tmpl="user"
-              name={characteristicName}
-              value={characteristic[characteristicName]}
-              key={characteristicName}
-            />
-          ))}
+        <Box
+          display="flex"
+          flexDirection="column"
+          gap={2}
+          sx={{
+            alignItems: {
+              xs: 'flex-start',
+              md: 'center',
+            },
+          }}
+        >
+          <Typography sx={{ color: 'common.white' }}>{name}</Typography>
+          <Box display="flex" justifyContent="space-between" alignItems="center">
+            {CHARACTERISTICS.map((characteristicName) => (
+              <Characteristic
+                tmpl="user"
+                name={characteristicName}
+                value={characteristic[characteristicName]}
+                key={characteristicName}
+              />
+            ))}
+          </Box>
         </Box>
       </Box>
     </Button>

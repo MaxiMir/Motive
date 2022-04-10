@@ -54,6 +54,7 @@ export type AppEmojiName =
   | 'third'
   | 'bullseye'
   | 'coin'
+  | 'next'
 
 interface AppEmojiProps {
   name: AppEmojiName
@@ -189,6 +190,8 @@ function getContent(name: AppEmojiName) {
       return '🫧'
     case 'coin':
       return '🪙'
+    case 'next':
+      return '⏭'
     default:
       return ''
   }

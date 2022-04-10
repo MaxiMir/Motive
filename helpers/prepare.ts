@@ -27,8 +27,6 @@ const truncated = (num: number, decimalPlaces = 1): number => {
   return ~~(num * numPowerConverter) / numPowerConverter
 }
 
-export const toUpperFirstChar = (string: string): string => string[0].toUpperCase() + string.slice(1)
-
 export const toShortUserName = (name?: string): string => (!name ? 'Master' : name.split(' ')[0])
 
 export const toMarkdown = (value: string): string => {

@@ -3,6 +3,6 @@ export default {
     buttonTitle: 'Complete',
   },
   ru: {
-    buttonTitle: 'Завершить',
+    buttonTitle: 'Готово',
   },
 }

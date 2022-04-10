@@ -33,7 +33,7 @@ export default function Message({ message, answerFor, supportFor, onReply }: Mes
   const { editedText, agoText, replyButton } = i18n[locale]
 
   return (
-    <Box display="flex" flexDirection="column" gap={1} flex={1}>
+    <Box display="flex" flexDirection="column" gap={1} width="100%">
       <Box display="flex" flexDirection="column" gap={1} minWidth={152}>
         <Box display="flex" alignItems="center" gap={1}>
           <AppLink href={href} title={user.name}>

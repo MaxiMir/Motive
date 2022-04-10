@@ -4,7 +4,7 @@ export default {
     doneButton: 'Done',
   },
   ru: {
-    tasksButton: 'Добавить задачи',
-    doneButton: 'Завершить',
+    tasksButton: 'Задачи на завтра',
+    doneButton: 'Готово',
   },
 }

@@ -12,7 +12,7 @@ interface HeaderProps {
 export default function Header({ authenticated }: HeaderProps): JSX.Element {
   return (
     <AppBar
-      position="sticky"
+      position="static"
       sx={{
         padding: '16px 0 8px',
         backgroundColor: 'navigation',

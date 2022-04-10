@@ -30,11 +30,9 @@ export default function EndOfDay({ goal, nextDayId, forTomorrow, clientMember }:
     <TooltipTomorrow forTomorrow={forTomorrow}>
       <Button
         variant="outlined"
-        color="warning"
+        color="primary"
         disabled={forTomorrow || isLoading}
-        startIcon={
-          isLoading ? <CircularProgress size="0.9rem" color="primary" /> : <AppEmoji name="finish" onlyEmoji />
-        }
+        startIcon={isLoading ? <CircularProgress size="0.9rem" color="primary" /> : <AppEmoji name="next" onlyEmoji />}
         onClick={onClick}
       >
         {buttonName}

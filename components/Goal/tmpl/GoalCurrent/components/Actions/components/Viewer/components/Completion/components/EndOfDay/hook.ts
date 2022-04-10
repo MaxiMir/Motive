@@ -2,17 +2,18 @@ import { AxiosError } from 'axios'
 import { useMutation, UseMutationResult } from 'react-query'
 import { GoalDto, MemberDto, UpdateMemberDto } from 'dto'
 import { clickOnElem } from 'helpers/dom'
-import { toShortUserName } from 'helpers/prepare'
 import useSnackbar from 'hooks/useSnackbar'
-import useClient from 'hooks/useClient'
+import useLocale from 'hooks/useLocale'
 import { useMutateUserPage } from 'views/UserView/hook'
 import MemberService from 'services/MemberService'
 import { getNextState } from './helper'
+import i18n from './i18n'
 
 export const useSendEndOfDay = (goal: GoalDto): UseMutationResult<MemberDto, AxiosError, UpdateMemberDto> => {
-  const client = useClient()
-  const [page, mutatePage] = useMutateUserPage()
+  const { locale } = useLocale()
   const [enqueueSnackbar] = useSnackbar()
+  const [page, mutatePage] = useMutateUserPage()
+  const { message } = i18n[locale]
 
   return useMutation(MemberService.update, {
     onSuccess(member) {
@@ -20,7 +21,7 @@ export const useSendEndOfDay = (goal: GoalDto): UseMutationResult<MemberDto, Axi
       setTimeout(() => clickOnElem(`next-${goal.id}`), 1)
 
       enqueueSnackbar({
-        message: `Excellent, ${toShortUserName(client?.name)}! Uploading your next tasks`,
+        message,
         severity: 'success',
         icon: 'speaker',
       })

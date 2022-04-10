@@ -44,6 +44,9 @@ export default function Characteristic(props: CharacteristicProps): JSX.Element 
         <Button
           sx={{
             textTransform: 'none',
+            width: {
+              sm: '110px',
+            },
             padding: {
               xs: '6px 4px',
               md: undefined,

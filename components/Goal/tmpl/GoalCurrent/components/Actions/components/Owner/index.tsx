@@ -26,8 +26,8 @@ export default function Owner({ goal, forTomorrow }: OwnerProps): JSX.Element {
       <TooltipTomorrow forTomorrow={forTomorrow}>
         <Button
           variant="outlined"
-          color="warning"
-          startIcon={<AppEmoji name="finish" onlyEmoji />}
+          color="secondary"
+          startIcon={<AppEmoji name="feedback" onlyEmoji />}
           disabled={forTomorrow}
           onClick={toggleModal}
         >

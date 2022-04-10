@@ -1,8 +1,8 @@
 export default {
   en: {
-    buttonName: 'End of day',
+    buttonName: 'Feedback',
   },
   ru: {
-    buttonName: 'Завершить день',
+    buttonName: 'Отзыв',
   },
 }

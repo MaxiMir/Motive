@@ -7,7 +7,7 @@ import useDebounceCb from 'hooks/useDebounceCb'
 import useLocale from 'hooks/useLocale'
 import AppIconButton from 'components/UI/AppIconButton'
 import AppEmoji from 'components/UI/AppEmoji'
-import { partialGetDateKey, getDatesMap, getCalendarInfo } from './helper'
+import { getToggleDates, partialGetDateKey } from './helper'
 import { useChangeDay } from './hook'
 import i18n from './i18n'
 
@@ -23,11 +23,14 @@ export default function Calendar({ goal }: CalendarProps): JSX.Element {
   const onChangeDebounce = useDebounceCb(mutate, 1000)
   const { format, prevDay, nextDay } = i18n[locale]
   const getDateKey = partialGetDateKey(format)
-  const datesMap = getDatesMap(day, calendar, getDateKey)
+  const dateMap = getDateMap()
+  const dates = Object.keys(dateMap)
   const dateKey = getDateKey(day.date)
-  const { dates, prev, next, min, max } = getCalendarInfo(datesMap, dateKey)
+  const [prev, next] = getToggleDates(dates, dateKey)
+  const min = new Date(calendar[0].date)
+  const max = new Date(calendar[calendar.length - 1].date)
 
-  const onClickArrow = (value: string) => onChangeDebounce(datesMap[value])
+  const onClickArrow = (value: string) => onChangeDebounce(dateMap[value])
 
   const onChangeDate = (value: Date | null) => {
     const invalidDate = Number.isNaN(value?.getTime())
@@ -36,17 +39,23 @@ export default function Calendar({ goal }: CalendarProps): JSX.Element {
 
     const newDateKey = getDateKey(value)
 
-    if (!newDateKey || !datesMap[newDateKey]) return
+    if (!newDateKey || !dateMap[newDateKey]) return
 
-    onChangeDebounce(datesMap[newDateKey])
+    onChangeDebounce(dateMap[newDateKey])
   }
 
   const shouldDisableDate = (value: Date) => {
-    if (!value) return true
-
     const formattedCheckedDate = getDateKey(value)
 
-    return !dates.some((d) => d === formattedCheckedDate)
+    return !dates.includes(formattedCheckedDate)
+  }
+
+  function getDateMap() {
+    if (!calendar) {
+      return { [getDateKey(day.date)]: day.id }
+    }
+
+    return calendar?.reduce((acc, c) => ({ ...acc, [getDateKey(c.date)]: c.id }), {})
   }
 
   return (
@@ -78,12 +87,7 @@ export default function Calendar({ goal }: CalendarProps): JSX.Element {
           </Badge>
         )}
         renderInput={(params) => (
-          <TextField
-            size="small"
-            {...params}
-            error={params.inputProps?.value && !(params.inputProps.value in datesMap)}
-            sx={{ width: 165 }}
-          />
+          <TextField size="small" {...params} error={!dates.includes(params.inputProps?.value)} sx={{ width: 165 }} />
         )}
         onChange={onChangeDate}
       />

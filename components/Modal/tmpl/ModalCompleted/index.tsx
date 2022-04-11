@@ -46,7 +46,7 @@ export default function ModalCompleted({ user, onClose }: ModalCompletedProps): 
             ) : (
               <ConfirmationsList
                 confirmations={confirmations}
-                userId={id}
+                user={user}
                 checkOnLoadMore={checkOnLoadMore}
                 onView={fetchNextPage}
               />

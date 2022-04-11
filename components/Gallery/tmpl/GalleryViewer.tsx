@@ -1,6 +1,6 @@
 import { useCallback, useState } from 'react'
-import { PhotoDto } from 'dto'
 import Carousel, { Modal, ModalGateway } from 'react-images'
+import { PhotoDto } from 'dto'
 import GallerySimple from './GallerySimple'
 
 export interface GalleryViewerProps {

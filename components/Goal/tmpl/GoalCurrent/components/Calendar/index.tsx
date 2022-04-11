@@ -7,7 +7,7 @@ import useDebounceCb from 'hooks/useDebounceCb'
 import useLocale from 'hooks/useLocale'
 import AppIconButton from 'components/UI/AppIconButton'
 import AppEmoji from 'components/UI/AppEmoji'
-import { getToggleDates, partialGetDateKey } from './helper'
+import { getBorders, getToggleDates, partialGetDateKey } from './helper'
 import { useChangeDay } from './hook'
 import i18n from './i18n'
 
@@ -27,8 +27,7 @@ export default function Calendar({ goal }: CalendarProps): JSX.Element {
   const dates = Object.keys(dateMap)
   const dateKey = getDateKey(day.date)
   const [prev, next] = getToggleDates(dates, dateKey)
-  const min = new Date(calendar[0].date)
-  const max = new Date(calendar[calendar.length - 1].date)
+  const [min, max] = getBorders(calendar)
 
   const onClickArrow = (value: string) => onChangeDebounce(dateMap[value])
 

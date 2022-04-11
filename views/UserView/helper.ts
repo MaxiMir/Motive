@@ -1,5 +1,5 @@
 import produce from 'immer'
-import { GoalDto, UserDetailDto, UserPageDto } from 'dto'
+import { GoalDto, MemberDto, UserDetailDto, UserPageDto } from 'dto'
 import { getSearchParams, setQueryParams } from 'helpers/url'
 import { Locale } from 'hooks/useLocale'
 import i18n from './i18n'
@@ -49,3 +49,6 @@ export const getUserMeta = (user: UserDetailDto | undefined, locale: Locale): Us
 }
 
 export const getUserHref = (nickname: string): string => `/${nickname}`
+
+export const getMember = (goalId: number, membership: MemberDto[], userId?: number): MemberDto | undefined =>
+  (userId && membership.find((m) => m.userId === userId && m.goalId === goalId)) || undefined

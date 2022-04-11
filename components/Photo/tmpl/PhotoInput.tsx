@@ -22,7 +22,7 @@ export default function PhotoInput({ multiple, disabled, onSelect }: PhotoInputP
   return (
     <>
       <Button
-        color="secondary"
+        color="warning"
         variant="outlined"
         title="Load photo"
         aria-label="Load photo"

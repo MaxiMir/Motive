@@ -2,6 +2,7 @@ import produce from 'immer'
 import { differenceInCalendarDays } from 'date-fns'
 import { GoalDto, MemberDto, OwnershipDto, TaskDto } from 'dto'
 import { SEARCH_PARAMS, setQueryParams } from 'helpers/url'
+import { getMember } from 'views/UserView/helper'
 
 const SHOW_WEB_AFTER_DAYS = 14
 
@@ -11,8 +12,9 @@ export const getClientOwnership = (
   clientPage: boolean,
   clientMembership: MemberDto[],
 ): OwnershipDto => {
-  const clientGoal = goal.owner.id === clientId
-  const clientMember = getMember(goal, clientMembership, clientId)
+  const { id, owner } = goal
+  const clientGoal = owner.id === clientId
+  const clientMember = getMember(id, clientMembership, clientId)
 
   return { page: clientPage, goal: clientGoal, member: clientMember }
 }
@@ -32,9 +34,6 @@ export const getGoalHref = (userHref: string, goal: GoalDto): string => {
   return setQueryParams(userHref, { [SEARCH_PARAMS.SCROLL]: goal.id, [SEARCH_PARAMS.DATES]: `${id}:${day.id}` })
 }
 
-export const getMember = (goal: GoalDto, membership: MemberDto[], userId?: number): MemberDto | undefined =>
-  (userId && membership.find((m) => m.userId === userId && m.goalId === goal.id)) || undefined
-
 export type GoalInfo = {
   daysGone: number
   daysGoneForOwner: number
@@ -49,7 +48,7 @@ export type GoalInfo = {
 export const getGoalInfo = (goal: GoalDto, clientOwnership: OwnershipDto): GoalInfo => {
   const { started, day, calendar } = goal
   const today = new Date()
-  const lastDay = calendar[calendar.length - 1].date === day.date
+  const lastDay = !calendar || calendar[calendar.length - 1].date === day.date
   const controls = !clientOwnership.goal || lastDay
   const completeStage = clientOwnership.goal && controls && goal.stage <= goal.day.stage
   const daysGoneForOwner = differenceInCalendarDays(today, Date.parse(day.date))

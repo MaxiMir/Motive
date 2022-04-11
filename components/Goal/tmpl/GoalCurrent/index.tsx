@@ -3,12 +3,13 @@ import dynamic from 'next/dynamic'
 import { Box, useTheme } from '@mui/material'
 import { GoalDto, GoalCharacteristicName, MemberDto } from 'dto'
 import useLocale from 'hooks/useLocale'
+import { getMember } from 'views/UserView/helper'
 import Characteristic from 'components/Characteristic'
 import AppTitle from 'components/UI/AppTitle'
 import AppDot from 'components/UI/AppDot'
 import AppAccordion from 'components/UI/AppAccordion'
 import { useIncreaseViews } from './hook'
-import { getMember, getGoalHref, getGoalInfo, redefineTasks, getClientOwnership } from './helper'
+import { getGoalHref, getGoalInfo, redefineTasks, getClientOwnership } from './helper'
 import Calendar from './components/Calendar'
 import Menu from './components/Menu'
 import Discussion from './components/Discussion'
@@ -50,7 +51,7 @@ export default function GoalCurrent({
   const { id: dayId, tasks, views, feedback, topicCount } = day
   const theme = useTheme()
   const { locale } = useLocale()
-  const userMember = getMember(goal, userMembership, userId)
+  const userMember = getMember(id, userMembership, userId)
   const clientOwnership = getClientOwnership(goal, clientId, clientPage, clientMembership)
   const goalHref = getGoalHref(href, goal)
   const goalInfo = useMemo(() => getGoalInfo(goal, clientOwnership), [goal, clientOwnership])

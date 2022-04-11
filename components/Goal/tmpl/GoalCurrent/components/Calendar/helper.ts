@@ -1,6 +1,6 @@
 import produce from 'immer'
 import { format } from 'date-fns'
-import { DayDto, GoalDto } from 'dto'
+import { CalendarDto, DayDto, GoalDto } from 'dto'
 
 type PartialGetDateKey = (date: Date | string) => string
 
@@ -14,6 +14,17 @@ export const getToggleDates = (dates: string[], dateKey: string): [string, strin
   const next = dates[valueIndex + 1]
 
   return [prev, next]
+}
+
+export const getBorders = (calendar: CalendarDto[]): [Date | undefined, Date | undefined] => {
+  if (!calendar) {
+    return [undefined, undefined]
+  }
+
+  const min = new Date(calendar[0].date)
+  const max = new Date(calendar[calendar.length - 1].date)
+
+  return [min, max]
 }
 
 export const getGoalNextState = (goals: GoalDto[], goalId: number, day: DayDto): GoalDto[] =>

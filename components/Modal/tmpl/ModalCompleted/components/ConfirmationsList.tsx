@@ -1,17 +1,17 @@
-import { ConfirmationDto } from 'dto'
+import { ConfirmationDto, UserDetailDto } from 'dto'
 import AppList from 'components/UI/AppList'
 import Goal from 'components/Goal'
 
 interface UserListProps {
   confirmations: ConfirmationDto[]
-  userId: number
   checkOnLoadMore: (index: number) => boolean
+  user: UserDetailDto
   onView: () => void
 }
 
 export default function ConfirmationsList({
   confirmations,
-  userId,
+  user,
   checkOnLoadMore,
   onView,
 }: UserListProps): JSX.Element {
@@ -24,7 +24,7 @@ export default function ConfirmationsList({
         <Goal
           tmpl="completed"
           confirmation={confirmation}
-          userId={userId}
+          user={user}
           inView={checkOnLoadMore(index)}
           onView={onView}
         />

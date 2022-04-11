@@ -1,5 +1,15 @@
-import { ConfirmationDto, PhotoDto } from 'dto'
+import { ClientDto, ConfirmationDto, GoalBaseDto, PhotoDto, UserDetailDto } from 'dto'
 import { differenceInCalendarDays, format } from 'date-fns'
+import { getMember } from 'views/UserView/helper'
+
+export const checkOnRepeat = (user: UserDetailDto, goal: GoalBaseDto, client?: ClientDto): boolean => {
+  const { id, clientMembership = [] } = user
+  const isOwner = goal.owner.id === client?.id
+  const clientPage = id === client?.id
+  const isMember = getMember(goal.id, clientMembership, client?.id)
+
+  return ![clientPage, isOwner, isMember].some(Boolean)
+}
 
 type GoalInfo = { duration: string; mainPhoto?: PhotoDto; secondPhotos?: PhotoDto[]; interval: string }
 

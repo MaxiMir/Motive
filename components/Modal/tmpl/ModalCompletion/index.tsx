@@ -60,7 +60,7 @@ export default function ModalCompletion({ goal, onClose }: ModalCompletionProps)
                 Congratulations, you did it!
               </Typography>
             </Box>
-            <Field name="text" label="How it was" color="secondary" multiline rows={3} component={AppInput} />
+            <Field name="text" label="How it was" color="warning" multiline rows={3} component={AppInput} />
             {!!values.photos.length && (
               <Box display="flex" flexDirection="column" gap={2} width="100%">
                 <AppTitle name="photo" variant="h6" component="h2" color="primary">

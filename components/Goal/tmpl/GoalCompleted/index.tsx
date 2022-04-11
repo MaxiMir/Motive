@@ -1,14 +1,14 @@
 import { Fragment } from 'react'
 import dynamic from 'next/dynamic'
 import { Box, useTheme } from '@mui/material'
-import { ConfirmationDto, GoalCharacteristicName } from 'dto'
+import { ConfirmationDto, GoalCharacteristicName, UserDetailDto } from 'dto'
 import useClient from 'hooks/useClient'
 import useLocale from 'hooks/useLocale'
 import AppTitle from 'components/UI/AppTitle'
 import AppDot from 'components/UI/AppDot'
 import AppTooltip from 'components/UI/AppTooltip'
 import Characteristic from 'components/Characteristic'
-import { getGoalInfo } from './helper'
+import { checkOnRepeat, getGoalInfo } from './helper'
 import i18n from './i18n'
 
 const Typography = dynamic(() => import('@mui/material/Typography'))
@@ -23,20 +23,18 @@ const CHARACTERISTICS: GoalCharacteristicName[] = ['motivation', 'creativity', '
 export interface GoalCompletedProps {
   tmpl: 'completed'
   confirmation: ConfirmationDto
-  userId: number
+  user: UserDetailDto
   inView: boolean
   onView: () => void
 }
 
-export default function GoalCompleted({ confirmation, userId, inView, onView }: GoalCompletedProps): JSX.Element {
+export default function GoalCompleted({ confirmation, user, inView, onView }: GoalCompletedProps): JSX.Element {
   const { goal, inherited } = confirmation
   const theme = useTheme()
   const client = useClient()
   const { locale } = useLocale()
   const { duration, mainPhoto, secondPhotos, interval } = getGoalInfo(confirmation)
-  const isOwner = goal.owner.id === client?.id
-  const clientPage = userId === client?.id
-  const renderRepeat = !clientPage && !isOwner
+  const renderRepeat = checkOnRepeat(user, goal, client)
   const { durationTitle } = i18n[locale]
 
   return (

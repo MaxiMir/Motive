@@ -26,7 +26,7 @@ export default function Discussion({ dayId, owner, count, clientGoal }: Discussi
   const { isLoading, topics, checkOnLoadMore, fetchNextPage } = useDiscussion(dayId, count)
   const onAdd = useAddMessage()
   const withInput = !!client && (!count || !!topics.length) && !clientGoal
-  const height = !count ? undefined : 548
+  const height = !count ? undefined : 500
   const { nothing } = i18n[locale]
 
   return (

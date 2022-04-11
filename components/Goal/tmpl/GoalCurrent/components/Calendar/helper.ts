@@ -2,6 +2,26 @@ import produce from 'immer'
 import { format } from 'date-fns'
 import { CalendarDto, DayDto, GoalDto } from 'dto'
 
+type PartialGetDateKey = (date: Date | string) => string
+
+export const partialGetDateKey = (formatValue: string): PartialGetDateKey => {
+  return (date: Date | string) => format(date instanceof Date ? date : new Date(date), formatValue)
+}
+
+type DateMap = Record<string, number>
+
+export const getDatesMap = (
+  day: DayDto,
+  calendar: CalendarDto[] | undefined,
+  getDateKey: PartialGetDateKey,
+): DateMap => {
+  if (!calendar) {
+    return { [getDateKey(day.date)]: day.id }
+  }
+
+  return calendar.reduce((acc, { id, date }) => ({ ...acc, [getDateKey(date)]: id }), {})
+}
+
 type CalendarInfo = {
   dates: string[]
   prev: string
@@ -10,9 +30,8 @@ type CalendarInfo = {
   max: Date
 }
 
-export const getCalendarInfo = (datesMap: Record<string, number>, date: string): CalendarInfo => {
-  const dates = Object.keys(datesMap)
-  const dateKey = getDateKey(date)
+export const getCalendarInfo = (dateMap: DateMap, dateKey: string): CalendarInfo => {
+  const dates = Object.keys(dateMap)
   const valueIndex = dates.findIndex((d) => d === dateKey)
   const prev = dates[valueIndex - 1]
   const next = dates[valueIndex + 1]
@@ -20,22 +39,6 @@ export const getCalendarInfo = (datesMap: Record<string, number>, date: string):
   const max = new Date(dates[dates.length - 1])
 
   return { dates, prev, next, min, max }
-}
-
-export const getDatesMap = (day: DayDto, calendar?: CalendarDto[]): Record<string, number> => {
-  if (!calendar) {
-    return { [getDateKey(day.date) as string]: day.id }
-  }
-
-  return calendar.reduce((acc, { id, date }) => ({ ...acc, [getDateKey(date) as string]: id }), {})
-}
-
-export const getDateKey = (date: string | Date): string | null => {
-  try {
-    return format(date instanceof Date ? date : new Date(date), 'MM/dd/yyyy')
-  } catch {
-    return null
-  }
 }
 
 export const getGoalNextState = (goals: GoalDto[], goalId: number, day: DayDto): GoalDto[] =>

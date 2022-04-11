@@ -1,7 +1,6 @@
 import { FormikProps, useFormik } from 'formik'
 import { useMutation } from 'react-query'
 import { CreateMessageDto, MessageType, TopicDto } from 'dto'
-import schema from 'schemas/message'
 import TopicService from 'services/TopicService'
 import useSnackbar from 'hooks/useSnackbar'
 import useLocale from 'hooks/useLocale'
@@ -22,7 +21,6 @@ export default function useForm(
       topicId,
       type,
     },
-    validationSchema: schema,
     async onSubmit(data, { resetForm }) {
       const topic = await mutateAsync(data)
       onAdd(topic)

@@ -7,7 +7,7 @@ import useDebounceCb from 'hooks/useDebounceCb'
 import useLocale from 'hooks/useLocale'
 import AppIconButton from 'components/UI/AppIconButton'
 import AppEmoji from 'components/UI/AppEmoji'
-import { getCalendarInfo, getDateKey, getDatesMap } from './helper'
+import { partialGetDateKey, getDatesMap, getCalendarInfo } from './helper'
 import { useChangeDay } from './hook'
 import i18n from './i18n'
 
@@ -21,30 +21,24 @@ export default function Calendar({ goal }: CalendarProps): JSX.Element {
   const date = new Date(day.date)
   const { isLoading, mutate } = useChangeDay(id)
   const onChangeDebounce = useDebounceCb(mutate, 1000)
-  const { prevDay, nextDay } = i18n[locale]
-  const datesMap = getDatesMap(day, calendar)
-  const { dates, prev, next, min, max } = getCalendarInfo(datesMap, day.date)
+  const { format, prevDay, nextDay } = i18n[locale]
+  const getDateKey = partialGetDateKey(format)
+  const datesMap = getDatesMap(day, calendar, getDateKey)
+  const dateKey = getDateKey(day.date)
+  const { dates, prev, next, min, max } = getCalendarInfo(datesMap, dateKey)
 
-  const onClickArrow = (value: string) => {
-    onChangeDebounce(datesMap[value])
-  }
-
-  const getDateValue = (value: Date) => {
-    const dateKey = getDateKey(value)
-
-    if (!dateKey || !datesMap[dateKey]) return null
-
-    return datesMap[dateKey]
-  }
+  const onClickArrow = (value: string) => onChangeDebounce(datesMap[value])
 
   const onChangeDate = (value: Date | null) => {
-    if (!value || +value === +date) return
+    const invalidDate = Number.isNaN(value?.getTime())
 
-    const dateValue = getDateValue(value)
+    if (!value || +value === +date || invalidDate) return
 
-    if (!dateValue) return
+    const newDateKey = getDateKey(value)
 
-    onChangeDebounce(dateValue)
+    if (!newDateKey || !datesMap[newDateKey]) return
+
+    onChangeDebounce(datesMap[newDateKey])
   }
 
   const shouldDisableDate = (value: Date) => {
@@ -67,7 +61,7 @@ export default function Calendar({ goal }: CalendarProps): JSX.Element {
         onClick={() => onClickArrow(prev)}
       />
       <DatePicker
-        inputFormat="MM/dd/yyyy"
+        inputFormat={format}
         views={['day']}
         value={date}
         disabled={isLoading}
@@ -76,9 +70,9 @@ export default function Calendar({ goal }: CalendarProps): JSX.Element {
         maxDate={max}
         renderDay={(_, _value, DayComponentProps) => (
           <Badge
-            key={DayComponentProps.key}
             overlap="circular"
             badgeContent={!DayComponentProps.disabled ? <AppEmoji name="task" onlyEmoji /> : undefined}
+            key={DayComponentProps.key}
           >
             <PickersDay {...DayComponentProps} />
           </Badge>
@@ -87,7 +81,7 @@ export default function Calendar({ goal }: CalendarProps): JSX.Element {
           <TextField
             size="small"
             {...params}
-            error={params.inputProps?.value && !getDateValue(params.inputProps.value)}
+            error={params.inputProps?.value && !(params.inputProps.value in datesMap)}
             sx={{ width: 165 }}
           />
         )}

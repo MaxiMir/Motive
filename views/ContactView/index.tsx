@@ -44,7 +44,7 @@ export default function ContactView({ locale }: ContactViewProps): JSX.Element {
           {subheader} <AppEmoji name="wink" onlyEmoji />.
         </Typography>
         <Grid container spacing={2}>
-          <Grid item xs={6} sm={4} md={3} lg={2}>
+          <Grid item xs={4} sm={4} md={3} lg={2}>
             <ButtonLink
               sx={{
                 background: `linear-gradient(to top left, ${theme.palette.motivation.light}, ${theme.palette.motivation.dark})`,
@@ -61,7 +61,7 @@ export default function ContactView({ locale }: ContactViewProps): JSX.Element {
               </ButtonContent>
             </ButtonLink>
           </Grid>
-          <Grid item xs={6} sm={4} md={3} lg={2}>
+          <Grid item xs={4} sm={4} md={3} lg={2}>
             <ButtonLink
               sx={{
                 background: `linear-gradient(to top left, ${theme.palette.creativity.light}, ${theme.palette.creativity.dark})`,
@@ -78,7 +78,7 @@ export default function ContactView({ locale }: ContactViewProps): JSX.Element {
               </ButtonContent>
             </ButtonLink>
           </Grid>
-          <Grid item xs={6} sm={4} md={3} lg={2}>
+          <Grid item xs={4} sm={4} md={3} lg={2}>
             <ButtonLink
               sx={{
                 background: `linear-gradient(to top left, ${theme.palette.support.light}, ${theme.palette.support.dark})`,
@@ -117,20 +117,30 @@ const ButtonLink = styled(Button)(({ theme }) => ({
   '&:hover': {
     opacity: 0.8,
   },
-  '& .material-icons': {
-    fontSize: '4em',
-  },
-  '& svg': {
-    fontSize: '4em',
-  },
 }))
 
-const ButtonContent = styled(Box)({
+const ButtonContent = styled(Box)(({ theme }) => ({
   width: '100%',
   position: 'absolute',
   top: 0,
   bottom: 0,
   left: 0,
   right: 0,
-  color: 'common.white',
-})
+  '.MuiTypography-root': {
+    [theme.breakpoints.down('md')]: {
+      fontSize: '1rem',
+    },
+  },
+  '& .material-icons': {
+    fontSize: '4em',
+    [theme.breakpoints.down('md')]: {
+      fontSize: '3em',
+    },
+  },
+  '& svg': {
+    fontSize: '4em',
+    [theme.breakpoints.down('md')]: {
+      fontSize: '3em',
+    },
+  },
+}))

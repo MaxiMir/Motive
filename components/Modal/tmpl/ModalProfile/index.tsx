@@ -66,7 +66,7 @@ export default function ModalProfile({ user, locale, onClose }: ModalProfileProp
               </Grid>
             </Grid>
             {touched.avatar && errors.avatar && (
-              <Alert severity="error" variant="outlined" style={{ width: '100%' }}>
+              <Alert severity="error" variant="outlined" sx={{ width: '100%' }}>
                 {errors.avatar}
               </Alert>
             )}

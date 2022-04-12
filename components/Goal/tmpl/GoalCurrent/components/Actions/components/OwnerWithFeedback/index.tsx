@@ -17,7 +17,7 @@ export default function OwnerWithFeedback({ goal }: OwnerWithFeedbackProps): JSX
   const { locale } = useLocale()
   const [modal, setModal] = useState<'tasks' | 'completion'>()
   const isComplete = stages.length === day.stage
-  const { tasksButton, doneButton } = i18n[locale]
+  const { nextButton, doneButton } = i18n[locale]
 
   const onAddTasks = () => setModal('tasks')
 
@@ -26,9 +26,9 @@ export default function OwnerWithFeedback({ goal }: OwnerWithFeedbackProps): JSX
   const closeModal = () => setModal(undefined)
 
   return (
-    <Box display="flex" justifyContent="space-between">
-      <Button variant="outlined" startIcon={<AppEmoji name="task" onlyEmoji />} onClick={onAddTasks}>
-        {tasksButton}
+    <Box display="flex" justifyContent={isComplete ? 'space-between' : 'flex-end'}>
+      <Button variant="outlined" startIcon={<AppEmoji name="next" onlyEmoji />} onClick={onAddTasks}>
+        {nextButton}
       </Button>
       {isComplete && (
         <Button variant="outlined" color="warning" startIcon={<AppEmoji name="cup" onlyEmoji />} onClick={onComplete}>

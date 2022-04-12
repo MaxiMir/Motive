@@ -53,26 +53,22 @@ const Layout: FC<LayoutProps> = ({ title, description, url, type, image, statusC
           gtag('config', '${process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS}');
         `}</Script>
       <Header authenticated={!!client} />
-      {statusCode !== 200 ? (
-        <Error statusCode={statusCode} />
-      ) : (
-        <Box
-          component="main"
-          id="main"
-          display="flex"
-          flexDirection="column"
-          sx={{
-            flex: 1,
-            background: (theme) => (theme.palette.mode === 'dark' ? '#19191A' : undefined),
-            '@supports not (-moz-appearance:none)': {
-              background: (theme) =>
-                theme.palette.mode === 'dark' ? 'linear-gradient(#19191A, #0A0A0A 60%)' : undefined,
-            },
-          }}
-        >
-          {children}
-        </Box>
-      )}
+      <Box
+        component="main"
+        id="main"
+        display="flex"
+        flexDirection="column"
+        sx={{
+          flex: 1,
+          background: (theme) => (theme.palette.mode === 'dark' ? '#19191A' : undefined),
+          '@supports not (-moz-appearance:none)': {
+            background: (theme) =>
+              theme.palette.mode === 'dark' ? 'linear-gradient(#19191A, #0A0A0A 60%)' : undefined,
+          },
+        }}
+      >
+        {statusCode !== 200 ? <Error statusCode={statusCode} /> : children}
+      </Box>
       <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" />
       <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
       <Footer nickname={client?.nickname} />

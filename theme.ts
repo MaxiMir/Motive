@@ -180,7 +180,6 @@ export const getDesignTokens = (mode: PaletteMode): ThemeOptions => {
             backgroundImage: 'none',
             borderRadius: '12px',
             width: 'calc(100% - 16px)',
-            maxHeight: 'calc(100% - 157px)',
             margin: '16px',
           },
         },

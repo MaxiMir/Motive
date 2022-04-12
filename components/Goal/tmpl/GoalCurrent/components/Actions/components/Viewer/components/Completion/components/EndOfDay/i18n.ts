@@ -4,7 +4,7 @@ export default {
     message: 'Loading the next day',
   },
   ru: {
-    buttonName: 'Следующий',
+    buttonName: 'Дальше',
     message: 'Загружаю следующий день',
   },
 }

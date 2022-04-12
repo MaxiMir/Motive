@@ -1,10 +1,10 @@
 export default {
   en: {
-    tasksButton: 'Add tasks',
+    nextButton: 'Next',
     doneButton: 'Done',
   },
   ru: {
-    tasksButton: 'Задачи на завтра',
+    nextButton: 'Дальше',
     doneButton: 'Готово',
   },
 }

@@ -1,6 +1,7 @@
-import { Container, Box, Typography } from '@mui/material'
+import { Box, Typography } from '@mui/material'
 import useLocale from 'hooks/useLocale'
 import AppEmoji from 'components/UI/AppEmoji'
+import AppContainer from 'components/UI/AppContainer'
 
 const i18n = {
   en: {
@@ -23,18 +24,18 @@ export default function CustomError({ statusCode = 500 }: CustomErrorProps): JSX
   const title = i18n[locale][errorKey]
 
   return (
-    <Container fixed>
-      <Box display="flex" alignItems="center" justifyContent="center" height="100vh">
+    <AppContainer>
+      <Box display="flex" alignItems="center" justifyContent="center" height="calc(100vh - 125px)">
         <Box display="flex" flexDirection="column" alignItems="center" justifyContent="space-between">
-          <Typography component="h1" variant="h4">
+          <Typography component="h1" variant="h5">
             {title}
           </Typography>
-          <Typography style={{ fontSize: '10em' }}>{statusCode}</Typography>
-          <Typography style={{ fontSize: '10em' }}>
+          <Typography sx={{ fontSize: '9em' }}>{statusCode}</Typography>
+          <Typography sx={{ fontSize: '9em' }}>
             <AppEmoji name="error" onlyEmoji />
           </Typography>
         </Box>
       </Box>
-    </Container>
+    </AppContainer>
   )
 }

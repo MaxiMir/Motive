@@ -1,26 +1,20 @@
 import dynamic from 'next/dynamic'
 import { Field, FieldArray, Form, FormikProvider } from 'formik'
-import { Box, AccordionSummary, Button, Typography, Accordion, AccordionDetails } from '@mui/material'
+import { Box, Button, Typography, IconButton, Tooltip } from '@mui/material'
 import { styled } from '@mui/system'
-import { MainCharacteristicName } from 'dto'
 import useFocus from 'hooks/useFocus'
 import { Locale } from 'hooks/useLocale'
-import AppDecorEmoji from 'components/UI/AppDecorEmoji'
 import AppModal from 'components/UI/AppModal'
 import AppTitle from 'components/UI/AppTitle'
 import AppInput from 'components/UI/AppInput'
 import AppIcon from 'components/UI/AppIcon'
 import AppDot from 'components/UI/AppDot'
-import AppAccordion from 'components/UI/AppAccordion'
-import { PaulIcon } from 'components/UI/icons'
 import Action from 'components/Action'
 import Task from 'components/Task'
 import useForm from './hook'
 import i18n from './i18n'
 
 const AppIconButton = dynamic(() => import('components/UI/AppIconButton'))
-
-const CHARACTERISTIC_NAMES: MainCharacteristicName[] = ['motivation', 'creativity', 'support']
 
 export interface ModalGoalProps {
   tmpl: 'goal'
@@ -42,13 +36,9 @@ export default function ModalGoal({ locale, onClose }: ModalGoalProps): JSX.Elem
     stages,
     stage,
     stageButton,
-    stageAria,
     stageHints,
     tasksTitle,
     addTask,
-    pitt,
-    pittAria,
-    pittHints,
   } = i18n[locale]
 
   const onAddHashtag = () => {
@@ -75,26 +65,33 @@ export default function ModalGoal({ locale, onClose }: ModalGoalProps): JSX.Elem
     >
       <FormikProvider value={form}>
         <Form autoComplete="off">
-          <Box display="flex" flexDirection="column" gap={3}>
+          <Box display="flex" flexDirection="column" gap={2}>
             <Field name="name" label={name} component={AppInput} />
             <Box display="flex" flexDirection="column" gap={1}>
-              <Field
-                name="hashtags"
-                color="secondary"
-                label={hashtags}
-                multiline
-                rows={2}
-                inputRef={hashtagsRef}
-                component={AppInput}
-              />
+              <Field name="hashtags" color="secondary" label={hashtags} inputRef={hashtagsRef} component={AppInput} />
               <ButtonCompact variant="outlined" color="secondary" size="small" onClick={onAddHashtag}>
                 # {hashtag}
               </ButtonCompact>
             </Box>
-            <Box display="flex" flexDirection="column" gap={2}>
-              <AppTitle name="stage" variant="h6" component="h2" color="primary">
-                {stages}
-              </AppTitle>
+            <Box display="flex" flexDirection="column" gap={1}>
+              <Box display="flex" gap={1}>
+                <AppTitle name="stage" variant="h6" component="h2" color="primary">
+                  {stages}
+                </AppTitle>
+                <Tooltip
+                  title={
+                    <>
+                      {stageHints.map((hint, key) => (
+                        <Typography key={key}>{hint}</Typography>
+                      ))}
+                    </>
+                  }
+                >
+                  <IconButton color="info">
+                    <AppIcon name="help_outline" />
+                  </IconButton>
+                </Tooltip>
+              </Box>
               <FieldArray name="stages">
                 {({ push, remove }) => (
                   <>
@@ -123,9 +120,11 @@ export default function ModalGoal({ locale, onClose }: ModalGoalProps): JSX.Elem
               </FieldArray>
             </Box>
             <Box display="flex" flexDirection="column" gap={2}>
-              <AppTitle name="task" variant="h6" component="h2" color="primary">
-                {tasksTitle}
-              </AppTitle>
+              <Box display="flex" gap={1}>
+                <AppTitle name="task" variant="h6" component="h2" color="primary">
+                  {tasksTitle}
+                </AppTitle>
+              </Box>
               <FieldArray name="tasks">
                 {({ push, remove }) => (
                   <>
@@ -150,52 +149,6 @@ export default function ModalGoal({ locale, onClose }: ModalGoalProps): JSX.Elem
                 )}
               </FieldArray>
             </Box>
-            <div>
-              <AppAccordion
-                name="stage"
-                header={stages}
-                id="stage"
-                ariaControls={stageAria}
-                details={
-                  <>
-                    {stageHints.map((hint, key) => (
-                      <Typography color="gray" key={key}>
-                        {hint}
-                      </Typography>
-                    ))}
-                  </>
-                }
-              />
-              <Accordion>
-                <AccordionSummary
-                  expandIcon={<AppIcon name="expand_more" />}
-                  aria-controls={pittAria}
-                  id="old-pitt-note"
-                >
-                  <Box display="flex" alignItems="center" gap={1}>
-                    <PaulIcon />
-                    <Typography variant="h6" component="h3">
-                      {pitt}
-                    </Typography>
-                  </Box>
-                </AccordionSummary>
-                <AccordionDetails>
-                  <Typography color="gray">
-                    {pittHints[0]}
-                    <br />
-                    {pittHints[1]} <AppDecorEmoji name="web" />.
-                    <br />
-                    {pittHints[2]} <AppDecorEmoji name="blood" />.
-                    <br />
-                    {pittHints[3]}{' '}
-                    {CHARACTERISTIC_NAMES.map((characteristic) => (
-                      <AppDecorEmoji name={characteristic} key={characteristic} />
-                    ))}
-                    {pittHints[4]}
-                  </Typography>
-                </AccordionDetails>
-              </Accordion>
-            </div>
           </Box>
         </Form>
       </FormikProvider>

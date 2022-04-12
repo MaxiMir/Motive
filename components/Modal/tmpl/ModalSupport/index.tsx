@@ -2,6 +2,7 @@ import { Field, Form, FormikProvider } from 'formik'
 import { Box, Typography, Theme } from '@mui/material'
 import { createStyles, makeStyles } from '@mui/styles'
 import { GoalDto, UserBaseDto } from 'dto'
+import useLocale from 'hooks/useLocale'
 import Action from 'components/Action'
 import AppModal from 'components/UI/AppModal'
 import AppFadeIcon from 'components/UI/AppFadeIcon'
@@ -9,6 +10,7 @@ import AppInput from 'components/UI/AppInput'
 import AppAccordion from 'components/UI/AppAccordion'
 import AppDecorEmoji from 'components/UI/AppDecorEmoji'
 import useForm from './hook'
+import i18n from './i18n'
 
 export interface ModalSupportProps {
   tmpl: 'support'
@@ -19,14 +21,16 @@ export interface ModalSupportProps {
 
 export default function ModalSupport({ goal, owner, onClose }: ModalSupportProps): JSX.Element {
   const classes = useStyles()
+  const { locale } = useLocale()
   const form = useForm(goal, onClose)
   const { isSubmitting, handleSubmit } = form
+  const { title, header, label, button, buttonLoading, ariaControls, accordion } = i18n[locale]
 
   return (
     <AppModal
       title={
         <>
-          Support <span className={classes.owner}>{owner.name}</span>
+          {title} <span className={classes.owner}>{owner.name}</span>
         </>
       }
       maxWidth="xs"
@@ -35,8 +39,8 @@ export default function ModalSupport({ goal, owner, onClose }: ModalSupportProps
         <Action
           tmpl="submit"
           isLoading={isSubmitting}
-          name="Support"
-          nameLoading="Adding"
+          name={button}
+          nameLoading={buttonLoading}
           emoji="support"
           onClick={handleSubmit}
         />,
@@ -47,26 +51,26 @@ export default function ModalSupport({ goal, owner, onClose }: ModalSupportProps
         <Form autoComplete="off">
           <Box display="flex" flexDirection="column" alignItems="center" gap={3}>
             <AppFadeIcon name="support" />
-            <Field name="text" label="Your message" color="secondary" multiline rows={3} component={AppInput} />
+            <Field name="text" label={label} color="secondary" multiline rows={3} component={AppInput} />
             <div className={classes.accordionWrap}>
               <AppAccordion
                 name="helmet"
-                header="Support"
+                header={header}
                 id="support"
-                ariaControls="about-support-content"
+                ariaControls={ariaControls}
                 details={
                   <div className={classes.hint}>
                     <Typography>
-                      Support is very important for achieving goals.
+                      {accordion[0]}
                       <AppDecorEmoji name="goal" />.
                     </Typography>
                     <Typography>
-                      Especially at times when you want to give up
+                      {accordion[1]}
                       <AppDecorEmoji name="tired" />.
                     </Typography>
-                    <Typography>Therefore support others:</Typography>
-                    <Typography>&#9679; with advice;</Typography>
-                    <Typography>&#9679; with words of encouragement.</Typography>
+                    <Typography>{accordion[2]}</Typography>
+                    <Typography>&#9679; {accordion[3]}</Typography>
+                    <Typography>&#9679; {accordion[4]}</Typography>
                   </div>
                 }
               />

@@ -3,6 +3,7 @@ import { Grid, Box, Typography, Theme } from '@mui/material'
 import { createStyles, makeStyles } from '@mui/styles'
 import { GoalDto } from 'dto'
 import useSelectPhoto from 'hooks/useSelectPhoto'
+import useLocale from 'hooks/useLocale'
 import Action from 'components/Action'
 import AppModal from 'components/UI/AppModal'
 import AppInput from 'components/UI/AppInput'
@@ -11,6 +12,7 @@ import AppShakeIcon from 'components/UI/AppShakeIcon'
 import Photo from 'components/Photo'
 import Video from 'components/Video'
 import useForm from './hook'
+import i18n from './i18n'
 
 export interface ModalFeedbackProps {
   tmpl: 'feedback'
@@ -20,8 +22,10 @@ export interface ModalFeedbackProps {
 
 export default function ModalFeedback({ goal, onClose }: ModalFeedbackProps): JSX.Element {
   const classes = useStyles()
+  const { locale } = useLocale()
   const form = useForm(goal, onClose)
   const { isSubmitting, values, setFieldValue, handleSubmit } = form
+  const { title, subtitle, photoTitle, videoTitle, button, buttonLoading } = i18n[locale]
 
   const onSelectPhoto = useSelectPhoto(form)
 
@@ -29,15 +33,15 @@ export default function ModalFeedback({ goal, onClose }: ModalFeedbackProps): JS
 
   return (
     <AppModal
-      title="Adding feedback"
+      title={title}
       maxWidth="xs"
       actions={[
         <Action tmpl="close" onClick={onClose} />,
         <Action
           tmpl="submit"
           isLoading={isSubmitting}
-          name="Add"
-          nameLoading="Adding"
+          name={button}
+          nameLoading={buttonLoading}
           emoji="feedback"
           onClick={handleSubmit}
         />,
@@ -50,14 +54,14 @@ export default function ModalFeedback({ goal, onClose }: ModalFeedbackProps): JS
             <Box display="flex" flexDirection="column" alignItems="center" gap={1}>
               <AppShakeIcon name="congratulations" />
               <Typography variant="subtitle1" className={classes.congratulations}>
-                Impressive! One step closer to your goal!
+                {subtitle}
               </Typography>
             </Box>
             <Field name="text" label="How it went" color="warning" multiline rows={3} component={AppInput} />
             {!!values.photos.length && (
               <Box display="flex" flexDirection="column" gap={2} width="100%">
                 <AppTitle name="photo" variant="h6" component="h2" color="primary">
-                  Photos
+                  {photoTitle}
                 </AppTitle>
                 <FieldArray name="photos">
                   {({ remove }) => (
@@ -75,7 +79,7 @@ export default function ModalFeedback({ goal, onClose }: ModalFeedbackProps): JS
             {values.video && (
               <Box display="flex" flexDirection="column" gap={2} width="100%">
                 <AppTitle name="video" variant="h6" component="h2" color="primary">
-                  Video
+                  {videoTitle}
                 </AppTitle>
                 <Video
                   tmpl="preview"

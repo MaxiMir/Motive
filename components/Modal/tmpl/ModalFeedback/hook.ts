@@ -4,8 +4,10 @@ import { GoalDto } from 'dto'
 import schema from 'schemas/feedback'
 import FeedbackService from 'services/FeedbackService'
 import useSnackbar from 'hooks/useSnackbar'
+import useLocale from 'hooks/useLocale'
 import { useMutateGoals } from 'views/UserView/hook'
 import { getNextState } from './helper'
+import i18n from './i18n'
 
 interface Values {
   text: string
@@ -36,13 +38,15 @@ export default function useForm(goal: GoalDto, onSuccess: () => void): FormikPro
 }
 
 const useSendFeedback = (goalId: number) => {
+  const { locale } = useLocale()
   const [enqueueSnackbar] = useSnackbar()
   const [goals, mutateGoals] = useMutateGoals()
+  const { message } = i18n[locale]
 
   return useMutation(FeedbackService.create, {
     onSuccess: (feedback) => {
       mutateGoals(getNextState(goals, goalId, feedback))
-      enqueueSnackbar({ message: 'Feedback successfully added', severity: 'success', icon: 'feedback' })
+      enqueueSnackbar({ message, severity: 'success', icon: 'feedback' })
     },
   })
 }

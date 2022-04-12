@@ -1,6 +1,5 @@
 ```shell
 docker build -t maximir/frontend:1.0.6 .
-
 # artifactory:
 docker tag <IMAGE_ID> maximir.jfrog.io/default-docker-virtual/frontend:1.0.6
 docker push maximir.jfrog.io/default-docker-virtual/frontend:1.0.6

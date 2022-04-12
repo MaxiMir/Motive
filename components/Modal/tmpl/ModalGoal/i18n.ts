@@ -12,7 +12,7 @@ export default {
     stageAria: 'about-stages-content',
     stageHints: ['We recommend to divide large goals into stages.', 'Add each stage in the field above.'],
     tasksTitle: 'Tasks for tomorrow',
-    addTask: 'Add task',
+    addTask: '+ Add task',
     pitt: 'Remember Old Pitt!',
     pittAria: 'old-pitt-note',
     pittHints: [
@@ -37,7 +37,7 @@ export default {
     stageButton: 'Добавить этап',
     stageHints: ['Мы рекомендуем разделять большие цели на этапы.', 'Добавьте каждый этап в поле выше.'],
     tasksTitle: 'Задачи на завтра',
-    addTask: 'Добавить задачу',
+    addTask: '+ Добавить задачу',
     pitt: 'Помни о Старине Питте!',
     pittAria: 'заметка-о-старине-питте',
     pittHints: [

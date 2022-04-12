@@ -7,6 +7,7 @@ import AppModal from 'components/UI/AppModal'
 import Action from 'components/Action'
 import Task from 'components/Task'
 import useForm from './hook'
+import i18n from './i18n'
 
 export interface ModalTasksProps {
   tmpl: 'tasks'
@@ -19,12 +20,13 @@ export default function ModalTasks({ goal, onClose }: ModalTasksProps): JSX.Elem
   const { locale } = useLocale()
   const form = useForm(goal, onClose)
   const { isSubmitting, values, setFieldValue, handleSubmit } = form
+  const { title, subtitle, addTask, button, buttonLoading } = i18n[locale]
 
   return (
     <AppModal
       title={
         <>
-          Adding tasks for <span className={classes.tomorrow}>tomorrow</span>
+          {title} <span className={classes.tomorrow}>{subtitle}</span>
         </>
       }
       maxWidth="xs"
@@ -33,9 +35,9 @@ export default function ModalTasks({ goal, onClose }: ModalTasksProps): JSX.Elem
         <Action
           tmpl="submit"
           isLoading={isSubmitting}
-          name="Add"
-          nameLoading="Adding"
-          emoji="feedback"
+          name={button}
+          nameLoading={buttonLoading}
+          emoji="task"
           onClick={handleSubmit}
         />,
       ]}
@@ -66,7 +68,7 @@ export default function ModalTasks({ goal, onClose }: ModalTasksProps): JSX.Elem
                   className={classes.button}
                   onClick={() => push({ name: '', date: undefined })}
                 >
-                  + Add task
+                  {addTask}
                 </Button>
               </>
             )}

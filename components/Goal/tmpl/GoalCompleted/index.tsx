@@ -43,6 +43,7 @@ export default function GoalCompleted({ confirmation, user, inView, onView }: Go
         padding: '3px',
         background: `linear-gradient(to top left, #fde76c, #813203, #ce8c00)`,
         borderRadius: '13px',
+        minHeight: '500px',
       }}
     >
       <Box

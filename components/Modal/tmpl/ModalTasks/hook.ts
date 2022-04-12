@@ -4,11 +4,11 @@ import { CreateDayDto, GoalDto } from 'dto'
 import schema from 'schemas/tasks'
 import GoalService from 'services/GoalService'
 import { getTomorrow } from 'helpers/date'
-import { toShortUserName } from 'helpers/prepare'
-import useClient from 'hooks/useClient'
 import useSnackbar from 'hooks/useSnackbar'
+import useLocale from 'hooks/useLocale'
 import { useChangeDayUrl, useMutateGoals } from 'views/UserView/hook'
 import { getNextState } from './helper'
+import i18n from './i18n'
 
 export default function useForm(goal: GoalDto, onSuccess: () => void): FormikProps<CreateDayDto> {
   const { id } = goal
@@ -29,7 +29,7 @@ export default function useForm(goal: GoalDto, onSuccess: () => void): FormikPro
 }
 
 const useSendAddDay = () => {
-  const client = useClient()
+  const { locale } = useLocale()
   const [enqueueSnackbar] = useSnackbar()
   const [goals, mutateGoals] = useMutateGoals()
   const changeDayUrl = useChangeDayUrl()
@@ -37,11 +37,12 @@ const useSendAddDay = () => {
   return useMutation(GoalService.createDay, {
     onSuccess({ days }, { id }) {
       const day = days[days.length - 1]
+      const { message } = i18n[locale]
 
       mutateGoals(getNextState(goals, day, id))
       changeDayUrl(goals, id, day.id)
       enqueueSnackbar({
-        message: `${toShortUserName(client?.name)}, uploading your next tasks`,
+        message,
         severity: 'success',
         icon: 'speaker',
       })

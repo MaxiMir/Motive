@@ -144,7 +144,7 @@ export default function ModalGoal({ locale, onClose }: ModalGoalProps): JSX.Elem
                       />
                     ))}
                     <ButtonCompact variant="outlined" size="small" onClick={() => push({ name: '', date: undefined })}>
-                      + {addTask}
+                      {addTask}
                     </ButtonCompact>
                   </>
                 )}

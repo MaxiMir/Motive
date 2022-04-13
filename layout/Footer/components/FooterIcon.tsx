@@ -6,5 +6,5 @@ interface FooterLinkProps {
 }
 
 export default function FooterIcon({ Icon, selected }: FooterLinkProps): JSX.Element {
-  return <Icon sx={{ fontSize: '1.9rem', color: 'common.white', opacity: selected ? 0.6 : 1 }} />
+  return <Icon sx={{ fontSize: '1.9rem', color: 'common.white', opacity: !selected ? 0.6 : 1 }} />
 }

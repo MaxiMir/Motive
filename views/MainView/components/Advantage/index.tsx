@@ -46,7 +46,7 @@ export default function Advantage({ id, href, locale }: AdvantageProps): JSX.Ele
             variant="h5"
             sx={{
               color: '#F5F5F7',
-              width: locale === 'ru' ? 245 : 210,
+              width: locale === 'ru' ? 246 : 210,
               textTransform: 'uppercase',
               fontWeight: 500,
               textDecoration: 'none',

@@ -1,9 +1,9 @@
 ```shell
-docker build -t maximir/frontend:1.0.7 .
+docker build -t maximir/frontend:1.0.8 .
 # artifactory:
-docker tag <IMAGE_ID> maximir.jfrog.io/default-docker-virtual/frontend:1.0.7
-docker push maximir.jfrog.io/default-docker-virtual/frontend:1.0.7
-docker pull maximir.jfrog.io/default-docker-virtual/frontend:1.0.7
+docker tag <IMAGE_ID> maximir.jfrog.io/default-docker-virtual/frontend:1.0.8
+docker push maximir.jfrog.io/default-docker-virtual/frontend:1.0.8
+docker pull maximir.jfrog.io/default-docker-virtual/frontend:1.0.8
 
 # copy:
 docker cp <IMAGE_ID>:/home/node/client /home # <-

@@ -1,6 +1,5 @@
-import produce from 'immer'
 import { differenceInCalendarDays } from 'date-fns'
-import { GoalDto, MemberDto, OwnershipDto, TaskDto } from 'dto'
+import { GoalDto, MemberDto, OwnershipDto } from 'dto'
 import { SEARCH_PARAMS, setQueryParams } from 'helpers/url'
 import { getMember } from 'views/UserView/helper'
 
@@ -18,15 +17,6 @@ export const getClientOwnership = (
 
   return { page: clientPage, goal: clientGoal, member: clientMember }
 }
-
-export const redefineTasks = (tasks: TaskDto[], userMember?: MemberDto): TaskDto[] =>
-  tasks.map((task) =>
-    produce(task, (draft) => {
-      if (!userMember) return
-
-      draft.completed = userMember.completedTasks.includes(draft.id)
-    }),
-  )
 
 export const getGoalHref = (userHref: string, goal: GoalDto): string => {
   const { id, day } = goal

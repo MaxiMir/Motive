@@ -3,24 +3,22 @@ import dynamic from 'next/dynamic'
 import { Box, useTheme } from '@mui/material'
 import { GoalDto, GoalCharacteristicName, MemberDto } from 'dto'
 import useLocale from 'hooks/useLocale'
-import { getMember } from 'views/UserView/helper'
 import Characteristic from 'components/Characteristic'
 import AppTitle from 'components/UI/AppTitle'
 import AppDot from 'components/UI/AppDot'
 import AppAccordion from 'components/UI/AppAccordion'
 import { useIncreaseViews } from './hook'
-import { getGoalHref, getGoalInfo, redefineTasks, getClientOwnership } from './helper'
+import { getGoalHref, getGoalInfo, getClientOwnership } from './helper'
 import Calendar from './components/Calendar'
 import Menu from './components/Menu'
 import Discussion from './components/Discussion'
 import Views from './components/Views'
-import Task from './components/Task'
+import Feedback from './components/Feedback'
+import TaskList from './components/TaskList'
 import i18n from './i18n'
 
-const Typography = dynamic(() => import('@mui/material/Typography'))
 const Inheritance = dynamic(() => import('./components/Inheritance'))
 const Stages = dynamic(() => import('./components/Stages'))
-const Feedback = dynamic(() => import('./components/Feedback'))
 const Hashtags = dynamic(() => import('./components/Hashtags'))
 const Web = dynamic(() => import('./components/Web'))
 const Viewer = dynamic(() => import('./components/Viewer'))
@@ -49,21 +47,17 @@ export default function GoalCurrent({
   clientMembership,
 }: GoalCurrentProps): JSX.Element {
   const { id, name, hashtags, characteristic, owner, stages, day, inherited } = goal
-  const { id: dayId, tasks, views, feedback, topicCount } = day
+  const { id: dayId, views, topicCount } = day
   const theme = useTheme()
   const { locale } = useLocale()
-  const userMember = getMember(id, userMembership, userId)
   const clientOwnership = getClientOwnership(goal, clientId, clientPage, clientMembership)
   const goalHref = getGoalHref(href, goal)
   const goalInfo = useMemo(() => getGoalInfo(goal, clientOwnership), [goal, clientOwnership])
-  const redefinedGoals = redefineTasks(tasks, userMember)
-  const rest = redefinedGoals.length - redefinedGoals.filter((t) => t.completed).length
   const {
     stagesHeader,
     stagesAria,
     tasksHeader,
     tasksAria,
-    soon,
     feedbackHeader,
     feedbackAria,
     discussionHeader,
@@ -150,18 +144,13 @@ export default function GoalCurrent({
                 ariaControls={tasksAria}
                 defaultExpanded
                 details={
-                  <Box display="flex" flexDirection="column" gap={1}>
-                    {redefinedGoals.map((task) => (
-                      <Task
-                        goalId={id}
-                        task={task}
-                        rest={rest}
-                        goalInfo={goalInfo}
-                        clientMember={clientOwnership.member}
-                        key={task.id}
-                      />
-                    ))}
-                  </Box>
+                  <TaskList
+                    goal={goal}
+                    goalInfo={goalInfo}
+                    userId={userId}
+                    userMembership={userMembership}
+                    clientMember={clientOwnership.member}
+                  />
                 }
               />
               <AppAccordion
@@ -169,8 +158,8 @@ export default function GoalCurrent({
                 header={feedbackHeader}
                 id={`feedbackContent-${dayId}`}
                 ariaControls={feedbackAria}
-                defaultExpanded={!!feedback}
-                details={!feedback ? <Typography>{soon}</Typography> : <Feedback feedback={feedback} />}
+                defaultExpanded
+                details={<Feedback goal={goal} forTomorrow={goalInfo.forTomorrow} clientOwnership={clientOwnership} />}
               />
               <AppAccordion
                 name="discussion"
@@ -196,7 +185,7 @@ export default function GoalCurrent({
             {goalInfo.controls && (
               <>
                 {clientOwnership.goal ? (
-                  <Owner goal={goal} forTomorrow={goalInfo.forTomorrow} />
+                  <Owner goal={goal} />
                 ) : (
                   <Viewer
                     goal={goal}

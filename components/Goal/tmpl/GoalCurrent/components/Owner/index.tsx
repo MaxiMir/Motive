@@ -11,22 +11,19 @@ const Modal = dynamic(() => import('components/Modal'))
 
 export interface OwnerProps {
   goal: GoalDto
-  forTomorrow: boolean
 }
 
-export default function Owner({ goal, forTomorrow }: OwnerProps): JSX.Element {
+export default function Owner({ goal }: OwnerProps): JSX.Element {
   const { stages, day } = goal
   const { locale } = useLocale()
-  const [modal, setModal] = useState<'tasks' | 'completion' | 'feedback'>()
-  const { nextButton, doneButton, feedbackButton } = i18n[locale]
+  const [modal, setModal] = useState<'tasks' | 'completion'>()
+  const { nextButton, doneButton } = i18n[locale]
   const feedbackAdded = !!goal.day.feedback
   const renderCompete = stages.length === day.stage && feedbackAdded
 
   const onAddTasks = () => setModal('tasks')
 
   const onComplete = () => setModal('completion')
-
-  const onAddFeedback = () => setModal('feedback')
 
   const closeModal = () => setModal(undefined)
 
@@ -47,22 +44,8 @@ export default function Owner({ goal, forTomorrow }: OwnerProps): JSX.Element {
           {doneButton}
         </Button>
       )}
-      {!feedbackAdded && (
-        <OptionalTooltip tmpl="tomorrow" wrap={forTomorrow}>
-          <Button
-            variant="outlined"
-            color="secondary"
-            startIcon={<AppEmoji name="feedback" onlyEmoji />}
-            disabled={forTomorrow}
-            onClick={onAddFeedback}
-          >
-            {feedbackButton}
-          </Button>
-        </OptionalTooltip>
-      )}
       {modal === 'tasks' && <Modal tmpl="tasks" goal={goal} onClose={closeModal} />}
       {modal === 'completion' && <Modal tmpl="completion" goal={goal} onClose={closeModal} />}
-      {modal === 'feedback' && <Modal tmpl="feedback" goal={goal} onClose={closeModal} />}
     </Box>
   )
 }

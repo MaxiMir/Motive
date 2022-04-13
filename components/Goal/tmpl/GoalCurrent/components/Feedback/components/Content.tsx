@@ -6,11 +6,11 @@ const Gallery = dynamic(() => import('components/Gallery'))
 const AppVideo = dynamic(() => import('components/UI/AppVideo'))
 const AppMarkdown = dynamic(() => import('components/UI/AppMarkdown'))
 
-interface FeedbackProps {
+interface ContentProps {
   feedback: FeedbackDto
 }
 
-export default function Feedback({ feedback }: FeedbackProps): JSX.Element {
+export default function Content({ feedback }: ContentProps): JSX.Element {
   const { text, photos, video } = feedback
 
   return (

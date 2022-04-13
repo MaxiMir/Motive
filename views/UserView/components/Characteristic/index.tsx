@@ -6,7 +6,7 @@ import i18nAll from 'constants/i18n'
 import { UserDetailDto, UserCharacteristicName } from 'dto'
 import { Locale } from 'hooks/useLocale'
 import CharacteristicBase from 'components/Characteristic'
-import AppOptionalTooltip from 'components/UI/AppOptionalTooltip'
+import OptionalTooltip from 'components/OptionalTooltip'
 import i18n from './i18n'
 
 const Modal = dynamic(() => import('components/Modal'))
@@ -23,8 +23,8 @@ export default function Characteristic(props: CharacteristicProps): JSX.Element 
   const { user, name, locale } = props
   const router = useRouter()
   const [modal, setModal] = useState<'followers' | 'completed'>()
-  const title = i18nAll[locale][name]
-  const tooltip = i18n[locale][name]
+  const button = i18nAll[locale][name]
+  const title = i18n[locale][name]
 
   const onClick = () => {
     switch (name) {
@@ -40,7 +40,7 @@ export default function Characteristic(props: CharacteristicProps): JSX.Element 
 
   return (
     <>
-      <AppOptionalTooltip title={tooltip}>
+      <OptionalTooltip tmpl="custom" custom={title} wrap={!!title}>
         <Button
           sx={{
             textTransform: 'none',
@@ -65,12 +65,12 @@ export default function Characteristic(props: CharacteristicProps): JSX.Element 
                 },
               }}
             >
-              {title}
+              {button}
             </Typography>
             <CharacteristicBase tmpl="user" {...props} />
           </Box>
         </Button>
-      </AppOptionalTooltip>
+      </OptionalTooltip>
       {modal && <Modal tmpl={modal} user={user} onClose={onClose} />}
     </>
   )

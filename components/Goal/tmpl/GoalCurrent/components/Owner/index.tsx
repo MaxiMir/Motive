@@ -19,7 +19,6 @@ export default function Owner({ goal, forTomorrow }: OwnerProps): JSX.Element {
   const { locale } = useLocale()
   const [modal, setModal] = useState<'tasks' | 'completion' | 'feedback'>()
   const { nextButton, doneButton, feedbackButton } = i18n[locale]
-  const isComplete = stages.length === day.stage
   const feedbackAdded = !!goal.day.feedback
   const renderCompete = stages.length === day.stage && feedbackAdded
 
@@ -32,7 +31,7 @@ export default function Owner({ goal, forTomorrow }: OwnerProps): JSX.Element {
   const closeModal = () => setModal(undefined)
 
   return (
-    <Box display="flex" justifyContent={isComplete ? 'space-between' : 'flex-end'}>
+    <Box display="flex" justifyContent="space-between">
       <OptionalTooltip tmpl="feedback" wrap={!feedbackAdded}>
         <Button
           variant="outlined"

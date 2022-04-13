@@ -1,10 +1,10 @@
 export default {
   en: {
-    buttonName: 'Next',
+    button: 'Next',
     message: 'Loading the next day',
   },
   ru: {
-    buttonName: 'Дальше',
+    button: 'Дальше',
     message: 'Загружаю следующий день',
   },
 }

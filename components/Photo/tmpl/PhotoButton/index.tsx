@@ -1,6 +1,8 @@
 import dynamic from 'next/dynamic'
 import { Box, Button, IconButton } from '@mui/material'
+import useLocale from 'hooks/useLocale'
 import AppIcon from 'components/UI/AppIcon'
+import i18n from './i18n'
 
 const AppImage = dynamic(() => import('components/UI/AppImage'))
 const LocalImage = dynamic(() => import('./components/LocalImage'))
@@ -13,9 +15,12 @@ export interface PhotoButtonProps {
 }
 
 export default function PhotoButton({ image, disabled, onClick }: PhotoButtonProps): JSX.Element {
+  const { locale } = useLocale()
+  const { ariaLabel } = i18n[locale]
+
   return (
     <Button
-      color="secondary"
+      color="warning"
       variant="outlined"
       component="div"
       sx={{
@@ -43,7 +48,7 @@ export default function PhotoButton({ image, disabled, onClick }: PhotoButtonPro
           <AppImage src={image} layout="fill" objectFit="contain" />
         )}
         <IconButton
-          aria-label="Remove photo"
+          aria-label={ariaLabel}
           disabled={disabled}
           sx={{
             position: 'absolute',

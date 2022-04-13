@@ -17,7 +17,7 @@ export default function ModalStage({ goal, onClose }: ModalStageProps): JSX.Elem
   const { stages, day } = goal
   const { locale } = useLocale()
   const { isLoading, mutate } = useSendStage(onClose)
-  const { title, behind, buttonName, buttonLoading, getNextTitle } = i18n[locale]
+  const { title, behind, button, buttonLoading, getNextTitle } = i18n[locale]
   const isFinal = stages.length === day.stage
   const nextTitle = getNextTitle(isFinal)
   const nextStage = day.stage + 1
@@ -40,7 +40,7 @@ export default function ModalStage({ goal, onClose }: ModalStageProps): JSX.Elem
         <Action
           tmpl="submit"
           isLoading={isLoading}
-          name={buttonName}
+          name={button}
           nameLoading={buttonLoading}
           emoji="stage"
           onClick={onClick}

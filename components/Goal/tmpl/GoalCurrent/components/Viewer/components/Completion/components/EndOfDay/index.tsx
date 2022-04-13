@@ -2,8 +2,8 @@ import dynamic from 'next/dynamic'
 import { Button } from '@mui/material'
 import { GoalDto, MemberDto } from 'dto'
 import useLocale from 'hooks/useLocale'
+import OptionalTooltip from 'components/OptionalTooltip'
 import AppEmoji from 'components/UI/AppEmoji'
-import TooltipTomorrow from 'components/Goal/tmpl/GoalCurrent/components/TooltipTomorrow'
 import { getToday } from 'helpers/date'
 import { useSendEndOfDay } from './hook'
 import i18n from './i18n'
@@ -20,14 +20,14 @@ interface EndOfDayProps {
 export default function EndOfDay({ goal, nextDayId, forTomorrow, clientMember }: EndOfDayProps): JSX.Element {
   const { locale } = useLocale()
   const { isLoading, mutate } = useSendEndOfDay(goal)
-  const { buttonName } = i18n[locale]
+  const { button } = i18n[locale]
 
   const onClick = () => {
     mutate({ id: clientMember.id, dayId: nextDayId, lastEndOfDay: getToday() })
   }
 
   return (
-    <TooltipTomorrow forTomorrow={forTomorrow}>
+    <OptionalTooltip tmpl="tomorrow" wrap={forTomorrow}>
       <Button
         variant="outlined"
         color="primary"
@@ -35,8 +35,8 @@ export default function EndOfDay({ goal, nextDayId, forTomorrow, clientMember }:
         startIcon={isLoading ? <CircularProgress size="0.9rem" color="primary" /> : <AppEmoji name="next" onlyEmoji />}
         onClick={onClick}
       >
-        {buttonName}
+        {button}
       </Button>
-    </TooltipTomorrow>
+    </OptionalTooltip>
   )
 }

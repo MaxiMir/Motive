@@ -2,10 +2,10 @@ import dynamic from 'next/dynamic'
 import { Box } from '@mui/material'
 import { MemberDto, TaskDto } from 'dto'
 import { GoalInfo } from 'components/Goal/tmpl/GoalCurrent/helper'
+import OptionalTooltip from 'components/OptionalTooltip'
 import AppCheckbox from 'components/UI/AppCheckbox'
-import useSetCompleted from './hook'
-import TooltipTomorrow from '../TooltipTomorrow'
 import TaskLabel from './components/TaskLabel'
+import useSetCompleted from './hook'
 
 const TaskDate = dynamic(() => import('./components/TaskDate'))
 
@@ -26,7 +26,7 @@ export default function Task({ goalId, task, rest, goalInfo, clientMember }: Tas
   return (
     <Box display="flex" flexDirection="column" gap={1}>
       <form>
-        <TooltipTomorrow forTomorrow={forTomorrow}>
+        <OptionalTooltip tmpl="tomorrow" wrap={forTomorrow}>
           <AppCheckbox
             name={id.toString()}
             label={<TaskLabel task={task} daysGoneForOwner={daysGoneForOwner} />}
@@ -34,7 +34,7 @@ export default function Task({ goalId, task, rest, goalInfo, clientMember }: Tas
             disabled={disabled}
             onChange={setCompleted}
           />
-        </TooltipTomorrow>
+        </OptionalTooltip>
       </form>
       {date && <TaskDate date={date} />}
     </Box>

@@ -19,7 +19,7 @@ export default function Join({ goal, locale }: JoinProps): JSX.Element {
   const client = useClient()
   const openSignIn = useOpenSignIn()
   const [open, setOpen] = useState(false)
-  const { buttonName } = i18n[locale]
+  const { button } = i18n[locale]
 
   const toggleModal = () => setOpen(!open)
 
@@ -35,7 +35,7 @@ export default function Join({ goal, locale }: JoinProps): JSX.Element {
   return (
     <>
       <Button variant="outlined" color="primary" startIcon={<AppEmoji name="join" onlyEmoji />} onClick={onClick}>
-        {buttonName}
+        {button}
       </Button>
       {open && <Modal tmpl="join" goal={goal} onClose={toggleModal} />}
     </>

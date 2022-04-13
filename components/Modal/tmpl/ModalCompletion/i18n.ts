@@ -1,0 +1,26 @@
+export default {
+  en: {
+    title: 'Completing the goal',
+    button: 'Complete',
+    buttonLoading: 'Completing',
+    subtitle: 'Congratulations, you did it!',
+    label: 'How it was',
+    photoTitle: 'Photos',
+    videoTitle: 'Video',
+    accordionHeader: 'Goal Completion',
+    ariaControls: 'about-goal-completion',
+    details: ['In addition to the points you receive', ', you get an extra', 'for completing the goal.'],
+  },
+  ru: {
+    title: 'Завершение цели',
+    button: 'Завершить',
+    buttonLoading: 'Завершаю',
+    subtitle: 'Поздравляю, Вы сделали это!',
+    label: 'Как это было',
+    photoTitle: 'Фото',
+    videoTitle: 'Видео',
+    accordionHeader: 'Завершение цели',
+    ariaControls: 'о-завершении-цели',
+    details: ['В дополнение к полученным очкам', ', Вы получите дополнительные', 'за выполнение цели.'],
+  },
+}

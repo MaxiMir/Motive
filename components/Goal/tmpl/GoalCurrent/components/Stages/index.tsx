@@ -7,7 +7,7 @@ import StageLabel from './components/StageLabel'
 import i18n from './i18n'
 
 const Button = dynamic(() => import('@mui/material/Button'))
-const TooltipTomorrow = dynamic(() => import('components/Goal/tmpl/GoalCurrent/components/TooltipTomorrow'))
+const OptionalTooltip = dynamic(() => import('components/OptionalTooltip'))
 
 const Modal = dynamic(() => import('components/Modal'))
 
@@ -47,11 +47,11 @@ export default function Stages({ goal, forTomorrow, completeStage }: StagesProps
               <StepContent />
             ) : (
               <StepContent>
-                <TooltipTomorrow forTomorrow={forTomorrow}>
+                <OptionalTooltip tmpl="tomorrow" wrap={forTomorrow}>
                   <Button variant="outlined" color="success" size="small" disabled={forTomorrow} onClick={toggleModal}>
                     {buttonTitle}
                   </Button>
-                </TooltipTomorrow>
+                </OptionalTooltip>
               </StepContent>
             )}
           </Step>

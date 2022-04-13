@@ -2,7 +2,7 @@ export default {
   en: {
     title: 'Completion stage',
     behind: 'Excellent! One stage behind!',
-    buttonName: 'Complete',
+    button: 'Complete',
     buttonLoading: 'Completing',
     message: 'The stage for the next day has been successfully set',
     getNextTitle(isFinal: boolean): string {
@@ -12,7 +12,7 @@ export default {
   ru: {
     title: 'Завершение этапа',
     behind: 'Превосходно! Один этап позади!',
-    buttonName: 'Завершить',
+    button: 'Завершить',
     buttonLoading: 'Завершаю',
     message: 'Этап для следующего дня успешно установлен',
     getNextTitle(isFinal: boolean): string {

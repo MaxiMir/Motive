@@ -51,7 +51,7 @@ export default function ModalSupport({ goal, owner, onClose }: ModalSupportProps
         <Form autoComplete="off">
           <Box display="flex" flexDirection="column" alignItems="center" gap={3}>
             <AppFadeIcon name="support" />
-            <Field name="text" label={label} color="secondary" multiline rows={3} component={AppInput} />
+            <Field name="text" label={label} color="primary" multiline rows={3} component={AppInput} />
             <div className={classes.accordionWrap}>
               <AppAccordion
                 name="helmet"

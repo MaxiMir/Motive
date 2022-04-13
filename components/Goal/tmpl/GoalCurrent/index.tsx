@@ -23,7 +23,8 @@ const Stages = dynamic(() => import('./components/Stages'))
 const Feedback = dynamic(() => import('./components/Feedback'))
 const Hashtags = dynamic(() => import('./components/Hashtags'))
 const Web = dynamic(() => import('./components/Web'))
-const Actions = dynamic(() => import('./components/Actions'))
+const Viewer = dynamic(() => import('./components/Viewer'))
+const Owner = dynamic(() => import('./components/Owner'))
 
 const CHARACTERISTICS: GoalCharacteristicName[] = ['motivation', 'creativity', 'support', 'members']
 
@@ -193,7 +194,18 @@ export default function GoalCurrent({
           </Box>
           <Box display="flex" flexDirection="column" gap={2}>
             {goalInfo.controls && (
-              <Actions goal={goal} owner={owner} forTomorrow={goalInfo.forTomorrow} clientOwnership={clientOwnership} />
+              <>
+                {clientOwnership.goal ? (
+                  <Owner goal={goal} forTomorrow={goalInfo.forTomorrow} />
+                ) : (
+                  <Viewer
+                    goal={goal}
+                    owner={owner}
+                    forTomorrow={goalInfo.forTomorrow}
+                    clientOwnership={clientOwnership}
+                  />
+                )}
+              </>
             )}
             <Views views={views} />
           </Box>

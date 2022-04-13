@@ -4,6 +4,7 @@ import { Grid, Box, Typography, Theme } from '@mui/material'
 import { createStyles, makeStyles } from '@mui/styles'
 import { GoalDto, MainCharacteristicName } from 'dto'
 import useSelectPhoto from 'hooks/useSelectPhoto'
+import useLocale from 'hooks/useLocale'
 import Action from 'components/Action'
 import AppModal from 'components/UI/AppModal'
 import AppDecorEmoji from 'components/UI/AppDecorEmoji'
@@ -14,6 +15,7 @@ import AppSpinIcon from 'components/UI/AppSpinIcon'
 import Photo from 'components/Photo'
 import Video from 'components/Video'
 import useForm from './hook'
+import i18n from './i18n'
 
 const Alert = dynamic(() => import('@mui/material/Alert'))
 
@@ -27,8 +29,21 @@ export interface ModalCompletionProps {
 
 export default function ModalCompletion({ goal, onClose }: ModalCompletionProps): JSX.Element {
   const classes = useStyles()
+  const { locale } = useLocale()
   const form = useForm(goal, onClose)
   const { isSubmitting, values, touched, errors, setFieldValue, handleSubmit } = form
+  const {
+    title,
+    button,
+    buttonLoading,
+    subtitle,
+    label,
+    photoTitle,
+    videoTitle,
+    accordionHeader,
+    ariaControls,
+    details,
+  } = i18n[locale]
 
   const onSelectPhoto = useSelectPhoto(form)
 
@@ -36,15 +51,15 @@ export default function ModalCompletion({ goal, onClose }: ModalCompletionProps)
 
   return (
     <AppModal
-      title="Completing the goal"
+      title={title}
       maxWidth="xs"
       actions={[
         <Action tmpl="close" onClick={onClose} />,
         <Action
           tmpl="submit"
           isLoading={isSubmitting}
-          name="Complete"
-          nameLoading="Completing"
+          name={button}
+          nameLoading={buttonLoading}
           emoji="completed"
           onClick={handleSubmit}
         />,
@@ -57,14 +72,14 @@ export default function ModalCompletion({ goal, onClose }: ModalCompletionProps)
             <Box display="flex" flexDirection="column" alignItems="center" gap={1}>
               <AppSpinIcon name="completed" />
               <Typography variant="subtitle1" className={classes.congratulations}>
-                Congratulations, you did it!
+                {subtitle}
               </Typography>
             </Box>
-            <Field name="text" label="How it was" color="warning" multiline rows={3} component={AppInput} />
+            <Field name="text" label={label} color="warning" multiline rows={3} component={AppInput} />
             {!!values.photos.length && (
               <Box display="flex" flexDirection="column" gap={2} width="100%">
                 <AppTitle name="photo" variant="h6" component="h2" color="primary">
-                  Photos
+                  {photoTitle}
                 </AppTitle>
                 <FieldArray name="photos">
                   {({ remove }) => (
@@ -82,7 +97,7 @@ export default function ModalCompletion({ goal, onClose }: ModalCompletionProps)
             {values.video && (
               <Box display="flex" flexDirection="column" gap={2} width="100%">
                 <AppTitle name="video" variant="h6" component="h2" color="primary">
-                  Video
+                  {videoTitle}
                 </AppTitle>
                 <Video
                   tmpl="preview"
@@ -104,18 +119,17 @@ export default function ModalCompletion({ goal, onClose }: ModalCompletionProps)
             <div className={classes.accordionWrap}>
               <AppAccordion
                 name="switch"
-                header="Goal Completion"
+                header={accordionHeader}
                 id="goal"
-                ariaControls="about-goal-completion"
+                ariaControls={ariaControls}
                 details={
                   <div className={classes.hint}>
                     <Typography>
-                      In addition to the points you receive{' '}
+                      {details[0]}{' '}
                       {CHARACTERISTIC_NAMES.map((name) => (
                         <AppDecorEmoji name={name} key={name} />
                       ))}
-                      , you get an extra <b className={classes.count}>5</b> points <AppDecorEmoji name="motivation" />{' '}
-                      for completing the goal.
+                      {details[1]} <b className={classes.count}>5</b> <AppDecorEmoji name="motivation" /> {details[2]}
                     </Typography>
                   </div>
                 }

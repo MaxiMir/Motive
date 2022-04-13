@@ -3,7 +3,7 @@ import dynamic from 'next/dynamic'
 import { Button } from '@mui/material'
 import { GoalDto } from 'dto'
 import useLocale from 'hooks/useLocale'
-import TooltipTomorrow from 'components/Goal/tmpl/GoalCurrent/components/TooltipTomorrow'
+import OptionalTooltip from 'components/OptionalTooltip'
 import AppEmoji from 'components/UI/AppEmoji'
 import i18n from './i18n'
 
@@ -17,12 +17,12 @@ interface DoneProps {
 export default function Done({ goal, forTomorrow }: DoneProps): JSX.Element {
   const { locale } = useLocale()
   const [open, setOpen] = useState(false)
-  const { buttonName } = i18n[locale]
+  const { button } = i18n[locale]
 
   const toggleModal = () => setOpen(!open)
 
   return (
-    <TooltipTomorrow forTomorrow={forTomorrow}>
+    <OptionalTooltip tmpl="tomorrow" wrap={forTomorrow}>
       <Button
         variant="outlined"
         color="warning"
@@ -30,9 +30,9 @@ export default function Done({ goal, forTomorrow }: DoneProps): JSX.Element {
         startIcon={<AppEmoji name="cup" onlyEmoji />}
         onClick={toggleModal}
       >
-        {buttonName}
+        {button}
       </Button>
       {open && <Modal tmpl="completion" goal={goal} onClose={toggleModal} />}
-    </TooltipTomorrow>
+    </OptionalTooltip>
   )
 }

@@ -1,7 +1,9 @@
 import { ChangeEvent, useRef } from 'react'
 import { Button } from '@mui/material'
 import { styled } from '@mui/system'
+import useLocale from 'hooks/useLocale'
 import AppEmoji from 'components/UI/AppEmoji'
+import i18n from './i18n'
 
 export interface PhotoInputProps {
   tmpl: 'input'
@@ -11,7 +13,9 @@ export interface PhotoInputProps {
 }
 
 export default function PhotoInput({ multiple, disabled, onSelect }: PhotoInputProps): JSX.Element {
+  const { locale } = useLocale()
   const photoInputRef = useRef<HTMLInputElement>(null)
+  const { title } = i18n[locale]
 
   const onAddPhoto = (e: ChangeEvent<HTMLInputElement>) => {
     e.target.files && onSelect(Array.from(e.target.files))
@@ -22,10 +26,10 @@ export default function PhotoInput({ multiple, disabled, onSelect }: PhotoInputP
   return (
     <>
       <Button
-        color="warning"
         variant="outlined"
-        title="Load photo"
-        aria-label="Load photo"
+        color="warning"
+        title={title}
+        aria-label={title}
         disabled={disabled}
         sx={{
           position: 'relative',

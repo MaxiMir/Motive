@@ -1,6 +1,7 @@
 export default {
   en: {
     title: 'Adding feedback',
+    label: 'How it went',
     subtitle: 'Impressive! One step closer to your goal!',
     photoTitle: 'Photos',
     videoTitle: 'Video',
@@ -10,6 +11,7 @@ export default {
   },
   ru: {
     title: 'Добавление отзыва',
+    label: 'Как все прошло',
     subtitle: 'Впечатляет! Вы на шаг ближе к цели!',
     photoTitle: 'Фото',
     videoTitle: 'Видео',

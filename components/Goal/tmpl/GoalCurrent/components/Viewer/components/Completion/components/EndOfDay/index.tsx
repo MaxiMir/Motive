@@ -3,7 +3,7 @@ import { Button } from '@mui/material'
 import { GoalDto, MemberDto } from 'dto'
 import useLocale from 'hooks/useLocale'
 import OptionalTooltip from 'components/OptionalTooltip'
-import AppEmoji from 'components/UI/AppEmoji'
+import AppIcon from 'components/UI/AppIcon'
 import { getToday } from 'helpers/date'
 import { useSendEndOfDay } from './hook'
 import i18n from './i18n'
@@ -32,7 +32,7 @@ export default function EndOfDay({ goal, nextDayId, forTomorrow, clientMember }:
         variant="outlined"
         color="primary"
         disabled={forTomorrow || isLoading}
-        startIcon={isLoading ? <CircularProgress size="0.9rem" color="primary" /> : <AppEmoji name="next" onlyEmoji />}
+        startIcon={isLoading ? <CircularProgress size="0.9rem" color="primary" /> : <AppIcon name="next_plan" />}
         onClick={onClick}
       >
         {button}

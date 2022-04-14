@@ -27,7 +27,7 @@ export default function FeedbackButton({ goal, forTomorrow, locale }: FeedbackBu
         <Button
           variant="outlined"
           color="secondary"
-          startIcon={<AppIcon name="add" />}
+          startIcon={<AppIcon name="psychology" />}
           disabled={forTomorrow}
           onClick={toggle}
         >

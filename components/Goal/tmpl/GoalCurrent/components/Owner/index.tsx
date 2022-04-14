@@ -4,10 +4,11 @@ import { Box, Button } from '@mui/material'
 import { GoalDto } from 'dto'
 import useLocale from 'hooks/useLocale'
 import OptionalTooltip from 'components/OptionalTooltip'
-import AppEmoji from 'components/UI/AppEmoji'
 import i18n from './i18n'
 
 const Modal = dynamic(() => import('components/Modal'))
+const AppIcon = dynamic(() => import('components/UI/AppIcon'))
+const AppEmoji = dynamic(() => import('components/UI/AppEmoji'))
 
 export interface OwnerProps {
   goal: GoalDto
@@ -33,7 +34,7 @@ export default function Owner({ goal }: OwnerProps): JSX.Element {
         <Button
           variant="outlined"
           disabled={!feedbackAdded}
-          startIcon={<AppEmoji name="next" onlyEmoji />}
+          startIcon={<AppIcon name="next_plan" />}
           onClick={onAddTasks}
         >
           {nextButton}

@@ -42,16 +42,18 @@ const Layout: FC<LayoutProps> = ({ title, description, url, type, image, statusC
         <link rel="icon" type="image/x-icon" href="/favicon.ico" />
       </Head>
       <Script
-        strategy="afterInteractive"
         src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS}`}
+        strategy="afterInteractive"
       />
-      <Script id="google-analytics" strategy="afterInteractive">{`
+      <Script id="google-analytics" strategy="afterInteractive">
+        {`
           window.dataLayer = window.dataLayer || [];
           function gtag(){window.dataLayer.push(arguments);}
           gtag('js', new Date());
 
           gtag('config', '${process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS}');
-        `}</Script>
+        `}
+      </Script>
       <Header authenticated={!!client} />
       <Box
         component="main"

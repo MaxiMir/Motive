@@ -21,8 +21,8 @@ const Inheritance = dynamic(() => import('./components/Inheritance'))
 const Stages = dynamic(() => import('./components/Stages'))
 const Hashtags = dynamic(() => import('./components/Hashtags'))
 const Web = dynamic(() => import('./components/Web'))
-const Viewer = dynamic(() => import('./components/Viewer'))
-const Owner = dynamic(() => import('./components/Owner'))
+const ViewerControl = dynamic(() => import('./components/ViewerControl'))
+const OwnerControl = dynamic(() => import('./components/OwnerControl'))
 
 const CHARACTERISTICS: GoalCharacteristicName[] = ['motivation', 'creativity', 'support', 'members']
 
@@ -185,9 +185,9 @@ export default function GoalCurrent({
             {goalInfo.controls && (
               <>
                 {clientOwnership.goal ? (
-                  <Owner goal={goal} />
+                  <OwnerControl goal={goal} />
                 ) : (
-                  <Viewer
+                  <ViewerControl
                     goal={goal}
                     owner={owner}
                     forTomorrow={goalInfo.forTomorrow}

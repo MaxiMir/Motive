@@ -4,23 +4,23 @@ import { Box, Button } from '@mui/material'
 import { GoalDto } from 'dto'
 import useLocale from 'hooks/useLocale'
 import OptionalTooltip from 'components/OptionalTooltip'
+import AppEmoji from 'components/UI/AppEmoji'
 import i18n from './i18n'
 
 const Modal = dynamic(() => import('components/Modal'))
-const AppIcon = dynamic(() => import('components/UI/AppIcon'))
-const AppEmoji = dynamic(() => import('components/UI/AppEmoji'))
 
-export interface OwnerProps {
+export interface OwnerControlProps {
   goal: GoalDto
 }
 
-export default function Owner({ goal }: OwnerProps): JSX.Element {
+export default function OwnerControl({ goal }: OwnerControlProps): JSX.Element {
   const { stages, day } = goal
   const { locale } = useLocale()
   const [modal, setModal] = useState<'tasks' | 'completion'>()
   const { nextButton, doneButton } = i18n[locale]
   const feedbackAdded = !!goal.day.feedback
   const renderCompete = stages.length === day.stage && feedbackAdded
+  const justifyContent = renderCompete ? 'space-between' : 'flex-end'
 
   const onAddTasks = () => setModal('tasks')
 
@@ -29,12 +29,12 @@ export default function Owner({ goal }: OwnerProps): JSX.Element {
   const closeModal = () => setModal(undefined)
 
   return (
-    <Box display="flex" justifyContent="space-between">
+    <Box display="flex" justifyContent={justifyContent}>
       <OptionalTooltip tmpl="feedback" wrap={!feedbackAdded}>
         <Button
           variant="outlined"
           disabled={!feedbackAdded}
-          startIcon={<AppIcon name="next_plan" />}
+          startIcon={<AppEmoji name="moon" onlyEmoji />}
           onClick={onAddTasks}
         >
           {nextButton}

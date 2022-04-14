@@ -26,11 +26,10 @@ export default function Discussion({ dayId, owner, count, clientGoal }: Discussi
   const { isLoading, topics, checkOnLoadMore, fetchNextPage } = useDiscussion(dayId, count)
   const onAdd = useAddMessage()
   const withInput = !!client && (!count || !!topics.length) && !clientGoal
-  const height = !count ? undefined : 500
   const { nothing } = i18n[locale]
 
   return (
-    <Box display="flex" flexDirection="column" gap={2} flex={1} height={height}>
+    <Box display="flex" flexDirection="column" gap={2} flex={1} maxHeight={500}>
       <>
         {withInput && (
           <User tmpl="input" dayId={dayId} user={client as ClientDto} type={MessageType.QUESTION} onAdd={onAdd} />

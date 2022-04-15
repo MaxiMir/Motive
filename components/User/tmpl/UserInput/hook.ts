@@ -38,11 +38,7 @@ const useSendTopic = (type: MessageType) => {
       const { getMessage } = i18n[locale]
       const message = getMessage(type === MessageType.QUESTION)
 
-      enqueueSnackbar({
-        message,
-        severity: 'success',
-        icon: 'speaker',
-      })
+      enqueueSnackbar({ message, severity: 'success', icon: 'speaker' })
     },
   })
 }

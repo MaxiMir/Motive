@@ -2,17 +2,20 @@ import { AxiosError } from 'axios'
 import { useMutation, useQueryClient } from 'react-query'
 import { DayCharacteristicName, DayCharacteristicUpdateDto, GoalDto, UserPageDto } from 'dto'
 import GoalService from 'services/GoalService'
+import useLocale from 'hooks/useLocale'
 import useDebounceCb from 'hooks/useDebounceCb'
 import useSnackbar from 'hooks/useSnackbar'
 import useClient from 'hooks/useClient'
 import useOpenSignIn from 'hooks/useOpenSignIn'
 import { useUserPageConfig } from 'views/UserView/hook'
 import { Context, getNextState } from './helper'
+import i18n from './i18n'
 
 type SetReaction = () => void
 
 export default function useSetReaction(goal: GoalDto, name: DayCharacteristicName, active: boolean): SetReaction {
   const { id, day } = goal
+  const { locale } = useLocale()
   const client = useClient()
   const openSignIn = useOpenSignIn()
   const queryClient = useQueryClient()
@@ -32,12 +35,10 @@ export default function useSetReaction(goal: GoalDto, name: DayCharacteristicNam
         return { previous }
       },
       onSuccess(_, { add }) {
-        add &&
-          enqueueSnackbar({
-            message: `You have increased day's ${name} points`,
-            severity: 'success',
-            icon: 'magic',
-          })
+        const { getMessage } = i18n[locale]
+        const message = getMessage(name)
+
+        add && enqueueSnackbar({ message, severity: 'success', icon: 'magic' })
       },
       onError(_, __, context) {
         if (context?.previous) {

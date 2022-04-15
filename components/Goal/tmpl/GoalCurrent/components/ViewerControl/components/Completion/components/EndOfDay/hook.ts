@@ -20,11 +20,7 @@ export const useSendEndOfDay = (goal: GoalDto): UseMutationResult<MemberDto, Axi
       mutatePage(getNextState(page, member))
       setTimeout(() => clickOnElem(`next-${goal.id}`), 1)
 
-      enqueueSnackbar({
-        message,
-        severity: 'success',
-        icon: 'speaker',
-      })
+      enqueueSnackbar({ message, severity: 'success', icon: 'speaker' })
     },
   })
 }

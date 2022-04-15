@@ -21,11 +21,7 @@ export const useSendStage = (onSuccess: () => void): UseSendStage => {
 
       mutateGoals(getNextState(goals, id))
       onSuccess()
-      enqueueSnackbar({
-        message,
-        severity: 'success',
-        icon: 'stage',
-      })
+      enqueueSnackbar({ message, severity: 'success', icon: 'stage' })
     },
   })
 }

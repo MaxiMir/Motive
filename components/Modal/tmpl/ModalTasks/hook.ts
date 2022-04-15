@@ -41,11 +41,7 @@ const useSendAddDay = () => {
 
       mutateGoals(getNextState(goals, day, id))
       changeDayUrl(goals, id, day.id)
-      enqueueSnackbar({
-        message,
-        severity: 'success',
-        icon: 'speaker',
-      })
+      enqueueSnackbar({ message, severity: 'success', icon: 'speaker' })
     },
   })
 }

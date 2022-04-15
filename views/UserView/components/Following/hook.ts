@@ -31,11 +31,7 @@ export default function useSetFollowing(userId: number, following: boolean, loca
       const { getMessage } = i18n[locale]
       const message = getMessage(add)
 
-      enqueueSnackbar({
-        message,
-        severity: 'success',
-        icon: 'speaker',
-      })
+      enqueueSnackbar({ message, severity: 'success', icon: 'speaker' })
     },
     onError(_, __, context) {
       if (context?.previous) {

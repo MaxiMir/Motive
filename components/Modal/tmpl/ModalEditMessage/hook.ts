@@ -34,11 +34,7 @@ const useSendUpdateMessage = () => {
         ['discussion', updatedMessage.dayId],
         (prev) => prev && getNextState(prev, updatedMessage),
       )
-      enqueueSnackbar({
-        message,
-        severity: 'success',
-        icon: 'speaker',
-      })
+      enqueueSnackbar({ message, severity: 'success', icon: 'speaker' })
     },
   })
 }

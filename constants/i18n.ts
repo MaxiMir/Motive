@@ -14,6 +14,9 @@ export default {
     leave: 'Leave',
     remove: 'Remove',
     format: 'MM/dd/yyyy',
+    getLimitPhotosError(limit: number): string {
+      return `You cannot add more than ${limit} photos`
+    },
   },
   ru: {
     copy: 'Скопировано',
@@ -30,5 +33,8 @@ export default {
     leave: 'Покинуть',
     remove: 'Удалить',
     format: 'dd/MM/yyyy',
+    getLimitPhotosError(limit: number): string {
+      return `Вы не можете добавить больше ${limit} фото`
+    },
   },
 }

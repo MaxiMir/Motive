@@ -21,7 +21,7 @@ export default NextAuth({
   ],
   theme: {
     colorScheme: 'dark',
-    logo: '/apple-icon.png',
+    logo: '/icons/icon-180x180.png',
   },
   pages: {
     error: '/500',

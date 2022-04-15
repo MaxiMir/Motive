@@ -15,10 +15,10 @@ export default function LocalImage({ file }: LocalImageProps): JSX.Element {
   useEffect(() => {
     const reader = new FileReader()
 
-    reader.onloadend = () => setSource(reader.result as string)
+    reader.onload = () => setSource(reader.result as string)
 
     reader.readAsDataURL(file)
   }, [file])
 
-  return <>{!source ? <CircularProgress size="0.9rem" color="primary" /> : <Img src={source} />}</>
+  return <>{!source ? <CircularProgress size="0.9rem" color="warning" /> : <Img src={source} />}</>
 }

@@ -3,12 +3,14 @@ import { Form, FormikProvider } from 'formik'
 import { Box, FormControlLabel, Radio, RadioGroup, Typography, Theme } from '@mui/material'
 import { createStyles, makeStyles } from '@mui/styles'
 import { GoalDto } from 'dto'
+import useLocale from 'hooks/useLocale'
 import Action from 'components/Action'
 import AppModal from 'components/UI/AppModal'
 import AppEmoji from 'components/UI/AppEmoji'
 import AppAccordion from 'components/UI/AppAccordion'
 import AppDecorEmoji from 'components/UI/AppDecorEmoji'
 import useForm from './hook'
+import i18n from './i18n'
 
 export interface ModalJoinProps {
   tmpl: 'join'
@@ -18,12 +20,15 @@ export interface ModalJoinProps {
 
 export default function ModalJoin({ goal, onClose }: ModalJoinProps): JSX.Element {
   const classes = useStyles()
+  const { locale } = useLocale()
   const { id, calendar, day } = goal
   const beginningDay = calendar[0].id
   const thisDay = day.id
   const disableBeginning = beginningDay === thisDay
   const form = useForm(id, beginningDay)
   const { isSubmitting, values, setFieldValue, handleSubmit } = form
+  const { title, subtitle, button, buttonLoading, beginLabel, dayLabel, accordionHeader, ariaControls, details } =
+    i18n[locale]
 
   const onChange = (e: ChangeEvent<HTMLInputElement>) => {
     setFieldValue('dayId', e.currentTarget.value)
@@ -33,7 +38,7 @@ export default function ModalJoin({ goal, onClose }: ModalJoinProps): JSX.Elemen
     <AppModal
       title={
         <>
-          Where do we <span className={classes.start}>start</span> from?
+          {title} <span className={classes.start}>{subtitle}</span>?
         </>
       }
       maxWidth="xs"
@@ -42,8 +47,8 @@ export default function ModalJoin({ goal, onClose }: ModalJoinProps): JSX.Elemen
         <Action
           tmpl="submit"
           isLoading={isSubmitting}
-          name="Join"
-          nameLoading="Joining"
+          name={button}
+          nameLoading={buttonLoading}
           emoji="join"
           onClick={handleSubmit}
         />,
@@ -59,7 +64,7 @@ export default function ModalJoin({ goal, onClose }: ModalJoinProps): JSX.Elemen
               disabled={isSubmitting || disableBeginning}
               label={
                 <Box display="flex" gap={1}>
-                  The beginning <AppEmoji name="serenity" onlyEmoji />
+                  {beginLabel} <AppEmoji name="serenity" onlyEmoji />
                 </Box>
               }
             />
@@ -69,7 +74,7 @@ export default function ModalJoin({ goal, onClose }: ModalJoinProps): JSX.Elemen
               disabled={isSubmitting}
               label={
                 <Box display="flex" gap={1}>
-                  This day <AppEmoji name="blast" onlyEmoji />
+                  {dayLabel} <AppEmoji name="blast" onlyEmoji />
                 </Box>
               }
             />
@@ -77,22 +82,22 @@ export default function ModalJoin({ goal, onClose }: ModalJoinProps): JSX.Elemen
           <div>
             <AppAccordion
               name="knot"
-              header="Membership"
+              header={accordionHeader}
               id="tips"
-              ariaControls="about-membership"
+              ariaControls={ariaControls}
               details={
                 <div className={classes.hint}>
                   <Typography>
-                    Click <AppDecorEmoji name="motivation" /> for days that are motivating.
+                    {details[0]} <AppDecorEmoji name="motivation" /> {details[1]}.
                   </Typography>
                   <Typography>
-                    Click <AppDecorEmoji name="creativity" /> for days with creative tasks.
+                    {details[2]} <AppDecorEmoji name="creativity" /> {details[3]}.
                   </Typography>
                   <Typography>
-                    Support <span className={classes.owner}>{goal.owner.name}</span> when needed.
+                    {details[4]} <span className={classes.owner}>{goal.owner.name}</span> {details[5]}.
                   </Typography>
                   <Typography>
-                    Ask questions in the discussion <AppDecorEmoji name="discussion" />.
+                    {details[6]} <AppDecorEmoji name="discussion" />.
                   </Typography>
                 </div>
               }

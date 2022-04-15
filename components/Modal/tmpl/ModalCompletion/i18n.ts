@@ -9,7 +9,8 @@ export default {
     videoTitle: 'Video',
     accordionHeader: 'Goal Completion',
     ariaControls: 'about-goal-completion',
-    details: ['In addition to the points you receive', ', you get an extra', 'for completing the goal.'],
+    details: ['In addition to the points you receive', ', you get an extra', 'for completing the goal'],
+    message: 'Your characteristics have been increased',
   },
   ru: {
     title: 'Завершение цели',
@@ -21,6 +22,7 @@ export default {
     videoTitle: 'Видео',
     accordionHeader: 'Завершение цели',
     ariaControls: 'о-завершении-цели',
-    details: ['В дополнение к полученным очкам', ', Вы получите дополнительные', 'за выполнение цели.'],
+    details: ['В дополнение к полученным очкам', ', Вы получите дополнительные', 'за выполнение цели'],
+    message: 'Ваши характеристики увеличились',
   },
 }

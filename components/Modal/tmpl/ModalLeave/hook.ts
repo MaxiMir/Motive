@@ -3,19 +3,23 @@ import { UseMutationResult } from 'react-query/types/react/types'
 import { AxiosError } from 'axios'
 import { UserPageDto } from 'dto'
 import MemberService from 'services/MemberService'
+import useLocale from 'hooks/useLocale'
 import useClient from 'hooks/useClient'
 import useSnackbar from 'hooks/useSnackbar'
 import { useUserPageConfig } from 'views/UserView/hook'
 import { getNextState } from './helper'
+import i18n from './i18n'
 
 export const useSendRemoveMember = (
   goalId: number,
   clientPage: boolean,
 ): UseMutationResult<void, AxiosError, number> => {
+  const { locale } = useLocale()
   const client = useClient()
   const { key } = useUserPageConfig()
   const queryClient = useQueryClient()
   const [enqueueSnackbar] = useSnackbar()
+  const { message } = i18n[locale]
 
   return useMutation(MemberService.delete, {
     onSuccess(_, id) {
@@ -25,7 +29,7 @@ export const useSendRemoveMember = (
         key,
         (page) => page && getNextState(page, goalId, id, clientPage),
       )
-      enqueueSnackbar({ message: 'Successfully left', severity: 'success', icon: 'speaker' })
+      enqueueSnackbar({ message, severity: 'success', icon: 'speaker' })
     },
   })
 }

@@ -7,11 +7,11 @@ export default {
     ariaControls: 'about-support-content',
     buttonLoading: 'Sending',
     accordion: [
-      'Support is very important for achieving goals.',
+      'Support is very important for achieving goals',
       'Especially at times when you want to give up',
       'Therefore support others:',
       'with advice;',
-      'with words of encouragement.',
+      'with words of encouragement',
     ],
   },
   ru: {

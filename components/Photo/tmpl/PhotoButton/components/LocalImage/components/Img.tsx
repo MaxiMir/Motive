@@ -11,6 +11,6 @@ export default function Img({ src }: ImgProps): JSX.Element {
 const ImgNative = styled('img')({
   width: '100%',
   height: '100%',
-  objectFit: 'cover',
+  objectFit: 'contain',
   borderRadius: 4,
 })

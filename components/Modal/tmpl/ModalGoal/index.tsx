@@ -82,7 +82,7 @@ export default function ModalGoal({ locale, onClose }: ModalGoalProps): JSX.Elem
                   title={
                     <>
                       {stageHints.map((hint, key) => (
-                        <Typography key={key}>{hint}</Typography>
+                        <Typography key={key}>{hint}.</Typography>
                       ))}
                     </>
                   }

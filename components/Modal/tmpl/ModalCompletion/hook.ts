@@ -3,10 +3,12 @@ import { useMutation } from 'react-query'
 import { GoalDto } from 'dto'
 import schema from 'schemas/completion'
 import ConfirmationService from 'services/ConfirmationService'
+import useLocale from 'hooks/useLocale'
 import useSnackbar from 'hooks/useSnackbar'
 import { scrollToElem } from 'helpers/dom'
 import { getToday } from 'helpers/date'
 import { useUserPage } from 'views/UserView/hook'
+import i18n from './i18n'
 
 interface Values {
   text: string
@@ -40,15 +42,17 @@ export default function useForm(goal: GoalDto, onSuccess: () => void): FormikPro
 }
 
 const useSendConfirmation = (onSuccess: () => void) => {
+  const { locale } = useLocale()
   const { refetch } = useUserPage()
   const [enqueueSnackbar] = useSnackbar()
+  const { message } = i18n[locale]
 
   return useMutation(ConfirmationService.create, {
     onSuccess() {
       onSuccess()
       setTimeout(() => scrollToElem('main'), 0)
       setTimeout(refetch, 300)
-      enqueueSnackbar({ message: 'Your characteristics have been increased', severity: 'success', icon: 'bug' })
+      enqueueSnackbar({ message, severity: 'success', icon: 'bug' })
     },
   })
 }

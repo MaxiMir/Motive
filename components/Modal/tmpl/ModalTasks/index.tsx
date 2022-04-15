@@ -93,7 +93,7 @@ export default function ModalTasks({ goal, onClose }: ModalTasksProps): JSX.Elem
           </AccordionSummary>
           <AccordionDetails>
             <Typography color="gray">
-              {pittHints[0]}
+              {pittHints[0]}.
               <br />
               {pittHints[1]} <AppDecorEmoji name="web" />.
               <br />
@@ -103,7 +103,7 @@ export default function ModalTasks({ goal, onClose }: ModalTasksProps): JSX.Elem
               {CHARACTERISTIC_NAMES.map((characteristic) => (
                 <AppDecorEmoji name={characteristic} key={characteristic} />
               ))}
-              {pittHints[4]}
+              {pittHints[4]}.
             </Typography>
           </AccordionDetails>
         </Accordion>

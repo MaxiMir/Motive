@@ -3,8 +3,8 @@ import { Field, FieldArray, Form, FormikProvider } from 'formik'
 import { Grid, Box, Typography, Theme } from '@mui/material'
 import { createStyles, makeStyles } from '@mui/styles'
 import { GoalDto, MainCharacteristicName } from 'dto'
-import useSelectPhoto from 'hooks/useSelectPhoto'
 import useLocale from 'hooks/useLocale'
+import useSelectPhoto from 'hooks/useSelectPhoto'
 import Action from 'components/Action'
 import AppModal from 'components/UI/AppModal'
 import AppDecorEmoji from 'components/UI/AppDecorEmoji'
@@ -129,7 +129,7 @@ export default function ModalCompletion({ goal, onClose }: ModalCompletionProps)
                       {CHARACTERISTIC_NAMES.map((name) => (
                         <AppDecorEmoji name={name} key={name} />
                       ))}
-                      {details[1]} <b className={classes.count}>5</b> <AppDecorEmoji name="motivation" /> {details[2]}
+                      {details[1]} <b className={classes.count}>5</b> <AppDecorEmoji name="motivation" /> {details[2]}.
                     </Typography>
                   </div>
                 }

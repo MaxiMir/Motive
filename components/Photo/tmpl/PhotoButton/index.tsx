@@ -27,7 +27,6 @@ export default function PhotoButton({ image, disabled, onClick }: PhotoButtonPro
         position: 'relative',
         width: '100%',
         aspectRatio: '3/4',
-        overflow: 'hidden',
       }}
     >
       <Box

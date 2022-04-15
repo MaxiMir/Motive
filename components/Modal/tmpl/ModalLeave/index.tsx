@@ -1,10 +1,12 @@
 import { Box, Typography, Theme } from '@mui/material'
 import { createStyles, makeStyles } from '@mui/styles'
 import { GoalDto, OwnershipDto } from 'dto'
+import useLocale from 'hooks/useLocale'
 import Action from 'components/Action'
 import AppModal from 'components/UI/AppModal'
 import AppFadeIcon from 'components/UI/AppFadeIcon'
 import { useSendRemoveMember } from './hook'
+import i18n from './i18n'
 
 export interface ModalLeaveProps {
   tmpl: 'leave'
@@ -16,19 +18,21 @@ export interface ModalLeaveProps {
 export default function ModalLeave({ goal, clientOwnership, onClose }: ModalLeaveProps): JSX.Element {
   const { id, name } = goal
   const classes = useStyles()
+  const { locale } = useLocale()
   const { isLoading, mutateAsync } = useSendRemoveMember(id, clientOwnership.page)
+  const { title, button, buttonLoading, subtitle } = i18n[locale]
 
   const onClick = () => {
-    if (clientOwnership.member) {
-      mutateAsync(clientOwnership.member?.id).then(onClose)
-    }
+    if (!clientOwnership.member) return
+
+    mutateAsync(clientOwnership.member?.id).then(onClose)
   }
 
   return (
     <AppModal
       title={
         <>
-          Leave <span className={classes.goal}>{name}</span>?
+          {title} <span className={classes.goal}>{name}</span>?
         </>
       }
       maxWidth="xs"
@@ -37,8 +41,8 @@ export default function ModalLeave({ goal, clientOwnership, onClose }: ModalLeav
         <Action
           tmpl="submit"
           isLoading={isLoading}
-          name="Leave"
-          nameLoading="Leaving"
+          name={button}
+          nameLoading={buttonLoading}
           emoji="leave"
           onClick={onClick}
         />,
@@ -46,7 +50,7 @@ export default function ModalLeave({ goal, clientOwnership, onClose }: ModalLeav
       onClose={onClose}
     >
       <Box display="flex" flexDirection="column" justifyItems="center" alignItems="center" gap={1}>
-        <Typography>You will lose all progress...</Typography>
+        <Typography>{subtitle}</Typography>
         <AppFadeIcon name="scared" />
       </Box>
     </AppModal>

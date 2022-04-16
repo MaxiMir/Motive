@@ -23,10 +23,8 @@ export default function Advantage({ id, href, locale }: AdvantageProps): JSX.Ele
       alignItems="center"
       justifySelf="stretch"
       alignSelf="stretch"
-      sx={{
-        flex: 1,
-        background: `linear-gradient(90deg, ${light} 0%, ${dark} 100%)`,
-      }}
+      flex={1}
+      sx={{ background: `linear-gradient(90deg, ${light} 0%, ${dark} 100%)` }}
     >
       <Box display="flex" alignItems="center" gap={2}>
         <AppLink

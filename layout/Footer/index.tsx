@@ -35,7 +35,7 @@ export default function Footer({ nickname }: FooterProps): JSX.Element {
       }}
     >
       <Container fixed>
-        <Box display="flex" justifyContent="space-between" alignItems="center" height={65}>
+        <Box display="flex" justifyContent="space-between" alignItems="center" height={52}>
           {ROUTES.map(({ href, title, Icon }) => (
             <AppLink href={href} title={title} key={title}>
               <Button>

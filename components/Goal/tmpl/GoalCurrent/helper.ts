@@ -3,7 +3,7 @@ import { GoalDto, MemberDto, OwnershipDto } from 'dto'
 import { SEARCH_PARAMS, setQueryParams } from 'helpers/url'
 import { getMember } from 'views/UserView/helper'
 
-const SHOW_WEB_AFTER_DAYS = 14
+const SHOW_WEB_AFTER_DAYS = +(process.env.NEXT_PUBLIC_SHOW_WEB_AFTER_DAYS as string)
 
 export const getClientOwnership = (
   goal: GoalDto,
@@ -35,7 +35,7 @@ export type GoalInfo = {
   forTomorrow: boolean
 }
 
-export const getGoalInfo = (goal: GoalDto, clientOwnership: OwnershipDto): GoalInfo => {
+export const getGoalInfo = (goal: GoalDto, clientOwnership: OwnershipDto, userMember?: MemberDto): GoalInfo => {
   const { started, day, calendar } = goal
   const today = new Date()
   const lastDay = !calendar || calendar[calendar.length - 1].date === day.date
@@ -49,18 +49,18 @@ export const getGoalInfo = (goal: GoalDto, clientOwnership: OwnershipDto): GoalI
   const forTomorrow = checkOnForTomorrow()
 
   function getDaysGone() {
-    if (!clientOwnership.member) {
+    if (!userMember) {
       return daysGoneForOwner
     }
 
-    const date = clientOwnership.member.lastEndOfDay || clientOwnership.member.started
+    const date = userMember.lastEndOfDay || userMember.started
 
     return differenceInCalendarDays(today, Date.parse(date))
   }
 
   function checkOnWeb() {
-    if (clientOwnership.member) {
-      return clientOwnership.member.dayId === day.id && daysGone >= SHOW_WEB_AFTER_DAYS
+    if (userMember) {
+      return userMember.dayId === day.id && daysGone >= SHOW_WEB_AFTER_DAYS
     }
 
     return lastDay && daysGoneForOwner >= SHOW_WEB_AFTER_DAYS

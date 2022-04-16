@@ -34,9 +34,9 @@ const Layout: FC<LayoutProps> = ({ title, description, url, type, image, statusC
         {image && <meta property="og:image" content={image} />}
         {type && <meta property="og:type" content={type} />}
         <link rel="canonical" href={url} />
+        {/* PWA */}
         <link rel="manifest" href="/manifest.json" />
-        <link rel="apple-touch-icon" href="/icons/icon-180x180.png" />
-        {/* PWA primary color */}
+        <link rel="apple-touch-icon" href="/icons/icon-120.png" />
         <meta name="theme-color" content="rgba(0, 0, 0, 0.3)" />
         <meta charSet="UTF-8" />
         <link rel="icon" type="image/x-icon" href="/favicon.ico" />

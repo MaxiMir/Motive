@@ -25,7 +25,7 @@ export default function CustomError({ statusCode = 500 }: CustomErrorProps): JSX
 
   return (
     <AppContainer>
-      <Box display="flex" alignItems="center" justifyContent="center" height="calc(100vh - 125px)">
+      <Box display="flex" alignItems="center" justifyContent="center" flex={1}>
         <Box display="flex" flexDirection="column" alignItems="center" justifyContent="space-between">
           <Typography component="h1" variant="h5">
             {title}

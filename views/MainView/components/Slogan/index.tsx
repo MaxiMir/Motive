@@ -11,12 +11,7 @@ export default function Slogan({ locale }: SloganProps): JSX.Element {
   const { subheader } = i18n[locale]
 
   return (
-    <Box
-      display="flex"
-      alignItems="center"
-      justifyContent="center"
-      sx={{ height: 100, backgroundColor: 'common.white' }}
-    >
+    <Box display="flex" alignItems="center" justifyContent="center" flex={1} sx={{ backgroundColor: 'common.white' }}>
       <Box display="flex" flexDirection="column" alignItems="center">
         <Typography
           variant="h4"

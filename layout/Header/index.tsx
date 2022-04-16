@@ -14,7 +14,7 @@ export default function Header({ authenticated }: HeaderProps): JSX.Element {
     <AppBar
       position="static"
       sx={{
-        padding: '16px 0 8px',
+        paddingY: 1,
         backgroundColor: 'navigation',
         backgroundImage: 'none',
         boxShadow: 'none',
@@ -23,7 +23,7 @@ export default function Header({ authenticated }: HeaderProps): JSX.Element {
       <Container fixed>
         <Box display="flex" justifyContent="space-between" alignItems="center">
           <LeftMenu />
-          <Chip label="Alpha 1.0.14" variant="outlined" />
+          <Chip label="Alpha 1.0.16" variant="outlined" />
           {authenticated ? <Notification /> : <SignIn />}
         </Box>
       </Container>

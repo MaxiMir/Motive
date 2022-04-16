@@ -44,6 +44,7 @@ export default function Characteristic(props: CharacteristicProps): JSX.Element 
         <Button
           sx={{
             textTransform: 'none',
+            justifyContent: 'flex-start',
             width: {
               sm: '110px',
             },
@@ -54,7 +55,7 @@ export default function Characteristic(props: CharacteristicProps): JSX.Element 
           }}
           onClick={onClick}
         >
-          <Box display="flex" flexDirection="column" alignItems="flex-start" gap={0.5}>
+          <Box display="flex" flexDirection="column" gap={0.5}>
             <Typography
               variant="caption"
               sx={{

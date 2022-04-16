@@ -3,6 +3,7 @@ import dynamic from 'next/dynamic'
 import { Box, useTheme } from '@mui/material'
 import { GoalDto, GoalCharacteristicName, MemberDto } from 'dto'
 import useLocale from 'hooks/useLocale'
+import { getMember } from 'views/UserView/helper'
 import Characteristic from 'components/Characteristic'
 import AppTitle from 'components/UI/AppTitle'
 import AppDot from 'components/UI/AppDot'
@@ -51,8 +52,9 @@ export default function GoalCurrent({
   const theme = useTheme()
   const { locale } = useLocale()
   const clientOwnership = getClientOwnership(goal, clientId, clientPage, clientMembership)
+  const userMember = getMember(id, userMembership, userId)
   const goalHref = getGoalHref(href, goal)
-  const goalInfo = useMemo(() => getGoalInfo(goal, clientOwnership), [goal, clientOwnership])
+  const goalInfo = useMemo(() => getGoalInfo(goal, clientOwnership, userMember), [goal, clientOwnership, userMember])
   const {
     stagesHeader,
     stagesAria,
@@ -147,8 +149,7 @@ export default function GoalCurrent({
                   <TaskList
                     goal={goal}
                     goalInfo={goalInfo}
-                    userId={userId}
-                    userMembership={userMembership}
+                    userMember={userMember}
                     clientMember={clientOwnership.member}
                   />
                 }

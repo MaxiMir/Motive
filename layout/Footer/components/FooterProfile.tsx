@@ -8,9 +8,10 @@ import FooterIcon from './FooterIcon'
 interface FooterProfileProps {
   nickname?: string
   asPath: string
+  ariaLabel: string
 }
 
-export default function FooterProfile({ nickname, asPath }: FooterProfileProps): JSX.Element {
+export default function FooterProfile({ nickname, ariaLabel, asPath }: FooterProfileProps): JSX.Element {
   const { jump } = useLocale()
   const openSignIn = useOpenSignIn()
   const href = !nickname ? undefined : getUserHref(nickname)
@@ -26,7 +27,7 @@ export default function FooterProfile({ nickname, asPath }: FooterProfileProps):
   }
 
   return (
-    <Button onClick={onClick}>
+    <Button aria-label={ariaLabel} onClick={onClick}>
       <FooterIcon Icon={ProfileIcon} selected={selected} />
     </Button>
   )

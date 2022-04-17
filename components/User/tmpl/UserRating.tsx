@@ -42,7 +42,9 @@ export default function UserRating({ user, characteristicName, index }: UserRati
         <Grid container alignItems="center" sx={{ height: 55 }}>
           <Grid item xs>
             <Box display="flex" justifyContent="center" width={22}>
-              <Typography variant={index <= 2 ? 'h5' : undefined}>{number}</Typography>
+              <Typography variant={index <= 2 ? 'h5' : undefined} component="p">
+                {number}
+              </Typography>
             </Box>
           </Grid>
           <Grid item xs={8}>

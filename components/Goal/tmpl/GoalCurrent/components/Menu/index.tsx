@@ -43,7 +43,7 @@ export default function Menu({ goal, title, href, clientOwnership }: MenuProps):
 
   return (
     <>
-      <AppMenuButton ariaControls={ariaControls} title={buttonTitle} onClick={onOpen} />
+      <AppMenuButton title={buttonTitle} ariaControls={ariaControls} aria-label={buttonTitle} onClick={onOpen} />
       {anchorEl && (
         <MenuList
           anchorEl={anchorEl}

@@ -77,12 +77,8 @@ export default function GoalCurrent({
       mt={2}
       sx={{
         flex: {
-          xs: '0 0 100%',
+          xs: '1 1 100%',
           md: '1 1 calc(50% - 12px)',
-        },
-        flexGrow: {
-          xs: 1,
-          md: 0,
         },
       }}
     >

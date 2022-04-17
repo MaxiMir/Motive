@@ -1,6 +1,6 @@
 import produce from 'immer'
 import { GoalDto, MemberDto, UserDetailDto, UserPageDto } from 'dto'
-import { getSearchParams, setQueryParams } from 'helpers/url'
+import { getImageUrl, getSearchParams, setQueryParams } from 'helpers/url'
 import { Locale } from 'hooks/useLocale'
 import i18n from './i18n'
 
@@ -38,12 +38,13 @@ export const getUserMeta = (user: UserDetailDto | undefined, locale: Locale): Us
   const goalsList = user.goals.map((g) => g.name).join(', ')
   const title = getTitle(user)
   const description = getDescription(user)
+  const image = !user.avatar ? undefined : (getImageUrl(user.avatar) as string)
 
   return {
     title: `${title}  ${process.env.NEXT_PUBLIC_APP_NAME}`,
     description: `${description}${!goalsList ? '' : `: ${goalsList}`}`,
     url: `${process.env.NEXT_PUBLIC_APP_URL}/${user.nickname}`,
-    image: user.avatar || undefined,
+    image,
     type: 'profile',
   }
 }

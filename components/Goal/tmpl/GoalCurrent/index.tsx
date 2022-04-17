@@ -8,7 +8,7 @@ import Characteristic from 'components/Characteristic'
 import AppTitle from 'components/UI/AppTitle'
 import AppDot from 'components/UI/AppDot'
 import AppAccordion from 'components/UI/AppAccordion'
-import { useIncreaseViews } from './hook'
+import { useIncreaseViews, useSwipeDay } from './hook'
 import { getGoalHref, getGoalInfo, getClientOwnership } from './helper'
 import Calendar from './components/Calendar'
 import Menu from './components/Menu'
@@ -54,6 +54,7 @@ export default function GoalCurrent({
   const clientOwnership = getClientOwnership(goal, clientId, clientPage, clientMembership)
   const userMember = getMember(id, userMembership, userId)
   const goalHref = getGoalHref(href, goal)
+  const swipeDay = useSwipeDay(id)
   const goalInfo = useMemo(() => getGoalInfo(goal, clientOwnership, userMember), [goal, clientOwnership, userMember])
   const {
     stagesHeader,
@@ -77,9 +78,10 @@ export default function GoalCurrent({
       mt={2}
       sx={{
         flex: {
-          xs: '1 1 100%',
-          md: '1 1 calc(50% - 12px)',
+          xs: '0 1 100%',
+          md: '0 1 calc(50% - 12px)',
         },
+        maxWidth: '100%',
       }}
     >
       <Box
@@ -102,6 +104,7 @@ export default function GoalCurrent({
             background: theme.palette.content,
             borderRadius: '13px',
           }}
+          {...swipeDay}
         >
           {inherited && <Inheritance owner={owner} />}
           <Box display="flex" flexDirection="column" gap={3}>

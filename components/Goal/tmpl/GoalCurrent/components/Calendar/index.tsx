@@ -61,6 +61,7 @@ export default function Calendar({ goal }: CalendarProps): JSX.Element {
     <Box display="flex" justifyContent="space-between" alignItems="center" position="relative" gap={2}>
       <PartDivider light sx={{ flex: 1 }} />
       <AppIconButton
+        id={`prev-${id}`}
         size="small"
         name="chevron_left"
         title={prevDay}

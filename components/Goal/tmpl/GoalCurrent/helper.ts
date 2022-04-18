@@ -53,9 +53,7 @@ export const getGoalInfo = (goal: GoalDto, clientOwnership: OwnershipDto, userMe
       return daysGoneForOwner
     }
 
-    const date = userMember.lastEndOfDay || userMember.started
-
-    return differenceInCalendarDays(today, Date.parse(date))
+    return differenceInCalendarDays(today, Date.parse(userMember.updated))
   }
 
   function checkOnWeb() {
@@ -79,11 +77,7 @@ export const getGoalInfo = (goal: GoalDto, clientOwnership: OwnershipDto, userMe
       return daysGone === -1
     }
 
-    if (!clientOwnership.member.lastEndOfDay) {
-      return false
-    }
-
-    return !differenceInCalendarDays(Date.parse(clientOwnership.member.lastEndOfDay), today)
+    return !differenceInCalendarDays(Date.parse(clientOwnership.member.updated), today)
   }
 
   return {

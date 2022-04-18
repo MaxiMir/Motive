@@ -7,7 +7,7 @@ export interface CreateMemberDto {
 export interface UpdateMemberDto {
   readonly id: number
   readonly dayId: number
-  readonly lastEndOfDay: Date
+  readonly updated: Date
 }
 
 export interface MemberDto {
@@ -17,7 +17,7 @@ export interface MemberDto {
   readonly dayId: number
   readonly userId: number
   readonly started: string
-  readonly lastEndOfDay: string | null
+  readonly updated: string
 }
 
 export interface OwnershipDto {

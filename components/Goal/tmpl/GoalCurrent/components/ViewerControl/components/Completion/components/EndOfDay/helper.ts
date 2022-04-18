@@ -8,5 +8,5 @@ export const getNextState = (page: UserPageDto, member: MemberDto): UserPageDto 
     if (!draftMember) return
 
     draftMember.dayId = member.dayId
-    draftMember.lastEndOfDay = member.lastEndOfDay
+    draftMember.updated = member.updated
   })

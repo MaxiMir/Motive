@@ -23,7 +23,7 @@ export default function EndOfDay({ goal, nextDayId, forTomorrow, clientMember }:
   const { button } = i18n[locale]
 
   const onClick = () => {
-    mutate({ id: clientMember.id, dayId: nextDayId, lastEndOfDay: getToday() })
+    mutate({ id: clientMember.id, dayId: nextDayId, updated: getToday() })
   }
 
   return (

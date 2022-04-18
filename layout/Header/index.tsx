@@ -23,7 +23,7 @@ export default function Header({ authenticated }: HeaderProps): JSX.Element {
       <Container fixed>
         <Box display="flex" justifyContent="space-between" alignItems="center">
           <LeftMenu />
-          <Chip label="Alpha 1.0.23" variant="outlined" />
+          <Chip label="Alpha 1.0.24" variant="outlined" />
           {authenticated ? <Notification /> : <SignIn />}
         </Box>
       </Container>

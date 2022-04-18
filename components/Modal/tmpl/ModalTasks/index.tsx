@@ -1,12 +1,26 @@
 import { FieldArray, Form, FormikProvider } from 'formik'
-import { Accordion, AccordionDetails, AccordionSummary, Box, Button, Typography } from '@mui/material'
+import {
+  Accordion,
+  AccordionDetails,
+  AccordionSummary,
+  Box,
+  Button,
+  FormControl,
+  FormControlLabel,
+  Radio,
+  RadioGroup,
+  Typography,
+} from '@mui/material'
 import { GoalDto, MainCharacteristicName } from 'dto'
 import useLocale from 'hooks/useLocale'
+import { getToday, getTomorrow } from 'helpers/date'
 import AppIcon from 'components/UI/AppIcon'
+import AppTitle from 'components/UI/AppTitle'
 import { PaulIcon } from 'components/UI/icons'
 import AppDecorEmoji from 'components/UI/AppDecorEmoji'
 import AppModal from 'components/UI/AppModal'
 import Action from 'components/Action'
+import OptionalTooltip from 'components/OptionalTooltip'
 import Task from 'components/Task'
 import useForm from './hook'
 import i18n from './i18n'
@@ -23,7 +37,24 @@ export default function ModalTasks({ goal, onClose }: ModalTasksProps): JSX.Elem
   const { locale } = useLocale()
   const form = useForm(goal, onClose)
   const { isSubmitting, values, setFieldValue, handleSubmit } = form
-  const { title, subtitle, addTask, button, buttonLoading, pitt, pittAria, pittHints } = i18n[locale]
+  const todayValue = getToday().toISOString()
+  const tomorrowValue = getTomorrow().toISOString()
+  const todayDisabled = todayValue === goal.day.date
+  const {
+    title,
+    subtitle,
+    addTask,
+    button,
+    buttonLoading,
+    doIt,
+    doItLabelledby,
+    today,
+    tomorrow,
+    pitt,
+    pittAria,
+    pittHints,
+    tooltipToday,
+  } = i18n[locale]
 
   return (
     <AppModal
@@ -52,34 +83,55 @@ export default function ModalTasks({ goal, onClose }: ModalTasksProps): JSX.Elem
       <Box display="flex" flexDirection="column" gap={3}>
         <FormikProvider value={form}>
           <Form autoComplete="off">
-            <FieldArray name="tasks">
-              {({ push, remove }) => (
-                <>
-                  {values.tasks.map((task, index) => (
-                    <Task
-                      tmpl="field"
-                      index={index}
-                      taskCount={values.tasks.length}
-                      date={task.date}
-                      locale={locale}
-                      key={`tasks.${index}`}
-                      onRemove={() => remove(index)}
-                      onToggleDate={(isChecked) =>
-                        setFieldValue(`tasks.${index}.date`, isChecked ? values.date : undefined)
-                      }
-                    />
-                  ))}
-                  <Button
-                    variant="outlined"
-                    size="small"
-                    sx={{ alignSelf: 'baseline', textTransform: 'none' }}
-                    onClick={() => push({ name: '', date: undefined })}
-                  >
-                    {addTask}
-                  </Button>
-                </>
-              )}
-            </FieldArray>
+            <Box display="flex" flexDirection="column" gap={3}>
+              <Box>
+                <FieldArray name="tasks">
+                  {({ push, remove }) => (
+                    <>
+                      {values.tasks.map((task, index) => (
+                        <Task
+                          tmpl="field"
+                          index={index}
+                          taskCount={values.tasks.length}
+                          date={task.date}
+                          locale={locale}
+                          key={`tasks.${index}`}
+                          onRemove={() => remove(index)}
+                          onToggleDate={(isChecked) =>
+                            setFieldValue(`tasks.${index}.date`, isChecked ? values.date : undefined)
+                          }
+                        />
+                      ))}
+                      <Button
+                        variant="outlined"
+                        size="small"
+                        sx={{ alignSelf: 'baseline', textTransform: 'none' }}
+                        onClick={() => push({ name: '', date: undefined })}
+                      >
+                        {addTask}
+                      </Button>
+                    </>
+                  )}
+                </FieldArray>
+              </Box>
+              <FormControl variant="standard">
+                <AppTitle name="clock" variant="h6" component="label">
+                  {doIt}
+                </AppTitle>
+                <RadioGroup
+                  name="date"
+                  value={values.date}
+                  aria-labelledby={doItLabelledby}
+                  row
+                  onChange={(e) => setFieldValue('date', e.target.value)}
+                >
+                  <OptionalTooltip tmpl="custom" custom={tooltipToday} wrap={todayDisabled} followCursor>
+                    <FormControlLabel label={today} value={todayValue} disabled={todayDisabled} control={<Radio />} />
+                  </OptionalTooltip>
+                  <FormControlLabel label={tomorrow} value={tomorrowValue} control={<Radio />} />
+                </RadioGroup>
+              </FormControl>
+            </Box>
           </Form>
         </FormikProvider>
         <Accordion>

@@ -17,7 +17,7 @@ export default function useForm(goal: GoalDto, onSuccess: () => void): FormikPro
   return useFormik<CreateDayDto>({
     initialValues: {
       id,
-      date: getTomorrow(),
+      date: getTomorrow().toISOString(),
       tasks: [{ name: '', date: undefined }],
     },
     validationSchema: schema,

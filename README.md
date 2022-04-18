@@ -1,9 +1,9 @@
 ```shell
-docker build -t maximir/frontend:1.0.23 .
+docker build -t maximir/frontend:1.0.24 .
 # artifactory:
-docker tag <IMAGE_ID> maximir.jfrog.io/default-docker-virtual/frontend:1.0.23
-docker push maximir.jfrog.io/default-docker-virtual/frontend:1.0.23
-docker pull maximir.jfrog.io/default-docker-virtual/frontend:1.0.23
+docker tag <IMAGE_ID> maximir.jfrog.io/default-docker-virtual/frontend:1.0.24
+docker push maximir.jfrog.io/default-docker-virtual/frontend:1.0.24
+docker pull maximir.jfrog.io/default-docker-virtual/frontend:1.0.24
 
 # copy:
 docker cp <IMAGE_ID>:/home/node/client /home # <-
@@ -14,7 +14,7 @@ version: '3.3'
 
 services:
   frontend:
-    image: maximir.jfrog.io/default-docker-virtual/frontend:1.0.23
+    image: maximir.jfrog.io/default-docker-virtual/frontend:1.0.24
     depends_on:
       - backend
     restart: unless-stopped

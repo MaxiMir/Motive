@@ -119,7 +119,7 @@ export default function GoalCurrent({
                   <AppDot />
                 </Fragment>
               ))}
-              <Characteristic tmpl="goal" name="runningDays" value={goalInfo.daysPassed} />
+              <Characteristic tmpl="goal" name="runningDays" value={goalInfo.runningDays} />
             </Box>
             {!!hashtags?.length && <Hashtags hashtags={hashtags} />}
             <Calendar goal={goal} />

@@ -1,9 +1,20 @@
 import dynamic from 'next/dynamic'
 import { Field, FieldArray, Form, FormikProvider } from 'formik'
-import { Box, Button, Typography, IconButton, Tooltip } from '@mui/material'
+import {
+  Box,
+  Button,
+  Typography,
+  IconButton,
+  FormControl,
+  Tooltip,
+  FormControlLabel,
+  RadioGroup,
+  Radio,
+} from '@mui/material'
 import { styled } from '@mui/system'
 import useFocus from 'hooks/useFocus'
 import { Locale } from 'hooks/useLocale'
+import { getToday, getTomorrow } from 'helpers/date'
 import AppModal from 'components/UI/AppModal'
 import AppTitle from 'components/UI/AppTitle'
 import AppInput from 'components/UI/AppInput'
@@ -26,6 +37,8 @@ export default function ModalGoal({ locale, onClose }: ModalGoalProps): JSX.Elem
   const [hashtagsRef, setHashtagsFocus] = useFocus()
   const form = useForm(onClose)
   const { isSubmitting, values, setFieldValue, handleSubmit } = form
+  const todayValue = getToday().toISOString()
+  const tomorrowValue = getTomorrow().toISOString()
   const {
     title,
     name,
@@ -37,6 +50,10 @@ export default function ModalGoal({ locale, onClose }: ModalGoalProps): JSX.Elem
     stage,
     stageButton,
     stageHints,
+    start,
+    startLabelledby,
+    today,
+    tomorrow,
     tasksTitle,
     addTask,
   } = i18n[locale]
@@ -75,7 +92,7 @@ export default function ModalGoal({ locale, onClose }: ModalGoalProps): JSX.Elem
             </Box>
             <Box display="flex" flexDirection="column" gap={1}>
               <Box display="flex" gap={1}>
-                <AppTitle name="stage" variant="h6" component="h2" color="primary">
+                <AppTitle name="stage" variant="h6" component="h4" color="primary">
                   {stages}
                 </AppTitle>
                 <Tooltip
@@ -119,9 +136,24 @@ export default function ModalGoal({ locale, onClose }: ModalGoalProps): JSX.Elem
                 )}
               </FieldArray>
             </Box>
+            <FormControl variant="standard">
+              <AppTitle name="clock" variant="h6" component="label">
+                {start}
+              </AppTitle>
+              <RadioGroup
+                name="started"
+                value={values.started}
+                aria-labelledby={startLabelledby}
+                row
+                onChange={(e) => setFieldValue('started', e.target.value)}
+              >
+                <FormControlLabel label={today} value={todayValue} control={<Radio />} />
+                <FormControlLabel label={tomorrow} value={tomorrowValue} control={<Radio />} />
+              </RadioGroup>
+            </FormControl>
             <Box display="flex" flexDirection="column" gap={2}>
               <Box display="flex" gap={1}>
-                <AppTitle name="task" variant="h6" component="h2" color="primary">
+                <AppTitle name="task" variant="h6" component="h4" color="primary">
                   {tasksTitle}
                 </AppTitle>
               </Box>
@@ -138,7 +170,7 @@ export default function ModalGoal({ locale, onClose }: ModalGoalProps): JSX.Elem
                         key={`tasks.${index}`}
                         onRemove={() => remove(index)}
                         onToggleDate={(isChecked) =>
-                          setFieldValue(`tasks.${index}.date`, isChecked ? values.tasksDate : undefined)
+                          setFieldValue(`tasks.${index}.date`, isChecked ? values.started : undefined)
                         }
                       />
                     ))}

@@ -6,7 +6,7 @@ import GoalService from 'services/GoalService'
 import useLocale from 'hooks/useLocale'
 import useSnackbar from 'hooks/useSnackbar'
 import { useMutateGoals } from 'views/UserView/hook'
-import { getToday, getTomorrow } from 'helpers/date'
+import { getToday } from 'helpers/date'
 import { scrollToElem } from 'helpers/dom'
 import { getNextState } from './helper'
 import i18n from './i18n'
@@ -16,11 +16,10 @@ export default function useForm(onSuccess: () => void): FormikProps<CreateGoalDt
 
   return useFormik<CreateGoalDto>({
     initialValues: {
-      started: getToday(),
+      started: getToday().toISOString(),
       name: '',
       hashtags: '',
       stages: [],
-      tasksDate: getTomorrow(),
       tasks: [{ name: '', date: undefined }],
     },
     validationSchema: schema,

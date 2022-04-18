@@ -27,7 +27,7 @@ export const getGoalHref = (userHref: string, goal: GoalDto): string => {
 export type GoalInfo = {
   daysGone: number
   daysGoneForOwner: number
-  daysPassed: number
+  runningDays: number
   web: boolean
   form: boolean
   controls: boolean
@@ -42,7 +42,8 @@ export const getGoalInfo = (goal: GoalDto, clientOwnership: OwnershipDto, userMe
   const controls = !clientOwnership.goal || lastDay
   const completeStage = clientOwnership.goal && controls && goal.stage <= goal.day.stage
   const daysGoneForOwner = differenceInCalendarDays(today, Date.parse(day.date))
-  const daysPassed = differenceInCalendarDays(today, Date.parse(started))
+  const differenceWithStarted = differenceInCalendarDays(today, Date.parse(started))
+  const runningDays = differenceWithStarted < 0 ? 0 : differenceWithStarted
   const daysGone = getDaysGone()
   const web = checkOnWeb()
   const form = checkOnForm()
@@ -83,7 +84,7 @@ export const getGoalInfo = (goal: GoalDto, clientOwnership: OwnershipDto, userMe
   return {
     daysGone,
     daysGoneForOwner,
-    daysPassed,
+    runningDays,
     web,
     form,
     controls,

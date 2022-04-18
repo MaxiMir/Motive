@@ -60,23 +60,23 @@ export default function ModalJoin({ goal, onClose }: ModalJoinProps): JSX.Elemen
           <RadioGroup name="dayId" value={values.dayId?.toString()} onChange={onChange}>
             <FormControlLabel
               value={disableBeginning ? 'none' : beginningDay.toString()}
-              control={<Radio />}
-              disabled={isSubmitting || disableBeginning}
               label={
                 <Box display="flex" gap={1}>
                   {beginLabel} <AppEmoji name="serenity" onlyEmoji />
                 </Box>
               }
+              disabled={isSubmitting || disableBeginning}
+              control={<Radio />}
             />
             <FormControlLabel
               value={thisDay.toString()}
-              control={<Radio />}
-              disabled={isSubmitting}
               label={
                 <Box display="flex" gap={1}>
                   {dayLabel} <AppEmoji name="blast" onlyEmoji />
                 </Box>
               }
+              disabled={isSubmitting}
+              control={<Radio />}
             />
           </RadioGroup>
           <div>

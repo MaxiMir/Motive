@@ -1,10 +1,14 @@
 export default {
   en: {
-    title: 'Adding tasks for',
-    subtitle: 'tomorrow',
+    title: 'Adding',
+    subtitle: 'tasks',
     addTask: '+ Add task',
     button: 'Create',
     buttonLoading: 'Creating',
+    doIt: 'Do it',
+    doItLabelledby: 'do-it',
+    today: 'Today',
+    tomorrow: 'Tomorrow',
     pitt: 'Remember Old Pitt!',
     pittAria: 'old-pitt-note',
     pittHints: [
@@ -15,13 +19,18 @@ export default {
       'will burn out and the number of abandoned goals increases',
     ],
     message: 'Loading the next day',
+    tooltipToday: 'You have already added goals for today',
   },
   ru: {
-    title: 'Добавление задач на',
-    subtitle: 'завтра',
+    title: 'Добавление',
+    subtitle: 'задач',
     addTask: '+ Добавить задачу',
     button: 'Создать',
     buttonLoading: 'Создаю',
+    doIt: 'Выполняем',
+    doItLabelledby: 'выполняем',
+    today: 'Сегодня',
+    tomorrow: 'Завтра',
     pitt: 'Помни о Старине Питте!',
     pittAria: 'заметка-о-старине-питте',
     pittHints: [
@@ -32,5 +41,6 @@ export default {
       'сгорают и количество заброшенных целей увеличивается',
     ],
     message: 'Загружаю следующий день',
+    tooltipToday: 'Вы уже добавили цели на сегодня',
   },
 }

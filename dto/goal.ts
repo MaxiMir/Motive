@@ -6,11 +6,10 @@ import { DayDto, FeedbackDto } from './day'
 
 export interface CreateGoalDto {
   readonly name: string
-  readonly started: Date
+  readonly started: string
   readonly hashtags: string
   readonly stages: string[]
   readonly tasks: CreateTaskDto[]
-  readonly tasksDate: Date
 }
 
 export interface GoalBaseDto {
@@ -42,7 +41,7 @@ export interface GoalStageDto {
 
 export interface CreateDayDto {
   readonly id: number
-  readonly date: Date
+  readonly date: string
   readonly tasks: CreateTaskDto[]
 }
 

@@ -1,6 +1,6 @@
 import { FC, Fragment } from 'react'
 import dynamic from 'next/dynamic'
-import { Dialog, DialogContent, DialogProps, DialogTitle } from '@mui/material'
+import { Dialog, DialogContent, DialogTitle, DialogProps, backdropClasses } from '@mui/material'
 import { styled } from '@mui/system'
 
 const DialogActions = dynamic(() => import('@mui/material/DialogActions'))
@@ -34,7 +34,7 @@ const AppModal: FC<AppModalProps> = ({ title, actions, maxWidth, children, onClo
 }
 
 const DialogWithBackdrop = styled(Dialog)({
-  '& .MuiBackdrop-root': {
+  [`& .${backdropClasses.root}`]: {
     background: 'rgba(34, 34, 34, 0.75)',
     backdropFilter: 'blur(5px)',
   },

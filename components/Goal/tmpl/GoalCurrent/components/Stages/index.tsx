@@ -47,7 +47,7 @@ export default function Stages({ goal, forTomorrow, completeStage }: StagesProps
               <StepContent />
             ) : (
               <StepContent>
-                <OptionalTooltip tmpl="tomorrow" wrap={forTomorrow}>
+                <OptionalTooltip tmpl="tomorrow" wrap={forTomorrow} followCursor>
                   <Button variant="outlined" color="success" size="small" disabled={forTomorrow} onClick={toggleModal}>
                     {buttonTitle}
                   </Button>

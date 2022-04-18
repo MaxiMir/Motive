@@ -1,5 +1,5 @@
 import { ChangeEvent, useState } from 'react'
-import { Container, Tab, Tabs, useTheme } from '@mui/material'
+import { Container, Tab, Tabs, tabsClasses, useTheme } from '@mui/material'
 
 interface AppTabsProps {
   tabs: string[] | JSX.Element[]
@@ -32,7 +32,7 @@ export default function AppTabs({ tabs, content, ariaLabel, initial = 0 }: AppTa
           aria-label={ariaLabel}
           variant="fullWidth"
           sx={{
-            '.MuiTabs-indicator': {
+            [`& .${tabsClasses.indicator}`]: {
               background: `linear-gradient(to right, ${theme.palette.motivation.main}, ${theme.palette.creativity.dark}, ${theme.palette.support.dark})`,
             },
           }}

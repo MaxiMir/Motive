@@ -27,9 +27,6 @@ export default function HashtagSearch({ name, gradient, views }: HashtagSearchPr
         aspectRatio: '1',
         borderRadius: '12px',
         backgroundImage: gradient,
-        '& .MuiButton-label': {
-          height: '100%',
-        },
       }}
       onClick={onClick}
     >

@@ -26,7 +26,7 @@ export default function Task({ goalId, task, rest, goalInfo, clientMember }: Tas
   return (
     <Box display="flex" flexDirection="column" gap={1}>
       <form>
-        <OptionalTooltip tmpl="tomorrow" wrap={forTomorrow}>
+        <OptionalTooltip tmpl="tomorrow" wrap={forTomorrow} followCursor>
           <AppCheckbox
             name={id.toString()}
             label={<TaskLabel task={task} daysGoneForOwner={daysGoneForOwner} />}

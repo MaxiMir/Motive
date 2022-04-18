@@ -1,6 +1,5 @@
-import { Box, Typography } from '@mui/material'
+import { Box, Typography, Tooltip } from '@mui/material'
 import { numberToShort } from 'helpers/prepare'
-import AppTooltip from 'components/UI/AppTooltip'
 import AppEmoji from 'components/UI/AppEmoji'
 
 interface GoalViewsProps {
@@ -13,9 +12,11 @@ export default function Views({ views }: GoalViewsProps): JSX.Element {
   return (
     <Box display="flex" justifyContent="flex-end">
       <Box display="flex" alignItems="center" gap={1}>
-        <AppTooltip title="Day Views">
-          <AppEmoji name="views" variant="h5" />
-        </AppTooltip>
+        <Tooltip arrow title="Day Views">
+          <span>
+            <AppEmoji name="views" variant="h5" />
+          </span>
+        </Tooltip>
         <Typography variant="subtitle1" component="p" sx={{ color: '#5a5959' }}>
           {shortViews}
         </Typography>

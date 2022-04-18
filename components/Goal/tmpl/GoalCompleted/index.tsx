@@ -1,12 +1,11 @@
 import { Fragment } from 'react'
 import dynamic from 'next/dynamic'
-import { Box, useTheme } from '@mui/material'
+import { Box, Tooltip, useTheme } from '@mui/material'
 import { ConfirmationDto, GoalCharacteristicName, UserDetailDto } from 'dto'
 import useClient from 'hooks/useClient'
 import useLocale from 'hooks/useLocale'
 import AppTitle from 'components/UI/AppTitle'
 import AppDot from 'components/UI/AppDot'
-import AppTooltip from 'components/UI/AppTooltip'
 import Characteristic from 'components/Characteristic'
 import { checkOnRepeat, getGoalInfo } from './helper'
 import i18n from './i18n'
@@ -66,11 +65,11 @@ export default function GoalCompleted({ confirmation, user, inView, onView }: Go
           {inherited && <Inheritance owner={goal.owner} locale={locale} />}
           <Typography variant="caption">
             {durationTitle}{' '}
-            <AppTooltip title={interval}>
+            <Tooltip arrow title={interval}>
               <Box component="b" color="zen.silent">
                 {duration}
               </Box>
-            </AppTooltip>
+            </Tooltip>
           </Typography>
         </Box>
         {mainPhoto && <Gallery tmpl="simple" photos={[mainPhoto]} animation />}

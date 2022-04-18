@@ -1,5 +1,5 @@
 import dynamic from 'next/dynamic'
-import { Grid, Box, Button, Typography, useTheme } from '@mui/material'
+import { Grid, Box, Button, Typography, typographyClasses, useTheme } from '@mui/material'
 import { styled } from '@mui/system'
 import { Locale } from 'hooks/useLocale'
 import AppContainer from 'components/UI/AppContainer'
@@ -126,7 +126,7 @@ const ButtonContent = styled(Box)(({ theme }) => ({
   bottom: 0,
   left: 0,
   right: 0,
-  '.MuiTypography-root': {
+  [`& .${typographyClasses.root}`]: {
     [theme.breakpoints.down('md')]: {
       fontSize: '1rem',
     },

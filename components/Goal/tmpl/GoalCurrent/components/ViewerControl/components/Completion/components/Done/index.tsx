@@ -22,7 +22,7 @@ export default function Done({ goal, forTomorrow }: DoneProps): JSX.Element {
   const toggleModal = () => setOpen(!open)
 
   return (
-    <OptionalTooltip tmpl="tomorrow" wrap={forTomorrow}>
+    <OptionalTooltip tmpl="tomorrow" wrap={forTomorrow} followCursor>
       <Button
         variant="outlined"
         color="warning"

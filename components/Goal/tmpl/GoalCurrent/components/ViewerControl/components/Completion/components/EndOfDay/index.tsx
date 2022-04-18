@@ -27,7 +27,7 @@ export default function EndOfDay({ goal, nextDayId, forTomorrow, clientMember }:
   }
 
   return (
-    <OptionalTooltip tmpl="tomorrow" wrap={forTomorrow}>
+    <OptionalTooltip tmpl="tomorrow" wrap={forTomorrow} followCursor>
       <Button
         variant="outlined"
         color="primary"

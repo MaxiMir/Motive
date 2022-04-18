@@ -30,7 +30,7 @@ export default function OwnerControl({ goal }: OwnerControlProps): JSX.Element {
 
   return (
     <Box display="flex" justifyContent={justifyContent}>
-      <OptionalTooltip tmpl="feedback" wrap={!feedbackAdded}>
+      <OptionalTooltip tmpl="feedback" wrap={!feedbackAdded} followCursor>
         <Button
           variant="outlined"
           disabled={!feedbackAdded}

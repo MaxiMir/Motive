@@ -198,6 +198,19 @@ export const getDesignTokens = (mode: PaletteMode): ThemeOptions => {
           },
         },
       },
+      ...(mode === 'dark' && {
+        MuiTooltip: {
+          styleOverrides: {
+            arrow: {
+              color: 'black',
+            },
+            tooltip: {
+              color: 'white',
+              backgroundColor: 'black',
+            },
+          },
+        },
+      }),
     },
   }
 }

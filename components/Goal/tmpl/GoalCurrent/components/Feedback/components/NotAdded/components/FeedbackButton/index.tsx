@@ -23,7 +23,7 @@ export default function FeedbackButton({ goal, forTomorrow, locale }: FeedbackBu
 
   return (
     <>
-      <OptionalTooltip tmpl="tomorrow" wrap={forTomorrow}>
+      <OptionalTooltip tmpl="tomorrow" wrap={forTomorrow} followCursor>
         <Button
           variant="outlined"
           color="secondary"

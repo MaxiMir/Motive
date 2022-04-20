@@ -8,9 +8,9 @@ import useLocale from 'hooks/useLocale'
 import PageService from 'services/PageService'
 import MemberService from 'services/MemberService'
 import { scrollToElem } from 'helpers/dom'
-import { getQueryParams, SEARCH_PARAMS, setQueryParams } from 'helpers/url'
+import { getQueryParams, getUserUrn, setQueryParams, SEARCH_PARAMS } from 'helpers/url'
 import useClient from 'hooks/useClient'
-import { getNextState, getUserHref } from './helper'
+import { getNextState } from './helper'
 
 export const useUserPage = (): UseQueryResult<UserPageDto> => {
   const { key, urn } = useUserPageConfig()
@@ -82,7 +82,7 @@ export const useSendCreateMember = (): UseMutationResult<MemberDto, AxiosError, 
     onSuccess({ goalId, dayId }) {
       if (!client) return
 
-      const userHref = getUserHref(client.nickname)
+      const userHref = getUserUrn(client.nickname)
       const params = { [SEARCH_PARAMS.DATES]: `${goalId}:${dayId}` }
 
       jump(setQueryParams(userHref, params))

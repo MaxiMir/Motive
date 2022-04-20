@@ -1,5 +1,5 @@
 import { ClientDto, UserBaseDto } from 'dto'
-import { getUserHref } from 'views/UserView/helper'
+import { getUserUrn } from 'helpers/url'
 import AppLink from 'components/UI/AppLink'
 import AppAvatar from 'components/UI/AppAvatar'
 
@@ -9,7 +9,7 @@ export interface InputAvatarProps {
 
 export default function InputAvatar({ user }: InputAvatarProps): JSX.Element {
   const { name, nickname, avatar } = user
-  const href = getUserHref(nickname)
+  const href = getUserUrn(nickname)
 
   return (
     <AppLink title={name} href={href} sx={{ height: 32 }}>

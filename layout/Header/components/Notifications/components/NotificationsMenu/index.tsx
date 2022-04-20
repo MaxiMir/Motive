@@ -14,7 +14,7 @@ interface NotificationsMenuProps {
 export default function NotificationsMenu({ notifications, anchorEl, onClose }: NotificationsMenuProps): JSX.Element {
   return (
     <Menu anchorEl={anchorEl} open onClose={onClose} MenuListProps={{ 'aria-labelledby': 'notification-button' }}>
-      <Box py={2} width={300} height={350} overflow="scroll">
+      <Box py={2} width={310} height={380} overflow="scroll">
         {!notifications.length ? <EmptyList /> : <NotificationList notifications={notifications} />}
       </Box>
     </Menu>

@@ -66,3 +66,8 @@ export const getImageUrl = (src: string | ImageProps['src']): ImageProps['src'] 
   typeof src !== 'string' || src.includes('https://') ? src : getUrlWithHost(src)
 
 export const getUrlWithHost = (urn: string): string => process.env.NEXT_PUBLIC_APP_URL + urn
+
+export const getUserUrn = (nickname: string): string => `/${nickname}`
+
+export const getGoalUrn = (userHref: string, goalId: number, dayId: number): string =>
+  setQueryParams(userHref, { [SEARCH_PARAMS.SCROLL]: goalId, [SEARCH_PARAMS.DATES]: `${goalId}:${dayId}` })

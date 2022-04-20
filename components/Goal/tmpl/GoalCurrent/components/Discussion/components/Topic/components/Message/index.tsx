@@ -4,7 +4,7 @@ import { MessageDto } from 'dto'
 import { getDistance } from 'helpers/date'
 import { numberToShort } from 'helpers/prepare'
 import useLocale from 'hooks/useLocale'
-import { getUserHref } from 'views/UserView/helper'
+import { getUserUrn } from 'helpers/url'
 import AppLink from 'components/UI/AppLink'
 import AppMarkdown from 'components/UI/AppMarkdown'
 import AppAvatar from 'components/UI/AppAvatar'
@@ -26,7 +26,7 @@ export default function Message({ message, answerFor, supportFor, onReply }: Mes
   const { date, user, text, edited } = message
   const { locale } = useLocale()
   const dateDistance = getDistance(date, locale)
-  const href = getUserHref(user.nickname)
+  const href = getUserUrn(user.nickname)
   const shortNumber = numberToShort(message.likeCount)
   const { editedText, replyButton } = i18n[locale]
 

@@ -1,7 +1,7 @@
 import dynamic from 'next/dynamic'
 import { Box, Typography } from '@mui/material'
 import { UserDetailDto, UserCharacteristicName, MainCharacteristicName } from 'dto'
-import { getUserHref } from 'views/UserView/helper'
+import { getUserUrn } from 'helpers/url'
 import useClient from 'hooks/useClient'
 import { Locale } from 'hooks/useLocale'
 import AppContainer from 'components/UI/AppContainer'
@@ -26,7 +26,7 @@ export interface UserViewProps {
 export default function UserView({ user, locale }: UserViewProps): JSX.Element {
   const { id, nickname, name, avatar, characteristic, goals, following, userMembership, clientMembership } = user
   const client = useClient()
-  const href = getUserHref(nickname)
+  const href = getUserUrn(nickname)
   const clientPage = id === client?.id
 
   useScrollToGoal()

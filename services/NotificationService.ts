@@ -8,4 +8,8 @@ export default class NotificationService extends Service {
 
     return Axios.get('/notifications', { params })
   }
+
+  static updateRead(id: number): Promise<void> {
+    return Axios.patch(`/notifications/${id}/read`)
+  }
 }

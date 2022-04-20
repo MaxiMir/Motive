@@ -2,7 +2,7 @@ import { Fragment } from 'react'
 import dynamic from 'next/dynamic'
 import { Box, Typography } from '@mui/material'
 import { UserDto, UserCharacteristicName } from 'dto'
-import { getUserHref } from 'views/UserView/helper'
+import { getUserUrn } from 'helpers/url'
 import Characteristic from 'components/Characteristic'
 import AppLink from 'components/UI/AppLink'
 import AppDot from 'components/UI/AppDot'
@@ -23,7 +23,7 @@ export interface UserCharacteristicProps {
 
 export default function UserCharacteristic({ user, inView, menu, onView }: UserCharacteristicProps): JSX.Element {
   const { nickname, avatar, name, characteristic } = user
-  const href = getUserHref(nickname)
+  const href = getUserUrn(nickname)
 
   return (
     <>

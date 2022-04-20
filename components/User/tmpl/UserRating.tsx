@@ -1,6 +1,6 @@
 import { Container, Typography, Grid, Box, useTheme } from '@mui/material'
 import { UserDto, UserCharacteristicName } from 'dto'
-import { getUserHref } from 'views/UserView/helper'
+import { getUserUrn } from 'helpers/url'
 import AppLink from 'components/UI/AppLink'
 import AppAvatar from 'components/UI/AppAvatar'
 import AppEmoji from 'components/UI/AppEmoji'
@@ -16,7 +16,7 @@ export default function UserRating({ user, characteristicName, index }: UserRati
   const theme = useTheme()
   const { nickname, avatar, name, characteristic } = user
   const number = getNumber()
-  const href = getUserHref(nickname)
+  const href = getUserUrn(nickname)
   const ratingValue = Math.floor(characteristic[characteristicName])
   const color = theme.palette[characteristicName].main
   const isEven = index % 2 === 0

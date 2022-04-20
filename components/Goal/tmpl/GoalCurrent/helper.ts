@@ -1,6 +1,5 @@
 import { differenceInCalendarDays } from 'date-fns'
 import { GoalDto, MemberDto, OwnershipDto } from 'dto'
-import { SEARCH_PARAMS, setQueryParams } from 'helpers/url'
 import { getMember } from 'views/UserView/helper'
 
 const SHOW_WEB_AFTER_DAYS = +(process.env.NEXT_PUBLIC_SHOW_WEB_AFTER_DAYS as string)
@@ -16,12 +15,6 @@ export const getClientOwnership = (
   const clientMember = getMember(id, clientMembership, clientId)
 
   return { page: clientPage, goal: clientGoal, member: clientMember }
-}
-
-export const getGoalHref = (userHref: string, goal: GoalDto): string => {
-  const { id, day } = goal
-
-  return setQueryParams(userHref, { [SEARCH_PARAMS.SCROLL]: goal.id, [SEARCH_PARAMS.DATES]: `${id}:${day.id}` })
 }
 
 export type GoalInfo = {

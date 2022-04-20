@@ -49,7 +49,5 @@ export const getUserMeta = (user: UserDetailDto | undefined, locale: Locale): Us
   }
 }
 
-export const getUserHref = (nickname: string): string => `/${nickname}`
-
 export const getMember = (goalId: number, membership: MemberDto[], userId?: number): MemberDto | undefined =>
   (userId && membership.find((m) => m.userId === userId && m.goalId === goalId)) || undefined

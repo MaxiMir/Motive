@@ -82,10 +82,10 @@ export const useSendCreateMember = (): UseMutationResult<MemberDto, AxiosError, 
     onSuccess({ goalId, dayId }) {
       if (!client) return
 
-      const userHref = getUserUrn(client.nickname)
+      const userUrn = getUserUrn(client.nickname)
       const params = { [SEARCH_PARAMS.DATES]: `${goalId}:${dayId}` }
 
-      jump(setQueryParams(userHref, params))
+      jump(setQueryParams(userUrn, params))
     },
   })
 }

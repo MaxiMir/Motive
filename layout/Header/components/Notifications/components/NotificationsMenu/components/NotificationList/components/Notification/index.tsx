@@ -3,29 +3,36 @@ import dynamic from 'next/dynamic'
 import { Box, Typography, ListItemIcon, MenuItem } from '@mui/material'
 import { NotificationDto } from 'dto'
 import useLocale from 'hooks/useLocale'
+import useClient from 'hooks/useClient'
 import { getDistance } from 'helpers/date'
 import User from 'components/User'
-import AppLink from 'components/UI/AppLink'
 import AppEmoji from 'components/UI/AppEmoji'
-import { getUserUrn } from 'helpers/url'
 import { getNotificationInfo } from './helper'
 import { useUpdateRead } from './hook'
 import i18n from './i18n'
 
 const AppInView = dynamic(() => import('components/UI/AppInView'))
 
-export default function Notification(notification: NotificationDto): JSX.Element {
+interface NotificationProps {
+  notification: NotificationDto
+  onClose: () => void
+}
+
+export default function Notification({ notification, onClose }: NotificationProps): JSX.Element {
   const { id, type, details, created, read } = notification
   const { user } = details
   const router = useRouter()
+  const client = useClient()
   const { mutate } = useUpdateRead()
-  const userHref = getUserUrn(user.nickname)
   const { locale } = useLocale()
   const dateDistance = getDistance(created, locale)
-  const { emoji, color, href } = getNotificationInfo(notification)
+  const { emoji, color, href } = getNotificationInfo(notification, client)
   const title = i18n[locale][type]
 
-  const onClick = () => router.push(href)
+  const onClick = () => {
+    onClose()
+    router.push(href)
+  }
 
   const onView = () => mutate(id)
 
@@ -39,9 +46,9 @@ export default function Notification(notification: NotificationDto): JSX.Element
       </ListItemIcon>
       <Box display="flex" flexDirection="column">
         <Typography variant="caption">
-          <AppLink href={userHref} sx={{ color, textDecoration: 'none' }}>
+          <Box component="span" sx={{ color }}>
             {user.name}
-          </AppLink>{' '}
+          </Box>{' '}
           {title}
         </Typography>
         <Box component="span" sx={{ fontSize: '0.6875rem', color: 'zen.silent' }}>

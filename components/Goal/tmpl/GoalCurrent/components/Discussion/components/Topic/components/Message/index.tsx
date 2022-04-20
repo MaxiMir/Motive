@@ -1,8 +1,7 @@
 import dynamic from 'next/dynamic'
-import formatDistanceToNow from 'date-fns/formatDistanceToNow'
-import { enUS, ru } from 'date-fns/locale'
 import { Box, Typography } from '@mui/material'
 import { MessageDto } from 'dto'
+import { getDistance } from 'helpers/date'
 import { numberToShort } from 'helpers/prepare'
 import useLocale from 'hooks/useLocale'
 import { getUserHref } from 'views/UserView/helper'
@@ -26,11 +25,10 @@ interface MessageProps {
 export default function Message({ message, answerFor, supportFor, onReply }: MessageProps): JSX.Element {
   const { date, user, text, edited } = message
   const { locale } = useLocale()
-  const fnsLocale = locale === 'ru' ? ru : enUS
-  const dateDifference = formatDistanceToNow(new Date(date), { includeSeconds: true, locale: fnsLocale })
+  const dateDistance = getDistance(date, locale)
   const href = getUserHref(user.nickname)
   const shortNumber = numberToShort(message.likeCount)
-  const { editedText, agoText, replyButton } = i18n[locale]
+  const { editedText, replyButton } = i18n[locale]
 
   return (
     <Box display="flex" flexDirection="column" gap={1} width="100%">
@@ -57,7 +55,7 @@ export default function Message({ message, answerFor, supportFor, onReply }: Mes
       <Box display="flex" justifyContent="space-between" alignItems="center" pr={1}>
         <Box display="flex" alignItems="center" gap={1}>
           <Box component="span" sx={{ fontSize: '0.6875rem', color: 'zen.silent' }}>
-            {dateDifference} {agoText}
+            {dateDistance}
           </Box>
           {onReply && (
             <Button aria-label="Reply" sx={{ color: 'support.main' }} onClick={onReply}>

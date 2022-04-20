@@ -42,7 +42,6 @@ export default function GoalCompleted({ confirmation, user, inView, onView }: Go
         padding: '3px',
         background: `linear-gradient(to top left, #fde76c, #813203, #ce8c00)`,
         borderRadius: '13px',
-        minHeight: '500px',
       }}
     >
       <Box
@@ -72,7 +71,7 @@ export default function GoalCompleted({ confirmation, user, inView, onView }: Go
             </Tooltip>
           </Typography>
         </Box>
-        {mainPhoto && <Gallery tmpl="simple" photos={[mainPhoto]} animation />}
+        <Box minHeight={320}>{mainPhoto && <Gallery tmpl="simple" photos={[mainPhoto]} animation />}</Box>
         <Box display="flex" justifyContent="space-between" alignItems="center">
           {CHARACTERISTICS.map((characteristicName) => (
             <Fragment key={characteristicName}>

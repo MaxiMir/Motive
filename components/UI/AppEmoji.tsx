@@ -56,6 +56,7 @@ export type AppEmojiName =
   | 'coin'
   | 'moon'
   | 'clock'
+  | 'notification'
 
 interface AppEmojiProps {
   name: AppEmojiName
@@ -195,6 +196,8 @@ function getContent(name: AppEmojiName) {
       return '🌒'
     case 'clock':
       return '🕰'
+    case 'notification':
+      return '🛎'
     default:
       return ''
   }

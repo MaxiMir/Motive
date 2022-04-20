@@ -71,7 +71,7 @@ const Menu = ({ title, url, locale, onCopyEnd, onCopyError, onClose }: MenuProps
 
   return (
     <Drawer open anchor="bottom" onClose={onClose}>
-      <div role="presentation" onKeyDown={onKeyDown} onClick={onClose}>
+      <Box role="presentation" onKeyDown={onKeyDown} onClick={onClose}>
         <List>
           {shareItems.map(({ text, Icon, onClick }) => (
             <ListItem button sx={{ height: 65 }} key={text} onClick={onClick}>
@@ -84,7 +84,7 @@ const Menu = ({ title, url, locale, onCopyEnd, onCopyError, onClose }: MenuProps
             </ListItem>
           ))}
         </List>
-      </div>
+      </Box>
     </Drawer>
   )
 }

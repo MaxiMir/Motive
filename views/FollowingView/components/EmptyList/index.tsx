@@ -7,13 +7,13 @@ interface EmptyListProps {
 }
 
 const EmptyList = ({ locale }: EmptyListProps): JSX.Element => {
-  const { description, hint } = i18n[locale]
+  const { title, hint } = i18n[locale]
 
   return (
     <Box display="flex" alignItems="center" justifyContent="center" flex={1}>
       <Box display="flex" flexDirection="column" alignItems="center" width="100%">
         <Typography variant="h5" color="primary">
-          {description}
+          {title}
         </Typography>
         <Typography>{hint}</Typography>
       </Box>

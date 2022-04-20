@@ -123,7 +123,7 @@ export default function GoalCurrent({
             </Box>
             {!!hashtags?.length && <Hashtags hashtags={hashtags} />}
             <Calendar goal={goal} />
-            <div>
+            <Box>
               {!!stages.length && (
                 <AppAccordion
                   name="stage"
@@ -177,7 +177,7 @@ export default function GoalCurrent({
                   <Discussion dayId={dayId} owner={owner} count={topicCount} clientGoal={clientOwnership.goal} />
                 }
               />
-            </div>
+            </Box>
           </Box>
           <Box display="flex" flexDirection="column" gap={2}>
             {goalInfo.controls && (

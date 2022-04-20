@@ -1,4 +1,4 @@
-import { IconButton } from '@mui/material'
+import { Box, IconButton } from '@mui/material'
 import { makeStyles } from '@mui/styles'
 import AppVideo from 'components/UI/AppVideo'
 import AppIcon from 'components/UI/AppIcon'
@@ -15,12 +15,12 @@ export default function VideoPreview({ video, disabled, onRemove }: VideoPreview
   const url = URL.createObjectURL(video)
 
   return (
-    <div className={classes.video}>
+    <Box className={classes.video}>
       <AppVideo video={url} className={classes.videoPlayer} />
       <IconButton className={classes.remove} aria-label="Remove video" disabled={disabled} onClick={onRemove}>
         <AppIcon name="cancel" />
       </IconButton>
-    </div>
+    </Box>
   )
 }
 

@@ -16,11 +16,11 @@ export default function LeftMenu(): JSX.Element {
   const toggleModal = () => setOpen(!open)
 
   return (
-    <div>
+    <>
       <Button aria-label={ariaLabel} sx={{ color: 'common.white' }} onClick={toggleModal}>
         <AppIcon name="menu" />
       </Button>
       {open && <MenuModal onClose={toggleModal} />}
-    </div>
+    </>
   )
 }

@@ -52,14 +52,14 @@ export default function ModalSupport({ goal, owner, onClose }: ModalSupportProps
           <Box display="flex" flexDirection="column" alignItems="center" gap={3}>
             <AppFadeIcon name="support" />
             <Field name="text" label={label} color="primary" multiline rows={3} component={AppInput} />
-            <div className={classes.accordionWrap}>
+            <Box className={classes.accordionWrap}>
               <AppAccordion
                 name="helmet"
                 header={header}
                 id="support"
                 ariaControls={ariaControls}
                 details={
-                  <div className={classes.hint}>
+                  <Box className={classes.hint}>
                     <Typography>
                       {accordion[0]}
                       <AppDecorEmoji name="goal" />.
@@ -71,10 +71,10 @@ export default function ModalSupport({ goal, owner, onClose }: ModalSupportProps
                     <Typography>{accordion[2]}</Typography>
                     <Typography>&#9679; {accordion[3]}</Typography>
                     <Typography>&#9679; {accordion[4]}</Typography>
-                  </div>
+                  </Box>
                 }
               />
-            </div>
+            </Box>
           </Box>
         </Form>
       </FormikProvider>

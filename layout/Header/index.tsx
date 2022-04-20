@@ -3,7 +3,7 @@ import { Box, AppBar, Chip, Container } from '@mui/material'
 import LeftMenu from './components/LeftMenu'
 
 const SignIn = dynamic(() => import('./components/SignIn'))
-const Notification = dynamic(() => import('./components/Notification'))
+const Notifications = dynamic(() => import('./components/Notifications'))
 
 interface HeaderProps {
   authenticated: boolean
@@ -23,8 +23,8 @@ export default function Header({ authenticated }: HeaderProps): JSX.Element {
       <Container fixed>
         <Box display="flex" justifyContent="space-between" alignItems="center">
           <LeftMenu />
-          <Chip label="Alpha 1.0.24" variant="outlined" />
-          {authenticated ? <Notification /> : <SignIn />}
+          <Chip label="Alpha 1.0.26" variant="outlined" />
+          {authenticated ? <Notifications /> : <SignIn />}
         </Box>
       </Container>
     </AppBar>

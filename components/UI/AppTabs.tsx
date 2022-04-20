@@ -1,5 +1,5 @@
 import { ChangeEvent, useState } from 'react'
-import { Container, Tab, Tabs, tabsClasses, useTheme } from '@mui/material'
+import { Container, Box, Tab, Tabs, tabsClasses, useTheme } from '@mui/material'
 
 interface AppTabsProps {
   tabs: string[] | JSX.Element[]
@@ -49,9 +49,9 @@ export default function AppTabs({ tabs, content, ariaLabel, initial = 0 }: AppTa
         const a11yContentProps = getA11yContentProps(index)
 
         return (
-          <div role="tabpanel" hidden={value !== index} {...a11yContentProps} key={a11yContentProps.id}>
+          <Box role="tabpanel" hidden={value !== index} {...a11yContentProps} key={a11yContentProps.id}>
             {value === index && tabContent}
-          </div>
+          </Box>
         )
       })}
     </>

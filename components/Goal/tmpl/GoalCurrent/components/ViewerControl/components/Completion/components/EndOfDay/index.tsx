@@ -4,7 +4,7 @@ import { GoalDto, MemberDto } from 'dto'
 import useLocale from 'hooks/useLocale'
 import OptionalTooltip from 'components/OptionalTooltip'
 import AppEmoji from 'components/UI/AppEmoji'
-import { getToday } from 'helpers/date'
+import { getTomorrow } from 'helpers/date'
 import { useSendEndOfDay } from './hook'
 import i18n from './i18n'
 
@@ -23,7 +23,7 @@ export default function EndOfDay({ goal, nextDayId, forTomorrow, clientMember }:
   const { button } = i18n[locale]
 
   const onClick = () => {
-    mutate({ id: clientMember.id, dayId: nextDayId, updated: getToday() })
+    mutate({ id: clientMember.id, dayId: nextDayId, updated: getTomorrow() })
   }
 
   return (

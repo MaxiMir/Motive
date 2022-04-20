@@ -116,14 +116,14 @@ export default function ModalCompletion({ goal, onClose }: ModalCompletionProps)
                 {errors.photos}
               </Alert>
             )}
-            <div className={classes.accordionWrap}>
+            <Box className={classes.accordionWrap}>
               <AppAccordion
                 name="switch"
                 header={accordionHeader}
                 id="goal"
                 ariaControls={ariaControls}
                 details={
-                  <div className={classes.hint}>
+                  <Box className={classes.hint}>
                     <Typography>
                       {details[0]}{' '}
                       {CHARACTERISTIC_NAMES.map((name) => (
@@ -131,10 +131,10 @@ export default function ModalCompletion({ goal, onClose }: ModalCompletionProps)
                       ))}
                       {details[1]} <b className={classes.count}>5</b> <AppDecorEmoji name="motivation" /> {details[2]}.
                     </Typography>
-                  </div>
+                  </Box>
                 }
               />
-            </div>
+            </Box>
           </Box>
         </Form>
       </FormikProvider>

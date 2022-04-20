@@ -27,8 +27,17 @@ export default function ModalJoin({ goal, onClose }: ModalJoinProps): JSX.Elemen
   const disableBeginning = beginningDay === thisDay
   const form = useForm(id, beginningDay)
   const { isSubmitting, values, setFieldValue, handleSubmit } = form
-  const { title, subtitle, button, buttonLoading, beginLabel, dayLabel, accordionHeader, ariaControls, details } =
-    i18n[locale]
+  const {
+    title,
+    subtitle,
+    button,
+    buttonLoading,
+    beginLabel,
+    dayLabel,
+    accordionHeader,
+    ariaControls,
+    accordionDetails,
+  } = i18n[locale]
 
   const onChange = (e: ChangeEvent<HTMLInputElement>) => {
     setFieldValue('dayId', e.currentTarget.value)
@@ -79,30 +88,31 @@ export default function ModalJoin({ goal, onClose }: ModalJoinProps): JSX.Elemen
               control={<Radio />}
             />
           </RadioGroup>
-          <div>
+          <Box>
             <AppAccordion
               name="knot"
               header={accordionHeader}
               id="tips"
               ariaControls={ariaControls}
               details={
-                <div className={classes.hint}>
+                <Box className={classes.hint}>
                   <Typography>
-                    {details[0]} <AppDecorEmoji name="motivation" /> {details[1]}.
+                    {accordionDetails[0]} <AppDecorEmoji name="motivation" /> {accordionDetails[1]}.
                   </Typography>
                   <Typography>
-                    {details[2]} <AppDecorEmoji name="creativity" /> {details[3]}.
+                    {accordionDetails[2]} <AppDecorEmoji name="creativity" /> {accordionDetails[3]}.
                   </Typography>
                   <Typography>
-                    {details[4]} <span className={classes.owner}>{goal.owner.name}</span> {details[5]}.
+                    {accordionDetails[4]} <span className={classes.owner}>{goal.owner.name}</span> {accordionDetails[5]}
+                    .
                   </Typography>
                   <Typography>
-                    {details[6]} <AppDecorEmoji name="discussion" />.
+                    {accordionDetails[6]} <AppDecorEmoji name="discussion" />.
                   </Typography>
-                </div>
+                </Box>
               }
             />
-          </div>
+          </Box>
         </Form>
       </FormikProvider>
     </AppModal>

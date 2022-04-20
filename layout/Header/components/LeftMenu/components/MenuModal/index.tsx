@@ -35,7 +35,7 @@ export default function MenuModal({ onClose }: MenuModalProps): JSX.Element {
     <Drawer open onClose={onClose}>
       <Box role="presentation" sx={{ height: '100%', padding: '60px 0 8px' }} onKeyDown={onKeyDown}>
         <Box display="flex" flexDirection="column" justifyContent="space-between" height="100%">
-          <div>
+          <Box>
             <List>
               {MENU.map(({ id, icon, link }) => (
                 <ListItem button disabled={!link} onClick={() => jump(link)} key={id}>
@@ -56,8 +56,8 @@ export default function MenuModal({ onClose }: MenuModalProps): JSX.Element {
                 </List>
               </>
             )}
-          </div>
-          <div>
+          </Box>
+          <Box>
             <ListItem button onClick={next}>
               <ListItemText primary={language} />
               <ListItemIcon>
@@ -70,7 +70,7 @@ export default function MenuModal({ onClose }: MenuModalProps): JSX.Element {
                 <AppIcon name={isLight ? 'light_mode' : 'dark_mode'} />
               </ListItemIcon>
             </ListItem>
-          </div>
+          </Box>
         </Box>
       </Box>
     </Drawer>

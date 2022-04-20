@@ -8,7 +8,7 @@ export default {
     dayLabel: 'This day',
     accordionHeader: 'Membership',
     ariaControls: 'about-membership',
-    details: [
+    accordionDetails: [
       'Click',
       'for days that are motivating',
       'Click',
@@ -27,7 +27,7 @@ export default {
     dayLabel: 'С этого дня',
     accordionHeader: 'Участие',
     ariaControls: 'о-поддержке',
-    details: [
+    accordionDetails: [
       'Ставьте',
       'для дней, которые Вас мотивируют',
       'Ставьте',

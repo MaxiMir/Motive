@@ -1,10 +1,10 @@
 export default {
   en: {
-    description: 'The list is empty',
+    title: 'The list is still empty',
     hint: 'Add people you are interested in',
   },
   ru: {
-    description: 'Список пуст',
+    title: 'Список пока пуст',
     hint: 'Добавьте людей, которые вам интересны',
   },
 }

@@ -78,7 +78,7 @@ export const getGoalInfo = (goal: GoalDto, clientOwnership: OwnershipDto, userMe
       return daysGone === -1
     }
 
-    return !differenceInCalendarDays(Date.parse(clientOwnership.member.updated), today)
+    return !!differenceInCalendarDays(Date.parse(clientOwnership.member.updated), today)
   }
 
   return {

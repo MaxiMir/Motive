@@ -68,6 +68,7 @@ module.exports = {
         'no-shadow': 'off',
         '@typescript-eslint/no-shadow': ['error'],
         'default-case': 'off',
+        'react/jsx-no-useless-fragment': ['error', { allowExpressions: true }],
 
         // Already handled by TS
         'no-dupe-class-members': 'off',

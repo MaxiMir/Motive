@@ -5,7 +5,7 @@ import useLocale from 'hooks/useLocale'
 import AppEmoji from 'components/UI/AppEmoji'
 import i18n from './i18n'
 
-const Modal = dynamic(() => import('components/Modal'))
+const ModalGoal = dynamic(() => import('components/Modal/ModalGoal'))
 
 export default function AddGoal(): JSX.Element {
   const { locale } = useLocale()
@@ -19,7 +19,7 @@ export default function AddGoal(): JSX.Element {
       <Button variant="outlined" color="info" startIcon={<AppEmoji name="goal" onlyEmoji />} onClick={toggleModal}>
         {name}
       </Button>
-      {open && <Modal tmpl="goal" locale={locale} onClose={toggleModal} />}
+      {open && <ModalGoal locale={locale} onClose={toggleModal} />}
     </Box>
   )
 }

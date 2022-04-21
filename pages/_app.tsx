@@ -18,7 +18,7 @@ import { ModalSignInContext } from 'context/modalSignInContext'
 import useLocale from 'hooks/useLocale'
 
 const AppSnackbar = dynamic(() => import('components/UI/AppSnackbar'))
-const Modal = dynamic(() => import('components/Modal'))
+const ModalSignIn = dynamic(() => import('components/Modal/ModalSignIn'))
 
 const generateClassName = createGenerateClassName({ productionPrefix: 'be' })
 
@@ -32,6 +32,7 @@ const i18n = {
 }
 
 export default function MyApp({ Component, pageProps: { session, ...pageProps } }: AppProps): JSX.Element {
+  const { dehydratedState, providers } = pageProps
   const { locale } = useLocale()
   const prefersDarkMode = useMediaQuery('(prefers-color-scheme: dark)')
   console.log(`prefersDarkMode: ${prefersDarkMode}`) // TODO REMOVE
@@ -57,8 +58,15 @@ export default function MyApp({ Component, pageProps: { session, ...pageProps } 
   )
   // Update the theme only if the mode changes
   const theme = useMemo(() => createTheme(getDesignTokens(mode)), [mode])
-
-  const toggle = () => setMode((prev) => (prev === 'light' ? 'dark' : 'light'))
+  const themeCtx = useMemo(
+    () => ({
+      mode,
+      toggle: () => setMode((prev) => (prev === 'light' ? 'dark' : 'light')),
+    }),
+    [mode],
+  )
+  const modalSignInCtx = useMemo(() => ({ options, providers, setOptions }), [options, providers])
+  const snackbarCtx = useMemo(() => ({ props: snackbarProps, setProps: setSnackbarProps }), [snackbarProps])
 
   const onCloseSignIn = () => setOptions(undefined)
 
@@ -76,21 +84,21 @@ export default function MyApp({ Component, pageProps: { session, ...pageProps } 
   return (
     <SessionProvider session={session} refetchOnWindowFocus>
       <QueryClientProvider client={queryClient}>
-        <Hydrate state={pageProps.dehydratedState}>
+        <Hydrate state={dehydratedState}>
           <LocalizationProvider dateAdapter={AdapterDateFns} locale={fnsLocale}>
-            <ThemeContext.Provider value={{ mode, toggle }}>
+            <ThemeContext.Provider value={themeCtx}>
               <StylesProvider generateClassName={generateClassName}>
                 <ThemeProvider theme={theme}>
                   <NextNprogress color="#b46a5a" />
                   {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
                   <CssBaseline />
-                  <ModalSignInContext.Provider value={{ options, providers: pageProps.providers, setOptions }}>
-                    <SnackbarContext.Provider value={{ props: snackbarProps, setProps: setSnackbarProps }}>
+                  <ModalSignInContext.Provider value={modalSignInCtx}>
+                    <SnackbarContext.Provider value={snackbarCtx}>
                       <Component {...pageProps} />
                     </SnackbarContext.Provider>
                   </ModalSignInContext.Provider>
                   {snackbarProps && <AppSnackbar {...snackbarProps} onClose={onCloseSnackbar} />}
-                  {options && <Modal tmpl="signIn" options={options} onClose={onCloseSignIn} />}
+                  {options && <ModalSignIn options={options} onClose={onCloseSignIn} />}
                 </ThemeProvider>
               </StylesProvider>
             </ThemeContext.Provider>

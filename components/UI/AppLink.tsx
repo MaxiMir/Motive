@@ -1,4 +1,4 @@
-import { FC } from 'react'
+import { ReactNode } from 'react'
 import Link from 'next/link'
 import MaterialLink from '@mui/material/Link'
 import { TypographyProps } from '@mui/material'
@@ -10,9 +10,10 @@ interface AppLinkProps {
   className?: string
   variant?: TypographyProps['variant']
   sx?: TypographyProps['sx']
+  children: ReactNode
 }
 
-const AppLink: FC<AppLinkProps> = ({ href, title, className, ...restProps }) => {
+export default function AppLink({ href, title, className, ...restProps }: AppLinkProps) {
   const { locale } = useLocale()
 
   return (
@@ -21,5 +22,3 @@ const AppLink: FC<AppLinkProps> = ({ href, title, className, ...restProps }) => 
     </Link>
   )
 }
-
-export default AppLink

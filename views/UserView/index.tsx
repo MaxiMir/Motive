@@ -11,7 +11,7 @@ import EmptyGoals from './components/EmptyGoals'
 import Following from './components/Following'
 import { useScrollToBlock } from './hook'
 
-const Goal = dynamic(() => import('components/Goal'))
+const GoalCurrent = dynamic(() => import('components/Goal/GoalCurrent'))
 const Edit = dynamic(() => import('./components/Edit'))
 const AddGoal = dynamic(() => import('./components/AddGoal'))
 
@@ -85,8 +85,7 @@ export default function UserView({ user, locale }: UserViewProps): JSX.Element {
         ) : (
           <Box display="flex" flexWrap="wrap" gap={3}>
             {goals.map((goal) => (
-              <Goal
-                tmpl="current"
+              <GoalCurrent
                 goal={goal}
                 href={href}
                 userId={id}

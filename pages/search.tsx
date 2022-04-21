@@ -2,6 +2,7 @@ import Layout from 'layout'
 import { GetServerSideProps } from 'next'
 import { getSession } from 'next-auth/react'
 import { dehydrate, QueryClient } from 'react-query'
+import { AxiosRequestHeaders } from 'axios'
 import { SEARCH } from 'route'
 import { PageProps, PossiblePageError } from 'dto'
 import useLocale from 'hooks/useLocale'
@@ -33,7 +34,7 @@ export default function SearchPage({ statusCode }: PageProps): JSX.Element {
 }
 
 export const getServerSideProps: GetServerSideProps = async (ctx) => {
-  const { url, headers } = ctx.req
+  const { url } = ctx.req
 
   // TODO:
   if (ctx.req.url?.includes('_next')) {
@@ -47,6 +48,7 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
   const urn = url || SEARCH
   const queryClient = new QueryClient()
   const session = await getSession(ctx)
+  const headers = ctx.req.headers as AxiosRequestHeaders
   await queryClient.prefetchQuery(urn, () => PageService.get(urn || SEARCH, { headers }))
   const state = queryClient.getQueryState<PossiblePageError>(urn)
   const statusCode = state?.data?.message?.statusCode || 200

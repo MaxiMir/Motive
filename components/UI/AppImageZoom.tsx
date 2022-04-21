@@ -1,7 +1,11 @@
-import { FC } from 'react'
+import { ReactNode } from 'react'
 import { Box } from '@mui/material'
 
-const AppImageZoom: FC = ({ children }) => {
+interface AppImageZoomProps {
+  children: ReactNode
+}
+
+export default function AppImageZoom({ children }: AppImageZoomProps) {
   return (
     <Box
       sx={{
@@ -45,5 +49,3 @@ const AppImageZoom: FC = ({ children }) => {
     </Box>
   )
 }
-
-export default AppImageZoom

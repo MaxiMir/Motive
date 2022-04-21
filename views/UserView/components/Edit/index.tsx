@@ -5,7 +5,7 @@ import { Locale } from 'hooks/useLocale'
 import AppIconButton from 'components/UI/AppIconButton'
 import i18n from './i18n'
 
-const Modal = dynamic(() => import('components/Modal'))
+const ModalProfile = dynamic(() => import('components/Modal/ModalProfile'))
 
 interface EditProps {
   user: UserBaseDto
@@ -21,7 +21,7 @@ export default function Edit({ user, locale }: EditProps): JSX.Element {
   return (
     <>
       <AppIconButton name="edit" title={title} sx={{ color: 'zen.silent' }} onClick={toggleModal} />
-      {open && <Modal tmpl="profile" user={user} locale={locale} onClose={toggleModal} />}
+      {open && <ModalProfile user={user} locale={locale} onClose={toggleModal} />}
     </>
   )
 }

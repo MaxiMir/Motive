@@ -5,7 +5,7 @@ import { NotificationDto } from 'dto'
 import useLocale from 'hooks/useLocale'
 import useClient from 'hooks/useClient'
 import { getDistance } from 'helpers/date'
-import User from 'components/User'
+import UserAvatar from 'components/User/UserAvatar'
 import AppEmoji from 'components/UI/AppEmoji'
 import { getNotificationInfo, getUrn } from './helper'
 import { useUpdateRead } from './hook'
@@ -40,7 +40,7 @@ export default function Notification({ notification, onClose }: NotificationProp
   return (
     <MenuItem onClick={onClick}>
       <ListItemIcon sx={{ position: 'relative' }}>
-        <User tmpl="avatar" user={user} />
+        <UserAvatar user={user} />
         <Box component="span" sx={{ position: 'absolute', bottom: '-5px', right: '7px', fontSize: '0.625rem' }}>
           <AppEmoji name={emoji} onlyEmoji />
         </Box>

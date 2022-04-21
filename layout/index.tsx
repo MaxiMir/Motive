@@ -1,4 +1,4 @@
-import { FC } from 'react'
+import { ReactNode } from 'react'
 import Head from 'next/head'
 import Script from 'next/script'
 import dynamic from 'next/dynamic'
@@ -16,9 +16,10 @@ interface LayoutProps {
   type?: string
   image?: string
   statusCode?: number
+  children?: ReactNode
 }
 
-const Layout: FC<LayoutProps> = ({ title, description, url, type, image, statusCode = 200, children }) => {
+export default function Layout({ title, description, url, type, image, statusCode = 200, children }: LayoutProps) {
   const client = useClient()
 
   return (
@@ -80,5 +81,3 @@ const Layout: FC<LayoutProps> = ({ title, description, url, type, image, statusC
 
 // TODO https://shivamethical.medium.com/creating-web-page-preview-while-sharing-url-via-social-applications-like-whats-app-fb-cd2e19b11bf2
 // TODO https://developer.mozilla.org/ru/docs/Web/Progressive_web_apps/Installable_PWAs
-
-export default Layout

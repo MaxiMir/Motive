@@ -5,11 +5,12 @@ import { Box, Typography, Button } from '@mui/material'
 import i18nAll from 'constants/i18n'
 import { UserDetailDto, UserCharacteristicName } from 'dto'
 import { Locale } from 'hooks/useLocale'
-import CharacteristicBase from 'components/Characteristic'
+import CharacteristicUser from 'components/Characteristic/CharacteristicUser'
 import OptionalTooltip from 'components/OptionalTooltip'
 import i18n from './i18n'
 
-const Modal = dynamic(() => import('components/Modal'))
+const ModalFollowers = dynamic(() => import('components/Modal/ModalFollowers'))
+const ModalCompleted = dynamic(() => import('components/Modal/ModalCompleted'))
 
 interface CharacteristicProps {
   user: UserDetailDto
@@ -68,11 +69,12 @@ export default function Characteristic(props: CharacteristicProps): JSX.Element 
             >
               {button}
             </Typography>
-            <CharacteristicBase tmpl="user" {...props} />
+            <CharacteristicUser {...props} />
           </Box>
         </Button>
       </OptionalTooltip>
-      {modal && <Modal tmpl={modal} user={user} onClose={onClose} />}
+      {modal === 'completed' && <ModalCompleted user={user} onClose={onClose} />}
+      {modal === 'followers' && <ModalFollowers user={user} onClose={onClose} />}
     </>
   )
 }

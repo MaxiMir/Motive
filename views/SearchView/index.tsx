@@ -8,9 +8,9 @@ import SearchForm from './components/SearchForm'
 import { getGradients } from './helper'
 import i18n from './i18n'
 
-const User = dynamic(() => import('components/User'))
-const Goal = dynamic(() => import('components/Goal'))
-const Hashtag = dynamic(() => import('components/Hashtag'))
+const UserSearch = dynamic(() => import('components/User/UserSearch'))
+const GoalSearch = dynamic(() => import('components/Goal/GoalSearch'))
+const HashtagSearch = dynamic(() => import('components/Hashtag/HashtagSearch'))
 const NoResult = dynamic(() => import('./components/NoResult'))
 
 interface SearchViewProps {
@@ -41,7 +41,7 @@ export default function SearchView({ q, hashtags, goals, users, locale }: Search
             <Grid container spacing={2}>
               {users.map((user) => (
                 <Grid item xs={12} sm={6} md={3} lg={2} key={user.id}>
-                  <User tmpl="search" user={user} />
+                  <UserSearch user={user} />
                 </Grid>
               ))}
             </Grid>
@@ -55,7 +55,7 @@ export default function SearchView({ q, hashtags, goals, users, locale }: Search
           <Grid container spacing={2}>
             {hashtags.map(({ name, views }, key) => (
               <Grid item xs={6} md={3} lg={2} key={name}>
-                <Hashtag tmpl="search" name={name} views={views} gradient={gradients[key]} />
+                <HashtagSearch name={name} views={views} gradient={gradients[key]} />
               </Grid>
             ))}
           </Grid>
@@ -68,7 +68,7 @@ export default function SearchView({ q, hashtags, goals, users, locale }: Search
             <Grid container spacing={2}>
               {goals.map((goal) => (
                 <Grid item xs={12} sm={6} md={3} lg={2} key={goal.id}>
-                  <Goal tmpl="search" goal={goal} />
+                  <GoalSearch goal={goal} />
                 </Grid>
               ))}
             </Grid>

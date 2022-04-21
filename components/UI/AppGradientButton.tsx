@@ -1,9 +1,8 @@
-import { FC } from 'react'
 import { Box, Button, ButtonProps, useTheme } from '@mui/material'
 
 type AppGradientButtonProps = Omit<ButtonProps, 'variant' | 'color' | 'className'>
 
-const AppGradientButton: FC<AppGradientButtonProps> = (props) => {
+export default function AppGradientButton(props: AppGradientButtonProps) {
   const theme = useTheme()
 
   return (
@@ -31,5 +30,3 @@ const AppGradientButton: FC<AppGradientButtonProps> = (props) => {
     </Box>
   )
 }
-
-export default AppGradientButton

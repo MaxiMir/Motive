@@ -2,7 +2,7 @@ import { Container, Grid, Box, Typography } from '@mui/material'
 import { UserDto, MainCharacteristicName } from 'dto'
 import { Locale } from 'hooks/useLocale'
 import AppList from 'components/UI/AppList'
-import User from 'components/User'
+import UserRating from 'components/User/UserRating'
 import i18n from './i18n'
 
 interface TabContentProps {
@@ -42,7 +42,7 @@ export default function TabContent({ name, users, locale }: TabContentProps): JS
       <AppList<UserDto>
         elements={users}
         keyGetter={(el) => el.id}
-        render={(user, index) => <User tmpl="rating" user={user} characteristicName={name} index={index} />}
+        render={(user, index) => <UserRating user={user} characteristicName={name} index={index} />}
       />
     </>
   )

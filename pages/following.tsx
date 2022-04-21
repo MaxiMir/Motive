@@ -1,6 +1,7 @@
 import { GetServerSideProps } from 'next'
 import { getSession } from 'next-auth/react'
 import { dehydrate, QueryClient } from 'react-query'
+import { AxiosRequestHeaders } from 'axios'
 import { PageProps, PossiblePageError } from 'dto'
 import { FOLLOWING } from 'route'
 import useLocale from 'hooks/useLocale'
@@ -33,9 +34,9 @@ export default function FollowingPage({ statusCode }: PageProps): JSX.Element {
 }
 
 export const getServerSideProps: GetServerSideProps = async (ctx) => {
-  const { headers } = ctx.req
   const queryClient = new QueryClient()
   const session = await getSession(ctx)
+  const headers = ctx.req.headers as AxiosRequestHeaders
   await queryClient.prefetchQuery(FOLLOWING, () => PageService.get(FOLLOWING, { headers }))
   const state = queryClient.getQueryState<PossiblePageError>(FOLLOWING)
   const statusCode = state?.data?.message?.statusCode || 200

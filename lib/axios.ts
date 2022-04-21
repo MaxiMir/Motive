@@ -5,9 +5,7 @@ const instance = axios.create({
   withCredentials: true,
 })
 
-instance.defaults.headers = {
-  'Content-Type': 'application/json',
-}
+instance.defaults.headers.common['Content-Type'] = 'application/json'
 
 instance.interceptors.response.use(
   (r) => r.data,

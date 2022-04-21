@@ -1,6 +1,7 @@
 import { GetServerSideProps } from 'next'
 import { dehydrate, QueryClient } from 'react-query'
 import { getSession } from 'next-auth/react'
+import { AxiosRequestHeaders } from 'axios'
 import { PageProps, PossiblePageError } from 'dto'
 import useLocale from 'hooks/useLocale'
 import PageService from 'services/PageService'
@@ -22,11 +23,13 @@ export default function UserDetail({ statusCode }: PageProps): JSX.Element {
 }
 
 export const getServerSideProps: GetServerSideProps = async (ctx) => {
-  const { headers, url = '' } = ctx.req
+  const { url = '' } = ctx.req
   const urn = getServerSideUrl(url)
   const queryClient = new QueryClient()
   const session = await getSession(ctx)
   const nickname = ctx.params?.id || ''
+  const headers = ctx.req.headers as AxiosRequestHeaders
+
   await queryClient.prefetchQuery(nickname, () => PageService.getUser(urn, { headers }))
   const state = queryClient.getQueryState<PossiblePageError>(nickname)
   const statusCode = state?.data?.message?.statusCode || 200

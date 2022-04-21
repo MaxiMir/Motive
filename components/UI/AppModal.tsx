@@ -1,7 +1,6 @@
-import { FC, Fragment } from 'react'
+import { Fragment, ReactNode } from 'react'
 import dynamic from 'next/dynamic'
 import { Dialog, DialogContent, DialogTitle, DialogProps, backdropClasses } from '@mui/material'
-import { styled } from '@mui/system'
 
 const DialogActions = dynamic(() => import('@mui/material/DialogActions'))
 const Box = dynamic(() => import('@mui/material/Box'))
@@ -10,12 +9,24 @@ interface AppModalProps {
   title: JSX.Element | string
   maxWidth?: DialogProps['maxWidth']
   actions?: JSX.Element[]
+  children: ReactNode
   onClose: () => void
 }
 
-const AppModal: FC<AppModalProps> = ({ title, actions, maxWidth, children, onClose }) => {
+export default function AppModal({ title, actions, maxWidth, children, onClose }: AppModalProps) {
   return (
-    <DialogWithBackdrop open fullWidth maxWidth={maxWidth} onClose={onClose}>
+    <Dialog
+      open
+      fullWidth
+      maxWidth={maxWidth}
+      sx={{
+        [`& .${backdropClasses.root}`]: {
+          background: 'rgba(34, 34, 34, 0.75)',
+          backdropFilter: 'blur(5px)',
+        },
+      }}
+      onClose={onClose}
+    >
       <DialogTitle sx={{ padding: '16px 24px 8px', textAlign: 'center', textTransform: 'uppercase' }}>
         {title}
       </DialogTitle>
@@ -29,15 +40,6 @@ const AppModal: FC<AppModalProps> = ({ title, actions, maxWidth, children, onClo
           </Box>
         </DialogActions>
       )}
-    </DialogWithBackdrop>
+    </Dialog>
   )
 }
-
-const DialogWithBackdrop = styled(Dialog)({
-  [`& .${backdropClasses.root}`]: {
-    background: 'rgba(34, 34, 34, 0.75)',
-    backdropFilter: 'blur(5px)',
-  },
-})
-
-export default AppModal

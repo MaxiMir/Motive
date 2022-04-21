@@ -1,6 +1,6 @@
 import { UserDto } from 'dto'
 import AppList from 'components/UI/AppList'
-import User from 'components/User'
+import UserCharacteristic from 'components/User/UserCharacteristic'
 import Menu from './components/Menu'
 
 interface UserListProps {
@@ -15,7 +15,7 @@ export default function UserList({ users }: UserListProps): JSX.Element {
       elements={users}
       gap={4}
       keyGetter={keyGetter}
-      render={(user, index) => <User tmpl="characteristic" user={user} menu={<Menu user={user} index={index} />} />}
+      render={(user, index) => <UserCharacteristic user={user} menu={<Menu user={user} index={index} />} />}
     />
   )
 }

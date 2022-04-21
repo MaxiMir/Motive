@@ -1,9 +1,10 @@
 import { Fragment, useMemo } from 'react'
 import dynamic from 'next/dynamic'
+import { useRouter } from 'next/router'
 import { Box, useTheme } from '@mui/material'
 import { GoalDto, GoalCharacteristicName, MemberDto } from 'dto'
 import useLocale from 'hooks/useLocale'
-import { getGoalUrn } from 'helpers/url'
+import { getGoalUrn, SEARCH_PARAMS } from 'helpers/url'
 import { getMember } from 'views/UserView/helper'
 import Characteristic from 'components/Characteristic'
 import AppTitle from 'components/UI/AppTitle'
@@ -51,11 +52,13 @@ export default function GoalCurrent({
   const { id, name, hashtags, characteristic, owner, stages, day, inherited } = goal
   const { id: dayId, views, topicCount } = day
   const theme = useTheme()
+  const { query } = useRouter()
   const { locale } = useLocale()
   const clientOwnership = getClientOwnership(goal, clientId, clientPage, clientMembership)
   const userMember = getMember(id, userMembership, userId)
   const goalHref = getGoalUrn(href, id, dayId)
   const goalInfo = useMemo(() => getGoalInfo(goal, clientOwnership, userMember), [goal, clientOwnership, userMember])
+  const showDiscussion = query[SEARCH_PARAMS.SCROLL_TO_DISCUSSION] === dayId.toString()
   const {
     stagesHeader,
     stagesAria,
@@ -172,8 +175,9 @@ export default function GoalCurrent({
                 }
                 id={`discussionContent-${dayId}`}
                 ariaControls={discussionAria}
-                renderOnClick
+                renderOnClick={!showDiscussion}
                 unmountOnExit
+                defaultExpanded={showDiscussion}
                 details={
                   <Discussion dayId={dayId} owner={owner} count={topicCount} clientGoal={clientOwnership.goal} />
                 }

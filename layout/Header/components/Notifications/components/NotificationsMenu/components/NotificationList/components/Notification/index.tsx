@@ -7,7 +7,7 @@ import useClient from 'hooks/useClient'
 import { getDistance } from 'helpers/date'
 import User from 'components/User'
 import AppEmoji from 'components/UI/AppEmoji'
-import { getNotificationInfo } from './helper'
+import { getNotificationInfo, getUrn } from './helper'
 import { useUpdateRead } from './hook'
 import i18n from './i18n'
 
@@ -26,12 +26,13 @@ export default function Notification({ notification, onClose }: NotificationProp
   const { mutate } = useUpdateRead()
   const { locale } = useLocale()
   const dateDistance = getDistance(created, locale)
-  const { emoji, color, href } = getNotificationInfo(notification, client)
+  const { emoji, color } = getNotificationInfo(type)
+  const urn = getUrn(notification, client)
   const title = i18n[locale][type]
 
   const onClick = () => {
     onClose()
-    router.push(href)
+    router.push(urn)
   }
 
   const onView = () => mutate(id)

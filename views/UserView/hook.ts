@@ -1,5 +1,6 @@
 import { useEffect } from 'react'
 import { useRouter } from 'next/router'
+import { ParsedUrlQuery } from 'querystring'
 import { AxiosError } from 'axios'
 import { useMutation, useQuery, useQueryClient, UseQueryResult } from 'react-query'
 import { UseMutationResult } from 'react-query/types/react/types'
@@ -50,11 +51,25 @@ export const useMutateGoals = (): [GoalDto[], (goals: GoalDto[]) => void] => {
   return [page.content.goals, mutateGoals]
 }
 
-export const useScrollToGoal = (): void => {
+const getBlockId = (query: ParsedUrlQuery): string | null => {
+  if (query[SEARCH_PARAMS.SCROLL_TO_DISCUSSION]) {
+    return `discussion-${query[SEARCH_PARAMS.SCROLL_TO_DISCUSSION]}`
+  }
+
+  if (query[SEARCH_PARAMS.SCROLL_TO_GOAL]) {
+    return `goal-${query[SEARCH_PARAMS.SCROLL_TO_GOAL]}`
+  }
+
+  return null
+}
+
+export const useScrollToBlock = (): void => {
   const { query } = useRouter()
 
   useEffect(() => {
-    query.s && scrollToElem(`goal-${query.s}`)
+    const blockId = getBlockId(query)
+
+    blockId && scrollToElem(blockId)
   }, [query])
 }
 

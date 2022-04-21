@@ -1,7 +1,8 @@
 import { ImageProps } from 'next/image'
 
 export enum SEARCH_PARAMS {
-  SCROLL = 's',
+  SCROLL_TO_GOAL = 'g',
+  SCROLL_TO_DISCUSSION = 't',
   DATES = 'd',
 }
 
@@ -70,4 +71,13 @@ export const getUrlWithHost = (urn: string): string => process.env.NEXT_PUBLIC_A
 export const getUserUrn = (nickname: string): string => `/${nickname}`
 
 export const getGoalUrn = (userUrn: string, goalId: number, dayId: number): string =>
-  setQueryParams(userUrn, { [SEARCH_PARAMS.SCROLL]: goalId, [SEARCH_PARAMS.DATES]: `${goalId}:${dayId}` })
+  setQueryParams(userUrn, {
+    [SEARCH_PARAMS.SCROLL_TO_GOAL]: goalId,
+    [SEARCH_PARAMS.DATES]: `${goalId}:${dayId}`,
+  })
+
+export const getDiscussionUrn = (userUrn: string, goalId: number, dayId: number): string =>
+  setQueryParams(userUrn, {
+    [SEARCH_PARAMS.SCROLL_TO_DISCUSSION]: dayId,
+    [SEARCH_PARAMS.DATES]: `${goalId}:${dayId}`,
+  })

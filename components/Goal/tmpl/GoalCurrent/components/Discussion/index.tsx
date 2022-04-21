@@ -29,7 +29,7 @@ export default function Discussion({ dayId, owner, count, clientGoal }: Discussi
   const { nothing } = i18n[locale]
 
   return (
-    <Box display="flex" flexDirection="column" gap={2} flex={1} maxHeight={500}>
+    <Box id={`discussion-${dayId}`} display="flex" flexDirection="column" gap={2} flex={1} maxHeight={500}>
       <>
         {withInput && (
           <User tmpl="input" dayId={dayId} user={client as ClientDto} type={MessageType.QUESTION} onAdd={onAdd} />

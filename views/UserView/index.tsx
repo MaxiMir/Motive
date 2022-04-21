@@ -9,7 +9,7 @@ import Avatar from './components/Avatar'
 import Characteristic from './components/Characteristic'
 import EmptyGoals from './components/EmptyGoals'
 import Following from './components/Following'
-import { useScrollToGoal } from './hook'
+import { useScrollToBlock } from './hook'
 
 const Goal = dynamic(() => import('components/Goal'))
 const Edit = dynamic(() => import('./components/Edit'))
@@ -29,7 +29,7 @@ export default function UserView({ user, locale }: UserViewProps): JSX.Element {
   const href = getUserUrn(nickname)
   const clientPage = id === client?.id
 
-  useScrollToGoal()
+  useScrollToBlock()
 
   return (
     <AppContainer>

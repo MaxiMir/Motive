@@ -1,3 +1,4 @@
+import { ReactNode } from 'react'
 import ReactMarkdown from 'react-markdown'
 import sanitize from 'rehype-sanitize'
 import { Box, Typography } from '@mui/material'
@@ -9,6 +10,12 @@ interface AppMarkdownProps {
 
 export default function AppMarkdown({ text }: AppMarkdownProps): JSX.Element {
   const markdown = toMarkdown(text)
+
+  const renderParagraph = ({ children }: { children: ReactNode & ReactNode[] }) => (
+    <Typography variant="subtitle1" component="p">
+      {children}
+    </Typography>
+  )
 
   return (
     <Box
@@ -31,11 +38,7 @@ export default function AppMarkdown({ text }: AppMarkdownProps): JSX.Element {
         linkTarget="_blank"
         rehypePlugins={[sanitize]}
         components={{
-          p: ({ node, ...props }) => (
-            <Typography variant="subtitle1" component="p">
-              {props.children}
-            </Typography>
-          ),
+          p: renderParagraph,
         }}
       >
         {markdown}

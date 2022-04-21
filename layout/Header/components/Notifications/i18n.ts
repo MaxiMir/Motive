@@ -1,8 +1,8 @@
 export default {
   en: {
-    ariaControls: 'notification-menu',
+    ariaControls: 'open-notifications',
   },
   ru: {
-    ariaControls: 'меню-нотификаций',
+    ariaControls: 'открыть-уведомления',
   },
 }

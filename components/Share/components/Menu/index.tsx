@@ -18,7 +18,7 @@ interface MenuProps {
   onClose: () => void
 }
 
-const Menu = ({ title, url, locale, onCopyEnd, onCopyError, onClose }: MenuProps): JSX.Element => {
+export default function Menu({ title, url, locale, onCopyEnd, onCopyError, onClose }: MenuProps) {
   const theme = useTheme()
   const { share, send, link } = i18n[locale]
   const shareItems = getShareItems()
@@ -88,5 +88,3 @@ const Menu = ({ title, url, locale, onCopyEnd, onCopyError, onClose }: MenuProps
     </Drawer>
   )
 }
-
-export default Menu

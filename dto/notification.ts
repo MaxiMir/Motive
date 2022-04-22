@@ -27,6 +27,7 @@ export interface NotificationGoalDto extends NotificationBase {
   details: {
     id: number
     day: number
+    name?: string
     user: UserBaseDto
   }
 }
@@ -34,6 +35,7 @@ export interface NotificationGoalDto extends NotificationBase {
 export interface NotificationUserDto extends NotificationBase {
   type: NOTIFICATION_TYPE.NEW_FOLLOWER
   details: {
+    name?: string
     user: UserBaseDto
   }
 }

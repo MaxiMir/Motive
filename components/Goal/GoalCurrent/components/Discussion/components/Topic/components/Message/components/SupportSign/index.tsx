@@ -1,4 +1,4 @@
-import { Box, Tooltip, useTheme } from '@mui/material'
+import { Box, Tooltip } from '@mui/material'
 import { Locale } from 'hooks/useLocale'
 import AppEmoji from 'components/UI/AppEmoji'
 import i18n from './i18n'
@@ -9,7 +9,6 @@ interface SupportSignProps {
 }
 
 export default function SupportSign({ name, locale }: SupportSignProps): JSX.Element {
-  const theme = useTheme()
   const { getTitle } = i18n[locale]
   const title = getTitle(name)
 
@@ -22,7 +21,7 @@ export default function SupportSign({ name, locale }: SupportSignProps): JSX.Ele
         sx={{
           width: 21,
           height: 21,
-          background: theme.palette.support.main,
+          backgroundColor: 'support.main',
           borderRadius: '50%',
           fontSize: '0.625rem',
         }}

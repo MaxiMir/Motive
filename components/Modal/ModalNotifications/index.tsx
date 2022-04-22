@@ -19,7 +19,7 @@ export default function ModalNotifications({ notifications, onClose }: ModalNoti
 
   return (
     <AppModal title={title} maxWidth="xs" onClose={onClose}>
-      <Box display="flex" minHeight={400} flex={1}>
+      <Box display="flex" alignItems="center" minHeight={400} flex={1}>
         {!notifications.length ? <EmptyList /> : <NotificationList notifications={notifications} onClose={onClose} />}
       </Box>
     </AppModal>

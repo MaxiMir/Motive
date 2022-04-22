@@ -1,13 +1,16 @@
 import { useRouter } from 'next/router'
 import dynamic from 'next/dynamic'
-import { Box, Typography, ListItemIcon, MenuItem } from '@mui/material'
+import { Box, IconButton, Typography } from '@mui/material'
 import { NotificationDto } from 'dto'
 import useLocale from 'hooks/useLocale'
 import useClient from 'hooks/useClient'
 import { getDistance } from 'helpers/date'
-import UserAvatar from 'components/User/UserAvatar'
 import AppEmoji from 'components/UI/AppEmoji'
-import { getNotificationInfo, getUrn } from './helper'
+import AppLink from 'components/UI/AppLink'
+import AppAvatar from 'components/UI/AppAvatar'
+import AppIcon from 'components/UI/AppIcon'
+import { getUserUrn } from 'helpers/url'
+import { getDetailsName, getNotificationInfo, getUrn } from './helper'
 import { useUpdateRead } from './hook'
 import i18n from './i18n'
 
@@ -20,7 +23,7 @@ interface NotificationProps {
 
 export default function Notification({ notification, onClose }: NotificationProps): JSX.Element {
   const { id, type, details, created, read } = notification
-  const { user } = details
+  const { name, nickname, avatar } = details.user
   const router = useRouter()
   const client = useClient()
   const { mutate } = useUpdateRead()
@@ -28,9 +31,12 @@ export default function Notification({ notification, onClose }: NotificationProp
   const dateDistance = getDistance(created, locale)
   const { emoji, color } = getNotificationInfo(type)
   const urn = getUrn(notification, client)
-  const title = i18n[locale][type]
+  const userUrn = getUserUrn(nickname)
+  const detailsName = getDetailsName(details.name)
+  const { [type]: title, view } = i18n[locale]
+  const textSx = { fontSize: '0.875rem' }
 
-  const onClick = () => {
+  const onClickView = () => {
     onClose()
     router.push(urn)
   }
@@ -38,25 +44,51 @@ export default function Notification({ notification, onClose }: NotificationProp
   const onView = () => mutate(id)
 
   return (
-    <MenuItem onClick={onClick}>
-      <ListItemIcon sx={{ position: 'relative' }}>
-        <UserAvatar user={user} />
-        <Box component="span" sx={{ position: 'absolute', bottom: '-5px', right: '7px', fontSize: '0.625rem' }}>
+    <Box display="flex" gap={2} height={62}>
+      <Box height={55} position="relative">
+        <AppLink href={userUrn} title={name}>
+          <AppAvatar src={avatar} size={55} />
+        </AppLink>
+        <Box
+          display="flex"
+          justifyContent="center"
+          alignItems="center"
+          sx={{
+            position: 'absolute',
+            bottom: '-6px',
+            right: '2px',
+            width: 21,
+            height: 21,
+            backgroundColor: '#262626',
+            borderRadius: '50%',
+          }}
+        >
           <AppEmoji name={emoji} onlyEmoji />
         </Box>
-      </ListItemIcon>
-      <Box display="flex" flexDirection="column">
-        <Typography variant="caption">
-          <Box component="span" sx={{ color }}>
-            {user.name}
-          </Box>{' '}
+      </Box>
+      <Box display="flex" flexDirection="column" justifyContent="space-between" flex={1}>
+        <Typography sx={textSx}>
+          <AppLink title={name} href={userUrn} sx={{ color, textDecoration: 'none' }}>
+            <b>{name}</b>
+          </AppLink>{' '}
           {title}
+          <Box component="span" sx={{ color: 'zen.sand' }}>
+            {detailsName}
+          </Box>
         </Typography>
-        <Box component="span" sx={{ fontSize: '0.6875rem', color: 'zen.silent' }}>
-          {dateDistance}
+        <Box display="flex" alignItems="center" gap={2}>
+          <Box component="span" sx={{ color: 'zen.silent', ...textSx }}>
+            {dateDistance}
+          </Box>
+          <IconButton title={view} aria-label={view} onClick={onClickView}>
+            <AppIcon
+              name="south_east"
+              sx={{ color: read ? 'zen.silent' : 'motivation.light', fontSize: '1rem !important' }}
+            />
+          </IconButton>
         </Box>
       </Box>
       {!read && <AppInView onView={onView} />}
-    </MenuItem>
+    </Box>
   )
 }

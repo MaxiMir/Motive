@@ -2,6 +2,7 @@ import produce from 'immer'
 import { ClientDto, NOTIFICATION_TYPE, NotificationDto } from 'dto'
 import { getDiscussionUrn, getGoalUrn, getUserUrn } from 'helpers/url'
 import { AppEmojiName } from 'components/UI/AppEmoji'
+import { toShortString } from '../../../../../../../helpers/prepare'
 
 type NotificationInfo = { emoji: AppEmojiName; color: string }
 
@@ -44,6 +45,8 @@ export const getUrn = (notification: NotificationDto, client?: ClientDto): strin
       return getGoalUrn(nickname, notification.details.id, notification.details.day)
   }
 }
+
+export const getDetailsName = (name?: string): string => (!name ? '' : `: ${toShortString(name, 40)}`)
 
 export const getNextState = (notifications: NotificationDto[], id: number): NotificationDto[] => {
   return produce(notifications, (draft) => {

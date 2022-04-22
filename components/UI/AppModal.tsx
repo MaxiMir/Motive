@@ -1,6 +1,6 @@
 import { Fragment, ReactNode } from 'react'
 import dynamic from 'next/dynamic'
-import { Dialog, DialogContent, DialogTitle, DialogProps, backdropClasses } from '@mui/material'
+import { Dialog, DialogContent, DialogTitle, DialogProps, backdropClasses, paperClasses } from '@mui/material'
 
 const DialogActions = dynamic(() => import('@mui/material/DialogActions'))
 const Box = dynamic(() => import('@mui/material/Box'))
@@ -17,9 +17,11 @@ export default function AppModal({ title, actions, maxWidth, children, onClose }
   return (
     <Dialog
       open
-      fullWidth
       maxWidth={maxWidth}
       sx={{
+        [`& .${paperClasses.root}`]: {
+          maxHeight: '85vh',
+        },
         [`& .${backdropClasses.root}`]: {
           background: 'rgba(34, 34, 34, 0.75)',
           backdropFilter: 'blur(5px)',

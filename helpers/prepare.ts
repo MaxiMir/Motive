@@ -29,11 +29,12 @@ const truncated = (num: number, decimalPlaces = 1): number => {
 
 export const toShortUserName = (name?: string): string => (!name ? 'Master' : name.split(' ')[0])
 
-const VISIBLE_LINK_SYMBOLS = 40
+export const toShortString = (value: string, count: number): string =>
+  value.length < count ? value : `${value.slice(0, count - 3)}...`
 
 export const toMarkdown = (value: string): string => {
   const replacer = (found: string) => {
-    const textLink = found.length < VISIBLE_LINK_SYMBOLS ? found : `${found.slice(0, VISIBLE_LINK_SYMBOLS - 3)}...`
+    const textLink = toShortString(found, 40)
 
     return `[${textLink}](${found})`
   }

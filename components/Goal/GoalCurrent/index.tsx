@@ -4,14 +4,14 @@ import { useRouter } from 'next/router'
 import { Box, useTheme } from '@mui/material'
 import { GoalDto, GoalCharacteristicName, MemberDto } from 'dto'
 import useLocale from 'hooks/useLocale'
-import { getGoalUrn, HASH_MARK, SEARCH_PARAM } from 'helpers/url'
+import { getGoalUrn, HASH_MARK } from 'helpers/url'
 import { getMember } from 'views/UserView/helper'
 import CharacteristicGoal from 'components/Characteristic/CharacteristicGoal'
 import AppTitle from 'components/UI/AppTitle'
 import AppDot from 'components/UI/AppDot'
 import AppAccordion from 'components/UI/AppAccordion'
 import { useIncreaseViews } from './hook'
-import { getGoalInfo, getClientOwnership } from './helper'
+import { getGoalInfo, getClientOwnership, checkOnShowDiscussion } from './helper'
 import Calendar from './components/Calendar'
 import Menu from './components/Menu'
 import Discussion from './components/Discussion'
@@ -57,7 +57,7 @@ export default function GoalCurrent({
   const userMember = getMember(id, userMembership, userId)
   const goalHref = getGoalUrn(href, id, dayId)
   const goalInfo = useMemo(() => getGoalInfo(goal, clientOwnership, userMember), [goal, clientOwnership, userMember])
-  const showDiscussion = query[SEARCH_PARAM.SCROLL_TO] === HASH_MARK.DISCUSSION
+  const showDiscussion = checkOnShowDiscussion(query, id)
   const {
     stagesHeader,
     stagesAria,
@@ -174,7 +174,6 @@ export default function GoalCurrent({
                 }
                 id={`${HASH_MARK.DISCUSSION}-${id}`}
                 ariaControls={discussionAria}
-                unmountOnExit
                 defaultExpanded={showDiscussion}
                 details={
                   <Discussion dayId={dayId} owner={owner} count={topicCount} clientGoal={clientOwnership.goal} />

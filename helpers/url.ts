@@ -3,6 +3,7 @@ import { ImageProps } from 'next/image'
 export enum SEARCH_PARAM {
   DATES = 'd',
   SCROLL_TO = 's',
+  SCROLL_ID = 'i',
 }
 
 export enum HASH_MARK {
@@ -64,21 +65,21 @@ export const getUrlWithHost = (urn: string): string => process.env.NEXT_PUBLIC_A
 export const getUserUrn = (nickname: string): string => `/${nickname}`
 
 export const getGoalUrn = (userUrn: string, goalId: number, dayId: number): string => {
-  const hashMark = getGoalHashMark(goalId)
   const url = setQueryParams(userUrn, {
-    [SEARCH_PARAM.SCROLL_TO]: HASH_MARK.GOAL,
     [SEARCH_PARAM.DATES]: `${goalId}:${dayId}`,
   })
+  const hashMark = getGoalHashMark(goalId)
 
   return url + hashMark
 }
 
 export const getDiscussionUrn = (userUrn: string, goalId: number, dayId: number): string => {
-  const hashMark = getDiscussionHashMark(goalId)
   const url = setQueryParams(userUrn, {
     [SEARCH_PARAM.SCROLL_TO]: HASH_MARK.DISCUSSION,
+    [SEARCH_PARAM.SCROLL_ID]: goalId,
     [SEARCH_PARAM.DATES]: `${goalId}:${dayId}`,
   })
+  const hashMark = getDiscussionHashMark(goalId)
 
   return url + hashMark
 }

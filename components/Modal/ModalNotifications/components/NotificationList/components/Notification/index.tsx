@@ -60,6 +60,7 @@ export default function Notification({ notification, onClose }: NotificationProp
             height: 21,
             backgroundColor: '#262626',
             borderRadius: '50%',
+            fontSize: '0.6875rem',
           }}
         >
           <AppEmoji name={emoji} onlyEmoji />

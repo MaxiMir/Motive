@@ -10,7 +10,6 @@ interface AppAccordionProps {
   ariaControls: string
   details: JSX.Element
   defaultExpanded?: boolean
-  unmountOnExit?: boolean
 }
 
 export default function AppAccordion({
@@ -20,10 +19,9 @@ export default function AppAccordion({
   ariaControls,
   details,
   defaultExpanded,
-  unmountOnExit,
 }: AppAccordionProps): JSX.Element {
   return (
-    <Accordion defaultExpanded={defaultExpanded} TransitionProps={!unmountOnExit ? undefined : { unmountOnExit: true }}>
+    <Accordion defaultExpanded={defaultExpanded}>
       <AccordionSummary id={id} expandIcon={<AppIcon name="expand_more" />} aria-controls={ariaControls}>
         <AppTitle name={name} variant="h6" component="h4" color="primary">
           {header}

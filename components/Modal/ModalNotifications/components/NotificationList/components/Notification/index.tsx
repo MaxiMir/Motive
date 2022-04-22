@@ -1,5 +1,5 @@
-import { useRouter } from 'next/router'
 import dynamic from 'next/dynamic'
+import { useRouter } from 'next/router'
 import { Box, IconButton, Typography } from '@mui/material'
 import { NotificationDto } from 'dto'
 import useLocale from 'hooks/useLocale'
@@ -10,7 +10,7 @@ import AppLink from 'components/UI/AppLink'
 import AppAvatar from 'components/UI/AppAvatar'
 import AppIcon from 'components/UI/AppIcon'
 import { getUserUrn } from 'helpers/url'
-import { getDetailsName, getNotificationInfo, getUrn } from './helper'
+import { getDetailsName, getNotificationInfo, getNotificationUrn } from './helper'
 import { useUpdateRead } from './hook'
 import i18n from './i18n'
 
@@ -24,29 +24,28 @@ interface NotificationProps {
 export default function Notification({ notification, onClose }: NotificationProps): JSX.Element {
   const { id, type, details, created, read } = notification
   const { name, nickname, avatar } = details.user
-  const router = useRouter()
   const client = useClient()
+  const router = useRouter()
   const { mutate } = useUpdateRead()
   const { locale } = useLocale()
   const dateDistance = getDistance(created, locale)
   const { emoji, color } = getNotificationInfo(type)
-  const urn = getUrn(notification, client)
+  const notificationUrn = getNotificationUrn(notification, client)
   const userUrn = getUserUrn(nickname)
   const detailsName = getDetailsName(details.name)
   const { [type]: title, view } = i18n[locale]
-  const textSx = { fontSize: '0.875rem' }
+
+  const onView = () => mutate(id)
 
   const onClickView = () => {
     onClose()
-    router.push(urn)
+    router.push(notificationUrn)
   }
-
-  const onView = () => mutate(id)
 
   return (
     <Box display="flex" gap={2} height={62}>
       <Box height={55} position="relative">
-        <AppLink href={userUrn} title={name}>
+        <AppLink href={userUrn} title={name} onClick={onClose}>
           <AppAvatar src={avatar} size={55} />
         </AppLink>
         <Box
@@ -66,18 +65,16 @@ export default function Notification({ notification, onClose }: NotificationProp
           <AppEmoji name={emoji} onlyEmoji />
         </Box>
       </Box>
-      <Box display="flex" flexDirection="column" justifyContent="space-between" flex={1}>
-        <Typography sx={textSx}>
-          <AppLink title={name} href={userUrn} sx={{ color, textDecoration: 'none' }}>
+      <Box display="flex" flexDirection="column" justifyContent="space-between">
+        <Typography sx={{ fontSize: '0.875rem' }}>
+          <AppLink title={name} href={userUrn} sx={{ color, textDecoration: 'none' }} onClick={onClose}>
             <b>{name}</b>
           </AppLink>{' '}
           {title}
-          <Box component="span" sx={{ color: 'zen.sand' }}>
-            {detailsName}
-          </Box>
+          {!detailsName ? '' : `: ${detailsName}`}
         </Typography>
         <Box display="flex" alignItems="center" gap={2}>
-          <Box component="span" sx={{ color: 'zen.silent', ...textSx }}>
+          <Box component="span" sx={{ color: 'zen.silent', fontSize: '0.875rem' }}>
             {dateDistance}
           </Box>
           <IconButton title={view} aria-label={view} onClick={onClickView}>

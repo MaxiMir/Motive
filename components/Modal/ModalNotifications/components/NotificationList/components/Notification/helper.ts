@@ -27,7 +27,7 @@ export const getNotificationInfo = (type: NOTIFICATION_TYPE): NotificationInfo =
   }
 }
 
-export const getUrn = (notification: NotificationDto, client?: ClientDto): string => {
+export const getNotificationUrn = (notification: NotificationDto, client?: ClientDto): string => {
   const { user } = notification.details
   const userPage = [NOTIFICATION_TYPE.NEW_FOLLOWER, NOTIFICATION_TYPE.NEW_GOAL, NOTIFICATION_TYPE.NEW_ANSWER].includes(
     notification.type,
@@ -46,7 +46,7 @@ export const getUrn = (notification: NotificationDto, client?: ClientDto): strin
   }
 }
 
-export const getDetailsName = (name?: string): string => (!name ? '' : `: ${toShortString(name, 40)}`)
+export const getDetailsName = (name?: string): string => (!name ? '' : toShortString(name, 40))
 
 export const getNextState = (notifications: NotificationDto[], id: number): NotificationDto[] => {
   return produce(notifications, (draft) => {

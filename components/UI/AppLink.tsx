@@ -1,6 +1,6 @@
 import { ReactNode } from 'react'
 import Link from 'next/link'
-import MaterialLink from '@mui/material/Link'
+import MaterialLink, { LinkProps } from '@mui/material/Link'
 import { TypographyProps } from '@mui/material'
 import useLocale from 'hooks/useLocale'
 
@@ -11,6 +11,7 @@ interface AppLinkProps {
   variant?: TypographyProps['variant']
   sx?: TypographyProps['sx']
   children: ReactNode
+  onClick?: LinkProps['onClick']
 }
 
 export default function AppLink({ href, title, className, ...restProps }: AppLinkProps) {

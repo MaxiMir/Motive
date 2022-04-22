@@ -43,7 +43,7 @@ export default function ModalFollowers({ user, onClose }: ModalFollowersProps): 
             {!followers?.length ? (
               <EmptyList locale={locale} />
             ) : (
-              <UserList users={followers} checkOnLoadMore={checkOnLoadMore} onView={fetchNextPage} />
+              <UserList users={followers} checkOnLoadMore={checkOnLoadMore} onView={fetchNextPage} onClose={onClose} />
             )}
           </>
         )}

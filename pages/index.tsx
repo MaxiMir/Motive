@@ -7,7 +7,7 @@ import MainView from 'views/MainView'
 
 const i18n = {
   en: {
-    title: 'A social media for achieving goals',
+    title: 'A social network for achieving goals',
     description: 'Create your own goals, share your accomplishments, and go to your goals with others 🥷!',
   },
   ru: {

@@ -1,6 +1,6 @@
 export default {
   en: {
-    title: 'Adding',
+    title: "Adding the day's",
     subtitle: 'tasks',
     addTask: '+ Add task',
     button: 'Create',
@@ -22,8 +22,8 @@ export default {
     tooltipToday: 'You have already added goals for today',
   },
   ru: {
-    title: 'Добавление',
-    subtitle: 'задач',
+    title: 'Добавление задач на',
+    subtitle: 'день',
     addTask: '+ Добавить задачу',
     button: 'Создать',
     buttonLoading: 'Создаю',

@@ -1,9 +1,13 @@
 import { ImageProps } from 'next/image'
 
-export enum SEARCH_PARAMS {
-  SCROLL_TO_GOAL = 'g',
-  SCROLL_TO_DISCUSSION = 't',
+export enum SEARCH_PARAM {
   DATES = 'd',
+  SCROLL_TO = 's',
+}
+
+export enum HASH_MARK {
+  GOAL = 'goal',
+  DISCUSSION = 'discussion',
 }
 
 /**
@@ -52,17 +56,6 @@ export const setQueryParams = (urn: string, params: Record<string, string | numb
   return toUrl(base, searchParams)
 }
 
-/**
- * Remove Query params
- */
-export const removeQueryParams = (urn: string, params: string[]): string => {
-  const { base, searchParams } = getUrnData(urn)
-
-  params.forEach((name) => searchParams.delete(name))
-
-  return toUrl(base, searchParams)
-}
-
 export const getImageUrl = (src: string | ImageProps['src']): ImageProps['src'] =>
   typeof src !== 'string' || src.includes('https://') ? src : getUrlWithHost(src)
 
@@ -70,14 +63,26 @@ export const getUrlWithHost = (urn: string): string => process.env.NEXT_PUBLIC_A
 
 export const getUserUrn = (nickname: string): string => `/${nickname}`
 
-export const getGoalUrn = (userUrn: string, goalId: number, dayId: number): string =>
-  setQueryParams(userUrn, {
-    [SEARCH_PARAMS.SCROLL_TO_GOAL]: goalId,
-    [SEARCH_PARAMS.DATES]: `${goalId}:${dayId}`,
+export const getGoalUrn = (userUrn: string, goalId: number, dayId: number): string => {
+  const hashMark = getGoalHashMark(goalId)
+  const url = setQueryParams(userUrn, {
+    [SEARCH_PARAM.SCROLL_TO]: HASH_MARK.GOAL,
+    [SEARCH_PARAM.DATES]: `${goalId}:${dayId}`,
   })
 
-export const getDiscussionUrn = (userUrn: string, goalId: number, dayId: number): string =>
-  setQueryParams(userUrn, {
-    [SEARCH_PARAMS.SCROLL_TO_DISCUSSION]: dayId,
-    [SEARCH_PARAMS.DATES]: `${goalId}:${dayId}`,
+  return url + hashMark
+}
+
+export const getDiscussionUrn = (userUrn: string, goalId: number, dayId: number): string => {
+  const hashMark = getDiscussionHashMark(goalId)
+  const url = setQueryParams(userUrn, {
+    [SEARCH_PARAM.SCROLL_TO]: HASH_MARK.DISCUSSION,
+    [SEARCH_PARAM.DATES]: `${goalId}:${dayId}`,
   })
+
+  return url + hashMark
+}
+
+export const getGoalHashMark = (id: number): string => `#${HASH_MARK.GOAL}-${id}`
+
+export const getDiscussionHashMark = (id: number): string => `#${HASH_MARK.DISCUSSION}-${id}`

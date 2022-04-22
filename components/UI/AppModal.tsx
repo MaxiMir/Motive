@@ -19,6 +19,9 @@ export default function AppModal({ title, actions, maxWidth, children, onClose }
       open
       maxWidth={maxWidth}
       sx={{
+        body: {
+          overflow: 'hidden',
+        },
         [`& .${paperClasses.root}`]: {
           maxHeight: '85vh',
         },

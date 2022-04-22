@@ -1,6 +1,4 @@
-import { useEffect } from 'react'
 import { useRouter } from 'next/router'
-import { ParsedUrlQuery } from 'querystring'
 import { AxiosError } from 'axios'
 import { useMutation, useQuery, useQueryClient, UseQueryResult } from 'react-query'
 import { UseMutationResult } from 'react-query/types/react/types'
@@ -8,8 +6,7 @@ import { CreateMemberDto, GoalDto, MemberDto, UserPageDto } from 'dto'
 import useLocale from 'hooks/useLocale'
 import PageService from 'services/PageService'
 import MemberService from 'services/MemberService'
-import { scrollToElem } from 'helpers/dom'
-import { getQueryParams, getUserUrn, setQueryParams, SEARCH_PARAMS } from 'helpers/url'
+import { getQueryParams, getUserUrn, setQueryParams, SEARCH_PARAM } from 'helpers/url'
 import useClient from 'hooks/useClient'
 import { getNextState } from './helper'
 
@@ -51,37 +48,15 @@ export const useMutateGoals = (): [GoalDto[], (goals: GoalDto[]) => void] => {
   return [page.content.goals, mutateGoals]
 }
 
-const getBlockId = (query: ParsedUrlQuery): string | null => {
-  if (query[SEARCH_PARAMS.SCROLL_TO_DISCUSSION]) {
-    return `discussion-${query[SEARCH_PARAMS.SCROLL_TO_DISCUSSION]}`
-  }
-
-  if (query[SEARCH_PARAMS.SCROLL_TO_GOAL]) {
-    return `goal-${query[SEARCH_PARAMS.SCROLL_TO_GOAL]}`
-  }
-
-  return null
-}
-
-export const useScrollToBlock = (): void => {
-  const { query } = useRouter()
-
-  useEffect(() => {
-    const blockId = getBlockId(query)
-
-    blockId && scrollToElem(blockId)
-  }, [query])
-}
-
 export const useChangeDayUrl = (): ((goals: GoalDto[], goalId: number, dayId: number) => void) => {
   const router = useRouter()
   const { locale } = useLocale()
 
   return (goals: GoalDto[], goalId: number, dayId: number) => {
-    const { [SEARCH_PARAMS.DATES]: _, ...restParams } = getQueryParams()
+    const { [SEARCH_PARAM.DATES]: _, ...restParams } = getQueryParams()
     const datesParam = goals.map(({ id, day }) => `${id}:${id !== goalId ? day.id : dayId}`).join(',')
     const as = setQueryParams(router.asPath, {
-      [SEARCH_PARAMS.DATES]: datesParam,
+      [SEARCH_PARAM.DATES]: datesParam,
       ...restParams,
     })
 
@@ -98,7 +73,7 @@ export const useSendCreateMember = (): UseMutationResult<MemberDto, AxiosError, 
       if (!client) return
 
       const userUrn = getUserUrn(client.nickname)
-      const params = { [SEARCH_PARAMS.DATES]: `${goalId}:${dayId}` }
+      const params = { [SEARCH_PARAM.DATES]: `${goalId}:${dayId}` }
 
       jump(setQueryParams(userUrn, params))
     },

@@ -9,7 +9,7 @@ interface InitParams {
 type ShareType = keyof typeof SHARERS
 
 /**
- * Social Networks element click handler
+ * Social Network element click handler
  */
 export const clickHandler = (type: ShareType, title: string, url: string): void => {
   const [shareUrl, isLink] = SHARERS[type](url, title)

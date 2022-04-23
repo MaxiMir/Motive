@@ -1,6 +1,5 @@
 import { ReactNode } from 'react'
-import ReactMarkdown from 'react-markdown'
-import sanitize from 'rehype-sanitize'
+import Markdown from 'markdown-to-jsx'
 import { Box, Typography } from '@mui/material'
 import { toMarkdown } from 'helpers/prepare'
 
@@ -34,15 +33,20 @@ export default function AppMarkdown({ text }: AppMarkdownProps): JSX.Element {
         },
       }}
     >
-      <ReactMarkdown
-        linkTarget="_blank"
-        rehypePlugins={[sanitize]}
-        components={{
-          p: renderParagraph,
+      <Markdown
+        options={{
+          overrides: {
+            a: {
+              props: {
+                target: '_blank',
+              },
+            },
+            p: renderParagraph,
+          },
         }}
       >
         {markdown}
-      </ReactMarkdown>
+      </Markdown>
     </Box>
   )
 }

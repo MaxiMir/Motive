@@ -1,6 +1,6 @@
 {
   "name": "bebetter",
-  "version": "1.0.35",
+  "version": "1.0.38",
   "private": true,
   "scripts": {
     "dev": "next dev -p 3000",
@@ -40,6 +40,7 @@
     "formik-material-ui": "^4.0.0-alpha.2",
     "formik-material-ui-pickers": "^1.0.0-alpha.1",
     "immer": "^9.0.12",
+    "markdown-to-jsx": "^7.1.7",
     "next": "^12.1.5",
     "next-auth": "^4.3.3",
     "next-pwa": "^5.5.2",
@@ -48,11 +49,9 @@
     "react-dom": "^18.0.0",
     "react-images": "^1.2.0-beta.7",
     "react-intersection-observer": "^9.0.0",
-    "react-markdown": "^8.0.3",
     "react-photo-gallery": "^8.0.0",
     "react-player": "^2.10.0",
     "react-query": "^3.36.0",
-    "rehype-sanitize": "^5.0.1",
     "yup": "^0.32.11"
   },
   "devDependencies": {

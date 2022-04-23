@@ -1,5 +1,4 @@
 import dynamic from 'next/dynamic'
-import { useRouter } from 'next/router'
 import { Box, IconButton, Typography } from '@mui/material'
 import { NotificationDto } from 'dto'
 import useLocale from 'hooks/useLocale'
@@ -25,7 +24,6 @@ export default function Notification({ notification, onClose }: NotificationProp
   const { id, type, details, created, read } = notification
   const { name, nickname, avatar } = details.user
   const client = useClient()
-  const router = useRouter()
   const { mutate } = useUpdateRead()
   const { locale } = useLocale()
   const dateDistance = getDistance(created, locale)
@@ -36,11 +34,6 @@ export default function Notification({ notification, onClose }: NotificationProp
   const { [type]: title, view } = i18n[locale]
 
   const onView = () => mutate(id)
-
-  const onClickView = () => {
-    onClose()
-    router.push(notificationUrn)
-  }
 
   return (
     <Box display="flex" gap={2} height={62}>
@@ -78,11 +71,8 @@ export default function Notification({ notification, onClose }: NotificationProp
           <Box component="span" sx={{ color: 'zen.silent', fontSize: '0.875rem' }}>
             {dateDistance}
           </Box>
-          <IconButton title={view} aria-label={view} onClick={onClickView}>
-            <AppIcon
-              name="south_east"
-              sx={{ color: read ? 'zen.silent' : 'motivation.light', fontSize: '1rem !important' }}
-            />
+          <IconButton href={notificationUrn} title={view} aria-label={view} onClick={onClose}>
+            <AppIcon name="south_east" sx={{ color: 'motivation.light', fontSize: '1rem !important' }} />
           </IconButton>
         </Box>
       </Box>

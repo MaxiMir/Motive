@@ -1,14 +1,12 @@
 import { ChangeEvent } from 'react'
-import dynamic from 'next/dynamic'
 import { Field } from 'formik'
 import { Box, Switch, Tooltip, FormControlLabel } from '@mui/material'
+import { TimePicker } from '@mui/x-date-pickers'
 import { Locale } from 'hooks/useLocale'
 import AppInput from 'components/UI/AppInput'
 import AppIcon from 'components/UI/AppIcon'
 import AppIconButton from 'components/UI/AppIconButton'
 import i18n from './i18n'
-
-const TimePicker = dynamic(() => import('@mui/lab/TimePicker'))
 
 export interface TaskFieldProps {
   index: number
@@ -34,7 +32,7 @@ export default function TaskField({
   }
 
   return (
-    <>
+    <Box display="flex" flexDirection="column">
       <Box display="flex" justifyContent="space-between" gap={1}>
         <Field
           name={`tasks.${index}.name`}
@@ -68,6 +66,6 @@ export default function TaskField({
           />
         )}
       </Box>
-    </>
+    </Box>
   )
 }

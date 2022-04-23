@@ -4,6 +4,7 @@ import { TaskDto } from 'dto'
 import { checkOnCompletedByOther } from './helper'
 
 const CompletedByOther = dynamic(() => import('./components/CompletedByOther'))
+const AppMarkdown = dynamic(() => import('components/UI/AppMarkdown'))
 
 interface TaskLabelProps {
   task: TaskDto
@@ -15,7 +16,7 @@ export default function TaskLabel({ task, daysGoneForOwner }: TaskLabelProps): J
 
   return (
     <Box display="flex" alignItems="center" gap={1}>
-      {task.name}
+      <AppMarkdown text={task.name} />
       {completedByOther && <CompletedByOther />}
     </Box>
   )

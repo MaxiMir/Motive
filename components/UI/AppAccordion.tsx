@@ -21,7 +21,7 @@ export default function AppAccordion({
   defaultExpanded,
 }: AppAccordionProps): JSX.Element {
   return (
-    <Accordion defaultExpanded={defaultExpanded}>
+    <Accordion defaultExpanded={defaultExpanded} TransitionProps={{ unmountOnExit: true }}>
       <AccordionSummary id={id} expandIcon={<AppIcon name="expand_more" />} aria-controls={ariaControls}>
         <AppTitle name={name} variant="h6" component="h4" color="primary">
           {header}

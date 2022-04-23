@@ -23,7 +23,7 @@ export default function AppModal({ title, actions, maxWidth, children, onClose }
           overflow: 'hidden',
         },
         [`& .${paperClasses.root}`]: {
-          maxHeight: '85vh',
+          maxHeight: '75vh',
         },
         [`& .${backdropClasses.root}`]: {
           background: 'rgba(34, 34, 34, 0.75)',

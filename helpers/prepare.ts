@@ -35,8 +35,9 @@ export const toShortString = (value: string, count: number): string =>
 export const toMarkdown = (value: string): string => {
   const replacer = (found: string) => {
     const textLink = toShortString(found, 40)
+    const prefix = /http.?:\/\//.test(found) ? '' : '//'
 
-    return `[${textLink}](${found})`
+    return `[${textLink}](${prefix}${found})`
   }
 
   return value

@@ -10,6 +10,7 @@ import CharacteristicGoal from 'components/Characteristic/CharacteristicGoal'
 import AppTitle from 'components/UI/AppTitle'
 import AppDot from 'components/UI/AppDot'
 import AppAccordion from 'components/UI/AppAccordion'
+import AppInView from 'components/UI/AppInView'
 import { useIncreaseViews } from './hook'
 import { getGoalInfo, getClientOwnership, checkOnShowDiscussion } from './helper'
 import Calendar from './components/Calendar'
@@ -58,6 +59,7 @@ export default function GoalCurrent({
   const goalHref = getGoalUrn(href, id, dayId)
   const goalInfo = useMemo(() => getGoalInfo(goal, clientOwnership, userMember), [goal, clientOwnership, userMember])
   const showDiscussion = checkOnShowDiscussion(query, id)
+  const { mutate } = useIncreaseViews(goal, clientId)
   const {
     stagesHeader,
     stagesAria,
@@ -68,8 +70,6 @@ export default function GoalCurrent({
     discussionHeader,
     discussionAria,
   } = i18n[locale]
-
-  useIncreaseViews(goal, clientId)
 
   return (
     <Box
@@ -108,79 +108,83 @@ export default function GoalCurrent({
           }}
         >
           {inherited && <Inheritance owner={owner} />}
-          <Box display="flex" flexDirection="column" gap={3}>
-            <Box display="flex" justifyContent="space-between" alignItems="center">
-              <AppTitle name="goal" variant="h6" component="h3">
-                <b>{name}</b>
-              </AppTitle>
-              <Menu goal={goal} title={name} href={goalHref} clientOwnership={clientOwnership} />
-            </Box>
-            <Box display="flex" justifyContent="space-between" alignItems="center">
-              {CHARACTERISTICS.map((characteristicName) => (
-                <Fragment key={characteristicName}>
-                  <CharacteristicGoal name={characteristicName} value={characteristic[characteristicName]} />
-                  <AppDot />
-                </Fragment>
-              ))}
-              <CharacteristicGoal name="runningDays" value={goalInfo.runningDays} />
-            </Box>
-            {!!hashtags?.length && <Hashtags hashtags={hashtags} />}
-            <Calendar goal={goal} />
-            <Box>
-              {!!stages.length && (
+          <AppInView triggerOnce onView={() => mutate()}>
+            <Box display="flex" flexDirection="column" gap={3}>
+              <Box display="flex" justifyContent="space-between" alignItems="center">
+                <AppTitle name="goal" variant="h6" component="h3">
+                  <b>{name}</b>
+                </AppTitle>
+                <Menu goal={goal} title={name} href={goalHref} clientOwnership={clientOwnership} />
+              </Box>
+              <Box display="flex" justifyContent="space-between" alignItems="center">
+                {CHARACTERISTICS.map((characteristicName) => (
+                  <Fragment key={characteristicName}>
+                    <CharacteristicGoal name={characteristicName} value={characteristic[characteristicName]} />
+                    <AppDot />
+                  </Fragment>
+                ))}
+                <CharacteristicGoal name="runningDays" value={goalInfo.runningDays} />
+              </Box>
+              {!!hashtags?.length && <Hashtags hashtags={hashtags} />}
+              <Calendar goal={goal} />
+              <Box>
+                {!!stages.length && (
+                  <AppAccordion
+                    name="stage"
+                    header={stagesHeader}
+                    id={`stage-${dayId}`}
+                    ariaControls={stagesAria}
+                    defaultExpanded
+                    details={
+                      <Stages goal={goal} forTomorrow={goalInfo.forTomorrow} completeStage={goalInfo.completeStage} />
+                    }
+                  />
+                )}
                 <AppAccordion
-                  name="stage"
-                  header={stagesHeader}
-                  id={`stage-${dayId}`}
-                  ariaControls={stagesAria}
+                  name="task"
+                  header={tasksHeader}
+                  id={`tasksContent-${dayId}`}
+                  ariaControls={tasksAria}
                   defaultExpanded
                   details={
-                    <Stages goal={goal} forTomorrow={goalInfo.forTomorrow} completeStage={goalInfo.completeStage} />
+                    <TaskList
+                      goal={goal}
+                      goalInfo={goalInfo}
+                      userMember={userMember}
+                      clientMember={clientOwnership.member}
+                    />
                   }
                 />
-              )}
-              <AppAccordion
-                name="task"
-                header={tasksHeader}
-                id={`tasksContent-${dayId}`}
-                ariaControls={tasksAria}
-                defaultExpanded
-                details={
-                  <TaskList
-                    goal={goal}
-                    goalInfo={goalInfo}
-                    userMember={userMember}
-                    clientMember={clientOwnership.member}
-                  />
-                }
-              />
-              <AppAccordion
-                name="feedback"
-                header={feedbackHeader}
-                id={`feedbackContent-${dayId}`}
-                ariaControls={feedbackAria}
-                defaultExpanded={!showDiscussion}
-                details={<Feedback goal={goal} forTomorrow={goalInfo.forTomorrow} clientOwnership={clientOwnership} />}
-              />
-              <AppAccordion
-                name="discussion"
-                header={
-                  <>
-                    {discussionHeader}{' '}
-                    <Box component="span" color="zen.silent">
-                      {topicCount}
-                    </Box>
-                  </>
-                }
-                id={`${HASH_MARK.DISCUSSION}-${id}`}
-                ariaControls={discussionAria}
-                defaultExpanded={showDiscussion}
-                details={
-                  <Discussion dayId={dayId} owner={owner} count={topicCount} clientGoal={clientOwnership.goal} />
-                }
-              />
+                <AppAccordion
+                  name="feedback"
+                  header={feedbackHeader}
+                  id={`feedbackContent-${dayId}`}
+                  ariaControls={feedbackAria}
+                  defaultExpanded={!showDiscussion}
+                  details={
+                    <Feedback goal={goal} forTomorrow={goalInfo.forTomorrow} clientOwnership={clientOwnership} />
+                  }
+                />
+                <AppAccordion
+                  name="discussion"
+                  header={
+                    <>
+                      {discussionHeader}{' '}
+                      <Box component="span" color="zen.silent">
+                        {topicCount}
+                      </Box>
+                    </>
+                  }
+                  id={`${HASH_MARK.DISCUSSION}-${id}`}
+                  ariaControls={discussionAria}
+                  defaultExpanded={showDiscussion}
+                  details={
+                    <Discussion dayId={dayId} owner={owner} count={topicCount} clientGoal={clientOwnership.goal} />
+                  }
+                />
+              </Box>
             </Box>
-          </Box>
+          </AppInView>
           <Box display="flex" flexDirection="column" gap={2}>
             {goalInfo.controls && (
               <>

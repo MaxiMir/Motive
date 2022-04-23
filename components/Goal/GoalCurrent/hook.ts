@@ -1,13 +1,11 @@
-import { useQuery } from 'react-query'
+import { useMutation, UseMutationResult } from 'react-query'
 import { GoalDto } from 'dto'
+import { AxiosError } from 'axios'
 import DayService from 'services/DayService'
 
-export const useIncreaseViews = (goal: GoalDto, clientId?: number): void => {
+export const useIncreaseViews = (goal: GoalDto, clientId?: number): UseMutationResult<void, AxiosError, void> => {
   const { id } = goal.day
+  const enabled = !!clientId && clientId !== goal.owner.id
 
-  useQuery(['views', id, clientId], () => DayService.incrementViews(id), {
-    refetchOnWindowFocus: false,
-    refetchOnReconnect: false,
-    enabled: !!clientId && clientId !== goal.owner.id,
-  })
+  return useMutation(() => (!enabled ? Promise.resolve() : DayService.incrementViews(id)))
 }

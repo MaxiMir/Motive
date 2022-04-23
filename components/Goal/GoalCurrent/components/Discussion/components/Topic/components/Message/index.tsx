@@ -6,7 +6,6 @@ import { numberToShort } from 'helpers/prepare'
 import useLocale from 'hooks/useLocale'
 import { getUserUrn } from 'helpers/url'
 import AppLink from 'components/UI/AppLink'
-import AppMarkdown from 'components/UI/AppMarkdown'
 import AppAvatar from 'components/UI/AppAvatar'
 import Menu from './components/Menu'
 import LikeButton from './components/LikeButton'
@@ -14,6 +13,7 @@ import i18n from './i18n'
 
 const Button = dynamic(() => import('@mui/material/Button'))
 const SupportSign = dynamic(() => import('./components/SupportSign'))
+const AppMarkdown = dynamic(() => import('components/UI/AppMarkdown'))
 
 interface MessageProps {
   message: MessageDto

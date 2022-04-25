@@ -7,6 +7,7 @@ export default {
     'new-question': 'asked you a question',
     'new-support': 'supported you',
     'new-answer': 'reply to you',
+    'new-feedback': 'added feedback',
     view: 'View',
   },
   ru: {
@@ -17,6 +18,7 @@ export default {
     'new-question': 'задал(-а) Вам вопрос',
     'new-support': 'поддержал(-а) Вас',
     'new-answer': 'ответил(-а) Вам',
+    'new-feedback': 'добавил(-а) отзыв',
     view: 'Посмотреть',
   },
 }

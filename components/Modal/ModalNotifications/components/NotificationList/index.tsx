@@ -11,7 +11,7 @@ export default function NotificationList({ notifications, onClose }: Notificatio
   return (
     <AppList
       elements={notifications}
-      gap={3}
+      gap={2}
       keyGetter={(notification) => notification.id}
       render={(notification) => <Notification notification={notification} onClose={onClose} />}
     />

@@ -8,6 +8,7 @@ export enum SEARCH_PARAM {
 
 export enum HASH_MARK {
   GOAL = 'goal',
+  FEEDBACK = 'feedback',
   DISCUSSION = 'discussion',
 }
 
@@ -84,6 +85,15 @@ export const getDiscussionUrn = (userUrn: string, goalId: number, dayId: number)
   return url + hashMark
 }
 
+export const getFeedbackUrn = (userUrn: string, goalId: number, dayId: number): string => {
+  const url = setQueryParams(userUrn, { [SEARCH_PARAM.DATES]: `${goalId}:${dayId}` })
+  const hashMark = getDiscussionHashMark(goalId)
+
+  return url + hashMark
+}
+
 export const getGoalHashMark = (id: number): string => `#${HASH_MARK.GOAL}-${id}`
+
+export const getFeedbackHashMark = (id: number): string => `#${HASH_MARK.FEEDBACK}-${id}`
 
 export const getDiscussionHashMark = (id: number): string => `#${HASH_MARK.DISCUSSION}-${id}`

@@ -1,8 +1,8 @@
 import produce from 'immer'
 import { ClientDto, NOTIFICATION_TYPE, NotificationDto } from 'dto'
-import { getDiscussionUrn, getGoalUrn, getUserUrn } from 'helpers/url'
+import { getDiscussionUrn, getFeedbackUrn, getGoalUrn, getUserUrn } from 'helpers/url'
+import { toShortString } from 'helpers/prepare'
 import { AppEmojiName } from 'components/UI/AppEmoji'
-import { toShortString } from '../../../../../../../helpers/prepare'
 
 type NotificationInfo = { emoji: AppEmojiName; color: string }
 
@@ -22,6 +22,8 @@ export const getNotificationInfo = (type: NOTIFICATION_TYPE): NotificationInfo =
       return { emoji: 'support', color: 'support.main' }
     case NOTIFICATION_TYPE.NEW_ANSWER:
       return { emoji: 'support', color: 'support.main' }
+    case NOTIFICATION_TYPE.NEW_FEEDBACK:
+      return { emoji: 'feedback', color: '#cfd8dc' }
     default:
       return { emoji: 'notification', color: 'common.white' }
   }
@@ -29,14 +31,19 @@ export const getNotificationInfo = (type: NOTIFICATION_TYPE): NotificationInfo =
 
 export const getNotificationUrn = (notification: NotificationDto, client?: ClientDto): string => {
   const { user } = notification.details
-  const userPage = [NOTIFICATION_TYPE.NEW_FOLLOWER, NOTIFICATION_TYPE.NEW_GOAL, NOTIFICATION_TYPE.NEW_ANSWER].includes(
-    notification.type,
-  )
+  const userPage = [
+    NOTIFICATION_TYPE.NEW_FOLLOWER,
+    NOTIFICATION_TYPE.NEW_GOAL,
+    NOTIFICATION_TYPE.NEW_ANSWER,
+    NOTIFICATION_TYPE.NEW_FEEDBACK,
+  ].includes(notification.type)
   const nickname = userPage ? user.nickname : client?.nickname || ''
 
   switch (notification.type) {
     case NOTIFICATION_TYPE.NEW_FOLLOWER:
       return getUserUrn(nickname)
+    case NOTIFICATION_TYPE.NEW_FEEDBACK:
+      return getFeedbackUrn(nickname, notification.details.id, notification.details.day)
     case NOTIFICATION_TYPE.NEW_QUESTION:
     case NOTIFICATION_TYPE.NEW_ANSWER:
     case NOTIFICATION_TYPE.NEW_SUPPORT:

@@ -36,7 +36,7 @@ export default function Notification({ notification, onClose }: NotificationProp
   const onView = () => mutate(id)
 
   return (
-    <Box display="flex" gap={2} height={62}>
+    <Box display="flex" gap={2}>
       <Box height={55} position="relative">
         <AppLink href={userUrn} title={name} onClick={onClose}>
           <AppAvatar src={avatar} size={55} />

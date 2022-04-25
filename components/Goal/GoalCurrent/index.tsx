@@ -158,7 +158,7 @@ export default function GoalCurrent({
                 <AppAccordion
                   name="feedback"
                   header={feedbackHeader}
-                  id={`feedbackContent-${dayId}`}
+                  id={`${HASH_MARK.FEEDBACK}-${id}`}
                   ariaControls={feedbackAria}
                   defaultExpanded={!showDiscussion}
                   details={

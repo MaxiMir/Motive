@@ -19,7 +19,7 @@ export interface ModalSupportProps {
   onClose: () => void
 }
 
-export default function ModalSupport({ goal, owner, onClose }: ModalSupportProps): JSX.Element {
+export default function ModalSupport({ goal, owner, onClose }: ModalSupportProps) {
   const classes = useStyles()
   const { locale } = useLocale()
   const form = useForm(goal, onClose)

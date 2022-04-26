@@ -7,7 +7,7 @@ interface NotificationListProps {
   onClose: () => void
 }
 
-export default function NotificationList({ notifications, onClose }: NotificationListProps): JSX.Element {
+export default function NotificationList({ notifications, onClose }: NotificationListProps) {
   return (
     <AppList
       elements={notifications}

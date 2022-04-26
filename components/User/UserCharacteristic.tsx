@@ -21,13 +21,7 @@ export interface UserCharacteristicProps {
   onClose?: () => void
 }
 
-export default function UserCharacteristic({
-  user,
-  inView,
-  menu,
-  onView,
-  onClose,
-}: UserCharacteristicProps): JSX.Element {
+export default function UserCharacteristic({ user, inView, menu, onView, onClose }: UserCharacteristicProps) {
   const { nickname, avatar, name, characteristic } = user
   const href = getUserUrn(nickname)
 

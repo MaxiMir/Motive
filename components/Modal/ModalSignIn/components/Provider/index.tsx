@@ -12,7 +12,7 @@ interface ProviderProps {
   locale: Locale
 }
 
-export default function Provider({ provider, options, disabled, locale }: ProviderProps): JSX.Element {
+export default function Provider({ provider, options, disabled, locale }: ProviderProps) {
   const { id, name } = provider
   const { pretext } = i18n[locale]
 

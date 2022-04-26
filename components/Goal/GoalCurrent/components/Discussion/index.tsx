@@ -20,7 +20,7 @@ interface DiscussionProps {
   clientGoal: boolean
 }
 
-export default function Discussion({ dayId, owner, count, clientGoal }: DiscussionProps): JSX.Element {
+export default function Discussion({ dayId, owner, count, clientGoal }: DiscussionProps) {
   const client = useClient()
   const { locale } = useLocale()
   const { isLoading, topics, checkOnLoadMore, fetchNextPage } = useDiscussion(dayId, count)

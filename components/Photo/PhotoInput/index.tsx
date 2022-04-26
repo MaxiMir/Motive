@@ -11,7 +11,7 @@ export interface PhotoInputProps {
   onSelect: (photos: File[]) => void
 }
 
-export default function PhotoInput({ multiple, disabled, onSelect }: PhotoInputProps): JSX.Element {
+export default function PhotoInput({ multiple, disabled, onSelect }: PhotoInputProps) {
   const { locale } = useLocale()
   const photoInputRef = useRef<HTMLInputElement>(null)
   const { title } = i18n[locale]

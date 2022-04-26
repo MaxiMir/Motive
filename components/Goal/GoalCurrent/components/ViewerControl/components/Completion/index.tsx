@@ -11,7 +11,7 @@ interface CompletionProps {
   clientMember: MemberDto
 }
 
-export default function Completion({ goal, forTomorrow, clientMember }: CompletionProps): JSX.Element {
+export default function Completion({ goal, forTomorrow, clientMember }: CompletionProps) {
   const nextDayId = getNextDayId(goal)
 
   return (

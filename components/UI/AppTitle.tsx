@@ -8,7 +8,7 @@ interface AppTitleProps extends TypographyProps {
   mb?: number
 }
 
-export default function AppTitle({ name, variant = 'h1', component = 'h1', mb, children }: AppTitleProps): JSX.Element {
+export default function AppTitle({ name, variant = 'h1', component = 'h1', mb, children }: AppTitleProps) {
   const isH1 = variant === 'h1'
   const gap = isH1 ? 2 : 1
 

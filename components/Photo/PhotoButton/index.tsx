@@ -13,7 +13,7 @@ export interface PhotoButtonProps {
   onClick: () => void
 }
 
-export default function PhotoButton({ image, disabled, onClick }: PhotoButtonProps): JSX.Element {
+export default function PhotoButton({ image, disabled, onClick }: PhotoButtonProps) {
   const { locale } = useLocale()
   const { ariaLabel } = i18n[locale]
 

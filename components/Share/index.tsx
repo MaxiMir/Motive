@@ -13,7 +13,7 @@ interface ShareProps {
   onClose: () => void
 }
 
-export default function Share({ title, href, locale, onClose }: ShareProps): JSX.Element {
+export default function Share({ title, href, locale, onClose }: ShareProps) {
   const [enqueueSnackbar, closeSnackbar] = useSnackbar()
   const [withMenu, setWithMenu] = useState(false)
   const url = process.env.NEXT_PUBLIC_APP_URL + href

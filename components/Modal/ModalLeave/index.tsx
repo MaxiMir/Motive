@@ -15,7 +15,7 @@ export interface ModalLeaveProps {
   onClose: () => void
 }
 
-export default function ModalLeave({ goal, clientOwnership, onClose }: ModalLeaveProps): JSX.Element {
+export default function ModalLeave({ goal, clientOwnership, onClose }: ModalLeaveProps) {
   const { id, name } = goal
   const classes = useStyles()
   const { locale } = useLocale()

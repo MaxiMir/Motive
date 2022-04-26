@@ -17,7 +17,7 @@ interface StagesProps {
   completeStage: boolean
 }
 
-export default function Stages({ goal, forTomorrow, completeStage }: StagesProps): JSX.Element {
+export default function Stages({ goal, forTomorrow, completeStage }: StagesProps) {
   const { locale } = useLocale()
   const [open, setOpen] = useState(false)
   const { day, stages } = goal

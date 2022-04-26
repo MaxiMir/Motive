@@ -13,7 +13,7 @@ const i18n = {
   },
 }
 
-export default function TopOfTheDay(): JSX.Element {
+export default function TopOfTheDay() {
   const { locale } = useLocale()
   const { title } = i18n[locale]
 

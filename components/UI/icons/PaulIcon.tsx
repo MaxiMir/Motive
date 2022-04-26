@@ -1,6 +1,6 @@
 import { SvgIcon, SvgIconProps } from '@mui/material'
 
-export default function PaulIcon(props: SvgIconProps): JSX.Element {
+export default function PaulIcon(props: SvgIconProps) {
   return (
     <SvgIcon {...props}>
       <path

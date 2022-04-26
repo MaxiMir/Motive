@@ -9,7 +9,7 @@ export interface GalleryViewerProps {
   animation?: boolean
 }
 
-export default function GalleryViewer({ photos, animation }: GalleryViewerProps): JSX.Element {
+export default function GalleryViewer({ photos, animation }: GalleryViewerProps) {
   const [currentImage, setCurrentImage] = useState(0)
   const [viewerIsOpen, setViewerIsOpen] = useState(false)
   const photosWithSource = getPhotosWithSource(photos)

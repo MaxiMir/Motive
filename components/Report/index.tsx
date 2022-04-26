@@ -12,7 +12,7 @@ interface ReportProps {
   onClose: () => void
 }
 
-export default function Report({ entityId, type, anchorEl, onClose }: ReportProps): JSX.Element {
+export default function Report({ entityId, type, anchorEl, onClose }: ReportProps) {
   const { locale } = useLocale()
   const onClick = useSendReport(entityId, type, onClose)
   const { title, reports } = i18n[locale]

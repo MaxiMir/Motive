@@ -9,7 +9,7 @@ export interface AppListProps<T> {
   render: (element: T, index: number) => JSX.Element
 }
 
-export default function AppList<T>({ elements, gap, pb, render, keyGetter }: AppListProps<T>): JSX.Element {
+export default function AppList<T>({ elements, gap, pb, render, keyGetter }: AppListProps<T>) {
   return (
     <Box display="flex" flexDirection="column" flexWrap="wrap" flex={1} gap={gap} pb={pb}>
       {elements.map((element, key) => (

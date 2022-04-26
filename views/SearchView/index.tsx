@@ -21,7 +21,7 @@ interface SearchViewProps {
   locale: Locale
 }
 
-export default function SearchView({ q, hashtags, goals, users, locale }: SearchViewProps): JSX.Element {
+export default function SearchView({ q, hashtags, goals, users, locale }: SearchViewProps) {
   const { title, trendTitle, userTitle, goalTitle } = i18n[locale]
   const gradients = getGradients()
   const noResult = !users.length && !goals.length

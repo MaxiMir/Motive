@@ -11,7 +11,7 @@ interface GalleryPhotoProps extends RenderImageProps {
   animation?: boolean
 }
 
-export default function GallerySlide({ animation, ...props }: GalleryPhotoProps): JSX.Element {
+export default function GallerySlide({ animation, ...props }: GalleryPhotoProps) {
   const { locale } = useLocale()
   const { ariaLabel } = i18n[locale]
 

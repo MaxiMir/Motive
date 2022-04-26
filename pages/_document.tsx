@@ -4,7 +4,7 @@ import produce from 'immer'
 import { ServerStyleSheets } from '@mui/styles'
 
 export default class MyDocument extends Document {
-  render(): JSX.Element {
+  render() {
     return (
       <Html lang="en">
         <Head />

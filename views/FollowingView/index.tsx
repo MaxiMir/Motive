@@ -13,7 +13,7 @@ interface FollowingViewProps {
   locale: Locale
 }
 
-export default function FollowingView({ users, locale }: FollowingViewProps): JSX.Element {
+export default function FollowingView({ users, locale }: FollowingViewProps) {
   const { header } = i18n[locale]
 
   return (

@@ -4,7 +4,7 @@ interface AppDotProps {
   size?: number
 }
 
-export default function AppDot({ size = 3 }: AppDotProps): JSX.Element {
+export default function AppDot({ size = 3 }: AppDotProps) {
   return (
     <Box
       display="flex"

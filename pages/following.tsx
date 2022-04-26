@@ -21,7 +21,7 @@ const i18n = {
   },
 }
 
-export default function FollowingPage({ statusCode }: PageProps): JSX.Element {
+export default function FollowingPage({ statusCode }: PageProps) {
   const { locale } = useLocale()
   const { title, description } = i18n[locale]
   const { data } = useFollowingPage()

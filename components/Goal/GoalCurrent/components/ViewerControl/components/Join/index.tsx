@@ -15,7 +15,7 @@ export interface JoinProps {
   locale: Locale
 }
 
-export default function Join({ goal, locale }: JoinProps): JSX.Element {
+export default function Join({ goal, locale }: JoinProps) {
   const client = useClient()
   const openSignIn = useOpenSignIn()
   const [open, setOpen] = useState(false)

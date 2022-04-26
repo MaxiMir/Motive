@@ -12,7 +12,7 @@ export interface NotAddedProps {
   clientOwnership: OwnershipDto
 }
 
-export default function NotAdded({ goal, forTomorrow, clientOwnership }: NotAddedProps): JSX.Element {
+export default function NotAdded({ goal, forTomorrow, clientOwnership }: NotAddedProps) {
   const { locale } = useLocale()
   const { soon } = i18n[locale]
 

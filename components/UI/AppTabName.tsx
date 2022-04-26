@@ -10,7 +10,7 @@ export interface AppTabNameProps {
   locale: Locale
 }
 
-export default function AppTabName({ name, emoji, locale }: AppTabNameProps): JSX.Element {
+export default function AppTabName({ name, emoji, locale }: AppTabNameProps) {
   const theme = useTheme()
   const tabName = i18n[locale][name]
 

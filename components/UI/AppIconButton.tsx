@@ -5,7 +5,7 @@ type AppIconButtonProps = Omit<IconButtonProps, 'disableFocusRipple' | 'children
   name: string
 }
 
-export default function AppIconButton({ name, ...props }: AppIconButtonProps): JSX.Element {
+export default function AppIconButton({ name, ...props }: AppIconButtonProps) {
   return (
     <IconButton disableFocusRipple {...props}>
       <AppIcon name={name} />

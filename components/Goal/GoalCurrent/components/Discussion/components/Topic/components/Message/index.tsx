@@ -22,7 +22,7 @@ interface MessageProps {
   onReply?: () => void
 }
 
-export default function Message({ message, answerFor, supportFor, onReply }: MessageProps): JSX.Element {
+export default function Message({ message, answerFor, supportFor, onReply }: MessageProps) {
   const { date, user, text, edited } = message
   const { locale } = useLocale()
   const dateDistance = getDistance(date, locale)

@@ -5,7 +5,7 @@ interface AppSpinIconProps {
   name: AppEmojiName
 }
 
-export default function AppFlyIcon({ name }: AppSpinIconProps): JSX.Element {
+export default function AppFlyIcon({ name }: AppSpinIconProps) {
   return (
     <Box
       sx={{

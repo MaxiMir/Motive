@@ -22,7 +22,7 @@ export interface UserViewProps {
   locale: Locale
 }
 
-export default function UserView({ user, locale }: UserViewProps): JSX.Element {
+export default function UserView({ user, locale }: UserViewProps) {
   const { id, nickname, name, avatar, characteristic, goals, following, userMembership, clientMembership } = user
   const client = useClient()
   const href = getUserUrn(nickname)

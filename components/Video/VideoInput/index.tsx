@@ -10,7 +10,7 @@ export interface VideoInputProps {
   onSelect: (video: File) => void
 }
 
-export default function VideoInput({ disabled, onSelect }: VideoInputProps): JSX.Element {
+export default function VideoInput({ disabled, onSelect }: VideoInputProps) {
   const videoInputRef = useRef<HTMLInputElement>(null)
   const { locale } = useLocale()
   const { title, label } = i18n[locale]

@@ -11,7 +11,7 @@ interface FooterProfileProps {
   ariaLabel: string
 }
 
-export default function FooterProfile({ nickname, ariaLabel, asPath }: FooterProfileProps): JSX.Element {
+export default function FooterProfile({ nickname, ariaLabel, asPath }: FooterProfileProps) {
   const { jump } = useLocale()
   const openSignIn = useOpenSignIn()
   const href = !nickname ? undefined : getUserUrn(nickname)

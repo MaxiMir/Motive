@@ -33,7 +33,7 @@ export interface ModalTasksProps {
   onClose: () => void
 }
 
-export default function ModalTasks({ goal, onClose }: ModalTasksProps): JSX.Element {
+export default function ModalTasks({ goal, onClose }: ModalTasksProps) {
   const { locale } = useLocale()
   const form = useForm(goal, onClose)
   const { isSubmitting, values, setFieldValue, handleSubmit } = form

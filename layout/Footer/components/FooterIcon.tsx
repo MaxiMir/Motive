@@ -5,6 +5,6 @@ interface FooterLinkProps {
   selected: boolean
 }
 
-export default function FooterIcon({ Icon, selected }: FooterLinkProps): JSX.Element {
+export default function FooterIcon({ Icon, selected }: FooterLinkProps) {
   return <Icon sx={{ color: 'common.white', opacity: !selected ? 0.6 : 1 }} />
 }

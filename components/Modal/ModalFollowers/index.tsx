@@ -15,7 +15,7 @@ export interface ModalFollowersProps {
   onClose: () => void
 }
 
-export default function ModalFollowers({ user, onClose }: ModalFollowersProps): JSX.Element {
+export default function ModalFollowers({ user, onClose }: ModalFollowersProps) {
   const { id, characteristic } = user
   const { locale } = useLocale()
   const { isLoading, followers, checkOnLoadMore, fetchNextPage } = useFollowers(id, characteristic.followers)
@@ -25,8 +25,8 @@ export default function ModalFollowers({ user, onClose }: ModalFollowersProps): 
     <AppModal title={title} maxWidth="xs" onClose={onClose}>
       <Box
         display="flex"
-        minHeight={400}
         flex={1}
+        minHeight={400}
         sx={{
           '& sup': {
             display: {

@@ -15,7 +15,7 @@ export interface AppSnackbarProps {
   onClose: () => void
 }
 
-export default function AppSnackbar({ icon, message, severity, onClose, ...props }: AppSnackbarProps): JSX.Element {
+export default function AppSnackbar({ icon, message, severity, onClose, ...props }: AppSnackbarProps) {
   const iconContent = getIconContent()
 
   const handleClose = (_event: SyntheticEvent | Event, reason: SnackbarCloseReason) =>

@@ -16,7 +16,7 @@ export interface ViewerProps {
   clientOwnership: OwnershipDto
 }
 
-export default function Viewer({ goal, owner, forTomorrow, clientOwnership }: ViewerProps): JSX.Element {
+export default function Viewer({ goal, owner, forTomorrow, clientOwnership }: ViewerProps) {
   const { locale } = useLocale()
   const completion = checkOnCompletion(clientOwnership, goal)
 

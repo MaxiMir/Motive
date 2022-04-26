@@ -4,7 +4,7 @@ interface ImgProps {
   src: string
 }
 
-export default function Img({ src }: ImgProps): JSX.Element {
+export default function Img({ src }: ImgProps) {
   return <ImgNative src={src} alt="" />
 }
 

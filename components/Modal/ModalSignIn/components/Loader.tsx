@@ -4,7 +4,7 @@ interface LoaderProps {
   count: number
 }
 
-export default function Loader({ count }: LoaderProps): JSX.Element {
+export default function Loader({ count }: LoaderProps) {
   return (
     <>
       {[...new Array(count)].map((_, key) => (

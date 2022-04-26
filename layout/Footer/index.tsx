@@ -12,7 +12,7 @@ interface FooterProps {
   nickname?: string
 }
 
-export default function Footer({ nickname }: FooterProps): JSX.Element {
+export default function Footer({ nickname }: FooterProps) {
   const { asPath } = useRouter()
   const { locale } = useLocale()
   const titles = i18n[locale]

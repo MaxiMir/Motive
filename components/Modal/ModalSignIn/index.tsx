@@ -17,7 +17,7 @@ export interface ModalSignInProps {
   onClose: () => void
 }
 
-export default function ModalSignIn({ options, onClose }: ModalSignInProps): JSX.Element {
+export default function ModalSignIn({ options, onClose }: ModalSignInProps) {
   const { locale } = useLocale()
   const [providers, setProviders] = useState<Providers>()
   const { title } = i18n[locale]

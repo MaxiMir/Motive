@@ -11,7 +11,7 @@ interface TabContentProps {
   locale: Locale
 }
 
-export default function TabContent({ name, users, locale }: TabContentProps): JSX.Element {
+export default function TabContent({ name, users, locale }: TabContentProps) {
   const { userColumn, lvlColumn } = i18n[locale]
 
   return (

@@ -67,7 +67,7 @@ interface AppEmojiProps {
   sx?: TypographyProps['sx']
 }
 
-export default function AppEmoji({ name, onlyEmoji = false, ...restProps }: AppEmojiProps): JSX.Element {
+export default function AppEmoji({ name, onlyEmoji = false, ...restProps }: AppEmojiProps) {
   const content = getContent(name)
 
   return (

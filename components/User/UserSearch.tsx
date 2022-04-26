@@ -10,7 +10,7 @@ export interface UserSearchProps {
   user: UserDto
 }
 
-export default function UserSearch({ user }: UserSearchProps): JSX.Element {
+export default function UserSearch({ user }: UserSearchProps) {
   const { nickname, avatar, name, characteristic } = user
   const href = getUserUrn(nickname)
 

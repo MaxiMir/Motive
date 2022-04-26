@@ -9,7 +9,7 @@ interface InheritedProps {
   locale: Locale
 }
 
-export default function Inheritance({ owner, locale }: InheritedProps): JSX.Element {
+export default function Inheritance({ owner, locale }: InheritedProps) {
   const { creator } = i18n[locale]
 
   return (

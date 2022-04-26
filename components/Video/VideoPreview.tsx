@@ -9,7 +9,7 @@ export interface VideoPreviewProps {
   onRemove: () => void
 }
 
-export default function VideoPreview({ video, disabled, onRemove }: VideoPreviewProps): JSX.Element {
+export default function VideoPreview({ video, disabled, onRemove }: VideoPreviewProps) {
   const classes = useStyles()
   const url = URL.createObjectURL(video)
 

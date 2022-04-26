@@ -6,7 +6,7 @@ interface LoaderProps {
   count: number
 }
 
-export default function Loader({ count }: LoaderProps): JSX.Element {
+export default function Loader({ count }: LoaderProps) {
   const displayedCount = count > VISIBLE_QUANTITY ? VISIBLE_QUANTITY : count
 
   return (

@@ -18,7 +18,7 @@ interface CustomErrorProps {
   statusCode?: number
 }
 
-export default function CustomError({ statusCode = 500 }: CustomErrorProps): JSX.Element {
+export default function CustomError({ statusCode = 500 }: CustomErrorProps) {
   const { locale } = useLocale()
   const errorKey = statusCode === 404 ? 'notFound' : 'default'
   const title = i18n[locale][errorKey]

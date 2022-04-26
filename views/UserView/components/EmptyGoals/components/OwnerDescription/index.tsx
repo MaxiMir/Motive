@@ -8,7 +8,7 @@ interface OwnerDescriptionProps {
   locale: Locale
 }
 
-export default function OwnerDescription({ locale }: OwnerDescriptionProps): JSX.Element {
+export default function OwnerDescription({ locale }: OwnerDescriptionProps) {
   const { description } = i18n[locale]
 
   return (

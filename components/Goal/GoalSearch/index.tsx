@@ -10,7 +10,7 @@ export interface GoalSearchProps {
   goal: GoalDto
 }
 
-export default function GoalSearch({ goal }: GoalSearchProps): JSX.Element {
+export default function GoalSearch({ goal }: GoalSearchProps) {
   const { name, characteristic, owner } = goal
   const classes = useStyles()
 

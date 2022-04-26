@@ -6,7 +6,7 @@ interface NoResultProps {
   phrase: string
 }
 
-export default function NoResult({ phrase }: NoResultProps): JSX.Element {
+export default function NoResult({ phrase }: NoResultProps) {
   const { locale } = useLocale()
   const { title, description } = i18n[locale]
 

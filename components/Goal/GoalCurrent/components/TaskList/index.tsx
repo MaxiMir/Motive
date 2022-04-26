@@ -11,7 +11,7 @@ interface TaskListProps {
   clientMember?: MemberDto
 }
 
-export default function TaskList({ goal, goalInfo, userMember, clientMember }: TaskListProps): JSX.Element {
+export default function TaskList({ goal, goalInfo, userMember, clientMember }: TaskListProps) {
   const { id, day } = goal
   const redefinedGoals = redefineTasks(day.tasks, userMember)
   const rest = redefinedGoals.length - redefinedGoals.filter((t) => t.completed).length

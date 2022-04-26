@@ -9,7 +9,7 @@ interface HeaderProps {
   authenticated: boolean
 }
 
-export default function Header({ authenticated }: HeaderProps): JSX.Element {
+export default function Header({ authenticated }: HeaderProps) {
   return (
     <AppBar
       position="static"
@@ -23,7 +23,7 @@ export default function Header({ authenticated }: HeaderProps): JSX.Element {
       <Container fixed>
         <Box display="flex" justifyContent="space-between" alignItems="center">
           <LeftMenu />
-          <Chip label="Alpha 1.0.39" variant="outlined" />
+          <Chip label="Alpha 1.0.41" variant="outlined" />
           {authenticated ? <Notifications /> : <SignIn />}
         </Box>
       </Container>

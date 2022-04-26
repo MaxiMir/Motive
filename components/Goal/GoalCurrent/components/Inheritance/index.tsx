@@ -9,7 +9,7 @@ interface InheritedProps {
   owner: UserBaseDto
 }
 
-export default function Inheritance({ owner }: InheritedProps): JSX.Element {
+export default function Inheritance({ owner }: InheritedProps) {
   const { locale } = useLocale()
   const { title } = i18n[locale]
   const width = locale === 'ru' ? 100 : 90

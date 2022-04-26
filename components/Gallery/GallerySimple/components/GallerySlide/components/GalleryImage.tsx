@@ -1,7 +1,7 @@
 import Image from 'next/image'
 import { RenderImageProps } from 'react-photo-gallery'
 
-export default function GalleryImage({ photo, index, onClick }: RenderImageProps): JSX.Element {
+export default function GalleryImage({ photo, index, onClick }: RenderImageProps) {
   return (
     <Image
       src={photo.src}

@@ -26,7 +26,7 @@ export default function MenuList({
   onShare,
   onLeave,
   onClose,
-}: MenuListProps): JSX.Element {
+}: MenuListProps) {
   const [withReport, setWithReport] = useState(false)
   const { share, report, leave } = i18n[locale]
 

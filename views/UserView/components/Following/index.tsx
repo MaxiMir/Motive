@@ -10,7 +10,7 @@ interface FollowingProps {
   locale: Locale
 }
 
-export default function Following({ id, following, locale }: FollowingProps): JSX.Element {
+export default function Following({ id, following, locale }: FollowingProps) {
   const setFollowing = useSetFollowing(id, following, locale)
   const { getTitle } = i18n[locale]
   const title = getTitle(following)

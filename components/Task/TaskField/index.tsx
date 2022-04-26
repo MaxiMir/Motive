@@ -17,14 +17,7 @@ export interface TaskFieldProps {
   onRemove: () => void
 }
 
-export default function TaskField({
-  index,
-  date,
-  taskCount,
-  locale,
-  onToggleDate,
-  onRemove,
-}: TaskFieldProps): JSX.Element {
+export default function TaskField({ index, date, taskCount, locale, onToggleDate, onRemove }: TaskFieldProps) {
   const { label, placeholder, close, remind, tooltip } = i18n[locale]
 
   const onSwitchClick = (_: ChangeEvent<HTMLInputElement>, isChecked: boolean) => {

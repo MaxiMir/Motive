@@ -13,7 +13,7 @@ export interface GallerySimpleProps {
   onClick?: PhotoClickHandler
 }
 
-export default function GallerySimple({ photos, animation, onClick }: GallerySimpleProps): JSX.Element {
+export default function GallerySimple({ photos, animation, onClick }: GallerySimpleProps) {
   const photosWithSource = getPhotosWithSource(photos)
 
   const renderImage = useCallback(

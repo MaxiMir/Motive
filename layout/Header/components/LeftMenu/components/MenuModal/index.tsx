@@ -13,7 +13,7 @@ interface MenuModalProps {
   onClose: () => void
 }
 
-export default function MenuModal({ onClose }: MenuModalProps): JSX.Element {
+export default function MenuModal({ onClose }: MenuModalProps) {
   const { locale, jump, next } = useLocale()
   const client = useClient()
   const { mode, toggle } = useContext(ThemeContext)

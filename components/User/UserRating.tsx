@@ -11,7 +11,7 @@ export interface UserRatingProps {
   index: number
 }
 
-export default function UserRating({ user, characteristicName, index }: UserRatingProps): JSX.Element {
+export default function UserRating({ user, characteristicName, index }: UserRatingProps) {
   const theme = useTheme()
   const { nickname, avatar, name, characteristic } = user
   const number = getNumber()

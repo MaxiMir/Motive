@@ -14,7 +14,7 @@ export interface OwnerControlProps {
   goal: GoalDto
 }
 
-export default function OwnerControl({ goal }: OwnerControlProps): JSX.Element {
+export default function OwnerControl({ goal }: OwnerControlProps) {
   const { stages, day } = goal
   const { locale } = useLocale()
   const [modal, setModal] = useState<'tasks' | 'completion'>()

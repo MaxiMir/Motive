@@ -11,7 +11,7 @@ interface SearchFormProps {
   q?: string
 }
 
-export default function SearchForm({ q }: SearchFormProps): JSX.Element {
+export default function SearchForm({ q }: SearchFormProps) {
   const form = useForm(q || '')
   const { locale } = useLocale()
   const { label } = i18n[locale]

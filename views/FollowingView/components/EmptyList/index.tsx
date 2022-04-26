@@ -6,7 +6,7 @@ interface EmptyListProps {
   locale: Locale
 }
 
-const EmptyList = ({ locale }: EmptyListProps): JSX.Element => {
+function EmptyList({ locale }: EmptyListProps) {
   const { title, hint } = i18n[locale]
 
   return (

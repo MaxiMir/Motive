@@ -6,7 +6,7 @@ export interface HashtagChipProps {
   name: string
 }
 
-export default function HashtagChip({ name }: HashtagChipProps): JSX.Element {
+export default function HashtagChip({ name }: HashtagChipProps) {
   const { jump } = useLocale()
 
   const onClick = () => {

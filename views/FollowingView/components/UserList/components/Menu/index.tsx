@@ -15,7 +15,7 @@ interface MenuProps {
   index: number
 }
 
-const Menu = ({ user, index }: MenuProps): JSX.Element => {
+function Menu({ user, index }: MenuProps) {
   const { name, nickname } = user
   const { locale } = useLocale()
   const [anchorEl, setAnchorEl] = useState<HTMLElement | null>(null)

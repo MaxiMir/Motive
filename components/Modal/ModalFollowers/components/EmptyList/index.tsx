@@ -7,7 +7,7 @@ interface EmptyListProps {
   locale: Locale
 }
 
-export default function EmptyList({ locale }: EmptyListProps): JSX.Element {
+export default function EmptyList({ locale }: EmptyListProps) {
   const { title } = i18n[locale]
 
   return (

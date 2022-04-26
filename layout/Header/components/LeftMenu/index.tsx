@@ -7,7 +7,7 @@ import i18n from './i18n'
 
 const MenuModal = dynamic(() => import('./components/MenuModal'))
 
-export default function LeftMenu(): JSX.Element {
+export default function LeftMenu() {
   const { locale } = useLocale()
   const [open, setOpen] = useState(false)
   const i18nElements = i18n[locale]

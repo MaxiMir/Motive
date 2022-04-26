@@ -7,7 +7,7 @@ interface LoaderProps {
   withInput: boolean
 }
 
-export default function Loader({ count, withInput }: LoaderProps): JSX.Element {
+export default function Loader({ count, withInput }: LoaderProps) {
   const shownCount = count >= VISIBLE_COUNT ? VISIBLE_COUNT : count
 
   return (

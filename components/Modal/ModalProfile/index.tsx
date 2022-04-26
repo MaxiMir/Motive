@@ -21,7 +21,7 @@ export interface ModalProfileProps {
   onClose: () => void
 }
 
-export default function ModalProfile({ user, locale, onClose }: ModalProfileProps): JSX.Element {
+export default function ModalProfile({ user, locale, onClose }: ModalProfileProps) {
   const classes = useStyles()
   const form = useForm(user, locale, onClose)
   const { action, profile, name, nickname, button, buttonLoading } = i18n[locale]

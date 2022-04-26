@@ -8,13 +8,7 @@ type AppMenuButtonProps = Pick<IconButtonProps, 'title' | 'onClick'> & {
   compact?: boolean
 }
 
-export default function AppMenuButton({
-  ariaControls,
-  color,
-  horizontal,
-  compact,
-  ...restProps
-}: AppMenuButtonProps): JSX.Element {
+export default function AppMenuButton({ ariaControls, color, horizontal, compact, ...restProps }: AppMenuButtonProps) {
   const theme = useTheme()
 
   return (

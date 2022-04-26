@@ -26,7 +26,7 @@ export interface GoalCompletedProps {
   onView: () => void
 }
 
-export default function GoalCompleted({ confirmation, user, inView, onView }: GoalCompletedProps): JSX.Element {
+export default function GoalCompleted({ confirmation, user, inView, onView }: GoalCompletedProps) {
   const { goal, inherited } = confirmation
   const theme = useTheme()
   const client = useClient()

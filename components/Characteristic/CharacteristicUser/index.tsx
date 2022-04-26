@@ -11,7 +11,7 @@ export interface CharacteristicUserProps {
   value: number
 }
 
-export default function CharacteristicUser({ name, value }: CharacteristicUserProps): JSX.Element {
+export default function CharacteristicUser({ name, value }: CharacteristicUserProps) {
   const shortValue = name !== 'followers' ? Math.floor(value) : numberToShort(value)
 
   return (

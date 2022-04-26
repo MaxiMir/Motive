@@ -10,7 +10,7 @@ interface FeedbackProps {
   clientOwnership: OwnershipDto
 }
 
-export default function Feedback({ goal, forTomorrow, clientOwnership }: FeedbackProps): JSX.Element {
+export default function Feedback({ goal, forTomorrow, clientOwnership }: FeedbackProps) {
   const { feedback } = goal.day
 
   return (

@@ -1,7 +1,7 @@
 import { IconButton } from '@mui/material'
 import AppIcon from 'components/UI/AppIcon'
 
-export default function CloseButton(): JSX.Element {
+export default function CloseButton() {
   return (
     <IconButton
       disableFocusRipple

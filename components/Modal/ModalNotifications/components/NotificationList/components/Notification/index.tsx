@@ -20,7 +20,7 @@ interface NotificationProps {
   onClose: () => void
 }
 
-export default function Notification({ notification, onClose }: NotificationProps): JSX.Element {
+export default function Notification({ notification, onClose }: NotificationProps) {
   const { id, type, details, created, read } = notification
   const { name, nickname, avatar } = details.user
   const client = useClient()

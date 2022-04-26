@@ -9,18 +9,16 @@ interface AddGoalProps {
   locale: Locale
 }
 
-export default function EmptyGoals({ clientPage, locale }: AddGoalProps): JSX.Element {
+export default function EmptyGoals({ clientPage, locale }: AddGoalProps) {
   const { guest, owner } = i18n[locale]
 
   return (
-    <>
-      <Box display="flex" flexDirection="column" justifyContent="center" alignItems="center" gap={1} flex={1}>
-        <Typography variant="h6" component="p" color="primary">
-          {clientPage ? owner : guest}
-        </Typography>
-        <AppFadeIcon name="goal" />
-        {clientPage && <OwnerDescription locale={locale} />}
-      </Box>
-    </>
+    <Box display="flex" flexDirection="column" justifyContent="center" alignItems="center" gap={1} flex={1}>
+      <Typography variant="h6" component="p" color="primary">
+        {clientPage ? owner : guest}
+      </Typography>
+      <AppFadeIcon name="goal" />
+      {clientPage && <OwnerDescription locale={locale} />}
+    </Box>
   )
 }

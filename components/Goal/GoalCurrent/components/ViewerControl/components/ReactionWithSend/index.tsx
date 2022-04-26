@@ -11,7 +11,7 @@ interface ReactionWithSendProps {
   locale: Locale
 }
 
-export default function ReactionWithSend({ goal, name, locale }: ReactionWithSendProps): JSX.Element {
+export default function ReactionWithSend({ goal, name, locale }: ReactionWithSendProps) {
   const active = checkOnActive(goal, name)
   const count = getCount(goal, name)
   const { getTitle } = i18n[locale]

@@ -9,7 +9,7 @@ interface UserListProps {
   onClose: () => void
 }
 
-export default function UserList({ users, checkOnLoadMore, onView, onClose }: UserListProps): JSX.Element {
+export default function UserList({ users, checkOnLoadMore, onView, onClose }: UserListProps) {
   return (
     <AppList
       elements={users}

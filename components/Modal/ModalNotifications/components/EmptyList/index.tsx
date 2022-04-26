@@ -3,7 +3,7 @@ import useLocale from 'hooks/useLocale'
 import AppFadeIcon from 'components/UI/AppFadeIcon'
 import i18n from './i18n'
 
-export default function EmptyList(): JSX.Element {
+export default function EmptyList() {
   const { locale } = useLocale()
   const { title } = i18n[locale]
 

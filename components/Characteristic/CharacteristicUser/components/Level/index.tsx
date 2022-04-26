@@ -2,7 +2,7 @@ import { Box } from '@mui/material'
 import useLocale from 'hooks/useLocale'
 import i18n from './i18n'
 
-export default function Level(): JSX.Element {
+export default function Level() {
   const { locale } = useLocale()
   const { lvl } = i18n[locale]
 

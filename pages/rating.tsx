@@ -21,7 +21,7 @@ const i18n = {
   },
 }
 
-export default function RatingPage({ statusCode }: PageProps): JSX.Element {
+export default function RatingPage({ statusCode }: PageProps) {
   const { locale } = useLocale()
   const { title, description } = i18n[locale]
   const { data } = useRatingPage()

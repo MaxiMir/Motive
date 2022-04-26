@@ -9,7 +9,7 @@ interface LocalImageProps {
 }
 
 // TODO HEIC images https://itnext.io/tackling-iphone-or-ipad-images-support-in-browser-8e3e64e9aaa1
-export default function LocalImage({ file }: LocalImageProps): JSX.Element {
+export default function LocalImage({ file }: LocalImageProps) {
   const [source, setSource] = useState<string>()
 
   useEffect(() => {

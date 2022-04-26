@@ -9,7 +9,7 @@ export interface HashtagSearchProps {
   views: number
 }
 
-export default function HashtagSearch({ name, gradient, views }: HashtagSearchProps): JSX.Element {
+export default function HashtagSearch({ name, gradient, views }: HashtagSearchProps) {
   const { jump } = useLocale()
   const shortViews = numberToShort(views)
 

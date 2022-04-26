@@ -6,7 +6,7 @@ interface AvatarProps {
   size: number
 }
 
-export default function Avatar({ src, size }: AvatarProps): JSX.Element {
+export default function Avatar({ src, size }: AvatarProps) {
   return (
     <Box
       display="flex"

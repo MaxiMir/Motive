@@ -15,7 +15,7 @@ interface CalendarProps {
   goal: GoalDto
 }
 
-export default function Calendar({ goal }: CalendarProps): JSX.Element {
+export default function Calendar({ goal }: CalendarProps) {
   const { id, day, calendar } = goal
   const { locale } = useLocale()
   const date = new Date(day.date)

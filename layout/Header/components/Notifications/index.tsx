@@ -9,7 +9,7 @@ import i18n from './i18n'
 
 const ModalNotifications = dynamic(() => import('components/Modal/ModalNotifications'))
 
-export default function Notifications(): JSX.Element {
+export default function Notifications() {
   const { locale } = useLocale()
   const { data = [] } = useNotifications()
   const [open, setOpen] = useState(false)

@@ -14,7 +14,7 @@ interface DoneProps {
   forTomorrow: boolean
 }
 
-export default function Done({ goal, forTomorrow }: DoneProps): JSX.Element {
+export default function Done({ goal, forTomorrow }: DoneProps) {
   const { locale } = useLocale()
   const [open, setOpen] = useState(false)
   const { button } = i18n[locale]

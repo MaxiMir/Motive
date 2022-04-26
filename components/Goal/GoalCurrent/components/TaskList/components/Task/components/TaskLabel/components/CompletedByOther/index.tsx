@@ -3,7 +3,7 @@ import useLocale from 'hooks/useLocale'
 import AppEmoji from 'components/UI/AppEmoji'
 import i18n from './i18n'
 
-export default function CompletedByOther(): JSX.Element {
+export default function CompletedByOther() {
   const { locale } = useLocale()
   const { title } = i18n[locale]
 

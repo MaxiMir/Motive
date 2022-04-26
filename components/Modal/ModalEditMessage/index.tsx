@@ -15,7 +15,7 @@ export interface ModalEditMessageProps {
   onClose: () => void
 }
 
-export default function ModalEditMessage({ message, onClose }: ModalEditMessageProps): JSX.Element {
+export default function ModalEditMessage({ message, onClose }: ModalEditMessageProps) {
   const { locale } = useLocale()
   const form = useForm(message, onClose)
   const { isSubmitting, handleSubmit } = form

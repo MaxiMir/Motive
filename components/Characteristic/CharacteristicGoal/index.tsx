@@ -11,7 +11,7 @@ export interface CharacteristicGoalProps {
 }
 
 // TODO modal for runningDays:
-export default function CharacteristicGoal({ name, value }: CharacteristicGoalProps): JSX.Element {
+export default function CharacteristicGoal({ name, value }: CharacteristicGoalProps) {
   const { locale } = useLocale()
   const shortValue = numberToShort(value)
   const localeTitle = i18n[locale][name]

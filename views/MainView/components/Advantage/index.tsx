@@ -11,7 +11,7 @@ export interface AdvantageProps {
   locale: Locale
 }
 
-export default function Advantage({ id, href, locale }: AdvantageProps): JSX.Element {
+export default function Advantage({ id, href, locale }: AdvantageProps) {
   const theme = useTheme()
   const { title, subtitle } = i18n[locale][id]
   const { light, dark } = theme.palette[id]

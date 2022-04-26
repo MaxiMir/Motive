@@ -15,7 +15,7 @@ interface ReactionSupportProps {
   locale: Locale
 }
 
-export default function ReactionSupport({ goal, owner, locale }: ReactionSupportProps): JSX.Element {
+export default function ReactionSupport({ goal, owner, locale }: ReactionSupportProps) {
   const client = useClient()
   const openSignIn = useOpenSignIn()
   const [open, setOpen] = useState(false)

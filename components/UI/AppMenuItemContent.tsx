@@ -7,7 +7,7 @@ interface AppMenuItemContentProps {
   text: string
 }
 
-export default function AppMenuItemContent({ icon, text }: AppMenuItemContentProps): JSX.Element {
+export default function AppMenuItemContent({ icon, text }: AppMenuItemContentProps) {
   return (
     <>
       <ListItemIconCompact>

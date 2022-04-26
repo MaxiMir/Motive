@@ -6,7 +6,7 @@ interface TaskDateProps {
   date: string
 }
 
-export default function TaskDate({ date }: TaskDateProps): JSX.Element {
+export default function TaskDate({ date }: TaskDateProps) {
   const formattedDate = format(new Date(date), 'hh:mm')
 
   return (

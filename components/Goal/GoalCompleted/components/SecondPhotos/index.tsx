@@ -11,7 +11,7 @@ interface SecondPhotosProps {
   locale: Locale
 }
 
-export default function SecondPhotos({ id, photos, locale }: SecondPhotosProps): JSX.Element {
+export default function SecondPhotos({ id, photos, locale }: SecondPhotosProps) {
   const { header, ariaControls } = i18n[locale]
 
   return (

@@ -13,7 +13,7 @@ export interface ModalStageProps {
   onClose: () => void
 }
 
-export default function ModalStage({ goal, onClose }: ModalStageProps): JSX.Element {
+export default function ModalStage({ goal, onClose }: ModalStageProps) {
   const { stages, day } = goal
   const { locale } = useLocale()
   const { isLoading, mutate } = useSendStage(onClose)

@@ -8,7 +8,7 @@ interface SupportSignProps {
   locale: Locale
 }
 
-export default function SupportSign({ name, locale }: SupportSignProps): JSX.Element {
+export default function SupportSign({ name, locale }: SupportSignProps) {
   const { getTitle } = i18n[locale]
   const title = getTitle(name)
 

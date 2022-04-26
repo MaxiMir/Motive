@@ -7,7 +7,7 @@ export interface UserAvatarProps {
   user: UserBaseDto
 }
 
-export default function UserAvatar({ user }: UserAvatarProps): JSX.Element {
+export default function UserAvatar({ user }: UserAvatarProps) {
   const { nickname, name, avatar } = user
   const href = getUserUrn(nickname)
 

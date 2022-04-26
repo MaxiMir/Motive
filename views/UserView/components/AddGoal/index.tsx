@@ -7,7 +7,7 @@ import i18n from './i18n'
 
 const ModalGoal = dynamic(() => import('components/Modal/ModalGoal'))
 
-export default function AddGoal(): JSX.Element {
+export default function AddGoal() {
   const { locale } = useLocale()
   const [open, setOpen] = useState(false)
   const { name } = i18n[locale]

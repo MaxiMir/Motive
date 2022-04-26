@@ -20,7 +20,7 @@ interface CharacteristicProps {
   onClick?: () => void
 }
 
-export default function Characteristic(props: CharacteristicProps): JSX.Element {
+export default function Characteristic(props: CharacteristicProps) {
   const { user, name, locale } = props
   const router = useRouter()
   const [modal, setModal] = useState<'followers' | 'completed'>()

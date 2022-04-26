@@ -6,7 +6,7 @@ interface SloganProps {
   locale: Locale
 }
 
-export default function Slogan({ locale }: SloganProps): JSX.Element {
+export default function Slogan({ locale }: SloganProps) {
   const theme = useTheme()
   const { subheader } = i18n[locale]
 

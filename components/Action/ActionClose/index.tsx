@@ -7,7 +7,7 @@ export interface ActionCloseProps {
   onClick: () => void
 }
 
-export default function ActionClose({ onClick }: ActionCloseProps): JSX.Element {
+export default function ActionClose({ onClick }: ActionCloseProps) {
   const { locale } = useLocale()
   const { name } = i18n[locale]
 

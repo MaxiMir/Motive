@@ -7,7 +7,7 @@ interface MainViewProps {
   locale: Locale
 }
 
-export default function MainView({ locale }: MainViewProps): JSX.Element {
+export default function MainView({ locale }: MainViewProps) {
   return (
     <>
       <Slogan locale={locale} />

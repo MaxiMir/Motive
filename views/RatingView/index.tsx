@@ -14,7 +14,7 @@ interface RatingViewProps extends Record<MainCharacteristicName, UserDto[]> {
   locale: Locale
 }
 
-export default function RatingView({ locale, ...props }: RatingViewProps): JSX.Element {
+export default function RatingView({ locale, ...props }: RatingViewProps) {
   const { query } = useRouter()
   const { header, ariaLabel } = i18n[locale]
 

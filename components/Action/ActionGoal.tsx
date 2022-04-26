@@ -10,7 +10,7 @@ export interface ActionGoalProps {
   onClick: () => void
 }
 
-export default function ActionGoal({ name, title, count, disabled, onClick }: ActionGoalProps): JSX.Element {
+export default function ActionGoal({ name, title, count, disabled, onClick }: ActionGoalProps) {
   const countShort = count && numberToShort(count)
 
   return (

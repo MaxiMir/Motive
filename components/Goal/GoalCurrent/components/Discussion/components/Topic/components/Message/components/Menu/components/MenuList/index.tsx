@@ -17,7 +17,7 @@ interface MenuListProps {
   onClose: () => void
 }
 
-export default function MenuList({ anchorEl, message, locale, onOpenModal, onClose }: MenuListProps): JSX.Element {
+export default function MenuList({ anchorEl, message, locale, onOpenModal, onClose }: MenuListProps) {
   const client = useClient()
   const [withReport, setWithReport] = useState(false)
   const { edit, report } = i18n[locale]

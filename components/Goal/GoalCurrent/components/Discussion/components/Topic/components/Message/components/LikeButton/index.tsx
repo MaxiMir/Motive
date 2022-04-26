@@ -13,7 +13,7 @@ interface LikeButtonProps {
   locale: Locale
 }
 
-export default function LikeButton({ message, answerFor, locale }: LikeButtonProps): JSX.Element {
+export default function LikeButton({ message, answerFor, locale }: LikeButtonProps) {
   const client = useClient()
   const disabled = checkOnDisabled(message, client)
   const title = getTitle(message, disabled, locale)

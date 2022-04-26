@@ -11,7 +11,7 @@ interface MenuListProps {
   onClose: () => void
 }
 
-export default function MenuList({ anchorEl, locale, onShare, onRemove, onClose }: MenuListProps): JSX.Element {
+export default function MenuList({ anchorEl, locale, onShare, onRemove, onClose }: MenuListProps) {
   const { share, remove } = i18n[locale]
 
   return (

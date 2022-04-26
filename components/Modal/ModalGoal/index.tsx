@@ -33,7 +33,7 @@ export interface ModalGoalProps {
   onClose: () => void
 }
 
-export default function ModalGoal({ locale, onClose }: ModalGoalProps): JSX.Element {
+export default function ModalGoal({ locale, onClose }: ModalGoalProps) {
   const [hashtagsRef, setHashtagsFocus] = useFocus()
   const form = useForm(onClose)
   const { isSubmitting, values, setFieldValue, handleSubmit } = form

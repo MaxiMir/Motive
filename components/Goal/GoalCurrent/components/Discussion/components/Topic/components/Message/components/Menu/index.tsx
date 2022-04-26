@@ -12,7 +12,7 @@ interface MenuProps {
   message: MessageDto
 }
 
-export default function Menu({ message }: MenuProps): JSX.Element {
+export default function Menu({ message }: MenuProps) {
   const { locale } = useLocale()
   const [anchorEl, setAnchorEl] = useState<HTMLElement | null>(null)
   const [withModal, setWithModal] = useState(false)

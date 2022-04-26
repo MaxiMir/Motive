@@ -11,7 +11,7 @@ interface TaskLabelProps {
   daysGoneForOwner: number
 }
 
-export default function TaskLabel({ task, daysGoneForOwner }: TaskLabelProps): JSX.Element {
+export default function TaskLabel({ task, daysGoneForOwner }: TaskLabelProps) {
   const completedByOther = checkOnCompletedByOther(task, daysGoneForOwner)
 
   return (

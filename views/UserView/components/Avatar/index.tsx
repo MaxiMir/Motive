@@ -10,7 +10,7 @@ interface AvatarProps {
   characteristic: UserCharacteristicDto
 }
 
-export default function Avatar({ avatar, characteristic }: AvatarProps): JSX.Element {
+export default function Avatar({ avatar, characteristic }: AvatarProps) {
   const theme = useTheme()
   const circleItems = getCircleItems(characteristic)
 

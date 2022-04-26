@@ -6,7 +6,7 @@ interface GoalViewsProps {
   views: number
 }
 
-export default function Views({ views }: GoalViewsProps): JSX.Element {
+export default function Views({ views }: GoalViewsProps) {
   const shortViews = numberToShort(views)
 
   return (

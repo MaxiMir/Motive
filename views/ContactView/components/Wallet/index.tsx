@@ -11,7 +11,7 @@ interface WalletProps {
   wallet: string
 }
 
-export default function Wallet({ name, wallet }: WalletProps): JSX.Element {
+export default function Wallet({ name, wallet }: WalletProps) {
   const { locale } = useLocale()
   const [enqueueSnackbar] = useSnackbar()
   const { copy, error } = i18n[locale]

@@ -17,7 +17,7 @@ interface EndOfDayProps {
   clientMember: MemberDto
 }
 
-export default function EndOfDay({ goal, nextDayId, forTomorrow, clientMember }: EndOfDayProps): JSX.Element {
+export default function EndOfDay({ goal, nextDayId, forTomorrow, clientMember }: EndOfDayProps) {
   const { locale } = useLocale()
   const { isLoading, mutate } = useSendEndOfDay(goal)
   const { button } = i18n[locale]

@@ -8,7 +8,7 @@ interface TopOfTheDayViewProps {
   locale: Locale
 }
 
-export default function TopOfTheDayView({ locale }: TopOfTheDayViewProps): JSX.Element {
+export default function TopOfTheDayView({ locale }: TopOfTheDayViewProps) {
   const { title, text } = i18n[locale]
 
   return (

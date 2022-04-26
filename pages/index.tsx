@@ -16,7 +16,7 @@ const i18n = {
   },
 }
 
-export default function MainPage(): JSX.Element {
+export default function MainPage() {
   const { locale } = useLocale()
   const { title, description } = i18n[locale]
 

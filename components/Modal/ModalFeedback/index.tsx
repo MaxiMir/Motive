@@ -22,7 +22,7 @@ export interface ModalFeedbackProps {
   onClose: () => void
 }
 
-export default function ModalFeedback({ goal, onClose }: ModalFeedbackProps): JSX.Element {
+export default function ModalFeedback({ goal, onClose }: ModalFeedbackProps) {
   const classes = useStyles()
   const { locale } = useLocale()
   const form = useForm(goal, onClose)

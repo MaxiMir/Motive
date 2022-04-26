@@ -48,7 +48,7 @@ export default function GoalCurrent({
   clientId,
   clientPage,
   clientMembership,
-}: GoalCurrentProps): JSX.Element {
+}: GoalCurrentProps) {
   const { id, name, hashtags, characteristic, owner, stages, day, inherited } = goal
   const { id: dayId, views, topicCount } = day
   const theme = useTheme()

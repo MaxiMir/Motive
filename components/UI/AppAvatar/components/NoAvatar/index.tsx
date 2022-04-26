@@ -6,7 +6,7 @@ interface NoAvatarProps {
   size: number
 }
 
-export default function NoAvatar({ size }: NoAvatarProps): JSX.Element {
+export default function NoAvatar({ size }: NoAvatarProps) {
   const fontSize = getFontSize(size)
 
   return (

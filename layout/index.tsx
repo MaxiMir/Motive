@@ -5,6 +5,7 @@ import dynamic from 'next/dynamic'
 import useClient from 'hooks/useClient'
 import Header from './Header'
 import Footer from './Footer'
+import AppScrollbar from '../components/UI/AppScrollbar'
 
 const Error = dynamic(() => import('pages/_error'))
 const Box = dynamic(() => import('@mui/material/Box'))
@@ -41,6 +42,8 @@ export default function Layout({ title, description, url, type, image, statusCod
         <meta name="theme-color" content="#19191A" />
         <meta charSet="UTF-8" />
         <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" />
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
       </Head>
       <Script
         src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS}`}
@@ -56,24 +59,24 @@ export default function Layout({ title, description, url, type, image, statusCod
         `}
       </Script>
       <Header authenticated={!!client} />
-      <Box
-        component="main"
-        id="main"
-        display="flex"
-        flexDirection="column"
-        sx={{
-          flex: 1,
-          background: (theme) => (theme.palette.mode === 'dark' ? '#19191A' : undefined),
-          '@supports not (-moz-appearance:none)': {
-            background: (theme) =>
-              theme.palette.mode === 'dark' ? 'linear-gradient(#19191A, #0A0A0A 60%)' : undefined,
-          },
-        }}
-      >
-        {statusCode !== 200 ? <Error statusCode={statusCode} /> : children}
-      </Box>
-      <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" />
-      <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+      <AppScrollbar>
+        <Box
+          component="main"
+          id="main"
+          display="flex"
+          flexDirection="column"
+          sx={{
+            height: '100%',
+            background: (theme) => (theme.palette.mode === 'dark' ? '#19191A' : undefined),
+            '@supports not (-moz-appearance:none)': {
+              background: (theme) =>
+                theme.palette.mode === 'dark' ? 'linear-gradient(#19191A, #0A0A0A 60%)' : undefined,
+            },
+          }}
+        >
+          {statusCode !== 200 ? <Error statusCode={statusCode} /> : children}
+        </Box>
+      </AppScrollbar>
       <Footer nickname={client?.nickname} />
     </>
   )

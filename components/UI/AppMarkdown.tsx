@@ -7,7 +7,7 @@ interface AppMarkdownProps {
   text: string
 }
 
-export default function AppMarkdown({ text }: AppMarkdownProps): JSX.Element {
+export default function AppMarkdown({ text }: AppMarkdownProps) {
   const markdown = toMarkdown(text)
 
   const renderParagraph = ({ children }: { children: ReactNode & ReactNode[] }) => (

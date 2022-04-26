@@ -13,7 +13,7 @@ export interface ActionSubmitProps {
   onClick: () => void
 }
 
-export default function ActionSubmit({ emoji, name, nameLoading, isLoading, onClick }: ActionSubmitProps): JSX.Element {
+export default function ActionSubmit({ emoji, name, nameLoading, isLoading, onClick }: ActionSubmitProps) {
   return (
     <AppGradientButton
       type="submit"

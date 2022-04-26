@@ -19,7 +19,7 @@ export interface UserInputProps {
   onAdd: (topic: TopicDto) => void
 }
 
-export default function UserInput({ dayId, user, type, topicId, onAdd }: UserInputProps): JSX.Element {
+export default function UserInput({ dayId, user, type, topicId, onAdd }: UserInputProps) {
   const form = useForm(dayId, topicId, type, onAdd)
   const { isSubmitting, values, handleSubmit } = form
   const { locale } = useLocale()

@@ -10,7 +10,7 @@ interface RepeatProps {
   locale: Locale
 }
 
-export default function Repeat({ goalId, locale }: RepeatProps): JSX.Element {
+export default function Repeat({ goalId, locale }: RepeatProps) {
   const { isLoading, mutate } = useSendCreateMember()
   const { name, nameLoading } = i18n[locale]
 

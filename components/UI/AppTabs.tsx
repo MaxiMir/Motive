@@ -8,7 +8,7 @@ interface AppTabsProps {
   initial?: number
 }
 
-export default function AppTabs({ tabs, content, ariaLabel, initial = 0 }: AppTabsProps): JSX.Element {
+export default function AppTabs({ tabs, content, ariaLabel, initial = 0 }: AppTabsProps) {
   const theme = useTheme()
   const [value, setValue] = useState(initial)
 

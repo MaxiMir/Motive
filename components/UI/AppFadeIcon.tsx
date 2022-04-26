@@ -4,7 +4,7 @@ interface AppSpinIconProps {
   name: AppEmojiName
 }
 
-export default function AppFadeIcon({ name }: AppSpinIconProps): JSX.Element {
+export default function AppFadeIcon({ name }: AppSpinIconProps) {
   return (
     <AppEmoji
       name={name}

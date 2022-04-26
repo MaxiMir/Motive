@@ -15,7 +15,7 @@ export interface FeedbackButtonProps {
   locale: Locale
 }
 
-export default function FeedbackButton({ goal, forTomorrow, locale }: FeedbackButtonProps): JSX.Element {
+export default function FeedbackButton({ goal, forTomorrow, locale }: FeedbackButtonProps) {
   const [open, setOpen] = useState(false)
   const { button } = i18n[locale]
 

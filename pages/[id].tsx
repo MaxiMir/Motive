@@ -10,7 +10,7 @@ import Layout from 'layout'
 import UserView from 'views/UserView'
 import { useUserPage } from 'views/UserView/hook'
 
-export default function UserDetail({ statusCode }: PageProps): JSX.Element {
+export default function UserDetail({ statusCode }: PageProps) {
   const { data } = useUserPage()
   const { locale } = useLocale()
   const userMeta = getUserMeta(data?.content, locale)

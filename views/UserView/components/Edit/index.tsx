@@ -12,7 +12,7 @@ interface EditProps {
   locale: Locale
 }
 
-export default function Edit({ user, locale }: EditProps): JSX.Element {
+export default function Edit({ user, locale }: EditProps) {
   const [open, setOpen] = useState(false)
   const { title } = i18n[locale]
 

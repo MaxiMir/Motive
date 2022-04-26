@@ -18,7 +18,7 @@ export interface ModalJoinProps {
   onClose: () => void
 }
 
-export default function ModalJoin({ goal, onClose }: ModalJoinProps): JSX.Element {
+export default function ModalJoin({ goal, onClose }: ModalJoinProps) {
   const classes = useStyles()
   const { locale } = useLocale()
   const { id, calendar, day } = goal

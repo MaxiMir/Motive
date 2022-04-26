@@ -17,7 +17,7 @@ interface TaskProps {
   clientMember?: MemberDto
 }
 
-export default function Task({ goalId, task, rest, goalInfo, clientMember }: TaskProps): JSX.Element {
+export default function Task({ goalId, task, rest, goalInfo, clientMember }: TaskProps) {
   const { id, date, completed } = task
   const { form, forTomorrow, daysGoneForOwner } = goalInfo
   const setCompleted = useSetCompleted(goalId, id, rest, clientMember)

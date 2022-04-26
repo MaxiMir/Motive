@@ -10,7 +10,7 @@ const i18n = {
   },
 }
 
-export default function Page500(): JSX.Element {
+export default function Page500() {
   const { locale } = useLocale()
   const { title } = i18n[locale]
 

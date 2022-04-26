@@ -22,7 +22,7 @@ interface ContactViewProps {
   locale: Locale
 }
 
-export default function ContactView({ locale }: ContactViewProps): JSX.Element {
+export default function ContactView({ locale }: ContactViewProps) {
   const theme = useTheme()
   const { header, subheader, support } = i18n[locale]
 

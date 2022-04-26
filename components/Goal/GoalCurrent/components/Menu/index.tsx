@@ -16,7 +16,7 @@ interface MenuProps {
   clientOwnership: OwnershipDto
 }
 
-export default function Menu({ goal, title, href, clientOwnership }: MenuProps): JSX.Element {
+export default function Menu({ goal, title, href, clientOwnership }: MenuProps) {
   const { locale } = useLocale()
   const [anchorEl, setAnchorEl] = useState<HTMLElement | null>(null)
   const [withShare, setWithShare] = useState(false)

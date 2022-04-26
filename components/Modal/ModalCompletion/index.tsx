@@ -29,7 +29,7 @@ export interface ModalCompletionProps {
   onClose: () => void
 }
 
-export default function ModalCompletion({ goal, onClose }: ModalCompletionProps): JSX.Element {
+export default function ModalCompletion({ goal, onClose }: ModalCompletionProps) {
   const classes = useStyles()
   const { locale } = useLocale()
   const form = useForm(goal, onClose)

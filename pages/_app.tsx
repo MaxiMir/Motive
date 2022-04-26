@@ -31,7 +31,7 @@ const i18n = {
   },
 }
 
-export default function MyApp({ Component, pageProps: { session, ...pageProps } }: AppProps): JSX.Element {
+export default function MyApp({ Component, pageProps: { session, ...pageProps } }: AppProps) {
   const { dehydratedState, providers } = pageProps
   const { locale } = useLocale()
   const prefersDarkMode = useMediaQuery('(prefers-color-scheme: dark)')

@@ -21,7 +21,7 @@ const i18n = {
   },
 }
 
-export default function SearchPage({ statusCode }: PageProps): JSX.Element {
+export default function SearchPage({ statusCode }: PageProps) {
   const { locale } = useLocale()
   const { title, description } = i18n[locale]
   const { data } = useSearchPage()

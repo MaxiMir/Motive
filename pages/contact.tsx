@@ -15,7 +15,7 @@ const i18n = {
   },
 }
 
-export default function ContactPage(): JSX.Element {
+export default function ContactPage() {
   const { locale } = useLocale()
   const { title, description } = i18n[locale]
 

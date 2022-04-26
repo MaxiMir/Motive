@@ -7,7 +7,7 @@ interface UserListProps {
   users: UserDto[]
 }
 
-export default function UserList({ users }: UserListProps): JSX.Element {
+export default function UserList({ users }: UserListProps) {
   const keyGetter = (user: UserDto) => user.id
 
   return (

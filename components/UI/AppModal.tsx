@@ -1,6 +1,7 @@
 import { Fragment, ReactNode } from 'react'
 import dynamic from 'next/dynamic'
 import { Dialog, DialogContent, DialogTitle, DialogProps, backdropClasses, paperClasses } from '@mui/material'
+import AppScrollbar from './AppScrollbar'
 
 const DialogActions = dynamic(() => import('@mui/material/DialogActions'))
 const Box = dynamic(() => import('@mui/material/Box'))
@@ -20,7 +21,7 @@ export default function AppModal({ title, actions, maxWidth, children, onClose }
       maxWidth={maxWidth}
       sx={{
         [`& .${paperClasses.root}`]: {
-          maxHeight: '75vh',
+          maxHeight: '80vh',
         },
         [`& .${backdropClasses.root}`]: {
           background: 'rgba(34, 34, 34, 0.75)',
@@ -32,7 +33,9 @@ export default function AppModal({ title, actions, maxWidth, children, onClose }
       <DialogTitle sx={{ padding: '16px 24px 8px', textAlign: 'center', textTransform: 'uppercase' }}>
         {title}
       </DialogTitle>
-      <DialogContent sx={{ padding: '12px 24px 24px !important' }}>{children}</DialogContent>
+      <AppScrollbar>
+        <DialogContent sx={{ padding: '12px 24px 24px !important' }}>{children}</DialogContent>
+      </AppScrollbar>
       {actions && (
         <DialogActions>
           <Box display="flex" flex={1} justifyContent="space-between" pb={2} px={2}>

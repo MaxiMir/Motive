@@ -195,6 +195,9 @@ export const getDesignTokens = (mode: PaletteMode): ThemeOptions => {
             flexDirection: 'column',
             height: '100vh',
           },
+          '.ps .ps__rail-y:hover, .ps .ps--clicking': {
+            background: 'transparent!important',
+          },
         },
       },
     },

@@ -1,9 +1,9 @@
 ```shell
-docker build -t maximir/frontend:1.0.41 .
+docker build -t maximir/frontend:1.0.43 .
 # artifactory:
-docker tag <IMAGE_ID> maximir.jfrog.io/default-docker-virtual/frontend:1.0.41
-docker push maximir.jfrog.io/default-docker-virtual/frontend:1.0.41
-docker pull maximir.jfrog.io/default-docker-virtual/frontend:1.0.41
+docker tag <IMAGE_ID> maximir.jfrog.io/default-docker-virtual/frontend:1.0.43
+docker push maximir.jfrog.io/default-docker-virtual/frontend:1.0.43
+docker pull maximir.jfrog.io/default-docker-virtual/frontend:1.0.43
 
 # copy:
 docker cp <IMAGE_ID>:/home/node/client /home # <-
@@ -14,7 +14,7 @@ version: '3.3'
 
 services:
   frontend:
-    image: maximir.jfrog.io/default-docker-virtual/frontend:1.0.41
+    image: maximir.jfrog.io/default-docker-virtual/frontend:1.0.43
     depends_on:
       - backend
     restart: unless-stopped
@@ -26,6 +26,7 @@ services:
     environment:
       - PORT=4000
       - CLIENT=https://2bebetter.pro
+      - REDIS=redis://localhost:6379
       - NEXTAUTH_COOKIE=__Secure-next-auth.session-token
       - NEXTAUTH_SECRET=LlEderlgdhSaJS6yeP2JtPiz5h60ZyanzvAmYyOjG0w=
       - POSTGRES_HOST=188.225.37.43
@@ -39,6 +40,13 @@ services:
     restart: unless-stopped
     ports:
       - "127.0.0.1:4000:4000"
+    depends_on:
+      - redis
+
+  redis:
+    image: redis:6.2.5-alpine
+    ports:
+      - "127.0.0.1:6379:6379"
 ```
 ```shell
 ##

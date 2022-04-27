@@ -3,9 +3,10 @@ import Head from 'next/head'
 import Script from 'next/script'
 import dynamic from 'next/dynamic'
 import useClient from 'hooks/useClient'
-import Header from './Header'
-import Footer from './Footer'
-import AppScrollbar from '../components/UI/AppScrollbar'
+import AppScrollbar from 'components/UI/AppScrollbar'
+import Header from './components/Header'
+import Footer from './components/Footer'
+import Events from './components/Events'
 
 const Error = dynamic(() => import('pages/_error'))
 const Box = dynamic(() => import('@mui/material/Box'))
@@ -75,6 +76,7 @@ export default function Layout({ title, description, url, type, image, statusCod
           }}
         >
           {statusCode !== 200 ? <Error statusCode={statusCode} /> : children}
+          {client && <Events client={client} />}
         </Box>
       </AppScrollbar>
       <Footer nickname={client?.nickname} />

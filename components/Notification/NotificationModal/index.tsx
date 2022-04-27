@@ -15,12 +15,12 @@ import i18n from './i18n'
 
 const AppInView = dynamic(() => import('components/UI/AppInView'))
 
-interface NotificationProps {
+interface NotificationModalProps {
   notification: NotificationDto
   onClose: () => void
 }
 
-export default function Notification({ notification, onClose }: NotificationProps) {
+export default function NotificationModal({ notification, onClose }: NotificationModalProps) {
   const { id, type, details, created, read } = notification
   const { name, nickname, avatar } = details.user
   const client = useClient()

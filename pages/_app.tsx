@@ -16,6 +16,7 @@ import { ContextSnackbarProps, SnackbarContext } from 'context/snackbarContext'
 import { ThemeContext } from 'context/themeContext'
 import { ModalSignInContext } from 'context/modalSignInContext'
 import useLocale from 'hooks/useLocale'
+import Event from 'components/Event'
 
 const AppSnackbar = dynamic(() => import('components/UI/AppSnackbar'))
 const ModalSignIn = dynamic(() => import('components/Modal/ModalSignIn'))
@@ -95,6 +96,7 @@ export default function MyApp({ Component, pageProps: { session, ...pageProps } 
                   <ModalSignInContext.Provider value={modalSignInCtx}>
                     <SnackbarContext.Provider value={snackbarCtx}>
                       <Component {...pageProps} />
+                      <Event />
                     </SnackbarContext.Provider>
                   </ModalSignInContext.Provider>
                   {snackbarProps && <AppSnackbar {...snackbarProps} onClose={onCloseSnackbar} />}

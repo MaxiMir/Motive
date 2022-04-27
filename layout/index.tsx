@@ -6,7 +6,6 @@ import useClient from 'hooks/useClient'
 import AppScrollbar from 'components/UI/AppScrollbar'
 import Header from './components/Header'
 import Footer from './components/Footer'
-import Events from './components/Events'
 
 const Error = dynamic(() => import('pages/_error'))
 const Box = dynamic(() => import('@mui/material/Box'))
@@ -60,13 +59,14 @@ export default function Layout({ title, description, url, type, image, statusCod
         `}
       </Script>
       <Header authenticated={!!client} />
-      <AppScrollbar>
+      <AppScrollbar style={{ height: '100%' }}>
         <Box
           component="main"
           id="main"
           display="flex"
           flexDirection="column"
           sx={{
+            flex: 1,
             height: '100%',
             background: (theme) => (theme.palette.mode === 'dark' ? '#19191A' : undefined),
             '@supports not (-moz-appearance:none)': {
@@ -76,7 +76,6 @@ export default function Layout({ title, description, url, type, image, statusCod
           }}
         >
           {statusCode !== 200 ? <Error statusCode={statusCode} /> : children}
-          {client && <Events client={client} />}
         </Box>
       </AppScrollbar>
       <Footer nickname={client?.nickname} />

@@ -15,6 +15,7 @@ export default {
     remove: 'Remove',
     format: 'MM/dd/yyyy',
     agoText: 'ago',
+    event: 'New event',
     getLimitPhotosError(limit: number): string {
       return `You cannot add more than ${limit} photos`
     },
@@ -35,6 +36,7 @@ export default {
     remove: 'Удалить',
     format: 'dd/MM/yyyy',
     agoText: 'назад',
+    event: 'Новое событие',
     getLimitPhotosError(limit: number): string {
       return `Вы не можете добавить больше ${limit} фото`
     },

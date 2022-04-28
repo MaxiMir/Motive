@@ -3,7 +3,6 @@ import Head from 'next/head'
 import Script from 'next/script'
 import dynamic from 'next/dynamic'
 import useClient from 'hooks/useClient'
-import AppScrollbar from 'components/UI/AppScrollbar'
 import Header from './components/Header'
 import Footer from './components/Footer'
 
@@ -59,25 +58,23 @@ export default function Layout({ title, description, url, type, image, statusCod
         `}
       </Script>
       <Header authenticated={!!client} />
-      <AppScrollbar style={{ height: '100%' }}>
-        <Box
-          component="main"
-          id="main"
-          display="flex"
-          flexDirection="column"
-          sx={{
-            flex: 1,
-            height: '100%',
-            background: (theme) => (theme.palette.mode === 'dark' ? '#19191A' : undefined),
-            '@supports not (-moz-appearance:none)': {
-              background: (theme) =>
-                theme.palette.mode === 'dark' ? 'linear-gradient(#19191A, #0A0A0A 60%)' : undefined,
-            },
-          }}
-        >
-          {statusCode !== 200 ? <Error statusCode={statusCode} /> : children}
-        </Box>
-      </AppScrollbar>
+      <Box
+        component="main"
+        id="main"
+        display="flex"
+        flexDirection="column"
+        sx={{
+          flex: 1,
+          pb: 2,
+          background: (theme) => (theme.palette.mode === 'dark' ? '#19191A' : undefined),
+          '@supports not (-moz-appearance:none)': {
+            background: (theme) =>
+              theme.palette.mode === 'dark' ? 'linear-gradient(#19191A, #0A0A0A 60%)' : undefined,
+          },
+        }}
+      >
+        {statusCode !== 200 ? <Error statusCode={statusCode} /> : children}
+      </Box>
       <Footer nickname={client?.nickname} />
     </>
   )

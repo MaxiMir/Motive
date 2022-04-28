@@ -6,7 +6,6 @@ import { NotificationDto } from 'dto'
 import useSnackbar from 'hooks/useSnackbar'
 import useLocale from 'hooks/useLocale'
 import useClient from 'hooks/useClient'
-import { getNotificationInfo } from 'components/Notification/NotificationModal/helper'
 
 export const useEvent = (): void => {
   const client = useClient()
@@ -26,10 +25,10 @@ export const useEvent = (): void => {
       secure: true,
     })
 
-    socket.on('notification', (notification: NotificationDto) => {
+    socket.on('notification', (_: NotificationDto) => {
       const { event } = i18n[locale]
-      const { emoji } = getNotificationInfo(notification.type)
-      enqueueSnackbar({ message: event, severity: 'success', icon: emoji })
+
+      enqueueSnackbar({ message: event, severity: 'success', icon: 'notification' })
       queryClient.invalidateQueries('notifications')
     })
 

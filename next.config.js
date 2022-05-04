@@ -14,7 +14,7 @@ module.exports = withPWA({
     runtimeCaching,
   },
   images: {
-    domains: ['localhost', '127.0.0.1', '2bebetter.pro', 'avatars.githubusercontent.com', 'lh3.googleusercontent.com'],
+    domains: ['localhost', '2bebetter.pro', 'avatars.githubusercontent.com', 'lh3.googleusercontent.com'],
   },
   experimental: {
     outputStandalone: true,

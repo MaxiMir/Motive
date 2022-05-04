@@ -7,11 +7,11 @@ import NextNprogress from 'nextjs-progressbar'
 import { enUS, ru } from 'date-fns/locale'
 import { StylesProvider, createGenerateClassName } from '@mui/styles'
 import { createTheme, ThemeProvider } from '@mui/material/styles'
-import { PaletteMode, useMediaQuery } from '@mui/material'
+import { PaletteMode } from '@mui/material'
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns'
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider'
-import { getDesignTokens } from 'theme'
 import CssBaseline from '@mui/material/CssBaseline'
+import { getDesignTokens } from 'theme'
 import { ContextSnackbarProps, SnackbarContext } from 'context/snackbarContext'
 import { ThemeContext } from 'context/themeContext'
 import { ModalSignInContext } from 'context/modalSignInContext'
@@ -35,8 +35,7 @@ const i18n = {
 export default function MyApp({ Component, pageProps: { session, ...pageProps } }: AppProps) {
   const { dehydratedState, providers } = pageProps
   const { locale } = useLocale()
-  const prefersDarkMode = useMediaQuery('(prefers-color-scheme: dark)')
-  console.log(`prefersDarkMode: ${prefersDarkMode}`) // TODO REMOVE
+  // const prefersDarkMode = useMediaQuery('(prefers-color-scheme: dark)') // TODO
   const [mode, setMode] = useState<PaletteMode>('dark') // TODO change prefersDarkMode
   const [snackbarProps, setSnackbarProps] = useState<ContextSnackbarProps | null>(null)
   const [options, setOptions] = useState<SignInOptions>()

@@ -23,7 +23,7 @@ export default function Header({ authenticated }: HeaderProps) {
       <Container fixed>
         <Box display="flex" justifyContent="space-between" alignItems="center">
           <LeftMenu />
-          <Chip label="Alpha 1.0.44" variant="outlined" />
+          <Chip label="Alpha 1.0.45" variant="outlined" />
           {authenticated ? <Notifications /> : <SignIn />}
         </Box>
       </Container>

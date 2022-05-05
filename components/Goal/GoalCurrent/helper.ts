@@ -34,10 +34,10 @@ export type GoalInfo = {
 }
 
 export const getGoalInfo = (goal: GoalDto, clientOwnership: OwnershipDto, userMember?: MemberDto): GoalInfo => {
-  const { started, day, calendar } = goal
+  const { started, day, calendar, completed } = goal
   const today = new Date()
   const lastDay = !calendar || calendar[calendar.length - 1].date === day.date
-  const controls = !clientOwnership.goal || lastDay
+  const controls = checkOnControls()
   const completeStage = clientOwnership.goal && controls && goal.stage <= goal.day.stage
   const daysGoneForOwner = differenceInCalendarDays(today, Date.parse(day.date))
   const differenceWithStarted = differenceInCalendarDays(today, Date.parse(started))
@@ -46,6 +46,14 @@ export const getGoalInfo = (goal: GoalDto, clientOwnership: OwnershipDto, userMe
   const web = checkOnWeb()
   const form = checkOnForm()
   const forTomorrow = checkOnForTomorrow()
+
+  function checkOnControls() {
+    if (completed && clientOwnership.goal) {
+      return false
+    }
+
+    return !clientOwnership.goal || lastDay
+  }
 
   function getDaysGone() {
     if (!userMember) {

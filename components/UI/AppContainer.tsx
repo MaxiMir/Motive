@@ -10,6 +10,7 @@ export default function AppContainer(props: ContainerProps) {
         flexDirection: 'column',
         alignItems: 'stretch',
         py: 3,
+        mb: 2,
       }}
       {...props}
     />

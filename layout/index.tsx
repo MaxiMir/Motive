@@ -65,7 +65,6 @@ export default function Layout({ title, description, url, type, image, statusCod
         flexDirection="column"
         sx={{
           flex: 1,
-          pb: 2,
           background: (theme) => (theme.palette.mode === 'dark' ? '#19191A' : undefined),
           '@supports not (-moz-appearance:none)': {
             background: (theme) =>

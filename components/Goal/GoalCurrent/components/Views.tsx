@@ -17,7 +17,7 @@ export default function Views({ views }: GoalViewsProps) {
             <AppEmoji name="views" variant="h5" />
           </span>
         </Tooltip>
-        <Typography variant="subtitle1" component="p" sx={{ color: '#5a5959' }}>
+        <Typography variant="subtitle1" component="p">
           {shortViews}
         </Typography>
       </Box>

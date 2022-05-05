@@ -22,7 +22,7 @@ export default function SecondPhotos({ id, photos, locale }: SecondPhotosProps) 
       ariaControls={ariaControls}
       details={
         <Box flex={1}>
-          <GallerySimple photos={photos} animation />
+          <GallerySimple photos={photos} />
         </Box>
       }
     />

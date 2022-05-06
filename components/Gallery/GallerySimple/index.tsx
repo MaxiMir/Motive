@@ -9,17 +9,13 @@ const Gallery = dynamic(() => import('react-photo-gallery'), { ssr: false })
 
 export interface GallerySimpleProps {
   photos: PhotoDto[]
-  animation?: boolean
   onClick?: PhotoClickHandler
 }
 
-export default function GallerySimple({ photos, animation, onClick }: GallerySimpleProps) {
+export default function GallerySimple({ photos, onClick }: GallerySimpleProps) {
   const photosWithSource = getPhotosWithSource(photos)
 
-  const renderImage = useCallback(
-    (props: RenderImageProps) => <GallerySlide {...props} animation={animation} />,
-    [animation],
-  )
+  const renderImage = useCallback((props: RenderImageProps) => <GallerySlide {...props} />, [])
 
   return <Gallery photos={photosWithSource} renderImage={renderImage} onClick={onClick} />
 }

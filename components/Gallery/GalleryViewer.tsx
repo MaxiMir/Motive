@@ -6,10 +6,9 @@ import { getPhotosWithSource } from './helper'
 
 export interface GalleryViewerProps {
   photos: PhotoDto[]
-  animation?: boolean
 }
 
-export default function GalleryViewer({ photos, animation }: GalleryViewerProps) {
+export default function GalleryViewer({ photos }: GalleryViewerProps) {
   const [currentImage, setCurrentImage] = useState(0)
   const [viewerIsOpen, setViewerIsOpen] = useState(false)
   const photosWithSource = getPhotosWithSource(photos)
@@ -35,7 +34,7 @@ export default function GalleryViewer({ photos, animation }: GalleryViewerProps)
           </Modal>
         )}
       </GalleryGateway>
-      <GallerySimple photos={photos} animation={animation} onClick={openViewer} />
+      <GallerySimple photos={photos} onClick={openViewer} />
     </>
   )
 }

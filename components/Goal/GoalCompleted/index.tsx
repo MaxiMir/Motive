@@ -14,7 +14,6 @@ const Typography = dynamic(() => import('@mui/material/Typography'))
 const AppInView = dynamic(() => import('components/UI/AppInView'))
 const GallerySimple = dynamic(() => import('components/Gallery/GallerySimple'))
 const Inheritance = dynamic(() => import('./components/Inheritance'))
-const SecondPhotos = dynamic(() => import('./components/SecondPhotos'))
 const Repeat = dynamic(() => import('./components/Repeat'))
 
 const CHARACTERISTICS: GoalCharacteristicName[] = ['motivation', 'creativity', 'support', 'members']
@@ -41,6 +40,11 @@ export default function GoalCompleted({ confirmation, user, inView, onView }: Go
         padding: '3px',
         background: `linear-gradient(to top left, #fde76c, #813203, #ce8c00)`,
         borderRadius: '13px',
+        flex: {
+          xs: '0 1 100%',
+          md: '0 1 calc(50% - 12px)',
+        },
+        maxWidth: '100%',
       }}
     >
       <Box
@@ -70,7 +74,6 @@ export default function GoalCompleted({ confirmation, user, inView, onView }: Go
             </Tooltip>
           </Typography>
         </Box>
-        <Box minHeight={320}>{mainPhoto && <GallerySimple photos={[mainPhoto]} animation />}</Box>
         <Box display="flex" justifyContent="space-between" alignItems="center">
           {CHARACTERISTICS.map((characteristicName) => (
             <Fragment key={characteristicName}>
@@ -80,7 +83,8 @@ export default function GoalCompleted({ confirmation, user, inView, onView }: Go
           ))}
         </Box>
         {confirmation.text && <Typography>{confirmation.text}</Typography>}
-        {!!secondPhotos?.length && <SecondPhotos id={goal.id} photos={secondPhotos} locale={locale} />}
+        <Box minHeight={320}>{mainPhoto && <GallerySimple photos={[mainPhoto]} />}</Box>
+        {!!secondPhotos?.length && <GallerySimple photos={secondPhotos} />}
         {renderRepeat && <Repeat goalId={goal.id} locale={locale} />}
       </Box>
       {onView && <>{inView && <AppInView onView={onView} />}</>}

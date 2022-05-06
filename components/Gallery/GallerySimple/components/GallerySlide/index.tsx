@@ -1,11 +1,8 @@
-import dynamic from 'next/dynamic'
 import { RenderImageProps } from 'react-photo-gallery'
 import { Box } from '@mui/material'
 import useLocale from 'hooks/useLocale'
 import GalleryImage from './components/GalleryImage'
 import i18n from './i18n'
-
-const AppImageZoom = dynamic(() => import('components/UI/AppImageZoom'))
 
 interface GalleryPhotoProps extends RenderImageProps {
   animation?: boolean
@@ -31,13 +28,7 @@ export default function GallerySlide({ animation, ...props }: GalleryPhotoProps)
         left: props.direction === 'column' ? props.left : undefined,
       }}
     >
-      {!animation ? (
-        <GalleryImage {...props} />
-      ) : (
-        <AppImageZoom>
-          <GalleryImage {...props} />
-        </AppImageZoom>
-      )}
+      <GalleryImage {...props} />
     </Box>
   )
 }

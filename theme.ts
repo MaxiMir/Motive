@@ -52,7 +52,7 @@ export const getDesignTokens = (mode: PaletteMode): ThemeOptions => {
     palette: {
       mode,
       navigation: mode === 'dark' ? '#121212' : '#d7d7d7',
-      content: mode === 'dark' ? '#1C1C1E' : '#d7d7d7',
+      content: mode === 'dark' ? '#19191a' : '#d7d7d7',
       zen: {
         silent: '#99989D',
         sand: '#ad998b',

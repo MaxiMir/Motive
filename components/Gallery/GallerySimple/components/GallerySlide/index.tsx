@@ -1,14 +1,10 @@
+import Image from 'next/image'
 import { RenderImageProps } from 'react-photo-gallery'
 import { Box } from '@mui/material'
 import useLocale from 'hooks/useLocale'
-import GalleryImage from './components/GalleryImage'
 import i18n from './i18n'
 
-interface GalleryPhotoProps extends RenderImageProps {
-  animation?: boolean
-}
-
-export default function GallerySlide({ animation, ...props }: GalleryPhotoProps) {
+export default function GallerySlide({ index, photo, margin, top, left, direction, onClick }: RenderImageProps) {
   const { locale } = useLocale()
   const { ariaLabel } = i18n[locale]
 
@@ -16,18 +12,24 @@ export default function GallerySlide({ animation, ...props }: GalleryPhotoProps)
     <Box
       aria-label={ariaLabel}
       sx={{
-        width: props.photo.width,
-        height: props.photo.height,
-        margin: props.margin && `${props.margin}px`,
+        width: photo.width,
+        height: photo.height,
+        margin: margin && `${margin}px`,
         overflow: 'hidden',
-        cursor: props.onClick && 'pointer',
-        position: props.direction === 'column' ? 'absolute' : undefined,
-        top: props.direction === 'column' ? props.top : undefined,
-        left: props.direction === 'column' ? props.left : undefined,
+        cursor: onClick && 'pointer',
+        position: direction === 'column' ? 'absolute' : undefined,
+        top: direction === 'column' ? top : undefined,
+        left: direction === 'column' ? left : undefined,
         borderRadius: 1,
       }}
     >
-      <GalleryImage {...props} />
+      <Image
+        src={photo.src}
+        alt=""
+        width={photo.width}
+        height={photo.height}
+        onClick={(event) => onClick?.(event, { index })}
+      />
     </Box>
   )
 }

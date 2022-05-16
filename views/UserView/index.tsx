@@ -30,7 +30,13 @@ export default function UserView({ user, locale }: UserViewProps) {
 
   return (
     <AppContainer>
-      <Box display="flex" alignItems="center" gap={1} mb={2}>
+      <Box
+        display="flex"
+        alignItems="center"
+        justifyContent={clientPage ? undefined : 'space-between'}
+        gap={clientPage ? 1 : undefined}
+        mb={2}
+      >
         <Typography variant="h5" component="h1">
           {name}
         </Typography>

@@ -1,6 +1,6 @@
 import { Box, Button, ButtonProps, useTheme } from '@mui/material'
 
-type AppGradientButtonProps = Omit<ButtonProps, 'variant' | 'color' | 'className'>
+type AppGradientButtonProps = Omit<ButtonProps, 'variant' | 'color' | 'sx' | 'className'>
 
 export default function AppGradientButton(props: AppGradientButtonProps) {
   const theme = useTheme()

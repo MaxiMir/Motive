@@ -18,16 +18,13 @@ export default function GallerySlide({ animation, ...props }: GalleryPhotoProps)
       sx={{
         width: props.photo.width,
         height: props.photo.height,
-        margin: !props.margin ? undefined : `${props.margin}px`,
+        margin: props.margin && `${props.margin}px`,
         overflow: 'hidden',
-        cursor: !props.onClick ? undefined : 'pointer',
+        cursor: props.onClick && 'pointer',
         position: props.direction === 'column' ? 'absolute' : undefined,
         top: props.direction === 'column' ? props.top : undefined,
         left: props.direction === 'column' ? props.left : undefined,
-        maxWidth: {
-          xs: 'initial',
-          md: 'calc(50% - 4.5px)',
-        },
+        borderRadius: 1,
       }}
     >
       <GalleryImage {...props} />

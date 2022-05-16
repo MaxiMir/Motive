@@ -1,7 +1,7 @@
 export default {
   en: {
     getTitle(following: boolean): string {
-      return `${following ? 'Remove' : 'Add'} following`
+      return following ? 'Unfollow' : 'Follow'
     },
     getMessage(add: boolean): string {
       return add ? 'Following added' : 'Following removed'
@@ -9,7 +9,7 @@ export default {
   },
   ru: {
     getTitle(following: boolean): string {
-      return following ? 'Удалить подписку' : 'Подписаться'
+      return following ? 'Отписаться' : 'Подписаться'
     },
     getMessage(add: boolean): string {
       return add ? 'Подписка добавлена' : 'Подписка удалена'

@@ -45,7 +45,7 @@ export default function Characteristic(props: CharacteristicProps) {
         <Button
           sx={{
             textTransform: 'none',
-            justifyContent: 'flex-start',
+            justifyContent: 'center',
             width: {
               sm: '110px',
             },
@@ -56,7 +56,13 @@ export default function Characteristic(props: CharacteristicProps) {
           }}
           onClick={onClick}
         >
-          <Box display="flex" flexDirection="column" gap={0.5}>
+          <Box
+            display="flex"
+            justifyContent="flex-start"
+            flexDirection="column"
+            gap={0.5}
+            minWidth={name === 'creativity' ? 68 : undefined}
+          >
             <Typography
               variant="caption"
               sx={{
@@ -65,6 +71,7 @@ export default function Characteristic(props: CharacteristicProps) {
                   xs: locale === 'ru' ? '0.55rem' : '0.75rem',
                   md: '0.8rem',
                 },
+                textAlign: 'start',
               }}
             >
               {button}

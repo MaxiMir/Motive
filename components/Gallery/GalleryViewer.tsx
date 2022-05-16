@@ -1,4 +1,4 @@
-import { FC, ReactNode, MouseEvent, useCallback, useState } from 'react'
+import { FC, ReactNode, useCallback, useState } from 'react'
 import Carousel, { Modal, ModalGateway } from 'react-images'
 import { PhotoDto } from 'dto'
 import GallerySimple from './GallerySimple'
@@ -15,7 +15,7 @@ export default function GalleryViewer({ photos }: GalleryViewerProps) {
   const views = photosWithSource.map((p) => ({ ...p, source: p.src }))
   const GalleryGateway = ModalGateway as FC<{ children: ReactNode }>
 
-  const openViewer = useCallback((_: MouseEvent, { index }: { index: number }) => {
+  const openViewer = useCallback((index: number) => {
     setCurrentImage(index)
     setViewerIsOpen(true)
   }, [])

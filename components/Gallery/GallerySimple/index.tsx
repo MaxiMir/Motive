@@ -1,27 +1,21 @@
-import { useCallback } from 'react'
-import Gallery, { PhotoClickHandler, RenderImageProps } from 'react-photo-gallery'
+import PhotoAlbum from 'react-photo-album'
 import { PhotoDto } from 'dto'
-import GallerySlide from './components/GallerySlide'
 import { getPhotosWithSource } from '../helper'
+import GalleryPhoto from './components/GalleryPhoto'
 
 export interface GallerySimpleProps {
   photos: PhotoDto[]
-  onClick?: PhotoClickHandler
+  onClick?: (index: number) => void
 }
 
 export default function GallerySimple({ photos, onClick }: GallerySimpleProps) {
   const photosWithSource = getPhotosWithSource(photos)
-  const compactSingle = photos.length === 1 && photos[0].width < photos[0].height
-
-  const renderImage = useCallback((props: RenderImageProps) => <GallerySlide {...props} />, [])
 
   return (
-    <Gallery
-      direction={compactSingle ? 'column' : undefined}
-      columns={compactSingle ? 2 : undefined}
+    <PhotoAlbum
+      layout="columns"
       photos={photosWithSource}
-      renderImage={renderImage}
-      onClick={onClick}
+      renderPhoto={(props) => <GalleryPhoto {...props} onClick={onClick} />}
     />
   )
 }

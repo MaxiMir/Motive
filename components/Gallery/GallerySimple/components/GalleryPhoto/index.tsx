@@ -21,12 +21,12 @@ export default function GalleryPhoto({ photo, layout, imageProps, wrapperProps, 
 
   return (
     <Box
-      aria-label={imageProps.onClick ? ariaLabel : undefined}
+      aria-label={onClick ? ariaLabel : undefined}
       sx={{
         width: style.width,
         padding: style.padding,
         marginBottom: style.marginBottom,
-        cursor: imageProps.onClick && 'pointer',
+        cursor: onClick && 'pointer',
         borderRadius: 1,
         overflow: 'hidden',
         ...wrapperStyle,

@@ -9,6 +9,7 @@ export enum NOTIFICATION_TYPE {
   NEW_SUPPORT = 'new-support',
   NEW_ANSWER = 'new-answer',
   NEW_FEEDBACK = 'new-feedback',
+  WEB_COVERAGE = 'web-coverage',
 }
 
 interface NotificationBase {
@@ -26,6 +27,7 @@ export interface NotificationGoalDto extends NotificationBase {
     | NOTIFICATION_TYPE.NEW_SUPPORT
     | NOTIFICATION_TYPE.NEW_ANSWER
     | NOTIFICATION_TYPE.NEW_FEEDBACK
+    | NOTIFICATION_TYPE.WEB_COVERAGE
   details: {
     id: number
     day: number

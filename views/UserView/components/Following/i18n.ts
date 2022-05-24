@@ -1,6 +1,6 @@
 export default {
   en: {
-    getTitle(following: boolean): string {
+    getName(following: boolean): string {
       return following ? 'Unfollow' : 'Follow'
     },
     getMessage(add: boolean): string {
@@ -8,7 +8,7 @@ export default {
     },
   },
   ru: {
-    getTitle(following: boolean): string {
+    getName(following: boolean): string {
       return following ? 'Отписаться' : 'Подписаться'
     },
     getMessage(add: boolean): string {

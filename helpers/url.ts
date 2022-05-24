@@ -65,13 +65,16 @@ export const getUrlWithHost = (urn: string): string => process.env.NEXT_PUBLIC_A
 
 export const getUserUrn = (nickname: string): string => `/${nickname}`
 
-export const getGoalUrn = (userUrn: string, goalId: number, dayId: number): string => {
-  const url = setQueryParams(userUrn, {
-    [SEARCH_PARAM.DATES]: `${goalId}:${dayId}`,
-  })
+export const getGoalUrn = (userUrn: string, goalId: number): string => {
   const hashMark = getGoalHashMark(goalId)
 
-  return url + hashMark
+  return userUrn + hashMark
+}
+
+export const getGoalWithDayUrn = (userUrn: string, goalId: number, dayId: number): string => {
+  const url = setQueryParams(userUrn, { [SEARCH_PARAM.DATES]: `${goalId}:${dayId}` })
+
+  return getGoalUrn(url, goalId)
 }
 
 export const getDiscussionUrn = (userUrn: string, goalId: number, dayId: number): string => {
@@ -93,7 +96,5 @@ export const getFeedbackUrn = (userUrn: string, goalId: number, dayId: number): 
 }
 
 export const getGoalHashMark = (id: number): string => `#${HASH_MARK.GOAL}-${id}`
-
-export const getFeedbackHashMark = (id: number): string => `#${HASH_MARK.FEEDBACK}-${id}`
 
 export const getDiscussionHashMark = (id: number): string => `#${HASH_MARK.DISCUSSION}-${id}`

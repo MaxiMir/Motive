@@ -11,6 +11,7 @@ import EmptyGoals from './components/EmptyGoals'
 import Following from './components/Following'
 
 const GoalCurrent = dynamic(() => import('components/Goal/GoalCurrent'))
+const Status = dynamic(() => import('./components/Status'))
 const Edit = dynamic(() => import('./components/Edit'))
 const AddGoal = dynamic(() => import('./components/AddGoal'))
 
@@ -23,28 +24,39 @@ export interface UserViewProps {
 }
 
 export default function UserView({ user, locale }: UserViewProps) {
-  const { id, nickname, name, avatar, characteristic, goals, following, userMembership, clientMembership } = user
+  const {
+    id,
+    nickname,
+    name,
+    avatar,
+    characteristic,
+    goals,
+    following,
+    userMembership,
+    clientMembership,
+    status,
+    device,
+  } = user
   const client = useClient()
   const href = getUserUrn(nickname)
   const clientPage = id === client?.id
+  const showStatus = !clientPage && status && device
 
   return (
     <AppContainer>
-      <Box
-        display="flex"
-        alignItems="center"
-        justifyContent={clientPage ? undefined : 'space-between'}
-        gap={clientPage ? 1 : undefined}
-        mb={2}
-      >
-        <Typography variant="h5" component="h1">
-          {name}
-        </Typography>
-        {clientPage ? (
-          <Edit user={user} locale={locale} />
-        ) : (
-          <Following id={user.id} following={following} locale={locale} />
-        )}
+      <Box display="flex" flexDirection="column" mb={2}>
+        <Box
+          display="flex"
+          alignItems="center"
+          justifyContent={clientPage ? undefined : 'space-between'}
+          gap={clientPage ? 1 : undefined}
+        >
+          <Typography variant="h5" component="h1">
+            {name}
+          </Typography>
+          {clientPage && <Edit user={user} locale={locale} />}
+          {showStatus && <Status status={status} device={device} />}
+        </Box>
       </Box>
       <Box display="flex" flexDirection="column" gap={3} flex={1}>
         <Box
@@ -82,7 +94,7 @@ export default function UserView({ user, locale }: UserViewProps) {
             </Box>
           </Box>
         </Box>
-        {clientPage && <AddGoal />}
+        {clientPage ? <AddGoal /> : <Following id={user.id} following={following} locale={locale} />}
         {!goals.length ? (
           <EmptyGoals clientPage={clientPage} locale={locale} />
         ) : (

@@ -8,6 +8,7 @@ export default {
     'new-support': 'supported you',
     'new-answer': 'reply to you',
     'new-feedback': 'added feedback',
+    'web-coverage': 'abandoned the goal',
     view: 'View',
   },
   ru: {
@@ -19,6 +20,7 @@ export default {
     'new-support': 'поддержал(-а) Вас',
     'new-answer': 'ответил(-а) Вам',
     'new-feedback': 'добавил(-а) отзыв',
+    'web-coverage': 'забросила цель',
     view: 'Посмотреть',
   },
 }

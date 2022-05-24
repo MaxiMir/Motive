@@ -4,7 +4,7 @@ import { useRouter } from 'next/router'
 import { Box, useTheme } from '@mui/material'
 import { GoalDto, GoalCharacteristicName, MemberDto } from 'dto'
 import useLocale from 'hooks/useLocale'
-import { getGoalUrn, HASH_MARK } from 'helpers/url'
+import { getGoalWithDayUrn, HASH_MARK } from 'helpers/url'
 import { getMember } from 'views/UserView/helper'
 import CharacteristicGoal from 'components/Characteristic/CharacteristicGoal'
 import AppTitle from 'components/UI/AppTitle'
@@ -56,7 +56,7 @@ export default function GoalCurrent({
   const { locale } = useLocale()
   const clientOwnership = getClientOwnership(goal, clientId, clientPage, clientMembership)
   const userMember = getMember(id, userMembership, userId)
-  const goalHref = getGoalUrn(href, id, dayId)
+  const goalHref = getGoalWithDayUrn(href, id, dayId)
   const goalInfo = useMemo(() => getGoalInfo(goal, clientOwnership, userMember), [goal, clientOwnership, userMember])
   const showDiscussion = checkOnShowDiscussion(query, id)
   const { mutate } = useIncreaseViews(goal, clientId)

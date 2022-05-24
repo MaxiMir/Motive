@@ -1,4 +1,4 @@
-import { IconButton } from '@mui/material'
+import { Button } from '@mui/material'
 import { Locale } from 'hooks/useLocale'
 import AppEmoji from 'components/UI/AppEmoji'
 import useSetFollowing from './hook'
@@ -12,12 +12,18 @@ interface FollowingProps {
 
 export default function Following({ id, following, locale }: FollowingProps) {
   const setFollowing = useSetFollowing(id, following, locale)
-  const { getTitle } = i18n[locale]
-  const title = getTitle(following)
+  const { getName } = i18n[locale]
+  const name = getName(following)
 
   return (
-    <IconButton title={title} sx={{ width: 48, height: 48 }} onClick={setFollowing}>
-      <AppEmoji name="following" variant="h5" sx={{ filter: !following ? 'grayscale(1)' : undefined }} />
-    </IconButton>
+    <Button
+      variant="outlined"
+      color="warning"
+      startIcon={<AppEmoji name="following" onlyEmoji />}
+      sx={{ alignSelf: 'center', filter: following ? 'grayscale(0.6)' : undefined }}
+      onClick={setFollowing}
+    >
+      {name}
+    </Button>
   )
 }

@@ -1,5 +1,5 @@
 import dynamic from 'next/dynamic'
-import { Box, Typography } from '@mui/material'
+import { Box, Divider, Typography } from '@mui/material'
 import { UserDetailDto, UserCharacteristicName, MainCharacteristicName } from 'dto'
 import { getUserUrn } from 'helpers/url'
 import useClient from 'hooks/useClient'
@@ -34,30 +34,28 @@ export default function UserView({ user, locale }: UserViewProps) {
     following,
     userMembership,
     clientMembership,
-    status,
+    online,
+    lastSeen,
     device,
   } = user
   const client = useClient()
   const href = getUserUrn(nickname)
   const clientPage = id === client?.id
-  const showStatus = !clientPage && status && device
 
   return (
     <AppContainer>
       <Box display="flex" flexDirection="column" mb={2}>
-        <Box
-          display="flex"
-          alignItems="center"
-          justifyContent={clientPage ? undefined : 'space-between'}
-          gap={clientPage ? 1 : undefined}
-        >
-          <Typography variant="h5" component="h1">
-            {name}
-          </Typography>
-          {clientPage && <Edit user={user} locale={locale} />}
-          {showStatus && <Status status={status} device={device} />}
+        <Box display="flex" flexWrap="wrap" alignItems="center" justifyContent="space-between" gap={1}>
+          <Box display="flex" alignItems="center" gap={1}>
+            <Typography variant="h5" component="h1">
+              {name}
+            </Typography>
+            {clientPage && <Edit user={user} locale={locale} />}
+          </Box>
+          <Status online={online} lastSeen={lastSeen} device={device} />
         </Box>
       </Box>
+      <Divider light sx={{ mb: 3 }} />
       <Box display="flex" flexDirection="column" gap={3} flex={1}>
         <Box
           display="flex"

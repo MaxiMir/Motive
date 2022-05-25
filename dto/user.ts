@@ -8,7 +8,8 @@ export interface UserBaseDto {
   readonly email?: string | null
   readonly sub?: string | null
   readonly provider?: string
-  readonly status?: string | null
+  readonly online?: boolean | null
+  readonly lastSeen?: string | null
   readonly device?: string | null
 }
 

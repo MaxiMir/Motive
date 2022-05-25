@@ -1,21 +1,23 @@
 import dynamic from 'next/dynamic'
 import { Typography } from '@mui/material'
 import useLocale from 'hooks/useLocale'
+import { UserBaseDto } from 'dto'
 
 const Online = dynamic(() => import('./components/Online'))
 const Offline = dynamic(() => import('./components/Offline'))
 
-interface StatusProps {
-  status: string
-  device?: string | null
-}
+type StatusProps = Pick<UserBaseDto, 'online' | 'lastSeen' | 'device'>
 
-export default function Status({ status, device }: StatusProps) {
+export default function Status({ online, lastSeen, device }: StatusProps) {
   const { locale } = useLocale()
 
   return (
     <Typography variant="caption" sx={{ color: 'zen.silent' }}>
-      {status === 'online' ? <Online locale={locale} /> : <Offline status={status} device={device} locale={locale} />}
+      {online ? (
+        <Online locale={locale} />
+      ) : (
+        <>{lastSeen && <Offline lastSeen={lastSeen} device={device} locale={locale} />}</>
+      )}
     </Typography>
   )
 }

@@ -3,6 +3,7 @@ import { useQueryClient } from 'react-query'
 import { io } from 'socket.io-client'
 import i18n from 'constants/i18n'
 import { NotificationDto } from 'dto'
+import { getDeviceType } from 'helpers/dom'
 import useSnackbar from 'hooks/useSnackbar'
 import useLocale from 'hooks/useLocale'
 import useClient from 'hooks/useClient'
@@ -21,7 +22,7 @@ export const useEvent = (): void => {
     const socket = io(process.env.NEXT_PUBLIC_APP_URL || '', {
       auth: {
         id: client.id,
-        mobile: 'ontouchstart' in document.documentElement,
+        device: getDeviceType(),
       },
       secure: true,
     })

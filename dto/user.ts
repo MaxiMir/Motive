@@ -1,3 +1,4 @@
+import { Device } from 'helpers/dom'
 import { UserCharacteristicDto } from './characteristic'
 
 export interface UserBaseDto {
@@ -10,7 +11,7 @@ export interface UserBaseDto {
   readonly provider?: string
   readonly online?: boolean | null
   readonly lastSeen?: string | null
-  readonly device?: string | null
+  readonly device?: Device | null
 }
 
 export type CreateUserDto = Omit<UserBaseDto, 'id' | 'nickname'>

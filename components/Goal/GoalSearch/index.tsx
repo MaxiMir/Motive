@@ -1,5 +1,4 @@
 import { Box, Button, Typography } from '@mui/material'
-import { makeStyles } from '@mui/styles'
 import { GoalCharacteristicName, GoalDto } from 'dto'
 import CharacteristicGoal from 'components/Characteristic/CharacteristicGoal'
 import UserAvatar from 'components/User/UserAvatar'
@@ -12,10 +11,19 @@ export interface GoalSearchProps {
 
 export default function GoalSearch({ goal }: GoalSearchProps) {
   const { name, characteristic, owner } = goal
-  const classes = useStyles()
 
   return (
-    <Button variant="outlined" color="primary" href="#" className={classes.button}>
+    <Button
+      variant="outlined"
+      color="primary"
+      href="#"
+      sx={{
+        width: '100%',
+        textTransform: 'none',
+        padding: 16,
+        borderRadius: 12,
+      }}
+    >
       <Box display="flex" flexDirection="column" alignItems="center" gap={2}>
         <Typography>{name}</Typography>
         <Box display="flex" justifyContent="flex-start" flex={1}>
@@ -39,12 +47,3 @@ export default function GoalSearch({ goal }: GoalSearchProps) {
     </Button>
   )
 }
-
-const useStyles = makeStyles({
-  button: {
-    width: '100%',
-    textTransform: 'none',
-    padding: 16,
-    borderRadius: 12,
-  },
-})

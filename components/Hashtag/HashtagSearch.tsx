@@ -10,13 +10,13 @@ export interface HashtagSearchProps {
 }
 
 export default function HashtagSearch({ name, gradient, views }: HashtagSearchProps) {
-  const { jump } = useLocale()
+  const { go } = useLocale()
   const shortViews = numberToShort(views)
 
   const onClick = () => {
     const href = getHashtagHref(name)
 
-    jump(href)
+    go(href)
   }
 
   return (

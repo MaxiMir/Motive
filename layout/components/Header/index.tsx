@@ -1,5 +1,5 @@
 import dynamic from 'next/dynamic'
-import { Box, AppBar, Chip, Container } from '@mui/material'
+import { Box, AppBar, Container } from '@mui/material'
 import LeftMenu from './components/LeftMenu'
 
 const SignIn = dynamic(() => import('./components/SignIn'))
@@ -23,7 +23,6 @@ export default function Header({ authenticated }: HeaderProps) {
       <Container fixed>
         <Box display="flex" justifyContent="space-between" alignItems="center">
           <LeftMenu />
-          <Chip label="Alpha 1.0.53" variant="outlined" />
           {authenticated ? <Notifications /> : <SignIn />}
         </Box>
       </Container>

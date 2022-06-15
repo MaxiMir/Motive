@@ -1,7 +1,6 @@
 import { ChangeEvent } from 'react'
 import { Form, FormikProvider } from 'formik'
-import { Box, FormControlLabel, Radio, RadioGroup, Typography, Theme } from '@mui/material'
-import { createStyles, makeStyles } from '@mui/styles'
+import { Box, FormControlLabel, Radio, RadioGroup, Typography } from '@mui/material'
 import { GoalDto } from 'dto'
 import useLocale from 'hooks/useLocale'
 import ActionSubmit from 'components/Action/ActionSubmit'
@@ -19,7 +18,6 @@ export interface ModalJoinProps {
 }
 
 export default function ModalJoin({ goal, onClose }: ModalJoinProps) {
-  const classes = useStyles()
   const { locale } = useLocale()
   const { id, calendar, day } = goal
   const beginningDay = calendar[0].id
@@ -47,7 +45,11 @@ export default function ModalJoin({ goal, onClose }: ModalJoinProps) {
     <AppModal
       title={
         <>
-          {title} <span className={classes.start}>{subtitle}</span>?
+          {title}{' '}
+          <Box component="span" sx={{ color: 'zen.sand' }}>
+            {subtitle}
+          </Box>
+          ?
         </>
       }
       maxWidth="xs"
@@ -94,7 +96,7 @@ export default function ModalJoin({ goal, onClose }: ModalJoinProps) {
               id="tips"
               ariaControls={ariaControls}
               details={
-                <Box className={classes.hint}>
+                <Box sx={{ color: 'zen.silent' }}>
                   <Typography>
                     {accordionDetails[0]} <AppDecorEmoji name="motivation" /> {accordionDetails[1]}.
                   </Typography>
@@ -102,8 +104,11 @@ export default function ModalJoin({ goal, onClose }: ModalJoinProps) {
                     {accordionDetails[2]} <AppDecorEmoji name="creativity" /> {accordionDetails[3]}.
                   </Typography>
                   <Typography>
-                    {accordionDetails[4]} <span className={classes.owner}>{goal.owner.name}</span> {accordionDetails[5]}
-                    .
+                    {accordionDetails[4]}{' '}
+                    <Box component="span" sx={{ color: 'support.main' }}>
+                      {goal.owner.name}
+                    </Box>{' '}
+                    {accordionDetails[5]}.
                   </Typography>
                   <Typography>
                     {accordionDetails[6]} <AppDecorEmoji name="discussion" />.
@@ -117,17 +122,3 @@ export default function ModalJoin({ goal, onClose }: ModalJoinProps) {
     </AppModal>
   )
 }
-
-const useStyles = makeStyles((theme: Theme) =>
-  createStyles({
-    start: {
-      color: theme.palette.zen.sand,
-    },
-    owner: {
-      color: theme.palette.support.main,
-    },
-    hint: {
-      color: theme.palette.zen.silent,
-    },
-  }),
-)

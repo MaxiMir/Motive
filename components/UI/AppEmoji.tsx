@@ -58,6 +58,12 @@ export type AppEmojiName =
   | 'clock'
   | 'notification'
   | 'question'
+  | 'en'
+  | 'ru'
+  | 'uk'
+  | 'light'
+  | 'system'
+  | 'dark'
 
 interface AppEmojiProps {
   name: AppEmojiName
@@ -159,6 +165,8 @@ function getContent(name: AppEmojiName) {
       return '😉'
     case 'tired':
       return '😮‍💨'
+    case 'scared':
+      return '😱'
     case 'switch':
       return '🕹'
     case 'bug':
@@ -177,8 +185,6 @@ function getContent(name: AppEmojiName) {
       return '🩸'
     case 'web':
       return '🕸'
-    case 'scared':
-      return '😱'
     case 'trending':
       return '👑'
     case 'contact':
@@ -201,6 +207,18 @@ function getContent(name: AppEmojiName) {
       return '🛎'
     case 'question':
       return '❓'
+    case 'light':
+      return '☀️'
+    case 'system':
+      return '⚙️'
+    case 'dark':
+      return '🌑'
+    case 'en':
+      return '🇺🇸'
+    case 'ru':
+      return '🇷🇺'
+    case 'uk':
+      return '🇺🇦'
     default:
       return ''
   }

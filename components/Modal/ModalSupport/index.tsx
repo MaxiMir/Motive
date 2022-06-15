@@ -1,6 +1,5 @@
 import { Field, Form, FormikProvider } from 'formik'
-import { Box, Typography, Theme } from '@mui/material'
-import { createStyles, makeStyles } from '@mui/styles'
+import { Box, Typography } from '@mui/material'
 import { GoalDto, UserBaseDto } from 'dto'
 import useLocale from 'hooks/useLocale'
 import ActionSubmit from 'components/Action/ActionSubmit'
@@ -20,7 +19,6 @@ export interface ModalSupportProps {
 }
 
 export default function ModalSupport({ goal, owner, onClose }: ModalSupportProps) {
-  const classes = useStyles()
   const { locale } = useLocale()
   const form = useForm(goal, onClose)
   const { isSubmitting, handleSubmit } = form
@@ -30,7 +28,10 @@ export default function ModalSupport({ goal, owner, onClose }: ModalSupportProps
     <AppModal
       title={
         <>
-          {title} <span className={classes.owner}>{owner.name}</span>
+          {title}
+          <Box component="span" sx={{ color: 'zen.sand' }}>
+            {owner.name}
+          </Box>
         </>
       }
       maxWidth="xs"
@@ -51,14 +52,14 @@ export default function ModalSupport({ goal, owner, onClose }: ModalSupportProps
           <Box display="flex" flexDirection="column" alignItems="center" gap={3}>
             <AppFadeIcon name="support" />
             <Field name="text" label={label} color="primary" multiline rows={3} component={AppInput} />
-            <Box className={classes.accordionWrap}>
+            <Box sx={{ width: '100%' }}>
               <AppAccordion
                 name="helmet"
                 header={header}
                 id="support"
                 ariaControls={ariaControls}
                 details={
-                  <Box className={classes.hint}>
+                  <Box sx={{ color: 'zen.silent' }}>
                     <Typography>
                       {accordion[0]}
                       <AppDecorEmoji name="goal" />.
@@ -80,21 +81,3 @@ export default function ModalSupport({ goal, owner, onClose }: ModalSupportProps
     </AppModal>
   )
 }
-
-const useStyles = makeStyles((theme: Theme) =>
-  createStyles({
-    button: {
-      alignSelf: 'baseline',
-      textTransform: 'none',
-    },
-    accordionWrap: {
-      width: '100%',
-    },
-    owner: {
-      color: theme.palette.zen.sand,
-    },
-    hint: {
-      color: theme.palette.zen.silent,
-    },
-  }),
-)

@@ -7,12 +7,12 @@ export interface HashtagChipProps {
 }
 
 export default function HashtagChip({ name }: HashtagChipProps) {
-  const { jump } = useLocale()
+  const { go } = useLocale()
 
   const onClick = () => {
     const href = getHashtagHref(name)
 
-    jump(href)
+    go(href)
   }
 
   return (

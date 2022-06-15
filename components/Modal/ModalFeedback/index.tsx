@@ -1,6 +1,5 @@
 import { Field, FieldArray, Form, FormikProvider } from 'formik'
-import { Grid, Box, Typography, Theme } from '@mui/material'
-import { createStyles, makeStyles } from '@mui/styles'
+import { Grid, Box, Typography } from '@mui/material'
 import { GoalDto } from 'dto'
 import useLocale from 'hooks/useLocale'
 import useSelectPhoto from 'hooks/useSelectPhoto'
@@ -23,7 +22,6 @@ export interface ModalFeedbackProps {
 }
 
 export default function ModalFeedback({ goal, onClose }: ModalFeedbackProps) {
-  const classes = useStyles()
   const { locale } = useLocale()
   const form = useForm(goal, onClose)
   const { isSubmitting, values, setFieldValue, handleSubmit } = form
@@ -54,7 +52,7 @@ export default function ModalFeedback({ goal, onClose }: ModalFeedbackProps) {
           <Box display="flex" flexDirection="column" alignItems="center" gap={3}>
             <Box display="flex" flexDirection="column" alignItems="center" gap={1}>
               <AppShakeIcon name="congratulations" />
-              <Typography variant="subtitle1" className={classes.congratulations}>
+              <Typography variant="subtitle1" sx={{ color: 'support.main' }}>
                 {subtitle}
               </Typography>
             </Box>
@@ -99,11 +97,3 @@ export default function ModalFeedback({ goal, onClose }: ModalFeedbackProps) {
     </AppModal>
   )
 }
-
-const useStyles = makeStyles((theme: Theme) =>
-  createStyles({
-    congratulations: {
-      color: theme.palette.support.main,
-    },
-  }),
-)

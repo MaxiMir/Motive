@@ -3,10 +3,10 @@ import { PaletteMode } from '@mui/material'
 
 interface ThemeContextType {
   mode: PaletteMode
-  toggle: () => void
+  setMode: (mode: PaletteMode) => void
 }
 
 export const ThemeContext = createContext<ThemeContextType>({
   mode: 'dark',
-  toggle: () => false,
+  setMode: (_: PaletteMode) => false,
 })

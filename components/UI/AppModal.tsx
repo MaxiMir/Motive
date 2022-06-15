@@ -10,11 +10,12 @@ interface AppModalProps {
   title: JSX.Element | string
   maxWidth?: DialogProps['maxWidth']
   actions?: JSX.Element[]
+  blur?: boolean
   children: ReactNode
   onClose: () => void
 }
 
-export default function AppModal({ title, actions, maxWidth, children, onClose }: AppModalProps) {
+export default function AppModal({ title, actions, maxWidth, blur = true, children, onClose }: AppModalProps) {
   return (
     <Dialog
       open
@@ -25,7 +26,7 @@ export default function AppModal({ title, actions, maxWidth, children, onClose }
         },
         [`& .${backdropClasses.root}`]: {
           background: 'rgba(34, 34, 34, 0.75)',
-          backdropFilter: 'blur(5px)',
+          backdropFilter: blur ? 'blur(5px)' : undefined,
         },
       }}
       onClose={onClose}

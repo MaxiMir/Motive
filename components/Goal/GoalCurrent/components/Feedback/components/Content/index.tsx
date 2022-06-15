@@ -3,7 +3,7 @@ import { Box } from '@mui/material'
 import { FeedbackDto } from 'dto'
 
 const Gallery = dynamic(() => import('./components/Gallery'))
-const AppVideo = dynamic(() => import('components/UI/AppVideo'))
+const AppPlayer = dynamic(() => import('components/UI/AppPlayer'))
 const AppMarkdown = dynamic(() => import('components/UI/AppMarkdown'))
 
 interface ContentProps {
@@ -17,7 +17,7 @@ export default function Content({ feedback }: ContentProps) {
     <Box display="flex" flexDirection="column" gap={2} flex={1}>
       {text && <AppMarkdown text={text} />}
       {photos?.length && <Gallery photos={photos} />}
-      {video && <AppVideo video={video} />}
+      {video && <AppPlayer url={video} width="100%" height="auto" />}
     </Box>
   )
 }

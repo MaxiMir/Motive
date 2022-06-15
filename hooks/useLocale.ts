@@ -1,22 +1,20 @@
 import { useRouter } from 'next/router'
 
-export type Locale = 'en' | 'ru'
-
-type UseLocale = { locale: Locale; jump: (urn: string) => void; next: () => void }
+export const LOCALES = ['en', 'ru'] as const
+export type Locale = typeof LOCALES[number]
+const [EN] = LOCALES
+type UseLocale = { locale: Locale; go: (urn: string) => void; setLocale: (value: Locale) => void }
 
 export default function useLocale(): UseLocale {
-  const { asPath, locale: nextLocale, push } = useRouter()
-  const locale = nextLocale !== 'ru' ? 'en' : 'ru'
+  const { asPath, locale: routerLocale = EN, push } = useRouter()
+  const locale = !(LOCALES as ReadonlyArray<string>).includes(routerLocale) ? EN : (routerLocale as Locale)
 
-  const jump = (urn: string) => push(urn, urn, { locale })
+  const go = (urn: string) => push(urn, urn, { locale })
 
-  // TODO to modal
-  const next = () => {
-    const nextState = locale === 'en' ? 'ru' : 'en'
-
-    document.cookie = `NEXT_LOCALE=${nextState}`
-    push(asPath, asPath, { locale: nextState })
+  const setLocale = (value: Locale) => {
+    document.cookie = `NEXT_LOCALE=${value}`
+    push(asPath, asPath, { locale: value })
   }
 
-  return { locale, jump, next }
+  return { locale, go, setLocale }
 }

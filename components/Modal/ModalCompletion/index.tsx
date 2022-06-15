@@ -1,7 +1,6 @@
 import dynamic from 'next/dynamic'
 import { Field, FieldArray, Form, FormikProvider } from 'formik'
-import { Grid, Box, Typography, Theme } from '@mui/material'
-import { createStyles, makeStyles } from '@mui/styles'
+import { Grid, Box, Typography } from '@mui/material'
 import { GoalDto, MainCharacteristicName } from 'dto'
 import useLocale from 'hooks/useLocale'
 import useSelectPhoto from 'hooks/useSelectPhoto'
@@ -30,7 +29,6 @@ export interface ModalCompletionProps {
 }
 
 export default function ModalCompletion({ goal, onClose }: ModalCompletionProps) {
-  const classes = useStyles()
   const { locale } = useLocale()
   const form = useForm(goal, onClose)
   const { isSubmitting, values, touched, errors, setFieldValue, handleSubmit } = form
@@ -47,9 +45,7 @@ export default function ModalCompletion({ goal, onClose }: ModalCompletionProps)
     details,
   } = i18n[locale]
   const photoError = Array.isArray(errors.photos) ? errors.photos.join(', ') : errors.photos
-
   const onSelectPhoto = useSelectPhoto(form)
-
   const onSelectVideo = (file: File) => setFieldValue('video', file)
 
   return (
@@ -73,7 +69,7 @@ export default function ModalCompletion({ goal, onClose }: ModalCompletionProps)
           <Box display="flex" flexDirection="column" alignItems="center" gap={3}>
             <Box display="flex" flexDirection="column" alignItems="center" gap={1}>
               <AppSpinIcon name="completed" />
-              <Typography variant="subtitle1" className={classes.congratulations}>
+              <Typography variant="subtitle1" sx={{ color: '#ffa300' }}>
                 {subtitle}
               </Typography>
             </Box>
@@ -117,20 +113,24 @@ export default function ModalCompletion({ goal, onClose }: ModalCompletionProps)
                 {photoError}
               </Alert>
             )}
-            <Box className={classes.accordionWrap}>
+            <Box sx={{ width: '100%' }}>
               <AppAccordion
                 name="switch"
                 header={accordionHeader}
                 id="goal"
                 ariaControls={ariaControls}
                 details={
-                  <Box className={classes.hint}>
+                  <Box sx={{ color: 'zen.silent' }}>
                     <Typography>
                       {details[0]}{' '}
                       {CHARACTERISTIC_NAMES.map((name) => (
                         <AppDecorEmoji name={name} key={name} />
                       ))}
-                      {details[1]} <b className={classes.count}>5</b> <AppDecorEmoji name="motivation" /> {details[2]}.
+                      {details[1]}{' '}
+                      <Box component="b" sx={{ color: 'text.primary' }}>
+                        5
+                      </Box>{' '}
+                      <AppDecorEmoji name="motivation" /> {details[2]}.
                     </Typography>
                   </Box>
                 }
@@ -142,20 +142,3 @@ export default function ModalCompletion({ goal, onClose }: ModalCompletionProps)
     </AppModal>
   )
 }
-
-const useStyles = makeStyles((theme: Theme) =>
-  createStyles({
-    congratulations: {
-      color: '#ffa300',
-    },
-    accordionWrap: {
-      width: '100%',
-    },
-    hint: {
-      color: theme.palette.zen.silent,
-    },
-    count: {
-      color: theme.palette.text.primary,
-    },
-  }),
-)

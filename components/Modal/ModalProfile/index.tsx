@@ -1,7 +1,6 @@
 import dynamic from 'next/dynamic'
 import { Field, Form, FormikProvider } from 'formik'
-import { Grid, Box, Theme } from '@mui/material'
-import { createStyles, makeStyles } from '@mui/styles'
+import { Grid, Box } from '@mui/material'
 import { UserBaseDto } from 'dto'
 import { Locale } from 'hooks/useLocale'
 import ActionSubmit from 'components/Action/ActionSubmit'
@@ -22,7 +21,6 @@ export interface ModalProfileProps {
 }
 
 export default function ModalProfile({ user, locale, onClose }: ModalProfileProps) {
-  const classes = useStyles()
   const form = useForm(user, locale, onClose)
   const { action, profile, name, nickname, button, buttonLoading } = i18n[locale]
   const { isSubmitting, values, touched, errors, setFieldValue, handleSubmit } = form
@@ -35,7 +33,10 @@ export default function ModalProfile({ user, locale, onClose }: ModalProfileProp
     <AppModal
       title={
         <>
-          {action} <span className={classes.profile}>{profile}</span>
+          {action}{' '}
+          <Box component="span" sx={{ color: 'zen.sand' }}>
+            {profile}
+          </Box>
         </>
       }
       maxWidth="xs"
@@ -76,11 +77,3 @@ export default function ModalProfile({ user, locale, onClose }: ModalProfileProp
     </AppModal>
   )
 }
-
-const useStyles = makeStyles((theme: Theme) =>
-  createStyles({
-    profile: {
-      color: theme.palette.zen.sand,
-    },
-  }),
-)

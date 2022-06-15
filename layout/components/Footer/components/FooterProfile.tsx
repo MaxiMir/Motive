@@ -12,14 +12,14 @@ interface FooterProfileProps {
 }
 
 export default function FooterProfile({ nickname, ariaLabel, asPath }: FooterProfileProps) {
-  const { jump } = useLocale()
+  const { go } = useLocale()
   const openSignIn = useOpenSignIn()
   const href = !nickname ? undefined : getUserUrn(nickname)
   const selected = !href ? false : asPath.includes(href)
 
   const onClick = () => {
     if (href) {
-      jump(href)
+      go(href)
       return
     }
 

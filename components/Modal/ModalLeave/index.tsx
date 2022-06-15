@@ -1,5 +1,4 @@
-import { Box, Typography, Theme } from '@mui/material'
-import { createStyles, makeStyles } from '@mui/styles'
+import { Box, Typography } from '@mui/material'
 import { GoalDto, OwnershipDto } from 'dto'
 import useLocale from 'hooks/useLocale'
 import ActionSubmit from 'components/Action/ActionSubmit'
@@ -17,7 +16,6 @@ export interface ModalLeaveProps {
 
 export default function ModalLeave({ goal, clientOwnership, onClose }: ModalLeaveProps) {
   const { id, name } = goal
-  const classes = useStyles()
   const { locale } = useLocale()
   const { isLoading, mutateAsync } = useSendRemoveMember(id, clientOwnership.page)
   const { title, button, buttonLoading, subtitle } = i18n[locale]
@@ -32,7 +30,11 @@ export default function ModalLeave({ goal, clientOwnership, onClose }: ModalLeav
     <AppModal
       title={
         <>
-          {title} <span className={classes.goal}>{name}</span>?
+          {title}{' '}
+          <Box component="span" sx={{ color: 'zen.sand' }}>
+            {name}
+          </Box>
+          ?
         </>
       }
       maxWidth="xs"
@@ -55,11 +57,3 @@ export default function ModalLeave({ goal, clientOwnership, onClose }: ModalLeav
     </AppModal>
   )
 }
-
-const useStyles = makeStyles((theme: Theme) =>
-  createStyles({
-    goal: {
-      color: theme.palette.zen.sand,
-    },
-  }),
-)

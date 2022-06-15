@@ -66,7 +66,7 @@ export const useChangeDayUrl = (): ((goals: GoalDto[], goalId: number, dayId: nu
 
 export const useSendCreateMember = (): UseMutationResult<MemberDto, AxiosError, CreateMemberDto> => {
   const client = useClient()
-  const { jump } = useLocale()
+  const { go } = useLocale()
 
   return useMutation(MemberService.create, {
     onSuccess({ goalId, dayId }) {
@@ -75,7 +75,7 @@ export const useSendCreateMember = (): UseMutationResult<MemberDto, AxiosError, 
       const userUrn = getUserUrn(client.nickname)
       const params = { [SEARCH_PARAM.DATES]: `${goalId}:${dayId}` }
 
-      jump(setQueryParams(userUrn, params))
+      go(setQueryParams(userUrn, params))
     },
   })
 }

@@ -7,7 +7,7 @@ import NextNprogress from 'nextjs-progressbar'
 import { enUS, ru } from 'date-fns/locale'
 import { StylesProvider, createGenerateClassName } from '@mui/styles'
 import { createTheme, ThemeProvider } from '@mui/material/styles'
-import { PaletteMode } from '@mui/material'
+import { PaletteMode, useMediaQuery } from '@mui/material'
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns'
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider'
 import CssBaseline from '@mui/material/CssBaseline'
@@ -35,8 +35,9 @@ const i18n = {
 export default function MyApp({ Component, pageProps: { session, ...pageProps } }: AppProps) {
   const { dehydratedState, providers } = pageProps
   const { locale } = useLocale()
-  // const prefersDarkMode = useMediaQuery('(prefers-color-scheme: dark)') // TODO
-  const [mode, setMode] = useState<PaletteMode>('dark') // TODO change prefersDarkMode
+  const prefersDarkMode = useMediaQuery('(prefers-color-scheme: dark)')
+  console.log('@ prefersDarkMode:', prefersDarkMode)
+  const [mode, setMode] = useState<PaletteMode>('dark')
   const [snackbarProps, setSnackbarProps] = useState<ContextSnackbarProps | null>(null)
   const [options, setOptions] = useState<SignInOptions>()
   const fnsLocale = locale === 'ru' ? ru : enUS
@@ -58,13 +59,7 @@ export default function MyApp({ Component, pageProps: { session, ...pageProps } 
   )
   // Update the theme only if the mode changes
   const theme = useMemo(() => createTheme(getDesignTokens(mode)), [mode])
-  const themeCtx = useMemo(
-    () => ({
-      mode,
-      toggle: () => setMode((prev) => (prev === 'light' ? 'dark' : 'light')),
-    }),
-    [mode],
-  )
+  const themeCtx = useMemo(() => ({ mode, setMode }), [mode])
   const modalSignInCtx = useMemo(() => ({ options, providers, setOptions }), [options, providers])
   const snackbarCtx = useMemo(() => ({ props: snackbarProps, setProps: setSnackbarProps }), [snackbarProps])
 

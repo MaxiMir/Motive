@@ -1,7 +1,16 @@
 import { Fragment, ReactNode } from 'react'
 import dynamic from 'next/dynamic'
-import { Dialog, DialogContent, DialogTitle, DialogProps, backdropClasses, paperClasses } from '@mui/material'
+import {
+  Dialog,
+  DialogContent,
+  DialogTitle,
+  DialogProps,
+  backdropClasses,
+  paperClasses,
+  IconButton,
+} from '@mui/material'
 import AppScrollbar from './AppScrollbar'
+import AppIcon from './AppIcon'
 
 const DialogActions = dynamic(() => import('@mui/material/DialogActions'))
 const Box = dynamic(() => import('@mui/material/Box'))
@@ -31,9 +40,17 @@ export default function AppModal({ title, actions, maxWidth, blur = true, childr
       }}
       onClose={onClose}
     >
-      <DialogTitle sx={{ padding: '16px 24px 8px', textAlign: 'center', textTransform: 'uppercase' }}>
+      <DialogTitle sx={{ padding: '16px 24px 8px', marginX: 6, textAlign: 'center', textTransform: 'uppercase' }}>
         {title}
       </DialogTitle>
+      <IconButton
+        edge="start"
+        aria-label="close"
+        sx={{ position: 'absolute', top: 10, right: 13, color: 'zen.silent' }}
+        onClick={onClose}
+      >
+        <AppIcon name="close" />
+      </IconButton>
       <AppScrollbar>
         <DialogContent sx={{ padding: '12px 24px 24px !important' }}>{children}</DialogContent>
       </AppScrollbar>

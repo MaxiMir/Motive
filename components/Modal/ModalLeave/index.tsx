@@ -28,15 +28,7 @@ export default function ModalLeave({ goal, clientOwnership, onClose }: ModalLeav
 
   return (
     <AppModal
-      title={
-        <>
-          {title}{' '}
-          <Box component="span" sx={{ color: 'zen.sand' }}>
-            {name}
-          </Box>
-          ?
-        </>
-      }
+      title={title}
       maxWidth="xs"
       actions={[
         <ActionClose onClick={onClose} />,
@@ -51,7 +43,12 @@ export default function ModalLeave({ goal, clientOwnership, onClose }: ModalLeav
       onClose={onClose}
     >
       <Box display="flex" flexDirection="column" justifyItems="center" alignItems="center" gap={1}>
-        <Typography>{subtitle}</Typography>
+        <Typography>
+          {subtitle}
+          <Box component="span" sx={{ color: 'motivation.main' }}>
+            {name}
+          </Box>
+        </Typography>
         <AppFadeIcon name="scared" />
       </Box>
     </AppModal>

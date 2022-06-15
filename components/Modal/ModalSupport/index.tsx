@@ -28,7 +28,7 @@ export default function ModalSupport({ goal, owner, onClose }: ModalSupportProps
     <AppModal
       title={
         <>
-          {title}
+          {title} <br />
           <Box component="span" sx={{ color: 'zen.sand' }}>
             {owner.name}
           </Box>

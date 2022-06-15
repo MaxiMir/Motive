@@ -28,7 +28,7 @@ export default function MenuModal({ onOpenSettings, onClose }: MenuModalProps) {
 
   return (
     <Drawer open onClose={onClose}>
-      <Box role="presentation" sx={{ height: '100%', minWidth: 220, padding: '60px 0 8px' }} onKeyDown={onKeyDown}>
+      <Box role="presentation" sx={{ height: '100%', minWidth: 230, padding: '60px 0 8px' }} onKeyDown={onKeyDown}>
         <Box display="flex" flexDirection="column" justifyContent="space-between" height="100%">
           <Box>
             <List>
@@ -63,7 +63,7 @@ export default function MenuModal({ onOpenSettings, onClose }: MenuModalProps) {
           </Box>
           <List>
             <ListItem>
-              <ListItemText primary="Alpha 1.0.54" color="secondary" sx={{ color: 'zen.sand' }} />
+              <ListItemText primary="Alpha 1.0.55" color="secondary" sx={{ color: 'zen.sand' }} />
             </ListItem>
           </List>
         </Box>

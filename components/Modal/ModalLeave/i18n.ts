@@ -1,16 +1,16 @@
 export default {
   en: {
-    title: 'Leave',
+    title: 'Leave?',
     button: 'Leave',
     buttonLoading: 'Leaving',
-    subtitle: 'You will lose all progress...',
+    subtitle: 'You will lose all progress in',
     message: 'Successfully left',
   },
   ru: {
-    title: 'Покинуть',
+    title: 'Покинуть?',
     button: 'Покинуть',
     buttonLoading: 'Покидаю',
-    subtitle: 'Вы потеряете весь прогресс...',
+    subtitle: 'Вы потеряете весь прогресс в',
     message: 'Участие удалено',
   },
 }

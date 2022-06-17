@@ -14,7 +14,7 @@ interface ModalLanguageProps {
 export default function ModalSettings({ onClose }: ModalLanguageProps) {
   const { locale, setLocale } = useLocale()
   const { mode, setMode } = useContext(ThemeContext)
-  const { title, modeHeader, languageHeader } = i18n[locale]
+  const { title, modeHeader, languageHeader, light, system, dark } = i18n[locale]
 
   const onChangeLocale = (_: MouseEvent<HTMLElement>, newLocale: Locale) => {
     setLocale(newLocale)
@@ -51,13 +51,13 @@ export default function ModalSettings({ onClose }: ModalLanguageProps) {
           </Header>
           <ToggleButtonGroup color="warning" value={mode} exclusive aria-label="label" onChange={onChangeMode}>
             <GroupButton value="light" disabled>
-              <AppEmoji name="light" /> Light
+              <AppEmoji name="light" /> {light}
             </GroupButton>
             <GroupButton value="system" disabled>
-              <AppEmoji name="system" /> System
+              <AppEmoji name="system" /> {system}
             </GroupButton>
             <GroupButton value="dark" disabled>
-              <AppEmoji name="dark" /> Dark
+              <AppEmoji name="dark" /> {dark}
             </GroupButton>
           </ToggleButtonGroup>
         </Box>

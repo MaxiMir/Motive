@@ -49,7 +49,7 @@ export default {
     support: 'підтримка',
     completed: 'завершені',
     abandoned: 'занедбані',
-    followers: 'передплатники',
+    followers: 'підписники',
     undo: 'Скасувати',
     share: 'Поділитися',
     report: 'Поскаржити',

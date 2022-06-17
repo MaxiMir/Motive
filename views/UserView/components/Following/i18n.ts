@@ -15,4 +15,12 @@ export default {
       return add ? 'Подписка добавлена' : 'Подписка удалена'
     },
   },
+  uk: {
+    getName(following: boolean): string {
+      return following ? 'Відписатися' : 'Підписатися'
+    },
+    getMessage(add: boolean): string {
+      return add ? 'Підписка додана' : 'Підписка видалена'
+    },
+  },
 }

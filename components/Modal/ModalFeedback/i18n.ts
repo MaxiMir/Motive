@@ -19,4 +19,14 @@ export default {
     buttonLoading: 'Добавляю',
     message: 'Отзыв успешно добавлен',
   },
+  uk: {
+    title: 'Додавання відгуку',
+    label: 'Як все пройшло',
+    subtitle: 'Вражає! Ви на крок ближче до мети!',
+    photoTitle: 'Фото',
+    videoTitle: 'Відео',
+    button: 'Додати',
+    buttonLoading: 'Додаю',
+    message: 'Відгук успішно доданий',
+  },
 }

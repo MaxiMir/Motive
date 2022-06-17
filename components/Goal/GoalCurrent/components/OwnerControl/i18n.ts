@@ -7,4 +7,8 @@ export default {
     nextButton: 'Дальше',
     doneButton: 'Готово',
   },
+  uk: {
+    nextButton: 'Далі',
+    doneButton: 'Готово',
+  },
 }

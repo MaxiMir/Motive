@@ -5,4 +5,7 @@ export default {
   ru: {
     buttonTitle: 'Готово',
   },
+  uk: {
+    buttonTitle: 'Готово',
+  },
 }

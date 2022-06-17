@@ -5,4 +5,7 @@ export default {
   ru: {
     visit: 'был(-а)',
   },
+  uk: {
+    visit: 'був(-ла)',
+  },
 }

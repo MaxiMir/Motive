@@ -7,4 +7,8 @@ export default {
     userColumn: 'Пользователь',
     lvlColumn: 'Уровень',
   },
+  uk: {
+    userColumn: 'Користувач',
+    lvlColumn: 'Рівень',
+  },
 }

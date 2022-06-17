@@ -3,8 +3,10 @@ import Head from 'next/head'
 import Script from 'next/script'
 import dynamic from 'next/dynamic'
 import useClient from 'hooks/useClient'
+import { RU, UK } from 'hooks/useLocale'
 import Header from './components/Header'
 import Footer from './components/Footer'
+import { getLocaleHref } from './helper'
 
 const Error = dynamic(() => import('pages/_error'))
 const Box = dynamic(() => import('@mui/material/Box'))
@@ -21,6 +23,9 @@ interface LayoutProps {
 
 export default function Layout({ title, description, url, type, image, statusCode = 200, children }: LayoutProps) {
   const client = useClient()
+  const enLocaleHref = getLocaleHref()
+  const ruLocaleHref = getLocaleHref(RU)
+  const ukLocaleHref = getLocaleHref(UK)
 
   return (
     <>
@@ -43,6 +48,11 @@ export default function Layout({ title, description, url, type, image, statusCod
         <link rel="icon" type="image/x-icon" href="/favicon.ico" />
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" />
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+        {/* Add hreflang links */}
+        <link rel="alternate" href={enLocaleHref} hrefLang="x-default" />
+        <link rel="alternate" href={enLocaleHref} hrefLang="en" />
+        <link rel="alternate" href={ruLocaleHref} hrefLang="ru" />
+        <link rel="alternate" href={ukLocaleHref} hrefLang="uk" />
       </Head>
       <Script
         src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS}`}

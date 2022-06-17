@@ -7,4 +7,8 @@ export default {
     title: 'Завершенные',
     subtitle: 'цели',
   },
+  uk: {
+    title: 'Завершені',
+    subtitle: 'цілі',
+  },
 }

@@ -19,7 +19,7 @@ export default function Report({ entityId, type, anchorEl, onClose }: ReportProp
 
   return (
     <Menu id="report-menu" anchorEl={anchorEl} open={!!anchorEl} onClose={onClose}>
-      <MenuItem disabled>{title}</MenuItem>
+      <MenuItem disabled>{title}:</MenuItem>
       {reports.map((name) => (
         <MenuItem key={name} onClick={() => onClick(name)}>
           <AppMenuItemContent icon="outlined_flag" text={name} />

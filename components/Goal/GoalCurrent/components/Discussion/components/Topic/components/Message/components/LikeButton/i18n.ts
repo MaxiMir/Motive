@@ -31,4 +31,20 @@ export default {
     },
     goalMessage: 'Вы увеличили очки поддержки для цели',
   },
+  uk: {
+    helpful: 'Позначено як корисне',
+    getArea(count: number): string {
+      return ` разом із ${count} іншими людьми`
+    },
+    getLike(like?: boolean): string {
+      return !like ? 'Лайк' : 'Прибрати лайк'
+    },
+    getMark(mark?: boolean): string {
+      return !mark ? 'Відзначити як корисне' : 'Прибрати відмітку про корисність'
+    },
+    getUserMessage(name: string): string {
+      return `Ви збільшили очки підтримки ${name}`
+    },
+    goalMessage: 'Ви збільшили очки підтримки для цілі',
+  },
 }

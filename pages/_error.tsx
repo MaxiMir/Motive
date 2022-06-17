@@ -12,6 +12,10 @@ const i18n = {
     notFound: 'Страница не найдена',
     default: 'Что-то пошло не так...',
   },
+  uk: {
+    notFound: 'Сторінку не знайдено',
+    default: 'Щось пішло не так...',
+  },
 }
 
 interface CustomErrorProps {

@@ -7,4 +7,8 @@ export default {
     editedText: 'ред.',
     replyButton: 'ответить',
   },
+  uk: {
+    editedText: 'ред.',
+    replyButton: 'відповісти',
+  },
 }

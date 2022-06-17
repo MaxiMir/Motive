@@ -7,4 +7,8 @@ export default {
     button: 'Дальше',
     message: 'Загружаю следующий день',
   },
+  uk: {
+    button: 'Далі',
+    message: 'Завантажую наступний день',
+  },
 }

@@ -5,4 +5,7 @@ export default {
   ru: {
     nothing: 'Пока ничего',
   },
+  uk: {
+    nothing: 'Поки що нічого',
+  },
 }

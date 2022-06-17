@@ -5,4 +5,7 @@ export default {
   ru: {
     name: 'Отмена',
   },
+  uk: {
+    name: 'Скасування',
+  },
 }

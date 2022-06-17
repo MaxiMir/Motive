@@ -9,4 +9,9 @@ export default {
     languageHeader: 'Язык',
     modeHeader: 'Режим',
   },
+  uk: {
+    title: 'Налаштування',
+    languageHeader: 'Мова',
+    modeHeader: 'Режим',
+  },
 }

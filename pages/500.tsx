@@ -8,6 +8,9 @@ const i18n = {
   ru: {
     title: '500: Что-то пошло не так...',
   },
+  uk: {
+    title: '500: Щось пішло не так...',
+  },
 }
 
 export default function Page500() {

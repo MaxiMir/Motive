@@ -9,4 +9,9 @@ export default {
       return `Поддержать ${name}`
     },
   },
+  uk: {
+    getTitle(name: string): string {
+      return `Підтримати ${name}`
+    },
+  },
 }

@@ -1,8 +1,11 @@
 export default {
   en: {
-    creator: 'Creator:',
+    creator: 'Creator',
   },
   ru: {
-    creator: 'Создатель:',
+    creator: 'Создатель',
+  },
+  uk: {
+    creator: 'Створювач',
   },
 }

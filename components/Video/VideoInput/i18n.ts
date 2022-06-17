@@ -7,4 +7,8 @@ export default {
     title: 'Загрузить видео',
     label: 'Скоро',
   },
+  uk: {
+    title: 'Завантажити відео',
+    label: 'Скоро',
+  },
 }

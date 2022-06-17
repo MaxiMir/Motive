@@ -14,7 +14,7 @@ export default function Inheritance({ owner, locale }: InheritedProps) {
 
   return (
     <Box display="flex" alignItems="center" gap={1}>
-      <Typography variant="caption">{creator}</Typography>
+      <Typography variant="caption">{creator}:</Typography>
       <UserAvatar user={owner} />
     </Box>
   )

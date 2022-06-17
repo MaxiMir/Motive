@@ -57,4 +57,32 @@ export default {
     completed: undefined,
     followers: undefined,
   },
+  uk: {
+    motivation: (
+      <>
+        Окуляри мотивації даються за: <br />
+        • виконання цілей <br />
+        • кожен <AppEmoji name="motivation" onlyEmoji /> поставлений Вашої мети
+      </>
+    ),
+    creativity: (
+      <>
+        Окуляри креативності даються за: <br />
+        • кожен <AppEmoji name="creativity" onlyEmoji /> поставлений Вашої мети
+      </>
+    ),
+    support: (
+      <>
+        Окуляри підтримки даються за: <br />
+        • кожен <AppEmoji name="support" onlyEmoji /> поставлений вашому повідомленню в обговоренні
+      </>
+    ),
+    abandoned: (
+      <>
+        З&#39;їдених Стариною Піттом цілей <AppEmoji name="pitt" onlyEmoji />
+      </>
+    ),
+    completed: undefined,
+    followers: undefined,
+  },
 }

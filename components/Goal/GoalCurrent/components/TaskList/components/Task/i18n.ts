@@ -11,4 +11,10 @@ export default {
     },
     undo: 'Отменить',
   },
+  uk: {
+    getMessage(name: string, rest: number): string {
+      return !rest ? `Чудова робота, ${name}!` : `Зроби це! Залишилось: ${rest}`
+    },
+    undo: 'Скасувати',
+  },
 }

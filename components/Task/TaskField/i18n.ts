@@ -13,4 +13,11 @@ export default {
     tooltip: 'Скоро',
     remind: 'напомни мне',
   },
+  uk: {
+    label: 'Завдання *',
+    placeholder: 'Що слід зробити',
+    close: 'Видалити завдання',
+    tooltip: 'Скоро',
+    remind: 'нагади мені',
+  },
 }

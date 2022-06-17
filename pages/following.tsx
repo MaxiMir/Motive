@@ -19,6 +19,10 @@ const i18n = {
     title: 'Подписки',
     description: 'Список интересных Вам пользователей 🥷',
   },
+  uk: {
+    title: 'Підписки',
+    description: 'Список цікавих користувачів 🥷',
+  },
 }
 
 export default function FollowingPage({ statusCode }: PageProps) {

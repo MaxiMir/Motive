@@ -4,7 +4,6 @@ import { AppProps } from 'next/app'
 import { SessionProvider, SignInOptions } from 'next-auth/react'
 import { Hydrate, MutationCache, QueryCache, QueryClient, QueryClientProvider } from 'react-query'
 import NextNprogress from 'nextjs-progressbar'
-import { enUS, ru } from 'date-fns/locale'
 import { StylesProvider, createGenerateClassName } from '@mui/styles'
 import { createTheme, ThemeProvider } from '@mui/material/styles'
 import { PaletteMode, useMediaQuery } from '@mui/material'
@@ -15,6 +14,7 @@ import { getDesignTokens } from 'theme'
 import { ContextSnackbarProps, SnackbarContext } from 'context/snackbarContext'
 import { ThemeContext } from 'context/themeContext'
 import { ModalSignInContext } from 'context/modalSignInContext'
+import { getFnsLocale } from 'helpers/date'
 import useLocale from 'hooks/useLocale'
 import Event from 'components/Event'
 
@@ -30,6 +30,9 @@ const i18n = {
   ru: {
     error: 'Что-то пошло не так...',
   },
+  uk: {
+    error: 'Щось пішло не так...',
+  },
 }
 
 export default function MyApp({ Component, pageProps: { session, ...pageProps } }: AppProps) {
@@ -40,7 +43,7 @@ export default function MyApp({ Component, pageProps: { session, ...pageProps } 
   const [mode, setMode] = useState<PaletteMode>('dark')
   const [snackbarProps, setSnackbarProps] = useState<ContextSnackbarProps | null>(null)
   const [options, setOptions] = useState<SignInOptions>()
-  const fnsLocale = locale === 'ru' ? ru : enUS
+  const fnsLocale = getFnsLocale(locale)
   const { error } = i18n[locale]
   const [queryClient] = useState(
     () =>

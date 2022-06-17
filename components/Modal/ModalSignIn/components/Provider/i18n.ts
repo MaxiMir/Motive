@@ -5,4 +5,7 @@ export default {
   ru: {
     pretext: 'через',
   },
+  uk: {
+    pretext: 'через',
+  },
 }

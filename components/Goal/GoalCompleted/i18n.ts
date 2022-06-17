@@ -1,8 +1,11 @@
 export default {
   en: {
-    durationTitle: 'Duration:',
+    durationTitle: 'Duration',
   },
   ru: {
-    durationTitle: 'Длительность:',
+    durationTitle: 'Длительность',
+  },
+  uk: {
+    durationTitle: 'Тривалість',
   },
 }

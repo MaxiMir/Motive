@@ -8,6 +8,9 @@ const i18n = {
   ru: {
     title: '404: Страница не найдена',
   },
+  uk: {
+    title: '404: Сторінка не знайдена',
+  },
 }
 
 export default function Page404() {

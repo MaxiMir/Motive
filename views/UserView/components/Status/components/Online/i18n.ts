@@ -5,4 +5,7 @@ export default {
   ru: {
     online: 'онлайн',
   },
+  uk: {
+    online: 'онлайн',
+  },
 }

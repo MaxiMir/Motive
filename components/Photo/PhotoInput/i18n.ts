@@ -5,4 +5,7 @@ export default {
   ru: {
     title: 'Загрузить фото',
   },
+  uk: {
+    title: 'Завантажити фото',
+  },
 }

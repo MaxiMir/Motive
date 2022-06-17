@@ -5,4 +5,7 @@ export default {
   ru: {
     ariaLabel: 'Открыть меню',
   },
+  uk: {
+    ariaLabel: 'Відкрити меню',
+  },
 }

@@ -5,4 +5,7 @@ export default {
   ru: {
     ariaLabel: 'Открыть галерею',
   },
+  uk: {
+    ariaLabel: 'Відкрити галерею',
+  },
 }

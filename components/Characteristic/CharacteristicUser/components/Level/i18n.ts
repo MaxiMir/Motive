@@ -5,4 +5,7 @@ export default {
   ru: {
     lvl: 'ур.',
   },
+  uk: {
+    lvl: 'ур.',
+  },
 }

@@ -54,7 +54,7 @@ export default function ModalStage({ goal, onClose }: ModalStageProps) {
             <b>{behind}</b>
           </Typography>
           <Typography>
-            {nextTitle}{' '}
+            {nextTitle}:{' '}
             <Box component="b" sx={{ color: 'zen.wave' }}>
               {stages[nextStage]}
             </Box>

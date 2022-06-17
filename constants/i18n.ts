@@ -41,4 +41,25 @@ export default {
       return `Вы не можете добавить больше ${limit} фото`
     },
   },
+  uk: {
+    copy: 'Скопійовано',
+    error: 'Щось пішло не так...',
+    motivation: 'мотивація',
+    creativity: 'креативність',
+    support: 'підтримка',
+    completed: 'завершені',
+    abandoned: 'занедбані',
+    followers: 'передплатники',
+    undo: 'Скасувати',
+    share: 'Поділитися',
+    report: 'Поскаржити',
+    leave: 'Залишити',
+    remove: 'Видалити',
+    format: 'dd/MM/yyyy',
+    agoText: 'назад',
+    event: 'Нова подія',
+    getLimitPhotosError(limit: number): string {
+      return `Ви не можете додати більше ${limit} фото`
+    },
+  },
 }

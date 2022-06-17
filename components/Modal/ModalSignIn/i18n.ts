@@ -5,4 +5,7 @@ export default {
   ru: {
     title: 'Войти',
   },
+  uk: {
+    title: 'Увійти',
+  },
 }

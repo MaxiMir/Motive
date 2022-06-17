@@ -7,4 +7,8 @@ export default {
     title: 'Открыть меню сообщений',
     ariaControls: 'меню-сообщений',
   },
+  uk: {
+    title: 'Відкрити меню повідомлень',
+    ariaControls: 'меню-повідомлень',
+  },
 }

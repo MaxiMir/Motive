@@ -7,4 +7,8 @@ export default {
     name: 'Повторить',
     nameLoading: 'Повторение',
   },
+  uk: {
+    name: 'Повторити',
+    nameLoading: 'Повторення',
+  },
 }

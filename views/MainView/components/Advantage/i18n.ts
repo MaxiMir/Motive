@@ -35,4 +35,22 @@ export default {
       subtitle: 'И рвите верхушки топов!',
     },
   },
+  uk: {
+    motivation: {
+      title: 'Бути мотивацією',
+      subtitle: 'для себе та інших',
+    },
+    creativity: {
+      title: 'Бути креативним',
+      subtitle: 'як ніколи',
+    },
+    support: {
+      title: 'Бути підтримкою',
+      subtitle: 'для нужденних',
+    },
+    completed: {
+      title: 'Рейтинг',
+      subtitle: 'І рвіть верхівки топів!',
+    },
+  },
 }

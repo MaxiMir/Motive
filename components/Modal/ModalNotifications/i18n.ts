@@ -5,4 +5,7 @@ export default {
   ru: {
     title: 'Уведомления',
   },
+  uk: {
+    title: 'Повіщення',
+  },
 }

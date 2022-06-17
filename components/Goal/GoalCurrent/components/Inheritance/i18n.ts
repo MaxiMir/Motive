@@ -5,4 +5,7 @@ export default {
   ru: {
     title: 'вместе',
   },
+  uk: {
+    title: 'разом',
+  },
 }

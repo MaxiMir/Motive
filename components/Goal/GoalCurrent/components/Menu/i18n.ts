@@ -7,4 +7,8 @@ export default {
     buttonTitle: 'Открыть меню цели',
     ariaControls: 'меню-цели',
   },
+  uk: {
+    buttonTitle: 'Відкрити меню цілі',
+    ariaControls: 'меню-цілі',
+  },
 }

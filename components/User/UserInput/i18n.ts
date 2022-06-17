@@ -15,4 +15,12 @@ export default {
       return `${isQuestion ? 'Вопрос' : 'Ответ'} добавлен`
     },
   },
+  uk: {
+    getPlaceholder(isQuestion: boolean): string {
+      return `Ваш ${isQuestion ? 'питання' : 'відповідь'}`
+    },
+    getMessage(isQuestion: boolean): string {
+      return `${isQuestion ? 'Питання' : 'Відповідь'} додано`
+    },
+  },
 }

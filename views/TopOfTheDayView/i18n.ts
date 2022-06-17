@@ -7,4 +7,8 @@ export default {
     title: 'Топ дня',
     text: 'В разработке',
   },
+  uk: {
+    title: 'Топ дня',
+    text: 'У розробці',
+  },
 }

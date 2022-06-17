@@ -5,4 +5,7 @@ export default {
   ru: {
     button: 'Добавить',
   },
+  uk: {
+    button: 'Додати',
+  },
 }

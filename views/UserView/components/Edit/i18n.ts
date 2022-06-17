@@ -5,4 +5,7 @@ export default {
   ru: {
     title: 'Редактировать',
   },
+  uk: {
+    title: 'Редагувати',
+  },
 }

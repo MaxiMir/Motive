@@ -21,4 +21,16 @@ export default {
       return `Вы увеличили очки ${characteristic}`
     },
   },
+  uk: {
+    getTitle(active: boolean, name: DayCharacteristicName): string {
+      const characteristic = name === 'motivation' ? 'мотивації' : 'креативності'
+
+      return `${active ? 'Зменшити' : 'Збільшити'} окуляри ${characteristic}`
+    },
+    getMessage(name: DayCharacteristicName): string {
+      const characteristic = name === 'motivation' ? 'мотивації' : 'креативності'
+
+      return `Ви збільшили окуляри ${characteristic}`
+    },
+  },
 }

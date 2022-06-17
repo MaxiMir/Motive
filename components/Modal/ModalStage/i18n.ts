@@ -16,7 +16,17 @@ export default {
     buttonLoading: 'Завершаю',
     message: 'Этап для следующего дня успешно установлен',
     getNextTitle(isFinal: boolean): string {
-      return `${isFinal ? 'Заключительный' : 'Следующий'} этап:`
+      return `${isFinal ? 'Заключительный' : 'Следующий'} этап`
+    },
+  },
+  uk: {
+    title: 'Завершення етапу',
+    behind: 'Чудово! Один етап позаду!',
+    button: 'Завершити',
+    buttonLoading: 'Завершаю',
+    message: 'Етап для наступного дня успішно встановлений',
+    getNextTitle(isFinal: boolean): string {
+      return `${isFinal ? 'Прикінцевий' : 'Наступний'} етап`
     },
   },
 }

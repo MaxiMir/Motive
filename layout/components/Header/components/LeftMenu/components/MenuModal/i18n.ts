@@ -15,4 +15,12 @@ export default {
     language: 'Язык: Ру',
     logOut: 'Выйти',
   },
+  uk: {
+    news: 'Новини',
+    features: 'Що нового',
+    contact: 'Контакти',
+    settings: 'Налаштування',
+    language: 'Мова: Ру',
+    logOut: 'Вийти',
+  },
 }

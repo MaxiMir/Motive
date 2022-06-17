@@ -5,4 +5,7 @@ export default {
   ru: {
     title: 'Подписчики',
   },
+  uk: {
+    title: 'Підписувачі',
+  },
 }

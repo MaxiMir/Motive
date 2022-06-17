@@ -66,7 +66,7 @@ export default function GoalCompleted({ confirmation, user, inView, onView }: Go
           </AppTitle>
           {inherited && <Inheritance owner={goal.owner} locale={locale} />}
           <Typography variant="caption">
-            {durationTitle}{' '}
+            {durationTitle}:{' '}
             <Tooltip arrow title={interval}>
               <Box component="b" color="zen.silent">
                 {duration}

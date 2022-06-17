@@ -13,4 +13,11 @@ export default {
     subtitle: 'Вы потеряете весь прогресс в',
     message: 'Участие удалено',
   },
+  uk: {
+    title: 'Залишити?',
+    button: 'Залишити',
+    buttonLoading: 'Покидаю',
+    subtitle: 'Ви втратите весь прогрес',
+    message: 'Участь видалена',
+  },
 }

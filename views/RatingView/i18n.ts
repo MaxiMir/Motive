@@ -7,4 +7,8 @@ export default {
     header: 'Рейтинг',
     ariaLabel: 'рейтинг по характеристикам',
   },
+  uk: {
+    header: 'Рейтинг',
+    ariaLabel: 'рейтинг за характеристиками',
+  },
 }

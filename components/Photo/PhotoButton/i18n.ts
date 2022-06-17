@@ -5,4 +5,7 @@ export default {
   ru: {
     ariaLabel: 'Удалить фото',
   },
+  uk: {
+    ariaLabel: 'Видалити фото',
+  },
 }

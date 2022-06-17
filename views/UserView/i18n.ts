@@ -17,4 +17,12 @@ export default {
       return `Посмотрите как ${user.name} (@${user.nickname}) достигает целей`
     },
   },
+  uk: {
+    getTitle(user: UserDetailDto): string {
+      return `${user.name} • профіль на`
+    },
+    getDescription(user: UserDetailDto): string {
+      return `Погляньте як ${user.name} (@${user.nickname}) досягає цілей`
+    },
+  },
 }

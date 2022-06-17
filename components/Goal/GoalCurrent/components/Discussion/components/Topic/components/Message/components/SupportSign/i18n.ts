@@ -9,4 +9,9 @@ export default {
       return `Поддержка ${name}`
     },
   },
+  uk: {
+    getTitle(name: string): string {
+      return `Підтримка ${name}`
+    },
+  },
 }

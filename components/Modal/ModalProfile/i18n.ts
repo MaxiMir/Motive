@@ -17,4 +17,13 @@ export default {
     buttonLoading: 'Сохраняю',
     nicknameError: 'Никнейм занят',
   },
+  uk: {
+    action: 'Редагування',
+    profile: 'профілю',
+    name: "Ім'я",
+    nickname: 'Нікнейм',
+    button: 'Зберегти',
+    buttonLoading: 'Зберігаю',
+    nicknameError: 'Нікнейм зайнятий',
+  },
 }

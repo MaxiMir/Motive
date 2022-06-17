@@ -19,4 +19,14 @@ export default {
     discussionHeader: 'Обсуждение',
     discussionAria: 'обсуждение-содержание',
   },
+  uk: {
+    stagesHeader: 'Етапи',
+    stagesAria: 'етапи-зміст',
+    tasksHeader: 'Завдання',
+    tasksAria: 'завдання-зміст',
+    feedbackHeader: 'Відгук',
+    feedbackAria: 'відгук-зміст',
+    discussionHeader: 'Обговорення',
+    discussionAria: 'обговорення-зміст',
+  },
 }

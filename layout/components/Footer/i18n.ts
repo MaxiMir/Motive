@@ -13,4 +13,11 @@ export default {
     following: 'Подписки',
     my: 'Моя страница',
   },
+  uk: {
+    top: 'Топ дня',
+    search: 'Пошук',
+    rating: 'Рейтинг',
+    following: 'Підписки',
+    my: 'Моя сторінка',
+  },
 }

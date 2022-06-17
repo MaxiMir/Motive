@@ -11,6 +11,9 @@ const i18n = {
   ru: {
     title: 'Топ дня',
   },
+  uk: {
+    title: 'Топ дня',
+  },
 }
 
 export default function TopOfTheDay() {

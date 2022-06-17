@@ -5,4 +5,7 @@ export default {
   ru: {
     title: 'Пока пусто',
   },
+  uk: {
+    title: 'Поки порожньо',
+  },
 }

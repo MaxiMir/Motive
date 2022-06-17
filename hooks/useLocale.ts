@@ -1,8 +1,8 @@
 import { useRouter } from 'next/router'
 
-export const LOCALES = ['en', 'ru'] as const
+export const LOCALES = ['en', 'ru', 'uk'] as const
 export type Locale = typeof LOCALES[number]
-const [EN] = LOCALES
+export const [EN, RU, UK] = LOCALES
 type UseLocale = { locale: Locale; go: (urn: string) => void; setLocale: (value: Locale) => void }
 
 export default function useLocale(): UseLocale {

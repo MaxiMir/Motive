@@ -5,4 +5,7 @@ export default {
   ru: {
     ariaControls: 'открыть-уведомления',
   },
+  uk: {
+    ariaControls: 'відкрити-повідомлення',
+  },
 }

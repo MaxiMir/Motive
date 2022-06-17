@@ -5,4 +5,7 @@ export default {
   ru: {
     header: 'Подписки',
   },
+  uk: {
+    header: 'Підписки',
+  },
 }

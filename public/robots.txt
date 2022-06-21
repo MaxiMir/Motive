@@ -2,5 +2,6 @@ Sitemap: https://2bebetter.pro/api/v1/seo/sitemap.xml
 
 User-agent: *
 Allow: /*
+Allow: /api/v1/seo/sitemap.xml
 
 Disallow: /api/*

@@ -45,6 +45,7 @@ export default function Layout({ title, description, url, type, image, statusCod
         <link rel="apple-touch-icon" href="/icons/icon-180.png" />
         <meta name="theme-color" content="#19191A" />
         <meta charSet="UTF-8" />
+        <meta name="google-site-verification" content="agmCksft6b7nOz-CbmrjAcflYLb5ztxWLN6o9vFImak" />
         <link rel="icon" type="image/x-icon" href="/favicon.ico" />
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" />
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />

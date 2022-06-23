@@ -8,7 +8,6 @@ import { getGoalWithDayUrn, HASH_MARK } from 'helpers/url'
 import { getMember } from 'views/UserView/helper'
 import CharacteristicGoal from 'components/Characteristic/CharacteristicGoal'
 import AppTitle from 'components/UI/AppTitle'
-import AppDot from 'components/UI/AppDot'
 import AppAccordion from 'components/UI/AppAccordion'
 import AppInView from 'components/UI/AppInView'
 import { useIncreaseViews } from './hook'
@@ -120,7 +119,6 @@ export default function GoalCurrent({
                 {CHARACTERISTICS.map((characteristicName) => (
                   <Fragment key={characteristicName}>
                     <CharacteristicGoal name={characteristicName} value={characteristic[characteristicName]} />
-                    <AppDot />
                   </Fragment>
                 ))}
                 <CharacteristicGoal name="runningDays" value={goalInfo.runningDays} />

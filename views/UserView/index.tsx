@@ -56,62 +56,63 @@ export default function UserView({ user, locale }: UserViewProps) {
         </Box>
       </Box>
       <Divider light sx={{ mb: 3 }} />
-      <Box display="flex" flexDirection="column" gap={3} flex={1}>
-        <Box
-          display="flex"
-          sx={{
-            gap: {
-              xs: 1,
-              md: 4,
-            },
-          }}
-        >
-          <Avatar avatar={avatar} characteristic={characteristic} />
-          <Box display="flex" flexDirection="column" justifyContent="space-between" flex={1}>
-            <Box display="flex" justifyContent="space-between">
-              {CHARACTERISTIC_NAMES.map((characteristicName) => (
-                <Characteristic
-                  user={user}
-                  name={characteristicName}
-                  value={characteristic[characteristicName]}
-                  locale={locale}
-                  key={characteristicName}
-                />
-              ))}
-            </Box>
-            <Box display="flex" justifyContent="space-between">
-              {SECOND_CHARACTERISTIC_NAMES.map((characteristicName) => (
-                <Characteristic
-                  user={user}
-                  name={characteristicName}
-                  value={characteristic[characteristicName]}
-                  locale={locale}
-                  key={characteristicName}
-                />
-              ))}
-            </Box>
-          </Box>
-        </Box>
-        {clientPage ? <AddGoal /> : <Following id={user.id} following={following} locale={locale} />}
-        {!goals.length ? (
-          <EmptyGoals clientPage={clientPage} locale={locale} />
-        ) : (
-          <Box display="flex" flexWrap="wrap" gap={3}>
-            {goals.map((goal) => (
-              <GoalCurrent
-                goal={goal}
-                href={href}
-                userId={id}
-                userMembership={userMembership}
-                clientId={client?.id}
-                clientPage={clientPage}
-                clientMembership={clientMembership}
-                key={goal.id}
+      <Box
+        display="flex"
+        sx={{
+          gap: {
+            xs: 1,
+            md: 4,
+          },
+        }}
+      >
+        <Avatar avatar={avatar} characteristic={characteristic} />
+        <Box display="flex" flexDirection="column" justifyContent="space-between" flex={1}>
+          <Box display="flex" justifyContent="space-between">
+            {CHARACTERISTIC_NAMES.map((characteristicName) => (
+              <Characteristic
+                user={user}
+                name={characteristicName}
+                value={characteristic[characteristicName]}
+                locale={locale}
+                key={characteristicName}
               />
             ))}
           </Box>
-        )}
+          <Box display="flex" justifyContent="space-between">
+            {SECOND_CHARACTERISTIC_NAMES.map((characteristicName) => (
+              <Characteristic
+                user={user}
+                name={characteristicName}
+                value={characteristic[characteristicName]}
+                locale={locale}
+                key={characteristicName}
+              />
+            ))}
+          </Box>
+        </Box>
       </Box>
+      <Divider light sx={{ my: 3 }} />
+      <Box display="flex" justifyContent="center" mb={3}>
+        {clientPage ? <AddGoal /> : <Following id={user.id} following={following} locale={locale} />}
+      </Box>
+      {!goals.length ? (
+        <EmptyGoals clientPage={clientPage} locale={locale} />
+      ) : (
+        <Box display="flex" flexWrap="wrap" gap={3}>
+          {goals.map((goal) => (
+            <GoalCurrent
+              goal={goal}
+              href={href}
+              userId={id}
+              userMembership={userMembership}
+              clientId={client?.id}
+              clientPage={clientPage}
+              clientMembership={clientMembership}
+              key={goal.id}
+            />
+          ))}
+        </Box>
+      )}
     </AppContainer>
   )
 }

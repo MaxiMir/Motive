@@ -1,14 +1,6 @@
 import { Fragment, ReactNode } from 'react'
 import dynamic from 'next/dynamic'
-import {
-  Dialog,
-  DialogContent,
-  DialogTitle,
-  DialogProps,
-  backdropClasses,
-  paperClasses,
-  IconButton,
-} from '@mui/material'
+import { Dialog, DialogContent, DialogTitle, DialogProps, backdropClasses, IconButton } from '@mui/material'
 import AppScrollbar from './AppScrollbar'
 import AppIcon from './AppIcon'
 
@@ -30,9 +22,6 @@ export default function AppModal({ title, actions, maxWidth, blur = true, childr
       open
       maxWidth={maxWidth}
       sx={{
-        [`& .${paperClasses.root}`]: {
-          maxHeight: '80vh',
-        },
         [`& .${backdropClasses.root}`]: {
           background: 'rgba(34, 34, 34, 0.75)',
           backdropFilter: blur ? 'blur(5px)' : undefined,

@@ -40,8 +40,7 @@ export const getGoalInfo = (goal: GoalDto, clientOwnership: OwnershipDto, userMe
   const controls = checkOnControls()
   const completeStage = clientOwnership.goal && controls && goal.stage <= goal.day.stage
   const daysGoneForOwner = differenceInCalendarDays(today, Date.parse(day.date))
-  const differenceWithStarted = differenceInCalendarDays(today, Date.parse(started))
-  const runningDays = differenceWithStarted < 0 ? 0 : differenceWithStarted
+  const runningDays = differenceInCalendarDays(Date.parse(day.date), Date.parse(started)) + 1
   const daysGone = getDaysGone()
   const web = checkOnWeb()
   const form = checkOnForm()

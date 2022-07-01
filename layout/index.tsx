@@ -43,7 +43,7 @@ export default function Layout({ title, description, url, type, image, statusCod
         {/* PWA */}
         <link rel="manifest" href="/manifest.json" />
         <link rel="apple-touch-icon" href="/icons/icon-180.png" />
-        <meta name="theme-color" content="#19191A" />
+        <meta name="theme-color" content="#121212" />
         <meta charSet="UTF-8" />
         <meta name="google-site-verification" content="agmCksft6b7nOz-CbmrjAcflYLb5ztxWLN6o9vFImak" />
         <link rel="icon" type="image/x-icon" href="/favicon.ico" />

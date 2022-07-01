@@ -1,4 +1,4 @@
-import { Fragment, useMemo } from 'react'
+import { useMemo } from 'react'
 import dynamic from 'next/dynamic'
 import { useRouter } from 'next/router'
 import { Box, useTheme } from '@mui/material'
@@ -117,9 +117,11 @@ export default function GoalCurrent({
               </Box>
               <Box display="flex" justifyContent="space-between" alignItems="center">
                 {CHARACTERISTICS.map((characteristicName) => (
-                  <Fragment key={characteristicName}>
-                    <CharacteristicGoal name={characteristicName} value={characteristic[characteristicName]} />
-                  </Fragment>
+                  <CharacteristicGoal
+                    name={characteristicName}
+                    value={characteristic[characteristicName]}
+                    key={characteristicName}
+                  />
                 ))}
                 <CharacteristicGoal name="runningDays" value={goalInfo.runningDays} />
               </Box>

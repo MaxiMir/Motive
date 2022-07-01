@@ -10,7 +10,6 @@ export interface CharacteristicGoalProps {
   value: number
 }
 
-// TODO modal for runningDays:
 export default function CharacteristicGoal({ name, value }: CharacteristicGoalProps) {
   const { locale } = useLocale()
   const shortValue = numberToShort(value)

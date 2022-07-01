@@ -1,9 +1,20 @@
+[//]: # (TODO)
+* Обновление сообщений
+* Добавить режим для целей
+* Добавить приватные цели (без баллов / удаление после прохождения)
+* Чистка нотификаций
+* Уведомления (о завершении цели + ...)
+* Геометаданные
+* Будильник
+* Наведение на хар-ки -> список пользователей
+* Переделать завершенные цели
+
 ```shell
-docker build -t maximir/frontend:1.0.62 .
+docker build -t maximir/frontend:1.0.63 .
 # artifactory:
-docker tag <IMAGE_ID> maximir.jfrog.io/default-docker-virtual/frontend:1.0.62
-docker push maximir.jfrog.io/default-docker-virtual/frontend:1.0.62
-docker pull maximir.jfrog.io/default-docker-virtual/frontend:1.0.62
+docker tag <IMAGE_ID> maximir.jfrog.io/default-docker-virtual/frontend:1.0.63
+docker push maximir.jfrog.io/default-docker-virtual/frontend:1.0.63
+docker pull maximir.jfrog.io/default-docker-virtual/frontend:1.0.63
 
 # copy:
 docker cp <IMAGE_ID>:/home/node/client /home # <-
@@ -14,7 +25,7 @@ version: '3.3'
 
 services:
   frontend:
-    image: maximir.jfrog.io/default-docker-virtual/frontend:1.0.62
+    image: maximir.jfrog.io/default-docker-virtual/frontend:1.0.63
     depends_on:
       - backend
     restart: unless-stopped

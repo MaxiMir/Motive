@@ -15,18 +15,18 @@ import { styled } from '@mui/system'
 import useFocus from 'hooks/useFocus'
 import { Locale } from 'hooks/useLocale'
 import { getToday, getTomorrow } from 'helpers/date'
-import AppModal from 'components/UI/AppModal'
-import AppTitle from 'components/UI/AppTitle'
-import AppInput from 'components/UI/AppInput'
-import AppIcon from 'components/UI/AppIcon'
-import AppDot from 'components/UI/AppDot'
+import AppModal from 'components/ui/AppModal'
+import AppTitle from 'components/ui/AppTitle'
+import AppInput from 'components/ui/AppInput'
+import AppIcon from 'components/ui/AppIcon'
+import AppDot from 'components/ui/AppDot'
 import ActionSubmit from 'components/Action/ActionSubmit'
 import ActionClose from 'components/Action/ActionClose'
 import TaskField from 'components/Task/TaskField'
 import useForm from './hook'
 import i18n from './i18n'
 
-const AppIconButton = dynamic(() => import('components/UI/AppIconButton'))
+const AppIconButton = dynamic(() => import('components/ui/AppIconButton'))
 
 export interface ModalGoalProps {
   locale: Locale

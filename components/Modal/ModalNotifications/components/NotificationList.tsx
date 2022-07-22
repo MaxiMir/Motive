@@ -1,6 +1,6 @@
 import { NotificationDto } from 'dto'
 import NotificationModal from 'components/Notification/NotificationModal'
-import AppList from 'components/UI/AppList'
+import AppList from 'components/ui/AppList'
 
 interface NotificationListProps {
   notifications: NotificationDto[]

@@ -1,7 +1,7 @@
 import { Container, Grid, Box, Typography } from '@mui/material'
 import { UserDto, MainCharacteristicName } from 'dto'
 import { Locale } from 'hooks/useLocale'
-import AppList from 'components/UI/AppList'
+import AppList from 'components/ui/AppList'
 import UserRating from 'components/User/UserRating'
 import i18n from './i18n'
 

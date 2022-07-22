@@ -1,7 +1,7 @@
 import { Box, Typography } from '@mui/material'
 import { SEARCH } from 'route'
 import { Locale } from 'hooks/useLocale'
-import AppLink from 'components/UI/AppLink'
+import AppLink from 'components/ui/AppLink'
 import i18n from './i18n'
 
 interface OwnerDescriptionProps {

@@ -14,6 +14,7 @@ import i18n from './i18n'
 export default function useForm(user: UserBaseDto, locale: Locale, onSuccess: () => void): FormikProps<UpdateUserDto> {
   const { mutateAsync } = useSendUpdateUser(locale)
   const { nicknameError } = i18n[locale]
+
   return useFormik<UpdateUserDto>({
     initialValues: {
       name: user.name,

@@ -4,7 +4,7 @@ import { Box, Button } from '@mui/material'
 import { GoalDto } from 'dto'
 import useLocale from 'hooks/useLocale'
 import OptionalTooltip from 'components/OptionalTooltip'
-import AppEmoji from 'components/UI/AppEmoji'
+import AppEmoji from 'components/ui/AppEmoji'
 import i18n from './i18n'
 
 const ModalTasks = dynamic(() => import('components/Modal/ModalTasks'))
@@ -18,10 +18,10 @@ export default function OwnerControl({ goal }: OwnerControlProps) {
   const { stages, day } = goal
   const { locale } = useLocale()
   const [modal, setModal] = useState<'tasks' | 'completion'>()
-  const { nextButton, doneButton } = i18n[locale]
   const feedbackAdded = !!goal.day.feedback
   const renderCompete = stages.length === day.stage && feedbackAdded
   const justifyContent = renderCompete ? 'space-between' : 'flex-end'
+  const { nextButton, doneButton } = i18n[locale]
 
   const onAddTasks = () => setModal('tasks')
 

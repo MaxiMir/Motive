@@ -1,5 +1,5 @@
 import { Box } from '@mui/material'
-import AppEmoji from 'components/UI/AppEmoji'
+import AppEmoji from 'components/ui/AppEmoji'
 import { getFontSize } from './helper'
 
 interface NoAvatarProps {

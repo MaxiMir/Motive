@@ -3,13 +3,13 @@ import { Field, Form, FormikProvider } from 'formik'
 import { Box, IconButton } from '@mui/material'
 import { TopicDto, MessageType, ClientDto, UserBaseDto } from 'dto'
 import useLocale from 'hooks/useLocale'
-import AppInput from 'components/UI/AppInput'
+import AppInput from 'components/ui/AppInput'
 import InputAvatar from './components/InputAvatar'
 import useForm from './hook'
 import i18n from './i18n'
 
 const CircularProgress = dynamic(() => import('@mui/material/CircularProgress'))
-const AppIcon = dynamic(() => import('components/UI/AppIcon'))
+const AppIcon = dynamic(() => import('components/ui/AppIcon'))
 
 export interface UserInputProps {
   dayId: number

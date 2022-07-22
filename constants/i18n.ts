@@ -1,5 +1,6 @@
 export default {
   en: {
+    format: 'MM/dd/yyyy',
     copy: 'Copied',
     error: 'Something went wrong...',
     motivation: 'motivation',
@@ -13,7 +14,6 @@ export default {
     report: 'Report',
     leave: 'Leave',
     remove: 'Remove',
-    format: 'MM/dd/yyyy',
     agoText: 'ago',
     event: 'New event',
     getLimitPhotosError(limit: number): string {
@@ -21,6 +21,7 @@ export default {
     },
   },
   ru: {
+    format: 'dd/MM/yyyy',
     copy: 'Скопировано',
     error: 'Что-то пошло не так...',
     motivation: 'мотивация',
@@ -34,7 +35,6 @@ export default {
     report: 'Пожаловаться',
     leave: 'Покинуть',
     remove: 'Удалить',
-    format: 'dd/MM/yyyy',
     agoText: 'назад',
     event: 'Новое событие',
     getLimitPhotosError(limit: number): string {
@@ -42,6 +42,7 @@ export default {
     },
   },
   uk: {
+    format: 'dd/MM/yyyy',
     copy: 'Скопійовано',
     error: 'Щось пішло не так...',
     motivation: 'мотивація',
@@ -55,7 +56,6 @@ export default {
     report: 'Поскаржити',
     leave: 'Залишити',
     remove: 'Видалити',
-    format: 'dd/MM/yyyy',
     agoText: 'назад',
     event: 'Нова подія',
     getLimitPhotosError(limit: number): string {

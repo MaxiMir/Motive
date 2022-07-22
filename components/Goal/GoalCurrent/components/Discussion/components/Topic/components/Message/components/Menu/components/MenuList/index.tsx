@@ -4,7 +4,7 @@ import { Menu, MenuItem } from '@mui/material'
 import { MessageDto } from 'dto'
 import useClient from 'hooks/useClient'
 import { Locale } from 'hooks/useLocale'
-import AppMenuItemContent from 'components/UI/AppMenuItemContent'
+import AppMenuItemContent from 'components/ui/AppMenuItemContent'
 import i18n from './i18n'
 
 const Report = dynamic(() => import('components/Report'))

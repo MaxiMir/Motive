@@ -1,10 +1,10 @@
 import dynamic from 'next/dynamic'
 import { Box, Button, IconButton } from '@mui/material'
 import useLocale from 'hooks/useLocale'
-import AppIcon from 'components/UI/AppIcon'
+import AppIcon from 'components/ui/AppIcon'
 import i18n from './i18n'
 
-const AppImage = dynamic(() => import('components/UI/AppImage'))
+const AppImage = dynamic(() => import('components/ui/AppImage'))
 const LocalImage = dynamic(() => import('./components/LocalImage'))
 
 export interface PhotoButtonProps {

@@ -4,7 +4,7 @@ import i18n from 'constants/i18n'
 import { copyHandler } from 'helpers/dom'
 import useSnackbar from 'hooks/useSnackbar'
 import useLocale from 'hooks/useLocale'
-import AppIconButton from 'components/UI/AppIconButton'
+import AppIconButton from 'components/ui/AppIconButton'
 
 interface WalletProps {
   name: string
@@ -15,6 +15,7 @@ export default function Wallet({ name, wallet }: WalletProps) {
   const { locale } = useLocale()
   const [enqueueSnackbar] = useSnackbar()
   const { copy, error } = i18n[locale]
+
   const onCopySuccess = () => enqueueSnackbar({ message: copy, severity: 'success', icon: 'keyboard' })
 
   const onCopyError = () => enqueueSnackbar({ message: error, severity: 'error' })

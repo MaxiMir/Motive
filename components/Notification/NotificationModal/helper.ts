@@ -2,7 +2,7 @@ import produce from 'immer'
 import { ClientDto, NOTIFICATION_TYPE, NotificationDto } from 'dto'
 import { getDiscussionUrn, getFeedbackUrn, getGoalUrn, getGoalWithDayUrn, getUserUrn } from 'helpers/url'
 import { toShortString } from 'helpers/prepare'
-import { AppEmojiName } from 'components/UI/AppEmoji'
+import { AppEmojiName } from 'components/ui/AppEmoji'
 
 type NotificationInfo = { emoji: AppEmojiName; color: string }
 

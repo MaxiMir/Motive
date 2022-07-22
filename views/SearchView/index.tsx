@@ -2,8 +2,8 @@ import dynamic from 'next/dynamic'
 import { Grid, Box } from '@mui/material'
 import { GoalDto, HashtagDto, UserDto } from 'dto'
 import { Locale } from 'hooks/useLocale'
-import AppTitle from 'components/UI/AppTitle'
-import AppContainer from 'components/UI/AppContainer'
+import AppTitle from 'components/ui/AppTitle'
+import AppContainer from 'components/ui/AppContainer'
 import SearchForm from './components/SearchForm'
 import { getGradients } from './helper'
 import i18n from './i18n'
@@ -22,9 +22,9 @@ interface SearchViewProps {
 }
 
 export default function SearchView({ q, hashtags, goals, users, locale }: SearchViewProps) {
-  const { title, trendTitle, userTitle, goalTitle } = i18n[locale]
   const gradients = getGradients()
   const noResult = !users.length && !goals.length
+  const { title, trendTitle, userTitle, goalTitle } = i18n[locale]
 
   return (
     <AppContainer>

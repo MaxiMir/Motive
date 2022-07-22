@@ -2,7 +2,7 @@ import { ChangeEvent, useRef } from 'react'
 import { Button } from '@mui/material'
 import { styled } from '@mui/system'
 import useLocale from 'hooks/useLocale'
-import AppEmoji from 'components/UI/AppEmoji'
+import AppEmoji from 'components/ui/AppEmoji'
 import i18n from './i18n'
 
 export interface PhotoInputProps {

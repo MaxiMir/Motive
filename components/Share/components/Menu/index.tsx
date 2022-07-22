@@ -5,7 +5,7 @@ import SMS from '@mui/icons-material/Textsms'
 import ContentCopyIcon from '@mui/icons-material/ContentCopy'
 import { copyHandler } from 'helpers/dom'
 import { Locale } from 'hooks/useLocale'
-import { FacebookIcon, TelegramIcon, TwitterIcon, VKIcon } from 'components/UI/icons'
+import { FacebookIcon, TelegramIcon, TwitterIcon, VKIcon } from 'components/ui/icons'
 import { clickHandler } from './helper'
 import i18n from './i18n'
 
@@ -20,8 +20,8 @@ interface MenuProps {
 
 export default function Menu({ title, url, locale, onCopyEnd, onCopyError, onClose }: MenuProps) {
   const theme = useTheme()
-  const { share, send, link } = i18n[locale]
   const shareItems = getShareItems()
+  const { share, send, link } = i18n[locale]
 
   const onKeyDown = (event: KeyboardEvent) => {
     if (['Tab', 'Shift'].includes(event.key)) return

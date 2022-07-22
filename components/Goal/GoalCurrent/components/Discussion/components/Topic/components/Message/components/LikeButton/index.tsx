@@ -3,7 +3,7 @@ import { MessageDto, MessageType } from 'dto'
 import useClient from 'hooks/useClient'
 import { Locale } from 'hooks/useLocale'
 import OptionalTooltip from 'components/OptionalTooltip'
-import AppEmoji from 'components/UI/AppEmoji'
+import AppEmoji from 'components/ui/AppEmoji'
 import { checkOnDisabled, getAreaLabel, getTitle } from './helper'
 import useSetLike from './hook'
 

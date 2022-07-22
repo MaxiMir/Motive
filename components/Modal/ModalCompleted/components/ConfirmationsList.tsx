@@ -1,5 +1,5 @@
 import { ConfirmationDto, UserDetailDto } from 'dto'
-import AppList from 'components/UI/AppList'
+import AppList from 'components/ui/AppList'
 import GoalCompleted from 'components/Goal/GoalCompleted'
 
 interface UserListProps {

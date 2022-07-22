@@ -3,9 +3,9 @@ import { Field } from 'formik'
 import { Box, Switch, Tooltip, FormControlLabel } from '@mui/material'
 import { TimePicker } from '@mui/x-date-pickers'
 import { Locale } from 'hooks/useLocale'
-import AppInput from 'components/UI/AppInput'
-import AppIcon from 'components/UI/AppIcon'
-import AppIconButton from 'components/UI/AppIconButton'
+import AppInput from 'components/ui/AppInput'
+import AppIcon from 'components/ui/AppIcon'
+import AppIconButton from 'components/ui/AppIconButton'
 import i18n from './i18n'
 
 export interface TaskFieldProps {

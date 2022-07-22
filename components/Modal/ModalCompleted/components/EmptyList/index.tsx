@@ -1,6 +1,6 @@
 import { Box, Typography } from '@mui/material'
 import { Locale } from 'hooks/useLocale'
-import AppSpinIcon from 'components/UI/AppSpinIcon'
+import AppSpinIcon from 'components/ui/AppSpinIcon'
 import i18n from './i18n'
 
 interface EmptyListProps {

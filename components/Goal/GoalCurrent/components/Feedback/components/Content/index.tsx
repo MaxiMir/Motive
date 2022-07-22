@@ -3,8 +3,8 @@ import { Box } from '@mui/material'
 import { FeedbackDto } from 'dto'
 
 const Gallery = dynamic(() => import('./components/Gallery'))
-const AppPlayer = dynamic(() => import('components/UI/AppPlayer'))
-const AppMarkdown = dynamic(() => import('components/UI/AppMarkdown'))
+const AppPlayer = dynamic(() => import('components/ui/AppPlayer'))
+const AppMarkdown = dynamic(() => import('components/ui/AppMarkdown'))
 
 interface ContentProps {
   feedback: FeedbackDto

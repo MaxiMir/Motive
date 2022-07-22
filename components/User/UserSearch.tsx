@@ -1,6 +1,6 @@
 import { Box, Typography, Button } from '@mui/material'
 import { UserCharacteristicName, UserDto } from 'dto'
-import AppAvatar from 'components/UI/AppAvatar'
+import AppAvatar from 'components/ui/AppAvatar'
 import { getUserUrn } from 'helpers/url'
 import CharacteristicUser from 'components/Characteristic/CharacteristicUser'
 

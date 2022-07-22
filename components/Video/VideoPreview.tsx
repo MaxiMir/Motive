@@ -1,6 +1,6 @@
 import { Box, IconButton } from '@mui/material'
-import AppIcon from 'components/UI/AppIcon'
-import AppPlayer from 'components/UI/AppPlayer'
+import AppIcon from 'components/ui/AppIcon'
+import AppPlayer from 'components/ui/AppPlayer'
 
 export interface VideoPreviewProps {
   video: Blob | MediaSource

@@ -1,8 +1,8 @@
 import { Box, useTheme } from '@mui/material'
 import { styled } from '@mui/system'
 import { UserCharacteristicDto } from 'dto'
-import AppCircle from 'components/UI/AppCircle'
-import AppAvatar from 'components/UI/AppAvatar'
+import AppCircle from 'components/ui/AppCircle'
+import AppAvatar from 'components/ui/AppAvatar'
 import { getCircleItems } from './helper'
 
 interface AvatarProps {

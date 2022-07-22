@@ -1,8 +1,8 @@
 import { Field, Form, FormikProvider } from 'formik'
 import { styled } from '@mui/system'
 import useLocale from 'hooks/useLocale'
-import AppInput from 'components/UI/AppInput'
-import AppIconButton from 'components/UI/AppIconButton'
+import AppInput from 'components/ui/AppInput'
+import AppIconButton from 'components/ui/AppIconButton'
 import AutoSend from './components/AutoSend'
 import useForm from './hook'
 import i18n from './i18n'
@@ -14,8 +14,8 @@ interface SearchFormProps {
 export default function SearchForm({ q }: SearchFormProps) {
   const form = useForm(q || '')
   const { locale } = useLocale()
-  const { label } = i18n[locale]
   const { values, setFieldValue } = form
+  const { label } = i18n[locale]
 
   const onClickClose = () => setFieldValue('q', '')
 

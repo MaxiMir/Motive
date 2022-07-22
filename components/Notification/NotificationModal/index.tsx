@@ -4,16 +4,16 @@ import { NotificationDto } from 'dto'
 import useLocale from 'hooks/useLocale'
 import useClient from 'hooks/useClient'
 import { getDistance } from 'helpers/date'
-import AppEmoji from 'components/UI/AppEmoji'
-import AppLink from 'components/UI/AppLink'
-import AppAvatar from 'components/UI/AppAvatar'
-import AppIcon from 'components/UI/AppIcon'
+import AppEmoji from 'components/ui/AppEmoji'
+import AppLink from 'components/ui/AppLink'
+import AppAvatar from 'components/ui/AppAvatar'
+import AppIcon from 'components/ui/AppIcon'
 import { getUserUrn } from 'helpers/url'
 import { getDetailsName, getNotificationInfo, getNotificationUrn } from './helper'
 import { useUpdateRead } from './hook'
 import i18n from './i18n'
 
-const AppInView = dynamic(() => import('components/UI/AppInView'))
+const AppInView = dynamic(() => import('components/ui/AppInView'))
 
 interface NotificationModalProps {
   notification: NotificationDto

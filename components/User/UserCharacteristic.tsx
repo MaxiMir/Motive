@@ -3,10 +3,10 @@ import { Box, Typography } from '@mui/material'
 import { UserDto, UserCharacteristicName } from 'dto'
 import { getUserUrn } from 'helpers/url'
 import CharacteristicUser from 'components/Characteristic/CharacteristicUser'
-import AppLink from 'components/UI/AppLink'
-import AppAvatar from 'components/UI/AppAvatar'
+import AppLink from 'components/ui/AppLink'
+import AppAvatar from 'components/ui/AppAvatar'
 
-const AppInView = dynamic(() => import('components/UI/AppInView'))
+const AppInView = dynamic(() => import('components/ui/AppInView'))
 
 const CHARACTERISTICS: UserCharacteristicName[] = ['motivation', 'creativity', 'support', 'completed']
 

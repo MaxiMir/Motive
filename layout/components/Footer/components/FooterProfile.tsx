@@ -2,7 +2,7 @@ import { Button } from '@mui/material'
 import useOpenSignIn from 'hooks/useOpenSignIn'
 import useLocale from 'hooks/useLocale'
 import { getUserUrn } from 'helpers/url'
-import { ProfileIcon } from 'components/UI/icons'
+import { ProfileIcon } from 'components/ui/icons'
 import FooterIcon from './FooterIcon'
 
 interface FooterProfileProps {

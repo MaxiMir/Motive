@@ -1,6 +1,6 @@
 import { Box, Typography } from '@mui/material'
 import useLocale from 'hooks/useLocale'
-import AppFadeIcon from 'components/UI/AppFadeIcon'
+import AppFadeIcon from 'components/ui/AppFadeIcon'
 import i18n from './i18n'
 
 export default function EmptyList() {

@@ -2,7 +2,7 @@ import { Box, Typography, Tooltip } from '@mui/material'
 import { GoalCharacteristicName } from 'dto'
 import useLocale from 'hooks/useLocale'
 import { numberToShort } from 'helpers/prepare'
-import AppEmoji from 'components/UI/AppEmoji'
+import AppEmoji from 'components/ui/AppEmoji'
 import i18n from './i18n'
 
 export interface CharacteristicGoalProps {

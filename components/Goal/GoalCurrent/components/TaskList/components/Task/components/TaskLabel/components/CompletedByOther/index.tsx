@@ -1,6 +1,6 @@
 import { Tooltip } from '@mui/material'
 import useLocale from 'hooks/useLocale'
-import AppEmoji from 'components/UI/AppEmoji'
+import AppEmoji from 'components/ui/AppEmoji'
 import i18n from './i18n'
 
 export default function CompletedByOther() {

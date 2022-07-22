@@ -4,7 +4,7 @@ import { UserDetailDto, UserCharacteristicName, MainCharacteristicName } from 'd
 import { getUserUrn } from 'helpers/url'
 import useClient from 'hooks/useClient'
 import { Locale } from 'hooks/useLocale'
-import AppContainer from 'components/UI/AppContainer'
+import AppContainer from 'components/ui/AppContainer'
 import Avatar from './components/Avatar'
 import Characteristic from './components/Characteristic'
 import EmptyGoals from './components/EmptyGoals'

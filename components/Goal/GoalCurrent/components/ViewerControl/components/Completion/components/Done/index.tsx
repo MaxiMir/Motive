@@ -4,7 +4,7 @@ import { Button } from '@mui/material'
 import { GoalDto } from 'dto'
 import useLocale from 'hooks/useLocale'
 import OptionalTooltip from 'components/OptionalTooltip'
-import AppEmoji from 'components/UI/AppEmoji'
+import AppEmoji from 'components/ui/AppEmoji'
 import i18n from './i18n'
 
 const ModalCompletion = dynamic(() => import('components/Modal/ModalCompletion'))

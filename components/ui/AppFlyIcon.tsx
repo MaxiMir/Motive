@@ -1,5 +1,5 @@
 import { Box } from '@mui/material'
-import AppEmoji, { AppEmojiName } from 'components/UI/AppEmoji'
+import AppEmoji, { AppEmojiName } from 'components/ui/AppEmoji'
 
 interface AppSpinIconProps {
   name: AppEmojiName

@@ -2,7 +2,7 @@ import { useState } from 'react'
 import dynamic from 'next/dynamic'
 import { UserBaseDto } from 'dto'
 import { Locale } from 'hooks/useLocale'
-import AppIconButton from 'components/UI/AppIconButton'
+import AppIconButton from 'components/ui/AppIconButton'
 import i18n from './i18n'
 
 const ModalProfile = dynamic(() => import('components/Modal/ModalProfile'))

@@ -1,6 +1,6 @@
 import { Button } from '@mui/material'
 import useOpenSignIn from 'hooks/useOpenSignIn'
-import AppIcon from 'components/UI/AppIcon'
+import AppIcon from 'components/ui/AppIcon'
 
 export default function SignIn() {
   const openSignIn = useOpenSignIn()

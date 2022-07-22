@@ -1,8 +1,8 @@
 import { Box, Typography, useTheme } from '@mui/material'
 import { MainCharacteristicName } from 'dto'
 import { Locale } from 'hooks/useLocale'
-import AppEmoji from 'components/UI/AppEmoji'
-import AppLink from 'components/UI/AppLink'
+import AppEmoji from 'components/ui/AppEmoji'
+import AppLink from 'components/ui/AppLink'
 import i18n from './i18n'
 
 export interface AdvantageProps {

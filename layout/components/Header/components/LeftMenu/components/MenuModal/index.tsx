@@ -3,7 +3,7 @@ import { signOut } from 'next-auth/react'
 import { Box, List, Divider, ListItem, Drawer, ListItemText, ListItemIcon } from '@mui/material'
 import useLocale from 'hooks/useLocale'
 import useClient from 'hooks/useClient'
-import AppIcon from 'components/UI/AppIcon'
+import AppIcon from 'components/ui/AppIcon'
 import { MENU } from './helper'
 import i18n from './i18n'
 

@@ -4,7 +4,7 @@ import { TaskDto } from 'dto'
 import { checkOnCompletedByOther } from './helper'
 
 const CompletedByOther = dynamic(() => import('./components/CompletedByOther'))
-const AppMarkdown = dynamic(() => import('components/UI/AppMarkdown'))
+const AppMarkdown = dynamic(() => import('components/ui/AppMarkdown'))
 
 interface TaskLabelProps {
   task: TaskDto

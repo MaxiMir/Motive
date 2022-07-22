@@ -7,8 +7,8 @@ import ActionSubmit from 'components/Action/ActionSubmit'
 import ActionClose from 'components/Action/ActionClose'
 import PhotoInput from 'components/Photo/PhotoInput'
 import PhotoButton from 'components/Photo/PhotoButton'
-import AppModal from 'components/UI/AppModal'
-import AppInput from 'components/UI/AppInput'
+import AppModal from 'components/ui/AppModal'
+import AppInput from 'components/ui/AppInput'
 import useForm from './hook'
 import i18n from './i18n'
 
@@ -22,8 +22,8 @@ export interface ModalProfileProps {
 
 export default function ModalProfile({ user, locale, onClose }: ModalProfileProps) {
   const form = useForm(user, locale, onClose)
-  const { action, profile, name, nickname, button, buttonLoading } = i18n[locale]
   const { isSubmitting, values, touched, errors, setFieldValue, handleSubmit } = form
+  const { action, profile, name, nickname, button, buttonLoading } = i18n[locale]
 
   const setAvatar = (files: File[]) => setFieldValue('avatar', files[0])
 

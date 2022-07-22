@@ -4,7 +4,7 @@ import { BuiltInProviderType } from 'next-auth/providers'
 import { SignInOptions, getProviders, LiteralUnion, ClientSafeProvider } from 'next-auth/react'
 import { Box } from '@mui/material'
 import useLocale from 'hooks/useLocale'
-import AppModal from 'components/UI/AppModal'
+import AppModal from 'components/ui/AppModal'
 import i18n from './i18n'
 
 const Loader = dynamic(() => import('./components/Loader'))

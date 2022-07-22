@@ -1,7 +1,7 @@
 import { Box, Typography } from '@mui/material'
 import useLocale from 'hooks/useLocale'
-import AppEmoji from 'components/UI/AppEmoji'
-import AppContainer from 'components/UI/AppContainer'
+import AppEmoji from 'components/ui/AppEmoji'
+import AppContainer from 'components/ui/AppContainer'
 
 const i18n = {
   en: {

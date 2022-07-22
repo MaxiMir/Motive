@@ -1,7 +1,7 @@
 import { UserBaseDto } from 'dto'
 import { getUserUrn } from 'helpers/url'
-import AppAvatar from 'components/UI/AppAvatar'
-import AppLink from 'components/UI/AppLink'
+import AppAvatar from 'components/ui/AppAvatar'
+import AppLink from 'components/ui/AppLink'
 
 export interface UserAvatarProps {
   user: UserBaseDto

@@ -1,6 +1,6 @@
 import { Box, Typography, Tooltip } from '@mui/material'
 import { numberToShort } from 'helpers/prepare'
-import AppEmoji from 'components/UI/AppEmoji'
+import AppEmoji from 'components/ui/AppEmoji'
 
 interface GoalViewsProps {
   views: number

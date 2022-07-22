@@ -18,7 +18,7 @@ import { getFnsLocale } from 'helpers/date'
 import useLocale from 'hooks/useLocale'
 import Event from 'components/Event'
 
-const AppSnackbar = dynamic(() => import('components/UI/AppSnackbar'))
+const AppSnackbar = dynamic(() => import('components/ui/AppSnackbar'))
 const ModalSignIn = dynamic(() => import('components/Modal/ModalSignIn'))
 
 const generateClassName = createGenerateClassName({ productionPrefix: 'be' })

@@ -11,8 +11,8 @@ interface InheritedProps {
 
 export default function Inheritance({ owner }: InheritedProps) {
   const { locale } = useLocale()
-  const { title } = i18n[locale]
   const width = locale === 'ru' ? 100 : 90
+  const { title } = i18n[locale]
 
   return (
     <InheritanceBox display="flex" justifyContent="center" width={width}>

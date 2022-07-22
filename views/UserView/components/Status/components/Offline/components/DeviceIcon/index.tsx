@@ -1,5 +1,5 @@
 import { Device } from 'helpers/dom'
-import AppIcon from 'components/UI/AppIcon'
+import AppIcon from 'components/ui/AppIcon'
 import { getIconName } from './helper'
 
 interface DeviceIconProps {

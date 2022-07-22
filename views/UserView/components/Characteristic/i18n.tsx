@@ -1,4 +1,4 @@
-import AppEmoji from 'components/UI/AppEmoji'
+import AppEmoji from 'components/ui/AppEmoji'
 
 export default {
   en: {

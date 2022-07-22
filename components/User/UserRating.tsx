@@ -1,9 +1,9 @@
 import { Container, Typography, Grid, Box, useTheme } from '@mui/material'
 import { UserDto, UserCharacteristicName } from 'dto'
 import { getUserUrn } from 'helpers/url'
-import AppLink from 'components/UI/AppLink'
-import AppAvatar from 'components/UI/AppAvatar'
-import AppEmoji from 'components/UI/AppEmoji'
+import AppLink from 'components/ui/AppLink'
+import AppAvatar from 'components/ui/AppAvatar'
+import AppEmoji from 'components/ui/AppEmoji'
 
 export interface UserRatingProps {
   user: UserDto

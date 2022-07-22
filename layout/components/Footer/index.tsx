@@ -2,8 +2,8 @@ import { useRouter } from 'next/router'
 import { Container, Box, Button } from '@mui/material'
 import { FOLLOWING, RATING, SEARCH, TOP_OF_THE_DAY } from 'route'
 import useLocale from 'hooks/useLocale'
-import AppLink from 'components/UI/AppLink'
-import { TopOfTheDayIcon, SearchIcon, RatingIcon, FollowingIcon } from 'components/UI/icons'
+import AppLink from 'components/ui/AppLink'
+import { TopOfTheDayIcon, SearchIcon, RatingIcon, FollowingIcon } from 'components/ui/icons'
 import FooterIcon from './components/FooterIcon'
 import FooterProfile from './components/FooterProfile'
 import i18n from './i18n'
@@ -15,8 +15,8 @@ interface FooterProps {
 export default function Footer({ nickname }: FooterProps) {
   const { asPath } = useRouter()
   const { locale } = useLocale()
-  const titles = i18n[locale]
   const routes = getRoutes()
+  const titles = i18n[locale]
 
   function getRoutes() {
     return [

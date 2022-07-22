@@ -1,7 +1,7 @@
 import { Menu, MenuItem } from '@mui/material'
 import { ReportType } from 'dto'
 import useLocale from 'hooks/useLocale'
-import AppMenuItemContent from 'components/UI/AppMenuItemContent'
+import AppMenuItemContent from 'components/ui/AppMenuItemContent'
 import useSendReport from './hook'
 import i18n from './i18n'
 

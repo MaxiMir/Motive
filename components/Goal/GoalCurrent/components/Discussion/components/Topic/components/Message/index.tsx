@@ -5,15 +5,15 @@ import { getDistance } from 'helpers/date'
 import { numberToShort } from 'helpers/prepare'
 import useLocale from 'hooks/useLocale'
 import { getUserUrn } from 'helpers/url'
-import AppLink from 'components/UI/AppLink'
-import AppAvatar from 'components/UI/AppAvatar'
+import AppLink from 'components/ui/AppLink'
+import AppAvatar from 'components/ui/AppAvatar'
 import Menu from './components/Menu'
 import LikeButton from './components/LikeButton'
 import i18n from './i18n'
 
 const Button = dynamic(() => import('@mui/material/Button'))
 const SupportSign = dynamic(() => import('./components/SupportSign'))
-const AppMarkdown = dynamic(() => import('components/UI/AppMarkdown'))
+const AppMarkdown = dynamic(() => import('components/ui/AppMarkdown'))
 
 interface MessageProps {
   message: MessageDto

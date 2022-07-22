@@ -6,12 +6,12 @@ import useLocale from 'hooks/useLocale'
 import useSelectPhoto from 'hooks/useSelectPhoto'
 import ActionSubmit from 'components/Action/ActionSubmit'
 import ActionClose from 'components/Action/ActionClose'
-import AppModal from 'components/UI/AppModal'
-import AppDecorEmoji from 'components/UI/AppDecorEmoji'
-import AppAccordion from 'components/UI/AppAccordion'
-import AppInput from 'components/UI/AppInput'
-import AppTitle from 'components/UI/AppTitle'
-import AppSpinIcon from 'components/UI/AppSpinIcon'
+import AppModal from 'components/ui/AppModal'
+import AppDecorEmoji from 'components/ui/AppDecorEmoji'
+import AppAccordion from 'components/ui/AppAccordion'
+import AppInput from 'components/ui/AppInput'
+import AppTitle from 'components/ui/AppTitle'
+import AppSpinIcon from 'components/ui/AppSpinIcon'
 import PhotoInput from 'components/Photo/PhotoInput'
 import PhotoButton from 'components/Photo/PhotoButton'
 import VideoPreview from 'components/Video/VideoPreview'
@@ -32,6 +32,7 @@ export default function ModalCompletion({ goal, onClose }: ModalCompletionProps)
   const { locale } = useLocale()
   const form = useForm(goal, onClose)
   const { isSubmitting, values, touched, errors, setFieldValue, handleSubmit } = form
+  const photoError = Array.isArray(errors.photos) ? errors.photos.join(', ') : errors.photos
   const {
     title,
     button,
@@ -44,8 +45,9 @@ export default function ModalCompletion({ goal, onClose }: ModalCompletionProps)
     ariaControls,
     details,
   } = i18n[locale]
-  const photoError = Array.isArray(errors.photos) ? errors.photos.join(', ') : errors.photos
+
   const onSelectPhoto = useSelectPhoto(form)
+
   const onSelectVideo = (file: File) => setFieldValue('video', file)
 
   return (

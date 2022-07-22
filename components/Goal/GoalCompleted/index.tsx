@@ -4,14 +4,14 @@ import { Box, Tooltip, useTheme } from '@mui/material'
 import { ConfirmationDto, GoalCharacteristicName, UserDetailDto } from 'dto'
 import useClient from 'hooks/useClient'
 import useLocale from 'hooks/useLocale'
-import AppTitle from 'components/UI/AppTitle'
-import AppDot from 'components/UI/AppDot'
+import AppTitle from 'components/ui/AppTitle'
+import AppDot from 'components/ui/AppDot'
 import CharacteristicGoal from 'components/Characteristic/CharacteristicGoal'
 import { checkOnRepeat, getGoalInfo } from './helper'
 import i18n from './i18n'
 
 const Typography = dynamic(() => import('@mui/material/Typography'))
-const AppInView = dynamic(() => import('components/UI/AppInView'))
+const AppInView = dynamic(() => import('components/ui/AppInView'))
 const GallerySimple = dynamic(() => import('components/Gallery/GallerySimple'))
 const Inheritance = dynamic(() => import('./components/Inheritance'))
 const Repeat = dynamic(() => import('./components/Repeat'))

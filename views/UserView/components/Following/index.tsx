@@ -1,6 +1,6 @@
 import { Button } from '@mui/material'
 import { Locale } from 'hooks/useLocale'
-import AppEmoji from 'components/UI/AppEmoji'
+import AppEmoji from 'components/ui/AppEmoji'
 import useSetFollowing from './hook'
 import i18n from './i18n'
 

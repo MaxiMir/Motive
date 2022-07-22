@@ -1,5 +1,5 @@
 import { UserDto } from 'dto'
-import AppList from 'components/UI/AppList'
+import AppList from 'components/ui/AppList'
 import UserCharacteristic from 'components/User/UserCharacteristic'
 import Menu from './components/Menu'
 

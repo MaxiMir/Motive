@@ -1,7 +1,7 @@
 import { Box, Typography } from '@mui/material'
 import { Locale } from 'hooks/useLocale'
-import AppTitle from 'components/UI/AppTitle'
-import AppContainer from 'components/UI/AppContainer'
+import AppTitle from 'components/ui/AppTitle'
+import AppContainer from 'components/ui/AppContainer'
 import i18n from './i18n'
 
 interface TopOfTheDayViewProps {

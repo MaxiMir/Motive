@@ -1,6 +1,6 @@
 import { Box, Button } from '@mui/material'
 import { numberToShort } from 'helpers/prepare'
-import AppEmoji, { AppEmojiName } from 'components/UI/AppEmoji'
+import AppEmoji, { AppEmojiName } from 'components/ui/AppEmoji'
 
 export interface ActionGoalProps {
   name: AppEmojiName

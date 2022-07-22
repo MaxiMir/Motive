@@ -1,5 +1,5 @@
 import { Box } from '@mui/material'
-import AppImage from 'components/UI/AppImage'
+import AppImage from 'components/ui/AppImage'
 
 interface AvatarProps {
   src: string

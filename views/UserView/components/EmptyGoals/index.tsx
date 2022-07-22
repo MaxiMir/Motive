@@ -1,6 +1,6 @@
 import { Box, Typography } from '@mui/material'
 import { Locale } from 'hooks/useLocale'
-import AppFadeIcon from 'components/UI/AppFadeIcon'
+import AppFadeIcon from 'components/ui/AppFadeIcon'
 import OwnerDescription from './components/OwnerDescription'
 import i18n from './i18n'
 

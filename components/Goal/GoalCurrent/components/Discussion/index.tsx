@@ -3,12 +3,12 @@ import { Box } from '@mui/material'
 import { TopicDto, MessageType, UserBaseDto, ClientDto } from 'dto'
 import useClient from 'hooks/useClient'
 import useLocale from 'hooks/useLocale'
-import { AppListProps } from 'components/UI/AppList'
+import { AppListProps } from 'components/ui/AppList'
 import { useDiscussion, useAddMessage } from './hook'
 import i18n from './i18n'
 
 const Typography = dynamic(() => import('@mui/material/Typography'))
-const AppList = dynamic<AppListProps<TopicDto>>(() => import('components/UI/AppList'))
+const AppList = dynamic<AppListProps<TopicDto>>(() => import('components/ui/AppList'))
 const UserInput = dynamic(() => import('components/User/UserInput'))
 const Loader = dynamic(() => import('./components/Loader'))
 const Topic = dynamic(() => import('./components/Topic'))
@@ -26,8 +26,8 @@ export default function Discussion({ dayId, owner, count, clientGoal }: Discussi
   const { isLoading, topics, checkOnLoadMore, fetchNextPage } = useDiscussion(dayId, count)
   const onAdd = useAddMessage()
   const withInput = !!client && (!count || !!topics.length) && !clientGoal
-  const { nothing } = i18n[locale]
   const minHeight = topics.length || withInput ? 130 : undefined
+  const { nothing } = i18n[locale]
 
   return (
     <Box display="flex" flexDirection="column" gap={2} flex={1} minHeight={minHeight} maxHeight={500}>

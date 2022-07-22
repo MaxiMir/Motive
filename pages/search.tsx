@@ -27,8 +27,8 @@ const i18n = {
 
 export default function SearchPage({ statusCode }: PageProps) {
   const { locale } = useLocale()
-  const { title, description } = i18n[locale]
   const { data } = useSearchPage()
+  const { title, description } = i18n[locale]
 
   return (
     <Layout title={title} description={description} statusCode={statusCode}>

@@ -2,7 +2,7 @@ import dynamic from 'next/dynamic'
 import { Box } from '@mui/material'
 import { UserDetailDto } from 'dto'
 import useLocale from 'hooks/useLocale'
-import AppModal from 'components/UI/AppModal'
+import AppModal from 'components/ui/AppModal'
 import useGoals from './hook'
 import i18n from './i18n'
 

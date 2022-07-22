@@ -3,8 +3,8 @@ import { ToggleButtonGroup, ToggleButton, Box, Typography, PaletteMode } from '@
 import { styled } from '@mui/system'
 import { ThemeContext } from 'context/themeContext'
 import useLocale, { Locale, EN, RU, UK } from 'hooks/useLocale'
-import AppModal from 'components/UI/AppModal'
-import AppEmoji from 'components/UI/AppEmoji'
+import AppModal from 'components/ui/AppModal'
+import AppEmoji from 'components/ui/AppEmoji'
 import i18n from './i18n'
 
 interface ModalLanguageProps {

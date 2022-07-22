@@ -1,8 +1,8 @@
 import dynamic from 'next/dynamic'
 import { UserDto } from 'dto'
 import { Locale } from 'hooks/useLocale'
-import AppTitle from 'components/UI/AppTitle'
-import AppContainer from 'components/UI/AppContainer'
+import AppTitle from 'components/ui/AppTitle'
+import AppContainer from 'components/ui/AppContainer'
 import i18n from './i18n'
 
 const EmptyList = dynamic(() => import('./components/EmptyList'))

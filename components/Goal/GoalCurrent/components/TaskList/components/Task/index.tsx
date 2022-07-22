@@ -3,7 +3,7 @@ import { Box } from '@mui/material'
 import { MemberDto, TaskDto } from 'dto'
 import { GoalInfo } from 'components/Goal/GoalCurrent/helper'
 import OptionalTooltip from 'components/OptionalTooltip'
-import AppCheckbox from 'components/UI/AppCheckbox'
+import AppCheckbox from 'components/ui/AppCheckbox'
 import TaskLabel from './components/TaskLabel'
 import useSetCompleted from './hook'
 

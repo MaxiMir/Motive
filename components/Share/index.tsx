@@ -56,5 +56,3 @@ export default function Share({ title, href, locale, onClose }: ShareProps) {
     </>
   )
 }
-
-// TODO https://shivamethical.medium.com/creating-web-page-preview-while-sharing-url-via-social-applications-like-whats-app-fb-cd2e19b11bf2

@@ -5,8 +5,8 @@ import Message from './components/Message'
 import { checkOnReply } from './helper'
 
 const Box = dynamic(() => import('@mui/material/Box'))
-const AppIcon = dynamic(() => import('components/UI/AppIcon'))
-const AppInView = dynamic(() => import('components/UI/AppInView'))
+const AppIcon = dynamic(() => import('components/ui/AppIcon'))
+const AppInView = dynamic(() => import('components/ui/AppInView'))
 const UserInput = dynamic(() => import('components/User/UserInput'))
 
 interface TopicProps {

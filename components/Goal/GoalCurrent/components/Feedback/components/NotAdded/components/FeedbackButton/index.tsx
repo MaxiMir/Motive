@@ -3,7 +3,7 @@ import dynamic from 'next/dynamic'
 import { Button } from '@mui/material'
 import { GoalDto } from 'dto'
 import { Locale } from 'hooks/useLocale'
-import AppIcon from 'components/UI/AppIcon'
+import AppIcon from 'components/ui/AppIcon'
 import OptionalTooltip from 'components/OptionalTooltip'
 import i18n from './i18n'
 

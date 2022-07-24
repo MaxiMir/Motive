@@ -21,7 +21,6 @@ interface MenuProps {
 export default function Menu({ title, url, locale, onCopyEnd, onCopyError, onClose }: MenuProps) {
   const theme = useTheme()
   const shareItems = getShareItems()
-  const { share, send, link } = i18n[locale]
 
   const onKeyDown = (event: KeyboardEvent) => {
     if (['Tab', 'Shift'].includes(event.key)) return
@@ -30,6 +29,8 @@ export default function Menu({ title, url, locale, onCopyEnd, onCopyError, onClo
   }
 
   function getShareItems() {
+    const { share, send, link } = i18n[locale]
+
     return [
       {
         text: `${share} Facebook`,

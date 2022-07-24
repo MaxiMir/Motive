@@ -8,6 +8,7 @@
 * Будильник
 * Наведение на хар-ки -> список пользователей
 * Переделать завершенные цели
+* Исправить загрузку нескольких HEIC https://itnext.io/tackling-iphone-or-ipad-images-support-in-browser-8e3e64e9aaa1
 
 ```shell
 docker build -t maximir/frontend:1.0.63 .

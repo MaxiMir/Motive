@@ -1,6 +1,5 @@
 export default {
   en: {
-    format: 'MM/dd/yyyy',
     copy: 'Copied',
     error: 'Something went wrong...',
     motivation: 'motivation',
@@ -21,7 +20,6 @@ export default {
     },
   },
   ru: {
-    format: 'dd/MM/yyyy',
     copy: 'Скопировано',
     error: 'Что-то пошло не так...',
     motivation: 'мотивация',
@@ -42,7 +40,6 @@ export default {
     },
   },
   uk: {
-    format: 'dd/MM/yyyy',
     copy: 'Скопійовано',
     error: 'Щось пішло не так...',
     motivation: 'мотивація',

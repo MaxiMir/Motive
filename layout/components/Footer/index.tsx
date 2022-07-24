@@ -15,8 +15,8 @@ interface FooterProps {
 export default function Footer({ nickname }: FooterProps) {
   const { asPath } = useRouter()
   const { locale } = useLocale()
-  const routes = getRoutes()
   const titles = i18n[locale]
+  const routes = getRoutes()
 
   function getRoutes() {
     return [

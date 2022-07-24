@@ -2,7 +2,7 @@ import { MouseEvent, useState } from 'react'
 import dynamic from 'next/dynamic'
 import { GoalDto, OwnershipDto } from 'dto'
 import useLocale from 'hooks/useLocale'
-import AppMenuButton from 'components/UI/AppMenuButton'
+import AppMenuButton from 'components/ui/AppMenuButton'
 import i18n from './i18n'
 
 const ModalLeave = dynamic(() => import('components/Modal/ModalLeave'))

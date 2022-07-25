@@ -36,7 +36,7 @@ const useSendTopic = (type: MessageType) => {
   return useMutation(TopicService.create, {
     onSuccess() {
       const { getMessage } = i18n[locale]
-      const message = getMessage(type === MessageType.QUESTION)
+      const message = getMessage(type === MessageType.Question)
 
       enqueueSnackbar({ message, severity: 'success', icon: 'speaker' })
     },

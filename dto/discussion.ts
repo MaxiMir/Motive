@@ -1,9 +1,9 @@
 import { UserBaseDto } from './user'
 
-export enum MessageType {
-  QUESTION = 'question',
-  ANSWER = 'answer',
-  SUPPORT = 'support',
+export const enum MessageType {
+  Question = 'question',
+  Answer = 'answer',
+  Support = 'support',
 }
 
 export interface CreateMessageDto {

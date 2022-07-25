@@ -6,7 +6,7 @@ import { CreateMemberDto, GoalDto, MemberDto, UserPageDto } from 'dto'
 import useLocale from 'hooks/useLocale'
 import PageService from 'services/PageService'
 import MemberService from 'services/MemberService'
-import { getQueryParams, getUserUrn, setQueryParams, SEARCH_PARAM } from 'helpers/url'
+import { getQueryParams, getUserUrn, setQueryParams, SearchParam } from 'helpers/url'
 import useClient from 'hooks/useClient'
 import { getNextState } from './helper'
 
@@ -53,10 +53,10 @@ export const useChangeDayUrl = (): ((goals: GoalDto[], goalId: number, dayId: nu
   const { locale } = useLocale()
 
   return (goals: GoalDto[], goalId: number, dayId: number) => {
-    const { [SEARCH_PARAM.DATES]: _, ...restParams } = getQueryParams()
+    const { [SearchParam.Dates]: _, ...restParams } = getQueryParams()
     const datesParam = goals.map(({ id, day }) => `${id}:${id !== goalId ? day.id : dayId}`).join(',')
     const as = setQueryParams(router.asPath, {
-      [SEARCH_PARAM.DATES]: datesParam,
+      [SearchParam.Dates]: datesParam,
       ...restParams,
     })
 
@@ -73,7 +73,7 @@ export const useSendCreateMember = (): UseMutationResult<MemberDto, AxiosError, 
       if (!client) return
 
       const userUrn = getUserUrn(client.nickname)
-      const params = { [SEARCH_PARAM.DATES]: `${goalId}:${dayId}` }
+      const params = { [SearchParam.Dates]: `${goalId}:${dayId}` }
 
       go(setQueryParams(userUrn, params))
     },

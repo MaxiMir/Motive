@@ -13,7 +13,7 @@ export default function useForm(goal: GoalDto, onSuccess: () => void): FormikPro
     initialValues: {
       dayId: day.id,
       text: '',
-      type: MessageType.SUPPORT,
+      type: MessageType.Support,
     },
     validationSchema: schema,
     async onSubmit(data) {

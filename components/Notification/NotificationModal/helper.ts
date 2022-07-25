@@ -1,30 +1,30 @@
 import produce from 'immer'
-import { ClientDto, NOTIFICATION_TYPE, NotificationDto } from 'dto'
+import { ClientDto, NotificationType, NotificationDto } from 'dto'
 import { getDiscussionUrn, getFeedbackUrn, getGoalUrn, getGoalWithDayUrn, getUserUrn } from 'helpers/url'
 import { toShortString } from 'helpers/prepare'
 import { AppEmojiName } from 'components/ui/AppEmoji'
 
 type NotificationInfo = { emoji: AppEmojiName; color: string }
 
-export const getNotificationInfo = (type: NOTIFICATION_TYPE): NotificationInfo => {
+export const getNotificationInfo = (type: NotificationType): NotificationInfo => {
   switch (type) {
-    case NOTIFICATION_TYPE.NEW_FOLLOWER:
+    case NotificationType.NewFollower:
       return { emoji: 'following', color: 'warning.main' }
-    case NOTIFICATION_TYPE.NEW_GOAL:
+    case NotificationType.NewGoal:
       return { emoji: 'goal', color: 'primary.main' }
-    case NOTIFICATION_TYPE.ADD_MOTIVATION:
+    case NotificationType.AddMotivation:
       return { emoji: 'motivation', color: 'motivation.main' }
-    case NOTIFICATION_TYPE.ADD_CREATIVITY:
+    case NotificationType.AddCreativity:
       return { emoji: 'creativity', color: 'creativity.main' }
-    case NOTIFICATION_TYPE.NEW_QUESTION:
+    case NotificationType.NewQuestion:
       return { emoji: 'question', color: 'error.main' }
-    case NOTIFICATION_TYPE.NEW_SUPPORT:
+    case NotificationType.NewSupport:
       return { emoji: 'support', color: 'support.main' }
-    case NOTIFICATION_TYPE.NEW_ANSWER:
+    case NotificationType.NewAnswer:
       return { emoji: 'support', color: 'support.main' }
-    case NOTIFICATION_TYPE.NEW_FEEDBACK:
+    case NotificationType.NewFeedback:
       return { emoji: 'feedback', color: '#cfd8dc' }
-    case NOTIFICATION_TYPE.WEB_COVERAGE:
+    case NotificationType.WebCoverage:
       return { emoji: 'web', color: 'abandoned.main' }
     default:
       return { emoji: 'notification', color: 'common.white' }
@@ -34,24 +34,24 @@ export const getNotificationInfo = (type: NOTIFICATION_TYPE): NotificationInfo =
 export const getNotificationUrn = (notification: NotificationDto, client?: ClientDto): string => {
   const { user } = notification.details
   const userPage = [
-    NOTIFICATION_TYPE.NEW_FOLLOWER,
-    NOTIFICATION_TYPE.NEW_GOAL,
-    NOTIFICATION_TYPE.NEW_ANSWER,
-    NOTIFICATION_TYPE.NEW_FEEDBACK,
-    NOTIFICATION_TYPE.WEB_COVERAGE,
+    NotificationType.NewFollower,
+    NotificationType.NewGoal,
+    NotificationType.NewAnswer,
+    NotificationType.NewFeedback,
+    NotificationType.WebCoverage,
   ].includes(notification.type)
   const nickname = userPage ? user.nickname : client?.nickname || ''
 
   switch (notification.type) {
-    case NOTIFICATION_TYPE.NEW_FOLLOWER:
+    case NotificationType.NewFollower:
       return getUserUrn(nickname)
-    case NOTIFICATION_TYPE.WEB_COVERAGE:
+    case NotificationType.WebCoverage:
       return getGoalUrn(nickname, notification.details.id)
-    case NOTIFICATION_TYPE.NEW_FEEDBACK:
+    case NotificationType.NewFeedback:
       return getFeedbackUrn(nickname, notification.details.id, notification.details.day)
-    case NOTIFICATION_TYPE.NEW_QUESTION:
-    case NOTIFICATION_TYPE.NEW_ANSWER:
-    case NOTIFICATION_TYPE.NEW_SUPPORT:
+    case NotificationType.NewQuestion:
+    case NotificationType.NewAnswer:
+    case NotificationType.NewSupport:
       return getDiscussionUrn(nickname, notification.details.id, notification.details.day)
     default:
       return getGoalWithDayUrn(nickname, notification.details.id, notification.details.day)

@@ -2,19 +2,15 @@ export type MainCharacteristicName = 'motivation' | 'creativity' | 'support'
 
 export type UserCharacteristicName = MainCharacteristicName | 'completed' | 'abandoned' | 'followers'
 
-export type UserCharacteristicDto = Readonly<
-  {
-    [k in UserCharacteristicName]: number
-  }
->
+export type UserCharacteristicDto = Readonly<{
+  [k in UserCharacteristicName]: number
+}>
 
 export type GoalCharacteristicName = MainCharacteristicName | 'members'
 
-export type GoalCharacteristicDto = Readonly<
-  {
-    [k in GoalCharacteristicName]: number
-  }
->
+export type GoalCharacteristicDto = Readonly<{
+  [k in GoalCharacteristicName]: number
+}>
 
 export type DayCharacteristicName = 'motivation' | 'creativity'
 

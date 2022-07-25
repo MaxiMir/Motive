@@ -32,7 +32,7 @@ export default function Discussion({ dayId, owner, count, clientGoal }: Discussi
   return (
     <Box display="flex" flexDirection="column" gap={2} flex={1} minHeight={minHeight} maxHeight={500}>
       <>
-        {withInput && <UserInput dayId={dayId} user={client as ClientDto} type={MessageType.QUESTION} onAdd={onAdd} />}
+        {withInput && <UserInput dayId={dayId} user={client as ClientDto} type={MessageType.Question} onAdd={onAdd} />}
         {!count ? (
           <Typography>{nothing}</Typography>
         ) : (

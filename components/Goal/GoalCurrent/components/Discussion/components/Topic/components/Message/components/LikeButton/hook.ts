@@ -38,7 +38,7 @@ export default function useSetLike(message: MessageDto, answerFor: number | unde
     onSuccess(_, { add }) {
       const { goalMessage, getUserMessage } = i18n[locale]
 
-      if (message.type === MessageType.SUPPORT) {
+      if (message.type === MessageType.Support) {
         enqueueSnackbar({
           message: getUserMessage(message.user.name),
           severity: 'success',

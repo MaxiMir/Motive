@@ -24,7 +24,7 @@ export default function UserInput({ dayId, user, type, topicId, onAdd }: UserInp
   const { isSubmitting, values, handleSubmit } = form
   const { locale } = useLocale()
   const { getPlaceholder } = i18n[locale]
-  const placeholder = getPlaceholder(type === MessageType.QUESTION)
+  const placeholder = getPlaceholder(type === MessageType.Question)
 
   const onClick = () => handleSubmit()
 

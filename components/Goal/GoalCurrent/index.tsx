@@ -4,7 +4,7 @@ import { useRouter } from 'next/router'
 import { Box, useTheme } from '@mui/material'
 import { GoalDto, GoalCharacteristicName, MemberDto } from 'dto'
 import useLocale from 'hooks/useLocale'
-import { getGoalWithDayUrn, HASH_MARK } from 'helpers/url'
+import { getGoalWithDayUrn, HashMark } from 'helpers/url'
 import { getMember } from 'views/UserView/helper'
 import CharacteristicGoal from 'components/Characteristic/CharacteristicGoal'
 import AppTitle from 'components/ui/AppTitle'
@@ -158,7 +158,7 @@ export default function GoalCurrent({
                 <AppAccordion
                   name="feedback"
                   header={feedbackHeader}
-                  id={`${HASH_MARK.FEEDBACK}-${id}`}
+                  id={`${HashMark.Feedback}-${id}`}
                   ariaControls={feedbackAria}
                   defaultExpanded={!showDiscussion}
                   details={
@@ -175,7 +175,7 @@ export default function GoalCurrent({
                       </Box>
                     </>
                   }
-                  id={`${HASH_MARK.DISCUSSION}-${id}`}
+                  id={`${HashMark.Discussion}-${id}`}
                   ariaControls={discussionAria}
                   defaultExpanded={showDiscussion}
                   details={

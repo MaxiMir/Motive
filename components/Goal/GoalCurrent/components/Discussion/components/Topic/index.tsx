@@ -34,7 +34,7 @@ export default function Topic({ owner, topic, isOwner, inView, onView, onAdd }: 
     <>
       <Message
         message={message}
-        supportFor={message.type !== MessageType.SUPPORT ? undefined : owner.name}
+        supportFor={message.type !== MessageType.Support ? undefined : owner.name}
         onReply={!showReply ? undefined : onClick}
       />
       {showInput && (
@@ -42,7 +42,7 @@ export default function Topic({ owner, topic, isOwner, inView, onView, onAdd }: 
           user={owner}
           dayId={message.dayId}
           topicId={message.id}
-          type={MessageType.ANSWER}
+          type={MessageType.Answer}
           onAdd={onAddCombine}
         />
       )}

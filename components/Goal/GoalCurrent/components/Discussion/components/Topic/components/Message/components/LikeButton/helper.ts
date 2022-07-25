@@ -9,7 +9,7 @@ export type Options = { message: MessageDto; answerFor?: number; add: boolean }
 export type Context = { previous?: InfiniteData<TopicDto[]> }
 
 export const checkOnDisabled = (message: MessageDto, client?: ClientDto): boolean =>
-  message.user.id === client?.id || (!!message.like && [MessageType.SUPPORT, MessageType.ANSWER].includes(message.type))
+  message.user.id === client?.id || (!!message.like && [MessageType.Support, MessageType.Answer].includes(message.type))
 
 export const fetcher = ({ message, add }: Options): Promise<void> => TopicService.updateLike(message.id, add)
 
@@ -47,7 +47,7 @@ export const getTitle = (message: MessageDto, disabled: boolean, locale: Locale)
     return !like ? undefined : helpful
   }
 
-  return type === MessageType.QUESTION ? getLike(like) : getMark(like)
+  return type === MessageType.Question ? getLike(like) : getMark(like)
 }
 
 export const getAreaLabel = (message: MessageDto, title: string | undefined, locale: Locale): string | undefined => {

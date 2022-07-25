@@ -1,15 +1,15 @@
 import { ImageProps } from 'next/image'
 
-export enum SEARCH_PARAM {
-  DATES = 'd',
-  SCROLL_TO = 's',
-  SCROLL_ID = 'i',
+export const enum SearchParam {
+  Dates = 'd',
+  ScrollTo = 's',
+  ScrollId = 'i',
 }
 
-export enum HASH_MARK {
-  GOAL = 'goal',
-  FEEDBACK = 'feedback',
-  DISCUSSION = 'discussion',
+export const enum HashMark {
+  Goal = 'goal',
+  Feedback = 'feedback',
+  Discussion = 'discussion',
 }
 
 /**
@@ -72,16 +72,16 @@ export const getGoalUrn = (userUrn: string, goalId: number): string => {
 }
 
 export const getGoalWithDayUrn = (userUrn: string, goalId: number, dayId: number): string => {
-  const url = setQueryParams(userUrn, { [SEARCH_PARAM.DATES]: `${goalId}:${dayId}` })
+  const url = setQueryParams(userUrn, { [SearchParam.Dates]: `${goalId}:${dayId}` })
 
   return getGoalUrn(url, goalId)
 }
 
 export const getDiscussionUrn = (userUrn: string, goalId: number, dayId: number): string => {
   const url = setQueryParams(userUrn, {
-    [SEARCH_PARAM.SCROLL_TO]: HASH_MARK.DISCUSSION,
-    [SEARCH_PARAM.SCROLL_ID]: goalId,
-    [SEARCH_PARAM.DATES]: `${goalId}:${dayId}`,
+    [SearchParam.ScrollTo]: HashMark.Discussion,
+    [SearchParam.ScrollId]: goalId,
+    [SearchParam.Dates]: `${goalId}:${dayId}`,
   })
   const hashMark = getDiscussionHashMark(goalId)
 
@@ -89,12 +89,12 @@ export const getDiscussionUrn = (userUrn: string, goalId: number, dayId: number)
 }
 
 export const getFeedbackUrn = (userUrn: string, goalId: number, dayId: number): string => {
-  const url = setQueryParams(userUrn, { [SEARCH_PARAM.DATES]: `${goalId}:${dayId}` })
+  const url = setQueryParams(userUrn, { [SearchParam.Dates]: `${goalId}:${dayId}` })
   const hashMark = getDiscussionHashMark(goalId)
 
   return url + hashMark
 }
 
-export const getGoalHashMark = (id: number): string => `#${HASH_MARK.GOAL}-${id}`
+export const getGoalHashMark = (id: number): string => `#${HashMark.Goal}-${id}`
 
-export const getDiscussionHashMark = (id: number): string => `#${HASH_MARK.DISCUSSION}-${id}`
+export const getDiscussionHashMark = (id: number): string => `#${HashMark.Discussion}-${id}`

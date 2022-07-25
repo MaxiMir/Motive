@@ -19,7 +19,7 @@ export default function LikeButton({ message, answerFor, locale }: LikeButtonPro
   const title = getTitle(message, disabled, locale)
   const ariaLabel = getAreaLabel(message, title, locale)
   const onClick = useSetLike(message, answerFor)
-  const icon = message.type === MessageType.QUESTION ? 'like' : 'support'
+  const icon = message.type === MessageType.Question ? 'like' : 'support'
 
   return (
     <OptionalTooltip tmpl="custom" custom={title} wrap={!!title}>

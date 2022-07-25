@@ -1,7 +1,7 @@
 import { ParsedUrlQuery } from 'querystring'
 import { differenceInCalendarDays } from 'date-fns'
 import { GoalDto, MemberDto, OwnershipDto } from 'dto'
-import { HASH_MARK, SEARCH_PARAM } from 'helpers/url'
+import { HashMark, SearchParam } from 'helpers/url'
 import { getMember } from 'views/UserView/helper'
 
 const SHOW_WEB_AFTER_DAYS = +(process.env.NEXT_PUBLIC_SHOW_WEB_AFTER_DAYS as string)
@@ -20,7 +20,7 @@ export const getClientOwnership = (
 }
 
 export const checkOnShowDiscussion = (query: ParsedUrlQuery, id: number): boolean =>
-  query[SEARCH_PARAM.SCROLL_TO] === HASH_MARK.DISCUSSION && query[SEARCH_PARAM.SCROLL_ID] === id.toString()
+  query[SearchParam.ScrollTo] === HashMark.Discussion && query[SearchParam.ScrollId] === id.toString()
 
 export type GoalInfo = {
   daysGone: number

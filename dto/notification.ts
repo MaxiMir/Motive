@@ -1,15 +1,15 @@
 import { UserBaseDto } from './user'
 
-export enum NOTIFICATION_TYPE {
-  NEW_GOAL = 'new-goal',
-  NEW_FOLLOWER = 'new-follower',
-  ADD_MOTIVATION = 'add-motivation',
-  ADD_CREATIVITY = 'add-creativity',
-  NEW_QUESTION = 'new-question',
-  NEW_SUPPORT = 'new-support',
-  NEW_ANSWER = 'new-answer',
-  NEW_FEEDBACK = 'new-feedback',
-  WEB_COVERAGE = 'web-coverage',
+export const enum NotificationType {
+  NewGoal = 'new-goal',
+  NewFollower = 'new-follower',
+  AddMotivation = 'add-motivation',
+  AddCreativity = 'add-creativity',
+  NewQuestion = 'new-question',
+  NewSupport = 'new-support',
+  NewAnswer = 'new-answer',
+  NewFeedback = 'new-feedback',
+  WebCoverage = 'web-coverage',
 }
 
 interface NotificationBase {
@@ -20,14 +20,14 @@ interface NotificationBase {
 
 export interface NotificationGoalDto extends NotificationBase {
   type:
-    | NOTIFICATION_TYPE.NEW_GOAL
-    | NOTIFICATION_TYPE.ADD_MOTIVATION
-    | NOTIFICATION_TYPE.ADD_CREATIVITY
-    | NOTIFICATION_TYPE.NEW_QUESTION
-    | NOTIFICATION_TYPE.NEW_SUPPORT
-    | NOTIFICATION_TYPE.NEW_ANSWER
-    | NOTIFICATION_TYPE.NEW_FEEDBACK
-    | NOTIFICATION_TYPE.WEB_COVERAGE
+    | NotificationType.NewGoal
+    | NotificationType.AddMotivation
+    | NotificationType.AddCreativity
+    | NotificationType.NewQuestion
+    | NotificationType.NewSupport
+    | NotificationType.NewAnswer
+    | NotificationType.NewFeedback
+    | NotificationType.WebCoverage
   details: {
     id: number
     day: number
@@ -37,7 +37,7 @@ export interface NotificationGoalDto extends NotificationBase {
 }
 
 export interface NotificationUserDto extends NotificationBase {
-  type: NOTIFICATION_TYPE.NEW_FOLLOWER
+  type: NotificationType.NewFollower
   details: {
     name?: string
     user: UserBaseDto

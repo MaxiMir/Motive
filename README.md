@@ -9,13 +9,14 @@
 * Наведение на хар-ки -> список пользователей
 * Переделать завершенные цели
 * Исправить загрузку нескольких HEIC https://itnext.io/tackling-iphone-or-ipad-images-support-in-browser-8e3e64e9aaa1
+* Добавить редактирование обратной связи
 
 ```shell
-docker build -t maximir/frontend:1.0.63 .
+docker build -t maximir/frontend:1.0.64 .
 # artifactory:
-docker tag <IMAGE_ID> maximir.jfrog.io/default-docker-virtual/frontend:1.0.63
-docker push maximir.jfrog.io/default-docker-virtual/frontend:1.0.63
-docker pull maximir.jfrog.io/default-docker-virtual/frontend:1.0.63
+docker tag <IMAGE_ID> maximir.jfrog.io/default-docker-virtual/frontend:1.0.64
+docker push maximir.jfrog.io/default-docker-virtual/frontend:1.0.64
+docker pull maximir.jfrog.io/default-docker-virtual/frontend:1.0.64
 
 # copy:
 docker cp <IMAGE_ID>:/home/node/client /home # <-
@@ -26,7 +27,7 @@ version: '3.3'
 
 services:
   frontend:
-    image: maximir.jfrog.io/default-docker-virtual/frontend:1.0.63
+    image: maximir.jfrog.io/default-docker-virtual/frontend:1.0.64
     depends_on:
       - backend
     restart: unless-stopped

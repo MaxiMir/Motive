@@ -20,7 +20,7 @@ export default function AppMarkdown({ text }: AppMarkdownProps) {
     <Box
       sx={{
         '& p': {
-          margin: '16px 0',
+          margin: '8px 0',
           '&:first-of-type': {
             marginTop: 0,
           },

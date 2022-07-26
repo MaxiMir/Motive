@@ -110,7 +110,7 @@ export default function GoalCurrent({
           <AppInView triggerOnce onView={() => mutate()}>
             <Box display="flex" flexDirection="column" gap={3}>
               <Box display="flex" justifyContent="space-between" alignItems="center">
-                <AppTitle name="goal" variant="h6" component="h3">
+                <AppTitle name="goal" variant="h6" component="h2">
                   <b>{name}</b>
                 </AppTitle>
                 <Menu goal={goal} title={name} href={goalHref} clientOwnership={clientOwnership} />

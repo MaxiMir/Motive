@@ -61,7 +61,7 @@ export default function GoalCompleted({ confirmation, user, inView, onView }: Go
         }}
       >
         <Box display="flex" flexDirection="column" gap={1}>
-          <AppTitle name="cup" variant="h6" component="h3">
+          <AppTitle name="cup" variant="h6" component="h2">
             {goal.name}
           </AppTitle>
           {inherited && <Inheritance owner={goal.owner} locale={locale} />}

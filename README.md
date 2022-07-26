@@ -12,11 +12,11 @@
 * Добавить редактирование обратной связи
 
 ```shell
-docker build -t maximir/frontend:1.0.64 .
+docker build -t maximir/frontend:1.0.65 .
 # artifactory:
-docker tag <IMAGE_ID> maximir.jfrog.io/default-docker-virtual/frontend:1.0.64
-docker push maximir.jfrog.io/default-docker-virtual/frontend:1.0.64
-docker pull maximir.jfrog.io/default-docker-virtual/frontend:1.0.64
+docker tag <IMAGE_ID> maximir.jfrog.io/default-docker-virtual/frontend:1.0.65
+docker push maximir.jfrog.io/default-docker-virtual/frontend:1.0.65
+docker pull maximir.jfrog.io/default-docker-virtual/frontend:1.0.65
 
 # copy:
 docker cp <IMAGE_ID>:/home/node/client /home # <-
@@ -27,7 +27,7 @@ version: '3.3'
 
 services:
   frontend:
-    image: maximir.jfrog.io/default-docker-virtual/frontend:1.0.64
+    image: maximir.jfrog.io/default-docker-virtual/frontend:1.0.65
     depends_on:
       - backend
     restart: unless-stopped
@@ -63,8 +63,8 @@ services:
 ```
 ```shell
 server {
-    listen 443 ssl default_server;
-    listen [::]:443 ssl default_server;
+    listen 443 ssl http2;
+    listen [::]:443 ssl http2;
 
     server_name 2bebetter.pro www.2bebetter.pro;
 

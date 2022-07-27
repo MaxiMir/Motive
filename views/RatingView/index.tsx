@@ -1,4 +1,3 @@
-import { useRouter } from 'next/router'
 import { Container, Box } from '@mui/material'
 import { MainCharacteristicName, UserDto } from 'dto'
 import { Locale } from 'hooks/useLocale'
@@ -12,10 +11,10 @@ const TABS: MainCharacteristicName[] = ['motivation', 'creativity', 'support']
 
 interface RatingViewProps extends Record<MainCharacteristicName, UserDto[]> {
   locale: Locale
+  tab: number
 }
 
-export default function RatingView({ locale, ...props }: RatingViewProps) {
-  const { query } = useRouter()
+export default function RatingView({ locale, tab, ...props }: RatingViewProps) {
   const { header, ariaLabel } = i18n[locale]
 
   return (
@@ -25,7 +24,7 @@ export default function RatingView({ locale, ...props }: RatingViewProps) {
       </Container>
       <Box display="flex" flexDirection="column" gap={2} mt={4} mb={3}>
         <AppTabs
-          initial={!query.tab ? undefined : +query.tab}
+          initial={tab}
           ariaLabel={ariaLabel}
           tabs={TABS.map((name) => (
             <AppTabName name={name} emoji={name} key={name} locale={locale} />

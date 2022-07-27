@@ -1,4 +1,5 @@
 import { GetServerSideProps } from 'next'
+import { useRouter } from 'next/router'
 import { dehydrate, QueryClient } from 'react-query'
 import { getSession } from 'next-auth/react'
 import { AxiosRequestHeaders } from 'axios'
@@ -12,27 +13,75 @@ import useRatingPage from 'views/RatingView/hook'
 
 const i18n = {
   en: {
-    title: 'Rating users',
+    getTitle(tab: number) {
+      const name = getName()
+
+      function getName() {
+        switch (tab) {
+          case 1:
+            return 'creativity'
+          case 2:
+            return 'support'
+          default:
+            return 'motivation'
+        }
+      }
+
+      return `Rating users by ${name}`
+    },
     description: 'Rating the most motivating, creative, and supportive users 🥷',
   },
   ru: {
-    title: 'Рейтинг пользователей',
+    getTitle(tab: number) {
+      const name = getName()
+
+      function getName() {
+        switch (tab) {
+          case 1:
+            return 'креативности'
+          case 2:
+            return 'поддержке'
+          default:
+            return 'мотивации'
+        }
+      }
+
+      return `Рейтинг пользователей по ${name}`
+    },
     description: 'Рейтинг самых мотивирующих, творческих и поддерживающих пользователей 🥷',
   },
   uk: {
-    title: 'Рейтинг користувачів',
+    getTitle(tab: number) {
+      const name = getName()
+
+      function getName() {
+        switch (tab) {
+          case 1:
+            return 'креативності'
+          case 2:
+            return 'підтримки'
+          default:
+            return 'мотивацією'
+        }
+      }
+
+      return `Рейтинг користувачів з ${name}`
+    },
     description: 'Рейтинг найбільш мотивуючих, творчих та підтримуючих користувачів 🥷',
   },
 }
 
 export default function RatingPage({ statusCode }: PageProps) {
   const { locale } = useLocale()
+  const { query } = useRouter()
   const { data } = useRatingPage()
-  const { title, description } = i18n[locale]
+  const { getTitle, description } = i18n[locale]
+  const tab = !query.tab ? 0 : +query.tab
+  const title = getTitle(tab)
 
   return (
     <Layout title={title} description={description} statusCode={statusCode}>
-      {data?.content && <Rating {...data.content} locale={locale} />}
+      {data?.content && <Rating {...data.content} locale={locale} tab={tab} />}
     </Layout>
   )
 }

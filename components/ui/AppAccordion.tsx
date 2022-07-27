@@ -16,7 +16,7 @@ export default function AppAccordion({ name, header, id, ariaControls, details, 
   return (
     <Accordion defaultExpanded={defaultExpanded} TransitionProps={{ unmountOnExit: true }}>
       <AccordionSummary id={id} expandIcon={<AppIcon name="expand_more" />} aria-controls={ariaControls}>
-        <AppTitle name={name} variant="h6" component="h4" color="primary">
+        <AppTitle name={name} variant="h6" component="h3" color="primary">
           {header}
         </AppTitle>
       </AccordionSummary>

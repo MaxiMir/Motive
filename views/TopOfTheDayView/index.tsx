@@ -17,7 +17,9 @@ export default function TopOfTheDayView({ locale }: TopOfTheDayViewProps) {
         {title}
       </AppTitle>
       <Box display="flex" alignItems="center" justifyContent="center" flex={1} height="80vh">
-        <Typography variant="h5">{text}</Typography>
+        <Typography variant="h5" component="p">
+          {text}
+        </Typography>
       </Box>
     </AppContainer>
   )

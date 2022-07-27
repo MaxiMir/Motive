@@ -43,7 +43,6 @@ export const getUserMeta = (user: UserDetailDto | undefined, locale: Locale): Us
   return {
     title: `${title}  ${process.env.NEXT_PUBLIC_APP_NAME}`,
     description: `${description}${!goalsList ? '' : `: ${goalsList}`}`,
-    url: `${process.env.NEXT_PUBLIC_APP_URL}/${user.nickname}`,
     image,
     type: 'profile',
   }

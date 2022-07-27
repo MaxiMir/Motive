@@ -3,6 +3,17 @@ const withPWA = require('next-pwa')
 const runtimeCaching = require('next-pwa/cache')
 /* eslint-disable @typescript-eslint/no-var-requires */
 
+const SECURITY_HEADERS = [
+  {
+    key: 'X-DNS-Prefetch-Control',
+    value: 'on',
+  },
+  {
+    key: 'Strict-Transport-Security',
+    value: 'max-age=63072000; includeSubDomains; preload',
+  },
+]
+
 module.exports = withPWA({
   swcMinify: true, // minification using SWC as part of the Next.js Compiler
   reactStrictMode: true,
@@ -22,5 +33,14 @@ module.exports = withPWA({
   i18n: {
     locales: ['en', 'ru', 'uk'],
     defaultLocale: 'en',
+  },
+  async headers() {
+    return [
+      {
+        // Apply these headers to all routes in your application.
+        source: '/:path*',
+        headers: SECURITY_HEADERS,
+      },
+    ]
   },
 })

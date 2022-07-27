@@ -12,7 +12,7 @@ function EmptyList({ locale }: EmptyListProps) {
   return (
     <Box display="flex" alignItems="center" justifyContent="center" flex={1}>
       <Box display="flex" flexDirection="column" alignItems="center" width="100%">
-        <Typography variant="h5" color="primary">
+        <Typography variant="h5" component="p" color="primary">
           {title}
         </Typography>
         <Typography>{hint}</Typography>

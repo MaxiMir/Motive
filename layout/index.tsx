@@ -1,12 +1,13 @@
 import { ReactNode } from 'react'
+import { useRouter } from 'next/router'
 import Head from 'next/head'
 import Script from 'next/script'
 import dynamic from 'next/dynamic'
 import useClient from 'hooks/useClient'
-import { RU, UK } from 'hooks/useLocale'
+import useLocale, { LOCALE_MAP } from 'hooks/useLocale'
 import Header from './components/Header'
 import Footer from './components/Footer'
-import { getLocaleHref } from './helper'
+import { getLocaleHrefList } from './helper'
 
 const Error = dynamic(() => import('pages/_error'))
 const Box = dynamic(() => import('@mui/material/Box'))
@@ -14,18 +15,26 @@ const Box = dynamic(() => import('@mui/material/Box'))
 interface LayoutProps {
   title?: string
   description?: string
-  url?: string
   type?: string
   image?: string
   statusCode?: number
   children?: ReactNode
 }
 
-export default function Layout({ title, description, url, type, image, statusCode = 200, children }: LayoutProps) {
+export default function Layout({
+  title,
+  description,
+  type = 'website',
+  image,
+  statusCode = 200,
+  children,
+}: LayoutProps) {
   const client = useClient()
-  const enLocaleHref = getLocaleHref()
-  const ruLocaleHref = getLocaleHref(RU)
-  const ukLocaleHref = getLocaleHref(UK)
+  const { locale } = useLocale()
+  const { asPath } = useRouter()
+  const localeHrefList = getLocaleHrefList(asPath)
+  const localeName = LOCALE_MAP[locale]
+  const url = localeHrefList[locale]
 
   return (
     <>
@@ -35,25 +44,32 @@ export default function Layout({ title, description, url, type, image, statusCod
         <meta name="robots" content="index, follow" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <meta property="og:title" content={title} />
-        {description && <meta property="og:description" content={description} />}
-        {url && <meta property="og:url" content={url} />}
-        {image && <meta property="og:image" content={image} />}
-        {type && <meta property="og:type" content={type} />}
+        <meta name="twitter:title" content={type} />
+        {description && (
+          <>
+            <meta property="og:description" content={description} />
+            <meta name="twitter:description" content={description} />
+          </>
+        )}
+        <meta property="og:url" content={url} />
+        <meta name="twitter:url" content={url} />
+        {image && (
+          <>
+            <meta property="og:image" content={image} />
+            <meta name="twitter:image" content={image} />
+          </>
+        )}
+        <meta property="og:type" content={type} />
+        <meta name="twitter:site" content={process.env.NEXT_PUBLIC_APP_NAME} />
+        <meta name="twitter:card" content={type} />
+        <meta property="og:locale" content={localeName} />
         <link rel="canonical" href={url} />
-        {/* PWA */}
-        <link rel="manifest" href="/manifest.json" />
-        <link rel="apple-touch-icon" href="/icons/icon-180.png" />
-        <meta name="theme-color" content="#121212" />
-        <meta charSet="UTF-8" />
-        <meta name="google-site-verification" content="agmCksft6b7nOz-CbmrjAcflYLb5ztxWLN6o9vFImak" />
-        <link rel="icon" type="image/x-icon" href="/favicon.ico" />
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" />
-        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+        <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
         {/* Add hreflang links */}
-        <link rel="alternate" href={enLocaleHref} hrefLang="x-default" />
-        <link rel="alternate" href={enLocaleHref} hrefLang="en" />
-        <link rel="alternate" href={ruLocaleHref} hrefLang="ru" />
-        <link rel="alternate" href={ukLocaleHref} hrefLang="uk" />
+        <link rel="alternate" href={localeHrefList.en} hrefLang="en" />
+        <link rel="alternate" href={localeHrefList.ru} hrefLang="ru" />
+        <link rel="alternate" href={localeHrefList.uk} hrefLang="uk" />
+        <link rel="alternate" href={localeHrefList.en} hrefLang="x-default" />
       </Head>
       <Script
         src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS}`}

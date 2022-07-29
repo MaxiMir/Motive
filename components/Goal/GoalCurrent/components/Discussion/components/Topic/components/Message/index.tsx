@@ -58,7 +58,7 @@ export default function Message({ message, answerFor, supportFor, onReply }: Mes
             {dateDistance}
           </Box>
           {onReply && (
-            <Button aria-label="Reply" sx={{ color: 'support.main' }} onClick={onReply}>
+            <Button size="small" aria-label="Reply" sx={{ color: 'support.main' }} onClick={onReply}>
               {replyButton}
             </Button>
           )}

@@ -17,6 +17,7 @@ interface LayoutProps {
   description?: string
   type?: string
   image?: string
+  canonical?: string
   statusCode?: number
   children?: ReactNode
 }
@@ -27,6 +28,7 @@ export default function Layout({
   type = 'website',
   image,
   statusCode = 200,
+  canonical,
   children,
 }: LayoutProps) {
   const client = useClient()
@@ -63,7 +65,7 @@ export default function Layout({
         <meta name="twitter:site" content={process.env.NEXT_PUBLIC_APP_NAME} />
         <meta name="twitter:card" content={type} />
         <meta property="og:locale" content={localeName} />
-        <link rel="canonical" href={url} />
+        {canonical && <link rel="canonical" href={canonical} />}
         <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
         {/* Add hreflang links */}
         <link rel="alternate" href={localeHrefList.en} hrefLang="en" />

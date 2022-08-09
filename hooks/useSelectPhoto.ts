@@ -3,7 +3,7 @@ import i18n from 'constants/i18n'
 import useSnackbar from 'hooks/useSnackbar'
 import useLocale from 'hooks/useLocale'
 
-const PHOTO_LIMIT = 10
+const PHOTO_LIMIT = 6
 
 export default function useSelectPhoto<T>(formik: FormikProps<T & { photos: File[] }>): (files: File[]) => void {
   const { locale } = useLocale()

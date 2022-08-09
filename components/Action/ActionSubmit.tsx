@@ -18,7 +18,7 @@ export default function ActionSubmit({ emoji, name, nameLoading, isLoading, onCl
     <AppGradientButton
       type="submit"
       disabled={isLoading}
-      startIcon={isLoading ? <CircularProgress size="0.9rem" color="primary" /> : <AppEmoji name={emoji} onlyEmoji />}
+      startIcon={isLoading ? <CircularProgress size="0.9rem" color="inherit" /> : <AppEmoji name={emoji} onlyEmoji />}
       onClick={onClick}
     >
       {!isLoading ? name : nameLoading}

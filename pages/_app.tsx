@@ -38,8 +38,10 @@ const i18n = {
 export default function MyApp({ Component, pageProps: { session, ...pageProps } }: AppProps) {
   const { dehydratedState, providers } = pageProps
   const { locale } = useLocale()
+  // TODO
+  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+  // @ts-ignore
   const prefersDarkMode = useMediaQuery('(prefers-color-scheme: dark)')
-  console.log('@ prefersDarkMode:', prefersDarkMode)
   const [mode, setMode] = useState<PaletteMode>('dark')
   const [snackbarProps, setSnackbarProps] = useState<ContextSnackbarProps | null>(null)
   const [options, setOptions] = useState<SignInOptions>()

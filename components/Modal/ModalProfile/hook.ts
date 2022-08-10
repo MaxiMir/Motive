@@ -25,7 +25,7 @@ export default function useForm(user: UserBaseDto, locale: Locale, onSuccess: ()
     async onSubmit(data, { setFieldError }) {
       const { id } = user
       const { name, nickname, avatar } = data
-      const usersDB = user.nickname === nickname ? null : await UserService.find({ nickname }, 0, 1)
+      const usersDB = user.nickname === nickname ? null : await UserService.get({ nickname }, 0, 1)
 
       if (usersDB?.length) {
         setFieldError('nickname', nicknameError)

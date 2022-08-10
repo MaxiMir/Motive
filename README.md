@@ -112,7 +112,7 @@ server {
     }
 
     location  ~ ^/(api\/v1|socket\.io)/ {
-       client_max_body_size 10M;
+       client_max_body_size 64M;
 
        proxy_pass          http://localhost:4000;
        proxy_set_header    Host             $host;

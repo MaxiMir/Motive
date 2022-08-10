@@ -37,7 +37,7 @@ export default NextAuth({
         return token
       }
 
-      const [candidate] = await UserService.find({ email: token.email }, 0, 1)
+      const [candidate] = await UserService.get({ email: token.email }, 0, 1)
       const { id, name, nickname, avatar } =
         candidate ||
         (await UserService.create({

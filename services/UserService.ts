@@ -10,7 +10,7 @@ export default class UserService extends Service {
     return Axios.post('/users', dto)
   }
 
-  static find(where: WhereParams, page: number, take: number): Promise<UserBaseDto[]> {
+  static get(where: WhereParams, page: number, take: number): Promise<UserBaseDto[]> {
     const whereParams = UserService.getWhereParams(where)
     const paginationParams = UserService.getPaginationParams(page, take)
 

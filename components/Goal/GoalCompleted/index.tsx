@@ -15,6 +15,7 @@ const AppInView = dynamic(() => import('components/ui/AppInView'))
 const GallerySimple = dynamic(() => import('components/Gallery/GallerySimple'))
 const Inheritance = dynamic(() => import('./components/Inheritance'))
 const Repeat = dynamic(() => import('./components/Repeat'))
+const AppMarkdown = dynamic(() => import('components/ui/AppMarkdown'))
 
 const CHARACTERISTICS: GoalCharacteristicName[] = ['motivation', 'creativity', 'support', 'members']
 
@@ -82,7 +83,7 @@ export default function GoalCompleted({ confirmation, user, inView, onView }: Go
             </Fragment>
           ))}
         </Box>
-        {confirmation.text && <Typography>{confirmation.text}</Typography>}
+        {confirmation.text && <AppMarkdown text={confirmation.text} />}
         <Box minHeight={320}>{mainPhoto && <GallerySimple photos={[mainPhoto]} />}</Box>
         {!!secondPhotos?.length && <GallerySimple photos={secondPhotos} />}
         {renderRepeat && <Repeat goalId={goal.id} locale={locale} />}

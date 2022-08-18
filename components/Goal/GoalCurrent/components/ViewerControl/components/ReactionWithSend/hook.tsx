@@ -1,6 +1,6 @@
 import { AxiosError } from 'axios'
 import { useMutation, useQueryClient } from 'react-query'
-import { DayCharacteristicName, DayCharacteristicUpdateDto, GoalDto, UserPageDto } from 'dto'
+import { DayCharacteristic, DayCharacteristicUpdateDto, GoalDto, UserPageDto } from 'dto'
 import GoalService from 'services/GoalService'
 import useLocale from 'hooks/useLocale'
 import useDebounceCb from 'hooks/useDebounceCb'
@@ -13,7 +13,7 @@ import i18n from './i18n'
 
 type SetReaction = () => void
 
-export default function useSetReaction(goal: GoalDto, name: DayCharacteristicName, active: boolean): SetReaction {
+export default function useSetReaction(goal: GoalDto, name: DayCharacteristic, active: boolean): SetReaction {
   const { id, day } = goal
   const { locale } = useLocale()
   const client = useClient()

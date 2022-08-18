@@ -26,8 +26,6 @@ export default {
         Goals were eaten up by Old Pitt <AppEmoji name="pitt" onlyEmoji />
       </>
     ),
-    completed: undefined,
-    followers: undefined,
   },
   ru: {
     motivation: (
@@ -54,8 +52,6 @@ export default {
         Cъеденных Стариной Питтом целей <AppEmoji name="pitt" onlyEmoji />
       </>
     ),
-    completed: undefined,
-    followers: undefined,
   },
   uk: {
     motivation: (
@@ -82,7 +78,5 @@ export default {
         З&#39;їдених Стариною Піттом цілей <AppEmoji name="pitt" onlyEmoji />
       </>
     ),
-    completed: undefined,
-    followers: undefined,
   },
 }

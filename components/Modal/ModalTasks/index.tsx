@@ -11,7 +11,7 @@ import {
   RadioGroup,
   Typography,
 } from '@mui/material'
-import { GoalDto, MainCharacteristicName } from 'dto'
+import { MAIN_CHARACTERISTICS, GoalDto } from 'dto'
 import useLocale from 'hooks/useLocale'
 import { getToday, getTomorrow } from 'helpers/date'
 import AppIcon from 'components/ui/AppIcon'
@@ -25,8 +25,6 @@ import OptionalTooltip from 'components/OptionalTooltip'
 import TaskField from 'components/Task/TaskField'
 import useForm from './hook'
 import i18n from './i18n'
-
-const CHARACTERISTIC_NAMES: MainCharacteristicName[] = ['motivation', 'creativity', 'support']
 
 export interface ModalTasksProps {
   goal: GoalDto
@@ -150,7 +148,7 @@ export default function ModalTasks({ goal, onClose }: ModalTasksProps) {
               {pittHints[2]} <AppDecorEmoji name="blood" />.
               <br />
               {pittHints[3]}{' '}
-              {CHARACTERISTIC_NAMES.map((characteristic) => (
+              {MAIN_CHARACTERISTICS.map((characteristic) => (
                 <AppDecorEmoji name={characteristic} key={characteristic} />
               ))}
               {pittHints[4]}.

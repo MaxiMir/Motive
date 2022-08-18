@@ -1,7 +1,7 @@
 import { Fragment } from 'react'
 import dynamic from 'next/dynamic'
 import { Box, Tooltip, useTheme } from '@mui/material'
-import { ConfirmationDto, GoalCharacteristicName, UserDetailDto } from 'dto'
+import { ConfirmationDto, GoalCharacteristicName, MAIN_CHARACTERISTICS, UserDetailDto } from 'dto'
 import useClient from 'hooks/useClient'
 import useLocale from 'hooks/useLocale'
 import AppTitle from 'components/ui/AppTitle'
@@ -17,7 +17,7 @@ const Inheritance = dynamic(() => import('./components/Inheritance'))
 const Repeat = dynamic(() => import('./components/Repeat'))
 const AppMarkdown = dynamic(() => import('components/ui/AppMarkdown'))
 
-const CHARACTERISTICS: GoalCharacteristicName[] = ['motivation', 'creativity', 'support', 'members']
+const CHARACTERISTICS: GoalCharacteristicName[] = [...MAIN_CHARACTERISTICS, 'members']
 
 export interface GoalCompletedProps {
   confirmation: ConfirmationDto

@@ -1,6 +1,6 @@
 import dynamic from 'next/dynamic'
 import { Box } from '@mui/material'
-import { UserBaseDto, GoalDto, DayCharacteristicName, OwnershipDto } from 'dto'
+import { DAY_CHARACTERISTIC, GoalDto, OwnershipDto, UserBaseDto } from 'dto'
 import useLocale from 'hooks/useLocale'
 import ReactionWithSend from './components/ReactionWithSend'
 import ReactionSupport from './components/ReactionSupport'
@@ -23,7 +23,7 @@ export default function Viewer({ goal, owner, forTomorrow, clientOwnership }: Vi
   return (
     <Box display="flex" justifyContent="space-between" flexWrap="wrap">
       <Box display="flex" gap={1}>
-        {(['motivation', 'creativity'] as DayCharacteristicName[]).map((name) => (
+        {DAY_CHARACTERISTIC.map((name) => (
           <ReactionWithSend goal={goal} name={name} key={name} locale={locale} />
         ))}
         <ReactionSupport goal={goal} owner={owner} locale={locale} />

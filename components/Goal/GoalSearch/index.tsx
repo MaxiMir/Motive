@@ -1,9 +1,7 @@
 import { Box, Button, Typography } from '@mui/material'
-import { GoalCharacteristicName, GoalDto } from 'dto'
+import { MAIN_CHARACTERISTICS, GoalDto } from 'dto'
 import CharacteristicGoal from 'components/Characteristic/CharacteristicGoal'
 import UserAvatar from 'components/User/UserAvatar'
-
-const CHARACTERISTICS: GoalCharacteristicName[] = ['motivation', 'creativity', 'support']
 
 export interface GoalSearchProps {
   goal: GoalDto
@@ -34,7 +32,7 @@ export default function GoalSearch({ goal }: GoalSearchProps) {
           <Typography variant="caption">{owner.name}</Typography>
         </Box>
         <Box display="flex" justifyContent="space-between" alignItems="center">
-          {CHARACTERISTICS.map((characteristicName) => (
+          {MAIN_CHARACTERISTICS.map((characteristicName) => (
             <CharacteristicGoal
               name={characteristicName}
               value={characteristic[characteristicName]}

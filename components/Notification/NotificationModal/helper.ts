@@ -1,5 +1,5 @@
 import produce from 'immer'
-import { ClientDto, NotificationType, NotificationDto } from 'dto'
+import { ClientDto, MainCharacteristic, NotificationDto, NotificationType } from 'dto'
 import { getDiscussionUrn, getFeedbackUrn, getGoalUrn, getGoalWithDayUrn, getUserUrn } from 'helpers/url'
 import { toShortString } from 'helpers/prepare'
 import { AppEmojiName } from 'components/ui/AppEmoji'
@@ -13,15 +13,15 @@ export const getNotificationInfo = (type: NotificationType): NotificationInfo =>
     case NotificationType.NewGoal:
       return { emoji: 'goal', color: 'primary.main' }
     case NotificationType.AddMotivation:
-      return { emoji: 'motivation', color: 'motivation.main' }
+      return { emoji: MainCharacteristic.MOTIVATION, color: 'motivation.main' }
     case NotificationType.AddCreativity:
-      return { emoji: 'creativity', color: 'creativity.main' }
+      return { emoji: MainCharacteristic.CREATIVITY, color: 'creativity.main' }
     case NotificationType.NewQuestion:
       return { emoji: 'question', color: 'error.main' }
     case NotificationType.NewSupport:
-      return { emoji: 'support', color: 'support.main' }
+      return { emoji: MainCharacteristic.SUPPORT, color: 'support.main' }
     case NotificationType.NewAnswer:
-      return { emoji: 'support', color: 'support.main' }
+      return { emoji: MainCharacteristic.SUPPORT, color: 'support.main' }
     case NotificationType.NewFeedback:
       return { emoji: 'feedback', color: '#cfd8dc' }
     case NotificationType.WebCoverage:

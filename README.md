@@ -3,21 +3,19 @@
 * Обновление сообщений
 * Добавить режим для целей
 * Добавить приватные цели (без баллов / удаление после прохождения)
-* Чистка нотификаций
 * Уведомления (о завершении цели + ...)
 * Геометаданные
 * Будильник
 * Наведение на хар-ки -> список пользователей
 * Переделать завершенные цели
-* Исправить загрузку нескольких HEIC https://itnext.io/tackling-iphone-or-ipad-images-support-in-browser-8e3e64e9aaa1
 * Добавить редактирование обратной связи
 
 ```shell
-docker build -t maximir/frontend:1.0.68 .
+docker build -t maximir/frontend:1.0.69 .
 # artifactory:
-docker tag <IMAGE_ID> maximir.jfrog.io/default-docker-virtual/frontend:1.0.68
-docker push maximir.jfrog.io/default-docker-virtual/frontend:1.0.68
-docker pull maximir.jfrog.io/default-docker-virtual/frontend:1.0.68
+docker tag <IMAGE_ID> maximir.jfrog.io/default-docker-virtual/frontend:1.0.69
+docker push maximir.jfrog.io/default-docker-virtual/frontend:1.0.69
+docker pull maximir.jfrog.io/default-docker-virtual/frontend:1.0.69
 
 # copy:
 docker cp <IMAGE_ID>:/home/node/client /home # <-
@@ -45,7 +43,7 @@ version: '3.3'
 
 services:
   frontend:
-    image: maximir.jfrog.io/default-docker-virtual/frontend:1.0.68
+    image: maximir.jfrog.io/default-docker-virtual/frontend:1.0.69
     depends_on:
       - backend
     restart: unless-stopped
@@ -98,6 +96,10 @@ server {
     ssl_ciphers ALL:EECDH+aRSA+AESGCM:EDH+aRSA+AESGCM:EECDH+aRSA+AES:EDH+aRSA+AES;
     ssl_prefer_server_ciphers on;
 
+    location ^~ /.well-known/acme-challenge {
+       alias /var/lib/dehydrated/acme-challenges;
+    }
+
     location / {
        proxy_pass          http://localhost:3000;
        proxy_set_header    Host             $host;
@@ -124,7 +126,7 @@ server {
        proxy_set_header    X-SSL-Issuer     $ssl_client_i_dn;
        proxy_read_timeout 1800;
        proxy_connect_timeout 1800;
-       
+
        # WebSocket support
        proxy_http_version 1.1;
        proxy_set_header Upgrade $http_upgrade;
@@ -133,11 +135,11 @@ server {
 
     location /static/ {
        root /home/client;
-        expires 30d;
+       expires 30d;
     }
-    
+
     if ($host ~* ^www\.(.*)$) {
-       return 301 https://2bebetter.pro$request_uri;
+       return 301 https://$host$request_uri;
     }
 }
 
@@ -145,6 +147,6 @@ server {
     listen 80;
 
     server_name 2bebetter.pro www.2bebetter.pro;
-    return 301 https://2bebetter.pro;
+    return 301 https://$host$request_uri;
 }
 ```

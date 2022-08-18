@@ -19,9 +19,9 @@ interface TaskProps {
 
 export default function Task({ goalId, task, rest, goalInfo, clientMember }: TaskProps) {
   const { id, date, completed } = task
-  const { form, forTomorrow, daysGoneForOwner } = goalInfo
+  const { forTomorrow, daysGoneForOwner } = goalInfo
   const setCompleted = useSetCompleted(goalId, id, rest, clientMember)
-  const disabled = completed || forTomorrow || !form
+  const disabled = completed || forTomorrow
 
   return (
     <Box display="flex" flexDirection="column" gap={1}>

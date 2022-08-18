@@ -1,7 +1,7 @@
 import dynamic from 'next/dynamic'
 import { Field, FieldArray, Form, FormikProvider } from 'formik'
 import { Grid, Box, Typography } from '@mui/material'
-import { GoalDto, MainCharacteristicName } from 'dto'
+import { MAIN_CHARACTERISTICS, GoalDto } from 'dto'
 import useLocale from 'hooks/useLocale'
 import useSelectPhoto from 'hooks/useSelectPhoto'
 import ActionSubmit from 'components/Action/ActionSubmit'
@@ -20,8 +20,6 @@ import useForm from './hook'
 import i18n from './i18n'
 
 const Alert = dynamic(() => import('@mui/material/Alert'))
-
-const CHARACTERISTIC_NAMES: MainCharacteristicName[] = ['motivation', 'creativity', 'support']
 
 export interface ModalCompletionProps {
   goal: GoalDto
@@ -125,7 +123,7 @@ export default function ModalCompletion({ goal, onClose }: ModalCompletionProps)
                   <Box sx={{ color: 'zen.silent' }}>
                     <Typography>
                       {details[0]}{' '}
-                      {CHARACTERISTIC_NAMES.map((name) => (
+                      {MAIN_CHARACTERISTICS.map((name) => (
                         <AppDecorEmoji name={name} key={name} />
                       ))}
                       {details[1]}{' '}

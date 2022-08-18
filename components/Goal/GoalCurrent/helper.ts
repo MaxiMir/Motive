@@ -23,11 +23,9 @@ export const checkOnShowDiscussion = (query: ParsedUrlQuery, id: number): boolea
   query[SearchParam.ScrollTo] === HashMark.Discussion && query[SearchParam.ScrollId] === id.toString()
 
 export type GoalInfo = {
-  daysGone: number
   daysGoneForOwner: number
   runningDays: number
   web: boolean
-  form: boolean
   controls: boolean
   completeStage: boolean
   forTomorrow: boolean
@@ -43,7 +41,6 @@ export const getGoalInfo = (goal: GoalDto, clientOwnership: OwnershipDto, userMe
   const runningDays = differenceInCalendarDays(Date.parse(day.date), Date.parse(started)) + 1
   const daysGone = getDaysGone()
   const web = checkOnWeb()
-  const form = checkOnForm()
   const forTomorrow = checkOnForTomorrow()
 
   function checkOnControls() {
@@ -70,14 +67,6 @@ export const getGoalInfo = (goal: GoalDto, clientOwnership: OwnershipDto, userMe
     return lastDay && daysGoneForOwner >= SHOW_WEB_AFTER_DAYS
   }
 
-  function checkOnForm() {
-    if (clientOwnership.page && clientOwnership.member) {
-      return clientOwnership.member.dayId === day.id && daysGone <= 0
-    }
-
-    return clientOwnership.goal && daysGone <= 0
-  }
-
   function checkOnForTomorrow() {
     if (!clientOwnership.member) {
       return daysGone === -1
@@ -87,11 +76,9 @@ export const getGoalInfo = (goal: GoalDto, clientOwnership: OwnershipDto, userMe
   }
 
   return {
-    daysGone,
     daysGoneForOwner,
     runningDays,
     web,
-    form,
     controls,
     completeStage,
     forTomorrow,

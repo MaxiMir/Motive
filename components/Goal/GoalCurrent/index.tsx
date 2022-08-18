@@ -1,8 +1,7 @@
-import { useMemo } from 'react'
 import dynamic from 'next/dynamic'
 import { useRouter } from 'next/router'
 import { Box, useTheme } from '@mui/material'
-import { GoalDto, GoalCharacteristicName, MemberDto } from 'dto'
+import { GoalDto, GoalCharacteristicName, MemberDto, MAIN_CHARACTERISTICS } from 'dto'
 import useLocale from 'hooks/useLocale'
 import { getGoalWithDayUrn, HashMark } from 'helpers/url'
 import { getMember } from 'views/UserView/helper'
@@ -27,7 +26,7 @@ const Web = dynamic(() => import('./components/Web'))
 const ViewerControl = dynamic(() => import('./components/ViewerControl'))
 const OwnerControl = dynamic(() => import('./components/OwnerControl'))
 
-const CHARACTERISTICS: GoalCharacteristicName[] = ['motivation', 'creativity', 'support', 'members']
+const CHARACTERISTICS: GoalCharacteristicName[] = [...MAIN_CHARACTERISTICS, 'members']
 
 export interface GoalCurrentProps {
   goal: GoalDto
@@ -56,7 +55,7 @@ export default function GoalCurrent({
   const clientOwnership = getClientOwnership(goal, clientId, clientPage, clientMembership)
   const userMember = getMember(id, userMembership, userId)
   const goalHref = getGoalWithDayUrn(href, id, dayId)
-  const goalInfo = useMemo(() => getGoalInfo(goal, clientOwnership, userMember), [goal, clientOwnership, userMember])
+  const goalInfo = getGoalInfo(goal, clientOwnership, userMember)
   const showDiscussion = checkOnShowDiscussion(query, id)
   const { mutate } = useIncreaseViews(goal, clientId)
   const {

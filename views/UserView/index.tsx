@@ -1,6 +1,6 @@
 import dynamic from 'next/dynamic'
 import { Box, Divider, Typography } from '@mui/material'
-import { UserDetailDto, UserCharacteristicName, MainCharacteristicName } from 'dto'
+import { UserDetailDto, MAIN_CHARACTERISTICS, SECOND_CHARACTERISTICS } from 'dto'
 import { getUserUrn } from 'helpers/url'
 import useClient from 'hooks/useClient'
 import { Locale } from 'hooks/useLocale'
@@ -14,9 +14,6 @@ const GoalCurrent = dynamic(() => import('components/Goal/GoalCurrent'))
 const Status = dynamic(() => import('./components/Status'))
 const Edit = dynamic(() => import('./components/Edit'))
 const AddGoal = dynamic(() => import('./components/AddGoal'))
-
-const CHARACTERISTIC_NAMES: MainCharacteristicName[] = ['motivation', 'creativity', 'support']
-const SECOND_CHARACTERISTIC_NAMES: UserCharacteristicName[] = ['completed', 'abandoned', 'followers']
 
 export interface UserViewProps {
   user: UserDetailDto
@@ -68,7 +65,7 @@ export default function UserView({ user, locale }: UserViewProps) {
         <Avatar avatar={avatar} characteristic={characteristic} />
         <Box display="flex" flexDirection="column" justifyContent="space-between" flex={1}>
           <Box display="flex" justifyContent="space-between">
-            {CHARACTERISTIC_NAMES.map((characteristicName) => (
+            {MAIN_CHARACTERISTICS.map((characteristicName) => (
               <Characteristic
                 user={user}
                 name={characteristicName}
@@ -79,7 +76,7 @@ export default function UserView({ user, locale }: UserViewProps) {
             ))}
           </Box>
           <Box display="flex" justifyContent="space-between">
-            {SECOND_CHARACTERISTIC_NAMES.map((characteristicName) => (
+            {SECOND_CHARACTERISTICS.map((characteristicName) => (
               <Characteristic
                 user={user}
                 name={characteristicName}

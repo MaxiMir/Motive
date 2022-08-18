@@ -1,12 +1,12 @@
 import { Container, Grid, Box, Typography } from '@mui/material'
-import { UserDto, MainCharacteristicName } from 'dto'
+import { UserDto, MainCharacteristic } from 'dto'
 import { Locale } from 'hooks/useLocale'
 import AppList from 'components/ui/AppList'
 import UserRating from 'components/User/UserRating'
 import i18n from './i18n'
 
 interface TabContentProps {
-  name: MainCharacteristicName
+  name: MainCharacteristic
   users: UserDto[]
   locale: Locale
 }

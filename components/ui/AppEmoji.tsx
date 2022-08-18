@@ -1,12 +1,16 @@
 import dynamic from 'next/dynamic'
 import { TypographyProps } from '@mui/material'
-import { GoalCharacteristicName, UserCharacteristicName } from 'dto'
 
 const Typography = dynamic(() => import('@mui/material/Typography'))
 
 export type AppEmojiName =
-  | UserCharacteristicName
-  | GoalCharacteristicName
+  | 'motivation'
+  | 'creativity'
+  | 'support'
+  | 'completed'
+  | 'members'
+  | 'abandoned'
+  | 'followers'
   | 'motivation-tech'
   | 'following'
   | 'views'

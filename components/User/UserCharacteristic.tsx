@@ -1,6 +1,6 @@
 import dynamic from 'next/dynamic'
 import { Box, Typography } from '@mui/material'
-import { UserDto, UserCharacteristicName } from 'dto'
+import { UserDto, SecondCharacteristic, MAIN_CHARACTERISTICS } from 'dto'
 import { getUserUrn } from 'helpers/url'
 import CharacteristicUser from 'components/Characteristic/CharacteristicUser'
 import AppLink from 'components/ui/AppLink'
@@ -8,7 +8,7 @@ import AppAvatar from 'components/ui/AppAvatar'
 
 const AppInView = dynamic(() => import('components/ui/AppInView'))
 
-const CHARACTERISTICS: UserCharacteristicName[] = ['motivation', 'creativity', 'support', 'completed']
+const CHARACTERISTICS = [...MAIN_CHARACTERISTICS, SecondCharacteristic.COMPLETED]
 
 export interface UserCharacteristicProps {
   user: UserDto

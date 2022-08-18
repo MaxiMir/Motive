@@ -1,10 +1,8 @@
 import { Box, Typography, Button } from '@mui/material'
-import { UserCharacteristicName, UserDto } from 'dto'
+import { MAIN_CHARACTERISTICS, UserDto } from 'dto'
 import AppAvatar from 'components/ui/AppAvatar'
 import { getUserUrn } from 'helpers/url'
 import CharacteristicUser from 'components/Characteristic/CharacteristicUser'
-
-const CHARACTERISTICS: UserCharacteristicName[] = ['motivation', 'creativity', 'support']
 
 export interface UserSearchProps {
   user: UserDto
@@ -50,7 +48,7 @@ export default function UserSearch({ user }: UserSearchProps) {
         >
           <Typography sx={{ color: 'common.white' }}>{name}</Typography>
           <Box display="flex" justifyContent="space-between" alignItems="center">
-            {CHARACTERISTICS.map((characteristicName) => (
+            {MAIN_CHARACTERISTICS.map((characteristicName) => (
               <CharacteristicUser
                 name={characteristicName}
                 value={characteristic[characteristicName]}

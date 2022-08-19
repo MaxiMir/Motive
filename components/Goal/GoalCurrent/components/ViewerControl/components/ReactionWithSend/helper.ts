@@ -1,5 +1,5 @@
 import produce from 'immer'
-import { DayCharacteristic, DayCharacteristicUpdateDto, GoalDto, MainCharacteristic, UserPageDto } from 'dto'
+import { DAY_CHARACTERISTIC, DayCharacteristic, DayCharacteristicUpdateDto, GoalDto, UserPageDto } from 'dto'
 
 export type Context = { previous?: UserPageDto }
 
@@ -7,7 +7,7 @@ export const checkOnActive = (goal: GoalDto, name: DayCharacteristic): boolean =
   !!goal.reactions?.[name].some((d) => d === goal.day.id)
 
 export const getCount = (goal: GoalDto, name: DayCharacteristic): number | undefined => {
-  if (![MainCharacteristic.MOTIVATION, MainCharacteristic.CREATIVITY].includes(name)) {
+  if (!DAY_CHARACTERISTIC.includes(name)) {
     return undefined
   }
 

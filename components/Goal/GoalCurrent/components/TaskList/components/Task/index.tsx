@@ -21,7 +21,7 @@ export default function Task({ goalId, task, rest, goalInfo, clientMember }: Tas
   const { id, date, completed } = task
   const { forTomorrow, daysGoneForOwner } = goalInfo
   const setCompleted = useSetCompleted(goalId, id, rest, clientMember)
-  const disabled = completed || forTomorrow
+  const disabled = completed || forTomorrow || !goalInfo.canEdit
 
   return (
     <Box display="flex" flexDirection="column" gap={1}>

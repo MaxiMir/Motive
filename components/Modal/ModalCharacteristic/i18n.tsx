@@ -1,81 +1,99 @@
-import AppEmoji from 'components/ui/AppEmoji'
+import AppDecorEmoji from 'components/ui/AppDecorEmoji'
 
 export default {
   en: {
-    motivation: (
-      <>
-        Motivation points are given for: <br />
-        • goal completion <br />
-        • every <AppEmoji name="motivation" onlyEmoji /> put on your goal
-      </>
-    ),
-    creativity: (
-      <>
-        Creativity points are given for: <br />
-        • every <AppEmoji name="creativity" onlyEmoji /> put on your goal
-      </>
-    ),
-    support: (
-      <>
-        Support points are given for: <br />
-        • each <AppEmoji name="support" onlyEmoji /> put on your message in discussion
-      </>
-    ),
+    motivation: {
+      header: 'Motivation points are given for:',
+      list: [
+        'Goal completion',
+        <>
+          Every <AppDecorEmoji name="motivation" /> put on your goal
+        </>,
+      ],
+    },
+    creativity: {
+      header: 'Creativity points are given for:',
+      list: [
+        <>
+          Every <AppDecorEmoji name="creativity" /> put on your goal
+        </>,
+      ],
+    },
+    support: {
+      header: 'Support points are given for:',
+      list: [
+        <>
+          Each <AppDecorEmoji name="support" /> put on your message in discussion
+        </>,
+      ],
+    },
     abandoned: (
       <>
-        Goals were eaten up by Old Pitt <AppEmoji name="pitt" onlyEmoji />
+        Goals were eaten up by Old Pitt <AppDecorEmoji name="pitt" />
       </>
     ),
   },
   ru: {
-    motivation: (
-      <>
-        Очки мотивации даются за: <br />
-        • выполнение целей <br />
-        • каждый <AppEmoji name="motivation" onlyEmoji /> поставленный Вашей цели
-      </>
-    ),
-    creativity: (
-      <>
-        Очки креативности даются за: <br />
-        • каждый <AppEmoji name="creativity" onlyEmoji /> поставленный Вашей цели
-      </>
-    ),
-    support: (
-      <>
-        Очки поддержки даются за: <br />
-        • каждый <AppEmoji name="support" onlyEmoji /> поставленный вашему сообщению в обсуждении
-      </>
-    ),
+    motivation: {
+      header: 'Очки мотивации даются за:',
+      list: [
+        'выполнение целей',
+        <>
+          Каждый <AppDecorEmoji name="motivation" /> поставленный Вашей цели
+        </>,
+      ],
+    },
+    creativity: {
+      header: 'Очки креативности даются за:',
+      list: [
+        <>
+          Каждый <AppDecorEmoji name="creativity" /> поставленный Вашей цели
+        </>,
+      ],
+    },
+    support: {
+      header: 'Очки поддержки даются за:',
+      list: [
+        <>
+          Каждый <AppDecorEmoji name="support" /> поставленный вашему сообщению в обсуждении
+        </>,
+      ],
+    },
     abandoned: (
       <>
-        Cъеденных Стариной Питтом целей <AppEmoji name="pitt" onlyEmoji />
+        Cъеденных Стариной Питтом целей <AppDecorEmoji name="pitt" />
       </>
     ),
   },
   uk: {
-    motivation: (
-      <>
-        Окуляри мотивації даються за: <br />
-        • виконання цілей <br />
-        • кожен <AppEmoji name="motivation" onlyEmoji /> поставлений Вашої мети
-      </>
-    ),
-    creativity: (
-      <>
-        Окуляри креативності даються за: <br />
-        • кожен <AppEmoji name="creativity" onlyEmoji /> поставлений Вашої мети
-      </>
-    ),
-    support: (
-      <>
-        Окуляри підтримки даються за: <br />
-        • кожен <AppEmoji name="support" onlyEmoji /> поставлений вашому повідомленню в обговоренні
-      </>
-    ),
+    motivation: {
+      header: 'Окуляри мотивації даються за:',
+      list: [
+        'виконання цілей',
+        <>
+          Кожен <AppDecorEmoji name="motivation" /> поставлений Вашої мети
+        </>,
+      ],
+    },
+    creativity: {
+      header: 'Окуляри креативності даються за:',
+      list: [
+        <>
+          Кожен <AppDecorEmoji name="creativity" /> поставлений Вашої мети
+        </>,
+      ],
+    },
+    support: {
+      header: 'Окуляри підтримки даються за:',
+      list: [
+        <>
+          Кожен <AppDecorEmoji name="support" /> поставлений вашому повідомленню в обговоренні
+        </>,
+      ],
+    },
     abandoned: (
       <>
-        З&#39;їдених Стариною Піттом цілей <AppEmoji name="pitt" onlyEmoji />
+        З&#39;їдених Стариною Піттом цілей <AppDecorEmoji name="pitt" />
       </>
     ),
   },

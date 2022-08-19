@@ -26,7 +26,7 @@ export type GoalCharacteristicDto = Readonly<{
   [k in GoalCharacteristicName]: number
 }>
 
-export const DAY_CHARACTERISTIC = [MAIN_CHARACTERISTICS[0], MAIN_CHARACTERISTICS[1]] as const
+export const DAY_CHARACTERISTIC = ['motivation', 'creativity'] as const
 
 export type DayCharacteristic = typeof DAY_CHARACTERISTIC[number]
 

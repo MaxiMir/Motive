@@ -1,6 +1,7 @@
-import { Box } from '@mui/material'
+import { Box, Typography } from '@mui/material'
 import { MainCharacteristic, UserDetailDto } from 'dto'
 import AppModal from 'components/ui/AppModal'
+import AppEmoji from 'components/ui/AppEmoji'
 import i18nAll from 'constants/i18n'
 import useLocale from 'hooks/useLocale'
 import Progress from './components/Progress'
@@ -16,7 +17,7 @@ export default function ModalCharacteristic({ characteristic, user, onClose }: M
   const { [characteristic]: value } = user.characteristic
   const { locale } = useLocale()
   const title = i18nAll[locale][characteristic]
-  const content = i18n[locale][characteristic]
+  const { header, list } = i18n[locale][characteristic]
 
   return (
     <AppModal
@@ -29,7 +30,17 @@ export default function ModalCharacteristic({ characteristic, user, onClose }: M
       onClose={onClose}
     >
       <Progress characteristic={characteristic} value={value} />
-      <Box mt={1}>{content}</Box>
+      <Box mt={2}>
+        <Typography variant="h6" component="h3" sx={{ color: 'zen.tender', mb: 1 }}>
+          {header}
+        </Typography>
+        {list.map((el, key) => (
+          <Box display="flex" alignItems="center" gap={1} key={key} sx={{ paddingY: '4px' }}>
+            <AppEmoji name="bullseye" onlyEmoji />
+            <Typography>{el}</Typography>
+          </Box>
+        ))}
+      </Box>
     </AppModal>
   )
 }

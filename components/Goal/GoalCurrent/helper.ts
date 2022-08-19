@@ -29,6 +29,7 @@ export type GoalInfo = {
   controls: boolean
   completeStage: boolean
   forTomorrow: boolean
+  canEdit: boolean
 }
 
 export const getGoalInfo = (goal: GoalDto, clientOwnership: OwnershipDto, userMember?: MemberDto): GoalInfo => {
@@ -42,6 +43,7 @@ export const getGoalInfo = (goal: GoalDto, clientOwnership: OwnershipDto, userMe
   const daysGone = getDaysGone()
   const web = checkOnWeb()
   const forTomorrow = checkOnForTomorrow()
+  const canEdit = checkCanEdit()
 
   function checkOnControls() {
     if (completed && clientOwnership.goal) {
@@ -75,6 +77,14 @@ export const getGoalInfo = (goal: GoalDto, clientOwnership: OwnershipDto, userMe
     return !!differenceInCalendarDays(Date.parse(clientOwnership.member.updated), today)
   }
 
+  function checkCanEdit() {
+    if (clientOwnership.page && clientOwnership.member) {
+      return clientOwnership.member.dayId === day.id
+    }
+
+    return clientOwnership.goal
+  }
+
   return {
     daysGoneForOwner,
     runningDays,
@@ -82,5 +92,6 @@ export const getGoalInfo = (goal: GoalDto, clientOwnership: OwnershipDto, userMe
     controls,
     completeStage,
     forTomorrow,
+    canEdit,
   }
 }

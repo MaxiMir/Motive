@@ -1,7 +1,5 @@
-import { CSSProperties, useEffect, useState } from 'react'
+import { CSSProperties } from 'react'
 import { Box } from '@mui/material'
-
-const STEP = 10
 
 interface CircleProps {
   offset: number
@@ -24,18 +22,6 @@ export default function AppCircle({
   strokeWidth,
   strokeWidthBg,
 }: CircleProps) {
-  const [progress, setProgress] = useState(dasharray)
-
-  useEffect(() => {
-    const timer = setInterval(() => {
-      setProgress((prev) => (prev >= offset ? offset : progress - STEP))
-    }, 100)
-
-    return () => {
-      clearInterval(timer)
-    }
-  }, [offset, progress])
-
   return (
     <svg width={size} height={size} viewBox="-25 -25 400 400">
       <circle stroke={light} cx={radius} cy={radius} r={radius} strokeWidth={strokeWidthBg} fill="none" />
@@ -53,8 +39,14 @@ export default function AppCircle({
           strokeLinecap="round"
           fill="none"
           sx={{
-            strokeDashoffset: progress,
+            strokeDashoffset: offset,
             transition: 'stroke-dashoffset 1s ease-out',
+            animation: 'progress 1s ease-out',
+            '@keyframes progress': {
+              '0%': {
+                strokeDasharray: `${offset} ${dasharray}`,
+              },
+            },
           }}
         />
       )}

@@ -44,7 +44,7 @@ export default function ModalLeave({ goal, clientOwnership, onClose }: ModalLeav
     >
       <Box display="flex" flexDirection="column" justifyItems="center" alignItems="center" gap={1}>
         <Typography>
-          {subtitle}
+          {subtitle}{' '}
           <Box component="span" sx={{ color: 'motivation.main' }}>
             {name}
           </Box>

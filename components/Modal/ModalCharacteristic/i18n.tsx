@@ -37,7 +37,7 @@ export default {
     motivation: {
       header: 'Очки мотивации даются за:',
       list: [
-        'выполнение целей',
+        'Выполнение целей',
         <>
           Каждый <AppDecorEmoji name="motivation" /> поставленный Вашей цели
         </>,
@@ -69,7 +69,7 @@ export default {
     motivation: {
       header: 'Окуляри мотивації даються за:',
       list: [
-        'виконання цілей',
+        'Виконання цілей',
         <>
           Кожен <AppDecorEmoji name="motivation" /> поставлений Вашої мети
         </>,

@@ -11,7 +11,7 @@ const ModalFollowers = dynamic(() => import('components/Modal/ModalFollowers'))
 const ModalCompleted = dynamic(() => import('components/Modal/ModalCompleted'))
 const ModalCharacteristic = dynamic(() => import('components/Modal/ModalCharacteristic'))
 
-type Modal = SecondCharacteristic.COMPLETED | SecondCharacteristic.FOLLOWERS | MainCharacteristic
+type Modal = SecondCharacteristic.Completed | SecondCharacteristic.Followers | MainCharacteristic
 
 interface CharacteristicProps {
   user: UserDetailDto
@@ -27,9 +27,9 @@ export default function Characteristic(props: CharacteristicProps) {
   const [modal, setModal] = useState<Modal>()
   const button = i18nAll[locale][name]
   const modalCharacteristic =
-    modal === MainCharacteristic.MOTIVATION ||
-    modal === MainCharacteristic.CREATIVITY ||
-    modal === MainCharacteristic.SUPPORT
+    modal === MainCharacteristic.Motivation ||
+    modal === MainCharacteristic.Creativity ||
+    modal === MainCharacteristic.Support
 
   const onClick = () => {
     switch (name) {
@@ -67,7 +67,7 @@ export default function Characteristic(props: CharacteristicProps) {
           justifyContent="flex-start"
           flexDirection="column"
           gap={0.5}
-          minWidth={name === MainCharacteristic.CREATIVITY ? 68 : undefined}
+          minWidth={name === MainCharacteristic.Creativity ? 68 : undefined}
         >
           <Typography
             variant="caption"
@@ -85,8 +85,8 @@ export default function Characteristic(props: CharacteristicProps) {
           <CharacteristicUser {...props} />
         </Box>
       </Button>
-      {modal === SecondCharacteristic.COMPLETED && <ModalCompleted user={user} onClose={onClose} />}
-      {modal === SecondCharacteristic.FOLLOWERS && <ModalFollowers user={user} onClose={onClose} />}
+      {modal === SecondCharacteristic.Completed && <ModalCompleted user={user} onClose={onClose} />}
+      {modal === SecondCharacteristic.Followers && <ModalFollowers user={user} onClose={onClose} />}
       {modalCharacteristic && <ModalCharacteristic user={user} characteristic={modal} onClose={onClose} />}
     </>
   )

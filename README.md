@@ -77,6 +77,9 @@ services:
     ports:
       - "127.0.0.1:6379:6379"
 ```
+
+**SSL**: https://cdnnow.ru/blog/dehydrated/
+
 ```shell
 server {
     listen 443 ssl http2;
@@ -85,8 +88,8 @@ server {
     server_name 2bebetter.pro www.2bebetter.pro;
 
     ssl on;
-    ssl_certificate /etc/ssl/certs/2bebetter.pro.crt;
-    ssl_certificate_key /etc/ssl/private/2bebetter-private.key;
+    ssl_certificate /var/lib/dehydrated/certs/2bebetter.pro/fullchain.pem;
+    ssl_certificate_key /var/lib/dehydrated/certs/2bebetter.pro/privkey.pem;
 
     ssl_session_cache shared:SSL:10m;
     ssl_session_timeout 10m;
@@ -95,10 +98,6 @@ server {
     ssl_protocols TLSv1 TLSv1.1 TLSv1.2;
     ssl_ciphers ALL:EECDH+aRSA+AESGCM:EDH+aRSA+AESGCM:EECDH+aRSA+AES:EDH+aRSA+AES;
     ssl_prefer_server_ciphers on;
-
-    location ^~ /.well-known/acme-challenge {
-       alias /var/lib/dehydrated/acme-challenges;
-    }
 
     location / {
        proxy_pass          http://localhost:3000;
@@ -139,7 +138,7 @@ server {
     }
 
     if ($host ~* ^www\.(.*)$) {
-       return 301 https://$host$request_uri;
+       return 301 https://2bebetter.pro$request_uri;
     }
 }
 
@@ -149,4 +148,5 @@ server {
     server_name 2bebetter.pro www.2bebetter.pro;
     return 301 https://$host$request_uri;
 }
+
 ```

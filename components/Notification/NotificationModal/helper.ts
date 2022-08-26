@@ -13,15 +13,15 @@ export const getNotificationInfo = (type: NotificationType): NotificationInfo =>
     case NotificationType.NewGoal:
       return { emoji: 'goal', color: 'primary.main' }
     case NotificationType.AddMotivation:
-      return { emoji: MainCharacteristic.MOTIVATION, color: 'motivation.main' }
+      return { emoji: MainCharacteristic.Motivation, color: 'motivation.main' }
     case NotificationType.AddCreativity:
-      return { emoji: MainCharacteristic.CREATIVITY, color: 'creativity.main' }
+      return { emoji: MainCharacteristic.Creativity, color: 'creativity.main' }
     case NotificationType.NewQuestion:
       return { emoji: 'question', color: 'error.main' }
     case NotificationType.NewSupport:
-      return { emoji: MainCharacteristic.SUPPORT, color: 'support.main' }
+      return { emoji: MainCharacteristic.Support, color: 'support.main' }
     case NotificationType.NewAnswer:
-      return { emoji: MainCharacteristic.SUPPORT, color: 'support.main' }
+      return { emoji: MainCharacteristic.Support, color: 'support.main' }
     case NotificationType.NewFeedback:
       return { emoji: 'feedback', color: '#cfd8dc' }
     case NotificationType.WebCoverage:

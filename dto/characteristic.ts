@@ -1,15 +1,15 @@
 export enum MainCharacteristic {
-  MOTIVATION = 'motivation',
-  CREATIVITY = 'creativity',
-  SUPPORT = 'support',
+  Motivation = 'motivation',
+  Creativity = 'creativity',
+  Support = 'support',
 }
 
 export const MAIN_CHARACTERISTICS = Object.values(MainCharacteristic)
 
 export enum SecondCharacteristic {
-  COMPLETED = 'completed',
-  ABANDONED = 'abandoned',
-  FOLLOWERS = 'followers',
+  Completed = 'completed',
+  Abandoned = 'abandoned',
+  Followers = 'followers',
 }
 
 export const SECOND_CHARACTERISTICS = Object.values(SecondCharacteristic)

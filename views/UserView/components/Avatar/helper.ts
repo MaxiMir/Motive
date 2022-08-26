@@ -14,19 +14,19 @@ interface CircleItemInit {
 
 const CIRCLE_ITEMS: CircleItemInit[] = [
   {
-    name: MainCharacteristic.MOTIVATION,
+    name: MainCharacteristic.Motivation,
     size: 98,
     strokeWidth: 15,
     strokeWidthBg: 24,
   },
   {
-    name: MainCharacteristic.SUPPORT,
+    name: MainCharacteristic.Support,
     size: 112,
     strokeWidth: 13,
     strokeWidthBg: 23,
   },
   {
-    name: MainCharacteristic.CREATIVITY,
+    name: MainCharacteristic.Creativity,
     size: 126,
     strokeWidth: 12,
     strokeWidthBg: 19,

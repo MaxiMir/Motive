@@ -6,7 +6,7 @@ import AppLink from 'components/ui/AppLink'
 import i18n from './i18n'
 
 export interface AdvantageProps {
-  id: MainCharacteristic | SecondCharacteristic.COMPLETED
+  id: MainCharacteristic | SecondCharacteristic.Completed
   href: string
   locale: Locale
 }

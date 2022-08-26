@@ -7,19 +7,19 @@ type AdvantageItem = Pick<AdvantageProps, 'id' | 'href'>
 
 const ADVANTAGES: AdvantageItem[] = [
   {
-    id: MainCharacteristic.MOTIVATION,
+    id: MainCharacteristic.Motivation,
     href: RATING,
   },
   {
-    id: MainCharacteristic.CREATIVITY,
+    id: MainCharacteristic.Creativity,
     href: setQueryParams(RATING, { tab: '1' }),
   },
   {
-    id: MainCharacteristic.SUPPORT,
+    id: MainCharacteristic.Support,
     href: setQueryParams(RATING, { tab: '2' }),
   },
   {
-    id: SecondCharacteristic.COMPLETED,
+    id: SecondCharacteristic.Completed,
     href: RATING,
   },
 ]

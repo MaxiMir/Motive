@@ -8,7 +8,7 @@ import AppAvatar from 'components/ui/AppAvatar'
 
 const AppInView = dynamic(() => import('components/ui/AppInView'))
 
-const CHARACTERISTICS = [...MAIN_CHARACTERISTICS, SecondCharacteristic.COMPLETED]
+const CHARACTERISTICS = [...MAIN_CHARACTERISTICS, SecondCharacteristic.Completed]
 
 export interface UserCharacteristicProps {
   user: UserDto

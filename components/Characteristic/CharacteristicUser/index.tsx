@@ -12,7 +12,7 @@ export interface CharacteristicUserProps {
 }
 
 export default function CharacteristicUser({ name, value }: CharacteristicUserProps) {
-  const shortValue = name !== SecondCharacteristic.FOLLOWERS ? Math.floor(value) : numberToShort(value)
+  const shortValue = name !== SecondCharacteristic.Followers ? Math.floor(value) : numberToShort(value)
   const showLevel = !(SECOND_CHARACTERISTICS as ReadonlyArray<string>).includes(name)
 
   return (

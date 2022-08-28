@@ -1,8 +1,6 @@
-import { useEffect, useState } from 'react'
 import { Box, LinearProgress, linearProgressClasses, Typography } from '@mui/material'
 import { MainCharacteristic } from 'dto'
-
-const STEP = 1
+import useShowProgress from 'hooks/useShowProgress'
 
 interface ProgressProps {
   characteristic: MainCharacteristic
@@ -11,16 +9,8 @@ interface ProgressProps {
 
 export default function Progress({ characteristic, value }: ProgressProps) {
   const rest = (value % 1) * 100
-  const [progress, setProgress] = useState(0)
-  const progressText = Math.round(progress)
-
-  useEffect(() => {
-    const timer = setInterval(() => setProgress((prev) => (prev + STEP >= rest ? rest : progress + STEP)), 100)
-
-    return () => {
-      clearInterval(timer)
-    }
-  }, [progress, rest])
+  const progress = useShowProgress(rest)
+  const preparedProgress = Math.round(progress)
 
   return (
     <Box display="flex" alignItems="center" gap={1}>
@@ -40,7 +30,7 @@ export default function Progress({ characteristic, value }: ProgressProps) {
       />
       <Box display="flex" width={35} justifyContent="flex-end">
         <Typography variant="body2" color="text.secondary">
-          {progressText}%
+          {preparedProgress}%
         </Typography>
       </Box>
     </Box>

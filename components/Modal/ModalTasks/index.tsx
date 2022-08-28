@@ -11,18 +11,18 @@ import {
   RadioGroup,
   Typography,
 } from '@mui/material'
-import { MAIN_CHARACTERISTICS, GoalDto } from 'dto'
+import { GoalDto } from 'dto'
 import useLocale from 'hooks/useLocale'
 import { getToday, getTomorrow } from 'helpers/date'
 import AppIcon from 'components/ui/AppIcon'
 import AppTitle from 'components/ui/AppTitle'
 import { PaulIcon } from 'components/ui/icons'
-import AppDecorEmoji from 'components/ui/AppDecorEmoji'
 import AppModal from 'components/ui/AppModal'
 import ActionSubmit from 'components/Action/ActionSubmit'
 import ActionClose from 'components/Action/ActionClose'
 import OptionalTooltip from 'components/OptionalTooltip'
 import TaskField from 'components/Task/TaskField'
+import OldPittRules from 'components/OldPitt/OldPittRules'
 import useForm from './hook'
 import i18n from './i18n'
 
@@ -50,7 +50,6 @@ export default function ModalTasks({ goal, onClose }: ModalTasksProps) {
     tomorrow,
     pitt,
     pittAria,
-    pittHints,
     tooltipToday,
   } = i18n[locale]
 
@@ -140,19 +139,7 @@ export default function ModalTasks({ goal, onClose }: ModalTasksProps) {
             </Box>
           </AccordionSummary>
           <AccordionDetails>
-            <Typography color="gray">
-              {pittHints[0]}.
-              <br />
-              {pittHints[1]} <AppDecorEmoji name="web" />.
-              <br />
-              {pittHints[2]} <AppDecorEmoji name="blood" />.
-              <br />
-              {pittHints[3]}{' '}
-              {MAIN_CHARACTERISTICS.map((characteristic) => (
-                <AppDecorEmoji name={characteristic} key={characteristic} />
-              ))}
-              {pittHints[4]}.
-            </Typography>
+            <OldPittRules />
           </AccordionDetails>
         </Accordion>
       </Box>

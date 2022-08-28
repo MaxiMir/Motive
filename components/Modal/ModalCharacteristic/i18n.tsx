@@ -27,11 +27,6 @@ export default {
         </>,
       ],
     },
-    abandoned: (
-      <>
-        Goals were eaten up by Old Pitt <AppDecorEmoji name="pitt" />
-      </>
-    ),
   },
   ru: {
     motivation: {
@@ -59,11 +54,6 @@ export default {
         </>,
       ],
     },
-    abandoned: (
-      <>
-        Cъеденных Стариной Питтом целей <AppDecorEmoji name="pitt" />
-      </>
-    ),
   },
   uk: {
     motivation: {
@@ -91,10 +81,5 @@ export default {
         </>,
       ],
     },
-    abandoned: (
-      <>
-        З&#39;їдених Стариною Піттом цілей <AppDecorEmoji name="pitt" />
-      </>
-    ),
   },
 }

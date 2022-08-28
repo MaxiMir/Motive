@@ -1,7 +1,7 @@
 import { Box, Typography } from '@mui/material'
 import { MainCharacteristic, UserDetailDto } from 'dto'
-import AppModal from 'components/ui/AppModal'
 import i18nAll from 'constants/i18n'
+import AppModal from 'components/ui/AppModal'
 import useLocale from 'hooks/useLocale'
 import Progress from './components/Progress'
 import ListItem from './components/ListItem'

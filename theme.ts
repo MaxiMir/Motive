@@ -75,7 +75,7 @@ export const getDesignTokens = (mode: PaletteMode): ThemeOptions => {
         dark: '#673AB7',
       },
       completed: {
-        light: '#BDB5B5',
+        light: '#B3D6B4',
         main: '#78C77B',
         dark: '#1D1D1F',
       },
@@ -85,7 +85,7 @@ export const getDesignTokens = (mode: PaletteMode): ThemeOptions => {
         dark: '',
       },
       abandoned: {
-        light: '',
+        light: '#6F6F6F',
         main: '#AEABAE',
         dark: '',
       },

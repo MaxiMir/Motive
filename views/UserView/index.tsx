@@ -1,5 +1,6 @@
 import dynamic from 'next/dynamic'
 import { Box, Divider, Typography } from '@mui/material'
+import { styled } from '@mui/system'
 import { UserDetailDto, MAIN_CHARACTERISTICS, SECOND_CHARACTERISTICS } from 'dto'
 import { getUserUrn } from 'helpers/url'
 import useClient from 'hooks/useClient'
@@ -11,6 +12,7 @@ import EmptyGoals from './components/EmptyGoals'
 import Following from './components/Following'
 
 const GoalCurrent = dynamic(() => import('components/Goal/GoalCurrent'))
+const ConfirmationList = dynamic(() => import('components/Confirmation/ConfirmationList'))
 const Status = dynamic(() => import('./components/Status'))
 const Edit = dynamic(() => import('./components/Edit'))
 const AddGoal = dynamic(() => import('./components/AddGoal'))
@@ -31,6 +33,7 @@ export default function UserView({ user, locale }: UserViewProps) {
     following,
     userMembership,
     clientMembership,
+    confirmations,
     online,
     lastSeen,
     device,
@@ -52,7 +55,7 @@ export default function UserView({ user, locale }: UserViewProps) {
           <Status online={online} lastSeen={lastSeen} device={device} />
         </Box>
       </Box>
-      <Divider light sx={{ mb: 3 }} />
+      <DashedDivider light sx={{ mb: 3 }} />
       <Box
         display="flex"
         sx={{
@@ -88,7 +91,13 @@ export default function UserView({ user, locale }: UserViewProps) {
           </Box>
         </Box>
       </Box>
-      <Divider light sx={{ my: 3 }} />
+      <DashedDivider light sx={{ my: 3 }} />
+      {!!confirmations.length && (
+        <>
+          <ConfirmationList confirmations={confirmations} />
+          <DashedDivider light sx={{ my: 3 }} />
+        </>
+      )}
       <Box display="flex" justifyContent="center" mb={3}>
         {clientPage ? <AddGoal /> : <Following id={user.id} following={following} locale={locale} />}
       </Box>
@@ -113,3 +122,7 @@ export default function UserView({ user, locale }: UserViewProps) {
     </AppContainer>
   )
 }
+
+const DashedDivider = styled(Divider)({
+  borderStyle: 'dashed',
+})

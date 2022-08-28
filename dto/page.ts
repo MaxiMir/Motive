@@ -1,7 +1,7 @@
 import { Session } from 'next-auth'
 import { UserDto } from './user'
 import { MainCharacteristic } from './characteristic'
-import { GoalDto } from './goal'
+import { ConfirmationDto, GoalDto } from './goal'
 import { MemberDto } from './member'
 import { HashtagDto } from './hashtag'
 
@@ -40,4 +40,5 @@ export interface UserDetailDto extends UserDto {
   goals: GoalDto[]
   userMembership: MemberDto[]
   clientMembership: MemberDto[]
+  confirmations: ConfirmationDto[]
 }

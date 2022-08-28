@@ -2,7 +2,7 @@ import { GoalCharacteristicDto } from './characteristic'
 import { UserBaseDto } from './user'
 import { ReactionsDto } from './reaction'
 import { CreateTaskDto } from './task'
-import { DayDto, FeedbackDto } from './day'
+import { DayDto, FeedbackDto, PhotoDto } from './day'
 
 export interface CreateGoalDto {
   readonly name: string
@@ -51,6 +51,7 @@ export interface ConfirmationDto extends FeedbackDto {
   readonly end: string
   readonly goal: GoalBaseDto
   readonly inherited: boolean
+  readonly photos: PhotoDto[]
 }
 
 export interface CalendarDto {

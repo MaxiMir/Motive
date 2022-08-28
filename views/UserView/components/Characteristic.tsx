@@ -10,8 +10,7 @@ import CharacteristicUser from 'components/Characteristic/CharacteristicUser'
 const ModalFollowers = dynamic(() => import('components/Modal/ModalFollowers'))
 const ModalCompleted = dynamic(() => import('components/Modal/ModalCompleted'))
 const ModalCharacteristic = dynamic(() => import('components/Modal/ModalCharacteristic'))
-
-type Modal = SecondCharacteristic.Completed | SecondCharacteristic.Followers | MainCharacteristic
+const ModalAbandoned = dynamic(() => import('components/Modal/ModalAbandoned'))
 
 interface CharacteristicProps {
   user: UserDetailDto
@@ -24,7 +23,7 @@ interface CharacteristicProps {
 export default function Characteristic(props: CharacteristicProps) {
   const { user, name, locale } = props
   const router = useRouter()
-  const [modal, setModal] = useState<Modal>()
+  const [modal, setModal] = useState<SecondCharacteristic | MainCharacteristic>()
   const button = i18nAll[locale][name]
   const modalCharacteristic =
     modal === MainCharacteristic.Motivation ||
@@ -38,6 +37,7 @@ export default function Characteristic(props: CharacteristicProps) {
       case 'motivation':
       case 'creativity':
       case 'support':
+      case 'abandoned':
         setModal(name)
     }
   }
@@ -87,6 +87,7 @@ export default function Characteristic(props: CharacteristicProps) {
       </Button>
       {modal === SecondCharacteristic.Completed && <ModalCompleted user={user} onClose={onClose} />}
       {modal === SecondCharacteristic.Followers && <ModalFollowers user={user} onClose={onClose} />}
+      {modal === SecondCharacteristic.Abandoned && <ModalAbandoned user={user} onClose={onClose} />}
       {modalCharacteristic && <ModalCharacteristic user={user} characteristic={modal} onClose={onClose} />}
     </>
   )

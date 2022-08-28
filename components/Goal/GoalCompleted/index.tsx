@@ -1,7 +1,7 @@
 import { Fragment } from 'react'
 import dynamic from 'next/dynamic'
 import { Box, Tooltip, useTheme } from '@mui/material'
-import { ConfirmationDto, GoalCharacteristicName, MAIN_CHARACTERISTICS, UserDetailDto } from 'dto'
+import { ConfirmationDto, GoalCharacteristicName, MAIN_CHARACTERISTICS, MemberDto } from 'dto'
 import useClient from 'hooks/useClient'
 import useLocale from 'hooks/useLocale'
 import AppTitle from 'components/ui/AppTitle'
@@ -11,7 +11,6 @@ import { checkOnRepeat, getGoalInfo } from './helper'
 import i18n from './i18n'
 
 const Typography = dynamic(() => import('@mui/material/Typography'))
-const AppInView = dynamic(() => import('components/ui/AppInView'))
 const GallerySimple = dynamic(() => import('components/Gallery/GallerySimple'))
 const Inheritance = dynamic(() => import('./components/Inheritance'))
 const Repeat = dynamic(() => import('./components/Repeat'))
@@ -20,19 +19,18 @@ const AppMarkdown = dynamic(() => import('components/ui/AppMarkdown'))
 const CHARACTERISTICS: GoalCharacteristicName[] = [...MAIN_CHARACTERISTICS, 'members']
 
 export interface GoalCompletedProps {
+  userId: number
+  clientMembership: MemberDto[]
   confirmation: ConfirmationDto
-  user: UserDetailDto
-  inView: boolean
-  onView: () => void
 }
 
-export default function GoalCompleted({ confirmation, user, inView, onView }: GoalCompletedProps) {
+export default function GoalCompleted({ userId, clientMembership, confirmation }: GoalCompletedProps) {
   const { goal, inherited } = confirmation
   const theme = useTheme()
   const client = useClient()
   const { locale } = useLocale()
   const { duration, mainPhoto, secondPhotos, interval } = getGoalInfo(confirmation)
-  const renderRepeat = checkOnRepeat(user, goal, client)
+  const renderRepeat = checkOnRepeat(userId, clientMembership, goal, client)
   const { durationTitle } = i18n[locale]
 
   return (
@@ -84,11 +82,10 @@ export default function GoalCompleted({ confirmation, user, inView, onView }: Go
           ))}
         </Box>
         {confirmation.text && <AppMarkdown text={confirmation.text} />}
-        <Box minHeight={320}>{mainPhoto && <GallerySimple photos={[mainPhoto]} />}</Box>
+        {mainPhoto && <GallerySimple photos={[mainPhoto]} />}
         {!!secondPhotos?.length && <GallerySimple photos={secondPhotos} />}
         {renderRepeat && <Repeat goalId={goal.id} locale={locale} />}
       </Box>
-      {onView && <>{inView && <AppInView onView={onView} />}</>}
     </Box>
   )
 }

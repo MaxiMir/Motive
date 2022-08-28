@@ -1,16 +1,21 @@
 import { Box } from '@mui/material'
-import { ConfirmationDto } from 'dto'
+import { UserDetailDto } from 'dto'
 import ConfirmationPreview from './components/ConfirmationPreview'
 
-interface ConfirmationListProps {
-  confirmations: ConfirmationDto[]
+interface ConfirmationListProps extends Pick<UserDetailDto, 'clientMembership' | 'confirmations'> {
+  userId: number
 }
 
-export default function ConfirmationList({ confirmations }: ConfirmationListProps) {
+export default function ConfirmationList({ userId, clientMembership, confirmations }: ConfirmationListProps) {
   return (
     <Box display="flex" gap={1} overflow="scroll">
       {confirmations.map((confirmation) => (
-        <ConfirmationPreview confirmation={confirmation} key={confirmation.id} />
+        <ConfirmationPreview
+          userId={userId}
+          clientMembership={clientMembership}
+          confirmation={confirmation}
+          key={confirmation.id}
+        />
       ))}
     </Box>
   )

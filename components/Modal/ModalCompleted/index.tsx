@@ -18,7 +18,7 @@ export interface ModalCompletedProps {
 export default function ModalCompleted({ user, onClose }: ModalCompletedProps) {
   const { id, characteristic } = user
   const { locale } = useLocale()
-  const { isLoading, confirmations, checkOnLoadMore, fetchNextPage } = useGoals(id, characteristic.completed)
+  const { isLoading, confirmations } = useGoals(id, characteristic.completed)
   const { title, subtitle } = i18n[locale]
 
   return (
@@ -42,12 +42,7 @@ export default function ModalCompleted({ user, onClose }: ModalCompletedProps) {
             {!confirmations?.length ? (
               <EmptyList locale={locale} />
             ) : (
-              <ConfirmationsList
-                confirmations={confirmations}
-                user={user}
-                checkOnLoadMore={checkOnLoadMore}
-                onView={fetchNextPage}
-              />
+              <ConfirmationsList confirmations={confirmations} user={user} />
             )}
           </>
         )}

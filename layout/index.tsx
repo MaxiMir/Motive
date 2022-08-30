@@ -15,6 +15,7 @@ const Box = dynamic(() => import('@mui/material/Box'))
 interface LayoutProps {
   title?: string
   description?: string
+  keywords?: string
   type?: string
   image?: string
   canonical?: string
@@ -25,6 +26,7 @@ interface LayoutProps {
 export default function Layout({
   title,
   description,
+  keywords,
   type = 'website',
   image,
   statusCode = 200,
@@ -42,17 +44,18 @@ export default function Layout({
     <>
       <Head>
         <title>{title || process.env.NEXT_PUBLIC_APP_NAME}</title>
-        {description && <meta name="description" content={description} />}
-        <meta name="robots" content="index, follow" />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <meta property="og:title" content={title} />
-        <meta name="twitter:title" content={type} />
         {description && (
           <>
+            <meta name="description" content={description} />
             <meta property="og:description" content={description} />
             <meta name="twitter:description" content={description} />
           </>
         )}
+        {keywords && <meta property="keywords" content={keywords} />}
+        <meta name="robots" content="index, follow" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta property="og:title" content={title} />
+        <meta name="twitter:title" content={type} />
         <meta property="og:url" content={url} />
         <meta name="twitter:url" content={url} />
         {image && (

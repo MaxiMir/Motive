@@ -19,7 +19,7 @@ export default function ConfirmationPreview({ userId, clientMembership, confirma
 
   return (
     <>
-      <Box display="flex" flexDirection="column" alignItems="center" gap={1}>
+      <Box display="flex" flexDirection="column" alignItems="center" gap={1} mx={1}>
         <Box
           sx={{
             padding: '2px',

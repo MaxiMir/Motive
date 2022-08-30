@@ -24,6 +24,7 @@ export const getNextState = (page: UserPageDto, goals: GoalDto[]): UserPageDto =
 interface UserMeta {
   title?: string
   description?: string
+  keywords?: string
   url?: string
   type: string
   image?: string
@@ -43,6 +44,7 @@ export const getUserMeta = (user: UserDetailDto | undefined, locale: Locale): Us
   return {
     title: `${title}  ${process.env.NEXT_PUBLIC_APP_NAME}`,
     description: `${description}${!goalsList ? '' : `: ${goalsList}`}`,
+    keywords: user.confirmations.map((c) => c.goal.name).join(', '),
     image,
     type: 'profile',
   }

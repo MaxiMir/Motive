@@ -12,11 +12,11 @@
 * Подсказки
 
 ```shell
-docker build -t maximir/frontend:1.0.72 .
+docker build -t maximir/frontend:1.0.74 .
 # artifactory:
-docker tag <IMAGE_ID> maximir.jfrog.io/default-docker-virtual/frontend:1.0.72
-docker push maximir.jfrog.io/default-docker-virtual/frontend:1.0.72
-docker pull maximir.jfrog.io/default-docker-virtual/frontend:1.0.72
+docker tag <IMAGE_ID> maximir.jfrog.io/default-docker-virtual/frontend:1.0.74
+docker push maximir.jfrog.io/default-docker-virtual/frontend:1.0.74
+docker pull maximir.jfrog.io/default-docker-virtual/frontend:1.0.74
 
 # copy:
 docker cp <IMAGE_ID>:/home/node/client /home # <-
@@ -44,7 +44,7 @@ version: '3.3'
 
 services:
   frontend:
-    image: maximir.jfrog.io/default-docker-virtual/frontend:1.0.72
+    image: maximir.jfrog.io/default-docker-virtual/frontend:1.0.74
     depends_on:
       - backend
     restart: unless-stopped

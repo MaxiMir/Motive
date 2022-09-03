@@ -50,6 +50,11 @@ export default function MyApp({ Component, pageProps: { session, ...pageProps } 
   const [queryClient] = useState(
     () =>
       new QueryClient({
+        defaultOptions: {
+          queries: {
+            refetchOnWindowFocus: process.env.NODE_ENV === 'production',
+          },
+        },
         queryCache: new QueryCache({
           onError() {
             setSnackbarProps({ message: error, severity: 'error' })

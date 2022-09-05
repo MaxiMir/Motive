@@ -50,7 +50,7 @@ export type AppEmojiName =
   | 'helmet'
   | 'blood'
   | 'web'
-  | 'scared'
+  | 'luggage'
   | 'trending'
   | 'contact'
   | 'first'
@@ -170,8 +170,8 @@ function getContent(name: AppEmojiName) {
       return '😉'
     case 'tired':
       return '😮‍💨'
-    case 'scared':
-      return '😱'
+    case 'luggage':
+      return '🧳'
     case 'switch':
       return '🕹'
     case 'bug':

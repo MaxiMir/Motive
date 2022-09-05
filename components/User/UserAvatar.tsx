@@ -1,19 +1,18 @@
-import { UserBaseDto } from 'dto'
-import { getUserUrn } from 'helpers/url'
 import AppAvatar from 'components/ui/AppAvatar'
 import AppLink from 'components/ui/AppLink'
 
 export interface UserAvatarProps {
-  user: UserBaseDto
+  name: string
+  avatar?: string | null
+  href: string
+  size?: number
+  onClick?: () => void
 }
 
-export default function UserAvatar({ user }: UserAvatarProps) {
-  const { nickname, name, avatar } = user
-  const href = getUserUrn(nickname)
-
+export default function UserAvatar({ name, avatar, href, size = 26, onClick }: UserAvatarProps) {
   return (
-    <AppLink href={href} title={name} sx={{ height: 26 }}>
-      <AppAvatar src={avatar} size={26} />
+    <AppLink href={href} title={name} sx={{ height: size }} onClick={onClick}>
+      <AppAvatar src={avatar} size={size} />
     </AppLink>
   )
 }

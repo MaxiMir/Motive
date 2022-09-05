@@ -1,4 +1,4 @@
-import { Box, Typography, useTheme } from '@mui/material'
+import { Box, Typography } from '@mui/material'
 import { Locale } from 'hooks/useLocale'
 import i18n from './i18n'
 
@@ -7,7 +7,6 @@ interface SloganProps {
 }
 
 export default function Slogan({ locale }: SloganProps) {
-  const theme = useTheme()
   const { subheader } = i18n[locale]
 
   return (
@@ -17,13 +16,13 @@ export default function Slogan({ locale }: SloganProps) {
           variant="h4"
           align="center"
           component="h1"
-          sx={{
+          sx={(theme) => ({
             background: `linear-gradient(90deg, ${theme.palette.motivation.main}, ${theme.palette.creativity.dark}, ${theme.palette.support.dark})`,
             WebkitBackgroundClip: 'text',
             WebkitTextFillColor: 'transparent',
             color: theme.palette.support.dark,
             fontWeight: 500,
-          }}
+          })}
         >
           {process.env.NEXT_PUBLIC_APP_NAME}
         </Typography>

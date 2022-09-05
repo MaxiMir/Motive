@@ -63,7 +63,7 @@ export const getImageUrl = (src: string | ImageProps['src']): ImageProps['src'] 
 
 export const getUrlWithHost = (urn: string): string => process.env.NEXT_PUBLIC_APP_URL + urn
 
-export const getUserUrn = (nickname: string): string => `/${nickname}`
+export const getUserHref = (nickname: string): string => `/${nickname}`
 
 export const getGoalUrn = (userUrn: string, goalId: number): string => {
   const hashMark = getGoalHashMark(goalId)

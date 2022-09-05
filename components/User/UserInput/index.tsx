@@ -3,8 +3,9 @@ import { Field, Form, FormikProvider } from 'formik'
 import { Box, IconButton } from '@mui/material'
 import { TopicDto, MessageType, ClientDto, UserBaseDto } from 'dto'
 import useLocale from 'hooks/useLocale'
+import { getUserHref } from 'helpers/url'
 import AppInput from 'components/ui/AppInput'
-import InputAvatar from './components/InputAvatar'
+import UserAvatar from 'components/User/UserAvatar'
 import useForm from './hook'
 import i18n from './i18n'
 
@@ -20,9 +21,11 @@ export interface UserInputProps {
 }
 
 export default function UserInput({ dayId, user, type, topicId, onAdd }: UserInputProps) {
+  const { nickname, name, avatar } = user
+  const { locale } = useLocale()
   const form = useForm(dayId, topicId, type, onAdd)
   const { isSubmitting, values, handleSubmit } = form
-  const { locale } = useLocale()
+  const href = getUserHref(nickname)
   const { getPlaceholder } = i18n[locale]
   const placeholder = getPlaceholder(type === MessageType.Question)
 
@@ -32,7 +35,7 @@ export default function UserInput({ dayId, user, type, topicId, onAdd }: UserInp
     <FormikProvider value={form}>
       <Form autoComplete="off">
         <Box display="flex" gap={2} flex={1} mb={2} pr={2}>
-          <InputAvatar user={user} />
+          <UserAvatar name={name} avatar={avatar} href={href} size={32} />
           <Field
             name="text"
             placeholder={placeholder}

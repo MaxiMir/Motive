@@ -1,6 +1,6 @@
 import { Fragment } from 'react'
 import dynamic from 'next/dynamic'
-import { Box, Tooltip, useTheme } from '@mui/material'
+import { Box, Tooltip } from '@mui/material'
 import { ConfirmationDto, GoalCharacteristicName, MAIN_CHARACTERISTICS, MemberDto } from 'dto'
 import useClient from 'hooks/useClient'
 import useLocale from 'hooks/useLocale'
@@ -26,7 +26,6 @@ export interface GoalCompletedProps {
 
 export default function GoalCompleted({ userId, clientMembership, confirmation }: GoalCompletedProps) {
   const { goal, inherited } = confirmation
-  const theme = useTheme()
   const client = useClient()
   const { locale } = useLocale()
   const { duration, mainPhoto, secondPhotos, interval } = getGoalInfo(confirmation)
@@ -50,14 +49,14 @@ export default function GoalCompleted({ userId, clientMembership, confirmation }
         display="flex"
         flexDirection="column"
         gap={2}
-        sx={{
+        sx={(theme) => ({
           position: 'relative',
           height: '100%',
           padding: 2,
           paddingBottom: 3,
           background: theme.palette.content,
           borderRadius: '11px',
-        }}
+        })}
       >
         <Box display="flex" flexDirection="column" gap={1}>
           <AppTitle name="cup" variant="h6" component="h2">

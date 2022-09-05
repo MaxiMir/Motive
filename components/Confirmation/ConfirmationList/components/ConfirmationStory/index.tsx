@@ -1,17 +1,15 @@
 import { useState } from 'react'
-import { Box, Button, Typography, useTheme } from '@mui/material'
-import { ConfirmationDto, MemberDto } from 'dto'
+import { Box, Button, Typography } from '@mui/material'
+import { ConfirmationDto, UserBaseDto } from 'dto'
 import AppAvatar from 'components/ui/AppAvatar'
-import ModalConfirmation from 'components/Modal/ModalConfirmation'
+import Stories from 'components/Story'
 
-interface ConfirmationPreviewProps {
-  userId: number
-  clientMembership: MemberDto[]
+interface ConfirmationStoryProps {
+  user: UserBaseDto
   confirmation: ConfirmationDto
 }
 
-export default function ConfirmationPreview({ userId, clientMembership, confirmation }: ConfirmationPreviewProps) {
-  const theme = useTheme()
+export default function ConfirmationStory({ user, confirmation }: ConfirmationStoryProps) {
   const [open, setOpen] = useState(false)
   const [mainPhoto] = confirmation.photos
 
@@ -21,20 +19,20 @@ export default function ConfirmationPreview({ userId, clientMembership, confirma
     <>
       <Box display="flex" flexDirection="column" alignItems="center" gap={1} mx={1}>
         <Box
-          sx={{
+          sx={(theme) => ({
             padding: '2px',
-            background: `linear-gradient(to top left, ${theme.palette.support.dark}, ${theme.palette.creativity.dark})`,
+            background: `linear-gradient(to top left, ${theme.palette.motivation.dark}, ${theme.palette.creativity.dark})`,
             borderRadius: '50%',
-          }}
+          })}
         >
           <Button
             variant="text"
             color="primary"
             size="small"
-            sx={{
+            sx={(theme) => ({
               borderRadius: '50%',
               background: theme.palette.background.default,
-            }}
+            })}
             onClick={toggleModal}
           >
             <AppAvatar src={mainPhoto.src} size={65} />
@@ -47,11 +45,17 @@ export default function ConfirmationPreview({ userId, clientMembership, confirma
         </Button>
       </Box>
       {open && (
-        <ModalConfirmation
-          userId={userId}
-          clientMembership={clientMembership}
-          confirmation={confirmation}
-          onClose={toggleModal}
+        <Stories
+          user={user}
+          stories={[
+            {
+              url: confirmation.photos[0].src,
+              title: confirmation.goal.name,
+              started: confirmation.started,
+              end: confirmation.end,
+            },
+          ]}
+          onClose={() => false}
         />
       )}
     </>

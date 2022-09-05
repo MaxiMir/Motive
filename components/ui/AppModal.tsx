@@ -1,6 +1,8 @@
 import { Fragment, ReactNode } from 'react'
 import dynamic from 'next/dynamic'
 import { Dialog, DialogContent, DialogTitle, DialogProps, backdropClasses, IconButton } from '@mui/material'
+import i18nAll from 'constants/i18n'
+import useLocale from 'hooks/useLocale'
 import AppScrollbar from './AppScrollbar'
 import AppIcon from './AppIcon'
 
@@ -17,6 +19,9 @@ interface AppModalProps {
 }
 
 export default function AppModal({ title, actions, maxWidth, blur = true, children, onClose }: AppModalProps) {
+  const { locale } = useLocale()
+  const label = i18nAll[locale].close
+
   return (
     <Dialog
       open
@@ -34,7 +39,7 @@ export default function AppModal({ title, actions, maxWidth, blur = true, childr
       </DialogTitle>
       <IconButton
         edge="start"
-        aria-label="close"
+        aria-label={label}
         sx={{ position: 'absolute', top: 10, right: 13, color: 'zen.silent' }}
         onClick={onClose}
       >

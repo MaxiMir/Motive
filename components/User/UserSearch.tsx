@@ -1,7 +1,7 @@
 import { Box, Typography, Button } from '@mui/material'
 import { MAIN_CHARACTERISTICS, UserDto } from 'dto'
+import { getUserHref } from 'helpers/url'
 import AppAvatar from 'components/ui/AppAvatar'
-import { getUserUrn } from 'helpers/url'
 import CharacteristicUser from 'components/Characteristic/CharacteristicUser'
 
 export interface UserSearchProps {
@@ -10,7 +10,7 @@ export interface UserSearchProps {
 
 export default function UserSearch({ user }: UserSearchProps) {
   const { nickname, avatar, name, characteristic } = user
-  const href = getUserUrn(nickname)
+  const href = getUserHref(nickname)
 
   return (
     <Button

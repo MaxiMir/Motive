@@ -1,5 +1,5 @@
 import { ChangeEvent, useState } from 'react'
-import { Container, Box, Tab, Tabs, tabsClasses, useTheme } from '@mui/material'
+import { Container, Box, Tab, Tabs, tabsClasses } from '@mui/material'
 
 interface AppTabsProps {
   tabs: string[] | JSX.Element[]
@@ -9,7 +9,6 @@ interface AppTabsProps {
 }
 
 export default function AppTabs({ tabs, content, ariaLabel, initial = 0 }: AppTabsProps) {
-  const theme = useTheme()
   const [value, setValue] = useState(initial)
 
   const getA11yTabProps = (index: number) => ({
@@ -31,11 +30,11 @@ export default function AppTabs({ tabs, content, ariaLabel, initial = 0 }: AppTa
           value={value}
           aria-label={ariaLabel}
           variant="fullWidth"
-          sx={{
+          sx={(theme) => ({
             [`& .${tabsClasses.indicator}`]: {
               background: `linear-gradient(to right, ${theme.palette.motivation.main}, ${theme.palette.creativity.dark}, ${theme.palette.support.dark})`,
             },
-          }}
+          })}
           onChange={onChange}
         >
           {tabs.map((tab, index) => {

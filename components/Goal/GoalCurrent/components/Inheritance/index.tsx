@@ -2,6 +2,7 @@ import { Box, Typography } from '@mui/material'
 import { styled } from '@mui/system'
 import { UserBaseDto } from 'dto'
 import useLocale from 'hooks/useLocale'
+import { getUserHref } from 'helpers/url'
 import UserAvatar from 'components/User/UserAvatar'
 import i18n from './i18n'
 
@@ -10,7 +11,9 @@ interface InheritedProps {
 }
 
 export default function Inheritance({ owner }: InheritedProps) {
+  const { name, nickname, avatar } = owner
   const { locale } = useLocale()
+  const href = getUserHref(nickname)
   const width = locale === 'ru' ? 100 : 90
   const { title } = i18n[locale]
 
@@ -20,7 +23,7 @@ export default function Inheritance({ owner }: InheritedProps) {
         <Typography variant="caption">
           <b>{title}</b>
         </Typography>
-        <UserAvatar user={owner} />
+        <UserAvatar name={name} avatar={avatar} href={href} />
       </Box>
     </InheritanceBox>
   )

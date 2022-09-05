@@ -5,7 +5,7 @@ import { UpdateUserDto, UserBaseDto } from 'dto'
 import schema from 'schemas/profile'
 import { Locale } from 'hooks/useLocale'
 import UserService from 'services/UserService'
-import { getQueryParams, setQueryParams, getUserUrn } from 'helpers/url'
+import { getQueryParams, setQueryParams, getUserHref } from 'helpers/url'
 
 import { useMutateUserPage } from 'views/UserView/hook'
 import { getNextState } from './helper'
@@ -50,8 +50,8 @@ const useSendUpdateUser = (locale: Locale) => {
 
   return useMutation(UserService.update, {
     async onSuccess(user) {
-      const userBaseHref = getUserUrn(user.nickname)
-      const as = setQueryParams(userBaseHref, getQueryParams())
+      const href = getUserHref(user.nickname)
+      const as = setQueryParams(href, getQueryParams())
 
       mutatePage(getNextState(page, user))
       await router.push(as, as, { shallow: true, locale })

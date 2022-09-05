@@ -1,7 +1,7 @@
 import { Button } from '@mui/material'
 import useOpenSignIn from 'hooks/useOpenSignIn'
 import useLocale from 'hooks/useLocale'
-import { getUserUrn } from 'helpers/url'
+import { getUserHref } from 'helpers/url'
 import { ProfileIcon } from 'components/ui/icons'
 import FooterIcon from './FooterIcon'
 
@@ -14,7 +14,7 @@ interface FooterProfileProps {
 export default function FooterProfile({ nickname, ariaLabel, asPath }: FooterProfileProps) {
   const { go } = useLocale()
   const openSignIn = useOpenSignIn()
-  const href = !nickname ? undefined : getUserUrn(nickname)
+  const href = !nickname ? undefined : getUserHref(nickname)
   const selected = !href ? false : asPath.includes(href)
 
   const onClick = () => {

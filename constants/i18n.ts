@@ -15,6 +15,7 @@ export default {
     remove: 'Remove',
     agoText: 'ago',
     event: 'New event',
+    close: 'Close',
     getLimitPhotosError(limit: number): string {
       return `You cannot add more than ${limit} photos`
     },
@@ -35,6 +36,7 @@ export default {
     remove: 'Удалить',
     agoText: 'назад',
     event: 'Новое событие',
+    close: 'Закрыть',
     getLimitPhotosError(limit: number): string {
       return `Вы не можете добавить больше ${limit} фото`
     },
@@ -55,6 +57,7 @@ export default {
     remove: 'Видалити',
     agoText: 'назад',
     event: 'Нова подія',
+    close: 'Закрити',
     getLimitPhotosError(limit: number): string {
       return `Ви не можете додати більше ${limit} фото`
     },

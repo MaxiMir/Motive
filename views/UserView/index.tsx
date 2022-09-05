@@ -2,7 +2,7 @@ import dynamic from 'next/dynamic'
 import { Box, Divider, Typography } from '@mui/material'
 import { styled } from '@mui/system'
 import { UserDetailDto, MAIN_CHARACTERISTICS, SECOND_CHARACTERISTICS } from 'dto'
-import { getUserUrn } from 'helpers/url'
+import { getUserHref } from 'helpers/url'
 import useClient from 'hooks/useClient'
 import { Locale } from 'hooks/useLocale'
 import AppContainer from 'components/ui/AppContainer'
@@ -39,7 +39,7 @@ export default function UserView({ user, locale }: UserViewProps) {
     device,
   } = user
   const client = useClient()
-  const href = getUserUrn(nickname)
+  const href = getUserHref(nickname)
   const clientPage = id === client?.id
 
   return (
@@ -94,7 +94,7 @@ export default function UserView({ user, locale }: UserViewProps) {
       <DashedDivider light sx={{ my: 3 }} />
       {!!confirmations.length && (
         <>
-          <ConfirmationList userId={id} clientMembership={clientMembership} confirmations={confirmations} />
+          <ConfirmationList user={user} clientMembership={clientMembership} confirmations={confirmations} />
           <DashedDivider light sx={{ my: 3 }} />
         </>
       )}

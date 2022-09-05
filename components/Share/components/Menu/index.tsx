@@ -1,5 +1,5 @@
 import { KeyboardEvent } from 'react'
-import { Box, Drawer, List, ListItem, ListItemIcon, ListItemText, useTheme } from '@mui/material'
+import { Box, Drawer, List, ListItem, ListItemIcon, ListItemText } from '@mui/material'
 import EmailIcon from '@mui/icons-material/Email'
 import SMS from '@mui/icons-material/Textsms'
 import ContentCopyIcon from '@mui/icons-material/ContentCopy'
@@ -19,7 +19,6 @@ interface MenuProps {
 }
 
 export default function Menu({ title, url, locale, onCopyEnd, onCopyError, onClose }: MenuProps) {
-  const theme = useTheme()
   const shareItems = getShareItems()
 
   const onKeyDown = (event: KeyboardEvent) => {
@@ -80,7 +79,7 @@ export default function Menu({ title, url, locale, onCopyEnd, onCopyError, onClo
                 <ListItemIcon>
                   <Icon color="secondary" />
                 </ListItemIcon>
-                <ListItemText primary={text} sx={{ color: theme.palette.text.disabled }} />
+                <ListItemText primary={text} sx={{ color: 'creativity.light' }} />
               </Box>
             </ListItem>
           ))}

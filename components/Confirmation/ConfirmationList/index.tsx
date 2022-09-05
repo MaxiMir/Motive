@@ -1,12 +1,15 @@
 import { Tabs } from '@mui/material'
 import { UserDetailDto } from 'dto'
-import ConfirmationPreview from './components/ConfirmationPreview'
+import ConfirmationStory from './components/ConfirmationStory'
 
-interface ConfirmationListProps extends Pick<UserDetailDto, 'clientMembership' | 'confirmations'> {
-  userId: number
+interface ConfirmationListProps {
+  user: UserDetailDto
 }
 
-export default function ConfirmationList({ userId, clientMembership, confirmations }: ConfirmationListProps) {
+export default function ConfirmationList({ user }: ConfirmationListProps) {
+  const { id, name, nickname, avatar, confirmations } = user
+  const userBase = { id, name, nickname, avatar }
+
   return (
     <Tabs
       value={0}
@@ -19,12 +22,7 @@ export default function ConfirmationList({ userId, clientMembership, confirmatio
       }}
     >
       {confirmations.map((confirmation) => (
-        <ConfirmationPreview
-          userId={userId}
-          clientMembership={clientMembership}
-          confirmation={confirmation}
-          key={confirmation.id}
-        />
+        <ConfirmationStory user={userBase} confirmation={confirmation} key={confirmation.id} />
       ))}
     </Tabs>
   )

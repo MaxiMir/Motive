@@ -31,7 +31,13 @@ export default function ModalSettings({ onClose }: ModalLanguageProps) {
           <Header variant="body2" gutterBottom>
             {languageHeader}:
           </Header>
-          <ToggleButtonGroup color="warning" value={locale} exclusive aria-label="label" onChange={onChangeLocale}>
+          <ToggleButtonGroup
+            color="warning"
+            value={locale}
+            exclusive
+            aria-label={languageHeader}
+            onChange={onChangeLocale}
+          >
             <GroupButton value={EN}>
               <AppEmoji name="en" />
               <Box component="span">Eng</Box>
@@ -49,7 +55,7 @@ export default function ModalSettings({ onClose }: ModalLanguageProps) {
           <Header variant="body2" gutterBottom>
             {modeHeader}:
           </Header>
-          <ToggleButtonGroup color="warning" value={mode} exclusive aria-label="label" onChange={onChangeMode}>
+          <ToggleButtonGroup color="warning" value={mode} exclusive aria-label={modeHeader} onChange={onChangeMode}>
             <GroupButton value="light" disabled>
               <AppEmoji name="light" /> {light}
             </GroupButton>

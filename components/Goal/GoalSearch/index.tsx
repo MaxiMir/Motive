@@ -1,5 +1,6 @@
 import { Box, Button, Typography } from '@mui/material'
 import { MAIN_CHARACTERISTICS, GoalDto } from 'dto'
+import { getUserHref } from 'helpers/url'
 import CharacteristicGoal from 'components/Characteristic/CharacteristicGoal'
 import UserAvatar from 'components/User/UserAvatar'
 
@@ -9,6 +10,8 @@ export interface GoalSearchProps {
 
 export default function GoalSearch({ goal }: GoalSearchProps) {
   const { name, characteristic, owner } = goal
+  const { name: ownerName, nickname, avatar } = owner
+  const href = getUserHref(nickname)
 
   return (
     <Button
@@ -28,7 +31,7 @@ export default function GoalSearch({ goal }: GoalSearchProps) {
           <Typography variant="caption">Completed: +</Typography>
         </Box>
         <Box display="flex" alignItems="center" gap={1}>
-          <UserAvatar user={owner} />
+          <UserAvatar name={ownerName} avatar={avatar} href={href} />
           <Typography variant="caption">{owner.name}</Typography>
         </Box>
         <Box display="flex" justifyContent="space-between" alignItems="center">

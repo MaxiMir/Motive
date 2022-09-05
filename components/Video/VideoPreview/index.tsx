@@ -1,6 +1,8 @@
 import { Box, IconButton } from '@mui/material'
+import useLocale from 'hooks/useLocale'
 import AppIcon from 'components/ui/AppIcon'
 import AppPlayer from 'components/ui/AppPlayer'
+import i18n from './i18n'
 
 export interface VideoPreviewProps {
   video: Blob | MediaSource
@@ -9,7 +11,9 @@ export interface VideoPreviewProps {
 }
 
 export default function VideoPreview({ video, disabled, onRemove }: VideoPreviewProps) {
+  const { locale } = useLocale()
   const url = URL.createObjectURL(video)
+  const { label } = i18n[locale]
 
   return (
     <Box sx={{ position: 'relative', background: '#000000' }}>
@@ -24,7 +28,7 @@ export default function VideoPreview({ video, disabled, onRemove }: VideoPreview
         }}
       />
       <IconButton
-        aria-label="Remove video"
+        aria-label={label}
         disabled={disabled}
         sx={{
           position: 'absolute',

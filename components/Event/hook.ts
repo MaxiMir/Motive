@@ -10,9 +10,9 @@ import useClient from 'hooks/useClient'
 
 export const useEvent = (): void => {
   const client = useClient()
+  const { locale } = useLocale()
   const [enqueueSnackbar] = useSnackbar()
   const queryClient = useQueryClient()
-  const { locale } = useLocale()
 
   useEffect(() => {
     if (!client) {

@@ -1,6 +1,6 @@
 import produce from 'immer'
 import { ClientDto, MainCharacteristic, NotificationDto, NotificationType } from 'dto'
-import { getDiscussionUrn, getFeedbackUrn, getGoalUrn, getGoalWithDayUrn, getUserUrn } from 'helpers/url'
+import { getDiscussionUrn, getFeedbackUrn, getGoalUrn, getGoalWithDayUrn, getUserHref } from 'helpers/url'
 import { toShortString } from 'helpers/prepare'
 import { AppEmojiName } from 'components/ui/AppEmoji'
 
@@ -44,7 +44,7 @@ export const getNotificationUrn = (notification: NotificationDto, client?: Clien
 
   switch (notification.type) {
     case NotificationType.NewFollower:
-      return getUserUrn(nickname)
+      return getUserHref(nickname)
     case NotificationType.WebCoverage:
       return getGoalUrn(nickname, notification.details.id)
     case NotificationType.NewFeedback:

@@ -45,11 +45,11 @@ export default function ModalLeave({ goal, clientOwnership, onClose }: ModalLeav
       <Box display="flex" flexDirection="column" justifyItems="center" alignItems="center" gap={1}>
         <Typography>
           {subtitle}{' '}
-          <Box component="span" sx={{ color: 'motivation.main' }}>
+          <Box component="span" sx={{ color: 'motivation.light' }}>
             {name}
           </Box>
         </Typography>
-        <AppFadeIcon name="scared" />
+        <AppFadeIcon name="luggage" />
       </Box>
     </AppModal>
   )

@@ -2,7 +2,7 @@ import { useState, MouseEvent } from 'react'
 import dynamic from 'next/dynamic'
 import { UserDto } from 'dto'
 import useLocale from 'hooks/useLocale'
-import { getUserUrn } from 'helpers/url'
+import { getUserHref } from 'helpers/url'
 import AppMenuButton from 'components/ui/AppMenuButton'
 import useRemoveFollowing from './hook'
 import i18n from './i18n'
@@ -21,7 +21,7 @@ function Menu({ user, index }: MenuProps) {
   const [anchorEl, setAnchorEl] = useState<HTMLElement | null>(null)
   const [withShare, setWithShare] = useState(false)
   const onRemove = useRemoveFollowing(locale)
-  const href = getUserUrn(nickname)
+  const href = getUserHref(nickname)
   const { title, ariaControls } = i18n[locale]
 
   const onOpen = (e: MouseEvent<HTMLButtonElement>) => setAnchorEl(e.currentTarget)

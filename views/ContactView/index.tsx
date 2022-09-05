@@ -1,5 +1,5 @@
 import dynamic from 'next/dynamic'
-import { Grid, Box, Button, Typography, typographyClasses, useTheme } from '@mui/material'
+import { Grid, Box, Button, Typography, typographyClasses } from '@mui/material'
 import { styled } from '@mui/system'
 import { Locale } from 'hooks/useLocale'
 import AppContainer from 'components/ui/AppContainer'
@@ -23,7 +23,6 @@ interface ContactViewProps {
 }
 
 export default function ContactView({ locale }: ContactViewProps) {
-  const theme = useTheme()
   const { header, subheader, support } = i18n[locale]
 
   const openBlank = (url: string) => window.open(url, '_blank')
@@ -46,9 +45,9 @@ export default function ContactView({ locale }: ContactViewProps) {
         <Grid container spacing={2}>
           <Grid item xs={4} sm={4} md={3} lg={2}>
             <ButtonLink
-              sx={{
+              sx={(theme) => ({
                 background: `linear-gradient(to top left, ${theme.palette.motivation.light}, ${theme.palette.motivation.dark})`,
-              }}
+              })}
               onClick={onClickEmail}
             >
               <ButtonContent display="flex" alignItems="center" justifyContent="center">

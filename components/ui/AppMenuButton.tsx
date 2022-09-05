@@ -1,4 +1,4 @@
-import { IconButton, IconButtonProps, TypographyProps, useTheme } from '@mui/material'
+import { IconButton, IconButtonProps, TypographyProps } from '@mui/material'
 import AppIcon from './AppIcon'
 
 type AppMenuButtonProps = Pick<IconButtonProps, 'title' | 'onClick'> & {
@@ -9,14 +9,12 @@ type AppMenuButtonProps = Pick<IconButtonProps, 'title' | 'onClick'> & {
 }
 
 export default function AppMenuButton({ ariaControls, color, horizontal, compact, ...restProps }: AppMenuButtonProps) {
-  const theme = useTheme()
-
   return (
     <IconButton
       aria-controls={ariaControls}
       aria-haspopup="true"
       sx={{
-        color: theme.palette.secondary.main,
+        color: 'secondary.main',
         padding: '3px',
         fontSize: !compact ? undefined : 18,
       }}

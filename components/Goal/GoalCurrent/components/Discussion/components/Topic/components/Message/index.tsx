@@ -4,9 +4,9 @@ import { MessageDto } from 'dto'
 import { getDistance } from 'helpers/date'
 import { numberToShort } from 'helpers/prepare'
 import useLocale from 'hooks/useLocale'
-import { getUserUrn } from 'helpers/url'
+import { getUserHref } from 'helpers/url'
 import AppLink from 'components/ui/AppLink'
-import AppAvatar from 'components/ui/AppAvatar'
+import UserAvatar from 'components/User/UserAvatar'
 import Menu from './components/Menu'
 import LikeButton from './components/LikeButton'
 import i18n from './i18n'
@@ -24,9 +24,10 @@ interface MessageProps {
 
 export default function Message({ message, answerFor, supportFor, onReply }: MessageProps) {
   const { date, user, text, edited } = message
+  const { name, nickname, avatar } = user
   const { locale } = useLocale()
   const dateDistance = getDistance(date, locale)
-  const href = getUserUrn(user.nickname)
+  const href = getUserHref(nickname)
   const shortNumber = numberToShort(message.likeCount)
   const { editedText, replyButton } = i18n[locale]
 
@@ -34,9 +35,7 @@ export default function Message({ message, answerFor, supportFor, onReply }: Mes
     <Box display="flex" flexDirection="column" gap={1} width="100%">
       <Box display="flex" flexDirection="column" gap={1} minWidth={152}>
         <Box display="flex" alignItems="center" gap={1}>
-          <AppLink href={href} title={user.name}>
-            <AppAvatar src={user.avatar} size={26} />
-          </AppLink>
+          <UserAvatar name={name} avatar={avatar} href={href} />
           <AppLink href={href} title={user.name} sx={{ lineHeight: '20px', textDecoration: 'none' }}>
             <b>{user.name}</b>
           </AppLink>
@@ -58,7 +57,7 @@ export default function Message({ message, answerFor, supportFor, onReply }: Mes
             {dateDistance}
           </Box>
           {onReply && (
-            <Button size="small" aria-label="Reply" sx={{ color: 'support.main' }} onClick={onReply}>
+            <Button size="small" aria-label={replyButton} sx={{ color: 'support.main' }} onClick={onReply}>
               {replyButton}
             </Button>
           )}

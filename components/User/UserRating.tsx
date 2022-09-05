@@ -1,9 +1,9 @@
-import { Container, Typography, Grid, Box, useTheme } from '@mui/material'
+import { Container, Typography, Grid, Box } from '@mui/material'
 import { UserDto, UserCharacteristic } from 'dto'
-import { getUserUrn } from 'helpers/url'
+import { getUserHref } from 'helpers/url'
 import AppLink from 'components/ui/AppLink'
-import AppAvatar from 'components/ui/AppAvatar'
 import AppEmoji from 'components/ui/AppEmoji'
+import UserAvatar from './UserAvatar'
 
 export interface UserRatingProps {
   user: UserDto
@@ -12,12 +12,10 @@ export interface UserRatingProps {
 }
 
 export default function UserRating({ user, characteristicName, index }: UserRatingProps) {
-  const theme = useTheme()
-  const { nickname, avatar, name, characteristic } = user
+  const { nickname, name, avatar, characteristic } = user
   const number = getNumber()
-  const href = getUserUrn(nickname)
+  const href = getUserHref(nickname)
   const ratingValue = Math.floor(characteristic[characteristicName])
-  const color = theme.palette[characteristicName].main
   const isEven = index % 2 === 0
 
   function getNumber() {
@@ -48,16 +46,14 @@ export default function UserRating({ user, characteristicName, index }: UserRati
           </Grid>
           <Grid item xs={8}>
             <Box display="flex" alignItems="center" gap={2}>
-              <AppLink href={href} sx={{ marginRight: 1 }}>
-                <AppAvatar src={avatar} size={35} />
-              </AppLink>
-              <AppLink href={href} variant="body1" sx={{ textDecoration: 'none' }}>
+              <UserAvatar name={name} avatar={avatar} href={href} size={35} />
+              <AppLink href={href} variant="body1" sx={{ marginLeft: 1, textDecoration: 'none' }}>
                 {name}
               </AppLink>
             </Box>
           </Grid>
           <Grid item xs>
-            <Typography variant="subtitle1" component="p" align="right" sx={{ color }}>
+            <Typography variant="subtitle1" component="p" align="right" sx={{ color: `${characteristicName}.main` }}>
               <b>{ratingValue}</b>
             </Typography>
           </Grid>

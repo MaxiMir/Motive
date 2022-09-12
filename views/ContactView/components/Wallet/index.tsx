@@ -1,6 +1,6 @@
 import Image from 'next/image'
 import { Box, Typography } from '@mui/material'
-import i18n from 'constants/i18n'
+import i18nCommon from 'constants/i18n'
 import { copyHandler } from 'helpers/dom'
 import useSnackbar from 'hooks/useSnackbar'
 import useLocale from 'hooks/useLocale'
@@ -14,7 +14,7 @@ interface WalletProps {
 export default function Wallet({ name, wallet }: WalletProps) {
   const { locale } = useLocale()
   const [enqueueSnackbar] = useSnackbar()
-  const { copy, error } = i18n[locale]
+  const { copy, error } = i18nCommon[locale]
 
   const onCopySuccess = () => enqueueSnackbar({ message: copy, severity: 'success', icon: 'keyboard' })
 

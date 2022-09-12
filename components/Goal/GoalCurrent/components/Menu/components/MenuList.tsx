@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import dynamic from 'next/dynamic'
 import { Menu, MenuItem } from '@mui/material'
-import i18n from 'constants/i18n'
+import i18nCommon from 'constants/i18n'
 import { OwnershipDto } from 'dto'
 import { Locale } from 'hooks/useLocale'
 import AppMenuItemContent from 'components/ui/AppMenuItemContent'
@@ -28,7 +28,7 @@ export default function MenuList({
   onClose,
 }: MenuListProps) {
   const [withReport, setWithReport] = useState(false)
-  const { share, report, leave } = i18n[locale]
+  const { share, report, leave } = i18nCommon[locale]
 
   const onOpenReport = () => setWithReport(true)
 

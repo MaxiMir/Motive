@@ -1,5 +1,5 @@
 import { FormikProps } from 'formik'
-import i18n from 'constants/i18n'
+import i18nCommon from 'constants/i18n'
 import useSnackbar from 'hooks/useSnackbar'
 import useLocale from 'hooks/useLocale'
 
@@ -13,7 +13,7 @@ export default function useSelectPhoto<T>(formik: FormikProps<T & { photos: File
     const photos = [...formik.values.photos, ...files]
 
     if (photos.length > PHOTO_LIMIT) {
-      const { getLimitPhotosError } = i18n[locale]
+      const { getLimitPhotosError } = i18nCommon[locale]
       const message = getLimitPhotosError(PHOTO_LIMIT)
 
       enqueueSnackbar({ message, severity: 'error' })

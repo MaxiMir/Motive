@@ -12,11 +12,11 @@ export default function AppFadeIcon({ name }: AppSpinIconProps) {
       sx={{
         animation: 'fade 1.4s cubic-bezier(0.550, 0.085, 0.680, 0.530) both',
         '@keyframes fade': {
-          '0%': {
+          from: {
             filter: 'blur(12px)',
             opacity: 0,
           },
-          '100%': {
+          to: {
             filter: 'blur(0px)',
             opacity: 1,
           },

@@ -1,7 +1,7 @@
 import { useEffect } from 'react'
 import { useQueryClient } from 'react-query'
 import { io } from 'socket.io-client'
-import i18n from 'constants/i18n'
+import i18nCommon from 'constants/i18n'
 import { NotificationDto } from 'dto'
 import { getDeviceType } from 'helpers/dom'
 import useSnackbar from 'hooks/useSnackbar'
@@ -28,7 +28,7 @@ export const useEvent = (): void => {
     })
 
     socket.on('notification', (_: NotificationDto) => {
-      const { event } = i18n[locale]
+      const { event } = i18nCommon[locale]
 
       enqueueSnackbar({ message: event, severity: 'success', icon: 'notification' })
       queryClient.invalidateQueries('notifications')

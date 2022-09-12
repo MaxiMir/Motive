@@ -1,5 +1,5 @@
 import { Menu, MenuItem } from '@mui/material'
-import i18n from 'constants/i18n'
+import i18nCommon from 'constants/i18n'
 import { Locale } from 'hooks/useLocale'
 import AppMenuItemContent from 'components/ui/AppMenuItemContent'
 
@@ -12,7 +12,7 @@ interface MenuListProps {
 }
 
 export default function MenuList({ anchorEl, locale, onShare, onRemove, onClose }: MenuListProps) {
-  const { share, remove } = i18n[locale]
+  const { share, remove } = i18nCommon[locale]
 
   return (
     <Menu id="user-menu" anchorEl={anchorEl} open={!!anchorEl} onClose={onClose}>

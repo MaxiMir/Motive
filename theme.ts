@@ -156,11 +156,11 @@ export const getDesignTokens = (mode: PaletteMode): ThemeOptions => {
             alignItems: 'center',
             animation: 'fadeWithBlur 0.7s cubic-bezier(0.55, 0.085, 0.68, 0.53) both',
             '@keyframes fadeWithBlur': {
-              '0%': {
+              from: {
                 filter: 'blur(12px)',
                 opacity: 0,
               },
-              '100%': {
+              to: {
                 filter: 'blur(0px)',
                 opacity: 1,
               },

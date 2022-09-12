@@ -1,5 +1,5 @@
 import { Box, Typography } from '@mui/material'
-import i18nAll from 'constants/i18n'
+import i18nCommon from 'constants/i18n'
 import { UserDetailDto } from 'dto'
 import useLocale from 'hooks/useLocale'
 import useShowProgress from 'hooks/useShowProgress'
@@ -18,7 +18,7 @@ export default function ModalAbandoned({ user, onClose }: ModalAbandonedProps) {
   const { locale } = useLocale()
   const progress = useShowProgress(abandoned, 1, 300)
   const { header } = i18n[locale]
-  const title = i18nAll[locale].abandoned
+  const title = i18nCommon[locale].abandoned
   const roundedProgress = Math.round(progress)
 
   return (

@@ -8,9 +8,7 @@ import { useMutateGoals } from 'views/UserView/hook'
 import { getNextState } from './helper'
 import i18n from './i18n'
 
-type UseSendStage = UseMutationResult<void, AxiosError, GoalStageDto>
-
-export const useSendStage = (onSuccess: () => void): UseSendStage => {
+export const useSendStage = (onSuccess: () => void): UseMutationResult<void, AxiosError, GoalStageDto> => {
   const { locale } = useLocale()
   const [goals, mutateGoals] = useMutateGoals()
   const [enqueueSnackbar] = useSnackbar()

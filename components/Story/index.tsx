@@ -1,16 +1,32 @@
 import { Box, GlobalStyles } from '@mui/material'
 import { UserBaseDto } from 'dto'
-import Slide, { Story } from './components/Slide'
+import { useCloseWithAnimation } from './hook'
+import Header from './components/Header'
+import Content from './components/Content'
+import Details from './components/Details'
+import Pointers from './components/Pointers'
+
+export interface Moment {
+  id: number
+  url: string
+  title: string
+  started: string
+  end: string
+}
 
 interface StoryProps {
   user: UserBaseDto
-  stories: Story[]
+  moments: Moment[]
   onClose: () => void
 }
 
-export default function Stories({ user, stories, onClose }: StoryProps) {
+export default function Story({ moments, user, onClose }: StoryProps) {
+  const [closing, onCloseCombine] = useCloseWithAnimation(onClose)
+  const moment = moments[0]
+
   return (
     <Box
+      id="zuck-modal"
       sx={{
         position: 'fixed',
         top: 0,
@@ -18,23 +34,25 @@ export default function Stories({ user, stories, onClose }: StoryProps) {
         width: '100vw',
         height: '100%',
         background: 'black',
-        zIndex: 999999,
+        zIndex: 9999,
         userSelect: 'none',
         overflow: 'hidden',
-        animation: 'zoom-in 0.25s ease-out',
         transformOrigin: 'center',
-        '@keyframes zoom-in': {
-          '0%': {
+        transition: '0.25s',
+        transform: closing ? 'translateY(100%)' : undefined,
+        animation: 'open 0.25s ease-out',
+        '@keyframes open': {
+          from: {
             transform: 'scale(0.01)',
           },
-          '100%': {
+          to: {
             transform: 'scale(1)',
           },
         },
       }}
-      onClick={onClose}
     >
       <Box
+        id="zuck-modal-content"
         sx={{
           width: '100vw',
           height: '100%',
@@ -47,7 +65,28 @@ export default function Stories({ user, stories, onClose }: StoryProps) {
           transition: '0.3s',
         }}
       >
-        <Slide user={user} story={stories[0]} />
+        <Box
+          id="zuck-modal-slider-stories"
+          sx={{
+            transitionDuration: '300ms',
+            transform: 'rotateY(0deg)',
+            transformStyle: 'preserve-3d',
+          }}
+        >
+          <Box
+            className="story-viewer viewing"
+            sx={{
+              backfaceVisibility: 'hidden',
+              left: '100vw',
+              transform: 'translateZ(50vw)',
+            }}
+          >
+            <Header user={user} title={moment.title} end={moment.end} onClose={onCloseCombine} />
+            <Pointers count={moments.length} />
+            {/* <Content user={user} /> */}
+            {/* <Details user={user} /> */}
+          </Box>
+        </Box>
         <GlobalStyles
           styles={{
             '#__next': {

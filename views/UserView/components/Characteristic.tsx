@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 import dynamic from 'next/dynamic'
 import { useRouter } from 'next/router'
 import { Box, Button, Typography } from '@mui/material'
-import i18nAll from 'constants/i18n'
+import i18nCommon from 'constants/i18n'
 import { MainCharacteristic, SecondCharacteristic, UserCharacteristic, UserDetailDto } from 'dto'
 import { Locale } from 'hooks/useLocale'
 import CharacteristicUser from 'components/Characteristic/CharacteristicUser'
@@ -24,7 +24,7 @@ export default function Characteristic(props: CharacteristicProps) {
   const { user, name, locale } = props
   const router = useRouter()
   const [modal, setModal] = useState<SecondCharacteristic | MainCharacteristic>()
-  const button = i18nAll[locale][name]
+  const button = i18nCommon[locale][name]
   const modalCharacteristic =
     modal === MainCharacteristic.Motivation ||
     modal === MainCharacteristic.Creativity ||

@@ -1,5 +1,5 @@
 import { Box, Typography } from '@mui/material'
-import i18n from 'constants/i18n'
+import i18nCommon from 'constants/i18n'
 import { MainCharacteristic } from 'dto'
 import { Locale } from 'hooks/useLocale'
 import AppEmoji, { AppEmojiName } from 'components/ui/AppEmoji'
@@ -11,7 +11,7 @@ export interface AppTabNameProps {
 }
 
 export default function AppTabName({ name, emoji, locale }: AppTabNameProps) {
-  const tabName = i18n[locale][name]
+  const tabName = i18nCommon[locale][name]
 
   return (
     <Box display="flex" alignItems="center" gap={1}>

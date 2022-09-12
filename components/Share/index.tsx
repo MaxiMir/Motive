@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import dynamic from 'next/dynamic'
-import i18n from 'constants/i18n'
+import i18nCommon from 'constants/i18n'
 import useSnackbar from 'hooks/useSnackbar'
 import { Locale } from 'hooks/useLocale'
 
@@ -17,7 +17,7 @@ export default function Share({ title, href, locale, onClose }: ShareProps) {
   const [enqueueSnackbar, closeSnackbar] = useSnackbar()
   const [withMenu, setWithMenu] = useState(false)
   const url = process.env.NEXT_PUBLIC_APP_URL + href
-  const { copy, error } = i18n[locale]
+  const { copy, error } = i18nCommon[locale]
 
   const onCopyEnd = () => enqueueSnackbar({ message: copy, severity: 'success', icon: 'keyboard' })
 

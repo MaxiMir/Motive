@@ -1,6 +1,6 @@
 import { Box, Typography } from '@mui/material'
 import { MainCharacteristic, UserDetailDto } from 'dto'
-import i18nAll from 'constants/i18n'
+import i18nCommon from 'constants/i18n'
 import AppModal from 'components/ui/AppModal'
 import useLocale from 'hooks/useLocale'
 import Progress from './components/Progress'
@@ -16,7 +16,7 @@ export interface ModalCharacteristicProps {
 export default function ModalCharacteristic({ characteristic, user, onClose }: ModalCharacteristicProps) {
   const { [characteristic]: value } = user.characteristic
   const { locale } = useLocale()
-  const title = i18nAll[locale][characteristic]
+  const title = i18nCommon[locale][characteristic]
   const { header, list } = i18n[locale][characteristic]
 
   return (

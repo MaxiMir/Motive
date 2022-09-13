@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
 
-export const useCloseWithAnimation = (onClose: () => void): [boolean, () => void] => {
+export const useSlowClose = (onClose: () => void): [boolean, () => void] => {
   const timerRef = useRef<NodeJS.Timeout>()
   const [closing, setClosing] = useState(false)
 

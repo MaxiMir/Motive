@@ -9,7 +9,6 @@ interface DetailsProps {
 
 export default function Details({ user }: DetailsProps) {
   const [open, setOpen] = useState(false)
-  console.log(user)
 
   const toggleMenu = () => setOpen(!open)
 

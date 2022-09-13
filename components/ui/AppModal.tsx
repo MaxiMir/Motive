@@ -1,6 +1,14 @@
 import { Fragment, ReactNode } from 'react'
 import dynamic from 'next/dynamic'
-import { Dialog, DialogContent, DialogTitle, DialogProps, backdropClasses, IconButton } from '@mui/material'
+import {
+  Dialog,
+  DialogContent,
+  DialogTitle,
+  GlobalStyles,
+  DialogProps,
+  backdropClasses,
+  IconButton,
+} from '@mui/material'
 import i18nCommon from 'constants/i18n'
 import useLocale from 'hooks/useLocale'
 import AppScrollbar from './AppScrollbar'
@@ -57,6 +65,13 @@ export default function AppModal({ title, actions, maxWidth, blur = true, childr
           </Box>
         </DialogActions>
       )}
+      <GlobalStyles
+        styles={{
+          '#__next': {
+            overflow: 'hidden',
+          },
+        }}
+      />
     </Dialog>
   )
 }

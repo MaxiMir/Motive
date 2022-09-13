@@ -1,28 +1,17 @@
 import { Box, GlobalStyles } from '@mui/material'
 import { UserBaseDto } from 'dto'
-import { useCloseWithAnimation } from './hook'
-import Header from './components/Header'
-import Content from './components/Content'
-import Details from './components/Details'
-import Pointers from './components/Pointers'
-
-export interface Moment {
-  id: number
-  url: string
-  title: string
-  started: string
-  end: string
-}
+import { useSlowClose } from './hook'
+import StoryViewer from './components/StoryViewer'
+import { Story } from './components/StoryViewer/components/Slide'
 
 interface StoryProps {
+  stories: Story[]
   user: UserBaseDto
-  moments: Moment[]
   onClose: () => void
 }
 
-export default function Story({ moments, user, onClose }: StoryProps) {
-  const [closing, onCloseCombine] = useCloseWithAnimation(onClose)
-  const moment = moments[0]
+export default function Stories({ stories, user, onClose }: StoryProps) {
+  const [closing, setSlowClosing] = useSlowClose(onClose)
 
   return (
     <Box
@@ -73,19 +62,7 @@ export default function Story({ moments, user, onClose }: StoryProps) {
             transformStyle: 'preserve-3d',
           }}
         >
-          <Box
-            className="story-viewer viewing"
-            sx={{
-              backfaceVisibility: 'hidden',
-              left: '100vw',
-              transform: 'translateZ(50vw)',
-            }}
-          >
-            <Header user={user} title={moment.title} end={moment.end} onClose={onCloseCombine} />
-            <Pointers count={moments.length} />
-            {/* <Content user={user} /> */}
-            {/* <Details user={user} /> */}
-          </Box>
+          <StoryViewer stories={stories} user={user} count={stories.length} onClose={setSlowClosing} />
         </Box>
         <GlobalStyles
           styles={{

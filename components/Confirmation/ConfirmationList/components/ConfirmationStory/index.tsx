@@ -2,7 +2,7 @@ import { useState } from 'react'
 import { Box, Button, Typography } from '@mui/material'
 import { ConfirmationDto, UserBaseDto } from 'dto'
 import AppAvatar from 'components/ui/AppAvatar'
-import Story from 'components/Story'
+import Stories from 'components/Stories'
 
 interface ConfirmationStoryProps {
   user: UserBaseDto
@@ -45,9 +45,9 @@ export default function ConfirmationStory({ user, confirmation }: ConfirmationSt
         </Button>
       </Box>
       {open && (
-        <Story
+        <Stories
           user={user}
-          moments={[
+          stories={[
             {
               id: confirmation.id,
               url: confirmation.photos[0].src,

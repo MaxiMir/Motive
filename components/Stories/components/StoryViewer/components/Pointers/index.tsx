@@ -6,6 +6,8 @@ interface PointersProps {
 }
 
 export default function Pointers({ count }: PointersProps): JSX.Element {
+  const list = [...new Array(count)]
+
   return (
     <Box
       className="slides-pointers"
@@ -28,20 +30,9 @@ export default function Pointers({ count }: PointersProps): JSX.Element {
           display: 'table-row',
         }}
       >
-        <Box
-          sx={{
-            display: 'table-cell',
-          }}
-        >
-          <Progress />
-        </Box>
-        <Box
-          sx={{
-            display: 'table-cell',
-          }}
-        >
-          <Progress />
-        </Box>
+        {list.map((_, index) => (
+          <Progress key={index} />
+        ))}
       </Box>
     </Box>
   )

@@ -9,6 +9,7 @@ interface LoaderProps {
 
 export default function Loader({ count, withInput }: LoaderProps) {
   const shownCount = count >= VISIBLE_COUNT ? VISIBLE_COUNT : count
+  const list = [...new Array(shownCount)]
 
   return (
     <>
@@ -19,7 +20,7 @@ export default function Loader({ count, withInput }: LoaderProps) {
           <Skeleton animation="wave" width={24} height={24} />
         </Box>
       )}
-      {[...new Array(shownCount)].map((_, key) => (
+      {list.map((_, key) => (
         <Box display="flex" flexDirection="column" gap={1} flex={1} key={key}>
           <Box display="flex" alignItems="flex-end" gap={1}>
             <Skeleton animation="wave" variant="circular" width={26} height={26} />

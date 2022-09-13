@@ -8,10 +8,11 @@ interface LoaderProps {
 
 export default function Loader({ count }: LoaderProps) {
   const displayedCount = count > VISIBLE_QUANTITY ? VISIBLE_QUANTITY : count
+  const list = [...new Array(displayedCount)]
 
   return (
     <Box display="flex" flexDirection="column" gap={2} padding={2}>
-      {[...new Array(displayedCount)].map((_, key) => (
+      {list.map((_, key) => (
         <Box display="flex" flexDirection="column" justifyContent="space-between" flex={1} gap={3} key={key}>
           <Skeleton animation="wave" width={100} height={16} />
           <Skeleton animation="wave" variant="rectangular" width="100%" height={200} />

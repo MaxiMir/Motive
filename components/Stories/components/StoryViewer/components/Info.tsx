@@ -9,14 +9,14 @@ import AppLink from 'components/ui/AppLink'
 import AppIcon from 'components/ui/AppIcon'
 import UserAvatar from 'components/User/UserAvatar'
 
-interface HeaderProps {
-  user: UserBaseDto
+interface InfoProps {
   title: string
   end: string
+  user: UserBaseDto
   onClose: () => void
 }
 
-export default function Header({ user, title, end, onClose }: HeaderProps): JSX.Element {
+export default function Info({ user, title, end, onClose }: InfoProps): JSX.Element {
   const { nickname, name, avatar } = user
   const { locale } = useLocale()
   const { close } = i18nCommon[locale]
@@ -30,7 +30,7 @@ export default function Header({ user, title, end, onClose }: HeaderProps): JSX.
         left: 0,
         right: 0,
         zIndex: 9999,
-        padding: '12px',
+        padding: '24px 12px 12px',
         transition: 'opacity 0.5s',
       }}
     >
@@ -54,16 +54,15 @@ export default function Header({ user, title, end, onClose }: HeaderProps): JSX.
             <UserAvatar name={name} avatar={avatar} href={href} size={42} />
           </Box>
           <Box display="flex" flexDirection="column">
+            <AppLink href={href} title={user.name} sx={{ fontSize: '0.875rem', textDecoration: 'none' }}>
+              <b>{name}</b>
+            </AppLink>
             <Box display="flex" alignItems="center" gap={1}>
-              <AppLink href={href} title={user.name} sx={{ fontSize: '0.875rem', textDecoration: 'none' }}>
-                <b>{name}</b>
-              </AppLink>
-              <TextTitle sx={{ color: 'text.disabled' }}>/</TextTitle>
               <TextTitle sx={{ color: 'creativity.light' }}>{title}</TextTitle>
+              <Typography variant="caption" sx={{ color: 'text.disabled' }}>
+                {distance}
+              </Typography>
             </Box>
-            <Typography variant="caption" sx={{ color: 'text.disabled' }}>
-              {distance}
-            </Typography>
           </Box>
         </Box>
         <IconButton

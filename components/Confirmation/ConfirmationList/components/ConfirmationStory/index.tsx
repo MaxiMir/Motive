@@ -47,15 +47,13 @@ export default function ConfirmationStory({ user, confirmation }: ConfirmationSt
       {open && (
         <Stories
           user={user}
-          stories={[
-            {
-              id: confirmation.id,
-              url: confirmation.photos[0].src,
-              title: confirmation.goal.name,
-              started: confirmation.started,
-              end: confirmation.end,
-            },
-          ]}
+          stories={[confirmation.photos[0]].map((photo, index) => ({
+            id: index,
+            url: photo.src,
+            title: confirmation.goal.name,
+            started: confirmation.started,
+            end: confirmation.end,
+          }))}
           onClose={toggleModal}
         />
       )}

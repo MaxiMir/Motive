@@ -1,5 +1,3 @@
-import { ImageProps } from 'next/image'
-
 export const enum SearchParam {
   Dates = 'd',
   ScrollTo = 's',
@@ -58,8 +56,7 @@ export const setQueryParams = (urn: string, params: Record<string, string | numb
   return toUrl(base, searchParams)
 }
 
-export const getImageUrl = (src: string | ImageProps['src']): ImageProps['src'] =>
-  typeof src !== 'string' || src.includes('https://') ? src : getUrlWithHost(src)
+export const getImageUrl = (src: string): string => (src.includes('https://') ? src : getUrlWithHost(src))
 
 export const getUrlWithHost = (urn: string): string => process.env.NEXT_PUBLIC_APP_URL + urn
 

@@ -62,9 +62,9 @@ export default function ContactView({ locale }: ContactViewProps) {
           </Grid>
           <Grid item xs={4} sm={4} md={3} lg={2}>
             <ButtonLink
-              sx={{
+              sx={(theme) => ({
                 background: `linear-gradient(to top left, ${theme.palette.creativity.light}, ${theme.palette.creativity.dark})`,
-              }}
+              })}
               onClick={onClickTelegram}
             >
               <ButtonContent display="flex" alignItems="center" justifyContent="center">
@@ -79,9 +79,9 @@ export default function ContactView({ locale }: ContactViewProps) {
           </Grid>
           <Grid item xs={4} sm={4} md={3} lg={2}>
             <ButtonLink
-              sx={{
+              sx={(theme) => ({
                 background: `linear-gradient(to top left, ${theme.palette.support.light}, ${theme.palette.support.dark})`,
-              }}
+              })}
               onClick={onClickLinkedIn}
             >
               <ButtonContent display="flex" alignItems="center" justifyContent="center">

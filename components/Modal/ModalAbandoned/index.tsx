@@ -16,7 +16,7 @@ export interface ModalAbandonedProps {
 export default function ModalAbandoned({ user, onClose }: ModalAbandonedProps) {
   const { abandoned } = user.characteristic
   const { locale } = useLocale()
-  const progress = useShowProgress(abandoned, 1, 300)
+  const progress = useShowProgress(abandoned, { step: 1, ms: 300 })
   const { header } = i18n[locale]
   const title = i18nCommon[locale].abandoned
   const roundedProgress = Math.round(progress)

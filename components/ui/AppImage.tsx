@@ -1,8 +1,12 @@
 import Image, { ImageProps } from 'next/image'
 import { getImageUrl } from 'helpers/url'
 
-export default function AppImage({ src, ...props }: ImageProps) {
-  const srcFull = getImageUrl(src)
+interface AppImageProps extends Omit<ImageProps, 'src'> {
+  src: string
+}
 
-  return <Image src={srcFull} {...props} />
+export default function AppImage({ src, ...props }: AppImageProps) {
+  const absoluteSrc = getImageUrl(src)
+
+  return <Image src={absoluteSrc} {...props} />
 }

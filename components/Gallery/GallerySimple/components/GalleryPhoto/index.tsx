@@ -1,8 +1,8 @@
 import React from 'react'
-import Image from 'next/image'
 import { PhotoProps } from 'react-photo-album'
 import { Box } from '@mui/material'
 import useLocale from 'hooks/useLocale'
+import AppImage from 'components/ui/AppImage'
 import i18n from './i18n'
 
 type GalleryPhotoProps = PhotoProps & {
@@ -33,7 +33,7 @@ export default function GalleryPhoto({ photo, layout, imageProps, wrapperProps, 
       }}
       {...restWrapperProps}
     >
-      <Image
+      <AppImage
         src={src}
         alt={alt}
         title={title}

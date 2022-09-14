@@ -3,24 +3,34 @@ import Progress from './components/Progress'
 
 interface PointersProps {
   count: number
+  onClose: () => void
 }
 
-export default function Pointers({ count }: PointersProps): JSX.Element {
+export default function Pointers({ count, onClose }: PointersProps): JSX.Element {
   const list = [...new Array(count)]
 
   return (
     <Box
       className="slides-pointers"
       sx={{
+        position: 'absolute',
+        top: 0,
+        left: {
+          xs: 0,
+          xl: 'calc(50vw - 50vh)',
+        },
+        right: {
+          xs: 0,
+          xl: 'calc(50vw - 50vh)',
+        },
+        width: {
+          xs: '100vw',
+          xl: '100vh',
+        },
         display: 'table',
         tableLayout: 'fixed',
         borderSpacing: '6px',
         borderCollapse: 'separate',
-        position: 'absolute',
-        width: '100vh',
-        top: 0,
-        left: 'calc(50vw - 50vh)',
-        right: 'calc(50vw - 50vh)',
         zIndex: 9999,
         transition: 'opacity 0.5s',
       }}
@@ -31,7 +41,7 @@ export default function Pointers({ count }: PointersProps): JSX.Element {
         }}
       >
         {list.map((_, index) => (
-          <Progress key={index} />
+          <Progress key={index} onEnd={onClose} />
         ))}
       </Box>
     </Box>

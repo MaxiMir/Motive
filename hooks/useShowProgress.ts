@@ -1,12 +1,20 @@
 import { useEffect, useState } from 'react'
 
-export default function useShowProgress(value: number, step = 1, ms = 100): number {
+type Options = {
+  step?: number
+  ms?: number
+  onEnd?: () => void
+}
+
+export default function useShowProgress(value: number, options: Options): number {
+  const { step = 1, ms = 100, onEnd } = options
   const [progress, setProgress] = useState(0)
 
   useEffect(() => {
     const timer = setInterval(() => {
       if (progress === value) {
         clearInterval(timer)
+        onEnd?.()
         return
       }
 
@@ -16,7 +24,7 @@ export default function useShowProgress(value: number, step = 1, ms = 100): numb
     return () => {
       clearInterval(timer)
     }
-  }, [ms, progress, step, value])
+  }, [ms, progress, step, value, onEnd])
 
   return progress
 }

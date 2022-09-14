@@ -1,4 +1,4 @@
-import { Box, GlobalStyles } from '@mui/material'
+import { Box, GlobalStyles, styled } from '@mui/material'
 import { UserBaseDto } from 'dto'
 import { useSlowClose } from './hook'
 import StoryViewer from './components/StoryViewer'
@@ -40,30 +40,27 @@ export default function Stories({ stories, user, onClose }: StoryProps) {
         },
       }}
     >
-      <Box
+      <Container
         id="zuck-modal-content"
         sx={{
           width: '100vw',
-          height: '100%',
-          top: 0,
-          bottom: 0,
-          position: 'absolute',
           perspective: '1000vw',
           transform: 'scale(0.95)',
           perspectiveOrigin: '50% 50%',
           transition: '0.3s',
         }}
       >
-        <Box
+        <Container
           id="zuck-modal-slider-stories"
           sx={{
-            transitionDuration: '300ms',
+            width: '300vw',
             transform: 'rotateY(0deg)',
             transformStyle: 'preserve-3d',
+            transitionDuration: '300ms',
           }}
         >
           <StoryViewer stories={stories} user={user} count={stories.length} onClose={setSlowClosing} />
-        </Box>
+        </Container>
         <GlobalStyles
           styles={{
             '#__next': {
@@ -71,7 +68,14 @@ export default function Stories({ stories, user, onClose }: StoryProps) {
             },
           }}
         />
-      </Box>
+      </Container>
     </Box>
   )
 }
+
+const Container = styled(Box)({
+  position: 'absolute',
+  top: 0,
+  bottom: 0,
+  height: '100%',
+})

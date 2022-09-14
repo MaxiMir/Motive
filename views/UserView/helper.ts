@@ -39,7 +39,7 @@ export const getUserMeta = (user: UserDetailDto | undefined, locale: Locale): Us
   const goalsList = user.goals.map((g) => g.name).join(', ')
   const title = getTitle(user)
   const description = getDescription(user)
-  const image = !user.avatar ? undefined : (getImageUrl(user.avatar) as string)
+  const image = !user.avatar ? undefined : getImageUrl(user.avatar)
 
   return {
     title: `${title}  ${process.env.NEXT_PUBLIC_APP_NAME}`,

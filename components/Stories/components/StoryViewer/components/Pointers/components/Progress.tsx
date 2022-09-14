@@ -1,7 +1,13 @@
 import { LinearProgress, Box, linearProgressClasses } from '@mui/material'
+import useShowProgress from 'hooks/useShowProgress'
 
-export default function Progress() {
-  const progress = 23
+interface ProgressProps {
+  onEnd: () => void
+}
+
+export default function Progress({ onEnd }: ProgressProps) {
+  const progress = useShowProgress(100, { step: 1, onEnd })
+
   return (
     <Box
       sx={{

@@ -69,7 +69,6 @@ export default function Layout({
         <meta name="twitter:card" content={type} />
         <meta property="og:locale" content={localeName} />
         {canonical && <link rel="canonical" href={canonical} />}
-        <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
         {/* Add hreflang links */}
         <link rel="alternate" href={localeHrefList.en} hrefLang="en" />
         <link rel="alternate" href={localeHrefList.ru} hrefLang="ru" />

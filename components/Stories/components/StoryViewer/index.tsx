@@ -1,8 +1,9 @@
 import { Box } from '@mui/material'
 import { UserBaseDto } from 'dto'
-import Header from './components/Header'
+import Info from './components/Info'
 import Pointers from './components/Pointers'
 import Slide, { Story } from './components/Slide'
+import Details from './components/Details'
 
 interface StoryViewerProps {
   stories: Story[]
@@ -18,19 +19,24 @@ export default function StoryViewer({ stories, user, count, onClose }: StoryView
     <Box
       className="story-viewer viewing"
       sx={{
+        width: '100vw',
+        height: '100%',
         backfaceVisibility: 'hidden',
         left: '100vw',
         transform: 'translateZ(50vw)',
       }}
     >
-      <Header user={user} title={title} end={end} onClose={onClose} />
-      <Pointers count={count} />
+      <Info user={user} title={title} end={end} onClose={onClose} />
+      <Pointers count={count} onClose={onClose} />
+      {/* TODO REMOVE slides */}
       <Box
         className="slides"
         sx={{
+          position: 'absolute',
           top: 0,
           bottom: 0,
-          position: 'absolute',
+          width: '100vw',
+          height: '100%',
           overflow: 'hidden',
         }}
       >
@@ -38,6 +44,7 @@ export default function StoryViewer({ stories, user, count, onClose }: StoryView
           <Slide story={story} key={story.id} />
         ))}
       </Box>
+      <Details user={user} />
     </Box>
   )
 }

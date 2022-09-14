@@ -31,7 +31,10 @@ export default function useSetCompleted(
   })
 
   const onUndo = () => {
-    timerRef.current && clearTimeout(timerRef.current)
+    if (timerRef.current) {
+      clearTimeout(timerRef.current)
+    }
+
     mutateCompleted(false)
     closeSnackbar()
   }

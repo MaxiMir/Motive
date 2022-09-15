@@ -74,6 +74,7 @@ export default function Layout({
         <link rel="alternate" href={localeHrefList.ru} hrefLang="ru" />
         <link rel="alternate" href={localeHrefList.uk} hrefLang="uk" />
         <link rel="alternate" href={localeHrefList.en} hrefLang="x-default" />
+        <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
       </Head>
       <Script
         src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS}`}

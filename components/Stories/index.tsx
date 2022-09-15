@@ -72,6 +72,9 @@ export default function Stories({ stories, title, date, user, fullscreenRef, onC
             '#__next': {
               overflow: 'hidden',
             },
+            '.hide': {
+              visibility: 'hidden',
+            },
           }}
         />
       </Container>

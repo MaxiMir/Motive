@@ -17,7 +17,7 @@ export default function ConfirmationStory({ user, confirmation }: ConfirmationSt
 
   const onOpen = () => {
     setOpen(true)
-    enter()
+    setTimeout(enter, 0)
   }
 
   const onClose = () => {

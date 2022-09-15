@@ -98,13 +98,13 @@ export default function UserView({ user, locale }: UserViewProps) {
           <DashedDivider light sx={{ my: 3 }} />
         </>
       )}
-      <Box display="flex" justifyContent="center" mb={3}>
+      <Box display="flex" justifyContent="center" mb={3} className="hide">
         {clientPage ? <AddGoal /> : <Following id={user.id} following={following} locale={locale} />}
       </Box>
       {!goals.length ? (
         <EmptyGoals clientPage={clientPage} locale={locale} />
       ) : (
-        <Box display="flex" flexWrap="wrap" gap={3}>
+        <Box display="flex" flexWrap="wrap" gap={3} className="hide">
           {goals.map((goal) => (
             <GoalCurrent
               goal={goal}

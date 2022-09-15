@@ -7,7 +7,11 @@ export default function useFullScreen() {
   const enter = useCallback(() => {
     if (!ref.current) return
 
-    setTimeout(() => fscreen.requestFullscreen(ref.current), 0)
+    try {
+      fscreen.requestFullscreen(ref.current)
+    } catch (e) {
+      console.log(e)
+    }
   }, [])
 
   const exit = useCallback(() => {

@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { Box, Button, Typography } from '@mui/material'
 import { ConfirmationDto, UserBaseDto } from 'dto'
+import useFullScreen from 'hooks/useFullScreen'
 import AppAvatar from 'components/ui/AppAvatar'
 import Stories from 'components/Stories'
 
@@ -11,9 +12,18 @@ interface ConfirmationStoryProps {
 
 export default function ConfirmationStory({ user, confirmation }: ConfirmationStoryProps) {
   const [open, setOpen] = useState(false)
+  const { ref, enter, exit } = useFullScreen()
   const [mainPhoto] = confirmation.photos
 
-  const toggleModal = () => setOpen(!open)
+  const onOpen = () => {
+    setOpen(true)
+    enter()
+  }
+
+  const onClose = () => {
+    setOpen(false)
+    exit()
+  }
 
   return (
     <>
@@ -33,12 +43,12 @@ export default function ConfirmationStory({ user, confirmation }: ConfirmationSt
               borderRadius: '50%',
               background: theme.palette.background.default,
             })}
-            onClick={toggleModal}
+            onClick={onOpen}
           >
             <AppAvatar src={mainPhoto.src} size={65} />
           </Button>
         </Box>
-        <Button sx={{ padding: '4px', textTransform: 'none' }} onClick={toggleModal}>
+        <Button sx={{ padding: '4px', textTransform: 'none' }} onClick={onOpen}>
           <Typography variant="caption" sx={{ color: 'creativity.light' }}>
             {confirmation.goal.name}
           </Typography>
@@ -50,11 +60,11 @@ export default function ConfirmationStory({ user, confirmation }: ConfirmationSt
           stories={[confirmation.photos[0]].map((photo, index) => ({
             id: index,
             url: photo.src,
-            title: confirmation.goal.name,
-            started: confirmation.started,
-            end: confirmation.end,
           }))}
-          onClose={toggleModal}
+          title={confirmation.goal.name}
+          date={confirmation.end}
+          fullscreenRef={ref}
+          onClose={onClose}
         />
       )}
     </>

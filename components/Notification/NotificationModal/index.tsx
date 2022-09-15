@@ -9,7 +9,7 @@ import AppEmoji from 'components/ui/AppEmoji'
 import AppLink from 'components/ui/AppLink'
 import AppIcon from 'components/ui/AppIcon'
 import UserAvatar from 'components/User/UserAvatar'
-import { getDetailsName, getNotificationInfo, getNotificationUrn } from './helper'
+import { getDetailsName, getNotificationInfo, getNotificationHref } from './helper'
 import { useUpdateRead } from './hook'
 import i18n from './i18n'
 
@@ -28,7 +28,7 @@ export default function NotificationModal({ notification, onClose }: Notificatio
   const { locale } = useLocale()
   const dateDistance = getDistance(created, locale)
   const { emoji, color } = getNotificationInfo(type)
-  const notificationUrn = getNotificationUrn(notification, client)
+  const notificationHref = getNotificationHref(notification, client)
   const href = getUserHref(nickname)
   const detailsName = getDetailsName(details.name)
   const { [type]: title, view } = i18n[locale]
@@ -69,7 +69,7 @@ export default function NotificationModal({ notification, onClose }: Notificatio
           <Box component="span" sx={{ color: 'zen.silent', fontSize: '0.875rem' }}>
             {dateDistance}
           </Box>
-          <IconButton href={notificationUrn} title={view} aria-label={view} onClick={onClose}>
+          <IconButton href={notificationHref} title={view} aria-label={view} onClick={onClose}>
             <AppIcon name="south_east" sx={{ color: 'motivation.light', fontSize: '1rem !important' }} />
           </IconButton>
         </Box>

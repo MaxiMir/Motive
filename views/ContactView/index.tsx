@@ -1,6 +1,6 @@
 import dynamic from 'next/dynamic'
 import { Grid, Box, Button, Typography, typographyClasses } from '@mui/material'
-import { styled } from '@mui/system'
+import { styled, Theme } from '@mui/system'
 import { Locale } from 'hooks/useLocale'
 import AppContainer from 'components/ui/AppContainer'
 import AppTitle from 'components/ui/AppTitle'
@@ -45,7 +45,7 @@ export default function ContactView({ locale }: ContactViewProps) {
         <Grid container spacing={2}>
           <Grid item xs={4} sm={4} md={3} lg={2}>
             <ButtonLink
-              sx={(theme) => ({
+              sx={(theme: Theme) => ({
                 background: `linear-gradient(to top left, ${theme.palette.motivation.light}, ${theme.palette.motivation.dark})`,
               })}
               onClick={onClickEmail}
@@ -62,7 +62,7 @@ export default function ContactView({ locale }: ContactViewProps) {
           </Grid>
           <Grid item xs={4} sm={4} md={3} lg={2}>
             <ButtonLink
-              sx={(theme) => ({
+              sx={(theme: Theme) => ({
                 background: `linear-gradient(to top left, ${theme.palette.creativity.light}, ${theme.palette.creativity.dark})`,
               })}
               onClick={onClickTelegram}
@@ -79,7 +79,7 @@ export default function ContactView({ locale }: ContactViewProps) {
           </Grid>
           <Grid item xs={4} sm={4} md={3} lg={2}>
             <ButtonLink
-              sx={(theme) => ({
+              sx={(theme: Theme) => ({
                 background: `linear-gradient(to top left, ${theme.palette.support.light}, ${theme.palette.support.dark})`,
               })}
               onClick={onClickLinkedIn}

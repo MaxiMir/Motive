@@ -11,20 +11,20 @@ import useClient from 'hooks/useClient'
 import { getNextState } from './helper'
 
 export const useUserPage = (): UseQueryResult<UserPageDto> => {
-  const { key, urn } = useUserPageConfig()
+  const { key, path } = useUserPageConfig()
 
-  return useQuery(key, () => PageService.getUser(urn), {
+  return useQuery(key, () => PageService.getUser(path), {
     staleTime: 5_000,
   })
 }
 
-export const useUserPageConfig = (): { key: string; urn: string } => {
+export const useUserPageConfig = (): { key: string; path: string } => {
   const { query, asPath } = useRouter()
   const id = Array.isArray(query.id) ? query.id[0] : query.id
 
   return {
     key: id || 'detail',
-    urn: asPath,
+    path: asPath,
   }
 }
 

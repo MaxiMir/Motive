@@ -13,15 +13,15 @@ export const enum HashMark {
 /**
  * Returns url information
  */
-const getUrnData = (urn: string) => {
-  const [base, queryParams = ''] = urn.split('?', 2)
+const getUrlData = (url: string) => {
+  const [base, queryParams = ''] = url.split('?', 2)
   const searchParams = new URLSearchParams(queryParams)
 
   return { base, searchParams }
 }
 
-export const getSearchParams = (urn: string): Record<string, string> => {
-  const { searchParams } = getUrnData(urn)
+export const getSearchParams = (url: string): Record<string, string> => {
+  const { searchParams } = getUrlData(url)
 
   return Object.fromEntries(searchParams)
 }
@@ -44,8 +44,8 @@ export const getQueryParams = (): Record<string, string> =>
 /**
  * Set Query params
  */
-export const setQueryParams = (urn: string, params: Record<string, string | number>): string => {
-  const { base, searchParams } = getUrnData(urn)
+export const setQueryParams = (url: string, params: Record<string, string | number>): string => {
+  const { base, searchParams } = getUrlData(url)
 
   Object.entries(params).forEach(([name, value]) => {
     const methodName = getInsertMethodName(searchParams, name)
@@ -58,24 +58,24 @@ export const setQueryParams = (urn: string, params: Record<string, string | numb
 
 export const getImageUrl = (src: string): string => (src.includes('https://') ? src : getUrlWithHost(src))
 
-export const getUrlWithHost = (urn: string): string => process.env.NEXT_PUBLIC_APP_URL + urn
+export const getUrlWithHost = (path: string): string => process.env.NEXT_PUBLIC_APP_URL + path
 
 export const getUserHref = (nickname: string): string => `/${nickname}`
 
-export const getGoalUrn = (userUrn: string, goalId: number): string => {
+export const getGoalHref = (userHref: string, goalId: number): string => {
   const hashMark = getGoalHashMark(goalId)
 
-  return userUrn + hashMark
+  return userHref + hashMark
 }
 
-export const getGoalWithDayUrn = (userUrn: string, goalId: number, dayId: number): string => {
-  const url = setQueryParams(userUrn, { [SearchParam.Dates]: `${goalId}:${dayId}` })
+export const getGoalWithDayHref = (userHref: string, goalId: number, dayId: number): string => {
+  const url = setQueryParams(userHref, { [SearchParam.Dates]: `${goalId}:${dayId}` })
 
-  return getGoalUrn(url, goalId)
+  return getGoalHref(url, goalId)
 }
 
-export const getDiscussionUrn = (userUrn: string, goalId: number, dayId: number): string => {
-  const url = setQueryParams(userUrn, {
+export const getDiscussionHref = (userHref: string, goalId: number, dayId: number): string => {
+  const url = setQueryParams(userHref, {
     [SearchParam.ScrollTo]: HashMark.Discussion,
     [SearchParam.ScrollId]: goalId,
     [SearchParam.Dates]: `${goalId}:${dayId}`,
@@ -85,8 +85,8 @@ export const getDiscussionUrn = (userUrn: string, goalId: number, dayId: number)
   return url + hashMark
 }
 
-export const getFeedbackUrn = (userUrn: string, goalId: number, dayId: number): string => {
-  const url = setQueryParams(userUrn, { [SearchParam.Dates]: `${goalId}:${dayId}` })
+export const getFeedbackHref = (userHref: string, goalId: number, dayId: number): string => {
+  const url = setQueryParams(userHref, { [SearchParam.Dates]: `${goalId}:${dayId}` })
   const hashMark = getDiscussionHashMark(goalId)
 
   return url + hashMark

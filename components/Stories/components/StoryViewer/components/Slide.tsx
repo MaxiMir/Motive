@@ -4,10 +4,7 @@ import { getImageUrl } from 'helpers/url'
 export interface Story {
   id: number
   url: string
-  title: string
-  started: string
   duration?: number
-  end: string
 }
 
 export interface SlideProps {
@@ -15,7 +12,7 @@ export interface SlideProps {
 }
 
 export default function Slide({ story }: SlideProps) {
-  const { url, title } = story
+  const { url } = story
   const absoluteSrc = getImageUrl(url)
 
   return (
@@ -26,7 +23,7 @@ export default function Slide({ story }: SlideProps) {
     >
       <img
         src={absoluteSrc}
-        alt={title}
+        alt=""
         style={{
           position: 'absolute',
           left: '50%',

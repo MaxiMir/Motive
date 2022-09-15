@@ -6,7 +6,7 @@ type Options = {
   onEnd?: () => void
 }
 
-export default function useShowProgress(value: number, options: Options): number {
+export default function useShowProgress(value: number, options: Options = {}): number {
   const { step = 1, ms = 100, onEnd } = options
   const [progress, setProgress] = useState(0)
 

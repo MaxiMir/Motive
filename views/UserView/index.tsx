@@ -94,7 +94,7 @@ export default function UserView({ user, locale }: UserViewProps) {
       <DashedDivider light sx={{ my: 3 }} />
       {!!confirmations.length && (
         <>
-          <ConfirmationList user={user} clientMembership={clientMembership} confirmations={confirmations} />
+          <ConfirmationList user={user} />
           <DashedDivider light sx={{ my: 3 }} />
         </>
       )}

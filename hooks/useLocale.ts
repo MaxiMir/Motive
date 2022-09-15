@@ -5,13 +5,13 @@ export const [EN, RU, UK] = LOCALES
 export const LOCALE_MAP = { [EN]: 'en_US', [RU]: 'ru_RU', [UK]: 'Uk_UA' }
 
 export type Locale = typeof LOCALES[number]
-type UseLocale = { locale: Locale; go: (urn: string) => void; setLocale: (value: Locale) => void }
+type UseLocale = { locale: Locale; go: (url: string) => void; setLocale: (value: Locale) => void }
 
 export default function useLocale(): UseLocale {
   const { asPath, locale: routerLocale = EN, push } = useRouter()
   const locale = !(LOCALES as ReadonlyArray<string>).includes(routerLocale) ? EN : (routerLocale as Locale)
 
-  const go = (urn: string) => push(urn, urn, { locale })
+  const go = (url: string) => push(url, url, { locale })
 
   const setLocale = (value: Locale) => {
     document.cookie = `NEXT_LOCALE=${value}`

@@ -38,9 +38,8 @@ export default function SearchPage({ statusCode }: PageProps) {
 }
 
 export const getServerSideProps: GetServerSideProps = async (ctx) => {
-  const { url } = ctx.req
+  const { url = SEARCH } = ctx.req
 
-  // TODO:
   if (ctx.req.url?.includes('_next')) {
     return {
       props: {
@@ -49,12 +48,11 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
     }
   }
 
-  const urn = url || SEARCH
   const queryClient = new QueryClient()
   const session = await getSession(ctx)
   const headers = ctx.req.headers as AxiosRequestHeaders
-  await queryClient.prefetchQuery(urn, () => PageService.get(urn || SEARCH, { headers }))
-  const state = queryClient.getQueryState<PossiblePageError>(urn)
+  await queryClient.prefetchQuery(url, () => PageService.get(url, { headers }))
+  const state = queryClient.getQueryState<PossiblePageError>(url)
   const statusCode = state?.data?.message?.statusCode || 200
 
   return {

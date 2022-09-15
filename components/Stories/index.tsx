@@ -1,4 +1,6 @@
-import { Box, GlobalStyles, styled } from '@mui/material'
+import { MutableRefObject } from 'react'
+import { Box, GlobalStyles } from '@mui/material'
+import { styled } from '@mui/system'
 import { UserBaseDto } from 'dto'
 import { useSlowClose } from './hook'
 import StoryViewer from './components/StoryViewer'
@@ -7,15 +9,19 @@ import { Story } from './components/StoryViewer/components/Slide'
 interface StoryProps {
   stories: Story[]
   user: UserBaseDto
+  title: string
+  date: string
+  fullscreenRef: MutableRefObject<HTMLDivElement | null>
   onClose: () => void
 }
 
-export default function Stories({ stories, user, onClose }: StoryProps) {
-  const [closing, setSlowClosing] = useSlowClose(onClose)
+export default function Stories({ stories, title, date, user, fullscreenRef, onClose }: StoryProps) {
+  const [closing, closeSlow] = useSlowClose(onClose)
 
   return (
     <Box
       id="zuck-modal"
+      ref={fullscreenRef}
       sx={{
         position: 'fixed',
         top: 0,
@@ -59,7 +65,7 @@ export default function Stories({ stories, user, onClose }: StoryProps) {
             transitionDuration: '300ms',
           }}
         >
-          <StoryViewer stories={stories} user={user} count={stories.length} onClose={setSlowClosing} />
+          <StoryViewer stories={stories} user={user} title={title} date={date} onClose={closeSlow} />
         </Container>
         <GlobalStyles
           styles={{

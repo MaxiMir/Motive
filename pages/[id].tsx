@@ -24,13 +24,13 @@ export default function UserDetail({ statusCode }: PageProps) {
 
 export const getServerSideProps: GetServerSideProps = async (ctx) => {
   const { url = '' } = ctx.req
-  const urn = getServerSideUrl(url)
+  const serverSideUrl = getServerSideUrl(url)
   const queryClient = new QueryClient()
   const session = await getSession(ctx)
   const nickname = ctx.params?.id || ''
   const headers = ctx.req.headers as AxiosRequestHeaders
 
-  await queryClient.prefetchQuery(nickname, () => PageService.getUser(urn, { headers }))
+  await queryClient.prefetchQuery(nickname, () => PageService.getUser(serverSideUrl, { headers }))
   const state = queryClient.getQueryState<PossiblePageError>(nickname)
   const statusCode = state?.data?.message?.statusCode || 200
 

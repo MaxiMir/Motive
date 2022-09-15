@@ -9,19 +9,19 @@ import AppLink from 'components/ui/AppLink'
 import AppIcon from 'components/ui/AppIcon'
 import UserAvatar from 'components/User/UserAvatar'
 
-interface InfoProps {
-  title: string
-  end: string
+interface HeaderProps {
   user: UserBaseDto
+  title: string
+  date: string
   onClose: () => void
 }
 
-export default function Info({ user, title, end, onClose }: InfoProps): JSX.Element {
+export default function Header({ user, title, date, onClose }: HeaderProps): JSX.Element {
   const { nickname, name, avatar } = user
   const { locale } = useLocale()
   const { close } = i18nCommon[locale]
   const href = getUserHref(nickname)
-  const distance = getDistance(end, locale)
+  const distance = getDistance(date, locale)
 
   return (
     <Box
@@ -58,7 +58,7 @@ export default function Info({ user, title, end, onClose }: InfoProps): JSX.Elem
               <b>{name}</b>
             </AppLink>
             <Box display="flex" alignItems="center" gap={1}>
-              <TextTitle sx={{ color: 'creativity.light' }}>{title}</TextTitle>
+              <TextTitle sx={{ color: 'support.light' }}>{title}</TextTitle>
               <Typography variant="caption" sx={{ color: 'text.disabled' }}>
                 {distance}
               </Typography>

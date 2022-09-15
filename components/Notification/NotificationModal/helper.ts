@@ -1,6 +1,6 @@
 import produce from 'immer'
 import { ClientDto, MainCharacteristic, NotificationDto, NotificationType } from 'dto'
-import { getDiscussionUrn, getFeedbackUrn, getGoalUrn, getGoalWithDayUrn, getUserHref } from 'helpers/url'
+import { getDiscussionHref, getFeedbackHref, getGoalHref, getGoalWithDayHref, getUserHref } from 'helpers/url'
 import { toShortString } from 'helpers/prepare'
 import { AppEmojiName } from 'components/ui/AppEmoji'
 
@@ -31,7 +31,7 @@ export const getNotificationInfo = (type: NotificationType): NotificationInfo =>
   }
 }
 
-export const getNotificationUrn = (notification: NotificationDto, client?: ClientDto): string => {
+export const getNotificationHref = (notification: NotificationDto, client?: ClientDto): string => {
   const { user } = notification.details
   const userPage = [
     NotificationType.NewFollower,
@@ -46,15 +46,15 @@ export const getNotificationUrn = (notification: NotificationDto, client?: Clien
     case NotificationType.NewFollower:
       return getUserHref(nickname)
     case NotificationType.WebCoverage:
-      return getGoalUrn(nickname, notification.details.id)
+      return getGoalHref(nickname, notification.details.id)
     case NotificationType.NewFeedback:
-      return getFeedbackUrn(nickname, notification.details.id, notification.details.day)
+      return getFeedbackHref(nickname, notification.details.id, notification.details.day)
     case NotificationType.NewQuestion:
     case NotificationType.NewAnswer:
     case NotificationType.NewSupport:
-      return getDiscussionUrn(nickname, notification.details.id, notification.details.day)
+      return getDiscussionHref(nickname, notification.details.id, notification.details.day)
     default:
-      return getGoalWithDayUrn(nickname, notification.details.id, notification.details.day)
+      return getGoalWithDayHref(nickname, notification.details.id, notification.details.day)
   }
 }
 

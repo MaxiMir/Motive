@@ -18,7 +18,7 @@ export default function EmptyGoals({ clientPage, locale }: AddGoalProps) {
       flexDirection="column"
       justifyContent="center"
       alignItems="center"
-      className="hide"
+      className="apple-hide"
       gap={1}
       flex={1}
     >

@@ -58,7 +58,9 @@ export default function Header({ user, title, date, onClose }: HeaderProps): JSX
               <b>{name}</b>
             </AppLink>
             <Box display="flex" alignItems="center" gap={1}>
-              <TextTitle sx={{ color: 'support.light' }}>{title}</TextTitle>
+              <TextTitle sx={{ color: 'motivation.light' }}>
+                <b>{title}</b>
+              </TextTitle>
               <Typography variant="caption" sx={{ color: 'text.disabled' }}>
                 {distance}
               </Typography>

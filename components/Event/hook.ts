@@ -1,15 +1,20 @@
 import { useEffect } from 'react'
 import { useQueryClient } from 'react-query'
+import { useRouter } from 'next/router'
 import { io } from 'socket.io-client'
 import i18nCommon from 'constants/i18n'
 import { NotificationDto } from 'dto'
 import { getDeviceType } from 'helpers/dom'
+import { getImageUrl } from 'helpers/url'
 import useSnackbar from 'hooks/useSnackbar'
 import useLocale from 'hooks/useLocale'
 import useClient from 'hooks/useClient'
+import i18n from 'components/Notification/NotificationModal/i18n'
+import { getNotificationHref } from '../Notification/NotificationModal/helper'
 
-export const useEvent = (): void => {
+export const useSocket = (): void => {
   const client = useClient()
+  const router = useRouter()
   const { locale } = useLocale()
   const [enqueueSnackbar] = useSnackbar()
   const queryClient = useQueryClient()
@@ -27,11 +32,26 @@ export const useEvent = (): void => {
       secure: true,
     })
 
-    socket.on('notification', (_: NotificationDto) => {
+    socket.on('notification', (notification: NotificationDto) => {
+      const { id, type, details } = notification
       const { event } = i18nCommon[locale]
 
       enqueueSnackbar({ message: event, severity: 'success', icon: 'notification' })
       queryClient.invalidateQueries('notifications')
+
+      if (document.visibilityState === 'visible') return
+
+      Notification.requestPermission().then((permission) => {
+        if (permission !== 'granted') return
+        const { name, avatar } = details.user
+        const icon = !avatar ? undefined : getImageUrl(avatar)
+        const notificationHref = getNotificationHref(notification, client)
+        const tag = id.toString()
+        const { [type]: body } = i18n[locale]
+        const notificator = new Notification(name, { tag, body, icon })
+
+        notificator.addEventListener('click', () => router.push(notificationHref))
+      })
     })
 
     return () => {

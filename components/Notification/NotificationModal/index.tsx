@@ -63,7 +63,7 @@ export default function NotificationModal({ notification, onClose }: Notificatio
             <b>{name}</b>
           </AppLink>{' '}
           {title}
-          {!detailsName ? '' : `: ${detailsName}`}
+          {detailsName && `: ${detailsName}`}
         </Typography>
         <Box display="flex" alignItems="center" gap={2}>
           <Box component="span" sx={{ color: 'zen.silent', fontSize: '0.875rem' }}>

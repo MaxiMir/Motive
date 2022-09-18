@@ -12,7 +12,7 @@ interface ConfirmationStoryProps {
 
 export default function ConfirmationStory({ user, confirmation }: ConfirmationStoryProps) {
   const [open, setOpen] = useState(false)
-  const { ref, enter, exit } = useFullScreen()
+  const { ref, enabled, enter, exit } = useFullScreen()
   const [mainPhoto] = confirmation.photos
 
   const onOpen = () => {
@@ -63,6 +63,7 @@ export default function ConfirmationStory({ user, confirmation }: ConfirmationSt
           }))}
           title={confirmation.goal.name}
           date={confirmation.end}
+          fullscreenEnabled={enabled}
           fullscreenRef={ref}
           onClose={onClose}
         />

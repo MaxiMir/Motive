@@ -11,11 +11,12 @@ interface StoryProps {
   user: UserBaseDto
   title: string
   date: string
+  fullscreenEnabled: boolean
   fullscreenRef: MutableRefObject<HTMLDivElement | null>
   onClose: () => void
 }
 
-export default function Stories({ stories, title, date, user, fullscreenRef, onClose }: StoryProps) {
+export default function Stories({ stories, title, date, user, fullscreenEnabled, fullscreenRef, onClose }: StoryProps) {
   const [closing, closeSlow] = useSlowClose(onClose)
 
   return (
@@ -35,7 +36,7 @@ export default function Stories({ stories, title, date, user, fullscreenRef, onC
         transformOrigin: 'center',
         transition: '0.25s',
         transform: closing ? 'translateY(100%)' : undefined,
-        animation: 'open 0.25s ease-out',
+        animation: fullscreenEnabled ? undefined : 'open 0.25s ease-out',
         '@keyframes open': {
           from: {
             transform: 'scale(0.01)',
@@ -72,7 +73,8 @@ export default function Stories({ stories, title, date, user, fullscreenRef, onC
             '#__next': {
               overflow: 'hidden',
             },
-            '.hide': {
+            // for safari:
+            '.apple-hide': {
               visibility: 'hidden',
             },
           }}

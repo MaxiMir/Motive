@@ -3,14 +3,15 @@ import fscreen from 'fscreen'
 
 export default function useFullScreen() {
   const ref = useRef<HTMLDivElement | null>(null)
+  const enabled = fscreen.fullscreenEnabled
 
   const enter = useCallback(() => {
     if (!ref.current) return
 
     try {
       fscreen.requestFullscreen(ref.current)
-    } catch (e) {
-      console.log(e)
+    } catch {
+      // fullscreen not supported
     }
   }, [])
 
@@ -20,5 +21,5 @@ export default function useFullScreen() {
     fscreen.exitFullscreen()
   }, [])
 
-  return { ref, enter, exit }
+  return { ref, enabled, enter, exit }
 }

@@ -12,13 +12,14 @@
 * Добавить редактирование обратной связи
 * Подсказки
 * Добавить крестик в меню
+* Push notification
 
 ```shell
-docker build -t maximir/frontend:1.0.76 .
+docker build -t maximir/frontend:1.0.77 .
 # artifactory:
-docker tag <IMAGE_ID> maximir.jfrog.io/default-docker-virtual/frontend:1.0.76
-docker push maximir.jfrog.io/default-docker-virtual/frontend:1.0.76
-docker pull maximir.jfrog.io/default-docker-virtual/frontend:1.0.76
+docker tag <IMAGE_ID> maximir.jfrog.io/default-docker-virtual/frontend:1.0.77
+docker push maximir.jfrog.io/default-docker-virtual/frontend:1.0.77
+docker pull maximir.jfrog.io/default-docker-virtual/frontend:1.0.77
 
 # copy:
 docker cp <IMAGE_ID>:/home/node/client /home # <-
@@ -46,7 +47,7 @@ version: '3.3'
 
 services:
   frontend:
-    image: maximir.jfrog.io/default-docker-virtual/frontend:1.0.76
+    image: maximir.jfrog.io/default-docker-virtual/frontend:1.0.77
     depends_on:
       - backend
     restart: unless-stopped

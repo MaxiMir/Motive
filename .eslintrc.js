@@ -52,6 +52,27 @@ module.exports = {
       },
       plugins: ['@typescript-eslint'],
       rules: {
+        '@typescript-eslint/naming-convention': [
+          'warn',
+          {
+            selector: 'variable',
+            format: ['camelCase', 'UPPER_CASE', 'PascalCase'],
+            leadingUnderscore: 'allow',
+          },
+          {
+            selector: 'parameter',
+            format: ['camelCase'],
+            leadingUnderscore: 'allow',
+            filter: {
+              regex: '.*Component$',
+              match: false,
+            },
+          },
+          {
+            selector: 'typeLike',
+            format: ['PascalCase'],
+          },
+        ],
         'import/extensions': 'off',
         'react/require-default-props': 'off',
         'react/jsx-filename-extension': [2, { extensions: ['.ts', '.tsx'] }],
@@ -136,6 +157,12 @@ module.exports = {
     },
   ],
   rules: {
+    'no-restricted-imports': [
+      'warn',
+      {
+        patterns: ['../../*'],
+      },
+    ],
     'array-callback-return': 'warn',
     'default-case': ['warn', { commentPattern: '^no default$' }],
     'dot-location': ['warn', 'property'],

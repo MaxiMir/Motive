@@ -10,7 +10,7 @@ import useSnackbar from 'hooks/useSnackbar'
 import useLocale from 'hooks/useLocale'
 import useClient from 'hooks/useClient'
 import i18n from 'components/Notification/NotificationModal/i18n'
-import { getNotificationHref } from '../Notification/NotificationModal/helper'
+import { getNotificationHref } from 'components/Notification/NotificationModal/helper'
 
 export const useSocket = (): void => {
   const client = useClient()
@@ -35,11 +35,12 @@ export const useSocket = (): void => {
     socket.on('notification', (notification: NotificationDto) => {
       const { id, type, details } = notification
       const { event } = i18nCommon[locale]
+      const notificationSupport = 'Notification' in window
 
       enqueueSnackbar({ message: event, severity: 'success', icon: 'notification' })
       queryClient.invalidateQueries('notifications')
 
-      if (document.visibilityState === 'visible') return
+      if (!notificationSupport || document.visibilityState === 'visible') return
 
       Notification.requestPermission().then((permission) => {
         if (permission !== 'granted') return

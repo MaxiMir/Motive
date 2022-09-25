@@ -1,4 +1,5 @@
-import { Box, Typography } from '@mui/material'
+import { useRouter } from 'next/router'
+import { Box, Button, Typography } from '@mui/material'
 import useLocale from 'hooks/useLocale'
 import AppEmoji from 'components/ui/AppEmoji'
 import AppContainer from 'components/ui/AppContainer'
@@ -7,14 +8,17 @@ const i18n = {
   en: {
     notFound: 'Page Not Found',
     default: 'Something went wrong...',
+    back: 'Back',
   },
   ru: {
     notFound: 'Страница не найдена',
     default: 'Что-то пошло не так...',
+    back: 'Назад',
   },
   uk: {
     notFound: 'Сторінку не знайдено',
     default: 'Щось пішло не так...',
+    back: 'Назад',
   },
 }
 
@@ -24,8 +28,11 @@ interface CustomErrorProps {
 
 export default function CustomError({ statusCode = 500 }: CustomErrorProps) {
   const { locale } = useLocale()
+  const router = useRouter()
   const errorKey = statusCode === 404 ? 'notFound' : 'default'
-  const title = i18n[locale][errorKey]
+  const { [errorKey]: title, back } = i18n[locale]
+
+  const onClick = () => router.back()
 
   return (
     <AppContainer>
@@ -38,6 +45,15 @@ export default function CustomError({ statusCode = 500 }: CustomErrorProps) {
           <Typography sx={{ fontSize: '9em' }}>
             <AppEmoji name="error" onlyEmoji />
           </Typography>
+          <Button
+            aria-label={back}
+            sx={{
+              color: 'warning.light',
+            }}
+            onClick={onClick}
+          >
+            {back}
+          </Button>
         </Box>
       </Box>
     </AppContainer>

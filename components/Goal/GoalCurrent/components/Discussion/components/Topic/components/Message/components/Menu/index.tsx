@@ -6,7 +6,7 @@ import AppMenuButton from 'components/ui/AppMenuButton'
 import i18n from './i18n'
 
 const MenuList = dynamic(() => import('./components/MenuList'))
-const ModalEditMessage = dynamic(() => import('components/Modal/ModalEditMessage'))
+const ModalEditMessage = dynamic(() => import('./components/ModalEditMessage'))
 
 interface MenuProps {
   message: MessageDto

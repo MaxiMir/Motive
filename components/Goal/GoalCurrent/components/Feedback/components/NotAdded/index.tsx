@@ -4,7 +4,7 @@ import useLocale from 'hooks/useLocale'
 import i18n from './i18n'
 
 const Typography = dynamic(() => import('@mui/material/Typography'))
-const FeedbackButton = dynamic(() => import('./components/FeedbackButton'))
+const FeedbackAdd = dynamic(() => import('./components/FeedbackAdd'))
 
 export interface NotAddedProps {
   goal: GoalDto
@@ -21,7 +21,7 @@ export default function NotAdded({ goal, forTomorrow, clientOwnership }: NotAdde
       {!clientOwnership.goal ? (
         <Typography>{soon}</Typography>
       ) : (
-        <FeedbackButton goal={goal} forTomorrow={forTomorrow} locale={locale} />
+        <FeedbackAdd goal={goal} forTomorrow={forTomorrow} locale={locale} />
       )}
     </>
   )

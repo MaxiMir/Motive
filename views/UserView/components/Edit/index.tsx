@@ -5,7 +5,7 @@ import { Locale } from 'hooks/useLocale'
 import AppIconButton from 'components/ui/AppIconButton'
 import i18n from './i18n'
 
-const ModalProfile = dynamic(() => import('components/Modal/ModalProfile'))
+const ModalProfile = dynamic(() => import('./components/ModalProfile'))
 
 interface EditProps {
   user: UserBaseDto

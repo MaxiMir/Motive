@@ -5,9 +5,9 @@ import useLocale from 'hooks/useLocale'
 import AppMenuButton from 'components/ui/AppMenuButton'
 import i18n from './i18n'
 
-const ModalLeave = dynamic(() => import('components/Modal/ModalLeave'))
-const Share = dynamic(() => import('components/Share'))
+const ModalLeave = dynamic(() => import('./components/ModalLeave'))
 const MenuList = dynamic(() => import('./components/MenuList'))
+const Share = dynamic(() => import('components/Share'))
 
 interface MenuProps {
   goal: GoalDto

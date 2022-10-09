@@ -3,10 +3,10 @@ import dynamic from 'next/dynamic'
 import { Button } from '@mui/material'
 import useLocale from 'hooks/useLocale'
 import AppIcon from 'components/ui/AppIcon'
-import ModalSettings from 'components/Modal/ModalSettings'
 import i18n from './i18n'
 
 const MenuModal = dynamic(() => import('./components/MenuModal'))
+const ModalSettings = dynamic(() => import('./components/ModalSettings'))
 
 export default function LeftMenu() {
   const { locale } = useLocale()

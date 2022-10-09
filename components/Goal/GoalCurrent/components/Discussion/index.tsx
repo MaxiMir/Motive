@@ -8,10 +8,10 @@ import { useDiscussion, useAddMessage } from './hook'
 import i18n from './i18n'
 
 const Typography = dynamic(() => import('@mui/material/Typography'))
-const AppList = dynamic<AppListProps<TopicDto>>(() => import('components/ui/AppList'))
-const UserInput = dynamic(() => import('components/User/UserInput'))
 const Loader = dynamic(() => import('./components/Loader'))
 const Topic = dynamic(() => import('./components/Topic'))
+const UserInput = dynamic(() => import('components/User/UserInput'))
+const AppList = dynamic<AppListProps<TopicDto>>(() => import('components/ui/AppList'))
 
 interface DiscussionProps {
   dayId: number

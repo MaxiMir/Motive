@@ -11,9 +11,9 @@ import { checkOnRepeat, getGoalInfo } from './helper'
 import i18n from './i18n'
 
 const Typography = dynamic(() => import('@mui/material/Typography'))
-const GallerySimple = dynamic(() => import('components/Gallery/GallerySimple'))
 const Inheritance = dynamic(() => import('./components/Inheritance'))
 const Repeat = dynamic(() => import('./components/Repeat'))
+const GallerySimple = dynamic(() => import('components/Gallery/GallerySimple'))
 const AppMarkdown = dynamic(() => import('components/ui/AppMarkdown'))
 
 const CHARACTERISTICS: GoalCharacteristicName[] = [...MAIN_CHARACTERISTICS, 'members']

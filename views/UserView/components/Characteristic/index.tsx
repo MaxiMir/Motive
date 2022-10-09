@@ -7,10 +7,10 @@ import { MainCharacteristic, SecondCharacteristic, UserCharacteristic, UserDetai
 import { Locale } from 'hooks/useLocale'
 import CharacteristicUser from 'components/Characteristic/CharacteristicUser'
 
-const ModalFollowers = dynamic(() => import('components/Modal/ModalFollowers'))
-const ModalCompleted = dynamic(() => import('components/Modal/ModalCompleted'))
-const ModalCharacteristic = dynamic(() => import('components/Modal/ModalCharacteristic'))
-const ModalAbandoned = dynamic(() => import('components/Modal/ModalAbandoned'))
+const ModalFollowers = dynamic(() => import('./components/ModalFollowers'))
+const ModalCompleted = dynamic(() => import('./components/ModalCompleted'))
+const ModalCharacteristic = dynamic(() => import('./components/ModalCharacteristic'))
+const ModalAbandoned = dynamic(() => import('./components/ModalAbandoned'))
 
 interface CharacteristicProps {
   user: UserDetailDto

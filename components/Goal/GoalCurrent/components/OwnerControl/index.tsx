@@ -7,8 +7,8 @@ import OptionalTooltip from 'components/OptionalTooltip'
 import AppEmoji from 'components/ui/AppEmoji'
 import i18n from './i18n'
 
-const ModalTasks = dynamic(() => import('components/Modal/ModalTasks'))
-const ModalCompletion = dynamic(() => import('components/Modal/ModalCompletion'))
+const ModalTasks = dynamic(() => import('./components/ModalTasks'))
+const ModalCompletion = dynamic(() => import('./components/ModalCompletion'))
 
 export interface OwnerControlProps {
   goal: GoalDto

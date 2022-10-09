@@ -7,7 +7,7 @@ import useOpenSignIn from 'hooks/useOpenSignIn'
 import ActionGoal from 'components/Action/ActionGoal'
 import i18n from './i18n'
 
-const ModalSupport = dynamic(() => import('components/Modal/ModalSupport'))
+const ModalSupport = dynamic(() => import('./components/ModalSupport'))
 
 interface ReactionSupportProps {
   goal: GoalDto

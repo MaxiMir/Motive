@@ -9,7 +9,7 @@ import i18n from './i18n'
 const Button = dynamic(() => import('@mui/material/Button'))
 const OptionalTooltip = dynamic(() => import('components/OptionalTooltip'))
 
-const ModalStage = dynamic(() => import('components/Modal/ModalStage'))
+const ModalStage = dynamic(() => import('./components/ModalStage'))
 
 interface StagesProps {
   goal: GoalDto

@@ -34,7 +34,7 @@ export default function UserSearch({ user }: UserSearchProps) {
           },
         }}
       >
-        <AppAvatar src={avatar} size={120} />
+        <AppAvatar src={avatar} name={name} size={120} />
         <Box
           display="flex"
           flexDirection="column"

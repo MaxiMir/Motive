@@ -7,15 +7,15 @@ import AppIcon from 'components/ui/AppIcon'
 import OptionalTooltip from 'components/OptionalTooltip'
 import i18n from './i18n'
 
-const ModalFeedback = dynamic(() => import('components/Modal/ModalFeedback'))
+const ModalFeedback = dynamic(() => import('./components/ModalFeedback'))
 
-export interface FeedbackButtonProps {
+export interface FeedbackAddProps {
   goal: GoalDto
   forTomorrow: boolean
   locale: Locale
 }
 
-export default function FeedbackButton({ goal, forTomorrow, locale }: FeedbackButtonProps) {
+export default function FeedbackAdd({ goal, forTomorrow, locale }: FeedbackAddProps) {
   const [open, setOpen] = useState(false)
   const { button } = i18n[locale]
 

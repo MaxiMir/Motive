@@ -4,8 +4,8 @@ import useLocale from 'hooks/useLocale'
 import AppIcon from 'components/ui/AppIcon'
 import i18n from './i18n'
 
-const AppImage = dynamic(() => import('components/ui/AppImage'))
 const LocalImage = dynamic(() => import('./components/LocalImage'))
+const AppImage = dynamic(() => import('components/ui/AppImage'))
 
 export interface PhotoButtonProps {
   image: File | string

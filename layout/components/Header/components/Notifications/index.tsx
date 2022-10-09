@@ -7,7 +7,7 @@ import { useNotifications } from './hook'
 import { checkOnBadgeContent } from './helper'
 import i18n from './i18n'
 
-const ModalNotifications = dynamic(() => import('components/Modal/ModalNotifications'))
+const ModalNotifications = dynamic(() => import('./components/ModalNotifications'))
 
 export default function Notifications() {
   const { locale } = useLocale()

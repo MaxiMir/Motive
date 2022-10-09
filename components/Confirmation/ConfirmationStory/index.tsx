@@ -45,7 +45,7 @@ export default function ConfirmationStory({ user, confirmation }: ConfirmationSt
             })}
             onClick={onOpen}
           >
-            <AppAvatar src={mainPhoto.src} size={65} />
+            <AppAvatar src={mainPhoto.src} name={user.name} size={65} />
           </Button>
         </Box>
         <Button sx={{ padding: '4px', textTransform: 'none' }} onClick={onOpen}>

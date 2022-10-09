@@ -20,6 +20,7 @@ export default function Following({ id, following, locale }: FollowingProps) {
       variant="outlined"
       color="warning"
       startIcon={<AppEmoji name="following" onlyEmoji />}
+      className="apple-hide"
       sx={{ alignSelf: 'center', filter: following ? 'grayscale(0.6)' : undefined }}
       onClick={setFollowing}
     >

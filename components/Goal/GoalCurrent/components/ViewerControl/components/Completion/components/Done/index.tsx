@@ -7,7 +7,9 @@ import OptionalTooltip from 'components/OptionalTooltip'
 import AppEmoji from 'components/ui/AppEmoji'
 import i18n from './i18n'
 
-const ModalCompletion = dynamic(() => import('components/Modal/ModalCompletion'))
+const ModalCompletion = dynamic(
+  () => import('components/Goal/GoalCurrent/components/OwnerControl/components/ModalCompletion'),
+)
 
 interface DoneProps {
   goal: GoalDto

@@ -6,11 +6,12 @@ import AppAvatar from 'components/ui/AppAvatar'
 import { getCircleItems } from './helper'
 
 interface AvatarProps {
-  avatar?: string | null
+  src?: string | null
+  userName: string
   characteristic: UserCharacteristicDto
 }
 
-export default function Avatar({ avatar, characteristic }: AvatarProps) {
+export default function Avatar({ src, userName, characteristic }: AvatarProps) {
   const theme = useTheme()
   const circleItems = getCircleItems(characteristic)
 
@@ -22,7 +23,7 @@ export default function Avatar({ avatar, characteristic }: AvatarProps) {
         </Circle>
       ))}
       <Circle display="flex" justifyContent="center" alignItems="center">
-        <AppAvatar src={avatar} size={80} />
+        <AppAvatar src={src} name={userName} size={80} />
       </Circle>
     </Box>
   )

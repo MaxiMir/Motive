@@ -8,7 +8,7 @@ import useOpenSignIn from 'hooks/useOpenSignIn'
 import AppEmoji from 'components/ui/AppEmoji'
 import i18n from './i18n'
 
-const ModalJoin = dynamic(() => import('components/Modal/ModalJoin'))
+const ModalJoin = dynamic(() => import('./components/ModalJoin'))
 
 export interface JoinProps {
   goal: GoalDto

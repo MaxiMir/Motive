@@ -11,11 +11,10 @@ import Characteristic from './components/Characteristic'
 import EmptyGoals from './components/EmptyGoals'
 import Following from './components/Following'
 
+const ConfirmationList = dynamic(() => import('./components/ConfirmationList'))
 const GoalCurrent = dynamic(() => import('components/Goal/GoalCurrent'))
-const ConfirmationList = dynamic(() => import('components/Confirmation/ConfirmationList'))
 const Status = dynamic(() => import('./components/Status'))
 const Edit = dynamic(() => import('./components/Edit'))
-const AddGoal = dynamic(() => import('./components/AddGoal'))
 
 export interface UserViewProps {
   user: UserDetailDto
@@ -41,6 +40,7 @@ export default function UserView({ user, locale }: UserViewProps) {
   const client = useClient()
   const href = getUserHref(nickname)
   const clientPage = id === client?.id
+  const showDivider = clientPage || confirmations.length
 
   return (
     <AppContainer>
@@ -65,7 +65,7 @@ export default function UserView({ user, locale }: UserViewProps) {
           },
         }}
       >
-        <Avatar avatar={avatar} characteristic={characteristic} />
+        <Avatar src={avatar} userName={name} characteristic={characteristic} />
         <Box display="flex" flexDirection="column" justifyContent="space-between" flex={1}>
           <Box display="flex" justifyContent="space-between">
             {MAIN_CHARACTERISTICS.map((characteristicName) => (
@@ -92,15 +92,9 @@ export default function UserView({ user, locale }: UserViewProps) {
         </Box>
       </Box>
       <DashedDivider light sx={{ my: 3 }} />
-      {!!confirmations.length && (
-        <>
-          <ConfirmationList user={user} />
-          <DashedDivider light sx={{ my: 3 }} />
-        </>
-      )}
-      <Box display="flex" justifyContent="center" mb={3} className="apple-hide">
-        {clientPage ? <AddGoal /> : <Following id={user.id} following={following} locale={locale} />}
-      </Box>
+      {!!confirmations.length && <ConfirmationList user={user} clientPage={clientPage} />}
+      {showDivider && <DashedDivider light sx={{ my: 3 }} />}
+      {!clientPage && <Following id={user.id} following={following} locale={locale} />}
       {!goals.length ? (
         <EmptyGoals clientPage={clientPage} locale={locale} />
       ) : (

@@ -1,19 +1,17 @@
 import dynamic from 'next/dynamic'
 import { Tabs } from '@mui/material'
-import { UserDetailDto } from 'dto'
-import ConfirmationStory from 'components/Confirmation/ConfirmationStory'
+import { ConfirmationDto, UserBaseDto } from 'dto'
 
 const AddGoal = dynamic(() => import('./components/AddGoal'))
+const ConfirmationStory = dynamic(() => import('components/Confirmation/ConfirmationStory'))
 
 interface ConfirmationListProps {
-  user: UserDetailDto
+  user: UserBaseDto
+  confirmations: ConfirmationDto[]
   clientPage: boolean
 }
 
-export default function ConfirmationList({ user, clientPage }: ConfirmationListProps) {
-  const { id, name, nickname, avatar, confirmations } = user
-  const userBase = { id, name, nickname, avatar }
-
+export default function ConfirmationList({ user, confirmations, clientPage }: ConfirmationListProps) {
   return (
     <Tabs
       value={0}
@@ -27,7 +25,7 @@ export default function ConfirmationList({ user, clientPage }: ConfirmationListP
     >
       {clientPage && <AddGoal />}
       {confirmations.map((confirmation) => (
-        <ConfirmationStory user={userBase} confirmation={confirmation} key={confirmation.id} />
+        <ConfirmationStory user={user} confirmation={confirmation} key={confirmation.id} />
       ))}
     </Tabs>
   )

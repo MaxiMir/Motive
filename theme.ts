@@ -19,9 +19,8 @@ declare module '@mui/material/styles' {
   interface Palette {
     navigation: CSSProperties['color']
     content: CSSProperties['color']
-
+    circle: CSSProperties['color']
     zen: ZenColor
-
     motivation: CustomCharacteristicValue
     support: CustomCharacteristicValue
     creativity: CustomCharacteristicValue
@@ -34,9 +33,8 @@ declare module '@mui/material/styles' {
   interface PaletteOptions {
     navigation: CSSProperties['color']
     content: CSSProperties['color']
-
+    circle: CSSProperties['color']
     zen: ZenColor
-
     motivation: CustomCharacteristicValue
     support: CustomCharacteristicValue
     creativity: CustomCharacteristicValue
@@ -53,6 +51,7 @@ export const getDesignTokens = (mode: PaletteMode): ThemeOptions => {
       mode,
       navigation: mode === 'dark' ? '#121212' : '#d7d7d7',
       content: mode === 'dark' ? '#19191a' : '#d7d7d7',
+      circle: '#2d313e',
       zen: {
         silent: '#99989D',
         sand: '#ad998b',
@@ -61,17 +60,17 @@ export const getDesignTokens = (mode: PaletteMode): ThemeOptions => {
       },
       motivation: {
         light: '#FFE0B2',
-        main: '#FF9800', // шрифт
+        main: '#f4ad4e', // шрифт
         dark: '#f57c00',
       },
       support: {
         light: '#B3E5FC',
-        main: '#03A9F4', // шрифт
+        main: '#4766bc', // шрифт
         dark: '#03A9F4',
       },
       creativity: {
         light: '#D1C4E9',
-        main: '#BE9AFF', // шрифт
+        main: '#ba4fcb', // шрифт
         dark: '#673AB7',
       },
       completed: {

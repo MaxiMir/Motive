@@ -1,5 +1,5 @@
-import { MainCharacteristic } from './characteristic'
+import { MainCharacteristicName } from './characteristic'
 
 export type ReactionsDto = Readonly<{
-  [key in MainCharacteristic]: number[]
+  [key in MainCharacteristicName]: number[]
 }>

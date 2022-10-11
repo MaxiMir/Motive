@@ -1,7 +1,6 @@
 import { useState } from 'react'
 import dynamic from 'next/dynamic'
 import { Box, Button, Typography } from '@mui/material'
-import { indigo } from '@mui/material/colors'
 import useLocale from 'hooks/useLocale'
 import AppIcon from 'components/ui/AppIcon'
 import i18n from './i18n'
@@ -18,11 +17,11 @@ export default function AddGoal() {
   return (
     <Box display="flex" flexDirection="column" alignItems="center" gap={1} mx={1} className="apple-hide">
       <Box
-        sx={{
+        sx={(theme) => ({
           padding: '2px',
-          background: indigo[300],
+          background: `linear-gradient(to top left, ${theme.palette.creativity.dark}, ${theme.palette.support.dark})`,
           borderRadius: '50%',
-        }}
+        })}
       >
         <Button
           variant="text"

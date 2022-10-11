@@ -47,3 +47,5 @@ export const toMarkdown = (value: string): string => {
     )
     .replace(/\\n/g, '  ')
 }
+
+export const ucFirst = (value: string): string => value[0].toUpperCase() + value.slice(1)

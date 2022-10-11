@@ -1,12 +1,12 @@
 import produce from 'immer'
-import { DAY_CHARACTERISTIC, DayCharacteristic, DayCharacteristicUpdateDto, GoalDto, UserPageDto } from 'dto'
+import { DAY_CHARACTERISTIC, DayCharacteristicName, DayCharacteristicUpdateDto, GoalDto, UserPageDto } from 'dto'
 
 export type Context = { previous?: UserPageDto }
 
-export const checkOnActive = (goal: GoalDto, name: DayCharacteristic): boolean =>
+export const checkOnActive = (goal: GoalDto, name: DayCharacteristicName): boolean =>
   !!goal.reactions?.[name].some((d) => d === goal.day.id)
 
-export const getCount = (goal: GoalDto, name: DayCharacteristic): number | undefined => {
+export const getCount = (goal: GoalDto, name: DayCharacteristicName): number | undefined => {
   if (!DAY_CHARACTERISTIC.includes(name)) {
     return undefined
   }

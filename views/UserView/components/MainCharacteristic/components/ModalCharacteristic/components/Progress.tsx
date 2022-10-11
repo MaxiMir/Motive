@@ -1,9 +1,9 @@
 import { Box, LinearProgress, linearProgressClasses, Typography } from '@mui/material'
-import { MainCharacteristic } from 'dto'
+import { MainCharacteristicName } from 'dto'
 import useShowProgress from 'hooks/useShowProgress'
 
 interface ProgressProps {
-  characteristic: MainCharacteristic
+  characteristic: MainCharacteristicName
   value: number
 }
 

@@ -1,26 +1,27 @@
-export enum MainCharacteristic {
+export enum MainCharacteristicName {
   Motivation = 'motivation',
   Creativity = 'creativity',
   Support = 'support',
 }
 
-export const MAIN_CHARACTERISTICS = Object.values(MainCharacteristic)
+export const MAIN_CHARACTERISTICS = Object.values(MainCharacteristicName)
 
-export enum SecondCharacteristic {
+export enum SecondCharacteristicName {
   Completed = 'completed',
   Abandoned = 'abandoned',
   Followers = 'followers',
+  Following = 'following',
 }
 
-export const SECOND_CHARACTERISTICS = Object.values(SecondCharacteristic)
+export const SECOND_CHARACTERISTICS = Object.values(SecondCharacteristicName)
 
-export type UserCharacteristic = MainCharacteristic | SecondCharacteristic
+export type UserCharacteristicName = MainCharacteristicName | SecondCharacteristicName
 
 export type UserCharacteristicDto = Readonly<{
-  [k in UserCharacteristic]: number
+  [k in UserCharacteristicName]: number
 }>
 
-export type GoalCharacteristicName = MainCharacteristic | 'members'
+export type GoalCharacteristicName = MainCharacteristicName | 'members'
 
 export type GoalCharacteristicDto = Readonly<{
   [k in GoalCharacteristicName]: number
@@ -28,7 +29,7 @@ export type GoalCharacteristicDto = Readonly<{
 
 export const DAY_CHARACTERISTIC = ['motivation', 'creativity'] as const
 
-export type DayCharacteristic = typeof DAY_CHARACTERISTIC[number]
+export type DayCharacteristicName = typeof DAY_CHARACTERISTIC[number]
 
 export interface DayCharacteristicDto {
   readonly motivation: number
@@ -38,6 +39,6 @@ export interface DayCharacteristicDto {
 export interface DayCharacteristicUpdateDto {
   readonly id: number
   readonly dayId: number
-  readonly name: DayCharacteristic
+  readonly name: DayCharacteristicName
   readonly add: boolean
 }

@@ -77,13 +77,13 @@ export default function Calendar({ goal }: CalendarProps) {
         shouldDisableDate={shouldDisableDate}
         minDate={min}
         maxDate={max}
-        renderDay={(_, _value, DayComponentProps) => (
+        renderDay={(_, _value, dayComponentProps) => (
           <Badge
             overlap="circular"
-            badgeContent={!DayComponentProps.disabled ? <AppEmoji name="task" onlyEmoji /> : undefined}
-            key={DayComponentProps.key}
+            badgeContent={!dayComponentProps.disabled ? <AppEmoji name="task" onlyEmoji /> : undefined}
+            key={dayComponentProps.key}
           >
-            <PickersDay {...DayComponentProps} />
+            <PickersDay {...dayComponentProps} />
           </Badge>
         )}
         renderInput={(params) => (

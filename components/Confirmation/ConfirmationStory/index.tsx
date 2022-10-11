@@ -2,7 +2,7 @@ import { useState } from 'react'
 import { Box, Button, Typography } from '@mui/material'
 import { ConfirmationDto, UserBaseDto } from 'dto'
 import useFullScreen from 'hooks/useFullScreen'
-import AppAvatar from 'components/ui/AppAvatar'
+import AppAvatar from 'components/AppAvatar'
 import Stories from 'components/Stories'
 
 interface ConfirmationStoryProps {

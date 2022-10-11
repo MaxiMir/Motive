@@ -1,5 +1,5 @@
 import { Container, Box } from '@mui/material'
-import { MAIN_CHARACTERISTICS, MainCharacteristic, UserDto } from 'dto'
+import { MAIN_CHARACTERISTICS, MainCharacteristicName, UserDto } from 'dto'
 import { Locale } from 'hooks/useLocale'
 import AppTitle from 'components/ui/AppTitle'
 import AppTabs from 'components/ui/AppTabs'
@@ -7,7 +7,7 @@ import AppTabName from 'components/ui/AppTabName'
 import TabContent from './components/TabContent'
 import i18n from './i18n'
 
-interface RatingViewProps extends Record<MainCharacteristic, UserDto[]> {
+interface RatingViewProps extends Record<MainCharacteristicName, UserDto[]> {
   locale: Locale
   tab: number
 }

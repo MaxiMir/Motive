@@ -1,6 +1,6 @@
 import { Box, Skeleton } from '@mui/material'
 
-const VISIBLE_QUANTITY = 6
+const VISIBLE_QUANTITY = 8
 
 interface LoaderProps {
   count: number

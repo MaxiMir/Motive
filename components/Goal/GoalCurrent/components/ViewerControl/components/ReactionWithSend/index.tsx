@@ -1,4 +1,4 @@
-import { DayCharacteristic, GoalDto } from 'dto'
+import { DayCharacteristicName, GoalDto } from 'dto'
 import { Locale } from 'hooks/useLocale'
 import ActionGoal from 'components/Action/ActionGoal'
 import useSetReaction from './hook'
@@ -7,7 +7,7 @@ import i18n from './i18n'
 
 interface ReactionWithSendProps {
   goal: GoalDto
-  name: DayCharacteristic
+  name: DayCharacteristicName
   locale: Locale
 }
 

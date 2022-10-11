@@ -1,11 +1,11 @@
 import { Box, Typography } from '@mui/material'
 import i18nCommon from 'constants/i18n'
-import { MainCharacteristic } from 'dto'
+import { MainCharacteristicName } from 'dto'
 import { Locale } from 'hooks/useLocale'
 import AppEmoji, { AppEmojiName } from 'components/ui/AppEmoji'
 
 export interface AppTabNameProps {
-  name: MainCharacteristic
+  name: MainCharacteristicName
   emoji: AppEmojiName
   locale: Locale
 }

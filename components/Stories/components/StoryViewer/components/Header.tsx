@@ -1,7 +1,7 @@
 import { Box, IconButton, Typography } from '@mui/material'
 import { styled } from '@mui/system'
-import { UserBaseDto } from 'dto'
 import i18nCommon from 'constants/i18n'
+import { UserBaseDto } from 'dto'
 import useLocale from 'hooks/useLocale'
 import { getUserHref } from 'helpers/url'
 import { getDistance } from 'helpers/date'

@@ -1,5 +1,5 @@
 import { Container, Typography, Grid, Box } from '@mui/material'
-import { UserDto, UserCharacteristic } from 'dto'
+import { UserDto, UserCharacteristicName } from 'dto'
 import { getUserHref } from 'helpers/url'
 import AppLink from 'components/ui/AppLink'
 import AppEmoji from 'components/ui/AppEmoji'
@@ -7,12 +7,12 @@ import UserAvatar from './UserAvatar'
 
 export interface UserRatingProps {
   user: UserDto
-  characteristicName: UserCharacteristic
+  characteristicName: UserCharacteristicName
   index: number
 }
 
 export default function UserRating({ user, characteristicName, index }: UserRatingProps) {
-  const { nickname, name, avatar, characteristic } = user
+  const { nickname, name, avatar, characteristic, online } = user
   const number = getNumber()
   const href = getUserHref(nickname)
   const ratingValue = Math.floor(characteristic[characteristicName])
@@ -46,7 +46,7 @@ export default function UserRating({ user, characteristicName, index }: UserRati
           </Grid>
           <Grid item xs={8}>
             <Box display="flex" alignItems="center" gap={2}>
-              <UserAvatar name={name} avatar={avatar} href={href} size={35} />
+              <UserAvatar name={name} avatar={avatar} href={href} online={online} size={35} />
               <AppLink href={href} variant="body1" sx={{ marginLeft: 1, textDecoration: 'none' }}>
                 {name}
               </AppLink>

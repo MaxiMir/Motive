@@ -1,19 +1,20 @@
+import { Fragment } from 'react'
 import dynamic from 'next/dynamic'
 import { Box, Divider, Typography } from '@mui/material'
 import { styled } from '@mui/system'
-import { UserDetailDto, MAIN_CHARACTERISTICS, SECOND_CHARACTERISTICS } from 'dto'
+import { UserDetailDto, SecondCharacteristicName, MAIN_CHARACTERISTICS, SECOND_CHARACTERISTICS } from 'dto'
 import { getUserHref } from 'helpers/url'
 import useClient from 'hooks/useClient'
 import { Locale } from 'hooks/useLocale'
 import AppContainer from 'components/ui/AppContainer'
-import Avatar from './components/Avatar'
-import Characteristic from './components/Characteristic'
+import AppAvatar from 'components/AppAvatar'
+import SecondCharacteristic from './components/SecondCharacteristic'
 import EmptyGoals from './components/EmptyGoals'
 import Following from './components/Following'
+import MainCharacteristic from './components/MainCharacteristic'
 
 const ConfirmationList = dynamic(() => import('./components/ConfirmationList'))
 const GoalCurrent = dynamic(() => import('components/Goal/GoalCurrent'))
-const Status = dynamic(() => import('./components/Status'))
 const Edit = dynamic(() => import('./components/Edit'))
 
 export interface UserViewProps {
@@ -34,57 +35,66 @@ export default function UserView({ user, locale }: UserViewProps) {
     clientMembership,
     confirmations,
     online,
-    lastSeen,
-    device,
   } = user
   const client = useClient()
   const href = getUserHref(nickname)
   const clientPage = id === client?.id
-  const showDivider = clientPage || confirmations.length
+  const userBase = { id, name, nickname, avatar }
 
   return (
     <AppContainer>
-      <Box display="flex" flexDirection="column" mb={2}>
-        <Box display="flex" flexWrap="wrap" alignItems="center" justifyContent="space-between" gap={1}>
-          <Box display="flex" alignItems="center" gap={1}>
-            <Typography variant="h5" component="h1">
-              {name}
-            </Typography>
-            {clientPage && <Edit user={user} locale={locale} />}
-          </Box>
-          <Status online={online} lastSeen={lastSeen} device={device} />
-        </Box>
-      </Box>
       <DashedDivider light sx={{ mb: 3 }} />
       <Box
         display="flex"
+        alignItems="center"
+        gap={1}
+        mb={3}
         sx={{
-          gap: {
-            xs: 1,
-            md: 4,
+          justifyContent: {
+            sx: 'center',
+            md: 'start',
           },
         }}
       >
-        <Avatar src={avatar} userName={name} characteristic={characteristic} />
+        <Typography variant="h5" component="h1">
+          {name}
+        </Typography>
+        {clientPage && <Edit user={user} locale={locale} />}
+      </Box>
+      <Box
+        display="flex"
+        flexWrap="wrap"
+        sx={{
+          flexDirection: {
+            xs: 'column',
+            md: 'row',
+          },
+          gap: {
+            xs: 3,
+            md: 6,
+          },
+        }}
+      >
+        <AppAvatar src={avatar} name={name} size={190} online={online} />
         <Box display="flex" flexDirection="column" justifyContent="space-between" flex={1}>
-          <Box display="flex" justifyContent="space-between">
-            {MAIN_CHARACTERISTICS.map((characteristicName) => (
-              <Characteristic
-                user={user}
-                name={characteristicName}
-                value={characteristic[characteristicName]}
-                locale={locale}
-                key={characteristicName}
-              />
+          <Box display="flex" justifyContent="space-between" mb={3}>
+            {SECOND_CHARACTERISTICS.map((characteristicName) => (
+              <Fragment key={characteristicName}>
+                <SecondCharacteristic
+                  user={user}
+                  name={characteristicName}
+                  value={characteristic[characteristicName]}
+                  locale={locale}
+                />
+                {characteristicName === SecondCharacteristicName.Abandoned && <DashedDivider orientation="vertical" />}
+              </Fragment>
             ))}
           </Box>
           <Box display="flex" justifyContent="space-between">
-            {SECOND_CHARACTERISTICS.map((characteristicName) => (
-              <Characteristic
-                user={user}
+            {MAIN_CHARACTERISTICS.map((characteristicName) => (
+              <MainCharacteristic
                 name={characteristicName}
                 value={characteristic[characteristicName]}
-                locale={locale}
                 key={characteristicName}
               />
             ))}
@@ -92,8 +102,7 @@ export default function UserView({ user, locale }: UserViewProps) {
         </Box>
       </Box>
       <DashedDivider light sx={{ my: 3 }} />
-      {!!confirmations.length && <ConfirmationList user={user} clientPage={clientPage} />}
-      {showDivider && <DashedDivider light sx={{ my: 3 }} />}
+      <ConfirmationList user={userBase} confirmations={confirmations} clientPage={clientPage} />
       {!clientPage && <Following id={user.id} following={following} locale={locale} />}
       {!goals.length ? (
         <EmptyGoals clientPage={clientPage} locale={locale} />

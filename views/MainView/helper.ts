@@ -1,4 +1,4 @@
-import { MainCharacteristic, SecondCharacteristic } from 'dto'
+import { MainCharacteristicName, SecondCharacteristicName } from 'dto'
 import { RATING } from 'route'
 import { setQueryParams } from 'helpers/url'
 import { AdvantageProps } from './components/Advantage'
@@ -7,19 +7,19 @@ type AdvantageItem = Pick<AdvantageProps, 'id' | 'href'>
 
 const ADVANTAGES: AdvantageItem[] = [
   {
-    id: MainCharacteristic.Motivation,
+    id: MainCharacteristicName.Motivation,
     href: RATING,
   },
   {
-    id: MainCharacteristic.Creativity,
+    id: MainCharacteristicName.Creativity,
     href: setQueryParams(RATING, { tab: '1' }),
   },
   {
-    id: MainCharacteristic.Support,
+    id: MainCharacteristicName.Support,
     href: setQueryParams(RATING, { tab: '2' }),
   },
   {
-    id: SecondCharacteristic.Completed,
+    id: SecondCharacteristicName.Completed,
     href: RATING,
   },
 ]

@@ -15,11 +15,11 @@
 * Push notification
 
 ```shell
-docker build -t maximir/frontend:1.0.77 .
+docker build -t maximir/frontend:1.0.78 .
 # artifactory:
-docker tag <IMAGE_ID> maximir.jfrog.io/default-docker-virtual/frontend:1.0.77
-docker push maximir.jfrog.io/default-docker-virtual/frontend:1.0.77
-docker pull maximir.jfrog.io/default-docker-virtual/frontend:1.0.77
+docker tag <IMAGE_ID> maximir.jfrog.io/default-docker-virtual/frontend:1.0.78
+docker push maximir.jfrog.io/default-docker-virtual/frontend:1.0.78
+docker pull maximir.jfrog.io/default-docker-virtual/frontend:1.0.78
 
 # copy:
 docker cp <IMAGE_ID>:/home/node/client /home # <-
@@ -29,7 +29,7 @@ docker cp /home/client <IMAGE_ID>:/home/node # ->
 ssh root@217.25.93.198
 docker logs -f --until=200s home_backend_1 # docker logs
 
-ss -a | grep 300 # грепаем процессы на порту 300
+sudo lsof -i tcp:3000 # что запущено на порту 3000
 nginx -t # чекнуть конфиг
 /etc/init.d/nginx restart
 
@@ -47,7 +47,7 @@ version: '3.3'
 
 services:
   frontend:
-    image: maximir.jfrog.io/default-docker-virtual/frontend:1.0.77
+    image: maximir.jfrog.io/default-docker-virtual/frontend:1.0.78
     depends_on:
       - backend
     restart: unless-stopped

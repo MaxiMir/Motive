@@ -1,6 +1,6 @@
 import { Session } from 'next-auth'
 import { UserDto } from './user'
-import { MainCharacteristic } from './characteristic'
+import { MainCharacteristicName } from './characteristic'
 import { ConfirmationDto, GoalDto } from './goal'
 import { MemberDto } from './member'
 import { HashtagDto } from './hashtag'
@@ -32,7 +32,7 @@ interface SearchPageContent {
   users: UserDto[]
 }
 
-type RatingPageContent = { [k in MainCharacteristic]: UserDto[] }
+type RatingPageContent = { [k in MainCharacteristicName]: UserDto[] }
 type SubscriptionPageContent = UserDto[]
 
 export interface UserDetailDto extends UserDto {

@@ -1,11 +1,11 @@
 import produce from 'immer'
 import { SubscriptionPageDto, UserDto } from 'dto'
-import FollowerService from 'services/FollowerService'
+import SubscriptionService from 'services/SubscriptionService'
 
 export type Options = { user: UserDto; index: number; add: boolean }
 export type Context = { previous?: SubscriptionPageDto }
 
-export const fetcher = ({ user, add }: Options): Promise<void> => FollowerService.update(user.id, add)
+export const fetcher = ({ user, add }: Options): Promise<void> => SubscriptionService.update(user.id, add)
 
 export const getNextState = (
   page: SubscriptionPageDto,

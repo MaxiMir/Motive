@@ -1,9 +1,11 @@
 import { useRouter } from 'next/router'
 import { Container, Box, Button } from '@mui/material'
 import { FOLLOWING, RATING, SEARCH, TOP_OF_THE_DAY } from 'route'
+import i18nCommon from 'constants/i18n'
 import useLocale from 'hooks/useLocale'
 import AppLink from 'components/ui/AppLink'
 import { TopOfTheDayIcon, SearchIcon, RatingIcon, FollowingIcon } from 'components/ui/icons'
+import { ucFirst } from 'helpers/prepare'
 import FooterIcon from './components/FooterIcon'
 import FooterProfile from './components/FooterProfile'
 import i18n from './i18n'
@@ -19,11 +21,13 @@ export default function Footer({ nickname }: FooterProps) {
   const routes = getRoutes()
 
   function getRoutes() {
+    const followingTitle = ucFirst(i18nCommon[locale].following)
+
     return [
-      { title: titles.top, href: TOP_OF_THE_DAY, Icon: TopOfTheDayIcon },
-      { title: titles.search, href: SEARCH, Icon: SearchIcon },
-      { title: titles.rating, href: RATING, Icon: RatingIcon },
-      { title: titles.following, href: FOLLOWING, Icon: FollowingIcon },
+      { title: titles.top, href: TOP_OF_THE_DAY, Component: TopOfTheDayIcon },
+      { title: titles.search, href: SEARCH, Component: SearchIcon },
+      { title: titles.rating, href: RATING, Component: RatingIcon },
+      { title: followingTitle, href: FOLLOWING, Component: FollowingIcon },
     ]
   }
 
@@ -40,10 +44,10 @@ export default function Footer({ nickname }: FooterProps) {
     >
       <Container fixed>
         <Box display="flex" justifyContent="space-between" alignItems="center" height={52}>
-          {routes.map(({ title, href, Icon }) => (
+          {routes.map(({ title, href, Component }) => (
             <AppLink href={href} title={title} key={title}>
               <Button aria-label={title}>
-                <FooterIcon Icon={Icon} selected={asPath.includes(href)} key={href} />
+                <FooterIcon Icon={Component} selected={asPath.includes(href)} key={href} />
               </Button>
             </AppLink>
           ))}

@@ -41,6 +41,7 @@ export default function SecondCharacteristic({ user, name, locale, value }: Char
           color: 'white',
           textTransform: 'none',
           justifyContent: 'center',
+          padding: 1,
         }}
         onClick={onClick}
       >
@@ -51,7 +52,6 @@ export default function SecondCharacteristic({ user, name, locale, value }: Char
           <Typography
             sx={{
               fontSize: '0.625rem',
-              textAlign: 'start',
             }}
           >
             {button}

@@ -35,6 +35,8 @@ export default function UserView({ user, locale }: UserViewProps) {
     clientMembership,
     confirmations,
     online,
+    lastSeen,
+    device,
   } = user
   const client = useClient()
   const href = getUserHref(nickname)
@@ -51,7 +53,7 @@ export default function UserView({ user, locale }: UserViewProps) {
         mb={3}
         sx={{
           justifyContent: {
-            sx: 'center',
+            xs: 'center',
             md: 'start',
           },
         }}
@@ -75,7 +77,7 @@ export default function UserView({ user, locale }: UserViewProps) {
           },
         }}
       >
-        <AppAvatar src={avatar} name={name} size={190} online={online} />
+        <AppAvatar src={avatar} name={name} size={190} online={online} lastSeen={lastSeen} device={device} />
         <Box display="flex" flexDirection="column" justifyContent="space-between" flex={1}>
           <Box display="flex" justifyContent="space-between" mb={3}>
             {SECOND_CHARACTERISTICS.map((characteristicName) => (

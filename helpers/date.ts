@@ -8,12 +8,12 @@ export const getToday = (): Date => new Date(new Date().setHours(0, 0, 0, 0))
 
 export const getTomorrow = (): Date => new Date(addDays(new Date(), 1).setHours(0, 0, 0, 0))
 
-export const getDistance = (date: string, locale: Locale): string => {
+export const getDistance = (date: string, locale: Locale, ago = true): string => {
   const fnsLocale = getFnsLocale(locale)
   const { agoText } = i18nCommon[locale]
   const distance = formatDistanceToNow(new Date(date), { includeSeconds: true, locale: fnsLocale })
 
-  return `${distance} ${agoText}`
+  return [distance, ...(!ago ? [] : [agoText])].join(' ')
 }
 
 export const getFnsLocale = (locale: Locale) => {

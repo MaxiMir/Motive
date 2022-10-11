@@ -2,13 +2,10 @@ import { ReactNode } from 'react'
 import { Badge } from '@mui/material'
 
 interface OnlineProps {
-  size: number
   children: ReactNode
 }
 
-export default function Online({ size, children }: OnlineProps) {
-  const radius = size > 100 ? 12 : 8
-
+export default function Online({ children }: OnlineProps) {
   return (
     <Badge
       overlap="circular"
@@ -18,11 +15,12 @@ export default function Online({ size, children }: OnlineProps) {
         '& .MuiBadge-badge': {
           backgroundColor: '#44b700',
           color: '#44b700',
-          width: radius,
-          height: radius,
           boxShadow: `0 0 0 2px ${theme.palette.background.paper}`,
           borderRadius: '50%',
-          right: '18%',
+          right: {
+            xs: '15%',
+            md: '22%',
+          },
           '&::after': {
             position: 'absolute',
             top: 0,

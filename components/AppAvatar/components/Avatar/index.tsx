@@ -8,7 +8,7 @@ const Offline = dynamic(() => import('./components/Offline'))
 interface AvatarProps {
   src: string
   online?: boolean | null
-  lastSeen: string
+  lastSeen?: string | null
   device?: Device | null
   size: number
 }
@@ -16,7 +16,7 @@ interface AvatarProps {
 export default function Avatar({ src, size, online, lastSeen, device }: AvatarProps) {
   if (online) {
     return (
-      <Online size={size}>
+      <Online>
         <Content src={src} size={size} />
       </Online>
     )

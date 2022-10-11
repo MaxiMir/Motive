@@ -15,12 +15,12 @@ interface OfflineProps {
 
 export default function Offline({ lastSeen, device, children }: OfflineProps) {
   const { locale } = useLocale()
-  const distance = getDistance(lastSeen, locale)
+  const distance = getDistance(lastSeen, locale, false)
 
   return (
     <Badge
       overlap="circular"
-      variant="dot"
+      color="secondary"
       anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
       badgeContent={
         <Box display="flex" alignItems="center" gap={0.5}>
@@ -28,6 +28,17 @@ export default function Offline({ lastSeen, device, children }: OfflineProps) {
           {device && <DeviceIcon device={device} />}
         </Box>
       }
+      sx={{
+        '& .MuiBadge-badge': {
+          backgroundColor: 'gray',
+          color: 'white',
+          fontSize: '0.625rem',
+          right: {
+            xs: '15%',
+            md: '22%',
+          },
+        },
+      }}
     >
       {children}
     </Badge>

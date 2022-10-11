@@ -38,7 +38,16 @@ export default function MainCharacteristic({ name, value }: MainCharacteristicPr
 
   return (
     <>
-      <Button sx={{ textTransform: 'none' }} onClick={onClick}>
+      <Button
+        sx={{
+          textTransform: 'none',
+          padding: {
+            xs: '4px',
+            md: '8px',
+          },
+        }}
+        onClick={onClick}
+      >
         <AppCircle
           size={100}
           strokeWidth={50}

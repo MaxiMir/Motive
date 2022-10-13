@@ -5,7 +5,7 @@ import Content from './components/Content'
 const Online = dynamic(() => import('./components/Online'))
 const Offline = dynamic(() => import('./components/Offline'))
 
-interface AvatarProps {
+interface StatusHubProps {
   src: string
   online?: boolean | null
   lastSeen?: string | null
@@ -13,7 +13,7 @@ interface AvatarProps {
   size: number
 }
 
-export default function Avatar({ src, size, online, lastSeen, device }: AvatarProps) {
+export default function StatusHub({ src, size, online, lastSeen, device }: StatusHubProps) {
   if (online) {
     return (
       <Online>
@@ -22,13 +22,13 @@ export default function Avatar({ src, size, online, lastSeen, device }: AvatarPr
     )
   }
 
-  if (!lastSeen) {
-    return <Content src={src} size={size} />
+  if (lastSeen) {
+    return (
+      <Offline lastSeen={lastSeen} device={device}>
+        <Content src={src} size={size} />
+      </Offline>
+    )
   }
 
-  return (
-    <Offline lastSeen={lastSeen} device={device}>
-      <Content src={src} size={size} />
-    </Offline>
-  )
+  return <Content src={src} size={size} />
 }

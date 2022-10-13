@@ -1,6 +1,7 @@
 import { ReactNode } from 'react'
 import dynamic from 'next/dynamic'
-import { Badge, Box } from '@mui/material'
+import { Badge, Box, Tooltip } from '@mui/material'
+import i18nCommon from 'constants/i18n'
 import useLocale from 'hooks/useLocale'
 import { getDistance } from 'helpers/date'
 import { Device } from 'helpers/dom'
@@ -16,6 +17,7 @@ interface OfflineProps {
 export default function Offline({ lastSeen, device, children }: OfflineProps) {
   const { locale } = useLocale()
   const distance = getDistance(lastSeen, locale, false)
+  const { agoText } = i18nCommon[locale]
 
   return (
     <Badge
@@ -23,10 +25,16 @@ export default function Offline({ lastSeen, device, children }: OfflineProps) {
       color="secondary"
       anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
       badgeContent={
-        <Box display="flex" alignItems="center" gap={0.5}>
-          {distance}
-          {device && <DeviceIcon device={device} />}
-        </Box>
+        <Tooltip
+          title={
+            <Box display="flex" alignItems="center" gap={0.5}>
+              {distance} {agoText}
+              {device && <DeviceIcon device={device} />}
+            </Box>
+          }
+        >
+          <span>{distance}</span>
+        </Tooltip>
       }
       sx={{
         '& .MuiBadge-badge': {

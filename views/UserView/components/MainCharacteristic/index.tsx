@@ -56,7 +56,7 @@ export default function MainCharacteristic({ name, value }: MainCharacteristicPr
           dasharray={1100}
           offset={offset}
           light={theme.palette.circle}
-          dark={theme.palette[name].main}
+          dark={theme.palette[name].border}
         />
         <Box
           display="flex"

@@ -22,6 +22,7 @@ export default function ConfirmationList({ user, confirmations, clientPage }: Co
           display: 'none',
         },
       }}
+      sx={{ mb: 2 }}
     >
       {clientPage && <AddGoal />}
       {confirmations.map((confirmation) => (

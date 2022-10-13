@@ -14,6 +14,7 @@ declare module '@mui/material/styles' {
     light: CSSProperties['color']
     main: CSSProperties['color']
     dark: CSSProperties['color']
+    border: CSSProperties['color']
   }
 
   interface Palette {
@@ -60,38 +61,45 @@ export const getDesignTokens = (mode: PaletteMode): ThemeOptions => {
       },
       motivation: {
         light: '#FFE0B2',
-        main: '#f4ad4e', // шрифт
+        main: '#FF9800', // шрифт
         dark: '#f57c00',
+        border: '#f4ad4e',
       },
       support: {
         light: '#B3E5FC',
-        main: '#4766bc', // шрифт
+        main: '#03A9F4', // шрифт
         dark: '#03A9F4',
+        border: '#4766bc',
       },
       creativity: {
         light: '#D1C4E9',
-        main: '#ba4fcb', // шрифт
+        main: '#BE9AFF', // шрифт
         dark: '#673AB7',
+        border: '#ba4fcb',
       },
       completed: {
         light: '#B3D6B4',
         main: '#78C77B',
         dark: '#1D1D1F',
+        border: '',
       },
       followers: {
         light: '',
         main: '#f2d900',
         dark: '',
+        border: '',
       },
       abandoned: {
         light: '#6F6F6F',
         main: '#AEABAE',
         dark: '',
+        border: '',
       },
       members: {
         light: '',
         main: '#EF8277',
         dark: '',
+        border: '',
       },
       ...(mode === 'dark' &&
         {

@@ -1,12 +1,12 @@
 import { Avatar } from '@mui/material'
 import { blueGrey } from '@mui/material/colors'
 
-interface NoAvatarProps {
+interface PlugProps {
   name: string
   size: number
 }
 
-export default function NoAvatar({ name, size }: NoAvatarProps) {
+export default function Plug({ name, size }: PlugProps) {
   const letter = name[0].toUpperCase()
 
   return (

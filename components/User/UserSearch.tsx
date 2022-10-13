@@ -1,7 +1,7 @@
 import { Box, Typography, Button } from '@mui/material'
 import { MAIN_CHARACTERISTICS, UserDto } from 'dto'
 import { getUserHref } from 'helpers/url'
-import AppAvatar from 'components/AppAvatar'
+import AppAvatar from 'components/Avatar'
 import CharacteristicUser from 'components/Characteristic/CharacteristicUser'
 
 export interface UserSearchProps {

@@ -7,7 +7,7 @@ import { getUserHref } from 'helpers/url'
 import useClient from 'hooks/useClient'
 import { Locale } from 'hooks/useLocale'
 import AppContainer from 'components/ui/AppContainer'
-import AppAvatar from 'components/AppAvatar'
+import AppAvatar from 'components/Avatar'
 import SecondCharacteristic from './components/SecondCharacteristic'
 import EmptyGoals from './components/EmptyGoals'
 import Following from './components/Following'
@@ -42,6 +42,7 @@ export default function UserView({ user, locale }: UserViewProps) {
   const href = getUserHref(nickname)
   const clientPage = id === client?.id
   const userBase = { id, name, nickname, avatar }
+  const withConfirmationsList = !!confirmations.length || clientPage
 
   return (
     <AppContainer>
@@ -104,7 +105,9 @@ export default function UserView({ user, locale }: UserViewProps) {
         </Box>
       </Box>
       <DashedDivider light sx={{ my: 3 }} />
-      <ConfirmationList user={userBase} confirmations={confirmations} clientPage={clientPage} />
+      {withConfirmationsList && (
+        <ConfirmationList user={userBase} confirmations={confirmations} clientPage={clientPage} />
+      )}
       {!clientPage && <Following id={user.id} following={following} locale={locale} />}
       {!goals.length ? (
         <EmptyGoals clientPage={clientPage} locale={locale} />

@@ -18,10 +18,12 @@ export default function ModalSettings({ onClose }: ModalLanguageProps) {
 
   const onChangeLocale = (_: MouseEvent<HTMLElement>, newLocale: Locale) => {
     setLocale(newLocale)
+    onClose()
   }
 
   const onChangeMode = (_: MouseEvent<HTMLElement>, newMode: PaletteMode) => {
     setMode(newMode)
+    onClose()
   }
 
   return (

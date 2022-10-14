@@ -46,12 +46,12 @@ export default function UserView({ user, locale }: UserViewProps) {
 
   return (
     <AppContainer>
-      <DashedDivider light sx={{ mb: 3 }} />
       <Box
         display="flex"
         alignItems="center"
         gap={1}
-        mb={3}
+        my={3}
+        className="apple-hide"
         sx={{
           justifyContent: {
             xs: 'center',
@@ -67,6 +67,7 @@ export default function UserView({ user, locale }: UserViewProps) {
       <Box
         display="flex"
         flexWrap="wrap"
+        className="apple-hide"
         sx={{
           flexDirection: {
             xs: 'column',

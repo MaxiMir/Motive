@@ -15,7 +15,7 @@ export default function AddGoal() {
   const toggleModal = () => setOpen(!open)
 
   return (
-    <Box display="flex" flexDirection="column" alignItems="center" gap={1} mx={1} className="apple-hide">
+    <Box display="flex" flexDirection="column" alignItems="center" gap={1} mx={1}>
       <Box
         sx={(theme) => ({
           padding: '2px',

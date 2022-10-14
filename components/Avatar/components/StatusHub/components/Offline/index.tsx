@@ -5,6 +5,8 @@ import i18nCommon from 'constants/i18n'
 import useLocale from 'hooks/useLocale'
 import { getDistance } from 'helpers/date'
 import { Device } from 'helpers/dom'
+import i18n from './i18n'
+import { getShortDistance } from './helper'
 
 const DeviceIcon = dynamic(() => import('./components/DeviceIcon'))
 
@@ -18,6 +20,8 @@ export default function Offline({ lastSeen, device, children }: OfflineProps) {
   const { locale } = useLocale()
   const distance = getDistance(lastSeen, locale, false)
   const { agoText } = i18nCommon[locale]
+  const { seen } = i18n[locale]
+  const shortDistance = getShortDistance(distance)
 
   return (
     <Badge
@@ -28,12 +32,12 @@ export default function Offline({ lastSeen, device, children }: OfflineProps) {
         <Tooltip
           title={
             <Box display="flex" alignItems="center" gap={0.5}>
-              {distance} {agoText}
               {device && <DeviceIcon device={device} />}
+              {seen} {distance} {agoText}
             </Box>
           }
         >
-          <span>{distance}</span>
+          <span>{shortDistance}</span>
         </Tooltip>
       }
       sx={{

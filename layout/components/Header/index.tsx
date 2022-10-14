@@ -13,6 +13,7 @@ export default function Header({ authenticated }: HeaderProps) {
   return (
     <AppBar
       position="static"
+      className="apple-hide"
       sx={{
         paddingY: 1,
         backgroundColor: 'navigation',

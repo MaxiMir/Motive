@@ -68,6 +68,7 @@ export default function UserView({ user, locale }: UserViewProps) {
         display="flex"
         flexWrap="wrap"
         className="apple-hide"
+        mb={3}
         sx={{
           flexDirection: {
             xs: 'column',
@@ -105,7 +106,7 @@ export default function UserView({ user, locale }: UserViewProps) {
           </Box>
         </Box>
       </Box>
-      <DashedDivider light sx={{ my: 3 }} />
+      <DashedDivider light sx={{ mb: 3 }} />
       {withConfirmationsList && (
         <ConfirmationList user={userBase} confirmations={confirmations} clientPage={clientPage} />
       )}

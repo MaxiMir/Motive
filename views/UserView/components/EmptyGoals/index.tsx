@@ -13,7 +13,7 @@ export default function EmptyGoals({ clientPage, locale }: AddGoalProps) {
   const { guest, owner } = i18n[locale]
 
   return (
-    <Box display="flex" flexDirection="column" justifyContent="center" alignItems="center" gap={1} mt={3} flex={1}>
+    <Box display="flex" flexDirection="column" justifyContent="center" alignItems="center" gap={1} flex={1}>
       <Typography variant="h6" component="p" color="primary">
         {clientPage ? owner : guest}
       </Typography>

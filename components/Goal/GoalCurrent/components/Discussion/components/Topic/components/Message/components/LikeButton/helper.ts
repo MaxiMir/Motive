@@ -5,8 +5,15 @@ import { Locale } from 'hooks/useLocale'
 import TopicService from 'services/TopicService'
 import i18n from './i18n'
 
-export type Options = { message: MessageDto; answerFor?: number; add: boolean }
-export type Context = { previous?: InfiniteData<TopicDto[]> }
+export interface Options {
+  message: MessageDto
+  answerFor?: number
+  add: boolean
+}
+
+export interface Context {
+  previous?: InfiniteData<TopicDto[]>
+}
 
 export const checkOnDisabled = (message: MessageDto, client?: ClientDto): boolean =>
   message.user.id === client?.id || (!!message.like && [MessageType.Support, MessageType.Answer].includes(message.type))

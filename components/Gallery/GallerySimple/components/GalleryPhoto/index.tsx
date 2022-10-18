@@ -5,7 +5,7 @@ import useLocale from 'hooks/useLocale'
 import AppImage from 'components/ui/AppImage'
 import i18n from './i18n'
 
-type GalleryPhotoProps = PhotoProps & {
+interface GalleryPhotoProps extends PhotoProps {
   wrapperProps?: React.HTMLAttributes<HTMLDivElement>
   onClick?: (index: number) => void
 }

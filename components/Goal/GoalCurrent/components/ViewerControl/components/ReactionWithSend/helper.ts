@@ -1,7 +1,9 @@
 import produce from 'immer'
 import { DAY_CHARACTERISTIC, DayCharacteristicName, DayCharacteristicUpdateDto, GoalDto, UserPageDto } from 'dto'
 
-export type Context = { previous?: UserPageDto }
+export interface Context {
+  previous?: UserPageDto
+}
 
 export const checkOnActive = (goal: GoalDto, name: DayCharacteristicName): boolean =>
   !!goal.reactions?.[name].some((d) => d === goal.day.id)

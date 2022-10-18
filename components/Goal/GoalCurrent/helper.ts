@@ -22,7 +22,7 @@ export const getClientOwnership = (
 export const checkOnShowDiscussion = (query: ParsedUrlQuery, id: number): boolean =>
   query[SearchParam.ScrollTo] === HashMark.Discussion && query[SearchParam.ScrollId] === id.toString()
 
-export type GoalInfo = {
+export interface GoalInfo {
   daysGoneForOwner: number
   runningDays: number
   web: boolean

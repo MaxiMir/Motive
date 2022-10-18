@@ -4,7 +4,10 @@ import { getDiscussionHref, getFeedbackHref, getGoalHref, getGoalWithDayHref, ge
 import { toShortString } from 'helpers/prepare'
 import { AppEmojiName } from 'components/ui/AppEmoji'
 
-type NotificationInfo = { emoji: AppEmojiName; color: string }
+interface NotificationInfo {
+  emoji: AppEmojiName
+  color: string
+}
 
 export const getNotificationInfo = (type: NotificationType): NotificationInfo => {
   switch (type) {

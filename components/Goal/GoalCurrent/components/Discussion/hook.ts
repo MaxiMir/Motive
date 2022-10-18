@@ -4,7 +4,7 @@ import { partialCheckOnLoadMore } from 'helpers/fetcher'
 import { useMutateGoals } from 'views/UserView/hook'
 import { PRELOAD_DIFF, getGoalNextState, partialFetcher, partialGetNextPageParam, getNextState } from './helper'
 
-type UseDiscussion = {
+interface UseDiscussion {
   isLoading: boolean
   topics: TopicDto[]
   checkOnLoadMore: (index: number) => boolean

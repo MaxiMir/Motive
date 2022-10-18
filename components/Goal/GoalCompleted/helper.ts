@@ -19,7 +19,12 @@ export const checkOnRepeat = (
   return ![clientPage, isOwner, isMember].some(Boolean)
 }
 
-type GoalInfo = { duration: string; mainPhoto?: PhotoDto; secondPhotos?: PhotoDto[]; interval: string }
+interface GoalInfo {
+  duration: string
+  mainPhoto?: PhotoDto
+  secondPhotos?: PhotoDto[]
+  interval: string
+}
 
 export const getGoalInfo = (confirmation: ConfirmationDto): GoalInfo => {
   const start = Date.parse(confirmation.started)

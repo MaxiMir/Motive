@@ -1,7 +1,7 @@
 import Image, { ImageProps } from 'next/image'
 import { getImageUrl } from 'helpers/url'
 
-interface AppImageProps extends Omit<ImageProps, 'src'> {
+type AppImageProps = Omit<ImageProps, 'src'> & {
   src: string
 }
 

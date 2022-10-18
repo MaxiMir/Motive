@@ -1,6 +1,6 @@
 import { Box, BoxProps } from '@mui/material'
 
-interface AppIconProps extends BoxProps {
+type AppIconProps = BoxProps & {
   name: string
 }
 

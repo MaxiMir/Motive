@@ -2,7 +2,7 @@ import { ElementType } from 'react'
 import { Box, Typography, TypographyProps } from '@mui/material'
 import AppEmoji, { AppEmojiName } from './AppEmoji'
 
-interface AppTitleProps extends TypographyProps {
+type AppTitleProps = TypographyProps & {
   name: AppEmojiName
   component?: ElementType
   mb?: number

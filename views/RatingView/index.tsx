@@ -7,7 +7,7 @@ import AppTabName from 'components/ui/AppTabName'
 import TabContent from './components/TabContent'
 import i18n from './i18n'
 
-interface RatingViewProps extends Record<MainCharacteristicName, UserDto[]> {
+type RatingViewProps = Record<MainCharacteristicName, UserDto[]> & {
   locale: Locale
   tab: number
 }

@@ -1,4 +1,4 @@
-import AppAvatar from 'components/Avatar'
+import AppAvatar from 'components/ui/AppAvatar'
 import AppLink from 'components/ui/AppLink'
 
 export interface UserAvatarProps {

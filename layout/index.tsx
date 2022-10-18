@@ -9,7 +9,6 @@ import Header from './components/Header'
 import Footer from './components/Footer'
 import { getLocaleHrefList } from './helper'
 
-const Error = dynamic(() => import('pages/_error'))
 const Box = dynamic(() => import('@mui/material/Box'))
 
 interface LayoutProps {
@@ -19,7 +18,6 @@ interface LayoutProps {
   type?: string
   image?: string
   canonical?: string
-  statusCode?: number
   children?: ReactNode
 }
 
@@ -29,7 +27,6 @@ export default function Layout({
   keywords,
   type = 'website',
   image,
-  statusCode = 200,
   canonical,
   children,
 }: LayoutProps) {
@@ -104,7 +101,7 @@ export default function Layout({
           },
         }}
       >
-        {statusCode !== 200 ? <Error statusCode={statusCode} /> : children}
+        {children}
       </Box>
       <Footer nickname={client?.nickname} />
     </>

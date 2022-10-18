@@ -9,8 +9,7 @@ import { getImageUrl } from 'helpers/url'
 import useSnackbar from 'hooks/useSnackbar'
 import useLocale from 'hooks/useLocale'
 import useClient from 'hooks/useClient'
-import i18n from 'components/Notification/NotificationModal/i18n'
-import { getNotificationHref } from 'components/Notification/NotificationModal/helper'
+import { getNotificationHref } from 'helpers/notification'
 
 export const useSocket = (): void => {
   const client = useClient()
@@ -48,7 +47,7 @@ export const useSocket = (): void => {
         const icon = !avatar ? undefined : getImageUrl(avatar)
         const notificationHref = getNotificationHref(notification, client)
         const tag = id.toString()
-        const { [type]: body } = i18n[locale]
+        const { [type]: body } = i18nCommon[locale]
         const notificator = new Notification(name, { tag, body, icon })
 
         notificator.addEventListener('click', () => router.push(notificationHref))

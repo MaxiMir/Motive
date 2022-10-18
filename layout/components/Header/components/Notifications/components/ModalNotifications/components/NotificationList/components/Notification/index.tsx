@@ -1,26 +1,26 @@
 import dynamic from 'next/dynamic'
 import { Box, IconButton, Typography } from '@mui/material'
+import i18nCommon from 'constants/i18n'
 import { NotificationDto } from 'dto'
 import useLocale from 'hooks/useLocale'
 import useClient from 'hooks/useClient'
 import { getDistance } from 'helpers/date'
 import { getUserHref } from 'helpers/url'
+import { getDetailsName, getNotificationInfo, getNotificationHref } from 'helpers/notification'
 import AppEmoji from 'components/ui/AppEmoji'
 import AppLink from 'components/ui/AppLink'
 import AppIcon from 'components/ui/AppIcon'
 import UserAvatar from 'components/User/UserAvatar'
-import { getDetailsName, getNotificationInfo, getNotificationHref } from './helper'
 import { useUpdateRead } from './hook'
-import i18n from './i18n'
 
 const AppInView = dynamic(() => import('components/ui/AppInView'))
 
-interface NotificationModalProps {
+interface NotificationProps {
   notification: NotificationDto
   onClose: () => void
 }
 
-export default function NotificationModal({ notification, onClose }: NotificationModalProps) {
+export default function Notification({ notification, onClose }: NotificationProps) {
   const { id, type, details, created, read } = notification
   const { name, nickname, avatar } = details.user
   const client = useClient()
@@ -31,7 +31,7 @@ export default function NotificationModal({ notification, onClose }: Notificatio
   const notificationHref = getNotificationHref(notification, client)
   const href = getUserHref(nickname)
   const detailsName = getDetailsName(details.name)
-  const { [type]: title, view } = i18n[locale]
+  const { [type]: title, view } = i18nCommon[locale]
 
   const onView = () => mutate(id)
 

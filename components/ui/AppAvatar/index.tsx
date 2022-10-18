@@ -5,7 +5,7 @@ import { Device } from 'helpers/dom'
 const StatusHub = dynamic(() => import('./components/StatusHub'))
 const Plug = dynamic(() => import('./components/Plug'))
 
-export interface AvatarProps {
+export interface AppAvatarProps {
   src?: string | null
   name: string
   online?: boolean | null
@@ -14,7 +14,7 @@ export interface AvatarProps {
   size: number
 }
 
-export default function Avatar({ src, name, size, online, lastSeen, device }: AvatarProps) {
+export default function AppAvatar({ src, name, size, online, lastSeen, device }: AppAvatarProps) {
   return (
     <Box display="flex" justifyContent="center">
       {!src ? (

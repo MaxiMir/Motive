@@ -3,7 +3,6 @@ import { useRouter } from 'next/router'
 import { dehydrate, QueryClient } from 'react-query'
 import { getSession } from 'next-auth/react'
 import { AxiosRequestHeaders } from 'axios'
-import { PageProps, PossiblePageError } from 'dto'
 import { RATING } from 'route'
 import useLocale from 'hooks/useLocale'
 import PageService from 'services/PageService'
@@ -71,7 +70,7 @@ const i18n = {
   },
 }
 
-export default function RatingPage({ statusCode }: PageProps) {
+export default function RatingPage() {
   const { locale } = useLocale()
   const { query } = useRouter()
   const { data } = useRatingPage()
@@ -80,7 +79,7 @@ export default function RatingPage({ statusCode }: PageProps) {
   const title = getTitle(tab)
 
   return (
-    <Layout title={title} description={description} statusCode={statusCode}>
+    <Layout title={title} description={description}>
       {data?.content && <Rating {...data.content} locale={locale} tab={tab} />}
     </Layout>
   )
@@ -91,13 +90,10 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
   const session = await getSession(ctx)
   const headers = ctx.req.headers as AxiosRequestHeaders
   await queryClient.prefetchQuery(RATING, () => PageService.get(RATING, { headers }))
-  const state = queryClient.getQueryState<PossiblePageError>(RATING)
-  const statusCode = state?.data?.message?.statusCode || 200
 
   return {
     props: {
       session,
-      statusCode,
       dehydratedState: dehydrate(queryClient),
     },
   }

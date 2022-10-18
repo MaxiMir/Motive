@@ -52,6 +52,7 @@ module.exports = {
       },
       plugins: ['@typescript-eslint'],
       rules: {
+        '@typescript-eslint/consistent-type-definitions': ['warn', 'interface'],
         '@typescript-eslint/naming-convention': [
           'warn',
           {

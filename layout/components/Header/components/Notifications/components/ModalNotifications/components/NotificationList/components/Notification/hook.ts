@@ -3,7 +3,7 @@ import { AxiosError } from 'axios'
 import { NotificationDto } from 'dto'
 import NotificationService from 'services/NotificationService'
 import useClient from 'hooks/useClient'
-import { getNextState } from './helper'
+import { getNextState } from 'helpers/notification'
 
 export const useUpdateRead = (): UseMutationResult<void, AxiosError, number> => {
   const queryClient = useQueryClient()

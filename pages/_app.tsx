@@ -52,7 +52,7 @@ export default function MyApp({ Component, pageProps: { session, ...pageProps } 
       new QueryClient({
         defaultOptions: {
           queries: {
-            refetchOnWindowFocus: process.env.NODE_ENV === 'production',
+            refetchOnWindowFocus: true,
           },
         },
         queryCache: new QueryCache({

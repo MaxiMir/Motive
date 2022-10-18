@@ -1,5 +1,6 @@
 import Layout from 'layout'
 import useLocale from 'hooks/useLocale'
+import Error from 'pages/_error'
 
 const i18n = {
   en: {
@@ -17,5 +18,9 @@ export default function Page404() {
   const { locale } = useLocale()
   const { title } = i18n[locale]
 
-  return <Layout title={title} statusCode={404} />
+  return (
+    <Layout title={title}>
+      <Error statusCode={404} />
+    </Layout>
+  )
 }

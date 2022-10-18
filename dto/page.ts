@@ -1,14 +1,8 @@
-import { Session } from 'next-auth'
 import { UserDto } from './user'
 import { MainCharacteristicName } from './characteristic'
 import { ConfirmationDto, GoalDto } from './goal'
 import { MemberDto } from './member'
 import { HashtagDto } from './hashtag'
-
-export interface PageProps {
-  session: Session | null
-  statusCode?: number
-}
 
 export interface PossiblePageError {
   message?: {
@@ -16,7 +10,7 @@ export interface PossiblePageError {
   }
 }
 
-type Page<T> = {
+interface Page<T> {
   content: T
 }
 

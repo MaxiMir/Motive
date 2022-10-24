@@ -1,8 +1,7 @@
-import { Button } from '@mui/material'
+import { Button, Tooltip } from '@mui/material'
 import { MessageDto, MessageType } from 'dto'
 import useClient from 'hooks/useClient'
 import { Locale } from 'hooks/useLocale'
-import OptionalTooltip from 'components/OptionalTooltip'
 import AppEmoji from 'components/ui/AppEmoji'
 import { checkOnDisabled, getAreaLabel, getTitle } from './helper'
 import useSetLike from './hook'
@@ -22,21 +21,23 @@ export default function LikeButton({ message, answerFor, locale }: LikeButtonPro
   const icon = message.type === MessageType.Question ? 'like' : 'support'
 
   return (
-    <OptionalTooltip tmpl="custom" custom={title} wrap={!!title}>
-      <Button
-        size="small"
-        aria-label={ariaLabel}
-        disabled={disabled}
-        sx={{
-          width: 24,
-          height: 24,
-          minWidth: 'initial',
-          filter: !message.like ? 'grayscale(1)' : undefined,
-        }}
-        onClick={onClick}
-      >
-        <AppEmoji name={icon} onlyEmoji />
-      </Button>
-    </OptionalTooltip>
+    <Tooltip title={title} arrow followCursor>
+      <span>
+        <Button
+          size="small"
+          aria-label={ariaLabel}
+          disabled={disabled}
+          sx={{
+            width: 24,
+            height: 24,
+            minWidth: 'initial',
+            filter: !message.like ? 'grayscale(1)' : undefined,
+          }}
+          onClick={onClick}
+        >
+          <AppEmoji name={icon} onlyEmoji />
+        </Button>
+      </span>
+    </Tooltip>
   )
 }

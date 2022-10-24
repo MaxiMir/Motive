@@ -1,8 +1,8 @@
 import dynamic from 'next/dynamic'
-import { Box } from '@mui/material'
+import { useIntl } from 'react-intl'
+import { Box, Tooltip } from '@mui/material'
 import { MemberDto, TaskDto } from 'dto'
 import { GoalInfo } from 'components/Goal/GoalCurrent/helper'
-import OptionalTooltip from 'components/OptionalTooltip'
 import AppCheckbox from 'components/ui/AppCheckbox'
 import TaskLabel from './components/TaskLabel'
 import useSetCompleted from './hook'
@@ -19,22 +19,26 @@ interface TaskProps {
 
 export default function Task({ goalId, task, rest, goalInfo, clientMember }: TaskProps) {
   const { id, date, completed } = task
+  const { formatMessage } = useIntl()
   const { forTomorrow, daysGoneForOwner } = goalInfo
   const setCompleted = useSetCompleted(goalId, id, rest, clientMember)
+  const title = forTomorrow && formatMessage({ id: 'component.tooltip.tomorrow' })
   const disabled = completed || forTomorrow || !goalInfo.canEdit
 
   return (
     <Box display="flex" flexDirection="column" gap={1}>
       <form>
-        <OptionalTooltip tmpl="tomorrow" wrap={forTomorrow} followCursor>
-          <AppCheckbox
-            name={id.toString()}
-            label={<TaskLabel task={task} daysGoneForOwner={daysGoneForOwner} />}
-            checked={completed}
-            disabled={disabled}
-            onChange={setCompleted}
-          />
-        </OptionalTooltip>
+        <Tooltip title={title} arrow followCursor>
+          <span>
+            <AppCheckbox
+              name={id.toString()}
+              label={<TaskLabel task={task} daysGoneForOwner={daysGoneForOwner} />}
+              checked={completed}
+              disabled={disabled}
+              onChange={setCompleted}
+            />
+          </span>
+        </Tooltip>
       </form>
       {date && <TaskDate date={date} />}
     </Box>

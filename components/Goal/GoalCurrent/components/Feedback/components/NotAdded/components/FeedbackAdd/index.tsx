@@ -1,39 +1,40 @@
 import { useState } from 'react'
 import dynamic from 'next/dynamic'
-import { Button } from '@mui/material'
+import { useIntl } from 'react-intl'
+import { Button, Tooltip } from '@mui/material'
 import { GoalDto } from 'dto'
-import { Locale } from 'hooks/useLocale'
 import AppIcon from 'components/ui/AppIcon'
-import OptionalTooltip from 'components/OptionalTooltip'
-import i18n from './i18n'
 
 const ModalFeedback = dynamic(() => import('./components/ModalFeedback'))
 
 export interface FeedbackAddProps {
   goal: GoalDto
   forTomorrow: boolean
-  locale: Locale
 }
 
-export default function FeedbackAdd({ goal, forTomorrow, locale }: FeedbackAddProps) {
+export default function FeedbackAdd({ goal, forTomorrow }: FeedbackAddProps) {
+  const { formatMessage } = useIntl()
   const [open, setOpen] = useState(false)
-  const { button } = i18n[locale]
+  const title = forTomorrow && formatMessage({ id: 'component.tooltip.tomorrow' })
+  const buttonText = formatMessage({ id: 'common.add' })
 
   const toggle = () => setOpen(!open)
 
   return (
     <>
-      <OptionalTooltip tmpl="tomorrow" wrap={forTomorrow} followCursor>
-        <Button
-          variant="outlined"
-          color="secondary"
-          startIcon={<AppIcon name="psychology" />}
-          disabled={forTomorrow}
-          onClick={toggle}
-        >
-          {button}
-        </Button>
-      </OptionalTooltip>
+      <Tooltip title={title} arrow followCursor>
+        <span>
+          <Button
+            variant="outlined"
+            color="secondary"
+            startIcon={<AppIcon name="psychology" />}
+            disabled={forTomorrow}
+            onClick={toggle}
+          >
+            {buttonText}
+          </Button>
+        </span>
+      </Tooltip>
       {open && <ModalFeedback goal={goal} onClose={toggle} />}
     </>
   )

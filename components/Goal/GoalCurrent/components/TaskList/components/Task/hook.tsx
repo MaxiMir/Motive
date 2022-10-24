@@ -7,7 +7,7 @@ import { toShortUserName } from 'helpers/prepare'
 import useSnackbar from 'hooks/useSnackbar'
 import useClient from 'hooks/useClient'
 import useLocale from 'hooks/useLocale'
-import { useMutateUserPage } from 'views/UserView/hook'
+import { useMutateUserPage } from 'pages/[id]/hook'
 import { getGoalNextState } from './helper'
 import i18n from './i18n'
 

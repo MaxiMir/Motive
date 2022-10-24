@@ -1,14 +1,14 @@
 import { useState } from 'react'
 import dynamic from 'next/dynamic'
-import { Box, Button } from '@mui/material'
+import { Box, Button, Tooltip } from '@mui/material'
 import { GoalDto } from 'dto'
 import useLocale from 'hooks/useLocale'
-import OptionalTooltip from 'components/OptionalTooltip'
 import AppEmoji from 'components/ui/AppEmoji'
+import { useIntl } from 'react-intl'
 import i18n from './i18n'
 
 const ModalTasks = dynamic(() => import('./components/ModalTasks'))
-const ModalCompletion = dynamic(() => import('./components/ModalCompletion'))
+const ModalCompletion = dynamic(() => import('components/Modal/ModalCompletion'))
 
 export interface OwnerControlProps {
   goal: GoalDto
@@ -17,11 +17,13 @@ export interface OwnerControlProps {
 export default function OwnerControl({ goal }: OwnerControlProps) {
   const { stages, day } = goal
   const { locale } = useLocale()
+  const { formatMessage } = useIntl()
   const [modal, setModal] = useState<'tasks' | 'completion'>()
   const feedbackAdded = !!goal.day.feedback
   const renderCompete = stages.length === day.stage && feedbackAdded
   const justifyContent = renderCompete ? 'space-between' : 'flex-end'
   const { nextButton, doneButton } = i18n[locale]
+  const title = !feedbackAdded && formatMessage({ id: 'component.tooltip.feedback' })
 
   const onAddTasks = () => setModal('tasks')
 
@@ -31,16 +33,18 @@ export default function OwnerControl({ goal }: OwnerControlProps) {
 
   return (
     <Box display="flex" justifyContent={justifyContent}>
-      <OptionalTooltip tmpl="feedback" wrap={!feedbackAdded} followCursor>
-        <Button
-          variant="outlined"
-          disabled={!feedbackAdded}
-          startIcon={<AppEmoji name="moon" onlyEmoji />}
-          onClick={onAddTasks}
-        >
-          {nextButton}
-        </Button>
-      </OptionalTooltip>
+      <Tooltip title={title} arrow followCursor>
+        <span>
+          <Button
+            variant="outlined"
+            disabled={!feedbackAdded}
+            startIcon={<AppEmoji name="moon" onlyEmoji />}
+            onClick={onAddTasks}
+          >
+            {nextButton}
+          </Button>
+        </span>
+      </Tooltip>
       {renderCompete && (
         <Button variant="outlined" color="warning" startIcon={<AppEmoji name="cup" onlyEmoji />} onClick={onComplete}>
           {doneButton}

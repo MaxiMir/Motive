@@ -1,3 +1,4 @@
+import { useIntl } from 'react-intl'
 import { Button } from '@mui/material'
 import useOpenSignIn from 'hooks/useOpenSignIn'
 import useLocale from 'hooks/useLocale'
@@ -8,14 +9,15 @@ import FooterIcon from './FooterIcon'
 interface FooterProfileProps {
   nickname?: string
   asPath: string
-  ariaLabel: string
 }
 
-export default function FooterProfile({ nickname, ariaLabel, asPath }: FooterProfileProps) {
+export default function FooterProfile({ nickname, asPath }: FooterProfileProps) {
+  const { formatMessage } = useIntl()
   const { go } = useLocale()
   const openSignIn = useOpenSignIn()
   const href = !nickname ? undefined : getUserHref(nickname)
   const selected = !href ? false : asPath.includes(href)
+  const ariaLabel = formatMessage({ id: 'component.footer.my' })
 
   const onClick = () => {
     if (href) {

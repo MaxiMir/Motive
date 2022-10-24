@@ -6,7 +6,7 @@ import MemberService from 'services/MemberService'
 import useLocale from 'hooks/useLocale'
 import useClient from 'hooks/useClient'
 import useSnackbar from 'hooks/useSnackbar'
-import { useUserPageConfig } from 'views/UserView/hook'
+import { useUserPageConfig } from 'pages/[id]/hook'
 import { getNextState } from './helper'
 import i18n from './i18n'
 

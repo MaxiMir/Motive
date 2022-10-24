@@ -1,36 +1,19 @@
 import { useRouter } from 'next/router'
+import { useIntl } from 'react-intl'
 import { Box, Button, Typography } from '@mui/material'
-import useLocale from 'hooks/useLocale'
 import AppEmoji from 'components/ui/AppEmoji'
 import AppContainer from 'components/ui/AppContainer'
-
-const i18n = {
-  en: {
-    notFound: 'Page Not Found',
-    default: 'Something went wrong...',
-    back: 'Back',
-  },
-  ru: {
-    notFound: 'Страница не найдена',
-    default: 'Что-то пошло не так...',
-    back: 'Назад',
-  },
-  uk: {
-    notFound: 'Сторінку не знайдено',
-    default: 'Щось пішло не так...',
-    back: 'Назад',
-  },
-}
 
 interface CustomErrorProps {
   statusCode?: number
 }
 
-export default function CustomError({ statusCode = 500 }: CustomErrorProps) {
-  const { locale } = useLocale()
+export default function Error({ statusCode = 500 }: CustomErrorProps) {
+  const { formatMessage } = useIntl()
   const router = useRouter()
-  const errorKey = statusCode === 404 ? 'notFound' : 'default'
-  const { [errorKey]: title, back } = i18n[locale]
+  const headerMessageId = statusCode === 404 ? 'page.404.title' : 'common.error'
+  const header = formatMessage({ id: headerMessageId })
+  const backText = formatMessage({ id: 'common.back' })
 
   const onClick = () => router.back()
 
@@ -39,20 +22,20 @@ export default function CustomError({ statusCode = 500 }: CustomErrorProps) {
       <Box display="flex" alignItems="center" justifyContent="center" flex={1}>
         <Box display="flex" flexDirection="column" alignItems="center" justifyContent="space-between">
           <Typography component="h1" variant="h5">
-            {title}
+            {header}
           </Typography>
           <Typography sx={{ fontSize: '9em' }}>{statusCode}</Typography>
           <Typography sx={{ fontSize: '9em' }}>
             <AppEmoji name="error" onlyEmoji />
           </Typography>
           <Button
-            aria-label={back}
+            aria-label={backText}
             sx={{
               color: 'warning.light',
             }}
             onClick={onClick}
           >
-            {back}
+            {backText}
           </Button>
         </Box>
       </Box>

@@ -4,7 +4,7 @@ import { Box, Tooltip } from '@mui/material'
 import { ConfirmationDto, GoalCharacteristicName, MAIN_CHARACTERISTICS, MemberDto } from 'dto'
 import useClient from 'hooks/useClient'
 import useLocale from 'hooks/useLocale'
-import AppTitle from 'components/ui/AppTitle'
+import AppHeader from 'components/ui/AppHeader'
 import AppDot from 'components/ui/AppDot'
 import CharacteristicGoal from 'components/Characteristic/CharacteristicGoal'
 import { checkOnRepeat, getGoalInfo } from './helper'
@@ -59,9 +59,9 @@ export default function GoalCompleted({ userId, clientMembership, confirmation }
         })}
       >
         <Box display="flex" flexDirection="column" gap={1}>
-          <AppTitle name="cup" variant="h6" component="h2">
+          <AppHeader name="cup" variant="h6" component="h2">
             {goal.name}
-          </AppTitle>
+          </AppHeader>
           {inherited && <Inheritance owner={goal.owner} locale={locale} />}
           <Typography variant="caption">
             {durationTitle}:{' '}

@@ -4,6 +4,7 @@ import { AppProps } from 'next/app'
 import { SessionProvider, SignInOptions } from 'next-auth/react'
 import { Hydrate, MutationCache, QueryCache, QueryClient, QueryClientProvider } from 'react-query'
 import NextNprogress from 'nextjs-progressbar'
+import { IntlProvider } from 'react-intl'
 import { StylesProvider, createGenerateClassName } from '@mui/styles'
 import { createTheme, ThemeProvider } from '@mui/material/styles'
 import { PaletteMode, useMediaQuery } from '@mui/material'
@@ -17,23 +18,16 @@ import { ModalSignInContext } from 'context/modalSignInContext'
 import { getFnsLocale } from 'helpers/date'
 import useLocale from 'hooks/useLocale'
 import Socket from 'components/Event'
+import en from 'lang/en.json'
+import ru from 'lang/ru.json'
+import uk from 'lang/uk.json'
 
 const AppSnackbar = dynamic(() => import('components/ui/AppSnackbar'))
 const ModalSignIn = dynamic(() => import('components/Modal/ModalSignIn'))
 
-const generateClassName = createGenerateClassName({ productionPrefix: 'be' })
+const MESSAGES = { en, ru, uk }
 
-const i18n = {
-  en: {
-    error: 'Sorry, something went wrong...',
-  },
-  ru: {
-    error: 'Что-то пошло не так...',
-  },
-  uk: {
-    error: 'Щось пішло не так...',
-  },
-}
+const generateClassName = createGenerateClassName({ productionPrefix: 'be' })
 
 export default function MyApp({ Component, pageProps: { session, ...pageProps } }: AppProps) {
   const { dehydratedState, providers } = pageProps
@@ -46,7 +40,7 @@ export default function MyApp({ Component, pageProps: { session, ...pageProps } 
   const [snackbarProps, setSnackbarProps] = useState<ContextSnackbarProps | null>(null)
   const [options, setOptions] = useState<SignInOptions>()
   const fnsLocale = getFnsLocale(locale)
-  const { error } = i18n[locale]
+  const error = MESSAGES[locale]['common.error']
   const [queryClient] = useState(
     () =>
       new QueryClient({
@@ -87,30 +81,32 @@ export default function MyApp({ Component, pageProps: { session, ...pageProps } 
   }, [])
 
   return (
-    <SessionProvider session={session} refetchOnWindowFocus>
-      <QueryClientProvider client={queryClient}>
-        <Hydrate state={dehydratedState}>
-          <LocalizationProvider dateAdapter={AdapterDateFns} locale={fnsLocale}>
-            <ThemeContext.Provider value={themeCtx}>
-              <StylesProvider generateClassName={generateClassName}>
-                <ThemeProvider theme={theme}>
-                  <NextNprogress color="#b46a5a" />
-                  {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
-                  <CssBaseline />
-                  <ModalSignInContext.Provider value={modalSignInCtx}>
-                    <SnackbarContext.Provider value={snackbarCtx}>
-                      <Component {...pageProps} />
-                    </SnackbarContext.Provider>
-                  </ModalSignInContext.Provider>
-                  <Socket />
-                  {snackbarProps && <AppSnackbar {...snackbarProps} onClose={onCloseSnackbar} />}
-                  {options && <ModalSignIn options={options} onClose={onCloseSignIn} />}
-                </ThemeProvider>
-              </StylesProvider>
-            </ThemeContext.Provider>
-          </LocalizationProvider>
-        </Hydrate>
-      </QueryClientProvider>
-    </SessionProvider>
+    <IntlProvider locale={locale} messages={MESSAGES[locale]}>
+      <SessionProvider session={session} refetchOnWindowFocus>
+        <QueryClientProvider client={queryClient}>
+          <Hydrate state={dehydratedState}>
+            <LocalizationProvider dateAdapter={AdapterDateFns} locale={fnsLocale}>
+              <ThemeContext.Provider value={themeCtx}>
+                <StylesProvider generateClassName={generateClassName}>
+                  <ThemeProvider theme={theme}>
+                    <NextNprogress color="#b46a5a" />
+                    {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
+                    <CssBaseline />
+                    <ModalSignInContext.Provider value={modalSignInCtx}>
+                      <SnackbarContext.Provider value={snackbarCtx}>
+                        <Component {...pageProps} />
+                      </SnackbarContext.Provider>
+                    </ModalSignInContext.Provider>
+                    <Socket />
+                    {snackbarProps && <AppSnackbar {...snackbarProps} onClose={onCloseSnackbar} />}
+                    {options && <ModalSignIn options={options} onClose={onCloseSignIn} />}
+                  </ThemeProvider>
+                </StylesProvider>
+              </ThemeContext.Provider>
+            </LocalizationProvider>
+          </Hydrate>
+        </QueryClientProvider>
+      </SessionProvider>
+    </IntlProvider>
   )
 }

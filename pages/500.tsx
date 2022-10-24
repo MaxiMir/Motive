@@ -1,22 +1,10 @@
+import { useIntl } from 'react-intl'
 import Layout from 'layout'
-import useLocale from 'hooks/useLocale'
 import Error from 'pages/_error'
 
-const i18n = {
-  en: {
-    title: '500: Sorry, something went wrong...',
-  },
-  ru: {
-    title: '500: Что-то пошло не так...',
-  },
-  uk: {
-    title: '500: Щось пішло не так...',
-  },
-}
-
 export default function Page500() {
-  const { locale } = useLocale()
-  const { title } = i18n[locale]
+  const { formatMessage } = useIntl()
+  const title = formatMessage({ id: 'page.500.title' })
 
   return (
     <Layout title={title}>

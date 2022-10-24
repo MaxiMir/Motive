@@ -1,13 +1,12 @@
 import { useState } from 'react'
 import dynamic from 'next/dynamic'
+import { useIntl } from 'react-intl'
 import { Step, StepContent, Stepper } from '@mui/material'
 import { GoalDto } from 'dto'
-import useLocale from 'hooks/useLocale'
 import StageLabel from './components/StageLabel'
-import i18n from './i18n'
 
 const Button = dynamic(() => import('@mui/material/Button'))
-const OptionalTooltip = dynamic(() => import('components/OptionalTooltip'))
+const Tooltip = dynamic(() => import('@mui/material/Tooltip'))
 
 const ModalStage = dynamic(() => import('./components/ModalStage'))
 
@@ -18,11 +17,12 @@ interface StagesProps {
 }
 
 export default function Stages({ goal, forTomorrow, completeStage }: StagesProps) {
-  const { locale } = useLocale()
+  const { formatMessage } = useIntl()
   const [open, setOpen] = useState(false)
   const { day, stages } = goal
   const activeStep = day.stage
-  const { buttonTitle } = i18n[locale]
+  const title = forTomorrow && formatMessage({ id: 'component.tooltip.tomorrow' })
+  const buttonText = formatMessage({ id: 'common.done' })
 
   const toggleModal = () => setOpen(!open)
 
@@ -47,11 +47,19 @@ export default function Stages({ goal, forTomorrow, completeStage }: StagesProps
               <StepContent />
             ) : (
               <StepContent>
-                <OptionalTooltip tmpl="tomorrow" wrap={forTomorrow} followCursor>
-                  <Button variant="outlined" color="success" size="small" disabled={forTomorrow} onClick={toggleModal}>
-                    {buttonTitle}
-                  </Button>
-                </OptionalTooltip>
+                <Tooltip title={title} arrow followCursor>
+                  <span>
+                    <Button
+                      variant="outlined"
+                      color="success"
+                      size="small"
+                      disabled={forTomorrow}
+                      onClick={toggleModal}
+                    >
+                      {buttonText}
+                    </Button>
+                  </span>
+                </Tooltip>
               </StepContent>
             )}
           </Step>

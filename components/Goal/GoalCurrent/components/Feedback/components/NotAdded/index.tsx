@@ -1,9 +1,7 @@
 import dynamic from 'next/dynamic'
 import { GoalDto, OwnershipDto } from 'dto'
-import useLocale from 'hooks/useLocale'
-import i18n from './i18n'
 
-const Typography = dynamic(() => import('@mui/material/Typography'))
+const Soon = dynamic(() => import('./components/Soon'))
 const FeedbackAdd = dynamic(() => import('./components/FeedbackAdd'))
 
 export interface NotAddedProps {
@@ -13,16 +11,5 @@ export interface NotAddedProps {
 }
 
 export default function NotAdded({ goal, forTomorrow, clientOwnership }: NotAddedProps) {
-  const { locale } = useLocale()
-  const { soon } = i18n[locale]
-
-  return (
-    <>
-      {!clientOwnership.goal ? (
-        <Typography>{soon}</Typography>
-      ) : (
-        <FeedbackAdd goal={goal} forTomorrow={forTomorrow} locale={locale} />
-      )}
-    </>
-  )
+  return <>{!clientOwnership.goal ? <Soon /> : <FeedbackAdd goal={goal} forTomorrow={forTomorrow} />}</>
 }

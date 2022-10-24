@@ -4,9 +4,9 @@ import { Box, useTheme } from '@mui/material'
 import { GoalDto, GoalCharacteristicName, MemberDto, MAIN_CHARACTERISTICS } from 'dto'
 import useLocale from 'hooks/useLocale'
 import { getGoalWithDayHref, HashMark } from 'helpers/url'
-import { getMember } from 'views/UserView/helper'
+import { getMember } from 'pages/[id]/components/UserView/helper'
 import CharacteristicGoal from 'components/Characteristic/CharacteristicGoal'
-import AppTitle from 'components/ui/AppTitle'
+import AppHeader from 'components/ui/AppHeader'
 import AppAccordion from 'components/ui/AppAccordion'
 import AppInView from 'components/ui/AppInView'
 import { useIncreaseViews } from './hook'
@@ -109,9 +109,9 @@ export default function GoalCurrent({
           <AppInView triggerOnce onView={() => mutate()}>
             <Box display="flex" flexDirection="column" gap={3}>
               <Box display="flex" justifyContent="space-between" alignItems="center">
-                <AppTitle name="goal" variant="h6" component="h2">
+                <AppHeader name="goal" variant="h6" component="h2">
                   <b>{name}</b>
-                </AppTitle>
+                </AppHeader>
                 <Menu goal={goal} title={name} href={goalHref} clientOwnership={clientOwnership} />
               </Box>
               <Box display="flex" justifyContent="space-between" alignItems="center">

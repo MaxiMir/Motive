@@ -4,7 +4,7 @@ import { GoalStageDto } from 'dto'
 import GoalService from 'services/GoalService'
 import useLocale from 'hooks/useLocale'
 import useSnackbar from 'hooks/useSnackbar'
-import { useMutateGoals } from 'views/UserView/hook'
+import { useMutateGoals } from 'pages/[id]/hook'
 import { getNextState } from './helper'
 import i18n from './i18n'
 

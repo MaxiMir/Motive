@@ -1,7 +1,7 @@
 import { InfiniteData, useInfiniteQuery, useQueryClient } from 'react-query'
 import { TopicDto } from 'dto'
 import { partialCheckOnLoadMore } from 'helpers/fetcher'
-import { useMutateGoals } from 'views/UserView/hook'
+import { useMutateGoals } from 'pages/[id]/hook'
 import { PRELOAD_DIFF, getGoalNextState, partialFetcher, partialGetNextPageParam, getNextState } from './helper'
 
 interface UseDiscussion {

@@ -1,33 +1,28 @@
 import { useRouter } from 'next/router'
+import { useIntl } from 'react-intl'
 import { Container, Box, Button } from '@mui/material'
 import { FOLLOWING, RATING, SEARCH, TOP_OF_THE_DAY } from 'route'
-import i18nCommon from 'constants/i18n'
-import useLocale from 'hooks/useLocale'
 import AppLink from 'components/ui/AppLink'
 import { TopOfTheDayIcon, SearchIcon, RatingIcon, FollowingIcon } from 'components/ui/icons'
 import { ucFirst } from 'helpers/prepare'
 import FooterIcon from './components/FooterIcon'
 import FooterProfile from './components/FooterProfile'
-import i18n from './i18n'
 
 interface FooterProps {
   nickname?: string
 }
 
 export default function Footer({ nickname }: FooterProps) {
+  const { formatMessage } = useIntl()
   const { asPath } = useRouter()
-  const { locale } = useLocale()
-  const titles = i18n[locale]
   const routes = getRoutes()
 
   function getRoutes() {
-    const followingTitle = ucFirst(i18nCommon[locale].following)
-
     return [
-      { title: titles.top, href: TOP_OF_THE_DAY, Component: TopOfTheDayIcon },
-      { title: titles.search, href: SEARCH, Component: SearchIcon },
-      { title: titles.rating, href: RATING, Component: RatingIcon },
-      { title: followingTitle, href: FOLLOWING, Component: FollowingIcon },
+      { title: formatMessage({ id: 'component.footer.top' }), href: TOP_OF_THE_DAY, Component: TopOfTheDayIcon },
+      { title: formatMessage({ id: 'component.footer.search' }), href: SEARCH, Component: SearchIcon },
+      { title: formatMessage({ id: 'component.footer.rating' }), href: RATING, Component: RatingIcon },
+      { title: ucFirst(formatMessage({ id: 'common.following' })), href: FOLLOWING, Component: FollowingIcon },
     ]
   }
 
@@ -51,7 +46,7 @@ export default function Footer({ nickname }: FooterProps) {
               </Button>
             </AppLink>
           ))}
-          <FooterProfile nickname={nickname} ariaLabel={titles.my} asPath={asPath} />
+          <FooterProfile nickname={nickname} asPath={asPath} />
         </Box>
       </Container>
     </Box>

@@ -5,7 +5,12 @@ export const [EN, RU, UK] = LOCALES
 export const LOCALE_MAP = { [EN]: 'en_US', [RU]: 'ru_RU', [UK]: 'Uk_UA' }
 
 export type Locale = typeof LOCALES[number]
-type UseLocale = { locale: Locale; go: (url: string) => void; setLocale: (value: Locale) => void }
+
+interface UseLocale {
+  locale: Locale
+  go: (url: string) => void
+  setLocale: (value: Locale) => void
+}
 
 export default function useLocale(): UseLocale {
   const { asPath, locale: routerLocale = EN, push } = useRouter()

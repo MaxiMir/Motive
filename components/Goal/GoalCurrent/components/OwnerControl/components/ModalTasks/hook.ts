@@ -4,11 +4,10 @@ import { CreateDayDto, GoalDto } from 'dto'
 import schema from 'schemas/tasks'
 import GoalService from 'services/GoalService'
 import { getTomorrow } from 'helpers/date'
-import useLocale from 'hooks/useLocale'
 import useSnackbar from 'hooks/useSnackbar'
-import { useChangeDayUrl, useMutateGoals } from 'views/UserView/hook'
+import { useChangeDayUrl, useMutateGoals } from 'pages/[id]/hook'
+import { useIntl } from 'react-intl'
 import { getNextState } from './helper'
-import i18n from './i18n'
 
 export default function useForm(goal: GoalDto, onSuccess: () => void): FormikProps<CreateDayDto> {
   const { id } = goal
@@ -29,7 +28,7 @@ export default function useForm(goal: GoalDto, onSuccess: () => void): FormikPro
 }
 
 const useSendAddDay = () => {
-  const { locale } = useLocale()
+  const { formatMessage } = useIntl()
   const [enqueueSnackbar] = useSnackbar()
   const [goals, mutateGoals] = useMutateGoals()
   const changeDayUrl = useChangeDayUrl()
@@ -37,7 +36,7 @@ const useSendAddDay = () => {
   return useMutation(GoalService.createDay, {
     onSuccess({ days }, { id }) {
       const day = days[days.length - 1]
-      const { message } = i18n[locale]
+      const message = formatMessage({ id: 'common.next-day-loading' })
 
       mutateGoals(getNextState(goals, day, id))
       changeDayUrl(goals, id, day.id)

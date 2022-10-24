@@ -4,10 +4,10 @@ import { GoalDto } from 'dto'
 import useLocale from 'hooks/useLocale'
 import useSelectPhoto from 'hooks/useSelectPhoto'
 import ActionSubmit from 'components/Action/ActionSubmit'
-import ActionClose from 'components/Action/ActionClose'
+import ActionCancel from 'components/Action/ActionCancel'
 import AppModal from 'components/ui/AppModal'
 import AppInput from 'components/ui/AppInput'
-import AppTitle from 'components/ui/AppTitle'
+import AppHeader from 'components/ui/AppHeader'
 import AppShakeIcon from 'components/ui/AppShakeIcon'
 import PhotoInput from 'components/Photo/PhotoInput'
 import PhotoButton from 'components/Photo/PhotoButton'
@@ -36,7 +36,7 @@ export default function ModalFeedback({ goal, onClose }: ModalFeedbackProps) {
       title={title}
       maxWidth="xs"
       actions={[
-        <ActionClose onClick={onClose} />,
+        <ActionCancel onClick={onClose} />,
         <ActionSubmit
           isLoading={isSubmitting}
           name={button}
@@ -59,9 +59,9 @@ export default function ModalFeedback({ goal, onClose }: ModalFeedbackProps) {
             <Field name="text" label={label} color="warning" multiline rows={3} component={AppInput} />
             {!!values.photos.length && (
               <Box display="flex" flexDirection="column" gap={2} width="100%">
-                <AppTitle name="photo" variant="h6" component="h2" color="primary">
+                <AppHeader name="photo" variant="h6" component="h2" color="primary">
                   {photoTitle}
-                </AppTitle>
+                </AppHeader>
                 <FieldArray name="photos">
                   {({ remove }) => (
                     <Grid container spacing={2}>
@@ -77,9 +77,9 @@ export default function ModalFeedback({ goal, onClose }: ModalFeedbackProps) {
             )}
             {values.video && (
               <Box display="flex" flexDirection="column" gap={2} width="100%">
-                <AppTitle name="video" variant="h6" component="h2" color="primary">
+                <AppHeader name="video" variant="h6" component="h2" color="primary">
                   {videoTitle}
-                </AppTitle>
+                </AppHeader>
                 <VideoPreview
                   video={values.video}
                   disabled={isSubmitting}

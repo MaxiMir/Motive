@@ -7,7 +7,7 @@ import useDebounceCb from 'hooks/useDebounceCb'
 import useSnackbar from 'hooks/useSnackbar'
 import useClient from 'hooks/useClient'
 import useOpenSignIn from 'hooks/useOpenSignIn'
-import { useUserPageConfig } from 'views/UserView/hook'
+import { useUserPageConfig } from 'pages/[id]/hook'
 import { Context, getNextState } from './helper'
 import i18n from './i18n'
 

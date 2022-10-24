@@ -1,19 +1,18 @@
 import { AxiosError } from 'axios'
 import { useMutation, UseMutationResult } from 'react-query'
+import { useIntl } from 'react-intl'
 import { GoalDto, MemberDto, UpdateMemberDto } from 'dto'
 import { clickOnElem } from 'helpers/dom'
 import useSnackbar from 'hooks/useSnackbar'
-import useLocale from 'hooks/useLocale'
-import { useMutateUserPage } from 'views/UserView/hook'
+import { useMutateUserPage } from 'pages/[id]/hook'
 import MemberService from 'services/MemberService'
 import { getNextState } from './helper'
-import i18n from './i18n'
 
 export const useSendEndOfDay = (goal: GoalDto): UseMutationResult<MemberDto, AxiosError, UpdateMemberDto> => {
-  const { locale } = useLocale()
+  const { formatMessage } = useIntl()
   const [enqueueSnackbar] = useSnackbar()
   const [page, mutatePage] = useMutateUserPage()
-  const { message } = i18n[locale]
+  const message = formatMessage({ id: 'common.next-day-loading' })
 
   return useMutation(MemberService.update, {
     onSuccess(member) {

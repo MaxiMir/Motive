@@ -1,6 +1,6 @@
 import { ClientDto, ConfirmationDto, GoalBaseDto, MemberDto, PhotoDto } from 'dto'
 import { differenceInCalendarDays, format } from 'date-fns'
-import { getMember } from 'views/UserView/helper'
+import { getMember } from 'pages/[id]/components/UserView/helper'
 
 export const checkOnRepeat = (
   userId: number,

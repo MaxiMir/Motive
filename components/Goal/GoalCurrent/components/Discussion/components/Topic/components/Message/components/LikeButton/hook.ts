@@ -6,7 +6,7 @@ import useOpenSignIn from 'hooks/useOpenSignIn'
 import useSnackbar from 'hooks/useSnackbar'
 import useDebounceCb from 'hooks/useDebounceCb'
 import useLocale from 'hooks/useLocale'
-import { useMutateGoals } from 'views/UserView/hook'
+import { useMutateGoals } from 'pages/[id]/hook'
 import { Context, fetcher, getGoalNextState, getNextState, Options } from './helper'
 import i18n from './i18n'
 
@@ -55,7 +55,7 @@ export default function useSetLike(message: MessageDto, answerFor: number | unde
         })
       }
     },
-    onError(_, __, context) {
+    onError(_, _2, context) {
       if (context?.previous) {
         queryClient.setQueryData(key, context?.previous)
       }

@@ -2,7 +2,7 @@ import { AxiosError } from 'axios'
 import { useMutation, UseMutationResult } from 'react-query'
 import { DayDto } from 'dto'
 import DayService from 'services/DayService'
-import { useChangeDayUrl, useMutateGoals } from 'views/UserView/hook'
+import { useChangeDayUrl, useMutateGoals } from 'pages/[id]/hook'
 import { getGoalNextState } from './helper'
 
 export const useChangeDay = (goalId: number): UseMutationResult<DayDto, AxiosError, number> => {

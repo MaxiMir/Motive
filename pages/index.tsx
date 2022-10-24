@@ -1,32 +1,18 @@
 import { GetServerSideProps } from 'next'
 import { getSession } from 'next-auth/react'
+import { useIntl } from 'react-intl'
 import { ClientDto } from 'dto'
-import useLocale from 'hooks/useLocale'
 import Layout from 'layout'
-import MainView from 'views/MainView'
+import HomeView from './home/components/HomeView'
 
-const i18n = {
-  en: {
-    title: 'A social network for achieving goals',
-    description: 'Create your own goals, share your accomplishments, and go to your goals with others 🥷!',
-  },
-  ru: {
-    title: 'Социальная сеть для достижения целей',
-    description: 'Создавайте свои цели, делитесь своими достижениями, а так же идите к цели со другими 🥷!',
-  },
-  uk: {
-    title: 'Соціальна мережа для досягнення цілей',
-    description: 'Створюйте свої цілі, ділитеся своїми досягненнями, а так само йдіть до мети з іншими 🥷!',
-  },
-}
-
-export default function MainPage() {
-  const { locale } = useLocale()
-  const { title, description } = i18n[locale]
+export default function HomePage() {
+  const { formatMessage } = useIntl()
+  const title = formatMessage({ id: 'page.home.title' })
+  const description = formatMessage({ id: 'page.home.description' })
 
   return (
     <Layout title={title} description={description}>
-      <MainView locale={locale} />
+      <HomeView />
     </Layout>
   )
 }

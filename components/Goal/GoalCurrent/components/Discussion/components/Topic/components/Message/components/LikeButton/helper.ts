@@ -46,20 +46,20 @@ export const getGoalNextState = (goals: GoalDto[], goalId: number, add: boolean)
     draftGoal.characteristic.support += add ? 1 : -1
   })
 
-export const getTitle = (message: MessageDto, disabled: boolean, locale: Locale): string | undefined => {
+export const getTitle = (message: MessageDto, disabled: boolean, locale: Locale): string | boolean => {
   const { like, type } = message
   const { helpful, getLike, getMark } = i18n[locale]
 
   if (disabled) {
-    return !like ? undefined : helpful
+    return !like ? false : helpful
   }
 
   return type === MessageType.Question ? getLike(like) : getMark(like)
 }
 
-export const getAreaLabel = (message: MessageDto, title: string | undefined, locale: Locale): string | undefined => {
+export const getAreaLabel = (message: MessageDto, title: string | boolean, locale: Locale): string | undefined => {
   const { like, likeCount } = message
   const { getArea } = i18n[locale]
 
-  return title && `${title}${!likeCount || like ? '' : getArea(likeCount)}`
+  return !title ? undefined : `${title}${!likeCount || like ? '' : getArea(likeCount)}`
 }

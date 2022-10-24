@@ -1,8 +1,8 @@
+import { useIntl } from 'react-intl'
 import { Box, Typography } from '@mui/material'
 import { GoalDto } from 'dto'
-import useLocale from 'hooks/useLocale'
 import ActionSubmit from 'components/Action/ActionSubmit'
-import ActionClose from 'components/Action/ActionClose'
+import ActionCancel from 'components/Action/ActionCancel'
 import AppModal from 'components/ui/AppModal'
 import AppFlyIcon from 'components/ui/AppFlyIcon'
 import { useSendStage } from './hook'
@@ -15,7 +15,7 @@ export interface ModalStageProps {
 
 export default function ModalStage({ goal, onClose }: ModalStageProps) {
   const { stages, day } = goal
-  const { locale } = useLocale()
+  const { locale } = useIntl()
   const { isLoading, mutate } = useSendStage(onClose)
   const { title, behind, button, buttonLoading, getNextTitle } = i18n[locale]
   const isFinal = stages.length === day.stage
@@ -36,7 +36,7 @@ export default function ModalStage({ goal, onClose }: ModalStageProps) {
       }
       maxWidth="xs"
       actions={[
-        <ActionClose onClick={onClose} />,
+        <ActionCancel onClick={onClose} />,
         <ActionSubmit
           isLoading={isLoading}
           name={button}

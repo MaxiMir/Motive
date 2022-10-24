@@ -1,8 +1,8 @@
 import dynamic from 'next/dynamic'
 import { Field, FieldArray, Form, FormikProvider } from 'formik'
+import { useIntl } from 'react-intl'
 import { Grid, Box, Typography } from '@mui/material'
 import { MAIN_CHARACTERISTICS, GoalDto } from 'dto'
-import useLocale from 'hooks/useLocale'
 import useSelectPhoto from 'hooks/useSelectPhoto'
 import ActionSubmit from 'components/Action/ActionSubmit'
 import ActionCancel from 'components/Action/ActionCancel'
@@ -27,7 +27,7 @@ export interface ModalCompletionProps {
 }
 
 export default function ModalCompletion({ goal, onClose }: ModalCompletionProps) {
-  const { locale } = useLocale()
+  const { locale } = useIntl()
   const form = useForm(goal, onClose)
   const { isSubmitting, values, touched, errors, setFieldValue, handleSubmit } = form
   const photoError = Array.isArray(errors.photos) ? errors.photos.join(', ') : errors.photos

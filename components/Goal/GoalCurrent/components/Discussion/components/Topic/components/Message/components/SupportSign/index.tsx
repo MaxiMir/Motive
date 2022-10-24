@@ -1,5 +1,5 @@
 import { Box, Tooltip } from '@mui/material'
-import { Locale } from 'hooks/useLocale'
+import { Locale } from 'hooks/useSetLocale'
 import AppEmoji from 'components/ui/AppEmoji'
 import i18n from './i18n'
 

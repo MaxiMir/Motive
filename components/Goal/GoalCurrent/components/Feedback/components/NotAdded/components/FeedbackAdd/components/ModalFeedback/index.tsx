@@ -1,7 +1,7 @@
 import { Field, FieldArray, Form, FormikProvider } from 'formik'
+import { useIntl } from 'react-intl'
 import { Grid, Box, Typography } from '@mui/material'
 import { GoalDto } from 'dto'
-import useLocale from 'hooks/useLocale'
 import useSelectPhoto from 'hooks/useSelectPhoto'
 import ActionSubmit from 'components/Action/ActionSubmit'
 import ActionCancel from 'components/Action/ActionCancel'
@@ -22,7 +22,7 @@ export interface ModalFeedbackProps {
 }
 
 export default function ModalFeedback({ goal, onClose }: ModalFeedbackProps) {
-  const { locale } = useLocale()
+  const { locale } = useIntl()
   const form = useForm(goal, onClose)
   const { isSubmitting, values, setFieldValue, handleSubmit } = form
   const { title, label, subtitle, photoTitle, videoTitle, button, buttonLoading } = i18n[locale]

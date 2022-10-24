@@ -1,15 +1,15 @@
 import { AxiosError } from 'axios'
 import { useMutation, UseMutationResult } from 'react-query'
+import { useIntl } from 'react-intl'
 import { GoalStageDto } from 'dto'
 import GoalService from 'services/GoalService'
-import useLocale from 'hooks/useLocale'
 import useSnackbar from 'hooks/useSnackbar'
 import { useMutateGoals } from 'pages/[id]/hook'
 import { getNextState } from './helper'
 import i18n from './i18n'
 
 export const useSendStage = (onSuccess: () => void): UseMutationResult<void, AxiosError, GoalStageDto> => {
-  const { locale } = useLocale()
+  const { locale } = useIntl()
   const [goals, mutateGoals] = useMutateGoals()
   const [enqueueSnackbar] = useSnackbar()
 

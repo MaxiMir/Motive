@@ -1,5 +1,6 @@
 import { Fragment, ReactNode } from 'react'
 import dynamic from 'next/dynamic'
+import { useIntl } from 'react-intl'
 import {
   Dialog,
   DialogContent,
@@ -10,7 +11,6 @@ import {
   IconButton,
 } from '@mui/material'
 import i18nCommon from 'constants/i18n'
-import useLocale from 'hooks/useLocale'
 import AppScrollbar from './AppScrollbar'
 import AppIcon from './AppIcon'
 
@@ -27,7 +27,7 @@ interface AppModalProps {
 }
 
 export default function AppModal({ title, actions, maxWidth, blur = true, children, onClose }: AppModalProps) {
-  const { locale } = useLocale()
+  const { locale } = useIntl()
   const label = i18nCommon[locale].close
 
   return (

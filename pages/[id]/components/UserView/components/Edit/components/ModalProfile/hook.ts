@@ -1,19 +1,19 @@
 import { useRouter } from 'next/router'
 import { FormikProps, useFormik } from 'formik'
 import { useMutation } from 'react-query'
+import { useIntl } from 'react-intl'
 import { UpdateUserDto, UserBaseDto } from 'dto'
 import schema from 'schemas/profile'
-import { Locale } from 'hooks/useLocale'
 import UserService from 'services/UserService'
-import { getQueryParams, setQueryParams, getUserHref } from 'helpers/url'
 
+import { getQueryParams, setQueryParams, getUserHref } from 'helpers/url'
 import { useMutateUserPage } from 'pages/[id]/hook'
 import { getNextState } from './helper'
-import i18n from './i18n'
 
-export default function useForm(user: UserBaseDto, locale: Locale, onSuccess: () => void): FormikProps<UpdateUserDto> {
-  const { mutateAsync } = useSendUpdateUser(locale)
-  const { nicknameError } = i18n[locale]
+export default function useForm(user: UserBaseDto, onSuccess: () => void): FormikProps<UpdateUserDto> {
+  const { formatMessage } = useIntl()
+  const { mutateAsync } = useSendUpdateUser()
+  const nicknameError = formatMessage({ id: 'page.user.modal-profile.nickname-error' })
 
   return useFormik<UpdateUserDto>({
     initialValues: {
@@ -44,7 +44,8 @@ export default function useForm(user: UserBaseDto, locale: Locale, onSuccess: ()
   })
 }
 
-const useSendUpdateUser = (locale: Locale) => {
+const useSendUpdateUser = () => {
+  const { locale } = useIntl()
   const router = useRouter()
   const [page, mutatePage] = useMutateUserPage()
 

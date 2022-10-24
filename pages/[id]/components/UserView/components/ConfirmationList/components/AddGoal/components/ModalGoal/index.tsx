@@ -1,5 +1,6 @@
 import dynamic from 'next/dynamic'
 import { Field, FieldArray, Form, FormikProvider } from 'formik'
+import { useIntl } from 'react-intl'
 import {
   Box,
   Button,
@@ -13,7 +14,6 @@ import {
 } from '@mui/material'
 import { styled } from '@mui/system'
 import useFocus from 'hooks/useFocus'
-import { Locale } from 'hooks/useLocale'
 import { getToday, getTomorrow } from 'helpers/date'
 import AppModal from 'components/ui/AppModal'
 import AppHeader from 'components/ui/AppHeader'
@@ -24,39 +24,37 @@ import ActionSubmit from 'components/Action/ActionSubmit'
 import ActionCancel from 'components/Action/ActionCancel'
 import TaskField from 'components/Task/TaskField'
 import useForm from './hook'
-import i18n from './i18n'
 
 const AppIconButton = dynamic(() => import('components/ui/AppIconButton'))
 
 export interface ModalGoalProps {
-  locale: Locale
   onClose: () => void
 }
 
-export default function ModalGoal({ locale, onClose }: ModalGoalProps) {
+export default function ModalGoal({ onClose }: ModalGoalProps) {
+  const { formatMessage } = useIntl()
   const [hashtagsRef, setHashtagsFocus] = useFocus()
   const form = useForm(onClose)
   const { isSubmitting, values, setFieldValue, handleSubmit } = form
   const todayValue = getToday().toISOString()
   const tomorrowValue = getTomorrow().toISOString()
-  const {
-    title,
-    name,
-    hashtag,
-    hashtags,
-    button,
-    buttonLoading,
-    stages,
-    stage,
-    stageButton,
-    stageHints,
-    start,
-    startLabelledby,
-    today,
-    tomorrow,
-    tasksTitle,
-    addTask,
-  } = i18n[locale]
+  const title = formatMessage({ id: 'page.user.modal-goal.title' })
+  const nameLabel = formatMessage({ id: 'page.user.modal-goal.name' })
+  const hashtagText = formatMessage({ id: 'page.user.modal-goal.hashtag' })
+  const hashtagsLabel = formatMessage({ id: 'page.user.modal-goal.hashtags' })
+  const buttonText = formatMessage({ id: 'common.create' })
+  const buttonLoadingText = formatMessage({ id: 'common.create-loading' })
+  const stagesHeader = formatMessage({ id: 'page.user.modal-goal.stages' })
+  const stageLabel = formatMessage({ id: 'page.user.modal-goal.stage' })
+  const stageButtonText = formatMessage({ id: 'page.user.modal-goal.stage-button' })
+  const stageHintStart = formatMessage({ id: 'page.user.modal-goal.stage-hint-start' })
+  const stageHintEnd = formatMessage({ id: 'page.user.modal-goal.stage-hint-end' })
+  const startHeader = formatMessage({ id: 'page.user.modal-goal.start' })
+  const startLabelledby = formatMessage({ id: 'page.user.modal-goal.start-labelledby' })
+  const todayLabel = formatMessage({ id: 'common.today' })
+  const tomorrowLabel = formatMessage({ id: 'common.tomorrow' })
+  const tasksHeader = formatMessage({ id: 'page.user.modal-goal.tasks-title' })
+  const addTaskText = formatMessage({ id: 'common.task-add' })
 
   const onAddHashtag = () => {
     setFieldValue('hashtags', !values.hashtags ? '#' : [values.hashtags, '#'].join(' '))
@@ -71,8 +69,8 @@ export default function ModalGoal({ locale, onClose }: ModalGoalProps) {
         <ActionCancel onClick={onClose} />,
         <ActionSubmit
           isLoading={isSubmitting}
-          name={button}
-          nameLoading={buttonLoading}
+          name={buttonText}
+          nameLoading={buttonLoadingText}
           emoji="goal"
           onClick={handleSubmit}
         />,
@@ -82,24 +80,29 @@ export default function ModalGoal({ locale, onClose }: ModalGoalProps) {
       <FormikProvider value={form}>
         <Form autoComplete="off">
           <Box display="flex" flexDirection="column" gap={2}>
-            <Field name="name" label={name} component={AppInput} />
+            <Field name="name" label={nameLabel} component={AppInput} />
             <Box display="flex" flexDirection="column" gap={1}>
-              <Field name="hashtags" color="secondary" label={hashtags} inputRef={hashtagsRef} component={AppInput} />
+              <Field
+                name="hashtags"
+                color="secondary"
+                label={hashtagsLabel}
+                inputRef={hashtagsRef}
+                component={AppInput}
+              />
               <ButtonCompact variant="outlined" color="secondary" size="small" onClick={onAddHashtag}>
-                # {hashtag}
+                # {hashtagText}
               </ButtonCompact>
             </Box>
             <Box display="flex" flexDirection="column" gap={1}>
               <Box display="flex" gap={1}>
                 <AppHeader name="stage" variant="h6" component="h4" color="primary">
-                  {stages}
+                  {stagesHeader}
                 </AppHeader>
                 <Tooltip
                   title={
                     <>
-                      {stageHints.map((hint, key) => (
-                        <Typography key={key}>{hint}.</Typography>
-                      ))}
+                      <Typography>{stageHintStart}.</Typography>
+                      <Typography>{stageHintEnd}.</Typography>
                     </>
                   }
                 >
@@ -118,7 +121,7 @@ export default function ModalGoal({ locale, onClose }: ModalGoalProps) {
                         </Box>
                         <Field
                           name={`stages.${index}`}
-                          label={`${stage} ${index + 1}`}
+                          label={`${stageLabel} ${index + 1}`}
                           autoFocus={index === values.stages.length - 1}
                           color="warning"
                           component={AppInput}
@@ -129,7 +132,7 @@ export default function ModalGoal({ locale, onClose }: ModalGoalProps) {
                       </Box>
                     ))}
                     <ButtonCompact variant="outlined" color="warning" size="small" onClick={() => push('')}>
-                      + {stageButton}
+                      + {stageButtonText}
                     </ButtonCompact>
                   </>
                 )}
@@ -137,7 +140,7 @@ export default function ModalGoal({ locale, onClose }: ModalGoalProps) {
             </Box>
             <FormControl variant="standard">
               <AppHeader name="clock" variant="h6" component="label">
-                {start}
+                {startHeader}
               </AppHeader>
               <RadioGroup
                 name="started"
@@ -146,14 +149,14 @@ export default function ModalGoal({ locale, onClose }: ModalGoalProps) {
                 row
                 onChange={(e) => setFieldValue('started', e.target.value)}
               >
-                <FormControlLabel label={today} value={todayValue} control={<Radio />} />
-                <FormControlLabel label={tomorrow} value={tomorrowValue} control={<Radio />} />
+                <FormControlLabel label={todayLabel} value={todayValue} control={<Radio />} />
+                <FormControlLabel label={tomorrowLabel} value={tomorrowValue} control={<Radio />} />
               </RadioGroup>
             </FormControl>
             <Box display="flex" flexDirection="column" gap={2}>
               <Box display="flex" gap={1}>
                 <AppHeader name="task" variant="h6" component="h4" color="primary">
-                  {tasksTitle}
+                  {tasksHeader}
                 </AppHeader>
               </Box>
               <FieldArray name="tasks">
@@ -164,7 +167,6 @@ export default function ModalGoal({ locale, onClose }: ModalGoalProps) {
                         index={index}
                         taskCount={values.tasks.length}
                         date={task.date}
-                        locale={locale}
                         key={`tasks.${index}`}
                         onRemove={() => remove(index)}
                         onToggleDate={(isChecked) =>
@@ -173,7 +175,7 @@ export default function ModalGoal({ locale, onClose }: ModalGoalProps) {
                       />
                     ))}
                     <ButtonCompact variant="outlined" size="small" onClick={() => push({ name: '', date: undefined })}>
-                      {addTask}
+                      {addTaskText}
                     </ButtonCompact>
                   </>
                 )}

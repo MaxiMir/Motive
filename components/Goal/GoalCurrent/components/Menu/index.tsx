@@ -1,7 +1,7 @@
 import { MouseEvent, useState } from 'react'
 import dynamic from 'next/dynamic'
+import { useIntl } from 'react-intl'
 import { GoalDto, OwnershipDto } from 'dto'
-import useLocale from 'hooks/useLocale'
 import AppMenuButton from 'components/ui/AppMenuButton'
 import i18n from './i18n'
 
@@ -17,7 +17,7 @@ interface MenuProps {
 }
 
 export default function Menu({ goal, title, href, clientOwnership }: MenuProps) {
-  const { locale } = useLocale()
+  const { locale } = useIntl()
   const [anchorEl, setAnchorEl] = useState<HTMLElement | null>(null)
   const [withShare, setWithShare] = useState(false)
   const [withLeave, setWithLeave] = useState(false)

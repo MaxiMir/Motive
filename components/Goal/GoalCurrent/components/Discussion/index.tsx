@@ -1,8 +1,8 @@
 import dynamic from 'next/dynamic'
+import { useIntl } from 'react-intl'
 import { Box } from '@mui/material'
 import { TopicDto, MessageType, UserBaseDto, ClientDto } from 'dto'
 import useClient from 'hooks/useClient'
-import useLocale from 'hooks/useLocale'
 import { AppListProps } from 'components/ui/AppList'
 import { useDiscussion, useAddMessage } from './hook'
 import i18n from './i18n'
@@ -21,8 +21,8 @@ interface DiscussionProps {
 }
 
 export default function Discussion({ dayId, owner, count, clientGoal }: DiscussionProps) {
+  const { locale } = useIntl()
   const client = useClient()
-  const { locale } = useLocale()
   const { isLoading, topics, checkOnLoadMore, fetchNextPage } = useDiscussion(dayId, count)
   const onAdd = useAddMessage()
   const withInput = !!client && (!count || !!topics.length) && !clientGoal

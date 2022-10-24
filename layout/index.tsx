@@ -3,8 +3,9 @@ import { useRouter } from 'next/router'
 import Head from 'next/head'
 import Script from 'next/script'
 import dynamic from 'next/dynamic'
+import { useIntl } from 'react-intl'
 import useClient from 'hooks/useClient'
-import useLocale, { LOCALE_MAP } from 'hooks/useLocale'
+import { EN, LOCALE_MAP } from 'hooks/useSetLocale'
 import Header from './components/Header'
 import Footer from './components/Footer'
 import { getLocaleHrefList } from './helper'
@@ -30,12 +31,12 @@ export default function Layout({
   canonical,
   children,
 }: LayoutProps) {
+  const { locale } = useIntl()
   const client = useClient()
-  const { locale } = useLocale()
   const { asPath } = useRouter()
   const localeHrefList = getLocaleHrefList(asPath)
-  const localeName = LOCALE_MAP[locale]
-  const url = localeHrefList[locale]
+  const localeName = locale in LOCALE_MAP ? LOCALE_MAP[locale] : LOCALE_MAP[EN]
+  const url = localeHrefList[localeName]
 
   return (
     <>

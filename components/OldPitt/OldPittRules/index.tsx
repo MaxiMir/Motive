@@ -1,11 +1,11 @@
+import { useIntl } from 'react-intl'
 import { Typography } from '@mui/material'
 import { MAIN_CHARACTERISTICS } from 'dto'
-import useLocale from 'hooks/useLocale'
 import AppDecorEmoji from 'components/ui/AppDecorEmoji'
 import i18n from './i18n'
 
 export default function OldPittRules() {
-  const { locale } = useLocale()
+  const { locale } = useIntl()
   const { pittHints } = i18n[locale]
 
   return (

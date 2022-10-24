@@ -1,7 +1,7 @@
 import dynamic from 'next/dynamic'
+import { useIntl } from 'react-intl'
 import { Box } from '@mui/material'
 import { NotificationDto } from 'dto'
-import useLocale from 'hooks/useLocale'
 import AppModal from 'components/ui/AppModal'
 import useNotificationHint from './hook'
 import i18n from './i18n'
@@ -16,7 +16,7 @@ interface ModalNotificationsProps {
 }
 
 export default function ModalNotifications({ notifications, onClose }: ModalNotificationsProps) {
-  const { locale } = useLocale()
+  const { locale } = useIntl()
   const [showHint, onHintClick] = useNotificationHint()
   const { title } = i18n[locale]
 

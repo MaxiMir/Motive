@@ -1,7 +1,7 @@
 import { Button, Tooltip } from '@mui/material'
 import { MessageDto, MessageType } from 'dto'
 import useClient from 'hooks/useClient'
-import { Locale } from 'hooks/useLocale'
+import { Locale } from 'hooks/useSetLocale'
 import AppEmoji from 'components/ui/AppEmoji'
 import { checkOnDisabled, getAreaLabel, getTitle } from './helper'
 import useSetLike from './hook'

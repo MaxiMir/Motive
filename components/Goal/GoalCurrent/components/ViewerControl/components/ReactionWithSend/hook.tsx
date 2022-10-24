@@ -1,8 +1,8 @@
 import { AxiosError } from 'axios'
 import { useMutation, useQueryClient } from 'react-query'
+import { useIntl } from 'react-intl'
 import { DayCharacteristicName, DayCharacteristicUpdateDto, GoalDto, UserPageDto } from 'dto'
 import GoalService from 'services/GoalService'
-import useLocale from 'hooks/useLocale'
 import useDebounceCb from 'hooks/useDebounceCb'
 import useSnackbar from 'hooks/useSnackbar'
 import useClient from 'hooks/useClient'
@@ -15,7 +15,7 @@ type SetReaction = () => void
 
 export default function useSetReaction(goal: GoalDto, name: DayCharacteristicName, active: boolean): SetReaction {
   const { id, day } = goal
-  const { locale } = useLocale()
+  const { locale } = useIntl()
   const client = useClient()
   const openSignIn = useOpenSignIn()
   const queryClient = useQueryClient()
@@ -40,7 +40,7 @@ export default function useSetReaction(goal: GoalDto, name: DayCharacteristicNam
 
         add && enqueueSnackbar({ message, severity: 'success', icon: 'magic' })
       },
-      onError(_1, _2, context) {
+      onError(_, _1, context) {
         if (context?.previous) {
           queryClient.setQueryData(key, context?.previous)
         }

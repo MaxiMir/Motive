@@ -1,7 +1,7 @@
 import { ChangeEvent, useRef } from 'react'
+import { useIntl } from 'react-intl'
 import { Button, Chip } from '@mui/material'
 import { styled } from '@mui/system'
-import useLocale from 'hooks/useLocale'
 import AppEmoji from 'components/ui/AppEmoji'
 import i18n from './i18n'
 
@@ -11,8 +11,8 @@ export interface VideoInputProps {
 }
 
 export default function VideoInput({ disabled, onSelect }: VideoInputProps) {
+  const { locale } = useIntl()
   const videoInputRef = useRef<HTMLInputElement>(null)
-  const { locale } = useLocale()
   const { title, label } = i18n[locale]
 
   const onAddVideo = (e: ChangeEvent<HTMLInputElement>) => {

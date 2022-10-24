@@ -1,8 +1,8 @@
 import dynamic from 'next/dynamic'
 import { Field, Form, FormikProvider } from 'formik'
+import { useIntl } from 'react-intl'
 import { Box, IconButton } from '@mui/material'
 import { TopicDto, MessageType, ClientDto, UserBaseDto } from 'dto'
-import useLocale from 'hooks/useLocale'
 import { getUserHref } from 'helpers/url'
 import AppInput from 'components/ui/AppInput'
 import UserAvatar from 'components/User/UserAvatar'
@@ -22,7 +22,7 @@ export interface UserInputProps {
 
 export default function UserInput({ dayId, user, type, topicId, onAdd }: UserInputProps) {
   const { nickname, name, avatar } = user
-  const { locale } = useLocale()
+  const { locale } = useIntl()
   const form = useForm(dayId, topicId, type, onAdd)
   const { isSubmitting, values, handleSubmit } = form
   const href = getUserHref(nickname)

@@ -1,7 +1,8 @@
 import { KeyboardEvent } from 'react'
+import { useRouter } from 'next/router'
+import { useIntl } from 'react-intl'
 import { signOut } from 'next-auth/react'
 import { Box, List, Divider, ListItem, Drawer, ListItemText, ListItemIcon } from '@mui/material'
-import useLocale from 'hooks/useLocale'
 import useClient from 'hooks/useClient'
 import AppIcon from 'components/ui/AppIcon'
 import { MENU } from './helper'
@@ -13,7 +14,8 @@ interface MenuModalProps {
 }
 
 export default function MenuModal({ onOpenSettings, onClose }: MenuModalProps) {
-  const { locale, go } = useLocale()
+  const { locale } = useIntl()
+  const { push } = useRouter()
   const client = useClient()
   const i18nElements = i18n[locale]
   const { logOut, settings } = i18nElements
@@ -33,7 +35,7 @@ export default function MenuModal({ onOpenSettings, onClose }: MenuModalProps) {
           <Box>
             <List>
               {MENU.map(({ id, icon, link }) => (
-                <ListItem button disabled={!link} onClick={() => go(link)} key={id}>
+                <ListItem button disabled={!link} onClick={() => push(link)} key={id}>
                   <ListItemText primary={i18nElements[id]} />
                   <ListItemIcon>
                     <AppIcon name={icon} />

@@ -5,7 +5,6 @@ import { styled } from '@mui/system'
 import { UserDetailDto, SecondCharacteristicName, MAIN_CHARACTERISTICS, SECOND_CHARACTERISTICS } from 'dto'
 import { getUserHref } from 'helpers/url'
 import useClient from 'hooks/useClient'
-import { Locale } from 'hooks/useLocale'
 import AppContainer from 'components/ui/AppContainer'
 import AppAvatar from 'components/ui/AppAvatar'
 import SecondCharacteristic from './components/SecondCharacteristic'
@@ -19,10 +18,9 @@ const Edit = dynamic(() => import('./components/Edit'))
 
 export interface UserViewProps {
   user: UserDetailDto
-  locale: Locale
 }
 
-export default function UserView({ user, locale }: UserViewProps) {
+export default function UserView({ user }: UserViewProps) {
   const {
     id,
     nickname,
@@ -62,7 +60,7 @@ export default function UserView({ user, locale }: UserViewProps) {
         <Typography variant="h5" component="h1">
           {name}
         </Typography>
-        {clientPage && <Edit user={user} locale={locale} />}
+        {clientPage && <Edit user={user} />}
       </Box>
       <Box
         display="flex"
@@ -109,9 +107,9 @@ export default function UserView({ user, locale }: UserViewProps) {
       {withConfirmationsList && (
         <ConfirmationList user={userBase} confirmations={confirmations} clientPage={clientPage} />
       )}
-      {!clientPage && <Following id={user.id} following={following} locale={locale} />}
+      {!clientPage && <Following id={user.id} following={following} />}
       {!goals.length ? (
-        <EmptyGoals clientPage={clientPage} locale={locale} />
+        <EmptyGoals clientPage={clientPage} />
       ) : (
         <Box display="flex" flexWrap="wrap" gap={3} className="apple-hide">
           {goals.map((goal) => (

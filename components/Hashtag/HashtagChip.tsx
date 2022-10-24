@@ -1,5 +1,5 @@
+import { useRouter } from 'next/router'
 import { Chip } from '@mui/material'
-import useLocale from 'hooks/useLocale'
 import { getHashtagHref } from './helper'
 
 export interface HashtagChipProps {
@@ -7,12 +7,12 @@ export interface HashtagChipProps {
 }
 
 export default function HashtagChip({ name }: HashtagChipProps) {
-  const { go } = useLocale()
+  const { push } = useRouter()
 
   const onClick = () => {
     const href = getHashtagHref(name)
 
-    go(href)
+    push(href)
   }
 
   return (

@@ -1,8 +1,8 @@
 import dynamic from 'next/dynamic'
+import { useIntl } from 'react-intl'
 import { Field, Form, FormikProvider } from 'formik'
 import { Grid, Box } from '@mui/material'
 import { UserBaseDto } from 'dto'
-import { Locale } from 'hooks/useLocale'
 import ActionSubmit from 'components/Action/ActionSubmit'
 import ActionCancel from 'components/Action/ActionCancel'
 import PhotoInput from 'components/Photo/PhotoInput'
@@ -10,20 +10,24 @@ import PhotoButton from 'components/Photo/PhotoButton'
 import AppModal from 'components/ui/AppModal'
 import AppInput from 'components/ui/AppInput'
 import useForm from './hook'
-import i18n from './i18n'
 
 const Alert = dynamic(() => import('@mui/material/Alert'))
 
 export interface ModalProfileProps {
   user: UserBaseDto
-  locale: Locale
   onClose: () => void
 }
 
-export default function ModalProfile({ user, locale, onClose }: ModalProfileProps) {
-  const form = useForm(user, locale, onClose)
+export default function ModalProfile({ user, onClose }: ModalProfileProps) {
+  const { formatMessage } = useIntl()
+  const form = useForm(user, onClose)
   const { isSubmitting, values, touched, errors, setFieldValue, handleSubmit } = form
-  const { action, profile, name, nickname, button, buttonLoading } = i18n[locale]
+  const title = formatMessage({ id: 'page.user.modal-profile.title' })
+  const profile = formatMessage({ id: 'page.user.modal-profile.profile' })
+  const nameLabel = formatMessage({ id: 'page.user.modal-profile.name' })
+  const nicknameLabel = formatMessage({ id: 'page.user.modal-profile.nickname' })
+  const buttonText = formatMessage({ id: 'page.user.modal-profile.button' })
+  const buttonLoading = formatMessage({ id: 'page.user.modal-profile.button-loading' })
 
   const setAvatar = (files: File[]) => setFieldValue('avatar', files[0])
 
@@ -33,7 +37,7 @@ export default function ModalProfile({ user, locale, onClose }: ModalProfileProp
     <AppModal
       title={
         <>
-          {action}{' '}
+          {title}{' '}
           <Box component="span" sx={{ color: 'zen.sand' }}>
             {profile}
           </Box>
@@ -44,7 +48,7 @@ export default function ModalProfile({ user, locale, onClose }: ModalProfileProp
         <ActionCancel onClick={onClose} />,
         <ActionSubmit
           isLoading={isSubmitting}
-          name={button}
+          name={buttonText}
           nameLoading={buttonLoading}
           emoji="followers"
           onClick={handleSubmit}
@@ -55,8 +59,8 @@ export default function ModalProfile({ user, locale, onClose }: ModalProfileProp
       <FormikProvider value={form}>
         <Form autoComplete="off">
           <Box display="flex" flexDirection="column" gap={3}>
-            <Field name="name" label={name} color="primary" component={AppInput} />
-            <Field name="nickname" label={nickname} color="primary" component={AppInput} />
+            <Field name="name" label={nameLabel} color="primary" component={AppInput} />
+            <Field name="nickname" label={nicknameLabel} color="primary" component={AppInput} />
             <Grid container gap={2}>
               <Grid item xs={4}>
                 {!values.avatar ? (

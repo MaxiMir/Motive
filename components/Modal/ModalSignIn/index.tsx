@@ -2,8 +2,8 @@ import { useEffect, useState } from 'react'
 import dynamic from 'next/dynamic'
 import { BuiltInProviderType } from 'next-auth/providers'
 import { SignInOptions, getProviders, LiteralUnion, ClientSafeProvider } from 'next-auth/react'
+import { useIntl } from 'react-intl'
 import { Box } from '@mui/material'
-import useLocale from 'hooks/useLocale'
 import AppModal from 'components/ui/AppModal'
 import i18n from './i18n'
 
@@ -18,7 +18,7 @@ export interface ModalSignInProps {
 }
 
 export default function ModalSignIn({ options, onClose }: ModalSignInProps) {
-  const { locale } = useLocale()
+  const { locale } = useIntl()
   const [providers, setProviders] = useState<Providers>()
   const { title } = i18n[locale]
 

@@ -1,8 +1,9 @@
 import { useContext, MouseEvent } from 'react'
+import { useIntl } from 'react-intl'
 import { ToggleButtonGroup, ToggleButton, Box, Typography, PaletteMode } from '@mui/material'
 import { styled } from '@mui/system'
 import { ThemeContext } from 'context/themeContext'
-import useLocale, { Locale, EN, RU, UK } from 'hooks/useLocale'
+import { EN, RU, UK, useSetLocale, Locale } from 'hooks/useSetLocale'
 import AppModal from 'components/ui/AppModal'
 import AppEmoji from 'components/ui/AppEmoji'
 import i18n from './i18n'
@@ -12,7 +13,8 @@ interface ModalLanguageProps {
 }
 
 export default function ModalSettings({ onClose }: ModalLanguageProps) {
-  const { locale, setLocale } = useLocale()
+  const { locale } = useIntl()
+  const setLocale = useSetLocale()
   const { mode, setMode } = useContext(ThemeContext)
   const { title, modeHeader, languageHeader, light, system, dark } = i18n[locale]
 

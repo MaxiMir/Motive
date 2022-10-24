@@ -1,9 +1,8 @@
-import { useMutation, useQueryClient } from 'react-query'
-import { UseMutationResult } from 'react-query/types/react/types'
+import { useMutation, useQueryClient, UseMutationResult } from 'react-query'
 import { AxiosError } from 'axios'
+import { useIntl } from 'react-intl'
 import { UserPageDto } from 'dto'
 import MemberService from 'services/MemberService'
-import useLocale from 'hooks/useLocale'
 import useClient from 'hooks/useClient'
 import useSnackbar from 'hooks/useSnackbar'
 import { useUserPageConfig } from 'pages/[id]/hook'
@@ -14,7 +13,7 @@ export const useSendRemoveMember = (
   goalId: number,
   clientPage: boolean,
 ): UseMutationResult<void, AxiosError, number> => {
-  const { locale } = useLocale()
+  const { locale } = useIntl()
   const client = useClient()
   const { key } = useUserPageConfig()
   const queryClient = useQueryClient()

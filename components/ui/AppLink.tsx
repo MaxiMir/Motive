@@ -1,8 +1,8 @@
 import { ReactNode } from 'react'
 import Link from 'next/link'
+import { useIntl } from 'react-intl'
 import MaterialLink, { LinkProps } from '@mui/material/Link'
 import { TypographyProps } from '@mui/material'
-import useLocale from 'hooks/useLocale'
 
 interface AppLinkProps {
   href: string
@@ -15,7 +15,7 @@ interface AppLinkProps {
 }
 
 export default function AppLink({ href, title, className, ...restProps }: AppLinkProps) {
-  const { locale } = useLocale()
+  const { locale } = useIntl()
 
   return (
     <Link href={href} locale={locale}>

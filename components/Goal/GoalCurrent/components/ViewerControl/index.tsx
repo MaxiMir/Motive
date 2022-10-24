@@ -1,7 +1,7 @@
 import dynamic from 'next/dynamic'
+import { useIntl } from 'react-intl'
 import { Box } from '@mui/material'
 import { DAY_CHARACTERISTIC, GoalDto, OwnershipDto, UserBaseDto } from 'dto'
-import useLocale from 'hooks/useLocale'
 import ReactionWithSend from './components/ReactionWithSend'
 import ReactionSupport from './components/ReactionSupport'
 import { checkOnCompletion } from './helper'
@@ -17,7 +17,7 @@ export interface ViewerProps {
 }
 
 export default function Viewer({ goal, owner, forTomorrow, clientOwnership }: ViewerProps) {
-  const { locale } = useLocale()
+  const { locale } = useIntl()
   const completion = checkOnCompletion(clientOwnership, goal)
 
   return (

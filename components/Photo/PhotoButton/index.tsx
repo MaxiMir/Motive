@@ -1,6 +1,6 @@
 import dynamic from 'next/dynamic'
+import { useIntl } from 'react-intl'
 import { Box, Button, IconButton } from '@mui/material'
-import useLocale from 'hooks/useLocale'
 import AppIcon from 'components/ui/AppIcon'
 import i18n from './i18n'
 
@@ -14,7 +14,7 @@ export interface PhotoButtonProps {
 }
 
 export default function PhotoButton({ image, disabled, onClick }: PhotoButtonProps) {
-  const { locale } = useLocale()
+  const { locale } = useIntl()
   const { ariaLabel } = i18n[locale]
 
   return (

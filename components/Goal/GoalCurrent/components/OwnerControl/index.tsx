@@ -1,10 +1,9 @@
 import { useState } from 'react'
 import dynamic from 'next/dynamic'
+import { useIntl, useIntl } from 'react-intl'
 import { Box, Button, Tooltip } from '@mui/material'
 import { GoalDto } from 'dto'
-import useLocale from 'hooks/useLocale'
 import AppEmoji from 'components/ui/AppEmoji'
-import { useIntl } from 'react-intl'
 import i18n from './i18n'
 
 const ModalTasks = dynamic(() => import('./components/ModalTasks'))
@@ -16,7 +15,7 @@ export interface OwnerControlProps {
 
 export default function OwnerControl({ goal }: OwnerControlProps) {
   const { stages, day } = goal
-  const { locale } = useLocale()
+  const { locale } = useIntl()
   const { formatMessage } = useIntl()
   const [modal, setModal] = useState<'tasks' | 'completion'>()
   const feedbackAdded = !!goal.day.feedback

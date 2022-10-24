@@ -1,8 +1,8 @@
 import dynamic from 'next/dynamic'
+import { useIntl } from 'react-intl'
 import { Box, IconButton, Typography } from '@mui/material'
 import i18nCommon from 'constants/i18n'
 import { NotificationDto } from 'dto'
-import useLocale from 'hooks/useLocale'
 import useClient from 'hooks/useClient'
 import { getDistance } from 'helpers/date'
 import { getUserHref } from 'helpers/url'
@@ -23,9 +23,9 @@ interface NotificationProps {
 export default function Notification({ notification, onClose }: NotificationProps) {
   const { id, type, details, created, read } = notification
   const { name, nickname, avatar } = details.user
+  const { locale } = useIntl()
   const client = useClient()
   const { mutate } = useUpdateRead()
-  const { locale } = useLocale()
   const dateDistance = getDistance(created, locale)
   const { emoji, color } = getNotificationInfo(type)
   const notificationHref = getNotificationHref(notification, client)

@@ -1,12 +1,12 @@
 import { useRef } from 'react'
 import dynamic from 'next/dynamic'
 import { useMutation } from 'react-query'
+import { useIntl } from 'react-intl'
 import { MemberDto } from 'dto'
 import TaskService from 'services/TaskService'
 import { toShortUserName } from 'helpers/prepare'
 import useSnackbar from 'hooks/useSnackbar'
 import useClient from 'hooks/useClient'
-import useLocale from 'hooks/useLocale'
 import { useMutateUserPage } from 'pages/[id]/hook'
 import { getGoalNextState } from './helper'
 import i18n from './i18n'
@@ -20,7 +20,7 @@ export default function useSetCompleted(
   clientMember?: MemberDto,
 ): () => void {
   const timerRef = useRef<NodeJS.Timeout>()
-  const { locale } = useLocale()
+  const { locale } = useIntl()
   const client = useClient()
   const [enqueueSnackbar, closeSnackbar] = useSnackbar()
   const [page, mutatePage] = useMutateUserPage()

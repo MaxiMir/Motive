@@ -1,7 +1,7 @@
 import { Box, Typography } from '@mui/material'
 import { styled } from '@mui/system'
+import { useIntl } from 'react-intl'
 import { UserBaseDto } from 'dto'
-import useLocale from 'hooks/useLocale'
 import { getUserHref } from 'helpers/url'
 import UserAvatar from 'components/User/UserAvatar'
 import i18n from './i18n'
@@ -12,7 +12,7 @@ interface InheritedProps {
 
 export default function Inheritance({ owner }: InheritedProps) {
   const { name, nickname, avatar } = owner
-  const { locale } = useLocale()
+  const { locale } = useIntl()
   const href = getUserHref(nickname)
   const width = locale === 'ru' ? 100 : 90
   const { title } = i18n[locale]

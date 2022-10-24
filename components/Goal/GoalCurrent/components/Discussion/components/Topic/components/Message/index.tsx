@@ -1,9 +1,9 @@
 import dynamic from 'next/dynamic'
+import { useIntl } from 'react-intl'
 import { Box, Typography } from '@mui/material'
 import { MessageDto } from 'dto'
 import { getDistance } from 'helpers/date'
 import { numberToShort } from 'helpers/prepare'
-import useLocale from 'hooks/useLocale'
 import { getUserHref } from 'helpers/url'
 import AppLink from 'components/ui/AppLink'
 import UserAvatar from 'components/User/UserAvatar'
@@ -25,7 +25,7 @@ interface MessageProps {
 export default function Message({ message, answerFor, supportFor, onReply }: MessageProps) {
   const { date, user, text, edited } = message
   const { name, nickname, avatar } = user
-  const { locale } = useLocale()
+  const { locale } = useIntl()
   const dateDistance = getDistance(date, locale)
   const href = getUserHref(nickname)
   const shortNumber = numberToShort(message.likeCount)

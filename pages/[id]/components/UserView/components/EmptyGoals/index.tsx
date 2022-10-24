@@ -1,24 +1,24 @@
+import { useIntl } from 'react-intl'
 import { Box, Typography } from '@mui/material'
-import { Locale } from 'hooks/useLocale'
 import AppFadeIcon from 'components/ui/AppFadeIcon'
 import OwnerDescription from './components/OwnerDescription'
-import i18n from './i18n'
 
 interface AddGoalProps {
   clientPage: boolean
-  locale: Locale
 }
 
-export default function EmptyGoals({ clientPage, locale }: AddGoalProps) {
-  const { guest, owner } = i18n[locale]
+export default function EmptyGoals({ clientPage }: AddGoalProps) {
+  const { formatMessage } = useIntl()
+  const type = clientPage ? 'owner' : 'guest'
+  const title = formatMessage({ id: `page.user.empty-goals.${type}` })
 
   return (
     <Box display="flex" flexDirection="column" justifyContent="center" alignItems="center" gap={1} mt={3} flex={1}>
       <Typography variant="h6" component="p" color="primary">
-        {clientPage ? owner : guest}
+        {title}
       </Typography>
       <AppFadeIcon name="goal" />
-      {clientPage && <OwnerDescription locale={locale} />}
+      {clientPage && <OwnerDescription />}
     </Box>
   )
 }

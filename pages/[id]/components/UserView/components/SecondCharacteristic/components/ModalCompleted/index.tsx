@@ -1,10 +1,10 @@
 import dynamic from 'next/dynamic'
+import { useIntl } from 'react-intl'
 import { Box } from '@mui/material'
 import { UserDetailDto } from 'dto'
-import useLocale from 'hooks/useLocale'
 import AppModal from 'components/ui/AppModal'
+import { ucFirst } from 'helpers/prepare'
 import useGoals from './hook'
-import i18n from './i18n'
 
 const Loader = dynamic(() => import('./components/Loader'))
 const EmptyList = dynamic(() => import('./components/EmptyList'))
@@ -17,9 +17,10 @@ export interface ModalCompletedProps {
 
 export default function ModalCompleted({ user, onClose }: ModalCompletedProps) {
   const { id, characteristic } = user
-  const { locale } = useLocale()
+  const { formatMessage } = useIntl()
   const { isLoading, confirmations } = useGoals(id, characteristic.completed)
-  const { title, subtitle } = i18n[locale]
+  const title = ucFirst(formatMessage({ id: 'common.completed' }))
+  const subtitle = formatMessage({ id: 'common.goals' })
 
   return (
     <AppModal
@@ -39,11 +40,7 @@ export default function ModalCompleted({ user, onClose }: ModalCompletedProps) {
           <Loader count={characteristic.completed} />
         ) : (
           <>
-            {!confirmations?.length ? (
-              <EmptyList locale={locale} />
-            ) : (
-              <ConfirmationsList confirmations={confirmations} user={user} />
-            )}
+            {!confirmations?.length ? <EmptyList /> : <ConfirmationsList confirmations={confirmations} user={user} />}
           </>
         )}
       </Box>

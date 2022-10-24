@@ -1,16 +1,16 @@
 import { AxiosError } from 'axios'
 import { useMutation, useQueryClient } from 'react-query'
+import { useIntl } from 'react-intl'
 import { UserPageDto } from 'dto'
 import useSnackbar from 'hooks/useSnackbar'
 import useDebounceCb from 'hooks/useDebounceCb'
 import useOpenSignIn from 'hooks/useOpenSignIn'
 import useClient from 'hooks/useClient'
-import { Locale } from 'hooks/useLocale'
 import { useUserPageConfig } from 'pages/[id]/hook'
 import { Options, Context, fetcher, getNextState } from './helper'
-import i18n from './i18n'
 
-export default function useSetFollowing(userId: number, following: boolean, locale: Locale): () => void {
+export default function useSetFollowing(userId: number, following: boolean): () => void {
+  const { formatMessage } = useIntl()
   const client = useClient()
   const openSignIn = useOpenSignIn()
   const queryClient = useQueryClient()
@@ -28,12 +28,12 @@ export default function useSetFollowing(userId: number, following: boolean, loca
       return { previous }
     },
     onSuccess(_, { add }) {
-      const { getMessage } = i18n[locale]
-      const message = getMessage(add)
+      const operation = add ? 'add' : 'remove'
+      const message = formatMessage({ id: `page.user.following.message-${operation}` })
 
       enqueueSnackbar({ message, severity: 'success', icon: 'speaker' })
     },
-    onError(_, __, context) {
+    onError(_, _1, context) {
       if (context?.previous) {
         queryClient.setQueryData(key, context?.previous)
       }

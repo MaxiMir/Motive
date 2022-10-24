@@ -1,9 +1,9 @@
 import { FormikProps, useFormik } from 'formik'
 import { useMutation } from 'react-query'
+import { useIntl } from 'react-intl'
 import { GoalDto } from 'dto'
 import schema from 'schemas/feedback'
 import FeedbackService from 'services/FeedbackService'
-import useLocale from 'hooks/useLocale'
 import useSnackbar from 'hooks/useSnackbar'
 import { useMutateGoals } from 'pages/[id]/hook'
 import { getNextState } from './helper'
@@ -38,7 +38,7 @@ export default function useForm(goal: GoalDto, onSuccess: () => void): FormikPro
 }
 
 const useSendFeedback = (goalId: number) => {
-  const { locale } = useLocale()
+  const { locale } = useIntl()
   const [enqueueSnackbar] = useSnackbar()
   const [goals, mutateGoals] = useMutateGoals()
   const { message } = i18n[locale]

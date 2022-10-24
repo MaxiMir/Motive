@@ -1,7 +1,7 @@
 import { Box } from '@mui/material'
 import { getToday } from 'helpers/date'
 import { useSendCreateMember } from 'pages/[id]/hook'
-import { Locale } from 'hooks/useLocale'
+import { Locale } from 'hooks/useSetLocale'
 import ActionSubmit from 'components/Action/ActionSubmit'
 import i18n from './i18n'
 

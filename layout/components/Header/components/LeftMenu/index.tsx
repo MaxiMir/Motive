@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import dynamic from 'next/dynamic'
+import { useIntl } from 'react-intl'
 import { Button } from '@mui/material'
-import useLocale from 'hooks/useLocale'
 import AppIcon from 'components/ui/AppIcon'
 import i18n from './i18n'
 
@@ -9,7 +9,7 @@ const MenuModal = dynamic(() => import('./components/MenuModal'))
 const ModalSettings = dynamic(() => import('./components/ModalSettings'))
 
 export default function LeftMenu() {
-  const { locale } = useLocale()
+  const { locale } = useIntl()
   const [openMenu, setOpenMenu] = useState(false)
   const [openSettings, setOpenSettings] = useState(false)
   const i18nElements = i18n[locale]

@@ -1,9 +1,9 @@
 import { AxiosError } from 'axios'
 import { InfiniteData, useMutation, useQueryClient } from 'react-query'
 import { FormikProps, useFormik } from 'formik'
+import { useIntl } from 'react-intl'
 import { MessageDto, TopicDto } from 'dto'
 import schema from 'schemas/message'
-import useLocale from 'hooks/useLocale'
 import useSnackbar from 'hooks/useSnackbar'
 import TopicService from 'services/TopicService'
 import { getNextState } from './helper'
@@ -23,7 +23,7 @@ export default function useForm(initialValues: MessageDto, onSuccess: () => void
 }
 
 const useSendUpdateMessage = () => {
-  const { locale } = useLocale()
+  const { locale } = useIntl()
   const [enqueueSnackbar] = useSnackbar()
   const queryClient = useQueryClient()
   const { message } = i18n[locale]

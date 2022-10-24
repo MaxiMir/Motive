@@ -1,9 +1,9 @@
 import { FormikProps, useFormik } from 'formik'
 import { useMutation } from 'react-query'
+import { useIntl } from 'react-intl'
 import { GoalDto } from 'dto'
 import schema from 'schemas/completion'
 import ConfirmationService from 'services/ConfirmationService'
-import useLocale from 'hooks/useLocale'
 import useSnackbar from 'hooks/useSnackbar'
 import { scrollToElem } from 'helpers/dom'
 import { getToday } from 'helpers/date'
@@ -42,7 +42,7 @@ export default function useForm(goal: GoalDto, onSuccess: () => void): FormikPro
 }
 
 const useSendConfirmation = (onSuccess: () => void) => {
-  const { locale } = useLocale()
+  const { locale } = useIntl()
   const { refetch } = useUserPage()
   const [enqueueSnackbar] = useSnackbar()
   const { message } = i18n[locale]

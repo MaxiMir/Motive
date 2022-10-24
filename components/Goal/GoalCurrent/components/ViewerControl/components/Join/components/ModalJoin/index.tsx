@@ -1,10 +1,10 @@
 import { ChangeEvent } from 'react'
 import { Form, FormikProvider } from 'formik'
 import { Box, FormControlLabel, Radio, RadioGroup, Typography } from '@mui/material'
+import { useIntl } from 'react-intl'
 import { GoalDto } from 'dto'
-import useLocale from 'hooks/useLocale'
 import ActionSubmit from 'components/Action/ActionSubmit'
-import ActionClose from 'components/Action/ActionClose'
+import ActionCancel from 'components/Action/ActionCancel'
 import AppModal from 'components/ui/AppModal'
 import AppEmoji from 'components/ui/AppEmoji'
 import AppAccordion from 'components/ui/AppAccordion'
@@ -18,7 +18,7 @@ export interface ModalJoinProps {
 }
 
 export default function ModalJoin({ goal, onClose }: ModalJoinProps) {
-  const { locale } = useLocale()
+  const { locale } = useIntl()
   const { id, calendar, day } = goal
   const beginningDay = calendar[0].id
   const thisDay = day.id
@@ -54,7 +54,7 @@ export default function ModalJoin({ goal, onClose }: ModalJoinProps) {
       }
       maxWidth="xs"
       actions={[
-        <ActionClose onClick={onClose} />,
+        <ActionCancel onClick={onClose} />,
         <ActionSubmit
           isLoading={isSubmitting}
           name={button}

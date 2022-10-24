@@ -1,8 +1,8 @@
+import { useIntl } from 'react-intl'
 import { Box, IconButton, Typography } from '@mui/material'
 import { styled } from '@mui/system'
 import i18nCommon from 'constants/i18n'
 import { UserBaseDto } from 'dto'
-import useLocale from 'hooks/useLocale'
 import { getUserHref } from 'helpers/url'
 import { getDistance } from 'helpers/date'
 import AppLink from 'components/ui/AppLink'
@@ -18,7 +18,7 @@ interface HeaderProps {
 
 export default function Header({ user, title, date, onClose }: HeaderProps): JSX.Element {
   const { nickname, name, avatar } = user
-  const { locale } = useLocale()
+  const { locale } = useIntl()
   const { close } = i18nCommon[locale]
   const href = getUserHref(nickname)
   const distance = getDistance(date, locale)

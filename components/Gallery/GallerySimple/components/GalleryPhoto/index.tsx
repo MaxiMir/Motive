@@ -1,7 +1,7 @@
 import React from 'react'
+import { useIntl } from 'react-intl'
 import { PhotoProps } from 'react-photo-album'
 import { Box } from '@mui/material'
-import useLocale from 'hooks/useLocale'
 import AppImage from 'components/ui/AppImage'
 import i18n from './i18n'
 
@@ -11,7 +11,7 @@ type GalleryPhotoProps = PhotoProps & {
 }
 
 export default function GalleryPhoto({ photo, layout, imageProps, wrapperProps, onClick }: GalleryPhotoProps) {
-  const { locale } = useLocale()
+  const { locale } = useIntl()
   const { ariaLabel } = i18n[locale]
   const { width, height } = photo
   const { src, alt, title, style, sizes, className } = imageProps

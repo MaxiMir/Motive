@@ -1,5 +1,5 @@
+import { useIntl } from 'react-intl'
 import { Box, IconButton } from '@mui/material'
-import useLocale from 'hooks/useLocale'
 import AppIcon from 'components/ui/AppIcon'
 import AppPlayer from 'components/ui/AppPlayer'
 import i18n from './i18n'
@@ -11,7 +11,7 @@ export interface VideoPreviewProps {
 }
 
 export default function VideoPreview({ video, disabled, onRemove }: VideoPreviewProps) {
-  const { locale } = useLocale()
+  const { locale } = useIntl()
   const url = URL.createObjectURL(video)
   const { label } = i18n[locale]
 

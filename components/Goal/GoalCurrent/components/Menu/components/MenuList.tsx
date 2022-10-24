@@ -3,7 +3,7 @@ import dynamic from 'next/dynamic'
 import { Menu, MenuItem } from '@mui/material'
 import i18nCommon from 'constants/i18n'
 import { OwnershipDto } from 'dto'
-import { Locale } from 'hooks/useLocale'
+import { Locale } from 'hooks/useSetLocale'
 import AppMenuItemContent from 'components/ui/AppMenuItemContent'
 
 const Report = dynamic(() => import('components/Report'))

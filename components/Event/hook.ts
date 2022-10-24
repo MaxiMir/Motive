@@ -1,20 +1,20 @@
 import { useEffect } from 'react'
 import { useQueryClient } from 'react-query'
 import { useRouter } from 'next/router'
+import { useIntl } from 'react-intl'
 import { io } from 'socket.io-client'
 import i18nCommon from 'constants/i18n'
 import { NotificationDto } from 'dto'
 import { getDeviceType } from 'helpers/dom'
 import { getImageUrl } from 'helpers/url'
 import useSnackbar from 'hooks/useSnackbar'
-import useLocale from 'hooks/useLocale'
 import useClient from 'hooks/useClient'
 import { getNotificationHref } from 'helpers/notification'
 
 export const useSocket = (): void => {
+  const { locale } = useIntl()
   const client = useClient()
   const router = useRouter()
-  const { locale } = useLocale()
   const [enqueueSnackbar] = useSnackbar()
   const queryClient = useQueryClient()
 

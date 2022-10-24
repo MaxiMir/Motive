@@ -1,7 +1,7 @@
 import { AxiosError } from 'axios'
 import { useMutation } from 'react-query'
+import { useIntl } from 'react-intl'
 import { CreateReportDto, ReportType } from 'dto'
-import useLocale from 'hooks/useLocale'
 import useSnackbar from 'hooks/useSnackbar'
 import useClient from 'hooks/useClient'
 import useOpenSignIn from 'hooks/useOpenSignIn'
@@ -11,7 +11,7 @@ import i18n from './i18n'
 type SendReport = (reason: string) => void
 
 export default function useSendReport(entityId: number, type: ReportType, onSettled: () => void): SendReport {
-  const { locale } = useLocale()
+  const { locale } = useIntl()
   const client = useClient()
   const openSignIn = useOpenSignIn()
   const [enqueueSnackbar] = useSnackbar()

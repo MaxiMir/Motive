@@ -1,8 +1,8 @@
 import { ReactNode } from 'react'
 import dynamic from 'next/dynamic'
+import { useIntl } from 'react-intl'
 import { Badge, Box, Tooltip } from '@mui/material'
 import i18nCommon from 'constants/i18n'
-import useLocale from 'hooks/useLocale'
 import { getDistance } from 'helpers/date'
 import { Device } from 'helpers/dom'
 import i18n from './i18n'
@@ -17,7 +17,7 @@ interface OfflineProps {
 }
 
 export default function Offline({ lastSeen, device, children }: OfflineProps) {
-  const { locale } = useLocale()
+  const { locale } = useIntl()
   const distance = getDistance(lastSeen, locale, false)
   const { agoText } = i18nCommon[locale]
   const { seen } = i18n[locale]

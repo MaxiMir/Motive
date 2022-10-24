@@ -1,4 +1,4 @@
-import { Locale } from 'hooks/useLocale'
+import { Locale } from 'hooks/useSetLocale'
 import { Alert, Box, Button } from '@mui/material'
 import AppIcon from 'components/ui/AppIcon'
 import i18n from './i18n'

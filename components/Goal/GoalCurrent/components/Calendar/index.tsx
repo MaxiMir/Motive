@@ -1,10 +1,10 @@
+import { useIntl } from 'react-intl'
 import { Box, Badge, Divider, TextField } from '@mui/material'
 import { DatePicker } from '@mui/x-date-pickers/DatePicker'
 import { PickersDay } from '@mui/x-date-pickers'
 import { styled } from '@mui/system'
 import { GoalDto } from 'dto'
 import useDebounceCb from 'hooks/useDebounceCb'
-import useLocale from 'hooks/useLocale'
 import AppIconButton from 'components/ui/AppIconButton'
 import AppEmoji from 'components/ui/AppEmoji'
 import { getBorders, getToggleDates, partialGetDateKey } from './helper'
@@ -17,7 +17,7 @@ interface CalendarProps {
 
 export default function Calendar({ goal }: CalendarProps) {
   const { id, day, calendar } = goal
-  const { locale } = useLocale()
+  const { locale } = useIntl()
   const date = new Date(day.date)
   const { isLoading, mutate } = useChangeDay(id)
   const onChangeDebounce = useDebounceCb(mutate, 1000)

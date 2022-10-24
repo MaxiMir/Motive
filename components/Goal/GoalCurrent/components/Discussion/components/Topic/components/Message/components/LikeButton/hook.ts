@@ -1,11 +1,11 @@
 import { AxiosError } from 'axios'
 import { InfiniteData, useMutation, useQueryClient } from 'react-query'
+import { useIntl } from 'react-intl'
 import { MessageDto, MessageType, TopicDto } from 'dto'
 import useClient from 'hooks/useClient'
 import useOpenSignIn from 'hooks/useOpenSignIn'
 import useSnackbar from 'hooks/useSnackbar'
 import useDebounceCb from 'hooks/useDebounceCb'
-import useLocale from 'hooks/useLocale'
 import { useMutateGoals } from 'pages/[id]/hook'
 import { Context, fetcher, getGoalNextState, getNextState, Options } from './helper'
 import i18n from './i18n'
@@ -15,8 +15,8 @@ type SetLike = () => void
 export default function useSetLike(message: MessageDto, answerFor: number | undefined): SetLike {
   const { like, dayId, goalId } = message
   const key = ['discussion', dayId]
+  const { locale } = useIntl()
   const client = useClient()
-  const { locale } = useLocale()
   const openSignIn = useOpenSignIn()
   const [goals, mutateGoals] = useMutateGoals()
   const queryClient = useQueryClient()
@@ -55,7 +55,7 @@ export default function useSetLike(message: MessageDto, answerFor: number | unde
         })
       }
     },
-    onError(_, _2, context) {
+    onError(_, _1, context) {
       if (context?.previous) {
         queryClient.setQueryData(key, context?.previous)
       }

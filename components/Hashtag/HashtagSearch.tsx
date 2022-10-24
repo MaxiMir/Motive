@@ -1,6 +1,6 @@
+import { useRouter } from 'next/router'
 import { Box, Button, Typography } from '@mui/material'
 import { numberToShort } from 'helpers/prepare'
-import useLocale from 'hooks/useLocale'
 import { getHashtagHref } from './helper'
 
 export interface HashtagSearchProps {
@@ -10,13 +10,13 @@ export interface HashtagSearchProps {
 }
 
 export default function HashtagSearch({ name, gradient, views }: HashtagSearchProps) {
-  const { go } = useLocale()
+  const { push } = useRouter()
   const shortViews = numberToShort(views)
 
   const onClick = () => {
     const href = getHashtagHref(name)
 
-    go(href)
+    push(href)
   }
 
   return (

@@ -1,7 +1,7 @@
 import { ChangeEvent, useRef } from 'react'
+import { useIntl } from 'react-intl'
 import { Button } from '@mui/material'
 import { styled } from '@mui/system'
-import useLocale from 'hooks/useLocale'
 import AppEmoji from 'components/ui/AppEmoji'
 import i18n from './i18n'
 
@@ -12,7 +12,7 @@ export interface PhotoInputProps {
 }
 
 export default function PhotoInput({ multiple, disabled, onSelect }: PhotoInputProps) {
-  const { locale } = useLocale()
+  const { locale } = useIntl()
   const photoInputRef = useRef<HTMLInputElement>(null)
   const { title } = i18n[locale]
 

@@ -3,7 +3,6 @@ import { dehydrate, QueryClient } from 'react-query'
 import { getSession } from 'next-auth/react'
 import { AxiosRequestHeaders } from 'axios'
 import { PossiblePageError } from 'dto'
-import useLocale from 'hooks/useLocale'
 import PageService from 'services/PageService'
 import Layout from 'layout'
 import UserView from './components/UserView'
@@ -12,10 +11,9 @@ import { getServerSideUrl } from './helper'
 
 export default function UserPage() {
   const { data } = useUserPage()
-  const { locale } = useLocale()
   const userMeta = useUserMeta(data?.content)
 
-  return <Layout {...userMeta}>{data?.content && <UserView user={data.content} locale={locale} />}</Layout>
+  return <Layout {...userMeta}>{data?.content && <UserView user={data.content} />}</Layout>
 }
 
 export const getServerSideProps: GetServerSideProps = async (ctx) => {

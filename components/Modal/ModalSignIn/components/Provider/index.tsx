@@ -2,7 +2,7 @@ import Image from 'next/image'
 import { signIn, SignInOptions } from 'next-auth/react'
 import { ClientSafeProvider } from 'next-auth/react/types'
 import { Box, Button } from '@mui/material'
-import { Locale } from 'hooks/useLocale'
+import { Locale } from 'hooks/useSetLocale'
 import i18n from './i18n'
 
 interface ProviderProps {

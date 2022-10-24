@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import dynamic from 'next/dynamic'
+import { useIntl } from 'react-intl'
 import { Badge, Button } from '@mui/material'
-import useLocale from 'hooks/useLocale'
 import AppIcon from 'components/ui/AppIcon'
 import { useNotifications } from './hook'
 import { checkOnBadgeContent } from './helper'
@@ -10,7 +10,7 @@ import i18n from './i18n'
 const ModalNotifications = dynamic(() => import('./components/ModalNotifications'))
 
 export default function Notifications() {
-  const { locale } = useLocale()
+  const { locale } = useIntl()
   const { data = [] } = useNotifications()
   const [open, setOpen] = useState(false)
   const badgeContent = checkOnBadgeContent(data)

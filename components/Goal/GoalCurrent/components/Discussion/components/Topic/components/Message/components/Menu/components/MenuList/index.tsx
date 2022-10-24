@@ -3,7 +3,7 @@ import dynamic from 'next/dynamic'
 import { Menu, MenuItem } from '@mui/material'
 import { MessageDto } from 'dto'
 import useClient from 'hooks/useClient'
-import { Locale } from 'hooks/useLocale'
+import { Locale } from 'hooks/useSetLocale'
 import AppMenuItemContent from 'components/ui/AppMenuItemContent'
 import i18n from './i18n'
 

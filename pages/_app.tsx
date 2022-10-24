@@ -1,4 +1,5 @@
 import { useState, useMemo, useEffect } from 'react'
+import { useRouter } from 'next/router'
 import dynamic from 'next/dynamic'
 import { AppProps } from 'next/app'
 import { SessionProvider, SignInOptions } from 'next-auth/react'
@@ -15,8 +16,8 @@ import { getDesignTokens } from 'theme'
 import { ContextSnackbarProps, SnackbarContext } from 'context/snackbarContext'
 import { ThemeContext } from 'context/themeContext'
 import { ModalSignInContext } from 'context/modalSignInContext'
+import { EN, Locale } from 'hooks/useSetLocale'
 import { getFnsLocale } from 'helpers/date'
-import useLocale from 'hooks/useLocale'
 import Socket from 'components/Event'
 import en from 'lang/en.json'
 import ru from 'lang/ru.json'
@@ -25,13 +26,14 @@ import uk from 'lang/uk.json'
 const AppSnackbar = dynamic(() => import('components/ui/AppSnackbar'))
 const ModalSignIn = dynamic(() => import('components/Modal/ModalSignIn'))
 
-const MESSAGES = { en, ru, uk }
+type MessageKey = keyof typeof en
+const MESSAGES: Record<Locale, Record<MessageKey, string>> = { en, ru, uk }
 
 const generateClassName = createGenerateClassName({ productionPrefix: 'be' })
 
 export default function MyApp({ Component, pageProps: { session, ...pageProps } }: AppProps) {
+  const { locale = EN } = useRouter()
   const { dehydratedState, providers } = pageProps
-  const { locale } = useLocale()
   // TODO
   // eslint-disable-next-line @typescript-eslint/ban-ts-comment
   // @ts-ignore
@@ -40,7 +42,8 @@ export default function MyApp({ Component, pageProps: { session, ...pageProps } 
   const [snackbarProps, setSnackbarProps] = useState<ContextSnackbarProps | null>(null)
   const [options, setOptions] = useState<SignInOptions>()
   const fnsLocale = getFnsLocale(locale)
-  const error = MESSAGES[locale]['common.error']
+  const messages = MESSAGES[locale] || MESSAGES.en
+  const error = messages['common.error']
   const [queryClient] = useState(
     () =>
       new QueryClient({
@@ -81,7 +84,7 @@ export default function MyApp({ Component, pageProps: { session, ...pageProps } 
   }, [])
 
   return (
-    <IntlProvider locale={locale} messages={MESSAGES[locale]}>
+    <IntlProvider locale={locale} messages={messages}>
       <SessionProvider session={session} refetchOnWindowFocus>
         <QueryClientProvider client={queryClient}>
           <Hydrate state={dehydratedState}>

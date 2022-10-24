@@ -1,16 +1,15 @@
 import { useState } from 'react'
 import dynamic from 'next/dynamic'
+import { useIntl } from 'react-intl'
 import { Box, Button, Typography } from '@mui/material'
-import useLocale from 'hooks/useLocale'
 import AppIcon from 'components/ui/AppIcon'
-import i18n from './i18n'
 
 const ModalGoal = dynamic(() => import('./components/ModalGoal'))
 
 export default function AddGoal() {
-  const { locale } = useLocale()
+  const { formatMessage } = useIntl()
   const [open, setOpen] = useState(false)
-  const { name } = i18n[locale]
+  const buttonText = formatMessage({ id: 'page.user.add-goal.name' })
 
   const toggleModal = () => setOpen(!open)
 
@@ -31,7 +30,7 @@ export default function AddGoal() {
             borderRadius: '50%',
             background: theme.palette.background.default,
           })}
-          aria-label={name}
+          aria-label={buttonText}
           onClick={toggleModal}
         >
           <Box display="flex" justifyContent="center" alignItems="center" width={65} height={65}>
@@ -41,10 +40,10 @@ export default function AddGoal() {
       </Box>
       <Button sx={{ padding: '4px', textTransform: 'none' }} onClick={toggleModal}>
         <Typography variant="caption" sx={{ color: 'creativity.light' }}>
-          {name}
+          {buttonText}
         </Typography>
       </Button>
-      {open && <ModalGoal locale={locale} onClose={toggleModal} />}
+      {open && <ModalGoal onClose={toggleModal} />}
     </Box>
   )
 }

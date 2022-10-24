@@ -1,9 +1,9 @@
 import { Fragment } from 'react'
 import dynamic from 'next/dynamic'
+import { useIntl } from 'react-intl'
 import { Box, Tooltip } from '@mui/material'
 import { ConfirmationDto, GoalCharacteristicName, MAIN_CHARACTERISTICS, MemberDto } from 'dto'
 import useClient from 'hooks/useClient'
-import useLocale from 'hooks/useLocale'
 import AppHeader from 'components/ui/AppHeader'
 import AppDot from 'components/ui/AppDot'
 import CharacteristicGoal from 'components/Characteristic/CharacteristicGoal'
@@ -26,8 +26,8 @@ export interface GoalCompletedProps {
 
 export default function GoalCompleted({ userId, clientMembership, confirmation }: GoalCompletedProps) {
   const { goal, inherited } = confirmation
+  const { locale } = useIntl()
   const client = useClient()
-  const { locale } = useLocale()
   const { duration, mainPhoto, secondPhotos, interval } = getGoalInfo(confirmation)
   const renderRepeat = checkOnRepeat(userId, clientMembership, goal, client)
   const { durationTitle } = i18n[locale]

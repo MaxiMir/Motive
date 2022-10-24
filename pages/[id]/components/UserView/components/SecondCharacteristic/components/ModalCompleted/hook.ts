@@ -3,7 +3,7 @@ import { ConfirmationDto } from 'dto'
 import { partialCheckOnLoadMore, partialGetNextPageParam } from 'helpers/fetcher'
 import { PRELOAD_DIFF, TAKE, partialFetcher } from './helper'
 
-type UseGoals = {
+interface UseGoals {
   isLoading: boolean
   confirmations?: ConfirmationDto[]
   checkOnLoadMore: (index: number) => boolean

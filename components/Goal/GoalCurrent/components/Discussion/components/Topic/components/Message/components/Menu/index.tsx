@@ -1,7 +1,7 @@
 import { MouseEvent, useState } from 'react'
 import dynamic from 'next/dynamic'
+import { useIntl } from 'react-intl'
 import { MessageDto } from 'dto'
-import useLocale from 'hooks/useLocale'
 import AppMenuButton from 'components/ui/AppMenuButton'
 import i18n from './i18n'
 
@@ -13,7 +13,7 @@ interface MenuProps {
 }
 
 export default function Menu({ message }: MenuProps) {
-  const { locale } = useLocale()
+  const { locale } = useIntl()
   const [anchorEl, setAnchorEl] = useState<HTMLElement | null>(null)
   const [withModal, setWithModal] = useState(false)
   const { title, ariaControls } = i18n[locale]

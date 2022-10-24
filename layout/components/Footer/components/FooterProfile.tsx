@@ -1,7 +1,7 @@
+import { useRouter } from 'next/router'
 import { useIntl } from 'react-intl'
 import { Button } from '@mui/material'
 import useOpenSignIn from 'hooks/useOpenSignIn'
-import useLocale from 'hooks/useLocale'
 import { getUserHref } from 'helpers/url'
 import { ProfileIcon } from 'components/ui/icons'
 import FooterIcon from './FooterIcon'
@@ -13,7 +13,7 @@ interface FooterProfileProps {
 
 export default function FooterProfile({ nickname, asPath }: FooterProfileProps) {
   const { formatMessage } = useIntl()
-  const { go } = useLocale()
+  const { push } = useRouter()
   const openSignIn = useOpenSignIn()
   const href = !nickname ? undefined : getUserHref(nickname)
   const selected = !href ? false : asPath.includes(href)
@@ -21,7 +21,7 @@ export default function FooterProfile({ nickname, asPath }: FooterProfileProps) 
 
   const onClick = () => {
     if (href) {
-      go(href)
+      push(href)
       return
     }
 

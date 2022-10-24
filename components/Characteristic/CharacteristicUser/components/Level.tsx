@@ -1,14 +1,13 @@
+import { useIntl } from 'react-intl'
 import { Box } from '@mui/material'
-import useLocale from 'hooks/useLocale'
-import i18n from './i18n'
 
 export default function Level() {
-  const { locale } = useLocale()
-  const { lvl } = i18n[locale]
+  const { formatMessage } = useIntl()
+  const lvlText = formatMessage({ id: 'common.lvl-short' })
 
   return (
     <Box component="sup" sx={{ marginLeft: '2px', fontSize: '0.625rem', color: 'text.disabled' }}>
-      {lvl}
+      {lvlText}
     </Box>
   )
 }

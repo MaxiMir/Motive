@@ -1,9 +1,9 @@
 import { FormikProps, useFormik } from 'formik'
 import { useMutation } from 'react-query'
+import { useIntl } from 'react-intl'
 import { CreateMessageDto, MessageType, TopicDto } from 'dto'
 import TopicService from 'services/TopicService'
 import useSnackbar from 'hooks/useSnackbar'
-import useLocale from 'hooks/useLocale'
 import i18n from './i18n'
 
 export default function useForm(
@@ -30,7 +30,7 @@ export default function useForm(
 }
 
 const useSendTopic = (type: MessageType) => {
-  const { locale } = useLocale()
+  const { locale } = useIntl()
   const [enqueueSnackbar] = useSnackbar()
 
   return useMutation(TopicService.create, {

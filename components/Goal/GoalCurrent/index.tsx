@@ -1,8 +1,8 @@
 import dynamic from 'next/dynamic'
 import { useRouter } from 'next/router'
+import { useIntl } from 'react-intl'
 import { Box, useTheme } from '@mui/material'
 import { GoalDto, GoalCharacteristicName, MemberDto, MAIN_CHARACTERISTICS } from 'dto'
-import useLocale from 'hooks/useLocale'
 import { getGoalWithDayHref, HashMark } from 'helpers/url'
 import { getMember } from 'pages/[id]/components/UserView/helper'
 import CharacteristicGoal from 'components/Characteristic/CharacteristicGoal'
@@ -49,9 +49,9 @@ export default function GoalCurrent({
 }: GoalCurrentProps) {
   const { id, name, hashtags, characteristic, owner, stages, day, inherited } = goal
   const { id: dayId, views, topicCount } = day
+  const { locale } = useIntl()
   const theme = useTheme()
   const { query } = useRouter()
-  const { locale } = useLocale()
   const clientOwnership = getClientOwnership(goal, clientId, clientPage, clientMembership)
   const userMember = getMember(id, userMembership, userId)
   const goalHref = getGoalWithDayHref(href, id, dayId)

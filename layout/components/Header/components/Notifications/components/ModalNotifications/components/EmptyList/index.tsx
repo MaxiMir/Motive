@@ -1,10 +1,10 @@
+import { useIntl } from 'react-intl'
 import { Box, Typography } from '@mui/material'
-import useLocale from 'hooks/useLocale'
 import AppFadeIcon from 'components/ui/AppFadeIcon'
 import i18n from './i18n'
 
 export default function EmptyList() {
-  const { locale } = useLocale()
+  const { locale } = useIntl()
   const { title } = i18n[locale]
 
   return (

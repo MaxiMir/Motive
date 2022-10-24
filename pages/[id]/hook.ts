@@ -1,10 +1,8 @@
 import { useRouter } from 'next/router'
 import { AxiosError } from 'axios'
-import { useMutation, useQuery, useQueryClient, UseQueryResult } from 'react-query'
+import { useMutation, useQuery, useQueryClient, UseMutationResult, UseQueryResult } from 'react-query'
 import { useIntl } from 'react-intl'
-import { UseMutationResult } from 'react-query/types/react/types'
 import { CreateMemberDto, GoalDto, MemberDto, UserDetailDto, UserPageDto } from 'dto'
-import useLocale from 'hooks/useLocale'
 import PageService from 'services/PageService'
 import MemberService from 'services/MemberService'
 import { getQueryParams, getUserHref, setQueryParams, SearchParam, getImageUrl } from 'helpers/url'
@@ -82,24 +80,24 @@ export const useMutateGoals = (): [GoalDto[], (goals: GoalDto[]) => void] => {
 }
 
 export const useChangeDayUrl = (): ((goals: GoalDto[], goalId: number, dayId: number) => void) => {
-  const router = useRouter()
-  const { locale } = useLocale()
+  const { locale } = useIntl()
+  const { asPath, pathname, push } = useRouter()
 
   return (goals: GoalDto[], goalId: number, dayId: number) => {
     const { [SearchParam.Dates]: _, ...restParams } = getQueryParams()
     const datesParam = goals.map(({ id, day }) => `${id}:${id !== goalId ? day.id : dayId}`).join(',')
-    const as = setQueryParams(router.asPath, {
+    const as = setQueryParams(asPath, {
       [SearchParam.Dates]: datesParam,
       ...restParams,
     })
 
-    router.push(router.pathname, as, { shallow: true, locale })
+    push(pathname, as, { shallow: true, locale })
   }
 }
 
 export const useSendCreateMember = (): UseMutationResult<MemberDto, AxiosError, CreateMemberDto> => {
   const client = useClient()
-  const { go } = useLocale()
+  const { push } = useRouter()
 
   return useMutation(MemberService.create, {
     onSuccess({ goalId, dayId }) {
@@ -108,7 +106,7 @@ export const useSendCreateMember = (): UseMutationResult<MemberDto, AxiosError, 
       const href = getUserHref(client.nickname)
       const params = { [SearchParam.Dates]: `${goalId}:${dayId}` }
 
-      go(setQueryParams(href, params))
+      push(setQueryParams(href, params))
     },
   })
 }

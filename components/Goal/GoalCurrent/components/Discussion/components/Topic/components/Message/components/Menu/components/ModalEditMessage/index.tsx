@@ -1,10 +1,10 @@
 import { FocusEvent } from 'react'
 import { Field, Form, FormikProvider } from 'formik'
+import { useIntl } from 'react-intl'
 import { Box } from '@mui/material'
 import { MessageDto } from 'dto'
-import useLocale from 'hooks/useLocale'
 import ActionSubmit from 'components/Action/ActionSubmit'
-import ActionClose from 'components/Action/ActionClose'
+import ActionCancel from 'components/Action/ActionCancel'
 import AppModal from 'components/ui/AppModal'
 import AppInput from 'components/ui/AppInput'
 import useForm from './hook'
@@ -16,7 +16,7 @@ export interface ModalEditMessageProps {
 }
 
 export default function ModalEditMessage({ message, onClose }: ModalEditMessageProps) {
-  const { locale } = useLocale()
+  const { locale } = useIntl()
   const form = useForm(message, onClose)
   const { isSubmitting, handleSubmit } = form
   const { title, subtitle, button, buttonLoading, label } = i18n[locale]
@@ -37,7 +37,7 @@ export default function ModalEditMessage({ message, onClose }: ModalEditMessageP
       }
       maxWidth="xs"
       actions={[
-        <ActionClose onClick={onClose} />,
+        <ActionCancel onClick={onClose} />,
         <ActionSubmit
           isLoading={isSubmitting}
           name={button}

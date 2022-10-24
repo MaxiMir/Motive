@@ -1,8 +1,8 @@
+import { useIntl } from 'react-intl'
 import { Box, Typography } from '@mui/material'
 import { GoalDto, OwnershipDto } from 'dto'
-import useLocale from 'hooks/useLocale'
 import ActionSubmit from 'components/Action/ActionSubmit'
-import ActionClose from 'components/Action/ActionClose'
+import ActionCancel from 'components/Action/ActionCancel'
 import AppModal from 'components/ui/AppModal'
 import AppFadeIcon from 'components/ui/AppFadeIcon'
 import { useSendRemoveMember } from './hook'
@@ -16,7 +16,7 @@ export interface ModalLeaveProps {
 
 export default function ModalLeave({ goal, clientOwnership, onClose }: ModalLeaveProps) {
   const { id, name } = goal
-  const { locale } = useLocale()
+  const { locale } = useIntl()
   const { isLoading, mutateAsync } = useSendRemoveMember(id, clientOwnership.page)
   const { title, button, buttonLoading, subtitle } = i18n[locale]
 
@@ -31,7 +31,7 @@ export default function ModalLeave({ goal, clientOwnership, onClose }: ModalLeav
       title={title}
       maxWidth="xs"
       actions={[
-        <ActionClose onClick={onClose} />,
+        <ActionCancel onClick={onClose} />,
         <ActionSubmit
           isLoading={isLoading}
           name={button}

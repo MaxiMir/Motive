@@ -1,19 +1,18 @@
+import { useIntl } from 'react-intl'
 import { Button } from '@mui/material'
-import { Locale } from 'hooks/useLocale'
 import AppEmoji from 'components/ui/AppEmoji'
 import useSetFollowing from './hook'
-import i18n from './i18n'
 
 interface FollowingProps {
   id: number
   following: boolean
-  locale: Locale
 }
 
-export default function Following({ id, following, locale }: FollowingProps) {
-  const setFollowing = useSetFollowing(id, following, locale)
-  const { getName } = i18n[locale]
-  const name = getName(following)
+export default function Following({ id, following }: FollowingProps) {
+  const { formatMessage } = useIntl()
+  const setFollowing = useSetFollowing(id, following)
+  const operation = following ? 'remove' : 'add'
+  const buttonText = formatMessage({ id: `page.user.following.${operation}` })
 
   return (
     <Button
@@ -24,7 +23,7 @@ export default function Following({ id, following, locale }: FollowingProps) {
       sx={{ alignSelf: 'center', mb: 3, filter: following ? 'grayscale(0.6)' : undefined }}
       onClick={setFollowing}
     >
-      {name}
+      {buttonText}
     </Button>
   )
 }

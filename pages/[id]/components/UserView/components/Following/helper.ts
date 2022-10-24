@@ -2,8 +2,14 @@ import produce from 'immer'
 import { UserPageDto } from 'dto'
 import SubscriptionService from 'services/SubscriptionService'
 
-export type Options = { userId: number; add: boolean }
-export type Context = { previous?: UserPageDto }
+export interface Options {
+  userId: number
+  add: boolean
+}
+
+export interface Context {
+  previous?: UserPageDto
+}
 
 export const fetcher = ({ userId, add }: Options): Promise<void> => SubscriptionService.update(userId, add)
 

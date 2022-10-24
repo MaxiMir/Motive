@@ -1,12 +1,10 @@
+import { useIntl } from 'react-intl'
 import { Box, Typography } from '@mui/material'
-import i18nCommon from 'constants/i18n'
 import { UserDetailDto } from 'dto'
-import useLocale from 'hooks/useLocale'
 import useShowProgress from 'hooks/useShowProgress'
 import AppModal from 'components/ui/AppModal'
 import OldPittRules from 'components/OldPitt/OldPittRules'
 import Image from 'next/image'
-import i18n from './i18n'
 
 export interface ModalAbandonedProps {
   user: UserDetailDto
@@ -15,10 +13,10 @@ export interface ModalAbandonedProps {
 
 export default function ModalAbandoned({ user, onClose }: ModalAbandonedProps) {
   const { abandoned } = user.characteristic
-  const { locale } = useLocale()
+  const { formatMessage } = useIntl()
   const progress = useShowProgress(abandoned, { step: 1, ms: 300 })
-  const { header } = i18n[locale]
-  const title = i18nCommon[locale].abandoned
+  const title = formatMessage({ id: 'common.abandoned' })
+  const header = formatMessage({ id: 'page.user.modal-abandoned.header' })
   const roundedProgress = Math.round(progress)
 
   return (
@@ -41,7 +39,7 @@ export default function ModalAbandoned({ user, onClose }: ModalAbandonedProps) {
           </Box>
         </Box>
         <Typography variant="h6" component="h3">
-          {header}
+          {header}.
         </Typography>
         <OldPittRules />
       </Box>

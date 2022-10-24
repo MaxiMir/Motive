@@ -1,4 +1,4 @@
-import { Locale, EN, RU, UK } from 'hooks/useLocale'
+import { Locale, EN, RU, UK } from 'hooks/useSetLocale'
 
 const getLocaleHref = (asPath: string, locale?: string) => {
   const localePath = !locale ? '' : `/${locale}`

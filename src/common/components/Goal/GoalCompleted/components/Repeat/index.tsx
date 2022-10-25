@@ -1,0 +1,24 @@
+import { Box } from '@mui/material'
+import { getToday } from 'src/common/helpers/date'
+import { useSendCreateMember } from '@modules/user'
+import { Locale } from 'src/common/hooks/useSetLocale'
+import ActionSubmit from '@components/Action/ActionSubmit'
+import i18n from './i18n'
+
+interface RepeatProps {
+  goalId: number
+  locale: Locale
+}
+
+export default function Repeat({ goalId, locale }: RepeatProps) {
+  const { isLoading, mutate } = useSendCreateMember()
+  const { name, nameLoading } = i18n[locale]
+
+  const onClick = () => mutate({ goalId, started: getToday() })
+
+  return (
+    <Box display="flex" justifyContent="flex-end">
+      <ActionSubmit isLoading={isLoading} name={name} nameLoading={nameLoading} emoji="join" onClick={onClick} />
+    </Box>
+  )
+}

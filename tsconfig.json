@@ -26,7 +26,11 @@
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "baseUrl": ".",
-    "incremental": true
+    "incremental": true,
+    "paths": {
+      "@components/*": ["src/common/components/*"],
+      "@modules/*": ["src/modules/*"]
+    }
   },
   "include": [
     "next-env.d.ts",

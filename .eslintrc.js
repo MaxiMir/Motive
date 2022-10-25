@@ -18,6 +18,7 @@ module.exports = {
     },
     'import/internal-regex': '^next/',
     'import/resolver': {
+      typescript: true,
       node: {
         extensions: ['.js', '.jsx', '.ts', '.tsx'],
         moduleDirectory: ['node_modules', '.'],

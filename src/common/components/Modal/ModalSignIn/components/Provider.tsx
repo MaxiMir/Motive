@@ -1,5 +1,5 @@
 import { useIntl } from 'react-intl'
-import Image from 'next/image'
+import Image from 'next/legacy/image'
 import { signIn, SignInOptions } from 'next-auth/react'
 import { ClientSafeProvider } from 'next-auth/react/types'
 import { Box, Button } from '@mui/material'

@@ -1,11 +1,11 @@
 import dynamic from 'next/dynamic'
+import Link from 'next/link'
 import { useIntl } from 'react-intl'
 import { Box, Typography } from '@mui/material'
 import { MessageDto } from '@dto'
 import { getDistance } from '@utils/date'
 import { numberToShort } from '@helpers/prepare'
 import { getUserHref } from '@href'
-import AppLink from '@ui/AppLink'
 import UserAvatar from '@components/User/UserAvatar'
 import Menu from './components/Menu'
 import LikeButton from './components/LikeButton'
@@ -37,9 +37,9 @@ export default function Message({ message, answerFor, supportFor, onReply }: Mes
       <Box display="flex" flexDirection="column" gap={1} minWidth={152}>
         <Box display="flex" alignItems="center" gap={1}>
           <UserAvatar name={name} avatar={avatar} href={href} />
-          <AppLink href={href} title={user.name} sx={{ lineHeight: '20px', textDecoration: 'none' }}>
+          <Link href={href} title={user.name}>
             <b>{user.name}</b>
-          </AppLink>
+          </Link>
           {supportFor && <SupportSign name={supportFor} locale={locale} />}
           {edited && (
             <Box component="span" sx={{ fontSize: '0.6875rem', color: 'zen.silent' }}>

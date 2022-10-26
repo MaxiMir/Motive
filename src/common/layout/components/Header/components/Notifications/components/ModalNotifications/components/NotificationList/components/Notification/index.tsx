@@ -1,4 +1,5 @@
 import dynamic from 'next/dynamic'
+import Link from 'next/link'
 import { useIntl } from 'react-intl'
 import { Box, IconButton, Typography } from '@mui/material'
 import { NotificationDto } from '@dto'
@@ -7,7 +8,6 @@ import { getDistance } from '@utils/date'
 import { getUserHref } from '@href'
 import { getDetailsName, getNotificationInfo, getNotificationHref } from '@helpers/notification'
 import AppEmoji from '@ui/AppEmoji'
-import AppLink from '@ui/AppLink'
 import AppIcon from '@ui/AppIcon'
 import UserAvatar from '@components/User/UserAvatar'
 import { useUpdateRead } from './hook'
@@ -60,9 +60,9 @@ export default function Notification({ notification, onClose }: NotificationProp
       </Box>
       <Box display="flex" flexDirection="column" justifyContent="space-between">
         <Typography sx={{ fontSize: '0.875rem' }}>
-          <AppLink title={name} href={href} sx={{ color, textDecoration: 'none' }} onClick={onClose}>
+          <Link title={name} href={href} sx={{ color }} onClick={onClose}>
             <b>{name}</b>
-          </AppLink>{' '}
+          </Link>{' '}
           {header}
           {detailsName && `: ${detailsName}`}
         </Typography>

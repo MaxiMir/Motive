@@ -1,8 +1,8 @@
+import Link from 'next/link'
 import { Box, Typography, useTheme } from '@mui/material'
 import { useIntl } from 'react-intl'
 import { MainCharacteristicName, SecondCharacteristicName } from '@dto'
 import AppEmoji from '@ui/AppEmoji'
-import AppLink from '@ui/AppLink'
 
 interface AdvantageProps {
   name: MainCharacteristicName | SecondCharacteristicName.Completed
@@ -11,7 +11,7 @@ interface AdvantageProps {
 
 export default function Advantage({ name, href }: AdvantageProps) {
   const theme = useTheme()
-  const { formatMessage, locale } = useIntl()
+  const { locale, formatMessage } = useIntl()
   const title = formatMessage({ id: `page.home.advantage.${name}.title` })
   const subtitle = formatMessage({ id: `page.home.advantage.${name}.subtitle` })
   const { light, dark } = theme.palette[name]
@@ -27,31 +27,22 @@ export default function Advantage({ name, href }: AdvantageProps) {
       sx={{ background: `linear-gradient(90deg, ${light} 0%, ${dark} 100%)` }}
     >
       <Box display="flex" alignItems="center" gap={2}>
-        <AppLink
-          href={href}
-          sx={{
-            textDecoration: 'none',
-            '&:hover': {
-              textDecoration: 'none',
-            },
-          }}
-        >
+        <Link href={href}>
           <AppEmoji name={name} variant="h2" />
-        </AppLink>
+        </Link>
         <Box display="flex" flexDirection="column" alignItems="space-between">
-          <AppLink
-            href={href}
+          <Typography
+            component="p"
             variant="h5"
             sx={{
               color: '#F5F5F7',
-              width: locale === 'ru' ? 246 : 210,
+              width: locale !== 'en' ? 250 : 210,
               textTransform: 'uppercase',
               fontWeight: 500,
-              textDecoration: 'none',
             }}
           >
-            {title}
-          </AppLink>
+            <Link href={href}>{title}</Link>
+          </Typography>
           <Typography sx={{ color: '#f5f5f799' }}>{subtitle}</Typography>
         </Box>
       </Box>

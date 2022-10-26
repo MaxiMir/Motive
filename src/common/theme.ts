@@ -206,6 +206,10 @@ export const getDesignTokens = (mode: PaletteMode): ThemeOptions => {
           '.ps .ps__rail-y:hover, .ps .ps--clicking': {
             background: 'transparent!important',
           },
+          a: {
+            textDecoration: 'none',
+            color: 'inherit',
+          },
         },
       },
     },

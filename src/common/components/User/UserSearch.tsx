@@ -1,3 +1,4 @@
+import Link from 'next/link'
 import { Box, Typography, Button } from '@mui/material'
 import { MAIN_CHARACTERISTICS, UserDto } from '@dto'
 import { getUserHref } from '@href'
@@ -15,6 +16,7 @@ export default function UserSearch({ user }: UserSearchProps) {
   return (
     <Button
       variant="outlined"
+      component={Link}
       href={href}
       sx={{
         width: '100%',

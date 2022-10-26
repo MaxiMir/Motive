@@ -13,7 +13,7 @@ import { getImageSrc } from '@href'
 export const useSocket = (): void => {
   const { formatMessage } = useIntl()
   const client = useClient()
-  const router = useRouter()
+  const { push } = useRouter()
   const [enqueueSnackbar] = useSnackbar()
   const queryClient = useQueryClient()
 
@@ -49,7 +49,9 @@ export const useSocket = (): void => {
         const body = formatMessage({ id: `component.notification.${type}` })
         const notificator = new Notification(name, { tag, body, icon })
 
-        notificator.addEventListener('click', () => router.push(notificationHref))
+        notificator.addEventListener('click', () => {
+          push(notificationHref)
+        })
       })
     })
 

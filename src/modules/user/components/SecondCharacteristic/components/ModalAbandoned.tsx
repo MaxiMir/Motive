@@ -1,10 +1,10 @@
+import Image from 'next/legacy/image'
 import { useIntl } from 'react-intl'
 import { Box, Typography } from '@mui/material'
 import { UserDetailDto } from '@dto'
 import useShowProgress from '@hooks/useShowProgress'
 import AppModal from '@ui/AppModal'
 import OldPittRules from '@components/OldPitt/OldPittRules'
-import Image from 'next/image'
 
 export interface ModalAbandonedProps {
   user: UserDetailDto

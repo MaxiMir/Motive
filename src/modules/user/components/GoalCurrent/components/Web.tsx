@@ -1,4 +1,4 @@
-import Image from 'next/image'
+import Image from 'next/legacy/image'
 import { Box } from '@mui/material'
 
 export default function Web() {

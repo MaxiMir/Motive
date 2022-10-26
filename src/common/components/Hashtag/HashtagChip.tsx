@@ -21,7 +21,6 @@ export default function HashtagChip({ name }: HashtagChipProps) {
       variant="outlined"
       color="primary"
       size="small"
-      onClick={onClick}
       sx={{
         cursor: 'pointer',
         transition: 'all .2s ease-in-out',
@@ -29,6 +28,7 @@ export default function HashtagChip({ name }: HashtagChipProps) {
           opacity: 0.5,
         },
       }}
+      onClick={onClick}
     />
   )
 }

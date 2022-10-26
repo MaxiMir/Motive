@@ -1,7 +1,7 @@
+import Link from 'next/link'
 import { Container, Typography, Grid, Box } from '@mui/material'
 import { UserDto, UserCharacteristicName } from '@dto'
 import { getUserHref } from '@href'
-import AppLink from '@ui/AppLink'
 import AppEmoji from '@ui/AppEmoji'
 import UserAvatar from './UserAvatar'
 
@@ -47,9 +47,7 @@ export default function UserRating({ user, characteristicName, index }: UserRati
           <Grid item xs={8}>
             <Box display="flex" alignItems="center" gap={2}>
               <UserAvatar name={name} avatar={avatar} href={href} online={online} size={35} />
-              <AppLink href={href} variant="body1" sx={{ marginLeft: 1, textDecoration: 'none' }}>
-                {name}
-              </AppLink>
+              <Link href={href}>{name}</Link>
             </Box>
           </Grid>
           <Grid item xs>

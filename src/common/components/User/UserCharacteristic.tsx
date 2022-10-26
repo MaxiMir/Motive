@@ -1,9 +1,9 @@
 import dynamic from 'next/dynamic'
+import Link from 'next/link'
 import { Box, Typography } from '@mui/material'
 import { UserDto, SecondCharacteristicName, MAIN_CHARACTERISTICS } from '@dto'
 import { getUserHref } from '@href'
 import CharacteristicUser from '@components/Characteristic/CharacteristicUser'
-import AppLink from '@ui/AppLink'
 import UserAvatar from './UserAvatar'
 
 const AppInView = dynamic(() => import('@ui/AppInView'))
@@ -28,11 +28,11 @@ export default function UserCharacteristic({ user, inView, menu, onView, onClose
         <UserAvatar name={name} avatar={avatar} href={href} online={online} size={55} onClick={onClose} />
         <Box display="flex" flexDirection="column" justifyContent="space-between" flex={1}>
           <Box display="flex" justifyContent="space-between" alignItems="center">
-            <AppLink href={href} title={name} sx={{ textDecoration: 'none' }} onClick={onClose}>
-              <Typography variant="subtitle1" component="p">
+            <Typography variant="subtitle1" component="p">
+              <Link href={href} onClick={onClose}>
                 {name}
-              </Typography>
-            </AppLink>
+              </Link>
+            </Typography>
             {menu}
           </Box>
           <Box display="flex" justifyContent="space-between" alignItems="center">

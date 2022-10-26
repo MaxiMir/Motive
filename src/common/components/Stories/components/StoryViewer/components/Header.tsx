@@ -1,10 +1,10 @@
+import Link from 'next/link'
 import { useIntl } from 'react-intl'
 import { Box, IconButton, Typography } from '@mui/material'
 import { styled } from '@mui/system'
 import { UserBaseDto } from '@dto'
 import { getUserHref } from '@href'
 import { getDistance } from '@utils/date'
-import AppLink from '@ui/AppLink'
 import AppIcon from '@ui/AppIcon'
 import UserAvatar from '@components/User/UserAvatar'
 
@@ -54,9 +54,9 @@ export default function Header({ user, title, date, onClose }: HeaderProps): JSX
             <UserAvatar name={name} avatar={avatar} href={href} size={42} />
           </Box>
           <Box display="flex" flexDirection="column">
-            <AppLink href={href} title={user.name} sx={{ fontSize: '0.875rem', textDecoration: 'none' }}>
+            <Link href={href}>
               <b>{name}</b>
-            </AppLink>
+            </Link>
             <Box display="flex" alignItems="center" gap={1}>
               <TextTitle sx={{ color: 'motivation.light' }}>
                 <b>{title}</b>

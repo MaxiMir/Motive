@@ -2,7 +2,7 @@ import { useState } from 'react'
 import dynamic from 'next/dynamic'
 import { useIntl } from 'react-intl'
 import { Step, StepContent, Stepper } from '@mui/material'
-import { GoalDto } from 'src/common/dto'
+import { GoalDto } from '@dto'
 import StageLabel from './components/StageLabel'
 
 const Button = dynamic(() => import('@mui/material/Button'))

@@ -1,11 +1,11 @@
 import { useIntl } from 'react-intl'
 import { Box, IconButton, Typography } from '@mui/material'
 import { styled } from '@mui/system'
-import { UserBaseDto } from 'src/common/dto'
-import { getUserHref } from 'src/common/helpers/url'
-import { getDistance } from 'src/common/helpers/date'
-import AppLink from 'src/common/ui/AppLink'
-import AppIcon from 'src/common/ui/AppIcon'
+import { UserBaseDto } from '@dto'
+import { getUserHref } from '@helpers/url'
+import { getDistance } from '@helpers/date'
+import AppLink from '@ui/AppLink'
+import AppIcon from '@ui/AppIcon'
 import UserAvatar from '@components/User/UserAvatar'
 
 interface HeaderProps {

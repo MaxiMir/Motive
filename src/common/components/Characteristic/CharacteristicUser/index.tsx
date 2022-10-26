@@ -1,8 +1,8 @@
 import dynamic from 'next/dynamic'
 import { Box, Typography } from '@mui/material'
-import { numberToShort } from 'src/common/helpers/prepare'
-import { SECOND_CHARACTERISTICS, SecondCharacteristicName, UserCharacteristicName } from 'src/common/dto'
-import AppEmoji from 'src/common/ui/AppEmoji'
+import { numberToShort } from '@helpers/prepare'
+import { SECOND_CHARACTERISTICS, SecondCharacteristicName, UserCharacteristicName } from '@dto'
+import AppEmoji from '@ui/AppEmoji'
 
 const Level = dynamic(() => import('./components/Level'))
 

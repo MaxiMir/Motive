@@ -14,12 +14,12 @@ import {
   FormControl,
   Typography,
 } from '@mui/material'
-import { GoalDto } from 'src/common/dto'
-import { getToday, getTomorrow } from 'src/common/helpers/date'
-import AppIcon from 'src/common/ui/AppIcon'
-import AppHeader from 'src/common/ui/AppHeader'
-import { PaulIcon } from 'src/common/ui/icons'
-import AppModal from 'src/common/ui/AppModal'
+import { GoalDto } from '@dto'
+import { getToday, getTomorrow } from '@helpers/date'
+import AppIcon from '@ui/AppIcon'
+import AppHeader from '@ui/AppHeader'
+import { PaulIcon } from '@ui/icons'
+import AppModal from '@ui/AppModal'
 import ActionSubmit from '@components/Action/ActionSubmit'
 import ActionCancel from '@components/Action/ActionCancel'
 import TaskField from '@components/Task/TaskField'
@@ -70,8 +70,8 @@ export default function ModalTasks({ goal, onClose }: ModalTasksProps) {
         <ActionCancel onClick={onClose} />,
         <ActionSubmit
           isLoading={isSubmitting}
-          name={buttonText}
-          nameLoading={loadingText}
+          text={buttonText}
+          loadingText={loadingText}
           emoji="task"
           onClick={handleSubmit}
         />,

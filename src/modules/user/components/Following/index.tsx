@@ -1,6 +1,6 @@
 import { useIntl } from 'react-intl'
 import { Button } from '@mui/material'
-import AppEmoji from 'src/common/ui/AppEmoji'
+import AppEmoji from '@ui/AppEmoji'
 import useSetFollowing from './hook'
 
 interface FollowingProps {

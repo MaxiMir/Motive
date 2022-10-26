@@ -1,8 +1,8 @@
 import { Box, Typography, useTheme } from '@mui/material'
 import { useIntl } from 'react-intl'
-import { MainCharacteristicName, SecondCharacteristicName } from 'src/common/dto'
-import AppEmoji from 'src/common/ui/AppEmoji'
-import AppLink from 'src/common/ui/AppLink'
+import { MainCharacteristicName, SecondCharacteristicName } from '@dto'
+import AppEmoji from '@ui/AppEmoji'
+import AppLink from '@ui/AppLink'
 
 interface AdvantageProps {
   name: MainCharacteristicName | SecondCharacteristicName.Completed

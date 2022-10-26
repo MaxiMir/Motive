@@ -2,19 +2,18 @@ import { Fragment } from 'react'
 import dynamic from 'next/dynamic'
 import { useIntl } from 'react-intl'
 import { Box, Tooltip } from '@mui/material'
-import { ConfirmationDto, GoalCharacteristicName, MAIN_CHARACTERISTICS, MemberDto } from 'src/common/dto'
-import useClient from 'src/common/hooks/useClient'
-import AppHeader from 'src/common/ui/AppHeader'
-import AppDot from 'src/common/ui/AppDot'
+import { ConfirmationDto, GoalCharacteristicName, MAIN_CHARACTERISTICS, MemberDto } from '@dto'
+import useClient from '@hooks/useClient'
+import AppHeader from '@ui/AppHeader'
+import AppDot from '@ui/AppDot'
 import CharacteristicGoal from '@components/Characteristic/CharacteristicGoal'
 import { checkOnRepeat, getGoalInfo } from './helper'
-import i18n from './i18n'
 
 const Typography = dynamic(() => import('@mui/material/Typography'))
+const GallerySimple = dynamic(() => import('@components/Gallery/GallerySimple'))
+const AppMarkdown = dynamic(() => import('@ui/AppMarkdown'))
 const Inheritance = dynamic(() => import('./components/Inheritance'))
 const Repeat = dynamic(() => import('./components/Repeat'))
-const GallerySimple = dynamic(() => import('@components/Gallery/GallerySimple'))
-const AppMarkdown = dynamic(() => import('src/common/ui/AppMarkdown'))
 
 const CHARACTERISTICS: GoalCharacteristicName[] = [...MAIN_CHARACTERISTICS, 'members']
 
@@ -26,11 +25,11 @@ export interface GoalCompletedProps {
 
 export default function GoalCompleted({ userId, clientMembership, confirmation }: GoalCompletedProps) {
   const { goal, inherited } = confirmation
-  const { locale } = useIntl()
+  const { formatMessage } = useIntl()
   const client = useClient()
   const { duration, mainPhoto, secondPhotos, interval } = getGoalInfo(confirmation)
   const renderRepeat = checkOnRepeat(userId, clientMembership, goal, client)
-  const { durationTitle } = i18n[locale]
+  const durationTitle = formatMessage({ id: 'common.duration' })
 
   return (
     <Box
@@ -62,7 +61,7 @@ export default function GoalCompleted({ userId, clientMembership, confirmation }
           <AppHeader name="cup" variant="h6" component="h2">
             {goal.name}
           </AppHeader>
-          {inherited && <Inheritance owner={goal.owner} locale={locale} />}
+          {inherited && <Inheritance owner={goal.owner} />}
           <Typography variant="caption">
             {durationTitle}:{' '}
             <Tooltip arrow title={interval}>
@@ -83,7 +82,7 @@ export default function GoalCompleted({ userId, clientMembership, confirmation }
         {confirmation.text && <AppMarkdown text={confirmation.text} />}
         {mainPhoto && <GallerySimple photos={[mainPhoto]} />}
         {!!secondPhotos?.length && <GallerySimple photos={secondPhotos} />}
-        {renderRepeat && <Repeat goalId={goal.id} locale={locale} />}
+        {renderRepeat && <Repeat goalId={goal.id} />}
       </Box>
     </Box>
   )

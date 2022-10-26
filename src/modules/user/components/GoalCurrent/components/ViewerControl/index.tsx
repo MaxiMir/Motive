@@ -1,7 +1,7 @@
 import dynamic from 'next/dynamic'
 import { useIntl } from 'react-intl'
 import { Box } from '@mui/material'
-import { DAY_CHARACTERISTIC, GoalDto, OwnershipDto, UserBaseDto } from 'src/common/dto'
+import { DAY_CHARACTERISTIC, GoalDto, OwnershipDto, UserBaseDto } from '@dto'
 import ReactionWithSend from './components/ReactionWithSend'
 import ReactionSupport from './components/ReactionSupport'
 import { checkOnCompletion } from './helper'
@@ -29,7 +29,7 @@ export default function Viewer({ goal, owner, forTomorrow, clientOwnership }: Vi
         <ReactionSupport goal={goal} owner={owner} locale={locale} />
       </Box>
       {!clientOwnership.member ? (
-        <Join goal={goal} locale={locale} />
+        <Join goal={goal} />
       ) : (
         <>{completion && <Completion goal={goal} forTomorrow={forTomorrow} clientMember={clientOwnership.member} />}</>
       )}

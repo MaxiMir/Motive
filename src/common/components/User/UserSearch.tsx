@@ -1,7 +1,7 @@
 import { Box, Typography, Button } from '@mui/material'
-import { MAIN_CHARACTERISTICS, UserDto } from 'src/common/dto'
-import { getUserHref } from 'src/common/helpers/url'
-import Avatar from 'src/common/components/Avatar'
+import { MAIN_CHARACTERISTICS, UserDto } from '@dto'
+import { getUserHref } from '@helpers/url'
+import AvatarStatus from '@components/Avatar/AvatarStatus'
 import CharacteristicUser from '@components/Characteristic/CharacteristicUser'
 
 export interface UserSearchProps {
@@ -34,7 +34,7 @@ export default function UserSearch({ user }: UserSearchProps) {
           },
         }}
       >
-        <Avatar src={avatar} name={name} size={120} />
+        <AvatarStatus src={avatar} name={name} size={120} />
         <Box
           display="flex"
           flexDirection="column"

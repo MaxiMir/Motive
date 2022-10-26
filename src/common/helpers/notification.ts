@@ -1,14 +1,14 @@
 import produce from 'immer'
-import { ClientDto, MainCharacteristicName, NotificationDto, NotificationType } from 'src/common/dto'
+import { ClientDto, MainCharacteristicName, NotificationDto, NotificationType } from '@dto'
 import {
   getDiscussionHref,
   getFeedbackHref,
   getGoalHref,
   getGoalWithDayHref,
   getUserHref,
-} from 'src/common/helpers/url'
-import { toShortString } from 'src/common/helpers/prepare'
-import { AppEmojiName } from 'src/common/ui/AppEmoji'
+} from '@helpers/url'
+import { toShortString } from '@helpers/prepare'
+import { AppEmojiName } from '@ui/AppEmoji'
 
 interface NotificationInfo {
   emoji: AppEmojiName

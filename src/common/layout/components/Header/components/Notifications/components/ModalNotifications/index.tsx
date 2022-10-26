@@ -1,8 +1,8 @@
 import dynamic from 'next/dynamic'
 import { useIntl } from 'react-intl'
 import { Box } from '@mui/material'
-import { NotificationDto } from 'src/common/dto'
-import AppModal from 'src/common/ui/AppModal'
+import { NotificationDto } from '@dto'
+import AppModal from '@ui/AppModal'
 import useNotificationHint from './hook'
 import i18n from './i18n'
 

@@ -1,10 +1,10 @@
 import { useIntl } from 'react-intl'
 import { Box, Typography } from '@mui/material'
-import { GoalDto } from 'src/common/dto'
+import { GoalDto } from '@dto'
 import ActionSubmit from '@components/Action/ActionSubmit'
 import ActionCancel from '@components/Action/ActionCancel'
-import AppModal from 'src/common/ui/AppModal'
-import AppFlyIcon from 'src/common/ui/AppFlyIcon'
+import AppModal from '@ui/AppModal'
+import AppFlyIcon from '@ui/AppFlyIcon'
 import { useSendStage } from './hook'
 import i18n from './i18n'
 
@@ -39,8 +39,8 @@ export default function ModalStage({ goal, onClose }: ModalStageProps) {
         <ActionCancel onClick={onClose} />,
         <ActionSubmit
           isLoading={isLoading}
-          name={button}
-          nameLoading={buttonLoading}
+          text={button}
+          loadingText={buttonLoading}
           emoji="stage"
           onClick={onClick}
         />,

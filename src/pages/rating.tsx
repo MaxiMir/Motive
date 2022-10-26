@@ -4,10 +4,10 @@ import { dehydrate, QueryClient } from 'react-query'
 import { getSession } from 'next-auth/react'
 import { useIntl } from 'react-intl'
 import { AxiosRequestHeaders } from 'axios'
-import { RATING } from 'route'
-import { PageService } from 'src/common/services/page'
-import Layout from 'src/common/layout'
-import { Rating, useRatingPage } from '@modules/rating'
+import { RATING } from '@links'
+import { PageService } from '@services/page'
+import Layout from '@layout'
+import { RatingModule, useRatingPage } from '@modules/rating'
 
 export default function RatingPage() {
   const { formatMessage } = useIntl()
@@ -19,7 +19,7 @@ export default function RatingPage() {
 
   return (
     <Layout title={title} description={description}>
-      {data?.content && <Rating {...data.content} tab={tab} />}
+      {data?.content && <RatingModule {...data.content} tab={tab} />}
     </Layout>
   )
 }

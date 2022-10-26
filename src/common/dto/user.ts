@@ -1,4 +1,4 @@
-import { Device } from 'src/common/helpers/dom'
+import { Device } from '@helpers/dom'
 import { UserCharacteristicDto } from './characteristic'
 
 export interface UserBaseDto {

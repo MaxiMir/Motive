@@ -1,12 +1,11 @@
 import { useIntl } from 'react-intl'
 import { Box, Typography } from '@mui/material'
-import { GoalDto, OwnershipDto } from 'src/common/dto'
+import { GoalDto, OwnershipDto } from '@dto'
 import ActionSubmit from '@components/Action/ActionSubmit'
 import ActionCancel from '@components/Action/ActionCancel'
-import AppModal from 'src/common/ui/AppModal'
-import AppFadeIcon from 'src/common/ui/AppFadeIcon'
+import AppModal from '@ui/AppModal'
+import AppFadeIcon from '@ui/AppFadeIcon'
 import { useSendRemoveMember } from './hook'
-import i18n from './i18n'
 
 export interface ModalLeaveProps {
   goal: GoalDto
@@ -16,9 +15,12 @@ export interface ModalLeaveProps {
 
 export default function ModalLeave({ goal, clientOwnership, onClose }: ModalLeaveProps) {
   const { id, name } = goal
-  const { locale } = useIntl()
+  const { formatMessage } = useIntl()
   const { isLoading, mutateAsync } = useSendRemoveMember(id, clientOwnership.page)
-  const { title, button, buttonLoading, subtitle } = i18n[locale]
+  const title = formatMessage({ id: 'page.user.modal-leave.title' })
+  const buttonText = formatMessage({ id: 'page.user.modal-leave.button' })
+  const loadingText = formatMessage({ id: 'page.user.modal-leave.loading' })
+  const subtitle = formatMessage({ id: 'page.user.modal-leave.subtitle' })
 
   const onClick = () => {
     if (!clientOwnership.member) return
@@ -34,8 +36,8 @@ export default function ModalLeave({ goal, clientOwnership, onClose }: ModalLeav
         <ActionCancel onClick={onClose} />,
         <ActionSubmit
           isLoading={isLoading}
-          name={button}
-          nameLoading={buttonLoading}
+          text={buttonText}
+          loadingText={loadingText}
           emoji="leave"
           onClick={onClick}
         />,

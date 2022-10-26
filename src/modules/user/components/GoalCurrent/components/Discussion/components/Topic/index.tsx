@@ -1,12 +1,12 @@
 import { useState } from 'react'
 import dynamic from 'next/dynamic'
-import { TopicDto, MessageType, UserBaseDto } from 'src/common/dto'
+import { TopicDto, MessageType, UserBaseDto } from '@dto'
 import Message from './components/Message'
 import { checkOnReply } from './helper'
 
 const Box = dynamic(() => import('@mui/material/Box'))
-const AppIcon = dynamic(() => import('src/common/ui/AppIcon'))
-const AppInView = dynamic(() => import('src/common/ui/AppInView'))
+const AppIcon = dynamic(() => import('@ui/AppIcon'))
+const AppInView = dynamic(() => import('@ui/AppInView'))
 const UserInput = dynamic(() => import('@components/User/UserInput'))
 
 interface TopicProps {

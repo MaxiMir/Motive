@@ -2,16 +2,16 @@ import { GetServerSideProps } from 'next'
 import { dehydrate, QueryClient } from 'react-query'
 import { getSession } from 'next-auth/react'
 import { AxiosRequestHeaders } from 'axios'
-import { PossiblePageError } from 'src/common/dto'
-import { PageService } from 'src/common/services/page'
-import Layout from 'src/common/layout'
-import { User, useUserMeta, useUserPage, getServerSideUrl } from '@modules/user'
+import { PossiblePageError } from '@dto'
+import { PageService } from '@services/page'
+import Layout from '@layout'
+import { UserModule, useUserMeta, useUserPage, getServerSideUrl } from '@modules/user'
 
 export default function UserPage() {
   const { data } = useUserPage()
   const userMeta = useUserMeta(data?.content)
 
-  return <Layout {...userMeta}>{data?.content && <User user={data.content} />}</Layout>
+  return <Layout {...userMeta}>{data?.content && <UserModule user={data.content} />}</Layout>
 }
 
 export const getServerSideProps: GetServerSideProps = async (ctx) => {

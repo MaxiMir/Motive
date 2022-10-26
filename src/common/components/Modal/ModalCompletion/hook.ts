@@ -1,14 +1,13 @@
 import { FormikProps, useFormik } from 'formik'
 import { useMutation } from 'react-query'
 import { useIntl } from 'react-intl'
-import { GoalDto } from 'src/common/dto'
-import validationSchema from 'src/common/schemas/completion'
-import { ConfirmationService } from 'src/common/services/confirmation'
-import useSnackbar from 'src/common/hooks/useSnackbar'
-import { scrollToElem } from 'src/common/helpers/dom'
-import { getToday } from 'src/common/helpers/date'
-import { useUserPage } from '@modules/user'
-import i18n from './i18n'
+import { GoalDto } from '@dto'
+import { completionSchema } from '@schemas/completion'
+import { ConfirmationService } from '@services/confirmation'
+import useSnackbar from '@hooks/useSnackbar'
+import { scrollToElem } from '@helpers/dom'
+import { getToday } from '@helpers/date'
+import { useUserPage } from '@modules/user/hook'
 
 interface Values {
   text: string
@@ -29,7 +28,7 @@ export default function useForm(goal: GoalDto, onSuccess: () => void): FormikPro
       goalId: goal.id,
       end: getToday(),
     },
-    validationSchema,
+    validationSchema: completionSchema,
     async onSubmit(data) {
       const formData = new FormData()
       formData.append('text', data.text.trim())
@@ -42,10 +41,10 @@ export default function useForm(goal: GoalDto, onSuccess: () => void): FormikPro
 }
 
 const useSendConfirmation = (onSuccess: () => void) => {
-  const { locale } = useIntl()
+  const { formatMessage } = useIntl()
   const { refetch } = useUserPage()
   const [enqueueSnackbar] = useSnackbar()
-  const { message } = i18n[locale]
+  const message = formatMessage({ id: 'components.modal-completion.message' })
 
   return useMutation(ConfirmationService.create, {
     onSuccess() {

@@ -1,4 +1,4 @@
-import { GoalDto, OwnershipDto } from 'src/common/dto'
+import { GoalDto, OwnershipDto } from '@dto'
 
 export const checkOnCompletion = (clientOwnership: OwnershipDto, goal: GoalDto): boolean => {
   const { page, member } = clientOwnership

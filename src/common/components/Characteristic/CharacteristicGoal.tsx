@@ -1,8 +1,8 @@
 import { useIntl } from 'react-intl'
 import { Box, Typography, Tooltip } from '@mui/material'
-import { GoalCharacteristicName } from 'src/common/dto'
-import { numberToShort } from 'src/common/helpers/prepare'
-import AppEmoji from 'src/common/ui/AppEmoji'
+import { GoalCharacteristicName } from '@dto'
+import { numberToShort } from '@helpers/prepare'
+import AppEmoji from '@ui/AppEmoji'
 
 export interface CharacteristicGoalProps {
   name: GoalCharacteristicName | 'runningDays'

@@ -1,7 +1,7 @@
 import { useMutation, UseMutationResult } from 'react-query'
-import { GoalDto } from 'src/common/dto'
+import { GoalDto } from '@dto'
 import { AxiosError } from 'axios'
-import { DayService } from 'src/common/services/day'
+import { DayService } from '@services/day'
 
 export const useIncreaseViews = (goal: GoalDto, clientId?: number): UseMutationResult<void, AxiosError, void> => {
   const { id } = goal.day

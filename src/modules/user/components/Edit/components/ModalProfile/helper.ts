@@ -1,5 +1,5 @@
 import produce from 'immer'
-import { UserBaseDto, UserPageDto } from 'src/common/dto'
+import { UserBaseDto, UserPageDto } from '@dto'
 
 export const getNextState = (page: UserPageDto, user: UserBaseDto): UserPageDto =>
   produce(page, (draft) => {

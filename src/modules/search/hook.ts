@@ -1,7 +1,7 @@
 import { useRouter } from 'next/router'
 import { useQuery, UseQueryResult } from 'react-query'
-import { SearchPageDto } from 'src/common/dto'
-import { PageService } from 'src/common/services/page'
+import { SearchPageDto } from '@dto'
+import { PageService } from '@services/page'
 
 export function useSearchPage(): UseQueryResult<SearchPageDto> {
   const { asPath } = useRouter()

@@ -5,7 +5,7 @@ import {
   DayCharacteristicUpdateDto,
   GoalDto,
   UserPageDto,
-} from 'src/common/dto'
+} from '@dto'
 
 export interface Context {
   previous?: UserPageDto

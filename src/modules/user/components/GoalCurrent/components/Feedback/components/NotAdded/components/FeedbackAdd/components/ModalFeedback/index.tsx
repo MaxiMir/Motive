@@ -1,20 +1,19 @@
 import { Field, FieldArray, Form, FormikProvider } from 'formik'
 import { useIntl } from 'react-intl'
 import { Grid, Box, Typography } from '@mui/material'
-import { GoalDto } from 'src/common/dto'
-import useSelectPhoto from 'src/common/hooks/useSelectPhoto'
+import { GoalDto } from '@dto'
+import useSelectPhoto from '@hooks/useSelectPhoto'
 import ActionSubmit from '@components/Action/ActionSubmit'
 import ActionCancel from '@components/Action/ActionCancel'
-import AppModal from 'src/common/ui/AppModal'
-import AppInput from 'src/common/ui/AppInput'
-import AppHeader from 'src/common/ui/AppHeader'
-import AppShakeIcon from 'src/common/ui/AppShakeIcon'
+import AppModal from '@ui/AppModal'
+import AppInput from '@ui/AppInput'
+import AppHeader from '@ui/AppHeader'
+import AppShakeIcon from '@ui/AppShakeIcon'
 import PhotoInput from '@components/Photo/PhotoInput'
 import PhotoButton from '@components/Photo/PhotoButton'
 import VideoPreview from '@components/Video/VideoPreview'
 import VideoInput from '@components/Video/VideoInput'
 import useForm from './hook'
-import i18n from './i18n'
 
 export interface ModalFeedbackProps {
   goal: GoalDto
@@ -22,10 +21,16 @@ export interface ModalFeedbackProps {
 }
 
 export default function ModalFeedback({ goal, onClose }: ModalFeedbackProps) {
-  const { locale } = useIntl()
+  const { formatMessage } = useIntl()
   const form = useForm(goal, onClose)
   const { isSubmitting, values, setFieldValue, handleSubmit } = form
-  const { title, label, subtitle, photoTitle, videoTitle, button, buttonLoading } = i18n[locale]
+  const title = formatMessage({ id: 'page.user.modal-feedback.title' })
+  const label = formatMessage({ id: 'page.user.modal-feedback.label' })
+  const subtitle = formatMessage({ id: 'page.user.modal-feedback.subtitle' })
+  const photoTitle = formatMessage({ id: 'page.user.modal-feedback.photo-title' })
+  const videoTitle = formatMessage({ id: 'page.user.modal-feedback.video-title' })
+  const buttonText = formatMessage({ id: 'page.user.modal-feedback.button' })
+  const loadingText = formatMessage({ id: 'page.user.modal-feedback.loading' })
 
   const onSelectPhoto = useSelectPhoto(form)
 
@@ -39,8 +44,8 @@ export default function ModalFeedback({ goal, onClose }: ModalFeedbackProps) {
         <ActionCancel onClick={onClose} />,
         <ActionSubmit
           isLoading={isSubmitting}
-          name={button}
-          nameLoading={buttonLoading}
+          text={buttonText}
+          loadingText={loadingText}
           emoji="feedback"
           onClick={handleSubmit}
         />,

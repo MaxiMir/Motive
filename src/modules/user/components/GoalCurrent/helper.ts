@@ -1,7 +1,8 @@
 import { ParsedUrlQuery } from 'querystring'
 import { differenceInCalendarDays } from 'date-fns'
-import { GoalDto, MemberDto, OwnershipDto } from 'src/common/dto'
-import { HashMark, SearchParam } from 'src/common/helpers/url'
+import produce from 'immer'
+import { GoalDto, MemberDto, OwnershipDto, TaskDto } from '@dto'
+import { HashMark, SearchParam } from '@helpers/url'
 import { getMember } from '@modules/user/helper'
 
 const SHOW_WEB_AFTER_DAYS = +(process.env.NEXT_PUBLIC_SHOW_WEB_AFTER_DAYS as string)
@@ -22,7 +23,7 @@ export const getClientOwnership = (
 export const checkOnShowDiscussion = (query: ParsedUrlQuery, id: number): boolean =>
   query[SearchParam.ScrollTo] === HashMark.Discussion && query[SearchParam.ScrollId] === id.toString()
 
-export interface GoalInfo {
+interface GoalInfo {
   daysGoneForOwner: number
   runningDays: number
   web: boolean
@@ -95,3 +96,12 @@ export const getGoalInfo = (goal: GoalDto, clientOwnership: OwnershipDto, userMe
     canEdit,
   }
 }
+
+export const redefineTasks = (tasks: TaskDto[], userMember?: MemberDto): TaskDto[] =>
+  tasks.map((task) =>
+    produce(task, (draft) => {
+      if (!userMember) return
+
+      draft.completed = userMember.completedTasks.includes(draft.id)
+    }),
+  )

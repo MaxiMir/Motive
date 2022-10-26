@@ -3,9 +3,9 @@ import { useIntl } from 'react-intl'
 import { Field } from 'formik'
 import { Box, Switch, Tooltip, FormControlLabel } from '@mui/material'
 import { TimePicker } from '@mui/x-date-pickers'
-import AppInput from 'src/common/ui/AppInput'
-import AppIcon from 'src/common/ui/AppIcon'
-import AppIconButton from 'src/common/ui/AppIconButton'
+import AppInput from '@ui/AppInput'
+import AppIcon from '@ui/AppIcon'
+import AppIconButton from '@ui/AppIconButton'
 
 export interface TaskFieldProps {
   index: number

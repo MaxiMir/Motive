@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import dynamic from 'next/dynamic'
 import { useIntl } from 'react-intl'
-import useSnackbar from 'src/common/hooks/useSnackbar'
+import useSnackbar from '@hooks/useSnackbar'
 
 const Menu = dynamic(() => import('./components/Menu'))
 

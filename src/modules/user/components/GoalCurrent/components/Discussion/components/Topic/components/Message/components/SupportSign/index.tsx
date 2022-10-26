@@ -1,6 +1,6 @@
 import { Box, Tooltip } from '@mui/material'
-import { Locale } from 'src/common/hooks/useSetLocale'
-import AppEmoji from 'src/common/ui/AppEmoji'
+import { Locale } from '@hooks/useSetLocale'
+import AppEmoji from '@ui/AppEmoji'
 import i18n from './i18n'
 
 interface SupportSignProps {

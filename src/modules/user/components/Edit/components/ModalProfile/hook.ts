@@ -2,11 +2,11 @@ import { useRouter } from 'next/router'
 import { FormikProps, useFormik } from 'formik'
 import { useMutation } from 'react-query'
 import { useIntl } from 'react-intl'
-import { UpdateUserDto, UserBaseDto } from 'src/common/dto'
-import validationSchema from 'src/common/schemas/profile'
-import { UserService } from 'src/common/services/user'
-import { getQueryParams, setQueryParams, getUserHref } from 'src/common/helpers/url'
-import { useMutateUserPage } from '@modules/user'
+import { UpdateUserDto, UserBaseDto } from '@dto'
+import { profileSchema } from '@schemas/profile'
+import { UserService } from '@services/user'
+import { getQueryParams, setQueryParams, getUserHref } from '@helpers/url'
+import { useMutateUserPage } from '@modules/user/hook'
 import { getNextState } from './helper'
 
 export default function useForm(user: UserBaseDto, onSuccess: () => void): FormikProps<UpdateUserDto> {
@@ -20,7 +20,7 @@ export default function useForm(user: UserBaseDto, onSuccess: () => void): Formi
       nickname: user.nickname,
       avatar: user.avatar,
     },
-    validationSchema,
+    validationSchema: profileSchema,
     async onSubmit(data, { setFieldError }) {
       const { id } = user
       const { name, nickname, avatar } = data

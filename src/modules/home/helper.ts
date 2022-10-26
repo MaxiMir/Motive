@@ -1,6 +1,6 @@
-import { MainCharacteristicName, SecondCharacteristicName } from 'src/common/dto'
-import { RATING } from 'route'
-import { setQueryParams } from 'src/common/helpers/url'
+import { MainCharacteristicName, SecondCharacteristicName } from '@dto'
+import { RATING } from '@links'
+import { setQueryParams } from '@helpers/url'
 
 interface AdvantageItem {
   name: MainCharacteristicName | SecondCharacteristicName.Completed

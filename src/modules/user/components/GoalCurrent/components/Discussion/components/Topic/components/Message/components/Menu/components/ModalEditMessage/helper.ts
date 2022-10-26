@@ -1,6 +1,6 @@
 import produce from 'immer'
 import { InfiniteData } from 'react-query'
-import { MessageDto, TopicDto } from 'src/common/dto'
+import { MessageDto, TopicDto } from '@dto'
 
 export const getNextState = (discussion: InfiniteData<TopicDto[]>, message: MessageDto): InfiniteData<TopicDto[]> => {
   const { id, parentId, text } = message

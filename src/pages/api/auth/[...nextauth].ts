@@ -2,7 +2,7 @@ import NextAuth from 'next-auth'
 import AppleProvider from 'next-auth/providers/apple'
 import GoogleProvider from 'next-auth/providers/google'
 import GithubProvider from 'next-auth/providers/github'
-import { UserService } from 'src/common/services/user'
+import { UserService } from '@services/user'
 
 export default NextAuth({
   providers: [

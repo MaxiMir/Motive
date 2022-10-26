@@ -1,8 +1,8 @@
 import { FormikProps, useFormik } from 'formik'
 import { useMutation } from 'react-query'
-import { GoalDto, CreateMessageDto, MessageType } from 'src/common/dto'
-import validationSchema from 'src/common/schemas/message'
-import { TopicService } from 'src/common/services/topic'
+import { GoalDto, CreateMessageDto, MessageType } from '@dto'
+import { messageSchema } from '@schemas/message'
+import { TopicService } from '@services/topic'
 import { useAddMessage } from '@modules/user/components/GoalCurrent/components/Discussion/hook'
 
 export default function useForm(goal: GoalDto, onSuccess: () => void): FormikProps<CreateMessageDto> {
@@ -15,7 +15,7 @@ export default function useForm(goal: GoalDto, onSuccess: () => void): FormikPro
       text: '',
       type: MessageType.Support,
     },
-    validationSchema,
+    validationSchema: messageSchema,
     async onSubmit(data) {
       await mutateAsync(data)
       onSuccess()

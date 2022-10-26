@@ -1,7 +1,7 @@
 import produce from 'immer'
 import { GetNextPageParamFunction, InfiniteData, QueryFunctionContext } from 'react-query'
-import { GoalDto, TopicDto } from 'src/common/dto'
-import { TopicService } from 'src/common/services/topic'
+import { GoalDto, TopicDto } from '@dto'
+import { TopicService } from '@services/topic'
 
 const TAKE = 20
 export const PRELOAD_DIFF = 5

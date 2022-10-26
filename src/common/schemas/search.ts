@@ -1,5 +1,5 @@
 import { object, string } from 'yup'
 
-export default object({
+export const searchSchema = object({
   q: string(),
 })

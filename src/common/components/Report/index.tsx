@@ -1,7 +1,7 @@
 import { useIntl } from 'react-intl'
 import { Menu, MenuItem } from '@mui/material'
-import { ReportType } from 'src/common/dto'
-import AppMenuItemContent from 'src/common/ui/AppMenuItemContent'
+import { ReportType } from '@dto'
+import AppMenuItemContent from '@ui/AppMenuItemContent'
 import useSendReport from './hook'
 import i18n from './i18n'
 

@@ -1,7 +1,7 @@
 import { useIntl } from 'react-intl'
 import { Typography } from '@mui/material'
-import { MAIN_CHARACTERISTICS } from 'src/common/dto'
-import AppDecorEmoji from 'src/common/ui/AppDecorEmoji'
+import { MAIN_CHARACTERISTICS } from '@dto'
+import AppDecorEmoji from '@ui/AppDecorEmoji'
 import i18n from './i18n'
 
 export default function OldPittRules() {

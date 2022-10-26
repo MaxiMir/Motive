@@ -1,6 +1,6 @@
 import { useIntl } from 'react-intl'
 import { Menu, MenuItem } from '@mui/material'
-import AppMenuItemContent from 'src/common/ui/AppMenuItemContent'
+import AppMenuItemContent from '@ui/AppMenuItemContent'
 
 interface MenuListProps {
   anchorEl: HTMLElement

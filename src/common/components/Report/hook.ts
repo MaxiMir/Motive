@@ -1,11 +1,11 @@
 import { AxiosError } from 'axios'
 import { useMutation } from 'react-query'
 import { useIntl } from 'react-intl'
-import { CreateReportDto, ReportType } from 'src/common/dto'
-import useSnackbar from 'src/common/hooks/useSnackbar'
-import useClient from 'src/common/hooks/useClient'
-import useOpenSignIn from 'src/common/hooks/useOpenSignIn'
-import { ReportService } from 'src/common/services/report'
+import { CreateReportDto, ReportType } from '@dto'
+import useSnackbar from '@hooks/useSnackbar'
+import useClient from '@hooks/useClient'
+import useOpenSignIn from '@hooks/useOpenSignIn'
+import { ReportService } from '@services/report'
 import i18n from './i18n'
 
 type SendReport = (reason: string) => void

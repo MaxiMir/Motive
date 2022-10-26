@@ -1,1 +1,1 @@
-export { Home } from './Home'
+export { HomeModule } from './HomeModule'

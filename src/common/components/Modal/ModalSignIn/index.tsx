@@ -4,8 +4,7 @@ import { BuiltInProviderType } from 'next-auth/providers'
 import { SignInOptions, getProviders, LiteralUnion, ClientSafeProvider } from 'next-auth/react'
 import { useIntl } from 'react-intl'
 import { Box } from '@mui/material'
-import AppModal from 'src/common/ui/AppModal'
-import i18n from './i18n'
+import AppModal from '@ui/AppModal'
 
 const Loader = dynamic(() => import('./components/Loader'))
 const Provider = dynamic(() => import('./components/Provider'))
@@ -18,9 +17,9 @@ export interface ModalSignInProps {
 }
 
 export default function ModalSignIn({ options, onClose }: ModalSignInProps) {
-  const { locale } = useIntl()
+  const { formatMessage } = useIntl()
   const [providers, setProviders] = useState<Providers>()
-  const { title } = i18n[locale]
+  const title = formatMessage({ id: 'common.sign-in' })
 
   useEffect(() => {
     getProviders().then(setProviders)
@@ -34,13 +33,7 @@ export default function ModalSignIn({ options, onClose }: ModalSignInProps) {
         ) : (
           <>
             {Object.values(providers).map((provider) => (
-              <Provider
-                provider={provider}
-                options={options}
-                locale={locale}
-                disabled={provider.id === 'apple'}
-                key={provider.id}
-              />
+              <Provider provider={provider} options={options} disabled={provider.id === 'apple'} key={provider.id} />
             ))}
           </>
         )}

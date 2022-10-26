@@ -1,8 +1,8 @@
 import { MouseEvent, useState } from 'react'
 import dynamic from 'next/dynamic'
 import { useIntl } from 'react-intl'
-import { GoalDto, OwnershipDto } from 'src/common/dto'
-import AppMenuButton from 'src/common/ui/AppMenuButton'
+import { GoalDto, OwnershipDto } from '@dto'
+import AppMenuButton from '@ui/AppMenuButton'
 import i18n from './i18n'
 
 const ModalLeave = dynamic(() => import('./components/ModalLeave'))
@@ -49,13 +49,12 @@ export default function Menu({ goal, title, href, clientOwnership }: MenuProps) 
           anchorEl={anchorEl}
           goalId={goal.id}
           clientOwnership={clientOwnership}
-          locale={locale}
           onShare={onShare}
           onLeave={onLeave}
           onClose={onClose}
         />
       )}
-      {withShare && <Share title={title} href={href} locale={locale} onClose={onCloseShare} />}
+      {withShare && <Share title={title} href={href} onClose={onCloseShare} />}
       {withLeave && <ModalLeave goal={goal} clientOwnership={clientOwnership} onClose={onLeaveClose} />}
     </>
   )

@@ -1,1 +1,1 @@
-export { TopOfTheDay } from './TopOfTheDay'
+export { TopOfTheDayModule } from './TopOfTheDayModule'

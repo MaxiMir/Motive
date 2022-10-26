@@ -1,6 +1,6 @@
 import { useInfiniteQuery } from 'react-query'
-import { ConfirmationDto } from 'src/common/dto'
-import { partialCheckOnLoadMore, partialGetNextPageParam } from 'src/common/helpers/fetcher'
+import { ConfirmationDto } from '@dto'
+import { partialCheckOnLoadMore, partialGetNextPageParam } from '@helpers/fetcher'
 import { PRELOAD_DIFF, TAKE, partialFetcher } from './helper'
 
 interface UseGoals {

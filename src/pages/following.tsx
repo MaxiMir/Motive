@@ -3,10 +3,10 @@ import { getSession } from 'next-auth/react'
 import { useIntl } from 'react-intl'
 import { dehydrate, QueryClient } from 'react-query'
 import { AxiosRequestHeaders } from 'axios'
-import { FOLLOWING } from 'route'
-import { PageService } from 'src/common/services/page'
-import Layout from 'src/common/layout'
-import { Following, useFollowingPage } from '@modules/following'
+import { FOLLOWING } from '@links'
+import { PageService } from '@services/page'
+import Layout from '@layout'
+import { FollowingModule, useFollowingPage } from '@modules/following'
 
 export default function FollowingPage() {
   const { formatMessage } = useIntl()
@@ -16,7 +16,7 @@ export default function FollowingPage() {
 
   return (
     <Layout title={title} description={description}>
-      {data?.content && <Following users={data.content} />}
+      {data?.content && <FollowingModule users={data.content} />}
     </Layout>
   )
 }

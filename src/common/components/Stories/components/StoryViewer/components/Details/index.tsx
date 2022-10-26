@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { Box, IconButton } from '@mui/material'
-import { UserBaseDto } from 'src/common/dto'
-import AppIcon from 'src/common/ui/AppIcon'
+import { UserBaseDto } from '@dto'
+import AppIcon from '@ui/AppIcon'
 import Description from './components/Description'
 
 interface DetailsProps {

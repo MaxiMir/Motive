@@ -1,5 +1,5 @@
 import { LinearProgress, Box, linearProgressClasses } from '@mui/material'
-import useShowProgress from 'src/common/hooks/useShowProgress'
+import useShowProgress from '@hooks/useShowProgress'
 
 interface ProgressProps {
   onEnd: () => void

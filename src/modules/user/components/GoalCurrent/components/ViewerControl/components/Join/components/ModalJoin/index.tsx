@@ -2,13 +2,13 @@ import { ChangeEvent } from 'react'
 import { Form, FormikProvider } from 'formik'
 import { Box, FormControlLabel, Radio, RadioGroup, Typography } from '@mui/material'
 import { useIntl } from 'react-intl'
-import { GoalDto } from 'src/common/dto'
+import { GoalDto } from '@dto'
 import ActionSubmit from '@components/Action/ActionSubmit'
 import ActionCancel from '@components/Action/ActionCancel'
-import AppModal from 'src/common/ui/AppModal'
-import AppEmoji from 'src/common/ui/AppEmoji'
-import AppAccordion from 'src/common/ui/AppAccordion'
-import AppDecorEmoji from 'src/common/ui/AppDecorEmoji'
+import AppModal from '@ui/AppModal'
+import AppEmoji from '@ui/AppEmoji'
+import AppAccordion from '@ui/AppAccordion'
+import AppDecorEmoji from '@ui/AppDecorEmoji'
 import useForm from './hook'
 import i18n from './i18n'
 
@@ -57,8 +57,8 @@ export default function ModalJoin({ goal, onClose }: ModalJoinProps) {
         <ActionCancel onClick={onClose} />,
         <ActionSubmit
           isLoading={isSubmitting}
-          name={button}
-          nameLoading={buttonLoading}
+          text={button}
+          loadingText={buttonLoading}
           emoji="join"
           onClick={handleSubmit}
         />,

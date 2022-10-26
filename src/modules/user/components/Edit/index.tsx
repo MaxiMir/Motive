@@ -1,8 +1,8 @@
 import { useState } from 'react'
 import dynamic from 'next/dynamic'
 import { useIntl } from 'react-intl'
-import { UserBaseDto } from 'src/common/dto'
-import AppIconButton from 'src/common/ui/AppIconButton'
+import { UserBaseDto } from '@dto'
+import AppIconButton from '@ui/AppIconButton'
 
 const ModalProfile = dynamic(() => import('./components/ModalProfile'))
 

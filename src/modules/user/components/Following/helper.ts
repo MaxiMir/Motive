@@ -1,6 +1,6 @@
 import produce from 'immer'
-import { UserPageDto } from 'src/common/dto'
-import { SubscriptionService } from 'src/common/services/subscription'
+import { UserPageDto } from '@dto'
+import { SubscriptionService } from '@services/subscription'
 
 export interface Options {
   userId: number

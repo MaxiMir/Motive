@@ -1,10 +1,10 @@
 import { useState } from 'react'
 import dynamic from 'next/dynamic'
 import { Menu, MenuItem } from '@mui/material'
-import { MessageDto } from 'src/common/dto'
-import useClient from 'src/common/hooks/useClient'
-import { Locale } from 'src/common/hooks/useSetLocale'
-import AppMenuItemContent from 'src/common/ui/AppMenuItemContent'
+import { MessageDto } from '@dto'
+import useClient from '@hooks/useClient'
+import { Locale } from '@hooks/useSetLocale'
+import AppMenuItemContent from '@ui/AppMenuItemContent'
 import i18n from './i18n'
 
 const Report = dynamic(() => import('@components/Report'))

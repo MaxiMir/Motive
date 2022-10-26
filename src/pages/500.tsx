@@ -1,5 +1,5 @@
 import { useIntl } from 'react-intl'
-import Layout from 'src/common/layout'
+import Layout from '@layout'
 import Error from 'src/pages/_error'
 
 export default function Page500() {

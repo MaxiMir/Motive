@@ -1,5 +1,5 @@
 import { object, string } from 'yup'
 
-export default object({
+export const messageSchema = object({
   text: string().required('The message is needed').min(5).max(500),
 })

@@ -1,6 +1,6 @@
 import { FC, ReactNode, useCallback, useState } from 'react'
 import Carousel, { Modal, ModalGateway } from 'react-images'
-import { PhotoDto } from 'src/common/dto'
+import { PhotoDto } from '@dto'
 import GallerySimple from '../GallerySimple'
 import { getPhotosWithSource } from './helper'
 

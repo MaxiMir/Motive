@@ -1,11 +1,11 @@
 import { FormikProps, useFormik } from 'formik'
 import { useMutation } from 'react-query'
-import { CreateDayDto, GoalDto } from 'src/common/dto'
-import validationSchema from 'src/common/schemas/tasks'
-import { GoalService } from 'src/common/services/goal'
-import { getTomorrow } from 'src/common/helpers/date'
-import useSnackbar from 'src/common/hooks/useSnackbar'
-import { useChangeDayUrl, useMutateGoals } from '@modules/user'
+import { CreateDayDto, GoalDto } from '@dto'
+import { tasksSchema } from '@schemas/tasks'
+import { GoalService } from '@services/goal'
+import { getTomorrow } from '@helpers/date'
+import useSnackbar from '@hooks/useSnackbar'
+import { useChangeDayUrl, useMutateGoals } from '@modules/user/hook'
 import { useIntl } from 'react-intl'
 import { getNextState } from './helper'
 
@@ -19,7 +19,7 @@ export default function useForm(goal: GoalDto, onSuccess: () => void): FormikPro
       date: getTomorrow().toISOString(),
       tasks: [{ name: '', date: undefined }],
     },
-    validationSchema,
+    validationSchema: tasksSchema,
     async onSubmit(data) {
       await mutateAsync(data)
       onSuccess()

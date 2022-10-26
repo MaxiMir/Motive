@@ -1,9 +1,9 @@
-import Axios from 'src/common/lib/axios'
-import { FeedbackDto } from 'src/common/dto'
+import { service } from '@utils/service'
+import { FeedbackDto } from '@dto'
 
 export class FeedbackService {
   static create(data: FormData): Promise<FeedbackDto> {
-    return Axios.post('/feedback', data, {
+    return service.post('/feedback', data, {
       headers: {
         'Content-Type': 'multipart/form-data',
       },

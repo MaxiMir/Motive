@@ -1,7 +1,7 @@
 import { useIntl } from 'react-intl'
 import { Box, Typography } from '@mui/material'
-import { MainCharacteristicName } from 'src/common/dto'
-import AppModal from 'src/common/ui/AppModal'
+import { MainCharacteristicName } from '@dto'
+import AppModal from '@ui/AppModal'
 import Progress from './components/Progress'
 import ListItem from './components/ListItem'
 

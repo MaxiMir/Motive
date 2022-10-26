@@ -1,13 +1,12 @@
 import { FormikProps, useFormik } from 'formik'
 import { useMutation } from 'react-query'
 import { useIntl } from 'react-intl'
-import { GoalDto } from 'src/common/dto'
-import validationSchema from 'src/common/schemas/feedback'
-import { FeedbackService } from 'src/common/services/feedback'
-import useSnackbar from 'src/common/hooks/useSnackbar'
-import { useMutateGoals } from '@modules/user'
+import { GoalDto } from '@dto'
+import { feedbackSchema } from '@schemas/feedback'
+import { FeedbackService } from '@services/feedback'
+import { useMutateGoals } from '@modules/user/hook'
+import useSnackbar from '@hooks/useSnackbar'
 import { getNextState } from './helper'
-import i18n from './i18n'
 
 interface Values {
   text: string
@@ -25,7 +24,7 @@ export default function useForm(goal: GoalDto, onSuccess: () => void): FormikPro
       photos: [],
       video: '',
     },
-    validationSchema,
+    validationSchema: feedbackSchema,
     async onSubmit(data) {
       const formData = new FormData()
       formData.append('dayId', goal.day.id.toString())
@@ -38,13 +37,14 @@ export default function useForm(goal: GoalDto, onSuccess: () => void): FormikPro
 }
 
 const useSendFeedback = (goalId: number) => {
-  const { locale } = useIntl()
+  const { formatMessage } = useIntl()
   const [enqueueSnackbar] = useSnackbar()
   const [goals, mutateGoals] = useMutateGoals()
-  const { message } = i18n[locale]
 
   return useMutation(FeedbackService.create, {
     onSuccess: (feedback) => {
+      const message = formatMessage({ id: 'page.user.modal-feedback.message' })
+
       mutateGoals(getNextState(goals, goalId, feedback))
       enqueueSnackbar({ message, severity: 'success', icon: 'feedback' })
     },

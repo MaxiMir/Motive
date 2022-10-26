@@ -2,7 +2,7 @@ import { useState } from 'react'
 import dynamic from 'next/dynamic'
 import { useIntl } from 'react-intl'
 import { Button } from '@mui/material'
-import AppIcon from 'src/common/ui/AppIcon'
+import AppIcon from '@ui/AppIcon'
 import i18n from './i18n'
 
 const MenuModal = dynamic(() => import('./components/MenuModal'))

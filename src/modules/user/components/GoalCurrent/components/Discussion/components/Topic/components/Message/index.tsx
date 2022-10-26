@@ -1,11 +1,11 @@
 import dynamic from 'next/dynamic'
 import { useIntl } from 'react-intl'
 import { Box, Typography } from '@mui/material'
-import { MessageDto } from 'src/common/dto'
-import { getDistance } from 'src/common/helpers/date'
-import { numberToShort } from 'src/common/helpers/prepare'
-import { getUserHref } from 'src/common/helpers/url'
-import AppLink from 'src/common/ui/AppLink'
+import { MessageDto } from '@dto'
+import { getDistance } from '@helpers/date'
+import { numberToShort } from '@helpers/prepare'
+import { getUserHref } from '@helpers/url'
+import AppLink from '@ui/AppLink'
 import UserAvatar from '@components/User/UserAvatar'
 import Menu from './components/Menu'
 import LikeButton from './components/LikeButton'
@@ -13,7 +13,7 @@ import i18n from './i18n'
 
 const Button = dynamic(() => import('@mui/material/Button'))
 const SupportSign = dynamic(() => import('./components/SupportSign'))
-const AppMarkdown = dynamic(() => import('src/common/ui/AppMarkdown'))
+const AppMarkdown = dynamic(() => import('@ui/AppMarkdown'))
 
 interface MessageProps {
   message: MessageDto

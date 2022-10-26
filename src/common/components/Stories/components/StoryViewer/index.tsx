@@ -1,5 +1,5 @@
 import { Box } from '@mui/material'
-import { UserBaseDto } from 'src/common/dto'
+import { UserBaseDto } from '@dto'
 import Header from './components/Header'
 import Pointers from './components/Pointers'
 import Slide, { Story } from './components/Slide'

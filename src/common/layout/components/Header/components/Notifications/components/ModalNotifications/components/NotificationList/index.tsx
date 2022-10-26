@@ -1,5 +1,5 @@
-import { NotificationDto } from 'src/common/dto'
-import AppList from 'src/common/ui/AppList'
+import { NotificationDto } from '@dto'
+import AppList from '@ui/AppList'
 import NotificationModal from './components/Notification'
 
 interface NotificationListProps {

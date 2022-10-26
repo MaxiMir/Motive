@@ -1,8 +1,8 @@
 import produce from 'immer'
 import { InfiniteData } from 'react-query'
-import { ClientDto, GoalDto, MessageDto, MessageType, TopicDto } from 'src/common/dto'
-import { Locale } from 'src/common/hooks/useSetLocale'
-import { TopicService } from 'src/common/services/topic'
+import { ClientDto, GoalDto, MessageDto, MessageType, TopicDto } from '@dto'
+import { Locale } from '@hooks/useSetLocale'
+import { TopicService } from '@services/topic'
 import i18n from './i18n'
 
 export interface Options {

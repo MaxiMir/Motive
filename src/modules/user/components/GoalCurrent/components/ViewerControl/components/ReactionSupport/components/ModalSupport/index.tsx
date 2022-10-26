@@ -1,14 +1,14 @@
 import { useIntl } from 'react-intl'
 import { Field, Form, FormikProvider } from 'formik'
 import { Box, Typography } from '@mui/material'
-import { GoalDto, UserBaseDto } from 'src/common/dto'
+import { GoalDto, UserBaseDto } from '@dto'
 import ActionSubmit from '@components/Action/ActionSubmit'
 import ActionCancel from '@components/Action/ActionCancel'
-import AppModal from 'src/common/ui/AppModal'
-import AppFadeIcon from 'src/common/ui/AppFadeIcon'
-import AppInput from 'src/common/ui/AppInput'
-import AppAccordion from 'src/common/ui/AppAccordion'
-import AppDecorEmoji from 'src/common/ui/AppDecorEmoji'
+import AppModal from '@ui/AppModal'
+import AppFadeIcon from '@ui/AppFadeIcon'
+import AppInput from '@ui/AppInput'
+import AppAccordion from '@ui/AppAccordion'
+import AppDecorEmoji from '@ui/AppDecorEmoji'
 import useForm from './hook'
 import i18n from './i18n'
 
@@ -39,8 +39,8 @@ export default function ModalSupport({ goal, owner, onClose }: ModalSupportProps
         <ActionCancel onClick={onClose} />,
         <ActionSubmit
           isLoading={isSubmitting}
-          name={button}
-          nameLoading={buttonLoading}
+          text={button}
+          loadingText={buttonLoading}
           emoji="support"
           onClick={handleSubmit}
         />,

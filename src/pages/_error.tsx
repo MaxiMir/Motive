@@ -1,8 +1,8 @@
 import { useRouter } from 'next/router'
 import { useIntl } from 'react-intl'
 import { Box, Button, Typography } from '@mui/material'
-import AppEmoji from 'src/common/ui/AppEmoji'
-import AppContainer from 'src/common/ui/AppContainer'
+import AppEmoji from '@ui/AppEmoji'
+import AppContainer from '@ui/AppContainer'
 
 interface CustomErrorProps {
   statusCode?: number

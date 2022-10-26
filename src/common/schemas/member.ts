@@ -1,6 +1,6 @@
 import { object, string } from 'yup'
 
-export default object({
+export const memberSchema = object({
   goalId: string().required(),
   dayId: string().required(),
 })

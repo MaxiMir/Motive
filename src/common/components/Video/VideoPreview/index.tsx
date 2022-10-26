@@ -1,7 +1,7 @@
 import { useIntl } from 'react-intl'
 import { Box, IconButton } from '@mui/material'
-import AppIcon from 'src/common/ui/AppIcon'
-import AppPlayer from 'src/common/ui/AppPlayer'
+import AppIcon from '@ui/AppIcon'
+import AppPlayer from '@ui/AppPlayer'
 import i18n from './i18n'
 
 export interface VideoPreviewProps {

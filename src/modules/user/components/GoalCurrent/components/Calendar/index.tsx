@@ -3,13 +3,12 @@ import { Box, Badge, Divider, TextField } from '@mui/material'
 import { DatePicker } from '@mui/x-date-pickers/DatePicker'
 import { PickersDay } from '@mui/x-date-pickers'
 import { styled } from '@mui/system'
-import { GoalDto } from 'src/common/dto'
-import useDebounceCb from 'src/common/hooks/useDebounceCb'
-import AppIconButton from 'src/common/ui/AppIconButton'
-import AppEmoji from 'src/common/ui/AppEmoji'
+import { GoalDto } from '@dto'
+import useDebounceCb from '@hooks/useDebounceCb'
+import AppIconButton from '@ui/AppIconButton'
+import AppEmoji from '@ui/AppEmoji'
 import { getBorders, getToggleDates, partialGetDateKey } from './helper'
 import { useChangeDay } from './hook'
-import i18n from './i18n'
 
 interface CalendarProps {
   goal: GoalDto
@@ -17,11 +16,13 @@ interface CalendarProps {
 
 export default function Calendar({ goal }: CalendarProps) {
   const { id, day, calendar } = goal
-  const { locale } = useIntl()
+  const { formatMessage } = useIntl()
   const date = new Date(day.date)
   const { isLoading, mutate } = useChangeDay(id)
   const onChangeDebounce = useDebounceCb(mutate, 1000)
-  const { format, prevDay, nextDay } = i18n[locale]
+  const format = formatMessage({ id: 'common.format' })
+  const prevDayTitle = formatMessage({ id: 'common.prev-day' })
+  const nextDayTitle = formatMessage({ id: 'common.next-day' })
   const getDateKey = partialGetDateKey(format)
   const dateMap = getDateMap()
   const dates = Object.keys(dateMap)
@@ -64,8 +65,8 @@ export default function Calendar({ goal }: CalendarProps) {
         id={`prev-${id}`}
         size="small"
         name="chevron_left"
-        title={prevDay}
-        aria-label={prevDay}
+        title={prevDayTitle}
+        aria-label={prevDayTitle}
         disabled={isLoading || !prev}
         onClick={() => onClickArrow(prev)}
       />
@@ -95,8 +96,8 @@ export default function Calendar({ goal }: CalendarProps) {
         id={`next-${id}`}
         size="small"
         name="navigate_next"
-        title={nextDay}
-        aria-label={nextDay}
+        title={nextDayTitle}
+        aria-label={nextDayTitle}
         disabled={isLoading || !next}
         onClick={() => onClickArrow(next)}
       />

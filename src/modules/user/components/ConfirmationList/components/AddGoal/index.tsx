@@ -2,7 +2,7 @@ import { useState } from 'react'
 import dynamic from 'next/dynamic'
 import { useIntl } from 'react-intl'
 import { Box, Button, Typography } from '@mui/material'
-import AppIcon from 'src/common/ui/AppIcon'
+import AppIcon from '@ui/AppIcon'
 
 const ModalGoal = dynamic(() => import('./components/ModalGoal'))
 

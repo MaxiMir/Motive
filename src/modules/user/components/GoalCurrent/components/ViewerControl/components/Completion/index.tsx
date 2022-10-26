@@ -1,5 +1,5 @@
 import dynamic from 'next/dynamic'
-import { GoalDto, MemberDto } from 'src/common/dto'
+import { GoalDto, MemberDto } from '@dto'
 import { getNextDayId } from './helper'
 
 const EndOfDay = dynamic(() => import('./components/EndOfDay'))

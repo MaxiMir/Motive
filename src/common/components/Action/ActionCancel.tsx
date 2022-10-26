@@ -1,6 +1,6 @@
 import { useIntl } from 'react-intl'
-import AppEmoji from 'src/common/ui/AppEmoji'
-import AppGradientButton from 'src/common/ui/AppGradientButton'
+import AppEmoji from '@ui/AppEmoji'
+import AppGradientButton from '@ui/AppGradientButton'
 
 export interface ActionCloseProps {
   onClick: () => void

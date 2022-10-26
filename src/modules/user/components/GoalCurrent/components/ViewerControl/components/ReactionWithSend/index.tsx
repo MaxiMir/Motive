@@ -1,5 +1,5 @@
-import { DayCharacteristicName, GoalDto } from 'src/common/dto'
-import { Locale } from 'src/common/hooks/useSetLocale'
+import { DayCharacteristicName, GoalDto } from '@dto'
+import { Locale } from '@hooks/useSetLocale'
 import ActionGoal from '@components/Action/ActionGoal'
 import useSetReaction from './hook'
 import { checkOnActive, getCount } from './helper'

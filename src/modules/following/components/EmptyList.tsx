@@ -1,7 +1,7 @@
 import { useIntl } from 'react-intl'
 import { Box, Typography } from '@mui/material'
 
-function EmptyList() {
+export default function EmptyList() {
   const { formatMessage } = useIntl()
   const title = formatMessage({ id: 'common.empty' })
   const hint = formatMessage({ id: 'page.following.list.hint' })
@@ -17,5 +17,3 @@ function EmptyList() {
     </Box>
   )
 }
-
-export default EmptyList

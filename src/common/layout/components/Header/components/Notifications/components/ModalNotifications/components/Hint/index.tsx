@@ -1,6 +1,6 @@
-import { Locale } from 'src/common/hooks/useSetLocale'
+import { Locale } from '@hooks/useSetLocale'
 import { Alert, Box, Button } from '@mui/material'
-import AppIcon from 'src/common/ui/AppIcon'
+import AppIcon from '@ui/AppIcon'
 import i18n from './i18n'
 
 interface HintProps {

@@ -1,3 +1,3 @@
-export { User } from './User'
-export * from './hook'
+export { UserModule } from './UserModule'
+export { useUserPage, useUserMeta } from './hook'
 export { getServerSideUrl } from './helper'

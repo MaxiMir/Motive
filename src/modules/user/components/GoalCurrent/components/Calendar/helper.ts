@@ -1,6 +1,6 @@
 import produce from 'immer'
 import { format } from 'date-fns'
-import { CalendarDto, DayDto, GoalDto } from 'src/common/dto'
+import { CalendarDto, DayDto, GoalDto } from '@dto'
 
 type PartialGetDateKey = (date: Date | string) => string
 

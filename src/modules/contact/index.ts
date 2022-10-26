@@ -1,1 +1,1 @@
-export { Contact } from './Contact'
+export { ContactModule } from './ContactModule'

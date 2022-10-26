@@ -1,8 +1,8 @@
 import { Button, Tooltip } from '@mui/material'
-import { MessageDto, MessageType } from 'src/common/dto'
-import useClient from 'src/common/hooks/useClient'
-import { Locale } from 'src/common/hooks/useSetLocale'
-import AppEmoji from 'src/common/ui/AppEmoji'
+import { MessageDto, MessageType } from '@dto'
+import useClient from '@hooks/useClient'
+import { Locale } from '@hooks/useSetLocale'
+import AppEmoji from '@ui/AppEmoji'
 import { checkOnDisabled, getAreaLabel, getTitle } from './helper'
 import useSetLike from './hook'
 

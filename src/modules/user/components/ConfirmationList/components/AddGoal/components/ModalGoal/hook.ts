@@ -1,13 +1,13 @@
 import { FormikProps, useFormik } from 'formik'
 import { useMutation } from 'react-query'
 import { useIntl } from 'react-intl'
-import { CreateGoalDto } from 'src/common/dto'
-import validationSchema from 'src/common/schemas/goal'
-import { GoalService } from 'src/common/services/goal'
-import useSnackbar from 'src/common/hooks/useSnackbar'
-import { useMutateGoals } from '@modules/user'
-import { getToday } from 'src/common/helpers/date'
-import { scrollToElem } from 'src/common/helpers/dom'
+import { CreateGoalDto } from '@dto'
+import { goalSchema } from '@schemas/goal'
+import { GoalService } from '@services/goal'
+import useSnackbar from '@hooks/useSnackbar'
+import { useMutateGoals } from '@modules/user/hook'
+import { getToday } from '@helpers/date'
+import { scrollToElem } from '@helpers/dom'
 import { getNextState } from './helper'
 
 export default function useForm(onSuccess: () => void): FormikProps<CreateGoalDto> {
@@ -21,7 +21,7 @@ export default function useForm(onSuccess: () => void): FormikProps<CreateGoalDt
       stages: [],
       tasks: [{ name: '', date: undefined }],
     },
-    validationSchema,
+    validationSchema: goalSchema,
     async onSubmit(data) {
       await mutateAsync(data)
     },

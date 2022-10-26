@@ -1,5 +1,5 @@
 import produce from 'immer'
-import { GoalDto } from 'src/common/dto'
+import { GoalDto } from '@dto'
 
 export const getNextState = (goals: GoalDto[], goalId: number): GoalDto[] =>
   produce(goals, (draft) => {

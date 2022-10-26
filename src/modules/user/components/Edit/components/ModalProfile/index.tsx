@@ -2,13 +2,13 @@ import dynamic from 'next/dynamic'
 import { useIntl } from 'react-intl'
 import { Field, Form, FormikProvider } from 'formik'
 import { Grid, Box } from '@mui/material'
-import { UserBaseDto } from 'src/common/dto'
+import { UserBaseDto } from '@dto'
 import ActionSubmit from '@components/Action/ActionSubmit'
 import ActionCancel from '@components/Action/ActionCancel'
 import PhotoInput from '@components/Photo/PhotoInput'
 import PhotoButton from '@components/Photo/PhotoButton'
-import AppModal from 'src/common/ui/AppModal'
-import AppInput from 'src/common/ui/AppInput'
+import AppModal from '@ui/AppModal'
+import AppInput from '@ui/AppInput'
 import useForm from './hook'
 
 const Alert = dynamic(() => import('@mui/material/Alert'))
@@ -27,7 +27,7 @@ export default function ModalProfile({ user, onClose }: ModalProfileProps) {
   const nameLabel = formatMessage({ id: 'page.user.modal-profile.name' })
   const nicknameLabel = formatMessage({ id: 'page.user.modal-profile.nickname' })
   const buttonText = formatMessage({ id: 'page.user.modal-profile.button' })
-  const buttonLoading = formatMessage({ id: 'page.user.modal-profile.button-loading' })
+  const buttonLoading = formatMessage({ id: 'page.user.modal-profile.loading' })
 
   const setAvatar = (files: File[]) => setFieldValue('avatar', files[0])
 
@@ -48,8 +48,8 @@ export default function ModalProfile({ user, onClose }: ModalProfileProps) {
         <ActionCancel onClick={onClose} />,
         <ActionSubmit
           isLoading={isSubmitting}
-          name={buttonText}
-          nameLoading={buttonLoading}
+          text={buttonText}
+          loadingText={buttonLoading}
           emoji="followers"
           onClick={handleSubmit}
         />,

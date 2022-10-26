@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 
-type Options = {
+interface Options {
   step?: number
   ms?: number
   onEnd?: () => void

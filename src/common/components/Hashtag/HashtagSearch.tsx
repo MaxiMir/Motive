@@ -1,6 +1,6 @@
 import { useRouter } from 'next/router'
 import { Box, Button, Typography } from '@mui/material'
-import { numberToShort } from 'src/common/helpers/prepare'
+import { numberToShort } from '@helpers/prepare'
 import { getHashtagHref } from './helper'
 
 export interface HashtagSearchProps {

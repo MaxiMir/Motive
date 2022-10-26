@@ -1,8 +1,8 @@
 import { FormikProps, useFormik } from 'formik'
-import { CreateMemberDto } from 'src/common/dto'
-import validationSchema from 'src/common/schemas/member'
-import { getToday } from 'src/common/helpers/date'
-import { useSendCreateMember } from '@modules/user'
+import { CreateMemberDto } from '@dto'
+import { memberSchema } from '@schemas/member'
+import { getToday } from '@helpers/date'
+import { useSendCreateMember } from '@modules/user/hook'
 
 export default function useForm(goalId: number, dayId: number): FormikProps<CreateMemberDto> {
   const { mutateAsync } = useSendCreateMember()
@@ -13,7 +13,7 @@ export default function useForm(goalId: number, dayId: number): FormikProps<Crea
       dayId: dayId.toString(),
       started: getToday(),
     },
-    validationSchema,
+    validationSchema: memberSchema,
     async onSubmit(data) {
       await mutateAsync(data)
     },

@@ -1,6 +1,6 @@
 import { Box, LinearProgress, linearProgressClasses, Typography } from '@mui/material'
-import { MainCharacteristicName } from 'src/common/dto'
-import useShowProgress from 'src/common/hooks/useShowProgress'
+import { MainCharacteristicName } from '@dto'
+import useShowProgress from '@hooks/useShowProgress'
 
 interface ProgressProps {
   characteristic: MainCharacteristicName

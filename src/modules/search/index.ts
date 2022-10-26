@@ -1,2 +1,2 @@
-export { Search } from './Search'
+export { SearchModule } from './SearchModule'
 export { useSearchPage } from './hook'

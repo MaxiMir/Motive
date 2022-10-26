@@ -1,5 +1,5 @@
 import { Box } from '@mui/material'
-import { getImageUrl } from 'src/common/helpers/url'
+import { getImageUrl } from '@helpers/url'
 
 export interface Story {
   id: number

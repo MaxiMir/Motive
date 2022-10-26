@@ -10,7 +10,6 @@ import {
   backdropClasses,
   IconButton,
 } from '@mui/material'
-import i18nCommon from 'constants/i18n'
 import AppScrollbar from './AppScrollbar'
 import AppIcon from './AppIcon'
 
@@ -27,8 +26,8 @@ interface AppModalProps {
 }
 
 export default function AppModal({ title, actions, maxWidth, blur = true, children, onClose }: AppModalProps) {
-  const { locale } = useIntl()
-  const label = i18nCommon[locale].close
+  const { formatMessage } = useIntl()
+  const label = formatMessage({ id: 'common.close' })
 
   return (
     <Dialog

@@ -1,5 +1,5 @@
-import Axios from 'src/common/lib/axios'
-import { CreateUserDto, UpdateUserDto, UserBaseDto } from 'src/common/dto'
+import { service } from '@utils/service'
+import { CreateUserDto, UpdateUserDto, UserBaseDto } from '@dto'
 import { Service, WhereParams } from './Service'
 
 interface UpdateParams {
@@ -13,23 +13,23 @@ interface UpdateAvatarParams {
 
 export class UserService extends Service {
   static create(dto: CreateUserDto): Promise<UserBaseDto> {
-    return Axios.post('/users', dto)
+    return service.post('/users', dto)
   }
 
   static get(where: WhereParams, page: number, take: number): Promise<UserBaseDto[]> {
     const whereParams = UserService.getWhereParams(where)
     const paginationParams = UserService.getPaginationParams(page, take)
 
-    return Axios.get('/users', {
+    return service.get('/users', {
       params: { ...whereParams, ...paginationParams },
     })
   }
 
   static update({ id, data }: UpdateParams): Promise<UserBaseDto> {
-    return Axios.put(`/users/${id}`, data)
+    return service.put(`/users/${id}`, data)
   }
 
   static updateAvatar({ id, formData }: UpdateAvatarParams): Promise<UserBaseDto> {
-    return Axios.patch(`/users/${id}/avatar`, formData)
+    return service.patch(`/users/${id}/avatar`, formData)
   }
 }

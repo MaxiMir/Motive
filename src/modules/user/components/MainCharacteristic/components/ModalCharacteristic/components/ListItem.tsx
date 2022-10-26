@@ -1,5 +1,5 @@
 import { Box, Typography } from '@mui/material'
-import AppEmoji from 'src/common/ui/AppEmoji'
+import AppEmoji from '@ui/AppEmoji'
 
 interface ListItemProps {
   name: JSX.Element | string

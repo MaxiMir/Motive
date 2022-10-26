@@ -1,6 +1,6 @@
-import { ClientDto, ConfirmationDto, GoalBaseDto, MemberDto, PhotoDto } from 'src/common/dto'
+import { ClientDto, ConfirmationDto, GoalBaseDto, MemberDto, PhotoDto } from '@dto'
 import { differenceInCalendarDays, format } from 'date-fns'
-import { getMember } from '@modules/user'
+import { getMember } from '@modules/user/helper'
 
 export const checkOnRepeat = (
   userId: number,

@@ -1,12 +1,12 @@
-import Layout from 'src/common/layout'
+import Layout from '@layout'
 import { GetServerSideProps } from 'next'
 import { getSession } from 'next-auth/react'
 import { dehydrate, QueryClient } from 'react-query'
 import { useIntl } from 'react-intl'
 import { AxiosRequestHeaders } from 'axios'
-import { SEARCH } from 'route'
-import { Search, useSearchPage } from '@modules/search'
-import { PageService } from 'src/common/services/page'
+import { SEARCH } from '@links'
+import { SearchModule, useSearchPage } from '@modules/search'
+import { PageService } from '@services/page'
 
 export default function SearchPage() {
   const { formatMessage } = useIntl()
@@ -16,7 +16,7 @@ export default function SearchPage() {
 
   return (
     <Layout title={title} description={description}>
-      {data?.content && <Search {...data.content} />}
+      {data?.content && <SearchModule {...data.content} />}
     </Layout>
   )
 }

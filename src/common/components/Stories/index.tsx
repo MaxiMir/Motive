@@ -1,7 +1,7 @@
 import { MutableRefObject } from 'react'
 import { Box, GlobalStyles } from '@mui/material'
 import { styled } from '@mui/system'
-import { UserBaseDto } from 'src/common/dto'
+import { UserBaseDto } from '@dto'
 import { useSlowClose } from './hook'
 import StoryViewer from './components/StoryViewer'
 import { Story } from './components/StoryViewer/components/Slide'

@@ -1,8 +1,8 @@
 import { useState } from 'react'
 import dynamic from 'next/dynamic'
 import { Button, Tooltip } from '@mui/material'
-import { GoalDto } from 'src/common/dto'
-import AppEmoji from 'src/common/ui/AppEmoji'
+import { GoalDto } from '@dto'
+import AppEmoji from '@ui/AppEmoji'
 import { useIntl } from 'react-intl'
 
 const ModalCompletion = dynamic(() => import('@components/Modal/ModalCompletion'))

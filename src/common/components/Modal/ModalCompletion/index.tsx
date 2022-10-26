@@ -2,22 +2,20 @@ import dynamic from 'next/dynamic'
 import { Field, FieldArray, Form, FormikProvider } from 'formik'
 import { useIntl } from 'react-intl'
 import { Grid, Box, Typography } from '@mui/material'
-import { MAIN_CHARACTERISTICS, GoalDto } from 'src/common/dto'
-import useSelectPhoto from 'src/common/hooks/useSelectPhoto'
+import { GoalDto } from '@dto'
+import useSelectPhoto from '@hooks/useSelectPhoto'
 import ActionSubmit from '@components/Action/ActionSubmit'
 import ActionCancel from '@components/Action/ActionCancel'
-import AppModal from 'src/common/ui/AppModal'
-import AppDecorEmoji from 'src/common/ui/AppDecorEmoji'
-import AppAccordion from 'src/common/ui/AppAccordion'
-import AppInput from 'src/common/ui/AppInput'
-import AppHeader from 'src/common/ui/AppHeader'
-import AppSpinIcon from 'src/common/ui/AppSpinIcon'
+import AppModal from '@ui/AppModal'
+import AppAccordion from '@ui/AppAccordion'
+import AppInput from '@ui/AppInput'
+import AppHeader from '@ui/AppHeader'
+import AppSpinIcon from '@ui/AppSpinIcon'
 import PhotoInput from '@components/Photo/PhotoInput'
 import PhotoButton from '@components/Photo/PhotoButton'
 import VideoPreview from '@components/Video/VideoPreview'
 import VideoInput from '@components/Video/VideoInput'
 import useForm from './hook'
-import i18n from './i18n'
 
 const Alert = dynamic(() => import('@mui/material/Alert'))
 
@@ -27,22 +25,21 @@ export interface ModalCompletionProps {
 }
 
 export default function ModalCompletion({ goal, onClose }: ModalCompletionProps) {
-  const { locale } = useIntl()
+  const { formatMessage } = useIntl()
   const form = useForm(goal, onClose)
   const { isSubmitting, values, touched, errors, setFieldValue, handleSubmit } = form
   const photoError = Array.isArray(errors.photos) ? errors.photos.join(', ') : errors.photos
-  const {
-    title,
-    button,
-    buttonLoading,
-    subtitle,
-    label,
-    photoTitle,
-    videoTitle,
-    accordionHeader,
-    ariaControls,
-    details,
-  } = i18n[locale]
+  const title = formatMessage({ id: 'components.modal-completion.title' })
+  const buttonText = formatMessage({ id: 'components.modal-completion.button' })
+  const loadingText = formatMessage({ id: 'components.modal-completion.buttonLoading' })
+  const subtitle = formatMessage({ id: 'components.modal-completion.subtitle' })
+  const label = formatMessage({ id: 'components.modal-completion.label' })
+  const photoTitle = formatMessage({ id: 'components.modal-completion.photoTitle' })
+  const videoTitle = formatMessage({ id: 'components.modal-completion.videoTitle' })
+  const accordionHeader = formatMessage({ id: 'components.modal-completion.accordionHeader' })
+  const ariaControls = formatMessage({ id: 'components.modal-completion.ariaControls' })
+  const detailsStart = formatMessage({ id: 'components.modal-completion.details-start' })
+  const detailsEnd = formatMessage({ id: 'components.modal-completion.details-end' })
 
   const onSelectPhoto = useSelectPhoto(form)
 
@@ -56,8 +53,8 @@ export default function ModalCompletion({ goal, onClose }: ModalCompletionProps)
         <ActionCancel onClick={onClose} />,
         <ActionSubmit
           isLoading={isSubmitting}
-          name={button}
-          nameLoading={buttonLoading}
+          text={buttonText}
+          loadingText={loadingText}
           emoji="completed"
           onClick={handleSubmit}
         />,
@@ -122,15 +119,11 @@ export default function ModalCompletion({ goal, onClose }: ModalCompletionProps)
                 details={
                   <Box sx={{ color: 'zen.silent' }}>
                     <Typography>
-                      {details[0]}{' '}
-                      {MAIN_CHARACTERISTICS.map((name) => (
-                        <AppDecorEmoji name={name} key={name} />
-                      ))}
-                      {details[1]}{' '}
+                      {detailsStart}{' '}
                       <Box component="b" sx={{ color: 'text.primary' }}>
                         5
                       </Box>{' '}
-                      <AppDecorEmoji name="motivation" /> {details[2]}.
+                      {detailsEnd}.
                     </Typography>
                   </Box>
                 }

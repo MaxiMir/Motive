@@ -1,12 +1,12 @@
 import { AxiosError } from 'axios'
 import { useMutation, useQueryClient } from 'react-query'
 import { useIntl } from 'react-intl'
-import { UserPageDto } from 'src/common/dto'
-import useSnackbar from 'src/common/hooks/useSnackbar'
-import useDebounceCb from 'src/common/hooks/useDebounceCb'
-import useOpenSignIn from 'src/common/hooks/useOpenSignIn'
-import useClient from 'src/common/hooks/useClient'
-import { useUserPageConfig } from '@modules/user'
+import { UserPageDto } from '@dto'
+import useSnackbar from '@hooks/useSnackbar'
+import useDebounceCb from '@hooks/useDebounceCb'
+import useOpenSignIn from '@hooks/useOpenSignIn'
+import useClient from '@hooks/useClient'
+import { useUserPageConfig } from '@modules/user/hook'
 import { Options, Context, fetcher, getNextState } from './helper'
 
 export default function useSetFollowing(userId: number, following: boolean): () => void {

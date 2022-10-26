@@ -1,6 +1,6 @@
 import { useIntl } from 'react-intl'
 import { Box, Typography } from '@mui/material'
-import AppFadeIcon from 'src/common/ui/AppFadeIcon'
+import AppFadeIcon from '@ui/AppFadeIcon'
 
 export default function EmptyList() {
   const { formatMessage } = useIntl()

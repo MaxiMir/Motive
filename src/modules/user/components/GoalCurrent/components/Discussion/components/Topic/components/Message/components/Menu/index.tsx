@@ -1,8 +1,8 @@
 import { MouseEvent, useState } from 'react'
 import dynamic from 'next/dynamic'
 import { useIntl } from 'react-intl'
-import { MessageDto } from 'src/common/dto'
-import AppMenuButton from 'src/common/ui/AppMenuButton'
+import { MessageDto } from '@dto'
+import AppMenuButton from '@ui/AppMenuButton'
 import i18n from './i18n'
 
 const MenuList = dynamic(() => import('./components/MenuList'))

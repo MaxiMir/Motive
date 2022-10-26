@@ -1,18 +1,18 @@
 import dynamic from 'next/dynamic'
 import { useIntl } from 'react-intl'
 import { Box, IconButton, Typography } from '@mui/material'
-import { NotificationDto } from 'src/common/dto'
-import useClient from 'src/common/hooks/useClient'
-import { getDistance } from 'src/common/helpers/date'
-import { getUserHref } from 'src/common/helpers/url'
-import { getDetailsName, getNotificationInfo, getNotificationHref } from 'src/common/helpers/notification'
-import AppEmoji from 'src/common/ui/AppEmoji'
-import AppLink from 'src/common/ui/AppLink'
-import AppIcon from 'src/common/ui/AppIcon'
+import { NotificationDto } from '@dto'
+import useClient from '@hooks/useClient'
+import { getDistance } from '@helpers/date'
+import { getUserHref } from '@helpers/url'
+import { getDetailsName, getNotificationInfo, getNotificationHref } from '@helpers/notification'
+import AppEmoji from '@ui/AppEmoji'
+import AppLink from '@ui/AppLink'
+import AppIcon from '@ui/AppIcon'
 import UserAvatar from '@components/User/UserAvatar'
 import { useUpdateRead } from './hook'
 
-const AppInView = dynamic(() => import('src/common/ui/AppInView'))
+const AppInView = dynamic(() => import('@ui/AppInView'))
 
 interface NotificationProps {
   notification: NotificationDto
@@ -31,7 +31,7 @@ export default function Notification({ notification, onClose }: NotificationProp
   const href = getUserHref(nickname)
   const detailsName = getDetailsName(details.name)
   const agoText = formatMessage({ id: 'common.ago' })
-  const header = formatMessage({ id: `components.notification.${type}` })
+  const header = formatMessage({ id: `component.notification.${type}` })
   const viewTitle = formatMessage({ id: 'common.view' })
 
   const onView = () => mutate(id)

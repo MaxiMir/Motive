@@ -1,17 +1,17 @@
 import { useRouter } from 'next/router'
 import { useIntl } from 'react-intl'
 import { Button } from '@mui/material'
-import useOpenSignIn from 'src/common/hooks/useOpenSignIn'
-import { getUserHref } from 'src/common/helpers/url'
-import { ProfileIcon } from 'src/common/ui/icons'
-import FooterIcon from './FooterIcon'
+import useOpenSignIn from '@hooks/useOpenSignIn'
+import { getUserHref } from '@helpers/url'
+import { ProfileIcon } from '@ui/icons'
 
 interface FooterProfileProps {
   nickname?: string
   asPath: string
+  hoverOpacity: number
 }
 
-export default function FooterProfile({ nickname, asPath }: FooterProfileProps) {
+export default function FooterProfile({ nickname, asPath, hoverOpacity }: FooterProfileProps) {
   const { formatMessage } = useIntl()
   const { push } = useRouter()
   const openSignIn = useOpenSignIn()
@@ -30,7 +30,7 @@ export default function FooterProfile({ nickname, asPath }: FooterProfileProps) 
 
   return (
     <Button aria-label={ariaLabel} onClick={onClick}>
-      <FooterIcon Icon={ProfileIcon} selected={selected} />
+      <ProfileIcon sx={{ color: 'common.white', opacity: !selected ? hoverOpacity : 1 }} />
     </Button>
   )
 }

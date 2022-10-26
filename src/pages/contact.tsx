@@ -1,8 +1,8 @@
 import { GetServerSideProps } from 'next'
 import { getSession } from 'next-auth/react'
 import { useIntl } from 'react-intl'
-import Layout from 'src/common/layout'
-import { Contact } from '@modules/contact'
+import Layout from '@layout'
+import { ContactModule } from '@modules/contact'
 
 export default function ContactPage() {
   const { formatMessage } = useIntl()
@@ -11,7 +11,7 @@ export default function ContactPage() {
 
   return (
     <Layout title={title} description={description}>
-      <Contact />
+      <ContactModule />
     </Layout>
   )
 }

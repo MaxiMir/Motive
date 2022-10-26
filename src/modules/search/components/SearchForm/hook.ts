@@ -1,10 +1,10 @@
 import { FormikProps, useFormik } from 'formik'
 import { useMutation } from 'react-query'
-import { SearchDto } from 'src/common/dto'
-import { SEARCH } from 'route'
-import validationSchema from 'src/common/schemas/search'
-import { PageService } from 'src/common/services/page'
-import { setQueryParams } from 'src/common/helpers/url'
+import { SearchDto } from '@dto'
+import { SEARCH } from '@links'
+import { searchSchema } from '@schemas/search'
+import { PageService } from '@services/page'
+import { setQueryParams } from '@helpers/url'
 
 export default function useForm(q: string): FormikProps<SearchDto> {
   const { mutateAsync } = useSendSearch()
@@ -13,7 +13,7 @@ export default function useForm(q: string): FormikProps<SearchDto> {
     initialValues: {
       q,
     },
-    validationSchema,
+    validationSchema: searchSchema,
     async onSubmit(data) {
       await mutateAsync(data)
     },

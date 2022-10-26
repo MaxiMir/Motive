@@ -1,6 +1,6 @@
 import { QueryFunctionContext } from 'react-query'
-import { ConfirmationDto } from 'src/common/dto'
-import { ConfirmationService } from 'src/common/services/confirmation'
+import { ConfirmationDto } from '@dto'
+import { ConfirmationService } from '@services/confirmation'
 
 export const TAKE = 10
 export const PRELOAD_DIFF = 3

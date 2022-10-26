@@ -1,7 +1,7 @@
 import { useIntl } from 'react-intl'
 import { Box, Typography } from '@mui/material'
-import { SEARCH } from 'route'
-import AppLink from 'src/common/ui/AppLink'
+import { SEARCH } from '@links'
+import AppLink from '@ui/AppLink'
 
 export default function OwnerDescription() {
   const { formatMessage } = useIntl()

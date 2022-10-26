@@ -1,9 +1,9 @@
 import Image from 'next/image'
 import { useIntl } from 'react-intl'
 import { Box, Typography } from '@mui/material'
-import { copyHandler } from 'src/common/helpers/dom'
-import useSnackbar from 'src/common/hooks/useSnackbar'
-import AppIconButton from 'src/common/ui/AppIconButton'
+import { copyHandler } from '@helpers/dom'
+import useSnackbar from '@hooks/useSnackbar'
+import AppIconButton from '@ui/AppIconButton'
 
 interface WalletProps {
   name: string

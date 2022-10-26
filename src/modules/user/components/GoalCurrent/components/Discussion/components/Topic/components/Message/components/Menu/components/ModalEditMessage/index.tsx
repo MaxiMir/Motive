@@ -2,11 +2,11 @@ import { FocusEvent } from 'react'
 import { Field, Form, FormikProvider } from 'formik'
 import { useIntl } from 'react-intl'
 import { Box } from '@mui/material'
-import { MessageDto } from 'src/common/dto'
+import { MessageDto } from '@dto'
 import ActionSubmit from '@components/Action/ActionSubmit'
 import ActionCancel from '@components/Action/ActionCancel'
-import AppModal from 'src/common/ui/AppModal'
-import AppInput from 'src/common/ui/AppInput'
+import AppModal from '@ui/AppModal'
+import AppInput from '@ui/AppInput'
 import useForm from './hook'
 import i18n from './i18n'
 
@@ -40,8 +40,8 @@ export default function ModalEditMessage({ message, onClose }: ModalEditMessageP
         <ActionCancel onClick={onClose} />,
         <ActionSubmit
           isLoading={isSubmitting}
-          name={button}
-          nameLoading={buttonLoading}
+          text={button}
+          loadingText={buttonLoading}
           emoji="save"
           onClick={handleSubmit}
         />,

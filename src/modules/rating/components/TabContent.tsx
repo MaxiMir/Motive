@@ -1,7 +1,7 @@
 import { useIntl } from 'react-intl'
 import { Container, Grid, Box, Typography } from '@mui/material'
-import { UserDto, MainCharacteristicName } from 'src/common/dto'
-import AppList from 'src/common/ui/AppList'
+import { UserDto, MainCharacteristicName } from '@dto'
+import AppList from '@ui/AppList'
 import UserRating from '@components/User/UserRating'
 
 interface TabContentProps {

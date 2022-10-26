@@ -1,5 +1,5 @@
 import dynamic from 'next/dynamic'
-import { GoalDto, OwnershipDto } from 'src/common/dto'
+import { GoalDto, OwnershipDto } from '@dto'
 
 const Content = dynamic(() => import('./components/Content'))
 const NotAdded = dynamic(() => import('./components/NotAdded'))

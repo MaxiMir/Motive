@@ -1,4 +1,4 @@
-import { DayCharacteristicName } from 'src/common/dto'
+import { DayCharacteristicName } from '@dto'
 
 export default {
   en: {

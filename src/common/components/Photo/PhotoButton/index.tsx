@@ -1,11 +1,11 @@
 import dynamic from 'next/dynamic'
 import { useIntl } from 'react-intl'
 import { Box, Button, IconButton } from '@mui/material'
-import AppIcon from 'src/common/ui/AppIcon'
+import AppIcon from '@ui/AppIcon'
 import i18n from './i18n'
 
 const LocalImage = dynamic(() => import('./components/LocalImage'))
-const AppImage = dynamic(() => import('src/common/ui/AppImage'))
+const AppImage = dynamic(() => import('@ui/AppImage'))
 
 export interface PhotoButtonProps {
   image: File | string

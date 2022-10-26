@@ -1,9 +1,9 @@
 import { FormikProps, useFormik } from 'formik'
 import { useMutation } from 'react-query'
 import { useIntl } from 'react-intl'
-import { CreateMessageDto, MessageType, TopicDto } from 'src/common/dto'
-import { TopicService } from 'src/common/services/topic'
-import useSnackbar from 'src/common/hooks/useSnackbar'
+import { CreateMessageDto, MessageType, TopicDto } from '@dto'
+import { TopicService } from '@services/topic'
+import useSnackbar from '@hooks/useSnackbar'
 import i18n from './i18n'
 
 export default function useForm(

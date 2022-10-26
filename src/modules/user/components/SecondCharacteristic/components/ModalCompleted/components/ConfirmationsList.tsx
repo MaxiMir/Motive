@@ -1,5 +1,5 @@
-import { ConfirmationDto, UserDetailDto } from 'src/common/dto'
-import AppList from 'src/common/ui/AppList'
+import { ConfirmationDto, UserDetailDto } from '@dto'
+import AppList from '@ui/AppList'
 import GoalCompleted from '@components/Goal/GoalCompleted'
 
 interface UserListProps {

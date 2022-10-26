@@ -13,17 +13,17 @@ import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns'
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider'
 import CssBaseline from '@mui/material/CssBaseline'
 import { getDesignTokens } from 'theme'
-import { ContextSnackbarProps, SnackbarContext } from 'src/common/context/snackbarContext'
-import { ThemeContext } from 'src/common/context/themeContext'
-import { ModalSignInContext } from 'src/common/context/modalSignInContext'
-import { EN, Locale } from 'src/common/hooks/useSetLocale'
-import { getFnsLocale } from 'src/common/helpers/date'
-import Socket from '@components/Event'
+import { ContextSnackbarProps, SnackbarContext } from '@context/snackbarContext'
+import { ThemeContext } from '@context/themeContext'
+import { ModalSignInContext } from '@context/modalSignInContext'
+import { EN, Locale } from '@hooks/useSetLocale'
+import { getFnsLocale } from '@helpers/date'
+import EventSocket from '@components/Event/EventSocket'
 import en from 'src/common/lang/en.json'
 import ru from 'src/common/lang/ru.json'
 import uk from 'src/common/lang/uk.json'
 
-const AppSnackbar = dynamic(() => import('src/common/ui/AppSnackbar'))
+const AppSnackbar = dynamic(() => import('@ui/AppSnackbar'))
 const ModalSignIn = dynamic(() => import('@components/Modal/ModalSignIn'))
 
 type MessageKey = keyof typeof en
@@ -100,7 +100,7 @@ export default function MyApp({ Component, pageProps: { session, ...pageProps } 
                         <Component {...pageProps} />
                       </SnackbarContext.Provider>
                     </ModalSignInContext.Provider>
-                    <Socket />
+                    <EventSocket />
                     {snackbarProps && <AppSnackbar {...snackbarProps} onClose={onCloseSnackbar} />}
                     {options && <ModalSignIn options={options} onClose={onCloseSignIn} />}
                   </ThemeProvider>

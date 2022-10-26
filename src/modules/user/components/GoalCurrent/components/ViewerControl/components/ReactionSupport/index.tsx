@@ -1,9 +1,9 @@
 import { useState } from 'react'
 import dynamic from 'next/dynamic'
-import { GoalDto, UserBaseDto } from 'src/common/dto'
-import { Locale } from 'src/common/hooks/useSetLocale'
-import useClient from 'src/common/hooks/useClient'
-import useOpenSignIn from 'src/common/hooks/useOpenSignIn'
+import { GoalDto, UserBaseDto } from '@dto'
+import { Locale } from '@hooks/useSetLocale'
+import useClient from '@hooks/useClient'
+import useOpenSignIn from '@hooks/useOpenSignIn'
 import ActionGoal from '@components/Action/ActionGoal'
 import i18n from './i18n'
 

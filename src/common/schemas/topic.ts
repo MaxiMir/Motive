@@ -1,5 +1,5 @@
 import { object, string } from 'yup'
 
-export default object({
+export const topicSchema = object({
   message: string().max(500),
 })

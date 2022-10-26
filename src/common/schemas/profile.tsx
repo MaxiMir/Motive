@@ -1,6 +1,6 @@
 import { object, string, mixed } from 'yup'
 
-export default object({
+export const profileSchema = object({
   name: string().trim().required('The name is needed').min(3, "It's too short.").max(100, "It's so long."),
   nickname: string()
     .trim()

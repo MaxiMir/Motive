@@ -1,8 +1,8 @@
 import { Field, Form, FormikProvider } from 'formik'
 import { useIntl } from 'react-intl'
 import { styled } from '@mui/system'
-import AppInput from 'src/common/ui/AppInput'
-import AppIconButton from 'src/common/ui/AppIconButton'
+import AppInput from '@ui/AppInput'
+import AppIconButton from '@ui/AppIconButton'
 import AutoSend from './components/AutoSend'
 import useForm from './hook'
 

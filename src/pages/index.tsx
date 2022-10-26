@@ -1,9 +1,9 @@
 import { GetServerSideProps } from 'next'
 import { getSession } from 'next-auth/react'
 import { useIntl } from 'react-intl'
-import { ClientDto } from 'src/common/dto'
-import Layout from 'src/common/layout'
-import { Home } from '@modules/home'
+import { ClientDto } from '@dto'
+import Layout from '@layout'
+import { HomeModule } from '@modules/home'
 
 export default function HomePage() {
   const { formatMessage } = useIntl()
@@ -12,7 +12,7 @@ export default function HomePage() {
 
   return (
     <Layout title={title} description={description}>
-      <Home />
+      <HomeModule />
     </Layout>
   )
 }

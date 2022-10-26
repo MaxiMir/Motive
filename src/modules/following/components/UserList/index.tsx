@@ -1,5 +1,5 @@
-import { UserDto } from 'src/common/dto'
-import AppList from 'src/common/ui/AppList'
+import { UserDto } from '@dto'
+import AppList from '@ui/AppList'
 import UserCharacteristic from '@components/User/UserCharacteristic'
 import Menu from './components/Menu'
 

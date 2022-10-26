@@ -13,19 +13,19 @@ import {
   Radio,
 } from '@mui/material'
 import { styled } from '@mui/system'
-import useFocus from 'src/common/hooks/useFocus'
-import { getToday, getTomorrow } from 'src/common/helpers/date'
-import AppModal from 'src/common/ui/AppModal'
-import AppHeader from 'src/common/ui/AppHeader'
-import AppInput from 'src/common/ui/AppInput'
-import AppIcon from 'src/common/ui/AppIcon'
-import AppDot from 'src/common/ui/AppDot'
+import useFocus from '@hooks/useFocus'
+import { getToday, getTomorrow } from '@helpers/date'
+import AppModal from '@ui/AppModal'
+import AppHeader from '@ui/AppHeader'
+import AppInput from '@ui/AppInput'
+import AppIcon from '@ui/AppIcon'
+import AppDot from '@ui/AppDot'
 import ActionSubmit from '@components/Action/ActionSubmit'
 import ActionCancel from '@components/Action/ActionCancel'
 import TaskField from '@components/Task/TaskField'
 import useForm from './hook'
 
-const AppIconButton = dynamic(() => import('src/common/ui/AppIconButton'))
+const AppIconButton = dynamic(() => import('@ui/AppIconButton'))
 
 export interface ModalGoalProps {
   onClose: () => void
@@ -69,8 +69,8 @@ export default function ModalGoal({ onClose }: ModalGoalProps) {
         <ActionCancel onClick={onClose} />,
         <ActionSubmit
           isLoading={isSubmitting}
-          name={buttonText}
-          nameLoading={buttonLoadingText}
+          text={buttonText}
+          loadingText={buttonLoadingText}
           emoji="goal"
           onClick={handleSubmit}
         />,

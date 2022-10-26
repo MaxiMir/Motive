@@ -1,9 +1,8 @@
 import dynamic from 'next/dynamic'
 import { useIntl } from 'react-intl'
 import { Box } from '@mui/material'
-import { UserDetailDto } from 'src/common/dto'
-import AppModal from 'src/common/ui/AppModal'
-import { ucFirst } from 'src/common/helpers/prepare'
+import { UserDetailDto } from '@dto'
+import AppModal from '@ui/AppModal'
 import useGoals from './hook'
 
 const Loader = dynamic(() => import('./components/Loader'))
@@ -19,7 +18,7 @@ export default function ModalCompleted({ user, onClose }: ModalCompletedProps) {
   const { id, characteristic } = user
   const { formatMessage } = useIntl()
   const { isLoading, confirmations } = useGoals(id, characteristic.completed)
-  const title = ucFirst(formatMessage({ id: 'common.completed' }))
+  const title = formatMessage({ id: 'common.completed' })
   const subtitle = formatMessage({ id: 'common.goals' })
 
   return (

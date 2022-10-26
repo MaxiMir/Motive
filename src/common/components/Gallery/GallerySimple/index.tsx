@@ -1,6 +1,6 @@
 import { useCallback } from 'react'
 import PhotoAlbum, { PhotoProps } from 'react-photo-album'
-import { PhotoDto } from 'src/common/dto'
+import { PhotoDto } from '@dto'
 import GalleryPhoto from './components/GalleryPhoto'
 
 export interface GallerySimpleProps {

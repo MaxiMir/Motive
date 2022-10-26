@@ -2,21 +2,21 @@ import dynamic from 'next/dynamic'
 import { useRouter } from 'next/router'
 import { useIntl } from 'react-intl'
 import { Box, useTheme } from '@mui/material'
-import { GoalDto, GoalCharacteristicName, MemberDto, MAIN_CHARACTERISTICS } from 'src/common/dto'
-import { getGoalWithDayHref, HashMark } from 'src/common/helpers/url'
+import { GoalDto, GoalCharacteristicName, MemberDto, MAIN_CHARACTERISTICS } from '@dto'
+import { getGoalWithDayHref, HashMark } from '@helpers/url'
 import CharacteristicGoal from '@components/Characteristic/CharacteristicGoal'
-import AppHeader from 'src/common/ui/AppHeader'
-import AppAccordion from 'src/common/ui/AppAccordion'
-import AppInView from 'src/common/ui/AppInView'
+import AppHeader from '@ui/AppHeader'
+import AppAccordion from '@ui/AppAccordion'
+import AppInView from '@ui/AppInView'
 import { getMember } from '@modules/user/helper'
 import { useIncreaseViews } from './hook'
-import { getGoalInfo, getClientOwnership, checkOnShowDiscussion } from './helper'
+import { getGoalInfo, getClientOwnership, checkOnShowDiscussion, redefineTasks } from './helper'
 import Calendar from './components/Calendar'
 import Menu from './components/Menu'
 import Discussion from './components/Discussion'
 import Views from './components/Views'
 import Feedback from './components/Feedback'
-import TaskList from './components/TaskList'
+import Task from './components/Task'
 
 const Inheritance = dynamic(() => import('./components/Inheritance'))
 const Stages = dynamic(() => import('./components/Stages'))
@@ -65,6 +65,8 @@ export default function GoalCurrent({
   const feedbackAria = formatMessage({ id: 'page.user.goal-current.feedback-aria' })
   const discussionHeader = formatMessage({ id: 'page.user.goal-current.discussion-header' })
   const discussionAria = formatMessage({ id: 'page.user.goal-current.discussion-aria' })
+  const redefinedGoals = redefineTasks(day.tasks, userMember)
+  const restGoals = redefinedGoals.length - redefinedGoals.filter((t) => t.completed).length
 
   return (
     <Box
@@ -143,12 +145,20 @@ export default function GoalCurrent({
                   ariaControls={tasksAria}
                   defaultExpanded
                   details={
-                    <TaskList
-                      goal={goal}
-                      goalInfo={goalInfo}
-                      userMember={userMember}
-                      clientMember={clientOwnership.member}
-                    />
+                    <Box display="flex" flexDirection="column" gap={1}>
+                      {redefinedGoals.map((task) => (
+                        <Task
+                          goalId={id}
+                          task={task}
+                          rest={restGoals}
+                          clientMember={clientOwnership.member}
+                          forTomorrow={goalInfo.forTomorrow}
+                          daysGoneForOwner={goalInfo.daysGoneForOwner}
+                          canEdit={goalInfo.canEdit}
+                          key={task.id}
+                        />
+                      ))}
+                    </Box>
                   }
                 />
                 <AppAccordion

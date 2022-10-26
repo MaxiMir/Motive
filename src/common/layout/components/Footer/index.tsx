@@ -1,12 +1,12 @@
 import { useRouter } from 'next/router'
 import { useIntl } from 'react-intl'
 import { Container, Box, Button } from '@mui/material'
-import { FOLLOWING, RATING, SEARCH, TOP_OF_THE_DAY } from 'route'
-import AppLink from 'src/common/ui/AppLink'
-import { TopOfTheDayIcon, SearchIcon, RatingIcon, FollowingIcon } from 'src/common/ui/icons'
-import { ucFirst } from 'src/common/helpers/prepare'
-import FooterIcon from './components/FooterIcon'
+import { FOLLOWING, RATING, SEARCH, TOP_OF_THE_DAY } from '@links'
+import AppLink from '@ui/AppLink'
+import { TopOfTheDayIcon, SearchIcon, RatingIcon, FollowingIcon } from '@ui/icons'
 import FooterProfile from './components/FooterProfile'
+
+const HOVER_OPACITY = 0.6
 
 interface FooterProps {
   nickname?: string
@@ -22,7 +22,7 @@ export default function Footer({ nickname }: FooterProps) {
       { title: formatMessage({ id: 'component.footer.top' }), href: TOP_OF_THE_DAY, Component: TopOfTheDayIcon },
       { title: formatMessage({ id: 'component.footer.search' }), href: SEARCH, Component: SearchIcon },
       { title: formatMessage({ id: 'component.footer.rating' }), href: RATING, Component: RatingIcon },
-      { title: ucFirst(formatMessage({ id: 'common.following' })), href: FOLLOWING, Component: FollowingIcon },
+      { title: formatMessage({ id: 'common.following' }), href: FOLLOWING, Component: FollowingIcon },
     ]
   }
 
@@ -42,11 +42,11 @@ export default function Footer({ nickname }: FooterProps) {
           {routes.map(({ title, href, Component }) => (
             <AppLink href={href} title={title} key={title}>
               <Button aria-label={title}>
-                <FooterIcon Icon={Component} selected={asPath.includes(href)} key={href} />
+                <Component sx={{ color: 'common.white', opacity: !asPath.includes(href) ? HOVER_OPACITY : 1 }} />
               </Button>
             </AppLink>
           ))}
-          <FooterProfile nickname={nickname} asPath={asPath} />
+          <FooterProfile nickname={nickname} asPath={asPath} hoverOpacity={HOVER_OPACITY} />
         </Box>
       </Container>
     </Box>

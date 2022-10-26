@@ -1,25 +1,24 @@
 import { useState } from 'react'
 import dynamic from 'next/dynamic'
+import { useIntl } from 'react-intl'
 import { Button } from '@mui/material'
-import { GoalDto } from 'src/common/dto'
-import useClient from 'src/common/hooks/useClient'
-import { Locale } from 'src/common/hooks/useSetLocale'
-import useOpenSignIn from 'src/common/hooks/useOpenSignIn'
-import AppEmoji from 'src/common/ui/AppEmoji'
-import i18n from './i18n'
+import { GoalDto } from '@dto'
+import useClient from '@hooks/useClient'
+import useOpenSignIn from '@hooks/useOpenSignIn'
+import AppEmoji from '@ui/AppEmoji'
 
 const ModalJoin = dynamic(() => import('./components/ModalJoin'))
 
 export interface JoinProps {
   goal: GoalDto
-  locale: Locale
 }
 
-export default function Join({ goal, locale }: JoinProps) {
+export default function Join({ goal }: JoinProps) {
+  const { formatMessage } = useIntl()
   const client = useClient()
   const openSignIn = useOpenSignIn()
   const [open, setOpen] = useState(false)
-  const { button } = i18n[locale]
+  const buttonText = formatMessage({ id: 'common.join' })
 
   const toggleModal = () => setOpen(!open)
 
@@ -35,7 +34,7 @@ export default function Join({ goal, locale }: JoinProps) {
   return (
     <>
       <Button variant="outlined" color="primary" startIcon={<AppEmoji name="join" onlyEmoji />} onClick={onClick}>
-        {button}
+        {buttonText}
       </Button>
       {open && <ModalJoin goal={goal} onClose={toggleModal} />}
     </>

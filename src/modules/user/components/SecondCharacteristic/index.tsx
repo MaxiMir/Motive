@@ -2,8 +2,8 @@ import { useState } from 'react'
 import dynamic from 'next/dynamic'
 import { useIntl } from 'react-intl'
 import { Box, Button, Typography } from '@mui/material'
-import { SecondCharacteristicName, UserDetailDto } from 'src/common/dto'
-import { numberToShort } from 'src/common/helpers/prepare'
+import { SecondCharacteristicName, UserDetailDto } from '@dto'
+import { numberToShort } from '@helpers/prepare'
 
 const ModalSubscription = dynamic(() => import('./components/ModalSubscription'))
 const ModalCompleted = dynamic(() => import('./components/ModalCompleted'))

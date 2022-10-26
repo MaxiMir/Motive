@@ -1,8 +1,8 @@
 import { useState } from 'react'
 import { Box, Button, Typography } from '@mui/material'
-import { ConfirmationDto, UserBaseDto } from 'src/common/dto'
-import useFullScreen from 'src/common/hooks/useFullScreen'
-import Avatar from 'src/common/components/Avatar'
+import { ConfirmationDto, UserBaseDto } from '@dto'
+import useFullScreen from '@hooks/useFullScreen'
+import AvatarStatus from '@components/Avatar/AvatarStatus'
 import Stories from '@components/Stories'
 
 interface ConfirmationStoryProps {
@@ -45,7 +45,7 @@ export default function ConfirmationStory({ user, confirmation }: ConfirmationSt
             })}
             onClick={onOpen}
           >
-            <Avatar src={mainPhoto.src} name={user.name} size={65} />
+            <AvatarStatus src={mainPhoto.src} name={user.name} size={65} />
           </Button>
         </Box>
         <Button sx={{ padding: '4px', textTransform: 'none' }} onClick={onOpen}>

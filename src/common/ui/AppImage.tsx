@@ -1,5 +1,5 @@
 import Image, { ImageProps } from 'next/image'
-import { getImageUrl } from 'src/common/helpers/url'
+import { getImageUrl } from '@helpers/url'
 
 type AppImageProps = Omit<ImageProps, 'src'> & {
   src: string

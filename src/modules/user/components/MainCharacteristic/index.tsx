@@ -2,9 +2,8 @@ import { useState } from 'react'
 import dynamic from 'next/dynamic'
 import { useIntl } from 'react-intl'
 import { Box, Button, Typography, useTheme } from '@mui/material'
-import { MainCharacteristicName } from 'src/common/dto'
-import AppCircle from 'src/common/ui/AppCircle'
-import { ucFirst } from 'src/common/helpers/prepare'
+import { MainCharacteristicName } from '@dto'
+import AppCircle from '@ui/AppCircle'
 import { getOffset, RADIUS } from './helper'
 
 const ModalCharacteristic = dynamic(() => import('./components/ModalCharacteristic'))
@@ -21,7 +20,7 @@ export default function MainCharacteristic({ name, value }: MainCharacteristicPr
   const level = Math.floor(value)
   const offset = getOffset(value)
   const lvlText = formatMessage({ id: 'common.lvl-short' })
-  const header = ucFirst(formatMessage({ id: `common.${name}` }))
+  const header = formatMessage({ id: `common.${name}` })
 
   const onClick = () => {
     switch (name) {

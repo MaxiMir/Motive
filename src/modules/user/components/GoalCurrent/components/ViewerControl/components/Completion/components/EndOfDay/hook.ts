@@ -1,11 +1,11 @@
 import { AxiosError } from 'axios'
 import { useMutation, UseMutationResult } from 'react-query'
 import { useIntl } from 'react-intl'
-import { GoalDto, MemberDto, UpdateMemberDto } from 'src/common/dto'
-import { clickOnElem } from 'src/common/helpers/dom'
-import useSnackbar from 'src/common/hooks/useSnackbar'
-import { useMutateUserPage } from '@modules/user'
-import { MemberService } from 'src/common/services/member'
+import { GoalDto, MemberDto, UpdateMemberDto } from '@dto'
+import { clickOnElem } from '@helpers/dom'
+import useSnackbar from '@hooks/useSnackbar'
+import { useMutateUserPage } from '@modules/user/hook'
+import { MemberService } from '@services/member'
 import { getNextState } from './helper'
 
 export const useSendEndOfDay = (goal: GoalDto): UseMutationResult<MemberDto, AxiosError, UpdateMemberDto> => {

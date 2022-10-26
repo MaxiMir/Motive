@@ -1,4 +1,4 @@
-import { GoalDto } from 'src/common/dto'
+import { GoalDto } from '@dto'
 
 export const getNextDayId = (goal: GoalDto): number | undefined => {
   const { day, calendar } = goal

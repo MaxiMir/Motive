@@ -1,6 +1,6 @@
 import { useContext } from 'react'
-import { ContextSnackbarProps, SnackbarContext } from 'src/common/context/snackbarContext'
-import useDebounceCb from './useDebounceCb'
+import { ContextSnackbarProps, SnackbarContext } from '@context/snackbarContext'
+import useDebounceCb from '@hooks/useDebounceCb'
 
 export default function useSnackbar(): [(props: ContextSnackbarProps) => void, () => void] {
   const { props, setProps } = useContext(SnackbarContext)

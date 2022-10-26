@@ -2,8 +2,8 @@ import { useState } from 'react'
 import dynamic from 'next/dynamic'
 import { useIntl } from 'react-intl'
 import { Box, Button, Tooltip } from '@mui/material'
-import { GoalDto } from 'src/common/dto'
-import AppEmoji from 'src/common/ui/AppEmoji'
+import { GoalDto } from '@dto'
+import AppEmoji from '@ui/AppEmoji'
 import i18n from './i18n'
 
 const ModalTasks = dynamic(() => import('./components/ModalTasks'))

@@ -1,6 +1,6 @@
 import { useEffect } from 'react'
 import { useFormikContext } from 'formik'
-import useDebounceCb from 'src/common/hooks/useDebounceCb'
+import useDebounceCb from '@hooks/useDebounceCb'
 
 export default function useAutoSend(debounceMs = 1000): void {
   const formik = useFormikContext()

@@ -1,7 +1,7 @@
-import Axios from 'src/common/lib/axios'
+import { service } from '@utils/service'
 
 export class TaskService {
   static updateCompleted(id: number): Promise<void> {
-    return Axios.patch(`/tasks/${id}/completed`)
+    return service.patch(`/tasks/${id}/completed`)
   }
 }

@@ -1,8 +1,8 @@
 import { useIntl } from 'react-intl'
 import { Box, Typography } from '@mui/material'
-import { UserDetailDto } from 'src/common/dto'
-import useShowProgress from 'src/common/hooks/useShowProgress'
-import AppModal from 'src/common/ui/AppModal'
+import { UserDetailDto } from '@dto'
+import useShowProgress from '@hooks/useShowProgress'
+import AppModal from '@ui/AppModal'
 import OldPittRules from '@components/OldPitt/OldPittRules'
 import Image from 'next/image'
 

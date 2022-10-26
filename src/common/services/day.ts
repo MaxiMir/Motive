@@ -1,12 +1,12 @@
-import Axios from 'src/common/lib/axios'
-import { DayDto } from 'src/common/dto'
+import { service } from '@utils/service'
+import { DayDto } from '@dto'
 
 export class DayService {
   static getById(id: number): Promise<DayDto> {
-    return Axios.get(`/days/${id}`)
+    return service.get(`/days/${id}`)
   }
 
   static incrementViews(id: number): Promise<void> {
-    return Axios.patch(`/days/${id}/views`)
+    return service.patch(`/days/${id}/views`)
   }
 }

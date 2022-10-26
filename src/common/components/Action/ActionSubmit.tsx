@@ -1,19 +1,19 @@
 import dynamic from 'next/dynamic'
-import AppGradientButton from 'src/common/ui/AppGradientButton'
-import { AppEmojiName } from 'src/common/ui/AppEmoji'
+import AppGradientButton from '@ui/AppGradientButton'
+import { AppEmojiName } from '@ui/AppEmoji'
 
 const CircularProgress = dynamic(() => import('@mui/material/CircularProgress'))
-const AppEmoji = dynamic(() => import('src/common/ui/AppEmoji'))
+const AppEmoji = dynamic(() => import('@ui/AppEmoji'))
 
 export interface ActionSubmitProps {
   emoji: AppEmojiName
-  name: string
-  nameLoading: string
+  text: string
+  loadingText: string
   isLoading: boolean
   onClick: () => void
 }
 
-export default function ActionSubmit({ emoji, name, nameLoading, isLoading, onClick }: ActionSubmitProps) {
+export default function ActionSubmit({ emoji, text, loadingText, isLoading, onClick }: ActionSubmitProps) {
   return (
     <AppGradientButton
       type="submit"
@@ -21,7 +21,7 @@ export default function ActionSubmit({ emoji, name, nameLoading, isLoading, onCl
       startIcon={isLoading ? <CircularProgress size="0.9rem" color="inherit" /> : <AppEmoji name={emoji} onlyEmoji />}
       onClick={onClick}
     >
-      {!isLoading ? name : nameLoading}
+      {!isLoading ? text : loadingText}
     </AppGradientButton>
   )
 }

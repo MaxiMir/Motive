@@ -1,6 +1,6 @@
 import { useIntl } from 'react-intl'
 import { Box, Typography } from '@mui/material'
-import AppSpinIcon from 'src/common/ui/AppSpinIcon'
+import AppSpinIcon from '@ui/AppSpinIcon'
 
 export default function EmptyList() {
   const { formatMessage } = useIntl()

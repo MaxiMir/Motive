@@ -1,8 +1,8 @@
-import Axios from 'src/common/lib/axios'
-import { CreateReportDto } from 'src/common/dto'
+import { service } from '@utils/service'
+import { CreateReportDto } from '@dto'
 
 export class ReportService {
   static create(data: CreateReportDto): Promise<void> {
-    return Axios.post('/reports', data)
+    return service.post('/reports', data)
   }
 }

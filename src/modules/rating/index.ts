@@ -1,2 +1,2 @@
-export { Rating } from './Rating'
+export { RatingModule } from './RatingModule'
 export { useRatingPage } from './hook'

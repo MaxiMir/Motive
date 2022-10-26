@@ -1,5 +1,5 @@
 import { createContext, ReactNode } from 'react'
-import { AppEmojiName } from 'src/common/ui/AppEmoji'
+import { AppEmojiName } from '@ui/AppEmoji'
 
 export interface ContextSnackbarProps {
   severity: 'success' | 'error' | 'warning'

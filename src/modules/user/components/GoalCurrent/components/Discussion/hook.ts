@@ -1,6 +1,6 @@
 import { InfiniteData, useInfiniteQuery, useQueryClient } from 'react-query'
 import { TopicDto } from '@dto'
-import { partialCheckOnLoadMore } from '@helpers/fetcher'
+import { partialCheckOnLoadMore } from '@utils/fetcher'
 import { useMutateGoals } from '@modules/user/hook'
 import { PRELOAD_DIFF, getGoalNextState, partialFetcher, partialGetNextPageParam, getNextState } from './helper'
 

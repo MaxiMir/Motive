@@ -5,8 +5,9 @@ import { useIntl } from 'react-intl'
 import { UpdateUserDto, UserBaseDto } from '@dto'
 import { profileSchema } from '@schemas/profile'
 import { UserService } from '@services/user'
-import { getQueryParams, setQueryParams, getUserHref } from '@helpers/url'
+import { getQueryParams, setQueryParams } from '@helpers/url'
 import { useMutateUserPage } from '@modules/user/hook'
+import { getUserHref } from '@href'
 import { getNextState } from './helper'
 
 export default function useForm(user: UserBaseDto, onSuccess: () => void): FormikProps<UpdateUserDto> {

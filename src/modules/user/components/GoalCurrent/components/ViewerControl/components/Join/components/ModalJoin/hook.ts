@@ -1,7 +1,7 @@
 import { FormikProps, useFormik } from 'formik'
 import { CreateMemberDto } from '@dto'
 import { memberSchema } from '@schemas/member'
-import { getToday } from '@helpers/date'
+import { getToday } from '@utils/date'
 import { useSendCreateMember } from '@modules/user/hook'
 
 export default function useForm(goalId: number, dayId: number): FormikProps<CreateMemberDto> {

@@ -3,7 +3,7 @@ import { useIntl } from 'react-intl'
 import { Button, Tooltip } from '@mui/material'
 import { GoalDto, MemberDto } from '@dto'
 import AppEmoji from '@ui/AppEmoji'
-import { getTomorrow } from '@helpers/date'
+import { getTomorrow } from '@utils/date'
 import { useSendEndOfDay } from './hook'
 
 const CircularProgress = dynamic(() => import('@mui/material/CircularProgress'))

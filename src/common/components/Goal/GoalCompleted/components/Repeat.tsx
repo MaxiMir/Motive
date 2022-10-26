@@ -1,6 +1,6 @@
 import { useIntl } from 'react-intl'
 import { Box } from '@mui/material'
-import { getToday } from '@helpers/date'
+import { getToday } from '@utils/date'
 import { useSendCreateMember } from '@modules/user/hook'
 import ActionSubmit from '@components/Action/ActionSubmit'
 

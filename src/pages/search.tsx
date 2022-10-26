@@ -4,7 +4,7 @@ import { getSession } from 'next-auth/react'
 import { dehydrate, QueryClient } from 'react-query'
 import { useIntl } from 'react-intl'
 import { AxiosRequestHeaders } from 'axios'
-import { SEARCH } from '@links'
+import { SEARCH } from '@href'
 import { SearchModule, useSearchPage } from '@modules/search'
 import { PageService } from '@services/page'
 

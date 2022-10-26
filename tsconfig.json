@@ -38,7 +38,7 @@
       "@schemas/*": ["src/common/schemas/*"],
       "@helpers/*": ["src/common/helpers/*"],
       "@context/*": ["src/common/context/*"],
-      "@links": ["src/common/links"],
+      "@href": ["src/common/href"],
       "@modules/*": ["src/modules/*"]
     }
   },

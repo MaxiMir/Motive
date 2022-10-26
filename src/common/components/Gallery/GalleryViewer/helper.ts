@@ -1,5 +1,5 @@
 import { PhotoDto } from '@dto'
-import { getUrlWithHost } from '@helpers/url'
+import { getImageSrc } from '@href'
 
 export const getPhotosWithSource = (photos: PhotoDto[]): PhotoDto[] =>
-  photos.map((item) => ({ ...item, src: getUrlWithHost(item.src) }))
+  photos.map((item) => ({ ...item, src: getImageSrc(item.src) }))

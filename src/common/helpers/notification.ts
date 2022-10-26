@@ -1,12 +1,6 @@
 import produce from 'immer'
 import { ClientDto, MainCharacteristicName, NotificationDto, NotificationType } from '@dto'
-import {
-  getDiscussionHref,
-  getFeedbackHref,
-  getGoalHref,
-  getGoalWithDayHref,
-  getUserHref,
-} from '@helpers/url'
+import { getDiscussionHref, getFeedbackHref, getGoalHref, getGoalWithDayHref, getUserHref } from '@href'
 import { toShortString } from '@helpers/prepare'
 import { AppEmojiName } from '@ui/AppEmoji'
 

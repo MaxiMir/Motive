@@ -1,5 +1,5 @@
 import { Avatar } from '@mui/material'
-import { getImageUrl } from '@helpers/url'
+import { getImageSrc } from '@href'
 
 interface ContentProps {
   src: string
@@ -7,7 +7,7 @@ interface ContentProps {
 }
 
 export default function Content({ src, size }: ContentProps) {
-  const imageUrl = getImageUrl(src)
+  const imageSrc = getImageSrc(src)
 
-  return <Avatar src={imageUrl} sx={{ width: size, height: size }} />
+  return <Avatar src={imageSrc} sx={{ width: size, height: size }} />
 }

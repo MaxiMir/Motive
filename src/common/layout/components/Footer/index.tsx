@@ -1,7 +1,7 @@
 import { useRouter } from 'next/router'
 import { useIntl } from 'react-intl'
 import { Container, Box, Button } from '@mui/material'
-import { FOLLOWING, RATING, SEARCH, TOP_OF_THE_DAY } from '@links'
+import { FOLLOWING, RATING, SEARCH, TOP_OF_THE_DAY } from '@href'
 import AppLink from '@ui/AppLink'
 import { TopOfTheDayIcon, SearchIcon, RatingIcon, FollowingIcon } from '@ui/icons'
 import FooterProfile from './components/FooterProfile'

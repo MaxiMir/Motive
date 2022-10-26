@@ -2,7 +2,7 @@ import { ParsedUrlQuery } from 'querystring'
 import { differenceInCalendarDays } from 'date-fns'
 import produce from 'immer'
 import { GoalDto, MemberDto, OwnershipDto, TaskDto } from '@dto'
-import { HashMark, SearchParam } from '@helpers/url'
+import { HashMark, SearchParam } from '@href'
 import { getMember } from '@modules/user/helper'
 
 const SHOW_WEB_AFTER_DAYS = +(process.env.NEXT_PUBLIC_SHOW_WEB_AFTER_DAYS as string)

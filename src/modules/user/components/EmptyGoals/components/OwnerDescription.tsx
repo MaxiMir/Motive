@@ -1,6 +1,6 @@
 import { useIntl } from 'react-intl'
 import { Box, Typography } from '@mui/material'
-import { SEARCH } from '@links'
+import { SEARCH } from '@href'
 import AppLink from '@ui/AppLink'
 
 export default function OwnerDescription() {

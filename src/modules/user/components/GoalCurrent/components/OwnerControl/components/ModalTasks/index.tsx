@@ -15,7 +15,7 @@ import {
   Typography,
 } from '@mui/material'
 import { GoalDto } from '@dto'
-import { getToday, getTomorrow } from '@helpers/date'
+import { getToday, getTomorrow } from '@utils/date'
 import AppIcon from '@ui/AppIcon'
 import AppHeader from '@ui/AppHeader'
 import { PaulIcon } from '@ui/icons'

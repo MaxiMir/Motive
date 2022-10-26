@@ -6,18 +6,17 @@ import useSnackbar from '@hooks/useSnackbar'
 import useClient from '@hooks/useClient'
 import useOpenSignIn from '@hooks/useOpenSignIn'
 import { ReportService } from '@services/report'
-import i18n from './i18n'
 
 type SendReport = (reason: string) => void
 
 export default function useSendReport(entityId: number, type: ReportType, onSettled: () => void): SendReport {
-  const { locale } = useIntl()
+  const { formatMessage } = useIntl()
   const client = useClient()
   const openSignIn = useOpenSignIn()
   const [enqueueSnackbar] = useSnackbar()
   const { mutate } = useMutation<void, AxiosError, CreateReportDto>(ReportService.create, {
     onSuccess() {
-      const { message } = i18n[locale]
+      const message = formatMessage({ id: 'component.report.message' })
 
       enqueueSnackbar({ message, severity: 'success', icon: 'speaker' })
     },

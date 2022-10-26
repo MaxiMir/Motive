@@ -1,7 +1,7 @@
 import dynamic from 'next/dynamic'
 import { Box, Typography } from '@mui/material'
 import { UserDto, SecondCharacteristicName, MAIN_CHARACTERISTICS } from '@dto'
-import { getUserHref } from '@helpers/url'
+import { getUserHref } from '@href'
 import CharacteristicUser from '@components/Characteristic/CharacteristicUser'
 import AppLink from '@ui/AppLink'
 import UserAvatar from './UserAvatar'

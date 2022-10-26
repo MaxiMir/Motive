@@ -1,6 +1,6 @@
 import { Box, Typography, Button } from '@mui/material'
 import { MAIN_CHARACTERISTICS, UserDto } from '@dto'
-import { getUserHref } from '@helpers/url'
+import { getUserHref } from '@href'
 import AvatarStatus from '@components/Avatar/AvatarStatus'
 import CharacteristicUser from '@components/Characteristic/CharacteristicUser'
 

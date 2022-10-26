@@ -2,7 +2,7 @@ import { Box, Typography } from '@mui/material'
 import { styled } from '@mui/system'
 import { useIntl } from 'react-intl'
 import { UserBaseDto } from '@dto'
-import { getUserHref } from '@helpers/url'
+import { getUserHref } from '@href'
 import UserAvatar from '@components/User/UserAvatar'
 
 interface InheritedProps {

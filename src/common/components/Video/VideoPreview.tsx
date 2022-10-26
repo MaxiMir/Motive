@@ -2,7 +2,6 @@ import { useIntl } from 'react-intl'
 import { Box, IconButton } from '@mui/material'
 import AppIcon from '@ui/AppIcon'
 import AppPlayer from '@ui/AppPlayer'
-import i18n from './i18n'
 
 export interface VideoPreviewProps {
   video: Blob | MediaSource
@@ -11,9 +10,9 @@ export interface VideoPreviewProps {
 }
 
 export default function VideoPreview({ video, disabled, onRemove }: VideoPreviewProps) {
-  const { locale } = useIntl()
+  const { formatMessage } = useIntl()
+  const label = formatMessage({ id: 'component.video-preview.label' })
   const url = URL.createObjectURL(video)
-  const { label } = i18n[locale]
 
   return (
     <Box sx={{ position: 'relative', background: '#000000' }}>

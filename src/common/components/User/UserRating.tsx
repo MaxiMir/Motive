@@ -1,6 +1,6 @@
 import { Container, Typography, Grid, Box } from '@mui/material'
 import { UserDto, UserCharacteristicName } from '@dto'
-import { getUserHref } from '@helpers/url'
+import { getUserHref } from '@href'
 import AppLink from '@ui/AppLink'
 import AppEmoji from '@ui/AppEmoji'
 import UserAvatar from './UserAvatar'

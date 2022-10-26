@@ -1,5 +1,5 @@
 import { MainCharacteristicName, SecondCharacteristicName } from '@dto'
-import { RATING } from '@links'
+import { RATING } from '@href'
 import { setQueryParams } from '@helpers/url'
 
 interface AdvantageItem {

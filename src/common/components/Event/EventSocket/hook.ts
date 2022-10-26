@@ -5,10 +5,10 @@ import { useIntl } from 'react-intl'
 import { io } from 'socket.io-client'
 import { NotificationDto } from '@dto'
 import { getDeviceType } from '@helpers/dom'
-import { getImageUrl } from '@helpers/url'
 import useSnackbar from '@hooks/useSnackbar'
 import useClient from '@hooks/useClient'
 import { getNotificationHref } from '@helpers/notification'
+import { getImageSrc } from '@href'
 
 export const useSocket = (): void => {
   const { formatMessage } = useIntl()
@@ -43,7 +43,7 @@ export const useSocket = (): void => {
       Notification.requestPermission().then((permission) => {
         if (permission !== 'granted') return
         const { name, avatar } = details.user
-        const icon = !avatar ? undefined : getImageUrl(avatar)
+        const icon = !avatar ? undefined : getImageSrc(avatar)
         const notificationHref = getNotificationHref(notification, client)
         const tag = id.toString()
         const body = formatMessage({ id: `component.notification.${type}` })

@@ -1,7 +1,7 @@
 import { FormikProps, useFormik } from 'formik'
 import { useMutation } from 'react-query'
 import { SearchDto } from '@dto'
-import { SEARCH } from '@links'
+import { SEARCH } from '@href'
 import { searchSchema } from '@schemas/search'
 import { PageService } from '@services/page'
 import { setQueryParams } from '@helpers/url'

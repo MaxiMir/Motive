@@ -3,7 +3,6 @@ import { Menu, MenuItem } from '@mui/material'
 import { ReportType } from '@dto'
 import AppMenuItemContent from '@ui/AppMenuItemContent'
 import useSendReport from './hook'
-import i18n from './i18n'
 
 interface ReportProps {
   entityId: number
@@ -13,9 +12,17 @@ interface ReportProps {
 }
 
 export default function Report({ entityId, type, anchorEl, onClose }: ReportProps) {
-  const { locale } = useIntl()
+  const { formatMessage } = useIntl()
+  const title = formatMessage({ id: 'component.report.title' })
+  const reports = [
+    formatMessage({ id: 'common.nudity' }),
+    formatMessage({ id: 'common.violence' }),
+    formatMessage({ id: 'common.terrorism' }),
+    formatMessage({ id: 'common.spam' }),
+    formatMessage({ id: 'common.something-else' }),
+  ]
+
   const onClick = useSendReport(entityId, type, onClose)
-  const { title, reports } = i18n[locale]
 
   return (
     <Menu id="report-menu" anchorEl={anchorEl} open={!!anchorEl} onClose={onClose}>

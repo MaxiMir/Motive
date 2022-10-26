@@ -1,6 +1,6 @@
 import { useInfiniteQuery } from 'react-query'
 import { SecondCharacteristicName, UserDto } from '@dto'
-import { partialCheckOnLoadMore, partialGetNextPageParam } from '@helpers/fetcher'
+import { partialCheckOnLoadMore, partialGetNextPageParam } from '@utils/fetcher'
 import { PRELOAD_DIFF, TAKE, partialFetcher } from './helper'
 
 interface UseSubscription {

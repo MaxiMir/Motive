@@ -1,5 +1,5 @@
 import { Box } from '@mui/material'
-import { getImageUrl } from '@helpers/url'
+import { getImageSrc } from '@href'
 
 export interface Story {
   id: number
@@ -13,7 +13,7 @@ export interface SlideProps {
 
 export default function Slide({ story }: SlideProps) {
   const { url } = story
-  const absoluteSrc = getImageUrl(url)
+  const absoluteSrc = getImageSrc(url)
 
   return (
     <Box

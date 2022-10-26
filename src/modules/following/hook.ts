@@ -1,6 +1,6 @@
 import { useQuery, UseQueryResult } from 'react-query'
 import { SubscriptionPageDto } from '@dto'
-import { FOLLOWING } from '@links'
+import { FOLLOWING } from '@href'
 import { PageService } from '@services/page'
 
 export function useFollowingPage(): UseQueryResult<SubscriptionPageDto> {

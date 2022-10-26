@@ -5,8 +5,9 @@ import { useIntl } from 'react-intl'
 import { CreateMemberDto, GoalDto, MemberDto, UserDetailDto, UserPageDto } from '@dto'
 import { PageService } from '@services/page'
 import { MemberService } from '@services/member'
-import { getQueryParams, getUserHref, setQueryParams, SearchParam, getImageUrl } from '@helpers/url'
+import { getQueryParams, setQueryParams } from '@helpers/url'
 import useClient from '@hooks/useClient'
+import { getImageSrc, getUserHref, SearchParam } from '@href'
 import { getNextState } from './helper'
 
 export const useUserPage = (): UseQueryResult<UserPageDto> => {
@@ -47,7 +48,7 @@ export const useUserMeta = (user?: UserDetailDto): UserMeta | null => {
   const descriptionStart = formatMessage({ id: 'page.user.description-start' })
   const descriptionEnd = formatMessage({ id: 'page.user.description-end' })
   const goalNames = user.goals.map(({ name }) => `«${name}»`).join(', ')
-  const image = !user.avatar ? undefined : getImageUrl(user.avatar)
+  const image = !user.avatar ? undefined : getImageSrc(user.avatar)
   const userTag = `${user.name} (@${user.nickname})`
 
   return {

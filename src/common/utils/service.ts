@@ -6,7 +6,6 @@ const service = axios.create({
 })
 
 service.defaults.headers.common['Content-Type'] = 'application/json'
-
 service.interceptors.response.use(
   (r) => r.data,
   (e) => {

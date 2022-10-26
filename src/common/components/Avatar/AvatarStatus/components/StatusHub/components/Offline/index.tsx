@@ -2,7 +2,7 @@ import { ReactNode } from 'react'
 import dynamic from 'next/dynamic'
 import { useIntl } from 'react-intl'
 import { Badge, Box, Tooltip } from '@mui/material'
-import { getDistance } from '@helpers/date'
+import { getDistance } from '@utils/date'
 import { Device } from '@helpers/dom'
 import { getShortDistance } from './helper'
 

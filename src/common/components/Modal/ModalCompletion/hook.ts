@@ -6,7 +6,7 @@ import { completionSchema } from '@schemas/completion'
 import { ConfirmationService } from '@services/confirmation'
 import useSnackbar from '@hooks/useSnackbar'
 import { scrollToElem } from '@helpers/dom'
-import { getToday } from '@helpers/date'
+import { getToday } from '@utils/date'
 import { useUserPage } from '@modules/user/hook'
 
 interface Values {
@@ -44,7 +44,7 @@ const useSendConfirmation = (onSuccess: () => void) => {
   const { formatMessage } = useIntl()
   const { refetch } = useUserPage()
   const [enqueueSnackbar] = useSnackbar()
-  const message = formatMessage({ id: 'components.modal-completion.message' })
+  const message = formatMessage({ id: 'component.modal-completion.message' })
 
   return useMutation(ConfirmationService.create, {
     onSuccess() {

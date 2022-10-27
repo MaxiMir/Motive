@@ -3,7 +3,6 @@ import dynamic from 'next/dynamic'
 import { useIntl } from 'react-intl'
 import { MessageDto } from '@dto'
 import AppMenuButton from '@ui/AppMenuButton'
-import i18n from './i18n'
 
 const MenuList = dynamic(() => import('./components/MenuList'))
 const ModalEditMessage = dynamic(() => import('./components/ModalEditMessage'))
@@ -13,10 +12,11 @@ interface MenuProps {
 }
 
 export default function Menu({ message }: MenuProps) {
-  const { locale } = useIntl()
+  const { formatMessage } = useIntl()
   const [anchorEl, setAnchorEl] = useState<HTMLElement | null>(null)
   const [withModal, setWithModal] = useState(false)
-  const { title, ariaControls } = i18n[locale]
+  const title = formatMessage({ id: 'page.user.message-menu.title' })
+  const ariaControls = formatMessage({ id: 'page.user.message-menu.aria-controls' })
 
   const onOpen = (e: MouseEvent<HTMLButtonElement>) => setAnchorEl(e.currentTarget)
 
@@ -30,9 +30,7 @@ export default function Menu({ message }: MenuProps) {
   return (
     <>
       <AppMenuButton color="primary" ariaControls={ariaControls} title={title} compact onClick={onOpen} />
-      {anchorEl && (
-        <MenuList anchorEl={anchorEl} message={message} locale={locale} onOpenModal={toggleModal} onClose={onClose} />
-      )}
+      {anchorEl && <MenuList anchorEl={anchorEl} message={message} onOpenModal={toggleModal} onClose={onClose} />}
       {withModal && <ModalEditMessage message={message} onClose={toggleModal} />}
     </>
   )

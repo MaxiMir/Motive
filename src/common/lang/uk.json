@@ -102,6 +102,7 @@
   "page.user.modal-feedback.button": "Додати",
   "page.user.modal-feedback.loading": "Додаю",
   "page.user.modal-feedback.message": "Відгук успішно доданий",
+  "page.user.modal-notification.hint": "Увімкніть повідомлення, щоб завжди бути в курсі останніх оновлень",
   "page.user.goal-current.stages-header": "Етапи",
   "page.user.goal-current.stagesAria": "етапи-зміст",
   "page.user.goal-current.tasks-header": "Завдання",
@@ -110,6 +111,8 @@
   "page.user.goal-current.feedback-aria": "відгук-зміст",
   "page.user.goal-current.discussion-header": "Обговорення",
   "page.user.goal-current.discussion-aria": "обговорення-зміст",
+  "page.user.message-menu.title": "Відкрити меню повідомлень",
+  "page.user.message-menu.aria-controls": "меню-повідомлень",
   "page.404.title": "404: Сторінка не знайдена",
   "page.404.header": "Сторінку не знайдено",
   "page.500.title": "500: Щось пішло не так...",
@@ -168,6 +171,8 @@
   "common.leave": "Залишити",
   "common.copied": "Скопійовано",
   "common.remove": "Видалити",
+  "common.edited": "ред.",
+  "common.reply": "відповісти",
   "common.error": "Щось пішло не так...",
   "common.motivation": "Мотивація",
   "common.creativity": "Креативність",
@@ -203,6 +208,7 @@
   "common.close": "Закрити",
   "common.view": "Подивитись",
   "common.nothing": "Поки що нічого",
+  "common.nothing-so-far": "Поки порожньо",
   "common.together": "разом",
   "common.join": "Разом",
   "common.seen": "Заходив(-ла)",
@@ -217,5 +223,7 @@
   "common.violence": "Насильство",
   "common.terrorism": "Тероризм",
   "common.spam": "Спам",
-  "common.something-else": "Щось ще"
+  "common.something-else": "Щось ще",
+  "common.turn-on": "Увімкнути",
+  "common.open-menu": "Відкрити меню"
 }

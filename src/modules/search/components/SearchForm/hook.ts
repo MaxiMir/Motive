@@ -1,7 +1,7 @@
 import { FormikProps, useFormik } from 'formik'
 import { useMutation } from 'react-query'
 import { SearchDto } from '@dto'
-import { SEARCH } from '@href'
+import { Route } from '@href'
 import { searchSchema } from '@schemas/search'
 import { PageService } from '@services/page'
 import { setQueryParams } from '@helpers/url'
@@ -21,7 +21,7 @@ export default function useForm(q: string): FormikProps<SearchDto> {
 }
 
 const useSendSearch = () => {
-  return useMutation(({ q }: SearchDto) => PageService.get(setQueryParams(SEARCH, { q })), {
+  return useMutation(({ q }: SearchDto) => PageService.get(setQueryParams(Route.Search, { q })), {
     onSuccess(data) {
       console.log('data', data)
       // addTopic(topic)

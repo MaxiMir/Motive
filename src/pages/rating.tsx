@@ -4,7 +4,7 @@ import { dehydrate, QueryClient } from 'react-query'
 import { getSession } from 'next-auth/react'
 import { useIntl } from 'react-intl'
 import { AxiosRequestHeaders } from 'axios'
-import { RATING } from '@href'
+import { Route } from '@href'
 import { PageService } from '@services/page'
 import Layout from '@layout'
 import { RatingModule, useRatingPage } from '@modules/rating'
@@ -28,7 +28,7 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
   const queryClient = new QueryClient()
   const session = await getSession(ctx)
   const headers = ctx.req.headers as AxiosRequestHeaders
-  await queryClient.prefetchQuery(RATING, () => PageService.get(RATING, { headers }))
+  await queryClient.prefetchQuery(Route.Rating, () => PageService.get(Route.Rating, { headers }))
 
   return {
     props: {

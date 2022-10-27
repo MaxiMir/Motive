@@ -1,26 +1,26 @@
 import { useState } from 'react'
 import dynamic from 'next/dynamic'
+import { useIntl } from 'react-intl'
 import { Menu, MenuItem } from '@mui/material'
 import { MessageDto } from '@dto'
 import useClient from '@hooks/useClient'
-import { Locale } from '@hooks/useSetLocale'
 import AppMenuItemContent from '@ui/AppMenuItemContent'
-import i18n from './i18n'
 
 const Report = dynamic(() => import('@components/Report'))
 
 interface MenuListProps {
   anchorEl: HTMLElement
   message: MessageDto
-  locale: Locale
   onOpenModal: () => void
   onClose: () => void
 }
 
-export default function MenuList({ anchorEl, message, locale, onOpenModal, onClose }: MenuListProps) {
+export default function MenuList({ anchorEl, message, onOpenModal, onClose }: MenuListProps) {
+  const { formatMessage } = useIntl()
   const client = useClient()
+  const editText = formatMessage({ id: 'common.edit' })
+  const reportText = formatMessage({ id: 'common.report' })
   const [withReport, setWithReport] = useState(false)
-  const { edit, report } = i18n[locale]
 
   const onOpenReport = () => setWithReport(true)
 
@@ -34,11 +34,11 @@ export default function MenuList({ anchorEl, message, locale, onOpenModal, onClo
       <Menu id="goal-menu" anchorEl={anchorEl} open onClose={onClose}>
         {message.user.id === client?.id ? (
           <MenuItem onClick={onOpenModal}>
-            <AppMenuItemContent icon="edit" text={edit} />
+            <AppMenuItemContent icon="edit" text={editText} />
           </MenuItem>
         ) : (
           <MenuItem onClick={onOpenReport}>
-            <AppMenuItemContent icon="outlined_flag" text={report} />
+            <AppMenuItemContent icon="outlined_flag" text={reportText} />
           </MenuItem>
         )}
       </Menu>

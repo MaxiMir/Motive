@@ -54,9 +54,9 @@ export default function Header({ user, title, date, onClose }: HeaderProps): JSX
             <UserAvatar name={name} avatar={avatar} href={href} size={42} />
           </Box>
           <Box display="flex" flexDirection="column">
-            <Link href={href}>
-              <b>{name}</b>
-            </Link>
+            <Box component="b">
+              <Link href={href}>{name}</Link>
+            </Box>
             <Box display="flex" alignItems="center" gap={1}>
               <TextTitle sx={{ color: 'motivation.light' }}>
                 <b>{title}</b>

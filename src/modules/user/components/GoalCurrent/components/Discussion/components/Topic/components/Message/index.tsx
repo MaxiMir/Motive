@@ -9,7 +9,6 @@ import { getUserHref } from '@href'
 import UserAvatar from '@components/User/UserAvatar'
 import Menu from './components/Menu'
 import LikeButton from './components/LikeButton'
-import i18n from './i18n'
 
 const Button = dynamic(() => import('@mui/material/Button'))
 const SupportSign = dynamic(() => import('./components/SupportSign'))
@@ -30,17 +29,20 @@ export default function Message({ message, answerFor, supportFor, onReply }: Mes
   const href = getUserHref(nickname)
   const shortNumber = numberToShort(message.likeCount)
   const agoText = formatMessage({ id: 'common.ago' })
-  const { editedText, replyButton } = i18n[locale]
+  const editedText = formatMessage({ id: 'common.edited' })
+  const replyText = formatMessage({ id: 'common.reply' })
 
   return (
     <Box display="flex" flexDirection="column" gap={1} width="100%">
       <Box display="flex" flexDirection="column" gap={1} minWidth={152}>
         <Box display="flex" alignItems="center" gap={1}>
           <UserAvatar name={name} avatar={avatar} href={href} />
-          <Link href={href} title={user.name}>
-            <b>{user.name}</b>
-          </Link>
-          {supportFor && <SupportSign name={supportFor} locale={locale} />}
+          <Box component="b">
+            <Link href={href} title={user.name}>
+              {user.name}
+            </Link>
+          </Box>
+          {supportFor && <SupportSign name={supportFor} />}
           {edited && (
             <Box component="span" sx={{ fontSize: '0.6875rem', color: 'zen.silent' }}>
               {editedText}
@@ -58,8 +60,8 @@ export default function Message({ message, answerFor, supportFor, onReply }: Mes
             {dateDistance} {agoText}
           </Box>
           {onReply && (
-            <Button size="small" aria-label={replyButton} sx={{ color: 'support.main' }} onClick={onReply}>
-              {replyButton}
+            <Button size="small" aria-label={replyText} sx={{ color: 'support.main' }} onClick={onReply}>
+              {replyText}
             </Button>
           )}
         </Box>

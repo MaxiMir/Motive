@@ -32,13 +32,12 @@ export default function Advantage({ name, href }: AdvantageProps) {
         </Link>
         <Box display="flex" flexDirection="column" alignItems="space-between">
           <Typography
-            component="p"
             variant="h5"
+            component="span"
             sx={{
               color: '#F5F5F7',
               width: locale !== 'en' ? 250 : 210,
               textTransform: 'uppercase',
-              fontWeight: 500,
             }}
           >
             <Link href={href}>{title}</Link>

@@ -2,7 +2,7 @@ import { useRouter } from 'next/router'
 import Link from 'next/link'
 import { useIntl } from 'react-intl'
 import { Container, Box, Button } from '@mui/material'
-import { FOLLOWING, RATING, SEARCH, TOP_OF_THE_DAY } from '@href'
+import { Route } from '@href'
 import { TopOfTheDayIcon, SearchIcon, RatingIcon, FollowingIcon } from '@ui/icons'
 import FooterProfile from './components/FooterProfile'
 
@@ -19,10 +19,10 @@ export default function Footer({ nickname }: FooterProps) {
 
   function getRoutes() {
     return [
-      { title: formatMessage({ id: 'component.footer.top' }), href: TOP_OF_THE_DAY, Component: TopOfTheDayIcon },
-      { title: formatMessage({ id: 'component.footer.search' }), href: SEARCH, Component: SearchIcon },
-      { title: formatMessage({ id: 'component.footer.rating' }), href: RATING, Component: RatingIcon },
-      { title: formatMessage({ id: 'common.following' }), href: FOLLOWING, Component: FollowingIcon },
+      { title: formatMessage({ id: 'component.footer.top' }), href: Route.TopOfTheDay, Component: TopOfTheDayIcon },
+      { title: formatMessage({ id: 'component.footer.search' }), href: Route.Search, Component: SearchIcon },
+      { title: formatMessage({ id: 'component.footer.rating' }), href: Route.Rating, Component: RatingIcon },
+      { title: formatMessage({ id: 'common.following' }), href: Route.Following, Component: FollowingIcon },
     ]
   }
 

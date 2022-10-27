@@ -1,7 +1,7 @@
 import Link from 'next/link'
 import { useIntl } from 'react-intl'
 import { Box, Typography } from '@mui/material'
-import { SEARCH } from '@href'
+import { Route } from '@href'
 
 export default function OwnerDescription() {
   const { formatMessage } = useIntl()
@@ -21,7 +21,7 @@ export default function OwnerDescription() {
       <Typography>
         {description}{' '}
         <Box component="span" sx={{ color: 'warning.light' }}>
-          <Link href={SEARCH}>{link}</Link>
+          <Link href={Route.Search}>{link}</Link>
         </Box>
       </Typography>
     </>

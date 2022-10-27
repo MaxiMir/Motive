@@ -3,7 +3,7 @@ import { getSession } from 'next-auth/react'
 import { useIntl } from 'react-intl'
 import { dehydrate, QueryClient } from 'react-query'
 import { AxiosRequestHeaders } from 'axios'
-import { FOLLOWING } from '@href'
+import { Route } from '@href'
 import { PageService } from '@services/page'
 import Layout from '@layout'
 import { FollowingModule, useFollowingPage } from '@modules/following'
@@ -25,7 +25,7 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
   const queryClient = new QueryClient()
   const session = await getSession(ctx)
   const headers = ctx.req.headers as AxiosRequestHeaders
-  await queryClient.prefetchQuery(FOLLOWING, () => PageService.get(FOLLOWING, { headers }))
+  await queryClient.prefetchQuery(Route.Following, () => PageService.get(Route.Following, { headers }))
 
   return {
     props: {

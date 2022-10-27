@@ -101,6 +101,7 @@
   "page.user.modal-feedback.button": "Add",
   "page.user.modal-feedback.loading": "Adding",
   "page.user.modal-feedback.message": "Feedback successfully added",
+  "page.user.modal-notification.hint": "Turn on notifications to stay up to date with the latest updates",
   "page.user.goal-current.stages-header": "Stages",
   "page.user.goal-current.stagesAria": "stages-content",
   "page.user.goal-current.tasks-header": "Tasks",
@@ -109,6 +110,8 @@
   "page.user.goal-current.feedback-aria": "feedback-content",
   "page.user.goal-current.discussion-header": "Discussion",
   "page.user.goal-current.discussion-aria": "discussion-content",
+  "page.user.message-menu.title": "Open message menu",
+  "page.user.message-menu.aria-controls": "message-menu",
   "page.404.title": "404: Page Not Found",
   "page.404.header": "Page Not Found",
   "page.500.title": "500: Sorry, something went wrong...",
@@ -167,6 +170,8 @@
   "common.leave": "Leave",
   "common.copied": "Copied",
   "common.remove": "Remove",
+  "common.edited": "edited",
+  "common.reply": "reply",
   "common.error": "Something went wrong...",
   "common.motivation": "Motivation",
   "common.creativity": "Creativity",
@@ -202,6 +207,7 @@
   "common.close": "Close",
   "common.view": "View",
   "common.nothing": "Nothing so far...",
+  "common.nothing-so-far": "So far, nothing",
   "common.together": "with",
   "common.join": "Join",
   "common.seen": "Last seen",
@@ -216,5 +222,7 @@
   "common.violence": "Violence",
   "common.terrorism": "Terrorism",
   "common.spam": "Spam",
-  "common.something-else": "Something else"
+  "common.something-else": "Something else",
+  "common.turn-on": "Turn on",
+  "common.open-menu": "Open menu"
 }

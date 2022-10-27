@@ -4,7 +4,7 @@ import { getSession } from 'next-auth/react'
 import { dehydrate, QueryClient } from 'react-query'
 import { useIntl } from 'react-intl'
 import { AxiosRequestHeaders } from 'axios'
-import { SEARCH } from '@href'
+import { Route } from '@href'
 import { SearchModule, useSearchPage } from '@modules/search'
 import { PageService } from '@services/page'
 
@@ -22,7 +22,7 @@ export default function SearchPage() {
 }
 
 export const getServerSideProps: GetServerSideProps = async (ctx) => {
-  const { url = SEARCH } = ctx.req
+  const { url = Route.Search } = ctx.req
 
   if (ctx.req.url?.includes('_next')) {
     return {

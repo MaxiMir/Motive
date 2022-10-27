@@ -1,16 +1,15 @@
+import { useIntl } from 'react-intl'
 import { Box, Tooltip } from '@mui/material'
-import { Locale } from '@hooks/useSetLocale'
 import AppEmoji from '@ui/AppEmoji'
-import i18n from './i18n'
 
 interface SupportSignProps {
   name: string
-  locale: Locale
 }
 
-export default function SupportSign({ name, locale }: SupportSignProps) {
-  const { getTitle } = i18n[locale]
-  const title = getTitle(name)
+export default function SupportSign({ name }: SupportSignProps) {
+  const { formatMessage } = useIntl()
+  const support = formatMessage({ id: 'common.support' })
+  const title = `${support} ${name}`
 
   return (
     <Tooltip arrow title={title} aria-label={title}>

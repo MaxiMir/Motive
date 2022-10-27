@@ -28,7 +28,7 @@ export default function UserCharacteristic({ user, inView, menu, onView, onClose
         <UserAvatar name={name} avatar={avatar} href={href} online={online} size={55} onClick={onClose} />
         <Box display="flex" flexDirection="column" justifyContent="space-between" flex={1}>
           <Box display="flex" justifyContent="space-between" alignItems="center">
-            <Typography variant="subtitle1" component="p">
+            <Typography variant="subtitle1" component="span">
               <Link href={href} onClick={onClose}>
                 {name}
               </Link>

@@ -60,9 +60,11 @@ export default function Notification({ notification, onClose }: NotificationProp
       </Box>
       <Box display="flex" flexDirection="column" justifyContent="space-between">
         <Typography sx={{ fontSize: '0.875rem' }}>
-          <Link title={name} href={href} sx={{ color }} onClick={onClose}>
-            <b>{name}</b>
-          </Link>{' '}
+          <Box component="b" sx={{ color }}>
+            <Link href={href} onClick={onClose}>
+              {name}
+            </Link>
+          </Box>{' '}
           {header}
           {detailsName && `: ${detailsName}`}
         </Typography>

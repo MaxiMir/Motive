@@ -14,7 +14,7 @@ export default function Hint({ onClick }: HintProps) {
   return (
     <Alert severity="warning" icon={<>{null}</>} sx={{ mb: 4 }}>
       <Box display="flex" flexDirection="column" gap={1} alignItems="flex-start">
-        {title}
+        {title}:
         <Button startIcon={<AppIcon name="notifications_active" />} aria-label={buttonText} onClick={onClick}>
           {buttonText}
         </Button>

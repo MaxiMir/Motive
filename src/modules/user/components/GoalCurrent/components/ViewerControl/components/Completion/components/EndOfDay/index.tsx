@@ -19,7 +19,7 @@ export default function EndOfDay({ goal, nextDayId, forTomorrow, clientMember }:
   const { formatMessage } = useIntl()
   const { isLoading, mutate } = useSendEndOfDay(goal)
   const title = forTomorrow && formatMessage({ id: 'component.tooltip.tomorrow' })
-  const buttonText = formatMessage({ id: 'page.user.end-of-day.button' })
+  const buttonText = formatMessage({ id: 'common.next' })
 
   const onClick = () => {
     mutate({ id: clientMember.id, dayId: nextDayId, updated: getTomorrow() })

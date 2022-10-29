@@ -1,5 +1,5 @@
+import { useIntl } from 'react-intl'
 import { DayCharacteristicName, GoalDto } from '@dto'
-import { Locale } from '@hooks/useSetLocale'
 import ActionGoal from '@components/Action/ActionGoal'
 import useSetReaction from './hook'
 import { checkOnActive, getCount } from './helper'
@@ -8,10 +8,10 @@ import i18n from './i18n'
 interface ReactionWithSendProps {
   goal: GoalDto
   name: DayCharacteristicName
-  locale: Locale
 }
 
-export default function ReactionWithSend({ goal, name, locale }: ReactionWithSendProps) {
+export default function ReactionWithSend({ goal, name }: ReactionWithSendProps) {
+  const { locale, formatMessage } = useIntl()
   const active = checkOnActive(goal, name)
   const count = getCount(goal, name)
   const { getTitle } = i18n[locale]

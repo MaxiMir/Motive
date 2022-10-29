@@ -8,7 +8,6 @@ import ActionCancel from '@components/Action/ActionCancel'
 import AppModal from '@ui/AppModal'
 import AppInput from '@ui/AppInput'
 import useForm from './hook'
-import i18n from './i18n'
 
 export interface ModalEditMessageProps {
   message: MessageDto
@@ -16,10 +15,14 @@ export interface ModalEditMessageProps {
 }
 
 export default function ModalEditMessage({ message, onClose }: ModalEditMessageProps) {
-  const { locale } = useIntl()
+  const { formatMessage } = useIntl()
   const form = useForm(message, onClose)
   const { isSubmitting, handleSubmit } = form
-  const { title, subtitle, button, buttonLoading, label } = i18n[locale]
+  const title = formatMessage({ id: 'common.editing' })
+  const subtitle = formatMessage({ id: 'common.message' })
+  const buttonText = formatMessage({ id: 'common.save' })
+  const loadingText = formatMessage({ id: 'common.saving' })
+  const label = formatMessage({ id: 'common.your-message' })
 
   const onFocus = (e: FocusEvent<HTMLInputElement>) => {
     e.currentTarget.setSelectionRange(e.currentTarget.value.length, e.currentTarget.value.length)
@@ -40,8 +43,8 @@ export default function ModalEditMessage({ message, onClose }: ModalEditMessageP
         <ActionCancel onClick={onClose} />,
         <ActionSubmit
           isLoading={isSubmitting}
-          text={button}
-          loadingText={buttonLoading}
+          text={buttonText}
+          loadingText={loadingText}
           emoji="save"
           onClick={handleSubmit}
         />,

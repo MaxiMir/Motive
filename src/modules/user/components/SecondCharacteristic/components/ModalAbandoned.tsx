@@ -1,4 +1,4 @@
-import Image from 'next/legacy/image'
+import Image from 'next/image'
 import { useIntl } from 'react-intl'
 import { Box, Typography } from '@mui/material'
 import { UserDetailDto } from '@dto'

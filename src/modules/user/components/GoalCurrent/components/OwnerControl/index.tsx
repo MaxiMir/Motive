@@ -4,7 +4,6 @@ import { useIntl } from 'react-intl'
 import { Box, Button, Tooltip } from '@mui/material'
 import { GoalDto } from '@dto'
 import AppEmoji from '@ui/AppEmoji'
-import i18n from './i18n'
 
 const ModalTasks = dynamic(() => import('./components/ModalTasks'))
 const ModalCompletion = dynamic(() => import('@components/Modal/ModalCompletion'))
@@ -15,14 +14,14 @@ export interface OwnerControlProps {
 
 export default function OwnerControl({ goal }: OwnerControlProps) {
   const { stages, day } = goal
-  const { locale } = useIntl()
   const { formatMessage } = useIntl()
   const [modal, setModal] = useState<'tasks' | 'completion'>()
   const feedbackAdded = !!goal.day.feedback
   const renderCompete = stages.length === day.stage && feedbackAdded
   const justifyContent = renderCompete ? 'space-between' : 'flex-end'
-  const { nextButton, doneButton } = i18n[locale]
   const title = !feedbackAdded && formatMessage({ id: 'component.tooltip.feedback' })
+  const doneButtonText = formatMessage({ id: 'common.done' })
+  const nextButtonText = formatMessage({ id: 'common.next' })
 
   const onAddTasks = () => setModal('tasks')
 
@@ -40,13 +39,13 @@ export default function OwnerControl({ goal }: OwnerControlProps) {
             startIcon={<AppEmoji name="moon" onlyEmoji />}
             onClick={onAddTasks}
           >
-            {nextButton}
+            {nextButtonText}
           </Button>
         </span>
       </Tooltip>
       {renderCompete && (
         <Button variant="outlined" color="warning" startIcon={<AppEmoji name="cup" onlyEmoji />} onClick={onComplete}>
-          {doneButton}
+          {doneButtonText}
         </Button>
       )}
       {modal === 'tasks' && <ModalTasks goal={goal} onClose={closeModal} />}

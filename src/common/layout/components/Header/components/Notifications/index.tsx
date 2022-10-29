@@ -5,16 +5,15 @@ import { Badge, Button } from '@mui/material'
 import AppIcon from '@ui/AppIcon'
 import { useNotifications } from './hook'
 import { checkOnBadgeContent } from './helper'
-import i18n from './i18n'
 
 const ModalNotifications = dynamic(() => import('./components/ModalNotifications'))
 
 export default function Notifications() {
-  const { locale } = useIntl()
+  const { formatMessage } = useIntl()
   const { data = [] } = useNotifications()
   const [open, setOpen] = useState(false)
   const badgeContent = checkOnBadgeContent(data)
-  const { ariaControls } = i18n[locale]
+  const ariaControls = formatMessage({ id: 'component.notification.aria' })
 
   const toggleModal = () => setOpen(!open)
 

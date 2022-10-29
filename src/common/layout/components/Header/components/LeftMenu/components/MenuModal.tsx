@@ -5,8 +5,6 @@ import { signOut } from 'next-auth/react'
 import { Box, List, Divider, ListItem, Drawer, ListItemText, ListItemIcon } from '@mui/material'
 import useClient from '@hooks/useClient'
 import AppIcon from '@ui/AppIcon'
-import { MENU } from './helper'
-import i18n from './i18n'
 
 interface MenuModalProps {
   onClose: () => void
@@ -14,11 +12,12 @@ interface MenuModalProps {
 }
 
 export default function MenuModal({ onOpenSettings, onClose }: MenuModalProps) {
-  const { locale } = useIntl()
+  const { formatMessage } = useIntl()
   const { push } = useRouter()
   const client = useClient()
-  const i18nElements = i18n[locale]
-  const { logOut, settings } = i18nElements
+  const logOut = formatMessage({ id: 'common.log-out' })
+  const settings = formatMessage({ id: 'common.settings' })
+  const menu = getMenu()
 
   const onKeyDown = (event: KeyboardEvent) => {
     if (['Tab', 'Shift'].includes(event.key)) return
@@ -28,15 +27,23 @@ export default function MenuModal({ onOpenSettings, onClose }: MenuModalProps) {
 
   const onSignOut = () => signOut()
 
+  function getMenu() {
+    return [
+      { primary: formatMessage({ id: 'common.news' }), icon: 'newspaper', link: 'news' },
+      { primary: formatMessage({ id: 'common.features' }), icon: 'dynamic_form', link: 'features' },
+      { primary: formatMessage({ id: 'common.contact' }), icon: 'all_inbox', link: 'contact' },
+    ]
+  }
+
   return (
     <Drawer open onClose={onClose}>
       <Box role="presentation" sx={{ height: '100%', minWidth: 230, padding: '60px 0 8px' }} onKeyDown={onKeyDown}>
         <Box display="flex" flexDirection="column" justifyContent="space-between" height="100%">
           <Box>
             <List>
-              {MENU.map(({ id, icon, link }) => (
-                <ListItem button disabled={!link} onClick={() => push(link)} key={id}>
-                  <ListItemText primary={i18nElements[id]} />
+              {menu.map(({ primary, icon, link }) => (
+                <ListItem button disabled={!link} onClick={() => push(link)} key={link}>
+                  <ListItemText primary={primary} />
                   <ListItemIcon>
                     <AppIcon name={icon} />
                   </ListItemIcon>

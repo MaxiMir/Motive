@@ -3,7 +3,6 @@ import { useIntl } from 'react-intl'
 import { Button } from '@mui/material'
 import { styled } from '@mui/system'
 import AppEmoji from '@ui/AppEmoji'
-import i18n from './i18n'
 
 export interface PhotoInputProps {
   multiple?: boolean
@@ -12,9 +11,9 @@ export interface PhotoInputProps {
 }
 
 export default function PhotoInput({ multiple, disabled, onSelect }: PhotoInputProps) {
-  const { locale } = useIntl()
+  const { formatMessage } = useIntl()
   const photoInputRef = useRef<HTMLInputElement>(null)
-  const { title } = i18n[locale]
+  const title = formatMessage({ id: 'common.load-photo' })
 
   const onAddPhoto = (e: ChangeEvent<HTMLInputElement>) => {
     e.target.files && onSelect(Array.from(e.target.files))

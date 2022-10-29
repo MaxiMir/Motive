@@ -6,17 +6,21 @@ import { ThemeContext } from '@context/themeContext'
 import { EN, RU, UK, Locale, useSetLocale } from '@hooks/useSetLocale'
 import AppModal from '@ui/AppModal'
 import AppEmoji from '@ui/AppEmoji'
-import i18n from './i18n'
 
 interface ModalLanguageProps {
   onClose: () => void
 }
 
 export default function ModalSettings({ onClose }: ModalLanguageProps) {
-  const { locale } = useIntl()
+  const { locale, formatMessage } = useIntl()
   const setLocale = useSetLocale()
   const { mode, setMode } = useContext(ThemeContext)
-  const { title, modeHeader, languageHeader, light, system, dark } = i18n[locale]
+  const title = formatMessage({ id: 'common.settings' })
+  const modeHeader = formatMessage({ id: 'common.mode' })
+  const languageHeader = formatMessage({ id: 'common.language' })
+  const lightText = formatMessage({ id: 'common.light' })
+  const systemText = formatMessage({ id: 'common.system' })
+  const darkText = formatMessage({ id: 'common.dark' })
 
   const onChangeLocale = (_: MouseEvent<HTMLElement>, newLocale: Locale) => {
     setLocale(newLocale)
@@ -61,13 +65,13 @@ export default function ModalSettings({ onClose }: ModalLanguageProps) {
           </Header>
           <ToggleButtonGroup color="warning" value={mode} exclusive aria-label={modeHeader} onChange={onChangeMode}>
             <GroupButton value="light" disabled>
-              <AppEmoji name="light" /> {light}
+              <AppEmoji name="light" /> {lightText}
             </GroupButton>
             <GroupButton value="system" disabled>
-              <AppEmoji name="system" /> {system}
+              <AppEmoji name="system" /> {systemText}
             </GroupButton>
             <GroupButton value="dark" disabled>
-              <AppEmoji name="dark" /> {dark}
+              <AppEmoji name="dark" /> {darkText}
             </GroupButton>
           </ToggleButtonGroup>
         </Box>

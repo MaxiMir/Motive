@@ -1,11 +1,10 @@
 import { useIntl } from 'react-intl'
 import { Tooltip } from '@mui/material'
 import AppEmoji from '@ui/AppEmoji'
-import i18n from './i18n'
 
 export default function CompletedByOther() {
-  const { locale } = useIntl()
-  const { title } = i18n[locale]
+  const { formatMessage } = useIntl()
+  const title = formatMessage({ id: 'page.user.competed-by-other.title' })
 
   return (
     <Tooltip arrow title={title}>

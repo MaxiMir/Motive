@@ -12,10 +12,11 @@ export const useSendEndOfDay = (goal: GoalDto): UseMutationResult<MemberDto, Axi
   const { formatMessage } = useIntl()
   const [enqueueSnackbar] = useSnackbar()
   const [page, mutatePage] = useMutateUserPage()
-  const message = formatMessage({ id: 'common.next-day-loading' })
 
   return useMutation(MemberService.update, {
     onSuccess(member) {
+      const message = formatMessage({ id: 'common.next-day-loading' })
+
       mutatePage(getNextState(page, member))
       setTimeout(() => clickOnElem(`next-${goal.id}`), 1)
 

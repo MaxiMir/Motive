@@ -26,8 +26,8 @@ export default function ModalProfile({ user, onClose }: ModalProfileProps) {
   const profile = formatMessage({ id: 'page.user.modal-profile.profile' })
   const nameLabel = formatMessage({ id: 'page.user.modal-profile.name' })
   const nicknameLabel = formatMessage({ id: 'page.user.modal-profile.nickname' })
-  const buttonText = formatMessage({ id: 'page.user.modal-profile.button' })
-  const buttonLoading = formatMessage({ id: 'page.user.modal-profile.loading' })
+  const buttonText = formatMessage({ id: 'common.save' })
+  const buttonLoading = formatMessage({ id: 'common.saving' })
 
   const setAvatar = (files: File[]) => setFieldValue('avatar', files[0])
 

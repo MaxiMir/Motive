@@ -4,7 +4,6 @@ import { Box } from '@mui/material'
 import { NotificationDto } from '@dto'
 import AppModal from '@ui/AppModal'
 import useNotificationHint from './hook'
-import i18n from './i18n'
 
 const EmptyList = dynamic(() => import('./components/EmptyList'))
 const NotificationList = dynamic(() => import('./components/NotificationList'))
@@ -16,14 +15,15 @@ interface ModalNotificationsProps {
 }
 
 export default function ModalNotifications({ notifications, onClose }: ModalNotificationsProps) {
-  const { locale } = useIntl()
+  const { formatMessage } = useIntl()
   const [showHint, onHintClick] = useNotificationHint()
-  const { title } = i18n[locale]
+  const title = formatMessage({ id: 'common.notifications' })
+  const alignItems = !notifications.length ? 'center' : undefined
 
   return (
     <AppModal title={title} maxWidth="xs" onClose={onClose}>
-      {showHint && <Hint locale={locale} onClick={onHintClick} />}
-      <Box display="flex" alignItems={!notifications.length ? 'center' : undefined} minHeight={400} flex={1}>
+      {showHint && <Hint onClick={onHintClick} />}
+      <Box display="flex" alignItems={alignItems} minHeight={400} flex={1}>
         {!notifications.length ? <EmptyList /> : <NotificationList notifications={notifications} onClose={onClose} />}
       </Box>
     </AppModal>

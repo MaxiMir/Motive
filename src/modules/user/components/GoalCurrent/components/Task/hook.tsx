@@ -9,7 +9,6 @@ import useSnackbar from '@hooks/useSnackbar'
 import useClient from '@hooks/useClient'
 import { useMutateUserPage } from '@modules/user/hook'
 import { getGoalNextState } from './helper'
-import i18n from './i18n'
 
 const Button = dynamic(() => import('@mui/material/Button'))
 
@@ -20,7 +19,7 @@ export default function useSetCompleted(
   clientMember?: MemberDto,
 ): () => void {
   const timerRef = useRef<NodeJS.Timeout>()
-  const { locale } = useIntl()
+  const { formatMessage } = useIntl()
   const client = useClient()
   const [enqueueSnackbar, closeSnackbar] = useSnackbar()
   const [page, mutatePage] = useMutateUserPage()
@@ -45,8 +44,9 @@ export default function useSetCompleted(
 
   return () => {
     const newRest = rest - 1
-    const { getMessage, undo } = i18n[locale]
-    const message = getMessage(toShortUserName(client?.name), newRest)
+    const undoText = formatMessage({ id: 'common.undo' })
+    const messagePart = formatMessage({ id: !newRest ? 'common.well-done' : 'common.do-it' })
+    const message = !newRest ? `${messagePart}, ${toShortUserName(client?.name)}!` : `${messagePart}: ${newRest}`
 
     mutateCompleted(true)
     timerRef.current = setTimeout(() => mutate(id), 4000)
@@ -57,7 +57,7 @@ export default function useSetCompleted(
       icon: !newRest ? 'motivation-tech' : 'energy',
       action: (
         <Button variant="outlined" onClick={onUndo}>
-          {undo}
+          {undoText}
         </Button>
       ),
     })

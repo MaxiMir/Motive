@@ -3,7 +3,6 @@ import dynamic from 'next/dynamic'
 import { useIntl } from 'react-intl'
 import { GoalDto, OwnershipDto } from '@dto'
 import AppMenuButton from '@ui/AppMenuButton'
-import i18n from './i18n'
 
 const ModalLeave = dynamic(() => import('./components/ModalLeave'))
 const MenuList = dynamic(() => import('./components/MenuList'))
@@ -17,11 +16,12 @@ interface MenuProps {
 }
 
 export default function Menu({ goal, title, href, clientOwnership }: MenuProps) {
-  const { locale } = useIntl()
+  const { formatMessage } = useIntl()
   const [anchorEl, setAnchorEl] = useState<HTMLElement | null>(null)
   const [withShare, setWithShare] = useState(false)
   const [withLeave, setWithLeave] = useState(false)
-  const { buttonTitle, ariaControls } = i18n[locale]
+  const buttonTitle = formatMessage({ id: 'page.user.goal-current.open-menu' })
+  const ariaControls = formatMessage({ id: 'page.user.goal-current.open-menu-area' })
 
   const onOpen = (e: MouseEvent<HTMLButtonElement>) => setAnchorEl(e.currentTarget)
 

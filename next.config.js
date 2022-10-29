@@ -27,9 +27,6 @@ module.exports = withPWA({
   images: {
     domains: ['localhost', '2bebetter.pro', 'avatars.githubusercontent.com', 'lh3.googleusercontent.com'],
   },
-  experimental: {
-    output: 'standalone',
-  },
   i18n: {
     locales: ['en', 'ru', 'uk'],
     defaultLocale: 'en',

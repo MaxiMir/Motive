@@ -1,26 +1,25 @@
 import { useState } from 'react'
 import dynamic from 'next/dynamic'
+import { useIntl } from 'react-intl'
 import { GoalDto, UserBaseDto } from '@dto'
-import { Locale } from '@hooks/useSetLocale'
 import useClient from '@hooks/useClient'
 import useOpenSignIn from '@hooks/useOpenSignIn'
 import ActionGoal from '@components/Action/ActionGoal'
-import i18n from './i18n'
 
 const ModalSupport = dynamic(() => import('./components/ModalSupport'))
 
 interface ReactionSupportProps {
   goal: GoalDto
   owner: UserBaseDto
-  locale: Locale
 }
 
-export default function ReactionSupport({ goal, owner, locale }: ReactionSupportProps) {
+export default function ReactionSupport({ goal, owner }: ReactionSupportProps) {
+  const { formatMessage } = useIntl()
   const client = useClient()
   const openSignIn = useOpenSignIn()
   const [open, setOpen] = useState(false)
-  const { getTitle } = i18n[locale]
-  const title = getTitle(owner.name)
+  const supportingText = formatMessage({ id: 'common.supporting' })
+  const title = `${supportingText} ${owner.name}`
 
   const toggleModal = () => setOpen(!open)
 

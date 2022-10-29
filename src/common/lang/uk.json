@@ -113,6 +113,11 @@
   "page.user.competed-by-other.title": "Один із учасників вже завершив",
   "page.user.goal-current.open-menu": "Відкрити меню цілі",
   "page.user.goal-current.open-menu-area": "меню-цілі",
+  "page.user.modal-stage.title": "Завершення етапу",
+  "page.user.modal-stage.behind": "Чудово! Один етап позаду!",
+  "page.user.modal-stage.message": "Етап для наступного дня успішно встановлений",
+  "page.user.modal-stage.title-final": "Прикінцевий етап",
+  "page.user.modal-stage.title-next": "Наступний етап",
   "page.404.title": "404: Сторінка не знайдена",
   "page.404.header": "Сторінку не знайдено",
   "page.500.title": "500: Щось пішло не так...",
@@ -142,8 +147,6 @@
   "component.notification.web-coverage": "закинув(-ла) ціль",
   "component.gallery-photo.aria": "Відкрити галерею",
   "component.modal-completion.title": "Завершення мети",
-  "component.modal-completion.button": "Завершити",
-  "component.modal-completion.buttonLoading": "Завершаю",
   "component.modal-completion.subtitle": "Вітаю, Ви зробили це!",
   "component.modal-completion.label": "Як це було",
   "component.modal-completion.photoTitle": "Фото",
@@ -250,5 +253,7 @@
   "common.saving": "Зберігаю",
   "common.message": "повідомлення",
   "common.your-message": "Ваше повідомлення",
-  "common.message-updated": "Ваше повідомлення успішно оновлено"
+  "common.message-updated": "Ваше повідомлення успішно оновлено",
+  "common.complete": "Завершити",
+  "common.completing": "Завершаю"
 }

@@ -6,7 +6,6 @@ import ActionCancel from '@components/Action/ActionCancel'
 import AppModal from '@ui/AppModal'
 import AppFlyIcon from '@ui/AppFlyIcon'
 import { useSendStage } from './hook'
-import i18n from './i18n'
 
 export interface ModalStageProps {
   goal: GoalDto
@@ -15,12 +14,15 @@ export interface ModalStageProps {
 
 export default function ModalStage({ goal, onClose }: ModalStageProps) {
   const { stages, day } = goal
-  const { locale } = useIntl()
+  const { formatMessage } = useIntl()
   const { isLoading, mutate } = useSendStage(onClose)
-  const { title, behind, button, buttonLoading, getNextTitle } = i18n[locale]
   const isFinal = stages.length === day.stage
-  const nextTitle = getNextTitle(isFinal)
   const nextStage = day.stage + 1
+  const title = formatMessage({ id: 'page.user.modal-stage.title' })
+  const behind = formatMessage({ id: 'page.user.modal-stage.behind' })
+  const button = formatMessage({ id: 'common.complete' })
+  const buttonLoading = formatMessage({ id: 'common.completing' })
+  const nextTitle = formatMessage({ id: `page.user.modal-stage.title-${isFinal ? 'final' : 'next'}` })
 
   const onClick = () => mutate({ id: goal.id, stage: nextStage })
 

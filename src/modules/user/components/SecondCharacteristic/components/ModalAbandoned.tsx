@@ -38,7 +38,7 @@ export default function ModalAbandoned({ user, onClose }: ModalAbandonedProps) {
             <Image src="/images/svg/web.svg" alt="" width={60} height={60} />
           </Box>
         </Box>
-        <Typography variant="h6" component="h3">
+        <Typography component="h3" textAlign="center">
           {header}.
         </Typography>
         <OldPittRules />

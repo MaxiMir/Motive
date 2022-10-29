@@ -112,6 +112,11 @@
   "page.user.competed-by-other.title": "One of the members has already completed",
   "page.user.goal-current.open-menu": "Open goal menu",
   "page.user.goal-current.open-menu-area": "goal-menu",
+  "page.user.modal-stage.title": "Completion stage",
+  "page.user.modal-stage.behind": "Excellent! One stage behind!",
+  "page.user.modal-stage.message": "The stage for the next day has been successfully set",
+  "page.user.modal-stage.title-final": "Final stage is",
+  "page.user.modal-stage.title-next": "Next stage is",
   "page.404.title": "404: Page Not Found",
   "page.404.header": "Page Not Found",
   "page.500.title": "500: Sorry, something went wrong...",
@@ -141,8 +146,6 @@
   "component.notification.web-coverage": "abandoned the goal",
   "component.gallery-photo.aria": "Open gallery",
   "component.modal-completion.title": "Completing the goal",
-  "component.modal-completion.button": "Complete",
-  "component.modal-completion.buttonLoading": "Completing",
   "component.modal-completion.subtitle": "Congratulations, you did it!",
   "component.modal-completion.label": "How it was",
   "component.modal-completion.photoTitle": "Photos",
@@ -249,5 +252,7 @@
   "common.saving": "Saving",
   "common.message": "message",
   "common.your-message": "Your message",
-  "common.message-updated": "Message successfully updated"
+  "common.message-updated": "Message successfully updated",
+  "common.complete": "Complete",
+  "common.completing": "Completing"
 }

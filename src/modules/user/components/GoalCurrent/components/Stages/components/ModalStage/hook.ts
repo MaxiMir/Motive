@@ -6,16 +6,15 @@ import { GoalService } from '@services/goal'
 import useSnackbar from '@hooks/useSnackbar'
 import { useMutateGoals } from '@modules/user/hook'
 import { getNextState } from './helper'
-import i18n from './i18n'
 
 export const useSendStage = (onSuccess: () => void): UseMutationResult<void, AxiosError, GoalStageDto> => {
-  const { locale } = useIntl()
+  const { formatMessage } = useIntl()
   const [goals, mutateGoals] = useMutateGoals()
   const [enqueueSnackbar] = useSnackbar()
 
   return useMutation(GoalService.updateStage, {
     onSuccess(_, { id }) {
-      const { message } = i18n[locale]
+      const message = formatMessage({ id: 'component.modal-completion.message' })
 
       mutateGoals(getNextState(goals, id))
       onSuccess()

@@ -113,6 +113,11 @@
   "page.user.competed-by-other.title": "Один из участников уже завершил",
   "page.user.goal-current.open-menu": "Открыть меню цели",
   "page.user.goal-current.open-menu-area": "меню-цели",
+  "page.user.modal-stage.title": "Завершение этапа",
+  "page.user.modal-stage.behind": "Превосходно! Один этап позади!",
+  "page.user.modal-stage.message": "Этап для следующего дня успешно установлен",
+  "page.user.modal-stage.title-final": "Заключительный этап",
+  "page.user.modal-stage.title-next": "Следующий этап",
   "page.404.title": "404: Страница не найдена",
   "page.404.header": "Страница не найдена",
   "page.500.title": "500: Что-то пошло не так...",
@@ -142,8 +147,6 @@
   "component.notification.web-coverage": "забросил(-а) цель",
   "component.gallery-photo.aria": "Открыть галерею",
   "component.modal-completion.title": "Завершение цели",
-  "component.modal-completion.button": "Завершить",
-  "component.modal-completion.buttonLoading": "Завершаю",
   "component.modal-completion.subtitle": "Поздравляю, Вы сделали это!",
   "component.modal-completion.label": "Как это было",
   "component.modal-completion.photoTitle": "Фото",
@@ -250,5 +253,7 @@
   "common.saving": "Сохраняю",
   "common.message": "сообщения",
   "common.your-message": "Ваше сообщение",
-  "common.message-updated": "Ваше сообщение успешно обновлено"
+  "common.message-updated": "Ваше сообщение успешно обновлено",
+  "common.complete": "Завершить",
+  "common.completing": "Завершаю"
 }

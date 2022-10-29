@@ -30,8 +30,8 @@ export default function ModalCompletion({ goal, onClose }: ModalCompletionProps)
   const { isSubmitting, values, touched, errors, setFieldValue, handleSubmit } = form
   const photoError = Array.isArray(errors.photos) ? errors.photos.join(', ') : errors.photos
   const title = formatMessage({ id: 'component.modal-completion.title' })
-  const buttonText = formatMessage({ id: 'component.modal-completion.button' })
-  const loadingText = formatMessage({ id: 'component.modal-completion.buttonLoading' })
+  const buttonText = formatMessage({ id: 'common.complete' })
+  const loadingText = formatMessage({ id: 'common.completing' })
   const subtitle = formatMessage({ id: 'component.modal-completion.subtitle' })
   const label = formatMessage({ id: 'component.modal-completion.label' })
   const photoTitle = formatMessage({ id: 'component.modal-completion.photoTitle' })

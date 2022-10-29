@@ -42,7 +42,7 @@ export default function MenuModal({ onOpenSettings, onClose }: MenuModalProps) {
           <Box>
             <List>
               {menu.map(({ primary, icon, link }) => (
-                <ListItem button disabled={!link} onClick={() => push(link)} key={link}>
+                <ListItem button disabled={link !== 'contact'} onClick={() => push(link)} key={link}>
                   <ListItemText primary={primary} />
                   <ListItemIcon>
                     <AppIcon name={icon} />

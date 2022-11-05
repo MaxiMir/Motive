@@ -1,0 +1,1 @@
+export { TopOfTheDayModule } from './TopOfTheDayModule'

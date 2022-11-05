@@ -18,6 +18,7 @@ module.exports = {
     },
     'import/internal-regex': '^next/',
     'import/resolver': {
+      typescript: true,
       node: {
         extensions: ['.js', '.jsx', '.ts', '.tsx'],
         moduleDirectory: ['node_modules', '.'],
@@ -84,7 +85,11 @@ module.exports = {
         'import/prefer-default-export': 'off',
         'no-bitwise': 'off',
         'react/no-array-index-key': 'off',
-        'import/no-unresolved': 'off',
+        'import/no-unresolved': [2, { commonjs: true, amd: true }],
+        'import/named': 2,
+        'import/namespace': 2,
+        'import/default': 2,
+        'import/export': 2,
         'no-return-await': 'off',
         'no-param-reassign': ['error', { props: true, ignorePropertyModificationsFor: ['draft'] }],
         'no-shadow': 'off',

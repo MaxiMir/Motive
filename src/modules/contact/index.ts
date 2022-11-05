@@ -1,0 +1,1 @@
+export { ContactModule } from './ContactModule'

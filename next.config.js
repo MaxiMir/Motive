@@ -17,6 +17,7 @@ const SECURITY_HEADERS = [
 module.exports = withPWA({
   swcMinify: true, // minification using SWC as part of the Next.js Compiler
   reactStrictMode: true,
+  output: 'standalone',
   pwa: {
     dest: 'public',
     register: true,
@@ -26,9 +27,6 @@ module.exports = withPWA({
   },
   images: {
     domains: ['localhost', '2bebetter.pro', 'avatars.githubusercontent.com', 'lh3.googleusercontent.com'],
-  },
-  experimental: {
-    outputStandalone: true,
   },
   i18n: {
     locales: ['en', 'ru', 'uk'],

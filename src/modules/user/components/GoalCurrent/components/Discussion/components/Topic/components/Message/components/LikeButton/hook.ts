@@ -9,9 +9,7 @@ import useDebounceCb from '@hooks/useDebounceCb'
 import { useMutateGoals } from '@modules/user/hook'
 import { Context, fetcher, getGoalNextState, getNextState, Options } from './helper'
 
-type SetLike = () => void
-
-export default function useSetLike(message: MessageDto, answerFor: number | undefined): SetLike {
+export default function useSetLike(message: MessageDto, answerFor?: number): () => void {
   const { like, dayId, goalId } = message
   const key = ['discussion', dayId]
   const { formatMessage } = useIntl()

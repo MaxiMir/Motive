@@ -10,9 +10,7 @@ import useOpenSignIn from '@hooks/useOpenSignIn'
 import { useUserPageConfig } from '@modules/user/hook'
 import { Context, getNextState } from './helper'
 
-type SetReaction = () => void
-
-export default function useSetReaction(goal: GoalDto, name: DayCharacteristicName, active: boolean): SetReaction {
+export default function useSetReaction(goal: GoalDto, name: DayCharacteristicName, active: boolean): () => void {
   const { id, day } = goal
   const { formatMessage } = useIntl()
   const client = useClient()

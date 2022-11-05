@@ -66,7 +66,7 @@ export default function Message({ message, answerFor, supportFor, onReply }: Mes
           )}
         </Box>
         <Box display="flex" alignItems="center">
-          <LikeButton message={message} answerFor={answerFor} locale={locale} />
+          <LikeButton message={message} answerFor={answerFor} />
           <Typography variant="caption" sx={{ color: 'zen.silent' }}>
             {shortNumber}
           </Typography>

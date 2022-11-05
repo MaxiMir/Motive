@@ -1,11 +1,5 @@
 import produce from 'immer'
-import {
-  DAY_CHARACTERISTIC,
-  DayCharacteristicName,
-  DayCharacteristicUpdateDto,
-  GoalDto,
-  UserPageDto,
-} from '@dto'
+import { DAY_CHARACTERISTIC, DayCharacteristicName, DayCharacteristicUpdateDto, GoalDto, UserPageDto } from '@dto'
 
 export interface Context {
   previous?: UserPageDto

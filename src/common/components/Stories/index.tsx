@@ -1,5 +1,5 @@
 import { MutableRefObject } from 'react'
-import { Box, GlobalStyles } from '@mui/material'
+import { Box, Portal, GlobalStyles } from '@mui/material'
 import { styled } from '@mui/system'
 import { UserBaseDto } from '@dto'
 import { useSlowClose } from './hook'
@@ -20,67 +20,66 @@ export default function Stories({ stories, title, date, user, fullscreenEnabled,
   const [closing, closeSlow] = useSlowClose(onClose)
 
   return (
-    <Box
-      id="zuck-modal"
-      ref={fullscreenRef}
-      sx={{
-        position: 'fixed',
-        top: 0,
-        left: 0,
-        width: '100vw',
-        height: '100%',
-        background: 'black',
-        zIndex: 9999,
-        userSelect: 'none',
-        overflow: 'hidden',
-        transformOrigin: 'center',
-        transition: '0.25s',
-        transform: closing ? 'translateY(100%)' : undefined,
-        animation: fullscreenEnabled ? undefined : 'open 0.25s ease-out',
-        '@keyframes open': {
-          from: {
-            transform: 'scale(0.01)',
-          },
-          to: {
-            transform: 'scale(1)',
-          },
-        },
-      }}
-    >
-      <Container
-        id="zuck-modal-content"
+    <Portal>
+      <Box
+        id="zuck-modal"
+        ref={fullscreenRef}
         sx={{
+          position: 'fixed',
+          top: 0,
+          left: 0,
           width: '100vw',
-          perspective: '1000vw',
-          transform: 'scale(0.95)',
-          perspectiveOrigin: '50% 50%',
-          transition: '0.3s',
+          height: '100%',
+          background: 'black',
+          zIndex: 9999,
+          userSelect: 'none',
+          overflow: 'hidden',
+          transformOrigin: 'center',
+          transition: '0.25s',
+          transform: closing ? 'translateY(100%)' : undefined,
+          animation: fullscreenEnabled ? undefined : 'open 0.25s ease-out',
+          '@keyframes open': {
+            from: {
+              transform: 'scale(0.01)',
+            },
+            to: {
+              transform: 'scale(1)',
+            },
+          },
         }}
+        role="dialog"
       >
         <Container
-          id="zuck-modal-slider-stories"
+          id="zuck-modal-content"
           sx={{
-            width: '300vw',
-            transform: 'rotateY(0deg)',
-            transformStyle: 'preserve-3d',
-            transitionDuration: '300ms',
+            width: '100vw',
+            perspective: '1000vw',
+            transform: 'scale(0.95)',
+            perspectiveOrigin: '50% 50%',
+            transition: '0.3s',
           }}
         >
-          <StoryViewer stories={stories} user={user} title={title} date={date} onClose={closeSlow} />
+          <Container
+            id="zuck-modal-slider-stories"
+            sx={{
+              width: '300vw',
+              transform: 'rotateY(0deg)',
+              transformStyle: 'preserve-3d',
+              transitionDuration: '300ms',
+            }}
+          >
+            <StoryViewer stories={stories} user={user} title={title} date={date} onClose={closeSlow} />
+          </Container>
+          <GlobalStyles
+            styles={{
+              '#__next': {
+                overflow: 'hidden',
+              },
+            }}
+          />
         </Container>
-        <GlobalStyles
-          styles={{
-            '#__next': {
-              overflow: 'hidden',
-            },
-            // for safari:
-            '.apple-hide': {
-              visibility: 'hidden',
-            },
-          }}
-        />
-      </Container>
-    </Box>
+      </Box>
+    </Portal>
   )
 }
 

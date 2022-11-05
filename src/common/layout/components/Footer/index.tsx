@@ -29,7 +29,6 @@ export default function Footer({ nickname }: FooterProps) {
   return (
     <Box
       component="footer"
-      className="apple-hide"
       sx={{
         backgroundColor: 'navigation',
         position: 'sticky',

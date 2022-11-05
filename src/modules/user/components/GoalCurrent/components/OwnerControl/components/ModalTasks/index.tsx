@@ -42,7 +42,7 @@ export default function ModalTasks({ goal, onClose }: ModalTasksProps) {
   const subtitleText = formatMessage({ id: 'page.user.modal-tasks.subtitle' })
   const addTaskText = formatMessage({ id: 'common.task-add' })
   const buttonText = formatMessage({ id: 'common.create' })
-  const loadingText = formatMessage({ id: 'page.user.modal-tasks.loading' })
+  const loadingText = formatMessage({ id: 'common.creating' })
   const doItText = formatMessage({ id: 'page.user.modal-tasks.do-it' })
   const doItLabelledby = formatMessage({ id: 'page.user.modal-tasks.do-it-labelledby' })
   const todayText = formatMessage({ id: 'common.today' })

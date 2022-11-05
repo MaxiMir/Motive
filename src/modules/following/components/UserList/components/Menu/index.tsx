@@ -22,7 +22,7 @@ function Menu({ user, index }: MenuProps) {
   const onRemove = useRemoveFollowing()
   const href = getUserHref(nickname)
   const title = formatMessage({ id: 'page.following.menu.title' })
-  const ariaControls = formatMessage({ id: 'page.following.menu.aria-controls' })
+  const ariaControls = formatMessage({ id: 'page.following.menu.aria' })
 
   const onOpen = (e: MouseEvent<HTMLButtonElement>) => setAnchorEl(e.currentTarget)
 

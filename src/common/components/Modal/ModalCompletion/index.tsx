@@ -37,7 +37,7 @@ export default function ModalCompletion({ goal, onClose }: ModalCompletionProps)
   const photoTitle = formatMessage({ id: 'component.modal-completion.photoTitle' })
   const videoTitle = formatMessage({ id: 'component.modal-completion.videoTitle' })
   const accordionHeader = formatMessage({ id: 'component.modal-completion.accordionHeader' })
-  const ariaControls = formatMessage({ id: 'component.modal-completion.ariaControls' })
+  const ariaControls = formatMessage({ id: 'component.modal-completion.aria' })
   const detailsStart = formatMessage({ id: 'component.modal-completion.details-start' })
   const detailsEnd = formatMessage({ id: 'component.modal-completion.details-end' })
 

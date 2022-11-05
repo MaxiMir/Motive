@@ -10,7 +10,6 @@ import AppInput from '@ui/AppInput'
 import AppAccordion from '@ui/AppAccordion'
 import AppDecorEmoji from '@ui/AppDecorEmoji'
 import useForm from './hook'
-import i18n from './i18n'
 
 export interface ModalSupportProps {
   goal: GoalDto
@@ -19,10 +18,20 @@ export interface ModalSupportProps {
 }
 
 export default function ModalSupport({ goal, owner, onClose }: ModalSupportProps) {
-  const { locale } = useIntl()
+  const { formatMessage } = useIntl()
   const form = useForm(goal, onClose)
   const { isSubmitting, handleSubmit } = form
-  const { title, header, label, button, buttonLoading, ariaControls, accordion } = i18n[locale]
+  const title = formatMessage({ id: 'common.support' })
+  const header = formatMessage({ id: 'common.support' })
+  const buttonText = formatMessage({ id: 'common.supporting' })
+  const label = formatMessage({ id: 'common.your-message' })
+  const loadingText = formatMessage({ id: 'common.sending' })
+  const ariaControls = formatMessage({ id: 'component.modal-support.aria' })
+  const accordionGoal = formatMessage({ id: 'component.modal-support.accordion-goal' })
+  const accordionTired = formatMessage({ id: 'component.modal-support.accordion-tired' })
+  const accordionTherefore = formatMessage({ id: 'component.modal-support.accordion-therefore' })
+  const accordionAdvice = formatMessage({ id: 'component.modal-support.accordion-advice' })
+  const accordionEncouragement = formatMessage({ id: 'component.modal-support.accordion-encouragement' })
 
   return (
     <AppModal
@@ -39,8 +48,8 @@ export default function ModalSupport({ goal, owner, onClose }: ModalSupportProps
         <ActionCancel onClick={onClose} />,
         <ActionSubmit
           isLoading={isSubmitting}
-          text={button}
-          loadingText={buttonLoading}
+          text={buttonText}
+          loadingText={loadingText}
           emoji="support"
           onClick={handleSubmit}
         />,
@@ -61,16 +70,16 @@ export default function ModalSupport({ goal, owner, onClose }: ModalSupportProps
                 details={
                   <Box sx={{ color: 'zen.silent' }}>
                     <Typography>
-                      {accordion[0]}
+                      {accordionGoal}
                       <AppDecorEmoji name="goal" />.
                     </Typography>
                     <Typography>
-                      {accordion[1]}
+                      {accordionTired}
                       <AppDecorEmoji name="tired" />.
                     </Typography>
-                    <Typography>{accordion[2]}</Typography>
-                    <Typography>&#9679; {accordion[3]}</Typography>
-                    <Typography>&#9679; {accordion[4]}</Typography>
+                    <Typography>{accordionTherefore}:</Typography>
+                    <Typography>&#9679; {accordionAdvice};</Typography>
+                    <Typography>&#9679; {accordionEncouragement}.</Typography>
                   </Box>
                 }
               />

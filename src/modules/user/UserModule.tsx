@@ -49,7 +49,6 @@ export function UserModule({ user }: UserModuleProps) {
         alignItems="center"
         gap={1}
         my={3}
-        className="apple-hide"
         sx={{
           justifyContent: {
             xs: 'center',
@@ -65,7 +64,6 @@ export function UserModule({ user }: UserModuleProps) {
       <Box
         display="flex"
         flexWrap="wrap"
-        className="apple-hide"
         mb={3}
         sx={{
           flexDirection: {
@@ -111,7 +109,7 @@ export function UserModule({ user }: UserModuleProps) {
       {!goals.length ? (
         <EmptyGoals clientPage={clientPage} />
       ) : (
-        <Box display="flex" flexWrap="wrap" gap={3} className="apple-hide">
+        <Box display="flex" flexWrap="wrap" gap={3}>
           {goals.map((goal) => (
             <GoalCurrent
               goal={goal}

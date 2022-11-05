@@ -1,3 +1,4 @@
+import { useIntl } from 'react-intl'
 import { Button, Tooltip } from '@mui/material'
 import { MessageDto, MessageType } from '@dto'
 import useClient from '@hooks/useClient'
@@ -13,12 +14,14 @@ interface LikeButtonProps {
 }
 
 export default function LikeButton({ message, answerFor, locale }: LikeButtonProps) {
+  const { formatMessage } = useIntl()
   const client = useClient()
   const disabled = checkOnDisabled(message, client)
   const title = getTitle(message, disabled, locale)
   const ariaLabel = getAreaLabel(message, title, locale)
   const onClick = useSetLike(message, answerFor)
   const icon = message.type === MessageType.Question ? 'like' : 'support'
+  const helpful = formatMessage({ id: 'common.helpful' })
 
   return (
     <Tooltip title={title} arrow followCursor>

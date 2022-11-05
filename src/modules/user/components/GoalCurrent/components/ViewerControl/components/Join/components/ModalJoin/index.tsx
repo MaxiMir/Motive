@@ -10,7 +10,6 @@ import AppEmoji from '@ui/AppEmoji'
 import AppAccordion from '@ui/AppAccordion'
 import AppDecorEmoji from '@ui/AppDecorEmoji'
 import useForm from './hook'
-import i18n from './i18n'
 
 export interface ModalJoinProps {
   goal: GoalDto
@@ -18,24 +17,26 @@ export interface ModalJoinProps {
 }
 
 export default function ModalJoin({ goal, onClose }: ModalJoinProps) {
-  const { locale } = useIntl()
+  const { formatMessage } = useIntl()
   const { id, calendar, day } = goal
   const beginningDay = calendar[0].id
   const thisDay = day.id
   const disableBeginning = beginningDay === thisDay
   const form = useForm(id, beginningDay)
   const { isSubmitting, values, setFieldValue, handleSubmit } = form
-  const {
-    title,
-    subtitle,
-    button,
-    buttonLoading,
-    beginLabel,
-    dayLabel,
-    accordionHeader,
-    ariaControls,
-    accordionDetails,
-  } = i18n[locale]
+  const title = formatMessage({ id: 'page.user.modal-join.title' })
+  const subtitle = formatMessage({ id: 'page.user.modal-join.subtitle' })
+  const buttonText = formatMessage({ id: 'common.join' })
+  const loadingText = formatMessage({ id: 'common.joining' })
+  const beginLabel = formatMessage({ id: 'page.user.modal-join.begin-label' })
+  const dayLabel = formatMessage({ id: 'page.user.modal-join.day-label' })
+  const accordionHeader = formatMessage({ id: 'page.user.modal-join.accordion-header' })
+  const ariaControls = formatMessage({ id: 'page.user.modal-join.aria' })
+  const accordingMotivation = formatMessage({ id: 'page.user.modal-join.according-motivation' })
+  const accordingCreative = formatMessage({ id: 'page.user.modal-join.according-creative' })
+  const accordingSupport = formatMessage({ id: 'page.user.modal-join.according-support' })
+  const accordingNeeded = formatMessage({ id: 'page.user.modal-join.according-needed' })
+  const accordingQuestions = formatMessage({ id: 'page.user.modal-join.according-questions' })
 
   const onChange = (e: ChangeEvent<HTMLInputElement>) => {
     setFieldValue('dayId', e.currentTarget.value)
@@ -57,8 +58,8 @@ export default function ModalJoin({ goal, onClose }: ModalJoinProps) {
         <ActionCancel onClick={onClose} />,
         <ActionSubmit
           isLoading={isSubmitting}
-          text={button}
-          loadingText={buttonLoading}
+          text={buttonText}
+          loadingText={loadingText}
           emoji="join"
           onClick={handleSubmit}
         />,
@@ -97,21 +98,18 @@ export default function ModalJoin({ goal, onClose }: ModalJoinProps) {
               ariaControls={ariaControls}
               details={
                 <Box sx={{ color: 'zen.silent' }}>
+                  <Typography>&#9679; {accordingMotivation}.</Typography>
+                  <Typography>&#9679; {accordingCreative}.</Typography>
                   <Typography>
-                    {accordionDetails[0]} <AppDecorEmoji name="motivation" /> {accordionDetails[1]}.
-                  </Typography>
-                  <Typography>
-                    {accordionDetails[2]} <AppDecorEmoji name="creativity" /> {accordionDetails[3]}.
-                  </Typography>
-                  <Typography>
-                    {accordionDetails[4]}{' '}
+                    &#9679; {accordingSupport}{' '}
                     <Box component="span" sx={{ color: 'support.main' }}>
                       {goal.owner.name}
-                    </Box>{' '}
-                    {accordionDetails[5]}.
+                    </Box>
+                    {', '}
+                    {accordingNeeded}.
                   </Typography>
                   <Typography>
-                    {accordionDetails[6]} <AppDecorEmoji name="discussion" />.
+                    &#9679; {accordingQuestions} <AppDecorEmoji name="discussion" />.
                   </Typography>
                 </Box>
               }

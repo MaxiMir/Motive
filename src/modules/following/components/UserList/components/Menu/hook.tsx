@@ -30,12 +30,14 @@ export default function useRemoveFollowing(): (user: UserDto, index: number) => 
       const undoText = formatMessage({ id: 'page.following.menu.undo' })
       const message = formatMessage({ id: 'page.following.menu.remove' })
 
+      const onClick = () => onUndo(user, index)
+
       !add &&
         enqueueSnackbar({
           message,
           severity: 'success',
           action: (
-            <Button variant="outlined" color="primary" onClick={() => onUndo(user, index)}>
+            <Button variant="outlined" color="primary" onClick={onClick}>
               {undoText}
             </Button>
           ),

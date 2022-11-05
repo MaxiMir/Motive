@@ -43,7 +43,7 @@ export default function ModalGoal({ onClose }: ModalGoalProps) {
   const hashtagText = formatMessage({ id: 'page.user.modal-goal.hashtag' })
   const hashtagsLabel = formatMessage({ id: 'page.user.modal-goal.hashtags' })
   const buttonText = formatMessage({ id: 'common.create' })
-  const buttonLoadingText = formatMessage({ id: 'common.create-loading' })
+  const loadingText = formatMessage({ id: 'common.creating' })
   const stagesHeader = formatMessage({ id: 'page.user.modal-goal.stages' })
   const stageLabel = formatMessage({ id: 'page.user.modal-goal.stage' })
   const stageButtonText = formatMessage({ id: 'page.user.modal-goal.stage-button' })
@@ -57,7 +57,7 @@ export default function ModalGoal({ onClose }: ModalGoalProps) {
   const addTaskText = formatMessage({ id: 'common.task-add' })
 
   const onAddHashtag = () => {
-    setFieldValue('hashtags', !values.hashtags ? '#' : [values.hashtags, '#'].join(' '))
+    setFieldValue('hashtags', !values.hashtags ? '#' : `${values.hashtags} #`)
     setHashtagsFocus()
   }
 
@@ -70,7 +70,7 @@ export default function ModalGoal({ onClose }: ModalGoalProps) {
         <ActionSubmit
           isLoading={isSubmitting}
           text={buttonText}
-          loadingText={buttonLoadingText}
+          loadingText={loadingText}
           emoji="goal"
           onClick={handleSubmit}
         />,

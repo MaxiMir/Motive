@@ -16,7 +16,7 @@ export default function Menu({ message }: MenuProps) {
   const [anchorEl, setAnchorEl] = useState<HTMLElement | null>(null)
   const [withModal, setWithModal] = useState(false)
   const title = formatMessage({ id: 'page.user.message-menu.title' })
-  const ariaControls = formatMessage({ id: 'page.user.message-menu.aria-controls' })
+  const ariaControls = formatMessage({ id: 'page.user.message-menu.aria' })
 
   const onOpen = (e: MouseEvent<HTMLButtonElement>) => setAnchorEl(e.currentTarget)
 

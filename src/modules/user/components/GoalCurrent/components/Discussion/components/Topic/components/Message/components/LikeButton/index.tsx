@@ -2,26 +2,53 @@ import { useIntl } from 'react-intl'
 import { Button, Tooltip } from '@mui/material'
 import { MessageDto, MessageType } from '@dto'
 import useClient from '@hooks/useClient'
-import { Locale } from '@hooks/useSetLocale'
 import AppEmoji from '@ui/AppEmoji'
-import { checkOnDisabled, getAreaLabel, getTitle } from './helper'
+import { checkOnDisabled } from './helper'
 import useSetLike from './hook'
 
 interface LikeButtonProps {
   message: MessageDto
   answerFor?: number
-  locale: Locale
 }
 
-export default function LikeButton({ message, answerFor, locale }: LikeButtonProps) {
+export default function LikeButton({ message, answerFor }: LikeButtonProps) {
+  const { like, likeCount, type } = message
   const { formatMessage } = useIntl()
   const client = useClient()
   const disabled = checkOnDisabled(message, client)
-  const title = getTitle(message, disabled, locale)
-  const ariaLabel = getAreaLabel(message, title, locale)
+  const isQuestion = type === MessageType.Question
+  const title = getTitle()
+  const ariaLabel = getAreaLabel()
+  const icon = isQuestion ? 'like' : 'support'
+
   const onClick = useSetLike(message, answerFor)
-  const icon = message.type === MessageType.Question ? 'like' : 'support'
-  const helpful = formatMessage({ id: 'common.helpful' })
+
+  function getTitle() {
+    if (disabled) {
+      return !like ? false : formatMessage({ id: 'common.helpful' })
+    }
+
+    if (isQuestion) {
+      return formatMessage({ id: !like ? 'common.like' : 'common.unlike' })
+    }
+
+    return formatMessage({ id: !like ? 'common.mark-helpful' : 'common.unmark-helpful' })
+  }
+
+  function getAreaLabel() {
+    if (!title) {
+      return undefined
+    }
+
+    if (like || !likeCount) {
+      return title
+    }
+
+    const areaMessageTmpl = formatMessage({ id: 'page.user.like-button.area' })
+    const area = areaMessageTmpl.replace('$0', likeCount.toString())
+
+    return `${title} ${area}`
+  }
 
   return (
     <Tooltip title={title} arrow followCursor>

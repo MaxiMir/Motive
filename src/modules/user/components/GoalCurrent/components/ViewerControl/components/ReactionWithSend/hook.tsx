@@ -9,13 +9,12 @@ import useClient from '@hooks/useClient'
 import useOpenSignIn from '@hooks/useOpenSignIn'
 import { useUserPageConfig } from '@modules/user/hook'
 import { Context, getNextState } from './helper'
-import i18n from './i18n'
 
 type SetReaction = () => void
 
 export default function useSetReaction(goal: GoalDto, name: DayCharacteristicName, active: boolean): SetReaction {
   const { id, day } = goal
-  const { locale } = useIntl()
+  const { formatMessage } = useIntl()
   const client = useClient()
   const openSignIn = useOpenSignIn()
   const queryClient = useQueryClient()
@@ -35,8 +34,9 @@ export default function useSetReaction(goal: GoalDto, name: DayCharacteristicNam
         return { previous }
       },
       onSuccess(_, { add }) {
-        const { getMessage } = i18n[locale]
-        const message = getMessage(name)
+        const nameText = formatMessage({ id: `page.user.topic.${name}` })
+        const messageTmpl = formatMessage({ id: 'page.user.topic.message' })
+        const message = messageTmpl.replace('$0', nameText)
 
         add && enqueueSnackbar({ message, severity: 'success', icon: 'magic' })
       },

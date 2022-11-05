@@ -1,9 +1,7 @@
 import produce from 'immer'
 import { InfiniteData } from 'react-query'
 import { ClientDto, GoalDto, MessageDto, MessageType, TopicDto } from '@dto'
-import { Locale } from '@hooks/useSetLocale'
 import { TopicService } from '@services/topic'
-import i18n from './i18n'
 
 export interface Options {
   message: MessageDto
@@ -45,21 +43,3 @@ export const getGoalNextState = (goals: GoalDto[], goalId: number, add: boolean)
     const draftGoal = draft[draft.findIndex((g) => g.id === goalId)]
     draftGoal.characteristic.support += add ? 1 : -1
   })
-
-export const getTitle = (message: MessageDto, disabled: boolean, locale: Locale): string | boolean => {
-  const { like, type } = message
-  const { helpful, getLike, getMark } = i18n[locale]
-
-  if (disabled) {
-    return !like ? false : helpful
-  }
-
-  return type === MessageType.Question ? getLike(like) : getMark(like)
-}
-
-export const getAreaLabel = (message: MessageDto, title: string | boolean, locale: Locale): string | undefined => {
-  const { like, likeCount } = message
-  const { getArea } = i18n[locale]
-
-  return !title ? undefined : `${title}${!likeCount || like ? '' : getArea(likeCount)}`
-}

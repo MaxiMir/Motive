@@ -5,11 +5,11 @@ import AppDecorEmoji from '@ui/AppDecorEmoji'
 export default function OldPittRules() {
   const { formatMessage } = useIntl()
   const huntsText = formatMessage({ id: 'component.old-pitt-rules.hunts' })
-  const coversMessage = formatMessage({ id: 'component.old-pitt-rules.covers' })
-  const eatsMessage = formatMessage({ id: 'component.old-pitt-rules.eats' })
+  const coversMessageTmpl = formatMessage({ id: 'component.old-pitt-rules.covers' })
+  const eatsMessageTmpl = formatMessage({ id: 'component.old-pitt-rules.eats' })
   const burnText = formatMessage({ id: 'component.old-pitt-rules.burn' })
-  const coversText = coversMessage.replace('%0', process.env.NEXT_PUBLIC_SHOW_WEB_AFTER_DAYS || '')
-  const eatsText = eatsMessage.replace('%0', process.env.NEXT_PUBLIC_EAT_AFTER_DAYS || '')
+  const coversText = coversMessageTmpl.replace('$0', process.env.NEXT_PUBLIC_SHOW_WEB_AFTER_DAYS || '')
+  const eatsText = eatsMessageTmpl.replace('$0', process.env.NEXT_PUBLIC_EAT_AFTER_DAYS || '')
 
   return (
     <Typography color="darkgray">

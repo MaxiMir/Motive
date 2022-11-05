@@ -7,7 +7,6 @@ import { getUserHref } from '@href'
 import AppInput from '@ui/AppInput'
 import UserAvatar from '@components/User/UserAvatar'
 import useForm from './hook'
-import i18n from './i18n'
 
 const CircularProgress = dynamic(() => import('@mui/material/CircularProgress'))
 const AppIcon = dynamic(() => import('@ui/AppIcon'))
@@ -22,12 +21,11 @@ export interface UserInputProps {
 
 export default function UserInput({ dayId, user, type, topicId, onAdd }: UserInputProps) {
   const { nickname, name, avatar } = user
-  const { locale } = useIntl()
+  const { formatMessage } = useIntl()
   const form = useForm(dayId, topicId, type, onAdd)
   const { isSubmitting, values, handleSubmit } = form
   const href = getUserHref(nickname)
-  const { getPlaceholder } = i18n[locale]
-  const placeholder = getPlaceholder(type === MessageType.Question)
+  const placeholder = formatMessage({ id: `page.user.user-input.${type}` })
 
   const onClick = () => handleSubmit()
 

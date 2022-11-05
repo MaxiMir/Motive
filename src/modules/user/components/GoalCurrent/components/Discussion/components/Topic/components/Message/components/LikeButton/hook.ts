@@ -8,14 +8,13 @@ import useSnackbar from '@hooks/useSnackbar'
 import useDebounceCb from '@hooks/useDebounceCb'
 import { useMutateGoals } from '@modules/user/hook'
 import { Context, fetcher, getGoalNextState, getNextState, Options } from './helper'
-import i18n from './i18n'
 
 type SetLike = () => void
 
 export default function useSetLike(message: MessageDto, answerFor: number | undefined): SetLike {
   const { like, dayId, goalId } = message
   const key = ['discussion', dayId]
-  const { locale } = useIntl()
+  const { formatMessage } = useIntl()
   const client = useClient()
   const openSignIn = useOpenSignIn()
   const [goals, mutateGoals] = useMutateGoals()
@@ -36,15 +35,18 @@ export default function useSetLike(message: MessageDto, answerFor: number | unde
       return { previous }
     },
     onSuccess(_, { add }) {
-      const { goalMessage, getUserMessage } = i18n[locale]
+      const userMessageTmpl = formatMessage({ id: 'page.user.like-button.user-message' })
+      const userMessage = userMessageTmpl.replace('$0', message.user.name)
 
       if (message.type === MessageType.Support) {
         enqueueSnackbar({
-          message: getUserMessage(message.user.name),
+          message: userMessage,
           severity: 'success',
           icon: 'magic',
         })
       }
+
+      const goalMessage = formatMessage({ id: 'page.user.like-button.goal-message' })
 
       if (answerFor) {
         mutateGoals(getGoalNextState(goals, goalId, add))

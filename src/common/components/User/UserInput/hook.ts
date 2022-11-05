@@ -4,7 +4,6 @@ import { useIntl } from 'react-intl'
 import { CreateMessageDto, MessageType, TopicDto } from '@dto'
 import { TopicService } from '@services/topic'
 import useSnackbar from '@hooks/useSnackbar'
-import i18n from './i18n'
 
 export default function useForm(
   dayId: number,
@@ -30,13 +29,12 @@ export default function useForm(
 }
 
 const useSendTopic = (type: MessageType) => {
-  const { locale } = useIntl()
+  const { formatMessage } = useIntl()
   const [enqueueSnackbar] = useSnackbar()
 
   return useMutation(TopicService.create, {
     onSuccess() {
-      const { getMessage } = i18n[locale]
-      const message = getMessage(type === MessageType.Question)
+      const message = formatMessage({ id: `page.user.user-input.message-${type}` })
 
       enqueueSnackbar({ message, severity: 'success', icon: 'speaker' })
     },

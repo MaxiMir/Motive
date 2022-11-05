@@ -45,15 +45,15 @@ export const useUserMeta = (user?: UserDetailDto): UserMeta | null => {
   }
 
   const partTitle = formatMessage({ id: 'page.user.title-profile' })
-  const descriptionStart = formatMessage({ id: 'page.user.description-start' })
-  const descriptionEnd = formatMessage({ id: 'page.user.description-end' })
+  const descriptionMessageTmpl = formatMessage({ id: 'page.user.description' })
   const goalNames = user.goals.map(({ name }) => `«${name}»`).join(', ')
   const image = !user.avatar ? undefined : getImageSrc(user.avatar)
   const userTag = `${user.name} (@${user.nickname})`
+  const descriptionStart = descriptionMessageTmpl.replace('$0', userTag)
 
   return {
     title: `${userTag} • ${partTitle} ${process.env.NEXT_PUBLIC_APP_NAME}`,
-    description: `${descriptionStart} ${userTag} ${descriptionEnd} ${goalNames}`,
+    description: `${descriptionStart} ${goalNames}`,
     keywords: user.confirmations.map((c) => c.goal.name).join(', '),
     image,
     type: 'profile',

@@ -13,6 +13,7 @@ export default function CharacteristicGoal({ name, value }: CharacteristicGoalPr
   const { formatMessage } = useIntl()
   const title = formatMessage({ id: `component.characteristic-goal.${name}` })
   const shortValue = numberToShort(value)
+  const color = name === 'runningDays' ? '#c07d35' : `${name}.main`
 
   return (
     <Box display="flex" flexDirection="column" alignItems="center" gap={1} width={40}>
@@ -22,7 +23,7 @@ export default function CharacteristicGoal({ name, value }: CharacteristicGoalPr
         </span>
       </Tooltip>
       <Box>
-        <Typography component="p" sx={{ color: `${name}.main` }}>
+        <Typography component="p" sx={{ color }}>
           {shortValue}
         </Typography>
       </Box>

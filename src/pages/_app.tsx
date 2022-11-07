@@ -13,12 +13,12 @@ import { PaletteMode, useMediaQuery } from '@mui/material'
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns'
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider'
 import CssBaseline from '@mui/material/CssBaseline'
-import { getDesignTokens } from 'src/common/theme'
-import { ContextSnackbarProps, SnackbarContext } from '@context/snackbarContext'
 import { Locale } from '@hooks/useSetLocale'
+import { ContextSnackbarProps, SnackbarContext } from '@context/snackbarContext'
 import { ThemeContext } from '@context/themeContext'
 import { ModalSignInContext } from '@context/modalSignInContext'
 import { getFnsLocale } from '@utils/date'
+import { getDesignTokens } from 'src/common/theme'
 import EventSocket from '@components/Event/EventSocket'
 import en from 'src/common/lang/en.json'
 import ru from 'src/common/lang/ru.json'
@@ -93,24 +93,22 @@ export default function App({ Component, pageProps: { session, ...pageProps } }:
               <ThemeContext.Provider value={themeCtx}>
                 <StylesProvider generateClassName={generateClassName}>
                   <ThemeProvider theme={theme}>
+                    <Script
+                      src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS}`}
+                      strategy="afterInteractive"
+                    />
+                    <Script id="google-analytics" strategy="afterInteractive">
+                      {`
+                        window.dataLayer = window.dataLayer || [];
+                        function gtag(){window.dataLayer.push(arguments);}
+                        gtag('js', new Date());
+                        gtag('config', '${process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS}');
+                      `}
+                    </Script>
                     <NextNprogress color="#b46a5a" />
-                    {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
                     <CssBaseline />
                     <ModalSignInContext.Provider value={modalSignInCtx}>
                       <SnackbarContext.Provider value={snackbarCtx}>
-                        <Script
-                          src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS}`}
-                          strategy="afterInteractive"
-                        />
-                        <Script id="google-analytics" strategy="afterInteractive">
-                          {`
-                            window.dataLayer = window.dataLayer || [];
-                            function gtag(){window.dataLayer.push(arguments);}
-                            gtag('js', new Date());
-
-                            gtag('config', '${process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS}');
-                          `}
-                        </Script>
                         <Component {...pageProps} />
                       </SnackbarContext.Provider>
                     </ModalSignInContext.Provider>

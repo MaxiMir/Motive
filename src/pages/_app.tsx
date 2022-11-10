@@ -27,8 +27,7 @@ import uk from 'src/common/lang/uk.json'
 const AppSnackbar = dynamic(() => import('@ui/AppSnackbar'))
 const ModalSignIn = dynamic(() => import('@components/Modal/ModalSignIn'))
 
-type MessageKey = keyof typeof en
-const MESSAGES: Record<Locale, Record<MessageKey, string>> = { en, ru, uk }
+const MESSAGES = { en, ru, uk }
 
 const generateClassName = createGenerateClassName({ productionPrefix: 'be' })
 
@@ -89,7 +88,7 @@ export default function App({ Component, pageProps: { session, ...pageProps } }:
       <SessionProvider session={session} refetchOnWindowFocus>
         <QueryClientProvider client={queryClient}>
           <Hydrate state={dehydratedState}>
-            <LocalizationProvider dateAdapter={AdapterDateFns} locale={fnsLocale}>
+            <LocalizationProvider dateAdapter={AdapterDateFns} adapterLocale={fnsLocale}>
               <ThemeContext.Provider value={themeCtx}>
                 <StylesProvider generateClassName={generateClassName}>
                   <ThemeProvider theme={theme}>

@@ -1,4 +1,4 @@
-import { TextField, TextFieldProps } from 'formik-material-ui'
+import { TextField, TextFieldProps } from 'formik-mui'
 
 type AppInputProps = Omit<TextFieldProps, 'variant' | 'size' | 'fullWidth' | 'className'>
 

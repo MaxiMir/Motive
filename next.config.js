@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-var-requires */
 const runtimeCaching = require('next-pwa/cache')
 
 const withPWA = require('next-pwa')({
@@ -7,6 +6,9 @@ const withPWA = require('next-pwa')({
   register: true,
   skipWaiting: true,
   runtimeCaching,
+  experimental: {
+    appDir: true,
+  },
 })
 
 module.exports = withPWA({

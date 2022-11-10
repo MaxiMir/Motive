@@ -1,4 +1,3 @@
-// eslint-disable-next-line @typescript-eslint/no-var-requires
 const branchName = require('current-git-branch')
 
 module.exports = {

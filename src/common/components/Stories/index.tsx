@@ -1,5 +1,5 @@
 import { MutableRefObject } from 'react'
-import { Box, Portal, GlobalStyles } from '@mui/material'
+import { Box, Portal } from '@mui/material'
 import { styled } from '@mui/system'
 import { UserBaseDto } from '@dto'
 import { useSlowClose } from './hook'
@@ -70,13 +70,6 @@ export default function Stories({ stories, title, date, user, fullscreenEnabled,
           >
             <StoryViewer stories={stories} user={user} title={title} date={date} onClose={closeSlow} />
           </Container>
-          <GlobalStyles
-            styles={{
-              '#__next': {
-                overflow: 'hidden',
-              },
-            }}
-          />
         </Container>
       </Box>
     </Portal>

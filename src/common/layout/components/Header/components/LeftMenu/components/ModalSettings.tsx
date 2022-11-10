@@ -3,7 +3,7 @@ import { useIntl } from 'react-intl'
 import { ToggleButtonGroup, ToggleButton, Box, Typography, PaletteMode } from '@mui/material'
 import { styled } from '@mui/system'
 import { ThemeContext } from '@context/themeContext'
-import { EN, RU, UK, Locale, useSetLocale } from '@hooks/useSetLocale'
+import { Locale, useSetLocale } from '@hooks/useSetLocale'
 import AppModal from '@ui/AppModal'
 import AppEmoji from '@ui/AppEmoji'
 
@@ -46,15 +46,15 @@ export default function ModalSettings({ onClose }: ModalLanguageProps) {
             aria-label={languageHeader}
             onChange={onChangeLocale}
           >
-            <GroupButton value={EN}>
+            <GroupButton value={Locale.En}>
               <AppEmoji name="en" />
               <Box component="span">Eng</Box>
             </GroupButton>
-            <GroupButton value={RU}>
+            <GroupButton value={Locale.Ru}>
               <AppEmoji name="ru" />
               <Box component="span">Рус</Box>
             </GroupButton>
-            <GroupButton value={UK}>
+            <GroupButton value={Locale.Uk}>
               <AppEmoji name="uk" /> Укр
             </GroupButton>
           </ToggleButtonGroup>

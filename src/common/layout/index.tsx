@@ -1,16 +1,12 @@
 import { ReactNode } from 'react'
 import { useRouter } from 'next/router'
 import Head from 'next/head'
-import Script from 'next/script'
-import dynamic from 'next/dynamic'
 import { useIntl } from 'react-intl'
+import { Box } from '@mui/material'
 import useClient from '@hooks/useClient'
-import { EN, LOCALE_MAP } from '@hooks/useSetLocale'
 import Header from './components/Header'
 import Footer from './components/Footer'
 import { getLocaleHrefList } from './helper'
-
-const Box = dynamic(() => import('@mui/material/Box'))
 
 interface LayoutProps {
   title?: string
@@ -35,8 +31,7 @@ export default function Layout({
   const client = useClient()
   const { asPath } = useRouter()
   const localeHrefList = getLocaleHrefList(asPath)
-  const localeName = locale in LOCALE_MAP ? LOCALE_MAP[locale] : LOCALE_MAP[EN]
-  const url = localeHrefList[localeName]
+  const url = localeHrefList[locale]
 
   return (
     <>
@@ -65,28 +60,14 @@ export default function Layout({
         <meta property="og:type" content={type} />
         <meta name="twitter:site" content={process.env.NEXT_PUBLIC_APP_NAME} />
         <meta name="twitter:card" content={type} />
-        <meta property="og:locale" content={localeName} />
+        <meta property="og:locale" content={locale} />
         {canonical && <link rel="canonical" href={canonical} />}
         {/* Add hreflang links */}
         <link rel="alternate" href={localeHrefList.en} hrefLang="en" />
         <link rel="alternate" href={localeHrefList.ru} hrefLang="ru" />
         <link rel="alternate" href={localeHrefList.uk} hrefLang="uk" />
         <link rel="alternate" href={localeHrefList.en} hrefLang="x-default" />
-        <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
       </Head>
-      <Script
-        src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS}`}
-        strategy="afterInteractive"
-      />
-      <Script id="google-analytics" strategy="afterInteractive">
-        {`
-          window.dataLayer = window.dataLayer || [];
-          function gtag(){window.dataLayer.push(arguments);}
-          gtag('js', new Date());
-
-          gtag('config', '${process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS}');
-        `}
-      </Script>
       <Header authenticated={!!client} />
       <Box
         component="main"

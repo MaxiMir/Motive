@@ -1,8 +1,8 @@
 module.exports = {
-  // Specifies the ESLint parser
   root: true,
   parser: '@typescript-eslint/parser',
   extends: [
+    'next/core-web-vitals',
     'plugin:react/recommended',
     'airbnb',
     'plugin:@typescript-eslint/recommended',
@@ -135,6 +135,7 @@ module.exports = {
         ],
         'no-useless-constructor': 'off',
         '@typescript-eslint/no-useless-constructor': 'warn',
+        '@typescript-eslint/no-var-requires': 'off',
       },
     },
     {
@@ -305,6 +306,7 @@ module.exports = {
     'react/require-render-return': 'error',
     'react/style-prop-object': 'warn',
     'react-hooks/rules-of-hooks': 'error',
+    '@typescript-eslint/no-var-requires': 'off',
   },
   globals: { React: 'writable' },
 }

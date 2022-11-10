@@ -1,32 +1,33 @@
 {
   "compilerOptions": {
     "target": "es5",
-    "lib": [
-      "dom",
-      "dom.iterable",
-      "esnext"
-    ],
+    "lib": ["dom", "dom.iterable", "esnext"],
     "allowJs": true,
     "skipLibCheck": true,
-    "strict": true, // Включить ли все строгие проверки типов сразу
-    "strictNullChecks": true,
-    "strictFunctionTypes": true,
-    "strictPropertyInitialization": true,
-    "alwaysStrict": true,
-    "forceConsistentCasingInFileNames": true, // Запретить несогласованные ссылки на один и тот же файл
-    "allowSyntheticDefaultImports": true, // Разрешить импортировать модули не имеющие внутри себя "import default"
+    "strict": true,
+    "forceConsistentCasingInFileNames": true,
     "noEmit": true,
-    "esModuleInterop": true, // Не создавать итоговый файл
+    "esModuleInterop": true,
     "module": "esnext",
     "moduleResolution": "node",
     "resolveJsonModule": true,
     "isolatedModules": true,
-    "noFallthroughCasesInSwitch": true, // Сообщить об ошибке в случае обнаружения проваливания в конструкции switch-case
     "jsx": "preserve",
+    "incremental": true,
+    "strictNullChecks": true,
+    "strictFunctionTypes": true,
+    "strictPropertyInitialization": true,
+    "alwaysStrict": true,
+    "allowSyntheticDefaultImports": true, // Разрешить импортировать модули не имеющие внутри себя "import default"
+    "noFallthroughCasesInSwitch": true, // Сообщить об ошибке в случае обнаружения проваливания в конструкции switch-case
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "baseUrl": ".",
-    "incremental": true,
+    "plugins": [
+      {
+        "name": "next"
+      }
+    ],
     "paths": {
       "@components/*": [
         "src/common/components/*"
@@ -64,21 +65,8 @@
       "@modules/*": [
         "src/modules/*"
       ]
-    },
-    "plugins": [
-      {
-        "name": "next"
-      }
-    ]
+    }
   },
-  "include": [
-    "next-env.d.ts",
-    "**/*.ts",
-    "**/*.tsx",
-    "node_modules/eslint-plugin-react/lib/types.d.ts",
-    ".next/types/**/*.ts"
-  ],
-  "exclude": [
-    "node_modules"
-  ]
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
+  "exclude": ["node_modules"]
 }

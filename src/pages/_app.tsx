@@ -1,23 +1,24 @@
-import { useState, useMemo, useEffect } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 import { useRouter } from 'next/router'
 import dynamic from 'next/dynamic'
+import Script from 'next/script'
 import { AppProps } from 'next/app'
 import { SessionProvider, SignInOptions } from 'next-auth/react'
 import { Hydrate, MutationCache, QueryCache, QueryClient, QueryClientProvider } from 'react-query'
 import NextNprogress from 'nextjs-progressbar'
 import { IntlProvider } from 'react-intl'
-import { StylesProvider, createGenerateClassName } from '@mui/styles'
+import { createGenerateClassName, StylesProvider } from '@mui/styles'
 import { createTheme, ThemeProvider } from '@mui/material/styles'
 import { PaletteMode, useMediaQuery } from '@mui/material'
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns'
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider'
 import CssBaseline from '@mui/material/CssBaseline'
-import { getDesignTokens } from 'src/common/theme'
+import { Locale } from '@hooks/useSetLocale'
 import { ContextSnackbarProps, SnackbarContext } from '@context/snackbarContext'
 import { ThemeContext } from '@context/themeContext'
 import { ModalSignInContext } from '@context/modalSignInContext'
-import { EN, Locale } from '@hooks/useSetLocale'
 import { getFnsLocale } from '@utils/date'
+import { getDesignTokens } from 'src/common/theme'
 import EventSocket from '@components/Event/EventSocket'
 import en from 'src/common/lang/en.json'
 import ru from 'src/common/lang/ru.json'
@@ -26,23 +27,22 @@ import uk from 'src/common/lang/uk.json'
 const AppSnackbar = dynamic(() => import('@ui/AppSnackbar'))
 const ModalSignIn = dynamic(() => import('@components/Modal/ModalSignIn'))
 
-type MessageKey = keyof typeof en
-const MESSAGES: Record<Locale, Record<MessageKey, string>> = { en, ru, uk }
+const MESSAGES = { en, ru, uk }
 
 const generateClassName = createGenerateClassName({ productionPrefix: 'be' })
 
-export default function MyApp({ Component, pageProps: { session, ...pageProps } }: AppProps) {
-  const { locale = EN } = useRouter()
+export default function App({ Component, pageProps: { session, ...pageProps } }: AppProps) {
+  const { locale } = useRouter()
+  const currentLocale = (locale || Locale.En) as Locale
   const { dehydratedState, providers } = pageProps
-  // TODO
   // eslint-disable-next-line @typescript-eslint/ban-ts-comment
   // @ts-ignore
   const prefersDarkMode = useMediaQuery('(prefers-color-scheme: dark)')
   const [mode, setMode] = useState<PaletteMode>('dark')
   const [snackbarProps, setSnackbarProps] = useState<ContextSnackbarProps | null>(null)
   const [options, setOptions] = useState<SignInOptions>()
-  const fnsLocale = getFnsLocale(locale)
-  const messages = MESSAGES[locale] || MESSAGES.en
+  const fnsLocale = getFnsLocale(currentLocale)
+  const messages = MESSAGES[currentLocale]
   const error = messages['common.error']
   const [queryClient] = useState(
     () =>
@@ -84,16 +84,27 @@ export default function MyApp({ Component, pageProps: { session, ...pageProps } 
   }, [])
 
   return (
-    <IntlProvider locale={locale} messages={messages}>
+    <IntlProvider locale={currentLocale} messages={messages}>
       <SessionProvider session={session} refetchOnWindowFocus>
         <QueryClientProvider client={queryClient}>
           <Hydrate state={dehydratedState}>
-            <LocalizationProvider dateAdapter={AdapterDateFns} locale={fnsLocale}>
+            <LocalizationProvider dateAdapter={AdapterDateFns} adapterLocale={fnsLocale}>
               <ThemeContext.Provider value={themeCtx}>
                 <StylesProvider generateClassName={generateClassName}>
                   <ThemeProvider theme={theme}>
+                    <Script
+                      src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS}`}
+                      strategy="afterInteractive"
+                    />
+                    <Script id="google-analytics" strategy="afterInteractive">
+                      {`
+                        window.dataLayer = window.dataLayer || [];
+                        function gtag(){window.dataLayer.push(arguments);}
+                        gtag('js', new Date());
+                        gtag('config', '${process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS}');
+                      `}
+                    </Script>
                     <NextNprogress color="#b46a5a" />
-                    {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
                     <CssBaseline />
                     <ModalSignInContext.Provider value={modalSignInCtx}>
                       <SnackbarContext.Provider value={snackbarCtx}>

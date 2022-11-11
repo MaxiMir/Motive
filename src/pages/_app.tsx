@@ -14,11 +14,12 @@ import { PaletteMode } from '@mui/material'
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns'
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider'
 import CssBaseline from '@mui/material/CssBaseline'
-import { Locale } from '@hooks/useSetLocale'
 import { ContextSnackbarProps, SnackbarContext } from '@context/snackbarContext'
 import { ThemeContext } from '@context/themeContext'
 import { ModalSignInContext } from '@context/modalSignInContext'
+import { getLocaleFolder } from '@utils/date'
 import { makeMapLoader } from '@helpers/memory'
+import { Locale } from '@hooks/useSetLocale'
 import EventSocket from '@components/Event/EventSocket'
 import { getDesignTokens } from 'src/common/theme'
 
@@ -32,10 +33,10 @@ const dateFnsLangLoader = makeMapLoader<FnsLocale>()
 export default function App({ Component, pageProps: { session, ...pageProps } }: AppProps) {
   const { dehydratedState, providers } = pageProps
   const { locale } = useRouter()
-  const currentLocale = (locale || Locale.En) as Locale
-  const dateFnsFolder = getDateFnsFolder()
+  const currentLocale = locale || Locale.En
+  const localeFolder = getLocaleFolder(currentLocale)
   const messages = use(langLoader(currentLocale, () => import(`src/common/lang/${currentLocale}.json`)))
-  const dateFnsLocale = use(dateFnsLangLoader(currentLocale, () => import(`date-fns/locale/${dateFnsFolder}/index.js`)))
+  const dateFnsLocale = use(dateFnsLangLoader(currentLocale, () => import(`date-fns/locale/${localeFolder}/index.js`)))
   const [mode, setMode] = useState<PaletteMode>('dark')
   const [snackbarProps, setSnackbarProps] = useState<ContextSnackbarProps | null>(null)
   const [options, setOptions] = useState<SignInOptions>()
@@ -68,15 +69,6 @@ export default function App({ Component, pageProps: { session, ...pageProps } }:
   const onCloseSignIn = () => setOptions(undefined)
 
   const onCloseSnackbar = () => setSnackbarProps(null)
-
-  function getDateFnsFolder() {
-    switch (currentLocale) {
-      case Locale.En:
-        return 'en-US'
-      default:
-        return currentLocale
-    }
-  }
 
   useEffect(() => {
     // Remove the server-side injected CSS.

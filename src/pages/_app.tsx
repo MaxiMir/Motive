@@ -30,8 +30,7 @@ const generateClassName = createGenerateClassName({ productionPrefix: 'be' })
 const langLoader = makeMapLoader<Record<string, string>>()
 const dateFnsLangLoader = makeMapLoader<FnsLocale>()
 
-export default function App({ Component, pageProps: { session, ...pageProps } }: AppProps) {
-  const { dehydratedState, providers } = pageProps
+export default function App({ Component, pageProps: { session, dehydratedState, providers, ...pageProps } }: AppProps) {
   const { locale } = useRouter()
   const currentLocale = locale || Locale.En
   const localeFolder = getLocaleFolder(currentLocale)

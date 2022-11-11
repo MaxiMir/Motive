@@ -3,11 +3,11 @@ import { FormikProps, useFormik } from 'formik'
 import { useMutation } from 'react-query'
 import { useIntl } from 'react-intl'
 import { UpdateUserDto, UserBaseDto } from '@dto'
+import { getUserHref } from '@href'
 import { profileSchema } from '@schemas/profile'
 import { UserService } from '@services/user'
 import { getQueryParams, setQueryParams } from '@helpers/url'
 import { useMutateUserPage } from '@modules/user/hook'
-import { getUserHref } from '@href'
 import { getNextState } from './helper'
 
 export default function useForm(user: UserBaseDto, onSuccess: () => void): FormikProps<UpdateUserDto> {

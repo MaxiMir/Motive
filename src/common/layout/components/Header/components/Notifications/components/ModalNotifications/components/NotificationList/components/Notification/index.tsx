@@ -3,10 +3,11 @@ import Link from 'next/link'
 import { useIntl } from 'react-intl'
 import { Box, IconButton, Typography } from '@mui/material'
 import { NotificationDto } from '@dto'
+import { getUserHref } from '@href'
 import useClient from '@hooks/useClient'
 import { getDistance } from '@utils/date'
-import { getUserHref } from '@href'
 import { getDetailsName, getNotificationInfo, getNotificationHref } from '@helpers/notification'
+import { useDateFnsLocale } from '@hooks/useDateFnsLocale'
 import AppEmoji from '@ui/AppEmoji'
 import AppIcon from '@ui/AppIcon'
 import UserAvatar from '@components/User/UserAvatar'
@@ -22,10 +23,11 @@ interface NotificationProps {
 export default function Notification({ notification, onClose }: NotificationProps) {
   const { id, type, details, created, read } = notification
   const { name, nickname, avatar } = details.user
-  const { locale, formatMessage } = useIntl()
+  const { formatMessage } = useIntl()
+  const fnsLocale = useDateFnsLocale()
   const client = useClient()
   const { mutate } = useUpdateRead()
-  const dateDistance = getDistance(created, locale)
+  const dateDistance = getDistance(created, fnsLocale)
   const { emoji, color } = getNotificationInfo(type)
   const notificationHref = getNotificationHref(notification, client)
   const href = getUserHref(nickname)

@@ -1,8 +1,8 @@
 import { useRouter } from 'next/router'
 import { useIntl } from 'react-intl'
 import { Button } from '@mui/material'
-import useOpenSignIn from '@hooks/useOpenSignIn'
 import { getUserHref } from '@href'
+import useOpenSignIn from '@hooks/useOpenSignIn'
 import { ProfileIcon } from '@ui/icons'
 
 interface FooterProfileProps {

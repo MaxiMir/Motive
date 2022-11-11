@@ -5,6 +5,7 @@ import { styled } from '@mui/system'
 import { UserBaseDto } from '@dto'
 import { getUserHref } from '@href'
 import { getDistance } from '@utils/date'
+import { useDateFnsLocale } from '@hooks/useDateFnsLocale'
 import AppIcon from '@ui/AppIcon'
 import UserAvatar from '@components/User/UserAvatar'
 
@@ -17,9 +18,10 @@ interface HeaderProps {
 
 export default function Header({ user, title, date, onClose }: HeaderProps): JSX.Element {
   const { nickname, name, avatar } = user
-  const { locale, formatMessage } = useIntl()
+  const { formatMessage } = useIntl()
+  const fnsLocale = useDateFnsLocale()
   const href = getUserHref(nickname)
-  const distance = getDistance(date, locale)
+  const distance = getDistance(date, fnsLocale)
   const agoText = formatMessage({ id: 'common.ago' })
   const close = formatMessage({ id: 'common.close' })
 

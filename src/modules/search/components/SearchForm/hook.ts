@@ -2,8 +2,8 @@ import { FormikProps, useFormik } from 'formik'
 import { useMutation } from 'react-query'
 import { SearchDto } from '@dto'
 import { Route } from '@href'
-import { searchSchema } from '@schemas/search'
 import { PageService } from '@services/page'
+import { searchSchema } from '@schemas/search'
 import { setQueryParams } from '@helpers/url'
 
 export default function useForm(q: string): FormikProps<SearchDto> {

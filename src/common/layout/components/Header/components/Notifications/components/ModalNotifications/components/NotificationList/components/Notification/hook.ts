@@ -2,8 +2,8 @@ import { useMutation, useQueryClient, UseMutationResult } from 'react-query'
 import { AxiosError } from 'axios'
 import { NotificationDto } from '@dto'
 import { NotificationService } from '@services/notification'
-import useClient from '@hooks/useClient'
 import { getNextState } from '@helpers/notification'
+import useClient from '@hooks/useClient'
 
 export const useUpdateRead = (): UseMutationResult<void, AxiosError, number> => {
   const queryClient = useQueryClient()

@@ -6,9 +6,6 @@ const withPWA = require('next-pwa')({
   register: true,
   skipWaiting: true,
   runtimeCaching,
-  experimental: {
-    appDir: true,
-  },
 })
 
 module.exports = withPWA({
@@ -21,6 +18,9 @@ module.exports = withPWA({
   i18n: {
     locales: ['en', 'ru', 'uk'],
     defaultLocale: 'en',
+  },
+  experimental: {
+    appDir: true,
   },
   async headers() {
     return [

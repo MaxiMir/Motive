@@ -3,16 +3,17 @@ import Link from 'next/link'
 import { useIntl } from 'react-intl'
 import { Box, Typography } from '@mui/material'
 import { MessageDto } from '@dto'
+import { getUserHref } from '@href'
 import { getDistance } from '@utils/date'
 import { numberToShort } from '@helpers/prepare'
-import { getUserHref } from '@href'
+import { useDateFnsLocale } from '@hooks/useDateFnsLocale'
 import UserAvatar from '@components/User/UserAvatar'
 import Menu from './components/Menu'
 import LikeButton from './components/LikeButton'
 
 const Button = dynamic(() => import('@mui/material/Button'))
-const SupportSign = dynamic(() => import('./components/SupportSign'))
 const AppMarkdown = dynamic(() => import('@ui/AppMarkdown'))
+const SupportSign = dynamic(() => import('./components/SupportSign'))
 
 interface MessageProps {
   message: MessageDto
@@ -24,8 +25,9 @@ interface MessageProps {
 export default function Message({ message, answerFor, supportFor, onReply }: MessageProps) {
   const { date, user, text, edited } = message
   const { name, nickname, avatar } = user
-  const { locale, formatMessage } = useIntl()
-  const dateDistance = getDistance(date, locale)
+  const { formatMessage } = useIntl()
+  const fnsLocale = useDateFnsLocale()
+  const dateDistance = getDistance(date, fnsLocale)
   const href = getUserHref(nickname)
   const shortNumber = numberToShort(message.likeCount)
   const agoText = formatMessage({ id: 'common.ago' })

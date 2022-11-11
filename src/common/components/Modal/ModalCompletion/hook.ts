@@ -4,9 +4,9 @@ import { useIntl } from 'react-intl'
 import { GoalDto } from '@dto'
 import { completionSchema } from '@schemas/completion'
 import { ConfirmationService } from '@services/confirmation'
-import useSnackbar from '@hooks/useSnackbar'
-import { scrollToElem } from '@helpers/dom'
 import { getToday } from '@utils/date'
+import { scrollToElem } from '@helpers/dom'
+import useSnackbar from '@hooks/useSnackbar'
 import { useUserPage } from '@modules/user/hook'
 
 interface Values {

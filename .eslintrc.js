@@ -2,7 +2,6 @@ module.exports = {
   root: true,
   parser: '@typescript-eslint/parser',
   extends: [
-    'next/core-web-vitals',
     'plugin:react/recommended',
     'airbnb',
     'plugin:@typescript-eslint/recommended',

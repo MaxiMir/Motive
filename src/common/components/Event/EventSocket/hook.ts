@@ -4,11 +4,11 @@ import { useRouter } from 'next/router'
 import { useIntl } from 'react-intl'
 import { io } from 'socket.io-client'
 import { NotificationDto } from '@dto'
+import { getImageSrc } from '@href'
 import { getDeviceType } from '@helpers/dom'
+import { getNotificationHref } from '@helpers/notification'
 import useSnackbar from '@hooks/useSnackbar'
 import useClient from '@hooks/useClient'
-import { getNotificationHref } from '@helpers/notification'
-import { getImageSrc } from '@href'
 
 export const useSocket = (): void => {
   const { formatMessage } = useIntl()

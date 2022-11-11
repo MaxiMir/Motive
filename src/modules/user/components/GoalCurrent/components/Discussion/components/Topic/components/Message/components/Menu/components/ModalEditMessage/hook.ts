@@ -4,8 +4,8 @@ import { FormikProps, useFormik } from 'formik'
 import { useIntl } from 'react-intl'
 import { MessageDto, TopicDto } from '@dto'
 import { messageSchema } from '@schemas/message'
-import useSnackbar from '@hooks/useSnackbar'
 import { TopicService } from '@services/topic'
+import useSnackbar from '@hooks/useSnackbar'
 import { getNextState } from './helper'
 
 export default function useForm(initialValues: MessageDto, onSuccess: () => void): FormikProps<MessageDto> {

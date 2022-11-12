@@ -1,3 +1,4 @@
+import Image from 'next/image'
 import { Box } from '@mui/material'
 import { getImageSrc } from '@href'
 
@@ -21,9 +22,12 @@ export default function Slide({ story }: SlideProps) {
         background: '#000',
       }}
     >
-      <img
+      <Image
         src={absoluteSrc}
         alt=""
+        fill
+        priority
+        objectFit="contain"
         style={{
           position: 'absolute',
           left: '50%',

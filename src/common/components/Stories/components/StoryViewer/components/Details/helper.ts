@@ -1,9 +1,7 @@
 import { differenceInCalendarDays } from 'date-fns'
 
-export const getDuration = (started: string, end: string): string => {
+export const getDuration = (started: string, end: string): number => {
   const startDate = Date.parse(started)
   const endDate = Date.parse(end)
-  const daysDifference = differenceInCalendarDays(endDate, startDate)
-
-  return daysDifference === 1 ? '1 day' : `${daysDifference || 1} days`
+  return differenceInCalendarDays(endDate, startDate)
 }

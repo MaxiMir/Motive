@@ -19,7 +19,12 @@ export default function Edit({ user }: EditProps) {
 
   return (
     <>
-      <AppIconButton name="edit" title={title} sx={{ color: 'zen.silent' }} onClick={toggleModal} />
+      <AppIconButton
+        name="edit"
+        title={title}
+        sx={{ alignSelf: 'flex-end', color: 'zen.silent' }}
+        onClick={toggleModal}
+      />
       {open && <ModalProfile user={user} onClose={toggleModal} />}
     </>
   )

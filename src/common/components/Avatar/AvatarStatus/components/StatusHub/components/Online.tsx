@@ -17,10 +17,6 @@ export default function Online({ children }: OnlineProps) {
           color: '#44b700',
           boxShadow: `0 0 0 2px ${theme.palette.background.paper}`,
           borderRadius: '50%',
-          right: {
-            xs: '15%',
-            md: '22%',
-          },
           '&::after': {
             position: 'absolute',
             top: 0,

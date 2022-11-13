@@ -1,13 +1,13 @@
-import { Box, BoxProps } from '@mui/material'
+import { BoxProps, Typography } from '@mui/material'
 
-type AppIconProps = BoxProps & {
+type AppIconProps = Exclude<BoxProps, 'component' | 'className'> & {
   name: string
 }
 
 export default function AppIcon({ name, ...props }: AppIconProps) {
   return (
-    <Box component="span" className="material-icons" {...props}>
+    <Typography component="span" className="material-icons" {...props}>
       {name}
-    </Box>
+    </Typography>
   )
 }

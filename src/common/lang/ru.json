@@ -59,7 +59,6 @@
   "page.user.modal-profile.title": "Редактирование",
   "page.user.modal-profile.profile": "профиля",
   "page.user.modal-profile.name": "Имя",
-  "page.user.modal-profile.nickname": "Никнейм",
   "page.user.modal-profile.nickname-error": "Никнейм занят",
   "page.user.following.add": "Подписаться",
   "page.user.following.remove": "Отписаться",
@@ -214,9 +213,13 @@
   "common.creativity": "Креативность",
   "common.support": "Поддержка",
   "common.completed": "Завершённые",
+  "common.completed-accusative": "Завершённых",
   "common.abandoned": "Заброшенные",
+  "common.abandoned-accusative": "Заброшенных",
   "common.followers": "Подписчики",
+  "common.followers-accusative": "Подписчиков",
   "common.following": "Подписки",
+  "common.following-accusative": "Подписок",
   "common.goals": "цели",
   "common.user": "Пользователь",
   "common.lvl": "Уровень",
@@ -293,5 +296,10 @@
   "common.like": "Лайк",
   "common.unlike": "Убрать лайк",
   "common.mark-helpful": "Отметить как полезное",
-  "common.unmark-helpful": "Убрать отметку о полезности"
+  "common.unmark-helpful": "Убрать отметку о полезности",
+  "common.motto": "Девиз",
+  "common.location": "Город",
+  "common.bio": "Краткая информация",
+  "common.learn-more": "Подробнее",
+  "common.nickname": "Никнейм"
 }

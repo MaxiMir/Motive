@@ -12,7 +12,7 @@ export interface UserBaseDto {
   readonly online?: boolean | null
   readonly lastSeen?: string | null
   readonly device?: Device | null
-  readonly status?: string
+  readonly motto?: string
   readonly location?: string
   readonly bio?: string
 }
@@ -23,7 +23,7 @@ export interface UpdateUserDto {
   name: UserBaseDto['name']
   nickname: UserBaseDto['nickname']
   avatar?: File | string | null
-  status?: string
+  motto?: string
   location?: string
   bio?: string
 }

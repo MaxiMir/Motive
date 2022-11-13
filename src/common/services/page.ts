@@ -1,6 +1,6 @@
 import { AxiosRequestConfig } from 'axios'
-import { service } from '@utils/service'
 import { UserPageDto } from '@dto'
+import { service } from '@utils/service'
 
 export class PageService {
   static get<T>(path: string, options?: AxiosRequestConfig): Promise<T> {

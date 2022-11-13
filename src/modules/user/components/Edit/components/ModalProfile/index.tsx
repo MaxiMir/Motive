@@ -25,7 +25,10 @@ export default function ModalProfile({ user, onClose }: ModalProfileProps) {
   const title = formatMessage({ id: 'page.user.modal-profile.title' })
   const profile = formatMessage({ id: 'page.user.modal-profile.profile' })
   const nameLabel = formatMessage({ id: 'page.user.modal-profile.name' })
-  const nicknameLabel = formatMessage({ id: 'page.user.modal-profile.nickname' })
+  const nicknameLabel = formatMessage({ id: 'common.nickname' })
+  const mottoLabel = formatMessage({ id: 'common.motto' })
+  const locationLabel = formatMessage({ id: 'common.location' })
+  const bioLabel = formatMessage({ id: 'common.bio' })
   const buttonText = formatMessage({ id: 'common.save' })
   const buttonLoading = formatMessage({ id: 'common.saving' })
 
@@ -61,6 +64,9 @@ export default function ModalProfile({ user, onClose }: ModalProfileProps) {
           <Box display="flex" flexDirection="column" gap={3}>
             <Field name="name" label={nameLabel} color="primary" component={AppInput} />
             <Field name="nickname" label={nicknameLabel} color="primary" component={AppInput} />
+            <Field name="motto" label={mottoLabel} color="primary" component={AppInput} />
+            <Field name="location" label={locationLabel} color="primary" component={AppInput} />
+            <Field name="bio" multiline label={bioLabel} color="primary" component={AppInput} />
             <Grid container gap={2}>
               <Grid item xs={4}>
                 {!values.avatar ? (

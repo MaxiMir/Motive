@@ -31,7 +31,7 @@ export interface GoalCurrentProps {
   goal: GoalDto
   href: string
   userId: number
-  userMembership: MemberDto[]
+  membership: MemberDto[]
   clientId?: number
   clientPage: boolean
   clientMembership: MemberDto[]
@@ -41,7 +41,7 @@ export default function GoalCurrent({
   goal,
   href,
   userId,
-  userMembership,
+  membership,
   clientId,
   clientPage,
   clientMembership,
@@ -52,7 +52,7 @@ export default function GoalCurrent({
   const theme = useTheme()
   const { query } = useRouter()
   const clientOwnership = getClientOwnership(goal, clientId, clientPage, clientMembership)
-  const userMember = getMember(id, userMembership, userId)
+  const userMember = getMember(id, membership, userId)
   const goalHref = getGoalWithDayHref(href, id, dayId)
   const goalInfo = getGoalInfo(goal, clientOwnership, userMember)
   const showDiscussion = checkOnShowDiscussion(query, id)

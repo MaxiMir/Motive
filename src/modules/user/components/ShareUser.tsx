@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import dynamic from 'next/dynamic'
+import { useIntl } from 'react-intl'
 import AppIcon from '@ui/AppIcon'
 import { Button } from '@mui/material'
 
@@ -11,6 +12,8 @@ interface ShareUserProps {
 }
 
 export default function ShareUser({ title, href }: ShareUserProps) {
+  const { formatMessage } = useIntl()
+  const shareText = formatMessage({ id: 'common.share' })
   const [open, setOpen] = useState(false)
 
   const toggle = () => setOpen(!open)
@@ -19,13 +22,12 @@ export default function ShareUser({ title, href }: ShareUserProps) {
     <>
       <Button
         variant="outlined"
-        // color="primary"
         size="small"
         startIcon={<AppIcon name="share" />}
         sx={{ textTransform: 'none' }}
         onClick={toggle}
       >
-        Share
+        {shareText}
       </Button>
       {open && <Share title={title} href={href} onClose={toggle} />}
     </>

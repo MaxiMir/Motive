@@ -1,5 +1,5 @@
-import { service } from '@utils/service'
 import { CreateMemberDto, MemberDto, UpdateMemberDto } from '@dto'
+import { service } from '@utils/service'
 
 export class MemberService {
   static create(data: CreateMemberDto): Promise<MemberDto> {

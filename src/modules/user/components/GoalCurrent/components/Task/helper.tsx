@@ -17,7 +17,7 @@ export const getGoalNextState = (
       return
     }
 
-    const draftMember = draft.content.userMembership.find((m) => m.id === clientMember.id)
+    const draftMember = draft.content.membership.find((m) => m.id === clientMember.id)
 
     if (!draftMember) return
 

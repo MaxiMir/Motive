@@ -59,7 +59,6 @@
   "page.user.modal-profile.title": "Редагування",
   "page.user.modal-profile.profile": "профілю",
   "page.user.modal-profile.name": "Ім\"я",
-  "page.user.modal-profile.nickname": "Нікнейм",
   "page.user.modal-profile.nickname-error": "Нікнейм зайнятий",
   "page.user.following.add": "Підписатися",
   "page.user.following.remove": "Відписатися",
@@ -213,9 +212,13 @@
   "common.creativity": "Креативність",
   "common.support": "Підтримка",
   "common.completed": "Завершені",
+  "common.completed-accusative": "Завершених",
   "common.abandoned": "Занедбані",
+  "common.abandoned-accusative": "Занедбаних",
   "common.followers": "Підписники",
+  "common.followers-accusative": "Підписників",
   "common.following": "Підписки",
+  "common.following-accusative": "Підписок",
   "common.user": "Користувач",
   "common.goals": "цілі",
   "common.lvl": "Рівень",
@@ -292,5 +295,10 @@
   "common.like": "Лайк",
   "common.unlike": "Прибрати лайк",
   "common.mark-helpful": "Відзначити як корисне",
-  "common.unmark-helpful": "Прибрати відмітку про корисність"
+  "common.unmark-helpful": "Прибрати відмітку про корисність",
+  "common.motto": "Девіз",
+  "common.location": "Місто",
+  "common.bio": "Коротка інформація",
+  "common.learn-more": "Детальніше",
+  "common.nickname": "Нікнейм"
 }

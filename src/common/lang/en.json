@@ -59,7 +59,6 @@
   "page.user.modal-profile.title": "Edit",
   "page.user.modal-profile.profile": "profile",
   "page.user.modal-profile.name": "Name",
-  "page.user.modal-profile.nickname": "Nickname",
   "page.user.modal-profile.nickname-error": "nickname is busy",
   "page.user.following.add": "Follow",
   "page.user.following.remove": "Unfollow",
@@ -213,9 +212,13 @@
   "common.creativity": "Creativity",
   "common.support": "Support",
   "common.completed": "Completed",
+  "common.completed-accusative": "Completed",
   "common.abandoned": "Abandoned",
+  "common.abandoned-accusative": "Abandoned",
   "common.followers": "Followers",
+  "common.followers-accusative": "Followers",
   "common.following": "Following",
+  "common.following-accusative": "Following",
   "common.goals": "goals",
   "common.user": "User",
   "common.lvl": "Level",
@@ -292,5 +295,10 @@
   "common.like": "Like",
   "common.unlike": "Unlike",
   "common.mark-helpful": "Mark as very helpful",
-  "common.unmark-helpful": "Unmark as very helpful"
+  "common.unmark-helpful": "Unmark as very helpful",
+  "common.motto": "Motto",
+  "common.location": "Location",
+  "common.bio": "Bio",
+  "common.learn-more": "Learn More",
+  "common.nickname": "Nickname"
 }

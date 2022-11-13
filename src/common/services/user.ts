@@ -1,5 +1,5 @@
-import { service } from '@utils/service'
 import { CreateUserDto, UpdateUserDto, UserBaseDto } from '@dto'
+import { service } from '@utils/service'
 import { Service, WhereParams } from './Service'
 
 interface UpdateParams {

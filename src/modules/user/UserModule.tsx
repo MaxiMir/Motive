@@ -11,13 +11,13 @@ import EmptyGoals from './components/EmptyGoals'
 import Following from './components/Following'
 import MainCharacteristic from './components/MainCharacteristic'
 import ShareUser from './components/ShareUser'
+import LearnMore from './components/LearnMore'
 
 const ConfirmationList = dynamic(() => import('./components/ConfirmationList'))
 const GoalCurrent = dynamic(() => import('./components/GoalCurrent'))
 const Edit = dynamic(() => import('./components/Edit'))
-const Status = dynamic(() => import('./components/Status'))
+const Motto = dynamic(() => import('./components/Motto'))
 const Location = dynamic(() => import('./components/Location'))
-const Bio = dynamic(() => import('./components/Bio'))
 
 export interface UserModuleProps {
   user: UserDetailDto
@@ -32,24 +32,20 @@ export function UserModule({ user }: UserModuleProps) {
     characteristic,
     goals,
     following,
-    userMembership,
+    membership,
     clientMembership,
     confirmations,
     online,
     lastSeen,
     device,
-    // status,
-    // location
-    // bio
+    motto,
+    location,
   } = user
   const client = useClient()
   const href = getUserHref(nickname)
   const clientPage = id === client?.id
   const userBase = { id, name, nickname, avatar }
   const withConfirmationsList = !!confirmations.length || clientPage
-  const status = "It's death to settle for things in life ☠️"
-  const location = 'Pattaya'
-  const bio = 'Dream developer 🧿'
 
   return (
     <AppContainer>
@@ -60,7 +56,6 @@ export function UserModule({ user }: UserModuleProps) {
         mb={3}
         sx={{
           flexDirection: {
-            // xs: 'column',
             md: 'row',
           },
           gap: {
@@ -90,7 +85,7 @@ export function UserModule({ user }: UserModuleProps) {
             <Typography variant="h5" component="h1">
               {name}
             </Typography>
-            {status && <Status status={status} />}
+            {motto && <Motto motto={motto} />}
           </Box>
           {location && <Location location={location} />}
           <Box display="flex" flexWrap="wrap" justifyContent="space-between">
@@ -106,8 +101,8 @@ export function UserModule({ user }: UserModuleProps) {
           <Box display="flex" gap={2} my={1}>
             {!clientPage && <Following id={user.id} following={following} />}
             <ShareUser href={href} title={name} />
+            <LearnMore user={user} />
           </Box>
-          {bio && <Bio bio={bio} />}
         </Box>
       </Box>
       <DashedDivider light sx={{ mb: 3 }} />
@@ -151,7 +146,7 @@ export function UserModule({ user }: UserModuleProps) {
               goal={goal}
               href={href}
               userId={id}
-              userMembership={userMembership}
+              membership={membership}
               clientId={client?.id}
               clientPage={clientPage}
               clientMembership={clientMembership}

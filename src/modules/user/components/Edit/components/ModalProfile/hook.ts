@@ -20,14 +20,14 @@ export default function useForm(user: UserBaseDto, onSuccess: () => void): Formi
       name: user.name,
       nickname: user.nickname,
       avatar: user.avatar,
-      status: user.status,
+      motto: user.motto,
       location: user.location,
       bio: user.bio,
     },
     validationSchema: profileSchema,
     async onSubmit(data, { setFieldError }) {
       const { id } = user
-      const { name, nickname, avatar } = data
+      const { nickname, avatar, ...restData } = data
       const usersDB = user.nickname === nickname ? null : await UserService.get({ nickname }, 0, 1)
 
       if (usersDB?.length) {
@@ -41,7 +41,7 @@ export default function useForm(user: UserBaseDto, onSuccess: () => void): Formi
         await UserService.updateAvatar({ id, formData })
       }
 
-      await mutateAsync({ id, data: { name, nickname } })
+      await mutateAsync({ id, data: { nickname, ...restData } })
       onSuccess()
     },
   })

@@ -1,13 +1,13 @@
 import { Typography } from '@mui/material'
 
 interface StatusProps {
-  status: string
+  motto: string
 }
 
-export default function Status({ status }: StatusProps) {
+export default function Motto({ motto }: StatusProps) {
   return (
     <Typography variant="caption" sx={{ color: 'zen.sand' }}>
-      {status}
+      {motto}
     </Typography>
   )
 }

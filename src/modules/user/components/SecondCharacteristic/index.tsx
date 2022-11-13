@@ -18,7 +18,7 @@ interface CharacteristicProps {
 export default function SecondCharacteristic({ user, name, value }: CharacteristicProps) {
   const { formatMessage } = useIntl()
   const [modal, setModal] = useState<SecondCharacteristicName>()
-  const buttonText = formatMessage({ id: `common.${name}` }).toLowerCase()
+  const buttonText = formatMessage({ id: `common.${name}-accusative` }).toLowerCase()
   const shortValue = numberToShort(value)
 
   const onClick = () => {

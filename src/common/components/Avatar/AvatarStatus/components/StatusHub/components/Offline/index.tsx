@@ -45,10 +45,6 @@ export default function Offline({ lastSeen, device, children }: OfflineProps) {
           backgroundColor: 'gray',
           color: 'white',
           fontSize: '0.625rem',
-          right: {
-            xs: '15%',
-            md: '22%',
-          },
         },
       }}
     >

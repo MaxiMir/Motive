@@ -1,5 +1,5 @@
-import { service } from '@utils/service'
 import { CreateMessageDto, TopicDto, UpdateMessageDto } from '@dto'
+import { service } from '@utils/service'
 import { Service, WhereParams } from './Service'
 
 export class TopicService extends Service {

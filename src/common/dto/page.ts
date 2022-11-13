@@ -32,7 +32,7 @@ type SubscriptionPageContent = UserDto[]
 export interface UserDetailDto extends UserDto {
   following: boolean
   goals: GoalDto[]
-  userMembership: MemberDto[]
+  membership: MemberDto[]
   clientMembership: MemberDto[]
   confirmations: ConfirmationDto[]
 }

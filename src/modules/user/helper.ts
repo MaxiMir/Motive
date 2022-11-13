@@ -1,6 +1,6 @@
 import produce from 'immer'
-import { getSearchParams, setQueryParams } from '@helpers/url'
 import { GoalDto, MemberDto, UserPageDto } from '@dto'
+import { getSearchParams, setQueryParams } from '@helpers/url'
 
 export const getNextState = (page: UserPageDto, goals: GoalDto[]): UserPageDto =>
   produce(page, (draft) => {

@@ -1,5 +1,5 @@
-import { service } from '@utils/service'
 import { DayDto } from '@dto'
+import { service } from '@utils/service'
 import { Service, WhereParams } from './Service'
 
 export class NotificationService extends Service {

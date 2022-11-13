@@ -4,9 +4,9 @@ import { useIntl } from 'react-intl'
 import { GoalDto, OwnershipDto } from '@dto'
 import AppMenuButton from '@ui/AppMenuButton'
 
+const Share = dynamic(() => import('@components/Share'))
 const ModalLeave = dynamic(() => import('./components/ModalLeave'))
 const MenuList = dynamic(() => import('./components/MenuList'))
-const Share = dynamic(() => import('@components/Share'))
 
 interface MenuProps {
   goal: GoalDto

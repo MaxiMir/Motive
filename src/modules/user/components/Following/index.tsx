@@ -1,6 +1,6 @@
 import { useIntl } from 'react-intl'
 import { Button } from '@mui/material'
-import AppEmoji from '@ui/AppEmoji'
+import AppIcon from '@ui/AppIcon'
 import useSetFollowing from './hook'
 
 interface FollowingProps {
@@ -17,9 +17,10 @@ export default function Following({ id, following }: FollowingProps) {
   return (
     <Button
       variant="outlined"
-      color="warning"
-      startIcon={<AppEmoji name="following" onlyEmoji />}
-      sx={{ alignSelf: 'center', mb: 3, filter: following ? 'grayscale(0.6)' : undefined }}
+      color="info"
+      size="small"
+      startIcon={<AppIcon name={`person_${operation}`} />}
+      sx={{ filter: following ? 'grayscale(0.6)' : undefined, textTransform: 'none' }}
       onClick={setFollowing}
     >
       {buttonText}

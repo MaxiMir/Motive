@@ -18,7 +18,7 @@ interface CharacteristicProps {
 export default function SecondCharacteristic({ user, name, value }: CharacteristicProps) {
   const { formatMessage } = useIntl()
   const [modal, setModal] = useState<SecondCharacteristicName>()
-  const buttonText = formatMessage({ id: `common.${name}` }).toUpperCase()
+  const buttonText = formatMessage({ id: `common.${name}` }).toLowerCase()
   const shortValue = numberToShort(value)
 
   const onClick = () => {
@@ -35,26 +35,12 @@ export default function SecondCharacteristic({ user, name, value }: Characterist
 
   return (
     <>
-      <Button
-        sx={{
-          color: 'white',
-          textTransform: 'none',
-          justifyContent: 'center',
-          padding: 1,
-        }}
-        onClick={onClick}
-      >
-        <Box display="flex" justifyContent="flex-start" flexDirection="column">
-          <Typography variant="h5" component="p" sx={{ fontWeight: 'bold' }}>
-            {shortValue}
+      <Button size="small" sx={{ color: 'white' }} onClick={onClick}>
+        <Box display="flex" alignItems="baseline" gap={0.5}>
+          <Typography>
+            <b>{shortValue}</b>
           </Typography>
-          <Typography
-            sx={{
-              fontSize: '0.625rem',
-            }}
-          >
-            {buttonText}
-          </Typography>
+          <Typography sx={{ fontSize: '0.75rem', textTransform: 'none' }}>{buttonText}</Typography>
         </Box>
       </Button>
       {modal === SecondCharacteristicName.Completed && <ModalCompleted user={user} onClose={onClose} />}

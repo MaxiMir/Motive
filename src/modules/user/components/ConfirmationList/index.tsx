@@ -2,8 +2,8 @@ import dynamic from 'next/dynamic'
 import { Tabs } from '@mui/material'
 import { ConfirmationDto, UserBaseDto } from '@dto'
 
-const AddGoal = dynamic(() => import('./components/AddGoal'))
 const ConfirmationStory = dynamic(() => import('@components/Confirmation/ConfirmationStory'))
+const AddGoal = dynamic(() => import('./components/AddGoal'))
 
 interface ConfirmationListProps {
   user: UserBaseDto

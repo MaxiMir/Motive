@@ -5,8 +5,8 @@ import { Box, Button, Tooltip } from '@mui/material'
 import { GoalDto } from '@dto'
 import AppEmoji from '@ui/AppEmoji'
 
-const ModalTasks = dynamic(() => import('./components/ModalTasks'))
 const ModalCompletion = dynamic(() => import('@components/Modal/ModalCompletion'))
+const ModalTasks = dynamic(() => import('./components/ModalTasks'))
 
 export interface OwnerControlProps {
   goal: GoalDto

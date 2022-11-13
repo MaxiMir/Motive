@@ -27,7 +27,7 @@ export default function ConfirmationStory({ user, confirmation }: ConfirmationSt
 
   return (
     <>
-      <Box display="flex" flexDirection="column" alignItems="center" gap={1} mx={1}>
+      <Box display="flex" flexDirection="column" alignItems="center" gap={1} mr={3}>
         <Box
           sx={(theme) => ({
             padding: '2px',
@@ -45,7 +45,7 @@ export default function ConfirmationStory({ user, confirmation }: ConfirmationSt
             })}
             onClick={onOpen}
           >
-            <AvatarStatus src={mainPhoto.src} name={user.name} size={65} />
+            <AvatarStatus src={mainPhoto.src} name={user.name} size={85} />
           </Button>
         </Box>
         <Button sx={{ padding: '4px', textTransform: 'none' }} onClick={onOpen}>

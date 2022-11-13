@@ -14,7 +14,7 @@ export default function AddGoal() {
   const toggleModal = () => setOpen(!open)
 
   return (
-    <Box display="flex" flexDirection="column" alignItems="center" gap={1} mx={1}>
+    <Box display="flex" flexDirection="column" alignItems="center" gap={1} mr={3}>
       <Box
         sx={(theme) => ({
           padding: '2px',
@@ -33,7 +33,7 @@ export default function AddGoal() {
           aria-label={buttonText}
           onClick={toggleModal}
         >
-          <Box display="flex" justifyContent="center" alignItems="center" width={65} height={65}>
+          <Box display="flex" justifyContent="center" alignItems="center" width={85} height={85}>
             <AppIcon name="add" />
           </Box>
         </Button>

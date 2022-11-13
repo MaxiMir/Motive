@@ -12,6 +12,9 @@ export interface UserBaseDto {
   readonly online?: boolean | null
   readonly lastSeen?: string | null
   readonly device?: Device | null
+  readonly status?: string
+  readonly location?: string
+  readonly bio?: string
 }
 
 export type CreateUserDto = Omit<UserBaseDto, 'id' | 'nickname'>
@@ -20,6 +23,9 @@ export interface UpdateUserDto {
   name: UserBaseDto['name']
   nickname: UserBaseDto['nickname']
   avatar?: File | string | null
+  status?: string
+  location?: string
+  bio?: string
 }
 
 export interface UserDto extends UserBaseDto {

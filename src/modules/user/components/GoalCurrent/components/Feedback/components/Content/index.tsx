@@ -2,9 +2,9 @@ import dynamic from 'next/dynamic'
 import { Box } from '@mui/material'
 import { FeedbackDto } from '@dto'
 
-const Gallery = dynamic(() => import('./components/Gallery'))
 const AppPlayer = dynamic(() => import('@ui/AppPlayer'))
 const AppMarkdown = dynamic(() => import('@ui/AppMarkdown'))
+const Gallery = dynamic(() => import('./components/Gallery'))
 
 interface ContentProps {
   feedback: FeedbackDto

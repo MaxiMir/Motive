@@ -20,6 +20,9 @@ export default function useForm(user: UserBaseDto, onSuccess: () => void): Formi
       name: user.name,
       nickname: user.nickname,
       avatar: user.avatar,
+      status: user.status,
+      location: user.location,
+      bio: user.bio,
     },
     validationSchema: profileSchema,
     async onSubmit(data, { setFieldError }) {

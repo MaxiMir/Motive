@@ -1,8 +1,7 @@
-import { Fragment } from 'react'
 import dynamic from 'next/dynamic'
 import { Box, Divider, Typography } from '@mui/material'
 import { styled } from '@mui/system'
-import { UserDetailDto, SecondCharacteristicName, MAIN_CHARACTERISTICS, SECOND_CHARACTERISTICS } from '@dto'
+import { UserDetailDto, MAIN_CHARACTERISTICS, SECOND_CHARACTERISTICS } from '@dto'
 import { getUserHref } from '@href'
 import useClient from '@hooks/useClient'
 import AppContainer from '@ui/AppContainer'
@@ -11,10 +10,14 @@ import SecondCharacteristic from './components/SecondCharacteristic'
 import EmptyGoals from './components/EmptyGoals'
 import Following from './components/Following'
 import MainCharacteristic from './components/MainCharacteristic'
+import ShareUser from './components/ShareUser'
 
 const ConfirmationList = dynamic(() => import('./components/ConfirmationList'))
 const GoalCurrent = dynamic(() => import('./components/GoalCurrent'))
 const Edit = dynamic(() => import('./components/Edit'))
+const Status = dynamic(() => import('./components/Status'))
+const Location = dynamic(() => import('./components/Location'))
+const Bio = dynamic(() => import('./components/Bio'))
 
 export interface UserModuleProps {
   user: UserDetailDto
@@ -35,32 +38,79 @@ export function UserModule({ user }: UserModuleProps) {
     online,
     lastSeen,
     device,
+    // status,
+    // location
+    // bio
   } = user
   const client = useClient()
   const href = getUserHref(nickname)
   const clientPage = id === client?.id
   const userBase = { id, name, nickname, avatar }
   const withConfirmationsList = !!confirmations.length || clientPage
+  const status = "It's death to settle for things in life ☠️"
+  const location = 'Pattaya'
+  const bio = 'Dream developer 🧿'
 
   return (
     <AppContainer>
+      {clientPage && <Edit user={user} />}
       <Box
         display="flex"
-        alignItems="center"
-        gap={1}
-        my={3}
+        flexWrap="wrap"
+        mb={3}
         sx={{
+          flexDirection: {
+            // xs: 'column',
+            md: 'row',
+          },
+          gap: {
+            xs: 2,
+            md: 6,
+          },
           justifyContent: {
             xs: 'center',
-            md: 'start',
+            md: 'flex-start',
           },
         }}
       >
-        <Typography variant="h5" component="h1">
-          {name}
-        </Typography>
-        {clientPage && <Edit user={user} />}
+        <AvatarStatus src={avatar} name={name} size={190} online={online} lastSeen={lastSeen} device={device} />
+        <Box
+          display="flex"
+          flexDirection="column"
+          justifyContent="space-between"
+          gap={1}
+          sx={{
+            alignItems: {
+              xs: 'center',
+              md: 'flex-start',
+            },
+          }}
+        >
+          <Box display="flex" flexDirection="column" gap={1}>
+            <Typography variant="h5" component="h1">
+              {name}
+            </Typography>
+            {status && <Status status={status} />}
+          </Box>
+          {location && <Location location={location} />}
+          <Box display="flex" flexWrap="wrap" justifyContent="space-between">
+            {SECOND_CHARACTERISTICS.map((characteristicName) => (
+              <SecondCharacteristic
+                user={user}
+                name={characteristicName}
+                value={characteristic[characteristicName]}
+                key={characteristicName}
+              />
+            ))}
+          </Box>
+          <Box display="flex" gap={2} my={1}>
+            {!clientPage && <Following id={user.id} following={following} />}
+            <ShareUser href={href} title={name} />
+          </Box>
+          {bio && <Bio bio={bio} />}
+        </Box>
       </Box>
+      <DashedDivider light sx={{ mb: 3 }} />
       <Box
         display="flex"
         flexWrap="wrap"
@@ -76,20 +126,7 @@ export function UserModule({ user }: UserModuleProps) {
           },
         }}
       >
-        <AvatarStatus src={avatar} name={name} size={190} online={online} lastSeen={lastSeen} device={device} />
         <Box display="flex" flexDirection="column" justifyContent="space-between" flex={1}>
-          <Box display="flex" justifyContent="space-between" mb={3}>
-            {SECOND_CHARACTERISTICS.map((characteristicName) => (
-              <Fragment key={characteristicName}>
-                <SecondCharacteristic
-                  user={user}
-                  name={characteristicName}
-                  value={characteristic[characteristicName]}
-                />
-                {characteristicName === SecondCharacteristicName.Abandoned && <DashedDivider orientation="vertical" />}
-              </Fragment>
-            ))}
-          </Box>
           <Box display="flex" justifyContent="space-between">
             {MAIN_CHARACTERISTICS.map((characteristicName) => (
               <MainCharacteristic
@@ -105,7 +142,6 @@ export function UserModule({ user }: UserModuleProps) {
       {withConfirmationsList && (
         <ConfirmationList user={userBase} confirmations={confirmations} clientPage={clientPage} />
       )}
-      {!clientPage && <Following id={user.id} following={following} />}
       {!goals.length ? (
         <EmptyGoals clientPage={clientPage} />
       ) : (

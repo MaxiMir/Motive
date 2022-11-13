@@ -5,11 +5,11 @@ import useClient from '@hooks/useClient'
 import { AppListProps } from '@ui/AppList'
 import { useDiscussion, useAddMessage } from './hook'
 
+const UserInput = dynamic(() => import('@components/User/UserInput'))
+const AppList = dynamic<AppListProps<TopicDto>>(() => import('@ui/AppList'))
 const Nothing = dynamic(() => import('./components/Nothing'))
 const Loader = dynamic(() => import('./components/Loader'))
 const Topic = dynamic(() => import('./components/Topic'))
-const UserInput = dynamic(() => import('@components/User/UserInput'))
-const AppList = dynamic<AppListProps<TopicDto>>(() => import('@ui/AppList'))
 
 interface DiscussionProps {
   dayId: number

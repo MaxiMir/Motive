@@ -2,7 +2,7 @@ import { useRouter } from 'next/router'
 import { AxiosError } from 'axios'
 import { useMutation, useQuery, useQueryClient, UseMutationResult, UseQueryResult } from 'react-query'
 import { useIntl } from 'react-intl'
-import { CreateMemberDto, GoalDto, MemberDto, UserDetailDto, UserPageDto } from '@dto'
+import { CreateMemberDto, GoalDto, MemberDto, UserDetailDto, UserPageDto, OGType } from '@dto'
 import { getImageSrc, getUserHref, SearchParam } from '@href'
 import { PageService } from '@services/page'
 import { MemberService } from '@services/member'
@@ -33,7 +33,7 @@ interface UserMeta {
   description?: string
   keywords?: string
   url?: string
-  type: string
+  type: OGType
   image?: string
 }
 
@@ -56,7 +56,7 @@ export const useUserMeta = (user?: UserDetailDto): UserMeta | null => {
     description: `${descriptionStart} ${goalNames}`,
     keywords: user.confirmations.map((c) => c.goal.name).join(', '),
     image,
-    type: 'profile',
+    type: OGType.Profile,
   }
 }
 

@@ -4,6 +4,11 @@ import { ConfirmationDto, GoalDto } from './goal'
 import { MemberDto } from './member'
 import { HashtagDto } from './hashtag'
 
+export enum OGType {
+  Website = 'website',
+  Profile = 'profile',
+}
+
 export interface PossiblePageError {
   message?: {
     statusCode: number

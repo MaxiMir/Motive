@@ -17,9 +17,9 @@ export default function ModalLearnMore({ user, onClose }: ModalLearnMoreProps) {
   return (
     <AppModal title={title} maxWidth="xs" onClose={onClose}>
       <Box display="flex" flexDirection="column" gap={1}>
-        {motto && <InfoRow icon="alternate_email" text={motto} />}
+        {motto && <InfoRow icon="short_text" text={motto} />}
         <InfoRow icon="alternate_email" text={nickname} />
-        {bio && <InfoRow icon="short_text" text={bio} />}
+        {bio && <InfoRow icon="self_improvement" text={bio} />}
       </Box>
     </AppModal>
   )

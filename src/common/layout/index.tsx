@@ -3,6 +3,7 @@ import { useRouter } from 'next/router'
 import Head from 'next/head'
 import { useIntl } from 'react-intl'
 import { Box } from '@mui/material'
+import { OGType } from '@dto'
 import useClient from '@hooks/useClient'
 import Header from './components/Header'
 import Footer from './components/Footer'
@@ -12,7 +13,7 @@ interface LayoutProps {
   title?: string
   description?: string
   keywords?: string
-  type?: 'website' | 'profile'
+  type?: OGType
   image?: string
   canonical?: string
   children?: ReactNode
@@ -22,7 +23,7 @@ export default function Layout({
   title,
   description,
   keywords,
-  type = 'website',
+  type = OGType.Website,
   image,
   canonical,
   children,
@@ -32,7 +33,7 @@ export default function Layout({
   const { asPath } = useRouter()
   const localeHrefList = getLocaleHrefList(asPath)
   const url = localeHrefList[locale]
-  const showNickname = type === 'profile'
+  const showNickname = type === OGType.Profile
 
   return (
     <>

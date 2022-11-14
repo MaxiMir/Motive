@@ -7,7 +7,7 @@ import AppModal from '@ui/AppModal'
 import AppFadeIcon from '@ui/AppFadeIcon'
 import { useSendRemoveMember } from './hook'
 
-export interface ModalLeaveProps {
+interface ModalLeaveProps {
   goal: GoalDto
   clientOwnership: OwnershipDto
   onClose: () => void

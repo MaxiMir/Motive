@@ -9,7 +9,7 @@ import AppEmoji from '@ui/AppEmoji'
 
 const ModalJoin = dynamic(() => import('./components/ModalJoin'))
 
-export interface JoinProps {
+interface JoinProps {
   goal: GoalDto
 }
 

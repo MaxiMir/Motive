@@ -6,7 +6,7 @@ import useShowProgress from '@hooks/useShowProgress'
 import AppModal from '@ui/AppModal'
 import OldPittRules from '@components/OldPitt/OldPittRules'
 
-export interface ModalAbandonedProps {
+interface ModalAbandonedProps {
   user: UserDetailDto
   onClose: () => void
 }

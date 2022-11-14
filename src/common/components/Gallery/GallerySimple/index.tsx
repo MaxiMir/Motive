@@ -3,7 +3,7 @@ import PhotoAlbum, { PhotoProps } from 'react-photo-album'
 import { PhotoDto } from '@dto'
 import GalleryPhoto from './components/GalleryPhoto'
 
-export interface GallerySimpleProps {
+interface GallerySimpleProps {
   photos: PhotoDto[]
   onClick?: (index: number) => void
 }

@@ -7,7 +7,7 @@ import AppInput from '@ui/AppInput'
 import AppIcon from '@ui/AppIcon'
 import AppIconButton from '@ui/AppIconButton'
 
-export interface TaskFieldProps {
+interface TaskFieldProps {
   index: number
   date?: Date
   taskCount: number

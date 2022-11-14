@@ -4,7 +4,7 @@ import { Button } from '@mui/material'
 import { styled } from '@mui/system'
 import AppEmoji from '@ui/AppEmoji'
 
-export interface PhotoInputProps {
+interface PhotoInputProps {
   multiple?: boolean
   disabled: boolean
   onSelect: (photos: File[]) => void

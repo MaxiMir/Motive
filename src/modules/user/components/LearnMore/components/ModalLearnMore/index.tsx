@@ -16,14 +16,12 @@ export default function ModalLearnMore({ user, onClose }: ModalLearnMoreProps) {
   const { nickname, bio } = user
   const { formatMessage } = useIntl()
   const title = formatMessage({ id: 'common.learn-more' })
-  const nicknameText = formatMessage({ id: 'common.nickname' })
 
   return (
     <AppModal title={title} maxWidth="xs" onClose={onClose}>
       <Box display="flex" flexDirection="column" gap={1}>
         <Box display="flex" alignItems="center" gap={1}>
-          <AppIcon name="alternate_email" sx={{ color: 'zen.sand' }} />
-          {nicknameText}: {nickname}
+          <AppIcon name="alternate_email" sx={{ color: 'zen.sand' }} />: {nickname}
         </Box>
         {bio && <Bio bio={bio} />}
       </Box>

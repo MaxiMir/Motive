@@ -7,7 +7,7 @@ import AppIcon from '@ui/AppIcon'
 
 const ModalFeedback = dynamic(() => import('./components/ModalFeedback'))
 
-export interface FeedbackAddProps {
+interface FeedbackAddProps {
   goal: GoalDto
   forTomorrow: boolean
 }

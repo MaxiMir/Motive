@@ -1,7 +1,7 @@
 import { Checkbox, FormControlLabel } from '@mui/material'
 import { FormControlLabelProps } from '@mui/material/FormControlLabel/FormControlLabel'
 
-export type AppCheckboxProps = Omit<FormControlLabelProps, 'control' | 'label'> & {
+type AppCheckboxProps = Omit<FormControlLabelProps, 'control' | 'label'> & {
   label: JSX.Element | string
 }
 

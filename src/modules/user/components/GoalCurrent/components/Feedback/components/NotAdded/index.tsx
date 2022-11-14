@@ -4,7 +4,7 @@ import { GoalDto, OwnershipDto } from '@dto'
 const Soon = dynamic(() => import('./components/Soon'))
 const FeedbackAdd = dynamic(() => import('./components/FeedbackAdd'))
 
-export interface NotAddedProps {
+interface NotAddedProps {
   goal: GoalDto
   forTomorrow: boolean
   clientOwnership: OwnershipDto

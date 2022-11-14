@@ -5,7 +5,7 @@ import AppModal from '@ui/AppModal'
 import Progress from './components/Progress'
 import ListItem from './components/ListItem'
 
-export interface ModalCharacteristicProps {
+interface ModalCharacteristicProps {
   name: MainCharacteristicName
   value: number
   onClose: () => void

@@ -4,7 +4,7 @@ import { PhotoDto } from '@dto'
 import GallerySimple from '../GallerySimple'
 import { getPhotosWithSource } from './helper'
 
-export interface GalleryViewerProps {
+interface GalleryViewerProps {
   photos: PhotoDto[]
 }
 

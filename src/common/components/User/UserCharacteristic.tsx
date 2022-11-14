@@ -10,7 +10,7 @@ const AppInView = dynamic(() => import('@ui/AppInView'))
 
 const CHARACTERISTICS = [...MAIN_CHARACTERISTICS, SecondCharacteristicName.Completed]
 
-export interface UserCharacteristicProps {
+interface UserCharacteristicProps {
   user: UserDto
   inView?: boolean
   menu?: JSX.Element

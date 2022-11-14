@@ -9,7 +9,7 @@ import Loader from './components/Loader'
 const EmptyList = dynamic(() => import('./components/EmptyList'))
 const UserList = dynamic(() => import('./components/UserList'))
 
-export interface ModalFollowersProps {
+interface ModalFollowersProps {
   user: UserDetailDto
   name: SecondCharacteristicName.Followers | SecondCharacteristicName.Following
   onClose: () => void

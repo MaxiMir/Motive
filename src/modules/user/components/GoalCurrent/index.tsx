@@ -27,7 +27,7 @@ const OwnerControl = dynamic(() => import('./components/OwnerControl'))
 
 const CHARACTERISTICS: GoalCharacteristicName[] = [...MAIN_CHARACTERISTICS, 'members']
 
-export interface GoalCurrentProps {
+interface GoalCurrentProps {
   goal: GoalDto
   href: string
   userId: number

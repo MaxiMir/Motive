@@ -9,7 +9,7 @@ import AppModal from '@ui/AppModal'
 import AppInput from '@ui/AppInput'
 import useForm from './hook'
 
-export interface ModalEditMessageProps {
+interface ModalEditMessageProps {
   message: MessageDto
   onClose: () => void
 }

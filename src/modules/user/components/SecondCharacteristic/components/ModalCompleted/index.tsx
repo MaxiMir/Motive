@@ -9,7 +9,7 @@ const Loader = dynamic(() => import('./components/Loader'))
 const EmptyList = dynamic(() => import('./components/EmptyList'))
 const ConfirmationsList = dynamic(() => import('./components/ConfirmationsList'))
 
-export interface ModalCompletedProps {
+interface ModalCompletedProps {
   user: UserDetailDto
   onClose: () => void
 }

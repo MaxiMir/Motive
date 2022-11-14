@@ -5,7 +5,7 @@ import { Device } from '@helpers/dom'
 const StatusHub = dynamic(() => import('./components/StatusHub'))
 const Plug = dynamic(() => import('./components/Plug'))
 
-export interface AvatarStatusProps {
+interface AvatarStatusProps {
   src?: string | null
   name: string
   online?: boolean | null

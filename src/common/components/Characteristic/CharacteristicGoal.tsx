@@ -4,7 +4,7 @@ import { GoalCharacteristicName } from '@dto'
 import { numberToShort } from '@helpers/prepare'
 import AppEmoji from '@ui/AppEmoji'
 
-export interface CharacteristicGoalProps {
+interface CharacteristicGoalProps {
   name: GoalCharacteristicName | 'runningDays'
   value: number
 }

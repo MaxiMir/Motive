@@ -8,7 +8,7 @@ import AppEmoji from '@ui/AppEmoji'
 const ModalCompletion = dynamic(() => import('@components/Modal/ModalCompletion'))
 const ModalTasks = dynamic(() => import('./components/ModalTasks'))
 
-export interface OwnerControlProps {
+interface OwnerControlProps {
   goal: GoalDto
 }
 

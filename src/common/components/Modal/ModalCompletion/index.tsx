@@ -19,7 +19,7 @@ import useForm from './hook'
 
 const Alert = dynamic(() => import('@mui/material/Alert'))
 
-export interface ModalCompletionProps {
+interface ModalCompletionProps {
   goal: GoalDto
   onClose: () => void
 }

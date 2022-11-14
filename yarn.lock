@@ -1647,20 +1647,6 @@
   dependencies:
     "@babel/runtime" "^7.19.0"
 
-"@mui/lab@^5.0.0-alpha.107":
-  version "5.0.0-alpha.107"
-  resolved "https://registry.yarnpkg.com/@mui/lab/-/lab-5.0.0-alpha.107.tgz#1443c3c9a5abd7ada96df73e216dea289701c391"
-  integrity sha512-5lq0tSewkjUHBAuuAVikifM+IeOk33jcMSDgS5ouwi0VDXZjgWij+V/Nhz/8vIyBKwYv1bvhQGyDiUcPiCLX+Q==
-  dependencies:
-    "@babel/runtime" "^7.19.0"
-    "@mui/base" "5.0.0-alpha.105"
-    "@mui/system" "^5.10.13"
-    "@mui/types" "^7.2.0"
-    "@mui/utils" "^5.10.9"
-    clsx "^1.2.1"
-    prop-types "^15.8.1"
-    react-is "^18.2.0"
-
 "@mui/material@^5.10.13":
   version "5.10.13"
   resolved "https://registry.yarnpkg.com/@mui/material/-/material-5.10.13.tgz#49c505ed99bc97e573d0cc15bec074b080aacee1"
@@ -1780,11 +1766,6 @@
   integrity sha512-W+fIIIaFU7Kct7Okx91C7XDRGolv/w2RUenX2yZFeeNVcuVzDIKUcNmckrYbYcwrNQUSXmtwrs3g8xwast0YtA==
   dependencies:
     glob "7.1.7"
-
-"@next/font@^13.0.3":
-  version "13.0.3"
-  resolved "https://registry.yarnpkg.com/@next/font/-/font-13.0.3.tgz#e483422262e33d0f195685dbaf4399576ecfe719"
-  integrity sha512-J3bZooNyhzhRshEJZlc4Kagfx6f8LQkPdCsP0nZm63dAUaoeMaQRidFFhbL68WZ3S5XleVfpGYypZuBSyJqYtw==
 
 "@next/swc-android-arm-eabi@13.0.2":
   version "13.0.2"
@@ -3911,11 +3892,6 @@ form-data@^4.0.0:
     asynckit "^0.4.0"
     combined-stream "^1.0.8"
     mime-types "^2.1.12"
-
-formik-material-ui-pickers@^1.0.0-alpha.1:
-  version "1.0.0-alpha.1"
-  resolved "https://registry.yarnpkg.com/formik-material-ui-pickers/-/formik-material-ui-pickers-1.0.0-alpha.1.tgz#84da09ccb9c1b0d8842a8af16a432eed4de63516"
-  integrity sha512-DKZWGX9FLOkW9V+tXCrzt8P2XWPm5148Ygo8IfzzG46vFlTzxHZtlEfH45W2rGfRbtzrC9ZAd8UVXh3HgL3Ixg==
 
 formik-mui@^5.0.0-alpha.0:
   version "5.0.0-alpha.0"

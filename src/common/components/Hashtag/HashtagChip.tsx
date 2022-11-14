@@ -2,7 +2,7 @@ import { useRouter } from 'next/router'
 import { Chip } from '@mui/material'
 import { getHashtagHref } from './helper'
 
-export interface HashtagChipProps {
+interface HashtagChipProps {
   name: string
 }
 

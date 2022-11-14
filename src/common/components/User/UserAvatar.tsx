@@ -1,7 +1,7 @@
 import Link from 'next/link'
 import AvatarStatus from '@components/Avatar/AvatarStatus'
 
-export interface UserAvatarProps {
+interface UserAvatarProps {
   name: string
   avatar?: string | null
   href: string

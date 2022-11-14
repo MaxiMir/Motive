@@ -11,7 +11,7 @@ const Provider = dynamic(() => import('./components/Provider'))
 
 type Providers = Record<LiteralUnion<BuiltInProviderType, string>, ClientSafeProvider> | null
 
-export interface ModalSignInProps {
+interface ModalSignInProps {
   options: SignInOptions
   onClose: () => void
 }

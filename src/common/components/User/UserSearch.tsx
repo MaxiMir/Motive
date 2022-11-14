@@ -5,7 +5,7 @@ import { getUserHref } from '@href'
 import AvatarStatus from '@components/Avatar/AvatarStatus'
 import CharacteristicUser from '@components/Characteristic/CharacteristicUser'
 
-export interface UserSearchProps {
+interface UserSearchProps {
   user: UserDto
 }
 

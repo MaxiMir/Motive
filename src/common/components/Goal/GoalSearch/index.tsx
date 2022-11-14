@@ -4,7 +4,7 @@ import { getUserHref } from '@href'
 import CharacteristicGoal from '@components/Characteristic/CharacteristicGoal'
 import UserAvatar from '@components/User/UserAvatar'
 
-export interface GoalSearchProps {
+interface GoalSearchProps {
   goal: GoalDto
 }
 

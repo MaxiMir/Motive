@@ -26,7 +26,7 @@ import TaskField from '@components/Task/TaskField'
 import OldPittRules from '@components/OldPitt/OldPittRules'
 import useForm from './hook'
 
-export interface ModalTasksProps {
+interface ModalTasksProps {
   goal: GoalDto
   onClose: () => void
 }

@@ -4,7 +4,7 @@ import { Button, Chip } from '@mui/material'
 import { styled } from '@mui/system'
 import AppEmoji from '@ui/AppEmoji'
 
-export interface VideoInputProps {
+interface VideoInputProps {
   disabled: boolean
   onSelect: (video: File) => void
 }

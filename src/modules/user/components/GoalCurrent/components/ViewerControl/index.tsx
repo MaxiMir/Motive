@@ -8,7 +8,7 @@ import { checkOnCompletion } from './helper'
 const Join = dynamic(() => import('./components/Join'))
 const Completion = dynamic(() => import('./components/Completion'))
 
-export interface ViewerProps {
+interface ViewerProps {
   goal: GoalDto
   owner: UserBaseDto
   forTomorrow: boolean

@@ -2,7 +2,7 @@ import { Box, Button } from '@mui/material'
 import { numberToShort } from '@helpers/prepare'
 import AppEmoji, { AppEmojiName } from '@ui/AppEmoji'
 
-export interface ActionGoalProps {
+interface ActionGoalProps {
   name: AppEmojiName
   title: string
   count?: number

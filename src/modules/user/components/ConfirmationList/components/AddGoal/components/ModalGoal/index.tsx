@@ -27,7 +27,7 @@ import useForm from './hook'
 
 const AppIconButton = dynamic(() => import('@ui/AppIconButton'))
 
-export interface ModalGoalProps {
+interface ModalGoalProps {
   onClose: () => void
 }
 

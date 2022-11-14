@@ -7,7 +7,7 @@ import { AppEmojiName } from './AppEmoji'
 
 const AppEmoji = dynamic(() => import('./AppEmoji'))
 
-export interface AppSnackbarProps {
+interface AppSnackbarProps {
   severity: AlertProps['severity']
   icon?: AppEmojiName
   action?: SnackbarProps['action']

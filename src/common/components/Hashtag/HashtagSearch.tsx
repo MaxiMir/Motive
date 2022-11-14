@@ -3,7 +3,7 @@ import { Box, Button, Typography } from '@mui/material'
 import { numberToShort } from '@helpers/prepare'
 import { getHashtagHref } from './helper'
 
-export interface HashtagSearchProps {
+interface HashtagSearchProps {
   name: string
   gradient?: string
   views: number

@@ -17,7 +17,7 @@ const Repeat = dynamic(() => import('./components/Repeat'))
 
 const CHARACTERISTICS: GoalCharacteristicName[] = [...MAIN_CHARACTERISTICS, 'members']
 
-export interface GoalCompletedProps {
+interface GoalCompletedProps {
   userId: number
   clientMembership: MemberDto[]
   confirmation: ConfirmationDto

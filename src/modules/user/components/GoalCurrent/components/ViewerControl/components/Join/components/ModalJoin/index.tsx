@@ -11,7 +11,7 @@ import AppAccordion from '@ui/AppAccordion'
 import AppDecorEmoji from '@ui/AppDecorEmoji'
 import useForm from './hook'
 
-export interface ModalJoinProps {
+interface ModalJoinProps {
   goal: GoalDto
   onClose: () => void
 }

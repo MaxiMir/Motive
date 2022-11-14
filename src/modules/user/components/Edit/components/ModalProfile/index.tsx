@@ -13,7 +13,7 @@ import useForm from './hook'
 
 const Alert = dynamic(() => import('@mui/material/Alert'))
 
-export interface ModalProfileProps {
+interface ModalProfileProps {
   user: UserBaseDto
   onClose: () => void
 }

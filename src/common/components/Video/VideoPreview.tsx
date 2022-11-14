@@ -3,7 +3,7 @@ import { Box, IconButton } from '@mui/material'
 import AppIcon from '@ui/AppIcon'
 import AppPlayer from '@ui/AppPlayer'
 
-export interface VideoPreviewProps {
+interface VideoPreviewProps {
   video: Blob | MediaSource
   disabled: boolean
   onRemove: () => void

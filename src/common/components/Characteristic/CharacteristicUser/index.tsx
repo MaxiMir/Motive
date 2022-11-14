@@ -6,7 +6,7 @@ import AppEmoji from '@ui/AppEmoji'
 
 const Level = dynamic(() => import('./components/Level'))
 
-export interface CharacteristicUserProps {
+interface CharacteristicUserProps {
   name: UserCharacteristicName
   value: number
 }

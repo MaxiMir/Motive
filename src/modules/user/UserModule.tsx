@@ -19,7 +19,7 @@ const Edit = dynamic(() => import('./components/Edit'))
 const Motto = dynamic(() => import('./components/Motto'))
 const Location = dynamic(() => import('./components/Location'))
 
-export interface UserModuleProps {
+interface UserModuleProps {
   user: UserDetailDto
 }
 

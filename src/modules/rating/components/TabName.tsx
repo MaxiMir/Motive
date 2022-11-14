@@ -3,7 +3,7 @@ import { Box, Typography } from '@mui/material'
 import { MainCharacteristicName } from '@dto'
 import AppEmoji, { AppEmojiName } from '@ui/AppEmoji'
 
-export interface TabNameProps {
+interface TabNameProps {
   name: MainCharacteristicName
   emoji: AppEmojiName
 }

@@ -5,7 +5,7 @@ import { getUserHref } from '@href'
 import AppEmoji from '@ui/AppEmoji'
 import UserAvatar from './UserAvatar'
 
-export interface UserRatingProps {
+interface UserRatingProps {
   user: UserDto
   characteristicName: UserCharacteristicName
   index: number

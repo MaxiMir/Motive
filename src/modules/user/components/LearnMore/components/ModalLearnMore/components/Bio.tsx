@@ -1,4 +1,3 @@
-import { useIntl } from 'react-intl'
 import { Box } from '@mui/material'
 import AppMarkdown from '@ui/AppMarkdown'
 import AppIcon from '@ui/AppIcon'
@@ -8,14 +7,10 @@ interface BioProps {
 }
 
 export default function Bio({ bio }: BioProps) {
-  const { formatMessage } = useIntl()
-  const bioText = formatMessage({ id: 'common.bio' })
-
   return (
     <>
       <Box display="flex" alignItems="center" gap={1}>
-        <AppIcon name="short_text" sx={{ color: 'zen.sand' }} />
-        {bioText}:
+        <AppIcon name="short_text" sx={{ color: 'zen.sand' }} />:
       </Box>
       <AppMarkdown text={bio} />
     </>

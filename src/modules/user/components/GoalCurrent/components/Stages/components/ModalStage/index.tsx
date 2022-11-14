@@ -7,7 +7,7 @@ import AppModal from '@ui/AppModal'
 import AppFlyIcon from '@ui/AppFlyIcon'
 import { useSendStage } from './hook'
 
-export interface ModalStageProps {
+interface ModalStageProps {
   goal: GoalDto
   onClose: () => void
 }

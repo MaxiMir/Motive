@@ -6,7 +6,7 @@ import AppIcon from '@ui/AppIcon'
 const LocalImage = dynamic(() => import('./components/LocalImage'))
 const AppImage = dynamic(() => import('@ui/AppImage'))
 
-export interface PhotoButtonProps {
+interface PhotoButtonProps {
   image: File | string
   disabled: boolean
   onClick: () => void

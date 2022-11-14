@@ -8,7 +8,7 @@ export interface Story {
   duration?: number
 }
 
-export interface SlideProps {
+interface SlideProps {
   story: Story
 }
 

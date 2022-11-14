@@ -15,7 +15,7 @@ import VideoPreview from '@components/Video/VideoPreview'
 import VideoInput from '@components/Video/VideoInput'
 import useForm from './hook'
 
-export interface ModalFeedbackProps {
+interface ModalFeedbackProps {
   goal: GoalDto
   onClose: () => void
 }

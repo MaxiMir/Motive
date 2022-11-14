@@ -11,7 +11,7 @@ import useForm from './hook'
 const CircularProgress = dynamic(() => import('@mui/material/CircularProgress'))
 const AppIcon = dynamic(() => import('@ui/AppIcon'))
 
-export interface UserInputProps {
+interface UserInputProps {
   dayId: number
   user: ClientDto | UserBaseDto
   type: MessageType

@@ -1,11 +1,8 @@
-import dynamic from 'next/dynamic'
 import { useIntl } from 'react-intl'
 import { Box } from '@mui/material'
 import { UserDetailDto } from '@dto'
 import AppModal from '@ui/AppModal'
-import AppIcon from '@ui/AppIcon'
-
-const Bio = dynamic(() => import('./components/Bio'))
+import InfoRow from './components/InfoRow'
 
 interface ModalLearnMoreProps {
   user: UserDetailDto
@@ -13,17 +10,16 @@ interface ModalLearnMoreProps {
 }
 
 export default function ModalLearnMore({ user, onClose }: ModalLearnMoreProps) {
-  const { nickname, bio } = user
+  const { nickname, bio, motto } = user
   const { formatMessage } = useIntl()
   const title = formatMessage({ id: 'common.learn-more' })
 
   return (
     <AppModal title={title} maxWidth="xs" onClose={onClose}>
       <Box display="flex" flexDirection="column" gap={1}>
-        <Box display="flex" alignItems="center" gap={1}>
-          <AppIcon name="alternate_email" sx={{ color: 'zen.sand' }} />: {nickname}
-        </Box>
-        {bio && <Bio bio={bio} />}
+        {motto && <InfoRow icon="alternate_email" text={motto} />}
+        <InfoRow icon="alternate_email" text={nickname} />
+        {bio && <InfoRow icon="short_text" text={bio} />}
       </Box>
     </AppModal>
   )

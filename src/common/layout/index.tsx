@@ -12,7 +12,7 @@ interface LayoutProps {
   title?: string
   description?: string
   keywords?: string
-  type?: string
+  type?: 'website' | 'profile'
   image?: string
   canonical?: string
   children?: ReactNode
@@ -32,6 +32,7 @@ export default function Layout({
   const { asPath } = useRouter()
   const localeHrefList = getLocaleHrefList(asPath)
   const url = localeHrefList[locale]
+  const showNickname = type === 'profile'
 
   return (
     <>
@@ -68,7 +69,7 @@ export default function Layout({
         <link rel="alternate" href={localeHrefList.uk} hrefLang="uk" />
         <link rel="alternate" href={localeHrefList.en} hrefLang="x-default" />
       </Head>
-      <Header authenticated={!!client} />
+      <Header authenticated={!!client} nickname={showNickname} />
       <Box
         component="main"
         id="main"

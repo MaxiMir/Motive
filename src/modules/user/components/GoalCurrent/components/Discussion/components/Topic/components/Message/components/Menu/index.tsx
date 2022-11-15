@@ -14,7 +14,7 @@ interface MenuProps {
 export default function Menu({ message }: MenuProps) {
   const { formatMessage } = useIntl()
   const [anchorEl, setAnchorEl] = useState<HTMLElement | null>(null)
-  const [withModal, setWithModal] = useState(false)
+  const [open, setOpen] = useState(false)
   const title = formatMessage({ id: 'page.user.message-menu.title' })
   const ariaControls = formatMessage({ id: 'page.user.message-menu.aria' })
 
@@ -23,15 +23,15 @@ export default function Menu({ message }: MenuProps) {
   const onClose = () => setAnchorEl(null)
 
   const toggleModal = () => {
-    setWithModal(!withModal)
+    setOpen(!open)
     onClose()
   }
 
   return (
     <>
-      <AppMenuButton color="primary" ariaControls={ariaControls} title={title} compact onClick={onOpen} />
+      <AppMenuButton title={title} color="primary" ariaControls={ariaControls} onClick={onOpen} />
       {anchorEl && <MenuList anchorEl={anchorEl} message={message} onOpenModal={toggleModal} onClose={onClose} />}
-      {withModal && <ModalEditMessage message={message} onClose={toggleModal} />}
+      {open && <ModalEditMessage message={message} onClose={toggleModal} />}
     </>
   )
 }

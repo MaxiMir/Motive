@@ -22,14 +22,7 @@ export default function MainCharacteristic({ name, value }: MainCharacteristicPr
   const lvlText = formatMessage({ id: 'common.lvl-short' })
   const header = formatMessage({ id: `common.${name}` })
 
-  const onClick = () => {
-    switch (name) {
-      case 'motivation':
-      case 'creativity':
-      case 'support':
-        setModal(name)
-    }
-  }
+  const onClick = () => setModal(name)
 
   const onClose = () => setModal(undefined)
 

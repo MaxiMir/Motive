@@ -24,7 +24,13 @@ export default function Info({ user }: InfoProps) {
         variant="outlined"
         size="small"
         startIcon={<AppIcon name="info" />}
-        sx={{ flex: 1, textTransform: 'none' }}
+        sx={{
+          flex: 1,
+          maxWidth: {
+            md: 200,
+          },
+          textTransform: 'none',
+        }}
         onClick={toggle}
       >
         {learnMoreText}

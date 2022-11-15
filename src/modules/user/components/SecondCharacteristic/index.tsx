@@ -5,11 +5,11 @@ import { Box, Button, Typography } from '@mui/material'
 import { SecondCharacteristicName, UserDetailDto } from '@dto'
 import { numberToShort } from '@helpers/prepare'
 
-const { Completed, Abandoned, Followers, Following } = SecondCharacteristicName
-
 const ModalSubscription = dynamic(() => import('./components/ModalSubscription'))
 const ModalCompleted = dynamic(() => import('./components/ModalCompleted'))
 const ModalAbandoned = dynamic(() => import('./components/ModalAbandoned'))
+
+const { Completed, Abandoned, Followers, Following } = SecondCharacteristicName
 
 interface CharacteristicProps {
   user: UserDetailDto
@@ -23,26 +23,44 @@ export default function SecondCharacteristic({ user, name, value }: Characterist
   const buttonText = formatMessage({ id: `common.${name}-accusative` }).toLowerCase()
   const shortValue = numberToShort(value)
 
-  const onClick = () => {
-    switch (name) {
-      case 'followers':
-      case 'following':
-      case 'completed':
-      case 'abandoned':
-        setModal(name)
-    }
-  }
+  const onClick = () => setModal(name)
 
   const onClose = () => setModal(undefined)
 
   return (
     <>
-      <Button size="small" sx={{ color: 'white' }} onClick={onClick}>
-        <Box display="flex" alignItems="baseline" gap={0.5}>
+      <Button size="small" sx={{ flex: 1 }} onClick={onClick}>
+        <Box
+          display="flex"
+          sx={{
+            color: 'white',
+            gap: {
+              md: 0.5,
+            },
+            alignItems: {
+              xs: 'center',
+              md: 'baseline',
+            },
+            flexDirection: {
+              xs: 'column',
+              md: 'row',
+            },
+          }}
+        >
           <Typography variant="h6" component="b">
             {shortValue}
           </Typography>
-          <Typography sx={{ fontSize: '0.75rem', textTransform: 'none' }}>{buttonText}</Typography>
+          <Typography
+            sx={{
+              textTransform: 'none',
+              fontSize: {
+                xs: '0.75rem',
+                md: '0.8125rem',
+              },
+            }}
+          >
+            {buttonText}
+          </Typography>
         </Box>
       </Button>
       {modal === Completed && <ModalCompleted user={user} onClose={onClose} />}

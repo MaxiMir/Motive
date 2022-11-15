@@ -10,14 +10,12 @@ import SecondCharacteristic from './components/SecondCharacteristic'
 import EmptyGoals from './components/EmptyGoals'
 import Following from './components/Following'
 import MainCharacteristic from './components/MainCharacteristic'
-import ShareUser from './components/ShareUser'
 import Info from './components/Info'
+import Menu from './components/Menu'
 
 const ConfirmationList = dynamic(() => import('./components/ConfirmationList'))
 const GoalCurrent = dynamic(() => import('./components/GoalCurrent'))
-const Edit = dynamic(() => import('./components/Edit'))
 const Motto = dynamic(() => import('./components/Motto'))
-const Location = dynamic(() => import('./components/Location'))
 
 interface UserModuleProps {
   user: UserDetailDto
@@ -39,7 +37,6 @@ export function UserModule({ user }: UserModuleProps) {
     lastSeen,
     device,
     motto,
-    location,
   } = user
   const client = useClient()
   const href = getUserHref(nickname)
@@ -49,7 +46,7 @@ export function UserModule({ user }: UserModuleProps) {
 
   return (
     <AppContainer>
-      {clientPage && <Edit user={user} />}
+      <Menu user={user} href={href} clientPage={clientPage} />
       <Box
         display="flex"
         flexWrap="wrap"
@@ -57,8 +54,9 @@ export function UserModule({ user }: UserModuleProps) {
         sx={{
           gap: {
             xs: 2,
-            md: 4,
+            md: 3,
           },
+          alignItems: 'flex-end',
           justifyContent: {
             xs: 'center',
             md: 'flex-start',
@@ -69,7 +67,6 @@ export function UserModule({ user }: UserModuleProps) {
         <Box
           display="flex"
           flexDirection="column"
-          justifyContent="space-between"
           gap={1}
           sx={{
             alignItems: {
@@ -78,12 +75,23 @@ export function UserModule({ user }: UserModuleProps) {
             },
           }}
         >
-          <Typography variant="h5" component="h1">
-            {name}
-          </Typography>
-          {motto && <Motto motto={motto} />}
-          {location && <Location location={location} />}
-          <Box display="flex" flexWrap="wrap" justifyContent="space-between" gap={1}>
+          <Box
+            display="flex"
+            flexDirection="column"
+            gap={0.5}
+            sx={{
+              alignItems: {
+                xs: 'center',
+                md: 'flex-start',
+              },
+            }}
+          >
+            <Typography variant="h5" component="h1">
+              {name}
+            </Typography>
+            {motto && <Motto motto={motto} />}
+          </Box>
+          <Box display="flex" flexWrap="wrap" justifyContent="space-between" gap={2}>
             {SECOND_CHARACTERISTICS.map((characteristicName) => (
               <SecondCharacteristic
                 user={user}
@@ -93,21 +101,9 @@ export function UserModule({ user }: UserModuleProps) {
               />
             ))}
           </Box>
-          <Box
-            display="flex"
-            flexWrap="wrap"
-            my={1}
-            width="100%"
-            sx={{
-              gap: {
-                xs: 2,
-                md: 1,
-              },
-            }}
-          >
+          <Box display="flex" flexWrap="wrap" my={1} width="100%" gap={2}>
             {!clientPage && <Following id={user.id} following={following} />}
             <Info user={user} />
-            <ShareUser href={href} title={name} />
           </Box>
         </Box>
       </Box>

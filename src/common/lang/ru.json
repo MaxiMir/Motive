@@ -300,5 +300,6 @@
   "common.location": "Город",
   "common.bio": "Краткая информация",
   "common.nickname": "Никнейм",
-  "common.info": "Информация"
+  "common.info": "Информация",
+  "common.menu": "меню"
 }

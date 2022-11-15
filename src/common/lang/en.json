@@ -299,5 +299,6 @@
   "common.location": "Location",
   "common.bio": "Bio",
   "common.nickname": "Nickname",
-  "common.info": "Info"
+  "common.info": "Info",
+  "common.menu": "menu"
 }

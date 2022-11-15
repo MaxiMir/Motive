@@ -53,7 +53,7 @@ export default function AppModal({ title, actions, maxWidth, blur = true, childr
         <AppIcon name="close" />
       </IconButton>
       <AppScrollbar>
-        <DialogContent sx={{ padding: '12px 24px 24px !important' }}>{children}</DialogContent>
+        <DialogContent sx={{ padding: '12px 24px 24px !important', minHeight: 150 }}>{children}</DialogContent>
       </AppScrollbar>
       {actions && (
         <DialogActions>

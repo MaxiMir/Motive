@@ -10,7 +10,7 @@ interface ModalInfoProps {
 }
 
 export default function ModalInfo({ user, onClose }: ModalInfoProps) {
-  const { nickname, bio, motto } = user
+  const { nickname, bio, motto, location } = user
   const { formatMessage } = useIntl()
   const title = formatMessage({ id: 'common.info' })
 
@@ -19,6 +19,7 @@ export default function ModalInfo({ user, onClose }: ModalInfoProps) {
       <Box display="flex" flexDirection="column" gap={1}>
         {motto && <InfoRow icon="short_text" text={motto} />}
         <InfoRow icon="alternate_email" text={nickname} />
+        {location && <InfoRow icon="location_on" text={location} />}
         {bio && <InfoRow icon="self_improvement" text={bio} />}
       </Box>
     </AppModal>

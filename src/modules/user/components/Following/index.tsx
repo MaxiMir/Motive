@@ -21,12 +21,9 @@ export default function Following({ id, following }: FollowingProps) {
       size="small"
       startIcon={<AppIcon name={`person_${operation}`} />}
       sx={{
+        flex: 1,
         filter: following ? 'grayscale(0.6)' : undefined,
         textTransform: 'none',
-        width: {
-          xs: '100%',
-          md: 'initial',
-        },
       }}
       onClick={setFollowing}
     >

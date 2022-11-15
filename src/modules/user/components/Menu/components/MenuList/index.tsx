@@ -21,13 +21,18 @@ export default function MenuList({ anchorEl, user, clientPage, onShare, onClose 
   const shareText = formatMessage({ id: 'common.share' })
   const editText = !clientPage ? '' : formatMessage({ id: 'common.edit' })
 
-  const toggleModal = () => setOpen(!open)
+  const onOpenEdit = () => setOpen(true)
+
+  const onCloseEdit = () => {
+    setOpen(false)
+    onClose()
+  }
 
   return (
     <>
       <Menu id="user-edit-menu" anchorEl={anchorEl} open onClose={onClose}>
         {clientPage && (
-          <MenuItem onClick={toggleModal}>
+          <MenuItem onClick={onOpenEdit}>
             <AppMenuItemContent icon="edit" text={editText} />
           </MenuItem>
         )}
@@ -35,7 +40,7 @@ export default function MenuList({ anchorEl, user, clientPage, onShare, onClose 
           <AppMenuItemContent icon="share" text={shareText} />
         </MenuItem>
       </Menu>
-      {open && <ModalProfile user={user} onClose={toggleModal} />}
+      {open && <ModalProfile user={user} onClose={onCloseEdit} />}
     </>
   )
 }

@@ -46,15 +46,15 @@ export default function ModalSettings({ onClose }: ModalLanguageProps) {
             aria-label={languageHeader}
             onChange={onChangeLocale}
           >
-            <GroupButton value={Locale.En}>
+            <GroupButton value={Locale.En} size="small">
               <AppEmoji name="en" />
               <Box component="span">Eng</Box>
             </GroupButton>
-            <GroupButton value={Locale.Ru}>
+            <GroupButton value={Locale.Ru} size="small">
               <AppEmoji name="ru" />
               <Box component="span">Рус</Box>
             </GroupButton>
-            <GroupButton value={Locale.Uk}>
+            <GroupButton value={Locale.Uk} size="small">
               <AppEmoji name="uk" /> Укр
             </GroupButton>
           </ToggleButtonGroup>
@@ -64,13 +64,13 @@ export default function ModalSettings({ onClose }: ModalLanguageProps) {
             {modeHeader}:
           </Header>
           <ToggleButtonGroup color="warning" value={mode} exclusive aria-label={modeHeader} onChange={onChangeMode}>
-            <GroupButton value="light" disabled>
+            <GroupButton value="light" size="small" disabled>
               <AppEmoji name="light" /> {lightText}
             </GroupButton>
-            <GroupButton value="system" disabled>
+            <GroupButton value="system" size="small" disabled>
               <AppEmoji name="system" /> {systemText}
             </GroupButton>
-            <GroupButton value="dark" disabled>
+            <GroupButton value="dark" size="small" disabled>
               <AppEmoji name="dark" /> {darkText}
             </GroupButton>
           </ToggleButtonGroup>

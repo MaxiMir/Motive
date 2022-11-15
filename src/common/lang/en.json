@@ -54,7 +54,6 @@
   "page.user.modal-characteristic.support.header": "Support points are given for",
   "page.user.modal-characteristic.support.points": "Each 🙏 put on your message in discussion",
   "page.user.modal-abandoned.header": "The number of goals eaten by Old Pitt",
-  "page.user.add-goal.name": "Create a new goal",
   "page.search.form": "Users, goals or hashtags",
   "page.user.modal-profile.title": "Edit",
   "page.user.modal-profile.profile": "profile",
@@ -299,6 +298,6 @@
   "common.motto": "Motto",
   "common.location": "Location",
   "common.bio": "Bio",
-  "common.learn-more": "Learn More",
-  "common.nickname": "Nickname"
+  "common.nickname": "Nickname",
+  "common.info": "Info"
 }

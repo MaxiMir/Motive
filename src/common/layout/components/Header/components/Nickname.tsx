@@ -18,7 +18,9 @@ export default function Nickname(): JSX.Element {
       }}
     >
       <AppIcon name="alternate_email" />
-      <Typography>{nickname}</Typography>
+      <Typography sx={{ maxWidth: 200, overflow: 'hidden', whiteSpace: 'nowrap', textOverflow: 'ellipsis' }}>
+        {nickname}
+      </Typography>
     </Box>
   )
 }

@@ -54,7 +54,6 @@
   "page.user.modal-characteristic.support.header": "Окуляри підтримки даються за",
   "page.user.modal-characteristic.support.points": "Кожен 🙏, поставлений вашому повідомленню в обговоренні",
   "page.user.modal-abandoned.header": "З'їдених Стариною Піттом цілей",
-  "page.user.add-goal.name": "Створити мету",
   "page.search.form": "Користувачі, цілі або хештеги",
   "page.user.modal-profile.title": "Редагування",
   "page.user.modal-profile.profile": "профілю",
@@ -299,6 +298,6 @@
   "common.motto": "Девіз",
   "common.location": "Місто",
   "common.bio": "Коротка інформація",
-  "common.learn-more": "Детальніше",
-  "common.nickname": "Нікнейм"
+  "common.nickname": "Нікнейм",
+  "common.info": "Інформація"
 }

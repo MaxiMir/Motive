@@ -5,16 +5,16 @@ import { Button } from '@mui/material'
 import { UserDetailDto } from '@dto'
 import AppIcon from '@ui/AppIcon'
 
-const ModalLearnMore = dynamic(() => import('./components/ModalLearnMore'))
+const ModalInfo = dynamic(() => import('./components/ModalInfo'))
 
-interface LearnMoreProps {
+interface InfoProps {
   user: UserDetailDto
 }
 
-export default function LearnMore({ user }: LearnMoreProps) {
+export default function Info({ user }: InfoProps) {
   const { formatMessage } = useIntl()
   const [open, setOpen] = useState(false)
-  const learnMoreText = formatMessage({ id: 'common.learn-more' })
+  const learnMoreText = formatMessage({ id: 'common.info' })
 
   const toggle = () => setOpen(!open)
 
@@ -24,12 +24,12 @@ export default function LearnMore({ user }: LearnMoreProps) {
         variant="outlined"
         size="small"
         startIcon={<AppIcon name="info" />}
-        sx={{ textTransform: 'none' }}
+        sx={{ flex: 1, textTransform: 'none' }}
         onClick={toggle}
       >
         {learnMoreText}
       </Button>
-      {open && <ModalLearnMore user={user} onClose={toggle} />}
+      {open && <ModalInfo user={user} onClose={toggle} />}
     </>
   )
 }

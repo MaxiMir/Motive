@@ -54,7 +54,6 @@
   "page.user.modal-characteristic.support.header": "Очки поддержки даются за",
   "page.user.modal-characteristic.support.points": "Каждый 🙏 поставленный вашему сообщению в обсуждении",
   "page.user.modal-abandoned.header": "Cъеденных Стариной Питтом целей",
-  "page.user.add-goal.name": "Создать цель",
   "page.search.form": "Пользователи, цели или хэштеги",
   "page.user.modal-profile.title": "Редактирование",
   "page.user.modal-profile.profile": "профиля",
@@ -300,6 +299,6 @@
   "common.motto": "Девиз",
   "common.location": "Город",
   "common.bio": "Краткая информация",
-  "common.learn-more": "Подробнее",
-  "common.nickname": "Никнейм"
+  "common.nickname": "Никнейм",
+  "common.info": "Информация"
 }

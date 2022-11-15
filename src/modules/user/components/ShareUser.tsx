@@ -24,7 +24,7 @@ export default function ShareUser({ title, href }: ShareUserProps) {
         variant="outlined"
         size="small"
         startIcon={<AppIcon name="share" />}
-        sx={{ textTransform: 'none' }}
+        sx={{ flex: 1, textTransform: 'none' }}
         onClick={toggle}
       >
         {shareText}

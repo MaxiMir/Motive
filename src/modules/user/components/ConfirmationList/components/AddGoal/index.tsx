@@ -9,12 +9,12 @@ const ModalGoal = dynamic(() => import('./components/ModalGoal'))
 export default function AddGoal() {
   const { formatMessage } = useIntl()
   const [open, setOpen] = useState(false)
-  const buttonText = formatMessage({ id: 'page.user.add-goal.name' })
+  const buttonText = formatMessage({ id: 'common.create' })
 
   const toggleModal = () => setOpen(!open)
 
   return (
-    <Box display="flex" flexDirection="column" alignItems="center" gap={1} mr={3}>
+    <Box display="flex" flexDirection="column" alignItems="center" width={100} gap={1} mr={1}>
       <Box
         sx={(theme) => ({
           padding: '2px',
@@ -33,7 +33,7 @@ export default function AddGoal() {
           aria-label={buttonText}
           onClick={toggleModal}
         >
-          <Box display="flex" justifyContent="center" alignItems="center" width={85} height={85}>
+          <Box display="flex" justifyContent="center" alignItems="center" width={60} height={60}>
             <AppIcon name="add" />
           </Box>
         </Button>

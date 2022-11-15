@@ -4,15 +4,15 @@ import { UserDetailDto } from '@dto'
 import AppModal from '@ui/AppModal'
 import InfoRow from './components/InfoRow'
 
-interface ModalLearnMoreProps {
+interface ModalInfoProps {
   user: UserDetailDto
   onClose: () => void
 }
 
-export default function ModalLearnMore({ user, onClose }: ModalLearnMoreProps) {
+export default function ModalInfo({ user, onClose }: ModalInfoProps) {
   const { nickname, bio, motto } = user
   const { formatMessage } = useIntl()
-  const title = formatMessage({ id: 'common.learn-more' })
+  const title = formatMessage({ id: 'common.info' })
 
   return (
     <AppModal title={title} maxWidth="xs" onClose={onClose}>

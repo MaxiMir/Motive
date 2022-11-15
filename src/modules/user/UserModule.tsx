@@ -11,7 +11,7 @@ import EmptyGoals from './components/EmptyGoals'
 import Following from './components/Following'
 import MainCharacteristic from './components/MainCharacteristic'
 import ShareUser from './components/ShareUser'
-import LearnMore from './components/LearnMore'
+import Info from './components/Info'
 
 const ConfirmationList = dynamic(() => import('./components/ConfirmationList'))
 const GoalCurrent = dynamic(() => import('./components/GoalCurrent'))
@@ -55,12 +55,9 @@ export function UserModule({ user }: UserModuleProps) {
         flexWrap="wrap"
         mb={3}
         sx={{
-          flexDirection: {
-            md: 'row',
-          },
           gap: {
             xs: 2,
-            md: 6,
+            md: 4,
           },
           justifyContent: {
             xs: 'center',
@@ -81,14 +78,12 @@ export function UserModule({ user }: UserModuleProps) {
             },
           }}
         >
-          <Box display="flex" flexDirection="column" gap={1}>
-            <Typography variant="h5" component="h1">
-              {name}
-            </Typography>
-            {motto && <Motto motto={motto} />}
-          </Box>
+          <Typography variant="h5" component="h1">
+            {name}
+          </Typography>
+          {motto && <Motto motto={motto} />}
           {location && <Location location={location} />}
-          <Box display="flex" flexWrap="wrap" justifyContent="space-between">
+          <Box display="flex" flexWrap="wrap" justifyContent="space-between" gap={1}>
             {SECOND_CHARACTERISTICS.map((characteristicName) => (
               <SecondCharacteristic
                 user={user}
@@ -98,40 +93,33 @@ export function UserModule({ user }: UserModuleProps) {
               />
             ))}
           </Box>
-          <Box display="flex" gap={2} my={1}>
+          <Box
+            display="flex"
+            flexWrap="wrap"
+            my={1}
+            width="100%"
+            sx={{
+              gap: {
+                xs: 2,
+                md: 1,
+              },
+            }}
+          >
             {!clientPage && <Following id={user.id} following={following} />}
+            <Info user={user} />
             <ShareUser href={href} title={name} />
-            <LearnMore user={user} />
           </Box>
         </Box>
       </Box>
       <DashedDivider light sx={{ mb: 3 }} />
-      <Box
-        display="flex"
-        flexWrap="wrap"
-        mb={3}
-        sx={{
-          flexDirection: {
-            xs: 'column',
-            md: 'row',
-          },
-          gap: {
-            xs: 3,
-            md: 6,
-          },
-        }}
-      >
-        <Box display="flex" flexDirection="column" justifyContent="space-between" flex={1}>
-          <Box display="flex" justifyContent="space-between">
-            {MAIN_CHARACTERISTICS.map((characteristicName) => (
-              <MainCharacteristic
-                name={characteristicName}
-                value={characteristic[characteristicName]}
-                key={characteristicName}
-              />
-            ))}
-          </Box>
-        </Box>
+      <Box display="flex" justifyContent="space-between" mb={3}>
+        {MAIN_CHARACTERISTICS.map((characteristicName) => (
+          <MainCharacteristic
+            name={characteristicName}
+            value={characteristic[characteristicName]}
+            key={characteristicName}
+          />
+        ))}
       </Box>
       <DashedDivider light sx={{ mb: 3 }} />
       {withConfirmationsList && (

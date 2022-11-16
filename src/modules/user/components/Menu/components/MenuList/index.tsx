@@ -31,14 +31,14 @@ export default function MenuList({ anchorEl, user, clientPage, onShare, onClose 
   return (
     <>
       <Menu id="user-edit-menu" anchorEl={anchorEl} open onClose={onClose}>
+        <MenuItem onClick={onShare}>
+          <AppMenuItemContent icon="share" text={shareText} />
+        </MenuItem>
         {clientPage && (
           <MenuItem onClick={onOpenEdit}>
             <AppMenuItemContent icon="edit" text={editText} />
           </MenuItem>
         )}
-        <MenuItem onClick={onShare}>
-          <AppMenuItemContent icon="share" text={shareText} />
-        </MenuItem>
       </Menu>
       {open && <ModalProfile user={user} onClose={onCloseEdit} />}
     </>

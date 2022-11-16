@@ -47,7 +47,7 @@ export default function SecondCharacteristic({ user, name, value }: Characterist
             },
           }}
         >
-          <Typography variant="h6" component="b">
+          <Typography variant="h5" component="b">
             {shortValue}
           </Typography>
           <Typography

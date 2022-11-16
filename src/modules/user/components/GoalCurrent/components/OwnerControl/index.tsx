@@ -8,6 +8,11 @@ import AppEmoji from '@ui/AppEmoji'
 const ModalCompletion = dynamic(() => import('@components/Modal/ModalCompletion'))
 const ModalTasks = dynamic(() => import('./components/ModalTasks'))
 
+enum ModalType {
+  Tasks,
+  Completion,
+}
+
 interface OwnerControlProps {
   goal: GoalDto
 }
@@ -15,7 +20,7 @@ interface OwnerControlProps {
 export default function OwnerControl({ goal }: OwnerControlProps) {
   const { stages, day } = goal
   const { formatMessage } = useIntl()
-  const [modal, setModal] = useState<'tasks' | 'completion'>()
+  const [modal, setModal] = useState<ModalType>()
   const feedbackAdded = !!goal.day.feedback
   const renderCompete = stages.length === day.stage && feedbackAdded
   const justifyContent = renderCompete ? 'space-between' : 'flex-end'
@@ -23,9 +28,9 @@ export default function OwnerControl({ goal }: OwnerControlProps) {
   const doneButtonText = formatMessage({ id: 'common.done' })
   const nextButtonText = formatMessage({ id: 'common.next' })
 
-  const onAddTasks = () => setModal('tasks')
+  const onAddTasks = () => setModal(ModalType.Tasks)
 
-  const onComplete = () => setModal('completion')
+  const onComplete = () => setModal(ModalType.Completion)
 
   const closeModal = () => setModal(undefined)
 
@@ -48,8 +53,8 @@ export default function OwnerControl({ goal }: OwnerControlProps) {
           {doneButtonText}
         </Button>
       )}
-      {modal === 'tasks' && <ModalTasks goal={goal} onClose={closeModal} />}
-      {modal === 'completion' && <ModalCompletion goal={goal} onClose={closeModal} />}
+      {modal === ModalType.Tasks && <ModalTasks goal={goal} onClose={closeModal} />}
+      {modal === ModalType.Completion && <ModalCompletion goal={goal} onClose={closeModal} />}
     </Box>
   )
 }

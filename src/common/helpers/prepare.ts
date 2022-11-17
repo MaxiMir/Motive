@@ -47,3 +47,27 @@ export const toMarkdown = (value: string): string => {
     )
     .replace(/\\n/g, '  ')
 }
+
+type TextOptions = [single: string, double: string, doubleGenitive: string]
+
+export const getWordDeclination = (number: number, textOptions: TextOptions): string => {
+  const [single, double, doubleGenitive] = textOptions
+  const numberAbs = Math.abs(number)
+  const rest = numberAbs % 100
+
+  if (rest > 10 && rest < 20) {
+    return doubleGenitive
+  }
+
+  const restFrom10 = rest % 10
+
+  if (restFrom10 === 1) {
+    return single
+  }
+
+  if (restFrom10 > 1 && restFrom10 < 5) {
+    return double
+  }
+
+  return doubleGenitive
+}

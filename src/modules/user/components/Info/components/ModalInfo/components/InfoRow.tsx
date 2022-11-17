@@ -10,7 +10,7 @@ export default function InfoRow({ icon, text }: InfoRowProps) {
   return (
     <Box display="flex" gap={1}>
       <AppIcon name={icon} sx={{ color: 'zen.sand' }} />
-      <Typography sx={{ wordBreak: 'break-all' }}>{text}</Typography>
+      <Typography>{text}</Typography>
     </Box>
   )
 }

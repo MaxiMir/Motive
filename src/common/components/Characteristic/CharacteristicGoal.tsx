@@ -1,7 +1,7 @@
 import { useIntl } from 'react-intl'
 import { Box, Typography, Tooltip } from '@mui/material'
 import { GoalCharacteristicName } from '@dto'
-import { numberToShort } from '@helpers/prepare'
+import { formatNumber } from '@helpers/intl'
 import AppEmoji from '@ui/AppEmoji'
 
 interface CharacteristicGoalProps {
@@ -12,7 +12,7 @@ interface CharacteristicGoalProps {
 export default function CharacteristicGoal({ name, value }: CharacteristicGoalProps) {
   const { formatMessage } = useIntl()
   const title = formatMessage({ id: `component.characteristic-goal.${name}` })
-  const shortValue = numberToShort(value)
+  const formattedValue = formatNumber(value)
   const color = name === 'runningDays' ? '#c07d35' : `${name}.main`
 
   return (
@@ -24,7 +24,7 @@ export default function CharacteristicGoal({ name, value }: CharacteristicGoalPr
       </Tooltip>
       <Box>
         <Typography component="p" sx={{ color }}>
-          {shortValue}
+          {formattedValue}
         </Typography>
       </Box>
     </Box>

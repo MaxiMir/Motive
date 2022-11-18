@@ -4,11 +4,10 @@ import { useMutation } from 'react-query'
 import { useIntl } from 'react-intl'
 import { MemberDto } from '@dto'
 import { TaskService } from '@services/task'
-import { toShortUserName } from '@helpers/prepare'
 import useSnackbar from '@hooks/useSnackbar'
 import useClient from '@hooks/useClient'
 import { useMutateUserPage } from '@modules/user/hook'
-import { getGoalNextState } from './helper'
+import { truncateUserName, getGoalNextState } from './helper'
 
 const Button = dynamic(() => import('@mui/material/Button'))
 
@@ -46,7 +45,7 @@ export default function useSetCompleted(
     const newRest = rest - 1
     const undoText = formatMessage({ id: 'common.undo' })
     const messagePart = formatMessage({ id: !newRest ? 'common.well-done' : 'common.do-it' })
-    const message = !newRest ? `${messagePart}, ${toShortUserName(client?.name)}!` : `${messagePart}: ${newRest}`
+    const message = !newRest ? `${messagePart}, ${truncateUserName(client?.name)}!` : `${messagePart}: ${newRest}`
 
     mutateCompleted(true)
     timerRef.current = setTimeout(() => mutate(id), 4000)

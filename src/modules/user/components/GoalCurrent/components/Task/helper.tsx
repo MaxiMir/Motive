@@ -1,6 +1,8 @@
 import produce from 'immer'
 import { UserPageDto, MemberDto } from '@dto'
 
+export const truncateUserName = (name?: string): string => (!name ? 'Master' : name.split(' ')[0])
+
 export const getGoalNextState = (
   page: UserPageDto,
   goalId: number,

@@ -3,7 +3,8 @@ import dynamic from 'next/dynamic'
 import { useIntl } from 'react-intl'
 import { Box, Button, Typography } from '@mui/material'
 import { SecondCharacteristicName, UserDetailDto } from '@dto'
-import { getWordDeclination, numberToShort } from '@helpers/prepare'
+import { formatNumber } from '@helpers/intl'
+import { getWordDeclination } from '@helpers/string'
 
 const ModalSubscription = dynamic(() => import('./components/ModalSubscription'))
 const ModalCompleted = dynamic(() => import('./components/ModalCompleted'))
@@ -23,7 +24,7 @@ export default function SecondCharacteristic({ user, name, value }: Characterist
   const singleText = formatMessage({ id: `common.${name}-single` })
   const doubleText = formatMessage({ id: `common.${name}-double` })
   const multipleGenitiveText = formatMessage({ id: `common.${name}-genitive` })
-  const shortValue = numberToShort(value)
+  const formattedValue = formatNumber(value)
   const wordDeclination = getWordDeclination(value, [singleText, doubleText, multipleGenitiveText])
   const buttonText = wordDeclination.toLowerCase()
 
@@ -52,7 +53,7 @@ export default function SecondCharacteristic({ user, name, value }: Characterist
           }}
         >
           <Typography variant="h5" component="b">
-            {shortValue}
+            {formattedValue}
           </Typography>
           <Typography
             sx={{

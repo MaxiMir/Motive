@@ -1,7 +1,7 @@
 import { ReactNode } from 'react'
 import Markdown from 'markdown-to-jsx'
 import { Box, Typography } from '@mui/material'
-import { toMarkdown } from '@helpers/prepare'
+import { toMarkdown } from '@helpers/string'
 
 interface AppMarkdownProps {
   text: string

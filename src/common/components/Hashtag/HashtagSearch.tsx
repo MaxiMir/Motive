@@ -1,6 +1,6 @@
 import { useRouter } from 'next/router'
 import { Box, Button, Typography } from '@mui/material'
-import { numberToShort } from '@helpers/prepare'
+import { formatNumber } from '@helpers/intl'
 import { getHashtagHref } from './helper'
 
 interface HashtagSearchProps {
@@ -11,7 +11,7 @@ interface HashtagSearchProps {
 
 export default function HashtagSearch({ name, gradient, views }: HashtagSearchProps) {
   const { push } = useRouter()
-  const shortViews = numberToShort(views)
+  const formattedViews = formatNumber(views)
 
   const onClick = () => {
     const href = getHashtagHref(name)
@@ -56,7 +56,7 @@ export default function HashtagSearch({ name, gradient, views }: HashtagSearchPr
         >
           <b>{name}</b>
         </Typography>
-        <Typography sx={{ opacity: 0.5 }}>{shortViews}</Typography>
+        <Typography sx={{ opacity: 0.5 }}>{formattedViews}</Typography>
       </Box>
     </Button>
   )

@@ -5,7 +5,7 @@ import { Box, Typography } from '@mui/material'
 import { MessageDto } from '@dto'
 import { getUserHref } from '@href'
 import { getDistance } from '@utils/date'
-import { numberToShort } from '@helpers/prepare'
+import { formatNumber } from '@helpers/intl'
 import { useDateFnsLocale } from '@hooks/useDateFnsLocale'
 import UserAvatar from '@components/User/UserAvatar'
 import Menu from './components/Menu'
@@ -29,7 +29,7 @@ export default function Message({ message, answerFor, supportFor, onReply }: Mes
   const fnsLocale = useDateFnsLocale()
   const dateDistance = getDistance(date, fnsLocale)
   const href = getUserHref(nickname)
-  const shortNumber = numberToShort(message.likeCount)
+  const formattedNumber = formatNumber(message.likeCount)
   const agoText = formatMessage({ id: 'common.ago' })
   const editedText = formatMessage({ id: 'common.edited' })
   const replyText = formatMessage({ id: 'common.reply' })
@@ -70,7 +70,7 @@ export default function Message({ message, answerFor, supportFor, onReply }: Mes
         <Box display="flex" alignItems="center">
           <LikeButton message={message} answerFor={answerFor} />
           <Typography variant="caption" sx={{ color: 'zen.silent' }}>
-            {shortNumber}
+            {formattedNumber}
           </Typography>
         </Box>
       </Box>

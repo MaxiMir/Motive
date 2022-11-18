@@ -1,7 +1,7 @@
 import dynamic from 'next/dynamic'
 import { Box, Typography } from '@mui/material'
 import { SECOND_CHARACTERISTICS, SecondCharacteristicName, UserCharacteristicName } from '@dto'
-import { numberToShort } from '@helpers/prepare'
+import { formatNumber } from '@helpers/intl'
 import AppEmoji from '@ui/AppEmoji'
 
 const Level = dynamic(() => import('./components/Level'))
@@ -12,7 +12,7 @@ interface CharacteristicUserProps {
 }
 
 export default function CharacteristicUser({ name, value }: CharacteristicUserProps) {
-  const shortValue = name !== SecondCharacteristicName.Followers ? Math.floor(value) : numberToShort(value)
+  const formattedValue = name !== SecondCharacteristicName.Followers ? Math.floor(value) : formatNumber(value)
   const showLevel = !(SECOND_CHARACTERISTICS as ReadonlyArray<string>).includes(name)
 
   return (
@@ -20,7 +20,7 @@ export default function CharacteristicUser({ name, value }: CharacteristicUserPr
       <AppEmoji name={name} variant="subtitle1" />
       <Box display="flex" width={35}>
         <Typography variant="h6" component="p" sx={{ color: `${name}.main` }}>
-          {shortValue}
+          {formattedValue}
           {showLevel && <Level />}
         </Typography>
       </Box>

@@ -5,7 +5,6 @@ export default function useFocus(): [MutableRefObject<HTMLInputElement | null>, 
 
   const setFocus = () => {
     const length = htmlElRef.current?.value.length || 0
-
     htmlElRef.current?.focus()
     htmlElRef.current?.setSelectionRange(length, length)
   }

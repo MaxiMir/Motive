@@ -29,7 +29,6 @@ const useSendUpdateMessage = () => {
   return useMutation<void, AxiosError, MessageDto>(({ id, text }) => TopicService.update(id, { text }), {
     onSuccess(_, updatedMessage) {
       const message = formatMessage({ id: 'common.message-updated' })
-
       queryClient.setQueryData<InfiniteData<TopicDto[]> | undefined>(
         ['discussion', updatedMessage.dayId],
         (prev) => prev && getNextState(prev, updatedMessage),

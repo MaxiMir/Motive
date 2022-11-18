@@ -46,10 +46,8 @@ export default function useSetCompleted(
     const undoText = formatMessage({ id: 'common.undo' })
     const messagePart = formatMessage({ id: !newRest ? 'common.well-done' : 'common.do-it' })
     const message = !newRest ? `${messagePart}, ${truncateUserName(client?.name)}!` : `${messagePart}: ${newRest}`
-
     mutateCompleted(true)
     timerRef.current = setTimeout(() => mutate(id), 4000)
-
     enqueueSnackbar({
       message,
       severity: 'success',

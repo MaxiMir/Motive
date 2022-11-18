@@ -48,8 +48,17 @@ export default function ConfirmationStory({ user, confirmation }: ConfirmationSt
             <AvatarStatus src={mainPhoto.src} name={user.name} size={60} />
           </Button>
         </Box>
-        <Button sx={{ padding: '4px', textTransform: 'none' }} onClick={onOpen}>
-          <Typography variant="caption" sx={{ color: 'creativity.light' }}>
+        <Button size="small" sx={{ textTransform: 'none' }} onClick={onOpen}>
+          <Typography
+            variant="caption"
+            sx={{
+              maxWidth: 95,
+              color: 'creativity.light',
+              overflow: 'hidden',
+              whiteSpace: 'nowrap',
+              textOverflow: 'ellipsis',
+            }}
+          >
             {confirmation.goal.name}
           </Typography>
         </Button>

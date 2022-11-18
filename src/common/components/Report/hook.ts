@@ -17,7 +17,6 @@ export default function useSendReport(entityId: number, type: ReportType, onSett
   const { mutate } = useMutation<void, AxiosError, CreateReportDto>(ReportService.create, {
     onSuccess() {
       const message = formatMessage({ id: 'component.report.message' })
-
       enqueueSnackbar({ message, severity: 'success', icon: 'speaker' })
     },
     onSettled,

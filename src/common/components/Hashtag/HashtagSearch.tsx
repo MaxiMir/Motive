@@ -15,7 +15,6 @@ export default function HashtagSearch({ name, gradient, views }: HashtagSearchPr
 
   const onClick = () => {
     const href = getHashtagHref(name)
-
     push(href)
   }
 

@@ -30,7 +30,6 @@ export default function useSetFollowing(userId: number, following: boolean): () 
     onSuccess(_, { add }) {
       const operation = add ? 'add' : 'remove'
       const message = formatMessage({ id: `page.user.following.message-${operation}` })
-
       enqueueSnackbar({ message, severity: 'success', icon: 'speaker' })
     },
     onError(_, _1, context) {

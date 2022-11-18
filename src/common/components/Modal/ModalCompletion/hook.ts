@@ -48,7 +48,6 @@ const useSendConfirmation = (onSuccess: () => void) => {
   return useMutation(ConfirmationService.create, {
     onSuccess() {
       const message = formatMessage({ id: 'component.modal-completion.message' })
-
       onSuccess()
       setTimeout(() => scrollToElem('main'), 0)
       setTimeout(refetch, 300)

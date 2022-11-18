@@ -3,21 +3,20 @@ import { Chip } from '@mui/material'
 import { getHashtagHref } from './helper'
 
 interface HashtagChipProps {
-  name: string
+  label: string
 }
 
-export default function HashtagChip({ name }: HashtagChipProps) {
+export default function HashtagChip({ label }: HashtagChipProps) {
   const { push } = useRouter()
 
   const onClick = () => {
-    const href = getHashtagHref(name)
-
+    const href = getHashtagHref(label)
     push(href)
   }
 
   return (
     <Chip
-      label={`#${name}`}
+      label={label}
       variant="outlined"
       color="primary"
       size="small"

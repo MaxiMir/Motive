@@ -9,7 +9,7 @@ export default function Hashtags({ hashtags }: HashtagsProps) {
   return (
     <Box display="flex" flexWrap="wrap" gap={1}>
       {hashtags?.map((hashtag) => (
-        <HashtagChip name={hashtag} key={hashtag} />
+        <HashtagChip label={hashtag} key={hashtag} />
       ))}
     </Box>
   )

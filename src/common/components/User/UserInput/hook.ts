@@ -35,7 +35,6 @@ const useSendTopic = (type: MessageType) => {
   return useMutation(TopicService.create, {
     onSuccess() {
       const message = formatMessage({ id: `page.user.user-input.message-${type}` })
-
       enqueueSnackbar({ message, severity: 'success', icon: 'speaker' })
     },
   })

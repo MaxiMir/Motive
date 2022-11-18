@@ -37,7 +37,6 @@ export const setQueryParams = (url: string, params: Record<string, string | numb
 
   Object.entries(params).forEach(([name, value]) => {
     const methodName = getInsertMethodName(searchParams, name)
-
     searchParams[methodName](name, value.toString())
   })
 

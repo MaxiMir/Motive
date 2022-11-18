@@ -23,7 +23,6 @@ export const useSendRemoveMember = (
       if (!client) return
 
       const message = formatMessage({ id: 'page.user.modal-goal.message' })
-
       queryClient.setQueriesData<UserPageDto | undefined>(
         key,
         (page) => page && getNextState(page, goalId, id, clientPage),

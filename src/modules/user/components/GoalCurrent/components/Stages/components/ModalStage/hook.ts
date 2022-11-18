@@ -15,7 +15,6 @@ export const useSendStage = (onSuccess: () => void): UseMutationResult<void, Axi
   return useMutation(GoalService.updateStage, {
     onSuccess(_, { id }) {
       const message = formatMessage({ id: 'component.modal-completion.message' })
-
       mutateGoals(getNextState(goals, id))
       onSuccess()
       enqueueSnackbar({ message, severity: 'success', icon: 'stage' })

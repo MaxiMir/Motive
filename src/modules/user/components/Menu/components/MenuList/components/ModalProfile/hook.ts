@@ -56,7 +56,6 @@ const useSendUpdateUser = () => {
     async onSuccess(user) {
       const href = getUserHref(user.nickname)
       const as = setQueryParams(href, getQueryParams())
-
       mutatePage(getNextState(page, user))
       await router.push(as, as, { shallow: true, locale })
     },

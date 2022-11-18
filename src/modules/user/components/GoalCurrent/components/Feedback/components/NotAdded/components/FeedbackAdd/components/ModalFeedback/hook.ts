@@ -44,7 +44,6 @@ const useSendFeedback = (goalId: number) => {
   return useMutation(FeedbackService.create, {
     onSuccess: (feedback) => {
       const message = formatMessage({ id: 'page.user.modal-feedback.message' })
-
       mutateGoals(getNextState(goals, goalId, feedback))
       enqueueSnackbar({ message, severity: 'success', icon: 'feedback' })
     },

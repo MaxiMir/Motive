@@ -29,12 +29,10 @@ export const useSocket = (): void => {
       },
       secure: true,
     })
-
     socket.on('notification', (notification: NotificationDto) => {
       const { id, type, details } = notification
       const message = formatMessage({ id: 'common.new-event' })
       const notificationSupport = 'Notification' in window
-
       enqueueSnackbar({ message, severity: 'success', icon: 'notification' })
       queryClient.invalidateQueries('notifications')
 
@@ -48,13 +46,11 @@ export const useSocket = (): void => {
         const tag = id.toString()
         const body = formatMessage({ id: `component.notification.${type}` })
         const notificator = new Notification(name, { tag, body, icon })
-
         notificator.addEventListener('click', () => {
           push(notificationHref)
         })
       })
     })
-
     return () => {
       socket.close()
     }

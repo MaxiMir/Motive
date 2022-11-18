@@ -6,7 +6,6 @@ export const useSlowClose = (onClose: () => void): [boolean, () => void] => {
 
   const onCloseCombine = () => {
     timerRef.current = setTimeout(onClose, 300)
-
     setClosing(true)
   }
 

@@ -76,7 +76,7 @@ export default function Menu({ title, url, onCopyEnd, onCopyError, onClose }: Me
         <List>
           {shareItems.map(({ text, Icon, onClick }) => (
             <ListItem button sx={{ height: 65 }} key={text} onClick={onClick}>
-              <Box display="flex" alignItems="center" sx={{ width: 240, margin: '0 auto' }}>
+              <Box display="flex" alignItems="center" sx={{ width: 240, marginInline: 'auto' }}>
                 <ListItemIcon>
                   <Icon color="secondary" />
                 </ListItemIcon>

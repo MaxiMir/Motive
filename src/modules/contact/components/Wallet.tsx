@@ -1,7 +1,7 @@
 import Image from 'next/image'
 import { useIntl } from 'react-intl'
 import { Box, Typography } from '@mui/material'
-import { copyHandler } from '@helpers/dom'
+import { copyHandler } from '@helpers/window'
 import useSnackbar from '@hooks/useSnackbar'
 import AppIconButton from '@ui/AppIconButton'
 

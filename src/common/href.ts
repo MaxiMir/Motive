@@ -19,8 +19,9 @@ export const enum HashMark {
   Discussion = 'discussion',
 }
 
-export const getImageSrc = (src: string): string =>
-  src.includes('https://') ? src : process.env.NEXT_PUBLIC_APP_URL + src
+export const getImageSrc = (src: string): string => {
+  return src.includes('https://') ? src : process.env.NEXT_PUBLIC_APP_URL + src
+}
 
 export const getUserHref = (nickname: string): string => `/${nickname}`
 

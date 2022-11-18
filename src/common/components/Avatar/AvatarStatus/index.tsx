@@ -1,6 +1,6 @@
 import dynamic from 'next/dynamic'
 import { Box } from '@mui/material'
-import { Device } from '@helpers/dom'
+import { Device } from '@helpers/window'
 
 const StatusHub = dynamic(() => import('./components/StatusHub'))
 const Plug = dynamic(() => import('./components/Plug'))

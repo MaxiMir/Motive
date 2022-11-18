@@ -5,7 +5,7 @@ import { GoalDto } from '@dto'
 import { completionSchema } from '@schemas/completion'
 import { ConfirmationService } from '@services/confirmation'
 import { getToday } from '@utils/date'
-import { scrollToElem } from '@helpers/dom'
+import { scrollToElem } from '@helpers/window'
 import useSnackbar from '@hooks/useSnackbar'
 import { useUserPage } from '@modules/user/hook'
 

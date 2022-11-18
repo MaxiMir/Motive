@@ -4,7 +4,7 @@ import { Box, Drawer, List, ListItem, ListItemIcon, ListItemText } from '@mui/ma
 import EmailIcon from '@mui/icons-material/Email'
 import SMS from '@mui/icons-material/Textsms'
 import ContentCopyIcon from '@mui/icons-material/ContentCopy'
-import { copyHandler } from '@helpers/dom'
+import { copyHandler } from '@helpers/window'
 import { FacebookIcon, TelegramIcon, TwitterIcon, VKIcon } from '@ui/icons'
 import { clickHandler } from './helper'
 

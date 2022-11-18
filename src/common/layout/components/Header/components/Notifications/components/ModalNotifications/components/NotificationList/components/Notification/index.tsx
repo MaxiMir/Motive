@@ -6,12 +6,14 @@ import { NotificationDto } from '@dto'
 import { getUserHref } from '@href'
 import useClient from '@hooks/useClient'
 import { getDistance } from '@utils/date'
-import { getDetailsName, getNotificationInfo, getNotificationHref } from '@helpers/notification'
 import { useDateFnsLocale } from '@hooks/useDateFnsLocale'
+import { getNotificationHref } from '@helpers/notification'
+import UserAvatar from '@components/User/UserAvatar'
 import AppEmoji from '@ui/AppEmoji'
 import AppIcon from '@ui/AppIcon'
-import UserAvatar from '@components/User/UserAvatar'
+import { toShortString } from '@helpers/string'
 import { useUpdateRead } from './hook'
+import { getNotificationInfo } from './helper'
 
 const AppInView = dynamic(() => import('@ui/AppInView'))
 
@@ -31,7 +33,7 @@ export default function Notification({ notification, onClose }: NotificationProp
   const { emoji, color } = getNotificationInfo(type)
   const notificationHref = getNotificationHref(notification, client)
   const href = getUserHref(nickname)
-  const detailsName = getDetailsName(details.name)
+  const detailsName = !details.name ? '' : toShortString(details.name, 40)
   const agoText = formatMessage({ id: 'common.ago' })
   const header = formatMessage({ id: `component.notification.${type}` })
   const viewTitle = formatMessage({ id: 'common.view' })

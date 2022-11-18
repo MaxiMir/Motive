@@ -1,4 +1,4 @@
-import { Device } from '@helpers/dom'
+import { Device } from '@helpers/window'
 
 export const getIconName = (device: Device): string => {
   switch (device) {

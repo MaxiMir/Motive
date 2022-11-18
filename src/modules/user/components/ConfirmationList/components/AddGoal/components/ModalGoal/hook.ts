@@ -6,7 +6,7 @@ import { GoalService } from '@services/goal'
 import { goalSchema } from '@schemas/goal'
 import useSnackbar from '@hooks/useSnackbar'
 import { getToday } from '@utils/date'
-import { scrollToElem } from '@helpers/dom'
+import { scrollToElem } from '@helpers/window'
 import { useMutateGoals } from '@modules/user/hook'
 import { getNextState } from './helper'
 

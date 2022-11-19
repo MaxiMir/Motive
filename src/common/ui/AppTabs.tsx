@@ -46,6 +46,7 @@ export default function AppTabs({ tabs, content, ariaLabel, initial = 0 }: AppTa
       </Container>
       {content.map((tabContent, index) => {
         const a11yContentProps = getA11yContentProps(index)
+
         return (
           <Box role="tabpanel" hidden={value !== index} {...a11yContentProps} key={a11yContentProps.id}>
             {value === index && tabContent}

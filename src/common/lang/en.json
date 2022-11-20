@@ -308,5 +308,6 @@
   "common.bio": "Bio",
   "common.nickname": "Nickname",
   "common.info": "Info",
-  "common.menu": "menu"
+  "common.menu": "menu",
+  "common.registered": "Registered"
 }

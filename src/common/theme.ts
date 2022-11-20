@@ -210,9 +210,6 @@ export const getDesignTokens = (mode: PaletteMode): ThemeOptions => {
             textDecoration: 'none',
             color: 'inherit',
           },
-          img: {
-            pointerEvents: 'none',
-          },
         },
       },
     },

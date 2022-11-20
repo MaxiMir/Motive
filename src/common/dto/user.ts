@@ -15,6 +15,7 @@ export interface UserBaseDto {
   readonly motto?: string
   readonly location?: string
   readonly bio?: string
+  readonly registered?: string
 }
 
 export type CreateUserDto = Omit<UserBaseDto, 'id' | 'nickname'>

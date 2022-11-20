@@ -1,5 +1,6 @@
-export const toShortString = (value: string, count: number): string =>
-  value.length < count ? value : `${value.slice(0, count - 3)}...`
+export const toShortString = (value: string, count: number): string => {
+  return value.length < count ? value : `${value.slice(0, count - 3)}...`
+}
 
 export const toMarkdown = (value: string): string => {
   const replacer = (found: string) => {

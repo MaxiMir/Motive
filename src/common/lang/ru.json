@@ -308,5 +308,6 @@
   "common.bio": "Краткая информация",
   "common.nickname": "Никнейм",
   "common.info": "Информация",
-  "common.menu": "меню"
+  "common.menu": "меню",
+  "common.registered": "Зарегистрирован"
 }

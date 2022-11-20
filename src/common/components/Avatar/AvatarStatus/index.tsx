@@ -16,7 +16,16 @@ interface AvatarStatusProps {
 
 export default function AvatarStatus({ src, name, size, online, lastSeen, device }: AvatarStatusProps) {
   return (
-    <Box display="flex" justifyContent="center" alignSelf="flex-start">
+    <Box
+      display="flex"
+      justifyContent="center"
+      alignSelf="flex-start"
+      sx={{
+        img: {
+          pointerEvents: 'none',
+        },
+      }}
+    >
       {!src ? (
         <Plug name={name} size={size} />
       ) : (

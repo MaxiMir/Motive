@@ -41,7 +41,7 @@ export default function StoryViewer({ stories, user, title, date, onClose }: Sto
         }}
       >
         {stories.map((story) => (
-          <Slide story={story} key={story.id} />
+          <Slide story={story} key={story.src} />
         ))}
       </Box>
       <Details user={user} />

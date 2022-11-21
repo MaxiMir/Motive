@@ -1,9 +1,10 @@
-import { useState } from 'react'
+import dynamic from 'next/dynamic'
 import { Box, Button, Typography } from '@mui/material'
 import { ConfirmationDto, UserBaseDto } from '@dto'
 import useFullScreen from '@hooks/useFullScreen'
 import AvatarStatus from '@components/Avatar/AvatarStatus'
-import Stories from '@components/Stories'
+
+const Stories = dynamic(() => import('@components/Stories'))
 
 interface ConfirmationStoryProps {
   user: UserBaseDto
@@ -11,19 +12,9 @@ interface ConfirmationStoryProps {
 }
 
 export default function ConfirmationStory({ user, confirmation }: ConfirmationStoryProps) {
-  const [open, setOpen] = useState(false)
-  const { ref, enabled, enter, exit } = useFullScreen()
+  const { ref, enabled, open, onOpen, onClose } = useFullScreen()
   const [mainPhoto] = confirmation.photos
-
-  const onOpen = () => {
-    setOpen(true)
-    setTimeout(enter, 0)
-  }
-
-  const onClose = () => {
-    setOpen(false)
-    exit()
-  }
+  const stories = [mainPhoto] // TODO confirmation.photos.map
 
   return (
     <>
@@ -66,10 +57,7 @@ export default function ConfirmationStory({ user, confirmation }: ConfirmationSt
       {open && (
         <Stories
           user={user}
-          stories={[confirmation.photos[0]].map((photo, index) => ({
-            id: index,
-            url: photo.src,
-          }))}
+          stories={stories}
           title={confirmation.goal.name}
           date={confirmation.end}
           fullscreenEnabled={enabled}

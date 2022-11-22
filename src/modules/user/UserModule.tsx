@@ -13,6 +13,7 @@ import MainCharacteristic from './components/MainCharacteristic'
 import Info from './components/Info'
 import Menu from './components/Menu'
 
+const EditProfile = dynamic(() => import('./components/EditProfile'))
 const ConfirmationList = dynamic(() => import('./components/ConfirmationList'))
 const GoalCurrent = dynamic(() => import('./components/GoalCurrent'))
 const Motto = dynamic(() => import('./components/Motto'))
@@ -102,7 +103,7 @@ export function UserModule({ user }: UserModuleProps) {
             ))}
           </Box>
           <Box display="flex" flexWrap="wrap" my={1} width="100%" gap={2}>
-            {!clientPage && <Following id={user.id} following={following} />}
+            {clientPage ? <EditProfile user={user} /> : <Following id={user.id} following={following} />}
             <Info user={user} />
           </Box>
         </Box>

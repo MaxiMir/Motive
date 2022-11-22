@@ -1,7 +1,7 @@
 import dynamic from 'next/dynamic'
 import { useIntl } from 'react-intl'
 import { Field, Form, FormikProvider } from 'formik'
-import { Grid, Box } from '@mui/material'
+import { Grid, Box, InputAdornment } from '@mui/material'
 import { UserBaseDto } from '@dto'
 import ActionSubmit from '@components/Action/ActionSubmit'
 import ActionCancel from '@components/Action/ActionCancel'
@@ -62,11 +62,6 @@ export default function ModalProfile({ user, onClose }: ModalProfileProps) {
       <FormikProvider value={form}>
         <Form autoComplete="off">
           <Box display="flex" flexDirection="column" gap={3}>
-            <Field name="name" label={nameLabel} color="primary" component={AppInput} />
-            <Field name="nickname" label={nicknameLabel} color="primary" component={AppInput} />
-            <Field name="motto" label={mottoLabel} color="primary" component={AppInput} />
-            <Field name="location" label={locationLabel} color="primary" component={AppInput} />
-            <Field name="bio" multiline label={bioLabel} color="primary" component={AppInput} />
             <Grid container gap={2}>
               <Grid item xs={4}>
                 {!values.avatar ? (
@@ -81,6 +76,19 @@ export default function ModalProfile({ user, onClose }: ModalProfileProps) {
                 {errors.avatar}
               </Alert>
             )}
+            <Field name="name" label={nameLabel} color="primary" component={AppInput} />
+            <Field
+              name="nickname"
+              label={nicknameLabel}
+              color="primary"
+              component={AppInput}
+              InputProps={{
+                startAdornment: <InputAdornment position="start">https://2bebetter.pro/</InputAdornment>,
+              }}
+            />
+            <Field name="motto" label={mottoLabel} color="primary" component={AppInput} />
+            <Field name="location" label={locationLabel} color="primary" component={AppInput} />
+            <Field name="bio" multiline label={bioLabel} color="primary" component={AppInput} />
           </Box>
         </Form>
       </FormikProvider>

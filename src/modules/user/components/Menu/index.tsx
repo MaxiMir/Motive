@@ -15,7 +15,7 @@ interface MenuProps {
 }
 
 export default function Menu({ user, href, clientPage }: MenuProps) {
-  const { name } = user
+  const { id, name } = user
   const { formatMessage } = useIntl()
   const [anchorEl, setAnchorEl] = useState<HTMLElement | null>(null)
   const [withShare, setWithShare] = useState(false)
@@ -37,7 +37,7 @@ export default function Menu({ user, href, clientPage }: MenuProps) {
     <Box alignSelf="flex-end">
       <AppMenuButton title={title} color="primary" ariaControls={ariaControls} horizontal onClick={onOpen} />
       {anchorEl && (
-        <MenuList anchorEl={anchorEl} user={user} clientPage={clientPage} onShare={onShare} onClose={onClose} />
+        <MenuList anchorEl={anchorEl} userId={id} clientPage={clientPage} onShare={onShare} onClose={onClose} />
       )}
       {withShare && <Share title={name} href={href} onClose={onCloseShare} />}
     </Box>

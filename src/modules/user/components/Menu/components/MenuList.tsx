@@ -2,29 +2,28 @@ import { useState } from 'react'
 import dynamic from 'next/dynamic'
 import { useIntl } from 'react-intl'
 import { Menu, MenuItem } from '@mui/material'
-import { UserBaseDto } from '@dto'
 import AppMenuItemContent from '@ui/AppMenuItemContent'
 
-const ModalProfile = dynamic(() => import('./components/ModalProfile'))
+const Report = dynamic(() => import('@components/Report'))
 
 interface MenuListProps {
   anchorEl: HTMLElement
-  user: UserBaseDto
+  userId: number
   clientPage: boolean
   onShare: () => void
   onClose: () => void
 }
 
-export default function MenuList({ anchorEl, user, clientPage, onShare, onClose }: MenuListProps) {
+export default function MenuList({ anchorEl, userId, clientPage, onShare, onClose }: MenuListProps) {
   const { formatMessage } = useIntl()
-  const [open, setOpen] = useState(false)
+  const [withReport, setWithReport] = useState(false)
   const shareText = formatMessage({ id: 'common.share' })
-  const editText = !clientPage ? '' : formatMessage({ id: 'common.edit' })
+  const reportText = formatMessage({ id: 'common.report' })
 
-  const onOpenEdit = () => setOpen(true)
+  const onOpenReport = () => setWithReport(true)
 
-  const onCloseEdit = () => {
-    setOpen(false)
+  const onCloseReport = () => {
+    setWithReport(false)
     onClose()
   }
 
@@ -34,13 +33,13 @@ export default function MenuList({ anchorEl, user, clientPage, onShare, onClose 
         <MenuItem onClick={onShare}>
           <AppMenuItemContent icon="share" text={shareText} />
         </MenuItem>
-        {clientPage && (
-          <MenuItem onClick={onOpenEdit}>
-            <AppMenuItemContent icon="edit" text={editText} />
+        {!clientPage && (
+          <MenuItem onClick={onOpenReport}>
+            <AppMenuItemContent icon="outlined_flag" text={reportText} />
           </MenuItem>
         )}
       </Menu>
-      {open && <ModalProfile user={user} onClose={onCloseEdit} />}
+      {withReport && <Report entityId={userId} type="user" anchorEl={anchorEl} onClose={onCloseReport} />}
     </>
   )
 }

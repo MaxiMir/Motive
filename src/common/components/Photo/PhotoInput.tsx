@@ -16,7 +16,9 @@ export default function PhotoInput({ multiple, disabled, onSelect }: PhotoInputP
   const title = formatMessage({ id: 'common.load-photo' })
 
   const onAddPhoto = (e: ChangeEvent<HTMLInputElement>) => {
-    e.target.files && onSelect(Array.from(e.target.files))
+    if (!e.target.files) return
+
+    onSelect(Array.from(e.target.files))
   }
 
   const onClick = () => photoInputRef.current?.click()

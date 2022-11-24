@@ -1,7 +1,7 @@
 import dynamic from 'next/dynamic'
 import { useIntl } from 'react-intl'
 import { Field, Form, FormikProvider } from 'formik'
-import { Grid, Box, InputAdornment } from '@mui/material'
+import { Box, InputAdornment } from '@mui/material'
 import { UserBaseDto } from '@dto'
 import ActionSubmit from '@components/Action/ActionSubmit'
 import ActionCancel from '@components/Action/ActionCancel'
@@ -50,7 +50,7 @@ export default function ModalProfile({ user, onClose }: ModalProfileProps) {
       actions={[
         <ActionCancel onClick={onClose} />,
         <ActionSubmit
-          isLoading={isSubmitting}
+          disabled={isSubmitting}
           text={buttonText}
           loadingText={buttonLoading}
           emoji="followers"
@@ -62,15 +62,15 @@ export default function ModalProfile({ user, onClose }: ModalProfileProps) {
       <FormikProvider value={form}>
         <Form autoComplete="off">
           <Box display="flex" flexDirection="column" gap={3}>
-            <Grid container gap={2}>
-              <Grid item xs={4}>
-                {!values.avatar ? (
-                  <PhotoInput disabled={isSubmitting} onSelect={setAvatar} />
-                ) : (
+            <Box display="flex" justifyContent="center">
+              {!values.avatar ? (
+                <PhotoInput disabled={isSubmitting} onSelect={setAvatar} />
+              ) : (
+                <Box width="33%">
                   <PhotoButton image={values.avatar} disabled={isSubmitting} onClick={clearAvatar} />
-                )}
-              </Grid>
-            </Grid>
+                </Box>
+              )}
+            </Box>
             {touched.avatar && errors.avatar && (
               <Alert severity="error" variant="outlined" sx={{ width: '100%' }}>
                 {errors.avatar}

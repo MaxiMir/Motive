@@ -58,3 +58,7 @@ export const getFeedbackHref = (userHref: string, goalId: number, dayId: number)
 const getGoalHash = (id: number): string => `#${HashMark.Goal}-${id}`
 
 const getDiscussionHash = (id: number): string => `#${HashMark.Discussion}-${id}`
+
+export const getHashtagHref = (q: string): string => {
+  return setQueryParams(Route.Search, { q, type: 'tag' })
+}

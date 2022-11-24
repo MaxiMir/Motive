@@ -9,12 +9,12 @@ type GalleryPhotoProps = PhotoProps & {
   onClick?: (index: number) => void
 }
 
-export default function GalleryPhoto({ photo, layout, imageProps, wrapperProps, onClick }: GalleryPhotoProps) {
+export default function GalleryPhoto({ photo, layout, imageProps, wrapperProps = {}, onClick }: GalleryPhotoProps) {
   const { formatMessage } = useIntl()
   const ariaLabel = formatMessage({ id: 'component.gallery-photo.aria' })
   const { width, height } = photo
   const { src, alt, title, style, sizes, className } = imageProps
-  const { style: wrapperStyle, ...restWrapperProps } = wrapperProps || {}
+  const { style: wrapperStyle, ...restWrapperProps } = wrapperProps
 
   const onClickHandler = () => onClick?.(layout.index)
 
@@ -39,6 +39,7 @@ export default function GalleryPhoto({ photo, layout, imageProps, wrapperProps, 
         sizes={sizes}
         width={width}
         height={height}
+        draggable={false}
         className={className}
         onClick={onClickHandler}
       />

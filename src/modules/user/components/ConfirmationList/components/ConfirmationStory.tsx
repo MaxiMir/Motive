@@ -30,6 +30,8 @@ export default function ConfirmationStory({ user, confirmation }: ConfirmationSt
             variant="text"
             color="primary"
             size="small"
+            aria-expanded={open ? 'true' : undefined}
+            aria-haspopup="true"
             sx={(theme) => ({
               borderRadius: '50%',
               background: theme.palette.background.default,

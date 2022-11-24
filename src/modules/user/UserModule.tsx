@@ -5,13 +5,13 @@ import { UserDetailDto, MAIN_CHARACTERISTICS, SECOND_CHARACTERISTICS } from '@dt
 import { getUserHref } from '@href'
 import useClient from '@hooks/useClient'
 import AppContainer from '@ui/AppContainer'
-import AvatarStatus from '@components/Avatar/AvatarStatus'
 import SecondCharacteristic from './components/SecondCharacteristic'
 import EmptyGoals from './components/EmptyGoals'
 import Following from './components/Following'
 import MainCharacteristic from './components/MainCharacteristic'
 import Info from './components/Info'
 import Menu from './components/Menu'
+import Avatar from './components/Avatar'
 
 const EditProfile = dynamic(() => import('./components/EditProfile'))
 const ConfirmationList = dynamic(() => import('./components/ConfirmationList'))
@@ -34,9 +34,6 @@ export function UserModule({ user }: UserModuleProps) {
     membership,
     clientMembership,
     confirmations,
-    online,
-    lastSeen,
-    device,
     motto,
   } = user
   const client = useClient()
@@ -64,7 +61,7 @@ export function UserModule({ user }: UserModuleProps) {
           },
         }}
       >
-        <AvatarStatus src={avatar} name={name} size={190} online={online} lastSeen={lastSeen} device={device} />
+        <Avatar user={user} />
         <Box
           display="flex"
           flexDirection="column"

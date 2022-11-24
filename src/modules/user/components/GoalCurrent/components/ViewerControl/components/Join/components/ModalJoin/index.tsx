@@ -57,7 +57,7 @@ export default function ModalJoin({ goal, onClose }: ModalJoinProps) {
       actions={[
         <ActionCancel onClick={onClose} />,
         <ActionSubmit
-          isLoading={isSubmitting}
+          disabled={isSubmitting}
           text={buttonText}
           loadingText={loadingText}
           emoji="join"

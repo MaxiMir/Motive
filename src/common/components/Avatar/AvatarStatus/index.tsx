@@ -1,5 +1,6 @@
+import { MouseEvent } from 'react'
 import dynamic from 'next/dynamic'
-import { Box } from '@mui/material'
+import { Button } from '@mui/material'
 import { Device } from '@helpers/window'
 
 const StatusHub = dynamic(() => import('./components/StatusHub'))
@@ -12,25 +13,17 @@ interface AvatarStatusProps {
   lastSeen?: string | null
   device?: Device | null
   size: number
+  onClick?: (e: MouseEvent<HTMLElement>) => void
 }
 
-export default function AvatarStatus({ src, name, size, online, lastSeen, device }: AvatarStatusProps) {
+export default function AvatarStatus({ src, name, size, online, lastSeen, device, onClick }: AvatarStatusProps) {
   return (
-    <Box
-      display="flex"
-      justifyContent="center"
-      alignSelf="flex-start"
-      sx={{
-        img: {
-          pointerEvents: 'none',
-        },
-      }}
-    >
+    <Button sx={{ minWidth: 'initial', padding: 0, borderRadius: '50%' }} onClick={onClick}>
       {!src ? (
         <Plug name={name} size={size} />
       ) : (
         <StatusHub src={src} size={size} online={online} lastSeen={lastSeen} device={device} />
       )}
-    </Box>
+    </Button>
   )
 }

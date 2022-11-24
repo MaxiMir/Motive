@@ -39,13 +39,7 @@ export default function ModalStage({ goal, onClose }: ModalStageProps) {
       maxWidth="xs"
       actions={[
         <ActionCancel onClick={onClose} />,
-        <ActionSubmit
-          isLoading={isLoading}
-          text={button}
-          loadingText={buttonLoading}
-          emoji="stage"
-          onClick={onClick}
-        />,
+        <ActionSubmit disabled={isLoading} text={button} loadingText={buttonLoading} emoji="stage" onClick={onClick} />,
       ]}
       onClose={onClose}
     >

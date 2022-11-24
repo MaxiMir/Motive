@@ -29,6 +29,8 @@ export default function FeedbackAdd({ goal, forTomorrow }: FeedbackAddProps) {
             color="secondary"
             startIcon={<AppIcon name="psychology" />}
             disabled={forTomorrow}
+            aria-expanded={open ? 'true' : undefined}
+            aria-haspopup="true"
             onClick={toggle}
           >
             {buttonText}

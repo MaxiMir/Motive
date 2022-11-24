@@ -310,5 +310,6 @@
   "common.nickname": "Никнейм",
   "common.info": "Информация",
   "common.menu": "меню",
-  "common.registered": "Зарегистрирован"
+  "common.registered": "Зарегистрирован",
+  "common.open": "Открыть"
 }

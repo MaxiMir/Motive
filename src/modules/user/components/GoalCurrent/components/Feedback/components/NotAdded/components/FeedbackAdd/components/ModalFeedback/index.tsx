@@ -43,7 +43,7 @@ export default function ModalFeedback({ goal, onClose }: ModalFeedbackProps) {
       actions={[
         <ActionCancel onClick={onClose} />,
         <ActionSubmit
-          isLoading={isSubmitting}
+          disabled={isSubmitting}
           text={buttonText}
           loadingText={loadingText}
           emoji="feedback"

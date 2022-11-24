@@ -34,7 +34,13 @@ export default function SecondCharacteristic({ user, name, value }: Characterist
 
   return (
     <>
-      <Button size="small" sx={{ flex: 1 }} onClick={onClick}>
+      <Button
+        size="small"
+        sx={{ flex: 1 }}
+        aria-expanded={modal ? 'true' : undefined}
+        aria-haspopup="true"
+        onClick={onClick}
+      >
         <Box
           display="flex"
           sx={{

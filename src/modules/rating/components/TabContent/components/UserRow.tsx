@@ -3,15 +3,15 @@ import { Container, Typography, Grid, Box } from '@mui/material'
 import { UserDto, UserCharacteristicName } from '@dto'
 import { getUserHref } from '@href'
 import AppEmoji from '@ui/AppEmoji'
-import UserAvatar from './UserAvatar'
+import UserAvatar from '@components/User/UserAvatar'
 
-interface UserRatingProps {
+interface UserRowProps {
   user: UserDto
   characteristicName: UserCharacteristicName
   index: number
 }
 
-export default function UserRating({ user, characteristicName, index }: UserRatingProps) {
+export default function UserRow({ user, characteristicName, index }: UserRowProps) {
   const { nickname, name, avatar, characteristic, online } = user
   const number = getNumber()
   const href = getUserHref(nickname)

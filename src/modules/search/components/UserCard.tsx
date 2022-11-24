@@ -5,11 +5,11 @@ import { getUserHref } from '@href'
 import AvatarStatus from '@components/Avatar/AvatarStatus'
 import CharacteristicUser from '@components/Characteristic/CharacteristicUser'
 
-interface UserSearchProps {
+interface UserCardProps {
   user: UserDto
 }
 
-export default function UserSearch({ user }: UserSearchProps) {
+export default function UserCard({ user }: UserCardProps) {
   const { nickname, avatar, name, characteristic } = user
   const href = getUserHref(nickname)
 

@@ -29,6 +29,8 @@ export default function Done({ goal, forTomorrow }: DoneProps) {
             color="warning"
             disabled={forTomorrow}
             startIcon={<AppEmoji name="cup" onlyEmoji />}
+            aria-expanded={open ? 'true' : undefined}
+            aria-haspopup="true"
             onClick={toggleModal}
           >
             {buttonText}

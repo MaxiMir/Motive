@@ -9,19 +9,19 @@ interface ActionSubmitProps {
   emoji: AppEmojiName
   text: string
   loadingText: string
-  isLoading: boolean
+  disabled: boolean
   onClick: () => void
 }
 
-export default function ActionSubmit({ emoji, text, loadingText, isLoading, onClick }: ActionSubmitProps) {
+export default function ActionSubmit({ emoji, text, loadingText, disabled, onClick }: ActionSubmitProps) {
   return (
     <AppGradientButton
       type="submit"
-      disabled={isLoading}
-      startIcon={isLoading ? <CircularProgress size="0.9rem" color="inherit" /> : <AppEmoji name={emoji} onlyEmoji />}
+      disabled={disabled}
+      startIcon={disabled ? <CircularProgress size="0.9rem" color="inherit" /> : <AppEmoji name={emoji} onlyEmoji />}
       onClick={onClick}
     >
-      {!isLoading ? text : loadingText}
+      {!disabled ? text : loadingText}
     </AppGradientButton>
   )
 }

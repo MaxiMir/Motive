@@ -68,7 +68,7 @@ export default function ModalGoal({ onClose }: ModalGoalProps) {
       actions={[
         <ActionCancel onClick={onClose} />,
         <ActionSubmit
-          isLoading={isSubmitting}
+          disabled={isSubmitting}
           text={buttonText}
           loadingText={loadingText}
           emoji="goal"

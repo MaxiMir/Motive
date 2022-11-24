@@ -1,12 +1,12 @@
 import { useRouter } from 'next/router'
 import { Chip } from '@mui/material'
-import { getHashtagHref } from './helper'
+import { getHashtagHref } from '@href'
 
-interface HashtagChipProps {
+interface HashtagProps {
   label: string
 }
 
-export default function HashtagChip({ label }: HashtagChipProps) {
+export default function Hashtag({ label }: HashtagProps) {
   const { push } = useRouter()
 
   const onClick = () => {

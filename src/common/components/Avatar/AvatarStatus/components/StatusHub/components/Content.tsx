@@ -9,5 +9,5 @@ interface ContentProps {
 export default function Content({ src, size }: ContentProps) {
   const imageSrc = getImageSrc(src)
 
-  return <Avatar src={imageSrc} sx={{ width: size, height: size }} />
+  return <Avatar src={imageSrc} draggable={false} sx={{ width: size, height: size, pointerEvents: 'none' }} />
 }

@@ -24,6 +24,8 @@ export default function EditProfile({ user }: EditProfileProps) {
         variant="outlined"
         size="small"
         startIcon={<AppIcon name="edit" />}
+        aria-expanded={open ? 'true' : undefined}
+        aria-haspopup="true"
         sx={{
           flex: 1,
           textTransform: 'none',

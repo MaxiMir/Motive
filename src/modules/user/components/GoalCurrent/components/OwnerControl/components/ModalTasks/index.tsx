@@ -69,7 +69,7 @@ export default function ModalTasks({ goal, onClose }: ModalTasksProps) {
       actions={[
         <ActionCancel onClick={onClose} />,
         <ActionSubmit
-          isLoading={isSubmitting}
+          disabled={isSubmitting}
           text={buttonText}
           loadingText={loadingText}
           emoji="task"

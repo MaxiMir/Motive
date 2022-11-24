@@ -7,7 +7,7 @@ import { checkOnReply } from './helper'
 const Box = dynamic(() => import('@mui/material/Box'))
 const AppIcon = dynamic(() => import('@ui/AppIcon'))
 const AppInView = dynamic(() => import('@ui/AppInView'))
-const UserInput = dynamic(() => import('@components/User/UserInput'))
+const UserInput = dynamic(() => import('../UserInput'))
 
 interface TopicProps {
   owner: UserBaseDto

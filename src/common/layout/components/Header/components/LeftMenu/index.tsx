@@ -24,7 +24,13 @@ export default function LeftMenu() {
 
   return (
     <>
-      <Button aria-label={ariaLabel} sx={{ color: 'common.white' }} onClick={toggleMenu}>
+      <Button
+        aria-label={ariaLabel}
+        aria-expanded={openMenu ? 'true' : undefined}
+        aria-haspopup="true"
+        sx={{ color: 'common.white' }}
+        onClick={toggleMenu}
+      >
         <AppIcon name="menu" />
       </Button>
       {openMenu && <MenuModal onOpenSettings={onOpenSettings} onClose={toggleMenu} />}

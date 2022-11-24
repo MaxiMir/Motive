@@ -310,5 +310,6 @@
   "common.nickname": "Nickname",
   "common.info": "Info",
   "common.menu": "menu",
-  "common.registered": "Registered"
+  "common.registered": "Registered",
+  "common.open": "Open"
 }

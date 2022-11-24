@@ -7,9 +7,9 @@ import AppContainer from '@ui/AppContainer'
 import SearchForm from './components/SearchForm'
 import { getGradients } from './helper'
 
-const UserSearch = dynamic(() => import('@components/User/UserSearch'))
-const GoalSearch = dynamic(() => import('@components/Goal/GoalSearch'))
-const HashtagSearch = dynamic(() => import('@components/Hashtag/HashtagSearch'))
+const GoalCard = dynamic(() => import('./components/GoalCard'))
+const UserCard = dynamic(() => import('./components/UserCard'))
+const Hashtag = dynamic(() => import('./components/Hashtag'))
 const NoResult = dynamic(() => import('./components/NoResult'))
 
 interface SearchModuleProps {
@@ -43,7 +43,7 @@ export function SearchModule({ q, hashtags, goals, users }: SearchModuleProps) {
             <Grid container spacing={2}>
               {users.map((user) => (
                 <Grid item xs={12} sm={6} md={3} lg={2} key={user.id}>
-                  <UserSearch user={user} />
+                  <UserCard user={user} />
                 </Grid>
               ))}
             </Grid>
@@ -57,7 +57,7 @@ export function SearchModule({ q, hashtags, goals, users }: SearchModuleProps) {
           <Grid container spacing={2}>
             {hashtags.map(({ name, views }, key) => (
               <Grid item xs={6} md={3} lg={2} key={name}>
-                <HashtagSearch name={name} views={views} gradient={gradients[key]} />
+                <Hashtag name={name} views={views} gradient={gradients[key]} />
               </Grid>
             ))}
           </Grid>
@@ -70,7 +70,7 @@ export function SearchModule({ q, hashtags, goals, users }: SearchModuleProps) {
             <Grid container spacing={2}>
               {goals.map((goal) => (
                 <Grid item xs={12} sm={6} md={3} lg={2} key={goal.id}>
-                  <GoalSearch goal={goal} />
+                  <GoalCard goal={goal} />
                 </Grid>
               ))}
             </Grid>

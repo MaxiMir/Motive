@@ -17,13 +17,13 @@ const Repeat = dynamic(() => import('./components/Repeat'))
 
 const CHARACTERISTICS: GoalCharacteristicName[] = [...MAIN_CHARACTERISTICS, 'members']
 
-interface GoalCompletedProps {
+interface ConfirmationProps {
   userId: number
   clientMembership: MemberDto[]
   confirmation: ConfirmationDto
 }
 
-export default function GoalCompleted({ userId, clientMembership, confirmation }: GoalCompletedProps) {
+export default function Confirmation({ userId, clientMembership, confirmation }: ConfirmationProps) {
   const { goal, inherited } = confirmation
   const { formatMessage } = useIntl()
   const client = useClient()

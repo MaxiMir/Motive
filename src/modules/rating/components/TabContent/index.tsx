@@ -2,7 +2,7 @@ import { useIntl } from 'react-intl'
 import { Container, Grid, Box, Typography } from '@mui/material'
 import { UserDto, MainCharacteristicName } from '@dto'
 import AppList from '@ui/AppList'
-import UserRating from '@components/User/UserRating'
+import UserRow from './components/UserRow'
 
 interface TabContentProps {
   name: MainCharacteristicName
@@ -42,7 +42,7 @@ export default function TabContent({ name, users }: TabContentProps) {
       <AppList<UserDto>
         elements={users}
         keyGetter={(el) => el.id}
-        render={(user, index) => <UserRating user={user} characteristicName={name} index={index} />}
+        render={(user, index) => <UserRow user={user} characteristicName={name} index={index} />}
       />
     </>
   )

@@ -52,7 +52,7 @@ export default function ModalCompletion({ goal, onClose }: ModalCompletionProps)
       actions={[
         <ActionCancel onClick={onClose} />,
         <ActionSubmit
-          isLoading={isSubmitting}
+          disabled={isSubmitting}
           text={buttonText}
           loadingText={loadingText}
           emoji="completed"

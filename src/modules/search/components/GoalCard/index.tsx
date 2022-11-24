@@ -4,11 +4,11 @@ import { getUserHref } from '@href'
 import CharacteristicGoal from '@components/Characteristic/CharacteristicGoal'
 import UserAvatar from '@components/User/UserAvatar'
 
-interface GoalSearchProps {
+interface GoalCardProps {
   goal: GoalDto
 }
 
-export default function GoalSearch({ goal }: GoalSearchProps) {
+export default function GoalCard({ goal }: GoalCardProps) {
   const { name, characteristic, owner } = goal
   const { name: ownerName, nickname, avatar } = owner
   const href = getUserHref(nickname)

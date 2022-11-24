@@ -42,7 +42,7 @@ export default function ModalEditMessage({ message, onClose }: ModalEditMessageP
       actions={[
         <ActionCancel onClick={onClose} />,
         <ActionSubmit
-          isLoading={isSubmitting}
+          disabled={isSubmitting}
           text={buttonText}
           loadingText={loadingText}
           emoji="save"

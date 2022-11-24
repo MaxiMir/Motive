@@ -31,6 +31,8 @@ export default function AddGoal() {
             background: theme.palette.background.default,
           })}
           aria-label={buttonText}
+          aria-expanded={open ? 'true' : undefined}
+          aria-haspopup="true"
           onClick={toggleModal}
         >
           <Box display="flex" justifyContent="center" alignItems="center" width={60} height={60}>
@@ -38,7 +40,13 @@ export default function AddGoal() {
           </Box>
         </Button>
       </Box>
-      <Button sx={{ padding: '4px', textTransform: 'none' }} onClick={toggleModal}>
+      <Button
+        aria-label={buttonText}
+        aria-expanded={open ? 'true' : undefined}
+        aria-haspopup="true"
+        sx={{ padding: '4px', textTransform: 'none' }}
+        onClick={toggleModal}
+      >
         <Typography variant="caption" sx={{ color: 'creativity.light' }}>
           {buttonText}
         </Typography>

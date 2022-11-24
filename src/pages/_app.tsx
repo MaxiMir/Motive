@@ -20,7 +20,7 @@ import { ModalSignInContext } from '@context/modalSignInContext'
 import { getLocaleFolder } from '@utils/date'
 import { makeMapLoader } from '@helpers/iterable'
 import { Locale } from '@hooks/useSetLocale'
-import EventSocket from '@components/Event/EventSocket'
+import EventSocket from '@components/EventSocket'
 import { getDesignTokens } from 'src/common/theme'
 
 const AppSnackbar = dynamic(() => import('@ui/AppSnackbar'))

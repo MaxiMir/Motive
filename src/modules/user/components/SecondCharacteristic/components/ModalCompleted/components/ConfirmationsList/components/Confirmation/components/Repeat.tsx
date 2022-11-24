@@ -18,7 +18,7 @@ export default function Repeat({ goalId }: RepeatProps) {
 
   return (
     <Box display="flex" justifyContent="flex-end">
-      <ActionSubmit isLoading={isLoading} text={buttonText} loadingText={loadingText} emoji="join" onClick={onClick} />
+      <ActionSubmit disabled={isLoading} text={buttonText} loadingText={loadingText} emoji="join" onClick={onClick} />
     </Box>
   )
 }

@@ -54,6 +54,8 @@ export default function Stages({ goal, forTomorrow, completeStage }: StagesProps
                       color="success"
                       size="small"
                       disabled={forTomorrow}
+                      aria-expanded={open ? 'true' : undefined}
+                      aria-haspopup="true"
                       onClick={toggleModal}
                     >
                       {buttonText}

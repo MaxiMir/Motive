@@ -31,6 +31,8 @@ export default function Info({ user }: InfoProps) {
           },
           textTransform: 'none',
         }}
+        aria-expanded={open ? 'true' : undefined}
+        aria-haspopup="true"
         onClick={toggle}
       >
         {learnMoreText}

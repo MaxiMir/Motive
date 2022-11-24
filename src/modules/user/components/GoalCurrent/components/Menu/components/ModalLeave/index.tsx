@@ -35,7 +35,7 @@ export default function ModalLeave({ goal, clientOwnership, onClose }: ModalLeav
       actions={[
         <ActionCancel onClick={onClose} />,
         <ActionSubmit
-          isLoading={isLoading}
+          disabled={isLoading}
           text={buttonText}
           loadingText={loadingText}
           emoji="leave"

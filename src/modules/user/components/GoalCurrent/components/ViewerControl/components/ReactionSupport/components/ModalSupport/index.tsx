@@ -47,7 +47,7 @@ export default function ModalSupport({ goal, owner, onClose }: ModalSupportProps
       actions={[
         <ActionCancel onClick={onClose} />,
         <ActionSubmit
-          isLoading={isSubmitting}
+          disabled={isSubmitting}
           text={buttonText}
           loadingText={loadingText}
           emoji="support"

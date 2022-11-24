@@ -36,6 +36,8 @@ export default function MainCharacteristic({ name, value }: MainCharacteristicPr
             md: '8px',
           },
         }}
+        aria-expanded={modal ? 'true' : undefined}
+        aria-haspopup="true"
         onClick={onClick}
       >
         <AppCircle

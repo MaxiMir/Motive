@@ -1,15 +1,15 @@
 import { useRouter } from 'next/router'
 import { Box, Button, Typography } from '@mui/material'
+import { getHashtagHref } from '@href'
 import { formatNumber } from '@helpers/intl'
-import { getHashtagHref } from './helper'
 
-interface HashtagSearchProps {
+interface HashtagProps {
   name: string
   gradient?: string
   views: number
 }
 
-export default function HashtagSearch({ name, gradient, views }: HashtagSearchProps) {
+export default function Hashtag({ name, gradient, views }: HashtagProps) {
   const { push } = useRouter()
   const formattedViews = formatNumber(views)
 

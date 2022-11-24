@@ -90,6 +90,22 @@ services:
 
 ```shell
 server {
+    server_name xx.ru www.2bebetter.pro;
+    location ^~ /.well-known/acme-challenge {
+        alias /var/lib/dehydrated/acme-challenges;
+    }
+    location / {
+        return 301 https://$host$request_uri;
+    }
+}
+
+
+nginx -t
+nginx -s reload
+dehydrated -c
+```
+```shell
+server {
     listen 443 ssl http2;
     listen [::]:443 ssl http2;
 

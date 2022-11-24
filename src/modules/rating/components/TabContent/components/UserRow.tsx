@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import { Container, Typography, Grid, Box } from '@mui/material'
+import { Container, Typography, Grid, Box, Button } from '@mui/material'
 import { UserDto, UserCharacteristicName } from '@dto'
 import { getUserHref } from '@href'
 import AppEmoji from '@ui/AppEmoji'
@@ -47,7 +47,9 @@ export default function UserRow({ user, characteristicName, index }: UserRowProp
           <Grid item xs={8}>
             <Box display="flex" alignItems="center" gap={2}>
               <UserAvatar name={name} avatar={avatar} href={href} online={online} size={35} />
-              <Link href={href}>{name}</Link>
+              <Button href={href} sx={{ textTransform: 'none', color: 'inherit' }} component={Link}>
+                {name}
+              </Button>
             </Box>
           </Grid>
           <Grid item xs>

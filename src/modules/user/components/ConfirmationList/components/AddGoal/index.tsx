@@ -14,7 +14,7 @@ export default function AddGoal() {
   const toggleModal = () => setOpen(!open)
 
   return (
-    <Box display="flex" flexDirection="column" alignItems="center" width={100} gap={1} mr={1}>
+    <Box display="flex" flexDirection="column" alignItems="center" minWidth={100} gap={1}>
       <Box
         sx={(theme) => ({
           padding: '2px',
@@ -27,6 +27,8 @@ export default function AddGoal() {
           color="primary"
           size="small"
           sx={(theme) => ({
+            minWidth: 'initial',
+            padding: 0,
             borderRadius: '50%',
             background: theme.palette.background.default,
           })}
@@ -35,7 +37,7 @@ export default function AddGoal() {
           aria-haspopup="true"
           onClick={toggleModal}
         >
-          <Box display="flex" justifyContent="center" alignItems="center" width={60} height={60}>
+          <Box display="flex" justifyContent="center" alignItems="center" width={65} height={65}>
             <AppIcon name="add" />
           </Box>
         </Button>

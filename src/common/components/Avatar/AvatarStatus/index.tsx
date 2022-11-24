@@ -18,7 +18,7 @@ interface AvatarStatusProps {
 
 export default function AvatarStatus({ src, name, size, online, lastSeen, device, onClick }: AvatarStatusProps) {
   return (
-    <Button sx={{ minWidth: 'initial', padding: '3px', borderRadius: '50%' }} onClick={onClick}>
+    <Button sx={{ minWidth: 'initial', padding: '3px', borderRadius: '50%', textTransform: 'none' }} onClick={onClick}>
       {!src ? (
         <Plug name={name} size={size} />
       ) : (

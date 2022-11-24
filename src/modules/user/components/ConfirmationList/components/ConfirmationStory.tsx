@@ -18,7 +18,7 @@ export default function ConfirmationStory({ user, confirmation }: ConfirmationSt
 
   return (
     <>
-      <Box display="flex" flexDirection="column" alignItems="center" width={100} gap={1} mr={1}>
+      <Box display="flex" flexDirection="column" alignItems="center" minWidth={100} gap={1}>
         <Box
           sx={(theme) => ({
             padding: '2px',

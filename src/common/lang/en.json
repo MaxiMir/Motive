@@ -311,5 +311,7 @@
   "common.info": "Info",
   "common.menu": "menu",
   "common.registered": "Registered",
-  "common.open": "Open"
+  "common.open": "Open",
+  "common.zoom-in": "Zoom in",
+  "common.zoom-out": "Zoom out"
 }

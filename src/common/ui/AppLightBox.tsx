@@ -15,6 +15,9 @@ export default function AppLightBox({ sources, index, setIndex }: AppLightBoxPro
   const { formatMessage } = useIntl()
   const nextLabel = formatMessage({ id: 'common.next' })
   const prevLabel = formatMessage({ id: 'common.previous' })
+  const zoomInLabel = formatMessage({ id: 'common.zoom-in' })
+  const zoomOutLabel = formatMessage({ id: 'common.zoom-out' })
+  const closeLabel = formatMessage({ id: 'common.close' })
   const open = typeof index === 'number'
   const sourcesFull = sources.map(getImageSrc)
   const count = sourcesFull.length
@@ -39,6 +42,9 @@ export default function AppLightBox({ sources, index, setIndex }: AppLightBoxPro
         <Lightbox
           nextLabel={nextLabel}
           prevLabel={prevLabel}
+          closeLabel={closeLabel}
+          zoomInLabel={zoomInLabel}
+          zoomOutLabel={zoomOutLabel}
           mainSrc={sourcesFull[index]}
           nextSrc={sourcesFull[(index + 1) % count]}
           prevSrc={sourcesFull[(index + count - 1) % count]}

@@ -311,5 +311,7 @@
   "common.info": "Інформація",
   "common.menu": "меню",
   "common.registered": "Зареєстровані",
-  "common.open": "Відкрити"
+  "common.open": "Відкрити",
+  "common.zoom-in": "Збільшити",
+  "common.zoom-out": "Зменшити"
 }

@@ -10,7 +10,7 @@ export default function Nickname(): JSX.Element {
     <Button
       sx={{
         textTransform: 'none',
-        '.material-icons, p': {
+        '.material-icons, span': {
           color: 'white',
           fontWeight: 'bold',
           fontSize: 16,
@@ -19,7 +19,10 @@ export default function Nickname(): JSX.Element {
       onClick={reload}
     >
       <AppIcon name="alternate_email" />
-      <Typography sx={{ maxWidth: 200, overflow: 'hidden', whiteSpace: 'nowrap', textOverflow: 'ellipsis' }}>
+      <Typography
+        sx={{ maxWidth: 200, overflow: 'hidden', whiteSpace: 'nowrap', textOverflow: 'ellipsis' }}
+        component="span"
+      >
         {nickname}
       </Typography>
     </Button>

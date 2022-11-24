@@ -2,26 +2,32 @@ import NextAuth from 'next-auth'
 import AppleProvider from 'next-auth/providers/apple'
 import GoogleProvider from 'next-auth/providers/google'
 import GithubProvider from 'next-auth/providers/github'
+import FacebookProvider from 'next-auth/providers/facebook'
 import { UserService } from '@services/user'
 
 export default NextAuth({
   providers: [
     AppleProvider({
-      clientId: process.env.APPLE_ID as string,
-      clientSecret: process.env.GOOGLE_SECRET as string,
+      clientId: process.env.APPLE_ID || '',
+      clientSecret: process.env.GOOGLE_SECRET || '',
     }),
     GoogleProvider({
-      clientId: process.env.GOOGLE_ID as string,
-      clientSecret: process.env.GOOGLE_SECRET as string,
+      clientId: process.env.GOOGLE_ID || '',
+      clientSecret: process.env.GOOGLE_SECRET || '',
+    }),
+    FacebookProvider({
+      name: 'Meta',
+      clientId: process.env.FACEBOOK_ID || '',
+      clientSecret: process.env.FACEBOOK_SECRET || '',
     }),
     GithubProvider({
-      clientId: process.env.GITHUB_ID as string,
-      clientSecret: process.env.GITHUB_SECRET as string,
+      clientId: process.env.GITHUB_ID || '',
+      clientSecret: process.env.GITHUB_SECRET || '',
     }),
   ],
   theme: {
     colorScheme: 'dark',
-    logo: '/icons/icon-180x180.png',
+    logo: '/icons/icon-72.png',
   },
   pages: {
     error: '/500',

@@ -16,7 +16,6 @@ export default function UserCard({ user }: UserCardProps) {
   return (
     <Button
       variant="outlined"
-      component={Link}
       href={href}
       sx={{
         width: '100%',
@@ -24,6 +23,7 @@ export default function UserCard({ user }: UserCardProps) {
         padding: 2,
         borderRadius: '12px',
       }}
+      component={Link}
     >
       <Box
         display="flex"

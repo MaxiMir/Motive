@@ -25,12 +25,12 @@ export default function SearchForm({ q }: SearchFormProps) {
           name="q"
           label={label}
           color="secondary"
-          component={AppInput}
           InputProps={{
             disabled: true,
             startAdornment: <InputButton name="search" disabled />,
             endAdornment: values.q && <InputButton name="close" onClick={onClickClose} />,
           }}
+          component={AppInput}
         />
         <AutoSend />
       </Form>

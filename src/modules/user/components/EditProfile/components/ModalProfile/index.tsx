@@ -81,10 +81,10 @@ export default function ModalProfile({ user, onClose }: ModalProfileProps) {
               name="nickname"
               label={nicknameLabel}
               color="primary"
-              component={AppInput}
               InputProps={{
                 startAdornment: <InputAdornment position="start">https://2bebetter.pro/</InputAdornment>,
               }}
+              component={AppInput}
             />
             <Field name="motto" label={mottoLabel} color="primary" component={AppInput} />
             <Field name="location" label={locationLabel} color="primary" component={AppInput} />

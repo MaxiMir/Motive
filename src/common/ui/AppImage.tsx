@@ -1,3 +1,4 @@
+// TODO REMOVE LEGACY
 import Image, { ImageProps } from 'next/legacy/image'
 import { getImageSrc } from '@href'
 

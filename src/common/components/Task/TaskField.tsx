@@ -59,8 +59,8 @@ export default function TaskField({ index, date, taskCount, onToggleDate, onRemo
             name={`tasks.${index}.date`}
             ampm={false}
             keyboardIcon={<AppIcon name="query_builder" />}
-            component={TimePicker}
             sx={{ width: 100 }}
+            component={TimePicker}
           />
         )}
       </Box>

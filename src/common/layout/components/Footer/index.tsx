@@ -39,7 +39,7 @@ export default function Footer({ nickname }: FooterProps) {
       <Container fixed>
         <Box display="flex" justifyContent="space-between" alignItems="center" height={52}>
           {routes.map(({ title, href, Component }) => (
-            <Button href={href} aria-label={title} component={Link} key={title}>
+            <Button href={href} aria-label={title} key={title} component={Link}>
               <Component sx={{ color: 'common.white', opacity: !asPath.includes(href) ? HOVER_OPACITY : 1 }} />
             </Button>
           ))}

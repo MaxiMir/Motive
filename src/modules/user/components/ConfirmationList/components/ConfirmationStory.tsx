@@ -26,20 +26,17 @@ export default function ConfirmationStory({ user, confirmation }: ConfirmationSt
             borderRadius: '50%',
           })}
         >
-          <Button
-            variant="text"
-            color="primary"
-            size="small"
-            aria-expanded={open ? 'true' : undefined}
-            aria-haspopup="true"
+          <Box
             sx={(theme) => ({
               borderRadius: '50%',
               background: theme.palette.background.default,
+              '&:hover': {
+                background: 'rgba(144, 202, 249, 0.08)',
+              },
             })}
-            onClick={onOpen}
           >
-            <AvatarStatus src={mainPhoto.src} name={user.name} size={60} />
-          </Button>
+            <AvatarStatus src={mainPhoto.src} name={user.name} size={60} onClick={onOpen} />
+          </Box>
         </Box>
         <Button size="small" sx={{ textTransform: 'none' }} onClick={onOpen}>
           <Typography

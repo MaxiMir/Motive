@@ -1,4 +1,3 @@
-import dynamic from 'next/dynamic'
 import { useIntl } from 'react-intl'
 import { Grid, Box, Button, Typography, typographyClasses } from '@mui/material'
 import { styled, Theme } from '@mui/system'
@@ -7,14 +6,17 @@ import AppHeader from '@ui/AppHeader'
 import AppIcon from '@ui/AppIcon'
 import AppEmoji from '@ui/AppEmoji'
 import { TelegramIcon, LinkedInIcon } from '@ui/icons'
-
-const Wallet = dynamic(() => import('./components/Wallet'))
+import BTCSrc from 'public/images/svg/BTC.svg'
+import ETHSrc from 'public/images/svg/ETH.svg'
+import LTCSrc from 'public/images/svg/LTC.svg'
+import DOGESrc from 'public/images/svg/DOGE.svg'
+import Wallet from './components/Wallet'
 
 const CRYPTOS = [
-  { name: 'BTC', wallet: '1AmJZzeVH6wkJZ6a1FojJbHD1im9UZBar7' },
-  { name: 'ETH', wallet: '0xc7a7b4c59999c27aaae8affcd9bd9eb1f4724806' },
-  { name: 'LTC', wallet: 'LLspFKQebdgpq1YECXfjdkQKWTXZnmDBRA' },
-  { name: 'DOGE', wallet: 'D9btjbEFVpCStxQAaCdUGw9AjMnvsAUvbr' },
+  { name: 'BTC', wallet: '1AmJZzeVH6wkJZ6a1FojJbHD1im9UZBar7', src: BTCSrc },
+  { name: 'ETH', wallet: '0xc7a7b4c59999c27aaae8affcd9bd9eb1f4724806', src: ETHSrc },
+  { name: 'LTC', wallet: 'LLspFKQebdgpq1YECXfjdkQKWTXZnmDBRA', src: LTCSrc },
+  { name: 'DOGE', wallet: 'D9btjbEFVpCStxQAaCdUGw9AjMnvsAUvbr', src: DOGESrc },
 ]
 
 export function ContactModule() {
@@ -97,8 +99,8 @@ export function ContactModule() {
           <AppHeader name="coin" variant="h1" component="h3" mb={3}>
             {support}
           </AppHeader>
-          {CRYPTOS.map(({ name, wallet }) => (
-            <Wallet name={name} wallet={wallet} key={name} />
+          {CRYPTOS.map(({ name, wallet, src }) => (
+            <Wallet name={name} wallet={wallet} src={src} key={name} />
           ))}
         </Box>
       </Box>

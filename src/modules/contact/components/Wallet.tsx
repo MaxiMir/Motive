@@ -1,4 +1,4 @@
-import Image from 'next/image'
+import Image, { ImageProps } from 'next/image'
 import { useIntl } from 'react-intl'
 import { Box, Typography } from '@mui/material'
 import { copyHandler } from '@helpers/window'
@@ -8,9 +8,10 @@ import AppIconButton from '@ui/AppIconButton'
 interface WalletProps {
   name: string
   wallet: string
+  src: ImageProps['src']
 }
 
-export default function Wallet({ name, wallet }: WalletProps) {
+export default function Wallet({ name, wallet, src }: WalletProps) {
   const { formatMessage } = useIntl()
   const [enqueueSnackbar] = useSnackbar()
   const copyText = formatMessage({ id: 'common.copied' })
@@ -24,7 +25,7 @@ export default function Wallet({ name, wallet }: WalletProps) {
 
   return (
     <Box display="flex" flexWrap="wrap" alignItems="center" gap={1}>
-      <Image src={`/images/svg/${name}.svg`} alt="" width={32} height={32} />
+      <Image src={src} alt="" width={32} height={32} />
       <Typography>{name}:</Typography>
       <Box
         display="flex"

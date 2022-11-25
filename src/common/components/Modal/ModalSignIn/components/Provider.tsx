@@ -1,24 +1,24 @@
+import Image, { ImageProps } from 'next/image'
 import { useIntl } from 'react-intl'
-import Image from 'next/image'
 import { signIn, SignInOptions } from 'next-auth/react'
-import { ClientSafeProvider } from 'next-auth/react/types'
 import { Box, Button } from '@mui/material'
 
 interface ProviderProps {
-  provider: ClientSafeProvider
+  id: string
+  name: string
   options: SignInOptions
+  src: ImageProps['src']
   disabled: boolean
 }
 
-export default function Provider({ provider, options, disabled }: ProviderProps) {
-  const { id, name } = provider
+export default function Provider({ id, name, options, src, disabled }: ProviderProps) {
   const { formatMessage } = useIntl()
   const withText = formatMessage({ id: 'common.with' })
 
   return (
     <Button
       variant="outlined"
-      startIcon={<Image src={`/images/svg/${id}.svg`} alt={name} width={24} height={24} />}
+      startIcon={<Image src={src} alt={name} width={24} height={24} />}
       disabled={disabled}
       color="warning"
       key={id}

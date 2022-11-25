@@ -5,6 +5,7 @@ import { UserDetailDto } from '@dto'
 import useShowProgress from '@hooks/useShowProgress'
 import AppModal from '@ui/AppModal'
 import OldPittRules from '@components/OldPitt/OldPittRules'
+import webSrc from 'public/images/svg/web.svg'
 
 interface ModalAbandonedProps {
   user: UserDetailDto
@@ -35,7 +36,7 @@ export default function ModalAbandoned({ user, onClose }: ModalAbandonedProps) {
             <Typography variant="h2" component="p" sx={{ color: 'abandoned.main' }}>
               {roundedProgress}
             </Typography>
-            <Image src="/images/svg/web.svg" alt="" width={60} height={60} />
+            <Image src={webSrc} alt="" width={60} height={60} />
           </Box>
         </Box>
         <Typography component="h3" textAlign="center">

@@ -27,6 +27,7 @@ export default function Slide({ story }: SlideProps) {
         fill
         priority
         objectFit="contain"
+        draggable={false}
         style={{
           position: 'absolute',
           left: '50%',

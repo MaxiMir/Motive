@@ -7,7 +7,7 @@ import { formatNumber } from '@helpers/intl'
 import { getWordDeclination } from '@helpers/string'
 
 const ModalSubscription = dynamic(() => import('./components/ModalSubscription'))
-const ModalCompleted = dynamic(() => import('./components/ModalCompleted'))
+const ModalNoCompleted = dynamic(() => import('./components/ModalNoCompleted'))
 const ModalAbandoned = dynamic(() => import('./components/ModalAbandoned'))
 
 const { Completed, Abandoned, Followers, Following } = SecondCharacteristicName
@@ -28,7 +28,18 @@ export default function SecondCharacteristic({ user, name, value }: Characterist
   const wordDeclination = getWordDeclination(value, [singleText, doubleText, multipleGenitiveText])
   const buttonText = wordDeclination.toLowerCase()
 
-  const onClick = () => setModal(name)
+  const onClick = async () => {
+    const openStories = name === Completed && user.confirmations.length
+
+    if (!openStories) {
+      setModal(name)
+      return
+    }
+
+    const [{ id }] = user.confirmations
+    const { clickOnElem } = await import('@helpers/window')
+    clickOnElem(`confirmation-${id}`)
+  }
 
   const onClose = () => setModal(undefined)
 
@@ -74,7 +85,7 @@ export default function SecondCharacteristic({ user, name, value }: Characterist
           </Typography>
         </Box>
       </Button>
-      {modal === Completed && <ModalCompleted user={user} onClose={onClose} />}
+      {modal === Completed && <ModalNoCompleted onClose={onClose} />}
       {modal === Abandoned && <ModalAbandoned user={user} onClose={onClose} />}
       {modal === Followers && <ModalSubscription user={user} name={Followers} onClose={onClose} />}
       {modal === Following && <ModalSubscription user={user} name={Following} onClose={onClose} />}

@@ -1,7 +1,7 @@
 import Link from 'next/link'
 import AvatarStatus from '@components/Avatar/AvatarStatus'
 
-interface UserAvatarProps {
+interface UserLinkProps {
   name: string
   avatar?: string | null
   href: string
@@ -10,7 +10,7 @@ interface UserAvatarProps {
   onClick?: () => void
 }
 
-export default function UserAvatar({ name, avatar, href, online, size = 26, onClick }: UserAvatarProps) {
+export default function UserLink({ name, avatar, href, online, size = 26, onClick }: UserLinkProps) {
   return (
     <Link href={href} title={name} onClick={onClick}>
       <AvatarStatus src={avatar} name={name} online={online} size={size} />

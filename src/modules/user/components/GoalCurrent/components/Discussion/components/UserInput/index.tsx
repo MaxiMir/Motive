@@ -5,7 +5,7 @@ import { Box, IconButton } from '@mui/material'
 import { TopicDto, MessageType, ClientDto, UserBaseDto } from '@dto'
 import { getUserHref } from '@href'
 import AppInput from '@ui/AppInput'
-import UserAvatar from '@components/User/UserAvatar'
+import UserLink from '@components/User/UserLink'
 import useForm from './hook'
 
 const CircularProgress = dynamic(() => import('@mui/material/CircularProgress'))
@@ -33,7 +33,7 @@ export default function UserInput({ dayId, user, type, topicId, onAdd }: UserInp
     <FormikProvider value={form}>
       <Form autoComplete="off">
         <Box display="flex" gap={2} flex={1} mb={2} pr={2}>
-          <UserAvatar name={name} avatar={avatar} href={href} size={32} />
+          <UserLink name={name} avatar={avatar} href={href} size={32} />
           <Field
             name="text"
             placeholder={placeholder}

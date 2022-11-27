@@ -7,7 +7,7 @@ import { getUserHref } from '@href'
 import { getDistance } from '@utils/date'
 import { formatNumber } from '@helpers/intl'
 import { useDateFnsLocale } from '@hooks/useDateFnsLocale'
-import UserAvatar from '@components/User/UserAvatar'
+import UserLink from '@components/User/UserLink'
 import Menu from './components/Menu'
 import LikeButton from './components/LikeButton'
 
@@ -38,7 +38,7 @@ export default function Message({ message, answerFor, supportFor, onReply }: Mes
     <Box display="flex" flexDirection="column" gap={1} width="100%">
       <Box display="flex" flexDirection="column" gap={1} minWidth={152}>
         <Box display="flex" alignItems="center" gap={1}>
-          <UserAvatar name={name} avatar={avatar} href={href} />
+          <UserLink name={name} avatar={avatar} href={href} />
           <Box component="b">
             <Link href={href} title={user.name}>
               {user.name}

@@ -7,7 +7,7 @@ import { getUserHref } from '@href'
 import { getDistance } from '@utils/date'
 import { useDateFnsLocale } from '@hooks/useDateFnsLocale'
 import AppIcon from '@ui/AppIcon'
-import UserAvatar from '@components/User/UserAvatar'
+import UserLink from '@components/User/UserLink'
 
 interface HeaderProps {
   user: UserBaseDto
@@ -53,7 +53,7 @@ export default function Header({ user, title, date, onClose }: HeaderProps): JSX
             >
               <AppIcon name="arrow_back_ios" />
             </IconButton>
-            <UserAvatar name={name} avatar={avatar} href={href} size={42} />
+            <UserLink name={name} avatar={avatar} href={href} size={42} />
           </Box>
           <Box display="flex" flexDirection="column">
             <Box component="b">

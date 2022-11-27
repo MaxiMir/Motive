@@ -3,7 +3,7 @@ import { styled } from '@mui/system'
 import { useIntl } from 'react-intl'
 import { UserBaseDto } from '@dto'
 import { getUserHref } from '@href'
-import UserAvatar from '@components/User/UserAvatar'
+import UserLink from '@components/User/UserLink'
 
 interface InheritedProps {
   owner: UserBaseDto
@@ -22,7 +22,7 @@ export default function Inheritance({ owner }: InheritedProps) {
         <Typography variant="caption">
           <b>{title}</b>
         </Typography>
-        <UserAvatar name={name} avatar={avatar} href={href} />
+        <UserLink name={name} avatar={avatar} href={href} />
       </Box>
     </InheritanceBox>
   )

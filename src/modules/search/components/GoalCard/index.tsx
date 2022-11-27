@@ -2,7 +2,7 @@ import { Box, Button, Typography } from '@mui/material'
 import { MAIN_CHARACTERISTICS, GoalDto } from '@dto'
 import { getUserHref } from '@href'
 import CharacteristicGoal from '@components/Characteristic/CharacteristicGoal'
-import UserAvatar from '@components/User/UserAvatar'
+import UserLink from '@components/User/UserLink'
 
 interface GoalCardProps {
   goal: GoalDto
@@ -31,7 +31,7 @@ export default function GoalCard({ goal }: GoalCardProps) {
           <Typography variant="caption">Completed: +</Typography>
         </Box>
         <Box display="flex" alignItems="center" gap={1}>
-          <UserAvatar name={ownerName} avatar={avatar} href={href} />
+          <UserLink name={ownerName} avatar={avatar} href={href} />
           <Typography variant="caption">{owner.name}</Typography>
         </Box>
         <Box display="flex" justifyContent="space-between" alignItems="center">

@@ -3,7 +3,7 @@ import { Container, Typography, Grid, Box, Button } from '@mui/material'
 import { UserDto, UserCharacteristicName } from '@dto'
 import { getUserHref } from '@href'
 import AppEmoji from '@ui/AppEmoji'
-import UserAvatar from '@components/User/UserAvatar'
+import UserLink from '@components/User/UserLink'
 
 interface UserRowProps {
   user: UserDto
@@ -46,7 +46,7 @@ export default function UserRow({ user, characteristicName, index }: UserRowProp
           </Grid>
           <Grid item xs={8}>
             <Box display="flex" alignItems="center" gap={2}>
-              <UserAvatar name={name} avatar={avatar} href={href} online={online} size={35} />
+              <UserLink name={name} avatar={avatar} href={href} online={online} size={35} />
               <Button href={href} sx={{ textTransform: 'none', color: 'inherit' }} component={Link}>
                 {name}
               </Button>

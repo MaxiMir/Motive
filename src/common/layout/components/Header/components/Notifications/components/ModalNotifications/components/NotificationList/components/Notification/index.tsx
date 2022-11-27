@@ -8,7 +8,7 @@ import useClient from '@hooks/useClient'
 import { getDistance } from '@utils/date'
 import { useDateFnsLocale } from '@hooks/useDateFnsLocale'
 import { getNotificationHref } from '@helpers/notification'
-import UserAvatar from '@components/User/UserAvatar'
+import UserLink from '@components/User/UserLink'
 import AppEmoji from '@ui/AppEmoji'
 import AppIcon from '@ui/AppIcon'
 import { toShortString } from '@helpers/string'
@@ -43,7 +43,7 @@ export default function Notification({ notification, onClose }: NotificationProp
   return (
     <Box display="flex" gap={2}>
       <Box height={55} position="relative">
-        <UserAvatar name={name} avatar={avatar} href={href} size={55} onClick={onClose} />
+        <UserLink name={name} avatar={avatar} href={href} size={55} onClick={onClose} />
         <Box
           display="flex"
           justifyContent="center"

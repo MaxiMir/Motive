@@ -1,4 +1,4 @@
 import { TaskDto } from '@dto'
 
-export const checkOnCompletedByOther = (task: TaskDto, daysGoneForOwner: number): boolean =>
-  !daysGoneForOwner && task.completedByOther && !task.completed
+export const checkOnCompletedByOthers = (task: TaskDto, daysGoneForOwner: number): boolean =>
+  !daysGoneForOwner && task.completedByOthers && !task.completed

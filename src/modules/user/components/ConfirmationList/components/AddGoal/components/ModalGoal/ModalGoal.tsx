@@ -1,5 +1,6 @@
 import dynamic from 'next/dynamic'
 import { Field, FieldArray, Form, FormikProvider } from 'formik'
+import { v4 as uuidV4 } from 'uuid'
 import { useIntl } from 'react-intl'
 import {
   Box,
@@ -53,7 +54,7 @@ export default function ModalGoal({ onClose }: ModalGoalProps) {
   const startLabelledby = formatMessage({ id: 'page.user.modal-goal.start-labelledby' })
   const todayLabel = formatMessage({ id: 'common.today' })
   const tomorrowLabel = formatMessage({ id: 'common.tomorrow' })
-  const tasksHeader = formatMessage({ id: 'page.user.modal-goal.tasks-title' })
+  const tasksHeader = formatMessage({ id: 'page.user.modal-goal.tasks-header' })
   const addTaskText = formatMessage({ id: 'common.task-add' })
 
   const onAddHashtag = () => {
@@ -162,19 +163,22 @@ export default function ModalGoal({ onClose }: ModalGoalProps) {
               <FieldArray name="tasks">
                 {({ push, remove }) => (
                   <>
-                    {values.tasks.map((task, index) => (
+                    {values.tasks.map(({ id, date }, index) => (
                       <TaskField
-                        index={index}
                         taskCount={values.tasks.length}
-                        date={task.date}
-                        key={`tasks.${index}`}
+                        date={values.started}
+                        remind={date}
+                        index={index}
+                        key={id}
+                        setFieldValue={setFieldValue}
                         onRemove={() => remove(index)}
-                        onToggleDate={(isChecked) =>
-                          setFieldValue(`tasks.${index}.date`, isChecked ? values.started : undefined)
-                        }
                       />
                     ))}
-                    <ButtonCompact variant="outlined" size="small" onClick={() => push({ name: '', date: undefined })}>
+                    <ButtonCompact
+                      variant="outlined"
+                      size="small"
+                      onClick={() => push({ id: uuidV4(), name: '', date: undefined })}
+                    >
                       {addTaskText}
                     </ButtonCompact>
                   </>

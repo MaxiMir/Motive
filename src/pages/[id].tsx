@@ -5,7 +5,7 @@ import { AxiosRequestHeaders } from 'axios'
 import { PossiblePageError } from '@dto'
 import { PageService } from '@services/page'
 import Layout from '@layout'
-import { UserModule, useUserMeta, useUserPage, getServerSideUrl } from '@modules/user'
+import UserModule, { useUserMeta, useUserPage, getServerSideUrl } from '@modules/user'
 
 export default function UserPage() {
   const { data } = useUserPage()

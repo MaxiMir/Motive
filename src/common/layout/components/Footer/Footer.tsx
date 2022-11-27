@@ -4,7 +4,7 @@ import { useIntl } from 'react-intl'
 import { Container, Box, Button } from '@mui/material'
 import { Route } from '@href'
 import { TopOfTheDayIcon, SearchIcon, RatingIcon, FollowingIcon } from '@ui/icons'
-import FooterProfile from './components/FooterProfile'
+import ProfileLink from './components/ProfileLink'
 
 const HOVER_OPACITY = 0.6
 
@@ -43,7 +43,7 @@ export default function Footer({ nickname }: FooterProps) {
               <Component sx={{ color: 'common.white', opacity: !asPath.includes(href) ? HOVER_OPACITY : 1 }} />
             </Button>
           ))}
-          <FooterProfile nickname={nickname} asPath={asPath} hoverOpacity={HOVER_OPACITY} />
+          <ProfileLink nickname={nickname} asPath={asPath} hoverOpacity={HOVER_OPACITY} />
         </Box>
       </Container>
     </Box>

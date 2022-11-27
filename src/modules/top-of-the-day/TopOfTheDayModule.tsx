@@ -3,7 +3,7 @@ import { Box, Typography } from '@mui/material'
 import AppHeader from '@ui/AppHeader'
 import AppContainer from '@ui/AppContainer'
 
-export function TopOfTheDayModule() {
+export default function TopOfTheDayModule() {
   const { formatMessage } = useIntl()
   const header = formatMessage({ id: 'page.top.header' })
   const text = formatMessage({ id: 'page.top.dev' })

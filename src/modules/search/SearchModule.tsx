@@ -19,7 +19,7 @@ interface SearchModuleProps {
   users: UserDto[]
 }
 
-export function SearchModule({ q, hashtags, goals, users }: SearchModuleProps) {
+export default function SearchModule({ q, hashtags, goals, users }: SearchModuleProps) {
   const { formatMessage } = useIntl()
   const gradients = getGradients()
   const noResult = !users.length && !goals.length

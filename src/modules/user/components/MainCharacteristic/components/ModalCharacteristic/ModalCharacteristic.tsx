@@ -34,8 +34,8 @@ export default function ModalCharacteristic({ name, value, onClose }: ModalChara
         <Typography variant="h6" component="h3" sx={{ color: `${name}.light`, mb: 1 }}>
           {header}:
         </Typography>
-        {list.map((element, key) => (
-          <ListItem name={element} key={key} />
+        {list.map((element) => (
+          <ListItem name={element} key={element} />
         ))}
       </Box>
     </AppModal>

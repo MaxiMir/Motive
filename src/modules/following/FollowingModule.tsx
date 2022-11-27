@@ -11,7 +11,7 @@ interface FollowingModuleProps {
   users: UserDto[]
 }
 
-export function FollowingModule({ users }: FollowingModuleProps) {
+export default function FollowingModule({ users }: FollowingModuleProps) {
   const { formatMessage } = useIntl()
   const header = formatMessage({ id: 'page.following.header' })
 

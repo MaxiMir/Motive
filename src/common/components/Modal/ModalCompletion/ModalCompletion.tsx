@@ -1,3 +1,4 @@
+import dynamic from 'next/dynamic'
 import { Field, FieldArray, Form, FormikProvider } from 'formik'
 import { useIntl } from 'react-intl'
 import { Grid, Box, Typography } from '@mui/material'
@@ -6,31 +7,39 @@ import useSelectPhoto from '@hooks/useSelectPhoto'
 import ActionSubmit from '@components/Action/ActionSubmit'
 import ActionCancel from '@components/Action/ActionCancel'
 import AppModal from '@ui/AppModal'
+import AppAccordion from '@ui/AppAccordion'
 import AppInput from '@ui/AppInput'
 import AppHeader from '@ui/AppHeader'
-import AppShakeIcon from '@ui/AppShakeIcon'
+import AppSpinIcon from '@ui/AppSpinIcon'
 import PhotoInput from '@components/Photo/PhotoInput'
 import PhotoButton from '@components/Photo/PhotoButton'
 import VideoPreview from '@components/Video/VideoPreview'
 import VideoInput from '@components/Video/VideoInput'
 import useForm from './hook'
 
-interface ModalFeedbackProps {
+const Alert = dynamic(() => import('@mui/material/Alert'))
+
+interface ModalCompletionProps {
   goal: GoalDto
   onClose: () => void
 }
 
-export default function ModalFeedback({ goal, onClose }: ModalFeedbackProps) {
+export default function ModalCompletion({ goal, onClose }: ModalCompletionProps) {
   const { formatMessage } = useIntl()
   const form = useForm(goal, onClose)
-  const { isSubmitting, values, setFieldValue, handleSubmit } = form
-  const title = formatMessage({ id: 'page.user.modal-feedback.title' })
-  const label = formatMessage({ id: 'page.user.modal-feedback.label' })
-  const subtitle = formatMessage({ id: 'page.user.modal-feedback.subtitle' })
-  const photoTitle = formatMessage({ id: 'page.user.modal-feedback.photo-title' })
-  const videoTitle = formatMessage({ id: 'page.user.modal-feedback.video-title' })
-  const buttonText = formatMessage({ id: 'page.user.modal-feedback.button' })
-  const loadingText = formatMessage({ id: 'page.user.modal-feedback.loading' })
+  const { isSubmitting, values, touched, errors, setFieldValue, handleSubmit } = form
+  const photoError = Array.isArray(errors.photos) ? errors.photos.join(', ') : errors.photos
+  const title = formatMessage({ id: 'component.modal-completion.title' })
+  const buttonText = formatMessage({ id: 'common.complete' })
+  const loadingText = formatMessage({ id: 'common.completing' })
+  const subtitle = formatMessage({ id: 'component.modal-completion.subtitle' })
+  const label = formatMessage({ id: 'component.modal-completion.label' })
+  const photoTitle = formatMessage({ id: 'component.modal-completion.photoTitle' })
+  const videoTitle = formatMessage({ id: 'component.modal-completion.videoTitle' })
+  const accordionHeader = formatMessage({ id: 'component.modal-completion.accordionHeader' })
+  const ariaControls = formatMessage({ id: 'component.modal-completion.aria' })
+  const detailsStart = formatMessage({ id: 'component.modal-completion.details-start' })
+  const detailsEnd = formatMessage({ id: 'component.modal-completion.details-end' })
 
   const onSelectPhoto = useSelectPhoto(form)
 
@@ -46,7 +55,7 @@ export default function ModalFeedback({ goal, onClose }: ModalFeedbackProps) {
           disabled={isSubmitting}
           text={buttonText}
           loadingText={loadingText}
-          emoji="feedback"
+          emoji="completed"
           onClick={handleSubmit}
         />,
       ]}
@@ -56,8 +65,8 @@ export default function ModalFeedback({ goal, onClose }: ModalFeedbackProps) {
         <Form autoComplete="off">
           <Box display="flex" flexDirection="column" alignItems="center" gap={3}>
             <Box display="flex" flexDirection="column" alignItems="center" gap={1}>
-              <AppShakeIcon name="congratulations" />
-              <Typography variant="subtitle1" sx={{ color: 'support.main' }}>
+              <AppSpinIcon name="completed" />
+              <Typography variant="subtitle1" sx={{ color: '#ffa300' }}>
                 {subtitle}
               </Typography>
             </Box>
@@ -71,7 +80,7 @@ export default function ModalFeedback({ goal, onClose }: ModalFeedbackProps) {
                   {({ remove }) => (
                     <Grid container spacing={2}>
                       {values.photos.map((file, index) => (
-                        <Grid item xs={4} key={index}>
+                        <Grid item xs={4} key={file.name}>
                           <PhotoButton image={file} disabled={isSubmitting} onClick={() => remove(index)} />
                         </Grid>
                       ))}
@@ -93,8 +102,32 @@ export default function ModalFeedback({ goal, onClose }: ModalFeedbackProps) {
               </Box>
             )}
             <Box display="flex" gap={2} width="100%">
-              <PhotoInput multiple disabled={isSubmitting} onSelect={onSelectPhoto} />
+              <PhotoInput disabled={isSubmitting} multiple onSelect={onSelectPhoto} />
               <VideoInput disabled onSelect={onSelectVideo} />
+            </Box>
+            {touched.photos && photoError && (
+              <Alert severity="error" variant="outlined" sx={{ width: '100%' }}>
+                {photoError}
+              </Alert>
+            )}
+            <Box sx={{ width: '100%' }}>
+              <AppAccordion
+                name="switch"
+                header={accordionHeader}
+                id="goal"
+                ariaControls={ariaControls}
+                details={
+                  <Box sx={{ color: 'zen.silent' }}>
+                    <Typography>
+                      {detailsStart}{' '}
+                      <Box component="b" sx={{ color: 'text.primary' }}>
+                        5
+                      </Box>{' '}
+                      {detailsEnd}.
+                    </Typography>
+                  </Box>
+                }
+              />
             </Box>
           </Box>
         </Form>

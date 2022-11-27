@@ -2,7 +2,7 @@ import Layout from '@layout'
 import { GetServerSideProps } from 'next'
 import { getSession } from 'next-auth/react'
 import { useIntl } from 'react-intl'
-import { TopOfTheDayModule } from '@modules/top-of-the-day'
+import TopOfTheDayModule from '@modules/top-of-the-day'
 
 export default function TopOfTheDayPage() {
   const { formatMessage } = useIntl()

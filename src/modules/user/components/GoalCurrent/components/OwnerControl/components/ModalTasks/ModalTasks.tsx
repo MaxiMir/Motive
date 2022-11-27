@@ -1,6 +1,7 @@
 import { ChangeEvent } from 'react'
 import { useIntl } from 'react-intl'
 import { FieldArray, Form, FormikProvider } from 'formik'
+import { v4 as uuidV4 } from 'uuid'
 import {
   Accordion,
   AccordionDetails,
@@ -86,23 +87,22 @@ export default function ModalTasks({ goal, onClose }: ModalTasksProps) {
                 <FieldArray name="tasks">
                   {({ push, remove }) => (
                     <>
-                      {values.tasks.map((task, index) => (
+                      {values.tasks.map(({ id, date }, index) => (
                         <TaskField
-                          index={index}
                           taskCount={values.tasks.length}
-                          date={task.date}
-                          key={`tasks.${index}`}
+                          date={values.date}
+                          remind={date}
+                          index={index}
+                          key={id}
+                          setFieldValue={setFieldValue}
                           onRemove={() => remove(index)}
-                          onToggleDate={(isChecked) =>
-                            setFieldValue(`tasks.${index}.date`, isChecked ? values.date : undefined)
-                          }
                         />
                       ))}
                       <Button
                         variant="outlined"
                         size="small"
                         sx={{ alignSelf: 'baseline', textTransform: 'none' }}
-                        onClick={() => push({ name: '', date: undefined })}
+                        onClick={() => push({ id: uuidV4(), name: '', date: undefined })}
                       >
                         {addTaskText}
                       </Button>

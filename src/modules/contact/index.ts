@@ -1,1 +1,1 @@
-export { ContactModule } from './ContactModule'
+export { default } from './ContactModule'

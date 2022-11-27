@@ -10,7 +10,7 @@ type RatingModuleProps = Record<MainCharacteristicName, UserDto[]> & {
   tab: number
 }
 
-export function RatingModule({ tab, ...props }: RatingModuleProps) {
+export default function RatingModule({ tab, ...props }: RatingModuleProps) {
   const { formatMessage } = useIntl()
   const header = formatMessage({ id: 'page.rating.header' })
   const ariaLabel = formatMessage({ id: 'page.rating.aria-label' })

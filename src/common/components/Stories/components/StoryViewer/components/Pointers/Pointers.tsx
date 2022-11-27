@@ -40,8 +40,8 @@ export default function Pointers({ count, onClose }: PointersProps): JSX.Element
           display: 'table-row',
         }}
       >
-        {list.map((_, index) => (
-          <Progress key={index} onEnd={onClose} />
+        {list.map((item) => (
+          <Progress key={item} onEnd={onClose} />
         ))}
       </Box>
     </Box>

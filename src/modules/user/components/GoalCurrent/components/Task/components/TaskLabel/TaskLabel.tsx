@@ -1,9 +1,9 @@
 import dynamic from 'next/dynamic'
 import { Box } from '@mui/material'
 import { TaskDto } from '@dto'
-import { checkOnCompletedByOther } from './helper'
+import { checkOnCompletedByOthers } from './helper'
 
-const CompletedByOther = dynamic(() => import('./components/CompletedByOther'))
+const CompletedByOthers = dynamic(() => import('./components/CompletedByOthers'))
 const AppMarkdown = dynamic(() => import('@ui/AppMarkdown'))
 
 interface TaskLabelProps {
@@ -12,12 +12,12 @@ interface TaskLabelProps {
 }
 
 export default function TaskLabel({ task, daysGoneForOwner }: TaskLabelProps) {
-  const completedByOther = checkOnCompletedByOther(task, daysGoneForOwner)
+  const completedByOthers = checkOnCompletedByOthers(task, daysGoneForOwner)
 
   return (
     <Box display="flex" alignItems="center" gap={1}>
       <AppMarkdown text={task.name} />
-      {completedByOther && <CompletedByOther />}
+      {completedByOthers && <CompletedByOthers />}
     </Box>
   )
 }

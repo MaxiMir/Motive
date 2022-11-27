@@ -2,7 +2,7 @@ import { GetServerSideProps } from 'next'
 import { getSession } from 'next-auth/react'
 import { useIntl } from 'react-intl'
 import Layout from '@layout'
-import { ContactModule } from '@modules/contact'
+import ContactModule from '@modules/contact'
 
 export default function ContactPage() {
   const { formatMessage } = useIntl()

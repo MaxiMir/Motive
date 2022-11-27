@@ -1,1 +1,1 @@
-export { TopOfTheDayModule } from './TopOfTheDayModule'
+export { default } from './TopOfTheDayModule'

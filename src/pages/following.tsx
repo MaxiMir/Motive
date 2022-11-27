@@ -6,7 +6,7 @@ import { AxiosRequestHeaders } from 'axios'
 import { Route } from '@href'
 import { PageService } from '@services/page'
 import Layout from '@layout'
-import { FollowingModule, useFollowingPage } from '@modules/following'
+import FollowingModule, { useFollowingPage } from '@modules/following'
 
 export default function FollowingPage() {
   const { formatMessage } = useIntl()

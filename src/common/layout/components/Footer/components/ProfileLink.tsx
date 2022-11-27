@@ -5,13 +5,13 @@ import { getUserHref } from '@href'
 import useOpenSignIn from '@hooks/useOpenSignIn'
 import { ProfileIcon } from '@ui/icons'
 
-interface FooterProfileProps {
+interface ProfileLinkProps {
   nickname?: string
   asPath: string
   hoverOpacity: number
 }
 
-export default function FooterProfile({ nickname, asPath, hoverOpacity }: FooterProfileProps) {
+export default function ProfileLink({ nickname, asPath, hoverOpacity }: ProfileLinkProps) {
   const { formatMessage } = useIntl()
   const { push } = useRouter()
   const openSignIn = useOpenSignIn()

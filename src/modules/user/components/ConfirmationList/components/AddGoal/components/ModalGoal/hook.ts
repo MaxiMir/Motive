@@ -1,6 +1,7 @@
 import { FormikProps, useFormik } from 'formik'
 import { useMutation } from 'react-query'
 import { useIntl } from 'react-intl'
+import { v4 as uuidV4 } from 'uuid'
 import { CreateGoalDto } from '@dto'
 import { GoalService } from '@services/goal'
 import { goalSchema } from '@schemas/goal'
@@ -19,7 +20,7 @@ export default function useForm(onSuccess: () => void): FormikProps<CreateGoalDt
       name: '',
       hashtags: '',
       stages: [],
-      tasks: [{ name: '', date: undefined }],
+      tasks: [{ id: uuidV4(), name: '', date: undefined }],
     },
     validationSchema: goalSchema,
     async onSubmit(data) {

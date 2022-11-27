@@ -3,7 +3,7 @@ import { getSession } from 'next-auth/react'
 import { useIntl } from 'react-intl'
 import { ClientDto } from '@dto'
 import Layout from '@layout'
-import { HomeModule } from '@modules/home'
+import HomeModule from '@modules/home'
 
 export default function HomePage() {
   const { formatMessage } = useIntl()

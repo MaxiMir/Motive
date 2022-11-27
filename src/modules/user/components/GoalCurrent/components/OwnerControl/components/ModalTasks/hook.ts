@@ -1,5 +1,6 @@
 import { FormikProps, useFormik } from 'formik'
 import { useMutation } from 'react-query'
+import { v4 as uuidV4 } from 'uuid'
 import { CreateDayDto, GoalDto } from '@dto'
 import { tasksSchema } from '@schemas/tasks'
 import { GoalService } from '@services/goal'
@@ -17,7 +18,7 @@ export default function useForm(goal: GoalDto, onSuccess: () => void): FormikPro
     initialValues: {
       id,
       date: getTomorrow().toISOString(),
-      tasks: [{ name: '', date: undefined }],
+      tasks: [{ id: uuidV4(), name: '', date: undefined }],
     },
     validationSchema: tasksSchema,
     async onSubmit(data) {

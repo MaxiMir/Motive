@@ -22,7 +22,7 @@ interface UserModuleProps {
   user: UserDetailDto
 }
 
-export function UserModule({ user }: UserModuleProps) {
+export default function UserModule({ user }: UserModuleProps) {
   const {
     id,
     nickname,

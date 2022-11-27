@@ -7,7 +7,7 @@ import { AxiosRequestHeaders } from 'axios'
 import { Route } from '@href'
 import { PageService } from '@services/page'
 import Layout from '@layout'
-import { RatingModule, useRatingPage } from '@modules/rating'
+import RatingModule, { useRatingPage } from '@modules/rating'
 
 export default function RatingPage() {
   const { formatMessage } = useIntl()

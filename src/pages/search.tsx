@@ -5,7 +5,7 @@ import { dehydrate, QueryClient } from 'react-query'
 import { useIntl } from 'react-intl'
 import { AxiosRequestHeaders } from 'axios'
 import { Route } from '@href'
-import { SearchModule, useSearchPage } from '@modules/search'
+import SearchModule, { useSearchPage } from '@modules/search'
 import { PageService } from '@services/page'
 
 export default function SearchPage() {

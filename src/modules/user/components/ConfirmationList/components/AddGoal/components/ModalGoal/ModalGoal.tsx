@@ -115,13 +115,13 @@ export default function ModalGoal({ onClose }: ModalGoalProps) {
               <FieldArray name="stages">
                 {({ push, remove }) => (
                   <>
-                    {values.stages.map((_, index) => (
-                      <Box display="flex" gap={1} key={index}>
+                    {values.stages.map(({ id }, index) => (
+                      <Box display="flex" gap={1} key={id}>
                         <Box display="flex" height={40} alignItems="center" alignSelf="flex-start">
                           <AppDot size={10} />
                         </Box>
                         <Field
-                          name={`stages.${index}`}
+                          name={`stages.${index}.name`}
                           label={`${stageLabel} ${index + 1}`}
                           autoFocus={index === values.stages.length - 1}
                           color="warning"
@@ -132,7 +132,12 @@ export default function ModalGoal({ onClose }: ModalGoalProps) {
                         </Box>
                       </Box>
                     ))}
-                    <ButtonCompact variant="outlined" color="warning" size="small" onClick={() => push('')}>
+                    <ButtonCompact
+                      variant="outlined"
+                      color="warning"
+                      size="small"
+                      onClick={() => push({ id: uuidV4(), name: '' })}
+                    >
                       + {stageButtonText}
                     </ButtonCompact>
                   </>

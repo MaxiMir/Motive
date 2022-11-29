@@ -8,8 +8,13 @@ export interface CreateGoalDto {
   readonly name: string
   readonly started: string
   readonly hashtags: string
-  readonly stages: string[]
+  readonly stages: CreateStageDto[]
   readonly tasks: CreateTaskDto[]
+}
+
+export interface CreateStageDto {
+  readonly id: string
+  readonly name: string
 }
 
 export interface GoalBaseDto {

@@ -1,5 +1,6 @@
 [//]: # (TODO)
 * Загрузка нотификаций не сразу
+* Загрузка нотификаций не сразу
 * https://validator.w3.org/nu/?doc=https%3A%2F%2F2bebetter.pro%2Fmaximir
 * Redis для страниц
 * Аватарка клик

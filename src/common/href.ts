@@ -1,4 +1,4 @@
-import { setQueryParams } from '@helpers/url'
+import { setSearchParams } from '@helpers/url'
 
 export const enum Route {
   TopOfTheDay = '/top-of-the-day',
@@ -32,13 +32,13 @@ export const getGoalHref = (userHref: string, goalId: number): string => {
 }
 
 export const getGoalWithDayHref = (userHref: string, goalId: number, dayId: number): string => {
-  const url = setQueryParams(userHref, { [SearchParam.Dates]: `${goalId}:${dayId}` })
+  const url = setSearchParams(userHref, { [SearchParam.Dates]: `${goalId}:${dayId}` })
 
   return getGoalHref(url, goalId)
 }
 
 export const getDiscussionHref = (userHref: string, goalId: number, dayId: number): string => {
-  const url = setQueryParams(userHref, {
+  const url = setSearchParams(userHref, {
     [SearchParam.ScrollTo]: HashMark.Discussion,
     [SearchParam.ScrollId]: goalId,
     [SearchParam.Dates]: `${goalId}:${dayId}`,
@@ -49,7 +49,7 @@ export const getDiscussionHref = (userHref: string, goalId: number, dayId: numbe
 }
 
 export const getFeedbackHref = (userHref: string, goalId: number, dayId: number): string => {
-  const url = setQueryParams(userHref, { [SearchParam.Dates]: `${goalId}:${dayId}` })
+  const url = setSearchParams(userHref, { [SearchParam.Dates]: `${goalId}:${dayId}` })
   const hash = getDiscussionHash(goalId)
 
   return url + hash
@@ -60,5 +60,5 @@ const getGoalHash = (id: number): string => `#${HashMark.Goal}-${id}`
 const getDiscussionHash = (id: number): string => `#${HashMark.Discussion}-${id}`
 
 export const getHashtagHref = (q: string): string => {
-  return setQueryParams(Route.Search, { q, type: 'tag' })
+  return setSearchParams(Route.Search, { q, type: 'tag' })
 }

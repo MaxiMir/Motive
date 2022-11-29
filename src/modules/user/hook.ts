@@ -6,7 +6,7 @@ import { CreateMemberDto, GoalDto, MemberDto, UserDetailDto, UserPageDto, OGType
 import { getImageSrc, getUserHref, SearchParam } from '@href'
 import { PageService } from '@services/page'
 import { MemberService } from '@services/member'
-import { getQueryParams, setQueryParams } from '@helpers/url'
+import { getCurrentSearchParams, setSearchParams } from '@helpers/url'
 import useClient from '@hooks/useClient'
 import { getNextState } from './helper'
 
@@ -85,9 +85,9 @@ export const useChangeDayUrl = (): ((goals: GoalDto[], goalId: number, dayId: nu
   const { asPath, pathname, push } = useRouter()
 
   return (goals: GoalDto[], goalId: number, dayId: number) => {
-    const { [SearchParam.Dates]: _, ...restParams } = getQueryParams()
+    const { [SearchParam.Dates]: _, ...restParams } = getCurrentSearchParams()
     const datesParam = goals.map(({ id, day }) => `${id}:${id !== goalId ? day.id : dayId}`).join(',')
-    const as = setQueryParams(asPath, {
+    const as = setSearchParams(asPath, {
       [SearchParam.Dates]: datesParam,
       ...restParams,
     })
@@ -106,7 +106,7 @@ export const useSendCreateMember = (): UseMutationResult<MemberDto, AxiosError, 
 
       const href = getUserHref(client.nickname)
       const params = { [SearchParam.Dates]: `${goalId}:${dayId}` }
-      push(setQueryParams(href, params))
+      push(setSearchParams(href, params))
     },
   })
 }

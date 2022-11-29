@@ -1,4 +1,5 @@
 import { useIntl } from 'react-intl'
+import { isValid } from 'date-fns'
 import { Box, Badge, Divider, TextField } from '@mui/material'
 import { DatePicker } from '@mui/x-date-pickers/DatePicker'
 import { PickersDay } from '@mui/x-date-pickers'
@@ -33,7 +34,7 @@ export default function Calendar({ goal }: CalendarProps) {
   const onClickArrow = (value: string) => onChangeDebounce(dateMap[value])
 
   const onChangeDate = (value: Date | null) => {
-    const invalidDate = Number.isNaN(value?.getTime())
+    const invalidDate = !isValid(value)
 
     if (!value || +value === +date || invalidDate) return
 

@@ -37,7 +37,6 @@ const useSendCreateGoal = (onSuccess: () => void) => {
   return useMutation(GoalService.create, {
     onSuccess(goal) {
       const message = formatMessage({ id: 'page.user.modal-goal.message' })
-
       mutateGoal(getNextState(goals, goal))
       onSuccess()
       enqueueSnackbar({ message, severity: 'success', icon: 'goal' })

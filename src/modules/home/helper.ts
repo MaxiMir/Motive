@@ -1,6 +1,6 @@
 import { MainCharacteristicName, SecondCharacteristicName } from '@dto'
 import { Route } from '@href'
-import { setQueryParams } from '@helpers/url'
+import { setSearchParams } from '@helpers/url'
 
 interface AdvantageItem {
   name: MainCharacteristicName | SecondCharacteristicName.Completed
@@ -10,15 +10,15 @@ interface AdvantageItem {
 const ADVANTAGES: AdvantageItem[] = [
   {
     name: MainCharacteristicName.Motivation,
-    href: setQueryParams(Route.Rating, { tab: '0' }),
+    href: setSearchParams(Route.Rating, { tab: '0' }),
   },
   {
     name: MainCharacteristicName.Creativity,
-    href: setQueryParams(Route.Rating, { tab: '1' }),
+    href: setSearchParams(Route.Rating, { tab: '1' }),
   },
   {
     name: MainCharacteristicName.Support,
-    href: setQueryParams(Route.Rating, { tab: '2' }),
+    href: setSearchParams(Route.Rating, { tab: '2' }),
   },
   {
     name: SecondCharacteristicName.Completed,

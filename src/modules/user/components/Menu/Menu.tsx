@@ -14,7 +14,7 @@ interface MenuProps {
   clientPage: boolean
 }
 
-export default function Menu({ user, href, clientPage }: MenuProps) {
+function Menu({ user, href, clientPage }: MenuProps) {
   const { id, name } = user
   const { formatMessage } = useIntl()
   const [anchorEl, setAnchorEl] = useState<HTMLElement | null>(null)
@@ -43,3 +43,5 @@ export default function Menu({ user, href, clientPage }: MenuProps) {
     </Box>
   )
 }
+
+export default Menu

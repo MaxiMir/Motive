@@ -13,7 +13,7 @@ interface ActionSubmitProps {
   onClick: () => void
 }
 
-export default function ActionSubmit({ emoji, text, loadingText, disabled, onClick }: ActionSubmitProps) {
+function ActionSubmit({ emoji, text, loadingText, disabled, onClick }: ActionSubmitProps) {
   return (
     <AppGradientButton
       type="submit"
@@ -25,3 +25,5 @@ export default function ActionSubmit({ emoji, text, loadingText, disabled, onCli
     </AppGradientButton>
   )
 }
+
+export default ActionSubmit

@@ -19,15 +19,7 @@ interface LayoutProps {
   children?: ReactNode
 }
 
-export default function Layout({
-  title,
-  description,
-  keywords,
-  type = OGType.Website,
-  image,
-  canonical,
-  children,
-}: LayoutProps) {
+function Layout({ title, description, keywords, type = OGType.Website, image, canonical, children }: LayoutProps) {
   const { locale } = useIntl()
   const client = useClient()
   const { asPath } = useRouter()
@@ -91,3 +83,5 @@ export default function Layout({
     </>
   )
 }
+
+export default Layout

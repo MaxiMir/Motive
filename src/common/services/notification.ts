@@ -1,15 +1,15 @@
-import { DayDto } from '@dto'
-import { service } from '@utils/service'
-import { Service, WhereParams } from './Service'
+import { NotificationDto } from '@dto'
+import fetcher from '@utils/fetcher'
+import Service, { WhereParams } from './Service'
 
-export class NotificationService extends Service {
-  static get(where: WhereParams): Promise<DayDto> {
+export default class NotificationService extends Service {
+  static get(where: WhereParams): Promise<NotificationDto[]> {
     const params = NotificationService.getWhereParams(where)
 
-    return service.get('/notifications', { params })
+    return fetcher.get('/notifications', { params })
   }
 
   static updateRead(id: number): Promise<void> {
-    return service.patch(`/notifications/${id}/read`)
+    return fetcher.patch(`/notifications/${id}/read`)
   }
 }

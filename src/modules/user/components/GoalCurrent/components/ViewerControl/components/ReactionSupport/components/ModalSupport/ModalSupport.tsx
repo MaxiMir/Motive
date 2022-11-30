@@ -9,7 +9,7 @@ import AppFadeIcon from '@ui/AppFadeIcon'
 import AppInput from '@ui/AppInput'
 import AppAccordion from '@ui/AppAccordion'
 import AppDecorEmoji from '@ui/AppDecorEmoji'
-import useForm from './hook'
+import useForm from './hooks/useForm'
 
 interface ModalSupportProps {
   goal: GoalDto
@@ -17,7 +17,7 @@ interface ModalSupportProps {
   onClose: () => void
 }
 
-export default function ModalSupport({ goal, owner, onClose }: ModalSupportProps) {
+function ModalSupport({ goal, owner, onClose }: ModalSupportProps) {
   const { formatMessage } = useIntl()
   const form = useForm(goal, onClose)
   const { isSubmitting, handleSubmit } = form
@@ -90,3 +90,5 @@ export default function ModalSupport({ goal, owner, onClose }: ModalSupportProps
     </AppModal>
   )
 }
+
+export default ModalSupport

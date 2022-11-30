@@ -15,7 +15,7 @@ interface MenuListProps {
   onClose: () => void
 }
 
-export default function MenuList({ anchorEl, message, onOpenModal, onClose }: MenuListProps) {
+function MenuList({ anchorEl, message, onOpenModal, onClose }: MenuListProps) {
   const { formatMessage } = useIntl()
   const client = useClient()
   const editText = formatMessage({ id: 'common.edit' })
@@ -46,3 +46,5 @@ export default function MenuList({ anchorEl, message, onOpenModal, onClose }: Me
     </>
   )
 }
+
+export default MenuList

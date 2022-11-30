@@ -12,7 +12,7 @@ interface PhotoButtonProps {
   onClick: () => void
 }
 
-export default function PhotoButton({ image, disabled, onClick }: PhotoButtonProps) {
+function PhotoButton({ image, disabled, onClick }: PhotoButtonProps) {
   const { formatMessage } = useIntl()
   const ariaLabel = formatMessage({ id: 'component.photo-button.aria' })
 
@@ -60,3 +60,5 @@ export default function PhotoButton({ image, disabled, onClick }: PhotoButtonPro
     </Button>
   )
 }
+
+export default PhotoButton

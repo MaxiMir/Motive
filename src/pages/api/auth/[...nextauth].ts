@@ -3,7 +3,7 @@ import AppleProvider from 'next-auth/providers/apple'
 import GoogleProvider from 'next-auth/providers/google'
 import GithubProvider from 'next-auth/providers/github'
 import FacebookProvider from 'next-auth/providers/facebook'
-import { UserService } from '@services/user'
+import UserService from '@services/user'
 
 export default NextAuth({
   providers: [

@@ -11,7 +11,7 @@ interface ConfirmationStoryProps {
   confirmation: ConfirmationDto
 }
 
-export default function ConfirmationStory({ user, confirmation }: ConfirmationStoryProps) {
+function ConfirmationStory({ user, confirmation }: ConfirmationStoryProps) {
   const { ref, enabled, open, onOpen, onClose } = useFullScreen()
   const [mainPhoto] = confirmation.photos
   const stories = [mainPhoto] // TODO confirmation.photos.map
@@ -67,3 +67,5 @@ export default function ConfirmationStory({ user, confirmation }: ConfirmationSt
     </>
   )
 }
+
+export default ConfirmationStory

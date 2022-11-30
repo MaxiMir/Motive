@@ -12,7 +12,7 @@ interface ModalAbandonedProps {
   onClose: () => void
 }
 
-export default function ModalAbandoned({ user, onClose }: ModalAbandonedProps) {
+function ModalAbandoned({ user, onClose }: ModalAbandonedProps) {
   const { abandoned } = user.characteristic
   const { formatMessage } = useIntl()
   const progress = useShowProgress(abandoned, { step: 1, ms: 300 })
@@ -47,3 +47,5 @@ export default function ModalAbandoned({ user, onClose }: ModalAbandonedProps) {
     </AppModal>
   )
 }
+
+export default ModalAbandoned

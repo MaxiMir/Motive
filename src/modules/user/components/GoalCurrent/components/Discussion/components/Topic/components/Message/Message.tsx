@@ -2,11 +2,11 @@ import dynamic from 'next/dynamic'
 import Link from 'next/link'
 import { useIntl } from 'react-intl'
 import { Box, Typography } from '@mui/material'
-import { MessageDto } from '@dto'
 import { getUserHref } from '@href'
+import { MessageDto } from '@dto'
 import { getDistance } from '@utils/date'
 import { formatNumber } from '@helpers/intl'
-import { useDateFnsLocale } from '@hooks/useDateFnsLocale'
+import useDateFnsLocale from '@hooks/useDateFnsLocale'
 import UserLink from '@components/User/UserLink'
 import Menu from './components/Menu'
 import LikeButton from './components/LikeButton'
@@ -22,7 +22,7 @@ interface MessageProps {
   onReply?: () => void
 }
 
-export default function Message({ message, answerFor, supportFor, onReply }: MessageProps) {
+function Message({ message, answerFor, supportFor, onReply }: MessageProps) {
   const { date, user, text, edited } = message
   const { name, nickname, avatar } = user
   const { formatMessage } = useIntl()
@@ -77,3 +77,5 @@ export default function Message({ message, answerFor, supportFor, onReply }: Mes
     </Box>
   )
 }
+
+export default Message

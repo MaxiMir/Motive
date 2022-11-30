@@ -1,6 +1,6 @@
 import { SvgIcon, SvgIconProps } from '@mui/material'
 
-export default function PaulIcon(props: SvgIconProps) {
+function PaulIcon(props: SvgIconProps) {
   return (
     <SvgIcon {...props}>
       <path
@@ -38,3 +38,5 @@ export default function PaulIcon(props: SvgIconProps) {
     </SvgIcon>
   )
 }
+
+export default PaulIcon

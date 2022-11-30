@@ -1,4 +1,4 @@
-import { use, useEffect, useMemo, useState } from 'react'
+import { use, useMemo, useState } from 'react'
 import { useRouter } from 'next/router'
 import dynamic from 'next/dynamic'
 import Script from 'next/script'
@@ -20,6 +20,7 @@ import { ModalSignInContext } from '@context/modalSignInContext'
 import { getLocaleFolder } from '@utils/date'
 import { makeMapLoader } from '@helpers/iterable'
 import { Locale } from '@hooks/useSetLocale'
+import useRemoveServerStyles from '@hooks/useRemoveServerStyles'
 import EventSocket from '@components/EventSocket'
 import { getDesignTokens } from 'src/common/theme'
 
@@ -30,7 +31,7 @@ const generateClassName = createGenerateClassName({ productionPrefix: 'be' })
 const langLoader = makeMapLoader<Record<string, string>>()
 const dateFnsLangLoader = makeMapLoader<FnsLocale>()
 
-export default function App({ Component, pageProps: { session, dehydratedState, providers, ...pageProps } }: AppProps) {
+function App({ Component, pageProps: { session, dehydratedState, providers, ...pageProps } }: AppProps) {
   const { locale } = useRouter()
   const currentLocale = locale || Locale.En
   const localeFolder = getLocaleFolder(currentLocale)
@@ -64,19 +65,11 @@ export default function App({ Component, pageProps: { session, dehydratedState, 
   const themeCtx = useMemo(() => ({ mode, setMode }), [mode])
   const modalSignInCtx = useMemo(() => ({ options, providers, setOptions }), [options, providers])
   const snackbarCtx = useMemo(() => ({ props: snackbarProps, setProps: setSnackbarProps }), [snackbarProps])
+  useRemoveServerStyles()
 
   const onCloseSignIn = () => setOptions(undefined)
 
   const onCloseSnackbar = () => setSnackbarProps(null)
-
-  useEffect(() => {
-    // Remove the server-side injected CSS.
-    const jssStyles = document.querySelector('#jss-server-side')
-
-    if (jssStyles?.parentElement) {
-      jssStyles.parentElement.removeChild(jssStyles)
-    }
-  }, [])
 
   return (
     <IntlProvider locale={currentLocale} messages={messages}>
@@ -119,3 +112,5 @@ export default function App({ Component, pageProps: { session, dehydratedState, 
     </IntlProvider>
   )
 }
+
+export default App

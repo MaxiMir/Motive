@@ -15,7 +15,7 @@ interface ViewerProps {
   clientOwnership: OwnershipDto
 }
 
-export default function Viewer({ goal, owner, forTomorrow, clientOwnership }: ViewerProps) {
+function Viewer({ goal, owner, forTomorrow, clientOwnership }: ViewerProps) {
   const completion = checkOnCompletion(clientOwnership, goal)
 
   return (
@@ -34,3 +34,5 @@ export default function Viewer({ goal, owner, forTomorrow, clientOwnership }: Vi
     </Box>
   )
 }
+
+export default Viewer

@@ -5,7 +5,7 @@ import ActionSubmit from '@components/Action/ActionSubmit'
 import ActionCancel from '@components/Action/ActionCancel'
 import AppModal from '@ui/AppModal'
 import AppFadeIcon from '@ui/AppFadeIcon'
-import { useSendRemoveMember } from './hook'
+import useSendRemoveMember from './hooks/useSendRemoveMember'
 
 interface ModalLeaveProps {
   goal: GoalDto
@@ -13,7 +13,7 @@ interface ModalLeaveProps {
   onClose: () => void
 }
 
-export default function ModalLeave({ goal, clientOwnership, onClose }: ModalLeaveProps) {
+function ModalLeave({ goal, clientOwnership, onClose }: ModalLeaveProps) {
   const { id, name } = goal
   const { formatMessage } = useIntl()
   const { isLoading, mutateAsync } = useSendRemoveMember(id, clientOwnership.page)
@@ -56,3 +56,5 @@ export default function ModalLeave({ goal, clientOwnership, onClose }: ModalLeav
     </AppModal>
   )
 }
+
+export default ModalLeave

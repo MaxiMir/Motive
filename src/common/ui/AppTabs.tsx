@@ -8,7 +8,7 @@ interface AppTabsProps {
   initial?: number
 }
 
-export default function AppTabs({ tabs, content, ariaLabel, initial = 0 }: AppTabsProps) {
+function AppTabs({ tabs, content, ariaLabel, initial = 0 }: AppTabsProps) {
   const [value, setValue] = useState(initial)
 
   const getA11yTabProps = (index: number) => ({
@@ -56,3 +56,5 @@ export default function AppTabs({ tabs, content, ariaLabel, initial = 0 }: AppTa
     </>
   )
 }
+
+export default AppTabs

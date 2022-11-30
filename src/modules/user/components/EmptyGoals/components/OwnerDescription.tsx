@@ -3,7 +3,7 @@ import { useIntl } from 'react-intl'
 import { Box, Typography } from '@mui/material'
 import { Route } from '@href'
 
-export default function OwnerDescription() {
+function OwnerDescription() {
   const { formatMessage } = useIntl()
   const title = formatMessage({ id: 'page.user.owner-description.title' })
   const subtitle = formatMessage({ id: 'page.user.owner-description.subtitle' })
@@ -27,3 +27,5 @@ export default function OwnerDescription() {
     </>
   )
 }
+
+export default OwnerDescription

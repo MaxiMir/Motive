@@ -31,7 +31,7 @@ export const getGoalHref = (userHref: string, goalId: number): string => {
   return userHref + hashMark
 }
 
-export const getGoalWithDayHref = (userHref: string, goalId: number, dayId: number): string => {
+export const getGoalDayHref = (userHref: string, goalId: number, dayId: number): string => {
   const url = setSearchParams(userHref, { [SearchParam.Dates]: `${goalId}:${dayId}` })
 
   return getGoalHref(url, goalId)

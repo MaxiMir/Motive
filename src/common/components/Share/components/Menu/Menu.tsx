@@ -16,7 +16,7 @@ interface MenuProps {
   onClose: () => void
 }
 
-export default function Menu({ title, url, onCopyEnd, onCopyError, onClose }: MenuProps) {
+function Menu({ title, url, onCopyEnd, onCopyError, onClose }: MenuProps) {
   const { formatMessage } = useIntl()
   const shareItems = getShareItems()
 
@@ -89,3 +89,5 @@ export default function Menu({ title, url, onCopyEnd, onCopyError, onClose }: Me
     </Drawer>
   )
 }
+
+export default Menu

@@ -15,7 +15,7 @@ interface MenuProps {
   clientOwnership: OwnershipDto
 }
 
-export default function Menu({ goal, title, href, clientOwnership }: MenuProps) {
+function Menu({ goal, title, href, clientOwnership }: MenuProps) {
   const { formatMessage } = useIntl()
   const [anchorEl, setAnchorEl] = useState<HTMLElement | null>(null)
   const [withShare, setWithShare] = useState(false)
@@ -59,3 +59,5 @@ export default function Menu({ goal, title, href, clientOwnership }: MenuProps) 
     </>
   )
 }
+
+export default Menu

@@ -11,7 +11,7 @@ interface AppLightBoxProps {
   setIndex: (i?: number) => void
 }
 
-export default function AppLightBox({ sources, index, setIndex }: AppLightBoxProps) {
+function AppLightBox({ sources, index, setIndex }: AppLightBoxProps) {
   const { formatMessage } = useIntl()
   const nextLabel = formatMessage({ id: 'common.next' })
   const prevLabel = formatMessage({ id: 'common.previous' })
@@ -56,3 +56,5 @@ export default function AppLightBox({ sources, index, setIndex }: AppLightBoxPro
     </>
   )
 }
+
+export default AppLightBox

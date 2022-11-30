@@ -1,6 +1,6 @@
 import { SvgIcon, SvgIconProps } from '@mui/material'
 
-export default function TopOfTheDayIcon(props: SvgIconProps) {
+function TopOfTheDayIcon(props: SvgIconProps) {
   return (
     <SvgIcon {...props}>
       <path
@@ -10,3 +10,5 @@ export default function TopOfTheDayIcon(props: SvgIconProps) {
     </SvgIcon>
   )
 }
+
+export default TopOfTheDayIcon

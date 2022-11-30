@@ -11,7 +11,7 @@ interface WalletProps {
   src: ImageProps['src']
 }
 
-export default function Wallet({ name, wallet, src }: WalletProps) {
+function Wallet({ name, wallet, src }: WalletProps) {
   const { formatMessage } = useIntl()
   const [enqueueSnackbar] = useSnackbar()
   const copyText = formatMessage({ id: 'common.copied' })
@@ -46,3 +46,5 @@ export default function Wallet({ name, wallet, src }: WalletProps) {
     </Box>
   )
 }
+
+export default Wallet

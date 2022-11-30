@@ -4,7 +4,7 @@ interface LoaderProps {
   count: number
 }
 
-export default function Loader({ count }: LoaderProps) {
+function Loader({ count }: LoaderProps) {
   const list = [...new Array(count)]
 
   return (
@@ -15,3 +15,5 @@ export default function Loader({ count }: LoaderProps) {
     </>
   )
 }
+
+export default Loader

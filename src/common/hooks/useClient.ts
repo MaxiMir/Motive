@@ -1,7 +1,7 @@
 import { useSession } from 'next-auth/react'
 import { ClientDto } from '@dto'
 
-export default function useClient(): ClientDto | undefined {
+const useClient = (): ClientDto | undefined => {
   const { data, status } = useSession()
   const user = data?.user as ClientDto | undefined
 
@@ -14,3 +14,5 @@ export default function useClient(): ClientDto | undefined {
         avatar: user.avatar,
       }
 }
+
+export default useClient

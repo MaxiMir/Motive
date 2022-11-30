@@ -9,13 +9,13 @@ import useDebounceCb from '@hooks/useDebounceCb'
 import AppIconButton from '@ui/AppIconButton'
 import AppEmoji from '@ui/AppEmoji'
 import { getBorders, getToggleDates, partialGetDateKey } from './helper'
-import { useChangeDay } from './hook'
+import useChangeDay from './hooks/useChangeDay'
 
 interface CalendarProps {
   goal: GoalDto
 }
 
-export default function Calendar({ goal }: CalendarProps) {
+function Calendar({ goal }: CalendarProps) {
   const { id, day, calendar } = goal
   const { formatMessage } = useIntl()
   const date = new Date(day.date)
@@ -110,3 +110,5 @@ export default function Calendar({ goal }: CalendarProps) {
 const PartDivider = styled(Divider)({
   flex: 1,
 })
+
+export default Calendar

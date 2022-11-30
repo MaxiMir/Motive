@@ -1,7 +1,7 @@
 import { ChangeEvent } from 'react'
+import { v4 as uuidV4 } from 'uuid'
 import { useIntl } from 'react-intl'
 import { FieldArray, Form, FormikProvider } from 'formik'
-import { v4 as uuidV4 } from 'uuid'
 import {
   Accordion,
   AccordionDetails,
@@ -25,14 +25,14 @@ import ActionSubmit from '@components/Action/ActionSubmit'
 import ActionCancel from '@components/Action/ActionCancel'
 import TaskField from '@components/Task/TaskField'
 import OldPittRules from '@components/OldPitt/OldPittRules'
-import useForm from './hook'
+import useForm from './hooks/useForm'
 
 interface ModalTasksProps {
   goal: GoalDto
   onClose: () => void
 }
 
-export default function ModalTasks({ goal, onClose }: ModalTasksProps) {
+function ModalTasks({ goal, onClose }: ModalTasksProps) {
   const { formatMessage } = useIntl()
   const form = useForm(goal, onClose)
   const { isSubmitting, values, setFieldValue, handleSubmit } = form
@@ -154,3 +154,5 @@ export default function ModalTasks({ goal, onClose }: ModalTasksProps) {
     </AppModal>
   )
 }
+
+export default ModalTasks

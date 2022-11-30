@@ -2,17 +2,17 @@ import dynamic from 'next/dynamic'
 import Link from 'next/link'
 import { useIntl } from 'react-intl'
 import { Box, IconButton, Typography } from '@mui/material'
-import { NotificationDto } from '@dto'
 import { getUserHref } from '@href'
+import { NotificationDto } from '@dto'
 import useClient from '@hooks/useClient'
 import { getDistance } from '@utils/date'
-import { useDateFnsLocale } from '@hooks/useDateFnsLocale'
+import useDateFnsLocale from '@hooks/useDateFnsLocale'
 import { getNotificationHref } from '@helpers/notification'
 import UserLink from '@components/User/UserLink'
 import AppEmoji from '@ui/AppEmoji'
 import AppIcon from '@ui/AppIcon'
 import { toShortString } from '@helpers/string'
-import { useUpdateRead } from './hook'
+import useUpdateRead from './hooks/useUpdateRead'
 import { getNotificationInfo } from './helper'
 
 const AppInView = dynamic(() => import('@ui/AppInView'))
@@ -22,7 +22,7 @@ interface NotificationProps {
   onClose: () => void
 }
 
-export default function Notification({ notification, onClose }: NotificationProps) {
+function Notification({ notification, onClose }: NotificationProps) {
   const { id, type, details, created, read } = notification
   const { name, nickname, avatar } = details.user
   const { formatMessage } = useIntl()
@@ -85,3 +85,5 @@ export default function Notification({ notification, onClose }: NotificationProp
     </Box>
   )
 }
+
+export default Notification

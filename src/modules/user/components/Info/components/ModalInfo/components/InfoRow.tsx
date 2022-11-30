@@ -10,7 +10,7 @@ interface InfoRowProps {
   value: string
 }
 
-export default function InfoRow({ icon, name, value }: InfoRowProps) {
+function InfoRow({ icon, name, value }: InfoRowProps) {
   const { locale, formatMessage } = useIntl()
   const title = formatMessage({ id: `common.${name}` })
   const text = name !== 'registered' ? value : dateFormatter(value, locale)
@@ -26,3 +26,5 @@ export default function InfoRow({ icon, name, value }: InfoRowProps) {
     </Box>
   )
 }
+
+export default InfoRow

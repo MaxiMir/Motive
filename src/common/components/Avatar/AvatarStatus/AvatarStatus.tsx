@@ -16,7 +16,7 @@ interface AvatarStatusProps {
   onClick?: (e: MouseEvent<HTMLElement>) => void
 }
 
-export default function AvatarStatus({ src, name, size, online, lastSeen, device, onClick }: AvatarStatusProps) {
+function AvatarStatus({ src, name, size, online, lastSeen, device, onClick }: AvatarStatusProps) {
   return (
     <Button sx={{ minWidth: 'initial', padding: '3px', borderRadius: '50%', textTransform: 'none' }} onClick={onClick}>
       {!src ? (
@@ -27,3 +27,5 @@ export default function AvatarStatus({ src, name, size, online, lastSeen, device
     </Button>
   )
 }
+
+export default AvatarStatus

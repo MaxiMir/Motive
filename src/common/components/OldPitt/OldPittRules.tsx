@@ -2,7 +2,7 @@ import { useIntl } from 'react-intl'
 import { Typography } from '@mui/material'
 import AppDecorEmoji from '@ui/AppDecorEmoji'
 
-export default function OldPittRules() {
+function OldPittRules() {
   const { formatMessage } = useIntl()
   const huntsText = formatMessage({ id: 'component.old-pitt-rules.hunts' })
   const coversMessageTmpl = formatMessage({ id: 'component.old-pitt-rules.covers' })
@@ -23,3 +23,5 @@ export default function OldPittRules() {
     </Typography>
   )
 }
+
+export default OldPittRules

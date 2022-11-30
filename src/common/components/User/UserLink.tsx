@@ -10,10 +10,12 @@ interface UserLinkProps {
   onClick?: () => void
 }
 
-export default function UserLink({ name, avatar, href, online, size = 26, onClick }: UserLinkProps) {
+function UserLink({ name, avatar, href, online, size = 26, onClick }: UserLinkProps) {
   return (
     <Link href={href} title={name} onClick={onClick}>
       <AvatarStatus src={avatar} name={name} online={online} size={size} />
     </Link>
   )
 }
+
+export default UserLink

@@ -10,7 +10,7 @@ interface ActionGoalProps {
   onClick: () => void
 }
 
-export default function ActionGoal({ name, title, count, disabled, onClick }: ActionGoalProps) {
+function ActionGoal({ name, title, count, disabled, onClick }: ActionGoalProps) {
   const formattedCount = count && formatNumber(count)
 
   return (
@@ -36,3 +36,5 @@ export default function ActionGoal({ name, title, count, disabled, onClick }: Ac
     </Button>
   )
 }
+
+export default ActionGoal

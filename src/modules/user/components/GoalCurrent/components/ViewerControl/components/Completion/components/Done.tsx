@@ -12,7 +12,7 @@ interface DoneProps {
   forTomorrow: boolean
 }
 
-export default function Done({ goal, forTomorrow }: DoneProps) {
+function Done({ goal, forTomorrow }: DoneProps) {
   const { formatMessage } = useIntl()
   const [open, setOpen] = useState(false)
   const title = forTomorrow && formatMessage({ id: 'component.tooltip.tomorrow' })
@@ -41,3 +41,5 @@ export default function Done({ goal, forTomorrow }: DoneProps) {
     </>
   )
 }
+
+export default Done

@@ -13,7 +13,7 @@ interface ReactionSupportProps {
   owner: UserBaseDto
 }
 
-export default function ReactionSupport({ goal, owner }: ReactionSupportProps) {
+function ReactionSupport({ goal, owner }: ReactionSupportProps) {
   const { formatMessage } = useIntl()
   const client = useClient()
   const openSignIn = useOpenSignIn()
@@ -39,3 +39,5 @@ export default function ReactionSupport({ goal, owner }: ReactionSupportProps) {
     </>
   )
 }
+
+export default ReactionSupport

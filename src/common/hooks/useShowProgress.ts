@@ -6,7 +6,7 @@ interface Options {
   onEnd?: () => void
 }
 
-export default function useShowProgress(value: number, options: Options = {}): number {
+const useShowProgress = (value: number, options: Options = {}) => {
   const { step = 1, ms = 100, onEnd } = options
   const [progress, setProgress] = useState(0)
 
@@ -28,3 +28,5 @@ export default function useShowProgress(value: number, options: Options = {}): n
 
   return progress
 }
+
+export default useShowProgress

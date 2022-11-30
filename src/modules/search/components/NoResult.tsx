@@ -5,7 +5,7 @@ interface NoResultProps {
   phrase: string
 }
 
-export default function NoResult({ phrase }: NoResultProps) {
+function NoResult({ phrase }: NoResultProps) {
   const { formatMessage } = useIntl()
   const title = formatMessage({ id: 'common.no-results' })
   const description = formatMessage({ id: 'common.no-results-description' })
@@ -23,3 +23,5 @@ export default function NoResult({ phrase }: NoResultProps) {
     </Box>
   )
 }
+
+export default NoResult

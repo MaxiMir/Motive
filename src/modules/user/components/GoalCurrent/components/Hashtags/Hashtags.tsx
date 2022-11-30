@@ -5,7 +5,7 @@ interface HashtagsProps {
   hashtags: string[]
 }
 
-export default function Hashtags({ hashtags }: HashtagsProps) {
+function Hashtags({ hashtags }: HashtagsProps) {
   return (
     <Box display="flex" flexWrap="wrap" gap={1}>
       {hashtags?.map((hashtag) => (
@@ -14,3 +14,5 @@ export default function Hashtags({ hashtags }: HashtagsProps) {
     </Box>
   )
 }
+
+export default Hashtags

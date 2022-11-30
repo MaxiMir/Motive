@@ -11,7 +11,7 @@ interface InfoProps {
   user: UserDetailDto
 }
 
-export default function Info({ user }: InfoProps) {
+function Info({ user }: InfoProps) {
   const { formatMessage } = useIntl()
   const [open, setOpen] = useState(false)
   const learnMoreText = formatMessage({ id: 'common.info' })
@@ -41,3 +41,5 @@ export default function Info({ user }: InfoProps) {
     </>
   )
 }
+
+export default Info

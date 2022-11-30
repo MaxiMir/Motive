@@ -6,7 +6,7 @@ interface HashtagProps {
   label: string
 }
 
-export default function Hashtag({ label }: HashtagProps) {
+function Hashtag({ label }: HashtagProps) {
   const { push } = useRouter()
 
   const onClick = () => {
@@ -31,3 +31,5 @@ export default function Hashtag({ label }: HashtagProps) {
     />
   )
 }
+
+export default Hashtag

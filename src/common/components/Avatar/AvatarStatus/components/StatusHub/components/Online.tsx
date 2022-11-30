@@ -5,7 +5,7 @@ interface OnlineProps {
   children: ReactNode
 }
 
-export default function Online({ children }: OnlineProps) {
+function Online({ children }: OnlineProps) {
   return (
     <Badge
       overlap="circular"
@@ -45,3 +45,5 @@ export default function Online({ children }: OnlineProps) {
     </Badge>
   )
 }
+
+export default Online

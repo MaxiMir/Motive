@@ -7,7 +7,7 @@ interface AppMarkdownProps {
   text: string
 }
 
-export default function AppMarkdown({ text }: AppMarkdownProps) {
+function AppMarkdown({ text }: AppMarkdownProps) {
   const markdown = toMarkdown(text)
 
   const renderParagraph = ({ children }: { children: ReactNode & ReactNode[] }) => (
@@ -50,3 +50,5 @@ export default function AppMarkdown({ text }: AppMarkdownProps) {
     </Box>
   )
 }
+
+export default AppMarkdown

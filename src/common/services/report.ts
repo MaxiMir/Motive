@@ -1,8 +1,8 @@
 import { CreateReportDto } from '@dto'
-import { service } from '@utils/service'
+import fetcher from '@utils/fetcher'
 
-export class ReportService {
+export default class ReportService {
   static create(data: CreateReportDto): Promise<void> {
-    return service.post('/reports', data)
+    return fetcher.post('/reports', data)
   }
 }

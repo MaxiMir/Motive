@@ -2,11 +2,11 @@ import dynamic from 'next/dynamic'
 import { Field, Form, FormikProvider } from 'formik'
 import { useIntl } from 'react-intl'
 import { Box, IconButton } from '@mui/material'
-import { TopicDto, MessageType, ClientDto, UserBaseDto } from '@dto'
 import { getUserHref } from '@href'
+import { TopicDto, MessageType, ClientDto, UserBaseDto } from '@dto'
 import AppInput from '@ui/AppInput'
 import UserLink from '@components/User/UserLink'
-import useForm from './hook'
+import useForm from './hooks/useForm'
 
 const CircularProgress = dynamic(() => import('@mui/material/CircularProgress'))
 const AppIcon = dynamic(() => import('@ui/AppIcon'))
@@ -19,7 +19,7 @@ interface UserInputProps {
   onAdd: (topic: TopicDto) => void
 }
 
-export default function UserInput({ dayId, user, type, topicId, onAdd }: UserInputProps) {
+function UserInput({ dayId, user, type, topicId, onAdd }: UserInputProps) {
   const { nickname, name, avatar } = user
   const { formatMessage } = useIntl()
   const form = useForm(dayId, topicId, type, onAdd)
@@ -55,3 +55,5 @@ export default function UserInput({ dayId, user, type, topicId, onAdd }: UserInp
     </FormikProvider>
   )
 }
+
+export default UserInput

@@ -1,7 +1,7 @@
 import { useIntl } from 'react-intl'
 import { Box, Typography } from '@mui/material'
 
-export default function Slogan() {
+function Slogan() {
   const { formatMessage } = useIntl()
   const subheader = formatMessage({ id: 'page.home.subheader' })
 
@@ -29,3 +29,5 @@ export default function Slogan() {
     </Box>
   )
 }
+
+export default Slogan

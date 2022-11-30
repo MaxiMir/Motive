@@ -1,5 +1,4 @@
-import produce from 'immer'
-import { MainCharacteristicName, NotificationDto, NotificationType } from '@dto'
+import { MainCharacteristicName, NotificationType } from '@dto'
 import { AppEmojiName } from '@ui/AppEmoji'
 
 interface NotificationInfo {
@@ -30,14 +29,4 @@ export const getNotificationInfo = (type: NotificationType): NotificationInfo =>
     default:
       return { emoji: 'notification', color: 'common.white' }
   }
-}
-
-export const getNextState = (notifications: NotificationDto[], id: number): NotificationDto[] => {
-  return produce(notifications, (draft) => {
-    const draftNotification = draft.find((d) => d.id === id)
-
-    if (!draftNotification) return
-
-    draftNotification.read = true
-  })
 }

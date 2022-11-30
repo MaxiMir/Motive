@@ -4,7 +4,7 @@ import { Box, Tooltip } from '@mui/material'
 import { MemberDto, TaskDto } from '@dto'
 import AppCheckbox from '@ui/AppCheckbox'
 import TaskLabel from './components/TaskLabel'
-import useSetCompleted from './hook'
+import useSetCompleted from './hooks/useSetCompleted'
 
 const TaskDate = dynamic(() => import('./components/TaskDate'))
 
@@ -18,7 +18,7 @@ interface TaskProps {
   canEdit: boolean
 }
 
-export default function Task({ goalId, task, rest, clientMember, forTomorrow, daysGoneForOwner, canEdit }: TaskProps) {
+function Task({ goalId, task, rest, clientMember, forTomorrow, daysGoneForOwner, canEdit }: TaskProps) {
   const { id, date, completed } = task
   const { formatMessage } = useIntl()
   const setCompleted = useSetCompleted(goalId, id, rest, clientMember)
@@ -44,3 +44,5 @@ export default function Task({ goalId, task, rest, clientMember, forTomorrow, da
     </Box>
   )
 }
+
+export default Task

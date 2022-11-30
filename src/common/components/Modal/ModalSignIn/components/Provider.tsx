@@ -11,7 +11,7 @@ interface ProviderProps {
   disabled: boolean
 }
 
-export default function Provider({ id, name, options, src, disabled }: ProviderProps) {
+function Provider({ id, name, options, src, disabled }: ProviderProps) {
   const { formatMessage } = useIntl()
   const withText = formatMessage({ id: 'common.with' })
 
@@ -30,3 +30,5 @@ export default function Provider({ id, name, options, src, disabled }: ProviderP
     </Button>
   )
 }
+
+export default Provider

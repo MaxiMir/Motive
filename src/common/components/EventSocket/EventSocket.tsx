@@ -1,7 +1,9 @@
-import { useSocket } from './hook'
+import useSocket from './hooks/useSocket'
 
-export default function EventSocket() {
+function EventSocket() {
   useSocket()
 
   return null
 }
+
+export default EventSocket

@@ -12,7 +12,7 @@ interface FooterProps {
   nickname?: string
 }
 
-export default function Footer({ nickname }: FooterProps) {
+function Footer({ nickname }: FooterProps) {
   const { formatMessage } = useIntl()
   const { asPath } = useRouter()
   const routes = getRoutes()
@@ -49,3 +49,5 @@ export default function Footer({ nickname }: FooterProps) {
     </Box>
   )
 }
+
+export default Footer

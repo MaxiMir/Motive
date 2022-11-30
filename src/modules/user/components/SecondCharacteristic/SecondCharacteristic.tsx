@@ -18,7 +18,7 @@ interface CharacteristicProps {
   value: number
 }
 
-export default function SecondCharacteristic({ user, name, value }: CharacteristicProps) {
+function SecondCharacteristic({ user, name, value }: CharacteristicProps) {
   const { formatMessage } = useIntl()
   const [modal, setModal] = useState<SecondCharacteristicName>()
   const singleText = formatMessage({ id: `common.${name}-single` })
@@ -92,3 +92,5 @@ export default function SecondCharacteristic({ user, name, value }: Characterist
     </>
   )
 }
+
+export default SecondCharacteristic

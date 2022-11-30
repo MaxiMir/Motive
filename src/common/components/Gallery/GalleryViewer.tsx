@@ -7,7 +7,7 @@ export interface GalleryViewerProps {
   photos: PhotoDto[]
 }
 
-export default function GalleryViewer({ photos }: GalleryViewerProps) {
+function GalleryViewer({ photos }: GalleryViewerProps) {
   const [index, setIndex] = useState<number>()
   const sources = photos.map(({ src }) => src)
 
@@ -18,3 +18,5 @@ export default function GalleryViewer({ photos }: GalleryViewerProps) {
     </>
   )
 }
+
+export default GalleryViewer

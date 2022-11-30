@@ -25,7 +25,7 @@ interface AppModalProps {
   onClose: () => void
 }
 
-export default function AppModal({ title, actions, maxWidth, blur = true, children, onClose }: AppModalProps) {
+function AppModal({ title, actions, maxWidth, blur = true, children, onClose }: AppModalProps) {
   const { formatMessage } = useIntl()
   const label = formatMessage({ id: 'common.close' })
 
@@ -74,3 +74,5 @@ export default function AppModal({ title, actions, maxWidth, blur = true, childr
     </Dialog>
   )
 }
+
+export default AppModal

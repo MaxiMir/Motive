@@ -1,28 +1,28 @@
 import { CreateMessageDto, TopicDto, UpdateMessageDto } from '@dto'
-import { service } from '@utils/service'
-import { Service, WhereParams } from './Service'
+import fetcher from '@utils/fetcher'
+import Service, { WhereParams } from './Service'
 
-export class TopicService extends Service {
+export default class TopicService extends Service {
   static get(where: WhereParams, page: number, take: number): Promise<TopicDto[]> {
     const whereParams = TopicService.getWhereParams(where)
     const paginationParams = TopicService.getPaginationParams(page, take)
 
-    return service.get('/topics', {
+    return fetcher.get('/topics', {
       params: { ...whereParams, ...paginationParams },
     })
   }
 
   static create(data: CreateMessageDto): Promise<TopicDto> {
-    return service.post('/topics', data)
+    return fetcher.post('/topics', data)
   }
 
   static update(id: number, data: UpdateMessageDto): Promise<void> {
-    return service.put(`/topics/${id}`, data)
+    return fetcher.put(`/topics/${id}`, data)
   }
 
   static updateLike(id: number, add: boolean): Promise<void> {
     const params = TopicService.getOperationParams(add)
 
-    return service.patch(`/topics/${id}/likes`, undefined, { params })
+    return fetcher.patch(`/topics/${id}/likes`, undefined, { params })
   }
 }

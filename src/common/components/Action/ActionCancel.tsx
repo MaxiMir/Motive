@@ -6,7 +6,7 @@ interface ActionCloseProps {
   onClick: () => void
 }
 
-export default function ActionCancel({ onClick }: ActionCloseProps) {
+function ActionCancel({ onClick }: ActionCloseProps) {
   const { formatMessage } = useIntl()
   const buttonText = formatMessage({ id: 'common.cancel' })
 
@@ -16,3 +16,5 @@ export default function ActionCancel({ onClick }: ActionCloseProps) {
     </AppGradientButton>
   )
 }
+
+export default ActionCancel

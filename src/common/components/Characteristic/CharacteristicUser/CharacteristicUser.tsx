@@ -11,7 +11,7 @@ interface CharacteristicUserProps {
   value: number
 }
 
-export default function CharacteristicUser({ name, value }: CharacteristicUserProps) {
+function CharacteristicUser({ name, value }: CharacteristicUserProps) {
   const formattedValue = name !== SecondCharacteristicName.Followers ? Math.floor(value) : formatNumber(value)
   const showLevel = !(SECOND_CHARACTERISTICS as ReadonlyArray<string>).includes(name)
 
@@ -27,3 +27,5 @@ export default function CharacteristicUser({ name, value }: CharacteristicUserPr
     </Box>
   )
 }
+
+export default CharacteristicUser

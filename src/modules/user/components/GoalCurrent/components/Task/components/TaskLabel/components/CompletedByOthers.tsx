@@ -2,7 +2,7 @@ import { useIntl } from 'react-intl'
 import { Tooltip } from '@mui/material'
 import AppEmoji from '@ui/AppEmoji'
 
-export default function CompletedByOthers() {
+function CompletedByOthers() {
   const { formatMessage } = useIntl()
   const title = formatMessage({ id: 'page.user.competed-by-other.title' })
 
@@ -14,3 +14,5 @@ export default function CompletedByOthers() {
     </Tooltip>
   )
 }
+
+export default CompletedByOthers

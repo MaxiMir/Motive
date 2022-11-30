@@ -1,6 +1,5 @@
-import { useEffect, useState } from 'react'
 import dynamic from 'next/dynamic'
-import { SignInOptions, getProviders } from 'next-auth/react'
+import { SignInOptions } from 'next-auth/react'
 import { useIntl } from 'react-intl'
 import { Box } from '@mui/material'
 import AppModal from '@ui/AppModal'
@@ -8,6 +7,7 @@ import appleSrc from 'public/images/svg/apple.svg'
 import metaSrc from 'public/images/svg/meta.svg'
 import githubSrc from 'public/images/svg/github.svg'
 import googleSrc from 'public/images/svg/google.svg'
+import useProviders from './hooks/useProviders'
 
 const SOURCE = {
   Apple: appleSrc,
@@ -20,21 +20,15 @@ type SourceKey = keyof typeof SOURCE
 const Loader = dynamic(() => import('./components/Loader'))
 const Provider = dynamic(() => import('./components/Provider'))
 
-type Providers = Awaited<ReturnType<typeof getProviders>>
-
 interface ModalSignInProps {
   options: SignInOptions
   onClose: () => void
 }
 
-export default function ModalSignIn({ options, onClose }: ModalSignInProps) {
+function ModalSignIn({ options, onClose }: ModalSignInProps) {
   const { formatMessage } = useIntl()
-  const [providers, setProviders] = useState<Providers>()
+  const providers = useProviders()
   const title = formatMessage({ id: 'common.sign-in' })
-
-  useEffect(() => {
-    getProviders().then(setProviders)
-  }, [])
 
   return (
     <AppModal title={title} maxWidth="xs" onClose={onClose}>
@@ -59,3 +53,5 @@ export default function ModalSignIn({ options, onClose }: ModalSignInProps) {
     </AppModal>
   )
 }
+
+export default ModalSignIn

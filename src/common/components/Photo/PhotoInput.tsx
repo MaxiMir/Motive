@@ -10,7 +10,7 @@ interface PhotoInputProps {
   onSelect: (photos: File[]) => void
 }
 
-export default function PhotoInput({ multiple, disabled, onSelect }: PhotoInputProps) {
+function PhotoInput({ multiple, disabled, onSelect }: PhotoInputProps) {
   const { formatMessage } = useIntl()
   const photoInputRef = useRef<HTMLInputElement>(null)
   const title = formatMessage({ id: 'common.load-photo' })
@@ -48,3 +48,5 @@ export default function PhotoInput({ multiple, disabled, onSelect }: PhotoInputP
 const Input = styled('input')({
   display: 'none',
 })
+
+export default PhotoInput

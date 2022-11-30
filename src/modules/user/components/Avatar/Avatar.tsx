@@ -10,7 +10,7 @@ interface AvatarProps {
   user: UserDetailDto
 }
 
-export default function Avatar({ user }: AvatarProps) {
+function Avatar({ user }: AvatarProps) {
   const [index, setIndex] = useState<number>()
   const [anchorEl, setAnchorEl] = useState<HTMLElement | null>(null)
   const { name, avatar, online, lastSeen, device } = user
@@ -41,3 +41,5 @@ export default function Avatar({ user }: AvatarProps) {
     </>
   )
 }
+
+export default Avatar

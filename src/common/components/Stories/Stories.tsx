@@ -2,9 +2,9 @@ import { MutableRefObject } from 'react'
 import { Box, Portal } from '@mui/material'
 import { styled } from '@mui/system'
 import { UserBaseDto } from '@dto'
-import { useSlowClose } from './hook'
+import { Story } from '@components/Stories/types'
+import useSlowClose from './hooks/useSlowClose'
 import StoryViewer from './components/StoryViewer'
-import { Story } from './components/StoryViewer/components/Slide'
 
 interface StoryProps {
   stories: Story[]
@@ -16,7 +16,7 @@ interface StoryProps {
   onClose: () => void
 }
 
-export default function Stories({ stories, title, date, user, fullscreenEnabled, fullscreenRef, onClose }: StoryProps) {
+function Stories({ stories, title, date, user, fullscreenEnabled, fullscreenRef, onClose }: StoryProps) {
   const [closing, closeSlow] = useSlowClose(onClose)
 
   return (
@@ -82,3 +82,5 @@ const Container = styled(Box)({
   bottom: 0,
   height: '100%',
 })
+
+export default Stories

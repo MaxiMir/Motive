@@ -6,7 +6,7 @@ interface PointersProps {
   onClose: () => void
 }
 
-export default function Pointers({ count, onClose }: PointersProps): JSX.Element {
+function Pointers({ count, onClose }: PointersProps): JSX.Element {
   const list = [...new Array(count)]
 
   return (
@@ -47,3 +47,5 @@ export default function Pointers({ count, onClose }: PointersProps): JSX.Element
     </Box>
   )
 }
+
+export default Pointers

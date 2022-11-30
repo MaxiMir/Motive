@@ -37,7 +37,9 @@ export interface GoalDto extends GoalBaseDto {
   readonly completed: boolean
 }
 
-export type CreatedGoal = Readonly<Omit<GoalDto, 'day'> & { days: DayDto[] }>
+export interface CreatedGoal extends Readonly<Omit<GoalDto, 'day'>> {
+  readonly days: DayDto[]
+}
 
 export interface GoalStageDto {
   readonly id: number

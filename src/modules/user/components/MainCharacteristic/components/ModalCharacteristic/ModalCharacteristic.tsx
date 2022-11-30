@@ -11,7 +11,7 @@ interface ModalCharacteristicProps {
   onClose: () => void
 }
 
-export default function ModalCharacteristic({ name, value, onClose }: ModalCharacteristicProps) {
+function ModalCharacteristic({ name, value, onClose }: ModalCharacteristicProps) {
   const { formatMessage } = useIntl()
   const title = formatMessage({ id: `common.${name}` })
   const header = formatMessage({ id: `page.user.modal-characteristic.${name}.header` })
@@ -41,3 +41,5 @@ export default function ModalCharacteristic({ name, value, onClose }: ModalChara
     </AppModal>
   )
 }
+
+export default ModalCharacteristic

@@ -4,10 +4,12 @@ interface DescriptionProps {
   onClose: () => void
 }
 
-export default function Description({ onClose }: DescriptionProps) {
+function Description({ onClose }: DescriptionProps) {
   return (
     <Drawer open anchor="bottom" onClose={onClose}>
       Description
     </Drawer>
   )
 }
+
+export default Description

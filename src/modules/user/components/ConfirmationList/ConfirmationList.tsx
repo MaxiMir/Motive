@@ -11,7 +11,7 @@ interface ConfirmationListProps {
   clientPage: boolean
 }
 
-export default function ConfirmationList({ user, confirmations, clientPage }: ConfirmationListProps) {
+function ConfirmationList({ user, confirmations, clientPage }: ConfirmationListProps) {
   return (
     <Tabs
       value={0}
@@ -31,3 +31,5 @@ export default function ConfirmationList({ user, confirmations, clientPage }: Co
     </Tabs>
   )
 }
+
+export default ConfirmationList

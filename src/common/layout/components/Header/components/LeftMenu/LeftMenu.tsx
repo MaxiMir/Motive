@@ -7,7 +7,7 @@ import AppIcon from '@ui/AppIcon'
 const MenuModal = dynamic(() => import('./components/MenuModal'))
 const ModalSettings = dynamic(() => import('./components/ModalSettings'))
 
-export default function LeftMenu() {
+function LeftMenu() {
   const { formatMessage } = useIntl()
   const ariaLabel = formatMessage({ id: 'common.open-menu' })
   const [openMenu, setOpenMenu] = useState(false)
@@ -38,3 +38,5 @@ export default function LeftMenu() {
     </>
   )
 }
+
+export default LeftMenu

@@ -1,7 +1,7 @@
 import Link from 'next/link'
 import { Container, Typography, Grid, Box, Button } from '@mui/material'
-import { UserDto, UserCharacteristicName } from '@dto'
 import { getUserHref } from '@href'
+import { UserDto, UserCharacteristicName } from '@dto'
 import AppEmoji from '@ui/AppEmoji'
 import UserLink from '@components/User/UserLink'
 
@@ -11,7 +11,7 @@ interface UserRowProps {
   index: number
 }
 
-export default function UserRow({ user, characteristicName, index }: UserRowProps) {
+function UserRow({ user, characteristicName, index }: UserRowProps) {
   const { nickname, name, avatar, characteristic, online } = user
   const number = getNumber()
   const href = getUserHref(nickname)
@@ -62,3 +62,5 @@ export default function UserRow({ user, characteristicName, index }: UserRowProp
     </Box>
   )
 }
+
+export default UserRow

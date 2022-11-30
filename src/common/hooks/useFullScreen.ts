@@ -1,7 +1,7 @@
 import { useRef, useState } from 'react'
 import fscreen from 'fscreen'
 
-export default function useFullScreen() {
+const useFullScreen = () => {
   const [open, setOpen] = useState(false)
   const ref = useRef<HTMLDivElement | null>(null)
   const enabled = fscreen.fullscreenEnabled
@@ -31,3 +31,5 @@ export default function useFullScreen() {
 
   return { ref, enabled, open, onOpen, onClose }
 }
+
+export default useFullScreen

@@ -15,7 +15,7 @@ import PhotoInput from '@components/Photo/PhotoInput'
 import PhotoButton from '@components/Photo/PhotoButton'
 import VideoPreview from '@components/Video/VideoPreview'
 import VideoInput from '@components/Video/VideoInput'
-import useForm from './hook'
+import useForm from './hooks/useForm'
 
 const Alert = dynamic(() => import('@mui/material/Alert'))
 
@@ -24,7 +24,7 @@ interface ModalCompletionProps {
   onClose: () => void
 }
 
-export default function ModalCompletion({ goal, onClose }: ModalCompletionProps) {
+function ModalCompletion({ goal, onClose }: ModalCompletionProps) {
   const { formatMessage } = useIntl()
   const form = useForm(goal, onClose)
   const { isSubmitting, values, touched, errors, setFieldValue, handleSubmit } = form
@@ -135,3 +135,5 @@ export default function ModalCompletion({ goal, onClose }: ModalCompletionProps)
     </AppModal>
   )
 }
+
+export default ModalCompletion

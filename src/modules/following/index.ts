@@ -1,2 +1,2 @@
 export { default } from './FollowingModule'
-export { useFollowingPage } from './hook'
+export { useFollowingPage } from './hooks/useFollowingPage'

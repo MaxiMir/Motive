@@ -1,8 +1,9 @@
 import { Box } from '@mui/material'
 import { UserBaseDto } from '@dto'
+import { Story } from '@components/Stories/types'
 import Header from './components/Header'
 import Pointers from './components/Pointers'
-import Slide, { Story } from './components/Slide'
+import Slide from './components/Slide'
 import Details from './components/Details'
 
 interface StoryViewerProps {
@@ -13,7 +14,7 @@ interface StoryViewerProps {
   onClose: () => void
 }
 
-export default function StoryViewer({ stories, user, title, date, onClose }: StoryViewerProps) {
+function StoryViewer({ stories, user, title, date, onClose }: StoryViewerProps) {
   const count = stories.length
 
   return (
@@ -48,3 +49,5 @@ export default function StoryViewer({ stories, user, title, date, onClose }: Sto
     </Box>
   )
 }
+
+export default StoryViewer

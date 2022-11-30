@@ -8,7 +8,7 @@ interface CustomErrorProps {
   statusCode?: number
 }
 
-export default function Error({ statusCode = 500 }: CustomErrorProps) {
+function Error({ statusCode = 500 }: CustomErrorProps) {
   const { formatMessage } = useIntl()
   const router = useRouter()
   const headerMessageId = statusCode === 404 ? 'page.404.title' : 'common.error'
@@ -42,3 +42,5 @@ export default function Error({ statusCode = 500 }: CustomErrorProps) {
     </AppContainer>
   )
 }
+
+export default Error

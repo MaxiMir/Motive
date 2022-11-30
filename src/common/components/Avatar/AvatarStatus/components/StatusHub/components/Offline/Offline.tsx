@@ -3,8 +3,8 @@ import dynamic from 'next/dynamic'
 import { useIntl } from 'react-intl'
 import { Badge, Box, Tooltip } from '@mui/material'
 import { getDistance } from '@utils/date'
+import useDateFnsLocale from '@hooks/useDateFnsLocale'
 import { Device } from '@helpers/window'
-import { useDateFnsLocale } from '@hooks/useDateFnsLocale'
 import { getShortDistance } from './helper'
 
 const DeviceIcon = dynamic(() => import('./components/DeviceIcon'))
@@ -15,7 +15,7 @@ interface OfflineProps {
   children: ReactNode
 }
 
-export default function Offline({ lastSeen, device, children }: OfflineProps) {
+function Offline({ lastSeen, device, children }: OfflineProps) {
   const { formatMessage } = useIntl()
   const fnsLocale = useDateFnsLocale()
   const distance = getDistance(lastSeen, fnsLocale)
@@ -52,3 +52,5 @@ export default function Offline({ lastSeen, device, children }: OfflineProps) {
     </Badge>
   )
 }
+
+export default Offline

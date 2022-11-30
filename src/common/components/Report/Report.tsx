@@ -2,7 +2,7 @@ import { useIntl } from 'react-intl'
 import { Menu, MenuItem } from '@mui/material'
 import { ReportType } from '@dto'
 import AppMenuItemContent from '@ui/AppMenuItemContent'
-import useSendReport from './hook'
+import useSendReport from './hooks/useSendReport'
 
 interface ReportProps {
   entityId: number
@@ -11,7 +11,7 @@ interface ReportProps {
   onClose: () => void
 }
 
-export default function Report({ entityId, type, anchorEl, onClose }: ReportProps) {
+function Report({ entityId, type, anchorEl, onClose }: ReportProps) {
   const { formatMessage } = useIntl()
   const title = formatMessage({ id: 'component.report.title' })
   const reports = [
@@ -35,3 +35,5 @@ export default function Report({ entityId, type, anchorEl, onClose }: ReportProp
     </Menu>
   )
 }
+
+export default Report

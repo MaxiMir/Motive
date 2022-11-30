@@ -12,16 +12,7 @@ interface CircleProps {
   strokeWidthBg: number
 }
 
-export default function AppCircle({
-  offset,
-  radius,
-  dasharray,
-  size,
-  light,
-  dark,
-  strokeWidth,
-  strokeWidthBg,
-}: CircleProps) {
+function AppCircle({ offset, radius, dasharray, size, light, dark, strokeWidth, strokeWidthBg }: CircleProps) {
   return (
     <svg width={size} height={size} viewBox="-25 -25 400 400">
       <circle stroke={light} cx={radius} cy={radius} r={radius} strokeWidth={strokeWidthBg} fill="none" />
@@ -53,3 +44,5 @@ export default function AppCircle({
     </svg>
   )
 }
+
+export default AppCircle

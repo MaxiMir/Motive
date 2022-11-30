@@ -1,9 +1,9 @@
-import { service } from '@utils/service'
 import { FeedbackDto } from '@dto'
+import fetcher from '@utils/fetcher'
 
-export class FeedbackService {
+export default class FeedbackService {
   static create(data: FormData): Promise<FeedbackDto> {
-    return service.post('/feedback', data, {
+    return fetcher.post('/feedback', data, {
       headers: {
         'Content-Type': 'multipart/form-data',
       },

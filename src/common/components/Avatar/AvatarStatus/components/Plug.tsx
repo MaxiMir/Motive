@@ -6,7 +6,7 @@ interface PlugProps {
   size: number
 }
 
-export default function Plug({ name, size }: PlugProps) {
+function Plug({ name, size }: PlugProps) {
   const letter = name[0].toUpperCase()
 
   return (
@@ -21,3 +21,5 @@ export default function Plug({ name, size }: PlugProps) {
     </Avatar>
   )
 }
+
+export default Plug

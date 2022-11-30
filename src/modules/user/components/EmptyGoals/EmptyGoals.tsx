@@ -7,7 +7,7 @@ interface AddGoalProps {
   clientPage: boolean
 }
 
-export default function EmptyGoals({ clientPage }: AddGoalProps) {
+function EmptyGoals({ clientPage }: AddGoalProps) {
   const { formatMessage } = useIntl()
   const type = clientPage ? 'owner' : 'guest'
   const title = formatMessage({ id: `page.user.empty-goals.${type}` })
@@ -22,3 +22,5 @@ export default function EmptyGoals({ clientPage }: AddGoalProps) {
     </Box>
   )
 }
+
+export default EmptyGoals

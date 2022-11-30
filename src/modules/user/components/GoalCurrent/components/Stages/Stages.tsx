@@ -16,7 +16,7 @@ interface StagesProps {
   completeStage: boolean
 }
 
-export default function Stages({ goal, forTomorrow, completeStage }: StagesProps) {
+function Stages({ goal, forTomorrow, completeStage }: StagesProps) {
   const { formatMessage } = useIntl()
   const [open, setOpen] = useState(false)
   const { day, stages } = goal
@@ -71,3 +71,5 @@ export default function Stages({ goal, forTomorrow, completeStage }: StagesProps
     </>
   )
 }
+
+export default Stages

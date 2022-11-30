@@ -3,7 +3,7 @@ import { useIntl } from 'react-intl'
 import { Box } from '@mui/material'
 import { NotificationDto } from '@dto'
 import AppModal from '@ui/AppModal'
-import useNotificationHint from './hook'
+import useNotificationHint from './hooks/useNotificationHint'
 
 const EmptyList = dynamic(() => import('./components/EmptyList'))
 const NotificationList = dynamic(() => import('./components/NotificationList'))
@@ -14,7 +14,7 @@ interface ModalNotificationsProps {
   onClose: () => void
 }
 
-export default function ModalNotifications({ notifications, onClose }: ModalNotificationsProps) {
+function ModalNotifications({ notifications, onClose }: ModalNotificationsProps) {
   const { formatMessage } = useIntl()
   const [showHint, onHintClick] = useNotificationHint()
   const title = formatMessage({ id: 'common.notifications' })
@@ -29,3 +29,5 @@ export default function ModalNotifications({ notifications, onClose }: ModalNoti
     </AppModal>
   )
 }
+
+export default ModalNotifications

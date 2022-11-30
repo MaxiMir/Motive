@@ -9,7 +9,7 @@ interface HashtagProps {
   views: number
 }
 
-export default function Hashtag({ name, gradient, views }: HashtagProps) {
+function Hashtag({ name, gradient, views }: HashtagProps) {
   const { push } = useRouter()
   const formattedViews = formatNumber(views)
 
@@ -60,3 +60,5 @@ export default function Hashtag({ name, gradient, views }: HashtagProps) {
     </Button>
   )
 }
+
+export default Hashtag

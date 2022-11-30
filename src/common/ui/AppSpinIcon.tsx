@@ -4,7 +4,7 @@ interface AppSpinIconProps {
   name: AppEmojiName
 }
 
-export default function AppSpinIcon({ name }: AppSpinIconProps) {
+function AppSpinIcon({ name }: AppSpinIconProps) {
   return (
     <AppEmoji
       name={name}
@@ -32,3 +32,5 @@ export default function AppSpinIcon({ name }: AppSpinIconProps) {
     />
   )
 }
+
+export default AppSpinIcon

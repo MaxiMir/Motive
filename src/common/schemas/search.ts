@@ -1,5 +1,7 @@
 import { object, string } from 'yup'
 
-export const searchSchema = object({
+const searchSchema = object({
   q: string(),
 })
+
+export default searchSchema

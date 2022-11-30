@@ -4,12 +4,12 @@ import { PhotoProps } from 'react-photo-album'
 import { Box } from '@mui/material'
 import AppImage from '@ui/AppImage'
 
-type GalleryPhotoProps = PhotoProps & {
+interface GalleryPhotoProps extends PhotoProps {
   wrapperProps?: React.HTMLAttributes<HTMLDivElement>
   onClick?: (index: number) => void
 }
 
-export default function GalleryPhoto({ photo, layout, imageProps, wrapperProps = {}, onClick }: GalleryPhotoProps) {
+function GalleryPhoto({ photo, layout, imageProps, wrapperProps = {}, onClick }: GalleryPhotoProps) {
   const { formatMessage } = useIntl()
   const ariaLabel = formatMessage({ id: 'component.gallery-photo.aria' })
   const { width, height } = photo
@@ -20,7 +20,7 @@ export default function GalleryPhoto({ photo, layout, imageProps, wrapperProps =
 
   return (
     <Box
-      aria-label={onClick ? ariaLabel : undefined}
+      aria-label={onClick && ariaLabel}
       sx={{
         width: style.width,
         padding: style.padding,
@@ -46,3 +46,5 @@ export default function GalleryPhoto({ photo, layout, imageProps, wrapperProps =
     </Box>
   )
 }
+
+export default GalleryPhoto

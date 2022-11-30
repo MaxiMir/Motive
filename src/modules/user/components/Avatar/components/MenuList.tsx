@@ -8,7 +8,7 @@ interface MenuListProps {
   onClose: () => void
 }
 
-export default function MenuList({ anchorEl, onOpenPhoto, onClose }: MenuListProps) {
+function MenuList({ anchorEl, onOpenPhoto, onClose }: MenuListProps) {
   const { formatMessage } = useIntl()
   const openText = formatMessage({ id: 'common.open' })
 
@@ -33,3 +33,5 @@ export default function MenuList({ anchorEl, onOpenPhoto, onClose }: MenuListPro
     </Menu>
   )
 }
+
+export default MenuList

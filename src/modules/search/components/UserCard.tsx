@@ -1,7 +1,7 @@
 import Link from 'next/link'
 import { Box, Typography, Button } from '@mui/material'
-import { MAIN_CHARACTERISTICS, UserDto } from '@dto'
 import { getUserHref } from '@href'
+import { MAIN_CHARACTERISTICS, UserDto } from '@dto'
 import AvatarStatus from '@components/Avatar/AvatarStatus'
 import CharacteristicUser from '@components/Characteristic/CharacteristicUser'
 
@@ -9,7 +9,7 @@ interface UserCardProps {
   user: UserDto
 }
 
-export default function UserCard({ user }: UserCardProps) {
+function UserCard({ user }: UserCardProps) {
   const { nickname, avatar, name, characteristic } = user
   const href = getUserHref(nickname)
 
@@ -63,3 +63,5 @@ export default function UserCard({ user }: UserCardProps) {
     </Button>
   )
 }
+
+export default UserCard

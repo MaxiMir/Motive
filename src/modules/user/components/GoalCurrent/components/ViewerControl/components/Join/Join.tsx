@@ -13,7 +13,7 @@ interface JoinProps {
   goal: GoalDto
 }
 
-export default function Join({ goal }: JoinProps) {
+function Join({ goal }: JoinProps) {
   const { formatMessage } = useIntl()
   const client = useClient()
   const openSignIn = useOpenSignIn()
@@ -40,3 +40,5 @@ export default function Join({ goal }: JoinProps) {
     </>
   )
 }
+
+export default Join

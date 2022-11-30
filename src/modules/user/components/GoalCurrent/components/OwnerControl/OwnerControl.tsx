@@ -17,7 +17,7 @@ interface OwnerControlProps {
   goal: GoalDto
 }
 
-export default function OwnerControl({ goal }: OwnerControlProps) {
+function OwnerControl({ goal }: OwnerControlProps) {
   const { stages, day } = goal
   const { formatMessage } = useIntl()
   const [modal, setModal] = useState<ModalType>()
@@ -58,3 +58,5 @@ export default function OwnerControl({ goal }: OwnerControlProps) {
     </Box>
   )
 }
+
+export default OwnerControl

@@ -17,7 +17,7 @@ interface ModalInfoProps {
   onClose: () => void
 }
 
-export default function ModalInfo({ user, onClose }: ModalInfoProps) {
+function ModalInfo({ user, onClose }: ModalInfoProps) {
   const { formatMessage } = useIntl()
   const title = formatMessage({ id: 'common.info' })
 
@@ -33,3 +33,5 @@ export default function ModalInfo({ user, onClose }: ModalInfoProps) {
     </AppModal>
   )
 }
+
+export default ModalInfo

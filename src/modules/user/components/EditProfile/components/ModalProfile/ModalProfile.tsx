@@ -9,7 +9,7 @@ import PhotoInput from '@components/Photo/PhotoInput'
 import PhotoButton from '@components/Photo/PhotoButton'
 import AppModal from '@ui/AppModal'
 import AppInput from '@ui/AppInput'
-import useForm from './hook'
+import useForm from './hooks/useForm'
 
 const Alert = dynamic(() => import('@mui/material/Alert'))
 
@@ -18,7 +18,7 @@ interface ModalProfileProps {
   onClose: () => void
 }
 
-export default function ModalProfile({ user, onClose }: ModalProfileProps) {
+function ModalProfile({ user, onClose }: ModalProfileProps) {
   const { formatMessage } = useIntl()
   const form = useForm(user, onClose)
   const { isSubmitting, values, touched, errors, setFieldValue, handleSubmit } = form
@@ -95,3 +95,5 @@ export default function ModalProfile({ user, onClose }: ModalProfileProps) {
     </AppModal>
   )
 }
+
+export default ModalProfile

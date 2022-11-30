@@ -11,7 +11,7 @@ interface ProfileLinkProps {
   hoverOpacity: number
 }
 
-export default function ProfileLink({ nickname, asPath, hoverOpacity }: ProfileLinkProps) {
+function ProfileLink({ nickname, asPath, hoverOpacity }: ProfileLinkProps) {
   const { formatMessage } = useIntl()
   const { push } = useRouter()
   const openSignIn = useOpenSignIn()
@@ -34,3 +34,5 @@ export default function ProfileLink({ nickname, asPath, hoverOpacity }: ProfileL
     </Button>
   )
 }
+
+export default ProfileLink

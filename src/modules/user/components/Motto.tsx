@@ -4,10 +4,12 @@ interface StatusProps {
   motto: string
 }
 
-export default function Motto({ motto }: StatusProps) {
+function Motto({ motto }: StatusProps) {
   return (
     <Typography variant="caption" sx={{ color: 'zen.sand' }}>
       {motto}
     </Typography>
   )
 }
+
+export default Motto

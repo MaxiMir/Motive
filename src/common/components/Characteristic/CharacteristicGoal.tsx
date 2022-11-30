@@ -9,7 +9,7 @@ interface CharacteristicGoalProps {
   value: number
 }
 
-export default function CharacteristicGoal({ name, value }: CharacteristicGoalProps) {
+function CharacteristicGoal({ name, value }: CharacteristicGoalProps) {
   const { formatMessage } = useIntl()
   const title = formatMessage({ id: `component.characteristic-goal.${name}` })
   const formattedValue = formatNumber(value)
@@ -30,3 +30,5 @@ export default function CharacteristicGoal({ name, value }: CharacteristicGoalPr
     </Box>
   )
 }
+
+export default CharacteristicGoal

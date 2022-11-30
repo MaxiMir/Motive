@@ -12,7 +12,7 @@ interface AppAccordionProps {
   defaultExpanded?: boolean
 }
 
-export default function AppAccordion({ name, header, id, ariaControls, details, defaultExpanded }: AppAccordionProps) {
+function AppAccordion({ name, header, id, ariaControls, details, defaultExpanded }: AppAccordionProps) {
   return (
     <Accordion defaultExpanded={defaultExpanded} TransitionProps={{ unmountOnExit: true }}>
       <AccordionSummary id={id} expandIcon={<AppIcon name="expand_more" />} aria-controls={ariaControls}>
@@ -24,3 +24,5 @@ export default function AppAccordion({ name, header, id, ariaControls, details, 
     </Accordion>
   )
 }
+
+export default AppAccordion

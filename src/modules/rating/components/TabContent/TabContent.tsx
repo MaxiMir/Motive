@@ -9,7 +9,7 @@ interface TabContentProps {
   users: UserDto[]
 }
 
-export default function TabContent({ name, users }: TabContentProps) {
+function TabContent({ name, users }: TabContentProps) {
   const { formatMessage } = useIntl()
   const userText = formatMessage({ id: 'common.user' })
   const lvlText = formatMessage({ id: 'common.lvl' })
@@ -47,3 +47,5 @@ export default function TabContent({ name, users }: TabContentProps) {
     </>
   )
 }
+
+export default TabContent

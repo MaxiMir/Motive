@@ -11,7 +11,7 @@ interface EditProfileProps {
   user: UserBaseDto
 }
 
-export default function EditProfile({ user }: EditProfileProps) {
+function EditProfile({ user }: EditProfileProps) {
   const { formatMessage } = useIntl()
   const [open, setOpen] = useState(false)
   const buttonText = formatMessage({ id: 'common.edit' })
@@ -38,3 +38,5 @@ export default function EditProfile({ user }: EditProfileProps) {
     </>
   )
 }
+
+export default EditProfile

@@ -1,5 +1,5 @@
-import { MainCharacteristicName, SecondCharacteristicName } from '@dto'
 import { Route } from '@href'
+import { MainCharacteristicName, SecondCharacteristicName } from '@dto'
 import { setSearchParams } from '@helpers/url'
 
 interface AdvantageItem {

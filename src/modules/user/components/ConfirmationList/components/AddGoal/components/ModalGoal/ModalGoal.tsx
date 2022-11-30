@@ -1,7 +1,7 @@
 import dynamic from 'next/dynamic'
-import { Field, FieldArray, Form, FormikProvider } from 'formik'
 import { v4 as uuidV4 } from 'uuid'
 import { useIntl } from 'react-intl'
+import { Field, FieldArray, Form, FormikProvider } from 'formik'
 import {
   Box,
   Button,
@@ -14,8 +14,8 @@ import {
   Radio,
 } from '@mui/material'
 import { styled } from '@mui/system'
-import useFocus from '@hooks/useFocus'
 import { getToday, getTomorrow } from '@utils/date'
+import useFocus from '@hooks/useFocus'
 import AppModal from '@ui/AppModal'
 import AppHeader from '@ui/AppHeader'
 import AppInput from '@ui/AppInput'
@@ -24,7 +24,7 @@ import AppDot from '@ui/AppDot'
 import ActionSubmit from '@components/Action/ActionSubmit'
 import ActionCancel from '@components/Action/ActionCancel'
 import TaskField from '@components/Task/TaskField'
-import useForm from './hook'
+import useForm from './hooks/useForm'
 
 const AppIconButton = dynamic(() => import('@ui/AppIconButton'))
 
@@ -32,7 +32,7 @@ interface ModalGoalProps {
   onClose: () => void
 }
 
-export default function ModalGoal({ onClose }: ModalGoalProps) {
+function ModalGoal({ onClose }: ModalGoalProps) {
   const { formatMessage } = useIntl()
   const [hashtagsRef, setHashtagsFocus] = useFocus()
   const form = useForm(onClose)
@@ -201,3 +201,5 @@ const ButtonCompact = styled(Button)({
   alignSelf: 'baseline',
   textTransform: 'none',
 })
+
+export default ModalGoal

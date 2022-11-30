@@ -11,7 +11,7 @@ interface HeaderProps {
   nickname: boolean
 }
 
-export default function Header({ authenticated, nickname }: HeaderProps) {
+function Header({ authenticated, nickname }: HeaderProps) {
   return (
     <AppBar
       position="static"
@@ -32,3 +32,5 @@ export default function Header({ authenticated, nickname }: HeaderProps) {
     </AppBar>
   )
 }
+
+export default Header

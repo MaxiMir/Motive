@@ -1,7 +1,9 @@
 import useAutoSend from '@hooks/useAutoSend'
 
-export default function AutoSend() {
+function AutoSend() {
   useAutoSend()
 
   return null
 }
+
+export default AutoSend

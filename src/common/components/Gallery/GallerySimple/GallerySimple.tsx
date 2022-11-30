@@ -8,8 +8,10 @@ interface GallerySimpleProps {
   onClick?: (index: number) => void
 }
 
-export default function GallerySimple({ photos, onClick }: GallerySimpleProps) {
+function GallerySimple({ photos, onClick }: GallerySimpleProps) {
   const renderPhoto = useCallback((props: PhotoProps) => <GalleryPhoto {...props} onClick={onClick} />, [onClick])
 
   return <PhotoAlbum layout="columns" photos={photos} renderPhoto={renderPhoto} />
 }
+
+export default GallerySimple

@@ -7,14 +7,14 @@ import ActionSubmit from '@components/Action/ActionSubmit'
 import ActionCancel from '@components/Action/ActionCancel'
 import AppModal from '@ui/AppModal'
 import AppInput from '@ui/AppInput'
-import useForm from './hook'
+import useForm from './hooks/useForm'
 
 interface ModalEditMessageProps {
   message: MessageDto
   onClose: () => void
 }
 
-export default function ModalEditMessage({ message, onClose }: ModalEditMessageProps) {
+function ModalEditMessage({ message, onClose }: ModalEditMessageProps) {
   const { formatMessage } = useIntl()
   const form = useForm(message, onClose)
   const { isSubmitting, handleSubmit } = form
@@ -69,3 +69,5 @@ export default function ModalEditMessage({ message, onClose }: ModalEditMessageP
     </AppModal>
   )
 }
+
+export default ModalEditMessage

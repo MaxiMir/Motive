@@ -6,7 +6,7 @@ import AppIcon from '@ui/AppIcon'
 
 const ModalGoal = dynamic(() => import('./components/ModalGoal'))
 
-export default function AddGoal() {
+function AddGoal() {
   const { formatMessage } = useIntl()
   const [open, setOpen] = useState(false)
   const buttonText = formatMessage({ id: 'common.create' })
@@ -57,3 +57,5 @@ export default function AddGoal() {
     </Box>
   )
 }
+
+export default AddGoal

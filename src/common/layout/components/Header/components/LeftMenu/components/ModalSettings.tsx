@@ -3,7 +3,7 @@ import { useIntl } from 'react-intl'
 import { ToggleButtonGroup, ToggleButton, Box, Typography, PaletteMode } from '@mui/material'
 import { styled } from '@mui/system'
 import { ThemeContext } from '@context/themeContext'
-import { Locale, useSetLocale } from '@hooks/useSetLocale'
+import useSetLocale, { Locale } from '@hooks/useSetLocale'
 import AppModal from '@ui/AppModal'
 import AppEmoji from '@ui/AppEmoji'
 
@@ -11,7 +11,7 @@ interface ModalLanguageProps {
   onClose: () => void
 }
 
-export default function ModalSettings({ onClose }: ModalLanguageProps) {
+function ModalSettings({ onClose }: ModalLanguageProps) {
   const { locale, formatMessage } = useIntl()
   const setLocale = useSetLocale()
   const { mode, setMode } = useContext(ThemeContext)
@@ -93,3 +93,5 @@ const GroupButton = styled(ToggleButton)({
     fontSize: 24,
   },
 })
+
+export default ModalSettings

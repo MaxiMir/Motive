@@ -10,7 +10,7 @@ interface ContentProps {
   feedback: FeedbackDto
 }
 
-export default function Content({ feedback }: ContentProps) {
+function Content({ feedback }: ContentProps) {
   const { text, photos, video } = feedback
 
   return (
@@ -21,3 +21,5 @@ export default function Content({ feedback }: ContentProps) {
     </Box>
   )
 }
+
+export default Content

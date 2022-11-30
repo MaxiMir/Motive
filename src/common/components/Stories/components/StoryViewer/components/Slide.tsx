@@ -1,17 +1,13 @@
 import Image from 'next/image'
 import { Box } from '@mui/material'
 import { getImageSrc } from '@href'
-
-export interface Story {
-  src: string
-  duration?: number
-}
+import { Story } from '@components/Stories/types'
 
 interface SlideProps {
   story: Story
 }
 
-export default function Slide({ story }: SlideProps) {
+function Slide({ story }: SlideProps) {
   const { src } = story
   const absoluteSrc = getImageSrc(src)
 
@@ -39,3 +35,5 @@ export default function Slide({ story }: SlideProps) {
     </Box>
   )
 }
+
+export default Slide

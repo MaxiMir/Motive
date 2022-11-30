@@ -16,7 +16,7 @@ interface TaskFieldProps {
   onRemove: () => void
 }
 
-export default function TaskField({ index, date, remind, taskCount, setFieldValue, onRemove }: TaskFieldProps) {
+function TaskField({ index, date, remind, taskCount, setFieldValue, onRemove }: TaskFieldProps) {
   const { formatMessage } = useIntl()
   const label = formatMessage({ id: 'component.task-field.label' })
   const placeholder = formatMessage({ id: 'component.task-field.placeholder' })
@@ -69,3 +69,5 @@ export default function TaskField({ index, date, remind, taskCount, setFieldValu
     </Box>
   )
 }
+
+export default TaskField

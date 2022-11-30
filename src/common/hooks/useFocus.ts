@@ -1,6 +1,6 @@
-import { MutableRefObject, useRef } from 'react'
+import { useRef } from 'react'
 
-export default function useFocus(): [MutableRefObject<HTMLInputElement | null>, () => void] {
+const useFocus = () => {
   const htmlElRef = useRef<HTMLInputElement | null>(null)
 
   const setFocus = () => {
@@ -11,3 +11,5 @@ export default function useFocus(): [MutableRefObject<HTMLInputElement | null>, 
 
   return [htmlElRef, setFocus]
 }
+
+export default useFocus

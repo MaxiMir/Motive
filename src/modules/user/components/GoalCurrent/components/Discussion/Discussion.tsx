@@ -3,7 +3,8 @@ import { Box } from '@mui/material'
 import { TopicDto, MessageType, UserBaseDto, ClientDto } from '@dto'
 import useClient from '@hooks/useClient'
 import { AppListProps } from '@ui/AppList'
-import { useDiscussion, useAddMessage } from './hook'
+import useAddMessage from '@user-hooks/useAddMessage'
+import useDiscussion from './hooks/useDiscussion'
 
 const AppList = dynamic<AppListProps<TopicDto>>(() => import('@ui/AppList'))
 const UserInput = dynamic(() => import('./components/UserInput'))
@@ -18,7 +19,7 @@ interface DiscussionProps {
   clientGoal: boolean
 }
 
-export default function Discussion({ dayId, owner, count, clientGoal }: DiscussionProps) {
+function Discussion({ dayId, owner, count, clientGoal }: DiscussionProps) {
   const client = useClient()
   const { isLoading, topics, checkOnLoadMore, fetchNextPage } = useDiscussion(dayId, count)
   const onAdd = useAddMessage()
@@ -59,3 +60,5 @@ export default function Discussion({ dayId, owner, count, clientGoal }: Discussi
     </Box>
   )
 }
+
+export default Discussion

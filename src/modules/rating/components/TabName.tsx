@@ -8,7 +8,7 @@ interface TabNameProps {
   emoji: AppEmojiName
 }
 
-export default function TabName({ name, emoji }: TabNameProps) {
+function TabName({ name, emoji }: TabNameProps) {
   const { formatMessage, locale } = useIntl()
   const tabText = formatMessage({ id: `common.${name}` })
 
@@ -28,3 +28,5 @@ export default function TabName({ name, emoji }: TabNameProps) {
     </Box>
   )
 }
+
+export default TabName

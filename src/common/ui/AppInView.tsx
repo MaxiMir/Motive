@@ -7,10 +7,12 @@ interface AppInViewProps {
   onView: () => void
 }
 
-export default function AppInView({ triggerOnce, children, onView }: AppInViewProps) {
+function AppInView({ triggerOnce, children, onView }: AppInViewProps) {
   return (
     <InView as="div" triggerOnce={triggerOnce} onChange={(inView) => inView && onView()}>
       {children}
     </InView>
   )
 }
+
+export default AppInView

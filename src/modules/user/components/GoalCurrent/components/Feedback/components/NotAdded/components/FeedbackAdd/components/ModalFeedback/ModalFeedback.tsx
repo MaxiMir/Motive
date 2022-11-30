@@ -13,14 +13,14 @@ import PhotoInput from '@components/Photo/PhotoInput'
 import PhotoButton from '@components/Photo/PhotoButton'
 import VideoPreview from '@components/Video/VideoPreview'
 import VideoInput from '@components/Video/VideoInput'
-import useForm from './hook'
+import useForm from './hooks/useForm'
 
 interface ModalFeedbackProps {
   goal: GoalDto
   onClose: () => void
 }
 
-export default function ModalFeedback({ goal, onClose }: ModalFeedbackProps) {
+function ModalFeedback({ goal, onClose }: ModalFeedbackProps) {
   const { formatMessage } = useIntl()
   const form = useForm(goal, onClose)
   const { isSubmitting, values, setFieldValue, handleSubmit } = form
@@ -102,3 +102,5 @@ export default function ModalFeedback({ goal, onClose }: ModalFeedbackProps) {
     </AppModal>
   )
 }
+
+export default ModalFeedback

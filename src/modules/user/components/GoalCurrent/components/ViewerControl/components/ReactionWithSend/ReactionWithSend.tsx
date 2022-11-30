@@ -1,7 +1,7 @@
 import { useIntl } from 'react-intl'
 import { DayCharacteristicName, GoalDto } from '@dto'
 import ActionGoal from '@components/Action/ActionGoal'
-import useSetReaction from './hook'
+import useSetReaction from './hooks/useSetReaction'
 import { checkOnActive, getCount } from './helper'
 
 interface ReactionWithSendProps {
@@ -9,7 +9,7 @@ interface ReactionWithSendProps {
   name: DayCharacteristicName
 }
 
-export default function ReactionWithSend({ goal, name }: ReactionWithSendProps) {
+function ReactionWithSend({ goal, name }: ReactionWithSendProps) {
   const { formatMessage } = useIntl()
   const active = checkOnActive(goal, name)
   const count = getCount(goal, name)
@@ -21,3 +21,5 @@ export default function ReactionWithSend({ goal, name }: ReactionWithSendProps) 
 
   return <ActionGoal name={name} title={title} count={count} disabled={active} onClick={onSetReaction} />
 }
+
+export default ReactionWithSend

@@ -9,7 +9,7 @@ interface AdvantageProps {
   href: string
 }
 
-export default function Advantage({ name, href }: AdvantageProps) {
+function Advantage({ name, href }: AdvantageProps) {
   const theme = useTheme()
   const { locale, formatMessage } = useIntl()
   const title = formatMessage({ id: `page.home.advantage.${name}.title` })
@@ -48,3 +48,5 @@ export default function Advantage({ name, href }: AdvantageProps) {
     </Box>
   )
 }
+
+export default Advantage

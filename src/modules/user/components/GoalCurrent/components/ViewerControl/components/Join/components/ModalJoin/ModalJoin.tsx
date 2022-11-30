@@ -9,14 +9,14 @@ import AppModal from '@ui/AppModal'
 import AppEmoji from '@ui/AppEmoji'
 import AppAccordion from '@ui/AppAccordion'
 import AppDecorEmoji from '@ui/AppDecorEmoji'
-import useForm from './hook'
+import useForm from './hooks/useForm'
 
 interface ModalJoinProps {
   goal: GoalDto
   onClose: () => void
 }
 
-export default function ModalJoin({ goal, onClose }: ModalJoinProps) {
+function ModalJoin({ goal, onClose }: ModalJoinProps) {
   const { formatMessage } = useIntl()
   const { id, calendar, day } = goal
   const beginningDay = calendar[0].id
@@ -120,3 +120,5 @@ export default function ModalJoin({ goal, onClose }: ModalJoinProps) {
     </AppModal>
   )
 }
+
+export default ModalJoin

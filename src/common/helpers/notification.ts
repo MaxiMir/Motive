@@ -1,5 +1,5 @@
 import { ClientDto, NotificationDto, NotificationType } from '@dto'
-import { getDiscussionHref, getFeedbackHref, getGoalHref, getGoalWithDayHref, getUserHref } from '@href'
+import { getDiscussionHref, getFeedbackHref, getGoalHref, getGoalDayHref, getUserHref } from '@href'
 
 export const getNotificationHref = (notification: NotificationDto, client?: ClientDto): string => {
   const { user } = notification.details
@@ -24,6 +24,6 @@ export const getNotificationHref = (notification: NotificationDto, client?: Clie
     case NotificationType.NewSupport:
       return getDiscussionHref(nickname, notification.details.id, notification.details.day)
     default:
-      return getGoalWithDayHref(nickname, notification.details.id, notification.details.day)
+      return getGoalDayHref(nickname, notification.details.id, notification.details.day)
   }
 }

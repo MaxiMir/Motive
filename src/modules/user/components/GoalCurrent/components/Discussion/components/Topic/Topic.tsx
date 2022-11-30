@@ -18,7 +18,7 @@ interface TopicProps {
   onAdd: (topic: TopicDto) => void
 }
 
-export default function Topic({ owner, topic, isOwner, inView, onView, onAdd }: TopicProps) {
+function Topic({ owner, topic, isOwner, inView, onView, onAdd }: TopicProps) {
   const { answer, ...message } = topic
   const [showInput, setShowInput] = useState(false)
   const showReply = checkOnReply(isOwner, topic)
@@ -56,3 +56,5 @@ export default function Topic({ owner, topic, isOwner, inView, onView, onAdd }: 
     </>
   )
 }
+
+export default Topic

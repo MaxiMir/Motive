@@ -1,8 +1,8 @@
 import dynamic from 'next/dynamic'
 import { Box, Divider, Typography } from '@mui/material'
 import { styled } from '@mui/system'
-import { UserDetailDto, MAIN_CHARACTERISTICS, SECOND_CHARACTERISTICS } from '@dto'
 import { getUserHref } from '@href'
+import { UserDetailDto, MAIN_CHARACTERISTICS, SECOND_CHARACTERISTICS } from '@dto'
 import useClient from '@hooks/useClient'
 import AppContainer from '@ui/AppContainer'
 import SecondCharacteristic from './components/SecondCharacteristic'
@@ -22,7 +22,7 @@ interface UserModuleProps {
   user: UserDetailDto
 }
 
-export default function UserModule({ user }: UserModuleProps) {
+function UserModule({ user }: UserModuleProps) {
   const {
     id,
     nickname,
@@ -144,3 +144,5 @@ export default function UserModule({ user }: UserModuleProps) {
 const DashedDivider = styled(Divider)({
   borderStyle: 'dashed',
 })
+
+export default UserModule

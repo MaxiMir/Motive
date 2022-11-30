@@ -3,7 +3,7 @@ import { Box } from '@mui/material'
 import { SecondCharacteristicName, UserDetailDto } from '@dto'
 import AppModal from '@ui/AppModal'
 import { useIntl } from 'react-intl'
-import useSubscription from './hook'
+import useSubscription from './hooks/useSubscription'
 import Loader from './components/Loader'
 
 const EmptyList = dynamic(() => import('./components/EmptyList'))
@@ -15,7 +15,7 @@ interface ModalFollowersProps {
   onClose: () => void
 }
 
-export default function ModalSubscription({ user, name, onClose }: ModalFollowersProps) {
+function ModalSubscription({ user, name, onClose }: ModalFollowersProps) {
   const { id, characteristic } = user
   const { formatMessage } = useIntl()
   const { isLoading, followers, checkOnLoadMore, fetchNextPage } = useSubscription(id, characteristic.followers, name)
@@ -51,3 +51,5 @@ export default function ModalSubscription({ user, name, onClose }: ModalFollower
     </AppModal>
   )
 }
+
+export default ModalSubscription

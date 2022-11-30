@@ -1,10 +1,12 @@
 import { Checkbox, FormControlLabel } from '@mui/material'
 import { FormControlLabelProps } from '@mui/material/FormControlLabel/FormControlLabel'
 
-type AppCheckboxProps = Omit<FormControlLabelProps, 'control' | 'label'> & {
+interface AppCheckboxProps extends Omit<FormControlLabelProps, 'control' | 'label'> {
   label: JSX.Element | string
 }
 
-export default function AppCheckbox({ label, ...props }: AppCheckboxProps) {
+function AppCheckbox({ label, ...props }: AppCheckboxProps) {
   return <FormControlLabel label={label} control={<Checkbox />} sx={{ marginRight: 0 }} {...props} />
 }
+
+export default AppCheckbox

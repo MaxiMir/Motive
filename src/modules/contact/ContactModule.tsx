@@ -19,7 +19,7 @@ const CRYPTOS = [
   { name: 'DOGE', wallet: 'D9btjbEFVpCStxQAaCdUGw9AjMnvsAUvbr', src: DOGESrc },
 ]
 
-export default function ContactModule() {
+function ContactModule() {
   const { formatMessage } = useIntl()
   const header = formatMessage({ id: 'page.contact.header' })
   const subheader = formatMessage({ id: 'page.contact.subheader' })
@@ -143,3 +143,5 @@ const ButtonContent = styled(Box)(({ theme }) => ({
     },
   },
 }))
+
+export default ContactModule

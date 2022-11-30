@@ -4,14 +4,14 @@ import { MessageDto, MessageType } from '@dto'
 import useClient from '@hooks/useClient'
 import AppEmoji from '@ui/AppEmoji'
 import { checkOnDisabled } from './helper'
-import useSetLike from './hook'
+import useSetLike from './hooks/useSetLike'
 
 interface LikeButtonProps {
   message: MessageDto
   answerFor?: number
 }
 
-export default function LikeButton({ message, answerFor }: LikeButtonProps) {
+function LikeButton({ message, answerFor }: LikeButtonProps) {
   const { like, likeCount, type } = message
   const { formatMessage } = useIntl()
   const client = useClient()
@@ -71,3 +71,5 @@ export default function LikeButton({ message, answerFor }: LikeButtonProps) {
     </Tooltip>
   )
 }
+
+export default LikeButton

@@ -7,7 +7,7 @@ interface LoaderProps {
   withInput: boolean
 }
 
-export default function Loader({ count, withInput }: LoaderProps) {
+function Loader({ count, withInput }: LoaderProps) {
   const shownCount = count >= VISIBLE_COUNT ? VISIBLE_COUNT : count
   const list = [...new Array(shownCount)]
 
@@ -42,3 +42,5 @@ export default function Loader({ count, withInput }: LoaderProps) {
     </>
   )
 }
+
+export default Loader

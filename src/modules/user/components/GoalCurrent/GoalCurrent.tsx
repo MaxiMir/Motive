@@ -2,14 +2,14 @@ import dynamic from 'next/dynamic'
 import { useRouter } from 'next/router'
 import { useIntl } from 'react-intl'
 import { Box, useTheme } from '@mui/material'
+import { getGoalDayHref, HashMark } from '@href'
 import { GoalDto, GoalCharacteristicName, MemberDto, MAIN_CHARACTERISTICS } from '@dto'
-import { getGoalWithDayHref, HashMark } from '@href'
 import CharacteristicGoal from '@components/Characteristic/CharacteristicGoal'
 import AppHeader from '@ui/AppHeader'
 import AppAccordion from '@ui/AppAccordion'
 import AppInView from '@ui/AppInView'
 import { getMember } from '@modules/user/helper'
-import { useIncreaseViews } from './hook'
+import useIncreaseViews from './hooks/useIncreaseViews'
 import { getGoalInfo, getClientOwnership, checkOnShowDiscussion, redefineTasks } from './helper'
 import Calendar from './components/Calendar'
 import Menu from './components/Menu'
@@ -37,15 +37,7 @@ interface GoalCurrentProps {
   clientMembership: MemberDto[]
 }
 
-export default function GoalCurrent({
-  goal,
-  href,
-  userId,
-  membership,
-  clientId,
-  clientPage,
-  clientMembership,
-}: GoalCurrentProps) {
+function GoalCurrent({ goal, href, userId, membership, clientId, clientPage, clientMembership }: GoalCurrentProps) {
   const { id, name, hashtags, characteristic, owner, stages, day, inherited } = goal
   const { id: dayId, views, topicCount } = day
   const { formatMessage } = useIntl()
@@ -53,7 +45,7 @@ export default function GoalCurrent({
   const { query } = useRouter()
   const clientOwnership = getClientOwnership(goal, clientId, clientPage, clientMembership)
   const userMember = getMember(id, membership, userId)
-  const goalHref = getGoalWithDayHref(href, id, dayId)
+  const goalHref = getGoalDayHref(href, id, dayId)
   const goalInfo = getGoalInfo(goal, clientOwnership, userMember)
   const showDiscussion = checkOnShowDiscussion(query, id)
   const { mutate } = useIncreaseViews(goal, clientId)
@@ -214,3 +206,5 @@ export default function GoalCurrent({
     </Box>
   )
 }
+
+export default GoalCurrent

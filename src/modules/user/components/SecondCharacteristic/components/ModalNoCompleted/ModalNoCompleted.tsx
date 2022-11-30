@@ -7,7 +7,7 @@ interface ModalNoCompletedProps {
   onClose: () => void
 }
 
-export default function ModalNoCompleted({ onClose }: ModalNoCompletedProps) {
+function ModalNoCompleted({ onClose }: ModalNoCompletedProps) {
   const { formatMessage } = useIntl()
   const title = formatMessage({ id: 'common.completed' })
   const subtitle = formatMessage({ id: 'common.goals' })
@@ -31,3 +31,5 @@ export default function ModalNoCompleted({ onClose }: ModalNoCompletedProps) {
     </AppModal>
   )
 }
+
+export default ModalNoCompleted

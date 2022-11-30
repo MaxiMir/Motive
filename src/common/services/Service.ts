@@ -1,6 +1,6 @@
 export type WhereParams = Record<string, string | number>
 
-export abstract class Service {
+export default abstract class Service {
   static getOperationParams(add: boolean): { operation: string } {
     return { operation: add ? 'insert' : 'delete' }
   }

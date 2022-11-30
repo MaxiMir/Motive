@@ -1,17 +1,16 @@
-import { GetNextPageParamFunction } from 'react-query'
+import axios from 'axios'
 
-export const partialGetNextPageParam = <T>(count: number, take: number): GetNextPageParamFunction<T[]> | undefined => {
-  return (_: T[], allPages: T[][]) => {
-    const allCount = allPages.flat().length
+const fetcher = axios.create({
+  baseURL: `${process.env.NEXT_PUBLIC_APP_URL}/api/v1`,
+  withCredentials: true,
+})
 
-    return allCount < count ? allCount / take : undefined
-  }
-}
+fetcher.defaults.headers.common['Content-Type'] = 'application/json'
+fetcher.interceptors.response.use(
+  (r) => r.data,
+  (e) => {
+    throw e
+  },
+)
 
-export const partialCheckOnLoadMore = (
-  count: number,
-  hasNextPage: boolean | undefined,
-  preloadDiff: number,
-): ((i: number) => boolean) => {
-  return (index: number) => !!hasNextPage && count - index === preloadDiff
-}
+export default fetcher

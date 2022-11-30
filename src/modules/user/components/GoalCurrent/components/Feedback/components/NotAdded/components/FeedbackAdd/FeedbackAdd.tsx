@@ -12,7 +12,7 @@ interface FeedbackAddProps {
   forTomorrow: boolean
 }
 
-export default function FeedbackAdd({ goal, forTomorrow }: FeedbackAddProps) {
+function FeedbackAdd({ goal, forTomorrow }: FeedbackAddProps) {
   const { formatMessage } = useIntl()
   const [open, setOpen] = useState(false)
   const title = forTomorrow && formatMessage({ id: 'component.tooltip.tomorrow' })
@@ -41,3 +41,5 @@ export default function FeedbackAdd({ goal, forTomorrow }: FeedbackAddProps) {
     </>
   )
 }
+
+export default FeedbackAdd

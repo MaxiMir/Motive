@@ -8,7 +8,7 @@ interface DetailsProps {
   user: UserBaseDto
 }
 
-export default function Details({ user }: DetailsProps) {
+function Details({ user }: DetailsProps) {
   const [open, setOpen] = useState(false)
   console.log(user)
 
@@ -33,3 +33,5 @@ export default function Details({ user }: DetailsProps) {
     </Box>
   )
 }
+
+export default Details

@@ -6,7 +6,7 @@ interface GalleryProps {
   photos: PhotoDto[]
 }
 
-export default function Gallery({ photos }: GalleryProps) {
+function Gallery({ photos }: GalleryProps) {
   const compactWidth = photos.length === 1 && photos[0].width < photos[0].height
 
   return (
@@ -22,3 +22,5 @@ export default function Gallery({ photos }: GalleryProps) {
     </Box>
   )
 }
+
+export default Gallery

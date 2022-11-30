@@ -1,2 +1,2 @@
 export { default } from './SearchModule'
-export { useSearchPage } from './hook'
+export { useSearchPage } from './hooks/useSearchPage'

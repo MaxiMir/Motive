@@ -2,7 +2,7 @@ import { Button } from '@mui/material'
 import useOpenSignIn from '@hooks/useOpenSignIn'
 import AppIcon from '@ui/AppIcon'
 
-export default function SignIn() {
+function SignIn() {
   const openSignIn = useOpenSignIn()
 
   const onClick = () => {
@@ -15,3 +15,5 @@ export default function SignIn() {
     </Button>
   )
 }
+
+export default SignIn

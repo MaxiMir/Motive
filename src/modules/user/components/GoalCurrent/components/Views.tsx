@@ -6,7 +6,7 @@ interface GoalViewsProps {
   views: number
 }
 
-export default function Views({ views }: GoalViewsProps) {
+function Views({ views }: GoalViewsProps) {
   const formattedViews = formatNumber(views)
 
   return (
@@ -24,3 +24,5 @@ export default function Views({ views }: GoalViewsProps) {
     </Box>
   )
 }
+
+export default Views

@@ -2,7 +2,7 @@ import { useRouter } from 'next/router'
 import { Button, Typography } from '@mui/material'
 import AppIcon from '@ui/AppIcon'
 
-export default function Nickname(): JSX.Element {
+function Nickname(): JSX.Element {
   const { query, reload } = useRouter()
   const nickname = query.id
 
@@ -28,3 +28,5 @@ export default function Nickname(): JSX.Element {
     </Button>
   )
 }
+
+export default Nickname

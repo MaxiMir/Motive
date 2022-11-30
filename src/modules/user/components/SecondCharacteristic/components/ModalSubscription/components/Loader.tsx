@@ -6,7 +6,7 @@ interface LoaderProps {
   count: number
 }
 
-export default function Loader({ count }: LoaderProps) {
+function Loader({ count }: LoaderProps) {
   const displayedCount = count > VISIBLE_QUANTITY ? VISIBLE_QUANTITY : count
   const list = [...new Array(displayedCount)]
 
@@ -29,3 +29,5 @@ export default function Loader({ count }: LoaderProps) {
     </Box>
   )
 }
+
+export default Loader

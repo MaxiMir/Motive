@@ -5,14 +5,14 @@ import ActionSubmit from '@components/Action/ActionSubmit'
 import ActionCancel from '@components/Action/ActionCancel'
 import AppModal from '@ui/AppModal'
 import AppFlyIcon from '@ui/AppFlyIcon'
-import { useSendStage } from './hook'
+import useSendStage from './hooks/useSendStage'
 
 interface ModalStageProps {
   goal: GoalDto
   onClose: () => void
 }
 
-export default function ModalStage({ goal, onClose }: ModalStageProps) {
+function ModalStage({ goal, onClose }: ModalStageProps) {
   const { stages, day } = goal
   const { formatMessage } = useIntl()
   const { isLoading, mutate } = useSendStage(onClose)
@@ -60,3 +60,5 @@ export default function ModalStage({ goal, onClose }: ModalStageProps) {
     </AppModal>
   )
 }
+
+export default ModalStage

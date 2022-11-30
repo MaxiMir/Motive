@@ -7,7 +7,7 @@ interface NotificationListProps {
   onClose: () => void
 }
 
-export default function NotificationList({ notifications, onClose }: NotificationListProps) {
+function NotificationList({ notifications, onClose }: NotificationListProps) {
   return (
     <AppList
       elements={notifications}
@@ -17,3 +17,5 @@ export default function NotificationList({ notifications, onClose }: Notificatio
     />
   )
 }
+
+export default NotificationList

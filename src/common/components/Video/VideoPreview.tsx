@@ -9,7 +9,7 @@ interface VideoPreviewProps {
   onRemove: () => void
 }
 
-export default function VideoPreview({ video, disabled, onRemove }: VideoPreviewProps) {
+function VideoPreview({ video, disabled, onRemove }: VideoPreviewProps) {
   const { formatMessage } = useIntl()
   const label = formatMessage({ id: 'component.video-preview.label' })
   const url = URL.createObjectURL(video)
@@ -41,3 +41,5 @@ export default function VideoPreview({ video, disabled, onRemove }: VideoPreview
     </Box>
   )
 }
+
+export default VideoPreview

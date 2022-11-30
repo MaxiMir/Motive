@@ -78,7 +78,7 @@ interface AppEmojiProps {
   sx?: TypographyProps['sx']
 }
 
-export default function AppEmoji({ name, onlyEmoji = false, ...restProps }: AppEmojiProps) {
+function AppEmoji({ name, onlyEmoji = false, ...restProps }: AppEmojiProps) {
   const content = getContent(name)
 
   return (
@@ -230,3 +230,5 @@ function getContent(name: AppEmojiName) {
       return ''
   }
 }
+
+export default AppEmoji

@@ -1,10 +1,7 @@
-import produce from 'immer'
 import { format } from 'date-fns'
-import { CalendarDto, DayDto, GoalDto } from '@dto'
+import { CalendarDto } from '@dto'
 
-type PartialGetDateKey = (date: Date | string) => string
-
-export const partialGetDateKey = (formatValue: string): PartialGetDateKey => {
+export const partialGetDateKey = (formatValue: string) => {
   return (date: Date | string) => format(date instanceof Date ? date : new Date(date), formatValue)
 }
 
@@ -26,9 +23,3 @@ export const getBorders = (calendar: CalendarDto[]): [Date | undefined, Date | u
 
   return [min, max]
 }
-
-export const getGoalNextState = (goals: GoalDto[], goalId: number, day: DayDto): GoalDto[] =>
-  produce(goals, (draft) => {
-    const draftGoal = draft[draft.findIndex((g) => g.id === goalId)]
-    draftGoal.day = day
-  })

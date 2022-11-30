@@ -9,7 +9,7 @@ interface MenuListProps {
   onClose: () => void
 }
 
-export default function MenuList({ anchorEl, onShare, onRemove, onClose }: MenuListProps) {
+function MenuList({ anchorEl, onShare, onRemove, onClose }: MenuListProps) {
   const { formatMessage } = useIntl()
   const shareText = formatMessage({ id: 'common.share' })
   const removeText = formatMessage({ id: 'common.remove' })
@@ -25,3 +25,5 @@ export default function MenuList({ anchorEl, onShare, onRemove, onClose }: MenuL
     </Menu>
   )
 }
+
+export default MenuList

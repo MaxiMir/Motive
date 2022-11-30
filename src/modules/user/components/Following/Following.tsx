@@ -1,14 +1,14 @@
 import { useIntl } from 'react-intl'
 import { Button } from '@mui/material'
 import AppIcon from '@ui/AppIcon'
-import useSetFollowing from './hook'
+import useSetFollowing from './hooks/useSetFollowing'
 
 interface FollowingProps {
   id: number
   following: boolean
 }
 
-export default function Following({ id, following }: FollowingProps) {
+function Following({ id, following }: FollowingProps) {
   const { formatMessage } = useIntl()
   const setFollowing = useSetFollowing(id, following)
   const operation = following ? 'remove' : 'add'
@@ -31,3 +31,5 @@ export default function Following({ id, following }: FollowingProps) {
     </Button>
   )
 }
+
+export default Following

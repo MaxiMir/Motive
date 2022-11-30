@@ -7,7 +7,7 @@ interface AppMenuItemContentProps {
   text: string
 }
 
-export default function AppMenuItemContent({ icon, text }: AppMenuItemContentProps) {
+function AppMenuItemContent({ icon, text }: AppMenuItemContentProps) {
   return (
     <>
       <ListItemIconCompact>
@@ -23,3 +23,5 @@ const ListItemIconCompact = styled(ListItemIcon)({
     fontSize: 18,
   },
 })
+
+export default AppMenuItemContent

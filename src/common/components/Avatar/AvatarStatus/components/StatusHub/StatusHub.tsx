@@ -13,7 +13,7 @@ interface StatusHubProps {
   size: number
 }
 
-export default function StatusHub({ src, size, online, lastSeen, device }: StatusHubProps) {
+function StatusHub({ src, size, online, lastSeen, device }: StatusHubProps) {
   if (online) {
     return (
       <Online>
@@ -32,3 +32,5 @@ export default function StatusHub({ src, size, online, lastSeen, device }: Statu
 
   return <Content src={src} size={size} />
 }
+
+export default StatusHub

@@ -7,7 +7,7 @@ interface UserListProps {
   users: UserDto[]
 }
 
-export default function UserList({ users }: UserListProps) {
+function UserList({ users }: UserListProps) {
   const keyGetter = (user: UserDto) => user.id
 
   return (
@@ -19,3 +19,5 @@ export default function UserList({ users }: UserListProps) {
     />
   )
 }
+
+export default UserList

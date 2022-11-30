@@ -1,6 +1,6 @@
 import { Container, ContainerProps } from '@mui/material'
 
-export default function AppContainer(props: ContainerProps) {
+function AppContainer(props: ContainerProps) {
   return (
     <Container
       fixed
@@ -16,3 +16,5 @@ export default function AppContainer(props: ContainerProps) {
     />
   )
 }
+
+export default AppContainer

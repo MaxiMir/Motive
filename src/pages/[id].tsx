@@ -3,11 +3,13 @@ import { dehydrate, QueryClient } from 'react-query'
 import { getSession } from 'next-auth/react'
 import { AxiosRequestHeaders } from 'axios'
 import { PossiblePageError } from '@dto'
-import { PageService } from '@services/page'
+import PageService from '@services/page'
+import UserModule, { getServerSideUrl } from '@modules/user'
+import useUserMeta from '@user-hooks/useUserMeta'
+import useUserPage from '@user-hooks/useUserPage'
 import Layout from '@layout'
-import UserModule, { useUserMeta, useUserPage, getServerSideUrl } from '@modules/user'
 
-export default function UserPage() {
+function UserPage() {
   const { data } = useUserPage()
   const userMeta = useUserMeta(data?.content)
 
@@ -39,3 +41,5 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
     },
   }
 }
+
+export default UserPage

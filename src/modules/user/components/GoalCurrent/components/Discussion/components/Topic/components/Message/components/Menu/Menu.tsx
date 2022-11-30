@@ -11,7 +11,7 @@ interface MenuProps {
   message: MessageDto
 }
 
-export default function Menu({ message }: MenuProps) {
+function Menu({ message }: MenuProps) {
   const { formatMessage } = useIntl()
   const [anchorEl, setAnchorEl] = useState<HTMLElement | null>(null)
   const [open, setOpen] = useState(false)
@@ -35,3 +35,5 @@ export default function Menu({ message }: MenuProps) {
     </>
   )
 }
+
+export default Menu

@@ -1,7 +1,7 @@
 import { useIntl } from 'react-intl'
 import { Box } from '@mui/material'
 
-export default function Level() {
+function Level() {
   const { formatMessage } = useIntl()
   const lvlText = formatMessage({ id: 'common.lvl-short' })
 
@@ -11,3 +11,5 @@ export default function Level() {
     </Box>
   )
 }
+
+export default Level

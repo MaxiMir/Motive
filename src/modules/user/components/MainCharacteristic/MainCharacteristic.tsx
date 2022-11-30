@@ -13,7 +13,7 @@ interface MainCharacteristicProps {
   value: number
 }
 
-export default function MainCharacteristic({ name, value }: MainCharacteristicProps) {
+function MainCharacteristic({ name, value }: MainCharacteristicProps) {
   const { locale, formatMessage } = useIntl()
   const theme = useTheme()
   const [modal, setModal] = useState<MainCharacteristicName>()
@@ -91,3 +91,5 @@ export default function MainCharacteristic({ name, value }: MainCharacteristicPr
     </>
   )
 }
+
+export default MainCharacteristic

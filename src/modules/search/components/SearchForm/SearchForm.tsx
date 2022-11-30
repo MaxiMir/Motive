@@ -4,15 +4,15 @@ import { styled } from '@mui/system'
 import AppInput from '@ui/AppInput'
 import AppIconButton from '@ui/AppIconButton'
 import AutoSend from './components/AutoSend'
-import useForm from './hook'
+import useForm from './hooks/useForm'
 
 interface SearchFormProps {
   q?: string
 }
 
-export default function SearchForm({ q }: SearchFormProps) {
+function SearchForm({ q = '' }: SearchFormProps) {
   const { formatMessage } = useIntl()
-  const form = useForm(q || '')
+  const form = useForm(q)
   const { values, setFieldValue } = form
   const label = formatMessage({ id: 'page.search.form' })
 
@@ -43,3 +43,5 @@ const InputButton = styled(AppIconButton)({
     background: 'none',
   },
 })
+
+export default SearchForm

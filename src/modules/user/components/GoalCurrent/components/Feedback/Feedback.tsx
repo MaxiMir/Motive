@@ -10,7 +10,7 @@ interface FeedbackProps {
   clientOwnership: OwnershipDto
 }
 
-export default function Feedback({ goal, forTomorrow, clientOwnership }: FeedbackProps) {
+function Feedback({ goal, forTomorrow, clientOwnership }: FeedbackProps) {
   const { feedback } = goal.day
 
   return (
@@ -23,3 +23,5 @@ export default function Feedback({ goal, forTomorrow, clientOwnership }: Feedbac
     </>
   )
 }
+
+export default Feedback

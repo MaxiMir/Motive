@@ -1,3 +1,4 @@
+import { Fragment } from 'react'
 import { useIntl } from 'react-intl'
 import { Box } from '@mui/material'
 import { UserDetailDto } from '@dto'
@@ -27,7 +28,7 @@ function ModalInfo({ user, onClose }: ModalInfoProps) {
         {ROWS.map(({ name, icon }) => {
           const value = user[name]
 
-          return <>{value && <InfoRow icon={icon} name={name} value={value} />}</>
+          return <Fragment key={name}>{value && <InfoRow icon={icon} name={name} value={value} />}</Fragment>
         })}
       </Box>
     </AppModal>

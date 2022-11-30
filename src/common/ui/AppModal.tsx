@@ -58,8 +58,8 @@ function AppModal({ title, actions, maxWidth, blur = true, children, onClose }: 
       {actions && (
         <DialogActions>
           <Box display="flex" flex={1} justifyContent="space-between" pb={2} px={2}>
-            {actions.map((a) => (
-              <Fragment key={a.key}>{a}</Fragment>
+            {actions.map((a, index) => (
+              <Fragment key={index}>{a}</Fragment>
             ))}
           </Box>
         </DialogActions>

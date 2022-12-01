@@ -40,7 +40,7 @@ function UserModule({ user }: UserModuleProps) {
   const href = getUserHref(nickname)
   const clientPage = id === client?.id
   const userBase = { id, name, nickname, avatar }
-  const withConfirmationsList = !!confirmations.length || clientPage
+  const showConfirmationsList = !!confirmations.length || clientPage
 
   return (
     <AppContainer>
@@ -116,7 +116,7 @@ function UserModule({ user }: UserModuleProps) {
         ))}
       </Box>
       <DashedDivider light sx={{ mb: 3 }} />
-      {withConfirmationsList && (
+      {showConfirmationsList && (
         <ConfirmationList user={userBase} confirmations={confirmations} clientPage={clientPage} />
       )}
       {!goals.length ? (

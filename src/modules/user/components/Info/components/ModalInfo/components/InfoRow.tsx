@@ -13,7 +13,7 @@ interface InfoRowProps {
 function InfoRow({ icon, name, value }: InfoRowProps) {
   const { locale, formatMessage } = useIntl()
   const title = formatMessage({ id: `common.${name}` })
-  const text = name !== 'registered' ? value : dateFormatter(value, locale)
+  const text = name !== 'registered' ? value : dateFormatter(value, locale, { month: 'long', year: 'numeric' })
 
   return (
     <Box display="flex" gap={1}>

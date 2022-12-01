@@ -30,6 +30,7 @@ function MainCharacteristic({ name, value }: MainCharacteristicProps) {
     <>
       <Button
         sx={{
+          borderRadius: '50%',
           textTransform: 'none',
           padding: {
             xs: '4px',

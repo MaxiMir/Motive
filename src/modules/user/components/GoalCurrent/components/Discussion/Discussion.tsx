@@ -23,13 +23,13 @@ function Discussion({ dayId, owner, count, clientGoal }: DiscussionProps) {
   const client = useClient()
   const { isLoading, topics, checkOnLoadMore, fetchNextPage } = useDiscussion(dayId, count)
   const onAdd = useAddMessage()
-  const withInput = !!client && (!count || !!topics.length) && !clientGoal
-  const minHeight = topics.length || withInput ? 130 : undefined
+  const showInput = !!client && (!count || !!topics.length) && !clientGoal
+  const minHeight = topics.length || showInput ? 130 : undefined
 
   return (
     <Box display="flex" flexDirection="column" gap={2} flex={1} minHeight={minHeight} maxHeight={500}>
       <>
-        {withInput && <UserInput dayId={dayId} user={client as ClientDto} type={MessageType.Question} onAdd={onAdd} />}
+        {showInput && <UserInput dayId={dayId} user={client as ClientDto} type={MessageType.Question} onAdd={onAdd} />}
         {!count ? (
           <Nothing />
         ) : (

@@ -1,7 +1,7 @@
 import dynamic from 'next/dynamic'
 import { useRouter } from 'next/router'
 import { useIntl } from 'react-intl'
-import { Box, useTheme } from '@mui/material'
+import { Box, Card, useTheme } from '@mui/material'
 import { getGoalDayHref, HashMark } from '@href'
 import { GoalDto, GoalCharacteristicName, MemberDto, MAIN_CHARACTERISTICS } from '@dto'
 import CharacteristicGoal from '@components/Characteristic/CharacteristicGoal'
@@ -17,6 +17,8 @@ import Discussion from './components/Discussion'
 import Views from './components/Views'
 import Feedback from './components/Feedback'
 import Task from './components/Task'
+import Date from './components/Date'
+import DateName from './components/DateName'
 
 const Inheritance = dynamic(() => import('./components/Inheritance'))
 const Stages = dynamic(() => import('./components/Stages'))
@@ -116,8 +118,14 @@ function GoalCurrent({ goal, href, userId, membership, clientId, clientPage, cli
                 <CharacteristicGoal name="runningDays" value={goalInfo.runningDays} />
               </Box>
               {!!hashtags?.length && <Hashtags hashtags={hashtags} />}
-              <Calendar goal={goal} />
-              <Box>
+              <Card variant="outlined" sx={{ pb: 3 }}>
+                <Box display="flex" justifyContent="space-between" alignItems="baseline" py={2} px={3}>
+                  <DateName daysGone={goalInfo.daysGoneForOwner} />
+                  <Box display="flex" alignItems="center">
+                    <Date date={day.date} />
+                    <Calendar goal={goal} />
+                  </Box>
+                </Box>
                 {!!stages.length && (
                   <AppAccordion
                     name="stage"
@@ -180,7 +188,7 @@ function GoalCurrent({ goal, href, userId, membership, clientId, clientPage, cli
                     <Discussion dayId={dayId} owner={owner} count={topicCount} clientGoal={clientOwnership.goal} />
                   }
                 />
-              </Box>
+              </Card>
             </Box>
           </AppInView>
           <Box display="flex" flexDirection="column" gap={2}>

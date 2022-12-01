@@ -4,8 +4,8 @@ export const formatNumber = (value: number): string => {
   return formatter.format(value)
 }
 
-export const dateFormatter = (value: string, locale: string): string => {
+export const dateFormatter = (value: string, locale: string, options?: Intl.DateTimeFormatOptions): string => {
   const date = new Date(value)
 
-  return new Intl.DateTimeFormat(locale, { month: 'long', year: 'numeric' }).format(date)
+  return new Intl.DateTimeFormat(locale, options).format(date)
 }

@@ -1,6 +1,11 @@
 [//]: # (TODO)
+* Загрузка нотификаций не сразу
+* Загрузка нотификаций не сразу
+* https://validator.w3.org/nu/?doc=https%3A%2F%2F2bebetter.pro%2Fmaximir
+* Redis для страниц
+* Аватарка клик
 * Название цели с затемнением в историях
-* Генерация картинок для og
+* Генерация картинок og
 * Загрузка фото в историях
 * Редактирование в течение 15 минут сообщений
 * Группировка уведомлений
@@ -86,6 +91,22 @@ services:
 
 **SSL**: https://cdnnow.ru/blog/dehydrated/
 
+```shell
+server {
+    server_name xx.ru www.2bebetter.pro;
+    location ^~ /.well-known/acme-challenge {
+        alias /var/lib/dehydrated/acme-challenges;
+    }
+    location / {
+        return 301 https://$host$request_uri;
+    }
+}
+
+
+nginx -t
+nginx -s reload
+dehydrated -c
+```
 ```shell
 server {
     listen 443 ssl http2;

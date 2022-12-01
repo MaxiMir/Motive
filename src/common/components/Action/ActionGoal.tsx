@@ -1,8 +1,8 @@
 import { Box, Button } from '@mui/material'
-import { numberToShort } from '@helpers/prepare'
+import { formatNumber } from '@helpers/intl'
 import AppEmoji, { AppEmojiName } from '@ui/AppEmoji'
 
-export interface ActionGoalProps {
+interface ActionGoalProps {
   name: AppEmojiName
   title: string
   count?: number
@@ -10,8 +10,8 @@ export interface ActionGoalProps {
   onClick: () => void
 }
 
-export default function ActionGoal({ name, title, count, disabled, onClick }: ActionGoalProps) {
-  const countShort = count && numberToShort(count)
+function ActionGoal({ name, title, count, disabled, onClick }: ActionGoalProps) {
+  const formattedCount = count && formatNumber(count)
 
   return (
     <Button
@@ -31,8 +31,10 @@ export default function ActionGoal({ name, title, count, disabled, onClick }: Ac
     >
       <Box display="flex" gap={1}>
         <AppEmoji name={name} />
-        {countShort}
+        {formattedCount}
       </Box>
     </Button>
   )
 }
+
+export default ActionGoal

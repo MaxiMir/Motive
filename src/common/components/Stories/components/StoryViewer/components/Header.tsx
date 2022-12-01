@@ -2,12 +2,12 @@ import Link from 'next/link'
 import { useIntl } from 'react-intl'
 import { Box, IconButton, Typography } from '@mui/material'
 import { styled } from '@mui/system'
-import { UserBaseDto } from '@dto'
 import { getUserHref } from '@href'
+import { UserBaseDto } from '@dto'
 import { getDistance } from '@utils/date'
-import { useDateFnsLocale } from '@hooks/useDateFnsLocale'
+import useDateFnsLocale from '@hooks/useDateFnsLocale'
 import AppIcon from '@ui/AppIcon'
-import UserAvatar from '@components/User/UserAvatar'
+import UserLink from '@components/User/UserLink'
 
 interface HeaderProps {
   user: UserBaseDto
@@ -16,7 +16,7 @@ interface HeaderProps {
   onClose: () => void
 }
 
-export default function Header({ user, title, date, onClose }: HeaderProps): JSX.Element {
+function Header({ user, title, date, onClose }: HeaderProps): JSX.Element {
   const { nickname, name, avatar } = user
   const { formatMessage } = useIntl()
   const fnsLocale = useDateFnsLocale()
@@ -53,7 +53,7 @@ export default function Header({ user, title, date, onClose }: HeaderProps): JSX
             >
               <AppIcon name="arrow_back_ios" />
             </IconButton>
-            <UserAvatar name={name} avatar={avatar} href={href} size={42} />
+            <UserLink name={name} avatar={avatar} href={href} size={42} />
           </Box>
           <Box display="flex" flexDirection="column">
             <Box component="b">
@@ -91,3 +91,5 @@ const TextTitle = styled(Typography)({
   fontSize: '0.875rem',
   fontWeight: 'bold',
 })
+
+export default Header

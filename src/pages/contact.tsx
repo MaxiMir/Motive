@@ -1,10 +1,10 @@
 import { GetServerSideProps } from 'next'
 import { getSession } from 'next-auth/react'
 import { useIntl } from 'react-intl'
+import ContactModule from '@modules/contact'
 import Layout from '@layout'
-import { ContactModule } from '@modules/contact'
 
-export default function ContactPage() {
+function ContactPage() {
   const { formatMessage } = useIntl()
   const title = formatMessage({ id: 'page.contact.title' })
   const description = formatMessage({ id: 'page.contact.description' })
@@ -25,3 +25,5 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
     },
   }
 }
+
+export default ContactPage

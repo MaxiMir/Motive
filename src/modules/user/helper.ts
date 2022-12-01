@@ -1,14 +1,9 @@
-import produce from 'immer'
-import { getSearchParams, setQueryParams } from '@helpers/url'
-import { GoalDto, MemberDto, UserPageDto } from '@dto'
+import { MemberDto } from '@dto'
+import { getSearchParams, setSearchParams } from '@helpers/url'
 
-export const getNextState = (page: UserPageDto, goals: GoalDto[]): UserPageDto =>
-  produce(page, (draft) => {
-    draft.content.goals = goals
-  })
-
-export const getMember = (goalId: number, membership: MemberDto[], userId?: number): MemberDto | undefined =>
-  (userId && membership.find((m) => m.userId === userId && m.goalId === goalId)) || undefined
+export const getMember = (goalId: number, membership: MemberDto[], userId?: number): MemberDto | undefined => {
+  return !userId ? undefined : membership.find((m) => m.userId === userId && m.goalId === goalId)
+}
 
 export const getServerSideUrl = (url: string): string => {
   const isClient = url?.includes('_next')
@@ -19,5 +14,5 @@ export const getServerSideUrl = (url: string): string => {
 
   const { id, ...params } = getSearchParams(url)
 
-  return setQueryParams(`/${id}`, params)
+  return setSearchParams(`/${id}`, params)
 }

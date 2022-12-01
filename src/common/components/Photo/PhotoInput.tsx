@@ -4,19 +4,21 @@ import { Button } from '@mui/material'
 import { styled } from '@mui/system'
 import AppEmoji from '@ui/AppEmoji'
 
-export interface PhotoInputProps {
+interface PhotoInputProps {
   multiple?: boolean
   disabled: boolean
   onSelect: (photos: File[]) => void
 }
 
-export default function PhotoInput({ multiple, disabled, onSelect }: PhotoInputProps) {
+function PhotoInput({ multiple, disabled, onSelect }: PhotoInputProps) {
   const { formatMessage } = useIntl()
   const photoInputRef = useRef<HTMLInputElement>(null)
   const title = formatMessage({ id: 'common.load-photo' })
 
   const onAddPhoto = (e: ChangeEvent<HTMLInputElement>) => {
-    e.target.files && onSelect(Array.from(e.target.files))
+    if (!e.target.files) return
+
+    onSelect(Array.from(e.target.files))
   }
 
   const onClick = () => photoInputRef.current?.click()
@@ -46,3 +48,5 @@ export default function PhotoInput({ multiple, disabled, onSelect }: PhotoInputP
 const Input = styled('input')({
   display: 'none',
 })
+
+export default PhotoInput

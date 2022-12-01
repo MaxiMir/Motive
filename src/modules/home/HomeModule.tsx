@@ -2,7 +2,7 @@ import Slogan from './components/Slogan'
 import Advantage from './components/Advantage'
 import ADVANTAGES from './helper'
 
-export function HomeModule() {
+function HomeModule() {
   return (
     <>
       <Slogan />
@@ -12,3 +12,5 @@ export function HomeModule() {
     </>
   )
 }
+
+export default HomeModule

@@ -7,7 +7,7 @@ interface StageLabelProps {
   stage: string
 }
 
-export default function StageLabel({ index, activeStep, stage }: StageLabelProps) {
+function StageLabel({ index, activeStep, stage }: StageLabelProps) {
   const icon = activeStep > index ? 'task_alt' : 'radio_button_unchecked'
   const color = activeStep >= index ? 'zen.wave' : 'zen.silent'
 
@@ -21,3 +21,5 @@ export default function StageLabel({ index, activeStep, stage }: StageLabelProps
     />
   )
 }
+
+export default StageLabel

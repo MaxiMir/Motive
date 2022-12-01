@@ -5,7 +5,7 @@ interface AppImageZoomProps {
   children: ReactNode
 }
 
-export default function AppImageZoom({ children }: AppImageZoomProps) {
+function AppImageZoom({ children }: AppImageZoomProps) {
   return (
     <Box
       sx={{
@@ -49,3 +49,5 @@ export default function AppImageZoom({ children }: AppImageZoomProps) {
     </Box>
   )
 }
+
+export default AppImageZoom

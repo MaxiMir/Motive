@@ -78,12 +78,14 @@ module.exports = {
         'react/require-default-props': 'off',
         'react/jsx-filename-extension': [2, { extensions: ['.ts', '.tsx'] }],
         'react/prop-types': 'off',
-        'import/no-extraneous-dependencies': ['error', { devDependencies: true }],
         'react/jsx-props-no-spreading': 'off',
+        'react/no-array-index-key': 'off',
+        'react/jsx-no-useless-fragment': ['error', { allowExpressions: true }],
+        'import/no-extraneous-dependencies': ['error', { devDependencies: true }],
         'import/no-self-import': 'off',
         'import/prefer-default-export': 'off',
+        'no-restricted-exports': 'off',
         'no-bitwise': 'off',
-        'react/no-array-index-key': 'off',
         'import/no-unresolved': [2, { commonjs: true, amd: true }],
         'import/named': 2,
         'import/namespace': 2,
@@ -92,15 +94,14 @@ module.exports = {
         'no-return-await': 'off',
         'no-param-reassign': ['error', { props: true, ignorePropertyModificationsFor: ['draft'] }],
         'no-shadow': 'off',
-        '@typescript-eslint/no-shadow': ['error'],
         'default-case': 'off',
-        'react/jsx-no-useless-fragment': ['error', { allowExpressions: true }],
 
         // Already handled by TS
         'no-dupe-class-members': 'off',
         'no-undef': 'off',
 
         // Add TypeScript specific rules (and turn off ESLint equivalents)
+        '@typescript-eslint/no-shadow': ['error'],
         '@typescript-eslint/consistent-type-assertions': 'warn',
         'no-array-constructor': 'off',
         '@typescript-eslint/no-array-constructor': 'warn',

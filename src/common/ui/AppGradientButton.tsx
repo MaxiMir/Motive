@@ -2,7 +2,7 @@ import { Box, Button, ButtonProps } from '@mui/material'
 
 type AppGradientButtonProps = Omit<ButtonProps, 'variant' | 'color' | 'sx' | 'className'>
 
-export default function AppGradientButton({ disabled, ...props }: AppGradientButtonProps) {
+function AppGradientButton({ disabled, ...props }: AppGradientButtonProps) {
   return (
     <Box
       sx={(theme) => ({
@@ -27,3 +27,5 @@ export default function AppGradientButton({ disabled, ...props }: AppGradientBut
     </Box>
   )
 }
+
+export default AppGradientButton

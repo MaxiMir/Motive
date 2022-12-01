@@ -5,7 +5,7 @@ interface AppSpinIconProps {
   name: AppEmojiName
 }
 
-export default function AppFlyIcon({ name }: AppSpinIconProps) {
+function AppFlyIcon({ name }: AppSpinIconProps) {
   return (
     <Box
       sx={{
@@ -44,3 +44,5 @@ export default function AppFlyIcon({ name }: AppSpinIconProps) {
     </Box>
   )
 }
+
+export default AppFlyIcon

@@ -64,6 +64,9 @@
       ],
       "@modules/*": [
         "src/modules/*"
+      ],
+      "@user-hooks/*": [
+        "src/modules/user/hooks/*"
       ]
     }
   },

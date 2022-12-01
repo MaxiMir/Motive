@@ -7,6 +7,8 @@ interface AppScrollbarProps {
   children: ReactNode
 }
 
-export default function AppScrollbar({ style, children }: AppScrollbarProps) {
+function AppScrollbar({ style, children }: AppScrollbarProps) {
   return <PerfectScrollbar style={style}>{children}</PerfectScrollbar>
 }
+
+export default AppScrollbar

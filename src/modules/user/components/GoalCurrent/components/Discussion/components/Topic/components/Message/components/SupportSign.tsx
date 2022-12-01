@@ -6,7 +6,7 @@ interface SupportSignProps {
   name: string
 }
 
-export default function SupportSign({ name }: SupportSignProps) {
+function SupportSign({ name }: SupportSignProps) {
   const { formatMessage } = useIntl()
   const support = formatMessage({ id: 'common.support' })
   const title = `${support} ${name}`
@@ -30,3 +30,5 @@ export default function SupportSign({ name }: SupportSignProps) {
     </Tooltip>
   )
 }
+
+export default SupportSign

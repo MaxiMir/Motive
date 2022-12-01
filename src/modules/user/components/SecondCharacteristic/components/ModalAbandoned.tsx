@@ -5,13 +5,14 @@ import { UserDetailDto } from '@dto'
 import useShowProgress from '@hooks/useShowProgress'
 import AppModal from '@ui/AppModal'
 import OldPittRules from '@components/OldPitt/OldPittRules'
+import webSrc from 'public/images/svg/web.svg'
 
-export interface ModalAbandonedProps {
+interface ModalAbandonedProps {
   user: UserDetailDto
   onClose: () => void
 }
 
-export default function ModalAbandoned({ user, onClose }: ModalAbandonedProps) {
+function ModalAbandoned({ user, onClose }: ModalAbandonedProps) {
   const { abandoned } = user.characteristic
   const { formatMessage } = useIntl()
   const progress = useShowProgress(abandoned, { step: 1, ms: 300 })
@@ -35,7 +36,7 @@ export default function ModalAbandoned({ user, onClose }: ModalAbandonedProps) {
             <Typography variant="h2" component="p" sx={{ color: 'abandoned.main' }}>
               {roundedProgress}
             </Typography>
-            <Image src="/images/svg/web.svg" alt="" width={60} height={60} />
+            <Image src={webSrc} alt="" width={60} height={60} />
           </Box>
         </Box>
         <Typography component="h3" textAlign="center">
@@ -46,3 +47,5 @@ export default function ModalAbandoned({ user, onClose }: ModalAbandonedProps) {
     </AppModal>
   )
 }
+
+export default ModalAbandoned

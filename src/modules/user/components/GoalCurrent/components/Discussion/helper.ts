@@ -1,7 +1,6 @@
-import produce from 'immer'
-import { GetNextPageParamFunction, InfiniteData, QueryFunctionContext } from 'react-query'
-import { GoalDto, TopicDto } from '@dto'
-import { TopicService } from '@services/topic'
+import { GetNextPageParamFunction, QueryFunctionContext } from 'react-query'
+import { TopicDto } from '@dto'
+import TopicService from '@services/topic'
 
 const TAKE = 20
 export const PRELOAD_DIFF = 5
@@ -19,25 +18,3 @@ export const partialGetNextPageParam = (count: number): GetNextPageParamFunction
 }
 
 const getTopicsCount = (topics: TopicDto[]): number => topics.reduce((acc, t) => acc + (!t.answer ? 1 : 2), 0)
-
-export const getNextState = (discussion: InfiniteData<TopicDto[]>, topic: TopicDto): InfiniteData<TopicDto[]> => {
-  return produce(discussion, (draft) => {
-    if (!topic.answer) {
-      draft.pages = [[topic], ...draft.pages]
-      return
-    }
-
-    const draftTopic = draft.pages.flat().find((t) => t.id === topic.id)
-
-    if (draftTopic) {
-      draftTopic.answer = topic.answer
-    }
-  })
-}
-
-export const getGoalNextState = (goalId: number, goals: GoalDto[]): GoalDto[] => {
-  return produce(goals, (draft) => {
-    const draftGoal = draft[draft.findIndex((g) => g.id === goalId)]
-    draftGoal.day.topicCount += 1
-  })
-}

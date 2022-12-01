@@ -1,4 +1,4 @@
-import { Device } from '@helpers/dom'
+import { Device } from '@helpers/window'
 import { UserCharacteristicDto } from './characteristic'
 
 export interface UserBaseDto {
@@ -12,6 +12,10 @@ export interface UserBaseDto {
   readonly online?: boolean | null
   readonly lastSeen?: string | null
   readonly device?: Device | null
+  readonly motto?: string
+  readonly location?: string
+  readonly bio?: string
+  readonly registered?: string
 }
 
 export type CreateUserDto = Omit<UserBaseDto, 'id' | 'nickname'>
@@ -20,6 +24,9 @@ export interface UpdateUserDto {
   name: UserBaseDto['name']
   nickname: UserBaseDto['nickname']
   avatar?: File | string | null
+  motto?: string
+  location?: string
+  bio?: string
 }
 
 export interface UserDto extends UserBaseDto {

@@ -1,13 +1,20 @@
-import { useRef } from 'react'
+import { useCallback, useRef } from 'react'
 
-export default function useDebounceCb<T>(cb: (t: T) => void, delay = 500): (t: T) => void {
+type UseDebounceCb = <T>(cb: (t: T) => void, delay?: number) => (t: T) => void
+
+const useDebounceCb: UseDebounceCb = (cb, delay = 500) => {
   const timerRef = useRef<NodeJS.Timeout>()
 
-  return (arg: T) => {
-    if (timerRef.current) {
-      clearTimeout(timerRef.current)
-    }
+  return useCallback(
+    (arg) => {
+      if (timerRef.current) {
+        clearTimeout(timerRef.current)
+      }
 
-    timerRef.current = setTimeout(() => cb(arg), delay)
-  }
+      timerRef.current = setTimeout(() => cb(arg), delay)
+    },
+    [cb, delay],
+  )
 }
+
+export default useDebounceCb

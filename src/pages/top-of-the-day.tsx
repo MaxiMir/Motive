@@ -1,10 +1,10 @@
-import Layout from '@layout'
 import { GetServerSideProps } from 'next'
 import { getSession } from 'next-auth/react'
 import { useIntl } from 'react-intl'
-import { TopOfTheDayModule } from '@modules/top-of-the-day'
+import TopOfTheDayModule from '@modules/top-of-the-day'
+import Layout from '@layout'
 
-export default function TopOfTheDayPage() {
+function TopOfTheDayPage() {
   const { formatMessage } = useIntl()
   const title = formatMessage({ id: 'page.top.title' })
 
@@ -24,3 +24,5 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
     },
   }
 }
+
+export default TopOfTheDayPage

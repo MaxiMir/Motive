@@ -3,13 +3,13 @@ import { Box, IconButton } from '@mui/material'
 import AppIcon from '@ui/AppIcon'
 import AppPlayer from '@ui/AppPlayer'
 
-export interface VideoPreviewProps {
+interface VideoPreviewProps {
   video: Blob | MediaSource
   disabled: boolean
   onRemove: () => void
 }
 
-export default function VideoPreview({ video, disabled, onRemove }: VideoPreviewProps) {
+function VideoPreview({ video, disabled, onRemove }: VideoPreviewProps) {
   const { formatMessage } = useIntl()
   const label = formatMessage({ id: 'component.video-preview.label' })
   const url = URL.createObjectURL(video)
@@ -41,3 +41,5 @@ export default function VideoPreview({ video, disabled, onRemove }: VideoPreview
     </Box>
   )
 }
+
+export default VideoPreview

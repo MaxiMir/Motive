@@ -1,20 +1,15 @@
 import Image from 'next/image'
 import { Box } from '@mui/material'
 import { getImageSrc } from '@href'
+import { Story } from '@components/Stories/types'
 
-export interface Story {
-  id: number
-  url: string
-  duration?: number
-}
-
-export interface SlideProps {
+interface SlideProps {
   story: Story
 }
 
-export default function Slide({ story }: SlideProps) {
-  const { url } = story
-  const absoluteSrc = getImageSrc(url)
+function Slide({ story }: SlideProps) {
+  const { src } = story
+  const absoluteSrc = getImageSrc(src)
 
   return (
     <Box
@@ -28,6 +23,7 @@ export default function Slide({ story }: SlideProps) {
         fill
         priority
         objectFit="contain"
+        draggable={false}
         style={{
           position: 'absolute',
           left: '50%',
@@ -39,3 +35,5 @@ export default function Slide({ story }: SlideProps) {
     </Box>
   )
 }
+
+export default Slide

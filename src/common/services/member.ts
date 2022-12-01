@@ -1,18 +1,18 @@
-import { service } from '@utils/service'
 import { CreateMemberDto, MemberDto, UpdateMemberDto } from '@dto'
+import fetcher from '@utils/fetcher'
 
-export class MemberService {
+export default class MemberService {
   static create(data: CreateMemberDto): Promise<MemberDto> {
-    return service.post('/members', data)
+    return fetcher.post('/members', data)
   }
 
   static update(dto: UpdateMemberDto): Promise<MemberDto> {
     const { id, ...data } = dto
 
-    return service.patch(`/members/${id}`, data)
+    return fetcher.patch(`/members/${id}`, data)
   }
 
   static delete(id: number): Promise<void> {
-    return service.delete(`/members/${id}`)
+    return fetcher.delete(`/members/${id}`)
   }
 }

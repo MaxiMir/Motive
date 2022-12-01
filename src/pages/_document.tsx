@@ -15,6 +15,8 @@ export default class MyDocument extends Document {
           <meta name="theme-color" content="#121212" />
           <meta name="google-site-verification" content="agmCksft6b7nOz-CbmrjAcflYLb5ztxWLN6o9vFImak" />
           <link rel="icon" type="image/x-icon" href="/favicon.png" />
+          <link rel="preconnect" href="https://fonts.googleapis.com" />
+          <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
           <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" />
           <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
           <meta

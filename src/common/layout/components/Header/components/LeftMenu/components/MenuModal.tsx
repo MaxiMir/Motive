@@ -11,7 +11,7 @@ interface MenuModalProps {
   onOpenSettings: () => void
 }
 
-export default function MenuModal({ onOpenSettings, onClose }: MenuModalProps) {
+function MenuModal({ onOpenSettings, onClose }: MenuModalProps) {
   const { formatMessage } = useIntl()
   const { push } = useRouter()
   const client = useClient()
@@ -80,3 +80,5 @@ export default function MenuModal({ onOpenSettings, onClose }: MenuModalProps) {
     </Drawer>
   )
 }
+
+export default MenuModal

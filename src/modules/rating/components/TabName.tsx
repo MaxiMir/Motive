@@ -3,12 +3,12 @@ import { Box, Typography } from '@mui/material'
 import { MainCharacteristicName } from '@dto'
 import AppEmoji, { AppEmojiName } from '@ui/AppEmoji'
 
-export interface TabNameProps {
+interface TabNameProps {
   name: MainCharacteristicName
   emoji: AppEmojiName
 }
 
-export default function TabName({ name, emoji }: TabNameProps) {
+function TabName({ name, emoji }: TabNameProps) {
   const { formatMessage, locale } = useIntl()
   const tabText = formatMessage({ id: `common.${name}` })
 
@@ -28,3 +28,5 @@ export default function TabName({ name, emoji }: TabNameProps) {
     </Box>
   )
 }
+
+export default TabName

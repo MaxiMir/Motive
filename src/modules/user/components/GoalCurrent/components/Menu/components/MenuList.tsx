@@ -16,7 +16,7 @@ interface MenuListProps {
   onClose: () => void
 }
 
-export default function MenuList({ goalId, clientOwnership, anchorEl, onShare, onLeave, onClose }: MenuListProps) {
+function MenuList({ goalId, clientOwnership, anchorEl, onShare, onLeave, onClose }: MenuListProps) {
   const { formatMessage } = useIntl()
   const [withReport, setWithReport] = useState(false)
   const shareText = formatMessage({ id: 'common.share' })
@@ -51,3 +51,5 @@ export default function MenuList({ goalId, clientOwnership, anchorEl, onShare, o
     </>
   )
 }
+
+export default MenuList

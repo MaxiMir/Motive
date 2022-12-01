@@ -1,7 +1,7 @@
-import { service } from '@utils/service'
+import fetcher from '@utils/fetcher'
 
-export class TaskService {
+export default class TaskService {
   static updateCompleted(id: number): Promise<void> {
-    return service.patch(`/tasks/${id}/completed`)
+    return fetcher.patch(`/tasks/${id}/completed`)
   }
 }

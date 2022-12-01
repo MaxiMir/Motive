@@ -6,7 +6,7 @@ interface HintProps {
   onClick: () => void
 }
 
-export default function Hint({ onClick }: HintProps) {
+function Hint({ onClick }: HintProps) {
   const { formatMessage } = useIntl()
   const title = formatMessage({ id: 'page.user.modal-notification.hint' })
   const buttonText = formatMessage({ id: 'common.turn-on' })
@@ -22,3 +22,5 @@ export default function Hint({ onClick }: HintProps) {
     </Alert>
   )
 }
+
+export default Hint

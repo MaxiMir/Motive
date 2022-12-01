@@ -5,11 +5,11 @@ import { getSession } from 'next-auth/react'
 import { useIntl } from 'react-intl'
 import { AxiosRequestHeaders } from 'axios'
 import { Route } from '@href'
-import { PageService } from '@services/page'
+import PageService from '@services/page'
+import RatingModule, { useRatingPage } from '@modules/rating'
 import Layout from '@layout'
-import { RatingModule, useRatingPage } from '@modules/rating'
 
-export default function RatingPage() {
+function RatingPage() {
   const { formatMessage } = useIntl()
   const { query } = useRouter()
   const { data } = useRatingPage()
@@ -37,3 +37,5 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
     },
   }
 }
+
+export default RatingPage

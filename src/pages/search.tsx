@@ -1,14 +1,14 @@
-import Layout from '@layout'
 import { GetServerSideProps } from 'next'
 import { getSession } from 'next-auth/react'
 import { dehydrate, QueryClient } from 'react-query'
 import { useIntl } from 'react-intl'
 import { AxiosRequestHeaders } from 'axios'
 import { Route } from '@href'
-import { SearchModule, useSearchPage } from '@modules/search'
-import { PageService } from '@services/page'
+import SearchModule, { useSearchPage } from '@modules/search'
+import PageService from '@services/page'
+import Layout from '@layout'
 
-export default function SearchPage() {
+function SearchPage() {
   const { formatMessage } = useIntl()
   const { data } = useSearchPage()
   const title = formatMessage({ id: 'page.search.title' })
@@ -44,3 +44,5 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
     },
   }
 }
+
+export default SearchPage

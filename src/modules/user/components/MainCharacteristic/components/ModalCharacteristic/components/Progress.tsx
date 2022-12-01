@@ -7,7 +7,7 @@ interface ProgressProps {
   value: number
 }
 
-export default function Progress({ characteristic, value }: ProgressProps) {
+function Progress({ characteristic, value }: ProgressProps) {
   const rest = (value % 1) * 100
   const progress = useShowProgress(rest)
   const preparedProgress = Math.round(progress)
@@ -36,3 +36,5 @@ export default function Progress({ characteristic, value }: ProgressProps) {
     </Box>
   )
 }
+
+export default Progress

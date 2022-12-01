@@ -6,11 +6,11 @@ import AppTabs from '@ui/AppTabs'
 import TabName from './components/TabName'
 import TabContent from './components/TabContent'
 
-type RatingModuleProps = Record<MainCharacteristicName, UserDto[]> & {
+interface RatingModuleProps extends Record<MainCharacteristicName, UserDto[]> {
   tab: number
 }
 
-export function RatingModule({ tab, ...props }: RatingModuleProps) {
+function RatingModule({ tab, ...props }: RatingModuleProps) {
   const { formatMessage } = useIntl()
   const header = formatMessage({ id: 'page.rating.header' })
   const ariaLabel = formatMessage({ id: 'page.rating.aria-label' })
@@ -35,3 +35,5 @@ export function RatingModule({ tab, ...props }: RatingModuleProps) {
     </>
   )
 }
+
+export default RatingModule

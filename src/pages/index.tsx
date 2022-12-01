@@ -2,10 +2,10 @@ import { GetServerSideProps } from 'next'
 import { getSession } from 'next-auth/react'
 import { useIntl } from 'react-intl'
 import { ClientDto } from '@dto'
+import HomeModule from '@modules/home'
 import Layout from '@layout'
-import { HomeModule } from '@modules/home'
 
-export default function HomePage() {
+function HomePage() {
   const { formatMessage } = useIntl()
   const title = formatMessage({ id: 'page.home.title' })
   const description = formatMessage({ id: 'page.home.description' })
@@ -37,3 +37,5 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
     },
   }
 }
+
+export default HomePage

@@ -1,45 +1,46 @@
 /**
  * Returns url information
  */
-const getUrlData = (url: string) => {
-  const [base, queryParams = ''] = url.split('?', 2)
-  const searchParams = new URLSearchParams(queryParams)
+const parseUrl = (url: string) => {
+  const [base, params = ''] = url.split('?', 2)
+  const searchParams = new URLSearchParams(params)
 
   return { base, searchParams }
 }
 
+/**
+ * Returns search params
+ */
+export const getCurrentSearchParams = (): Record<string, string> => {
+  return getSearchParams(window.location.search)
+}
+
 export const getSearchParams = (url: string): Record<string, string> => {
-  const { searchParams } = getUrlData(url)
+  const { searchParams } = parseUrl(url)
 
   return Object.fromEntries(searchParams)
 }
 
-const toUrl = (url: string, searchParams: URLSearchParams) =>
-  [url, searchParams].join(!searchParams.toString() ? '' : '?')
-
 /**
  * Returns the name of the method to insert
  */
-const getInsertMethodName = (searchParams: URLSearchParams, name: string) =>
-  !searchParams.has(name) ? 'append' : 'set'
+const getMethodName = (searchParams: URLSearchParams, name: string) => {
+  return !searchParams.has(name) ? 'append' : 'set'
+}
 
 /**
- * Returns query params
+ * Set Search params
  */
-export const getQueryParams = (): Record<string, string> =>
-  Object.fromEntries(new URLSearchParams(window.location.search))
-
-/**
- * Set Query params
- */
-export const setQueryParams = (url: string, params: Record<string, string | number>): string => {
-  const { base, searchParams } = getUrlData(url)
+export const setSearchParams = (url: string, params: Record<string, string | number>): string => {
+  const { base, searchParams } = parseUrl(url)
 
   Object.entries(params).forEach(([name, value]) => {
-    const methodName = getInsertMethodName(searchParams, name)
-
+    const methodName = getMethodName(searchParams, name)
     searchParams[methodName](name, value.toString())
   })
 
   return toUrl(base, searchParams)
 }
+
+const toUrl = (url: string, searchParams: URLSearchParams) =>
+  [url, searchParams].join(!searchParams.toString() ? '' : '?')

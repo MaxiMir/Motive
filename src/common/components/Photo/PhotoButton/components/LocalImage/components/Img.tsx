@@ -4,7 +4,7 @@ interface ImgProps {
   src: string
 }
 
-export default function Img({ src }: ImgProps) {
+function Img({ src }: ImgProps) {
   return <ImgNative src={src} alt="" />
 }
 
@@ -14,3 +14,5 @@ const ImgNative = styled('img')({
   objectFit: 'contain',
   borderRadius: 4,
 })
+
+export default Img

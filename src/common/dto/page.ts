@@ -1,8 +1,13 @@
 import { UserDto } from './user'
-import { MainCharacteristicName } from './characteristic'
 import { ConfirmationDto, GoalDto } from './goal'
 import { MemberDto } from './member'
 import { HashtagDto } from './hashtag'
+import { MainCharacteristicName } from './characteristic'
+
+export enum OGType {
+  Website = 'website',
+  Profile = 'profile',
+}
 
 export interface PossiblePageError {
   message?: {
@@ -32,7 +37,7 @@ type SubscriptionPageContent = UserDto[]
 export interface UserDetailDto extends UserDto {
   following: boolean
   goals: GoalDto[]
-  userMembership: MemberDto[]
+  membership: MemberDto[]
   clientMembership: MemberDto[]
   confirmations: ConfirmationDto[]
 }

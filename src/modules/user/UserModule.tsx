@@ -1,26 +1,28 @@
-import { Fragment } from 'react'
 import dynamic from 'next/dynamic'
 import { Box, Divider, Typography } from '@mui/material'
 import { styled } from '@mui/system'
-import { UserDetailDto, SecondCharacteristicName, MAIN_CHARACTERISTICS, SECOND_CHARACTERISTICS } from '@dto'
 import { getUserHref } from '@href'
+import { UserDetailDto, MAIN_CHARACTERISTICS, SECOND_CHARACTERISTICS } from '@dto'
 import useClient from '@hooks/useClient'
 import AppContainer from '@ui/AppContainer'
-import AvatarStatus from '@components/Avatar/AvatarStatus'
 import SecondCharacteristic from './components/SecondCharacteristic'
 import EmptyGoals from './components/EmptyGoals'
 import Following from './components/Following'
 import MainCharacteristic from './components/MainCharacteristic'
+import Info from './components/Info'
+import Menu from './components/Menu'
+import Avatar from './components/Avatar'
 
+const EditProfile = dynamic(() => import('./components/EditProfile'))
 const ConfirmationList = dynamic(() => import('./components/ConfirmationList'))
 const GoalCurrent = dynamic(() => import('./components/GoalCurrent'))
-const Edit = dynamic(() => import('./components/Edit'))
+const Motto = dynamic(() => import('./components/Motto'))
 
-export interface UserModuleProps {
+interface UserModuleProps {
   user: UserDetailDto
 }
 
-export function UserModule({ user }: UserModuleProps) {
+function UserModule({ user }: UserModuleProps) {
   const {
     id,
     nickname,
@@ -29,12 +31,10 @@ export function UserModule({ user }: UserModuleProps) {
     characteristic,
     goals,
     following,
-    userMembership,
+    membership,
     clientMembership,
     confirmations,
-    online,
-    lastSeen,
-    device,
+    motto,
   } = user
   const client = useClient()
   const href = getUserHref(nickname)
@@ -44,68 +44,81 @@ export function UserModule({ user }: UserModuleProps) {
 
   return (
     <AppContainer>
-      <Box
-        display="flex"
-        alignItems="center"
-        gap={1}
-        my={3}
-        sx={{
-          justifyContent: {
-            xs: 'center',
-            md: 'start',
-          },
-        }}
-      >
-        <Typography variant="h5" component="h1">
-          {name}
-        </Typography>
-        {clientPage && <Edit user={user} />}
-      </Box>
+      <Menu user={user} href={href} clientPage={clientPage} />
       <Box
         display="flex"
         flexWrap="wrap"
         mb={3}
         sx={{
-          flexDirection: {
-            xs: 'column',
-            md: 'row',
-          },
           gap: {
-            xs: 3,
-            md: 6,
+            xs: 2,
+            md: 3,
+          },
+          alignItems: 'flex-end',
+          justifyContent: {
+            xs: 'center',
+            md: 'flex-start',
           },
         }}
       >
-        <AvatarStatus src={avatar} name={name} size={190} online={online} lastSeen={lastSeen} device={device} />
-        <Box display="flex" flexDirection="column" justifyContent="space-between" flex={1}>
-          <Box display="flex" justifyContent="space-between" mb={3}>
-            {SECOND_CHARACTERISTICS.map((characteristicName) => (
-              <Fragment key={characteristicName}>
-                <SecondCharacteristic
-                  user={user}
-                  name={characteristicName}
-                  value={characteristic[characteristicName]}
-                />
-                {characteristicName === SecondCharacteristicName.Abandoned && <DashedDivider orientation="vertical" />}
-              </Fragment>
-            ))}
+        <Avatar user={user} />
+        <Box
+          display="flex"
+          flexDirection="column"
+          gap={1}
+          sx={{
+            alignItems: {
+              xs: 'center',
+              md: 'flex-start',
+            },
+          }}
+        >
+          <Box
+            display="flex"
+            flexDirection="column"
+            gap={0.5}
+            sx={{
+              alignItems: {
+                xs: 'center',
+                md: 'flex-start',
+              },
+            }}
+          >
+            <Typography variant="h5" component="h1">
+              {name}
+            </Typography>
+            {motto && <Motto motto={motto} />}
           </Box>
-          <Box display="flex" justifyContent="space-between">
-            {MAIN_CHARACTERISTICS.map((characteristicName) => (
-              <MainCharacteristic
+          <Box display="flex" flexWrap="wrap" justifyContent="space-between" gap={2}>
+            {SECOND_CHARACTERISTICS.map((characteristicName) => (
+              <SecondCharacteristic
+                user={user}
                 name={characteristicName}
                 value={characteristic[characteristicName]}
                 key={characteristicName}
               />
             ))}
           </Box>
+          <Box display="flex" flexWrap="wrap" my={1} width="100%" gap={2}>
+            {clientPage ? <EditProfile user={user} /> : <Following id={user.id} following={following} />}
+            <Info user={user} />
+          </Box>
         </Box>
+      </Box>
+      <DashedDivider light sx={{ mb: 3 }} />
+      <Box display="flex" justifyContent="space-between" mb={3}>
+        {MAIN_CHARACTERISTICS.map((characteristicName) => (
+          <MainCharacteristic
+            name={characteristicName}
+            value={characteristic[characteristicName]}
+            key={characteristicName}
+          />
+        ))}
       </Box>
       <DashedDivider light sx={{ mb: 3 }} />
       {withConfirmationsList && (
         <ConfirmationList user={userBase} confirmations={confirmations} clientPage={clientPage} />
       )}
-      {!clientPage && <Following id={user.id} following={following} />}
       {!goals.length ? (
         <EmptyGoals clientPage={clientPage} />
       ) : (
@@ -115,7 +128,7 @@ export function UserModule({ user }: UserModuleProps) {
               goal={goal}
               href={href}
               userId={id}
-              userMembership={userMembership}
+              membership={membership}
               clientId={client?.id}
               clientPage={clientPage}
               clientMembership={clientMembership}
@@ -131,3 +144,5 @@ export function UserModule({ user }: UserModuleProps) {
 const DashedDivider = styled(Divider)({
   borderStyle: 'dashed',
 })
+
+export default UserModule

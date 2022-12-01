@@ -1,11 +1,12 @@
-import { useCallback, useRef } from 'react'
+import { useRef, useState } from 'react'
 import fscreen from 'fscreen'
 
-export default function useFullScreen() {
+const useFullScreen = () => {
+  const [open, setOpen] = useState(false)
   const ref = useRef<HTMLDivElement | null>(null)
   const enabled = fscreen.fullscreenEnabled
 
-  const enter = useCallback(() => {
+  const enter = () => {
     if (!ref.current) return
 
     try {
@@ -13,13 +14,22 @@ export default function useFullScreen() {
     } catch {
       // fullscreen not supported
     }
-  }, [])
+  }
 
-  const exit = useCallback(() => {
+  const onOpen = () => {
+    setOpen(true)
+    setTimeout(enter, 0)
+  }
+
+  const onClose = () => {
+    setOpen(false)
+
     if (!fscreen.fullscreenElement) return
 
     fscreen.exitFullscreen()
-  }, [])
+  }
 
-  return { ref, enabled, enter, exit }
+  return { ref, enabled, open, onOpen, onClose }
 }
+
+export default useFullScreen

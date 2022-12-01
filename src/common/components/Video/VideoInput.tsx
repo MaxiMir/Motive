@@ -4,12 +4,12 @@ import { Button, Chip } from '@mui/material'
 import { styled } from '@mui/system'
 import AppEmoji from '@ui/AppEmoji'
 
-export interface VideoInputProps {
+interface VideoInputProps {
   disabled: boolean
   onSelect: (video: File) => void
 }
 
-export default function VideoInput({ disabled, onSelect }: VideoInputProps) {
+function VideoInput({ disabled, onSelect }: VideoInputProps) {
   const { formatMessage } = useIntl()
   const videoInputRef = useRef<HTMLInputElement>(null)
   const title = formatMessage({ id: 'component.video-input.title' })
@@ -58,3 +58,5 @@ export default function VideoInput({ disabled, onSelect }: VideoInputProps) {
 const Input = styled('input')({
   display: 'none',
 })
+
+export default VideoInput

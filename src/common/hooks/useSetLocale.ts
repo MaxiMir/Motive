@@ -6,7 +6,7 @@ export enum Locale {
   Uk = 'uk',
 }
 
-export const useSetLocale = () => {
+const useSetLocale = () => {
   const { asPath, push } = useRouter()
 
   return (locale: Locale) => {
@@ -14,3 +14,5 @@ export const useSetLocale = () => {
     push(asPath, asPath, { locale })
   }
 }
+
+export default useSetLocale

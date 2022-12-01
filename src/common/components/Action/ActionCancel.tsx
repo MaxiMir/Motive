@@ -2,11 +2,11 @@ import { useIntl } from 'react-intl'
 import AppEmoji from '@ui/AppEmoji'
 import AppGradientButton from '@ui/AppGradientButton'
 
-export interface ActionCloseProps {
+interface ActionCloseProps {
   onClick: () => void
 }
 
-export default function ActionCancel({ onClick }: ActionCloseProps) {
+function ActionCancel({ onClick }: ActionCloseProps) {
   const { formatMessage } = useIntl()
   const buttonText = formatMessage({ id: 'common.cancel' })
 
@@ -16,3 +16,5 @@ export default function ActionCancel({ onClick }: ActionCloseProps) {
     </AppGradientButton>
   )
 }
+
+export default ActionCancel

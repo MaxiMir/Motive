@@ -1,4 +1,4 @@
-export type ReportType = 'goal' | 'message'
+export type ReportType = 'user' | 'goal' | 'message'
 
 export interface CreateReportDto {
   readonly entityId: number

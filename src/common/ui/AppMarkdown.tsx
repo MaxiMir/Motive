@@ -1,13 +1,13 @@
 import { ReactNode } from 'react'
 import Markdown from 'markdown-to-jsx'
 import { Box, Typography } from '@mui/material'
-import { toMarkdown } from '@helpers/prepare'
+import { toMarkdown } from '@helpers/string'
 
 interface AppMarkdownProps {
   text: string
 }
 
-export default function AppMarkdown({ text }: AppMarkdownProps) {
+function AppMarkdown({ text }: AppMarkdownProps) {
   const markdown = toMarkdown(text)
 
   const renderParagraph = ({ children }: { children: ReactNode & ReactNode[] }) => (
@@ -50,3 +50,5 @@ export default function AppMarkdown({ text }: AppMarkdownProps) {
     </Box>
   )
 }
+
+export default AppMarkdown

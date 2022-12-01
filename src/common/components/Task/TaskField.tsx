@@ -7,24 +7,26 @@ import AppInput from '@ui/AppInput'
 import AppIcon from '@ui/AppIcon'
 import AppIconButton from '@ui/AppIconButton'
 
-export interface TaskFieldProps {
+interface TaskFieldProps {
   index: number
-  date?: Date
+  date: string
+  remind?: Date
   taskCount: number
-  onToggleDate: (isChecked: boolean) => void
+  setFieldValue: (field: string, value?: string) => void
   onRemove: () => void
 }
 
-export default function TaskField({ index, date, taskCount, onToggleDate, onRemove }: TaskFieldProps) {
+function TaskField({ index, date, remind, taskCount, setFieldValue, onRemove }: TaskFieldProps) {
   const { formatMessage } = useIntl()
   const label = formatMessage({ id: 'component.task-field.label' })
   const placeholder = formatMessage({ id: 'component.task-field.placeholder' })
   const closeText = formatMessage({ id: 'component.task-field.close' })
   const remindText = formatMessage({ id: 'component.task-field.remind' })
   const soonText = formatMessage({ id: 'common.soon' })
+  const autoFocus = !!index && index === taskCount - 1
 
   const onSwitchClick = (_: ChangeEvent<HTMLInputElement>, isChecked: boolean) => {
-    onToggleDate(isChecked)
+    setFieldValue(`tasks.${index}.date`, isChecked ? date : undefined)
   }
 
   return (
@@ -34,7 +36,7 @@ export default function TaskField({ index, date, taskCount, onToggleDate, onRemo
           name={`tasks.${index}.name`}
           label={label}
           placeholder={placeholder}
-          autoFocus={!!index && index === taskCount - 1}
+          autoFocus={autoFocus}
           component={AppInput}
         />
         <Box display="flex" alignSelf="flex-start">
@@ -54,16 +56,18 @@ export default function TaskField({ index, date, taskCount, onToggleDate, onRemo
             <FormControlLabel label={remindText} disabled control={<Switch size="small" onChange={onSwitchClick} />} />
           </span>
         </Tooltip>
-        {date && (
+        {remind && (
           <Field
             name={`tasks.${index}.date`}
             ampm={false}
             keyboardIcon={<AppIcon name="query_builder" />}
-            component={TimePicker}
             sx={{ width: 100 }}
+            component={TimePicker}
           />
         )}
       </Box>
     </Box>
   )
 }
+
+export default TaskField

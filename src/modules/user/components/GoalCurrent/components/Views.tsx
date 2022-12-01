@@ -1,13 +1,13 @@
 import { Box, Typography, Tooltip } from '@mui/material'
-import { numberToShort } from '@helpers/prepare'
+import { formatNumber } from '@helpers/intl'
 import AppEmoji from '@ui/AppEmoji'
 
 interface GoalViewsProps {
   views: number
 }
 
-export default function Views({ views }: GoalViewsProps) {
-  const shortViews = numberToShort(views)
+function Views({ views }: GoalViewsProps) {
+  const formattedViews = formatNumber(views)
 
   return (
     <Box display="flex" justifyContent="flex-end">
@@ -18,9 +18,11 @@ export default function Views({ views }: GoalViewsProps) {
           </span>
         </Tooltip>
         <Typography variant="subtitle1" component="p" sx={{ color: '#545d62' }}>
-          {shortViews}
+          {formattedViews}
         </Typography>
       </Box>
     </Box>
   )
 }
+
+export default Views

@@ -25,7 +25,7 @@ interface AppModalProps {
   onClose: () => void
 }
 
-export default function AppModal({ title, actions, maxWidth, blur = true, children, onClose }: AppModalProps) {
+function AppModal({ title, actions, maxWidth, blur = true, children, onClose }: AppModalProps) {
   const { formatMessage } = useIntl()
   const label = formatMessage({ id: 'common.close' })
 
@@ -53,13 +53,13 @@ export default function AppModal({ title, actions, maxWidth, blur = true, childr
         <AppIcon name="close" />
       </IconButton>
       <AppScrollbar>
-        <DialogContent sx={{ padding: '12px 24px 24px !important' }}>{children}</DialogContent>
+        <DialogContent sx={{ padding: '12px 24px 24px !important', minHeight: 150 }}>{children}</DialogContent>
       </AppScrollbar>
       {actions && (
         <DialogActions>
           <Box display="flex" flex={1} justifyContent="space-between" pb={2} px={2}>
-            {actions.map((a, key) => (
-              <Fragment key={key}>{a}</Fragment>
+            {actions.map((a, index) => (
+              <Fragment key={index}>{a}</Fragment>
             ))}
           </Box>
         </DialogActions>
@@ -74,3 +74,5 @@ export default function AppModal({ title, actions, maxWidth, blur = true, childr
     </Dialog>
   )
 }
+
+export default AppModal

@@ -7,7 +7,7 @@ import { AppEmojiName } from './AppEmoji'
 
 const AppEmoji = dynamic(() => import('./AppEmoji'))
 
-export interface AppSnackbarProps {
+interface AppSnackbarProps {
   severity: AlertProps['severity']
   icon?: AppEmojiName
   action?: SnackbarProps['action']
@@ -15,7 +15,7 @@ export interface AppSnackbarProps {
   onClose: () => void
 }
 
-export default function AppSnackbar({ icon, message, severity, onClose, ...props }: AppSnackbarProps) {
+function AppSnackbar({ icon, message, severity, onClose, ...props }: AppSnackbarProps) {
   const iconContent = getIconContent()
 
   const handleClose = (_event: SyntheticEvent | Event, reason: SnackbarCloseReason) =>
@@ -47,3 +47,5 @@ export default function AppSnackbar({ icon, message, severity, onClose, ...props
     </Snackbar>
   )
 }
+
+export default AppSnackbar

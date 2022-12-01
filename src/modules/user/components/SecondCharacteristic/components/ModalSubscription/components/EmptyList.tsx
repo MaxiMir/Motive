@@ -2,7 +2,7 @@ import { useIntl } from 'react-intl'
 import { Box, Typography } from '@mui/material'
 import AppFadeIcon from '@ui/AppFadeIcon'
 
-export default function EmptyList() {
+function EmptyList() {
   const { formatMessage } = useIntl()
   const title = formatMessage({ id: 'common.empty' })
 
@@ -15,3 +15,5 @@ export default function EmptyList() {
     </Box>
   )
 }
+
+export default EmptyList

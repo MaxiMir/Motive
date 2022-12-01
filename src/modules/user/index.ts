@@ -1,3 +1,2 @@
-export { UserModule } from './UserModule'
-export { useUserPage, useUserMeta } from './hook'
-export { getServerSideUrl } from './helper'
+export { default } from './UserModule'
+export { getServerSideUrl, getMember } from './helper'

@@ -1,1 +1,1 @@
-export { HomeModule } from './HomeModule'
+export { default } from './HomeModule'

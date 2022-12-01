@@ -1,6 +1,6 @@
 import { object, string } from 'yup'
 
-export const feedbackSchema = object().shape({
+const feedbackSchema = object().shape({
   text: string()
     .max(500)
     .when('photos', {
@@ -8,3 +8,5 @@ export const feedbackSchema = object().shape({
       then: string().required('You need to fill in this field or upload a photo'),
     }),
 })
+
+export default feedbackSchema

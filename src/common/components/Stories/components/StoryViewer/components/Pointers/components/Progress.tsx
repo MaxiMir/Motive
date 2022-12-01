@@ -5,7 +5,7 @@ interface ProgressProps {
   onEnd: () => void
 }
 
-export default function Progress({ onEnd }: ProgressProps) {
+function Progress({ onEnd }: ProgressProps) {
   const progress = useShowProgress(100, { step: 1, onEnd })
 
   return (
@@ -31,3 +31,5 @@ export default function Progress({ onEnd }: ProgressProps) {
     </Box>
   )
 }
+
+export default Progress

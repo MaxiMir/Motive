@@ -4,11 +4,11 @@ import { useIntl } from 'react-intl'
 import { dehydrate, QueryClient } from 'react-query'
 import { AxiosRequestHeaders } from 'axios'
 import { Route } from '@href'
-import { PageService } from '@services/page'
+import PageService from '@services/page'
+import FollowingModule, { useFollowingPage } from '@modules/following'
 import Layout from '@layout'
-import { FollowingModule, useFollowingPage } from '@modules/following'
 
-export default function FollowingPage() {
+function FollowingPage() {
   const { formatMessage } = useIntl()
   const { data } = useFollowingPage()
   const title = formatMessage({ id: 'page.following.title' })
@@ -34,3 +34,5 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
     },
   }
 }
+
+export default FollowingPage

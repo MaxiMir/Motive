@@ -1,2 +1,2 @@
-export { SearchModule } from './SearchModule'
-export { useSearchPage } from './hook'
+export { default } from './SearchModule'
+export { useSearchPage } from './hooks/useSearchPage'

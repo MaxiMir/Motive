@@ -1,11 +1,10 @@
 import { ChangeEvent } from 'react'
 import { useIntl } from 'react-intl'
 import { Field } from 'formik'
-import { Box, Switch, Tooltip, FormControlLabel } from '@mui/material'
+import { Box, IconButton, Switch, Tooltip, FormControlLabel } from '@mui/material'
 import { TimePicker } from '@mui/x-date-pickers'
 import AppInput from '@ui/AppInput'
 import AppIcon from '@ui/AppIcon'
-import AppIconButton from '@ui/AppIconButton'
 
 interface TaskFieldProps {
   index: number
@@ -40,13 +39,15 @@ function TaskField({ index, date, remind, taskCount, setFieldValue, onRemove }: 
           component={AppInput}
         />
         <Box display="flex" alignSelf="flex-start">
-          <AppIconButton
-            name="close"
+          <IconButton
+            disableFocusRipple
             aria-label={closeText}
             disabled={taskCount === 1}
             sx={{ color: 'zen.silent' }}
             onClick={onRemove}
-          />
+          >
+            <AppIcon name="close" />
+          </IconButton>
         </Box>
       </Box>
       <Box display="flex" alignItems="center" gap={1} pl={1} height={48}>

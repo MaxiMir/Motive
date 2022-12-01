@@ -2,17 +2,7 @@ import dynamic from 'next/dynamic'
 import { v4 as uuidV4 } from 'uuid'
 import { useIntl } from 'react-intl'
 import { Field, FieldArray, Form, FormikProvider } from 'formik'
-import {
-  Box,
-  Button,
-  Typography,
-  IconButton,
-  FormControl,
-  Tooltip,
-  FormControlLabel,
-  RadioGroup,
-  Radio,
-} from '@mui/material'
+import { Box, Button, Typography, FormControl, Tooltip, FormControlLabel, RadioGroup, Radio } from '@mui/material'
 import { styled } from '@mui/system'
 import { getToday, getTomorrow } from '@utils/date'
 import useFocus from '@hooks/useFocus'
@@ -26,7 +16,7 @@ import ActionCancel from '@components/Action/ActionCancel'
 import TaskField from '@components/Task/TaskField'
 import useForm from './hooks/useForm'
 
-const AppIconButton = dynamic(() => import('@ui/AppIconButton'))
+const IconButton = dynamic(() => import('@mui/material/IconButton'))
 
 interface ModalGoalProps {
   onClose: () => void
@@ -128,7 +118,9 @@ function ModalGoal({ onClose }: ModalGoalProps) {
                           component={AppInput}
                         />
                         <Box display="flex" alignSelf="flex-start">
-                          <AppIconButton name="close" onClick={() => remove(index)} />
+                          <IconButton disableFocusRipple onClick={() => remove(index)}>
+                            <AppIcon name="close" />
+                          </IconButton>
                         </Box>
                       </Box>
                     ))}

@@ -1,13 +1,13 @@
 import { useIntl } from 'react-intl'
 import { isValid } from 'date-fns'
-import { Box, Badge, Divider, TextField } from '@mui/material'
+import { Box, Badge, Divider, TextField, IconButton } from '@mui/material'
 import { DatePicker } from '@mui/x-date-pickers/DatePicker'
 import { PickersDay } from '@mui/x-date-pickers'
 import { styled } from '@mui/system'
 import { GoalDto } from '@dto'
 import useDebounceCb from '@hooks/useDebounceCb'
-import AppIconButton from '@ui/AppIconButton'
 import AppEmoji from '@ui/AppEmoji'
+import AppIcon from '@ui/AppIcon'
 import { getBorders, getToggleDates, partialGetDateKey } from './helper'
 import useChangeDay from './hooks/useChangeDay'
 
@@ -62,15 +62,17 @@ function Calendar({ goal }: CalendarProps) {
   return (
     <Box display="flex" justifyContent="space-between" alignItems="center" position="relative" gap={2}>
       <PartDivider light sx={{ flex: 1 }} />
-      <AppIconButton
+      <IconButton
+        disableFocusRipple
         id={`prev-${id}`}
         size="small"
-        name="chevron_left"
         title={prevDayTitle}
         aria-label={prevDayTitle}
         disabled={isLoading || !prev}
         onClick={() => onClickArrow(prev)}
-      />
+      >
+        <AppIcon name="chevron_left" />
+      </IconButton>
       <DatePicker
         inputFormat={format}
         views={['day']}
@@ -93,15 +95,17 @@ function Calendar({ goal }: CalendarProps) {
         )}
         onChange={onChangeDate}
       />
-      <AppIconButton
+      <IconButton
+        disableFocusRipple
         id={`next-${id}`}
         size="small"
-        name="navigate_next"
         title={nextDayTitle}
         aria-label={nextDayTitle}
         disabled={isLoading || !next}
         onClick={() => onClickArrow(next)}
-      />
+      >
+        <AppIcon name="navigate_next" />
+      </IconButton>
       <PartDivider light />
     </Box>
   )

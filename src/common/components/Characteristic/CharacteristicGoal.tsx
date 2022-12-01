@@ -1,5 +1,5 @@
 import { useIntl } from 'react-intl'
-import { Box, Typography, Tooltip } from '@mui/material'
+import { Box, Typography, Tooltip, IconButton } from '@mui/material'
 import { GoalCharacteristicName } from '@dto'
 import { formatNumber } from '@helpers/intl'
 import AppEmoji from '@ui/AppEmoji'
@@ -19,7 +19,9 @@ function CharacteristicGoal({ name, value }: CharacteristicGoalProps) {
     <Box display="flex" flexDirection="column" alignItems="center" gap={1} width={40}>
       <Tooltip arrow title={title}>
         <span>
-          <AppEmoji name={name} variant="h5" />
+          <IconButton sx={{ width: 48, height: 48 }}>
+            <AppEmoji name={name} variant="h5" />
+          </IconButton>
         </span>
       </Tooltip>
       <Box>

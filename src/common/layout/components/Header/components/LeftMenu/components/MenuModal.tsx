@@ -72,7 +72,7 @@ function MenuModal({ onOpenSettings, onClose }: MenuModalProps) {
           </Box>
           <List>
             <ListItem>
-              <ListItemText primary="Alpha 1.0.86" sx={{ color: 'zen.sand' }} />
+              <ListItemText primary="Alpha 1.0.87" sx={{ color: 'zen.sand' }} />
             </ListItem>
           </List>
         </Box>

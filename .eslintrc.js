@@ -84,8 +84,6 @@ module.exports = {
         'import/no-extraneous-dependencies': ['error', { devDependencies: true }],
         'import/no-self-import': 'off',
         'import/prefer-default-export': 'off',
-        'no-restricted-exports': 'off',
-        'no-bitwise': 'off',
         'import/no-unresolved': [2, { commonjs: true, amd: true }],
         'import/named': 2,
         'import/namespace': 2,
@@ -95,6 +93,8 @@ module.exports = {
         'no-param-reassign': ['error', { props: true, ignorePropertyModificationsFor: ['draft'] }],
         'no-shadow': 'off',
         'default-case': 'off',
+        'no-restricted-exports': 'off',
+        'no-bitwise': 'off',
 
         // Already handled by TS
         'no-dupe-class-members': 'off',

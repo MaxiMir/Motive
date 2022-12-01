@@ -1,8 +1,9 @@
-import { Field, Form, FormikProvider } from 'formik'
 import { useIntl } from 'react-intl'
+import { Field, Form, FormikProvider } from 'formik'
+import { IconButton } from '@mui/material'
 import { styled } from '@mui/system'
 import AppInput from '@ui/AppInput'
-import AppIconButton from '@ui/AppIconButton'
+import AppIcon from '@ui/AppIcon'
 import AutoSend from './components/AutoSend'
 import useForm from './hooks/useForm'
 
@@ -27,8 +28,16 @@ function SearchForm({ q = '' }: SearchFormProps) {
           color="secondary"
           InputProps={{
             disabled: true,
-            startAdornment: <InputButton name="search" disabled />,
-            endAdornment: values.q && <InputButton name="close" onClick={onClickClose} />,
+            startAdornment: (
+              <InputAdornment disableFocusRipple disabled>
+                <AppIcon name="search" />
+              </InputAdornment>
+            ),
+            endAdornment: values.q && (
+              <InputAdornment disableFocusRipple onClick={onClickClose}>
+                <AppIcon name="close" />
+              </InputAdornment>
+            ),
           }}
           component={AppInput}
         />
@@ -38,7 +47,7 @@ function SearchForm({ q = '' }: SearchFormProps) {
   )
 }
 
-const InputButton = styled(AppIconButton)({
+const InputAdornment = styled(IconButton)({
   '&:hover': {
     background: 'none',
   },

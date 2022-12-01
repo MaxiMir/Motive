@@ -44,6 +44,9 @@
       "@utils/*": [
         "src/common/utils/*"
       ],
+      "@helpers/*": [
+        "src/common/helpers/*"
+      ],
       "@services/*": [
         "src/common/services/*"
       ],
@@ -52,9 +55,6 @@
       ],
       "@schemas/*": [
         "src/common/schemas/*"
-      ],
-      "@helpers/*": [
-        "src/common/helpers/*"
       ],
       "@context/*": [
         "src/common/context/*"

@@ -1,9 +1,9 @@
 import Image, { ImageProps } from 'next/image'
 import { useIntl } from 'react-intl'
-import { Box, Typography } from '@mui/material'
+import { Box, IconButton, Typography } from '@mui/material'
 import { copyHandler } from '@helpers/window'
 import useSnackbar from '@hooks/useSnackbar'
-import AppIconButton from '@ui/AppIconButton'
+import AppIcon from '@ui/AppIcon'
 
 interface WalletProps {
   name: string
@@ -42,7 +42,9 @@ function Wallet({ name, wallet, src }: WalletProps) {
           {wallet}
         </Typography>
       </Box>
-      <AppIconButton name="content_copy" sx={{ color: 'zen.silent' }} onClick={onClick} />
+      <IconButton disableFocusRipple sx={{ color: 'zen.silent' }} onClick={onClick}>
+        <AppIcon name="content_copy" />
+      </IconButton>
     </Box>
   )
 }

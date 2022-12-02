@@ -1,10 +1,10 @@
 import { ChangeEvent } from 'react'
-import { useIntl } from 'react-intl'
 import { Field } from 'formik'
 import { Box, IconButton, Switch, Tooltip, FormControlLabel } from '@mui/material'
 import { TimePicker } from '@mui/x-date-pickers'
 import AppInput from '@ui/AppInput'
 import AppIcon from '@ui/AppIcon'
+import useMessages from './hooks/useMessages'
 
 interface TaskFieldProps {
   index: number
@@ -16,12 +16,7 @@ interface TaskFieldProps {
 }
 
 function TaskField({ index, date, remind, taskCount, setFieldValue, onRemove }: TaskFieldProps) {
-  const { formatMessage } = useIntl()
-  const label = formatMessage({ id: 'component.task-field.label' })
-  const placeholder = formatMessage({ id: 'component.task-field.placeholder' })
-  const closeText = formatMessage({ id: 'component.task-field.close' })
-  const remindText = formatMessage({ id: 'component.task-field.remind' })
-  const soonText = formatMessage({ id: 'common.soon' })
+  const messages = useMessages()
   const autoFocus = !!index && index === taskCount - 1
 
   const onSwitchClick = (_: ChangeEvent<HTMLInputElement>, isChecked: boolean) => {
@@ -33,15 +28,15 @@ function TaskField({ index, date, remind, taskCount, setFieldValue, onRemove }: 
       <Box display="flex" justifyContent="space-between" gap={1}>
         <Field
           name={`tasks.${index}.name`}
-          label={label}
-          placeholder={placeholder}
+          label={messages.label}
+          placeholder={messages.placeholder}
           autoFocus={autoFocus}
           component={AppInput}
         />
         <Box display="flex" alignSelf="flex-start">
           <IconButton
             disableFocusRipple
-            aria-label={closeText}
+            aria-label={messages.closeText}
             disabled={taskCount === 1}
             sx={{ color: 'zen.silent' }}
             onClick={onRemove}
@@ -52,9 +47,13 @@ function TaskField({ index, date, remind, taskCount, setFieldValue, onRemove }: 
       </Box>
       <Box display="flex" alignItems="center" gap={1} pl={1} height={48}>
         {/* TODO ADD  */}
-        <Tooltip title={soonText}>
+        <Tooltip title={messages.soonText}>
           <span>
-            <FormControlLabel label={remindText} disabled control={<Switch size="small" onChange={onSwitchClick} />} />
+            <FormControlLabel
+              label={messages.remindText}
+              disabled
+              control={<Switch size="small" onChange={onSwitchClick} />}
+            />
           </span>
         </Tooltip>
         {remind && (

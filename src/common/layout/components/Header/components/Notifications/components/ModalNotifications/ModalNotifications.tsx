@@ -2,7 +2,7 @@ import dynamic from 'next/dynamic'
 import { useIntl } from 'react-intl'
 import { Box } from '@mui/material'
 import { NotificationDto } from '@dto'
-import AppModal from '@ui/AppModal'
+import AppModal from '@ui/AppModal/AppModal'
 import useNotificationHint from './hooks/useNotificationHint'
 
 const EmptyList = dynamic(() => import('./components/EmptyList'))

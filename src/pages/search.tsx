@@ -1,21 +1,19 @@
 import { GetServerSideProps } from 'next'
 import { getSession } from 'next-auth/react'
 import { dehydrate, QueryClient } from 'react-query'
-import { useIntl } from 'react-intl'
 import { AxiosRequestHeaders } from 'axios'
 import { Route } from '@href'
+import useMetaTags from '@hooks/useMetaTags'
 import SearchModule, { useSearchPage } from '@modules/search'
 import PageService from '@services/page'
 import Layout from '@layout'
 
 function SearchPage() {
-  const { formatMessage } = useIntl()
   const { data } = useSearchPage()
-  const title = formatMessage({ id: 'page.search.title' })
-  const description = formatMessage({ id: 'page.search.description' })
+  const metaTags = useMetaTags('search')
 
   return (
-    <Layout title={title} description={description}>
+    <Layout title={metaTags.title} description={metaTags.description}>
       {data?.content && <SearchModule {...data.content} />}
     </Layout>
   )

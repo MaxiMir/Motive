@@ -1,6 +1,6 @@
 import { useIntl } from 'react-intl'
 import { Box } from '@mui/material'
-import AppModal from '@ui/AppModal'
+import AppModal from '@ui/AppModal/AppModal'
 import EmptyList from './components/EmptyList'
 
 interface ModalNoCompletedProps {

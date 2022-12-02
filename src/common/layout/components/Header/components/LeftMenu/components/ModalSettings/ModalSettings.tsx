@@ -4,23 +4,19 @@ import { ToggleButtonGroup, ToggleButton, Box, Typography, PaletteMode } from '@
 import { styled } from '@mui/system'
 import { ThemeContext } from '@context/themeContext'
 import useSetLocale, { Locale } from '@hooks/useSetLocale'
-import AppModal from '@ui/AppModal'
+import AppModal from '@ui/AppModal/AppModal'
 import AppEmoji from '@ui/AppEmoji'
+import useMessages from './hooks/useMessages'
 
 interface ModalLanguageProps {
   onClose: () => void
 }
 
 function ModalSettings({ onClose }: ModalLanguageProps) {
-  const { locale, formatMessage } = useIntl()
+  const { locale } = useIntl()
   const setLocale = useSetLocale()
+  const messages = useMessages()
   const { mode, setMode } = useContext(ThemeContext)
-  const title = formatMessage({ id: 'common.settings' })
-  const modeHeader = formatMessage({ id: 'common.mode' })
-  const languageHeader = formatMessage({ id: 'common.language' })
-  const lightText = formatMessage({ id: 'common.light' })
-  const systemText = formatMessage({ id: 'common.system' })
-  const darkText = formatMessage({ id: 'common.dark' })
 
   const onChangeLocale = (_: MouseEvent<HTMLElement>, newLocale: Locale) => {
     setLocale(newLocale)
@@ -33,17 +29,17 @@ function ModalSettings({ onClose }: ModalLanguageProps) {
   }
 
   return (
-    <AppModal title={title} maxWidth="xs" blur={false} onClose={onClose}>
+    <AppModal title={messages.title} maxWidth="xs" blur={false} onClose={onClose}>
       <Box display="flex" flexDirection="column" gap={3}>
         <Box display="flex" flexDirection="column" gap={1}>
           <Header variant="body2" gutterBottom>
-            {languageHeader}:
+            {messages.languageHeader}:
           </Header>
           <ToggleButtonGroup
             color="warning"
             value={locale}
             exclusive
-            aria-label={languageHeader}
+            aria-label={messages.languageHeader}
             onChange={onChangeLocale}
           >
             <GroupButton value={Locale.En} size="small">
@@ -61,17 +57,23 @@ function ModalSettings({ onClose }: ModalLanguageProps) {
         </Box>
         <Box display="flex" flexDirection="column" gap={1}>
           <Header variant="body2" gutterBottom>
-            {modeHeader}:
+            {messages.modeHeader}:
           </Header>
-          <ToggleButtonGroup color="warning" value={mode} exclusive aria-label={modeHeader} onChange={onChangeMode}>
+          <ToggleButtonGroup
+            color="warning"
+            value={mode}
+            exclusive
+            aria-label={messages.modeHeader}
+            onChange={onChangeMode}
+          >
             <GroupButton value="light" size="small" disabled>
-              <AppEmoji name="light" /> {lightText}
+              <AppEmoji name="light" /> {messages.lightText}
             </GroupButton>
             <GroupButton value="system" size="small" disabled>
-              <AppEmoji name="system" /> {systemText}
+              <AppEmoji name="system" /> {messages.systemText}
             </GroupButton>
             <GroupButton value="dark" size="small" disabled>
-              <AppEmoji name="dark" /> {darkText}
+              <AppEmoji name="dark" /> {messages.darkText}
             </GroupButton>
           </ToggleButtonGroup>
         </Box>

@@ -1,7 +1,7 @@
 import dynamic from 'next/dynamic'
 import { Box } from '@mui/material'
 import { SecondCharacteristicName, UserDetailDto } from '@dto'
-import AppModal from '@ui/AppModal'
+import AppModal from '@ui/AppModal/AppModal'
 import { useIntl } from 'react-intl'
 import useSubscription from './hooks/useSubscription'
 import Loader from './components/Loader'

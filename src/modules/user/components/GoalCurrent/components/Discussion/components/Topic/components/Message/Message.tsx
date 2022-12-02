@@ -1,6 +1,5 @@
 import dynamic from 'next/dynamic'
 import Link from 'next/link'
-import { useIntl } from 'react-intl'
 import { Box, Typography } from '@mui/material'
 import { getUserHref } from '@href'
 import { MessageDto } from '@dto'
@@ -10,6 +9,7 @@ import useDateFnsLocale from '@hooks/useDateFnsLocale'
 import UserLink from '@components/User/UserLink'
 import Menu from './components/Menu'
 import LikeButton from './components/LikeButton'
+import useMessages from './hooks/useMessages'
 
 const Button = dynamic(() => import('@mui/material/Button'))
 const AppMarkdown = dynamic(() => import('@ui/AppMarkdown'))
@@ -25,14 +25,11 @@ interface MessageProps {
 function Message({ message, answerFor, supportFor, onReply }: MessageProps) {
   const { date, user, text, edited } = message
   const { name, nickname, avatar } = user
-  const { formatMessage } = useIntl()
+  const messages = useMessages()
   const fnsLocale = useDateFnsLocale()
   const dateDistance = getDistance(date, fnsLocale)
   const href = getUserHref(nickname)
   const formattedNumber = formatNumber(message.likeCount)
-  const agoText = formatMessage({ id: 'common.ago' })
-  const editedText = formatMessage({ id: 'common.edited' })
-  const replyText = formatMessage({ id: 'common.reply' })
 
   return (
     <Box display="flex" flexDirection="column" gap={1} width="100%">
@@ -47,7 +44,7 @@ function Message({ message, answerFor, supportFor, onReply }: MessageProps) {
           {supportFor && <SupportSign name={supportFor} />}
           {edited && (
             <Box component="span" sx={{ fontSize: '0.6875rem', color: 'zen.silent' }}>
-              {editedText}
+              {messages.editedText}
             </Box>
           )}
         </Box>
@@ -59,11 +56,11 @@ function Message({ message, answerFor, supportFor, onReply }: MessageProps) {
       <Box display="flex" justifyContent="space-between" alignItems="center" pr={1}>
         <Box display="flex" alignItems="center" gap={1}>
           <Box component="span" sx={{ fontSize: '0.6875rem', color: 'zen.silent' }}>
-            {dateDistance} {agoText}
+            {dateDistance} {messages.agoText}
           </Box>
           {onReply && (
-            <Button size="small" aria-label={replyText} sx={{ color: 'support.main' }} onClick={onReply}>
-              {replyText}
+            <Button size="small" aria-label={messages.replyText} sx={{ color: 'support.main' }} onClick={onReply}>
+              {messages.replyText}
             </Button>
           )}
         </Box>

@@ -1,11 +1,11 @@
 import dynamic from 'next/dynamic'
-import { useIntl } from 'react-intl'
 import { Grid, Box } from '@mui/material'
 import { GoalDto, HashtagDto, UserDto } from '@dto'
 import AppHeader from '@ui/AppHeader'
 import AppContainer from '@ui/AppContainer'
 import SearchForm from './components/SearchForm'
 import { getGradients } from './helper'
+import useMessages from './hooks/useMessages'
 
 const GoalCard = dynamic(() => import('./components/GoalCard'))
 const UserCard = dynamic(() => import('./components/UserCard'))
@@ -20,25 +20,21 @@ interface SearchModuleProps {
 }
 
 function SearchModule({ q, hashtags, goals, users }: SearchModuleProps) {
-  const { formatMessage } = useIntl()
+  const messages = useMessages()
   const gradients = getGradients()
   const noResult = !users.length && !goals.length
-  const header = formatMessage({ id: 'page.search.header' })
-  const trendText = formatMessage({ id: 'page.search.trend' })
-  const userText = formatMessage({ id: 'page.search.user' })
-  const goalText = formatMessage({ id: 'page.search.goal' })
 
   return (
     <AppContainer>
       <AppHeader name="search" mb={4}>
-        {header}
+        {messages.header}
       </AppHeader>
       <Box display="flex" flexDirection="column" gap={4}>
         <SearchForm q={q} />
         {!!users.length && (
           <Box display="flex" flexDirection="column" gap={2}>
             <AppHeader variant="h4" component="h2" name="followers">
-              {userText}
+              {messages.userText}
             </AppHeader>
             <Grid container spacing={2}>
               {users.map((user) => (
@@ -52,7 +48,7 @@ function SearchModule({ q, hashtags, goals, users }: SearchModuleProps) {
         {noResult && <NoResult phrase={q} />}
         <Box display="flex" flexDirection="column" gap={2}>
           <AppHeader variant="h4" component="h2" name="trending">
-            {trendText}
+            {messages.trendText}
           </AppHeader>
           <Grid container spacing={2}>
             {hashtags.map(({ name, views }, key) => (
@@ -65,7 +61,7 @@ function SearchModule({ q, hashtags, goals, users }: SearchModuleProps) {
         {!!goals.length && false && (
           <Box display="flex" flexDirection="column" gap={2}>
             <AppHeader variant="h4" component="h2" name="goal">
-              {goalText}
+              {messages.goalText}
             </AppHeader>
             <Grid container spacing={2}>
               {goals.map((goal) => (

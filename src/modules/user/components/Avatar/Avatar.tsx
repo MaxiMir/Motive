@@ -3,7 +3,7 @@ import dynamic from 'next/dynamic'
 import AvatarStatus from '@components/Avatar/AvatarStatus'
 import { UserDetailDto } from '@dto'
 
-const AppLightBox = dynamic(() => import('@ui/AppLightBox'))
+const AppLightBox = dynamic(() => import('@ui/AppLightBox/AppLightBox'))
 const MenuList = dynamic(() => import('./components/MenuList'))
 
 interface AvatarProps {

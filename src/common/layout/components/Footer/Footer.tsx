@@ -34,6 +34,7 @@ function Footer({ nickname }: FooterProps) {
         position: 'sticky',
         bottom: 0,
         width: '100%',
+        zIndex: 30,
       }}
     >
       <Container fixed>

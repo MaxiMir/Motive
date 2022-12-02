@@ -1,6 +1,5 @@
 import { Fragment, ReactNode } from 'react'
 import dynamic from 'next/dynamic'
-import { useIntl } from 'react-intl'
 import {
   Dialog,
   DialogContent,
@@ -10,8 +9,9 @@ import {
   backdropClasses,
   IconButton,
 } from '@mui/material'
-import AppScrollbar from './AppScrollbar'
-import AppIcon from './AppIcon'
+import AppScrollbar from '@ui/AppScrollbar'
+import AppIcon from '@ui/AppIcon'
+import useMessages from './hooks/useMessages'
 
 const DialogActions = dynamic(() => import('@mui/material/DialogActions'))
 const Box = dynamic(() => import('@mui/material/Box'))
@@ -26,8 +26,7 @@ interface AppModalProps {
 }
 
 function AppModal({ title, actions, maxWidth, blur = true, children, onClose }: AppModalProps) {
-  const { formatMessage } = useIntl()
-  const label = formatMessage({ id: 'common.close' })
+  const messages = useMessages()
 
   return (
     <Dialog
@@ -46,7 +45,7 @@ function AppModal({ title, actions, maxWidth, blur = true, children, onClose }: 
       </DialogTitle>
       <IconButton
         edge="start"
-        aria-label={label}
+        aria-label={messages.label}
         sx={{ position: 'absolute', top: 10, right: 13, color: 'zen.silent' }}
         onClick={onClose}
       >

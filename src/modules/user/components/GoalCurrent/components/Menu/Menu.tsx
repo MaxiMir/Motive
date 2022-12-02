@@ -6,7 +6,7 @@ import AppMenuButton from '@ui/AppMenuButton'
 
 const Share = dynamic(() => import('@components/Share'))
 const ModalLeave = dynamic(() => import('./components/ModalLeave'))
-const MenuList = dynamic(() => import('./components/MenuList'))
+const MenuList = dynamic(() => import('./components/MenuList/MenuList'))
 
 interface MenuProps {
   goal: GoalDto

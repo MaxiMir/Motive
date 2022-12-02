@@ -1,16 +1,14 @@
 import { GetServerSideProps } from 'next'
 import { getSession } from 'next-auth/react'
-import { useIntl } from 'react-intl'
+import useMetaTags from '@hooks/useMetaTags'
 import ContactModule from '@modules/contact'
 import Layout from '@layout'
 
 function ContactPage() {
-  const { formatMessage } = useIntl()
-  const title = formatMessage({ id: 'page.contact.title' })
-  const description = formatMessage({ id: 'page.contact.description' })
+  const metaTags = useMetaTags('contact')
 
   return (
-    <Layout title={title} description={description}>
+    <Layout title={metaTags.title} description={metaTags.description}>
       <ContactModule />
     </Layout>
   )

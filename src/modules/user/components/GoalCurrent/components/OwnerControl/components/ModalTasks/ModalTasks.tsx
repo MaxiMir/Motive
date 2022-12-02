@@ -1,6 +1,5 @@
 import { ChangeEvent } from 'react'
 import { v4 as uuidV4 } from 'uuid'
-import { useIntl } from 'react-intl'
 import { FieldArray, Form, FormikProvider } from 'formik'
 import {
   Accordion,
@@ -20,12 +19,13 @@ import { getToday, getTomorrow } from '@utils/date'
 import AppIcon from '@ui/AppIcon'
 import AppHeader from '@ui/AppHeader'
 import { PaulIcon } from '@ui/icons'
-import AppModal from '@ui/AppModal'
+import AppModal from '@ui/AppModal/AppModal'
 import ActionSubmit from '@components/Action/ActionSubmit'
-import ActionCancel from '@components/Action/ActionCancel'
-import TaskField from '@components/Task/TaskField'
-import OldPittRules from '@components/OldPitt/OldPittRules'
+import ActionCancel from '@components/Action/ActionCancel/ActionCancel'
+import TaskField from '@components/Task/TaskField/TaskField'
+import OldPittRules from '@components/OldPitt/OldPittRules/OldPittRules'
 import useForm from './hooks/useForm'
+import useMessages from './hooks/useMessages'
 
 interface ModalTasksProps {
   goal: GoalDto
@@ -33,24 +33,13 @@ interface ModalTasksProps {
 }
 
 function ModalTasks({ goal, onClose }: ModalTasksProps) {
-  const { formatMessage } = useIntl()
+  const messages = useMessages()
   const form = useForm(goal, onClose)
   const { isSubmitting, values, setFieldValue, handleSubmit } = form
   const todayValue = getToday().toISOString()
   const tomorrowValue = getTomorrow().toISOString()
   const todayDisabled = todayValue === goal.day.date
-  const titleText = formatMessage({ id: 'page.user.modal-tasks.title' })
-  const subtitleText = formatMessage({ id: 'page.user.modal-tasks.subtitle' })
-  const addTaskText = formatMessage({ id: 'common.task-add' })
-  const buttonText = formatMessage({ id: 'common.create' })
-  const loadingText = formatMessage({ id: 'common.creating' })
-  const doItText = formatMessage({ id: 'page.user.modal-tasks.do-it' })
-  const doItLabelledby = formatMessage({ id: 'page.user.modal-tasks.do-it-labelledby' })
-  const todayText = formatMessage({ id: 'common.today' })
-  const tomorrowText = formatMessage({ id: 'common.tomorrow' })
-  const pittText = formatMessage({ id: 'page.user.modal-tasks.pitt' })
-  const pittAria = formatMessage({ id: 'page.user.modal-tasks.pitt-aria' })
-  const tooltipText = todayDisabled && formatMessage({ id: 'page.user.modal-tasks.tooltip' })
+  const tooltipTitle = todayDisabled && messages.tooltipText
 
   const onChangeDate = (e: ChangeEvent<HTMLInputElement>) => {
     setFieldValue('date', e.target.value)
@@ -60,9 +49,9 @@ function ModalTasks({ goal, onClose }: ModalTasksProps) {
     <AppModal
       title={
         <>
-          {titleText}{' '}
+          {messages.titleText}{' '}
           <Box component="span" sx={{ color: 'zen.sand' }}>
-            {subtitleText}
+            {messages.subtitleText}
           </Box>
         </>
       }
@@ -71,8 +60,8 @@ function ModalTasks({ goal, onClose }: ModalTasksProps) {
         <ActionCancel onClick={onClose} />,
         <ActionSubmit
           disabled={isSubmitting}
-          text={buttonText}
-          loadingText={loadingText}
+          text={messages.buttonText}
+          loadingText={messages.loadingText}
           emoji="task"
           onClick={handleSubmit}
         />,
@@ -104,7 +93,7 @@ function ModalTasks({ goal, onClose }: ModalTasksProps) {
                         sx={{ alignSelf: 'baseline', textTransform: 'none' }}
                         onClick={() => push({ id: uuidV4(), name: '', date: undefined })}
                       >
-                        {addTaskText}
+                        {messages.addTaskText}
                       </Button>
                     </>
                   )}
@@ -112,37 +101,41 @@ function ModalTasks({ goal, onClose }: ModalTasksProps) {
               </Box>
               <FormControl variant="standard">
                 <AppHeader name="clock" variant="h6" component="label">
-                  {doItText}
+                  {messages.doItText}
                 </AppHeader>
                 <RadioGroup
                   name="date"
                   value={values.date}
-                  aria-labelledby={doItLabelledby}
+                  aria-labelledby={messages.doItLabelledby}
                   row
                   onChange={onChangeDate}
                 >
-                  <Tooltip title={tooltipText} arrow followCursor>
+                  <Tooltip title={tooltipTitle} arrow followCursor>
                     <span>
                       <FormControlLabel
-                        label={todayText}
+                        label={messages.todayText}
                         value={todayValue}
                         disabled={todayDisabled}
                         control={<Radio />}
                       />
                     </span>
                   </Tooltip>
-                  <FormControlLabel label={tomorrowText} value={tomorrowValue} control={<Radio />} />
+                  <FormControlLabel label={messages.tomorrowText} value={tomorrowValue} control={<Radio />} />
                 </RadioGroup>
               </FormControl>
             </Box>
           </Form>
         </FormikProvider>
         <Accordion>
-          <AccordionSummary expandIcon={<AppIcon name="expand_more" />} aria-controls={pittAria} id="old-pitt-note">
+          <AccordionSummary
+            expandIcon={<AppIcon name="expand_more" />}
+            aria-controls={messages.pittAria}
+            id="old-pitt-note"
+          >
             <Box display="flex" alignItems="center" gap={1}>
               <PaulIcon />
               <Typography variant="h6" component="h3">
-                {pittText}
+                {messages.pittText}
               </Typography>
             </Box>
           </AccordionSummary>

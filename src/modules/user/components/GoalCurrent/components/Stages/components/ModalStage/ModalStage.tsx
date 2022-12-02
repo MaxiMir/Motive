@@ -1,11 +1,11 @@
-import { useIntl } from 'react-intl'
 import { Box, Typography } from '@mui/material'
 import { GoalDto } from '@dto'
 import ActionSubmit from '@components/Action/ActionSubmit'
-import ActionCancel from '@components/Action/ActionCancel'
-import AppModal from '@ui/AppModal'
+import ActionCancel from '@components/Action/ActionCancel/ActionCancel'
+import AppModal from '@ui/AppModal/AppModal'
 import AppFlyIcon from '@ui/AppFlyIcon'
 import useSendStage from './hooks/useSendStage'
+import useMessages from './hooks/useMessages'
 
 interface ModalStageProps {
   goal: GoalDto
@@ -14,15 +14,9 @@ interface ModalStageProps {
 
 function ModalStage({ goal, onClose }: ModalStageProps) {
   const { stages, day } = goal
-  const { formatMessage } = useIntl()
+  const messages = useMessages(stages.length === day.stage)
   const { isLoading, mutate } = useSendStage(onClose)
-  const isFinal = stages.length === day.stage
   const nextStage = day.stage + 1
-  const title = formatMessage({ id: 'page.user.modal-stage.title' })
-  const behind = formatMessage({ id: 'page.user.modal-stage.behind' })
-  const button = formatMessage({ id: 'common.complete' })
-  const buttonLoading = formatMessage({ id: 'common.completing' })
-  const nextTitle = formatMessage({ id: `page.user.modal-stage.title-${isFinal ? 'final' : 'next'}` })
 
   const onClick = () => mutate({ id: goal.id, stage: nextStage })
 
@@ -30,7 +24,7 @@ function ModalStage({ goal, onClose }: ModalStageProps) {
     <AppModal
       title={
         <>
-          {title} <br />
+          {messages.title} <br />
           <Box component="span" sx={{ color: 'zen.sand' }}>
             {stages[day.stage]}
           </Box>
@@ -39,7 +33,13 @@ function ModalStage({ goal, onClose }: ModalStageProps) {
       maxWidth="xs"
       actions={[
         <ActionCancel onClick={onClose} />,
-        <ActionSubmit disabled={isLoading} text={button} loadingText={buttonLoading} emoji="stage" onClick={onClick} />,
+        <ActionSubmit
+          disabled={isLoading}
+          text={messages.button}
+          loadingText={messages.buttonLoading}
+          emoji="stage"
+          onClick={onClick}
+        />,
       ]}
       onClose={onClose}
     >
@@ -47,10 +47,10 @@ function ModalStage({ goal, onClose }: ModalStageProps) {
         <Box display="flex" flexDirection="column" alignItems="center" gap={1}>
           <AppFlyIcon name="stage" />
           <Typography variant="subtitle1" sx={{ color: 'support.main' }}>
-            <b>{behind}</b>
+            <b>{messages.behind}</b>
           </Typography>
           <Typography>
-            {nextTitle}:{' '}
+            {messages.nextTitle}:{' '}
             <Box component="b" sx={{ color: 'zen.wave' }}>
               {stages[nextStage]}
             </Box>

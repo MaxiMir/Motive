@@ -1,6 +1,5 @@
 import dynamic from 'next/dynamic'
 import Link from 'next/link'
-import { useIntl } from 'react-intl'
 import { Box, IconButton, Typography } from '@mui/material'
 import { getUserHref } from '@href'
 import { NotificationDto } from '@dto'
@@ -13,6 +12,7 @@ import AppEmoji from '@ui/AppEmoji'
 import AppIcon from '@ui/AppIcon'
 import { toShortString } from '@helpers/string'
 import useUpdateRead from './hooks/useUpdateRead'
+import useMessages from './hooks/useMessages'
 import { getNotificationInfo } from './helper'
 
 const AppInView = dynamic(() => import('@ui/AppInView'))
@@ -25,7 +25,7 @@ interface NotificationProps {
 function Notification({ notification, onClose }: NotificationProps) {
   const { id, type, details, created, read } = notification
   const { name, nickname, avatar } = details.user
-  const { formatMessage } = useIntl()
+  const messages = useMessages(type)
   const fnsLocale = useDateFnsLocale()
   const client = useClient()
   const { mutate } = useUpdateRead()
@@ -34,9 +34,6 @@ function Notification({ notification, onClose }: NotificationProps) {
   const notificationHref = getNotificationHref(notification, client)
   const href = getUserHref(nickname)
   const detailsName = !details.name ? '' : toShortString(details.name, 40)
-  const agoText = formatMessage({ id: 'common.ago' })
-  const header = formatMessage({ id: `component.notification.${type}` })
-  const viewTitle = formatMessage({ id: 'common.view' })
 
   const onView = () => mutate(id)
 
@@ -69,14 +66,19 @@ function Notification({ notification, onClose }: NotificationProps) {
               {name}
             </Link>
           </Box>{' '}
-          {header}
+          {messages.header}
           {detailsName && `: ${detailsName}`}
         </Typography>
         <Box display="flex" alignItems="center" gap={2}>
           <Box component="span" sx={{ color: 'zen.silent', fontSize: '0.875rem' }}>
-            {dateDistance} {agoText}
+            {dateDistance} {messages.agoText}
           </Box>
-          <IconButton href={notificationHref} title={viewTitle} aria-label={viewTitle} onClick={onClose}>
+          <IconButton
+            href={notificationHref}
+            title={messages.viewTitle}
+            aria-label={messages.viewTitle}
+            onClick={onClose}
+          >
             <AppIcon name="south_east" sx={{ color: 'motivation.light', fontSize: '1rem !important' }} />
           </IconButton>
         </Box>

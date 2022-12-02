@@ -1,7 +1,7 @@
 import { useIntl } from 'react-intl'
 import { Box, Typography } from '@mui/material'
 import AppFadeIcon from '@ui/AppFadeIcon'
-import OwnerDescription from './components/OwnerDescription'
+import OwnerDescription from './components/OwnerDescription/OwnerDescription'
 
 interface AddGoalProps {
   clientPage: boolean

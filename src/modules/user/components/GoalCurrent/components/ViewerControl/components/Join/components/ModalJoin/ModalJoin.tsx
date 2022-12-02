@@ -1,15 +1,15 @@
 import { ChangeEvent } from 'react'
 import { Form, FormikProvider } from 'formik'
 import { Box, FormControlLabel, Radio, RadioGroup, Typography } from '@mui/material'
-import { useIntl } from 'react-intl'
 import { GoalDto } from '@dto'
 import ActionSubmit from '@components/Action/ActionSubmit'
-import ActionCancel from '@components/Action/ActionCancel'
-import AppModal from '@ui/AppModal'
+import ActionCancel from '@components/Action/ActionCancel/ActionCancel'
+import AppModal from '@ui/AppModal/AppModal'
 import AppEmoji from '@ui/AppEmoji'
 import AppAccordion from '@ui/AppAccordion'
 import AppDecorEmoji from '@ui/AppDecorEmoji'
 import useForm from './hooks/useForm'
+import useMessages from './hooks/useMessages'
 
 interface ModalJoinProps {
   goal: GoalDto
@@ -17,26 +17,13 @@ interface ModalJoinProps {
 }
 
 function ModalJoin({ goal, onClose }: ModalJoinProps) {
-  const { formatMessage } = useIntl()
   const { id, calendar, day } = goal
+  const messages = useMessages()
   const beginningDay = calendar[0].id
   const thisDay = day.id
   const disableBeginning = beginningDay === thisDay
   const form = useForm(id, beginningDay)
   const { isSubmitting, values, setFieldValue, handleSubmit } = form
-  const title = formatMessage({ id: 'page.user.modal-join.title' })
-  const subtitle = formatMessage({ id: 'page.user.modal-join.subtitle' })
-  const buttonText = formatMessage({ id: 'common.join' })
-  const loadingText = formatMessage({ id: 'common.joining' })
-  const beginLabel = formatMessage({ id: 'page.user.modal-join.begin-label' })
-  const dayLabel = formatMessage({ id: 'page.user.modal-join.day-label' })
-  const accordionHeader = formatMessage({ id: 'page.user.modal-join.accordion-header' })
-  const ariaControls = formatMessage({ id: 'page.user.modal-join.aria' })
-  const accordingMotivation = formatMessage({ id: 'page.user.modal-join.according-motivation' })
-  const accordingCreative = formatMessage({ id: 'page.user.modal-join.according-creative' })
-  const accordingSupport = formatMessage({ id: 'page.user.modal-join.according-support' })
-  const accordingNeeded = formatMessage({ id: 'page.user.modal-join.according-needed' })
-  const accordingQuestions = formatMessage({ id: 'page.user.modal-join.according-questions' })
 
   const onChange = (e: ChangeEvent<HTMLInputElement>) => {
     setFieldValue('dayId', e.currentTarget.value)
@@ -46,9 +33,9 @@ function ModalJoin({ goal, onClose }: ModalJoinProps) {
     <AppModal
       title={
         <>
-          {title}{' '}
+          {messages.title}{' '}
           <Box component="span" sx={{ color: 'zen.sand' }}>
-            {subtitle}
+            {messages.subtitle}
           </Box>
           ?
         </>
@@ -58,8 +45,8 @@ function ModalJoin({ goal, onClose }: ModalJoinProps) {
         <ActionCancel onClick={onClose} />,
         <ActionSubmit
           disabled={isSubmitting}
-          text={buttonText}
-          loadingText={loadingText}
+          text={messages.buttonText}
+          loadingText={messages.loadingText}
           emoji="join"
           onClick={handleSubmit}
         />,
@@ -73,7 +60,7 @@ function ModalJoin({ goal, onClose }: ModalJoinProps) {
               value={disableBeginning ? 'none' : beginningDay.toString()}
               label={
                 <Box display="flex" gap={1}>
-                  {beginLabel} <AppEmoji name="serenity" onlyEmoji />
+                  {messages.beginLabel} <AppEmoji name="serenity" onlyEmoji />
                 </Box>
               }
               disabled={isSubmitting || disableBeginning}
@@ -83,7 +70,7 @@ function ModalJoin({ goal, onClose }: ModalJoinProps) {
               value={thisDay.toString()}
               label={
                 <Box display="flex" gap={1}>
-                  {dayLabel} <AppEmoji name="blast" onlyEmoji />
+                  {messages.dayLabel} <AppEmoji name="blast" onlyEmoji />
                 </Box>
               }
               disabled={isSubmitting}
@@ -93,23 +80,23 @@ function ModalJoin({ goal, onClose }: ModalJoinProps) {
           <Box>
             <AppAccordion
               name="knot"
-              header={accordionHeader}
+              header={messages.accordionHeader}
               id="tips"
-              ariaControls={ariaControls}
+              ariaControls={messages.ariaControls}
               details={
                 <Box sx={{ color: 'zen.silent' }}>
-                  <Typography>&#9679; {accordingMotivation}.</Typography>
-                  <Typography>&#9679; {accordingCreative}.</Typography>
+                  <Typography>&#9679; {messages.accordingMotivation}.</Typography>
+                  <Typography>&#9679; {messages.accordingCreative}.</Typography>
                   <Typography>
-                    &#9679; {accordingSupport}{' '}
+                    &#9679; {messages.accordingSupport}{' '}
                     <Box component="span" sx={{ color: 'support.main' }}>
                       {goal.owner.name}
                     </Box>
                     {', '}
-                    {accordingNeeded}.
+                    {messages.accordingNeeded}.
                   </Typography>
                   <Typography>
-                    &#9679; {accordingQuestions} <AppDecorEmoji name="discussion" />.
+                    &#9679; {messages.accordingQuestions} <AppDecorEmoji name="discussion" />.
                   </Typography>
                 </Box>
               }

@@ -1,12 +1,11 @@
 import dynamic from 'next/dynamic'
 import { Field, FieldArray, Form, FormikProvider } from 'formik'
-import { useIntl } from 'react-intl'
 import { Grid, Box, Typography } from '@mui/material'
 import { GoalDto } from '@dto'
 import useSelectPhoto from '@hooks/useSelectPhoto'
 import ActionSubmit from '@components/Action/ActionSubmit'
-import ActionCancel from '@components/Action/ActionCancel'
-import AppModal from '@ui/AppModal'
+import ActionCancel from '@components/Action/ActionCancel/ActionCancel'
+import AppModal from '@ui/AppModal/AppModal'
 import AppAccordion from '@ui/AppAccordion'
 import AppInput from '@ui/AppInput'
 import AppHeader from '@ui/AppHeader'
@@ -16,6 +15,7 @@ import PhotoButton from '@components/Photo/PhotoButton'
 import VideoPreview from '@components/Video/VideoPreview'
 import VideoInput from '@components/Video/VideoInput'
 import useForm from './hooks/useForm'
+import useMessages from './hooks/useMessages'
 
 const Alert = dynamic(() => import('@mui/material/Alert'))
 
@@ -25,21 +25,10 @@ interface ModalCompletionProps {
 }
 
 function ModalCompletion({ goal, onClose }: ModalCompletionProps) {
-  const { formatMessage } = useIntl()
+  const messages = useMessages()
   const form = useForm(goal, onClose)
   const { isSubmitting, values, touched, errors, setFieldValue, handleSubmit } = form
   const photoError = Array.isArray(errors.photos) ? errors.photos.join(', ') : errors.photos
-  const title = formatMessage({ id: 'component.modal-completion.title' })
-  const buttonText = formatMessage({ id: 'common.complete' })
-  const loadingText = formatMessage({ id: 'common.completing' })
-  const subtitle = formatMessage({ id: 'component.modal-completion.subtitle' })
-  const label = formatMessage({ id: 'component.modal-completion.label' })
-  const photoTitle = formatMessage({ id: 'component.modal-completion.photoTitle' })
-  const videoTitle = formatMessage({ id: 'component.modal-completion.videoTitle' })
-  const accordionHeader = formatMessage({ id: 'component.modal-completion.accordionHeader' })
-  const ariaControls = formatMessage({ id: 'component.modal-completion.aria' })
-  const detailsStart = formatMessage({ id: 'component.modal-completion.details-start' })
-  const detailsEnd = formatMessage({ id: 'component.modal-completion.details-end' })
 
   const onSelectPhoto = useSelectPhoto(form)
 
@@ -47,14 +36,14 @@ function ModalCompletion({ goal, onClose }: ModalCompletionProps) {
 
   return (
     <AppModal
-      title={title}
+      title={messages.title}
       maxWidth="xs"
       actions={[
         <ActionCancel onClick={onClose} />,
         <ActionSubmit
           disabled={isSubmitting}
-          text={buttonText}
-          loadingText={loadingText}
+          text={messages.buttonText}
+          loadingText={messages.loadingText}
           emoji="completed"
           onClick={handleSubmit}
         />,
@@ -67,14 +56,14 @@ function ModalCompletion({ goal, onClose }: ModalCompletionProps) {
             <Box display="flex" flexDirection="column" alignItems="center" gap={1}>
               <AppSpinIcon name="completed" />
               <Typography variant="subtitle1" sx={{ color: '#ffa300' }}>
-                {subtitle}
+                {messages.subtitle}
               </Typography>
             </Box>
-            <Field name="text" label={label} color="warning" multiline rows={3} component={AppInput} />
+            <Field name="text" label={messages.label} color="warning" multiline rows={3} component={AppInput} />
             {!!values.photos.length && (
               <Box display="flex" flexDirection="column" gap={2} width="100%">
                 <AppHeader name="photo" variant="h6" component="h2" color="primary">
-                  {photoTitle}
+                  {messages.photoTitle}
                 </AppHeader>
                 <FieldArray name="photos">
                   {({ remove }) => (
@@ -92,7 +81,7 @@ function ModalCompletion({ goal, onClose }: ModalCompletionProps) {
             {values.video && (
               <Box display="flex" flexDirection="column" gap={2} width="100%">
                 <AppHeader name="video" variant="h6" component="h2" color="primary">
-                  {videoTitle}
+                  {messages.videoTitle}
                 </AppHeader>
                 <VideoPreview
                   video={values.video}
@@ -113,17 +102,17 @@ function ModalCompletion({ goal, onClose }: ModalCompletionProps) {
             <Box sx={{ width: '100%' }}>
               <AppAccordion
                 name="switch"
-                header={accordionHeader}
+                header={messages.accordionHeader}
                 id="goal"
-                ariaControls={ariaControls}
+                ariaControls={messages.ariaControls}
                 details={
                   <Box sx={{ color: 'zen.silent' }}>
                     <Typography>
-                      {detailsStart}{' '}
+                      {messages.detailsStart}{' '}
                       <Box component="b" sx={{ color: 'text.primary' }}>
                         5
                       </Box>{' '}
-                      {detailsEnd}.
+                      {messages.detailsEnd}.
                     </Typography>
                   </Box>
                 }

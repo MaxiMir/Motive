@@ -3,8 +3,8 @@ import { useIntl } from 'react-intl'
 import { Box, Typography } from '@mui/material'
 import { UserDetailDto } from '@dto'
 import useShowProgress from '@hooks/useShowProgress'
-import AppModal from '@ui/AppModal'
-import OldPittRules from '@components/OldPitt/OldPittRules'
+import AppModal from '@ui/AppModal/AppModal'
+import OldPittRules from '@components/OldPitt/OldPittRules/OldPittRules'
 import webSrc from 'public/images/svg/web.svg'
 
 interface ModalAbandonedProps {

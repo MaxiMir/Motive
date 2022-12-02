@@ -28,7 +28,7 @@ function Calendar({ goal }: CalendarProps) {
 
     const dateKey = getDateKey(value)
 
-    if (!dateKey || !dateMap[dateKey]) return
+    if (!dateMap[dateKey]) return
 
     mutate(dateMap[dateKey])
   }

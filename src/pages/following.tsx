@@ -1,21 +1,19 @@
 import { GetServerSideProps } from 'next'
 import { getSession } from 'next-auth/react'
-import { useIntl } from 'react-intl'
 import { dehydrate, QueryClient } from 'react-query'
 import { AxiosRequestHeaders } from 'axios'
 import { Route } from '@href'
+import useMetaTags from '@hooks/useMetaTags'
 import PageService from '@services/page'
 import FollowingModule, { useFollowingPage } from '@modules/following'
 import Layout from '@layout'
 
 function FollowingPage() {
-  const { formatMessage } = useIntl()
   const { data } = useFollowingPage()
-  const title = formatMessage({ id: 'page.following.title' })
-  const description = formatMessage({ id: 'page.following.description' })
+  const metaTags = useMetaTags('following')
 
   return (
-    <Layout title={title} description={description}>
+    <Layout title={metaTags.title} description={metaTags.description}>
       {data?.content && <FollowingModule users={data.content} />}
     </Layout>
   )

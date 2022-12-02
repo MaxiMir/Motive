@@ -5,7 +5,7 @@ import { Button } from '@mui/material'
 import AppIcon from '@ui/AppIcon'
 
 const MenuModal = dynamic(() => import('./components/MenuModal'))
-const ModalSettings = dynamic(() => import('./components/ModalSettings'))
+const ModalSettings = dynamic(() => import('./components/ModalSettings/ModalSettings'))
 
 function LeftMenu() {
   const { formatMessage } = useIntl()

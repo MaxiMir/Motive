@@ -5,7 +5,7 @@ import { HashMark, SearchParam } from '@href'
 import { GoalDto, MemberDto, OwnershipDto, TaskDto } from '@dto'
 import { getMember } from '@modules/user/helper'
 
-const SHOW_WEB_AFTER_DAYS = +(process.env.NEXT_PUBLIC_SHOW_WEB_AFTER_DAYS as string)
+const SHOW_WEB_AFTER_DAYS = Number(process.env.NEXT_PUBLIC_SHOW_WEB_AFTER_DAYS || '')
 
 export const getClientOwnership = (
   goal: GoalDto,

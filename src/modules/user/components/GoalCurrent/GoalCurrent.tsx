@@ -1,16 +1,16 @@
 import dynamic from 'next/dynamic'
 import { useRouter } from 'next/router'
-import { useIntl } from 'react-intl'
-import { Box, Card, useTheme } from '@mui/material'
+import { Box, Card } from '@mui/material'
+import { styled } from '@mui/system'
 import { getGoalDayHref, HashMark } from '@href'
 import { GoalDto, GoalCharacteristicName, MemberDto, MAIN_CHARACTERISTICS } from '@dto'
 import CharacteristicGoal from '@components/Characteristic/CharacteristicGoal'
+import { getMember } from '@modules/user/helper'
 import AppHeader from '@ui/AppHeader'
 import AppAccordion from '@ui/AppAccordion'
-import AppInView from '@ui/AppInView'
-import { getMember } from '@modules/user/helper'
-import useIncreaseViews from './hooks/useIncreaseViews'
+import useMessages from './hooks/useMessages'
 import { getGoalInfo, getClientOwnership, checkOnShowDiscussion, redefineTasks } from './helper'
+import ViewTrigger from './components/ViewTrigger'
 import Calendar from './components/Calendar'
 import Menu from './components/Menu'
 import Discussion from './components/Discussion'
@@ -42,23 +42,13 @@ interface GoalCurrentProps {
 function GoalCurrent({ goal, href, userId, membership, clientId, clientPage, clientMembership }: GoalCurrentProps) {
   const { id, name, hashtags, characteristic, owner, stages, day, inherited } = goal
   const { id: dayId, views, topicCount } = day
-  const { formatMessage } = useIntl()
-  const theme = useTheme()
   const { query } = useRouter()
   const clientOwnership = getClientOwnership(goal, clientId, clientPage, clientMembership)
   const userMember = getMember(id, membership, userId)
   const goalHref = getGoalDayHref(href, id, dayId)
   const goalInfo = getGoalInfo(goal, clientOwnership, userMember)
   const showDiscussion = checkOnShowDiscussion(query, id)
-  const { mutate } = useIncreaseViews(goal, clientId)
-  const stagesHeader = formatMessage({ id: 'page.user.goal-current.stages-header' })
-  const stagesAria = formatMessage({ id: 'page.user.goal-current.stages-aria' })
-  const tasksHeader = formatMessage({ id: 'page.user.goal-current.tasks-header' })
-  const tasksAria = formatMessage({ id: 'page.user.goal-current.tasks-aria' })
-  const feedbackHeader = formatMessage({ id: 'page.user.goal-current.feedback-header' })
-  const feedbackAria = formatMessage({ id: 'page.user.goal-current.feedback-aria' })
-  const discussionHeader = formatMessage({ id: 'page.user.goal-current.discussion-header' })
-  const discussionAria = formatMessage({ id: 'page.user.goal-current.discussion-aria' })
+  const messages = useMessages()
   const redefinedGoals = redefineTasks(day.tasks, userMember)
   const restGoals = redefinedGoals.length - redefinedGoals.filter((t) => t.completed).length
 
@@ -78,28 +68,28 @@ function GoalCurrent({ goal, href, userId, membership, clientId, clientPage, cli
       }}
     >
       <Box
-        sx={{
+        sx={(theme) => ({
           padding: '3px',
           height: '100%',
           background: `linear-gradient(to top left, ${theme.palette.motivation.main}, ${theme.palette.creativity.dark}, ${theme.palette.support.dark})`,
           borderRadius: '15px',
-        }}
+        })}
       >
         <Box
           display="flex"
           flexDirection="column"
           justifyContent="space-between"
           gap={3}
-          sx={{
+          sx={(theme) => ({
             position: 'relative',
             height: '100%',
             padding: '24px 16px 16px',
             background: theme.palette.content,
             borderRadius: '13px',
-          }}
+          })}
         >
           {inherited && <Inheritance owner={owner} />}
-          <AppInView triggerOnce onView={() => mutate()}>
+          <ViewTrigger goal={goal}>
             <Box display="flex" flexDirection="column" gap={3}>
               <Box display="flex" justifyContent="space-between" alignItems="center">
                 <AppHeader name="goal" variant="h6" component="h2">
@@ -117,80 +107,94 @@ function GoalCurrent({ goal, href, userId, membership, clientId, clientPage, cli
                 ))}
                 <CharacteristicGoal name="runningDays" value={goalInfo.runningDays} />
               </Box>
-              {!!hashtags?.length && <Hashtags hashtags={hashtags} />}
-              <Card variant="outlined" sx={{ pb: 3 }}>
-                <Box display="flex" justifyContent="space-between" alignItems="baseline" py={2} px={3}>
-                  <DateName daysGone={goalInfo.daysGoneForOwner} />
-                  <Box display="flex" alignItems="center">
+              {!!hashtags.length && <Hashtags hashtags={hashtags} />}
+              <Box display="flex" flexDirection="column" alignItems="center">
+                <DayCardControl variant="outlined" sx={{ bottom: -20 }}>
+                  <Box display="flex" justifyContent="space-between" alignItems="baseline" py={2} px={3}>
+                    <DateName daysGone={goalInfo.daysGoneForOwner} />
                     <Date date={day.date} />
-                    <Calendar goal={goal} />
                   </Box>
-                </Box>
-                {!!stages.length && (
+                </DayCardControl>
+                <DayCard variant="outlined" sx={{ width: '100%', zIndex: 20, pb: 4 }}>
+                  <Box display="flex" justifyContent="space-between" alignItems="baseline" py={2} px={3}>
+                    <DateName daysGone={goalInfo.daysGoneForOwner} />
+                    <Box display="flex" alignItems="center">
+                      <Date date={day.date} />
+                      <Calendar goal={goal} />
+                    </Box>
+                  </Box>
+                  {!!stages.length && (
+                    <AppAccordion
+                      name="stage"
+                      header={messages.stagesHeader}
+                      id={`stage-${dayId}`}
+                      ariaControls={messages.stagesAria}
+                      defaultExpanded
+                      details={
+                        <Stages goal={goal} forTomorrow={goalInfo.forTomorrow} completeStage={goalInfo.completeStage} />
+                      }
+                    />
+                  )}
                   <AppAccordion
-                    name="stage"
-                    header={stagesHeader}
-                    id={`stage-${dayId}`}
-                    ariaControls={stagesAria}
+                    name="task"
+                    header={messages.tasksHeader}
+                    id={`tasksContent-${dayId}`}
+                    ariaControls={messages.tasksAria}
                     defaultExpanded
                     details={
-                      <Stages goal={goal} forTomorrow={goalInfo.forTomorrow} completeStage={goalInfo.completeStage} />
+                      <Box display="flex" flexDirection="column" gap={1}>
+                        {redefinedGoals.map((task) => (
+                          <Task
+                            goalId={id}
+                            task={task}
+                            rest={restGoals}
+                            clientMember={clientOwnership.member}
+                            forTomorrow={goalInfo.forTomorrow}
+                            daysGoneForOwner={goalInfo.daysGoneForOwner}
+                            canEdit={goalInfo.canEdit}
+                            key={task.id}
+                          />
+                        ))}
+                      </Box>
                     }
                   />
-                )}
-                <AppAccordion
-                  name="task"
-                  header={tasksHeader}
-                  id={`tasksContent-${dayId}`}
-                  ariaControls={tasksAria}
-                  defaultExpanded
-                  details={
-                    <Box display="flex" flexDirection="column" gap={1}>
-                      {redefinedGoals.map((task) => (
-                        <Task
-                          goalId={id}
-                          task={task}
-                          rest={restGoals}
-                          clientMember={clientOwnership.member}
-                          forTomorrow={goalInfo.forTomorrow}
-                          daysGoneForOwner={goalInfo.daysGoneForOwner}
-                          canEdit={goalInfo.canEdit}
-                          key={task.id}
-                        />
-                      ))}
-                    </Box>
-                  }
-                />
-                <AppAccordion
-                  name="feedback"
-                  header={feedbackHeader}
-                  id={`${HashMark.Feedback}-${id}`}
-                  ariaControls={feedbackAria}
-                  defaultExpanded={!showDiscussion}
-                  details={
-                    <Feedback goal={goal} forTomorrow={goalInfo.forTomorrow} clientOwnership={clientOwnership} />
-                  }
-                />
-                <AppAccordion
-                  name="discussion"
-                  header={
-                    <>
-                      {discussionHeader}{' '}
-                      <Box component="span" color="zen.silent">
-                        {topicCount}
-                      </Box>
-                    </>
-                  }
-                  id={`${HashMark.Discussion}-${id}`}
-                  ariaControls={discussionAria}
-                  defaultExpanded={showDiscussion}
-                  details={
-                    <Discussion dayId={dayId} owner={owner} count={topicCount} clientGoal={clientOwnership.goal} />
-                  }
-                />
-              </Card>
+                  <AppAccordion
+                    name="feedback"
+                    header={messages.feedbackHeader}
+                    id={`${HashMark.Feedback}-${id}`}
+                    ariaControls={messages.feedbackAria}
+                    defaultExpanded={!showDiscussion}
+                    details={
+                      <Feedback goal={goal} forTomorrow={goalInfo.forTomorrow} clientOwnership={clientOwnership} />
+                    }
+                  />
+                  <AppAccordion
+                    name="discussion"
+                    header={
+                      <>
+                        {messages.discussionHeader}{' '}
+                        <Box component="span" color="zen.silent">
+                          {topicCount}
+                        </Box>
+                      </>
+                    }
+                    id={`${HashMark.Discussion}-${id}`}
+                    ariaControls={messages.discussionAria}
+                    defaultExpanded={showDiscussion}
+                    details={
+                      <Discussion dayId={dayId} owner={owner} count={topicCount} clientGoal={clientOwnership.goal} />
+                    }
+                  />
+                </DayCard>
+                <DayCardControl variant="outlined" sx={{ top: -20 }}>
+                  <Box display="flex" justifyContent="space-between" alignItems="baseline" py={2} px={3} mt={2}>
+                    <DateName daysGone={goalInfo.daysGoneForOwner} />
+                    <Date date={day.date} />
+                  </Box>
+                </DayCardControl>
+              </Box>
             </Box>
-          </AppInView>
+          </ViewTrigger>
           <Box display="flex" flexDirection="column" gap={2}>
             {goalInfo.controls && (
               <>
@@ -214,5 +218,18 @@ function GoalCurrent({ goal, href, userId, membership, clientId, clientPage, cli
     </Box>
   )
 }
+
+const DayCard = styled(Card)({
+  position: 'relative',
+  borderRadius: 12,
+})
+
+const DayCardControl = styled(DayCard)({
+  width: '90%',
+  height: 80,
+  background: '#2e2e2e',
+  cursor: 'pointer',
+  zIndex: 10,
+})
 
 export default GoalCurrent

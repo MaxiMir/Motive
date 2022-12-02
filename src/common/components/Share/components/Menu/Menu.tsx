@@ -1,5 +1,4 @@
 import { KeyboardEvent } from 'react'
-import { useIntl } from 'react-intl'
 import { Box, Drawer, List, ListItem, ListItemIcon, ListItemText } from '@mui/material'
 import EmailIcon from '@mui/icons-material/Email'
 import SMS from '@mui/icons-material/Textsms'
@@ -7,6 +6,7 @@ import ContentCopyIcon from '@mui/icons-material/ContentCopy'
 import { copyHandler } from '@helpers/window'
 import { FacebookIcon, TelegramIcon, TwitterIcon, VKIcon } from '@ui/icons'
 import { clickHandler } from './helper'
+import useMessages from './hooks/useMessages'
 
 interface MenuProps {
   title: string
@@ -17,7 +17,7 @@ interface MenuProps {
 }
 
 function Menu({ title, url, onCopyEnd, onCopyError, onClose }: MenuProps) {
-  const { formatMessage } = useIntl()
+  const messages = useMessages()
   const shareItems = getShareItems()
 
   const onKeyDown = (event: KeyboardEvent) => {
@@ -27,43 +27,39 @@ function Menu({ title, url, onCopyEnd, onCopyError, onClose }: MenuProps) {
   }
 
   function getShareItems() {
-    const shareText = formatMessage({ id: 'component.share.share' })
-    const sendText = formatMessage({ id: 'component.share.send' })
-    const copyText = formatMessage({ id: 'component.share.copy' })
-
     return [
       {
-        text: `${shareText} Facebook`,
+        text: `${messages.shareText} Facebook`,
         Icon: FacebookIcon,
         onClick: () => clickHandler('facebook', title, url),
       },
       {
-        text: `${shareText} Twitter`,
+        text: `${messages.shareText} Twitter`,
         Icon: TwitterIcon,
         onClick: () => clickHandler('twitter', title, url),
       },
       {
-        text: `${shareText} VK`,
+        text: `${messages.shareText} VK`,
         Icon: VKIcon,
         onClick: () => clickHandler('vk', title, url),
       },
       {
-        text: `${shareText} Telegram`,
+        text: `${messages.shareText} Telegram`,
         Icon: TelegramIcon,
         onClick: () => clickHandler('telegram', title, url),
       },
       {
-        text: `${sendText} Email`,
+        text: `${messages.sendText} Email`,
         Icon: EmailIcon,
         onClick: () => clickHandler('email', title, url),
       },
       {
-        text: `${sendText} SMS`,
+        text: `${messages.sendText} SMS`,
         Icon: SMS,
         onClick: () => clickHandler('sms', title, url),
       },
       {
-        text: copyText,
+        text: messages.copyText,
         Icon: ContentCopyIcon,
         onClick: () => copyHandler(url, onCopyEnd, onCopyError),
       },

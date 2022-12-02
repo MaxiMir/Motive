@@ -3,7 +3,7 @@ import dynamic from 'next/dynamic'
 import { Menu, MenuItem } from '@mui/material'
 import { OwnershipDto } from '@dto'
 import AppMenuItemContent from '@ui/AppMenuItemContent'
-import { useIntl } from 'react-intl'
+import useMessages from './hooks/useMessages'
 
 const Report = dynamic(() => import('@components/Report'))
 
@@ -17,11 +17,8 @@ interface MenuListProps {
 }
 
 function MenuList({ goalId, clientOwnership, anchorEl, onShare, onLeave, onClose }: MenuListProps) {
-  const { formatMessage } = useIntl()
+  const messages = useMessages()
   const [withReport, setWithReport] = useState(false)
-  const shareText = formatMessage({ id: 'common.share' })
-  const reportText = formatMessage({ id: 'common.report' })
-  const leaveText = formatMessage({ id: 'common.leave' })
 
   const onOpenReport = () => setWithReport(true)
 
@@ -34,16 +31,16 @@ function MenuList({ goalId, clientOwnership, anchorEl, onShare, onLeave, onClose
     <>
       <Menu open anchorEl={anchorEl} onClose={onClose}>
         <MenuItem onClick={onShare}>
-          <AppMenuItemContent icon="share" text={shareText} />
+          <AppMenuItemContent icon="share" text={messages.shareText} />
         </MenuItem>
         {!clientOwnership.goal && (
           <MenuItem onClick={onOpenReport}>
-            <AppMenuItemContent icon="outlined_flag" text={reportText} />
+            <AppMenuItemContent icon="outlined_flag" text={messages.reportText} />
           </MenuItem>
         )}
         {clientOwnership.member && (
           <MenuItem onClick={onLeave}>
-            <AppMenuItemContent icon="logout" text={leaveText} />
+            <AppMenuItemContent icon="logout" text={messages.leaveText} />
           </MenuItem>
         )}
       </Menu>

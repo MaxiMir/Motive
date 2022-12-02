@@ -5,15 +5,15 @@ import { AxiosRequestHeaders } from 'axios'
 import { PossiblePageError } from '@dto'
 import PageService from '@services/page'
 import UserModule, { getServerSideUrl } from '@modules/user'
-import useUserMeta from '@user-hooks/useUserMeta'
+import useUserMetaTags from '@user-hooks/useUserMetaTags'
 import useUserPage from '@user-hooks/useUserPage'
 import Layout from '@layout'
 
 function UserPage() {
   const { data } = useUserPage()
-  const userMeta = useUserMeta(data?.content)
+  const metaTags = useUserMetaTags(data?.content)
 
-  return <Layout {...userMeta}>{data?.content && <UserModule user={data.content} />}</Layout>
+  return <Layout {...metaTags}>{data?.content && <UserModule user={data.content} />}</Layout>
 }
 
 export const getServerSideProps: GetServerSideProps = async (ctx) => {

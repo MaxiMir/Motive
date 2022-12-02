@@ -7,7 +7,7 @@ import useNotificationHint from './hooks/useNotificationHint'
 
 const EmptyList = dynamic(() => import('./components/EmptyList'))
 const NotificationList = dynamic(() => import('./components/NotificationList'))
-const Hint = dynamic(() => import('./components/Hint'))
+const Hint = dynamic(() => import('./components/Hint/Hint'))
 
 interface ModalNotificationsProps {
   notifications: NotificationDto[]

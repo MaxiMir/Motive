@@ -1,14 +1,14 @@
 import { useState } from 'react'
 import dynamic from 'next/dynamic'
-import { useIntl } from 'react-intl'
 import { Box, Button, Typography } from '@mui/material'
 import { SecondCharacteristicName, UserDetailDto } from '@dto'
 import { formatNumber } from '@helpers/intl'
 import { getWordDeclination } from '@helpers/string'
+import useMessages from './hooks/useMessages'
 
 const ModalSubscription = dynamic(() => import('./components/ModalSubscription'))
 const ModalNoCompleted = dynamic(() => import('./components/ModalNoCompleted'))
-const ModalAbandoned = dynamic(() => import('./components/ModalAbandoned'))
+const ModalAbandoned = dynamic(() => import('./components/ModalAbandoned/ModalAbandoned'))
 
 const { Completed, Abandoned, Followers, Following } = SecondCharacteristicName
 
@@ -19,13 +19,14 @@ interface CharacteristicProps {
 }
 
 function SecondCharacteristic({ user, name, value }: CharacteristicProps) {
-  const { formatMessage } = useIntl()
+  const messages = useMessages(name)
   const [modal, setModal] = useState<SecondCharacteristicName>()
-  const singleText = formatMessage({ id: `common.${name}-single` })
-  const doubleText = formatMessage({ id: `common.${name}-double` })
-  const multipleGenitiveText = formatMessage({ id: `common.${name}-genitive` })
   const formattedValue = formatNumber(value)
-  const wordDeclination = getWordDeclination(value, [singleText, doubleText, multipleGenitiveText])
+  const wordDeclination = getWordDeclination(value, [
+    messages.singleText,
+    messages.doubleText,
+    messages.multipleGenitiveText,
+  ])
   const buttonText = wordDeclination.toLowerCase()
 
   const onClick = async () => {

@@ -4,7 +4,7 @@ import { UserDto } from '@dto'
 import AppHeader from '@ui/AppHeader'
 import AppContainer from '@ui/AppContainer'
 
-const EmptyList = dynamic(() => import('./components/EmptyList'))
+const EmptyList = dynamic(() => import('./components/EmptyList/EmptyList'))
 const UserList = dynamic(() => import('./components/UserList'))
 
 interface FollowingModuleProps {

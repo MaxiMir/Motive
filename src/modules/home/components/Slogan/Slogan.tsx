@@ -1,9 +1,8 @@
-import { useIntl } from 'react-intl'
 import { Box, Typography } from '@mui/material'
+import useMessages from './hooks/useMessages'
 
 function Slogan() {
-  const { formatMessage } = useIntl()
-  const subheader = formatMessage({ id: 'page.home.subheader' })
+  const messages = useMessages()
 
   return (
     <Box display="flex" alignItems="center" justifyContent="center" flex={1} sx={{ backgroundColor: 'common.white' }}>
@@ -23,7 +22,7 @@ function Slogan() {
           {process.env.NEXT_PUBLIC_APP_NAME}
         </Typography>
         <Typography variant="caption" align="center" sx={{ color: '#A1A1A6' }}>
-          {subheader}
+          {messages.subheader}
         </Typography>
       </Box>
     </Box>

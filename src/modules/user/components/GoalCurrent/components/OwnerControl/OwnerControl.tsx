@@ -1,9 +1,9 @@
 import { useState } from 'react'
 import dynamic from 'next/dynamic'
-import { useIntl } from 'react-intl'
 import { Box, Button, Tooltip } from '@mui/material'
 import { GoalDto } from '@dto'
 import AppEmoji from '@ui/AppEmoji'
+import useMessages from './hooks/useMessages'
 
 const ModalCompletion = dynamic(() => import('@components/Modal/ModalCompletion'))
 const ModalTasks = dynamic(() => import('./components/ModalTasks'))
@@ -19,14 +19,11 @@ interface OwnerControlProps {
 
 function OwnerControl({ goal }: OwnerControlProps) {
   const { stages, day } = goal
-  const { formatMessage } = useIntl()
-  const [modal, setModal] = useState<ModalType>()
   const feedbackAdded = !!goal.day.feedback
+  const messages = useMessages(feedbackAdded)
+  const [modal, setModal] = useState<ModalType>()
   const renderCompete = stages.length === day.stage && feedbackAdded
   const justifyContent = renderCompete ? 'space-between' : 'flex-end'
-  const title = !feedbackAdded && formatMessage({ id: 'component.tooltip.feedback' })
-  const doneButtonText = formatMessage({ id: 'common.done' })
-  const nextButtonText = formatMessage({ id: 'common.next' })
 
   const onAddTasks = () => setModal(ModalType.Tasks)
 
@@ -36,7 +33,7 @@ function OwnerControl({ goal }: OwnerControlProps) {
 
   return (
     <Box display="flex" justifyContent={justifyContent}>
-      <Tooltip title={title} arrow followCursor>
+      <Tooltip title={messages.title} arrow followCursor>
         <span>
           <Button
             variant="outlined"
@@ -44,13 +41,13 @@ function OwnerControl({ goal }: OwnerControlProps) {
             startIcon={<AppEmoji name="moon" onlyEmoji />}
             onClick={onAddTasks}
           >
-            {nextButtonText}
+            {messages.nextButtonText}
           </Button>
         </span>
       </Tooltip>
       {renderCompete && (
         <Button variant="outlined" color="warning" startIcon={<AppEmoji name="cup" onlyEmoji />} onClick={onComplete}>
-          {doneButtonText}
+          {messages.doneButtonText}
         </Button>
       )}
       {modal === ModalType.Tasks && <ModalTasks goal={goal} onClose={closeModal} />}

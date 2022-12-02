@@ -4,12 +4,11 @@ import { Box, IconButton, Typography } from '@mui/material'
 import { getUserHref } from '@href'
 import { NotificationDto } from '@dto'
 import useClient from '@hooks/useClient'
-import { getDistance } from '@utils/date'
-import useDateFnsLocale from '@hooks/useDateFnsLocale'
 import { getNotificationHref } from '@helpers/notification'
 import UserLink from '@components/User/UserLink'
 import AppEmoji from '@ui/AppEmoji'
 import AppIcon from '@ui/AppIcon'
+import useGetDateDistance from '@hooks/useGetDateDistance'
 import { toShortString } from '@helpers/string'
 import useUpdateRead from './hooks/useUpdateRead'
 import useMessages from './hooks/useMessages'
@@ -26,10 +25,10 @@ function Notification({ notification, onClose }: NotificationProps) {
   const { id, type, details, created, read } = notification
   const { name, nickname, avatar } = details.user
   const messages = useMessages(type)
-  const fnsLocale = useDateFnsLocale()
+  const getDateDistance = useGetDateDistance()
   const client = useClient()
   const { mutate } = useUpdateRead()
-  const dateDistance = getDistance(created, fnsLocale)
+  const dateDistance = getDateDistance(created)
   const { emoji, color } = getNotificationInfo(type)
   const notificationHref = getNotificationHref(notification, client)
   const href = getUserHref(nickname)

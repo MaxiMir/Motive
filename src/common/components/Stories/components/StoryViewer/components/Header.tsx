@@ -4,8 +4,7 @@ import { Box, IconButton, Typography } from '@mui/material'
 import { styled } from '@mui/system'
 import { getUserHref } from '@href'
 import { UserBaseDto } from '@dto'
-import { getDistance } from '@utils/date'
-import useDateFnsLocale from '@hooks/useDateFnsLocale'
+import useGetDateDistance from '@hooks/useGetDateDistance'
 import AppIcon from '@ui/AppIcon'
 import UserLink from '@components/User/UserLink'
 
@@ -19,9 +18,9 @@ interface HeaderProps {
 function Header({ user, title, date, onClose }: HeaderProps): JSX.Element {
   const { nickname, name, avatar } = user
   const { formatMessage } = useIntl()
-  const fnsLocale = useDateFnsLocale()
+  const getDateDistance = useGetDateDistance()
+  const distance = getDateDistance(date)
   const href = getUserHref(nickname)
-  const distance = getDistance(date, fnsLocale)
   const agoText = formatMessage({ id: 'common.ago' })
   const close = formatMessage({ id: 'common.close' })
 

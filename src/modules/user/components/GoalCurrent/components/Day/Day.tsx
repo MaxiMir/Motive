@@ -1,21 +1,21 @@
 import { Box } from '@mui/material'
 import useSplitDate from './hooks/useSplitDate'
-import DatePart from './components/DatePart'
+import DayPart from './components/DayPart'
 
-interface DateProps {
+interface DayProps {
   date: string
 }
 
-function Date({ date }: DateProps) {
+function Day({ date }: DayProps) {
   const parts = useSplitDate(date)
 
   return (
     <Box display="flex" alignItems="baseline" gap={1}>
       {parts.map((datePart) => (
-        <DatePart datePart={datePart} key={datePart} />
+        <DayPart datePart={datePart} key={datePart} />
       ))}
     </Box>
   )
 }
 
-export default Date
+export default Day

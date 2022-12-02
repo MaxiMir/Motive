@@ -1,11 +1,11 @@
 import Image from 'next/image'
-import { useIntl } from 'react-intl'
 import { Box, Typography } from '@mui/material'
 import { UserDetailDto } from '@dto'
 import useShowProgress from '@hooks/useShowProgress'
 import AppModal from '@ui/AppModal/AppModal'
 import OldPittRules from '@components/OldPitt/OldPittRules/OldPittRules'
 import webSrc from 'public/images/svg/web.svg'
+import useMessages from './hooks/useMessages'
 
 interface ModalAbandonedProps {
   user: UserDetailDto
@@ -14,17 +14,15 @@ interface ModalAbandonedProps {
 
 function ModalAbandoned({ user, onClose }: ModalAbandonedProps) {
   const { abandoned } = user.characteristic
-  const { formatMessage } = useIntl()
+  const messages = useMessages()
   const progress = useShowProgress(abandoned, { step: 1, ms: 300 })
-  const title = formatMessage({ id: 'common.abandoned' })
-  const header = formatMessage({ id: 'page.user.modal-abandoned.header' })
   const roundedProgress = Math.round(progress)
 
   return (
     <AppModal
       title={
         <Box component="span" sx={{ color: 'abandoned.main' }}>
-          {title}
+          {messages.title}
         </Box>
       }
       maxWidth="xs"
@@ -40,7 +38,7 @@ function ModalAbandoned({ user, onClose }: ModalAbandonedProps) {
           </Box>
         </Box>
         <Typography component="h3" textAlign="center">
-          {header}.
+          {messages.header}.
         </Typography>
         <OldPittRules />
       </Box>

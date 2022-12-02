@@ -20,3 +20,16 @@ export const getLocaleFolder = (locale: string): string => {
       return locale
   }
 }
+
+export const getIntlKey = (dayDifference: number): string | undefined => {
+  switch (dayDifference) {
+    case 1:
+      return 'yesterday'
+    case 0:
+      return 'today'
+    case -1:
+      return 'tomorrow'
+    default:
+      return undefined
+  }
+}

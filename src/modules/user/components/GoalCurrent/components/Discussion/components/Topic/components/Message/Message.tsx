@@ -3,13 +3,12 @@ import Link from 'next/link'
 import { Box, Typography } from '@mui/material'
 import { getUserHref } from '@href'
 import { MessageDto } from '@dto'
-import { getDistance } from '@utils/date'
+import useGetDateDistance from '@hooks/useGetDateDistance'
 import { formatNumber } from '@helpers/intl'
-import useDateFnsLocale from '@hooks/useDateFnsLocale'
 import UserLink from '@components/User/UserLink'
+import useMessages from './hooks/useMessages'
 import Menu from './components/Menu'
 import LikeButton from './components/LikeButton'
-import useMessages from './hooks/useMessages'
 
 const Button = dynamic(() => import('@mui/material/Button'))
 const AppMarkdown = dynamic(() => import('@ui/AppMarkdown'))
@@ -26,8 +25,8 @@ function Message({ message, answerFor, supportFor, onReply }: MessageProps) {
   const { date, user, text, edited } = message
   const { name, nickname, avatar } = user
   const messages = useMessages()
-  const fnsLocale = useDateFnsLocale()
-  const dateDistance = getDistance(date, fnsLocale)
+  const getDateDistance = useGetDateDistance()
+  const dateDistance = getDateDistance(date)
   const href = getUserHref(nickname)
   const formattedNumber = formatNumber(message.likeCount)
 

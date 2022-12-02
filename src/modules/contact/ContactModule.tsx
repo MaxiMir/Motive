@@ -9,8 +9,8 @@ import BTCSrc from 'public/images/svg/btc.svg'
 import ETHSrc from 'public/images/svg/eth.svg'
 import LTCSrc from 'public/images/svg/ltc.svg'
 import DOGESrc from 'public/images/svg/doge.svg'
-import Wallet from './components/Wallet'
 import useMessages from './hooks/useMessages'
+import Wallet from './components/Wallet'
 import { openBlank } from './helper'
 
 const CRYPTOS = [

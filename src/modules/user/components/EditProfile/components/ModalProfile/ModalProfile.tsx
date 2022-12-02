@@ -1,5 +1,4 @@
 import dynamic from 'next/dynamic'
-import { useIntl } from 'react-intl'
 import { Field, Form, FormikProvider } from 'formik'
 import { Box, InputAdornment } from '@mui/material'
 import { UserBaseDto } from '@dto'
@@ -10,6 +9,7 @@ import PhotoButton from '@components/Photo/PhotoButton'
 import AppModal from '@ui/AppModal/AppModal'
 import AppInput from '@ui/AppInput'
 import useForm from './hooks/useForm'
+import useMessages from './hooks/useMessages'
 
 const Alert = dynamic(() => import('@mui/material/Alert'))
 
@@ -19,18 +19,9 @@ interface ModalProfileProps {
 }
 
 function ModalProfile({ user, onClose }: ModalProfileProps) {
-  const { formatMessage } = useIntl()
+  const messages = useMessages()
   const form = useForm(user, onClose)
   const { isSubmitting, values, touched, errors, setFieldValue, handleSubmit } = form
-  const title = formatMessage({ id: 'page.user.modal-profile.title' })
-  const profile = formatMessage({ id: 'page.user.modal-profile.profile' })
-  const nameLabel = formatMessage({ id: 'page.user.modal-profile.name' })
-  const nicknameLabel = formatMessage({ id: 'common.nickname' })
-  const mottoLabel = formatMessage({ id: 'common.motto' })
-  const locationLabel = formatMessage({ id: 'common.location' })
-  const bioLabel = formatMessage({ id: 'common.bio' })
-  const buttonText = formatMessage({ id: 'common.save' })
-  const buttonLoading = formatMessage({ id: 'common.saving' })
 
   const setAvatar = (files: File[]) => setFieldValue('avatar', files[0])
 
@@ -40,9 +31,9 @@ function ModalProfile({ user, onClose }: ModalProfileProps) {
     <AppModal
       title={
         <>
-          {title}{' '}
+          {messages.title}{' '}
           <Box component="span" sx={{ color: 'zen.sand' }}>
-            {profile}
+            {messages.profile}
           </Box>
         </>
       }
@@ -51,8 +42,8 @@ function ModalProfile({ user, onClose }: ModalProfileProps) {
         <ActionCancel onClick={onClose} />,
         <ActionSubmit
           disabled={isSubmitting}
-          text={buttonText}
-          loadingText={buttonLoading}
+          text={messages.buttonText}
+          loadingText={messages.buttonLoading}
           emoji="followers"
           onClick={handleSubmit}
         />,
@@ -76,19 +67,19 @@ function ModalProfile({ user, onClose }: ModalProfileProps) {
                 {errors.avatar}
               </Alert>
             )}
-            <Field name="name" label={nameLabel} color="primary" component={AppInput} />
+            <Field name="name" label={messages.nameLabel} color="primary" component={AppInput} />
             <Field
               name="nickname"
-              label={nicknameLabel}
+              label={messages.nicknameLabel}
               color="primary"
               InputProps={{
                 startAdornment: <InputAdornment position="start">https://2bebetter.pro/</InputAdornment>,
               }}
               component={AppInput}
             />
-            <Field name="motto" label={mottoLabel} color="primary" component={AppInput} />
-            <Field name="location" label={locationLabel} color="primary" component={AppInput} />
-            <Field name="bio" multiline label={bioLabel} color="primary" component={AppInput} />
+            <Field name="motto" label={messages.mottoLabel} color="primary" component={AppInput} />
+            <Field name="location" label={messages.locationLabel} color="primary" component={AppInput} />
+            <Field name="bio" multiline label={messages.bioLabel} color="primary" component={AppInput} />
           </Box>
         </Form>
       </FormikProvider>

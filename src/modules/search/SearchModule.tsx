@@ -3,9 +3,9 @@ import { Grid, Box } from '@mui/material'
 import { GoalDto, HashtagDto, UserDto } from '@dto'
 import AppHeader from '@ui/AppHeader'
 import AppContainer from '@ui/AppContainer'
+import useMessages from './hooks/useMessages'
 import SearchForm from './components/SearchForm'
 import { getGradients } from './helper'
-import useMessages from './hooks/useMessages'
 
 const GoalCard = dynamic(() => import('./components/GoalCard'))
 const UserCard = dynamic(() => import('./components/UserCard'))

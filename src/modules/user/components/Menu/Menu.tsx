@@ -6,7 +6,7 @@ import { UserBaseDto } from '@dto'
 import AppMenuButton from '@ui/AppMenuButton'
 
 const Share = dynamic(() => import('@components/Share'))
-const MenuList = dynamic(() => import('./components/MenuList'))
+const MenuList = dynamic(() => import('./components/MenuList/MenuList'))
 
 interface MenuProps {
   href: string

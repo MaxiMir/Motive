@@ -1,7 +1,7 @@
 import { Box, Button, Typography } from '@mui/material'
 import { getUserHref } from '@href'
 import { MAIN_CHARACTERISTICS, GoalDto } from '@dto'
-import CharacteristicGoal from '@components/Characteristic/CharacteristicGoal'
+import CharacteristicGoal from '@components/Characteristic/CharacteristicGoal/CharacteristicGoal'
 import UserLink from '@components/User/UserLink'
 
 interface GoalCardProps {

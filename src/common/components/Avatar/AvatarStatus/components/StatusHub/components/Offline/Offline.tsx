@@ -1,11 +1,10 @@
 import { ReactNode } from 'react'
 import dynamic from 'next/dynamic'
-import { useIntl } from 'react-intl'
 import { Badge, Box, Tooltip } from '@mui/material'
-import { getDistance } from '@utils/date'
-import useDateFnsLocale from '@hooks/useDateFnsLocale'
+import useGetDateDistance from '@hooks/useGetDateDistance'
 import { Device } from '@helpers/window'
 import { getShortDistance } from './helper'
+import useMessages from './hooks/useMessages'
 
 const DeviceIcon = dynamic(() => import('./components/DeviceIcon'))
 
@@ -16,11 +15,9 @@ interface OfflineProps {
 }
 
 function Offline({ lastSeen, device, children }: OfflineProps) {
-  const { formatMessage } = useIntl()
-  const fnsLocale = useDateFnsLocale()
-  const distance = getDistance(lastSeen, fnsLocale)
-  const agoText = formatMessage({ id: 'common.ago' })
-  const seenText = formatMessage({ id: 'common.seen' })
+  const messages = useMessages()
+  const getDateDistance = useGetDateDistance()
+  const distance = getDateDistance(lastSeen)
   const shortDistance = getShortDistance(distance)
 
   return (
@@ -33,7 +30,7 @@ function Offline({ lastSeen, device, children }: OfflineProps) {
           title={
             <Box display="flex" alignItems="center" gap={0.5}>
               {device && <DeviceIcon device={device} />}
-              {seenText} {distance} {agoText}
+              {messages.seenText} {distance} {messages.agoText}
             </Box>
           }
         >

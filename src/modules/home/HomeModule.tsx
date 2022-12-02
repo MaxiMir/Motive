@@ -1,4 +1,4 @@
-import Slogan from './components/Slogan'
+import Slogan from './components/Slogan/Slogan'
 import Advantage from './components/Advantage'
 import ADVANTAGES from './helper'
 

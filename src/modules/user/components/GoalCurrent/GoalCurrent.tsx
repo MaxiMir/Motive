@@ -4,12 +4,22 @@ import { Box, Card } from '@mui/material'
 import { styled } from '@mui/system'
 import { getGoalDayHref, HashMark } from '@href'
 import { GoalDto, GoalCharacteristicName, MemberDto, MAIN_CHARACTERISTICS } from '@dto'
-import CharacteristicGoal from '@components/Characteristic/CharacteristicGoal'
+import CharacteristicGoal from '@components/Characteristic/CharacteristicGoal/CharacteristicGoal'
 import { getMember } from '@modules/user/helper'
 import AppHeader from '@ui/AppHeader'
 import AppAccordion from '@ui/AppAccordion'
 import useMessages from './hooks/useMessages'
-import { getGoalInfo, getClientOwnership, checkOnShowDiscussion, redefineTasks } from './helper'
+import useChangeDay from './hooks/useChangeDay'
+import {
+  getGoalInfo,
+  getClientOwnership,
+  checkOnShowDiscussion,
+  redefineTasks,
+  getToggleDates,
+  getDateMap,
+  getDayKey,
+  getDayDifference,
+} from './helper'
 import ViewTrigger from './components/ViewTrigger'
 import Calendar from './components/Calendar'
 import Menu from './components/Menu'
@@ -17,7 +27,7 @@ import Discussion from './components/Discussion'
 import Views from './components/Views'
 import Feedback from './components/Feedback'
 import Task from './components/Task'
-import Date from './components/Date'
+import Day from './components/Day'
 import DateName from './components/DateName'
 
 const Inheritance = dynamic(() => import('./components/Inheritance'))
@@ -40,24 +50,47 @@ interface GoalCurrentProps {
 }
 
 function GoalCurrent({ goal, href, userId, membership, clientId, clientPage, clientMembership }: GoalCurrentProps) {
-  const { id, name, hashtags, characteristic, owner, stages, day, inherited } = goal
-  const { id: dayId, views, topicCount } = day
+  const { id, name, hashtags, characteristic, owner, stages, day, inherited, calendar } = goal
+  const { id: dayId, views, topicCount, date } = day
   const { query } = useRouter()
+  const messages = useMessages()
   const clientOwnership = getClientOwnership(goal, clientId, clientPage, clientMembership)
   const userMember = getMember(id, membership, userId)
   const goalHref = getGoalDayHref(href, id, dayId)
   const goalInfo = getGoalInfo(goal, clientOwnership, userMember)
   const showDiscussion = checkOnShowDiscussion(query, id)
-  const messages = useMessages()
+  const { isLoading, mutate } = useChangeDay(id)
   const redefinedGoals = redefineTasks(day.tasks, userMember)
-  const restGoals = redefinedGoals.length - redefinedGoals.filter((t) => t.completed).length
+  const restGoals = redefinedGoals.length - redefinedGoals.filter((t) => t.completed).length // TODO backend
+  const dateMap = getDateMap(calendar, day)
+  const dates = Object.keys(dateMap)
+  const dayKey = getDayKey(date)
+  const [prev, next] = getToggleDates(dates, dayKey)
+  const dayDifferencePrev = prev && getDayDifference(prev)
+  const dayDifferenceNext = next && getDayDifference(next)
+
+  const onChangeDate = (value: Date | string | null) => {
+    if (!value) return
+
+    const valueKey = getDayKey(value)
+
+    if (!dateMap[valueKey] || valueKey === dayKey) return
+
+    mutate(dateMap[valueKey])
+  }
+
+  const shouldDisableDate = (value: Date) => {
+    const valueKey = getDayKey(value)
+
+    return !dates.includes(valueKey)
+  }
 
   return (
     <Box
+      id={`goal-${id}`}
       display="flex"
       flexDirection="column"
       gap={2}
-      id={`goal-${id}`}
       mt={2}
       sx={{
         flex: {
@@ -109,18 +142,25 @@ function GoalCurrent({ goal, href, userId, membership, clientId, clientPage, cli
               </Box>
               {!!hashtags.length && <Hashtags hashtags={hashtags} />}
               <Box display="flex" flexDirection="column" alignItems="center">
-                <DayCardControl variant="outlined" sx={{ bottom: -20 }}>
-                  <Box display="flex" justifyContent="space-between" alignItems="baseline" py={2} px={3}>
-                    <DateName daysGone={goalInfo.daysGoneForOwner} />
-                    <Date date={day.date} />
-                  </Box>
-                </DayCardControl>
+                {prev && (
+                  <DayCardControl variant="outlined" sx={{ bottom: -20 }} onClick={() => prev && onChangeDate(prev)}>
+                    <Box display="flex" justifyContent="space-between" alignItems="baseline" py={2} px={3}>
+                      {!!dayDifferencePrev && <DateName daysGone={dayDifferencePrev} />}
+                      <Day date={prev} />
+                    </Box>
+                  </DayCardControl>
+                )}
                 <DayCard variant="outlined" sx={{ width: '100%', zIndex: 20, pb: 4 }}>
                   <Box display="flex" justifyContent="space-between" alignItems="baseline" py={2} px={3}>
                     <DateName daysGone={goalInfo.daysGoneForOwner} />
                     <Box display="flex" alignItems="center">
-                      <Date date={day.date} />
-                      <Calendar goal={goal} />
+                      <Day date={day.date} />
+                      <Calendar
+                        goal={goal}
+                        isLoading={isLoading}
+                        onChangeDate={onChangeDate}
+                        shouldDisableDate={shouldDisableDate}
+                      />
                     </Box>
                   </Box>
                   {!!stages.length && (
@@ -186,12 +226,14 @@ function GoalCurrent({ goal, href, userId, membership, clientId, clientPage, cli
                     }
                   />
                 </DayCard>
-                <DayCardControl variant="outlined" sx={{ top: -20 }}>
-                  <Box display="flex" justifyContent="space-between" alignItems="baseline" py={2} px={3} mt={2}>
-                    <DateName daysGone={goalInfo.daysGoneForOwner} />
-                    <Date date={day.date} />
-                  </Box>
-                </DayCardControl>
+                {next && (
+                  <DayCardControl variant="outlined" sx={{ top: -20 }} onClick={() => next && onChangeDate(next)}>
+                    <Box display="flex" justifyContent="space-between" alignItems="baseline" py={2} px={3} mt={2}>
+                      {!!dayDifferenceNext && <DateName daysGone={dayDifferenceNext} />}
+                      <Day date={next} />
+                    </Box>
+                  </DayCardControl>
+                )}
               </Box>
             </Box>
           </ViewTrigger>
@@ -230,6 +272,10 @@ const DayCardControl = styled(DayCard)({
   background: '#2e2e2e',
   cursor: 'pointer',
   zIndex: 10,
+  animation: 'opacity 1s ease-out',
+  '&:hover': {
+    opacity: 0.7,
+  },
 })
 
 export default GoalCurrent

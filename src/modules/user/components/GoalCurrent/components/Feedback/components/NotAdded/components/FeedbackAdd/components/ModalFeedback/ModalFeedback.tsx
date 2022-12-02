@@ -11,7 +11,7 @@ import AppShakeIcon from '@ui/AppShakeIcon'
 import PhotoInput from '@components/Photo/PhotoInput'
 import PhotoButton from '@components/Photo/PhotoButton'
 import VideoPreview from '@components/Video/VideoPreview'
-import VideoInput from '@components/Video/VideoInput'
+import VideoInput from '@components/Video/VideoInput/VideoInput'
 import useForm from './hooks/useForm'
 import useMessages from './hooks/useMessages'
 

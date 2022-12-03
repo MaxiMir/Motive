@@ -1,4 +1,6 @@
 [//]: # (TODO)
+* hydration error
+* мэпинг календаря
 * Загрузка нотификаций не сразу
 * Генерация картинок для og
 * https://validator.w3.org/nu/?doc=https%3A%2F%2F2bebetter.pro%2Fmaximir

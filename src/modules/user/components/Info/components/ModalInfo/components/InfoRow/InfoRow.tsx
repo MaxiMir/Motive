@@ -1,8 +1,8 @@
-import { useIntl } from 'react-intl'
 import { Box, Typography, Tooltip } from '@mui/material'
 import { UserDetailDto } from '@dto'
-import { dateFormatter } from '@helpers/intl'
+import useFormatDate from '@hooks/useFormatDate'
 import AppIcon from '@ui/AppIcon'
+import useMessages from './hooks/useMessages'
 
 interface InfoRowProps {
   icon: string
@@ -11,13 +11,13 @@ interface InfoRowProps {
 }
 
 function InfoRow({ icon, name, value }: InfoRowProps) {
-  const { locale, formatMessage } = useIntl()
-  const title = formatMessage({ id: `common.${name}` })
-  const text = name !== 'registered' ? value : dateFormatter(value, locale, { month: 'long', year: 'numeric' })
+  const messages = useMessages(name)
+  const formatDate = useFormatDate()
+  const text = name !== 'registered' ? value : formatDate(value, { month: 'long', year: 'numeric' })
 
   return (
     <Box display="flex" gap={1}>
-      <Tooltip title={title}>
+      <Tooltip title={messages.title}>
         <span>
           <AppIcon name={icon} sx={{ color: 'zen.sand' }} />
         </span>

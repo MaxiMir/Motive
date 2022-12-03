@@ -1,15 +1,11 @@
 import produce from 'immer'
 import { ParsedUrlQuery } from 'querystring'
-import { differenceInCalendarDays, format } from 'date-fns'
+import { differenceInCalendarDays } from 'date-fns'
 import { HashMark, SearchParam } from '@href'
-import { CalendarDto, DayDto, GoalDto, MemberDto, OwnershipDto, TaskDto } from '@dto'
+import { GoalDto, MemberDto, OwnershipDto, TaskDto } from '@dto'
 import { getMember } from '@modules/user/helper'
 
 const SHOW_WEB_AFTER_DAYS = Number(process.env.NEXT_PUBLIC_SHOW_WEB_AFTER_DAYS || '')
-
-export const getDayDifference = (date: string) => {
-  return differenceInCalendarDays(new Date(), Date.parse(date))
-}
 
 export const getClientOwnership = (
   goal: GoalDto,
@@ -43,7 +39,7 @@ export const getGoalInfo = (goal: GoalDto, clientOwnership: OwnershipDto, userMe
   const lastDay = !calendar || calendar[calendar.length - 1].date === day.date
   const controls = checkOnControls()
   const completeStage = clientOwnership.goal && controls && goal.stage <= goal.day.stage
-  const daysGoneForOwner = getDayDifference(day.date)
+  const daysGoneForOwner = differenceInCalendarDays(new Date(), Date.parse(day.date))
   const runningDays = differenceInCalendarDays(Date.parse(day.date), Date.parse(started)) + 1
   const daysGone = getDaysGone()
   const web = checkOnWeb()
@@ -109,23 +105,3 @@ export const redefineTasks = (tasks: TaskDto[], userMember?: MemberDto): TaskDto
       draft.completed = userMember.completedTasks.includes(draft.id)
     }),
   )
-
-export const getDayKey = (date: Date | string) => format(date instanceof Date ? date : new Date(date), 'yyyy-MM-dd')
-
-export const getDateMap = (calendar: CalendarDto[] | undefined, day: DayDto) => {
-  if (!calendar) {
-    return { [getDayKey(day.date)]: day.id }
-  }
-
-  return calendar.reduce((acc, c) => ({ ...acc, [getDayKey(c.date)]: c.id }), {})
-}
-
-type GetToggleDates = (dates: string[], dayKey: string) => [prev: string, next: string]
-
-export const getToggleDates: GetToggleDates = (dates, dayKey) => {
-  const valueIndex = dates.findIndex((d) => d === dayKey)
-  const prev = dates[valueIndex - 1]
-  const next = dates[valueIndex + 1]
-
-  return [prev, next]
-}

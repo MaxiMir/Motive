@@ -1,5 +1,5 @@
 import { Box, Button } from '@mui/material'
-import { formatNumber } from '@helpers/intl'
+import useFormatNumber from '@hooks/useFormatNumber'
 import AppEmoji, { AppEmojiName } from '@ui/AppEmoji'
 
 interface ActionGoalProps {
@@ -11,6 +11,7 @@ interface ActionGoalProps {
 }
 
 function ActionGoal({ name, title, count, disabled, onClick }: ActionGoalProps) {
+  const formatNumber = useFormatNumber()
   const formattedCount = count && formatNumber(count)
 
   return (

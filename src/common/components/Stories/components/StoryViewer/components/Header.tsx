@@ -4,7 +4,7 @@ import { Box, IconButton, Typography } from '@mui/material'
 import { styled } from '@mui/system'
 import { getUserHref } from '@href'
 import { UserBaseDto } from '@dto'
-import useGetDateDistance from '@hooks/useGetDateDistance'
+import useDateDistance from '@hooks/useDateDistance'
 import AppIcon from '@ui/AppIcon'
 import UserLink from '@components/User/UserLink'
 
@@ -18,7 +18,7 @@ interface HeaderProps {
 function Header({ user, title, date, onClose }: HeaderProps): JSX.Element {
   const { nickname, name, avatar } = user
   const { formatMessage } = useIntl()
-  const getDateDistance = useGetDateDistance()
+  const getDateDistance = useDateDistance()
   const distance = getDateDistance(date)
   const href = getUserHref(nickname)
   const agoText = formatMessage({ id: 'common.ago' })

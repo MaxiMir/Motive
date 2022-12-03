@@ -1,5 +1,5 @@
 import { Box, Typography, Tooltip } from '@mui/material'
-import { formatNumber } from '@helpers/intl'
+import useFormatNumber from '@hooks/useFormatNumber'
 import AppEmoji from '@ui/AppEmoji'
 
 interface GoalViewsProps {
@@ -7,6 +7,7 @@ interface GoalViewsProps {
 }
 
 function Views({ views }: GoalViewsProps) {
+  const formatNumber = useFormatNumber()
   const formattedViews = formatNumber(views)
 
   return (

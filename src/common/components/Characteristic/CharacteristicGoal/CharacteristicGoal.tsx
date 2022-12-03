@@ -1,6 +1,6 @@
 import { Box, Typography, Tooltip, IconButton } from '@mui/material'
 import { GoalCharacteristicName } from '@dto'
-import { formatNumber } from '@helpers/intl'
+import useFormatNumber from '@hooks/useFormatNumber'
 import AppEmoji from '@ui/AppEmoji'
 import useMessages from './hooks/useMessages'
 
@@ -11,6 +11,7 @@ interface CharacteristicGoalProps {
 
 function CharacteristicGoal({ name, value }: CharacteristicGoalProps) {
   const messages = useMessages(name)
+  const formatNumber = useFormatNumber()
   const formattedValue = formatNumber(value)
   const color = name === 'runningDays' ? '#c07d35' : `${name}.main`
 

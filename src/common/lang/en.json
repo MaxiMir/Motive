@@ -242,6 +242,7 @@
   "common.ago": "ago",
   "common.tomorrow": "Tomorrow",
   "common.today": "Today",
+  "common.yesterday": "Yesterday",
   "common.format": "MM/dd/yyyy",
   "common.next-day": "Next Day",
   "common.prev-day": "Previous Day",

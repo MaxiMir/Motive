@@ -3,7 +3,7 @@ import { useIntl } from 'react-intl'
 import { Box } from '@mui/material'
 import { UserDetailDto } from '@dto'
 import AppModal from '@ui/AppModal/AppModal'
-import InfoRow from './components/InfoRow'
+import InfoRow from './components/InfoRow/InfoRow'
 
 const ROWS = [
   { name: 'registered', icon: 'assignment_turned_in' },

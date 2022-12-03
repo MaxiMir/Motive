@@ -2,7 +2,7 @@ import { useState } from 'react'
 import dynamic from 'next/dynamic'
 import { Box, Button, Typography } from '@mui/material'
 import { SecondCharacteristicName, UserDetailDto } from '@dto'
-import { formatNumber } from '@helpers/intl'
+import useFormatNumber from '@hooks/useFormatNumber'
 import { getWordDeclination } from '@helpers/string'
 import useMessages from './hooks/useMessages'
 
@@ -20,6 +20,7 @@ interface CharacteristicProps {
 
 function SecondCharacteristic({ user, name, value }: CharacteristicProps) {
   const messages = useMessages(name)
+  const formatNumber = useFormatNumber()
   const [modal, setModal] = useState<SecondCharacteristicName>()
   const formattedValue = formatNumber(value)
   const wordDeclination = getWordDeclination(value, [

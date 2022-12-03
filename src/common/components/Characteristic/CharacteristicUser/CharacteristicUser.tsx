@@ -1,7 +1,7 @@
 import dynamic from 'next/dynamic'
 import { Box, Typography } from '@mui/material'
 import { SECOND_CHARACTERISTICS, SecondCharacteristicName, UserCharacteristicName } from '@dto'
-import { formatNumber } from '@helpers/intl'
+import useFormatNumber from '@hooks/useFormatNumber'
 import AppEmoji from '@ui/AppEmoji'
 
 const Level = dynamic(() => import('./components/Level'))
@@ -12,6 +12,7 @@ interface CharacteristicUserProps {
 }
 
 function CharacteristicUser({ name, value }: CharacteristicUserProps) {
+  const formatNumber = useFormatNumber()
   const formattedValue = name !== SecondCharacteristicName.Followers ? Math.floor(value) : formatNumber(value)
   const showLevel = !(SECOND_CHARACTERISTICS as ReadonlyArray<string>).includes(name)
 

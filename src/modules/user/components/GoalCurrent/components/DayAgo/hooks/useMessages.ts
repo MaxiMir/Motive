@@ -1,12 +1,13 @@
 import { useIntl } from 'react-intl'
-import { getIntlKey } from '@utils/date'
+import { getIntlDayId } from '@utils/date'
 
 const useMessages = (dayDifference: number) => {
   const { formatMessage } = useIntl()
-  const intlKey = getIntlKey(dayDifference)
+  const id = getIntlDayId(dayDifference)
 
   return {
-    name: intlKey && formatMessage({ id: `common.${intlKey}` }),
+    name: id && formatMessage({ id }),
+    ago: formatMessage({ id: 'common.ago' }),
   }
 }
 

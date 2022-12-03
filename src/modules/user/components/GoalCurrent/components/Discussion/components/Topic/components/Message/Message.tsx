@@ -3,8 +3,8 @@ import Link from 'next/link'
 import { Box, Typography } from '@mui/material'
 import { getUserHref } from '@href'
 import { MessageDto } from '@dto'
-import useGetDateDistance from '@hooks/useGetDateDistance'
-import { formatNumber } from '@helpers/intl'
+import useDateDistance from '@hooks/useDateDistance'
+import useFormatNumber from '@hooks/useFormatNumber'
 import UserLink from '@components/User/UserLink'
 import useMessages from './hooks/useMessages'
 import Menu from './components/Menu'
@@ -25,7 +25,8 @@ function Message({ message, answerFor, supportFor, onReply }: MessageProps) {
   const { date, user, text, edited } = message
   const { name, nickname, avatar } = user
   const messages = useMessages()
-  const getDateDistance = useGetDateDistance()
+  const formatNumber = useFormatNumber()
+  const getDateDistance = useDateDistance()
   const dateDistance = getDateDistance(date)
   const href = getUserHref(nickname)
   const formattedNumber = formatNumber(message.likeCount)

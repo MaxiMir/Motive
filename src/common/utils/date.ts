@@ -1,4 +1,4 @@
-import { addDays, formatDistanceToNow, Locale } from 'date-fns'
+import { addDays, formatDistanceToNowStrict, Locale } from 'date-fns'
 
 export const getToday = (): Date => {
   return new Date(new Date().setHours(0, 0, 0, 0))
@@ -9,7 +9,7 @@ export const getTomorrow = (): Date => {
 }
 
 export const getDistance = (date: string, locale: Locale): string => {
-  return formatDistanceToNow(new Date(date), { includeSeconds: true, locale })
+  return formatDistanceToNowStrict(new Date(date), { locale })
 }
 
 export const getLocaleFolder = (locale: string): string => {
@@ -21,14 +21,14 @@ export const getLocaleFolder = (locale: string): string => {
   }
 }
 
-export const getIntlKey = (dayDifference: number): string | undefined => {
+export const getIntlDayId = (dayDifference: number): string | undefined => {
   switch (dayDifference) {
     case 1:
-      return 'yesterday'
+      return 'common.yesterday'
     case 0:
-      return 'today'
+      return 'common.today'
     case -1:
-      return 'tomorrow'
+      return 'common.tomorrow'
     default:
       return undefined
   }

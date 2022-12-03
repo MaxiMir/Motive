@@ -1,10 +1,10 @@
 import { Typography } from '@mui/material'
 
-interface DayPartProps {
+interface DatePartProps {
   datePart: string
 }
 
-function DayPart({ datePart }: DayPartProps) {
+function DatePart({ datePart }: DatePartProps) {
   const isDate = Number(datePart)
   const variant = isDate ? 'h6' : 'body2'
 
@@ -15,4 +15,4 @@ function DayPart({ datePart }: DayPartProps) {
   )
 }
 
-export default DayPart
+export default DatePart

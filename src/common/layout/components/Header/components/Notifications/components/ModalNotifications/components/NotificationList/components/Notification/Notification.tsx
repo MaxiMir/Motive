@@ -8,7 +8,7 @@ import { getNotificationHref } from '@helpers/notification'
 import UserLink from '@components/User/UserLink'
 import AppEmoji from '@ui/AppEmoji'
 import AppIcon from '@ui/AppIcon'
-import useGetDateDistance from '@hooks/useGetDateDistance'
+import useDateDistance from '@hooks/useDateDistance'
 import { toShortString } from '@helpers/string'
 import useUpdateRead from './hooks/useUpdateRead'
 import useMessages from './hooks/useMessages'
@@ -25,7 +25,7 @@ function Notification({ notification, onClose }: NotificationProps) {
   const { id, type, details, created, read } = notification
   const { name, nickname, avatar } = details.user
   const messages = useMessages(type)
-  const getDateDistance = useGetDateDistance()
+  const getDateDistance = useDateDistance()
   const client = useClient()
   const { mutate } = useUpdateRead()
   const dateDistance = getDateDistance(created)

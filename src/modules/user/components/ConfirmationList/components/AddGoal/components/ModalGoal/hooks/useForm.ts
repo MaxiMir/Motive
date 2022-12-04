@@ -4,7 +4,7 @@ import { useMutation } from 'react-query'
 import { useFormik } from 'formik'
 import { CreatedGoal, CreateGoalDto, GoalDto } from '@dto'
 import goalSchema from '@schemas/goal'
-import { getToday } from '@utils/date'
+import { getMidnight } from '@utils/date'
 import { useIntl } from 'react-intl'
 import GoalService from '@services/goal'
 import useSnackbar from '@hooks/useSnackbar'
@@ -32,7 +32,7 @@ const useForm = (onSuccess: () => void) => {
 
   return useFormik<CreateGoalDto>({
     initialValues: {
-      started: getToday().toISOString(),
+      started: getMidnight().toISOString(),
       name: '',
       hashtags: '',
       stages: [],

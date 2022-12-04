@@ -4,7 +4,7 @@ import { useFormik } from 'formik'
 import completionSchema from '@schemas/completion'
 import { GoalDto } from '@dto'
 import ConfirmationService from '@services/confirmation'
-import { getToday } from '@utils/date'
+import { getMidnight } from '@utils/date'
 import useSnackbar from '@hooks/useSnackbar'
 import { scrollToElem } from '@helpers/window'
 import useUserPage from '@user-hooks/useUserPage'
@@ -37,7 +37,7 @@ const useForm = (goal: GoalDto, onSuccess: () => void) => {
       photos: [],
       video: '',
       goalId: goal.id,
-      end: getToday(),
+      end: getMidnight(),
     },
     validationSchema: completionSchema,
     async onSubmit(data) {

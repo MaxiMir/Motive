@@ -33,8 +33,8 @@ function MainCharacteristic({ name, value }: MainCharacteristicProps) {
           borderRadius: '50%',
           textTransform: 'none',
           padding: {
-            xs: '4px',
-            md: '8px',
+            xs: '0.25rem',
+            md: '0.5rem',
           },
         }}
         aria-expanded={modal ? 'true' : undefined}

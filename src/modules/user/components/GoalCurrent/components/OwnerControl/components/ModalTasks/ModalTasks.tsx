@@ -15,7 +15,7 @@ import {
   Typography,
 } from '@mui/material'
 import { GoalDto } from '@dto'
-import { getToday, getTomorrow } from '@utils/date'
+import { getMidnight, getTomorrow } from '@utils/date'
 import AppIcon from '@ui/AppIcon'
 import AppHeader from '@ui/AppHeader'
 import { PaulIcon } from '@ui/icons'
@@ -36,7 +36,7 @@ function ModalTasks({ goal, onClose }: ModalTasksProps) {
   const messages = useMessages()
   const form = useForm(goal, onClose)
   const { isSubmitting, values, setFieldValue, handleSubmit } = form
-  const todayValue = getToday().toISOString()
+  const todayValue = getMidnight().toISOString()
   const tomorrowValue = getTomorrow().toISOString()
   const todayDisabled = todayValue === goal.day.date
   const tooltipTitle = todayDisabled && messages.tooltipText

@@ -156,7 +156,7 @@ export const getDesignTokens = (mode: PaletteMode): ThemeOptions => {
             backgroundColor: '#37474f',
           },
           action: {
-            padding: '0 0 0 16px',
+            padding: '0 0 0 1rem',
           },
           icon: {
             display: 'flex',
@@ -174,7 +174,7 @@ export const getDesignTokens = (mode: PaletteMode): ThemeOptions => {
             },
           },
           root: {
-            lineHeight: '21px',
+            lineHeight: '1.313rem',
             '@media (max-width:365px)': {
               fontSize: '0.85rem',
             },
@@ -185,10 +185,10 @@ export const getDesignTokens = (mode: PaletteMode): ThemeOptions => {
         styleOverrides: {
           paper: {
             backgroundImage: 'none',
-            borderRadius: '12px',
+            borderRadius: '0.75rem',
             width: 'calc(100% - 16px)',
-            maxHeight: '700px',
-            margin: '16px',
+            maxHeight: '43.75rem',
+            margin: '1rem',
           },
         },
       },

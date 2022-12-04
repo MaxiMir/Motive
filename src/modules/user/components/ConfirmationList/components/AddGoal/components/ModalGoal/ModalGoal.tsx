@@ -3,7 +3,7 @@ import { v4 as uuidV4 } from 'uuid'
 import { Field, FieldArray, Form, FormikProvider } from 'formik'
 import { Box, Button, Typography, FormControl, Tooltip, FormControlLabel, RadioGroup, Radio } from '@mui/material'
 import { styled } from '@mui/system'
-import { getToday, getTomorrow } from '@utils/date'
+import { getMidnight, getTomorrow } from '@utils/date'
 import useFocus from '@hooks/useFocus'
 import AppModal from '@ui/AppModal/AppModal'
 import AppHeader from '@ui/AppHeader'
@@ -27,7 +27,7 @@ function ModalGoal({ onClose }: ModalGoalProps) {
   const [hashtagsRef, setHashtagsFocus] = useFocus()
   const form = useForm(onClose)
   const { isSubmitting, values, setFieldValue, handleSubmit } = form
-  const todayValue = getToday().toISOString()
+  const todayValue = getMidnight().toISOString()
   const tomorrowValue = getTomorrow().toISOString()
 
   const onAddHashtag = () => {
@@ -80,9 +80,11 @@ function ModalGoal({ onClose }: ModalGoalProps) {
                     </>
                   }
                 >
-                  <IconButton color="info">
-                    <AppIcon name="help_outline" />
-                  </IconButton>
+                  <span>
+                    <IconButton color="info">
+                      <AppIcon name="help_outline" />
+                    </IconButton>
+                  </span>
                 </Tooltip>
               </Box>
               <FieldArray name="stages">

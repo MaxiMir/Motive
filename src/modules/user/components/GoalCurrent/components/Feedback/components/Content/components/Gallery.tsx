@@ -13,8 +13,8 @@ function Gallery({ photos }: GalleryProps) {
     <Box
       sx={{
         width: {
-          xs: compactWidth ? 'calc(50% - 2.5px)' : undefined,
-          sm: compactWidth ? 'calc(33.333% - 6.6666px)' : undefined,
+          xs: compactWidth ? 'calc(50% - 0.156rem)' : undefined,
+          sm: compactWidth ? 'calc(33.333% - 0.417rem)' : undefined,
         },
       }}
     >

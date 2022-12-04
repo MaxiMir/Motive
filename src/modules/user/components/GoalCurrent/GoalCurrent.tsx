@@ -73,10 +73,10 @@ function GoalCurrent({ goal, href, userId, membership, clientId, clientPage, cli
     >
       <Box
         sx={(theme) => ({
-          padding: '3px',
+          padding: '0.188rem',
           height: '100%',
           background: `linear-gradient(to top left, ${theme.palette.motivation.main}, ${theme.palette.creativity.dark}, ${theme.palette.support.dark})`,
-          borderRadius: '15px',
+          borderRadius: '1rem',
         })}
       >
         <Box
@@ -87,9 +87,9 @@ function GoalCurrent({ goal, href, userId, membership, clientId, clientPage, cli
           sx={(theme) => ({
             position: 'relative',
             height: '100%',
-            padding: '24px 16px 16px',
+            padding: '1.5rem 1rem 1rem',
             background: theme.palette.content,
-            borderRadius: '13px',
+            borderRadius: '0.813rem',
           })}
         >
           {inherited && <Inheritance owner={owner} />}
@@ -114,7 +114,11 @@ function GoalCurrent({ goal, href, userId, membership, clientId, clientPage, cli
               {!!hashtags.length && <Hashtags hashtags={hashtags} />}
               <Box display="flex" flexDirection="column" alignItems="center">
                 {prev && (
-                  <DayCardControl variant="outlined" sx={{ bottom: -35 }} onClick={() => onChangeDate(prev)}>
+                  <DayCardControl
+                    variant="outlined"
+                    sx={{ cursor: isLoading ? 'progress' : 'pointer', bottom: -14 }}
+                    onClick={() => onChangeDate(prev)}
+                  >
                     <Box display="flex" justifyContent="space-between" alignItems="baseline" py={1} px={3}>
                       <DayAgo day={prev} />
                       <Date date={prev} />
@@ -198,8 +202,17 @@ function GoalCurrent({ goal, href, userId, membership, clientId, clientPage, cli
                   />
                 </DayCard>
                 {next && (
-                  <DayCardControl variant="outlined" sx={{ top: -35 }} onClick={() => onChangeDate(next)}>
-                    <Box display="flex" justifyContent="space-between" alignItems="baseline" py={1} px={3} mt={2}>
+                  <DayCardControl
+                    variant="outlined"
+                    sx={{
+                      display: 'flex',
+                      alignItems: 'flex-end',
+                      cursor: isLoading ? 'progress' : 'pointer',
+                      top: -14,
+                    }}
+                    onClick={() => onChangeDate(next)}
+                  >
+                    <Box display="flex" justifyContent="space-between" alignItems="baseline" flex={1} py={1} px={3}>
                       <DayAgo day={next} />
                       <Date date={next} />
                     </Box>
@@ -239,7 +252,7 @@ const DayCard = styled(Card)({
 
 const DayCardControl = styled(DayCard)({
   width: '90%',
-  height: 80,
+  height: 60,
   background: '#2e2e2e',
   cursor: 'pointer',
   zIndex: 10,

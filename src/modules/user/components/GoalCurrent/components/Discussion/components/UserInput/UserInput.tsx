@@ -45,7 +45,7 @@ function UserInput({ dayId, user, type, topicId, onAdd }: UserInputProps) {
           />
           <IconButton disabled={isSubmitting || !values.text} sx={{ width: 40, height: 40 }} onClick={onClick}>
             {!isSubmitting ? (
-              <AppIcon name="send" sx={{ paddingLeft: '3px' }} />
+              <AppIcon name="send" sx={{ paddingLeft: '0.188rem' }} />
             ) : (
               <CircularProgress size="0.9rem" color="primary" />
             )}

@@ -3,7 +3,7 @@ import Link from 'next/link'
 import { Box, Typography } from '@mui/material'
 import { getUserHref } from '@href'
 import { MessageDto } from '@dto'
-import useDateDistance from '@hooks/useDateDistance'
+import useFormatDistance from '@hooks/useFormatDistance'
 import useFormatNumber from '@hooks/useFormatNumber'
 import UserLink from '@components/User/UserLink'
 import useMessages from './hooks/useMessages'
@@ -26,8 +26,8 @@ function Message({ message, answerFor, supportFor, onReply }: MessageProps) {
   const { name, nickname, avatar } = user
   const messages = useMessages()
   const formatNumber = useFormatNumber()
-  const getDateDistance = useDateDistance()
-  const dateDistance = getDateDistance(date)
+  const formatDistance = useFormatDistance()
+  const dateDistance = formatDistance(date)
   const href = getUserHref(nickname)
   const formattedNumber = formatNumber(message.likeCount)
 
@@ -56,7 +56,7 @@ function Message({ message, answerFor, supportFor, onReply }: MessageProps) {
       <Box display="flex" justifyContent="space-between" alignItems="center" pr={1}>
         <Box display="flex" alignItems="center" gap={1}>
           <Box component="span" sx={{ fontSize: '0.6875rem', color: 'zen.silent' }}>
-            {dateDistance} {messages.agoText}
+            {dateDistance}
           </Box>
           {onReply && (
             <Button size="small" aria-label={messages.replyText} sx={{ color: 'support.main' }} onClick={onReply}>

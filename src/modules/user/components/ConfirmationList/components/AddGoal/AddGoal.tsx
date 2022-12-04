@@ -17,7 +17,7 @@ function AddGoal() {
     <Box display="flex" flexDirection="column" alignItems="center" minWidth={100} gap={1}>
       <Box
         sx={(theme) => ({
-          padding: '2px',
+          padding: '0.125rem',
           background: `linear-gradient(to top left, ${theme.palette.creativity.dark}, ${theme.palette.support.dark})`,
           borderRadius: '50%',
         })}
@@ -46,7 +46,7 @@ function AddGoal() {
         aria-label={buttonText}
         aria-expanded={open ? 'true' : undefined}
         aria-haspopup="true"
-        sx={{ padding: '4px', textTransform: 'none' }}
+        sx={{ padding: '0.25rem', textTransform: 'none' }}
         onClick={toggleModal}
       >
         <Typography variant="caption" sx={{ color: 'creativity.light' }}>

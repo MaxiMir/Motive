@@ -3,6 +3,7 @@ import { ParsedUrlQuery } from 'querystring'
 import { differenceInCalendarDays } from 'date-fns'
 import { HashMark, SearchParam } from '@href'
 import { GoalDto, MemberDto, OwnershipDto, TaskDto } from '@dto'
+import { getMidnight } from '@utils/date'
 import { getMember } from '@modules/user/helper'
 
 const SHOW_WEB_AFTER_DAYS = Number(process.env.NEXT_PUBLIC_SHOW_WEB_AFTER_DAYS || '')
@@ -35,7 +36,7 @@ interface GoalInfo {
 
 export const getGoalInfo = (goal: GoalDto, clientOwnership: OwnershipDto, userMember?: MemberDto): GoalInfo => {
   const { started, day, calendar, completed } = goal
-  const today = new Date()
+  const today = getMidnight()
   const lastDay = !calendar || calendar[calendar.length - 1].date === day.date
   const controls = checkOnControls()
   const completeStage = clientOwnership.goal && controls && goal.stage <= goal.day.stage

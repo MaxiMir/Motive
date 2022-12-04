@@ -6,7 +6,7 @@ function Level() {
   const lvlText = formatMessage({ id: 'common.lvl-short' })
 
   return (
-    <Box component="sup" sx={{ marginLeft: '2px', fontSize: '0.625rem', color: 'text.disabled' }}>
+    <Box component="sup" sx={{ marginLeft: '0.125rem', fontSize: '0.625rem', color: 'text.disabled' }}>
       {lvlText}
     </Box>
   )

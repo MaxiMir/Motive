@@ -40,7 +40,7 @@ function AppModal({ title, actions, maxWidth, blur = true, children, onClose }: 
       }}
       onClose={onClose}
     >
-      <DialogTitle sx={{ padding: '16px 24px 8px', marginX: 6, textAlign: 'center', textTransform: 'uppercase' }}>
+      <DialogTitle sx={{ padding: '1rem 1.5rem 0.5rem', marginX: 6, textAlign: 'center', textTransform: 'uppercase' }}>
         {title}
       </DialogTitle>
       <IconButton

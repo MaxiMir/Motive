@@ -5,7 +5,7 @@ import { getUserHref, SearchParam } from '@href'
 import { CreateMemberDto } from '@dto'
 import memberSchema from '@schemas/member'
 import MemberService from '@services/member'
-import { getToday } from '@utils/date'
+import { getMidnight } from '@utils/date'
 import useClient from '@hooks/useClient'
 import { setSearchParams } from '@helpers/url'
 
@@ -26,7 +26,7 @@ const useForm = (goalId: number, dayId: number) => {
     initialValues: {
       goalId,
       dayId: dayId.toString(),
-      started: getToday(),
+      started: getMidnight(),
     },
     validationSchema: memberSchema,
     onSubmit(data) {

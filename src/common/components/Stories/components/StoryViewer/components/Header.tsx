@@ -4,7 +4,7 @@ import { Box, IconButton, Typography } from '@mui/material'
 import { styled } from '@mui/system'
 import { getUserHref } from '@href'
 import { UserBaseDto } from '@dto'
-import useDateDistance from '@hooks/useDateDistance'
+import useFormatDistance from '@hooks/useFormatDistance'
 import AppIcon from '@ui/AppIcon'
 import UserLink from '@components/User/UserLink'
 
@@ -18,10 +18,9 @@ interface HeaderProps {
 function Header({ user, title, date, onClose }: HeaderProps): JSX.Element {
   const { nickname, name, avatar } = user
   const { formatMessage } = useIntl()
-  const getDateDistance = useDateDistance()
-  const distance = getDateDistance(date)
+  const formatDistance = useFormatDistance()
+  const distance = formatDistance(date)
   const href = getUserHref(nickname)
-  const agoText = formatMessage({ id: 'common.ago' })
   const close = formatMessage({ id: 'common.close' })
 
   return (
@@ -31,7 +30,7 @@ function Header({ user, title, date, onClose }: HeaderProps): JSX.Element {
         left: 0,
         right: 0,
         zIndex: 9999,
-        padding: '24px 12px 12px',
+        padding: '1.5rem 0.75rem 0.75rem',
         transition: 'opacity 0.5s',
       }}
     >
@@ -63,7 +62,7 @@ function Header({ user, title, date, onClose }: HeaderProps): JSX.Element {
                 <b>{title}</b>
               </TextTitle>
               <Typography variant="caption" sx={{ color: 'text.disabled' }}>
-                {distance} {agoText}
+                {distance}
               </Typography>
             </Box>
           </Box>

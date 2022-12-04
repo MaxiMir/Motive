@@ -18,7 +18,10 @@ interface AvatarStatusProps {
 
 function AvatarStatus({ src, name, size, online, lastSeen, device, onClick }: AvatarStatusProps) {
   return (
-    <Button sx={{ minWidth: 'initial', padding: '3px', borderRadius: '50%', textTransform: 'none' }} onClick={onClick}>
+    <Button
+      sx={{ minWidth: 'initial', padding: '0.188rem', borderRadius: '50%', textTransform: 'none' }}
+      onClick={onClick}
+    >
       {!src ? (
         <Plug name={name} size={size} />
       ) : (

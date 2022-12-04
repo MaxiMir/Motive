@@ -8,7 +8,7 @@ import { getNotificationHref } from '@helpers/notification'
 import UserLink from '@components/User/UserLink'
 import AppEmoji from '@ui/AppEmoji'
 import AppIcon from '@ui/AppIcon'
-import useDateDistance from '@hooks/useDateDistance'
+import useFormatDistance from '@hooks/useFormatDistance'
 import { toShortString } from '@helpers/string'
 import useUpdateRead from './hooks/useUpdateRead'
 import useMessages from './hooks/useMessages'
@@ -25,10 +25,10 @@ function Notification({ notification, onClose }: NotificationProps) {
   const { id, type, details, created, read } = notification
   const { name, nickname, avatar } = details.user
   const messages = useMessages(type)
-  const getDateDistance = useDateDistance()
+  const formatDistance = useFormatDistance()
   const client = useClient()
   const { mutate } = useUpdateRead()
-  const dateDistance = getDateDistance(created)
+  const dateDistance = formatDistance(created)
   const { emoji, color } = getNotificationInfo(type)
   const notificationHref = getNotificationHref(notification, client)
   const href = getUserHref(nickname)
@@ -46,8 +46,8 @@ function Notification({ notification, onClose }: NotificationProps) {
           alignItems="center"
           sx={{
             position: 'absolute',
-            bottom: '-6px',
-            right: '2px',
+            bottom: '-0.375rem',
+            right: '0.125rem',
             width: 21,
             height: 21,
             backgroundColor: '#262626',
@@ -70,7 +70,7 @@ function Notification({ notification, onClose }: NotificationProps) {
         </Typography>
         <Box display="flex" alignItems="center" gap={2}>
           <Box component="span" sx={{ color: 'zen.silent', fontSize: '0.875rem' }}>
-            {dateDistance} {messages.agoText}
+            {dateDistance}
           </Box>
           <IconButton
             href={notificationHref}

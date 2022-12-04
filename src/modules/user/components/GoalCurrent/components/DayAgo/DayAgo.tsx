@@ -1,18 +1,16 @@
 import { Typography } from '@mui/material'
-import { differenceInCalendarDays } from 'date-fns'
+import useDayAgo from './hooks/useDayAgo'
 
 interface DateNameProps {
   day: string
 }
 
 function DayAgo({ day }: DateNameProps) {
-  const ttt = differenceInCalendarDays(new Date(), Date.parse(day))
-  const rtf = new Intl.RelativeTimeFormat('en', { numeric: 'auto' })
-  const [{ value }] = rtf.formatToParts(ttt, 'day') // TODO
-  // fist letter to uppercase
+  const dayAgo = useDayAgo(day)
+
   return (
     <Typography variant="body2" component="p">
-      <b>{value}</b>
+      <b>{dayAgo}</b>
     </Typography>
   )
 }

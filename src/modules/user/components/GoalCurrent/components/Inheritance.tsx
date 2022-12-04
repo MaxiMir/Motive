@@ -32,9 +32,9 @@ const InheritanceBox = styled(Box)(({ theme }) => ({
   position: 'absolute',
   top: -19,
   left: '50%',
-  padding: '4px',
+  padding: '0.25rem',
   transform: 'translateX(-50%)',
-  borderRadius: '20px',
+  borderRadius: '1.25rem',
   background: `linear-gradient(90deg, ${theme.palette.support.dark} 0%, ${theme.palette.creativity.dark} 100%)`,
 }))
 

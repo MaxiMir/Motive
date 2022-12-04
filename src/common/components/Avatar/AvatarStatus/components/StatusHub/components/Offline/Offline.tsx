@@ -1,7 +1,7 @@
 import { ReactNode } from 'react'
 import dynamic from 'next/dynamic'
 import { Badge, Box, Tooltip } from '@mui/material'
-import useDateDistance from '@hooks/useDateDistance'
+import useFormatDistance from '@hooks/useFormatDistance'
 import { Device } from '@helpers/window'
 import { getShortDistance } from './helper'
 import useMessages from './hooks/useMessages'
@@ -16,8 +16,8 @@ interface OfflineProps {
 
 function Offline({ lastSeen, device, children }: OfflineProps) {
   const messages = useMessages()
-  const getDateDistance = useDateDistance()
-  const distance = getDateDistance(lastSeen)
+  const formatDistance = useFormatDistance()
+  const distance = formatDistance(lastSeen)
   const shortDistance = getShortDistance(distance)
 
   return (
@@ -30,7 +30,7 @@ function Offline({ lastSeen, device, children }: OfflineProps) {
           title={
             <Box display="flex" alignItems="center" gap={0.5}>
               {device && <DeviceIcon device={device} />}
-              {messages.seenText} {distance} {messages.agoText}
+              {messages.seenText} {distance}
             </Box>
           }
         >

@@ -7,7 +7,7 @@ interface ListItemProps {
 
 function ListItem({ name }: ListItemProps) {
   return (
-    <Box display="flex" alignItems="center" gap={1} sx={{ paddingY: '4px' }}>
+    <Box display="flex" alignItems="center" gap={1} sx={{ paddingY: '0.25rem' }}>
       <AppEmoji name="barber" onlyEmoji />
       <Typography>{name}</Typography>
     </Box>

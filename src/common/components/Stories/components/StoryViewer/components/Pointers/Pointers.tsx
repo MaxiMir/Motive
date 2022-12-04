@@ -29,7 +29,7 @@ function Pointers({ count, onClose }: PointersProps): JSX.Element {
         },
         display: 'table',
         tableLayout: 'fixed',
-        borderSpacing: '6px',
+        borderSpacing: '0.375rem',
         borderCollapse: 'separate',
         zIndex: 9999,
         transition: 'opacity 0.5s',

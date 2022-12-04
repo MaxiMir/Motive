@@ -1,10 +1,9 @@
 import dynamic from 'next/dynamic'
 import Link from 'next/link'
-import { Box, Typography } from '@mui/material'
+import { Box } from '@mui/material'
 import { getUserHref } from '@href'
 import { MessageDto } from '@dto'
 import useFormatDistance from '@hooks/useFormatDistance'
-import useFormatNumber from '@hooks/useFormatNumber'
 import UserLink from '@components/User/UserLink'
 import useMessages from './hooks/useMessages'
 import Menu from './components/Menu'
@@ -25,52 +24,55 @@ function Message({ message, answerFor, supportFor, onReply }: MessageProps) {
   const { date, user, text, edited } = message
   const { name, nickname, avatar } = user
   const messages = useMessages()
-  const formatNumber = useFormatNumber()
   const formatDistance = useFormatDistance()
   const dateDistance = formatDistance(date)
   const href = getUserHref(nickname)
-  const formattedNumber = formatNumber(message.likeCount)
+  const flexDirection = !answerFor ? 'row' : 'row-reverse'
+  const backgroundColor = !answerFor ? '#213040' : '#060d15'
 
   return (
-    <Box display="flex" flexDirection="column" gap={1} width="100%">
-      <Box display="flex" flexDirection="column" gap={1} minWidth={152}>
-        <Box display="flex" alignItems="center" gap={1}>
-          <UserLink name={name} avatar={avatar} href={href} />
-          <Box component="b">
-            <Link href={href} title={user.name}>
-              {user.name}
-            </Link>
-          </Box>
-          {supportFor && <SupportSign name={supportFor} />}
-          {edited && (
-            <Box component="span" sx={{ fontSize: '0.6875rem', color: 'zen.silent' }}>
-              {messages.editedText}
+    <Box display="flex" flexDirection="column" gap={1}>
+      <Box display="flex" alignItems="flex-end" flexDirection={flexDirection} gap={1}>
+        <UserLink name={name} avatar={avatar} href={href} size={32} />
+        <Box
+          display="flex"
+          flexDirection="column"
+          gap={1}
+          p={1}
+          sx={{ minWidth: '13.125rem', backgroundColor, borderRadius: '0.625rem' }}
+        >
+          <Box display="flex" justifyContent="space-between">
+            <Box display="flex" alignItems="center" gap={1}>
+              <Box component="b">
+                <Link href={href} title={user.name}>
+                  {user.name}
+                </Link>
+              </Box>
+              {supportFor && <SupportSign name={supportFor} />}
+              {edited && (
+                <Box component="span" sx={{ fontSize: '0.6875rem', color: 'zen.silent' }}>
+                  {messages.editedText}
+                </Box>
+              )}
             </Box>
-          )}
-        </Box>
-        <Box display="flex" justifyContent="space-between" alignItems="flex-start" gap={1}>
-          <AppMarkdown text={text} />
-          <Menu message={message} />
-        </Box>
-      </Box>
-      <Box display="flex" justifyContent="space-between" alignItems="center" pr={1}>
-        <Box display="flex" alignItems="center" gap={1}>
-          <Box component="span" sx={{ fontSize: '0.6875rem', color: 'zen.silent' }}>
-            {dateDistance}
+            <Menu message={message} />
           </Box>
-          {onReply && (
-            <Button size="small" aria-label={messages.replyText} sx={{ color: 'support.main' }} onClick={onReply}>
-              {messages.replyText}
-            </Button>
-          )}
-        </Box>
-        <Box display="flex" alignItems="center">
-          <LikeButton message={message} answerFor={answerFor} />
-          <Typography variant="caption" sx={{ color: 'zen.silent' }}>
-            {formattedNumber}
-          </Typography>
+          <AppMarkdown text={text} />
+          <Box display="flex" justifyContent="space-between" alignItems="center">
+            <LikeButton message={message} answerFor={answerFor} />
+            <Box component="span" sx={{ fontSize: '0.6875rem', color: 'zen.silent' }}>
+              {dateDistance}
+            </Box>
+          </Box>
         </Box>
       </Box>
+      {onReply && (
+        <Box pl={6}>
+          <Button size="small" aria-label={messages.replyText} sx={{ color: 'support.main' }} onClick={onReply}>
+            {messages.replyText}
+          </Button>
+        </Box>
+      )}
     </Box>
   )
 }

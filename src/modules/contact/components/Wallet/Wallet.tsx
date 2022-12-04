@@ -1,9 +1,9 @@
 import Image, { ImageProps } from 'next/image'
-import { useIntl } from 'react-intl'
 import { Box, IconButton, Typography } from '@mui/material'
 import { copyHandler } from '@helpers/window'
 import useSnackbar from '@hooks/useSnackbar'
 import AppIcon from '@ui/AppIcon'
+import useMessages from './hooks/useMessages'
 
 interface WalletProps {
   name: string
@@ -12,14 +12,12 @@ interface WalletProps {
 }
 
 function Wallet({ name, wallet, src }: WalletProps) {
-  const { formatMessage } = useIntl()
+  const messages = useMessages()
   const [enqueueSnackbar] = useSnackbar()
-  const copyText = formatMessage({ id: 'common.copied' })
-  const errorText = formatMessage({ id: 'common.error' })
 
-  const onCopySuccess = () => enqueueSnackbar({ message: copyText, severity: 'success', icon: 'keyboard' })
+  const onCopySuccess = () => enqueueSnackbar({ message: messages.copyText, severity: 'success', icon: 'keyboard' })
 
-  const onCopyError = () => enqueueSnackbar({ message: errorText, severity: 'error' })
+  const onCopyError = () => enqueueSnackbar({ message: messages.errorText, severity: 'error' })
 
   const onClick = () => copyHandler(wallet, onCopySuccess, onCopyError)
 

@@ -1,5 +1,5 @@
 import { CreateUserDto, UpdateUserDto, UserBaseDto } from '@dto'
-import fetcher from '@utils/fetcher'
+import fetcher from '@lib/fetcher'
 import Service, { WhereParams } from './Service'
 
 interface UpdateParams {

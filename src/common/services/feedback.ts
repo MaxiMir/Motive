@@ -1,5 +1,5 @@
 import { FeedbackDto } from '@dto'
-import fetcher from '@utils/fetcher'
+import fetcher from '@lib/fetcher'
 
 export default class FeedbackService {
   static create(data: FormData): Promise<FeedbackDto> {

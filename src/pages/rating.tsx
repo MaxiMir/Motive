@@ -2,11 +2,9 @@ import { GetServerSideProps } from 'next'
 import { useRouter } from 'next/router'
 import { dehydrate, QueryClient } from 'react-query'
 import { getSession } from 'next-auth/react'
-import { AxiosRequestHeaders } from 'axios'
 import { Route } from '@href'
-import PageService from '@services/page'
-import RatingModule, { useRatingPage, useMetaTags } from '@modules/rating'
-import Layout from '@layout'
+import PageFeature, { PageService } from '@features/page'
+import RatingFeature, { useRatingPage, useMetaTags } from '@features/rating'
 
 function RatingPage() {
   const { query } = useRouter()
@@ -15,17 +13,17 @@ function RatingPage() {
   const metaTags = useMetaTags(tab)
 
   return (
-    <Layout title={metaTags.title} description={metaTags.description}>
-      {data?.content && <RatingModule {...data.content} tab={tab} />}
-    </Layout>
+    <PageFeature title={metaTags.title} description={metaTags.description}>
+      {data?.content && <RatingFeature {...data.content} tab={tab} />}
+    </PageFeature>
   )
 }
 
 export const getServerSideProps: GetServerSideProps = async (ctx) => {
+  const { headers } = ctx.req
   const queryClient = new QueryClient()
   const session = await getSession(ctx)
-  const headers = ctx.req.headers as AxiosRequestHeaders
-  await queryClient.prefetchQuery(Route.Rating, () => PageService.get(Route.Rating, { headers }))
+  await queryClient.prefetchQuery(Route.Rating, () => PageService.getRating({ headers }))
 
   return {
     props: {

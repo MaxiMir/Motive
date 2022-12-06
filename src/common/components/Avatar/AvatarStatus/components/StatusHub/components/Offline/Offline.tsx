@@ -2,7 +2,7 @@ import { ReactNode } from 'react'
 import dynamic from 'next/dynamic'
 import { Badge, Box, Tooltip } from '@mui/material'
 import useFormatDistance from '@hooks/useFormatDistance'
-import { Device } from '@helpers/window'
+import { Device } from '@helpers/navigator'
 import { getShortDistance } from './helper'
 import useMessages from './hooks/useMessages'
 

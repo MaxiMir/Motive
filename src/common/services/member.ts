@@ -1,5 +1,5 @@
 import { CreateMemberDto, MemberDto, UpdateMemberDto } from '@dto'
-import fetcher from '@utils/fetcher'
+import fetcher from '@lib/fetcher'
 
 export default class MemberService {
   static create(data: CreateMemberDto): Promise<MemberDto> {

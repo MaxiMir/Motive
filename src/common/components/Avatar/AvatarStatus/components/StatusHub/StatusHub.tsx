@@ -1,5 +1,5 @@
 import dynamic from 'next/dynamic'
-import { Device } from '@helpers/window'
+import { Device } from '@helpers/navigator'
 import Content from './components/Content'
 
 const Online = dynamic(() => import('./components/Online'))

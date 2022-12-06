@@ -21,7 +21,7 @@ interface Page<T> {
 
 export type SearchPageDto = Page<SearchPageContent>
 export type RatingPageDto = Page<RatingPageContent>
-export type SubscriptionPageDto = Page<SubscriptionPageContent>
+export type FollowingPageDto = Page<FollowingPageContent>
 export type UserPageDto = Page<UserDetailDto>
 
 interface SearchPageContent {
@@ -32,7 +32,7 @@ interface SearchPageContent {
 }
 
 type RatingPageContent = { [k in MainCharacteristicName]: UserDto[] }
-type SubscriptionPageContent = UserDto[]
+type FollowingPageContent = UserDto[]
 
 export interface UserDetailDto extends UserDto {
   following: boolean

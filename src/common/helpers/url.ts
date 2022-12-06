@@ -1,7 +1,7 @@
 /**
  * Returns url information
  */
-const parseUrl = (url: string) => {
+export const parseUrl = (url: string) => {
   const [base, params = ''] = url.split('?', 2)
   const searchParams = new URLSearchParams(params)
 

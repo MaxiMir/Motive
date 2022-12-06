@@ -3,11 +3,11 @@ import { useMutation } from 'react-query'
 import { useFormik } from 'formik'
 import completionSchema from '@schemas/completion'
 import { GoalDto } from '@dto'
+import { getMidnight } from '@lib/date'
 import ConfirmationService from '@services/confirmation'
-import { getMidnight } from '@utils/date'
+import useUserPage from '@features/user/hooks/useUserPage'
 import useSnackbar from '@hooks/useSnackbar'
-import { scrollToElem } from '@helpers/window'
-import useUserPage from '@user-hooks/useUserPage'
+import { scrollToElem } from '@helpers/document'
 
 interface Values {
   text: string

@@ -1,26 +1,26 @@
 import { GetServerSideProps } from 'next'
 import { getSession } from 'next-auth/react'
 import { dehydrate, QueryClient } from 'react-query'
-import { AxiosRequestHeaders } from 'axios'
 import { Route } from '@href'
 import useMetaTags from '@hooks/useMetaTags'
-import SearchModule, { useSearchPage } from '@modules/search'
-import PageService from '@services/page'
-import Layout from '@layout'
+import PageFeature, { PageService } from '@features/page'
+import SearchFeature, { useSearchPage } from '@features/search'
+import { getSearchParams } from '@helpers/url'
 
 function SearchPage() {
   const { data } = useSearchPage()
   const metaTags = useMetaTags('search')
 
   return (
-    <Layout title={metaTags.title} description={metaTags.description}>
-      {data?.content && <SearchModule {...data.content} />}
-    </Layout>
+    <PageFeature title={metaTags.title} description={metaTags.description}>
+      {data?.content && <SearchFeature {...data.content} />}
+    </PageFeature>
   )
 }
 
 export const getServerSideProps: GetServerSideProps = async (ctx) => {
-  const { url = Route.Search } = ctx.req
+  const { headers, url = Route.Search } = ctx.req
+  const params = getSearchParams(url)
 
   if (ctx.req.url?.includes('_next')) {
     return {
@@ -32,8 +32,7 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
 
   const queryClient = new QueryClient()
   const session = await getSession(ctx)
-  const headers = ctx.req.headers as AxiosRequestHeaders
-  await queryClient.prefetchQuery(url, () => PageService.get(url, { headers }))
+  await queryClient.prefetchQuery(url, () => PageService.getSearch({ headers, params }))
 
   return {
     props: {

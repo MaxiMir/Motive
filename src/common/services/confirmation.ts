@@ -1,4 +1,4 @@
-import fetcher from '@utils/fetcher'
+import fetcher from '@lib/fetcher'
 import { ConfirmationDto } from '@dto'
 import Service, { WhereParams } from './Service'
 

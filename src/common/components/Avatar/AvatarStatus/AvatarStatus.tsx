@@ -1,7 +1,7 @@
 import { MouseEvent } from 'react'
 import dynamic from 'next/dynamic'
 import { Button } from '@mui/material'
-import { Device } from '@helpers/window'
+import { Device } from '@helpers/navigator'
 
 const StatusHub = dynamic(() => import('./components/StatusHub'))
 const Plug = dynamic(() => import('./components/Plug'))

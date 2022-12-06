@@ -1,5 +1,5 @@
 import { NotificationDto } from '@dto'
-import fetcher from '@utils/fetcher'
+import fetcher from '@lib/fetcher'
 import Service, { WhereParams } from './Service'
 
 export default class NotificationService extends Service {

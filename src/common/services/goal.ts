@@ -1,5 +1,5 @@
 import { CreateGoalDto, CreateDayDto, DayCharacteristicUpdateDto, GoalStageDto, CreatedGoal } from '@dto'
-import fetcher from '@utils/fetcher'
+import fetcher from '@lib/fetcher'
 import Service from './Service'
 
 export default class GoalService extends Service {

@@ -41,8 +41,8 @@
       "@hooks/*": [
         "src/common/hooks/*"
       ],
-      "@utils/*": [
-        "src/common/utils/*"
+      "@lib/*": [
+        "src/common/lib/*"
       ],
       "@helpers/*": [
         "src/common/helpers/*"
@@ -62,12 +62,9 @@
       "@href": [
         "src/common/href"
       ],
-      "@modules/*": [
-        "src/modules/*"
+      "@features/*": [
+        "src/features/*"
       ],
-      "@user-hooks/*": [
-        "src/modules/user/hooks/*"
-      ]
     }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],

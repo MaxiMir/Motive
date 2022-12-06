@@ -1,5 +1,5 @@
 import { DayDto } from '@dto'
-import fetcher from '@utils/fetcher'
+import fetcher from '@lib/fetcher'
 
 export default class DayService {
   static getById(id: number): Promise<DayDto> {

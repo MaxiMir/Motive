@@ -1,16 +1,16 @@
 import { GetServerSideProps } from 'next'
 import { getSession } from 'next-auth/react'
+import PageFeature from '@features/page'
+import ContactFeature from '@features/contact'
 import useMetaTags from '@hooks/useMetaTags'
-import ContactModule from '@modules/contact'
-import Layout from '@layout'
 
 function ContactPage() {
   const metaTags = useMetaTags('contact')
 
   return (
-    <Layout title={metaTags.title} description={metaTags.description}>
-      <ContactModule />
-    </Layout>
+    <PageFeature title={metaTags.title} description={metaTags.description}>
+      <ContactFeature />
+    </PageFeature>
   )
 }
 

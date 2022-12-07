@@ -1,7 +1,7 @@
 import { ChangeEvent } from 'react'
 import { Form, FormikProvider } from 'formik'
 import { Box, FormControlLabel, Radio, RadioGroup, Typography } from '@mui/material'
-import { GoalDto } from '@dto'
+import useGoalContext from '@features/user/components/GoalCurrent/hooks/useGoalContext'
 import ActionSubmit from '@components/Action/ActionSubmit'
 import ActionCancel from '@components/Action/ActionCancel/ActionCancel'
 import AppModal from '@ui/AppModal/AppModal'
@@ -12,12 +12,11 @@ import useForm from './hooks/useForm'
 import useMessages from './hooks/useMessages'
 
 interface ModalJoinProps {
-  goal: GoalDto
   onClose: () => void
 }
 
-function ModalJoin({ goal, onClose }: ModalJoinProps) {
-  const { id, calendar, day } = goal
+function ModalJoin({ onClose }: ModalJoinProps) {
+  const { id, calendar, day, owner } = useGoalContext()
   const messages = useMessages()
   const beginningDay = calendar[0].id
   const thisDay = day.id
@@ -90,7 +89,7 @@ function ModalJoin({ goal, onClose }: ModalJoinProps) {
                   <Typography>
                     &#9679; {messages.accordingSupport}{' '}
                     <Box component="span" sx={{ color: 'support.main' }}>
-                      {goal.owner.name}
+                      {owner.name}
                     </Box>
                     {', '}
                     {messages.accordingNeeded}.

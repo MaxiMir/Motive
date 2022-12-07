@@ -1,5 +1,6 @@
 import { Box, Typography } from '@mui/material'
-import { GoalDto, OwnershipDto } from '@dto'
+import { OwnershipDto } from '@dto'
+import useGoalContext from '@features/user/components/GoalCurrent/hooks/useGoalContext'
 import ActionSubmit from '@components/Action/ActionSubmit'
 import ActionCancel from '@components/Action/ActionCancel/ActionCancel'
 import AppModal from '@ui/AppModal/AppModal'
@@ -8,13 +9,12 @@ import useSendRemoveMember from './hooks/useSendRemoveMember'
 import useMessages from './hooks/useMessages'
 
 interface ModalLeaveProps {
-  goal: GoalDto
   clientOwnership: OwnershipDto
   onClose: () => void
 }
 
-function ModalLeave({ goal, clientOwnership, onClose }: ModalLeaveProps) {
-  const { id, name } = goal
+function ModalLeave({ clientOwnership, onClose }: ModalLeaveProps) {
+  const { id, name } = useGoalContext()
   const messages = useMessages()
   const { isLoading, mutateAsync } = useSendRemoveMember(id, clientOwnership.page)
 

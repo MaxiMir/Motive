@@ -1,7 +1,7 @@
 import dynamic from 'next/dynamic'
 import { Box, Divider, Typography } from '@mui/material'
 import { styled } from '@mui/system'
-import { UserDetailDto, MAIN_CHARACTERISTICS, SECOND_CHARACTERISTICS } from '@dto'
+import { UserPageDto, MAIN_CHARACTERISTICS, SECOND_CHARACTERISTICS } from '@dto'
 import AppContainer from '@ui/AppContainer'
 import useCheckOnClientPage from '@features/user/hooks/useCheckOnClientPage'
 import { UserContext } from '@features/user/hooks/useUserContext'
@@ -19,7 +19,7 @@ const GoalCurrent = dynamic(() => import('./components/GoalCurrent'))
 const Motto = dynamic(() => import('./components/Motto'))
 
 interface UserFeatureProps {
-  user: UserDetailDto
+  user: UserPageDto
 }
 
 function UserFeature({ user }: UserFeatureProps) {
@@ -111,7 +111,6 @@ function UserFeature({ user }: UserFeatureProps) {
             {goals.map((goal) => (
               <GoalCurrent
                 goal={goal}
-                userId={id}
                 membership={membership}
                 clientPage={clientPage}
                 clientMembership={clientMembership}

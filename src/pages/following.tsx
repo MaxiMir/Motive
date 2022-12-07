@@ -12,7 +12,7 @@ function FollowingPage() {
 
   return (
     <PageFeature title={metaTags.title} description={metaTags.description}>
-      {data?.content && <FollowingFeature users={data.content} />}
+      {data && <FollowingFeature following={data.following} />}
     </PageFeature>
   )
 }

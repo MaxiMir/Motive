@@ -2,10 +2,10 @@ import { useIntl } from 'react-intl'
 import { useMutation } from 'react-query'
 import { useFormik } from 'formik'
 import completionSchema from '@schemas/completion'
-import { GoalDto } from '@dto'
 import { getMidnight } from '@lib/date'
 import ConfirmationService from '@services/confirmation'
 import useUserPage from '@features/user/hooks/useUserPage'
+import useGoalContext from '@features/user/components/GoalCurrent/hooks/useGoalContext'
 import useSnackbar from '@hooks/useSnackbar'
 import { scrollToElem } from '@helpers/document'
 
@@ -17,8 +17,9 @@ interface Values {
   end: Date
 }
 
-const useForm = (goal: GoalDto, onSuccess: () => void) => {
+const useForm = (onSuccess: () => void) => {
   const { formatMessage } = useIntl()
+  const { id } = useGoalContext()
   const { refetch } = useUserPage()
   const [enqueueSnackbar] = useSnackbar()
   const { mutate } = useMutation(ConfirmationService.create, {
@@ -36,7 +37,7 @@ const useForm = (goal: GoalDto, onSuccess: () => void) => {
       text: '',
       photos: [],
       video: '',
-      goalId: goal.id,
+      goalId: id,
       end: getMidnight(),
     },
     validationSchema: completionSchema,

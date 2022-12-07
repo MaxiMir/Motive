@@ -13,7 +13,7 @@ function SearchPage() {
 
   return (
     <PageFeature title={metaTags.title} description={metaTags.description}>
-      {data?.content && <SearchFeature {...data.content} />}
+      {data && <SearchFeature {...data} />}
     </PageFeature>
   )
 }

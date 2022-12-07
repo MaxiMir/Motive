@@ -2,18 +2,13 @@ import { useState } from 'react'
 import dynamic from 'next/dynamic'
 import { useIntl } from 'react-intl'
 import { Button } from '@mui/material'
-import { GoalDto } from '@dto'
 import useClient from '@hooks/useClient'
 import useOpenSignIn from '@hooks/useOpenSignIn'
 import AppEmoji from '@ui/AppEmoji'
 
 const ModalJoin = dynamic(() => import('./components/ModalJoin'))
 
-interface JoinProps {
-  goal: GoalDto
-}
-
-function Join({ goal }: JoinProps) {
+function Join() {
   const { formatMessage } = useIntl()
   const client = useClient()
   const openSignIn = useOpenSignIn()
@@ -36,7 +31,7 @@ function Join({ goal }: JoinProps) {
       <Button variant="outlined" color="primary" startIcon={<AppEmoji name="join" onlyEmoji />} onClick={onClick}>
         {buttonText}
       </Button>
-      {open && <ModalJoin goal={goal} onClose={toggleModal} />}
+      {open && <ModalJoin onClose={toggleModal} />}
     </>
   )
 }

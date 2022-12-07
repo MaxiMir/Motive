@@ -1,7 +1,6 @@
 import dynamic from 'next/dynamic'
 import { Field, FieldArray, Form, FormikProvider } from 'formik'
 import { Grid, Box, Typography } from '@mui/material'
-import { GoalDto } from '@dto'
 import useSelectPhoto from '@hooks/useSelectPhoto'
 import ActionSubmit from '@components/Action/ActionSubmit'
 import ActionCancel from '@components/Action/ActionCancel/ActionCancel'
@@ -20,13 +19,12 @@ import useMessages from './hooks/useMessages'
 const Alert = dynamic(() => import('@mui/material/Alert'))
 
 interface ModalCompletionProps {
-  goal: GoalDto
   onClose: () => void
 }
 
-function ModalCompletion({ goal, onClose }: ModalCompletionProps) {
+function ModalCompletion({ onClose }: ModalCompletionProps) {
   const messages = useMessages()
-  const form = useForm(goal, onClose)
+  const form = useForm(onClose)
   const { isSubmitting, values, touched, errors, setFieldValue, handleSubmit } = form
   const photoError = Array.isArray(errors.photos) ? errors.photos.join(', ') : errors.photos
 

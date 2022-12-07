@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import dynamic from 'next/dynamic'
 import { Box, Button, Tooltip } from '@mui/material'
-import { GoalDto } from '@dto'
+import useGoalContext from '@features/user/components/GoalCurrent/hooks/useGoalContext'
 import AppEmoji from '@ui/AppEmoji'
 import useMessages from './hooks/useMessages'
 
@@ -13,13 +13,9 @@ enum ModalType {
   Completion,
 }
 
-interface OwnerControlProps {
-  goal: GoalDto
-}
-
-function OwnerControl({ goal }: OwnerControlProps) {
-  const { stages, day } = goal
-  const feedbackAdded = !!goal.day.feedback
+function OwnerControl() {
+  const { stages, day } = useGoalContext()
+  const feedbackAdded = !!day.feedback
   const messages = useMessages(feedbackAdded)
   const [modal, setModal] = useState<ModalType>()
   const renderCompete = stages.length === day.stage && feedbackAdded
@@ -50,8 +46,8 @@ function OwnerControl({ goal }: OwnerControlProps) {
           {messages.doneButtonText}
         </Button>
       )}
-      {modal === ModalType.Tasks && <ModalTasks goal={goal} onClose={closeModal} />}
-      {modal === ModalType.Completion && <ModalCompletion goal={goal} onClose={closeModal} />}
+      {modal === ModalType.Tasks && <ModalTasks onClose={closeModal} />}
+      {modal === ModalType.Completion && <ModalCompletion onClose={closeModal} />}
     </Box>
   )
 }

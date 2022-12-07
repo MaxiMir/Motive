@@ -2,14 +2,11 @@ import { Box, Typography } from '@mui/material'
 import { styled } from '@mui/system'
 import { useIntl } from 'react-intl'
 import { getUserHref } from '@href'
-import { UserBaseDto } from '@dto'
+import useGoalContext from '@features/user/components/GoalCurrent/hooks/useGoalContext'
 import UserLink from '@components/User/UserLink'
 
-interface InheritedProps {
-  owner: UserBaseDto
-}
-
-function Inheritance({ owner }: InheritedProps) {
+function Inheritance() {
+  const { owner } = useGoalContext()
   const { name, nickname, avatar } = owner
   const { locale, formatMessage } = useIntl()
   const href = getUserHref(nickname)

@@ -14,7 +14,7 @@ function RatingPage() {
 
   return (
     <PageFeature title={metaTags.title} description={metaTags.description}>
-      {data?.content && <RatingFeature {...data.content} tab={tab} />}
+      {data && <RatingFeature {...data} tab={tab} />}
     </PageFeature>
   )
 }

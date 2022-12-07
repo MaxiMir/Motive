@@ -1,12 +1,12 @@
 import { Box, Typography, Tooltip } from '@mui/material'
-import { UserDetailDto } from '@dto'
+import { UserPageDto } from '@dto'
 import useFormatDate from '@hooks/useFormatDate'
 import AppIcon from '@ui/AppIcon'
 import useMessages from './hooks/useMessages'
 
 interface InfoRowProps {
   icon: string
-  name: keyof UserDetailDto
+  name: keyof UserPageDto
   value?: string
 }
 

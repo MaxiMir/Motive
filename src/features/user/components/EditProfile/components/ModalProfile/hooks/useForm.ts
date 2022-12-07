@@ -13,12 +13,12 @@ import { getCurrentSearchParams, setSearchParams } from '@helpers/url'
 
 const getNextState = (page: UserPageDto, user: UserBaseDto): UserPageDto =>
   produce(page, (draft) => {
-    draft.content.name = user.name
-    draft.content.nickname = user.nickname
-    draft.content.avatar = user.avatar
-    draft.content.motto = user.motto
-    draft.content.location = user.location
-    draft.content.bio = user.bio
+    draft.name = user.name
+    draft.nickname = user.nickname
+    draft.avatar = user.avatar
+    draft.motto = user.motto
+    draft.location = user.location
+    draft.bio = user.bio
   })
 
 const useForm = (onSuccess: () => void) => {

@@ -1,25 +1,24 @@
 import dynamic from 'next/dynamic'
-import { GoalDto, MemberDto } from '@dto'
-import { getNextDayId } from './helper'
+import { MemberDto } from '@dto'
+import useNextDayId from './hooks/useNextDayId'
 
 const EndOfDay = dynamic(() => import('./components/EndOfDay'))
 const Done = dynamic(() => import('./components/Done'))
 
 interface CompletionProps {
-  goal: GoalDto
   forTomorrow: boolean
   clientMember: MemberDto
 }
 
-function Completion({ goal, forTomorrow, clientMember }: CompletionProps) {
-  const nextDayId = getNextDayId(goal)
+function Completion({ forTomorrow, clientMember }: CompletionProps) {
+  const nextDayId = useNextDayId()
 
   return (
     <>
       {!nextDayId ? (
-        <Done goal={goal} forTomorrow={forTomorrow} />
+        <Done forTomorrow={forTomorrow} />
       ) : (
-        <EndOfDay goal={goal} nextDayId={nextDayId} forTomorrow={forTomorrow} clientMember={clientMember} />
+        <EndOfDay nextDayId={nextDayId} forTomorrow={forTomorrow} clientMember={clientMember} />
       )}
     </>
   )

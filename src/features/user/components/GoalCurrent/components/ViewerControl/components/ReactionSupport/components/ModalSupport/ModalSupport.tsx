@@ -1,6 +1,6 @@
 import { Field, Form, FormikProvider } from 'formik'
 import { Box, Typography } from '@mui/material'
-import { GoalDto, UserBaseDto } from '@dto'
+import { UserBaseDto } from '@dto'
 import ActionSubmit from '@components/Action/ActionSubmit'
 import ActionCancel from '@components/Action/ActionCancel/ActionCancel'
 import AppModal from '@ui/AppModal/AppModal'
@@ -12,14 +12,13 @@ import useForm from './hooks/useForm'
 import useMessages from './hooks/useMessages'
 
 interface ModalSupportProps {
-  goal: GoalDto
   owner: UserBaseDto
   onClose: () => void
 }
 
-function ModalSupport({ goal, owner, onClose }: ModalSupportProps) {
+function ModalSupport({ owner, onClose }: ModalSupportProps) {
   const messages = useMessages()
-  const form = useForm(goal, onClose)
+  const form = useForm(onClose)
   const { isSubmitting, handleSubmit } = form
 
   return (

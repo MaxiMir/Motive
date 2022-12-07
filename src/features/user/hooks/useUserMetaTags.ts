@@ -1,8 +1,8 @@
 import { useIntl } from 'react-intl'
 import { getImageSrc } from '@href'
-import { OGType, UserDetailDto } from '@dto'
+import { OGType, UserPageDto } from '@dto'
 
-const useUserMetaTags = (user?: UserDetailDto) => {
+const useUserMetaTags = (user?: UserPageDto) => {
   const { formatMessage } = useIntl()
 
   if (!user) {

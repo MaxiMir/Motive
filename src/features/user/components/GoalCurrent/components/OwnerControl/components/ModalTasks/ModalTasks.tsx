@@ -14,8 +14,8 @@ import {
   FormControl,
   Typography,
 } from '@mui/material'
-import { GoalDto } from '@dto'
 import { getMidnight, getTomorrow } from '@lib/date'
+import useGoalContext from '@features/user/components/GoalCurrent/hooks/useGoalContext'
 import AppIcon from '@ui/AppIcon'
 import AppHeader from '@ui/AppHeader'
 import { PaulIcon } from '@ui/icons'
@@ -28,17 +28,17 @@ import useForm from './hooks/useForm'
 import useMessages from './hooks/useMessages'
 
 interface ModalTasksProps {
-  goal: GoalDto
   onClose: () => void
 }
 
-function ModalTasks({ goal, onClose }: ModalTasksProps) {
+function ModalTasks({ onClose }: ModalTasksProps) {
   const messages = useMessages()
-  const form = useForm(goal, onClose)
+  const { day } = useGoalContext()
+  const form = useForm(onClose)
   const { isSubmitting, values, setFieldValue, handleSubmit } = form
   const todayValue = getMidnight().toISOString()
   const tomorrowValue = getTomorrow().toISOString()
-  const todayDisabled = todayValue === goal.day.date
+  const todayDisabled = todayValue === day.date
   const tooltipTitle = todayDisabled && messages.tooltipText
 
   const onChangeDate = (e: ChangeEvent<HTMLInputElement>) => {

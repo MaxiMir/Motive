@@ -10,9 +10,9 @@ import { getSearchParams } from '@helpers/url'
 
 function UserPage() {
   const { data } = useUserPage()
-  const metaTags = useUserMetaTags(data?.content)
+  const metaTags = useUserMetaTags(data)
 
-  return <PageFeature {...metaTags}>{data?.content && <UserFeature user={data.content} />}</PageFeature>
+  return <PageFeature {...metaTags}>{data && <UserFeature user={data} />}</PageFeature>
 }
 
 export const getServerSideProps: GetServerSideProps = async (ctx) => {

@@ -8,19 +8,20 @@ import tasksSchema from '@schemas/tasks'
 import { getTomorrow } from '@lib/date'
 import useChangeDayUrl from '@features/user/hooks/useChangeDayUrl'
 import useMutateGoals from '@features/user/hooks/useMutateGoals'
+import useGoalContext from '@features/user/components/GoalCurrent/hooks/useGoalContext'
 import GoalService from '@services/goal'
 import useSnackbar from '@hooks/useSnackbar'
 
-const getNextState = (goals: GoalDto[], day: DayDto, goalId: number) =>
+const getNextState = (goals: GoalDto[], id: number, day: DayDto) =>
   produce(goals, (draft) => {
-    const draftGoal = draft[draft.findIndex((g) => g.id === goalId)]
+    const draftGoal = draft[draft.findIndex((g) => g.id === id)]
     draftGoal.calendar.push({ id: day.id, date: day.date })
     draftGoal.day = day
   })
 
-function useForm(goal: GoalDto, onSuccess: () => void) {
-  const { id } = goal
+function useForm(onSuccess: () => void) {
   const { formatMessage } = useIntl()
+  const { id } = useGoalContext()
   const [enqueueSnackbar] = useSnackbar()
   const [goals, mutateGoals] = useMutateGoals()
   const changeDayUrl = useChangeDayUrl()
@@ -28,7 +29,7 @@ function useForm(goal: GoalDto, onSuccess: () => void) {
     onSuccess({ days }) {
       const day = days[days.length - 1]
       const message = formatMessage({ id: 'common.next-day-loading' })
-      mutateGoals(getNextState(goals, day, id))
+      mutateGoals(getNextState(goals, id, day))
       changeDayUrl(goals, id, day.id)
       enqueueSnackbar({ message, severity: 'success', icon: 'speaker' })
       onSuccess()

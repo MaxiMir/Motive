@@ -1,7 +1,7 @@
 import { MouseEvent, useState } from 'react'
 import dynamic from 'next/dynamic'
 import { useIntl } from 'react-intl'
-import { GoalDto, OwnershipDto } from '@dto'
+import { OwnershipDto } from '@dto'
 import AppMenuButton from '@ui/AppMenuButton'
 
 const Share = dynamic(() => import('@components/Share'))
@@ -9,13 +9,12 @@ const ModalLeave = dynamic(() => import('./components/ModalLeave'))
 const MenuList = dynamic(() => import('./components/MenuList/MenuList'))
 
 interface MenuProps {
-  goal: GoalDto
   title: string
   href: string
   clientOwnership: OwnershipDto
 }
 
-function Menu({ goal, title, href, clientOwnership }: MenuProps) {
+function Menu({ title, href, clientOwnership }: MenuProps) {
   const { formatMessage } = useIntl()
   const [anchorEl, setAnchorEl] = useState<HTMLElement | null>(null)
   const [withShare, setWithShare] = useState(false)
@@ -47,7 +46,6 @@ function Menu({ goal, title, href, clientOwnership }: MenuProps) {
       {anchorEl && (
         <MenuList
           anchorEl={anchorEl}
-          goalId={goal.id}
           clientOwnership={clientOwnership}
           onShare={onShare}
           onLeave={onLeave}
@@ -55,7 +53,7 @@ function Menu({ goal, title, href, clientOwnership }: MenuProps) {
         />
       )}
       {withShare && <Share title={title} href={href} onClose={onCloseShare} />}
-      {withLeave && <ModalLeave goal={goal} clientOwnership={clientOwnership} onClose={onLeaveClose} />}
+      {withLeave && <ModalLeave clientOwnership={clientOwnership} onClose={onLeaveClose} />}
     </>
   )
 }

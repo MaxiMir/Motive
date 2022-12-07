@@ -22,14 +22,14 @@ const getGoalNextState = (
 ): UserPageDto =>
   produce(page, (draft) => {
     if (!clientMember) {
-      const draftGoals = draft.content.goals
+      const draftGoals = draft.goals
       const draftGoal = draftGoals[draftGoals.findIndex((g) => g.id === goalId)]
       const draftTask = draftGoal.day.tasks[draftGoal.day.tasks.findIndex((t) => t.id === taskId)]
       draftTask.completed = completed
       return
     }
 
-    const draftMember = draft.content.membership.find((m) => m.id === clientMember.id)
+    const draftMember = draft.membership.find((m) => m.id === clientMember.id)
 
     if (!draftMember) return
 

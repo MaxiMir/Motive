@@ -2,13 +2,13 @@ import { useState } from 'react'
 import dynamic from 'next/dynamic'
 import { Menu, MenuItem } from '@mui/material'
 import { OwnershipDto } from '@dto'
+import useGoalContext from '@features/user/components/GoalCurrent/hooks/useGoalContext'
 import AppMenuItemContent from '@ui/AppMenuItemContent'
 import useMessages from './hooks/useMessages'
 
 const Report = dynamic(() => import('@components/Report'))
 
 interface MenuListProps {
-  goalId: number
   clientOwnership: OwnershipDto
   anchorEl: HTMLElement
   onShare: () => void
@@ -16,8 +16,9 @@ interface MenuListProps {
   onClose: () => void
 }
 
-function MenuList({ goalId, clientOwnership, anchorEl, onShare, onLeave, onClose }: MenuListProps) {
+function MenuList({ clientOwnership, anchorEl, onShare, onLeave, onClose }: MenuListProps) {
   const messages = useMessages()
+  const { id } = useGoalContext()
   const [withReport, setWithReport] = useState(false)
 
   const onOpenReport = () => setWithReport(true)
@@ -44,7 +45,7 @@ function MenuList({ goalId, clientOwnership, anchorEl, onShare, onLeave, onClose
           </MenuItem>
         )}
       </Menu>
-      {withReport && <Report entityId={goalId} type="goal" anchorEl={anchorEl} onClose={onCloseReport} />}
+      {withReport && <Report entityId={id} type="goal" anchorEl={anchorEl} onClose={onCloseReport} />}
     </>
   )
 }

@@ -1,5 +1,5 @@
 import { Box, Typography } from '@mui/material'
-import { GoalDto } from '@dto'
+import useGoalContext from '@features/user/components/GoalCurrent/hooks/useGoalContext'
 import ActionSubmit from '@components/Action/ActionSubmit'
 import ActionCancel from '@components/Action/ActionCancel/ActionCancel'
 import AppModal from '@ui/AppModal/AppModal'
@@ -8,17 +8,16 @@ import useSendStage from './hooks/useSendStage'
 import useMessages from './hooks/useMessages'
 
 interface ModalStageProps {
-  goal: GoalDto
   onClose: () => void
 }
 
-function ModalStage({ goal, onClose }: ModalStageProps) {
-  const { stages, day } = goal
+function ModalStage({ onClose }: ModalStageProps) {
+  const { id, stages, day } = useGoalContext()
   const messages = useMessages(stages.length === day.stage)
   const { isLoading, mutate } = useSendStage(onClose)
   const nextStage = day.stage + 1
 
-  const onClick = () => mutate({ id: goal.id, stage: nextStage })
+  const onClick = () => mutate({ id, stage: nextStage })
 
   return (
     <AppModal

@@ -1,8 +1,9 @@
 import produce from 'immer'
 import { useMutation, useQueryClient } from 'react-query'
 import { useIntl } from 'react-intl'
-import { DayCharacteristicName, DayCharacteristicUpdateDto, GoalDto, UserPageDto } from '@dto'
+import { DayCharacteristicName, DayCharacteristicUpdateDto, UserPageDto } from '@dto'
 import useUserContext from '@features/user/hooks/useUserContext'
+import useGoalContext from '@features/user/components/GoalCurrent/hooks/useGoalContext'
 import GoalService from '@services/goal'
 import useDebounceCb from '@hooks/useDebounceCb'
 import useSnackbar from '@hooks/useSnackbar'
@@ -11,7 +12,7 @@ import useOpenSignIn from '@hooks/useOpenSignIn'
 
 const getNextState = (page: UserPageDto, { id, dayId, add, name }: DayCharacteristicUpdateDto) =>
   produce(page, (draft) => {
-    const draftGoals = draft.content.goals
+    const draftGoals = draft.goals
     const draftGoal = draftGoals[draftGoals.findIndex((g) => g.id === id)]
     draftGoal.characteristic[name] += add ? 1 : -1
 
@@ -25,9 +26,9 @@ const getNextState = (page: UserPageDto, { id, dayId, add, name }: DayCharacteri
       : draftGoal.reactions[name].filter((r) => r !== dayId)
   })
 
-const useSetReaction = (goal: GoalDto, name: DayCharacteristicName, active: boolean) => {
-  const { id, day } = goal
+const useSetReaction = (name: DayCharacteristicName, active: boolean) => {
   const { formatMessage } = useIntl()
+  const { id, day } = useGoalContext()
   const client = useClient()
   const openSignIn = useOpenSignIn()
   const queryClient = useQueryClient()
@@ -48,7 +49,6 @@ const useSetReaction = (goal: GoalDto, name: DayCharacteristicName, active: bool
       const nameText = formatMessage({ id: `page.user.topic.${name}` })
       const messageTmpl = formatMessage({ id: 'page.user.topic.message' })
       const message = messageTmpl.replace('$0', nameText)
-
       add && enqueueSnackbar({ message, severity: 'success', icon: 'magic' })
     },
     onError(_, _1, context) {

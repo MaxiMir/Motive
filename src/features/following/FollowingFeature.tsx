@@ -8,10 +8,10 @@ const EmptyList = dynamic(() => import('./components/EmptyList/EmptyList'))
 const UserList = dynamic(() => import('./components/UserList'))
 
 interface FollowingFeatureProps {
-  users: UserDto[]
+  following: UserDto[]
 }
 
-function FollowingFeature({ users }: FollowingFeatureProps) {
+function FollowingFeature({ following }: FollowingFeatureProps) {
   const messages = useMessages()
 
   return (
@@ -19,7 +19,7 @@ function FollowingFeature({ users }: FollowingFeatureProps) {
       <AppHeader name="following" mb={4}>
         {messages.header}
       </AppHeader>
-      {!users.length ? <EmptyList /> : <UserList users={users} />}
+      {!following.length ? <EmptyList /> : <UserList users={following} />}
     </AppContainer>
   )
 }

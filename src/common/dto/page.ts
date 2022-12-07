@@ -15,26 +15,20 @@ export interface PossiblePageError {
   }
 }
 
-interface Page<T> {
-  content: T
-}
-
-export type SearchPageDto = Page<SearchPageContent>
-export type RatingPageDto = Page<RatingPageContent>
-export type FollowingPageDto = Page<FollowingPageContent>
-export type UserPageDto = Page<UserDetailDto>
-
-interface SearchPageContent {
+export interface SearchPageDto {
   q: string
   hashtags: HashtagDto[]
   goals: GoalDto[]
   users: UserDto[]
 }
 
-type RatingPageContent = { [k in MainCharacteristicName]: UserDto[] }
-type FollowingPageContent = UserDto[]
+export type RatingPageDto = { [k in MainCharacteristicName]: UserDto[] }
 
-export interface UserDetailDto extends UserDto {
+export interface FollowingPageDto {
+  following: UserDto[]
+}
+
+export interface UserPageDto extends UserDto {
   following: boolean
   goals: GoalDto[]
   membership: MemberDto[]

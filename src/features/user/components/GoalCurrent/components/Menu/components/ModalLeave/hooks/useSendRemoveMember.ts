@@ -9,14 +9,14 @@ import useSnackbar from '@hooks/useSnackbar'
 
 const getNextState = (page: UserPageDto, goalId: number, memberId: number, clientPage: boolean) =>
   produce(page, (draft: Draft<UserPageDto>) => {
-    draft.content.clientMembership = draft.content.clientMembership.filter((o) => o.id !== memberId)
+    draft.clientMembership = draft.clientMembership.filter((o) => o.id !== memberId)
 
     if (clientPage) {
-      draft.content.goals = draft.content.goals.filter((g) => g.id !== goalId)
+      draft.goals = draft.goals.filter((g) => g.id !== goalId)
       return
     }
 
-    const draftGoals = draft.content.goals
+    const draftGoals = draft.goals
     const draftGoal = draftGoals[draftGoals.findIndex((g) => g.id === goalId)]
     draftGoal.characteristic.members -= 1
   })

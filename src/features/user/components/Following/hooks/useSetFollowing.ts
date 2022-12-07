@@ -15,8 +15,8 @@ interface Options {
 
 const getNextState = (page: UserPageDto, add: boolean) =>
   produce(page, (draft) => {
-    draft.content.following = add
-    draft.content.characteristic.followers += add ? 1 : -1
+    draft.following = add
+    draft.characteristic.followers += add ? 1 : -1
   })
 
 function useSetFollowing(userId: number, following: boolean): () => void {

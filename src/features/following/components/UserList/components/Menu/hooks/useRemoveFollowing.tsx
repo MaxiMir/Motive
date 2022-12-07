@@ -18,11 +18,11 @@ interface Options {
 const getNextState = (page: FollowingPageDto, user: UserDto, index: number, add: boolean) =>
   produce(page, (draft) => {
     if (add) {
-      draft.content.splice(index, 0, user)
+      draft.following.splice(index, 0, user)
       return
     }
 
-    draft.content = draft.content.filter((u) => u.id !== user.id)
+    draft.following.splice(index, 1)
   })
 
 const useRemoveFollowing = () => {

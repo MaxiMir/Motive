@@ -1,6 +1,5 @@
 import { Field, FieldArray, Form, FormikProvider } from 'formik'
 import { Grid, Box, Typography } from '@mui/material'
-import { GoalDto } from '@dto'
 import useSelectPhoto from '@hooks/useSelectPhoto'
 import ActionSubmit from '@components/Action/ActionSubmit'
 import ActionCancel from '@components/Action/ActionCancel/ActionCancel'
@@ -16,13 +15,12 @@ import useForm from './hooks/useForm'
 import useMessages from './hooks/useMessages'
 
 interface ModalFeedbackProps {
-  goal: GoalDto
   onClose: () => void
 }
 
-function ModalFeedback({ goal, onClose }: ModalFeedbackProps) {
+function ModalFeedback({ onClose }: ModalFeedbackProps) {
   const messages = useMessages()
-  const form = useForm(goal, onClose)
+  const form = useForm(onClose)
   const { isSubmitting, values, setFieldValue, handleSubmit } = form
 
   const onSelectPhoto = useSelectPhoto(form)

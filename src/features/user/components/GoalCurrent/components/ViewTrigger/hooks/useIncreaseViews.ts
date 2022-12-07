@@ -1,14 +1,14 @@
 import { useMutation } from 'react-query'
-import { GoalDto } from '@dto'
 import useClient from '@hooks/useClient'
 import DayService from '@services/day'
+import useGoalContext from '@features/user/components/GoalCurrent/hooks/useGoalContext'
 
-const useIncreaseViews = (goal: GoalDto) => {
-  const { id } = goal.day
+const useIncreaseViews = () => {
   const client = useClient()
-  const enabled = client && client?.id !== goal.owner.id
+  const { owner, day } = useGoalContext()
+  const enabled = client && client?.id !== owner.id
 
-  return useMutation(() => (!enabled ? Promise.resolve() : DayService.incrementViews(id)))
+  return useMutation(() => (!enabled ? Promise.resolve() : DayService.incrementViews(day.id)))
 }
 
 export default useIncreaseViews

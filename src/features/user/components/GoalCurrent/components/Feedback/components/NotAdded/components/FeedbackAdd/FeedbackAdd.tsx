@@ -2,17 +2,15 @@ import { useState } from 'react'
 import dynamic from 'next/dynamic'
 import { useIntl } from 'react-intl'
 import { Button, Tooltip } from '@mui/material'
-import { GoalDto } from '@dto'
 import AppIcon from '@ui/AppIcon'
 
 const ModalFeedback = dynamic(() => import('./components/ModalFeedback'))
 
 interface FeedbackAddProps {
-  goal: GoalDto
   forTomorrow: boolean
 }
 
-function FeedbackAdd({ goal, forTomorrow }: FeedbackAddProps) {
+function FeedbackAdd({ forTomorrow }: FeedbackAddProps) {
   const { formatMessage } = useIntl()
   const [open, setOpen] = useState(false)
   const title = forTomorrow && formatMessage({ id: 'component.tooltip.tomorrow' })
@@ -37,7 +35,7 @@ function FeedbackAdd({ goal, forTomorrow }: FeedbackAddProps) {
           </Button>
         </span>
       </Tooltip>
-      {open && <ModalFeedback goal={goal} onClose={toggle} />}
+      {open && <ModalFeedback onClose={toggle} />}
     </>
   )
 }

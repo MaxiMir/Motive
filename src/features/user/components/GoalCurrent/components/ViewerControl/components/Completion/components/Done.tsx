@@ -1,18 +1,16 @@
 import { useState } from 'react'
 import dynamic from 'next/dynamic'
 import { Button, Tooltip } from '@mui/material'
-import { GoalDto } from '@dto'
 import AppEmoji from '@ui/AppEmoji'
 import { useIntl } from 'react-intl'
 
 const ModalCompletion = dynamic(() => import('@components/Modal/ModalCompletion'))
 
 interface DoneProps {
-  goal: GoalDto
   forTomorrow: boolean
 }
 
-function Done({ goal, forTomorrow }: DoneProps) {
+function Done({ forTomorrow }: DoneProps) {
   const { formatMessage } = useIntl()
   const [open, setOpen] = useState(false)
   const title = forTomorrow && formatMessage({ id: 'component.tooltip.tomorrow' })
@@ -37,7 +35,7 @@ function Done({ goal, forTomorrow }: DoneProps) {
           </Button>
         </span>
       </Tooltip>
-      {open && <ModalCompletion goal={goal} onClose={toggleModal} />}
+      {open && <ModalCompletion onClose={toggleModal} />}
     </>
   )
 }

@@ -2,8 +2,8 @@ import produce from 'immer'
 import { useMutation, useQueryClient } from 'react-query'
 import { useIntl } from 'react-intl'
 import { DayCharacteristicName, DayCharacteristicUpdateDto, UserPageDto } from '@dto'
-import useUserContext from '@features/user/hooks/useUserContext'
-import useGoalContext from '@features/user/components/GoalCurrent/hooks/useGoalContext'
+import { useUserContext } from '@features/user/hooks'
+import { useGoalContext } from '@features/user/components/GoalCurrent/hooks'
 import GoalService from '@services/goal'
 import useDebounceCb from '@hooks/useDebounceCb'
 import useSnackbar from '@hooks/useSnackbar'
@@ -26,7 +26,7 @@ const getNextState = (page: UserPageDto, { id, dayId, add, name }: DayCharacteri
       : draftGoal.reactions[name].filter((r) => r !== dayId)
   })
 
-const useSetReaction = (name: DayCharacteristicName, active: boolean) => {
+export const useSetReaction = (name: DayCharacteristicName, active: boolean) => {
   const { formatMessage } = useIntl()
   const { id, day } = useGoalContext()
   const client = useClient()
@@ -68,5 +68,3 @@ const useSetReaction = (name: DayCharacteristicName, active: boolean) => {
     sendDebounce(!active)
   }
 }
-
-export default useSetReaction

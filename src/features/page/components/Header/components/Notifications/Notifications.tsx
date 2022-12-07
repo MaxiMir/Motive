@@ -3,7 +3,7 @@ import dynamic from 'next/dynamic'
 import { useIntl } from 'react-intl'
 import { Badge, Button } from '@mui/material'
 import AppIcon from '@ui/AppIcon'
-import useNotifications from './hooks/useNotifications'
+import { useNotifications } from './hooks/useNotifications'
 import { checkOnBadgeContent } from './helper'
 
 const ModalNotifications = dynamic(() => import('./components/ModalNotifications'))

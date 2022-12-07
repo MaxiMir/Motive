@@ -1,7 +1,7 @@
 import { useIntl } from 'react-intl'
 import { MainCharacteristicName } from '@dto'
 
-const useMessages = (name: MainCharacteristicName) => {
+export const useMessages = (name: MainCharacteristicName) => {
   const { formatMessage } = useIntl()
 
   return {
@@ -11,5 +11,3 @@ const useMessages = (name: MainCharacteristicName) => {
     completion: name === MainCharacteristicName.Motivation && formatMessage({ id: 'common.goal-completion' }),
   }
 }
-
-export default useMessages

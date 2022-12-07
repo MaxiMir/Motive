@@ -3,11 +3,11 @@ import { v4 as uuidV4 } from 'uuid'
 import { useMutation } from 'react-query'
 import { useFormik } from 'formik'
 import { CreatedGoal, CreateGoalDto, GoalDto } from '@dto'
-import goalSchema from '@schemas/goal'
+import { goalSchema } from '@features/user/schemas'
 import { getMidnight } from '@lib/date'
 import { useIntl } from 'react-intl'
 import GoalService from '@services/goal'
-import useMutateGoals from '@features/user/hooks/useMutateGoals'
+import { useMutateGoals } from '@features/user/hooks'
 import useSnackbar from '@hooks/useSnackbar'
 import { scrollToElem } from '@helpers/document'
 
@@ -16,7 +16,7 @@ const getNextState = (goals: GoalDto[], goal: CreatedGoal) =>
     draft.push({ ...goal, day: goal.days[0] })
   })
 
-const useForm = (onSuccess: () => void) => {
+export const useForm = (onSuccess: () => void) => {
   const { formatMessage } = useIntl()
   const [enqueueSnackbar] = useSnackbar()
   const [goals, mutateGoal] = useMutateGoals()
@@ -44,5 +44,3 @@ const useForm = (onSuccess: () => void) => {
     },
   })
 }
-
-export default useForm

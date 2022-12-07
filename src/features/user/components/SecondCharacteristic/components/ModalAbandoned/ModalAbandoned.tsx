@@ -1,11 +1,11 @@
 import Image from 'next/image'
 import { Box, Typography } from '@mui/material'
-import useUserContext from '@features/user/hooks/useUserContext'
+import { useUserContext } from '@features/user/hooks'
 import useShowProgress from '@hooks/useShowProgress'
 import AppModal from '@ui/AppModal/AppModal'
 import OldPittRules from '@components/OldPitt/OldPittRules/OldPittRules'
 import webSrc from 'public/images/svg/web.svg'
-import useMessages from './hooks/useMessages'
+import { useMessages } from './hooks/useMessages'
 
 interface ModalAbandonedProps {
   onClose: () => void

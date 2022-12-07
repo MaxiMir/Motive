@@ -1,6 +1,6 @@
 import { format } from 'date-fns'
 import { CalendarDto, DayDto, GoalDto } from '@dto'
-import useChangeDay from './useChangeDay'
+import { useChangeDay } from './useChangeDay'
 
 const getDayKey = (date: Date | string) => {
   return format(date instanceof Date ? date : new Date(date), 'yyyy-MM-dd')
@@ -14,7 +14,7 @@ const getDateMap = (calendar: CalendarDto[] | undefined, day: DayDto) => {
   return calendar.reduce((acc, c) => ({ ...acc, [getDayKey(c.date)]: c.id }), {})
 }
 
-const useSwitchDay = (goal: GoalDto) => {
+export const useSwitchDay = (goal: GoalDto) => {
   const { id, day, calendar } = goal
   const { isLoading, mutate } = useChangeDay(id)
   const dateMap = getDateMap(calendar, day)
@@ -46,5 +46,3 @@ const useSwitchDay = (goal: GoalDto) => {
     shouldDisableDate,
   }
 }
-
-export default useSwitchDay

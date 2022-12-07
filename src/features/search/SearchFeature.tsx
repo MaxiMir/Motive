@@ -3,7 +3,7 @@ import { Grid, Box } from '@mui/material'
 import { GoalDto, HashtagDto, UserDto } from '@dto'
 import AppHeader from '@ui/AppHeader'
 import AppContainer from '@ui/AppContainer'
-import useMessages from './hooks/useMessages'
+import { useMessages } from './hooks/useMessages'
 import SearchForm from './components/SearchForm'
 import { getGradients } from './helpers/color'
 

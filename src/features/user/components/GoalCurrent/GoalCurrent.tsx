@@ -4,14 +4,12 @@ import { Box, Card } from '@mui/material'
 import { styled } from '@mui/system'
 import { getGoalDayHref, HashMark } from '@href'
 import { GoalDto, GoalCharacteristicName, MemberDto, MAIN_CHARACTERISTICS } from '@dto'
-import useUserContext from '@features/user/hooks/useUserContext'
+import { useUserContext } from '@features/user/hooks'
 import useClient from '@hooks/useClient'
 import CharacteristicGoal from '@components/Characteristic/CharacteristicGoal'
 import AppHeader from '@ui/AppHeader'
 import AppAccordion from '@ui/AppAccordion'
-import { GoalContext } from './hooks/useGoalContext'
-import useMessages from './hooks/useMessages'
-import useSwitchDay from './hooks/useSwitchDay'
+import { useSwitchDay, useMessages, GoalContext } from './hooks'
 import { getGoalInfo, getClientOwnership, checkOnShowDiscussion, redefineTasks, getMember } from './helper'
 import ViewTrigger from './components/ViewTrigger'
 import Calendar from './components/Calendar'
@@ -40,15 +38,14 @@ interface GoalCurrentProps {
 }
 
 function GoalCurrent({ goal, membership, clientPage, clientMembership }: GoalCurrentProps) {
+  const { id, name, hashtags, characteristic, owner, stages, day, inherited } = goal
   const client = useClient()
   const { id: userId, nickname } = useUserContext()
-  const { id, name, hashtags, characteristic, owner, stages, day, inherited } = goal
-  const { id: dayId, topicCount, date } = day
   const { query } = useRouter()
   const messages = useMessages()
   const clientOwnership = getClientOwnership(goal, client?.id, clientPage, clientMembership)
   const userMember = getMember(id, membership, userId)
-  const goalHref = getGoalDayHref(nickname, id, dayId)
+  const goalHref = getGoalDayHref(nickname, id, day.id)
   const goalInfo = getGoalInfo(goal, clientOwnership, userMember)
   const showDiscussion = checkOnShowDiscussion(query, id)
   const { isLoading, prev, next, onChangeDate, shouldDisableDate } = useSwitchDay(goal)
@@ -130,7 +127,7 @@ function GoalCurrent({ goal, membership, clientPage, clientMembership }: GoalCur
                   )}
                   <DayCard variant="outlined" sx={{ width: '100%', zIndex: 20, pb: 4 }}>
                     <Box display="flex" justifyContent="space-between" alignItems="baseline" py={1} px={3}>
-                      <DayAgo day={date} />
+                      <DayAgo day={day.date} />
                       <Box display="flex" alignItems="center">
                         <Date date={day.date} />
                         <Calendar
@@ -144,7 +141,7 @@ function GoalCurrent({ goal, membership, clientPage, clientMembership }: GoalCur
                       <AppAccordion
                         name="stage"
                         header={messages.stagesHeader}
-                        id={`stage-${dayId}`}
+                        id={`stage-${day.id}`}
                         ariaControls={messages.stagesAria}
                         defaultExpanded
                         details={<Stages forTomorrow={goalInfo.forTomorrow} completeStage={goalInfo.completeStage} />}
@@ -153,7 +150,7 @@ function GoalCurrent({ goal, membership, clientPage, clientMembership }: GoalCur
                     <AppAccordion
                       name="task"
                       header={messages.tasksHeader}
-                      id={`tasksContent-${dayId}`}
+                      id={`tasksContent-${day.id}`}
                       ariaControls={messages.tasksAria}
                       defaultExpanded
                       details={
@@ -187,16 +184,14 @@ function GoalCurrent({ goal, membership, clientPage, clientMembership }: GoalCur
                         <>
                           {messages.discussionHeader}{' '}
                           <Box component="span" color="zen.silent">
-                            {topicCount}
+                            {day.topicCount}
                           </Box>
                         </>
                       }
                       id={`${HashMark.Discussion}-${id}`}
                       ariaControls={messages.discussionAria}
                       defaultExpanded={showDiscussion}
-                      details={
-                        <Discussion dayId={dayId} owner={owner} count={topicCount} clientGoal={clientOwnership.goal} />
-                      }
+                      details={<Discussion owner={owner} count={day.topicCount} clientGoal={clientOwnership.goal} />}
                     />
                   </DayCard>
                   {next && (

@@ -1,7 +1,7 @@
 import { Box, Typography } from '@mui/material'
 import { MainCharacteristicName } from '@dto'
 import AppModal from '@ui/AppModal/AppModal'
-import useMessages from './hooks/useMessages'
+import { useMessages } from './hooks/useMessages'
 import Progress from './components/Progress'
 import ListItem from './components/ListItem'
 

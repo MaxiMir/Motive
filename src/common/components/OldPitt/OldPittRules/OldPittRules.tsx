@@ -1,6 +1,6 @@
 import { Typography } from '@mui/material'
 import AppDecorEmoji from '@ui/AppDecorEmoji'
-import useMessages from './hooks/useMessages'
+import { useMessages } from './hooks/useMessages'
 
 function OldPittRules() {
   const messages = useMessages()

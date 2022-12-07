@@ -6,23 +6,22 @@ import { getUserHref } from '@href'
 import { TopicDto, MessageType, ClientDto, UserBaseDto } from '@dto'
 import AppInput from '@ui/AppInput'
 import UserLink from '@components/User/UserLink'
-import useForm from './hooks/useForm'
+import { useForm } from './hooks/useForm'
 
 const CircularProgress = dynamic(() => import('@mui/material/CircularProgress'))
 const AppIcon = dynamic(() => import('@ui/AppIcon'))
 
 interface UserInputProps {
-  dayId: number
   user: ClientDto | UserBaseDto
   type: MessageType
   topicId?: number
   onAdd: (topic: TopicDto) => void
 }
 
-function UserInput({ dayId, user, type, topicId, onAdd }: UserInputProps) {
+function UserInput({ user, type, topicId, onAdd }: UserInputProps) {
   const { nickname, name, avatar } = user
   const { formatMessage } = useIntl()
-  const form = useForm(dayId, topicId, type, onAdd)
+  const form = useForm(topicId, type, onAdd)
   const { isSubmitting, values, handleSubmit } = form
   const href = getUserHref(nickname)
   const placeholder = formatMessage({ id: `page.user.user-input.${type}` })

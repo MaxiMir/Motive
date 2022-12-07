@@ -1,6 +1,6 @@
 import { MouseEvent, useState } from 'react'
 import dynamic from 'next/dynamic'
-import useUserContext from '@features/user/hooks/useUserContext'
+import { useUserContext } from '@features/user/hooks'
 import AvatarStatus from '@components/Avatar/AvatarStatus'
 
 const AppLightBox = dynamic(() => import('@ui/AppLightBox/AppLightBox'))

@@ -1,6 +1,6 @@
 import { useIntl } from 'react-intl'
 
-const useMessages = () => {
+export const useMessages = () => {
   const { formatMessage } = useIntl()
 
   return {
@@ -11,5 +11,3 @@ const useMessages = () => {
     closeLabel: formatMessage({ id: 'common.close' }),
   }
 }
-
-export default useMessages

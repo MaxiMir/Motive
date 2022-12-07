@@ -1,5 +1,5 @@
 import { Box, Typography, Tooltip } from '@mui/material'
-import useGoalContext from '@features/user/components/GoalCurrent/hooks/useGoalContext'
+import { useGoalContext } from '@features/user/components/GoalCurrent/hooks'
 import useFormatNumber from '@hooks/useFormatNumber'
 import AppEmoji from '@ui/AppEmoji'
 

@@ -4,7 +4,7 @@ import { Badge, Box, Tooltip } from '@mui/material'
 import useFormatDistance from '@hooks/useFormatDistance'
 import { Device } from '@helpers/navigator'
 import { getShortDistance } from './helper'
-import useMessages from './hooks/useMessages'
+import { useMessages } from './hooks/useMessages'
 
 const DeviceIcon = dynamic(() => import('./components/DeviceIcon'))
 

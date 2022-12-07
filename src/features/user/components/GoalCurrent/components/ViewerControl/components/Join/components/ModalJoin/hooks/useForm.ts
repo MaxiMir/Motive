@@ -3,13 +3,13 @@ import { useMutation } from 'react-query'
 import { useFormik } from 'formik'
 import { getUserHref, SearchParam } from '@href'
 import { CreateMemberDto } from '@dto'
-import memberSchema from '@schemas/member'
+import { memberSchema } from '@features/user/schemas'
 import MemberService from '@services/member'
 import { getMidnight } from '@lib/date'
 import useClient from '@hooks/useClient'
 import { setSearchParams } from '@helpers/url'
 
-const useForm = (goalId: number, dayId: number) => {
+export const useForm = (goalId: number, dayId: number) => {
   const client = useClient()
   const { push } = useRouter()
   const { mutate } = useMutation(MemberService.create, {
@@ -34,5 +34,3 @@ const useForm = (goalId: number, dayId: number) => {
     },
   })
 }
-
-export default useForm

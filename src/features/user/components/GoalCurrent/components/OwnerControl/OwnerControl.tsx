@@ -1,9 +1,9 @@
 import { useState } from 'react'
 import dynamic from 'next/dynamic'
 import { Box, Button, Tooltip } from '@mui/material'
-import useGoalContext from '@features/user/components/GoalCurrent/hooks/useGoalContext'
+import { useGoalContext } from '@features/user/components/GoalCurrent/hooks'
 import AppEmoji from '@ui/AppEmoji'
-import useMessages from './hooks/useMessages'
+import { useMessages } from './hooks/useMessages'
 
 const ModalCompletion = dynamic(() => import('@components/Modal/ModalCompletion'))
 const ModalTasks = dynamic(() => import('./components/ModalTasks'))

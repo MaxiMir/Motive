@@ -7,7 +7,7 @@ import useSnackbar from '@hooks/useSnackbar'
 import useClient from '@hooks/useClient'
 import useOpenSignIn from '@hooks/useOpenSignIn'
 
-const useSendReport = (entityId: number, type: ReportType, onSettled: () => void) => {
+export const useSendReport = (entityId: number, type: ReportType, onSettled: () => void) => {
   const { formatMessage } = useIntl()
   const client = useClient()
   const openSignIn = useOpenSignIn()
@@ -29,5 +29,3 @@ const useSendReport = (entityId: number, type: ReportType, onSettled: () => void
     mutate({ entityId, type, reason })
   }
 }
-
-export default useSendReport

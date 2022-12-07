@@ -1,7 +1,7 @@
 import { useIntl } from 'react-intl'
 import { SecondCharacteristicName } from '@dto'
 
-const useMessages = (name: SecondCharacteristicName) => {
+export const useMessages = (name: SecondCharacteristicName) => {
   const { formatMessage } = useIntl()
 
   return {
@@ -10,5 +10,3 @@ const useMessages = (name: SecondCharacteristicName) => {
     multipleGenitiveText: formatMessage({ id: `common.${name}-genitive` }),
   }
 }
-
-export default useMessages

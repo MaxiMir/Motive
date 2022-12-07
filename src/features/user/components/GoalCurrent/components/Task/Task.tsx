@@ -4,7 +4,7 @@ import { Box, Tooltip } from '@mui/material'
 import { MemberDto, TaskDto } from '@dto'
 import AppCheckbox from '@ui/AppCheckbox'
 import TaskLabel from './components/TaskLabel'
-import useSetCompleted from './hooks/useSetCompleted'
+import { useSetCompleted } from './hooks/useSetCompleted'
 
 const TaskDate = dynamic(() => import('./components/TaskDate'))
 

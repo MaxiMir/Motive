@@ -17,7 +17,7 @@ const partialQueryFn = (
   }
 }
 
-const useSubscription = (userId: number, count: number, name: SecondCharacteristicName) => {
+export const useSubscription = (userId: number, count: number, name: SecondCharacteristicName) => {
   const queryFn = partialQueryFn(userId, name)
   const getNextPageParam = partialGetNextPageParam(count, TAKE)
   const { isLoading, data, fetchNextPage, hasNextPage } = useInfiniteQuery([name, userId, count], queryFn, {
@@ -29,5 +29,3 @@ const useSubscription = (userId: number, count: number, name: SecondCharacterist
 
   return { isLoading, followers, checkOnLoadMore, fetchNextPage }
 }
-
-export default useSubscription

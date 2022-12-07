@@ -1,10 +1,10 @@
 import dynamic from 'next/dynamic'
 import { Box } from '@mui/material'
 import { TopicDto, MessageType, UserBaseDto, ClientDto } from '@dto'
-import useAddMessage from '@features/user/hooks/useAddMessage'
+import { useAddMessage } from '@features/user/hooks'
 import useClient from '@hooks/useClient'
 import { AppListProps } from '@ui/AppList'
-import useDiscussion from './hooks/useDiscussion'
+import { useDiscussion } from './hooks/useDiscussion'
 
 const AppList = dynamic<AppListProps<TopicDto>>(() => import('@ui/AppList'))
 const UserInput = dynamic(() => import('./components/UserInput'))
@@ -13,15 +13,14 @@ const Loader = dynamic(() => import('./components/Loader'))
 const Topic = dynamic(() => import('./components/Topic'))
 
 interface DiscussionProps {
-  dayId: number
   owner: UserBaseDto
   count: number
   clientGoal: boolean
 }
 
-function Discussion({ dayId, owner, count, clientGoal }: DiscussionProps) {
+function Discussion({ owner, count, clientGoal }: DiscussionProps) {
   const client = useClient()
-  const { isLoading, topics, checkOnLoadMore, fetchNextPage } = useDiscussion(dayId, count)
+  const { isLoading, topics, checkOnLoadMore, fetchNextPage } = useDiscussion()
   const onAdd = useAddMessage()
   const showInput = !!client && (!count || !!topics.length) && !clientGoal
   const minHeight = topics.length || showInput ? 130 : undefined
@@ -29,7 +28,7 @@ function Discussion({ dayId, owner, count, clientGoal }: DiscussionProps) {
   return (
     <Box display="flex" flexDirection="column" gap={2} flex={1} minHeight={minHeight} maxHeight={500}>
       <>
-        {showInput && <UserInput dayId={dayId} user={client as ClientDto} type={MessageType.Question} onAdd={onAdd} />}
+        {showInput && <UserInput user={client as ClientDto} type={MessageType.Question} onAdd={onAdd} />}
         {!count ? (
           <Nothing />
         ) : (

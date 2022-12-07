@@ -2,11 +2,13 @@ import { useFormik } from 'formik'
 import { useIntl } from 'react-intl'
 import { useMutation } from 'react-query'
 import { CreateMessageDto, MessageType, TopicDto } from '@dto'
+import { useGoalContext } from '@features/user/components/GoalCurrent/hooks'
 import TopicService from '@services/topic'
 import useSnackbar from '@hooks/useSnackbar'
 
-const useForm = (dayId: number, topicId: number | undefined, type: MessageType, onAdd: (topic: TopicDto) => void) => {
+export const useForm = (topicId: number | undefined, type: MessageType, onAdd: (topic: TopicDto) => void) => {
   const { formatMessage } = useIntl()
+  const { day } = useGoalContext()
   const [enqueueSnackbar] = useSnackbar()
   const { mutateAsync } = useMutation(TopicService.create, {
     onSuccess() {
@@ -17,7 +19,7 @@ const useForm = (dayId: number, topicId: number | undefined, type: MessageType, 
 
   return useFormik<CreateMessageDto>({
     initialValues: {
-      dayId,
+      dayId: day.id,
       text: '',
       topicId,
       type,
@@ -29,5 +31,3 @@ const useForm = (dayId: number, topicId: number | undefined, type: MessageType, 
     },
   })
 }
-
-export default useForm

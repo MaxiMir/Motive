@@ -3,7 +3,7 @@ import { Box, IconButton, Typography } from '@mui/material'
 import { copyHandler } from '@helpers/navigator'
 import useSnackbar from '@hooks/useSnackbar'
 import AppIcon from '@ui/AppIcon'
-import useMessages from './hooks/useMessages'
+import { useMessages } from './hooks/useMessages'
 
 interface WalletProps {
   name: string

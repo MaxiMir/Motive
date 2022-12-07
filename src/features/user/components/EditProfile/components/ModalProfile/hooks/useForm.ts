@@ -5,9 +5,8 @@ import { useIntl } from 'react-intl'
 import { useMutation } from 'react-query'
 import { getUserHref } from '@href'
 import { UpdateUserDto, UserBaseDto, UserPageDto } from '@dto'
-import profileSchema from '@schemas/profile'
-import useMutateUserPage from '@features/user/hooks/useMutateUserPage'
-import useUserContext from '@features/user/hooks/useUserContext'
+import { profileSchema } from '@features/user/schemas'
+import { useMutateUserPage, useUserContext } from '@features/user/hooks'
 import UserService from '@services/user'
 import { getCurrentSearchParams, setSearchParams } from '@helpers/url'
 
@@ -21,7 +20,7 @@ const getNextState = (page: UserPageDto, user: UserBaseDto): UserPageDto =>
     draft.bio = user.bio
   })
 
-const useForm = (onSuccess: () => void) => {
+export const useForm = (onSuccess: () => void) => {
   const user = useUserContext()
   const { locale } = useIntl()
   const router = useRouter()
@@ -68,5 +67,3 @@ const useForm = (onSuccess: () => void) => {
     },
   })
 }
-
-export default useForm

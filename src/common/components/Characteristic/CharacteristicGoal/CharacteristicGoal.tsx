@@ -2,7 +2,7 @@ import { Box, Typography, Tooltip, IconButton } from '@mui/material'
 import { GoalCharacteristicName } from '@dto'
 import useFormatNumber from '@hooks/useFormatNumber'
 import AppEmoji from '@ui/AppEmoji'
-import useMessages from './hooks/useMessages'
+import { useMessages } from './hooks/useMessages'
 
 interface CharacteristicGoalProps {
   name: GoalCharacteristicName | 'runningDays'

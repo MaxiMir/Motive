@@ -1,6 +1,6 @@
 import React from 'react'
 import dynamic from 'next/dynamic'
-import useReadImage from './hooks/useReadImage'
+import { useReadImage } from './hooks/useReadImage'
 
 const CircularProgress = dynamic(() => import('@mui/material/CircularProgress'))
 const Img = dynamic(() => import('./components/Img'))

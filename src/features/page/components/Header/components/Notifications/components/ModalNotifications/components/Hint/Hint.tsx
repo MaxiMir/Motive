@@ -1,6 +1,6 @@
 import { Alert, Box, Button } from '@mui/material'
 import AppIcon from '@ui/AppIcon'
-import useMessages from './hooks/useMessages'
+import { useMessages } from './hooks/useMessages'
 
 interface HintProps {
   onClick: () => void

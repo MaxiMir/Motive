@@ -3,8 +3,8 @@ import { useIntl } from 'react-intl'
 import { useMutation } from 'react-query'
 import { MemberDto, UserPageDto } from '@dto'
 import MemberService from '@services/member'
-import useMutateUserPage from '@features/user/hooks/useMutateUserPage'
-import useGoalContext from '@features/user/components/GoalCurrent/hooks/useGoalContext'
+import { useMutateUserPage } from '@features/user/hooks'
+import { useGoalContext } from '@features/user/components/GoalCurrent/hooks'
 import useSnackbar from '@hooks/useSnackbar'
 import { clickOnElem } from '@helpers/document'
 
@@ -18,7 +18,7 @@ const getNextState = (page: UserPageDto, member: MemberDto): UserPageDto =>
     draftMember.updated = member.updated
   })
 
-const useSendEndOfDay = () => {
+export const useSendEndOfDay = () => {
   const { id } = useGoalContext()
   const { formatMessage } = useIntl()
   const [enqueueSnackbar] = useSnackbar()
@@ -33,5 +33,3 @@ const useSendEndOfDay = () => {
     },
   })
 }
-
-export default useSendEndOfDay

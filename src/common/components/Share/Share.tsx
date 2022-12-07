@@ -1,7 +1,7 @@
 import dynamic from 'next/dynamic'
 import { useIntl } from 'react-intl'
 import useSnackbar from '@hooks/useSnackbar'
-import useMenu from './hooks/useMenu'
+import { useMenu } from './hooks/useMenu'
 
 const Menu = dynamic(() => import('./components/Menu'))
 

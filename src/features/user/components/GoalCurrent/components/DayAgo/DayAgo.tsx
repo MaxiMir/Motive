@@ -1,5 +1,5 @@
 import { Typography } from '@mui/material'
-import useDayAgo from './hooks/useDayAgo'
+import { useDayAgo } from './hooks/useDayAgo'
 
 interface DateNameProps {
   day: string

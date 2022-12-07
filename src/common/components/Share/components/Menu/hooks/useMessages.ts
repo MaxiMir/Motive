@@ -1,6 +1,6 @@
 import { useIntl } from 'react-intl'
 
-const useMessages = () => {
+export const useMessages = () => {
   const { formatMessage } = useIntl()
 
   return {
@@ -9,5 +9,3 @@ const useMessages = () => {
     copyText: formatMessage({ id: 'component.share.copy' }),
   }
 }
-
-export default useMessages

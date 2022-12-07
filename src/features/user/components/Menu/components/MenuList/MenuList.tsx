@@ -2,8 +2,7 @@ import { useState } from 'react'
 import dynamic from 'next/dynamic'
 import { useIntl } from 'react-intl'
 import { Menu, MenuItem } from '@mui/material'
-import useUserContext from '@features/user/hooks/useUserContext'
-import useCheckOnClientPage from '@features/user/hooks/useCheckOnClientPage'
+import { useCheckOnClientPage, useUserContext } from '@features/user/hooks'
 import AppMenuItemContent from '@ui/AppMenuItemContent'
 
 const Report = dynamic(() => import('@components/Report'))

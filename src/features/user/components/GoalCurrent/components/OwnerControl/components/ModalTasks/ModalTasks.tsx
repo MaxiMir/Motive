@@ -15,7 +15,7 @@ import {
   Typography,
 } from '@mui/material'
 import { getMidnight, getTomorrow } from '@lib/date'
-import useGoalContext from '@features/user/components/GoalCurrent/hooks/useGoalContext'
+import { useGoalContext } from '@features/user/components/GoalCurrent/hooks'
 import AppIcon from '@ui/AppIcon'
 import AppHeader from '@ui/AppHeader'
 import { PaulIcon } from '@ui/icons'
@@ -24,8 +24,7 @@ import ActionSubmit from '@components/Action/ActionSubmit'
 import ActionCancel from '@components/Action/ActionCancel/ActionCancel'
 import TaskField from '@components/Task/TaskField/TaskField'
 import OldPittRules from '@components/OldPitt/OldPittRules/OldPittRules'
-import useForm from './hooks/useForm'
-import useMessages from './hooks/useMessages'
+import { useForm, useMessages } from './hooks'
 
 interface ModalTasksProps {
   onClose: () => void

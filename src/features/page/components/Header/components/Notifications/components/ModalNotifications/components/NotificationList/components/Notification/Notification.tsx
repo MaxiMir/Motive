@@ -10,8 +10,7 @@ import AppEmoji from '@ui/AppEmoji'
 import AppIcon from '@ui/AppIcon'
 import useFormatDistance from '@hooks/useFormatDistance'
 import { toShortString } from '@helpers/string'
-import useUpdateRead from './hooks/useUpdateRead'
-import useMessages from './hooks/useMessages'
+import { useUpdateRead, useMessages } from './hooks'
 import { getNotificationInfo } from './helper'
 
 const AppInView = dynamic(() => import('@ui/AppInView'))

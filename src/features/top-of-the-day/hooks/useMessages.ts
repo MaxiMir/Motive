@@ -1,6 +1,6 @@
 import { useIntl } from 'react-intl'
 
-const useMessages = () => {
+export const useMessages = () => {
   const { formatMessage } = useIntl()
 
   return {
@@ -8,5 +8,3 @@ const useMessages = () => {
     text: formatMessage({ id: 'page.top.dev' }),
   }
 }
-
-export default useMessages

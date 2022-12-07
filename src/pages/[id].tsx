@@ -3,9 +3,7 @@ import { dehydrate, QueryClient } from 'react-query'
 import { getSession } from 'next-auth/react'
 import { PossiblePageError } from '@dto'
 import PageFeature, { PageService } from '@features/page'
-import UserFeature from '@features/user'
-import useUserPage from '@features/user/hooks/useUserPage'
-import useUserMetaTags from '@features/user/hooks/useUserMetaTags'
+import UserFeature, { useUserMetaTags, useUserPage } from '@features/user'
 import { getSearchParams } from '@helpers/url'
 
 function UserPage() {

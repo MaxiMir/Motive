@@ -2,7 +2,7 @@ import { useIntl } from 'react-intl'
 import { getImageSrc } from '@href'
 import { OGType, UserPageDto } from '@dto'
 
-const useUserMetaTags = (user?: UserPageDto) => {
+export const useUserMetaTags = (user?: UserPageDto) => {
   const { formatMessage } = useIntl()
 
   if (!user) {
@@ -24,5 +24,3 @@ const useUserMetaTags = (user?: UserPageDto) => {
     type: OGType.Profile,
   }
 }
-
-export default useUserMetaTags

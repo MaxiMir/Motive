@@ -1,7 +1,7 @@
 import dynamic from 'next/dynamic'
 import { Box } from '@mui/material'
 import { DAY_CHARACTERISTIC, OwnershipDto, UserBaseDto } from '@dto'
-import useGoalContext from '@features/user/components/GoalCurrent/hooks/useGoalContext'
+import { useGoalContext } from '@features/user/components/GoalCurrent/hooks'
 import ReactionWithSend from './components/ReactionWithSend'
 import ReactionSupport from './components/ReactionSupport'
 import { checkOnCompletion } from './helper'

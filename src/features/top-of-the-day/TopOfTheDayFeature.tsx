@@ -1,7 +1,7 @@
 import { Box, Typography } from '@mui/material'
 import AppHeader from '@ui/AppHeader'
 import AppContainer from '@ui/AppContainer'
-import useMessages from './hooks/useMessages'
+import { useMessages } from './hooks/useMessages'
 
 function TopOfTheDayFeature() {
   const messages = useMessages()

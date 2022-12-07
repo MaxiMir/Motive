@@ -2,9 +2,9 @@ import { useState } from 'react'
 import dynamic from 'next/dynamic'
 import { Menu, MenuItem } from '@mui/material'
 import { OwnershipDto } from '@dto'
-import useGoalContext from '@features/user/components/GoalCurrent/hooks/useGoalContext'
+import { useGoalContext } from '@features/user/components/GoalCurrent/hooks'
 import AppMenuItemContent from '@ui/AppMenuItemContent'
-import useMessages from './hooks/useMessages'
+import { useMessages } from './hooks/useMessages'
 
 const Report = dynamic(() => import('@components/Report'))
 

@@ -10,7 +10,7 @@ import { getNotificationHref } from '@helpers/notification'
 import useSnackbar from '@hooks/useSnackbar'
 import useClient from '@hooks/useClient'
 
-const useSocket = () => {
+export const useSocket = () => {
   const { formatMessage } = useIntl()
   const client = useClient()
   const { push } = useRouter()
@@ -56,5 +56,3 @@ const useSocket = () => {
     }
   }, [queryClient])
 }
-
-export default useSocket

@@ -1,6 +1,6 @@
 import { useIntl } from 'react-intl'
 
-const useMessages = () => {
+export const useMessages = () => {
   const { formatMessage } = useIntl()
   const coversMessageTmpl = formatMessage({ id: 'component.old-pitt-rules.covers' })
   const eatsMessageTmpl = formatMessage({ id: 'component.old-pitt-rules.eats' })
@@ -12,5 +12,3 @@ const useMessages = () => {
     eatsText: eatsMessageTmpl.replace('$0', process.env.NEXT_PUBLIC_EAT_AFTER_DAYS || ''),
   }
 }
-
-export default useMessages

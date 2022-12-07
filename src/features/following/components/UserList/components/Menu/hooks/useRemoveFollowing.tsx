@@ -25,7 +25,7 @@ const getNextState = (page: FollowingPageDto, user: UserDto, index: number, add:
     draft.following.splice(index, 1)
   })
 
-const useRemoveFollowing = () => {
+export const useRemoveFollowing = () => {
   const client = useClient()
   const { formatMessage } = useIntl()
   const openSignIn = useOpenSignIn()
@@ -81,5 +81,3 @@ const useRemoveFollowing = () => {
     mutate({ user, index, add: false })
   }
 }
-
-export default useRemoveFollowing

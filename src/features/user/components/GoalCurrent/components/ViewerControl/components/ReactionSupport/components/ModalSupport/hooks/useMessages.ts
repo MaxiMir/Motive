@@ -1,6 +1,6 @@
 import { useIntl } from 'react-intl'
 
-const useMessages = () => {
+export const useMessages = () => {
   const { formatMessage } = useIntl()
 
   return {
@@ -17,5 +17,3 @@ const useMessages = () => {
     accordionEncouragement: formatMessage({ id: 'component.modal-support.accordion-encouragement' }),
   }
 }
-
-export default useMessages

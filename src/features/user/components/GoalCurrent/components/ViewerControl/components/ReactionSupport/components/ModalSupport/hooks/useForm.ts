@@ -1,12 +1,12 @@
 import { useFormik } from 'formik'
 import { useMutation } from 'react-query'
 import { MessageType } from '@dto'
-import messageSchema from '@schemas/message'
-import useAddMessage from '@features/user/hooks/useAddMessage'
-import useGoalContext from '@features/user/components/GoalCurrent/hooks/useGoalContext'
+import { messageSchema } from '@features/user/schemas'
+import { useAddMessage } from '@features/user/hooks'
+import { useGoalContext } from '@features/user/components/GoalCurrent/hooks'
 import TopicService from '@services/topic'
 
-const useForm = (onSuccess: () => void) => {
+export const useForm = (onSuccess: () => void) => {
   const { day } = useGoalContext()
   const addTopic = useAddMessage()
   const { mutate } = useMutation(TopicService.create, {
@@ -28,5 +28,3 @@ const useForm = (onSuccess: () => void) => {
     },
   })
 }
-
-export default useForm

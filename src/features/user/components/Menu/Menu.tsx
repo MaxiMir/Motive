@@ -3,7 +3,7 @@ import dynamic from 'next/dynamic'
 import { useRouter } from 'next/router'
 import { useIntl } from 'react-intl'
 import { Box } from '@mui/material'
-import useUserContext from '@features/user/hooks/useUserContext'
+import { useUserContext } from '@features/user/hooks'
 import AppMenuButton from '@ui/AppMenuButton'
 
 const Share = dynamic(() => import('@components/Share'))

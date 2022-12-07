@@ -1,6 +1,6 @@
 import { useIntl } from 'react-intl'
 
-const useMessages = () => {
+export const useMessages = () => {
   const { formatMessage } = useIntl()
 
   return {
@@ -14,5 +14,3 @@ const useMessages = () => {
     discussionAria: formatMessage({ id: 'page.user.goal-current.discussion-aria' }),
   }
 }
-
-export default useMessages

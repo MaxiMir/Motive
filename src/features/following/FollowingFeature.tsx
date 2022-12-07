@@ -2,7 +2,7 @@ import dynamic from 'next/dynamic'
 import { UserDto } from '@dto'
 import AppHeader from '@ui/AppHeader'
 import AppContainer from '@ui/AppContainer'
-import useMessages from './hooks/useMessages'
+import { useMessages } from './hooks/useMessages'
 
 const EmptyList = dynamic(() => import('./components/EmptyList/EmptyList'))
 const UserList = dynamic(() => import('./components/UserList'))

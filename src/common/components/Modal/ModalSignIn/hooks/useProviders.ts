@@ -3,7 +3,7 @@ import { getProviders } from 'next-auth/react'
 
 type Providers = Awaited<ReturnType<typeof getProviders>>
 
-const useProviders = () => {
+export const useProviders = () => {
   const [providers, setProviders] = useState<Providers>()
 
   useEffect(() => {
@@ -12,5 +12,3 @@ const useProviders = () => {
 
   return providers
 }
-
-export default useProviders

@@ -4,7 +4,7 @@ import { Button, Tooltip } from '@mui/material'
 import { MemberDto } from '@dto'
 import { getTomorrow } from '@lib/date'
 import AppEmoji from '@ui/AppEmoji'
-import useSendEndOfDay from './hooks/useSendEndOfDay'
+import { useSendEndOfDay } from './hooks/useSendEndOfDay'
 
 const CircularProgress = dynamic(() => import('@mui/material/CircularProgress'))
 

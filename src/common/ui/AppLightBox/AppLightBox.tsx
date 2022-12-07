@@ -1,7 +1,7 @@
 import dynamic from 'next/dynamic'
 import 'react-image-lightbox/style.css'
 import { getImageSrc } from '@href'
-import useMessages from './hooks/useMessages'
+import { useMessages } from './hooks/useMessages'
 
 const Lightbox = dynamic(() => import('react-image-lightbox'))
 

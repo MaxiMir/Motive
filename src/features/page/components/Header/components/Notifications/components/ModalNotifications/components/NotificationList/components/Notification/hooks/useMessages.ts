@@ -1,7 +1,7 @@
 import { useIntl } from 'react-intl'
 import { NotificationType } from '@dto'
 
-const useMessages = (type: NotificationType) => {
+export const useMessages = (type: NotificationType) => {
   const { formatMessage } = useIntl()
 
   return {
@@ -9,5 +9,3 @@ const useMessages = (type: NotificationType) => {
     viewTitle: formatMessage({ id: 'common.view' }),
   }
 }
-
-export default useMessages

@@ -2,7 +2,7 @@ import { ChangeEvent, useRef } from 'react'
 import { Button, Chip } from '@mui/material'
 import { styled } from '@mui/system'
 import AppEmoji from '@ui/AppEmoji'
-import useMessages from './hooks/useMessages'
+import { useMessages } from './hooks/useMessages'
 
 interface VideoInputProps {
   disabled: boolean

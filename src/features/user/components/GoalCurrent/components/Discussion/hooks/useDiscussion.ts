@@ -2,6 +2,7 @@ import { GetNextPageParamFunction, useInfiniteQuery } from 'react-query'
 import { TopicDto } from '@dto'
 import { partialCheckOnLoadMore } from '@helpers/partial'
 import TopicService from '@services/topic'
+import { useGoalContext } from '@features/user/components/GoalCurrent/hooks'
 
 const TAKE = 20
 const PRELOAD_DIFF = 5
@@ -14,14 +15,15 @@ const partialGetNextPageParam = (count: number): GetNextPageParamFunction<TopicD
   }
 }
 
-const useDiscussion = (dayId: number, count: number) => {
-  const getNextPageParam = partialGetNextPageParam(count)
+export const useDiscussion = () => {
+  const { day } = useGoalContext()
+  const getNextPageParam = partialGetNextPageParam(day.topicCount)
   const { isLoading, data, fetchNextPage, hasNextPage } = useInfiniteQuery(
-    ['discussion', dayId],
-    ({ pageParam = 0 }) => TopicService.get({ day: dayId }, pageParam, TAKE),
+    ['discussion', day.id],
+    ({ pageParam = 0 }) => TopicService.get({ day: day.id }, pageParam, TAKE),
     {
       getNextPageParam,
-      enabled: !!count,
+      enabled: !!day.topicCount,
     },
   )
   const topics = data?.pages.flat() || []
@@ -29,5 +31,3 @@ const useDiscussion = (dayId: number, count: number) => {
 
   return { isLoading, topics, checkOnLoadMore, fetchNextPage }
 }
-
-export default useDiscussion

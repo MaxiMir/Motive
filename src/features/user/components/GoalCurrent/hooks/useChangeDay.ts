@@ -2,8 +2,7 @@ import produce from 'immer'
 import { AxiosError } from 'axios'
 import { useMutation, UseMutationResult } from 'react-query'
 import { DayDto, GoalDto } from '@dto'
-import useChangeDayUrl from '@features/user/hooks/useChangeDayUrl'
-import useMutateGoals from '@features/user/hooks/useMutateGoals'
+import { useChangeDayUrl, useMutateGoals } from '@features/user/hooks'
 import DayService from '@services/day'
 
 const getGoalNextState = (goals: GoalDto[], goalId: number, day: DayDto): GoalDto[] =>
@@ -12,7 +11,7 @@ const getGoalNextState = (goals: GoalDto[], goalId: number, day: DayDto): GoalDt
     draftGoal.day = day
   })
 
-const useChangeDay = (goalId: number): UseMutationResult<DayDto, AxiosError, number> => {
+export const useChangeDay = (goalId: number): UseMutationResult<DayDto, AxiosError, number> => {
   const [goals, mutateGoals] = useMutateGoals()
   const changeDayUrl = useChangeDayUrl()
 
@@ -23,5 +22,3 @@ const useChangeDay = (goalId: number): UseMutationResult<DayDto, AxiosError, num
     },
   })
 }
-
-export default useChangeDay

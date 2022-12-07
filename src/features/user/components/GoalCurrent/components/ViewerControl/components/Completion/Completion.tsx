@@ -1,6 +1,6 @@
 import dynamic from 'next/dynamic'
 import { MemberDto } from '@dto'
-import useNextDayId from './hooks/useNextDayId'
+import { useNextDayId } from './hooks/useNextDayId'
 
 const EndOfDay = dynamic(() => import('./components/EndOfDay'))
 const Done = dynamic(() => import('./components/Done'))

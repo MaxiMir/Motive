@@ -1,6 +1,6 @@
 import { useIntl } from 'react-intl'
 
-const useMessages = (isFinal: boolean) => {
+export const useMessages = (isFinal: boolean) => {
   const { formatMessage } = useIntl()
 
   return {
@@ -11,5 +11,3 @@ const useMessages = (isFinal: boolean) => {
     nextTitle: formatMessage({ id: `page.user.modal-stage.title-${isFinal ? 'final' : 'next'}` }),
   }
 }
-
-export default useMessages

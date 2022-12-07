@@ -1,4 +1,4 @@
-import useSocket from './hooks/useSocket'
+import { useSocket } from './hooks/useSocket'
 
 function EventSocket() {
   useSocket()

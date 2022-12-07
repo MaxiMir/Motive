@@ -2,11 +2,11 @@ import produce from 'immer'
 import { useFormik } from 'formik'
 import { useIntl } from 'react-intl'
 import { useMutation } from 'react-query'
-import feedbackSchema from '@schemas/feedback'
+import { feedbackSchema } from '@features/user/schemas'
 import { FeedbackDto, GoalDto } from '@dto'
 import FeedbackService from '@services/feedback'
-import useMutateGoals from '@features/user/hooks/useMutateGoals'
-import useGoalContext from '@features/user/components/GoalCurrent/hooks/useGoalContext'
+import { useMutateGoals } from '@features/user/hooks'
+import { useGoalContext } from '@features/user/components/GoalCurrent/hooks'
 import useSnackbar from '@hooks/useSnackbar'
 
 const getNextState = (goals: GoalDto[], goalId: number, feedback: FeedbackDto): GoalDto[] =>
@@ -21,7 +21,7 @@ interface Values {
   video: ''
 }
 
-const useForm = (onSuccess: () => void) => {
+export const useForm = (onSuccess: () => void) => {
   const { id, day } = useGoalContext()
   const { formatMessage } = useIntl()
   const [enqueueSnackbar] = useSnackbar()
@@ -51,5 +51,3 @@ const useForm = (onSuccess: () => void) => {
     },
   })
 }
-
-export default useForm

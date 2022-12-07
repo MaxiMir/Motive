@@ -2,7 +2,7 @@ import { Box, Typography } from '@mui/material'
 import { styled } from '@mui/system'
 import { useIntl } from 'react-intl'
 import { getUserHref } from '@href'
-import useGoalContext from '@features/user/components/GoalCurrent/hooks/useGoalContext'
+import { useGoalContext } from '@features/user/components/GoalCurrent/hooks'
 import UserLink from '@components/User/UserLink'
 
 function Inheritance() {

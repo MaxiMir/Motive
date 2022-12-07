@@ -2,7 +2,7 @@ import produce, { Draft } from 'immer'
 import { useIntl } from 'react-intl'
 import { useMutation, useQueryClient } from 'react-query'
 import { UserPageDto } from '@dto'
-import useUserContext from '@features/user/hooks/useUserContext'
+import { useUserContext } from '@features/user/hooks'
 import MemberService from '@services/member'
 import useClient from '@hooks/useClient'
 import useSnackbar from '@hooks/useSnackbar'
@@ -21,7 +21,7 @@ const getNextState = (page: UserPageDto, goalId: number, memberId: number, clien
     draftGoal.characteristic.members -= 1
   })
 
-const useSendRemoveMember = (goalId: number, clientPage: boolean) => {
+export const useSendRemoveMember = (goalId: number, clientPage: boolean) => {
   const { formatMessage } = useIntl()
   const client = useClient()
   const { nickname } = useUserContext()
@@ -41,5 +41,3 @@ const useSendRemoveMember = (goalId: number, clientPage: boolean) => {
     },
   })
 }
-
-export default useSendRemoveMember

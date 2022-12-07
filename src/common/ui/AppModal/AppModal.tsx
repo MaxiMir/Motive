@@ -11,7 +11,7 @@ import {
 } from '@mui/material'
 import AppScrollbar from '@ui/AppScrollbar'
 import AppIcon from '@ui/AppIcon'
-import useMessages from './hooks/useMessages'
+import { useMessages } from './hooks/useMessages'
 
 const DialogActions = dynamic(() => import('@mui/material/DialogActions'))
 const Box = dynamic(() => import('@mui/material/Box'))

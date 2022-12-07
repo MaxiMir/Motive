@@ -5,7 +5,7 @@ import useClient from '@hooks/useClient'
 import useFormatNumber from '@hooks/useFormatNumber'
 import AppEmoji from '@ui/AppEmoji'
 import { checkOnDisabled } from './helper'
-import useSetLike from './hooks/useSetLike'
+import { useSetLike } from './hooks/useSetLike'
 
 interface LikeButtonProps {
   message: MessageDto

@@ -1,10 +1,10 @@
 import { useMutation } from 'react-query'
 import { useFormik } from 'formik'
 import { SearchDto } from '@dto'
-import searchSchema from '@schemas/search'
+import { searchSchema } from '@features/search/schemas'
 import { PageService } from '@features/page'
 
-const useForm = (initial: string) => {
+export const useForm = (initial: string) => {
   const { mutate } = useMutation(({ q }: SearchDto) => PageService.getSearch({ params: { q } }), {
     onSuccess(data) {
       console.log('data', data)
@@ -21,5 +21,3 @@ const useForm = (initial: string) => {
     },
   })
 }
-
-export default useForm

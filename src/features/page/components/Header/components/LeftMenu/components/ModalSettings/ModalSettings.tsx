@@ -6,7 +6,7 @@ import { ThemeContext } from '@context/themeContext'
 import useSetLocale, { Locale } from '@hooks/useSetLocale'
 import AppModal from '@ui/AppModal/AppModal'
 import AppEmoji from '@ui/AppEmoji'
-import useMessages from './hooks/useMessages'
+import { useMessages } from './hooks/useMessages'
 
 interface ModalLanguageProps {
   onClose: () => void

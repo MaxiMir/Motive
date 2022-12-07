@@ -1,6 +1,6 @@
 import { useIntl } from 'react-intl'
 
-const useMessages = () => {
+export const useMessages = () => {
   const { formatMessage } = useIntl()
 
   return {
@@ -13,5 +13,3 @@ const useMessages = () => {
     loadingText: formatMessage({ id: 'page.user.modal-feedback.loading' }),
   }
 }
-
-export default useMessages

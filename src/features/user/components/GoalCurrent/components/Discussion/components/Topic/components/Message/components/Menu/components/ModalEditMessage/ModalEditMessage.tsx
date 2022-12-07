@@ -6,8 +6,7 @@ import ActionSubmit from '@components/Action/ActionSubmit'
 import ActionCancel from '@components/Action/ActionCancel/ActionCancel'
 import AppModal from '@ui/AppModal/AppModal'
 import AppInput from '@ui/AppInput'
-import useForm from './hooks/useForm'
-import useMessages from './hooks/useMessages'
+import { useForm, useMessages } from './hooks'
 
 interface ModalEditMessageProps {
   message: MessageDto

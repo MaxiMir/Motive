@@ -7,7 +7,7 @@ import appleSrc from 'public/images/svg/apple.svg'
 import metaSrc from 'public/images/svg/meta.svg'
 import githubSrc from 'public/images/svg/github.svg'
 import googleSrc from 'public/images/svg/google.svg'
-import useProviders from './hooks/useProviders'
+import { useProviders } from './hooks/useProviders'
 
 const SOURCE = {
   Apple: appleSrc,

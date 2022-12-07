@@ -3,7 +3,7 @@ import { useIntl } from 'react-intl'
 import { InfiniteData, useMutation, useQueryClient } from 'react-query'
 import { useFormik } from 'formik'
 import { MessageDto, TopicDto } from '@dto'
-import messageSchema from '@schemas/message'
+import { messageSchema } from '@features/user/schemas'
 import TopicService from '@services/topic'
 import useSnackbar from '@hooks/useSnackbar'
 
@@ -27,7 +27,7 @@ const getNextState = (discussion: InfiniteData<TopicDto[]>, message: MessageDto)
   })
 }
 
-const useForm = (initialValues: MessageDto, onSuccess: () => void) => {
+export const useForm = (initialValues: MessageDto, onSuccess: () => void) => {
   const { formatMessage } = useIntl()
   const [enqueueSnackbar] = useSnackbar()
   const queryClient = useQueryClient()
@@ -51,5 +51,3 @@ const useForm = (initialValues: MessageDto, onSuccess: () => void) => {
     },
   })
 }
-
-export default useForm

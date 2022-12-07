@@ -8,8 +8,7 @@ import AppFadeIcon from '@ui/AppFadeIcon'
 import AppInput from '@ui/AppInput'
 import AppAccordion from '@ui/AppAccordion'
 import AppDecorEmoji from '@ui/AppDecorEmoji'
-import useForm from './hooks/useForm'
-import useMessages from './hooks/useMessages'
+import { useForm, useMessages } from './hooks'
 
 interface ModalSupportProps {
   owner: UserBaseDto

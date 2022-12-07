@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from 'react'
 
 type UseSlowClose = (onClose: () => void) => [closing: boolean, onCloseCombine: () => void]
 
-const useSlowClose: UseSlowClose = (onClose) => {
+export const useSlowClose: UseSlowClose = (onClose) => {
   const timerRef = useRef<NodeJS.Timeout>()
   const [closing, setClosing] = useState(false)
 
@@ -21,5 +21,3 @@ const useSlowClose: UseSlowClose = (onClose) => {
 
   return [closing, onCloseCombine]
 }
-
-export default useSlowClose

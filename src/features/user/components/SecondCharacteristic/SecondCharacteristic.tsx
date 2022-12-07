@@ -4,7 +4,7 @@ import { Box, Button, Typography } from '@mui/material'
 import { ConfirmationDto, SecondCharacteristicName } from '@dto'
 import useFormatNumber from '@hooks/useFormatNumber'
 import { getWordDeclination } from '@helpers/string'
-import useMessages from './hooks/useMessages'
+import { useMessages } from './hooks/useMessages'
 
 const ModalSubscription = dynamic(() => import('./components/ModalSubscription'))
 const ModalNoCompleted = dynamic(() => import('./components/ModalNoCompleted'))

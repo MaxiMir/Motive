@@ -1,6 +1,6 @@
 import { useIntl } from 'react-intl'
 
-const useMessages = () => {
+export const useMessages = () => {
   const { formatMessage } = useIntl()
 
   return {
@@ -10,5 +10,3 @@ const useMessages = () => {
     subtitle: formatMessage({ id: 'page.user.modal-leave.subtitle' }),
   }
 }
-
-export default useMessages

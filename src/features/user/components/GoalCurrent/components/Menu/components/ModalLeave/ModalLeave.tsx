@@ -1,12 +1,12 @@
 import { Box, Typography } from '@mui/material'
 import { OwnershipDto } from '@dto'
-import useGoalContext from '@features/user/components/GoalCurrent/hooks/useGoalContext'
+import { useGoalContext } from '@features/user/components/GoalCurrent/hooks'
 import ActionSubmit from '@components/Action/ActionSubmit'
 import ActionCancel from '@components/Action/ActionCancel/ActionCancel'
 import AppModal from '@ui/AppModal/AppModal'
 import AppFadeIcon from '@ui/AppFadeIcon'
-import useSendRemoveMember from './hooks/useSendRemoveMember'
-import useMessages from './hooks/useMessages'
+import { useSendRemoveMember } from './hooks/useSendRemoveMember'
+import { useMessages } from './hooks/useMessages'
 
 interface ModalLeaveProps {
   clientOwnership: OwnershipDto

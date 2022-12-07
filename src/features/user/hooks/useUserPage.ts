@@ -3,7 +3,7 @@ import { useQuery } from 'react-query'
 import { PageService } from '@features/page'
 import { parseUrl } from '@helpers/url'
 
-const useUserPage = () => {
+export const useUserPage = () => {
   const { asPath } = useRouter()
   const { base, searchParams } = parseUrl(asPath)
   const nickname = base.replace('/', '')
@@ -12,5 +12,3 @@ const useUserPage = () => {
     staleTime: 5_000,
   })
 }
-
-export default useUserPage

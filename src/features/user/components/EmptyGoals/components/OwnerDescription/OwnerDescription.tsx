@@ -1,7 +1,7 @@
 import Link from 'next/link'
 import { Box, Typography } from '@mui/material'
 import { Route } from '@href'
-import useMessages from './hooks/useMessages'
+import { useMessages } from './hooks/useMessages'
 
 function OwnerDescription() {
   const messages = useMessages()

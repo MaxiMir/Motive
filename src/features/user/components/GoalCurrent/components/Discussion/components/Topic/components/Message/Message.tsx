@@ -5,7 +5,7 @@ import { getUserHref } from '@href'
 import { MessageDto } from '@dto'
 import useFormatDistance from '@hooks/useFormatDistance'
 import UserLink from '@components/User/UserLink'
-import useMessages from './hooks/useMessages'
+import { useMessages } from './hooks/useMessages'
 import Menu from './components/Menu'
 import LikeButton from './components/LikeButton'
 

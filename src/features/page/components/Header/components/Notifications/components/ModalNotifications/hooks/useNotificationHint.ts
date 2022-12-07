@@ -2,7 +2,7 @@ import { useState } from 'react'
 
 type UseNotificationHint = () => [show: boolean, onClose: () => void]
 
-const useNotificationHint: UseNotificationHint = () => {
+export const useNotificationHint: UseNotificationHint = () => {
   const notificationSupport = 'Notification' in window
   const [show, setShow] = useState(notificationSupport && Notification.permission === 'default')
 
@@ -23,5 +23,3 @@ const useNotificationHint: UseNotificationHint = () => {
 
   return [show, onClick]
 }
-
-export default useNotificationHint

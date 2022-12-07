@@ -4,17 +4,16 @@ import { NotificationDto } from '@dto'
 import NotificationService from '@services/notification'
 import useClient from '@hooks/useClient'
 
-const getNextState = (notifications: NotificationDto[], id: number) => {
-  return produce(notifications, (draft) => {
+const getNextState = (notifications: NotificationDto[], id: number) =>
+  produce(notifications, (draft) => {
     const draftNotification = draft.find((d) => d.id === id)
 
     if (!draftNotification) return
 
     draftNotification.read = true
   })
-}
 
-const useUpdateRead = () => {
+export const useUpdateRead = () => {
   const queryClient = useQueryClient()
   const client = useClient()
 
@@ -27,5 +26,3 @@ const useUpdateRead = () => {
     },
   })
 }
-
-export default useUpdateRead

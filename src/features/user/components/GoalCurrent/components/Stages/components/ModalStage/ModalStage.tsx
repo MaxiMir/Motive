@@ -1,11 +1,10 @@
 import { Box, Typography } from '@mui/material'
-import useGoalContext from '@features/user/components/GoalCurrent/hooks/useGoalContext'
+import { useGoalContext } from '@features/user/components/GoalCurrent/hooks'
 import ActionSubmit from '@components/Action/ActionSubmit'
 import ActionCancel from '@components/Action/ActionCancel/ActionCancel'
 import AppModal from '@ui/AppModal/AppModal'
 import AppFlyIcon from '@ui/AppFlyIcon'
-import useSendStage from './hooks/useSendStage'
-import useMessages from './hooks/useMessages'
+import { useSendStage, useMessages } from './hooks'
 
 interface ModalStageProps {
   onClose: () => void

@@ -1,6 +1,6 @@
 import { useIntl } from 'react-intl'
 
-const useMessages = () => {
+export const useMessages = () => {
   const { formatMessage } = useIntl()
 
   return {
@@ -10,5 +10,3 @@ const useMessages = () => {
     link: formatMessage({ id: 'page.user.owner-description.link' }),
   }
 }
-
-export default useMessages

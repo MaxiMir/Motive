@@ -1,6 +1,6 @@
 import { useIntl } from 'react-intl'
 
-const useMessages = () => {
+export const useMessages = () => {
   const { formatMessage } = useIntl()
 
   return {
@@ -17,5 +17,3 @@ const useMessages = () => {
     detailsEnd: formatMessage({ id: 'component.modal-completion.details-end' }),
   }
 }
-
-export default useMessages

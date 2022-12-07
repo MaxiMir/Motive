@@ -1,6 +1,6 @@
 import { ReactNode } from 'react'
 import AppInView from '@ui/AppInView'
-import useIncreaseViews from './hooks/useIncreaseViews'
+import { useIncreaseViews } from './hooks/useIncreaseViews'
 
 interface ViewTriggerProps {
   children: ReactNode

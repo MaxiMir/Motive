@@ -1,6 +1,6 @@
 import { useIntl } from 'react-intl'
 
-const useMessages = () => {
+export const useMessages = () => {
   const { formatMessage } = useIntl()
 
   return {
@@ -19,5 +19,3 @@ const useMessages = () => {
     accordingQuestions: formatMessage({ id: 'page.user.modal-join.according-questions' }),
   }
 }
-
-export default useMessages

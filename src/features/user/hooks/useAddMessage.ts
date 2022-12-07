@@ -1,10 +1,10 @@
+import produce from 'immer'
 import { InfiniteData, useQueryClient } from 'react-query'
 import { GoalDto, TopicDto } from '@dto'
-import useMutateGoals from '@features/user/hooks/useMutateGoals'
-import produce from 'immer'
+import { useMutateGoals } from '@features/user/hooks/useMutateGoals'
 
-const getNextState = (discussion: InfiniteData<TopicDto[]>, topic: TopicDto) => {
-  return produce(discussion, (draft) => {
+const getNextState = (discussion: InfiniteData<TopicDto[]>, topic: TopicDto) =>
+  produce(discussion, (draft) => {
     if (!topic.answer) {
       draft.pages = [[topic], ...draft.pages]
       return
@@ -16,7 +16,6 @@ const getNextState = (discussion: InfiniteData<TopicDto[]>, topic: TopicDto) => 
       draftTopic.answer = topic.answer
     }
   })
-}
 
 const getGoalNextState = (goalId: number, goals: GoalDto[]) =>
   produce(goals, (draft) => {
@@ -24,7 +23,7 @@ const getGoalNextState = (goalId: number, goals: GoalDto[]) =>
     draftGoal.day.topicCount += 1
   })
 
-const useAddMessage = () => {
+export const useAddMessage = () => {
   const queryClient = useQueryClient()
   const [goals, mutateGoals] = useMutateGoals()
 
@@ -37,5 +36,3 @@ const useAddMessage = () => {
     )
   }
 }
-
-export default useAddMessage

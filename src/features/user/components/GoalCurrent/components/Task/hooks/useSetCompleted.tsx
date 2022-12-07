@@ -5,7 +5,7 @@ import { useIntl } from 'react-intl'
 import { useMutation } from 'react-query'
 import { MemberDto, UserPageDto } from '@dto'
 import TaskService from '@services/task'
-import useMutateUserPage from '@features/user/hooks/useMutateUserPage'
+import { useMutateUserPage } from '@features/user/hooks'
 import useSnackbar from '@hooks/useSnackbar'
 import useClient from '@hooks/useClient'
 
@@ -38,7 +38,7 @@ const getGoalNextState = (
       : draftMember.completedTasks.filter((id) => id === taskId)
   })
 
-const useSetCompleted = (goalId: number, id: number, rest: number, clientMember?: MemberDto) => {
+export const useSetCompleted = (goalId: number, id: number, rest: number, clientMember?: MemberDto) => {
   const timerRef = useRef<NodeJS.Timeout>()
   const { formatMessage } = useIntl()
   const client = useClient()
@@ -82,5 +82,3 @@ const useSetCompleted = (goalId: number, id: number, rest: number, clientMember?
     })
   }
 }
-
-export default useSetCompleted

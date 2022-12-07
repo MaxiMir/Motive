@@ -3,7 +3,7 @@ import useSnackbar from '@hooks/useSnackbar'
 
 type UseMenu = (title: string, url: string, onCloseShare: () => void) => [open: boolean, onClose: () => void]
 
-const useMenu: UseMenu = (title, url, onCloseShare) => {
+export const useMenu: UseMenu = (title, url, onCloseShare) => {
   const [open, setOpen] = useState(false)
   const [, closeSnackbar] = useSnackbar()
 
@@ -27,5 +27,3 @@ const useMenu: UseMenu = (title, url, onCloseShare) => {
 
   return [open, onClose]
 }
-
-export default useMenu

@@ -1,6 +1,6 @@
 import produce from 'immer'
 import { GoalDto, UserPageDto } from '@dto'
-import useMutateUserPage from './useMutateUserPage'
+import { useMutateUserPage } from '@features/user/hooks/useMutateUserPage'
 
 const getNextState = (page: UserPageDto, goals: GoalDto[]) =>
   produce(page, (draft) => {
@@ -9,7 +9,7 @@ const getNextState = (page: UserPageDto, goals: GoalDto[]) =>
 
 type UseMutateGoals = () => [GoalDto[], (goals: GoalDto[]) => void]
 
-const useMutateGoals: UseMutateGoals = () => {
+export const useMutateGoals: UseMutateGoals = () => {
   const [page, mutatePage] = useMutateUserPage()
 
   const mutateGoals = (goals: GoalDto[]) => {
@@ -18,5 +18,3 @@ const useMutateGoals: UseMutateGoals = () => {
 
   return [page.goals, mutateGoals]
 }
-
-export default useMutateGoals

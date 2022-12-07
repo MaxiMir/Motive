@@ -2,7 +2,7 @@ import produce from 'immer'
 import { useIntl } from 'react-intl'
 import { useMutation, useQueryClient } from 'react-query'
 import { UserPageDto } from '@dto'
-import useUserContext from '@features/user/hooks/useUserContext'
+import { useUserContext } from '@features/user/hooks'
 import SubscriptionService from '@services/subscription'
 import useSnackbar from '@hooks/useSnackbar'
 import useDebounceCb from '@hooks/useDebounceCb'
@@ -19,7 +19,9 @@ const getNextState = (page: UserPageDto, add: boolean) =>
     draft.characteristic.followers += add ? 1 : -1
   })
 
-function useSetFollowing(userId: number, following: boolean): () => void {
+type UseSetFollowing = (userId: number, following: boolean) => () => void
+
+export const useSetFollowing: UseSetFollowing = (userId, following) => {
   const { formatMessage } = useIntl()
   const client = useClient()
   const openSignIn = useOpenSignIn()
@@ -59,5 +61,3 @@ function useSetFollowing(userId: number, following: boolean): () => void {
     sendDebounce(!following)
   }
 }
-
-export default useSetFollowing

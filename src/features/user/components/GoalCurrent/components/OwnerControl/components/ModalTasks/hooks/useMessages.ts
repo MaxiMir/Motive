@@ -1,6 +1,6 @@
 import { useIntl } from 'react-intl'
 
-const useMessages = () => {
+export const useMessages = () => {
   const { formatMessage } = useIntl()
 
   return {
@@ -18,5 +18,3 @@ const useMessages = () => {
     tooltipText: formatMessage({ id: 'page.user.modal-tasks.tooltip' }),
   }
 }
-
-export default useMessages

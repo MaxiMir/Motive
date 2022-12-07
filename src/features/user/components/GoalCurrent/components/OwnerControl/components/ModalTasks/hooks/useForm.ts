@@ -4,11 +4,10 @@ import { useIntl } from 'react-intl'
 import { useFormik } from 'formik'
 import { useMutation } from 'react-query'
 import { CreateDayDto, DayDto, GoalDto } from '@dto'
-import tasksSchema from '@schemas/tasks'
+import { tasksSchema } from '@features/user/schemas'
 import { getTomorrow } from '@lib/date'
-import useChangeDayUrl from '@features/user/hooks/useChangeDayUrl'
-import useMutateGoals from '@features/user/hooks/useMutateGoals'
-import useGoalContext from '@features/user/components/GoalCurrent/hooks/useGoalContext'
+import { useChangeDayUrl, useMutateGoals } from '@features/user/hooks'
+import { useGoalContext } from '@features/user/components/GoalCurrent/hooks'
 import GoalService from '@services/goal'
 import useSnackbar from '@hooks/useSnackbar'
 
@@ -19,7 +18,7 @@ const getNextState = (goals: GoalDto[], id: number, day: DayDto) =>
     draftGoal.day = day
   })
 
-function useForm(onSuccess: () => void) {
+export const useForm = (onSuccess: () => void) => {
   const { formatMessage } = useIntl()
   const { id } = useGoalContext()
   const [enqueueSnackbar] = useSnackbar()
@@ -48,5 +47,3 @@ function useForm(onSuccess: () => void) {
     },
   })
 }
-
-export default useForm

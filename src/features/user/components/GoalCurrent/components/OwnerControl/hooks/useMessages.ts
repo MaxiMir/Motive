@@ -1,6 +1,6 @@
 import { useIntl } from 'react-intl'
 
-const useMessages = (feedbackAdded: boolean) => {
+export const useMessages = (feedbackAdded: boolean) => {
   const { formatMessage } = useIntl()
 
   return {
@@ -9,5 +9,3 @@ const useMessages = (feedbackAdded: boolean) => {
     nextButtonText: formatMessage({ id: 'common.next' }),
   }
 }
-
-export default useMessages

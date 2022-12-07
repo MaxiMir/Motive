@@ -1,5 +1,5 @@
 import { Box, Typography } from '@mui/material'
-import useMessages from './hooks/useMessages'
+import { useMessages } from './hooks/useMessages'
 
 function Slogan() {
   const messages = useMessages()

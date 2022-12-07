@@ -4,7 +4,7 @@ import { SearchParam } from '@href'
 import { GoalDto } from '@dto'
 import { getCurrentSearchParams, setSearchParams } from '@helpers/url'
 
-const useChangeDayUrl = () => {
+export const useChangeDayUrl = () => {
   const { locale } = useIntl()
   const { asPath, pathname, push } = useRouter()
 
@@ -18,5 +18,3 @@ const useChangeDayUrl = () => {
     push(pathname, as, { shallow: true, locale })
   }
 }
-
-export default useChangeDayUrl

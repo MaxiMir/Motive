@@ -1,9 +1,9 @@
 import { Badge } from '@mui/material'
 import { PickersDay } from '@mui/x-date-pickers'
 import { DatePicker } from '@mui/x-date-pickers/DatePicker'
-import useGoalContext from '@features/user/components/GoalCurrent/hooks/useGoalContext'
+import { useGoalContext } from '@features/user/components/GoalCurrent/hooks'
 import AppEmoji from '@ui/AppEmoji'
-import useMessages from './hooks/useMessages'
+import { useMessages } from './hooks/useMessages'
 import { getBorders } from './helper'
 import Input from './components/Input'
 

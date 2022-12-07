@@ -2,7 +2,7 @@ import { useIntl } from 'react-intl'
 import { Menu, MenuItem } from '@mui/material'
 import { ReportType } from '@dto'
 import AppMenuItemContent from '@ui/AppMenuItemContent'
-import useSendReport from './hooks/useSendReport'
+import { useSendReport } from './hooks/useSendReport'
 
 interface ReportProps {
   entityId: number

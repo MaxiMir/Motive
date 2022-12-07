@@ -1,6 +1,6 @@
 import AppEmoji from '@ui/AppEmoji'
 import AppGradientButton from '@ui/AppGradientButton'
-import useMessages from './hooks/useMessages'
+import { useMessages } from './hooks/useMessages'
 
 interface ActionCloseProps {
   onClick: () => void

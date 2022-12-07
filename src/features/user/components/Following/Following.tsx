@@ -1,8 +1,8 @@
 import { useIntl } from 'react-intl'
 import { Button } from '@mui/material'
-import useUserContext from '@features/user/hooks/useUserContext'
+import { useUserContext } from '@features/user/hooks'
 import AppIcon from '@ui/AppIcon'
-import useSetFollowing from './hooks/useSetFollowing'
+import { useSetFollowing } from './hooks/useSetFollowing'
 
 function Following() {
   const { id, following } = useUserContext()

@@ -4,8 +4,8 @@ import { IconButton } from '@mui/material'
 import { styled } from '@mui/system'
 import AppInput from '@ui/AppInput'
 import AppIcon from '@ui/AppIcon'
+import { useForm } from './hooks/useForm'
 import AutoSend from './components/AutoSend'
-import useForm from './hooks/useForm'
 
 interface SearchFormProps {
   q?: string

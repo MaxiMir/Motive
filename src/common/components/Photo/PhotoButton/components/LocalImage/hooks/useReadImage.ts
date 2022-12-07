@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 
-const useReadImage = (file: File): string | undefined => {
+export const useReadImage = (file: File): string | undefined => {
   const [source, setSource] = useState<string>()
 
   useEffect(() => {
@@ -11,5 +11,3 @@ const useReadImage = (file: File): string | undefined => {
 
   return source
 }
-
-export default useReadImage

@@ -4,9 +4,12 @@ import { differenceInCalendarDays } from 'date-fns'
 import { HashMark, SearchParam } from '@href'
 import { GoalDto, MemberDto, OwnershipDto, TaskDto } from '@dto'
 import { getMidnight } from '@lib/date'
-import { getMember } from '@features/user/helper'
 
 const SHOW_WEB_AFTER_DAYS = Number(process.env.NEXT_PUBLIC_SHOW_WEB_AFTER_DAYS || '')
+
+export const getMember = (goalId: number, membership: MemberDto[], userId?: number): MemberDto | undefined => {
+  return !userId ? undefined : membership.find((m) => m.userId === userId && m.goalId === goalId)
+}
 
 export const getClientOwnership = (
   goal: GoalDto,
@@ -21,8 +24,9 @@ export const getClientOwnership = (
   return { page: clientPage, goal: clientGoal, member: clientMember }
 }
 
-export const checkOnShowDiscussion = (query: ParsedUrlQuery, id: number): boolean =>
-  query[SearchParam.ScrollTo] === HashMark.Discussion && query[SearchParam.ScrollId] === id.toString()
+export const checkOnShowDiscussion = (query: ParsedUrlQuery, id: number): boolean => {
+  return query[SearchParam.ScrollTo] === HashMark.Discussion && query[SearchParam.ScrollId] === id.toString()
+}
 
 interface GoalInfo {
   daysGoneForOwner: number

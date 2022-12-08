@@ -1,8 +1,7 @@
-import { AxiosError } from 'axios'
 import { useIntl } from 'react-intl'
 import { useMutation } from 'react-query'
-import { CreateReportDto, ReportType } from '@dto'
-import ReportService from '@services/report'
+import { ReportType } from '@features/report/dto'
+import { ReportService } from '@features/report/services'
 import useSnackbar from '@hooks/useSnackbar'
 import useClient from '@hooks/useClient'
 import useOpenSignIn from '@hooks/useOpenSignIn'
@@ -12,7 +11,7 @@ export const useSendReport = (entityId: number, type: ReportType, onSettled: () 
   const client = useClient()
   const openSignIn = useOpenSignIn()
   const [enqueueSnackbar] = useSnackbar()
-  const { mutate } = useMutation<void, AxiosError, CreateReportDto>(ReportService.create, {
+  const { mutate } = useMutation(ReportService.create, {
     onSuccess() {
       const message = formatMessage({ id: 'component.report.message' })
       enqueueSnackbar({ message, severity: 'success', icon: 'speaker' })

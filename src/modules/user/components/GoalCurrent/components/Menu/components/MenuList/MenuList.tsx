@@ -6,7 +6,7 @@ import { useGoalContext } from '@modules/user/components/GoalCurrent/hooks'
 import AppMenuItemContent from '@ui/AppMenuItemContent'
 import { useMessages } from './hooks/useMessages'
 
-const Report = dynamic(() => import('@components/Report'))
+const Report = dynamic(() => import('@features/report'))
 
 interface MenuListProps {
   clientOwnership: OwnershipDto

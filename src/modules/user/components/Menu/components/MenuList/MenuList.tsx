@@ -5,7 +5,7 @@ import { Menu, MenuItem } from '@mui/material'
 import { useCheckOnClientPage, useUserContext } from '@modules/user/hooks'
 import AppMenuItemContent from '@ui/AppMenuItemContent'
 
-const Report = dynamic(() => import('@components/Report'))
+const Report = dynamic(() => import('@features/report'))
 
 interface MenuListProps {
   anchorEl: HTMLElement

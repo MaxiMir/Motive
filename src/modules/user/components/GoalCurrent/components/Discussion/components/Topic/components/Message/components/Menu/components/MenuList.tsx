@@ -6,7 +6,7 @@ import { MessageDto } from '@dto'
 import useClient from '@hooks/useClient'
 import AppMenuItemContent from '@ui/AppMenuItemContent'
 
-const Report = dynamic(() => import('@components/Report'))
+const Report = dynamic(() => import('@features/report'))
 
 interface MenuListProps {
   anchorEl: HTMLElement

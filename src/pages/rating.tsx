@@ -3,8 +3,8 @@ import { useRouter } from 'next/router'
 import { dehydrate, QueryClient } from 'react-query'
 import { getSession } from 'next-auth/react'
 import { Route } from '@href'
-import PageFeature, { PageService } from '@features/page'
 import RatingModule, { useRatingPage, useMetaTags } from '@modules/rating'
+import PageFeature, { PageService } from '@features/page'
 
 function RatingPage() {
   const { query } = useRouter()

@@ -1,7 +1,7 @@
 import { GetServerSideProps } from 'next'
 import { getSession } from 'next-auth/react'
-import PageFeature from '@features/page'
 import ContactModule from '@modules/contact'
+import PageFeature from '@features/page'
 import useMetaTags from '@hooks/useMetaTags'
 
 function ContactPage() {

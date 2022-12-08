@@ -1,8 +1,8 @@
 import { GetServerSideProps } from 'next'
 import { getSession } from 'next-auth/react'
 import { ClientDto } from '@dto'
-import PageFeature from '@features/page'
 import HomeModule from '@modules/home'
+import PageFeature from '@features/page'
 import useMetaTags from '@hooks/useMetaTags'
 
 function HomePage() {

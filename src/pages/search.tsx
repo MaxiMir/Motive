@@ -2,9 +2,9 @@ import { GetServerSideProps } from 'next'
 import { getSession } from 'next-auth/react'
 import { dehydrate, QueryClient } from 'react-query'
 import { Route } from '@href'
-import useMetaTags from '@hooks/useMetaTags'
-import PageFeature, { PageService } from '@features/page'
 import SearchModule, { useSearchPage } from '@modules/search'
+import PageFeature, { PageService } from '@features/page'
+import useMetaTags from '@hooks/useMetaTags'
 import { getSearchParams } from '@helpers/url'
 
 function SearchPage() {

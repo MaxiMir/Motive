@@ -2,9 +2,9 @@ import { GetServerSideProps } from 'next'
 import { getSession } from 'next-auth/react'
 import { dehydrate, QueryClient } from 'react-query'
 import { Route } from '@href'
-import useMetaTags from '@hooks/useMetaTags'
-import PageFeature, { PageService } from '@features/page'
 import FollowingModule, { useFollowingPage } from '@modules/following'
+import PageFeature, { PageService } from '@features/page'
+import useMetaTags from '@hooks/useMetaTags'
 
 function FollowingPage() {
   const { data } = useFollowingPage()

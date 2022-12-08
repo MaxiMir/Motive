@@ -4,7 +4,7 @@ import { dehydrate, QueryClient } from 'react-query'
 import { Route } from '@href'
 import useMetaTags from '@hooks/useMetaTags'
 import PageFeature, { PageService } from '@features/page'
-import SearchFeature, { useSearchPage } from '@features/search'
+import SearchModule, { useSearchPage } from '@modules/search'
 import { getSearchParams } from '@helpers/url'
 
 function SearchPage() {
@@ -13,7 +13,7 @@ function SearchPage() {
 
   return (
     <PageFeature title={metaTags.title} description={metaTags.description}>
-      {data && <SearchFeature {...data} />}
+      {data && <SearchModule {...data} />}
     </PageFeature>
   )
 }

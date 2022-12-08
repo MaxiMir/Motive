@@ -1,7 +1,7 @@
 import { GetServerSideProps } from 'next'
 import { getSession } from 'next-auth/react'
 import PageFeature from '@features/page'
-import ContactFeature from '@features/contact'
+import ContactModule from '@modules/contact'
 import useMetaTags from '@hooks/useMetaTags'
 
 function ContactPage() {
@@ -9,7 +9,7 @@ function ContactPage() {
 
   return (
     <PageFeature title={metaTags.title} description={metaTags.description}>
-      <ContactFeature />
+      <ContactModule />
     </PageFeature>
   )
 }

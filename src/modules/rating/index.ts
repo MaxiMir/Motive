@@ -1,3 +1,3 @@
-export { default } from './RatingFeature'
+export { default } from './RatingModule'
 export { useRatingPage } from './hooks/useRatingPage'
 export { useMetaTags } from './hooks/useMetaTags'

@@ -3,7 +3,7 @@ import AppHeader from '@ui/AppHeader'
 import AppContainer from '@ui/AppContainer'
 import { useMessages } from './hooks/useMessages'
 
-function TopOfTheDayFeature() {
+function TopOfTheDayModule() {
   const messages = useMessages()
 
   return (
@@ -20,4 +20,4 @@ function TopOfTheDayFeature() {
   )
 }
 
-export default TopOfTheDayFeature
+export default TopOfTheDayModule

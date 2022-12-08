@@ -2,7 +2,7 @@ import { GetServerSideProps } from 'next'
 import { getSession } from 'next-auth/react'
 import { ClientDto } from '@dto'
 import PageFeature from '@features/page'
-import HomeFeature from '@features/home'
+import HomeModule from '@modules/home'
 import useMetaTags from '@hooks/useMetaTags'
 
 function HomePage() {
@@ -10,7 +10,7 @@ function HomePage() {
 
   return (
     <PageFeature title={metaTags.title} description={metaTags.description}>
-      <HomeFeature />
+      <HomeModule />
     </PageFeature>
   )
 }

@@ -4,7 +4,7 @@ import { dehydrate, QueryClient } from 'react-query'
 import { Route } from '@href'
 import useMetaTags from '@hooks/useMetaTags'
 import PageFeature, { PageService } from '@features/page'
-import FollowingFeature, { useFollowingPage } from '@features/following'
+import FollowingModule, { useFollowingPage } from '@modules/following'
 
 function FollowingPage() {
   const { data } = useFollowingPage()
@@ -12,7 +12,7 @@ function FollowingPage() {
 
   return (
     <PageFeature title={metaTags.title} description={metaTags.description}>
-      {data && <FollowingFeature following={data.following} />}
+      {data && <FollowingModule following={data.following} />}
     </PageFeature>
   )
 }

@@ -19,7 +19,7 @@ interface SearchModuleProps {
   users: UserDto[]
 }
 
-function SearchFeature({ q, hashtags, goals, users }: SearchModuleProps) {
+function SearchModule({ q, hashtags, goals, users }: SearchModuleProps) {
   const messages = useMessages()
   const gradients = getGradients()
   const noResult = !users.length && !goals.length
@@ -77,4 +77,4 @@ function SearchFeature({ q, hashtags, goals, users }: SearchModuleProps) {
   )
 }
 
-export default SearchFeature
+export default SearchModule

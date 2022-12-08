@@ -7,11 +7,11 @@ import { useMessages } from './hooks/useMessages'
 const EmptyList = dynamic(() => import('./components/EmptyList/EmptyList'))
 const UserList = dynamic(() => import('./components/UserList'))
 
-interface FollowingFeatureProps {
+interface FollowingModuleProps {
   following: UserDto[]
 }
 
-function FollowingFeature({ following }: FollowingFeatureProps) {
+function FollowingModule({ following }: FollowingModuleProps) {
   const messages = useMessages()
 
   return (
@@ -24,4 +24,4 @@ function FollowingFeature({ following }: FollowingFeatureProps) {
   )
 }
 
-export default FollowingFeature
+export default FollowingModule

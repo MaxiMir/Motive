@@ -20,7 +20,7 @@ const CRYPTOS = [
   { name: 'DOGE', wallet: 'D9btjbEFVpCStxQAaCdUGw9AjMnvsAUvbr', src: DOGESrc },
 ]
 
-function ContactFeature() {
+function ContactModule() {
   const messages = useMessages()
 
   const onClickTelegram = () => openBlank('https://t.me/MaximMir')
@@ -140,4 +140,4 @@ const ButtonContent = styled(Box)(({ theme }) => ({
   },
 }))
 
-export default ContactFeature
+export default ContactModule

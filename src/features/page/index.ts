@@ -1,2 +1,2 @@
 export { default } from './PageFeature'
-export { PageService } from './services/PageService'
+export { PageService } from './services/page'

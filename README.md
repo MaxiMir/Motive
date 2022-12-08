@@ -1,5 +1,6 @@
 [//]: # (TODO)
-* useMasssages
+* useMassages
+* https://docs.nestjs.com/techniques/caching
 * hydration error
 * мэпинг календаря
 * обратная связь не обязательна

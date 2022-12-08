@@ -1,10 +1,10 @@
 import { KeyboardEvent } from 'react'
 import { useRouter } from 'next/router'
-import { useIntl } from 'react-intl'
 import { signOut } from 'next-auth/react'
 import { Box, List, Divider, ListItem, Drawer, ListItemText, ListItemIcon } from '@mui/material'
 import useClient from '@hooks/useClient'
 import AppIcon from '@ui/AppIcon'
+import { useMessages } from './hooks/useMessages'
 
 interface MenuModalProps {
   onClose: () => void
@@ -12,11 +12,9 @@ interface MenuModalProps {
 }
 
 function MenuModal({ onOpenSettings, onClose }: MenuModalProps) {
-  const { formatMessage } = useIntl()
+  const messages = useMessages()
   const { push } = useRouter()
   const client = useClient()
-  const logOut = formatMessage({ id: 'common.log-out' })
-  const settings = formatMessage({ id: 'common.settings' })
   const menu = getMenu()
 
   const onKeyDown = (event: KeyboardEvent) => {
@@ -29,9 +27,9 @@ function MenuModal({ onOpenSettings, onClose }: MenuModalProps) {
 
   function getMenu() {
     return [
-      { primary: formatMessage({ id: 'common.news' }), icon: 'newspaper', link: 'news' },
-      { primary: formatMessage({ id: 'common.features' }), icon: 'dynamic_form', link: 'features' },
-      { primary: formatMessage({ id: 'common.contact' }), icon: 'all_inbox', link: 'contact' },
+      { primary: messages.news, icon: 'newspaper', link: 'news' },
+      { primary: messages.features, icon: 'dynamic_form', link: 'features' },
+      { primary: messages.contact, icon: 'all_inbox', link: 'contact' },
     ]
   }
 
@@ -57,7 +55,7 @@ function MenuModal({ onOpenSettings, onClose }: MenuModalProps) {
             <Divider light />
             <List>
               <ListItem button onClick={onOpenSettings}>
-                <ListItemText primary={settings} />
+                <ListItemText primary={messages.settings} />
                 <ListItemIcon>
                   <AppIcon name="settings" />
                 </ListItemIcon>
@@ -68,7 +66,7 @@ function MenuModal({ onOpenSettings, onClose }: MenuModalProps) {
                 <Divider light />
                 <List>
                   <ListItem button onClick={onSignOut}>
-                    <ListItemText primary={logOut} />
+                    <ListItemText primary={messages.logOut} />
                   </ListItem>
                 </List>
               </>

@@ -1,15 +1,14 @@
 import { useState } from 'react'
 import dynamic from 'next/dynamic'
-import { useIntl } from 'react-intl'
 import { Button } from '@mui/material'
 import AppIcon from '@ui/AppIcon'
+import { useMessages } from './hooks/useMessages'
 
-const MenuModal = dynamic(() => import('./components/MenuModal'))
+const MenuModal = dynamic(() => import('./components/MenuModal/MenuModal'))
 const ModalSettings = dynamic(() => import('./components/ModalSettings/ModalSettings'))
 
 function LeftMenu() {
-  const { formatMessage } = useIntl()
-  const ariaLabel = formatMessage({ id: 'common.open-menu' })
+  const messages = useMessages()
   const [openMenu, setOpenMenu] = useState(false)
   const [openSettings, setOpenSettings] = useState(false)
 
@@ -25,7 +24,7 @@ function LeftMenu() {
   return (
     <>
       <Button
-        aria-label={ariaLabel}
+        aria-label={messages.ariaLabel}
         aria-expanded={openMenu ? 'true' : undefined}
         aria-haspopup="true"
         sx={{ color: 'common.white' }}

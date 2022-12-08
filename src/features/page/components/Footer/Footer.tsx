@@ -4,7 +4,7 @@ import { useIntl } from 'react-intl'
 import { Container, Box, Button } from '@mui/material'
 import { Route } from '@href'
 import { TopOfTheDayIcon, SearchIcon, RatingIcon, FollowingIcon } from '@ui/icons'
-import ProfileLink from './components/ProfileLink'
+import ProfileLink from './components/ProfileLink/ProfileLink'
 
 const HOVER_OPACITY = 0.6
 

@@ -1,2 +1,2 @@
-export * from './useMessage'
+export * from './useMessages'
 export * from './useSendReport'

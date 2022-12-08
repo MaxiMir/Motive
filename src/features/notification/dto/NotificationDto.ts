@@ -1,16 +1,5 @@
-import { UserBaseDto } from './user'
-
-export const enum NotificationType {
-  NewGoal = 'new-goal',
-  NewFollower = 'new-follower',
-  AddMotivation = 'add-motivation',
-  AddCreativity = 'add-creativity',
-  NewQuestion = 'new-question',
-  NewSupport = 'new-support',
-  NewAnswer = 'new-answer',
-  NewFeedback = 'new-feedback',
-  WebCoverage = 'web-coverage',
-}
+import { UserBaseDto } from '@dto'
+import { NotificationType } from './NotificationType'
 
 interface NotificationBase {
   id: number
@@ -18,7 +7,7 @@ interface NotificationBase {
   read: boolean
 }
 
-export interface NotificationGoalDto extends NotificationBase {
+interface NotificationGoalDto extends NotificationBase {
   type:
     | NotificationType.NewGoal
     | NotificationType.AddMotivation
@@ -36,7 +25,7 @@ export interface NotificationGoalDto extends NotificationBase {
   }
 }
 
-export interface NotificationUserDto extends NotificationBase {
+interface NotificationUserDto extends NotificationBase {
   type: NotificationType.NewFollower
   details: {
     name?: string

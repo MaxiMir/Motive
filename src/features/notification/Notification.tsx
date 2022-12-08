@@ -2,7 +2,7 @@ import dynamic from 'next/dynamic'
 import Link from 'next/link'
 import { Box, IconButton, Typography } from '@mui/material'
 import { getUserHref } from '@href'
-import { NotificationDto } from '@dto'
+import { NotificationDto } from '@features/notification/dto'
 import useClient from '@hooks/useClient'
 import { getNotificationHref } from '@helpers/notification'
 import UserLink from '@components/User/UserLink'
@@ -11,7 +11,7 @@ import AppIcon from '@ui/AppIcon'
 import useFormatDistance from '@hooks/useFormatDistance'
 import { toShortString } from '@helpers/string'
 import { useUpdateRead, useMessages } from './hooks'
-import { getNotificationInfo } from './helper'
+import { getNotificationInfo } from './helpers/content'
 
 const AppInView = dynamic(() => import('@ui/AppInView'))
 

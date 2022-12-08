@@ -1,26 +1,25 @@
 import { useState } from 'react'
 import dynamic from 'next/dynamic'
-import { useIntl } from 'react-intl'
 import { Badge, Button } from '@mui/material'
+import { useNotifications } from '@features/notification'
 import AppIcon from '@ui/AppIcon'
-import { useNotifications } from './hooks/useNotifications'
+import { useMessages } from './hooks/useMessages'
 import { checkOnBadgeContent } from './helper'
 
 const ModalNotifications = dynamic(() => import('./components/ModalNotifications'))
 
 function Notifications() {
-  const { formatMessage } = useIntl()
+  const messages = useMessages()
   const { data = [] } = useNotifications()
   const [open, setOpen] = useState(false)
   const badgeContent = checkOnBadgeContent(data)
-  const ariaControls = formatMessage({ id: 'component.notification.aria' })
 
   const toggleModal = () => setOpen(!open)
 
   return (
     <>
       <Button
-        aria-controls={open ? ariaControls : undefined}
+        aria-controls={open ? messages.ariaControls : undefined}
         aria-haspopup="true"
         aria-expanded={open ? 'true' : undefined}
         sx={{ color: 'common.white' }}

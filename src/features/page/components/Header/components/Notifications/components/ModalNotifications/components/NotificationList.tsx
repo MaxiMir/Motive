@@ -1,6 +1,5 @@
-import { NotificationDto } from '@dto'
+import Notification, { NotificationDto } from '@features/notification'
 import AppList from '@ui/AppList'
-import NotificationModal from './components/Notification'
 
 interface NotificationListProps {
   notifications: NotificationDto[]
@@ -13,7 +12,7 @@ function NotificationList({ notifications, onClose }: NotificationListProps) {
       elements={notifications}
       gap={2}
       keyGetter={(notification) => notification.id}
-      render={(notification) => <NotificationModal notification={notification} onClose={onClose} />}
+      render={(notification) => <Notification notification={notification} onClose={onClose} />}
     />
   )
 }

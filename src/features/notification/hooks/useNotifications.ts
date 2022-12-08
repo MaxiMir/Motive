@@ -1,5 +1,5 @@
 import { useQuery } from 'react-query'
-import NotificationService from '@services/notification'
+import { NotificationService } from '@features/notification/services'
 import useClient from '@hooks/useClient'
 
 export const useNotifications = () => {

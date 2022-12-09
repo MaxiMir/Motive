@@ -1,5 +1,5 @@
 import { Route } from '@href'
-import { MainCharacteristicName, SecondCharacteristicName } from '@dto'
+import { MainCharacteristicName, SecondCharacteristicName } from '@features/characteristic'
 import { setSearchParams } from '@helpers/url'
 
 const ADVANTAGES = [

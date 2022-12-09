@@ -1,9 +1,8 @@
 import produce from 'immer'
 import { useIntl } from 'react-intl'
 import { useMutation } from 'react-query'
-import { GoalDto } from '@dto'
 import { useMutateGoals } from '@modules/user/hooks'
-import GoalService from '@services/goal'
+import { GoalDto, GoalService } from '@features/goal'
 import useSnackbar from '@hooks/useSnackbar'
 
 const getNextState = (goals: GoalDto[], goalId: number): GoalDto[] =>

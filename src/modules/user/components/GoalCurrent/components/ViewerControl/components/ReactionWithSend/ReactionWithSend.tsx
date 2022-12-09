@@ -1,6 +1,6 @@
 import { useIntl } from 'react-intl'
-import { DayCharacteristicName } from '@dto'
 import { useGoalContext } from '@modules/user/components/GoalCurrent/hooks'
+import { DayCharacteristicName } from '@features/day'
 import ActionGoal from '@components/Action/ActionGoal'
 import { useSetReaction } from './hooks/useSetReaction'
 import { checkOnActive, getCount } from './helper'

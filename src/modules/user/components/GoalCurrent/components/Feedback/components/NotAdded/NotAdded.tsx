@@ -1,5 +1,5 @@
 import dynamic from 'next/dynamic'
-import { OwnershipDto } from '@dto'
+import { OwnershipDto } from '@features/member'
 
 const Soon = dynamic(() => import('./components/Soon'))
 const FeedbackAdd = dynamic(() => import('./components/FeedbackAdd'))

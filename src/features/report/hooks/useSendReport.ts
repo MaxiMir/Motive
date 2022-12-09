@@ -1,7 +1,7 @@
 import { useIntl } from 'react-intl'
 import { useMutation } from 'react-query'
 import { ReportType } from '@features/report/dto'
-import { ReportService } from '@features/report/services'
+import { ReportService } from '@features/report/service'
 import useSnackbar from '@hooks/useSnackbar'
 import useClient from '@hooks/useClient'
 import useOpenSignIn from '@hooks/useOpenSignIn'

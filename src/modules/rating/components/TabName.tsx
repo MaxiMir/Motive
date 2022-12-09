@@ -1,6 +1,6 @@
 import { useIntl } from 'react-intl'
 import { Box, Typography } from '@mui/material'
-import { MainCharacteristicName } from '@dto'
+import { MainCharacteristicName } from '@features/characteristic'
 import AppEmoji, { AppEmojiName } from '@ui/AppEmoji'
 
 interface TabNameProps {

@@ -1,5 +1,5 @@
 import { createContext, useContext } from 'react'
-import { UserPageDto } from '@dto'
+import { UserPageDto } from '@features/page'
 
 export const UserContext = createContext<UserPageDto | null>(null)
 

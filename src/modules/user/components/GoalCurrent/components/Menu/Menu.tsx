@@ -1,7 +1,7 @@
 import { MouseEvent, useState } from 'react'
 import dynamic from 'next/dynamic'
 import { useIntl } from 'react-intl'
-import { OwnershipDto } from '@dto'
+import { OwnershipDto } from '@features/member'
 import AppMenuButton from '@ui/AppMenuButton'
 
 const Share = dynamic(() => import('@components/Share'))

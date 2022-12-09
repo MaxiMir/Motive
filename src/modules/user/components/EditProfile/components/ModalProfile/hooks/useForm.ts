@@ -4,10 +4,9 @@ import { useFormik } from 'formik'
 import { useIntl } from 'react-intl'
 import { useMutation } from 'react-query'
 import { getUserHref } from '@href'
-import { UpdateUserDto, UserBaseDto, UserPageDto } from '@dto'
-import { profileSchema } from '@modules/user/schemas'
 import { useMutateUserPage, useUserContext } from '@modules/user/hooks'
-import UserService from '@services/user'
+import { UserPageDto } from '@features/page'
+import { UpdateUserDto, UserBaseDto, UserService, profileSchema } from '@features/user'
 import { getCurrentSearchParams, setSearchParams } from '@helpers/url'
 
 const getNextState = (page: UserPageDto, user: UserBaseDto): UserPageDto =>
@@ -21,8 +20,8 @@ const getNextState = (page: UserPageDto, user: UserBaseDto): UserPageDto =>
   })
 
 export const useForm = (onSuccess: () => void) => {
-  const user = useUserContext()
   const { locale } = useIntl()
+  const user = useUserContext()
   const router = useRouter()
   const [page, mutatePage] = useMutateUserPage()
   const { formatMessage } = useIntl()
@@ -50,7 +49,8 @@ export const useForm = (onSuccess: () => void) => {
     async onSubmit(data, { setFieldError }) {
       const { id } = user
       const { nickname, avatar, ...restData } = data
-      const usersDB = user.nickname === nickname ? null : await UserService.get({ nickname }, 0, 1)
+      const fetchParams = { where: { nickname }, page: 0, take: 1 }
+      const usersDB = user.nickname === nickname ? null : await UserService.get(fetchParams)
 
       if (usersDB?.length) {
         setFieldError('nickname', nicknameError)

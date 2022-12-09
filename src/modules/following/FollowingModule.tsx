@@ -1,5 +1,5 @@
 import dynamic from 'next/dynamic'
-import { UserDto } from '@dto'
+import { UserDto } from '@features/user'
 import AppHeader from '@ui/AppHeader'
 import AppContainer from '@ui/AppContainer'
 import { useMessages } from './hooks/useMessages'

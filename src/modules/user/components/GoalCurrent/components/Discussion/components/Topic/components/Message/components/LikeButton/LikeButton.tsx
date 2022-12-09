@@ -1,6 +1,6 @@
 import { useIntl } from 'react-intl'
 import { Button, Tooltip } from '@mui/material'
-import { MessageDto, MessageType } from '@dto'
+import { MessageDto, MessageType } from '@features/topic'
 import useClient from '@hooks/useClient'
 import useFormatNumber from '@hooks/useFormatNumber'
 import AppEmoji from '@ui/AppEmoji'

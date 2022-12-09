@@ -1,13 +1,13 @@
 import { Field, Form, FormikProvider } from 'formik'
 import { Box, Typography } from '@mui/material'
-import { UserBaseDto } from '@dto'
-import ActionSubmit from '@components/Action/ActionSubmit'
-import ActionCancel from '@components/Action/ActionCancel/ActionCancel'
+import { UserBaseDto } from '@features/user'
 import AppModal from '@ui/AppModal/AppModal'
 import AppFadeIcon from '@ui/AppFadeIcon'
 import AppInput from '@ui/AppInput'
 import AppAccordion from '@ui/AppAccordion'
 import AppDecorEmoji from '@ui/AppDecorEmoji'
+import ActionSubmit from '@components/Action/ActionSubmit'
+import ActionCancel from '@components/Action/ActionCancel/ActionCancel'
 import { useForm, useMessages } from './hooks'
 
 interface ModalSupportProps {

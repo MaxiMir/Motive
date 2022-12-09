@@ -3,11 +3,11 @@ import { useRouter } from 'next/router'
 import Head from 'next/head'
 import { useIntl } from 'react-intl'
 import { Box } from '@mui/material'
-import { OGType } from '@dto'
+import { getLocaleHrefList } from '@href'
 import useClient from '@hooks/useClient'
+import { OGType } from './dto'
 import Header from './components/Header'
 import Footer from './components/Footer'
-import { getLocaleHrefList } from './helpers/locale'
 
 interface PageFeatureProps {
   title?: string

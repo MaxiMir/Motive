@@ -2,11 +2,10 @@ import produce from 'immer'
 import { useFormik } from 'formik'
 import { useIntl } from 'react-intl'
 import { useMutation } from 'react-query'
-import { FeedbackDto, GoalDto } from '@dto'
-import { feedbackSchema } from '@modules/user/schemas'
+import { GoalDto } from '@features/goal'
 import { useMutateGoals } from '@modules/user/hooks'
 import { useGoalContext } from '@modules/user/components/GoalCurrent/hooks'
-import FeedbackService from '@services/feedback'
+import { FeedbackDto, FeedbackService, feedbackSchema } from '@features/feedback'
 import useSnackbar from '@hooks/useSnackbar'
 
 const getNextState = (goals: GoalDto[], goalId: number, feedback: FeedbackDto): GoalDto[] =>

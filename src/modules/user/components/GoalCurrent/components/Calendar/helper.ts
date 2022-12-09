@@ -1,4 +1,4 @@
-import { CalendarDto } from '@dto'
+import { CalendarDto } from '@features/goal'
 
 export const getBorders = (calendar?: CalendarDto[]): [min?: Date, max?: Date] => {
   if (!calendar) {

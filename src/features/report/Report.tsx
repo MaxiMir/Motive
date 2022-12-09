@@ -1,6 +1,6 @@
 import { Menu, MenuItem } from '@mui/material'
 import AppMenuItemContent from '@ui/AppMenuItemContent'
-import { ReportType } from '@features/report/dto'
+import { ReportType } from './dto'
 import { useMessages, useSendReport } from './hooks'
 
 interface ReportProps {

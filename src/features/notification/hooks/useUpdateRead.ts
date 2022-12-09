@@ -1,7 +1,7 @@
 import produce from 'immer'
 import { useMutation, useQueryClient } from 'react-query'
 import { NotificationDto } from '@features/notification/dto'
-import { NotificationService } from '@features/notification/services'
+import { NotificationService } from '@features/notification/service'
 import useClient from '@hooks/useClient'
 
 const getNextState = (notifications: NotificationDto[], id: number) =>

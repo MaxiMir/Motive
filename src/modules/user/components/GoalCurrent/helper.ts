@@ -2,7 +2,9 @@ import produce from 'immer'
 import { ParsedUrlQuery } from 'querystring'
 import { differenceInCalendarDays } from 'date-fns'
 import { HashMark, SearchParam } from '@href'
-import { GoalDto, MemberDto, OwnershipDto, TaskDto } from '@dto'
+import { GoalDto } from '@features/goal'
+import { MemberDto, OwnershipDto } from '@features/member'
+import { TaskDto } from '@features/task'
 import { getMidnight } from '@lib/date'
 
 const SHOW_WEB_AFTER_DAYS = Number(process.env.NEXT_PUBLIC_SHOW_WEB_AFTER_DAYS || '')

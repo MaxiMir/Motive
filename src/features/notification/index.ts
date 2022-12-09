@@ -1,4 +1,4 @@
 export { default } from './Notification'
+export * from './dto'
 export { useNotifications } from './hooks/useNotifications'
-export { NotificationType } from './dto/NotificationType'
-export type { NotificationDto } from './dto/NotificationDto'
+export { getNotificationHref } from './helpers/href'

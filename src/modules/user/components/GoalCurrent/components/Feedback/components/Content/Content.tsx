@@ -1,6 +1,6 @@
 import dynamic from 'next/dynamic'
 import { Box } from '@mui/material'
-import { FeedbackDto } from '@dto'
+import { FeedbackDto } from '@features/feedback'
 
 const AppPlayer = dynamic(() => import('@ui/AppPlayer'))
 const AppMarkdown = dynamic(() => import('@ui/AppMarkdown'))

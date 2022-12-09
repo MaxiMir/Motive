@@ -1,5 +1,5 @@
 import { useIntl } from 'react-intl'
-import { UserPageDto } from '@dto'
+import { UserPageDto } from '@features/page'
 
 export const useMessages = (name: keyof UserPageDto) => {
   const { formatMessage } = useIntl()

@@ -10,9 +10,9 @@ const Share = dynamic(() => import('@components/Share'))
 const MenuList = dynamic(() => import('./components/MenuList'))
 
 function Menu() {
-  const { name } = useUserContext()
   const { asPath } = useRouter()
   const { formatMessage } = useIntl()
+  const { name } = useUserContext()
   const [anchorEl, setAnchorEl] = useState<HTMLElement | null>(null)
   const [withShare, setWithShare] = useState(false)
   const title = formatMessage({ id: 'common.open-menu' })

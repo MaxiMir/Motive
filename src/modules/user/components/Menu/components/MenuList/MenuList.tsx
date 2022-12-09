@@ -14,9 +14,9 @@ interface MenuListProps {
 }
 
 function MenuList({ anchorEl, onShare, onClose }: MenuListProps) {
+  const { formatMessage } = useIntl()
   const { id } = useUserContext()
   const clientPage = useCheckOnClientPage(id)
-  const { formatMessage } = useIntl()
   const [withReport, setWithReport] = useState(false)
   const shareText = formatMessage({ id: 'common.share' })
   const reportText = formatMessage({ id: 'common.report' })

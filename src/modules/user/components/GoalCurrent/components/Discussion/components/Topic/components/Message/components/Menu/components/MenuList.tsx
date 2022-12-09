@@ -2,7 +2,7 @@ import { useState } from 'react'
 import dynamic from 'next/dynamic'
 import { useIntl } from 'react-intl'
 import { Menu, MenuItem } from '@mui/material'
-import { MessageDto } from '@dto'
+import { MessageDto } from '@features/topic'
 import useClient from '@hooks/useClient'
 import AppMenuItemContent from '@ui/AppMenuItemContent'
 

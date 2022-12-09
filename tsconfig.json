@@ -30,37 +30,28 @@
     ],
     "paths": {
       "@components/*": [
-        "src/common/components/*"
+        "src/shared/components/*"
       ],
       "@ui/*": [
-        "src/common/ui/*"
+        "src/shared/ui/*"
       ],
       "@layout": [
-        "src/common/layout"
+        "src/shared/layout"
       ],
       "@hooks/*": [
-        "src/common/hooks/*"
+        "src/shared/hooks/*"
       ],
       "@lib/*": [
-        "src/common/lib/*"
+        "src/shared/lib/*"
       ],
       "@helpers/*": [
-        "src/common/helpers/*"
-      ],
-      "@services/*": [
-        "src/common/services/*"
-      ],
-      "@dto": [
-        "src/common/dto"
-      ],
-      "@schemas/*": [
-        "src/common/schemas/*"
+        "src/shared/helpers/*"
       ],
       "@context/*": [
-        "src/common/context/*"
+        "src/shared/context/*"
       ],
       "@href": [
-        "src/common/href"
+        "src/shared/href"
       ],
       "@features/*": [
         "src/features/*"

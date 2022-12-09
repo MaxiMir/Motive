@@ -1,6 +1,6 @@
-import { UserDto } from '@dto'
-import UserCharacteristic from '@components/User/UserCharacteristic'
+import { UserDto } from '@features/user'
 import AppList from '@ui/AppList'
+import UserCharacteristic from '@components/User/UserCharacteristic'
 
 interface UserListProps {
   users: UserDto[]

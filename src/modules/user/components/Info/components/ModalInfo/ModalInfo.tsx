@@ -10,8 +10,8 @@ interface ModalInfoProps {
 }
 
 function ModalInfo({ onClose }: ModalInfoProps) {
-  const user = useUserContext()
   const { formatMessage } = useIntl()
+  const user = useUserContext()
   const title = formatMessage({ id: 'common.info' })
 
   return (

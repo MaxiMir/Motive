@@ -1,9 +1,9 @@
 import dynamic from 'next/dynamic'
-import { Box } from '@mui/material'
-import { SecondCharacteristicName } from '@dto'
-import AppModal from '@ui/AppModal/AppModal'
 import { useIntl } from 'react-intl'
+import { Box } from '@mui/material'
 import { useUserContext } from '@modules/user/hooks'
+import { SecondCharacteristicName } from '@features/characteristic'
+import AppModal from '@ui/AppModal/AppModal'
 import { useSubscription } from './hooks/useSubscription'
 import Loader from './components/Loader'
 
@@ -16,8 +16,8 @@ interface ModalFollowersProps {
 }
 
 function ModalSubscription({ name, onClose }: ModalFollowersProps) {
-  const { id, characteristic } = useUserContext()
   const { formatMessage } = useIntl()
+  const { id, characteristic } = useUserContext()
   const { isLoading, followers, checkOnLoadMore, fetchNextPage } = useSubscription(id, characteristic.followers, name)
   const title = formatMessage({ id: `common.${name}` })
 

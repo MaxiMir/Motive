@@ -5,8 +5,8 @@ import AppIcon from '@ui/AppIcon'
 import { useSetFollowing } from './hooks/useSetFollowing'
 
 function Following() {
-  const { id, following } = useUserContext()
   const { formatMessage } = useIntl()
+  const { id, following } = useUserContext()
   const setFollowing = useSetFollowing(id, following)
   const operation = following ? 'remove' : 'add'
   const buttonText = formatMessage({ id: `page.user.following.${operation}` })

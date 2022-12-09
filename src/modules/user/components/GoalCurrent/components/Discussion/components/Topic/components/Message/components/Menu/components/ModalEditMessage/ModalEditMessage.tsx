@@ -1,11 +1,11 @@
 import { FocusEvent } from 'react'
 import { Field, Form, FormikProvider } from 'formik'
 import { Box } from '@mui/material'
-import { MessageDto } from '@dto'
-import ActionSubmit from '@components/Action/ActionSubmit'
-import ActionCancel from '@components/Action/ActionCancel/ActionCancel'
+import { MessageDto } from '@features/topic'
 import AppModal from '@ui/AppModal/AppModal'
 import AppInput from '@ui/AppInput'
+import ActionSubmit from '@components/Action/ActionSubmit'
+import ActionCancel from '@components/Action/ActionCancel/ActionCancel'
 import { useForm, useMessages } from './hooks'
 
 interface ModalEditMessageProps {

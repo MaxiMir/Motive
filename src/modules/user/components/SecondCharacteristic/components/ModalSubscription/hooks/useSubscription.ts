@@ -1,6 +1,7 @@
 import { QueryFunctionContext, useInfiniteQuery } from 'react-query'
-import { SecondCharacteristicName, UserDto } from '@dto'
-import SubscriptionService from '@services/subscription'
+import { UserDto } from '@features/user'
+import { SecondCharacteristicName } from '@features/characteristic'
+import { SubscriptionService } from '@features/subscription'
 import { partialCheckOnLoadMore, partialGetNextPageParam } from '@helpers/partial'
 
 const TAKE = 20
@@ -13,7 +14,7 @@ const partialQueryFn = (
   return ({ pageParam = 0 }: QueryFunctionContext) => {
     const method = name === SecondCharacteristicName.Following ? 'getFollowing' : 'getFollowers'
 
-    return SubscriptionService[method](userId, pageParam, TAKE)
+    return SubscriptionService[method](userId, { page: pageParam, take: TAKE })
   }
 }
 

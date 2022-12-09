@@ -1,7 +1,7 @@
 import { useRouter } from 'next/router'
 import { useIntl } from 'react-intl'
 import { SearchParam } from '@href'
-import { GoalDto } from '@dto'
+import { GoalDto } from '@features/goal'
 import { getCurrentSearchParams, setSearchParams } from '@helpers/url'
 
 export const useChangeDayUrl = () => {

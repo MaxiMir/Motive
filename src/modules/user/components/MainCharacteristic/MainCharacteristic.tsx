@@ -2,7 +2,7 @@ import { useState } from 'react'
 import dynamic from 'next/dynamic'
 import { useIntl } from 'react-intl'
 import { Box, Button, Typography, useTheme } from '@mui/material'
-import { MainCharacteristicName } from '@dto'
+import { MainCharacteristicName } from '@features/characteristic'
 import AppCircle from '@ui/AppCircle'
 import { getOffset, RADIUS } from './helper'
 

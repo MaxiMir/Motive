@@ -1,7 +1,7 @@
 import Link from 'next/link'
 import { Container, Typography, Grid, Box, Button } from '@mui/material'
 import { getUserHref } from '@href'
-import { UserDto, UserCharacteristicName } from '@dto'
+import { UserCharacteristicName, UserDto } from '@features/user'
 import AppEmoji from '@ui/AppEmoji'
 import UserLink from '@components/User/UserLink'
 

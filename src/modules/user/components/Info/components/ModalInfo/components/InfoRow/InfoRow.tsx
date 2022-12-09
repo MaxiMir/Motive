@@ -1,5 +1,5 @@
 import { Box, Typography, Tooltip } from '@mui/material'
-import { UserPageDto } from '@dto'
+import { UserPageDto } from '@features/page'
 import useFormatDate from '@hooks/useFormatDate'
 import AppIcon from '@ui/AppIcon'
 import { useMessages } from './hooks/useMessages'

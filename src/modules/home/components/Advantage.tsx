@@ -1,7 +1,7 @@
 import Link from 'next/link'
 import { Box, Typography, useTheme } from '@mui/material'
 import { useIntl } from 'react-intl'
-import { MainCharacteristicName, SecondCharacteristicName } from '@dto'
+import { MainCharacteristicName, SecondCharacteristicName } from '@features/characteristic'
 import AppEmoji from '@ui/AppEmoji'
 
 interface AdvantageProps {

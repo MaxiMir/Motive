@@ -1,5 +1,5 @@
-import { MainCharacteristicName } from '@dto'
 import { NotificationType } from '@features/notification/dto'
+import { MainCharacteristicName } from '@features/characteristic'
 import { AppEmojiName } from '@ui/AppEmoji'
 
 interface NotificationInfo {

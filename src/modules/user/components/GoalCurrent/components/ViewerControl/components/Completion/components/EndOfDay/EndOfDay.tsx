@@ -1,7 +1,7 @@
 import dynamic from 'next/dynamic'
 import { useIntl } from 'react-intl'
 import { Button, Tooltip } from '@mui/material'
-import { MemberDto } from '@dto'
+import { MemberDto } from '@features/member'
 import { getTomorrow } from '@lib/date'
 import AppEmoji from '@ui/AppEmoji'
 import { useSendEndOfDay } from './hooks/useSendEndOfDay'

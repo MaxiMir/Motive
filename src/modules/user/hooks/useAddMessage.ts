@@ -1,7 +1,8 @@
 import produce from 'immer'
 import { InfiniteData, useQueryClient } from 'react-query'
-import { GoalDto, TopicDto } from '@dto'
 import { useMutateGoals } from '@modules/user/hooks/useMutateGoals'
+import { GoalDto } from '@features/goal'
+import { TopicDto } from '@features/topic'
 
 const getNextState = (discussion: InfiniteData<TopicDto[]>, topic: TopicDto) =>
   produce(discussion, (draft) => {

@@ -1,6 +1,7 @@
 import { useIntl } from 'react-intl'
 import { Container, Box } from '@mui/material'
-import { MAIN_CHARACTERISTICS, MainCharacteristicName, UserDto } from '@dto'
+import { UserDto } from '@features/user'
+import { MAIN_CHARACTERISTICS, MainCharacteristicName } from '@features/characteristic'
 import AppHeader from '@ui/AppHeader'
 import AppTabs from '@ui/AppTabs'
 import TabName from './components/TabName'

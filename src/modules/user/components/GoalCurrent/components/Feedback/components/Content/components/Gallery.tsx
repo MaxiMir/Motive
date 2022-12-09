@@ -1,6 +1,6 @@
 import { Box } from '@mui/material'
+import { PhotoDto } from '@features/feedback'
 import GalleryViewer from '@components/Gallery/GalleryViewer'
-import { PhotoDto } from '@dto'
 
 interface GalleryProps {
   photos: PhotoDto[]

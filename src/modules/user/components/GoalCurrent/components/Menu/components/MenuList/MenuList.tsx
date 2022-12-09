@@ -1,8 +1,8 @@
 import { useState } from 'react'
 import dynamic from 'next/dynamic'
 import { Menu, MenuItem } from '@mui/material'
-import { OwnershipDto } from '@dto'
 import { useGoalContext } from '@modules/user/components/GoalCurrent/hooks'
+import { OwnershipDto } from '@features/member'
 import AppMenuItemContent from '@ui/AppMenuItemContent'
 import { useMessages } from './hooks/useMessages'
 

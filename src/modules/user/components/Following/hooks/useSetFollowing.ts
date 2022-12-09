@@ -1,22 +1,22 @@
 import produce from 'immer'
 import { useIntl } from 'react-intl'
 import { useMutation, useQueryClient } from 'react-query'
-import { UserPageDto } from '@dto'
 import { useUserContext } from '@modules/user/hooks'
-import SubscriptionService from '@services/subscription'
+import { UserPageDto } from '@features/page'
+import { SubscriptionService } from '@features/subscription'
 import useSnackbar from '@hooks/useSnackbar'
 import useDebounceCb from '@hooks/useDebounceCb'
 import useOpenSignIn from '@hooks/useOpenSignIn'
 import useClient from '@hooks/useClient'
 
 interface Options {
-  add: boolean
+  insert: boolean
 }
 
-const getNextState = (page: UserPageDto, add: boolean) =>
+const getNextState = (page: UserPageDto, following: boolean) =>
   produce(page, (draft) => {
-    draft.following = add
-    draft.characteristic.followers += add ? 1 : -1
+    draft.following = following
+    draft.characteristic.followers += following ? 1 : -1
   })
 
 type UseSetFollowing = (userId: number, following: boolean) => () => void
@@ -28,19 +28,19 @@ export const useSetFollowing: UseSetFollowing = (userId, following) => {
   const queryClient = useQueryClient()
   const { nickname } = useUserContext()
   const [enqueueSnackbar] = useSnackbar()
-  const { mutate } = useMutation(({ add }: Options) => SubscriptionService.update(userId, add), {
-    async onMutate({ add }: Options) {
+  const { mutate } = useMutation(({ insert }: Options) => SubscriptionService.update(userId, insert), {
+    async onMutate({ insert }: Options) {
       await queryClient.cancelQueries(nickname)
       const previous = queryClient.getQueryData<UserPageDto>(nickname)
 
       if (previous) {
-        queryClient.setQueryData(nickname, getNextState(previous, add))
+        queryClient.setQueryData(nickname, getNextState(previous, insert))
       }
 
       return { previous }
     },
-    onSuccess(_, { add }) {
-      const operation = add ? 'add' : 'remove'
+    onSuccess(_, { insert }) {
+      const operation = insert ? 'add' : 'remove'
       const message = formatMessage({ id: `page.user.following.message-${operation}` })
       enqueueSnackbar({ message, severity: 'success', icon: 'speaker' })
     },
@@ -50,7 +50,7 @@ export const useSetFollowing: UseSetFollowing = (userId, following) => {
       }
     },
   })
-  const sendDebounce = useDebounceCb((add: boolean) => mutate({ add }))
+  const sendDebounce = useDebounceCb((insert: boolean) => mutate({ insert }))
 
   return () => {
     if (!client) {

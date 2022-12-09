@@ -1,6 +1,7 @@
 import { useIntl } from 'react-intl'
 import { Container, Grid, Box, Typography } from '@mui/material'
-import { UserDto, MainCharacteristicName } from '@dto'
+import { UserDto } from '@features/user'
+import { MainCharacteristicName } from '@features/characteristic'
 import AppList from '@ui/AppList'
 import UserRow from './components/UserRow'
 

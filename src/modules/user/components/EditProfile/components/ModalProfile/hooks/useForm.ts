@@ -3,10 +3,9 @@ import { useRouter } from 'next/router'
 import { useFormik } from 'formik'
 import { useIntl } from 'react-intl'
 import { useMutation } from 'react-query'
-import { getUserHref } from '@href'
 import { useMutateUserPage, useUserContext } from '@modules/user/hooks'
 import { UserPageDto } from '@features/page'
-import { UpdateUserDto, UserBaseDto, UserService, profileSchema } from '@features/user'
+import { UpdateUserDto, UserBaseDto, UserService, getUserHref, profileSchema } from '@features/user'
 import { getCurrentSearchParams, setSearchParams } from '@helpers/url'
 
 const getNextState = (page: UserPageDto, user: UserBaseDto): UserPageDto =>

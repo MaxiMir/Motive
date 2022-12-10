@@ -1,5 +1,5 @@
 import { Button } from '@mui/material'
-import useOpenSignIn from '@hooks/useOpenSignIn'
+import { useOpenSignIn } from '@features/signin'
 import AppIcon from '@ui/AppIcon'
 
 function SignIn() {

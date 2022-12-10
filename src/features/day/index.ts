@@ -1,2 +1,2 @@
-export { DayService } from './service'
+export * from './service'
 export * from './dto'

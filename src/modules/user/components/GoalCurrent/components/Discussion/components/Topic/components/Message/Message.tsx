@@ -1,7 +1,7 @@
 import dynamic from 'next/dynamic'
 import Link from 'next/link'
 import { Box } from '@mui/material'
-import { getUserHref } from '@href'
+import { getUserHref } from '@features/user'
 import { MessageDto } from '@features/topic'
 import useFormatDistance from '@hooks/useFormatDistance'
 import UserLink from '@components/User/UserLink'

@@ -1,7 +1,6 @@
 import dynamic from 'next/dynamic'
-import { useIntl } from 'react-intl'
 import useSnackbar from '@hooks/useSnackbar'
-import { useMenu } from './hooks/useMenu'
+import { useMessages, useMenu } from './hooks'
 
 const Menu = dynamic(() => import('./components/Menu'))
 
@@ -12,16 +11,14 @@ interface ShareProps {
 }
 
 function Share({ title, href, onClose }: ShareProps) {
-  const { formatMessage } = useIntl()
+  const messages = useMessages()
   const [enqueueSnackbar] = useSnackbar()
   const [open, onCloseMenu] = useMenu(title, href, onClose)
   const url = process.env.NEXT_PUBLIC_APP_URL + href
-  const copyText = formatMessage({ id: 'common.copied' })
-  const error = formatMessage({ id: 'common.error' })
 
-  const onCopyEnd = () => enqueueSnackbar({ message: copyText, severity: 'success', icon: 'keyboard' })
+  const onCopyEnd = () => enqueueSnackbar({ message: messages.copyText, severity: 'success', icon: 'keyboard' })
 
-  const onCopyError = () => enqueueSnackbar({ message: error, severity: 'error' })
+  const onCopyError = () => enqueueSnackbar({ message: messages.error, severity: 'error' })
 
   return (
     <>

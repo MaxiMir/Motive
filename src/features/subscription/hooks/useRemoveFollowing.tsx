@@ -6,8 +6,8 @@ import { Route } from '@href'
 import { FollowingPageDto } from '@features/page'
 import { UserDto } from '@features/user'
 import { SubscriptionService } from '@features/subscription/service'
+import { useOpenSignIn } from '@features/signin'
 import useSnackbar from '@hooks/useSnackbar'
-import useOpenSignIn from '@hooks/useOpenSignIn'
 import useClient from '@hooks/useClient'
 
 interface Options {

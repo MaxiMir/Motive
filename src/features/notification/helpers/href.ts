@@ -1,6 +1,6 @@
-import { ClientDto } from '@features/user'
+import { ClientDto, getUserHref } from '@features/user'
 import { NotificationDto, NotificationType } from '@features/notification/dto'
-import { getDiscussionHref, getFeedbackHref, getGoalHref, getGoalDayHref, getUserHref } from '@href'
+import { getDiscussionHref, getFeedbackHref, getGoalHref, getGoalDayHref } from '@href'
 
 export const getNotificationHref = (notification: NotificationDto, client?: ClientDto): string => {
   const { user } = notification.details

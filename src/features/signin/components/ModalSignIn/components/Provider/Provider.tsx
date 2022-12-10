@@ -1,7 +1,7 @@
 import Image, { ImageProps } from 'next/image'
-import { useIntl } from 'react-intl'
 import { signIn, SignInOptions } from 'next-auth/react'
 import { Box, Button } from '@mui/material'
+import { useMessages } from './hooks/useMessages'
 
 interface ProviderProps {
   id: string
@@ -12,8 +12,7 @@ interface ProviderProps {
 }
 
 function Provider({ id, name, options, src, disabled }: ProviderProps) {
-  const { formatMessage } = useIntl()
-  const withText = formatMessage({ id: 'common.with' })
+  const messages = useMessages()
 
   return (
     <Button
@@ -25,7 +24,7 @@ function Provider({ id, name, options, src, disabled }: ProviderProps) {
       onClick={() => signIn(id, options)}
     >
       <Box display="flex" width={120} justifyContent="flex-start">
-        {withText} {name}
+        {messages.withText} {name}
       </Box>
     </Button>
   )

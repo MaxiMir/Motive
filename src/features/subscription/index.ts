@@ -1,2 +1,2 @@
-export { SubscriptionService } from './service'
-export { useRemoveFollowing } from './hooks/useRemoveFollowing'
+export * from './service'
+export * from './hooks/useRemoveFollowing'

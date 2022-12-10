@@ -1,12 +1,7 @@
 import { useRouter } from 'next/router'
+import { Locale } from '@features/locale/types'
 
-export enum Locale {
-  En = 'en',
-  Ru = 'ru',
-  Uk = 'uk',
-}
-
-const useSetLocale = () => {
+export const useSetLocale = () => {
   const { asPath, push } = useRouter()
 
   return (locale: Locale) => {
@@ -14,5 +9,3 @@ const useSetLocale = () => {
     push(asPath, asPath, { locale })
   }
 }
-
-export default useSetLocale

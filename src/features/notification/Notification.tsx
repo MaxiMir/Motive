@@ -1,7 +1,7 @@
 import dynamic from 'next/dynamic'
 import Link from 'next/link'
 import { Box, IconButton, Typography } from '@mui/material'
-import { getUserHref } from '@href'
+import { getUserHref } from '@features/user'
 import useClient from '@hooks/useClient'
 import useFormatDistance from '@hooks/useFormatDistance'
 import { toShortString } from '@helpers/string'

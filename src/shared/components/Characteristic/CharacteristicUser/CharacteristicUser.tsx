@@ -5,7 +5,7 @@ import { SECOND_CHARACTERISTICS, SecondCharacteristicName } from '@features/char
 import useFormatNumber from '@hooks/useFormatNumber'
 import AppEmoji from '@ui/AppEmoji'
 
-const Level = dynamic(() => import('./components/Level'))
+const Level = dynamic(() => import('./components/Level/Level'))
 
 interface CharacteristicUserProps {
   name: UserCharacteristicName

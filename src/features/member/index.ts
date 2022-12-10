@@ -1,3 +1,3 @@
-export { MemberService } from './service'
+export * from './service'
 export * from './dto'
 export * from './schema'

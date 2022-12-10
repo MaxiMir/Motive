@@ -1,7 +1,7 @@
 import { useRouter } from 'next/router'
 import { Button } from '@mui/material'
-import { getUserHref } from '@href'
-import useOpenSignIn from '@hooks/useOpenSignIn'
+import { getUserHref } from '@features/user'
+import { useOpenSignIn } from '@features/signin'
 import { ProfileIcon } from '@ui/icons'
 import { useMessages } from './hooks/useMessages'
 

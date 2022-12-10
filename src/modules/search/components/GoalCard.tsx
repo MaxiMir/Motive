@@ -1,5 +1,5 @@
 import { Box, Button, Typography } from '@mui/material'
-import { getUserHref } from '@href'
+import { getUserHref } from '@features/user'
 import { GoalDto } from '@features/goal'
 import { MAIN_CHARACTERISTICS } from '@features/characteristic'
 import CharacteristicGoal from '@components/Characteristic/CharacteristicGoal'

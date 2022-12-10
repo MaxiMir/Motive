@@ -1,8 +1,7 @@
 import { useState, MouseEvent } from 'react'
 import dynamic from 'next/dynamic'
 import { useIntl } from 'react-intl'
-import { getUserHref } from '@href'
-import { UserDto } from '@features/user'
+import { UserDto, getUserHref } from '@features/user'
 import AppMenuButton from '@ui/AppMenuButton'
 import { useRemoveFollowing } from '@features/subscription'
 

@@ -18,7 +18,7 @@ const SOURCE = {
 type SourceKey = keyof typeof SOURCE
 
 const Loader = dynamic(() => import('./components/Loader'))
-const Provider = dynamic(() => import('./components/Provider'))
+const Provider = dynamic(() => import('./components/Provider/Provider'))
 
 interface ModalSignInProps {
   options: SignInOptions

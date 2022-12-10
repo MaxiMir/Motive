@@ -1,2 +1,2 @@
-export { ConfirmationService } from './service'
+export * from './service'
 export * from './dto'

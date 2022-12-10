@@ -16,16 +16,16 @@ import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider'
 import CssBaseline from '@mui/material/CssBaseline'
 import { ContextSnackbarProps, SnackbarContext } from '@context/snackbarContext'
 import { ThemeContext } from '@context/themeContext'
-import { ModalSignInContext } from '@context/modalSignInContext'
+import { ModalSignInContext } from '@features/signin'
 import { getLocaleFolder } from '@lib/date'
 import { makeMapLoader } from '@helpers/iterable'
-import { Locale } from '@hooks/useSetLocale'
+import { Locale } from '@features/locale'
 import useRemoveServerStyles from '@hooks/useRemoveServerStyles'
 import EventSocket from '@components/EventSocket'
-import { getDesignTokens } from 'src/common/theme'
+import { getDesignTokens } from 'src/shared/theme'
 
 const AppSnackbar = dynamic(() => import('@ui/AppSnackbar'))
-const ModalSignIn = dynamic(() => import('@components/Modal/ModalSignIn'))
+const ModalSignIn = dynamic(() => import('@features/signin'))
 
 const generateClassName = createGenerateClassName({ productionPrefix: 'be' })
 const langLoader = makeMapLoader<Record<string, string>>()
@@ -35,7 +35,7 @@ function App({ Component, pageProps: { session, dehydratedState, providers, ...p
   const { locale } = useRouter()
   const currentLocale = locale || Locale.En
   const localeFolder = getLocaleFolder(currentLocale)
-  const messages = use(langLoader(currentLocale, () => import(`src/common/lang/${currentLocale}.json`)))
+  const messages = use(langLoader(currentLocale, () => import(`src/shared/lang/${currentLocale}.json`)))
   const dateFnsLocale = use(dateFnsLangLoader(currentLocale, () => import(`date-fns/locale/${localeFolder}/index.js`)))
   const [mode, setMode] = useState<PaletteMode>('dark')
   const [snackbarProps, setSnackbarProps] = useState<ContextSnackbarProps | null>(null)

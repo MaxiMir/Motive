@@ -12,8 +12,8 @@ interface ProfileLinkProps {
 }
 
 function ProfileLink({ nickname, asPath, hoverOpacity }: ProfileLinkProps) {
-  const messages = useMessages()
   const { push } = useRouter()
+  const messages = useMessages()
   const openSignIn = useOpenSignIn()
   const href = !nickname ? undefined : getUserHref(nickname)
   const selected = !href ? false : asPath.includes(href)

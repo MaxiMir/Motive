@@ -65,6 +65,7 @@ export type AppEmojiName =
   | 'en'
   | 'ru'
   | 'uk'
+  | 'zh'
   | 'light'
   | 'system'
   | 'dark'
@@ -224,6 +225,8 @@ function getContent(name: AppEmojiName) {
       return '🇷🇺'
     case 'uk':
       return '🇺🇦'
+    case 'zh':
+      return '🇨🇳'
     case 'barber':
       return '💈'
     default:

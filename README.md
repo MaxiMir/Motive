@@ -27,11 +27,11 @@
 * Push notification
 
 ```shell
-docker build -t maximir/frontend:1.0.87 .
+docker build -t maximir/frontend:1.0.88 .
 # artifactory:
-docker tag <IMAGE_ID> maximir.jfrog.io/default-docker-virtual/frontend:1.0.87
-docker push maximir.jfrog.io/default-docker-virtual/frontend:1.0.87
-docker pull maximir.jfrog.io/default-docker-virtual/frontend:1.0.87
+docker tag <IMAGE_ID> maximir.jfrog.io/default-docker-virtual/frontend:1.0.88
+docker push maximir.jfrog.io/default-docker-virtual/frontend:1.0.88
+docker pull maximir.jfrog.io/default-docker-virtual/frontend:1.0.88
 
 # copy:
 docker cp <IMAGE_ID>:/home/node/client /home # <-
@@ -59,7 +59,7 @@ version: '3.3'
 
 services:
   frontend:
-    image: maximir.jfrog.io/default-docker-virtual/frontend:1.0.87
+    image: maximir.jfrog.io/default-docker-virtual/frontend:1.0.88
     depends_on:
       - backend
     restart: unless-stopped

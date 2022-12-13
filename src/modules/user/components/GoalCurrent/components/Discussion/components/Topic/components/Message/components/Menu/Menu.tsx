@@ -4,7 +4,7 @@ import { useIntl } from 'react-intl'
 import { MessageDto } from '@features/topic'
 import AppMenuButton from '@ui/AppMenuButton'
 
-const MenuList = dynamic(() => import('./components/MenuList'))
+const MenuList = dynamic(() => import('./components/MenuList/MenuList'))
 const ModalEditMessage = dynamic(() => import('./components/ModalEditMessage'))
 
 interface MenuProps {

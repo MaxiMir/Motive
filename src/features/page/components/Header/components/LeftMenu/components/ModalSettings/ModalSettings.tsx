@@ -53,6 +53,9 @@ function ModalSettings({ onClose }: ModalLanguageProps) {
             <GroupButton value={Locale.Uk} size="small">
               <AppEmoji name="uk" /> Укр
             </GroupButton>
+            <GroupButton value={Locale.Zh} size="small">
+              <AppEmoji name="zh" /> 中国
+            </GroupButton>
           </ToggleButtonGroup>
         </Box>
         <Box display="flex" flexDirection="column" gap={1}>

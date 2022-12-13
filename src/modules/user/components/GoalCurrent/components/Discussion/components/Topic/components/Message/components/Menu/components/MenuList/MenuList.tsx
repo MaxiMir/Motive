@@ -1,10 +1,10 @@
 import { useState } from 'react'
 import dynamic from 'next/dynamic'
-import { useIntl } from 'react-intl'
 import { Menu, MenuItem } from '@mui/material'
 import { MessageDto } from '@features/topic'
 import useClient from '@hooks/useClient'
 import AppMenuItemContent from '@ui/AppMenuItemContent'
+import { useMessages } from './hooks/useMessages'
 
 const Report = dynamic(() => import('@features/report'))
 
@@ -16,10 +16,8 @@ interface MenuListProps {
 }
 
 function MenuList({ anchorEl, message, onOpenModal, onClose }: MenuListProps) {
-  const { formatMessage } = useIntl()
   const client = useClient()
-  const editText = formatMessage({ id: 'common.edit' })
-  const reportText = formatMessage({ id: 'common.report' })
+  const messages = useMessages()
   const [withReport, setWithReport] = useState(false)
 
   const onOpenReport = () => setWithReport(true)
@@ -34,11 +32,11 @@ function MenuList({ anchorEl, message, onOpenModal, onClose }: MenuListProps) {
       <Menu id="goal-menu" anchorEl={anchorEl} open onClose={onClose}>
         {message.user.id === client?.id ? (
           <MenuItem onClick={onOpenModal}>
-            <AppMenuItemContent icon="edit" text={editText} />
+            <AppMenuItemContent icon="edit" text={messages.editText} />
           </MenuItem>
         ) : (
           <MenuItem onClick={onOpenReport}>
-            <AppMenuItemContent icon="outlined_flag" text={reportText} />
+            <AppMenuItemContent icon="outlined_flag" text={messages.reportText} />
           </MenuItem>
         )}
       </Menu>

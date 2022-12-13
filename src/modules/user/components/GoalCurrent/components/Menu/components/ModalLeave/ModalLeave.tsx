@@ -14,8 +14,8 @@ interface ModalLeaveProps {
 }
 
 function ModalLeave({ clientOwnership, onClose }: ModalLeaveProps) {
-  const { id, name } = useGoalContext()
   const messages = useMessages()
+  const { id, name } = useGoalContext()
   const { isLoading, mutateAsync } = useSendRemoveMember(id, clientOwnership.page)
 
   const onClick = () => {

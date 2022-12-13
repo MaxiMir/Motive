@@ -12,8 +12,8 @@ interface ModalAbandonedProps {
 }
 
 function ModalAbandoned({ onClose }: ModalAbandonedProps) {
-  const { characteristic } = useUserContext()
   const messages = useMessages()
+  const { characteristic } = useUserContext()
   const progress = useShowProgress(characteristic.abandoned, { step: 1, ms: 300 })
   const roundedProgress = Math.round(progress)
 

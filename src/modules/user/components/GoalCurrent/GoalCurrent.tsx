@@ -41,10 +41,10 @@ interface GoalCurrentProps {
 
 function GoalCurrent({ goal, membership, clientPage, clientMembership }: GoalCurrentProps) {
   const { id, name, hashtags, characteristic, owner, stages, day, inherited } = goal
-  const client = useClient()
-  const { id: userId, nickname } = useUserContext()
   const { query } = useRouter()
+  const client = useClient()
   const messages = useMessages()
+  const { id: userId, nickname } = useUserContext()
   const clientOwnership = getClientOwnership(goal, client?.id, clientPage, clientMembership)
   const userMember = getMember(id, membership, userId)
   const goalHref = getGoalDayHref(nickname, id, day.id)
@@ -118,20 +118,27 @@ function GoalCurrent({ goal, membership, clientPage, clientMembership }: GoalCur
                   {prev && (
                     <DayCardControl
                       variant="outlined"
-                      sx={{ cursor: isLoading ? 'progress' : 'pointer', bottom: -14 }}
+                      sx={{
+                        display: 'flex',
+                        alignItems: 'center',
+                        cursor: isLoading ? 'progress' : 'pointer',
+                        borderTopLeftRadius: 12,
+                        borderTopRightRadius: 12,
+                        borderBottomLeftRadius: 0,
+                        borderBottomRightRadius: 0,
+                      }}
                       onClick={() => onChangeDate(prev)}
                     >
-                      <Box display="flex" justifyContent="space-between" alignItems="baseline" py={1} px={3}>
+                      <Box display="flex" justifyContent="space-between" alignItems="baseline" flex={1} py={2} px={3}>
                         <DayAgo day={prev} />
                         <Date date={prev} />
                       </Box>
                     </DayCardControl>
                   )}
-                  <DayCard variant="outlined" sx={{ width: '100%', zIndex: 20, pb: 4 }}>
-                    <Box display="flex" justifyContent="space-between" alignItems="baseline" py={1} px={3}>
+                  <Card variant="outlined" sx={{ width: '100%', pb: 4, borderRadius: '0.625rem' }}>
+                    <Box display="flex" justifyContent="space-between" alignItems="center" py={2} px={3}>
                       <DayAgo day={day.date} />
-                      <Box display="flex" alignItems="center">
-                        <Date date={day.date} />
+                      <Box display="flex" alignItems="center" gap={1}>
                         <Calendar
                           isLoading={isLoading}
                           onChangeDate={onChangeDate}
@@ -195,19 +202,22 @@ function GoalCurrent({ goal, membership, clientPage, clientMembership }: GoalCur
                       defaultExpanded={showDiscussion}
                       details={<Discussion owner={owner} count={day.topicCount} clientGoal={clientOwnership.goal} />}
                     />
-                  </DayCard>
+                  </Card>
                   {next && (
                     <DayCardControl
                       variant="outlined"
                       sx={{
                         display: 'flex',
-                        alignItems: 'flex-end',
+                        alignItems: 'center',
                         cursor: isLoading ? 'progress' : 'pointer',
-                        top: -14,
+                        borderTopLeftRadius: 0,
+                        borderTopRightRadius: 0,
+                        borderBottomLeftRadius: 12,
+                        borderBottomRightRadius: 12,
                       }}
                       onClick={() => onChangeDate(next)}
                     >
-                      <Box display="flex" justifyContent="space-between" alignItems="baseline" flex={1} py={1} px={3}>
+                      <Box display="flex" justifyContent="space-between" alignItems="baseline" flex={1} py={2} px={3}>
                         <DayAgo day={next} />
                         <Date date={next} />
                       </Box>
@@ -236,17 +246,11 @@ function GoalCurrent({ goal, membership, clientPage, clientMembership }: GoalCur
   )
 }
 
-const DayCard = styled(Card)({
-  position: 'relative',
-  borderRadius: 12,
-})
-
-const DayCardControl = styled(DayCard)({
+const DayCardControl = styled(Card)({
   width: '90%',
-  height: 60,
+  height: 50,
   background: '#2e2e2e',
   cursor: 'pointer',
-  zIndex: 10,
   animation: 'opacity 1s ease-out',
   '&:hover': {
     opacity: 0.7,

@@ -50,7 +50,7 @@ function SecondCharacteristic({ confirmations, name, value }: CharacteristicProp
     <>
       <Button
         size="small"
-        sx={{ flex: 1 }}
+        sx={{ flex: 1, minWidth: 70 }}
         aria-expanded={modal ? 'true' : undefined}
         aria-haspopup="true"
         onClick={onClick}

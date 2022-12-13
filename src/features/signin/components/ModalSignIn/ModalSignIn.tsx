@@ -1,13 +1,15 @@
 import dynamic from 'next/dynamic'
 import { SignInOptions } from 'next-auth/react'
-import { useIntl } from 'react-intl'
 import { Box } from '@mui/material'
 import AppModal from '@ui/AppModal/AppModal'
 import appleSrc from 'public/images/svg/apple.svg'
 import metaSrc from 'public/images/svg/meta.svg'
 import githubSrc from 'public/images/svg/github.svg'
 import googleSrc from 'public/images/svg/google.svg'
-import { useProviders } from './hooks/useProviders'
+import { useMessages, useProviders } from './hooks'
+
+const Loader = dynamic(() => import('./components/Loader'))
+const Provider = dynamic(() => import('./components/Provider/Provider'))
 
 const SOURCE = {
   Apple: appleSrc,
@@ -15,10 +17,8 @@ const SOURCE = {
   GitHub: githubSrc,
   Google: googleSrc,
 }
-type SourceKey = keyof typeof SOURCE
 
-const Loader = dynamic(() => import('./components/Loader'))
-const Provider = dynamic(() => import('./components/Provider/Provider'))
+type SourceKey = keyof typeof SOURCE
 
 interface ModalSignInProps {
   options: SignInOptions
@@ -26,12 +26,11 @@ interface ModalSignInProps {
 }
 
 function ModalSignIn({ options, onClose }: ModalSignInProps) {
-  const { formatMessage } = useIntl()
+  const messages = useMessages()
   const providers = useProviders()
-  const title = formatMessage({ id: 'common.sign-in' })
 
   return (
-    <AppModal title={title} maxWidth="xs" onClose={onClose}>
+    <AppModal title={messages.title} maxWidth="xs" onClose={onClose}>
       <Box display="flex" flexDirection="column" alignSelf="stretch" gap={2}>
         {!providers ? (
           <Loader count={4} />

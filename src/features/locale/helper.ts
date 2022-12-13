@@ -10,4 +10,5 @@ export const getLocaleHrefList = (asPath: string): Record<string, string> => ({
   [Locale.En]: getLocaleHref(asPath),
   [Locale.Ru]: getLocaleHref(asPath, Locale.Ru),
   [Locale.Uk]: getLocaleHref(asPath, Locale.Uk),
+  [Locale.Zh]: getLocaleHref(asPath, Locale.Zh),
 })

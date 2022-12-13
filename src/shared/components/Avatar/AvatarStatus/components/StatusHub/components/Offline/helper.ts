@@ -1,7 +1,8 @@
 export const getShortDistance = (distance: string): string => {
   const words = distance.split(' ')
-  const value = words.at(-3)?.replace(/\D/g, '')
-  const measurement = words.at(-2)?.[0]
+  const valueIndex = words.findIndex(parseFloat)
+  const measurement = ~valueIndex ? words[valueIndex + 1][0] : words.at(-2)?.[0]
+  const value = ~valueIndex ? `${words[valueIndex]} ` : ''
 
-  return `${value} ${measurement}.`
+  return [value, measurement, '.'].join('')
 }

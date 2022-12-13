@@ -15,8 +15,8 @@ interface ModalJoinProps {
 }
 
 function ModalJoin({ onClose }: ModalJoinProps) {
-  const { id, calendar, day, owner } = useGoalContext()
   const messages = useMessages()
+  const { id, calendar, day, owner } = useGoalContext()
   const beginningDay = calendar[0].id
   const thisDay = day.id
   const disableBeginning = beginningDay === thisDay

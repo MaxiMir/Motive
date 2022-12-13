@@ -12,9 +12,9 @@ interface MenuModalProps {
 }
 
 function MenuModal({ onOpenSettings, onClose }: MenuModalProps) {
-  const messages = useMessages()
   const { push } = useRouter()
   const client = useClient()
+  const messages = useMessages()
   const menu = getMenu()
 
   const onKeyDown = (event: KeyboardEvent) => {
@@ -74,7 +74,7 @@ function MenuModal({ onOpenSettings, onClose }: MenuModalProps) {
           </Box>
           <List>
             <ListItem>
-              <ListItemText primary="Alpha 1.0.87" sx={{ color: 'zen.sand' }} />
+              <ListItemText primary="Alpha 1.0.88" sx={{ color: 'zen.sand' }} />
             </ListItem>
           </List>
         </Box>

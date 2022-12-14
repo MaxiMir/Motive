@@ -9,7 +9,7 @@ import googleSrc from 'public/images/svg/google.svg'
 import { useMessages, useProviders } from './hooks'
 
 const Loader = dynamic(() => import('./components/Loader'))
-const Provider = dynamic(() => import('./components/Provider/Provider'))
+const Provider = dynamic(() => import('./components/Provider'))
 
 const SOURCE = {
   Apple: appleSrc,

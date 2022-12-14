@@ -4,8 +4,8 @@ import { Button } from '@mui/material'
 import AppIcon from '@ui/AppIcon'
 import { useMessages } from './hooks/useMessages'
 
-const MenuModal = dynamic(() => import('./components/MenuModal/MenuModal'))
-const ModalSettings = dynamic(() => import('./components/ModalSettings/ModalSettings'))
+const MenuModal = dynamic(() => import('./components/MenuModal'))
+const ModalSettings = dynamic(() => import('./components/ModalSettings'))
 
 function LeftMenu() {
   const messages = useMessages()

@@ -4,7 +4,7 @@ import AppHeader from '@ui/AppHeader'
 import AppContainer from '@ui/AppContainer'
 import { useMessages } from './hooks/useMessages'
 
-const EmptyList = dynamic(() => import('./components/EmptyList/EmptyList'))
+const EmptyList = dynamic(() => import('./components/EmptyList'))
 const UserList = dynamic(() => import('./components/UserList'))
 
 interface FollowingModuleProps {

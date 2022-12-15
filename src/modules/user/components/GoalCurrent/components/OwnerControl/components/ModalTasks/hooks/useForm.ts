@@ -3,7 +3,7 @@ import { v4 as uuidV4 } from 'uuid'
 import { useIntl } from 'react-intl'
 import { useFormik } from 'formik'
 import { useMutation } from 'react-query'
-import { getTomorrow } from '@lib/date'
+import { getTomorrowISO } from '@lib/date'
 import { useChangeDayUrl, useMutateGoals } from '@modules/user/hooks'
 import { useGoalContext } from '@modules/user/components/GoalCurrent/hooks'
 import { tasksSchema } from '@features/task'
@@ -38,7 +38,7 @@ export const useForm = (onSuccess: () => void) => {
   return useFormik<CreateDayDto>({
     initialValues: {
       id,
-      date: getTomorrow().toISOString(),
+      date: getTomorrowISO(),
       tasks: [{ id: uuidV4(), name: '', date: undefined }],
     },
     validationSchema: tasksSchema,

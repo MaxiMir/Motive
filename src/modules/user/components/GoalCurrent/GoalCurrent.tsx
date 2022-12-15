@@ -12,7 +12,7 @@ import AppHeader from '@ui/AppHeader'
 import AppAccordion from '@ui/AppAccordion'
 import CharacteristicGoal from '@components/Characteristic/CharacteristicGoal'
 import { useSwitchDay, useMessages, GoalContext } from './hooks'
-import { getGoalInfo, getClientOwnership, checkOnShowDiscussion, redefineTasks, getMember } from './helper'
+import { getGoalInfo, getClientOwnership, checkOnOpenDiscussion, redefineTasks, getMember } from './helper'
 import ViewTrigger from './components/ViewTrigger'
 import Calendar from './components/Calendar'
 import Menu from './components/Menu'
@@ -49,7 +49,7 @@ function GoalCurrent({ goal, membership, clientPage, clientMembership }: GoalCur
   const userMember = getMember(id, membership, userId)
   const goalHref = getGoalDayHref(nickname, id, day.id)
   const goalInfo = getGoalInfo(goal, clientOwnership, userMember)
-  const showDiscussion = checkOnShowDiscussion(query, id)
+  const showDiscussion = checkOnOpenDiscussion(query, id)
   const { isLoading, prev, next, onChangeDate, shouldDisableDate } = useSwitchDay(goal)
   const redefinedGoals = redefineTasks(day.tasks, userMember)
   const restGoals = redefinedGoals.length - redefinedGoals.filter((t) => t.completed).length // TODO backend

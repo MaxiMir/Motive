@@ -1,5 +1,6 @@
 import { useIntl } from 'react-intl'
 import { useMutation } from 'react-query'
+import { formatISO } from 'date-fns'
 import { useFormik } from 'formik'
 import { getMidnight } from '@lib/date'
 import { useUserPage } from '@modules/user/hooks'
@@ -44,7 +45,7 @@ export const useForm = (onSuccess: () => void) => {
     async onSubmit(data) {
       const formData = new FormData()
       formData.append('text', data.text.trim())
-      formData.append('end', data.end.toISOString())
+      formData.append('end', formatISO(data.end))
       formData.append('goalId', data.goalId.toString())
       data.photos.forEach((photo) => formData.append('photos', photo))
       mutate(formData)

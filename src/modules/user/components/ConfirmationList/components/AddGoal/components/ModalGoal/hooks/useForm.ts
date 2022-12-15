@@ -3,7 +3,7 @@ import { v4 as uuidV4 } from 'uuid'
 import { useIntl } from 'react-intl'
 import { useMutation } from 'react-query'
 import { useFormik } from 'formik'
-import { getMidnight } from '@lib/date'
+import { getMidnightISO } from '@lib/date'
 import { useMutateGoals } from '@modules/user/hooks'
 import { CreatedGoal, CreateGoalDto, GoalDto, GoalService, goalSchema } from '@features/goal'
 import useSnackbar from '@hooks/useSnackbar'
@@ -30,7 +30,7 @@ export const useForm = (onSuccess: () => void) => {
 
   return useFormik<CreateGoalDto>({
     initialValues: {
-      started: getMidnight().toISOString(),
+      started: getMidnightISO(),
       name: '',
       hashtags: '',
       stages: [],

@@ -36,13 +36,9 @@ function Calendar({ isLoading, onChangeDate, shouldDisableDate }: CalendarProps)
         onChange={onChangeDate}
         renderInput={InputNotEditable}
         components={{ OpenPickerIcon }}
-        renderDay={(_, _value, dayComponentProps) => (
-          <Badge
-            overlap="circular"
-            badgeContent={dayComponentProps.disabled ? undefined : <AppEmoji name="task" onlyEmoji />}
-            key={dayComponentProps.key}
-          >
-            <PickersDay {...dayComponentProps} />
+        renderDay={(_, _value, { key, disabled, ...pickerProps }) => (
+          <Badge overlap="circular" badgeContent={disabled ? undefined : <AppEmoji name="task" onlyEmoji />} key={key}>
+            <PickersDay {...pickerProps} disabled={disabled} />
           </Badge>
         )}
       />

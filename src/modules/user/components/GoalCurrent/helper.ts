@@ -26,7 +26,7 @@ export const getClientOwnership = (
   return { page: clientPage, goal: clientGoal, member: clientMember }
 }
 
-export const checkOnShowDiscussion = (query: ParsedUrlQuery, id: number): boolean => {
+export const checkOnOpenDiscussion = (query: ParsedUrlQuery, id: number): boolean => {
   return query[SearchParam.ScrollTo] === HashMark.Discussion && query[SearchParam.ScrollId] === id.toString()
 }
 

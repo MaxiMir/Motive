@@ -9,7 +9,7 @@ interface AppMenuButtonProps extends Pick<IconButtonProps, 'title' | 'onClick'> 
 
 function AppMenuButton({ ariaControls, color = 'secondary.main', horizontal, ...restProps }: AppMenuButtonProps) {
   return (
-    <IconButton aria-controls={ariaControls} aria-haspopup="true" sx={{ color, padding: '0.188rem' }} {...restProps}>
+    <IconButton aria-controls={ariaControls} aria-haspopup="true" sx={{ color, padding: '3px' }} {...restProps}>
       <AppIcon name={`more_${horizontal ? 'horiz' : 'vert'}`} />
     </IconButton>
   )

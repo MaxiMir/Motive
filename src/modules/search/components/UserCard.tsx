@@ -21,7 +21,7 @@ function UserCard({ user }: UserCardProps) {
         width: '100%',
         textTransform: 'none',
         padding: 2,
-        borderRadius: '0.75rem',
+        borderRadius: '12px',
       }}
       component={Link}
     >

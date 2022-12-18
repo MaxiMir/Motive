@@ -25,7 +25,7 @@ function ModalCompletion({ onClose }: ModalCompletionProps) {
   const messages = useMessages()
   const form = useForm(onClose)
   const { isSubmitting, values, touched, errors, setFieldValue, handleSubmit } = form
-  const photoError = Array.isArray(errors.photos) ? errors.photos.join(', ') : errors.photos
+  const photoError = !Array.isArray(errors.photos) ? errors.photos : errors.photos.join(', ')
 
   const onSelectPhoto = useSelectPhoto(form)
 

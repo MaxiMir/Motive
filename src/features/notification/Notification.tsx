@@ -45,20 +45,20 @@ function Notification({ notification, onClose }: NotificationProps) {
           alignItems="center"
           sx={{
             position: 'absolute',
-            bottom: '-0.375rem',
-            right: '0.125rem',
+            bottom: '-6px',
+            right: '2px',
             width: 21,
             height: 21,
             backgroundColor: '#262626',
             borderRadius: '50%',
-            fontSize: '0.6875rem',
+            fontSize: '11px',
           }}
         >
           <AppEmoji name={emoji} onlyEmoji />
         </Box>
       </Box>
       <Box display="flex" flexDirection="column" justifyContent="space-between">
-        <Typography sx={{ fontSize: '0.875rem' }}>
+        <Typography sx={{ fontSize: '14px' }}>
           <Box component="b" sx={{ color }}>
             <Link href={href} onClick={onClose}>
               {name}
@@ -68,7 +68,7 @@ function Notification({ notification, onClose }: NotificationProps) {
           {detailsName && `: ${detailsName}`}
         </Typography>
         <Box display="flex" alignItems="center" gap={2}>
-          <Box component="span" sx={{ color: 'zen.silent', fontSize: '0.875rem' }}>
+          <Box component="span" sx={{ color: 'zen.silent', fontSize: '14px' }}>
             {dateDistance}
           </Box>
           <IconButton
@@ -77,7 +77,7 @@ function Notification({ notification, onClose }: NotificationProps) {
             aria-label={messages.viewTitle}
             onClick={onClose}
           >
-            <AppIcon name="south_east" sx={{ color: 'motivation.light', fontSize: '1rem !important' }} />
+            <AppIcon name="south_east" sx={{ color: 'motivation.light', fontSize: '16px !important' }} />
           </IconButton>
         </Box>
       </Box>

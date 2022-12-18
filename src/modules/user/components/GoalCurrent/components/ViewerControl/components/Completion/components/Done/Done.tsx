@@ -4,7 +4,7 @@ import { Button, Tooltip } from '@mui/material'
 import AppEmoji from '@ui/AppEmoji'
 import { useMessages } from './hooks/useMessages'
 
-const ModalCompletion = dynamic(() => import('@features/confirmation'))
+const ModalCompletion = dynamic(() => import('@modules/user/components/GoalCurrent/components/ModalCompletion'))
 
 interface DoneProps {
   forTomorrow: boolean

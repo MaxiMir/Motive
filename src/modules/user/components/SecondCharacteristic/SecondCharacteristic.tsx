@@ -79,8 +79,8 @@ function SecondCharacteristic({ confirmations, name, value }: CharacteristicProp
             sx={{
               textTransform: 'none',
               fontSize: {
-                xs: '0.75rem',
-                md: '0.8125rem',
+                xs: '12px',
+                md: '13px',
               },
             }}
           >

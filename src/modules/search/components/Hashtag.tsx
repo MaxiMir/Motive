@@ -24,7 +24,7 @@ function Hashtag({ name, gradient, views }: HashtagProps) {
       sx={{
         width: '100%',
         aspectRatio: '1',
-        borderRadius: '0.75rem',
+        borderRadius: '12px',
         backgroundImage: gradient,
       }}
       onClick={onClick}

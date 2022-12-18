@@ -75,10 +75,10 @@ function GoalCurrent({ goal, membership, clientPage, clientMembership }: GoalCur
       >
         <Box
           sx={(theme) => ({
-            padding: '0.188rem',
+            padding: '3px',
             height: '100%',
             background: `linear-gradient(to top left, ${theme.palette.motivation.main}, ${theme.palette.creativity.dark}, ${theme.palette.support.dark})`,
-            borderRadius: '1rem',
+            borderRadius: '16px',
           })}
         >
           <Box
@@ -89,9 +89,9 @@ function GoalCurrent({ goal, membership, clientPage, clientMembership }: GoalCur
             sx={(theme) => ({
               position: 'relative',
               height: '100%',
-              padding: '1.5rem 1rem 1rem',
+              padding: '24px 16px 16px',
               background: theme.palette.content,
-              borderRadius: '0.813rem',
+              borderRadius: '13px',
             })}
           >
             {inherited && <Inheritance />}
@@ -135,7 +135,7 @@ function GoalCurrent({ goal, membership, clientPage, clientMembership }: GoalCur
                       </Box>
                     </DayCardControl>
                   )}
-                  <Card variant="outlined" sx={{ width: '100%', pb: 4, borderRadius: '0.625rem' }}>
+                  <Card variant="outlined" sx={{ width: '100%', pb: 4, borderRadius: '10px' }}>
                     <Box display="flex" justifyContent="space-between" alignItems="center" py={2} px={3}>
                       <DayAgo day={day.date} />
                       <Box display="flex" alignItems="center" gap={1}>

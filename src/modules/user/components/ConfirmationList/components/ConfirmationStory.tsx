@@ -22,7 +22,7 @@ function ConfirmationStory({ confirmation }: ConfirmationStoryProps) {
       <Box display="flex" flexDirection="column" alignItems="center" minWidth={100} gap={1}>
         <Box
           sx={(theme) => ({
-            padding: '0.125rem',
+            padding: '2px',
             background: `linear-gradient(to top left, ${theme.palette.motivation.dark}, ${theme.palette.creativity.dark})`,
             borderRadius: '50%',
           })}

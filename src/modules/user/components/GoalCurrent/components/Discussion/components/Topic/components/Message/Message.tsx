@@ -28,7 +28,6 @@ function Message({ message, answerFor, supportFor, onReply }: MessageProps) {
   const dateDistance = formatDistance(date)
   const href = getUserHref(nickname)
   const flexDirection = !answerFor ? 'row' : 'row-reverse'
-  const backgroundColor = !answerFor ? '#213040' : '#060d15'
 
   return (
     <Box display="flex" flexDirection="column" gap={1}>
@@ -38,15 +37,16 @@ function Message({ message, answerFor, supportFor, onReply }: MessageProps) {
           display="flex"
           flexDirection="column"
           gap={1}
-          p={1}
+          px={2}
+          py={1}
           sx={{
-            minWidth: '13.125rem',
+            minWidth: '210px',
             maxWidth: '80%',
-            backgroundColor,
-            borderBottomLeftRadius: 4,
+            backgroundColor: !answerFor ? '#213040' : '#060d15',
+            borderBottomLeftRadius: !answerFor ? 4 : 16,
             borderTopLeftRadius: 20,
             borderTopRightRadius: 20,
-            borderBottomRightRadius: 20,
+            borderBottomRightRadius: !answerFor ? 16 : 4,
           }}
         >
           <Box display="flex" justifyContent="space-between">
@@ -58,7 +58,7 @@ function Message({ message, answerFor, supportFor, onReply }: MessageProps) {
               </Box>
               {supportFor && <SupportSign name={supportFor} />}
               {edited && (
-                <Box component="span" sx={{ fontSize: '0.6875rem', color: 'zen.silent' }}>
+                <Box component="span" sx={{ fontSize: '11px', color: 'zen.silent' }}>
                   {messages.editedText}
                 </Box>
               )}
@@ -68,7 +68,7 @@ function Message({ message, answerFor, supportFor, onReply }: MessageProps) {
           <AppMarkdown text={text} />
           <Box display="flex" justifyContent="space-between" alignItems="center">
             <LikeButton message={message} answerFor={answerFor} />
-            <Box component="span" sx={{ fontSize: '0.6875rem', color: 'zen.silent' }}>
+            <Box component="span" sx={{ fontSize: '11px', color: 'zen.silent' }}>
               {dateDistance}
             </Box>
           </Box>

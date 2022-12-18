@@ -110,36 +110,36 @@ export const getDesignTokens = (mode: PaletteMode): ThemeOptions => {
       MuiTypography: {
         styleOverrides: {
           h1: {
-            fontSize: '3rem',
-            lineHeight: '3.5rem',
+            fontSize: '48px',
+            lineHeight: '56px',
             maxWidthSm: {
-              fontSize: '2.5rem',
-              lineHeight: '3rem',
+              fontSize: '40px',
+              lineHeight: '48px',
             },
           },
           h2: {
-            fontSize: '3.75rem',
+            fontSize: '60px',
             lineHeight: 1.2,
           },
           subtitle1: {
-            fontSize: '1rem',
+            fontSize: '16px',
             lineHeight: 1.75,
           },
           h4: {
-            fontSize: '2.125rem',
+            fontSize: '34px',
             lineHeight: 1.235,
           },
           h5: {
             fontWeight: 'bold',
-            fontSize: '1.5rem',
+            fontSize: '24px',
             lineHeight: 1.334,
           },
           h6: {
-            fontSize: '1.15rem',
+            fontSize: '18px',
             lineHeight: 1.6,
           },
           caption: {
-            fontSize: '0.75rem',
+            fontSize: '12px',
           },
         },
       },
@@ -156,7 +156,7 @@ export const getDesignTokens = (mode: PaletteMode): ThemeOptions => {
             backgroundColor: '#37474f',
           },
           action: {
-            padding: '0 0 0 1rem',
+            padding: '0 0 0 16px',
           },
           icon: {
             display: 'flex',
@@ -174,9 +174,9 @@ export const getDesignTokens = (mode: PaletteMode): ThemeOptions => {
             },
           },
           root: {
-            lineHeight: '1.313rem',
+            lineHeight: '21px',
             '@media (max-width:365px)': {
-              fontSize: '0.85rem',
+              fontSize: '13.5px',
             },
           },
         },
@@ -185,10 +185,10 @@ export const getDesignTokens = (mode: PaletteMode): ThemeOptions => {
         styleOverrides: {
           paper: {
             backgroundImage: 'none',
-            borderRadius: '0.75rem',
+            borderRadius: '12px',
             width: 'calc(100% - 16px)',
-            maxHeight: '43.75rem',
-            margin: '1rem',
+            maxHeight: '700px',
+            margin: '16px',
           },
         },
       },

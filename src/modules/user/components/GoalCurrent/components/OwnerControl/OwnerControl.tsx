@@ -5,7 +5,7 @@ import { useGoalContext } from '@modules/user/components/GoalCurrent/hooks'
 import AppEmoji from '@ui/AppEmoji'
 import { useMessages } from './hooks/useMessages'
 
-const ModalCompletion = dynamic(() => import('@features/confirmation'))
+const ModalCompletion = dynamic(() => import('@modules/user/components/GoalCurrent/components/ModalCompletion'))
 const ModalTasks = dynamic(() => import('./components/ModalTasks'))
 
 enum ModalType {

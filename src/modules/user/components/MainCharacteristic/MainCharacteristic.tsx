@@ -31,8 +31,8 @@ function MainCharacteristic({ name, value }: MainCharacteristicProps) {
           borderRadius: '50%',
           textTransform: 'none',
           padding: {
-            xs: '0.25rem',
-            md: '0.5rem',
+            xs: '4px',
+            md: '8px',
           },
         }}
         aria-expanded={modal ? 'true' : undefined}
@@ -67,7 +67,7 @@ function MainCharacteristic({ name, value }: MainCharacteristicProps) {
               variant="caption"
               component="b"
               sx={{
-                fontSize: '0.875rem',
+                fontSize: '14px',
                 fontWeight: 'bold',
                 color: 'white',
               }}
@@ -77,7 +77,7 @@ function MainCharacteristic({ name, value }: MainCharacteristicProps) {
             <Typography
               component="p"
               sx={{
-                fontSize: '0.56rem',
+                fontSize: '9px',
                 color: 'white',
               }}
             >

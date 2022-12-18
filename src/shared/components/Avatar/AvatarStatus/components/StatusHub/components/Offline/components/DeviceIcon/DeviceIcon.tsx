@@ -9,7 +9,7 @@ interface DeviceIconProps {
 function DeviceIcon({ device }: DeviceIconProps): JSX.Element {
   const iconName = getIconName(device)
 
-  return <AppIcon name={iconName} sx={{ fontSize: '0.75rem!important' }} />
+  return <AppIcon name={iconName} sx={{ fontSize: '12px!important' }} />
 }
 
 export default DeviceIcon

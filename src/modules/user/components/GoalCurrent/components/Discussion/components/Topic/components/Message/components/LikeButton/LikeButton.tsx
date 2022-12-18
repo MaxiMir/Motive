@@ -32,7 +32,7 @@ function LikeButton({ message, answerFor }: LikeButtonProps) {
           startIcon={<AppEmoji name={icon} onlyEmoji />}
           sx={{
             color: 'zen.silent',
-            width: '2.5rem',
+            width: '40px',
             minWidth: 'initial',
             filter: !message.like ? 'grayscale(1)' : undefined,
           }}

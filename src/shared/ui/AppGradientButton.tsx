@@ -6,9 +6,9 @@ function AppGradientButton({ disabled, ...props }: AppGradientButtonProps) {
   return (
     <Box
       sx={(theme) => ({
-        padding: '0.063rem',
+        padding: '1px',
         background: `linear-gradient(to top left, ${theme.palette.creativity.dark}, ${theme.palette.support.dark})`,
-        borderRadius: '0.313rem',
+        borderRadius: '5px',
         opacity: disabled ? 0.7 : undefined,
       })}
     >
@@ -18,7 +18,7 @@ function AppGradientButton({ disabled, ...props }: AppGradientButtonProps) {
         size="small"
         disabled={disabled}
         sx={(theme) => ({
-          minWidth: '7.5rem',
+          minWidth: '120px',
           textTransform: 'none',
           background: theme.palette.background.default,
         })}

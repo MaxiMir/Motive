@@ -35,11 +35,7 @@ function MenuModal({ onOpenSettings, onClose }: MenuModalProps) {
 
   return (
     <Drawer open onClose={onClose}>
-      <Box
-        role="presentation"
-        sx={{ minWidth: 230, height: '100%', padding: '3.75rem 0 0.5rem' }}
-        onKeyDown={onKeyDown}
-      >
+      <Box role="presentation" sx={{ minWidth: 230, height: '100%', padding: '60px 0 8px' }} onKeyDown={onKeyDown}>
         <Box display="flex" flexDirection="column" justifyContent="space-between" height="100%">
           <Box>
             <List>

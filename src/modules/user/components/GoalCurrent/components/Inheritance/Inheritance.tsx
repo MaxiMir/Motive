@@ -28,7 +28,7 @@ const InheritanceBox = styled(Box)(({ theme }) => ({
   top: -19,
   left: '50%',
   transform: 'translateX(-50%)',
-  borderRadius: '1.25rem',
+  borderRadius: '20px',
   background: `linear-gradient(90deg, ${theme.palette.support.dark} 0%, ${theme.palette.creativity.dark} 100%)`,
 }))
 

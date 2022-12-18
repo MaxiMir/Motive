@@ -28,7 +28,7 @@ function Header({ user, title, date, onClose }: HeaderProps): JSX.Element {
         left: 0,
         right: 0,
         zIndex: 9999,
-        padding: '1.5rem 0.75rem 0.75rem',
+        padding: '24px 12px 12px',
         transition: 'opacity 0.5s',
       }}
     >
@@ -84,7 +84,7 @@ function Header({ user, title, date, onClose }: HeaderProps): JSX.Element {
 }
 
 const TextTitle = styled(Typography)({
-  fontSize: '0.875rem',
+  fontSize: '14px',
   fontWeight: 'bold',
 })
 

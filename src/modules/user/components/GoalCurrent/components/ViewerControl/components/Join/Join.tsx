@@ -1,19 +1,18 @@
 import { useState } from 'react'
 import dynamic from 'next/dynamic'
-import { useIntl } from 'react-intl'
 import { Button } from '@mui/material'
 import useClient from '@hooks/useClient'
 import useOpenSignIn from '@hooks/useOpenSignIn'
 import AppEmoji from '@ui/AppEmoji'
+import { useMessages } from './hooks/useMessages'
 
 const ModalJoin = dynamic(() => import('./components/ModalJoin'))
 
 function Join() {
-  const { formatMessage } = useIntl()
+  const messages = useMessages()
   const client = useClient()
   const openSignIn = useOpenSignIn()
   const [open, setOpen] = useState(false)
-  const buttonText = formatMessage({ id: 'common.join' })
 
   const toggleModal = () => setOpen(!open)
 
@@ -29,7 +28,7 @@ function Join() {
   return (
     <>
       <Button variant="outlined" color="primary" startIcon={<AppEmoji name="join" onlyEmoji />} onClick={onClick}>
-        {buttonText}
+        {messages.buttonText}
       </Button>
       {open && <ModalJoin onClose={toggleModal} />}
     </>

@@ -23,7 +23,7 @@ import Task from './components/Task'
 import Date from './components/Date'
 import DayAgo from './components/DayAgo'
 
-const Inheritance = dynamic(() => import('./components/Inheritance'))
+const Inheritance = dynamic(() => import('./components/Inheritance/Inheritance'))
 const Stages = dynamic(() => import('./components/Stages'))
 const Hashtags = dynamic(() => import('./components/Hashtags'))
 const Web = dynamic(() => import('./components/Web'))

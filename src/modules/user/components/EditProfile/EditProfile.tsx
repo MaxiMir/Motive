@@ -1,15 +1,14 @@
 import { useState } from 'react'
 import dynamic from 'next/dynamic'
-import { useIntl } from 'react-intl'
 import { Button } from '@mui/material'
 import AppIcon from '@ui/AppIcon'
+import { useMessages } from './hooks/useMessages'
 
 const ModalProfile = dynamic(() => import('./components/ModalProfile'))
 
 function EditProfile() {
-  const { formatMessage } = useIntl()
+  const messages = useMessages()
   const [open, setOpen] = useState(false)
-  const buttonText = formatMessage({ id: 'common.edit' })
 
   const toggle = () => setOpen(!open)
 
@@ -27,7 +26,7 @@ function EditProfile() {
         }}
         onClick={toggle}
       >
-        {buttonText}
+        {messages.buttonText}
       </Button>
       {open && <ModalProfile onClose={toggle} />}
     </>

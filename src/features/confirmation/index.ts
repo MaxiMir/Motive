@@ -1,2 +1,2 @@
-export * from './service'
+export { default } from './ModalCompletion'
 export * from './dto'

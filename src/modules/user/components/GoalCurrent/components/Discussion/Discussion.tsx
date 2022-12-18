@@ -9,7 +9,7 @@ import { useDiscussion } from './hooks/useDiscussion'
 
 const AppList = dynamic<AppListProps<TopicDto>>(() => import('@ui/AppList'))
 const UserInput = dynamic(() => import('./components/UserInput'))
-const Nothing = dynamic(() => import('./components/Nothing'))
+const Nothing = dynamic(() => import('./components/Nothing/Nothing'))
 const Loader = dynamic(() => import('./components/Loader'))
 const Topic = dynamic(() => import('./components/Topic'))
 

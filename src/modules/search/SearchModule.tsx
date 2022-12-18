@@ -6,13 +6,13 @@ import { GoalDto } from '@features/goal'
 import AppHeader from '@ui/AppHeader'
 import AppContainer from '@ui/AppContainer'
 import { useMessages } from './hooks/useMessages'
-import SearchForm from './components/SearchForm'
 import { getGradients } from './helpers/color'
+import SearchForm from './components/SearchForm'
 
 const GoalCard = dynamic(() => import('./components/GoalCard'))
 const UserCard = dynamic(() => import('./components/UserCard'))
 const Hashtag = dynamic(() => import('./components/Hashtag'))
-const NoResult = dynamic(() => import('./components/NoResult'))
+const NoResult = dynamic(() => import('./components/NoResult/NoResult'))
 
 interface SearchModuleProps {
   q: string

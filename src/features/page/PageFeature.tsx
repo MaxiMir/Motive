@@ -9,7 +9,7 @@ import { OGType } from './dto'
 import Header from './components/Header'
 import Footer from './components/Footer'
 
-interface PageFeatureProps {
+interface PageProps {
   title?: string
   description?: string
   keywords?: string
@@ -19,15 +19,7 @@ interface PageFeatureProps {
   children?: ReactNode
 }
 
-function PageFeature({
-  title,
-  description,
-  keywords,
-  type = OGType.Website,
-  image,
-  canonical,
-  children,
-}: PageFeatureProps) {
+function Page({ title, description, keywords, type = OGType.Website, image, canonical, children }: PageProps) {
   const { locale } = useIntl()
   const client = useClient()
   const { asPath } = useRouter()
@@ -92,4 +84,4 @@ function PageFeature({
   )
 }
 
-export default PageFeature
+export default Page

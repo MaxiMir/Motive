@@ -1,15 +1,14 @@
-import { useIntl } from 'react-intl'
 import { Button } from '@mui/material'
 import { useUserContext } from '@modules/user/hooks'
 import AppIcon from '@ui/AppIcon'
 import { useSetFollowing } from './hooks/useSetFollowing'
+import { useMessages } from './hooks/useMessages'
 
 function Following() {
-  const { formatMessage } = useIntl()
   const { id, following } = useUserContext()
+  const messages = useMessages(following)
   const setFollowing = useSetFollowing(id, following)
   const operation = following ? 'remove' : 'add'
-  const buttonText = formatMessage({ id: `page.user.following.${operation}` })
 
   return (
     <Button
@@ -24,7 +23,7 @@ function Following() {
       }}
       onClick={setFollowing}
     >
-      {buttonText}
+      {messages.buttonText}
     </Button>
   )
 }

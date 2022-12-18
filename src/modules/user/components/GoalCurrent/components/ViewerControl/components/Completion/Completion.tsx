@@ -3,7 +3,7 @@ import { MemberDto } from '@features/member'
 import { useNextDayId } from './hooks/useNextDayId'
 
 const EndOfDay = dynamic(() => import('./components/EndOfDay'))
-const Done = dynamic(() => import('./components/Done'))
+const Done = dynamic(() => import('./components/Done/Done'))
 
 interface CompletionProps {
   forTomorrow: boolean

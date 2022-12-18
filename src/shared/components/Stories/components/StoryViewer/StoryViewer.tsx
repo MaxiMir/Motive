@@ -1,7 +1,7 @@
 import { Box } from '@mui/material'
 import { UserBaseDto } from '@features/user'
 import { Story } from '@components/Stories/types'
-import Header from './components/Header'
+import Header from './components/Header/Header'
 import Pointers from './components/Pointers'
 import Slide from './components/Slide'
 import Details from './components/Details'

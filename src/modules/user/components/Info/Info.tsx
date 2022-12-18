@@ -1,15 +1,14 @@
 import { useState } from 'react'
 import dynamic from 'next/dynamic'
-import { useIntl } from 'react-intl'
 import { Button } from '@mui/material'
 import AppIcon from '@ui/AppIcon'
+import { useMessages } from './hooks/useMessages'
 
 const ModalInfo = dynamic(() => import('./components/ModalInfo'))
 
 function Info() {
-  const { formatMessage } = useIntl()
+  const messages = useMessages()
   const [open, setOpen] = useState(false)
-  const learnMoreText = formatMessage({ id: 'common.info' })
 
   const toggle = () => setOpen(!open)
 
@@ -30,7 +29,7 @@ function Info() {
         aria-haspopup="true"
         onClick={toggle}
       >
-        {learnMoreText}
+        {messages.learnMoreText}
       </Button>
       {open && <ModalInfo onClose={toggle} />}
     </>

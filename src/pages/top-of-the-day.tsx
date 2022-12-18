@@ -1,15 +1,15 @@
 import { GetServerSideProps } from 'next'
 import { getSession } from 'next-auth/react'
 import TopOfTheDayModule, { useMetaTags } from '@modules/top-of-the-day'
-import PageFeature from '@features/page'
+import Page from '@features/page'
 
 function TopOfTheDayPage() {
   const metaTags = useMetaTags()
 
   return (
-    <PageFeature title={metaTags.title}>
+    <Page title={metaTags.title}>
       <TopOfTheDayModule />
-    </PageFeature>
+    </Page>
   )
 }
 

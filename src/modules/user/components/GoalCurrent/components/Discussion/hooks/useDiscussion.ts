@@ -1,3 +1,4 @@
+import { useMemo } from 'react'
 import { GetNextPageParamFunction, useInfiniteQuery } from 'react-query'
 import { partialCheckOnLoadMore } from '@helpers/partial'
 import { useGoalContext } from '@modules/user/components/GoalCurrent/hooks'
@@ -25,7 +26,7 @@ export const useDiscussion = () => {
       enabled: !!day.topicCount,
     },
   )
-  const topics = data?.pages.flat() || []
+  const topics = useMemo(() => data?.pages.flat() || [], [data?.pages])
   const checkOnLoadMore = partialCheckOnLoadMore(topics.length, hasNextPage, PRELOAD_DIFF)
 
   return { isLoading, topics, checkOnLoadMore, fetchNextPage }

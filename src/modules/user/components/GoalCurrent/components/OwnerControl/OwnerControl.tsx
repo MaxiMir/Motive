@@ -1,11 +1,11 @@
 import { useState } from 'react'
 import dynamic from 'next/dynamic'
-import { Box, Button, Tooltip } from '@mui/material'
+import { Box, Button } from '@mui/material'
 import { useGoalContext } from '@modules/user/components/GoalCurrent/hooks'
 import AppEmoji from '@ui/AppEmoji'
 import { useMessages } from './hooks/useMessages'
 
-const ModalCompletion = dynamic(() => import('@modules/user/components/GoalCurrent/components/ModalCompletion'))
+const ModalCompletion = dynamic(() => import('@features/confirmation'))
 const ModalTasks = dynamic(() => import('./components/ModalTasks'))
 
 enum ModalType {
@@ -15,10 +15,9 @@ enum ModalType {
 
 function OwnerControl() {
   const { stages, day } = useGoalContext()
-  const feedbackAdded = !!day.feedback
-  const messages = useMessages(feedbackAdded)
+  const messages = useMessages()
   const [modal, setModal] = useState<ModalType>()
-  const renderCompete = stages.length === day.stage && feedbackAdded
+  const renderCompete = stages.length === day.stage
   const justifyContent = renderCompete ? 'space-between' : 'flex-end'
 
   const onAddTasks = () => setModal(ModalType.Tasks)
@@ -29,18 +28,9 @@ function OwnerControl() {
 
   return (
     <Box display="flex" justifyContent={justifyContent}>
-      <Tooltip title={messages.title} arrow followCursor>
-        <span>
-          <Button
-            variant="outlined"
-            disabled={!feedbackAdded}
-            startIcon={<AppEmoji name="moon" onlyEmoji />}
-            onClick={onAddTasks}
-          >
-            {messages.nextButtonText}
-          </Button>
-        </span>
-      </Tooltip>
+      <Button variant="outlined" startIcon={<AppEmoji name="moon" onlyEmoji />} onClick={onAddTasks}>
+        {messages.nextButtonText}
+      </Button>
       {renderCompete && (
         <Button variant="outlined" color="warning" startIcon={<AppEmoji name="cup" onlyEmoji />} onClick={onComplete}>
           {messages.doneButtonText}

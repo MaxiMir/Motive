@@ -1,5 +1,5 @@
 import Slogan from './components/Slogan/Slogan'
-import Advantage from './components/Advantage'
+import Advantage from './components/Advantage/Advantage'
 import ADVANTAGES from './helpers/advantages'
 
 function HomeModule() {

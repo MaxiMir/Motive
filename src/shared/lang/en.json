@@ -145,7 +145,6 @@
   "component.share.send": "Send to",
   "component.share.copy": "Copy Link",
   "component.tooltip.tomorrow": "Will be available tomorrow",
-  "component.tooltip.feedback": "First, add feedback about the day",
   "component.task-field.label": "Task *",
   "component.task-field.placeholder": "What should be done",
   "component.task-field.close": "Remove task",

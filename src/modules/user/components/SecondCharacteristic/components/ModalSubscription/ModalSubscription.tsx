@@ -1,13 +1,12 @@
 import dynamic from 'next/dynamic'
-import { useIntl } from 'react-intl'
 import { Box } from '@mui/material'
 import { useUserContext } from '@modules/user/hooks'
 import { SecondCharacteristicName } from '@features/characteristic'
 import AppModal from '@ui/AppModal/AppModal'
-import { useSubscription } from './hooks/useSubscription'
+import { useMessages, useSubscription } from './hooks'
 import Loader from './components/Loader'
 
-const EmptyList = dynamic(() => import('./components/EmptyList'))
+const EmptyList = dynamic(() => import('./components/EmptyList/EmptyList'))
 const UserList = dynamic(() => import('./components/UserList'))
 
 interface ModalFollowersProps {
@@ -16,13 +15,12 @@ interface ModalFollowersProps {
 }
 
 function ModalSubscription({ name, onClose }: ModalFollowersProps) {
-  const { formatMessage } = useIntl()
+  const messages = useMessages(name)
   const { id, characteristic } = useUserContext()
   const { isLoading, followers, checkOnLoadMore, fetchNextPage } = useSubscription(id, characteristic.followers, name)
-  const title = formatMessage({ id: `common.${name}` })
 
   return (
-    <AppModal title={title} maxWidth="xs" onClose={onClose}>
+    <AppModal title={messages.title} maxWidth="xs" onClose={onClose}>
       <Box
         display="flex"
         flex={1}

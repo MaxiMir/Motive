@@ -1,10 +1,9 @@
-import { useIntl } from 'react-intl'
 import { Field, Form, FormikProvider } from 'formik'
 import { IconButton } from '@mui/material'
 import { styled } from '@mui/system'
 import AppInput from '@ui/AppInput'
 import AppIcon from '@ui/AppIcon'
-import { useForm } from './hooks/useForm'
+import { useMessages, useForm } from './hooks'
 import AutoSend from './components/AutoSend'
 
 interface SearchFormProps {
@@ -12,10 +11,9 @@ interface SearchFormProps {
 }
 
 function SearchForm({ q = '' }: SearchFormProps) {
-  const { formatMessage } = useIntl()
+  const messages = useMessages()
   const form = useForm(q)
   const { values, setFieldValue } = form
-  const label = formatMessage({ id: 'page.search.form' })
 
   const onClickClose = () => setFieldValue('q', '')
 
@@ -24,7 +22,7 @@ function SearchForm({ q = '' }: SearchFormProps) {
       <Form autoComplete="off">
         <Field
           name="q"
-          label={label}
+          label={messages.label}
           color="secondary"
           InputProps={{
             disabled: true,

@@ -1,15 +1,13 @@
-import { useIntl } from 'react-intl'
-import PageFeature from '@features/page'
-import Error from 'src/pages/_error'
+import Page from '@features/page'
+import Error, { useTitle } from '@features/error'
 
 function Page500() {
-  const { formatMessage } = useIntl()
-  const title = formatMessage({ id: 'page.500.title' })
+  const title = useTitle('500')
 
   return (
-    <PageFeature title={title}>
+    <Page title={title}>
       <Error statusCode={500} />
-    </PageFeature>
+    </Page>
   )
 }
 

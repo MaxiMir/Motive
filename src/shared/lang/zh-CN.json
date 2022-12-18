@@ -145,7 +145,6 @@
   "component.share.send": "发送至",
   "component.share.copy": "复制链接",
   "component.tooltip.tomorrow": "将于明天提供",
-  "component.tooltip.feedback": "首先，添加关于当天的反馈",
   "component.task-field.label": "任务*",
   "component.task-field.placeholder": "应该做什么",
   "component.task-field.close": "删除任务",

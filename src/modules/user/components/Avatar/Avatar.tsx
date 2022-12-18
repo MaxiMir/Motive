@@ -4,7 +4,7 @@ import { useUserContext } from '@modules/user/hooks'
 import AvatarStatus from '@components/Avatar/AvatarStatus'
 
 const AppLightBox = dynamic(() => import('@ui/AppLightBox/AppLightBox'))
-const MenuList = dynamic(() => import('./components/MenuList'))
+const MenuList = dynamic(() => import('./components/MenuList/MenuList'))
 
 function Avatar() {
   const { name, avatar, online, lastSeen, device } = useUserContext()

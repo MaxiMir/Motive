@@ -4,7 +4,7 @@ import { dehydrate, QueryClient } from 'react-query'
 import { getSession } from 'next-auth/react'
 import { Route } from '@href'
 import RatingModule, { useRatingPage, useMetaTags } from '@modules/rating'
-import PageFeature, { PageService } from '@features/page'
+import Page, { PageService } from '@features/page'
 
 function RatingPage() {
   const { query } = useRouter()
@@ -13,9 +13,9 @@ function RatingPage() {
   const metaTags = useMetaTags(tab)
 
   return (
-    <PageFeature title={metaTags.title} description={metaTags.description}>
+    <Page title={metaTags.title} description={metaTags.description}>
       {data && <RatingModule {...data} tab={tab} />}
-    </PageFeature>
+    </Page>
   )
 }
 

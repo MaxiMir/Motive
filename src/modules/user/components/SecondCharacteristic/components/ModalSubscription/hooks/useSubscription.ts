@@ -1,3 +1,4 @@
+import { useMemo } from 'react'
 import { QueryFunctionContext, useInfiniteQuery } from 'react-query'
 import { UserDto } from '@features/user'
 import { SecondCharacteristicName } from '@features/characteristic'
@@ -25,7 +26,7 @@ export const useSubscription = (userId: number, count: number, name: SecondChara
     getNextPageParam,
     enabled: !!count,
   })
-  const followers = data?.pages.flat() || []
+  const followers = useMemo(() => data?.pages.flat() || [], [data?.pages])
   const checkOnLoadMore = partialCheckOnLoadMore(followers.length, hasNextPage, PRELOAD_DIFF)
 
   return { isLoading, followers, checkOnLoadMore, fetchNextPage }

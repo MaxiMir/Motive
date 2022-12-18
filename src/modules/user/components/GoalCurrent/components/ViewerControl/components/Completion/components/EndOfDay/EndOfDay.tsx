@@ -1,10 +1,9 @@
 import dynamic from 'next/dynamic'
-import { useIntl } from 'react-intl'
 import { Button, Tooltip } from '@mui/material'
 import { MemberDto } from '@features/member'
 import { getTomorrow } from '@lib/date'
 import AppEmoji from '@ui/AppEmoji'
-import { useSendEndOfDay } from './hooks/useSendEndOfDay'
+import { useMessages, useSendEndOfDay } from './hooks'
 
 const CircularProgress = dynamic(() => import('@mui/material/CircularProgress'))
 
@@ -15,17 +14,15 @@ interface EndOfDayProps {
 }
 
 function EndOfDay({ nextDayId, forTomorrow, clientMember }: EndOfDayProps) {
-  const { formatMessage } = useIntl()
+  const messages = useMessages(forTomorrow)
   const { isLoading, mutate } = useSendEndOfDay()
-  const title = forTomorrow && formatMessage({ id: 'component.tooltip.tomorrow' })
-  const buttonText = formatMessage({ id: 'common.next' })
 
   const onClick = () => {
     mutate({ id: clientMember.id, dayId: nextDayId, updated: getTomorrow() })
   }
 
   return (
-    <Tooltip title={title} arrow followCursor>
+    <Tooltip title={messages.title} arrow followCursor>
       <span>
         <Button
           variant="outlined"
@@ -36,7 +33,7 @@ function EndOfDay({ nextDayId, forTomorrow, clientMember }: EndOfDayProps) {
           }
           onClick={onClick}
         >
-          {buttonText}
+          {messages.buttonText}
         </Button>
       </span>
     </Tooltip>

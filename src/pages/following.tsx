@@ -3,7 +3,7 @@ import { getSession } from 'next-auth/react'
 import { dehydrate, QueryClient } from 'react-query'
 import { Route } from '@href'
 import FollowingModule, { useFollowingPage } from '@modules/following'
-import PageFeature, { PageService } from '@features/page'
+import Page, { PageService } from '@features/page'
 import useMetaTags from '@hooks/useMetaTags'
 
 function FollowingPage() {
@@ -11,9 +11,9 @@ function FollowingPage() {
   const metaTags = useMetaTags('following')
 
   return (
-    <PageFeature title={metaTags.title} description={metaTags.description}>
+    <Page title={metaTags.title} description={metaTags.description}>
       {data && <FollowingModule following={data.following} />}
-    </PageFeature>
+    </Page>
   )
 }
 

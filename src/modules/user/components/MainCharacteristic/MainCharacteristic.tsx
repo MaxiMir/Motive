@@ -1,9 +1,9 @@
 import { useState } from 'react'
 import dynamic from 'next/dynamic'
-import { useIntl } from 'react-intl'
 import { Box, Button, Typography, useTheme } from '@mui/material'
 import { MainCharacteristicName } from '@features/characteristic'
 import AppCircle from '@ui/AppCircle'
+import { useMessages } from './hooks/useMessages'
 import { getOffset, RADIUS } from './helper'
 
 const ModalCharacteristic = dynamic(() => import('./components/ModalCharacteristic'))
@@ -14,13 +14,11 @@ interface MainCharacteristicProps {
 }
 
 function MainCharacteristic({ name, value }: MainCharacteristicProps) {
-  const { locale, formatMessage } = useIntl()
+  const messages = useMessages(name)
   const theme = useTheme()
   const [modal, setModal] = useState<MainCharacteristicName>()
-  const level = Math.floor(value)
   const offset = getOffset(value)
-  const lvlText = formatMessage({ id: 'common.lvl-short' })
-  const header = formatMessage({ id: `common.${name}` })
+  const level = Math.floor(value)
 
   const onClick = () => setModal(name)
 
@@ -74,16 +72,16 @@ function MainCharacteristic({ name, value }: MainCharacteristicProps) {
                 color: 'white',
               }}
             >
-              {level} {lvlText}
+              {level} {messages.lvlText}
             </Typography>
             <Typography
               component="p"
               sx={{
-                fontSize: locale === 'en' ? '0.625rem' : '0.56rem',
+                fontSize: '0.56rem',
                 color: 'white',
               }}
             >
-              {header}
+              {messages.header}
             </Typography>
           </Box>
         </Box>

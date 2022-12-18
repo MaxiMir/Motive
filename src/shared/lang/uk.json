@@ -145,7 +145,6 @@
   "component.share.send": "Надіслати",
   "component.share.copy": "Копіювати посилання",
   "component.tooltip.tomorrow": "Буде доступно завтра",
-  "component.tooltip.feedback": "Спершу, додайте відгук про день",
   "component.task-field.label": "Завдання *",
   "component.task-field.placeholder": "Що слід зробити",
   "component.task-field.close": "Видалити завдання",

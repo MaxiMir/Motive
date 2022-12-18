@@ -11,8 +11,3 @@ export const goalSchema = object({
   ),
   tasks: tasksListSchema,
 })
-
-export const completionSchema = object({
-  description: string().max(400),
-  photos: array().required().min(1),
-})

@@ -3,7 +3,7 @@ import { getSession } from 'next-auth/react'
 import { dehydrate, QueryClient } from 'react-query'
 import { Route } from '@href'
 import SearchModule, { useSearchPage } from '@modules/search'
-import PageFeature, { PageService } from '@features/page'
+import Page, { PageService } from '@features/page'
 import useMetaTags from '@hooks/useMetaTags'
 import { getSearchParams } from '@helpers/url'
 
@@ -12,9 +12,9 @@ function SearchPage() {
   const metaTags = useMetaTags('search')
 
   return (
-    <PageFeature title={metaTags.title} description={metaTags.description}>
+    <Page title={metaTags.title} description={metaTags.description}>
       {data && <SearchModule {...data} />}
-    </PageFeature>
+    </Page>
   )
 }
 

@@ -1,7 +1,7 @@
 import dynamic from 'next/dynamic'
-import { useIntl } from 'react-intl'
 import { Box, Button, IconButton } from '@mui/material'
 import AppIcon from '@ui/AppIcon'
+import { useMessages } from './hooks/useMessages'
 
 const LocalImage = dynamic(() => import('./components/LocalImage'))
 const AppImage = dynamic(() => import('@ui/AppImage'))
@@ -13,8 +13,7 @@ interface PhotoButtonProps {
 }
 
 function PhotoButton({ image, disabled, onClick }: PhotoButtonProps) {
-  const { formatMessage } = useIntl()
-  const ariaLabel = formatMessage({ id: 'component.photo-button.aria' })
+  const messages = useMessages()
 
   return (
     <Button
@@ -45,7 +44,7 @@ function PhotoButton({ image, disabled, onClick }: PhotoButtonProps) {
           <AppImage src={image} layout="fill" objectFit="contain" />
         )}
         <IconButton
-          aria-label={ariaLabel}
+          aria-label={messages.ariaLabel}
           disabled={disabled}
           sx={{
             position: 'absolute',

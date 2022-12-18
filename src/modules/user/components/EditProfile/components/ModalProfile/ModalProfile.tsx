@@ -5,7 +5,7 @@ import AppModal from '@ui/AppModal/AppModal'
 import AppInput from '@ui/AppInput'
 import ActionSubmit from '@components/Action/ActionSubmit'
 import ActionCancel from '@components/Action/ActionCancel/ActionCancel'
-import PhotoInput from '@components/Photo/PhotoInput'
+import PhotoInput from '@components/Photo/PhotoInput/PhotoInput'
 import PhotoButton from '@components/Photo/PhotoButton'
 import { useForm, useMessages } from './hooks'
 

@@ -1,12 +1,11 @@
 import dynamic from 'next/dynamic'
 import { Field, Form, FormikProvider } from 'formik'
-import { useIntl } from 'react-intl'
 import { Box, IconButton } from '@mui/material'
 import { UserBaseDto, ClientDto, getUserHref } from '@features/user'
 import { TopicDto, MessageType } from '@features/topic'
 import AppInput from '@ui/AppInput'
 import UserLink from '@components/User/UserLink'
-import { useForm } from './hooks/useForm'
+import { useMessages, useForm } from './hooks'
 
 const CircularProgress = dynamic(() => import('@mui/material/CircularProgress'))
 const AppIcon = dynamic(() => import('@ui/AppIcon'))
@@ -20,11 +19,10 @@ interface UserInputProps {
 
 function UserInput({ user, type, topicId, onAdd }: UserInputProps) {
   const { nickname, name, avatar } = user
-  const { formatMessage } = useIntl()
+  const messages = useMessages(type)
   const form = useForm(topicId, type, onAdd)
   const { isSubmitting, values, handleSubmit } = form
   const href = getUserHref(nickname)
-  const placeholder = formatMessage({ id: `page.user.user-input.${type}` })
 
   const onClick = () => handleSubmit()
 
@@ -35,7 +33,7 @@ function UserInput({ user, type, topicId, onAdd }: UserInputProps) {
           <UserLink name={name} avatar={avatar} href={href} size={32} />
           <Field
             name="text"
-            placeholder={placeholder}
+            placeholder={messages.placeholder}
             variant="standard"
             InputLabelProps={{ shrink: false }}
             disabled={isSubmitting}

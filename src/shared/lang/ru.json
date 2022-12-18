@@ -145,7 +145,6 @@
   "component.share.send": "Отправить в",
   "component.share.copy": "Копировать ссылку",
   "component.tooltip.tomorrow": "Будет доступно завтра",
-  "component.tooltip.feedback": "Сперва, добавьте отзыв о дне",
   "component.task-field.label": "Задача *",
   "component.task-field.placeholder": "Что следует сделать",
   "component.task-field.close": "Удалить задачу",

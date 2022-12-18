@@ -1,11 +1,10 @@
-import { useIntl } from 'react-intl'
 import { Button, Tooltip } from '@mui/material'
 import { MessageDto, MessageType } from '@features/topic'
 import useClient from '@hooks/useClient'
 import useFormatNumber from '@hooks/useFormatNumber'
 import AppEmoji from '@ui/AppEmoji'
 import { checkOnDisabled } from './helper'
-import { useSetLike } from './hooks/useSetLike'
+import { useMessages, useSetLike } from './hooks'
 
 interface LikeButtonProps {
   message: MessageDto
@@ -13,52 +12,22 @@ interface LikeButtonProps {
 }
 
 function LikeButton({ message, answerFor }: LikeButtonProps) {
-  const { like, likeCount, type } = message
-  const { formatMessage } = useIntl()
-  const formatNumber = useFormatNumber()
+  const { likeCount, type } = message
   const client = useClient()
   const disabled = checkOnDisabled(message, client)
-  const isQuestion = type === MessageType.Question
-  const title = getTitle()
-  const ariaLabel = getAreaLabel()
+  const messages = useMessages(message, disabled)
+  const formatNumber = useFormatNumber()
   const formattedNumber = formatNumber(likeCount)
-  const icon = isQuestion ? 'like' : 'support'
+  const icon = type === MessageType.Question ? 'like' : 'support'
 
   const onClick = useSetLike(message, answerFor)
 
-  function getTitle() {
-    if (disabled) {
-      return !like ? false : formatMessage({ id: 'common.helpful' })
-    }
-
-    if (isQuestion) {
-      return formatMessage({ id: !like ? 'common.like' : 'common.unlike' })
-    }
-
-    return formatMessage({ id: !like ? 'common.mark-helpful' : 'common.unmark-helpful' })
-  }
-
-  function getAreaLabel() {
-    if (!title) {
-      return undefined
-    }
-
-    if (like || !likeCount) {
-      return title
-    }
-
-    const areaMessageTmpl = formatMessage({ id: 'page.user.like-button.area' })
-    const area = areaMessageTmpl.replace('$0', likeCount.toString())
-
-    return `${title} ${area}`
-  }
-
   return (
-    <Tooltip title={title} arrow followCursor>
+    <Tooltip title={messages.title} arrow followCursor>
       <span>
         <Button
           size="small"
-          aria-label={ariaLabel}
+          aria-label={messages.ariaLabel}
           disabled={disabled}
           startIcon={<AppEmoji name={icon} onlyEmoji />}
           sx={{

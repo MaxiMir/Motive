@@ -37,7 +37,14 @@ function Footer({ nickname }: FooterProps) {
         zIndex: 30,
       }}
     >
-      <Container fixed>
+      <Container
+        fixed
+        sx={(theme) => ({
+          [theme.breakpoints.only('xl')]: {
+            maxWidth: 900,
+          },
+        })}
+      >
         <Box display="flex" justifyContent="space-between" alignItems="center" height={52}>
           {routes.map(({ title, href, Component }) => (
             <Button href={href} aria-label={title} key={title} component={Link}>

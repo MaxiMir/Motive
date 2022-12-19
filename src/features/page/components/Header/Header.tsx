@@ -22,7 +22,14 @@ function Header({ authenticated, nickname }: HeaderProps) {
         boxShadow: 'none',
       }}
     >
-      <Container fixed>
+      <Container
+        fixed
+        sx={(theme) => ({
+          [theme.breakpoints.only('xl')]: {
+            maxWidth: 900,
+          },
+        })}
+      >
         <Box display="flex" justifyContent="space-between" alignItems="center">
           <LeftMenu />
           {nickname && <Nickname />}

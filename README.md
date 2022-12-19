@@ -1,5 +1,4 @@
 [//]: # (TODO)
-* useMassages && formatMessages
 * редактирование фотки
 * https://docs.nestjs.com/techniques/caching
 * hydration error

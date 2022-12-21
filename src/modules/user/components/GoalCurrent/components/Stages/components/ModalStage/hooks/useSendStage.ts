@@ -1,10 +1,9 @@
 import produce from 'immer'
 import { useIntl } from 'react-intl'
 import { useMutation } from 'react-query'
-import { GoalDto } from '@dto'
-import GoalService from '@services/goal'
+import { useMutateGoals } from '@modules/user/hooks'
+import { GoalDto, GoalService } from '@features/goal'
 import useSnackbar from '@hooks/useSnackbar'
-import useMutateGoals from '@user-hooks/useMutateGoals'
 
 const getNextState = (goals: GoalDto[], goalId: number): GoalDto[] =>
   produce(goals, (draft) => {
@@ -12,7 +11,7 @@ const getNextState = (goals: GoalDto[], goalId: number): GoalDto[] =>
     draftGoal.stage += 1
   })
 
-const useSendStage = (onSuccess: () => void) => {
+export const useSendStage = (onSuccess: () => void) => {
   const { formatMessage } = useIntl()
   const [goals, mutateGoals] = useMutateGoals()
   const [enqueueSnackbar] = useSnackbar()
@@ -26,5 +25,3 @@ const useSendStage = (onSuccess: () => void) => {
     },
   })
 }
-
-export default useSendStage

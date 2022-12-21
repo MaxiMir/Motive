@@ -1,26 +1,22 @@
-import { useIntl } from 'react-intl'
 import { Box, Typography } from '@mui/material'
-import { GoalDto, OwnershipDto } from '@dto'
-import ActionSubmit from '@components/Action/ActionSubmit'
-import ActionCancel from '@components/Action/ActionCancel'
-import AppModal from '@ui/AppModal'
+import { useGoalContext } from '@modules/user/components/GoalCurrent/hooks'
+import { OwnershipDto } from '@features/member'
+import AppModal from '@ui/AppModal/AppModal'
 import AppFadeIcon from '@ui/AppFadeIcon'
-import useSendRemoveMember from './hooks/useSendRemoveMember'
+import ActionSubmit from '@components/Action/ActionSubmit'
+import ActionCancel from '@components/Action/ActionCancel/ActionCancel'
+import { useSendRemoveMember } from './hooks/useSendRemoveMember'
+import { useMessages } from './hooks/useMessages'
 
 interface ModalLeaveProps {
-  goal: GoalDto
   clientOwnership: OwnershipDto
   onClose: () => void
 }
 
-function ModalLeave({ goal, clientOwnership, onClose }: ModalLeaveProps) {
-  const { id, name } = goal
-  const { formatMessage } = useIntl()
+function ModalLeave({ clientOwnership, onClose }: ModalLeaveProps) {
+  const messages = useMessages()
+  const { id, name } = useGoalContext()
   const { isLoading, mutateAsync } = useSendRemoveMember(id, clientOwnership.page)
-  const title = formatMessage({ id: 'page.user.modal-leave.title' })
-  const buttonText = formatMessage({ id: 'page.user.modal-leave.button' })
-  const loadingText = formatMessage({ id: 'page.user.modal-leave.loading' })
-  const subtitle = formatMessage({ id: 'page.user.modal-leave.subtitle' })
 
   const onClick = () => {
     if (!clientOwnership.member) return
@@ -30,14 +26,14 @@ function ModalLeave({ goal, clientOwnership, onClose }: ModalLeaveProps) {
 
   return (
     <AppModal
-      title={title}
+      title={messages.title}
       maxWidth="xs"
       actions={[
         <ActionCancel onClick={onClose} />,
         <ActionSubmit
           disabled={isLoading}
-          text={buttonText}
-          loadingText={loadingText}
+          text={messages.buttonText}
+          loadingText={messages.loadingText}
           emoji="leave"
           onClick={onClick}
         />,
@@ -46,7 +42,7 @@ function ModalLeave({ goal, clientOwnership, onClose }: ModalLeaveProps) {
     >
       <Box display="flex" flexDirection="column" justifyItems="center" alignItems="center" gap={1}>
         <Typography>
-          {subtitle}{' '}
+          {messages.subtitle}{' '}
           <Box component="span" sx={{ color: 'motivation.light' }}>
             {name}
           </Box>

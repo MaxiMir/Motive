@@ -1,6 +1,6 @@
 import { Box } from '@mui/material'
+import { PhotoDto } from '@features/feedback'
 import GalleryViewer from '@components/Gallery/GalleryViewer'
-import { PhotoDto } from '@dto'
 
 interface GalleryProps {
   photos: PhotoDto[]
@@ -14,7 +14,7 @@ function Gallery({ photos }: GalleryProps) {
       sx={{
         width: {
           xs: compactWidth ? 'calc(50% - 2.5px)' : undefined,
-          sm: compactWidth ? 'calc(33.333% - 6.6666px)' : undefined,
+          sm: compactWidth ? 'calc(33.333% - 6.5px)' : undefined,
         },
       }}
     >

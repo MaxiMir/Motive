@@ -1,17 +1,19 @@
 import produce from 'immer'
 import { useMutation, useQueryClient } from 'react-query'
 import { useIntl } from 'react-intl'
-import { DayCharacteristicName, DayCharacteristicUpdateDto, GoalDto, UserPageDto } from '@dto'
-import GoalService from '@services/goal'
+import { useUserContext } from '@modules/user/hooks'
+import { useGoalContext } from '@modules/user/components/GoalCurrent/hooks'
+import { UserPageDto } from '@features/page'
+import { GoalService } from '@features/goal'
+import { DayCharacteristicName, DayCharacteristicUpdateDto } from '@features/day'
 import useDebounceCb from '@hooks/useDebounceCb'
 import useSnackbar from '@hooks/useSnackbar'
 import useClient from '@hooks/useClient'
 import useOpenSignIn from '@hooks/useOpenSignIn'
-import useUserPageConfig from '@user-hooks/useUserPageConfig'
 
 const getNextState = (page: UserPageDto, { id, dayId, add, name }: DayCharacteristicUpdateDto) =>
   produce(page, (draft) => {
-    const draftGoals = draft.content.goals
+    const draftGoals = draft.goals
     const draftGoal = draftGoals[draftGoals.findIndex((g) => g.id === id)]
     draftGoal.characteristic[name] += add ? 1 : -1
 
@@ -25,21 +27,21 @@ const getNextState = (page: UserPageDto, { id, dayId, add, name }: DayCharacteri
       : draftGoal.reactions[name].filter((r) => r !== dayId)
   })
 
-const useSetReaction = (goal: GoalDto, name: DayCharacteristicName, active: boolean) => {
-  const { id, day } = goal
+export const useSetReaction = (name: DayCharacteristicName, active: boolean) => {
   const { formatMessage } = useIntl()
+  const { id, day } = useGoalContext()
   const client = useClient()
   const openSignIn = useOpenSignIn()
   const queryClient = useQueryClient()
-  const { key } = useUserPageConfig()
+  const { nickname } = useUserContext()
   const [enqueueSnackbar] = useSnackbar()
   const { mutate } = useMutation(GoalService.updateCharacteristic, {
-    async onMutate(options: DayCharacteristicUpdateDto) {
-      await queryClient.cancelQueries(key)
-      const previous = queryClient.getQueryData<UserPageDto>(key)
+    async onMutate(options) {
+      await queryClient.cancelQueries(nickname)
+      const previous = queryClient.getQueryData<UserPageDto>(nickname)
 
       if (previous) {
-        queryClient.setQueryData(key, getNextState(previous, options))
+        queryClient.setQueryData(nickname, getNextState(previous, options))
       }
 
       return { previous }
@@ -48,12 +50,11 @@ const useSetReaction = (goal: GoalDto, name: DayCharacteristicName, active: bool
       const nameText = formatMessage({ id: `page.user.topic.${name}` })
       const messageTmpl = formatMessage({ id: 'page.user.topic.message' })
       const message = messageTmpl.replace('$0', nameText)
-
       add && enqueueSnackbar({ message, severity: 'success', icon: 'magic' })
     },
     onError(_, _1, context) {
       if (context?.previous) {
-        queryClient.setQueryData(key, context?.previous)
+        queryClient.setQueryData(nickname, context?.previous)
       }
     },
   })
@@ -68,5 +69,3 @@ const useSetReaction = (goal: GoalDto, name: DayCharacteristicName, active: bool
     sendDebounce(!active)
   }
 }
-
-export default useSetReaction

@@ -1,17 +1,18 @@
 import dynamic from 'next/dynamic'
 import { Box, Button, Typography } from '@mui/material'
-import { ConfirmationDto, UserBaseDto } from '@dto'
+import { useUserContext } from '@modules/user/hooks'
+import { ConfirmationDto } from '@features/confirmation'
 import useFullScreen from '@hooks/useFullScreen'
 import AvatarStatus from '@components/Avatar/AvatarStatus'
 
 const Stories = dynamic(() => import('@components/Stories'))
 
 interface ConfirmationStoryProps {
-  user: UserBaseDto
   confirmation: ConfirmationDto
 }
 
-function ConfirmationStory({ user, confirmation }: ConfirmationStoryProps) {
+function ConfirmationStory({ confirmation }: ConfirmationStoryProps) {
+  const user = useUserContext()
   const { ref, enabled, open, onOpen, onClose } = useFullScreen()
   const [mainPhoto] = confirmation.photos
   const stories = [mainPhoto] // TODO confirmation.photos.map

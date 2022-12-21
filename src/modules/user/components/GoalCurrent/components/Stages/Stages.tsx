@@ -1,28 +1,24 @@
 import { useState } from 'react'
 import dynamic from 'next/dynamic'
-import { useIntl } from 'react-intl'
 import { Step, StepContent, Stepper } from '@mui/material'
-import { GoalDto } from '@dto'
+import { useGoalContext } from '@modules/user/components/GoalCurrent/hooks'
 import StageLabel from './components/StageLabel'
+import { useMessages } from './hooks/useMessages'
 
 const Button = dynamic(() => import('@mui/material/Button'))
 const Tooltip = dynamic(() => import('@mui/material/Tooltip'))
-
 const ModalStage = dynamic(() => import('./components/ModalStage'))
 
 interface StagesProps {
-  goal: GoalDto
   forTomorrow: boolean
   completeStage: boolean
 }
 
-function Stages({ goal, forTomorrow, completeStage }: StagesProps) {
-  const { formatMessage } = useIntl()
+function Stages({ forTomorrow, completeStage }: StagesProps) {
+  const messages = useMessages(forTomorrow)
+  const { day, stages } = useGoalContext()
   const [open, setOpen] = useState(false)
-  const { day, stages } = goal
   const activeStep = day.stage
-  const title = forTomorrow && formatMessage({ id: 'component.tooltip.tomorrow' })
-  const buttonText = formatMessage({ id: 'common.done' })
 
   const toggleModal = () => setOpen(!open)
 
@@ -47,7 +43,7 @@ function Stages({ goal, forTomorrow, completeStage }: StagesProps) {
               <StepContent />
             ) : (
               <StepContent>
-                <Tooltip title={title} arrow followCursor>
+                <Tooltip title={messages.title} arrow followCursor>
                   <span>
                     <Button
                       variant="outlined"
@@ -58,7 +54,7 @@ function Stages({ goal, forTomorrow, completeStage }: StagesProps) {
                       aria-haspopup="true"
                       onClick={toggleModal}
                     >
-                      {buttonText}
+                      {messages.buttonText}
                     </Button>
                   </span>
                 </Tooltip>
@@ -67,7 +63,7 @@ function Stages({ goal, forTomorrow, completeStage }: StagesProps) {
           </Step>
         ))}
       </Stepper>
-      {open && <ModalStage goal={goal} onClose={toggleModal} />}
+      {open && <ModalStage onClose={toggleModal} />}
     </>
   )
 }

@@ -1,13 +1,14 @@
+import { useRouter } from 'next/router'
 import { useQuery } from 'react-query'
-import PageService from '@services/page'
-import useUserPageConfig from './useUserPageConfig'
+import { PageService } from '@features/page'
+import { parseUrl } from '@helpers/url'
 
-const useUserPage = () => {
-  const { key, asPath } = useUserPageConfig()
+export const useUserPage = () => {
+  const { asPath } = useRouter()
+  const { base, searchParams } = parseUrl(asPath)
+  const nickname = base.replace('/', '')
 
-  return useQuery(key, () => PageService.getUser(asPath), {
+  return useQuery(nickname, () => PageService.getUser(nickname, { params: searchParams }), {
     staleTime: 5_000,
   })
 }
-
-export default useUserPage

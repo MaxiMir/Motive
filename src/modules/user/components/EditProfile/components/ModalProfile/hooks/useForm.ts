@@ -3,25 +3,24 @@ import { useRouter } from 'next/router'
 import { useFormik } from 'formik'
 import { useIntl } from 'react-intl'
 import { useMutation } from 'react-query'
-import { getUserHref } from '@href'
-import { UpdateUserDto, UserBaseDto, UserPageDto } from '@dto'
-import profileSchema from '@schemas/profile'
-import UserService from '@services/user'
+import { useMutateUserPage, useUserContext } from '@modules/user/hooks'
+import { UserPageDto } from '@features/page'
+import { UpdateUserDto, UserBaseDto, UserService, getUserHref, profileSchema } from '@features/user'
 import { getCurrentSearchParams, setSearchParams } from '@helpers/url'
-import useMutateUserPage from '@user-hooks/useMutateUserPage'
 
 const getNextState = (page: UserPageDto, user: UserBaseDto): UserPageDto =>
   produce(page, (draft) => {
-    draft.content.name = user.name
-    draft.content.nickname = user.nickname
-    draft.content.avatar = user.avatar
-    draft.content.motto = user.motto
-    draft.content.location = user.location
-    draft.content.bio = user.bio
+    draft.name = user.name
+    draft.nickname = user.nickname
+    draft.avatar = user.avatar
+    draft.motto = user.motto
+    draft.location = user.location
+    draft.bio = user.bio
   })
 
-const useForm = (user: UserBaseDto, onSuccess: () => void) => {
+export const useForm = (onSuccess: () => void) => {
   const { locale } = useIntl()
+  const user = useUserContext()
   const router = useRouter()
   const [page, mutatePage] = useMutateUserPage()
   const { formatMessage } = useIntl()
@@ -49,7 +48,8 @@ const useForm = (user: UserBaseDto, onSuccess: () => void) => {
     async onSubmit(data, { setFieldError }) {
       const { id } = user
       const { nickname, avatar, ...restData } = data
-      const usersDB = user.nickname === nickname ? null : await UserService.get({ nickname }, 0, 1)
+      const fetchParams = { where: { nickname }, page: 0, take: 1 }
+      const usersDB = user.nickname === nickname ? null : await UserService.get(fetchParams)
 
       if (usersDB?.length) {
         setFieldError('nickname', nicknameError)
@@ -66,5 +66,3 @@ const useForm = (user: UserBaseDto, onSuccess: () => void) => {
     },
   })
 }
-
-export default useForm

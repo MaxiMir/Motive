@@ -1,26 +1,25 @@
 import dynamic from 'next/dynamic'
-import { useIntl } from 'react-intl'
-import { UserDto } from '@dto'
+import { UserDto } from '@features/user'
 import AppHeader from '@ui/AppHeader'
 import AppContainer from '@ui/AppContainer'
+import { useMessages } from './hooks/useMessages'
 
 const EmptyList = dynamic(() => import('./components/EmptyList'))
 const UserList = dynamic(() => import('./components/UserList'))
 
 interface FollowingModuleProps {
-  users: UserDto[]
+  following: UserDto[]
 }
 
-function FollowingModule({ users }: FollowingModuleProps) {
-  const { formatMessage } = useIntl()
-  const header = formatMessage({ id: 'page.following.header' })
+function FollowingModule({ following }: FollowingModuleProps) {
+  const messages = useMessages()
 
   return (
     <AppContainer>
       <AppHeader name="following" mb={4}>
-        {header}
+        {messages.header}
       </AppHeader>
-      {!users.length ? <EmptyList /> : <UserList users={users} />}
+      {!following.length ? <EmptyList /> : <UserList users={following} />}
     </AppContainer>
   )
 }

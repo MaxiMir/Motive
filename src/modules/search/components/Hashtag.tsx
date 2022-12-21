@@ -1,7 +1,7 @@
 import { useRouter } from 'next/router'
 import { Box, Button, Typography } from '@mui/material'
 import { getHashtagHref } from '@href'
-import { formatNumber } from '@helpers/intl'
+import useFormatNumber from '@hooks/useFormatNumber'
 
 interface HashtagProps {
   name: string
@@ -11,6 +11,7 @@ interface HashtagProps {
 
 function Hashtag({ name, gradient, views }: HashtagProps) {
   const { push } = useRouter()
+  const formatNumber = useFormatNumber()
   const formattedViews = formatNumber(views)
 
   const onClick = () => {

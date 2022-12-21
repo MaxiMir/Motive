@@ -1,15 +1,13 @@
-import { useIntl } from 'react-intl'
-import Error from 'src/pages/_error'
-import Layout from '@layout'
+import Page from '@features/page'
+import Error, { useTitle } from '@features/error'
 
 function Page404() {
-  const { formatMessage } = useIntl()
-  const title = formatMessage({ id: 'page.404.title' })
+  const title = useTitle('404')
 
   return (
-    <Layout title={title}>
+    <Page title={title}>
       <Error statusCode={404} />
-    </Layout>
+    </Page>
   )
 }
 

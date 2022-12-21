@@ -1,25 +1,22 @@
 import { useState } from 'react'
 import dynamic from 'next/dynamic'
-import { useIntl } from 'react-intl'
-import { GoalDto, UserBaseDto } from '@dto'
+import { UserBaseDto } from '@features/user'
 import useClient from '@hooks/useClient'
 import useOpenSignIn from '@hooks/useOpenSignIn'
 import ActionGoal from '@components/Action/ActionGoal'
+import { useMessages } from './hooks/useMessages'
 
 const ModalSupport = dynamic(() => import('./components/ModalSupport'))
 
 interface ReactionSupportProps {
-  goal: GoalDto
   owner: UserBaseDto
 }
 
-function ReactionSupport({ goal, owner }: ReactionSupportProps) {
-  const { formatMessage } = useIntl()
+function ReactionSupport({ owner }: ReactionSupportProps) {
+  const messages = useMessages(owner)
   const client = useClient()
   const openSignIn = useOpenSignIn()
   const [open, setOpen] = useState(false)
-  const supportingText = formatMessage({ id: 'common.supporting' })
-  const title = `${supportingText} ${owner.name}`
 
   const toggleModal = () => setOpen(!open)
 
@@ -34,8 +31,8 @@ function ReactionSupport({ goal, owner }: ReactionSupportProps) {
 
   return (
     <>
-      <ActionGoal name="support" title={title} onClick={onClick} />
-      {open && <ModalSupport goal={goal} owner={owner} onClose={toggleModal} />}
+      <ActionGoal name="support" title={messages.title} onClick={onClick} />
+      {open && <ModalSupport owner={owner} onClose={toggleModal} />}
     </>
   )
 }

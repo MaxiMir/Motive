@@ -1,61 +1,33 @@
 import dynamic from 'next/dynamic'
 import { v4 as uuidV4 } from 'uuid'
-import { useIntl } from 'react-intl'
 import { Field, FieldArray, Form, FormikProvider } from 'formik'
-import {
-  Box,
-  Button,
-  Typography,
-  IconButton,
-  FormControl,
-  Tooltip,
-  FormControlLabel,
-  RadioGroup,
-  Radio,
-} from '@mui/material'
+import { Box, Button, Typography, FormControl, Tooltip, FormControlLabel, RadioGroup, Radio } from '@mui/material'
 import { styled } from '@mui/system'
-import { getToday, getTomorrow } from '@utils/date'
+import { getMidnightISO, getTomorrowISO } from '@lib/date'
 import useFocus from '@hooks/useFocus'
-import AppModal from '@ui/AppModal'
+import AppModal from '@ui/AppModal/AppModal'
 import AppHeader from '@ui/AppHeader'
 import AppInput from '@ui/AppInput'
 import AppIcon from '@ui/AppIcon'
 import AppDot from '@ui/AppDot'
 import ActionSubmit from '@components/Action/ActionSubmit'
-import ActionCancel from '@components/Action/ActionCancel'
-import TaskField from '@components/Task/TaskField'
-import useForm from './hooks/useForm'
+import ActionCancel from '@components/Action/ActionCancel/ActionCancel'
+import TaskField from '@components/Task/TaskField/TaskField'
+import { useForm, useMessages } from './hooks'
 
-const AppIconButton = dynamic(() => import('@ui/AppIconButton'))
+const IconButton = dynamic(() => import('@mui/material/IconButton'))
 
 interface ModalGoalProps {
   onClose: () => void
 }
 
 function ModalGoal({ onClose }: ModalGoalProps) {
-  const { formatMessage } = useIntl()
+  const messages = useMessages()
   const [hashtagsRef, setHashtagsFocus] = useFocus()
   const form = useForm(onClose)
   const { isSubmitting, values, setFieldValue, handleSubmit } = form
-  const todayValue = getToday().toISOString()
-  const tomorrowValue = getTomorrow().toISOString()
-  const title = formatMessage({ id: 'page.user.modal-goal.title' })
-  const nameLabel = formatMessage({ id: 'page.user.modal-goal.name' })
-  const hashtagText = formatMessage({ id: 'page.user.modal-goal.hashtag' })
-  const hashtagsLabel = formatMessage({ id: 'page.user.modal-goal.hashtags' })
-  const buttonText = formatMessage({ id: 'common.create' })
-  const loadingText = formatMessage({ id: 'common.creating' })
-  const stagesHeader = formatMessage({ id: 'page.user.modal-goal.stages' })
-  const stageLabel = formatMessage({ id: 'page.user.modal-goal.stage' })
-  const stageButtonText = formatMessage({ id: 'page.user.modal-goal.stage-button' })
-  const stageHintStart = formatMessage({ id: 'page.user.modal-goal.stage-hint-start' })
-  const stageHintEnd = formatMessage({ id: 'page.user.modal-goal.stage-hint-end' })
-  const startHeader = formatMessage({ id: 'page.user.modal-goal.start' })
-  const startLabelledby = formatMessage({ id: 'page.user.modal-goal.start-labelledby' })
-  const todayLabel = formatMessage({ id: 'common.today' })
-  const tomorrowLabel = formatMessage({ id: 'common.tomorrow' })
-  const tasksHeader = formatMessage({ id: 'page.user.modal-goal.tasks-header' })
-  const addTaskText = formatMessage({ id: 'common.task-add' })
+  const todayValue = getMidnightISO()
+  const tomorrowValue = getTomorrowISO()
 
   const onAddHashtag = () => {
     setFieldValue('hashtags', !values.hashtags ? '#' : `${values.hashtags} #`)
@@ -64,14 +36,14 @@ function ModalGoal({ onClose }: ModalGoalProps) {
 
   return (
     <AppModal
-      title={title}
+      title={messages.title}
       maxWidth="xs"
       actions={[
         <ActionCancel onClick={onClose} />,
         <ActionSubmit
           disabled={isSubmitting}
-          text={buttonText}
-          loadingText={loadingText}
+          text={messages.buttonText}
+          loadingText={messages.loadingText}
           emoji="goal"
           onClick={handleSubmit}
         />,
@@ -81,35 +53,37 @@ function ModalGoal({ onClose }: ModalGoalProps) {
       <FormikProvider value={form}>
         <Form autoComplete="off">
           <Box display="flex" flexDirection="column" gap={2}>
-            <Field name="name" label={nameLabel} component={AppInput} />
+            <Field name="name" label={messages.nameLabel} component={AppInput} />
             <Box display="flex" flexDirection="column" gap={1}>
               <Field
                 name="hashtags"
                 color="secondary"
-                label={hashtagsLabel}
+                label={messages.hashtagsLabel}
                 inputRef={hashtagsRef}
                 component={AppInput}
               />
               <ButtonCompact variant="outlined" color="secondary" size="small" onClick={onAddHashtag}>
-                # {hashtagText}
+                # {messages.hashtagText}
               </ButtonCompact>
             </Box>
             <Box display="flex" flexDirection="column" gap={1}>
               <Box display="flex" gap={1}>
                 <AppHeader name="stage" variant="h6" component="h4" color="primary">
-                  {stagesHeader}
+                  {messages.stagesHeader}
                 </AppHeader>
                 <Tooltip
                   title={
                     <>
-                      <Typography>{stageHintStart}.</Typography>
-                      <Typography>{stageHintEnd}.</Typography>
+                      <Typography>{messages.stageHintStart}.</Typography>
+                      <Typography>{messages.stageHintEnd}.</Typography>
                     </>
                   }
                 >
-                  <IconButton color="info">
-                    <AppIcon name="help_outline" />
-                  </IconButton>
+                  <span>
+                    <IconButton color="info">
+                      <AppIcon name="help_outline" />
+                    </IconButton>
+                  </span>
                 </Tooltip>
               </Box>
               <FieldArray name="stages">
@@ -122,13 +96,15 @@ function ModalGoal({ onClose }: ModalGoalProps) {
                         </Box>
                         <Field
                           name={`stages.${index}.name`}
-                          label={`${stageLabel} ${index + 1}`}
+                          label={`${messages.stageLabel} ${index + 1}`}
                           autoFocus={index === values.stages.length - 1}
                           color="warning"
                           component={AppInput}
                         />
                         <Box display="flex" alignSelf="flex-start">
-                          <AppIconButton name="close" onClick={() => remove(index)} />
+                          <IconButton disableFocusRipple onClick={() => remove(index)}>
+                            <AppIcon name="close" />
+                          </IconButton>
                         </Box>
                       </Box>
                     ))}
@@ -138,7 +114,7 @@ function ModalGoal({ onClose }: ModalGoalProps) {
                       size="small"
                       onClick={() => push({ id: uuidV4(), name: '' })}
                     >
-                      + {stageButtonText}
+                      + {messages.stageButtonText}
                     </ButtonCompact>
                   </>
                 )}
@@ -146,23 +122,23 @@ function ModalGoal({ onClose }: ModalGoalProps) {
             </Box>
             <FormControl variant="standard">
               <AppHeader name="clock" variant="h6" component="label">
-                {startHeader}
+                {messages.startHeader}
               </AppHeader>
               <RadioGroup
                 name="started"
                 value={values.started}
-                aria-labelledby={startLabelledby}
+                aria-labelledby={messages.startLabelledby}
                 row
                 onChange={(e) => setFieldValue('started', e.target.value)}
               >
-                <FormControlLabel label={todayLabel} value={todayValue} control={<Radio />} />
-                <FormControlLabel label={tomorrowLabel} value={tomorrowValue} control={<Radio />} />
+                <FormControlLabel label={messages.todayLabel} value={todayValue} control={<Radio />} />
+                <FormControlLabel label={messages.tomorrowLabel} value={tomorrowValue} control={<Radio />} />
               </RadioGroup>
             </FormControl>
             <Box display="flex" flexDirection="column" gap={2}>
               <Box display="flex" gap={1}>
                 <AppHeader name="task" variant="h6" component="h4" color="primary">
-                  {tasksHeader}
+                  {messages.tasksHeader}
                 </AppHeader>
               </Box>
               <FieldArray name="tasks">
@@ -184,7 +160,7 @@ function ModalGoal({ onClose }: ModalGoalProps) {
                       size="small"
                       onClick={() => push({ id: uuidV4(), name: '', date: undefined })}
                     >
-                      {addTaskText}
+                      {messages.addTaskText}
                     </ButtonCompact>
                   </>
                 )}

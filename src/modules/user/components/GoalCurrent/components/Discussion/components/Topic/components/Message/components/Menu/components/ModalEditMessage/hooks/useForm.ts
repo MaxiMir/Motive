@@ -2,9 +2,7 @@ import produce from 'immer'
 import { useIntl } from 'react-intl'
 import { InfiniteData, useMutation, useQueryClient } from 'react-query'
 import { useFormik } from 'formik'
-import { MessageDto, TopicDto } from '@dto'
-import messageSchema from '@schemas/message'
-import TopicService from '@services/topic'
+import { MessageDto, TopicDto, TopicService, topicSchema } from '@features/topic'
 import useSnackbar from '@hooks/useSnackbar'
 
 const getNextState = (discussion: InfiniteData<TopicDto[]>, message: MessageDto) => {
@@ -27,7 +25,7 @@ const getNextState = (discussion: InfiniteData<TopicDto[]>, message: MessageDto)
   })
 }
 
-const useForm = (initialValues: MessageDto, onSuccess: () => void) => {
+export const useForm = (initialValues: MessageDto, onSuccess: () => void) => {
   const { formatMessage } = useIntl()
   const [enqueueSnackbar] = useSnackbar()
   const queryClient = useQueryClient()
@@ -45,11 +43,9 @@ const useForm = (initialValues: MessageDto, onSuccess: () => void) => {
 
   return useFormik<MessageDto>({
     initialValues,
-    validationSchema: messageSchema,
+    validationSchema: topicSchema,
     onSubmit(data) {
       mutate(data)
     },
   })
 }
-
-export default useForm

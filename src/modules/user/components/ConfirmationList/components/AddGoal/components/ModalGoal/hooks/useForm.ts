@@ -1,22 +1,20 @@
 import produce from 'immer'
 import { v4 as uuidV4 } from 'uuid'
+import { useIntl } from 'react-intl'
 import { useMutation } from 'react-query'
 import { useFormik } from 'formik'
-import { CreatedGoal, CreateGoalDto, GoalDto } from '@dto'
-import goalSchema from '@schemas/goal'
-import { getToday } from '@utils/date'
-import { useIntl } from 'react-intl'
-import GoalService from '@services/goal'
+import { getMidnightISO } from '@lib/date'
+import { useMutateGoals } from '@modules/user/hooks'
+import { CreatedGoal, CreateGoalDto, GoalDto, GoalService, goalSchema } from '@features/goal'
 import useSnackbar from '@hooks/useSnackbar'
-import { scrollToElem } from '@helpers/window'
-import useMutateGoals from '@user-hooks/useMutateGoals'
+import { scrollToElem } from '@helpers/document'
 
 const getNextState = (goals: GoalDto[], goal: CreatedGoal) =>
   produce(goals, (draft) => {
     draft.push({ ...goal, day: goal.days[0] })
   })
 
-const useForm = (onSuccess: () => void) => {
+export const useForm = (onSuccess: () => void) => {
   const { formatMessage } = useIntl()
   const [enqueueSnackbar] = useSnackbar()
   const [goals, mutateGoal] = useMutateGoals()
@@ -32,7 +30,7 @@ const useForm = (onSuccess: () => void) => {
 
   return useFormik<CreateGoalDto>({
     initialValues: {
-      started: getToday().toISOString(),
+      started: getMidnightISO(),
       name: '',
       hashtags: '',
       stages: [],
@@ -44,5 +42,3 @@ const useForm = (onSuccess: () => void) => {
     },
   })
 }
-
-export default useForm

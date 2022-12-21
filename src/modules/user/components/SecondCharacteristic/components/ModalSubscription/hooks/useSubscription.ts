@@ -1,19 +1,33 @@
-import { useInfiniteQuery } from 'react-query'
-import { SecondCharacteristicName } from '@dto'
+import { useMemo } from 'react'
+import { QueryFunctionContext, useInfiniteQuery } from 'react-query'
+import { UserDto } from '@features/user'
+import { SecondCharacteristicName } from '@features/characteristic'
+import { SubscriptionService } from '@features/subscription'
 import { partialCheckOnLoadMore, partialGetNextPageParam } from '@helpers/partial'
-import { PRELOAD_DIFF, TAKE, partialFetcher } from '../helper'
 
-const useSubscription = (userId: number, count: number, name: SecondCharacteristicName) => {
-  const fetcher = partialFetcher(userId, name)
+const TAKE = 20
+const PRELOAD_DIFF = 5
+
+const partialQueryFn = (
+  userId: number,
+  name: SecondCharacteristicName,
+): ((c: QueryFunctionContext) => Promise<UserDto[]>) => {
+  return ({ pageParam = 0 }: QueryFunctionContext) => {
+    const method = name === SecondCharacteristicName.Following ? 'getFollowing' : 'getFollowers'
+
+    return SubscriptionService[method](userId, { page: pageParam, take: TAKE })
+  }
+}
+
+export const useSubscription = (userId: number, count: number, name: SecondCharacteristicName) => {
+  const queryFn = partialQueryFn(userId, name)
   const getNextPageParam = partialGetNextPageParam(count, TAKE)
-  const { isLoading, data, fetchNextPage, hasNextPage } = useInfiniteQuery([name, userId, count], fetcher, {
+  const { isLoading, data, fetchNextPage, hasNextPage } = useInfiniteQuery([name, userId, count], queryFn, {
     getNextPageParam,
     enabled: !!count,
   })
-  const followers = data?.pages.flat() || []
+  const followers = useMemo(() => data?.pages.flat() || [], [data?.pages])
   const checkOnLoadMore = partialCheckOnLoadMore(followers.length, hasNextPage, PRELOAD_DIFF)
 
   return { isLoading, followers, checkOnLoadMore, fetchNextPage }
 }
-
-export default useSubscription

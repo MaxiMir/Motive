@@ -1,6 +1,9 @@
 import dynamic from 'next/dynamic'
 import { Box } from '@mui/material'
-import { DAY_CHARACTERISTIC, GoalDto, OwnershipDto, UserBaseDto } from '@dto'
+import { useGoalContext } from '@modules/user/components/GoalCurrent/hooks'
+import { UserBaseDto } from '@features/user'
+import { OwnershipDto } from '@features/member'
+import { DAY_CHARACTERISTIC } from '@features/day'
 import ReactionWithSend from './components/ReactionWithSend'
 import ReactionSupport from './components/ReactionSupport'
 import { checkOnCompletion } from './helper'
@@ -9,27 +12,27 @@ const Join = dynamic(() => import('./components/Join'))
 const Completion = dynamic(() => import('./components/Completion'))
 
 interface ViewerProps {
-  goal: GoalDto
   owner: UserBaseDto
   forTomorrow: boolean
   clientOwnership: OwnershipDto
 }
 
-function Viewer({ goal, owner, forTomorrow, clientOwnership }: ViewerProps) {
-  const completion = checkOnCompletion(clientOwnership, goal)
+function Viewer({ owner, forTomorrow, clientOwnership }: ViewerProps) {
+  const { day } = useGoalContext()
+  const completion = checkOnCompletion(clientOwnership, day.id)
 
   return (
     <Box display="flex" justifyContent="space-between" flexWrap="wrap">
       <Box display="flex" gap={1}>
         {DAY_CHARACTERISTIC.map((name) => (
-          <ReactionWithSend goal={goal} name={name} key={name} />
+          <ReactionWithSend name={name} key={name} />
         ))}
-        <ReactionSupport goal={goal} owner={owner} />
+        <ReactionSupport owner={owner} />
       </Box>
       {!clientOwnership.member ? (
-        <Join goal={goal} />
+        <Join />
       ) : (
-        <>{completion && <Completion goal={goal} forTomorrow={forTomorrow} clientMember={clientOwnership.member} />}</>
+        <>{completion && <Completion forTomorrow={forTomorrow} clientMember={clientOwnership.member} />}</>
       )}
     </Box>
   )

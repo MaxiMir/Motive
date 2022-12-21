@@ -1,7 +1,8 @@
-import { useIntl } from 'react-intl'
 import { Container, Grid, Box, Typography } from '@mui/material'
-import { UserDto, MainCharacteristicName } from '@dto'
+import { UserDto } from '@features/user'
+import { MainCharacteristicName } from '@features/characteristic'
 import AppList from '@ui/AppList'
+import { useMessages } from './hooks/useMessages'
 import UserRow from './components/UserRow'
 
 interface TabContentProps {
@@ -10,9 +11,7 @@ interface TabContentProps {
 }
 
 function TabContent({ name, users }: TabContentProps) {
-  const { formatMessage } = useIntl()
-  const userText = formatMessage({ id: 'common.user' })
-  const lvlText = formatMessage({ id: 'common.lvl' })
+  const messages = useMessages()
 
   return (
     <>
@@ -28,12 +27,12 @@ function TabContent({ name, users }: TabContentProps) {
             </Grid>
             <Grid item xs={8}>
               <Typography variant="subtitle1" component="p">
-                <b>{userText}</b>
+                <b>{messages.userText}</b>
               </Typography>
             </Grid>
             <Grid item xs>
               <Typography variant="subtitle1" component="p" align="right">
-                <b>{lvlText}</b>
+                <b>{messages.lvlText}</b>
               </Typography>
             </Grid>
           </Grid>

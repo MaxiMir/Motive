@@ -1,4 +1,5 @@
-import { DAY_CHARACTERISTIC, DayCharacteristicName, GoalDto } from '@dto'
+import { GoalDto } from '@features/goal'
+import { DAY_CHARACTERISTIC, DayCharacteristicName } from '@features/day'
 
 export const checkOnActive = (goal: GoalDto, name: DayCharacteristicName): boolean =>
   !!goal.reactions?.[name].some((d) => d === goal.day.id)

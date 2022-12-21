@@ -1,31 +1,27 @@
 import { GetServerSideProps } from 'next'
 import { getSession } from 'next-auth/react'
-import { useIntl } from 'react-intl'
 import { dehydrate, QueryClient } from 'react-query'
-import { AxiosRequestHeaders } from 'axios'
 import { Route } from '@href'
-import PageService from '@services/page'
 import FollowingModule, { useFollowingPage } from '@modules/following'
-import Layout from '@layout'
+import Page, { PageService } from '@features/page'
+import useMetaTags from '@hooks/useMetaTags'
 
 function FollowingPage() {
-  const { formatMessage } = useIntl()
   const { data } = useFollowingPage()
-  const title = formatMessage({ id: 'page.following.title' })
-  const description = formatMessage({ id: 'page.following.description' })
+  const metaTags = useMetaTags('following')
 
   return (
-    <Layout title={title} description={description}>
-      {data?.content && <FollowingModule users={data.content} />}
-    </Layout>
+    <Page title={metaTags.title} description={metaTags.description}>
+      {data && <FollowingModule following={data.following} />}
+    </Page>
   )
 }
 
 export const getServerSideProps: GetServerSideProps = async (ctx) => {
+  const { headers } = ctx.req
   const queryClient = new QueryClient()
   const session = await getSession(ctx)
-  const headers = ctx.req.headers as AxiosRequestHeaders
-  await queryClient.prefetchQuery(Route.Following, () => PageService.get(Route.Following, { headers }))
+  await queryClient.prefetchQuery(Route.Following, () => PageService.getFollowing({ headers }))
 
   return {
     props: {

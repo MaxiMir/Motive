@@ -1,16 +1,17 @@
-import { useIntl } from 'react-intl'
 import { Grid, Box, Button, Typography, typographyClasses } from '@mui/material'
 import { styled, Theme } from '@mui/system'
+import { openBlank } from '@helpers/window'
 import AppContainer from '@ui/AppContainer'
 import AppHeader from '@ui/AppHeader'
 import AppIcon from '@ui/AppIcon'
 import AppEmoji from '@ui/AppEmoji'
 import { TelegramIcon, LinkedInIcon } from '@ui/icons'
-import BTCSrc from 'public/images/svg/BTC.svg'
-import ETHSrc from 'public/images/svg/ETH.svg'
-import LTCSrc from 'public/images/svg/LTC.svg'
-import DOGESrc from 'public/images/svg/DOGE.svg'
-import Wallet from './components/Wallet'
+import BTCSrc from 'public/images/svg/btc.svg'
+import ETHSrc from 'public/images/svg/eth.svg'
+import LTCSrc from 'public/images/svg/ltc.svg'
+import DOGESrc from 'public/images/svg/doge.svg'
+import { useMessages } from './hooks/useMessages'
+import Wallet from './components/Wallet/Wallet'
 
 const CRYPTOS = [
   { name: 'BTC', wallet: '1AmJZzeVH6wkJZ6a1FojJbHD1im9UZBar7', src: BTCSrc },
@@ -20,12 +21,7 @@ const CRYPTOS = [
 ]
 
 function ContactModule() {
-  const { formatMessage } = useIntl()
-  const header = formatMessage({ id: 'page.contact.header' })
-  const subheader = formatMessage({ id: 'page.contact.subheader' })
-  const support = formatMessage({ id: 'page.contact.support' })
-
-  const openBlank = (url: string) => window.open(url, '_blank')
+  const messages = useMessages()
 
   const onClickTelegram = () => openBlank('https://t.me/MaximMir')
 
@@ -36,11 +32,11 @@ function ContactModule() {
   return (
     <AppContainer>
       <AppHeader name="contact" mb={3}>
-        {header}
+        {messages.header}
       </AppHeader>
       <Box display="flex" flexDirection="column" gap={2}>
         <Typography>
-          {subheader} <AppEmoji name="wink" onlyEmoji />.
+          {messages.subheader} <AppEmoji name="wink" onlyEmoji />.
         </Typography>
         <Grid container spacing={2}>
           <Grid item xs={4} sm={4} md={3} lg={2}>
@@ -97,7 +93,7 @@ function ContactModule() {
         </Grid>
         <Box display="flex" flexDirection="column" gap={1} mt={3}>
           <AppHeader name="coin" variant="h1" component="h3" mb={3}>
-            {support}
+            {messages.support}
           </AppHeader>
           {CRYPTOS.map(({ name, wallet, src }) => (
             <Wallet name={name} wallet={wallet} src={src} key={name} />
@@ -127,7 +123,7 @@ const ButtonContent = styled(Box)(({ theme }) => ({
   right: 0,
   [`& .${typographyClasses.root}`]: {
     [theme.breakpoints.down('md')]: {
-      fontSize: '1rem',
+      fontSize: '16px',
     },
   },
   '& .material-icons': {

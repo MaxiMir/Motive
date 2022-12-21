@@ -1,10 +1,11 @@
 import dynamic from 'next/dynamic'
 import { useIntl } from 'react-intl'
 import { Box, Tooltip } from '@mui/material'
-import { MemberDto, TaskDto } from '@dto'
+import { MemberDto } from '@features/member'
+import { TaskDto } from '@features/task'
 import AppCheckbox from '@ui/AppCheckbox'
 import TaskLabel from './components/TaskLabel'
-import useSetCompleted from './hooks/useSetCompleted'
+import { useSetCompleted } from './hooks/useSetCompleted'
 
 const TaskDate = dynamic(() => import('./components/TaskDate'))
 

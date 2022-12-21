@@ -1,17 +1,15 @@
 import { GetServerSideProps } from 'next'
 import { getSession } from 'next-auth/react'
-import { useIntl } from 'react-intl'
-import TopOfTheDayModule from '@modules/top-of-the-day'
-import Layout from '@layout'
+import TopOfTheDayModule, { useMetaTags } from '@modules/top-of-the-day'
+import Page from '@features/page'
 
 function TopOfTheDayPage() {
-  const { formatMessage } = useIntl()
-  const title = formatMessage({ id: 'page.top.title' })
+  const metaTags = useMetaTags()
 
   return (
-    <Layout title={title}>
+    <Page title={metaTags.title}>
       <TopOfTheDayModule />
-    </Layout>
+    </Page>
   )
 }
 

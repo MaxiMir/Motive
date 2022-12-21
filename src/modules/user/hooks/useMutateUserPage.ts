@@ -1,19 +1,17 @@
 import { useQueryClient } from 'react-query'
-import { UserPageDto } from '@dto'
-import useUserPageConfig from './useUserPageConfig'
+import { useUserContext } from '@modules/user/hooks/useUserContext'
+import { UserPageDto } from '@features/page'
 
 type UseMutateUserPage = () => [UserPageDto, (page: UserPageDto) => void]
 
-const useMutateUserPage: UseMutateUserPage = () => {
+export const useMutateUserPage: UseMutateUserPage = () => {
   const queryClient = useQueryClient()
-  const { key } = useUserPageConfig()
-  const state = queryClient.getQueryState<UserPageDto>(key)
+  const { nickname } = useUserContext()
+  const state = queryClient.getQueryState<UserPageDto>(nickname)
 
   const mutate = (page: UserPageDto) => {
-    queryClient.setQueryData(key, page)
+    queryClient.setQueryData(nickname, page)
   }
 
   return [state?.data as UserPageDto, mutate]
 }
-
-export default useMutateUserPage

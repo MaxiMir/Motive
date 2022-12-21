@@ -1,9 +1,9 @@
 import dynamic from 'next/dynamic'
 import { Box, Divider, Typography } from '@mui/material'
 import { styled } from '@mui/system'
-import { getUserHref } from '@href'
-import { UserDetailDto, MAIN_CHARACTERISTICS, SECOND_CHARACTERISTICS } from '@dto'
-import useClient from '@hooks/useClient'
+import { useCheckOnClientPage, UserContext } from '@modules/user/hooks'
+import { UserPageDto } from '@features/page'
+import { MAIN_CHARACTERISTICS, SECOND_CHARACTERISTICS } from '@features/characteristic'
 import AppContainer from '@ui/AppContainer'
 import SecondCharacteristic from './components/SecondCharacteristic'
 import EmptyGoals from './components/EmptyGoals'
@@ -19,64 +19,40 @@ const GoalCurrent = dynamic(() => import('./components/GoalCurrent'))
 const Motto = dynamic(() => import('./components/Motto'))
 
 interface UserModuleProps {
-  user: UserDetailDto
+  user: UserPageDto
 }
 
 function UserModule({ user }: UserModuleProps) {
-  const {
-    id,
-    nickname,
-    name,
-    avatar,
-    characteristic,
-    goals,
-    following,
-    membership,
-    clientMembership,
-    confirmations,
-    motto,
-  } = user
-  const client = useClient()
-  const href = getUserHref(nickname)
-  const clientPage = id === client?.id
-  const userBase = { id, name, nickname, avatar }
-  const withConfirmationsList = !!confirmations.length || clientPage
+  const { id, name, characteristic, goals, membership, clientMembership, confirmations, motto } = user
+  const clientPage = useCheckOnClientPage(id)
+  const showConfirmationsList = !!confirmations.length || clientPage
 
   return (
-    <AppContainer>
-      <Menu user={user} href={href} clientPage={clientPage} />
-      <Box
-        display="flex"
-        flexWrap="wrap"
-        mb={3}
-        sx={{
-          gap: {
-            xs: 2,
-            md: 3,
-          },
-          alignItems: 'flex-end',
-          justifyContent: {
-            xs: 'center',
-            md: 'flex-start',
-          },
-        }}
-      >
-        <Avatar user={user} />
+    <UserContext.Provider value={user}>
+      <AppContainer>
+        <Menu />
         <Box
           display="flex"
-          flexDirection="column"
-          gap={1}
+          flexWrap="wrap"
+          mb={3}
+          component="section"
           sx={{
-            alignItems: {
+            gap: {
+              xs: 2,
+              md: 3,
+            },
+            alignItems: 'flex-end',
+            justifyContent: {
               xs: 'center',
               md: 'flex-start',
             },
           }}
         >
+          <Avatar />
           <Box
             display="flex"
             flexDirection="column"
-            gap={0.5}
+            gap={1}
             sx={{
               alignItems: {
                 xs: 'center',
@@ -84,60 +60,67 @@ function UserModule({ user }: UserModuleProps) {
               },
             }}
           >
-            <Typography variant="h5" component="h1">
-              {name}
-            </Typography>
-            {motto && <Motto motto={motto} />}
-          </Box>
-          <Box display="flex" flexWrap="wrap" justifyContent="space-between" gap={2}>
-            {SECOND_CHARACTERISTICS.map((characteristicName) => (
-              <SecondCharacteristic
-                user={user}
-                name={characteristicName}
-                value={characteristic[characteristicName]}
-                key={characteristicName}
-              />
-            ))}
-          </Box>
-          <Box display="flex" flexWrap="wrap" my={1} width="100%" gap={2}>
-            {clientPage ? <EditProfile user={user} /> : <Following id={user.id} following={following} />}
-            <Info user={user} />
+            <Box
+              display="flex"
+              flexDirection="column"
+              gap={0.5}
+              sx={{
+                alignItems: {
+                  xs: 'center',
+                  md: 'flex-start',
+                },
+              }}
+            >
+              <Typography variant="h5" component="h1">
+                {name}
+              </Typography>
+              {motto && <Motto motto={motto} />}
+            </Box>
+            <Box display="flex" flexWrap="wrap" justifyContent="space-between" gap={2}>
+              {SECOND_CHARACTERISTICS.map((characteristicName) => (
+                <SecondCharacteristic
+                  confirmations={confirmations}
+                  name={characteristicName}
+                  value={characteristic[characteristicName]}
+                  key={characteristicName}
+                />
+              ))}
+            </Box>
+            <Box display="flex" flexWrap="wrap" my={1} width="100%" gap={2}>
+              {clientPage ? <EditProfile /> : <Following />}
+              <Info />
+            </Box>
           </Box>
         </Box>
-      </Box>
-      <DashedDivider light sx={{ mb: 3 }} />
-      <Box display="flex" justifyContent="space-between" mb={3}>
-        {MAIN_CHARACTERISTICS.map((characteristicName) => (
-          <MainCharacteristic
-            name={characteristicName}
-            value={characteristic[characteristicName]}
-            key={characteristicName}
-          />
-        ))}
-      </Box>
-      <DashedDivider light sx={{ mb: 3 }} />
-      {withConfirmationsList && (
-        <ConfirmationList user={userBase} confirmations={confirmations} clientPage={clientPage} />
-      )}
-      {!goals.length ? (
-        <EmptyGoals clientPage={clientPage} />
-      ) : (
-        <Box display="flex" flexWrap="wrap" gap={3}>
-          {goals.map((goal) => (
-            <GoalCurrent
-              goal={goal}
-              href={href}
-              userId={id}
-              membership={membership}
-              clientId={client?.id}
-              clientPage={clientPage}
-              clientMembership={clientMembership}
-              key={goal.id}
+        <DashedDivider light sx={{ mb: 3 }} />
+        <Box display="flex" justifyContent="space-between" mb={3} component="section">
+          {MAIN_CHARACTERISTICS.map((characteristicName) => (
+            <MainCharacteristic
+              name={characteristicName}
+              value={characteristic[characteristicName]}
+              key={characteristicName}
             />
           ))}
         </Box>
-      )}
-    </AppContainer>
+        <DashedDivider light sx={{ mb: 3 }} />
+        {showConfirmationsList && <ConfirmationList confirmations={confirmations} clientPage={clientPage} />}
+        {!goals.length ? (
+          <EmptyGoals clientPage={clientPage} />
+        ) : (
+          <Box display="flex" flexWrap="wrap" gap={3}>
+            {goals.map((goal) => (
+              <GoalCurrent
+                goal={goal}
+                membership={membership}
+                clientPage={clientPage}
+                clientMembership={clientMembership}
+                key={goal.id}
+              />
+            ))}
+          </Box>
+        )}
+      </AppContainer>
+    </UserContext.Provider>
   )
 }
 

@@ -1,114 +1,49 @@
-import { useIntl } from 'react-intl'
-import { isValid } from 'date-fns'
-import { Box, Badge, Divider, TextField } from '@mui/material'
-import { DatePicker } from '@mui/x-date-pickers/DatePicker'
+import dynamic from 'next/dynamic'
+import { Badge, Box } from '@mui/material'
 import { PickersDay } from '@mui/x-date-pickers'
-import { styled } from '@mui/system'
-import { GoalDto } from '@dto'
-import useDebounceCb from '@hooks/useDebounceCb'
-import AppIconButton from '@ui/AppIconButton'
-import AppEmoji from '@ui/AppEmoji'
-import { getBorders, getToggleDates, partialGetDateKey } from './helper'
-import useChangeDay from './hooks/useChangeDay'
+import { DatePicker } from '@mui/x-date-pickers/DatePicker'
+import { useGoalContext } from '@modules/user/components/GoalCurrent/hooks'
+import { useMessages } from './hooks/useMessages'
+import { getBorders } from './helper'
+import OpenPickerIcon from './components/OpenPickerIcon'
+import InputNotEditable from './components/InputNotEditable'
+
+const AppEmoji = dynamic(() => import('@ui/AppEmoji'))
 
 interface CalendarProps {
-  goal: GoalDto
+  isLoading: boolean
+  onChangeDate: (value: Date | null) => void
+  shouldDisableDate: (value: Date) => boolean
 }
 
-function Calendar({ goal }: CalendarProps) {
-  const { id, day, calendar } = goal
-  const { formatMessage } = useIntl()
-  const date = new Date(day.date)
-  const { isLoading, mutate } = useChangeDay(id)
-  const onChangeDebounce = useDebounceCb(mutate, 1000)
-  const format = formatMessage({ id: 'common.format' })
-  const prevDayTitle = formatMessage({ id: 'common.prev-day' })
-  const nextDayTitle = formatMessage({ id: 'common.next-day' })
-  const getDateKey = partialGetDateKey(format)
-  const dateMap = getDateMap()
-  const dates = Object.keys(dateMap)
-  const dateKey = getDateKey(day.date)
-  const [prev, next] = getToggleDates(dates, dateKey)
+function Calendar({ isLoading, onChangeDate, shouldDisableDate }: CalendarProps) {
+  const messages = useMessages()
+  const { day, calendar } = useGoalContext()
   const [min, max] = getBorders(calendar)
-
-  const onClickArrow = (value: string) => onChangeDebounce(dateMap[value])
-
-  const onChangeDate = (value: Date | null) => {
-    const invalidDate = !isValid(value)
-
-    if (!value || +value === +date || invalidDate) return
-
-    const newDateKey = getDateKey(value)
-
-    if (!newDateKey || !dateMap[newDateKey]) return
-
-    onChangeDebounce(dateMap[newDateKey])
-  }
-
-  const shouldDisableDate = (value: Date) => {
-    const formattedCheckedDate = getDateKey(value)
-
-    return !dates.includes(formattedCheckedDate)
-  }
-
-  function getDateMap() {
-    if (!calendar) {
-      return { [getDateKey(day.date)]: day.id }
-    }
-
-    return calendar?.reduce((acc, c) => ({ ...acc, [getDateKey(c.date)]: c.id }), {})
-  }
+  const date = new Date(day.date)
 
   return (
-    <Box display="flex" justifyContent="space-between" alignItems="center" position="relative" gap={2}>
-      <PartDivider light sx={{ flex: 1 }} />
-      <AppIconButton
-        id={`prev-${id}`}
-        size="small"
-        name="chevron_left"
-        title={prevDayTitle}
-        aria-label={prevDayTitle}
-        disabled={isLoading || !prev}
-        onClick={() => onClickArrow(prev)}
-      />
+    <Box maxWidth={160}>
       <DatePicker
-        inputFormat={format}
+        inputFormat={messages.inputFormat}
         views={['day']}
         value={date}
         disabled={isLoading}
         shouldDisableDate={shouldDisableDate}
         minDate={min}
         maxDate={max}
-        renderDay={(_, _value, dayComponentProps) => (
-          <Badge
-            overlap="circular"
-            badgeContent={!dayComponentProps.disabled ? <AppEmoji name="task" onlyEmoji /> : undefined}
-            key={dayComponentProps.key}
-          >
-            <PickersDay {...dayComponentProps} />
+        closeOnSelect
+        onChange={onChangeDate}
+        renderInput={InputNotEditable}
+        components={{ OpenPickerIcon }}
+        renderDay={(_, _value, { key, disabled, ...pickerProps }) => (
+          <Badge overlap="circular" badgeContent={disabled ? undefined : <AppEmoji name="task" onlyEmoji />} key={key}>
+            <PickersDay {...pickerProps} disabled={disabled} />
           </Badge>
         )}
-        renderInput={(params) => (
-          <TextField size="small" {...params} error={!dates.includes(params.inputProps?.value)} sx={{ width: 165 }} />
-        )}
-        onChange={onChangeDate}
       />
-      <AppIconButton
-        id={`next-${id}`}
-        size="small"
-        name="navigate_next"
-        title={nextDayTitle}
-        aria-label={nextDayTitle}
-        disabled={isLoading || !next}
-        onClick={() => onClickArrow(next)}
-      />
-      <PartDivider light />
     </Box>
   )
 }
-
-const PartDivider = styled(Divider)({
-  flex: 1,
-})
 
 export default Calendar

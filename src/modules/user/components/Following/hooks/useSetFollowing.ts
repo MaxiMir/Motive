@@ -1,62 +1,56 @@
 import produce from 'immer'
-import { AxiosError } from 'axios'
 import { useIntl } from 'react-intl'
 import { useMutation, useQueryClient } from 'react-query'
-import { UserPageDto } from '@dto'
-import SubscriptionService from '@services/subscription'
+import { useUserContext } from '@modules/user/hooks'
+import { UserPageDto } from '@features/page'
+import { SubscriptionService } from '@features/subscription'
 import useSnackbar from '@hooks/useSnackbar'
 import useDebounceCb from '@hooks/useDebounceCb'
 import useOpenSignIn from '@hooks/useOpenSignIn'
 import useClient from '@hooks/useClient'
-import useUserPageConfig from '@user-hooks/useUserPageConfig'
 
 interface Options {
-  userId: number
-  add: boolean
+  insert: boolean
 }
 
-interface Context {
-  previous?: UserPageDto
-}
-
-const fetcher = ({ userId, add }: Options): Promise<void> => SubscriptionService.update(userId, add)
-
-const getNextState = (page: UserPageDto, add: boolean) =>
+const getNextState = (page: UserPageDto, following: boolean) =>
   produce(page, (draft) => {
-    draft.content.following = add
-    draft.content.characteristic.followers += add ? 1 : -1
+    draft.following = following
+    draft.characteristic.followers += following ? 1 : -1
   })
 
-function useSetFollowing(userId: number, following: boolean): () => void {
+type UseSetFollowing = (userId: number, following: boolean) => () => void
+
+export const useSetFollowing: UseSetFollowing = (userId, following) => {
   const { formatMessage } = useIntl()
   const client = useClient()
   const openSignIn = useOpenSignIn()
   const queryClient = useQueryClient()
-  const { key } = useUserPageConfig()
+  const { nickname } = useUserContext()
   const [enqueueSnackbar] = useSnackbar()
-  const { mutate } = useMutation<void, AxiosError, Options, Context>(fetcher, {
-    async onMutate({ add }: Options) {
-      await queryClient.cancelQueries(key)
-      const previous = queryClient.getQueryData<UserPageDto>(key)
+  const { mutate } = useMutation(({ insert }: Options) => SubscriptionService.update(userId, insert), {
+    async onMutate({ insert }: Options) {
+      await queryClient.cancelQueries(nickname)
+      const previous = queryClient.getQueryData<UserPageDto>(nickname)
 
       if (previous) {
-        queryClient.setQueryData(key, getNextState(previous, add))
+        queryClient.setQueryData(nickname, getNextState(previous, insert))
       }
 
       return { previous }
     },
-    onSuccess(_, { add }) {
-      const operation = add ? 'add' : 'remove'
+    onSuccess(_, { insert }) {
+      const operation = insert ? 'add' : 'remove'
       const message = formatMessage({ id: `page.user.following.message-${operation}` })
       enqueueSnackbar({ message, severity: 'success', icon: 'speaker' })
     },
     onError(_, _1, context) {
       if (context?.previous) {
-        queryClient.setQueryData(key, context?.previous)
+        queryClient.setQueryData(nickname, context?.previous)
       }
     },
   })
-  const sendDebounce = useDebounceCb((add: boolean) => mutate({ userId, add }))
+  const sendDebounce = useDebounceCb((insert: boolean) => mutate({ insert }))
 
   return () => {
     if (!client) {
@@ -67,5 +61,3 @@ function useSetFollowing(userId: number, following: boolean): () => void {
     sendDebounce(!following)
   }
 }
-
-export default useSetFollowing

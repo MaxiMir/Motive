@@ -1,4 +1,4 @@
-import { UserDto } from '@dto'
+import { UserDto } from '@features/user'
 import AppList from '@ui/AppList'
 import UserCharacteristic from '@components/User/UserCharacteristic'
 import Menu from './components/Menu'

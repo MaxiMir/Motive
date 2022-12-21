@@ -1,35 +1,24 @@
-import { Fragment } from 'react'
-import { useIntl } from 'react-intl'
 import { Box } from '@mui/material'
-import { UserDetailDto } from '@dto'
-import AppModal from '@ui/AppModal'
-import InfoRow from './components/InfoRow'
-
-const ROWS = [
-  { name: 'registered', icon: 'assignment_turned_in' },
-  { name: 'motto', icon: 'short_text' },
-  { name: 'nickname', icon: 'alternate_email' },
-  { name: 'location', icon: 'location_on' },
-  { name: 'bio', icon: 'self_improvement' },
-] as const
+import { useUserContext } from '@modules/user/hooks'
+import AppModal from '@ui/AppModal/AppModal'
+import InfoRow from './components/InfoRow/InfoRow'
+import { useMessages } from './hooks/useMessages'
+import { ROWS } from './helpers/table'
 
 interface ModalInfoProps {
-  user: UserDetailDto
   onClose: () => void
 }
 
-function ModalInfo({ user, onClose }: ModalInfoProps) {
-  const { formatMessage } = useIntl()
-  const title = formatMessage({ id: 'common.info' })
+function ModalInfo({ onClose }: ModalInfoProps) {
+  const messages = useMessages()
+  const user = useUserContext()
 
   return (
-    <AppModal title={title} maxWidth="xs" onClose={onClose}>
+    <AppModal title={messages.title} maxWidth="xs" onClose={onClose}>
       <Box display="flex" flexDirection="column" gap={1}>
-        {ROWS.map(({ name, icon }) => {
-          const value = user[name]
-
-          return <Fragment key={name}>{value && <InfoRow icon={icon} name={name} value={value} />}</Fragment>
-        })}
+        {ROWS.map(({ name, icon }) => (
+          <InfoRow icon={icon} name={name} value={user[name]} key={name} />
+        ))}
       </Box>
     </AppModal>
   )

@@ -1,20 +1,19 @@
 import { Field, Form, FormikProvider } from 'formik'
-import { useIntl } from 'react-intl'
+import { IconButton } from '@mui/material'
 import { styled } from '@mui/system'
 import AppInput from '@ui/AppInput'
-import AppIconButton from '@ui/AppIconButton'
+import AppIcon from '@ui/AppIcon'
+import { useMessages, useForm } from './hooks'
 import AutoSend from './components/AutoSend'
-import useForm from './hooks/useForm'
 
 interface SearchFormProps {
   q?: string
 }
 
 function SearchForm({ q = '' }: SearchFormProps) {
-  const { formatMessage } = useIntl()
+  const messages = useMessages()
   const form = useForm(q)
   const { values, setFieldValue } = form
-  const label = formatMessage({ id: 'page.search.form' })
 
   const onClickClose = () => setFieldValue('q', '')
 
@@ -23,12 +22,20 @@ function SearchForm({ q = '' }: SearchFormProps) {
       <Form autoComplete="off">
         <Field
           name="q"
-          label={label}
+          label={messages.label}
           color="secondary"
           InputProps={{
             disabled: true,
-            startAdornment: <InputButton name="search" disabled />,
-            endAdornment: values.q && <InputButton name="close" onClick={onClickClose} />,
+            startAdornment: (
+              <InputAdornment disableFocusRipple disabled>
+                <AppIcon name="search" />
+              </InputAdornment>
+            ),
+            endAdornment: values.q && (
+              <InputAdornment disableFocusRipple onClick={onClickClose}>
+                <AppIcon name="close" />
+              </InputAdornment>
+            ),
           }}
           component={AppInput}
         />
@@ -38,7 +45,7 @@ function SearchForm({ q = '' }: SearchFormProps) {
   )
 }
 
-const InputButton = styled(AppIconButton)({
+const InputAdornment = styled(IconButton)({
   '&:hover': {
     background: 'none',
   },

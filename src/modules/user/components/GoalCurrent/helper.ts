@@ -2,10 +2,16 @@ import produce from 'immer'
 import { ParsedUrlQuery } from 'querystring'
 import { differenceInCalendarDays } from 'date-fns'
 import { HashMark, SearchParam } from '@href'
-import { GoalDto, MemberDto, OwnershipDto, TaskDto } from '@dto'
-import { getMember } from '@modules/user/helper'
+import { GoalDto } from '@features/goal'
+import { MemberDto, OwnershipDto } from '@features/member'
+import { TaskDto } from '@features/task'
+import { getMidnight } from '@lib/date'
 
-const SHOW_WEB_AFTER_DAYS = +(process.env.NEXT_PUBLIC_SHOW_WEB_AFTER_DAYS as string)
+const SHOW_WEB_AFTER_DAYS = Number(process.env.NEXT_PUBLIC_SHOW_WEB_AFTER_DAYS || '')
+
+export const getMember = (goalId: number, membership: MemberDto[], userId?: number): MemberDto | undefined => {
+  return !userId ? undefined : membership.find((m) => m.userId === userId && m.goalId === goalId)
+}
 
 export const getClientOwnership = (
   goal: GoalDto,
@@ -20,8 +26,9 @@ export const getClientOwnership = (
   return { page: clientPage, goal: clientGoal, member: clientMember }
 }
 
-export const checkOnShowDiscussion = (query: ParsedUrlQuery, id: number): boolean =>
-  query[SearchParam.ScrollTo] === HashMark.Discussion && query[SearchParam.ScrollId] === id.toString()
+export const checkOnOpenDiscussion = (query: ParsedUrlQuery, id: number): boolean => {
+  return query[SearchParam.ScrollTo] === HashMark.Discussion && query[SearchParam.ScrollId] === id.toString()
+}
 
 interface GoalInfo {
   daysGoneForOwner: number
@@ -35,11 +42,11 @@ interface GoalInfo {
 
 export const getGoalInfo = (goal: GoalDto, clientOwnership: OwnershipDto, userMember?: MemberDto): GoalInfo => {
   const { started, day, calendar, completed } = goal
-  const today = new Date()
+  const today = getMidnight()
   const lastDay = !calendar || calendar[calendar.length - 1].date === day.date
   const controls = checkOnControls()
   const completeStage = clientOwnership.goal && controls && goal.stage <= goal.day.stage
-  const daysGoneForOwner = differenceInCalendarDays(today, Date.parse(day.date))
+  const daysGoneForOwner = differenceInCalendarDays(new Date(), Date.parse(day.date))
   const runningDays = differenceInCalendarDays(Date.parse(day.date), Date.parse(started)) + 1
   const daysGone = getDaysGone()
   const web = checkOnWeb()

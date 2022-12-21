@@ -1,30 +1,24 @@
 import { GetServerSideProps } from 'next'
 import { dehydrate, QueryClient } from 'react-query'
 import { getSession } from 'next-auth/react'
-import { AxiosRequestHeaders } from 'axios'
-import { PossiblePageError } from '@dto'
-import PageService from '@services/page'
-import UserModule, { getServerSideUrl } from '@modules/user'
-import useUserMeta from '@user-hooks/useUserMeta'
-import useUserPage from '@user-hooks/useUserPage'
-import Layout from '@layout'
+import { getSearchParams } from '@helpers/url'
+import UserModule, { useUserMetaTags, useUserPage } from '@modules/user'
+import Page, { PageService, PossiblePageError } from '@features/page'
 
 function UserPage() {
   const { data } = useUserPage()
-  const userMeta = useUserMeta(data?.content)
+  const metaTags = useUserMetaTags(data)
 
-  return <Layout {...userMeta}>{data?.content && <UserModule user={data.content} />}</Layout>
+  return <Page {...metaTags}>{data && <UserModule user={data} />}</Page>
 }
 
 export const getServerSideProps: GetServerSideProps = async (ctx) => {
-  const { url = '' } = ctx.req
-  const serverSideUrl = getServerSideUrl(url)
+  const { url = '', headers } = ctx.req
+  const { id: _, ...params } = getSearchParams(url)
   const queryClient = new QueryClient()
   const session = await getSession(ctx)
   const nickname = ctx.params?.id || ''
-  const headers = ctx.req.headers as AxiosRequestHeaders
-
-  await queryClient.prefetchQuery(nickname, () => PageService.getUser(serverSideUrl, { headers }))
+  await queryClient.prefetchQuery(nickname, () => PageService.getUser(nickname as string, { headers, params }))
   const state = queryClient.getQueryState<PossiblePageError>(nickname)
   const statusCode = state?.data?.message?.statusCode || 200
 

@@ -1,31 +1,28 @@
 import dynamic from 'next/dynamic'
 import { Field, Form, FormikProvider } from 'formik'
-import { useIntl } from 'react-intl'
 import { Box, IconButton } from '@mui/material'
-import { getUserHref } from '@href'
-import { TopicDto, MessageType, ClientDto, UserBaseDto } from '@dto'
+import { UserBaseDto, ClientDto, getUserHref } from '@features/user'
+import { TopicDto, MessageType } from '@features/topic'
 import AppInput from '@ui/AppInput'
 import UserLink from '@components/User/UserLink'
-import useForm from './hooks/useForm'
+import { useMessages, useForm } from './hooks'
 
 const CircularProgress = dynamic(() => import('@mui/material/CircularProgress'))
 const AppIcon = dynamic(() => import('@ui/AppIcon'))
 
 interface UserInputProps {
-  dayId: number
   user: ClientDto | UserBaseDto
   type: MessageType
   topicId?: number
   onAdd: (topic: TopicDto) => void
 }
 
-function UserInput({ dayId, user, type, topicId, onAdd }: UserInputProps) {
+function UserInput({ user, type, topicId, onAdd }: UserInputProps) {
   const { nickname, name, avatar } = user
-  const { formatMessage } = useIntl()
-  const form = useForm(dayId, topicId, type, onAdd)
+  const messages = useMessages(type)
+  const form = useForm(topicId, type, onAdd)
   const { isSubmitting, values, handleSubmit } = form
   const href = getUserHref(nickname)
-  const placeholder = formatMessage({ id: `page.user.user-input.${type}` })
 
   const onClick = () => handleSubmit()
 
@@ -36,7 +33,7 @@ function UserInput({ dayId, user, type, topicId, onAdd }: UserInputProps) {
           <UserLink name={name} avatar={avatar} href={href} size={32} />
           <Field
             name="text"
-            placeholder={placeholder}
+            placeholder={messages.placeholder}
             variant="standard"
             InputLabelProps={{ shrink: false }}
             disabled={isSubmitting}
@@ -47,7 +44,7 @@ function UserInput({ dayId, user, type, topicId, onAdd }: UserInputProps) {
             {!isSubmitting ? (
               <AppIcon name="send" sx={{ paddingLeft: '3px' }} />
             ) : (
-              <CircularProgress size="0.9rem" color="primary" />
+              <CircularProgress size="14.5px" color="primary" />
             )}
           </IconButton>
         </Box>

@@ -1,13 +1,11 @@
 import { useMutation } from 'react-query'
 import { useFormik } from 'formik'
-import { SearchDto } from '@dto'
-import searchSchema from '@schemas/search'
-import { Route } from '@href'
-import PageService from '@services/page'
-import { setSearchParams } from '@helpers/url'
+import { searchSchema } from '@modules/search/schemas'
+import { SearchDto } from '@features/search'
+import { PageService } from '@features/page'
 
-const useForm = (initial: string) => {
-  const { mutate } = useMutation(({ q }: SearchDto) => PageService.get(setSearchParams(Route.Search, { q })), {
+export const useForm = (initial: string) => {
+  const { mutate } = useMutation(({ q }: SearchDto) => PageService.getSearch({ params: { q } }), {
     onSuccess(data) {
       console.log('data', data)
     },
@@ -23,5 +21,3 @@ const useForm = (initial: string) => {
     },
   })
 }
-
-export default useForm

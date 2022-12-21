@@ -1,7 +1,7 @@
-import { GoalDto, OwnershipDto } from '@dto'
+import { OwnershipDto } from '@features/member'
 
-export const checkOnCompletion = (clientOwnership: OwnershipDto, goal: GoalDto): boolean => {
+export const checkOnCompletion = (clientOwnership: OwnershipDto, dayId: number): boolean => {
   const { page, member } = clientOwnership
 
-  return Boolean(page && member && goal.day.id === clientOwnership.member?.dayId)
+  return Boolean(page && member && dayId === clientOwnership.member?.dayId)
 }

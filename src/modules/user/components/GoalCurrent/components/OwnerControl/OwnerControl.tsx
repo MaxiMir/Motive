@@ -1,11 +1,11 @@
 import { useState } from 'react'
 import dynamic from 'next/dynamic'
-import { useIntl } from 'react-intl'
-import { Box, Button, Tooltip } from '@mui/material'
-import { GoalDto } from '@dto'
+import { Box, Button } from '@mui/material'
+import { useGoalContext } from '@modules/user/components/GoalCurrent/hooks'
 import AppEmoji from '@ui/AppEmoji'
+import { useMessages } from './hooks/useMessages'
 
-const ModalCompletion = dynamic(() => import('@components/Modal/ModalCompletion'))
+const ModalCompletion = dynamic(() => import('@modules/user/components/GoalCurrent/components/ModalCompletion'))
 const ModalTasks = dynamic(() => import('./components/ModalTasks'))
 
 enum ModalType {
@@ -13,20 +13,12 @@ enum ModalType {
   Completion,
 }
 
-interface OwnerControlProps {
-  goal: GoalDto
-}
-
-function OwnerControl({ goal }: OwnerControlProps) {
-  const { stages, day } = goal
-  const { formatMessage } = useIntl()
+function OwnerControl() {
+  const { stages, day } = useGoalContext()
+  const messages = useMessages()
   const [modal, setModal] = useState<ModalType>()
-  const feedbackAdded = !!goal.day.feedback
-  const renderCompete = stages.length === day.stage && feedbackAdded
+  const renderCompete = stages.length === day.stage
   const justifyContent = renderCompete ? 'space-between' : 'flex-end'
-  const title = !feedbackAdded && formatMessage({ id: 'component.tooltip.feedback' })
-  const doneButtonText = formatMessage({ id: 'common.done' })
-  const nextButtonText = formatMessage({ id: 'common.next' })
 
   const onAddTasks = () => setModal(ModalType.Tasks)
 
@@ -36,25 +28,16 @@ function OwnerControl({ goal }: OwnerControlProps) {
 
   return (
     <Box display="flex" justifyContent={justifyContent}>
-      <Tooltip title={title} arrow followCursor>
-        <span>
-          <Button
-            variant="outlined"
-            disabled={!feedbackAdded}
-            startIcon={<AppEmoji name="moon" onlyEmoji />}
-            onClick={onAddTasks}
-          >
-            {nextButtonText}
-          </Button>
-        </span>
-      </Tooltip>
+      <Button variant="outlined" startIcon={<AppEmoji name="moon" onlyEmoji />} onClick={onAddTasks}>
+        {messages.nextButtonText}
+      </Button>
       {renderCompete && (
         <Button variant="outlined" color="warning" startIcon={<AppEmoji name="cup" onlyEmoji />} onClick={onComplete}>
-          {doneButtonText}
+          {messages.doneButtonText}
         </Button>
       )}
-      {modal === ModalType.Tasks && <ModalTasks goal={goal} onClose={closeModal} />}
-      {modal === ModalType.Completion && <ModalCompletion goal={goal} onClose={closeModal} />}
+      {modal === ModalType.Tasks && <ModalTasks onClose={closeModal} />}
+      {modal === ModalType.Completion && <ModalCompletion onClose={closeModal} />}
     </Box>
   )
 }

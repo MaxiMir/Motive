@@ -1,43 +1,46 @@
 import { useState } from 'react'
 import dynamic from 'next/dynamic'
-import { useIntl } from 'react-intl'
 import { Box, Button, Typography } from '@mui/material'
-import { SecondCharacteristicName, UserDetailDto } from '@dto'
-import { formatNumber } from '@helpers/intl'
+import { SecondCharacteristicName } from '@features/characteristic'
+import { ConfirmationDto } from '@features/confirmation'
+import useFormatNumber from '@hooks/useFormatNumber'
 import { getWordDeclination } from '@helpers/string'
+import { useMessages } from './hooks/useMessages'
 
 const ModalSubscription = dynamic(() => import('./components/ModalSubscription'))
 const ModalNoCompleted = dynamic(() => import('./components/ModalNoCompleted'))
-const ModalAbandoned = dynamic(() => import('./components/ModalAbandoned'))
+const ModalAbandoned = dynamic(() => import('./components/ModalAbandoned/ModalAbandoned'))
 
 const { Completed, Abandoned, Followers, Following } = SecondCharacteristicName
 
 interface CharacteristicProps {
-  user: UserDetailDto
+  confirmations: ConfirmationDto[]
   name: SecondCharacteristicName
   value: number
 }
 
-function SecondCharacteristic({ user, name, value }: CharacteristicProps) {
-  const { formatMessage } = useIntl()
+function SecondCharacteristic({ confirmations, name, value }: CharacteristicProps) {
+  const messages = useMessages(name)
+  const formatNumber = useFormatNumber()
   const [modal, setModal] = useState<SecondCharacteristicName>()
-  const singleText = formatMessage({ id: `common.${name}-single` })
-  const doubleText = formatMessage({ id: `common.${name}-double` })
-  const multipleGenitiveText = formatMessage({ id: `common.${name}-genitive` })
   const formattedValue = formatNumber(value)
-  const wordDeclination = getWordDeclination(value, [singleText, doubleText, multipleGenitiveText])
+  const wordDeclination = getWordDeclination(value, [
+    messages.singleText,
+    messages.doubleText,
+    messages.multipleGenitiveText,
+  ])
   const buttonText = wordDeclination.toLowerCase()
 
   const onClick = async () => {
-    const openStories = name === Completed && user.confirmations.length
+    const openStories = name === Completed && confirmations.length
 
     if (!openStories) {
       setModal(name)
       return
     }
 
-    const [{ id }] = user.confirmations
-    const { clickOnElem } = await import('@helpers/window')
+    const [{ id }] = confirmations
+    const { clickOnElem } = await import('@helpers/document')
     clickOnElem(`confirmation-${id}`)
   }
 
@@ -47,7 +50,7 @@ function SecondCharacteristic({ user, name, value }: CharacteristicProps) {
     <>
       <Button
         size="small"
-        sx={{ flex: 1 }}
+        sx={{ flex: 1, minWidth: 70 }}
         aria-expanded={modal ? 'true' : undefined}
         aria-haspopup="true"
         onClick={onClick}
@@ -76,8 +79,8 @@ function SecondCharacteristic({ user, name, value }: CharacteristicProps) {
             sx={{
               textTransform: 'none',
               fontSize: {
-                xs: '0.75rem',
-                md: '0.8125rem',
+                xs: '12px',
+                md: '13px',
               },
             }}
           >
@@ -86,9 +89,9 @@ function SecondCharacteristic({ user, name, value }: CharacteristicProps) {
         </Box>
       </Button>
       {modal === Completed && <ModalNoCompleted onClose={onClose} />}
-      {modal === Abandoned && <ModalAbandoned user={user} onClose={onClose} />}
-      {modal === Followers && <ModalSubscription user={user} name={Followers} onClose={onClose} />}
-      {modal === Following && <ModalSubscription user={user} name={Following} onClose={onClose} />}
+      {modal === Abandoned && <ModalAbandoned onClose={onClose} />}
+      {modal === Followers && <ModalSubscription name={Followers} onClose={onClose} />}
+      {modal === Following && <ModalSubscription name={Following} onClose={onClose} />}
     </>
   )
 }

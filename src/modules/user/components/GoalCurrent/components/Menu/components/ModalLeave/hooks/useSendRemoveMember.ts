@@ -1,30 +1,30 @@
 import produce, { Draft } from 'immer'
 import { useIntl } from 'react-intl'
 import { useMutation, useQueryClient } from 'react-query'
-import { UserPageDto } from '@dto'
-import MemberService from '@services/member'
+import { useUserContext } from '@modules/user/hooks'
+import { UserPageDto } from '@features/page'
+import { MemberService } from '@features/member'
 import useClient from '@hooks/useClient'
 import useSnackbar from '@hooks/useSnackbar'
-import useUserPageConfig from '@user-hooks/useUserPageConfig'
 
 const getNextState = (page: UserPageDto, goalId: number, memberId: number, clientPage: boolean) =>
   produce(page, (draft: Draft<UserPageDto>) => {
-    draft.content.clientMembership = draft.content.clientMembership.filter((o) => o.id !== memberId)
+    draft.clientMembership = draft.clientMembership.filter((o) => o.id !== memberId)
 
     if (clientPage) {
-      draft.content.goals = draft.content.goals.filter((g) => g.id !== goalId)
+      draft.goals = draft.goals.filter((g) => g.id !== goalId)
       return
     }
 
-    const draftGoals = draft.content.goals
+    const draftGoals = draft.goals
     const draftGoal = draftGoals[draftGoals.findIndex((g) => g.id === goalId)]
     draftGoal.characteristic.members -= 1
   })
 
-const useSendRemoveMember = (goalId: number, clientPage: boolean) => {
+export const useSendRemoveMember = (goalId: number, clientPage: boolean) => {
   const { formatMessage } = useIntl()
   const client = useClient()
-  const { key } = useUserPageConfig()
+  const { nickname } = useUserContext()
   const queryClient = useQueryClient()
   const [enqueueSnackbar] = useSnackbar()
 
@@ -34,12 +34,10 @@ const useSendRemoveMember = (goalId: number, clientPage: boolean) => {
 
       const message = formatMessage({ id: 'page.user.modal-goal.message' })
       queryClient.setQueriesData<UserPageDto | undefined>(
-        key,
+        nickname,
         (page) => page && getNextState(page, goalId, id, clientPage),
       )
       enqueueSnackbar({ message, severity: 'success', icon: 'speaker' })
     },
   })
 }
-
-export default useSendRemoveMember

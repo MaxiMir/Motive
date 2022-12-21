@@ -1,15 +1,14 @@
 import { useRouter } from 'next/router'
 import { useMutation } from 'react-query'
 import { useFormik } from 'formik'
-import { getUserHref, SearchParam } from '@href'
-import { CreateMemberDto } from '@dto'
-import memberSchema from '@schemas/member'
-import MemberService from '@services/member'
-import { getToday } from '@utils/date'
-import useClient from '@hooks/useClient'
+import { SearchParam } from '@href'
+import { getMidnight } from '@lib/date'
+import { getUserHref } from '@features/user'
 import { setSearchParams } from '@helpers/url'
+import { CreateMemberDto, MemberService, memberSchema } from '@features/member'
+import useClient from '@hooks/useClient'
 
-const useForm = (goalId: number, dayId: number) => {
+export const useForm = (goalId: number, dayId: number) => {
   const client = useClient()
   const { push } = useRouter()
   const { mutate } = useMutation(MemberService.create, {
@@ -26,7 +25,7 @@ const useForm = (goalId: number, dayId: number) => {
     initialValues: {
       goalId,
       dayId: dayId.toString(),
-      started: getToday(),
+      started: getMidnight(),
     },
     validationSchema: memberSchema,
     onSubmit(data) {
@@ -34,5 +33,3 @@ const useForm = (goalId: number, dayId: number) => {
     },
   })
 }
-
-export default useForm

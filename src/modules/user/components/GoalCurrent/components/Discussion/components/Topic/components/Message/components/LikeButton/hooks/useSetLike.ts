@@ -1,13 +1,13 @@
 import produce from 'immer'
 import { useIntl } from 'react-intl'
 import { InfiniteData, useMutation, useQueryClient } from 'react-query'
-import { GoalDto, MessageDto, MessageType, TopicDto } from '@dto'
-import TopicService from '@services/topic'
+import { useMutateGoals } from '@modules/user/hooks'
+import { GoalDto } from '@features/goal'
+import { TopicService, MessageDto, MessageType, TopicDto } from '@features/topic'
 import useClient from '@hooks/useClient'
 import useOpenSignIn from '@hooks/useOpenSignIn'
 import useSnackbar from '@hooks/useSnackbar'
 import useDebounceCb from '@hooks/useDebounceCb'
-import useMutateGoals from '@user-hooks/useMutateGoals'
 
 export interface Options {
   message: MessageDto
@@ -35,13 +35,15 @@ const getNextState = (discussion: InfiniteData<TopicDto[]>, options: Options): I
   })
 }
 
-const getGoalNextState = (goals: GoalDto[], goalId: number, add: boolean): GoalDto[] =>
+export const getGoalNextState = (goals: GoalDto[], goalId: number, add: boolean): GoalDto[] =>
   produce(goals, (draft) => {
     const draftGoal = draft[draft.findIndex((g) => g.id === goalId)]
     draftGoal.characteristic.support += add ? 1 : -1
   })
 
-function useSetLike(message: MessageDto, answerFor?: number): () => void {
+type UseSetLike = (message: MessageDto, answerFor?: number) => () => void
+
+export const useSetLike: UseSetLike = (message, answerFor) => {
   const { id, like, dayId, goalId } = message
   const key = ['discussion', dayId]
   const { formatMessage } = useIntl()
@@ -105,5 +107,3 @@ function useSetLike(message: MessageDto, answerFor?: number): () => void {
     mutateDebounce(!like)
   }
 }
-
-export default useSetLike

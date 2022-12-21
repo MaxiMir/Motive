@@ -1,19 +1,15 @@
 import { MouseEvent, useState } from 'react'
 import dynamic from 'next/dynamic'
+import { useUserContext } from '@modules/user/hooks'
 import AvatarStatus from '@components/Avatar/AvatarStatus'
-import { UserDetailDto } from '@dto'
 
-const AppLightBox = dynamic(() => import('@ui/AppLightBox'))
-const MenuList = dynamic(() => import('./components/MenuList'))
+const AppLightBox = dynamic(() => import('@ui/AppLightBox/AppLightBox'))
+const MenuList = dynamic(() => import('./components/MenuList/MenuList'))
 
-interface AvatarProps {
-  user: UserDetailDto
-}
-
-function Avatar({ user }: AvatarProps) {
+function Avatar() {
+  const { name, avatar, online, lastSeen, device } = useUserContext()
   const [index, setIndex] = useState<number>()
   const [anchorEl, setAnchorEl] = useState<HTMLElement | null>(null)
-  const { name, avatar, online, lastSeen, device } = user
   const sources = avatar && [avatar]
 
   const onClick = (e: MouseEvent<HTMLElement>) => setAnchorEl(e.currentTarget)

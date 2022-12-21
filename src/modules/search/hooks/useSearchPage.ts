@@ -1,12 +1,11 @@
 import { useRouter } from 'next/router'
 import { useQuery } from 'react-query'
-import { SearchPageDto } from '@dto'
-import PageService from '@services/page'
+import { PageService } from '@features/page'
 
 export const useSearchPage = () => {
-  const { asPath } = useRouter()
+  const { asPath, query: params } = useRouter()
 
-  return useQuery(asPath, () => PageService.get<SearchPageDto>(asPath), {
+  return useQuery(asPath, () => PageService.getSearch({ params }), {
     staleTime: 5_000,
   })
 }

@@ -1,10 +1,10 @@
 import { useRouter } from 'next/router'
 import { useIntl } from 'react-intl'
 import { SearchParam } from '@href'
-import { GoalDto } from '@dto'
+import { GoalDto } from '@features/goal'
 import { getCurrentSearchParams, setSearchParams } from '@helpers/url'
 
-const useChangeDayUrl = () => {
+export const useChangeDayUrl = () => {
   const { locale } = useIntl()
   const { asPath, pathname, push } = useRouter()
 
@@ -18,5 +18,3 @@ const useChangeDayUrl = () => {
     push(pathname, as, { shallow: true, locale })
   }
 }
-
-export default useChangeDayUrl

@@ -2,9 +2,9 @@ const runtimeCaching = require('next-pwa/cache')
 
 const withPWA = require('next-pwa')({
   dest: 'public',
-  disable: process.env.NODE_ENV === 'development',
   register: true,
   skipWaiting: true,
+  disable: process.env.NODE_ENV === 'development',
   runtimeCaching,
 })
 
@@ -16,7 +16,7 @@ module.exports = withPWA({
     domains: ['localhost', '2bebetter.pro', 'avatars.githubusercontent.com', 'lh3.googleusercontent.com'],
   },
   i18n: {
-    locales: ['en', 'ru', 'uk'],
+    locales: ['en', 'ru', 'uk', 'zh-CN'],
     defaultLocale: 'en',
   },
   experimental: {

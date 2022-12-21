@@ -1,25 +1,23 @@
-import { useIntl } from 'react-intl'
 import { Box } from '@mui/material'
-import AppModal from '@ui/AppModal'
-import EmptyList from './components/EmptyList'
+import AppModal from '@ui/AppModal/AppModal'
+import { useMessages } from './hooks/useMessages'
+import EmptyList from './components/EmptyList/EmptyList'
 
 interface ModalNoCompletedProps {
   onClose: () => void
 }
 
 function ModalNoCompleted({ onClose }: ModalNoCompletedProps) {
-  const { formatMessage } = useIntl()
-  const title = formatMessage({ id: 'common.completed' })
-  const subtitle = formatMessage({ id: 'common.goals' })
+  const messages = useMessages()
 
   return (
     <AppModal
       title={
         <>
           <Box component="span" sx={{ color: 'zen.sand' }}>
-            {title}
+            {messages.title}
           </Box>{' '}
-          {subtitle}
+          {messages.subtitle}
         </>
       }
       maxWidth="xs"

@@ -1,15 +1,14 @@
 import { useState } from 'react'
 import dynamic from 'next/dynamic'
-import { useIntl } from 'react-intl'
 import { Box, Button, Typography } from '@mui/material'
 import AppIcon from '@ui/AppIcon'
+import { useMessages } from './hooks/useMessages'
 
 const ModalGoal = dynamic(() => import('./components/ModalGoal'))
 
 function AddGoal() {
-  const { formatMessage } = useIntl()
+  const messages = useMessages()
   const [open, setOpen] = useState(false)
-  const buttonText = formatMessage({ id: 'common.create' })
 
   const toggleModal = () => setOpen(!open)
 
@@ -32,7 +31,7 @@ function AddGoal() {
             borderRadius: '50%',
             background: theme.palette.background.default,
           })}
-          aria-label={buttonText}
+          aria-label={messages.buttonText}
           aria-expanded={open ? 'true' : undefined}
           aria-haspopup="true"
           onClick={toggleModal}
@@ -43,14 +42,14 @@ function AddGoal() {
         </Button>
       </Box>
       <Button
-        aria-label={buttonText}
+        aria-label={messages.buttonText}
         aria-expanded={open ? 'true' : undefined}
         aria-haspopup="true"
         sx={{ padding: '4px', textTransform: 'none' }}
         onClick={toggleModal}
       >
         <Typography variant="caption" sx={{ color: 'creativity.light' }}>
-          {buttonText}
+          {messages.buttonText}
         </Typography>
       </Button>
       {open && <ModalGoal onClose={toggleModal} />}

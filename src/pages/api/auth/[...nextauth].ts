@@ -3,7 +3,7 @@ import AppleProvider from 'next-auth/providers/apple'
 import GoogleProvider from 'next-auth/providers/google'
 import GithubProvider from 'next-auth/providers/github'
 import FacebookProvider from 'next-auth/providers/facebook'
-import UserService from '@services/user'
+import { UserService } from '@features/user'
 
 export default NextAuth({
   providers: [
@@ -43,7 +43,8 @@ export default NextAuth({
         return token
       }
 
-      const [candidate] = await UserService.get({ email: token.email }, 0, 1)
+      const fetchParams = { where: { email: token.email }, page: 0, take: 1 }
+      const [candidate] = await UserService.get(fetchParams)
       const { id, name, nickname, avatar } =
         candidate ||
         (await UserService.create({

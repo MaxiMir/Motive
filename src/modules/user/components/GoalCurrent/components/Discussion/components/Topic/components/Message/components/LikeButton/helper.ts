@@ -1,4 +1,5 @@
-import { ClientDto, MessageDto, MessageType } from '@dto'
+import { ClientDto } from '@features/user'
+import { MessageDto, MessageType } from '@features/topic'
 
 export const checkOnDisabled = (message: MessageDto, client?: ClientDto): boolean => {
   return (

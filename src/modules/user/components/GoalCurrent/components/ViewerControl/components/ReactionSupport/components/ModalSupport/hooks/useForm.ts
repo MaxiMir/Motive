@@ -1,12 +1,11 @@
 import { useFormik } from 'formik'
 import { useMutation } from 'react-query'
-import { GoalDto, MessageType } from '@dto'
-import messageSchema from '@schemas/message'
-import TopicService from '@services/topic'
-import useAddMessage from '@user-hooks/useAddMessage'
+import { useAddMessage } from '@modules/user/hooks'
+import { useGoalContext } from '@modules/user/components/GoalCurrent/hooks'
+import { MessageType, TopicService, topicSchema } from '@features/topic'
 
-const useForm = (goal: GoalDto, onSuccess: () => void) => {
-  const { day } = goal
+export const useForm = (onSuccess: () => void) => {
+  const { day } = useGoalContext()
   const addTopic = useAddMessage()
   const { mutate } = useMutation(TopicService.create, {
     onSuccess(topic) {
@@ -21,11 +20,9 @@ const useForm = (goal: GoalDto, onSuccess: () => void) => {
       text: '',
       type: MessageType.Support,
     },
-    validationSchema: messageSchema,
+    validationSchema: topicSchema,
     onSubmit(data) {
       mutate(data)
     },
   })
 }
-
-export default useForm

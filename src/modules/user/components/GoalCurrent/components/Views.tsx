@@ -1,13 +1,12 @@
 import { Box, Typography, Tooltip } from '@mui/material'
-import { formatNumber } from '@helpers/intl'
+import { useGoalContext } from '@modules/user/components/GoalCurrent/hooks'
+import useFormatNumber from '@hooks/useFormatNumber'
 import AppEmoji from '@ui/AppEmoji'
 
-interface GoalViewsProps {
-  views: number
-}
-
-function Views({ views }: GoalViewsProps) {
-  const formattedViews = formatNumber(views)
+function Views() {
+  const { day } = useGoalContext()
+  const formatNumber = useFormatNumber()
+  const formattedViews = formatNumber(day.views)
 
   return (
     <Box display="flex" justifyContent="flex-end">

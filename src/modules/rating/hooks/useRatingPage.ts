@@ -1,12 +1,9 @@
-import { useQuery, UseQueryResult } from 'react-query'
+import { useQuery } from 'react-query'
 import { Route } from '@href'
-import { RatingPageDto } from '@dto'
-import PageService from '@services/page'
+import { PageService } from '@features/page'
 
-type UseRatingPage = () => UseQueryResult<RatingPageDto>
-
-export const useRatingPage: UseRatingPage = () => {
-  return useQuery(Route.Rating, () => PageService.get(Route.Rating), {
+export const useRatingPage = () => {
+  return useQuery(Route.Rating, PageService.getRating, {
     staleTime: 5_000,
   })
 }

@@ -1,24 +1,24 @@
 import dynamic from 'next/dynamic'
-import { GoalDto, OwnershipDto } from '@dto'
+import { useGoalContext } from '@modules/user/components/GoalCurrent/hooks'
+import { OwnershipDto } from '@features/member'
 
 const Content = dynamic(() => import('./components/Content'))
 const NotAdded = dynamic(() => import('./components/NotAdded'))
 
 interface FeedbackProps {
-  goal: GoalDto
   forTomorrow: boolean
   clientOwnership: OwnershipDto
 }
 
-function Feedback({ goal, forTomorrow, clientOwnership }: FeedbackProps) {
-  const { feedback } = goal.day
+function Feedback({ forTomorrow, clientOwnership }: FeedbackProps) {
+  const { day } = useGoalContext()
 
   return (
     <>
-      {feedback ? (
-        <Content feedback={feedback} />
+      {day.feedback ? (
+        <Content feedback={day.feedback} />
       ) : (
-        <NotAdded goal={goal} forTomorrow={forTomorrow} clientOwnership={clientOwnership} />
+        <NotAdded forTomorrow={forTomorrow} clientOwnership={clientOwnership} />
       )}
     </>
   )

@@ -1,19 +1,17 @@
 import { GetServerSideProps } from 'next'
 import { getSession } from 'next-auth/react'
-import { useIntl } from 'react-intl'
-import { ClientDto } from '@dto'
+import { ClientDto } from '@features/user'
 import HomeModule from '@modules/home'
-import Layout from '@layout'
+import Page from '@features/page'
+import useMetaTags from '@hooks/useMetaTags'
 
 function HomePage() {
-  const { formatMessage } = useIntl()
-  const title = formatMessage({ id: 'page.home.title' })
-  const description = formatMessage({ id: 'page.home.description' })
+  const metaTags = useMetaTags('home')
 
   return (
-    <Layout title={title} description={description}>
+    <Page title={metaTags.title} description={metaTags.description}>
       <HomeModule />
-    </Layout>
+    </Page>
   )
 }
 

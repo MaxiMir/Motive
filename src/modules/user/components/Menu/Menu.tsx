@@ -1,26 +1,20 @@
-import dynamic from 'next/dynamic'
 import { MouseEvent, useState } from 'react'
-import { useIntl } from 'react-intl'
+import dynamic from 'next/dynamic'
+import { useRouter } from 'next/router'
 import { Box } from '@mui/material'
-import { UserBaseDto } from '@dto'
+import { useUserContext } from '@modules/user/hooks'
 import AppMenuButton from '@ui/AppMenuButton'
+import { useMessages } from './hooks/useMessages'
 
 const Share = dynamic(() => import('@components/Share'))
 const MenuList = dynamic(() => import('./components/MenuList'))
 
-interface MenuProps {
-  href: string
-  user: UserBaseDto
-  clientPage: boolean
-}
-
-function Menu({ user, href, clientPage }: MenuProps) {
-  const { id, name } = user
-  const { formatMessage } = useIntl()
+function Menu() {
+  const { asPath } = useRouter()
+  const messages = useMessages()
+  const { name } = useUserContext()
   const [anchorEl, setAnchorEl] = useState<HTMLElement | null>(null)
   const [withShare, setWithShare] = useState(false)
-  const title = formatMessage({ id: 'common.open-menu' })
-  const ariaControls = formatMessage({ id: 'common.menu' })
 
   const onOpen = (e: MouseEvent<HTMLButtonElement>) => setAnchorEl(e.currentTarget)
 
@@ -35,11 +29,15 @@ function Menu({ user, href, clientPage }: MenuProps) {
 
   return (
     <Box alignSelf="flex-end">
-      <AppMenuButton title={title} color="primary" ariaControls={ariaControls} horizontal onClick={onOpen} />
-      {anchorEl && (
-        <MenuList anchorEl={anchorEl} userId={id} clientPage={clientPage} onShare={onShare} onClose={onClose} />
-      )}
-      {withShare && <Share title={name} href={href} onClose={onCloseShare} />}
+      <AppMenuButton
+        title={messages.title}
+        color="primary"
+        ariaControls={messages.ariaControls}
+        horizontal
+        onClick={onOpen}
+      />
+      {anchorEl && <MenuList anchorEl={anchorEl} onShare={onShare} onClose={onClose} />}
+      {withShare && <Share title={name} href={asPath} onClose={onCloseShare} />}
     </Box>
   )
 }

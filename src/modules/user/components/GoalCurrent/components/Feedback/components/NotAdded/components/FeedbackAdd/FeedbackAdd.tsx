@@ -1,28 +1,24 @@
 import { useState } from 'react'
 import dynamic from 'next/dynamic'
-import { useIntl } from 'react-intl'
 import { Button, Tooltip } from '@mui/material'
-import { GoalDto } from '@dto'
 import AppIcon from '@ui/AppIcon'
+import { useMessages } from './hooks/useMessages'
 
 const ModalFeedback = dynamic(() => import('./components/ModalFeedback'))
 
 interface FeedbackAddProps {
-  goal: GoalDto
   forTomorrow: boolean
 }
 
-function FeedbackAdd({ goal, forTomorrow }: FeedbackAddProps) {
-  const { formatMessage } = useIntl()
+function FeedbackAdd({ forTomorrow }: FeedbackAddProps) {
+  const messages = useMessages(forTomorrow)
   const [open, setOpen] = useState(false)
-  const title = forTomorrow && formatMessage({ id: 'component.tooltip.tomorrow' })
-  const buttonText = formatMessage({ id: 'common.add' })
 
   const toggle = () => setOpen(!open)
 
   return (
     <>
-      <Tooltip title={title} arrow followCursor>
+      <Tooltip title={messages.title} arrow followCursor>
         <span>
           <Button
             variant="outlined"
@@ -33,11 +29,11 @@ function FeedbackAdd({ goal, forTomorrow }: FeedbackAddProps) {
             aria-haspopup="true"
             onClick={toggle}
           >
-            {buttonText}
+            {messages.buttonText}
           </Button>
         </span>
       </Tooltip>
-      {open && <ModalFeedback goal={goal} onClose={toggle} />}
+      {open && <ModalFeedback onClose={toggle} />}
     </>
   )
 }

@@ -1,8 +1,8 @@
-import { useState } from 'react'
 import dynamic from 'next/dynamic'
 import { Button } from '@mui/material'
 import useClient from '@hooks/useClient'
 import useOpenSignIn from '@hooks/useOpenSignIn'
+import useToggle from '@hooks/useToggle'
 import AppEmoji from '@ui/AppEmoji'
 import { useMessages } from './hooks/useMessages'
 
@@ -12,9 +12,7 @@ function Join() {
   const messages = useMessages()
   const client = useClient()
   const openSignIn = useOpenSignIn()
-  const [open, setOpen] = useState(false)
-
-  const toggleModal = () => setOpen(!open)
+  const [open, toggle] = useToggle()
 
   const onClick = () => {
     if (!client) {
@@ -22,7 +20,7 @@ function Join() {
       return
     }
 
-    toggleModal()
+    toggle()
   }
 
   return (
@@ -30,7 +28,7 @@ function Join() {
       <Button variant="outlined" color="primary" startIcon={<AppEmoji name="join" onlyEmoji />} onClick={onClick}>
         {messages.buttonText}
       </Button>
-      {open && <ModalJoin onClose={toggleModal} />}
+      {open && <ModalJoin onClose={toggle} />}
     </>
   )
 }

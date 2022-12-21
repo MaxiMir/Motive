@@ -4,11 +4,14 @@ import { useMessages } from './hooks/useMessages'
 
 interface MenuListProps {
   anchorEl: HTMLElement
-  onOpenPhoto: () => void
+  avatar?: string | null
+  onOpen: () => void
+  onEdit: () => void
+  onDelete: () => void
   onClose: () => void
 }
 
-function MenuList({ anchorEl, onOpenPhoto, onClose }: MenuListProps) {
+function MenuList({ anchorEl, avatar, onOpen, onEdit, onDelete, onClose }: MenuListProps) {
   const messages = useMessages()
 
   return (
@@ -26,9 +29,19 @@ function MenuList({ anchorEl, onOpenPhoto, onClose }: MenuListProps) {
       }}
       onClose={onClose}
     >
-      <MenuItem onClick={onOpenPhoto}>
-        <AppMenuItemContent icon="photo" text={messages.openText} />
+      {avatar && (
+        <MenuItem onClick={onOpen}>
+          <AppMenuItemContent icon="photo" text={messages.openText} />
+        </MenuItem>
+      )}
+      <MenuItem onClick={onEdit}>
+        <AppMenuItemContent icon="edit" text={messages.editText} />
       </MenuItem>
+      {avatar && (
+        <MenuItem disabled onClick={onDelete}>
+          <AppMenuItemContent icon="delete" text={messages.deleteText} />
+        </MenuItem>
+      )}
     </Menu>
   )
 }

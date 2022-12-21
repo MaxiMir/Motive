@@ -18,7 +18,7 @@ export const useForm = (onSuccess: () => void) => {
   const { formatMessage } = useIntl()
   const [enqueueSnackbar] = useSnackbar()
   const [goals, mutateGoal] = useMutateGoals()
-  const { mutate } = useMutation(GoalService.create, {
+  const { mutateAsync } = useMutation(GoalService.create, {
     onSuccess(goal) {
       const message = formatMessage({ id: 'page.user.modal-goal.message' })
       mutateGoal(getNextState(goals, goal))
@@ -37,8 +37,8 @@ export const useForm = (onSuccess: () => void) => {
       tasks: [{ id: uuidV4(), name: '', date: undefined }],
     },
     validationSchema: goalSchema,
-    onSubmit(data) {
-      mutate(data)
+    async onSubmit(data) {
+      await mutateAsync(data)
     },
   })
 }

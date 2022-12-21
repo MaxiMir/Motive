@@ -5,7 +5,6 @@ import { DatePicker } from '@mui/x-date-pickers/DatePicker'
 import { useGoalContext } from '@modules/user/components/GoalCurrent/hooks'
 import { useMessages } from './hooks/useMessages'
 import { getBorders } from './helper'
-import OpenPickerIcon from './components/OpenPickerIcon'
 import InputNotEditable from './components/InputNotEditable'
 
 const AppEmoji = dynamic(() => import('@ui/AppEmoji'))
@@ -35,7 +34,6 @@ function Calendar({ isLoading, onChangeDate, shouldDisableDate }: CalendarProps)
         closeOnSelect
         onChange={onChangeDate}
         renderInput={InputNotEditable}
-        components={{ OpenPickerIcon }}
         renderDay={(_, _value, { key, disabled, ...pickerProps }) => (
           <Badge overlap="circular" badgeContent={disabled ? undefined : <AppEmoji name="task" onlyEmoji />} key={key}>
             <PickersDay {...pickerProps} disabled={disabled} />

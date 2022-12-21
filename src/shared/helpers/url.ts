@@ -58,9 +58,8 @@ const getWhere = (where: FetchParams['where']) =>
 const getPagination = (page?: number, take?: number) =>
   typeof page !== 'number' || typeof take !== 'number' ? null : { skip: page * take, take }
 
-const getOperation = (insert: FetchParams['insert']) => {
-  return !insert ? null : { operation: insert ? 'insert' : 'delete' }
-}
+const getOperation = (insert: FetchParams['insert']) =>
+  typeof insert !== 'boolean' ? null : { operation: insert ? 'insert' : 'delete' }
 
 export const getFetchParams = (fetchParams: FetchParams) => {
   const { where, page, take, insert } = fetchParams

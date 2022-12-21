@@ -313,5 +313,12 @@
   "common.registered": "Registered",
   "common.open": "Open",
   "common.zoom-in": "Zoom in",
-  "common.zoom-out": "Zoom out"
+  "common.zoom-out": "Zoom out",
+  "common.update": "Update",
+  "common.upload-photo": "Upload new photo",
+  "common.photo-description": "Please upload your real picture so you can be recognized",
+  "common.photo-types": "We support JPG, GIF or PNG files",
+  "common.select-file": "Select a file",
+  "common.photo-hint": "If you have any problems with your upload, try using a smaller photo",
+  "common.delete": "Delete"
 }

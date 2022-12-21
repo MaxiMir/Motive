@@ -5,7 +5,7 @@ import { SearchDto } from '@features/search'
 import { PageService } from '@features/page'
 
 export const useForm = (initial: string) => {
-  const { mutate } = useMutation(({ q }: SearchDto) => PageService.getSearch({ params: { q } }), {
+  const { mutateAsync } = useMutation(({ q }: SearchDto) => PageService.getSearch({ params: { q } }), {
     onSuccess(data) {
       console.log('data', data)
     },
@@ -16,8 +16,8 @@ export const useForm = (initial: string) => {
       q: initial,
     },
     validationSchema: searchSchema,
-    onSubmit(data) {
-      mutate(data)
+    async onSubmit(data) {
+      await mutateAsync(data)
     },
   })
 }

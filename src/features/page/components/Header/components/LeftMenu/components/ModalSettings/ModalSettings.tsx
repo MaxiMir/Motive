@@ -44,14 +44,14 @@ function ModalSettings({ onClose }: ModalLanguageProps) {
           >
             <GroupButton value={Locale.En} size="small">
               <AppEmoji name="en" />
-              <Box component="span">Eng</Box>
+              <Box component="span">EN</Box>
             </GroupButton>
             <GroupButton value={Locale.Ru} size="small">
               <AppEmoji name="ru" />
-              <Box component="span">Рус</Box>
+              <Box component="span">РУ</Box>
             </GroupButton>
             <GroupButton value={Locale.Uk} size="small">
-              <AppEmoji name="uk" /> Укр
+              <AppEmoji name="uk" /> УК
             </GroupButton>
             <GroupButton value={Locale.Zh} size="small">
               <AppEmoji name="zh" /> 中国
@@ -69,15 +69,15 @@ function ModalSettings({ onClose }: ModalLanguageProps) {
             aria-label={messages.modeHeader}
             onChange={onChangeMode}
           >
-            <GroupButton value="light" size="small" disabled>
+            <GroupThemeButton value="light" size="small" disabled>
               <AppEmoji name="light" /> {messages.lightText}
-            </GroupButton>
-            <GroupButton value="system" size="small" disabled>
+            </GroupThemeButton>
+            <GroupThemeButton value="system" size="small" disabled>
               <AppEmoji name="system" /> {messages.systemText}
-            </GroupButton>
-            <GroupButton value="dark" size="small" disabled>
+            </GroupThemeButton>
+            <GroupThemeButton value="dark" size="small" disabled>
               <AppEmoji name="dark" /> {messages.darkText}
-            </GroupButton>
+            </GroupThemeButton>
           </ToggleButtonGroup>
         </Box>
       </Box>
@@ -90,13 +90,13 @@ const Header = styled(Typography)(({ theme }) => ({
 }))
 
 const GroupButton = styled(ToggleButton)({
-  textTransform: 'uppercase',
   display: 'flex',
   gap: 8,
   flex: 1,
-  '& p': {
-    fontSize: 24,
-  },
+})
+
+const GroupThemeButton = styled(GroupButton)({
+  textTransform: 'none',
 })
 
 export default ModalSettings

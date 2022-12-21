@@ -58,7 +58,7 @@ function Message({ message, answerFor, supportFor, onReply }: MessageProps) {
               </Box>
               {supportFor && <SupportSign name={supportFor} />}
               {edited && (
-                <Box component="span" sx={{ fontSize: '11px', color: 'zen.silent' }}>
+                <Box component="span" sx={{ fontSize: 11, color: 'zen.silent' }}>
                   {messages.editedText}
                 </Box>
               )}
@@ -68,7 +68,7 @@ function Message({ message, answerFor, supportFor, onReply }: MessageProps) {
           <AppMarkdown text={text} />
           <Box display="flex" justifyContent="space-between" alignItems="center">
             <LikeButton message={message} answerFor={answerFor} />
-            <Box component="span" sx={{ fontSize: '11px', color: 'zen.silent' }}>
+            <Box component="span" sx={{ fontSize: 11, color: 'zen.silent' }}>
               {dateDistance}
             </Box>
           </Box>

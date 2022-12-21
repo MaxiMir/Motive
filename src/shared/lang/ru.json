@@ -313,5 +313,12 @@
   "common.registered": "Зарегистрирован",
   "common.open": "Открыть",
   "common.zoom-in": "Увеличить",
-  "common.zoom-out": "Уменьшить"
+  "common.zoom-out": "Уменьшить",
+  "common.update": "Обновить",
+  "common.upload-photo": "Загрузить новое фото",
+  "common.photo-description": "Пожалуйста, загрузите свою настоящую фотографию, чтобы вас можно было узнать",
+  "common.photo-types": "Мы поддерживаем файлы JPG, GIF или PNG",
+  "common.select-file": "Выбрать файл",
+  "common.photo-hint": "Если у вас возникли проблемы с загрузкой, попробуйте использовать фотографию меньшего размера",
+  "common.delete": "Удалить"
 }

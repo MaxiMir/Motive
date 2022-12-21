@@ -1,6 +1,6 @@
-import { useState } from 'react'
 import { Box, IconButton } from '@mui/material'
 import { UserBaseDto } from '@features/user'
+import useToggle from '@hooks/useToggle'
 import AppIcon from '@ui/AppIcon'
 import Description from './components/Description'
 
@@ -9,10 +9,8 @@ interface DetailsProps {
 }
 
 function Details({ user }: DetailsProps) {
-  const [open, setOpen] = useState(false)
+  const [open, toggle] = useToggle()
   console.log(user)
-
-  const toggleMenu = () => setOpen(!open)
 
   return (
     <Box
@@ -26,10 +24,10 @@ function Details({ user }: DetailsProps) {
         zIndex: 9999,
       }}
     >
-      <IconButton disabled onClick={toggleMenu}>
+      <IconButton disabled onClick={toggle}>
         <AppIcon name="expand_less" />
       </IconButton>
-      {open && <Description onClose={toggleMenu} />}
+      {open && <Description onClose={toggle} />}
     </Box>
   )
 }

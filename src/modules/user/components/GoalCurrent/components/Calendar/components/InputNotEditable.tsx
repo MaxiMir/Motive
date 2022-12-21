@@ -1,4 +1,5 @@
 import { TextField, TextFieldProps } from '@mui/material'
+import AppIcon from '@ui/AppIcon'
 
 function InputNotEditable({ inputProps, ...props }: TextFieldProps) {
   return (
@@ -7,7 +8,10 @@ function InputNotEditable({ inputProps, ...props }: TextFieldProps) {
       type="text"
       size="small"
       defaultValue={inputProps?.value}
-      inputProps={{ readOnly: true }}
+      InputProps={{
+        readOnly: true,
+        endAdornment: <AppIcon name="calendar_month" color="yellow" />,
+      }}
       key={inputProps?.value}
     />
   )

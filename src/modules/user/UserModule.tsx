@@ -48,7 +48,7 @@ function UserModule({ user }: UserModuleProps) {
             },
           }}
         >
-          <Avatar />
+          <Avatar clientPage={clientPage} />
           <Box
             display="flex"
             flexDirection="column"

@@ -7,11 +7,6 @@ interface UpdateParams {
   data: UpdateUserDto
 }
 
-interface UpdateAvatarParams {
-  id: number
-  formData: FormData
-}
-
 export class UserService {
   static create(dto: CreateUserDto): Promise<UserBaseDto> {
     return fetcher.post('/users', dto)
@@ -27,7 +22,7 @@ export class UserService {
     return fetcher.put(`/users/${id}`, data)
   }
 
-  static updateAvatar({ id, formData }: UpdateAvatarParams): Promise<UserBaseDto> {
+  static updateAvatar(id: number, formData: FormData): Promise<UserBaseDto> {
     return fetcher.patch(`/users/${id}/avatar`, formData)
   }
 }

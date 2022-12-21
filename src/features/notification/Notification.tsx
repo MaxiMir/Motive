@@ -51,14 +51,14 @@ function Notification({ notification, onClose }: NotificationProps) {
             height: 21,
             backgroundColor: '#262626',
             borderRadius: '50%',
-            fontSize: '11px',
+            fontSize: 11,
           }}
         >
           <AppEmoji name={emoji} onlyEmoji />
         </Box>
       </Box>
       <Box display="flex" flexDirection="column" justifyContent="space-between">
-        <Typography sx={{ fontSize: '14px' }}>
+        <Typography sx={{ fontSize: 14 }}>
           <Box component="b" sx={{ color }}>
             <Link href={href} onClick={onClose}>
               {name}
@@ -68,7 +68,7 @@ function Notification({ notification, onClose }: NotificationProps) {
           {detailsName && `: ${detailsName}`}
         </Typography>
         <Box display="flex" alignItems="center" gap={2}>
-          <Box component="span" sx={{ color: 'zen.silent', fontSize: '14px' }}>
+          <Box component="span" sx={{ color: 'zen.silent', fontSize: 14 }}>
             {dateDistance}
           </Box>
           <IconButton

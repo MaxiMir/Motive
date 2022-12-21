@@ -24,7 +24,7 @@ export const useForm = (onSuccess: () => void) => {
   const [enqueueSnackbar] = useSnackbar()
   const [goals, mutateGoals] = useMutateGoals()
   const changeDayUrl = useChangeDayUrl()
-  const { mutate } = useMutation(GoalService.createDay, {
+  const { mutateAsync } = useMutation(GoalService.createDay, {
     onSuccess({ days }) {
       const day = days[days.length - 1]
       const message = formatMessage({ id: 'common.next-day-loading' })
@@ -42,8 +42,8 @@ export const useForm = (onSuccess: () => void) => {
       tasks: [{ id: uuidV4(), name: '', date: undefined }],
     },
     validationSchema: tasksSchema,
-    onSubmit(data) {
-      mutate(data)
+    async onSubmit(data) {
+      await mutateAsync(data)
     },
   })
 }

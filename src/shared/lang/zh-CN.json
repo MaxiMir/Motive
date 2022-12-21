@@ -313,5 +313,12 @@
   "common.registered": "注册",
   "common.open": "打开",
   "common.zoom-in": "放大",
-  "common.zoom-out": "缩小"
+  "common.zoom-out": "缩小",
+  "common.update": "更新",
+  "common.upload-photo": "上传一张新照片",
+  "common.photo-description": "请上传你的真实照片，以便你能被认出",
+  "common.photo-types": "我们支持JPG、GIF或PNG文件",
+  "common.select-file": "选择文件",
+  "common.photo-hint": "如果你在上传时有任何问题，请尝试使用较小的照片",
+  "common.delete": "删除"
 }

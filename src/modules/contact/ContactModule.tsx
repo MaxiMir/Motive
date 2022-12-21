@@ -123,7 +123,7 @@ const ButtonContent = styled(Box)(({ theme }) => ({
   right: 0,
   [`& .${typographyClasses.root}`]: {
     [theme.breakpoints.down('md')]: {
-      fontSize: '16px',
+      fontSize: 16,
     },
   },
   '& .material-icons': {

@@ -11,7 +11,7 @@ import useClient from '@hooks/useClient'
 export const useForm = (goalId: number, dayId: number) => {
   const client = useClient()
   const { push } = useRouter()
-  const { mutate } = useMutation(MemberService.create, {
+  const { mutateAsync } = useMutation(MemberService.create, {
     onSuccess({ dayId: selectedDay }) {
       if (!client) return
 
@@ -28,8 +28,8 @@ export const useForm = (goalId: number, dayId: number) => {
       started: getMidnight(),
     },
     validationSchema: memberSchema,
-    onSubmit(data) {
-      mutate(data)
+    async onSubmit(data) {
+      await mutateAsync(data)
     },
   })
 }

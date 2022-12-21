@@ -23,7 +23,7 @@ export const useForm = (onSuccess: () => void) => {
   const { id } = useGoalContext()
   const { refetch } = useUserPage()
   const [enqueueSnackbar] = useSnackbar()
-  const { mutate } = useMutation(ConfirmationService.create, {
+  const { mutateAsync } = useMutation(ConfirmationService.create, {
     onSuccess() {
       const message = formatMessage({ id: 'component.modal-completion.message' })
       onSuccess()
@@ -48,7 +48,7 @@ export const useForm = (onSuccess: () => void) => {
       formData.append('end', formatISO(data.end))
       formData.append('goalId', data.goalId.toString())
       data.photos.forEach((photo) => formData.append('photos', photo))
-      mutate(formData)
+      await mutateAsync(formData)
     },
   })
 }

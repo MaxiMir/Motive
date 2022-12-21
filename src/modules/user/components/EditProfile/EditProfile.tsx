@@ -1,6 +1,6 @@
-import { useState } from 'react'
 import dynamic from 'next/dynamic'
 import { Button } from '@mui/material'
+import useToggle from '@hooks/useToggle'
 import AppIcon from '@ui/AppIcon'
 import { useMessages } from './hooks/useMessages'
 
@@ -8,9 +8,7 @@ const ModalProfile = dynamic(() => import('./components/ModalProfile'))
 
 function EditProfile() {
   const messages = useMessages()
-  const [open, setOpen] = useState(false)
-
-  const toggle = () => setOpen(!open)
+  const [open, toggle] = useToggle()
 
   return (
     <>

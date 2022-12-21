@@ -24,6 +24,7 @@ function PhotoButton({ image, disabled, onClick }: PhotoButtonProps) {
         position: 'relative',
         width: '100%',
         aspectRatio: '3/4',
+        overflow: 'hidden',
       }}
     >
       <Box

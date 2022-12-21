@@ -1,7 +1,7 @@
-import { useState } from 'react'
 import dynamic from 'next/dynamic'
 import { UserBaseDto } from '@features/user'
 import useClient from '@hooks/useClient'
+import useToggle from '@hooks/useToggle'
 import useOpenSignIn from '@hooks/useOpenSignIn'
 import ActionGoal from '@components/Action/ActionGoal'
 import { useMessages } from './hooks/useMessages'
@@ -16,9 +16,7 @@ function ReactionSupport({ owner }: ReactionSupportProps) {
   const messages = useMessages(owner)
   const client = useClient()
   const openSignIn = useOpenSignIn()
-  const [open, setOpen] = useState(false)
-
-  const toggleModal = () => setOpen(!open)
+  const [open, toggle] = useToggle()
 
   const onClick = () => {
     if (!client) {
@@ -26,13 +24,13 @@ function ReactionSupport({ owner }: ReactionSupportProps) {
       return
     }
 
-    toggleModal()
+    toggle()
   }
 
   return (
     <>
       <ActionGoal name="support" title={messages.title} onClick={onClick} />
-      {open && <ModalSupport owner={owner} onClose={toggleModal} />}
+      {open && <ModalSupport owner={owner} onClose={toggle} />}
     </>
   )
 }

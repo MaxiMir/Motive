@@ -6,12 +6,11 @@ type UseMutateUserPage = () => [UserPageDto, (page: UserPageDto) => void]
 
 export const useMutateUserPage: UseMutateUserPage = () => {
   const queryClient = useQueryClient()
-  const { nickname } = useUserContext()
-  const state = queryClient.getQueryState<UserPageDto>(nickname)
+  const ctx = useUserContext()
 
   const mutate = (page: UserPageDto) => {
-    queryClient.setQueryData(nickname, page)
+    queryClient.setQueryData(ctx.nickname, page)
   }
 
-  return [state?.data as UserPageDto, mutate]
+  return [ctx as UserPageDto, mutate]
 }

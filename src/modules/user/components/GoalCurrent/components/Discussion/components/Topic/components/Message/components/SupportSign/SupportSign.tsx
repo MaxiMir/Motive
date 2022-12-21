@@ -20,7 +20,7 @@ function SupportSign({ name }: SupportSignProps) {
           height: 21,
           backgroundColor: 'support.main',
           borderRadius: '50%',
-          fontSize: '10px',
+          fontSize: 10,
         }}
       >
         <AppEmoji name="support" onlyEmoji />

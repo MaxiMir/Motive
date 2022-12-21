@@ -7,7 +7,7 @@ import { MessageType, TopicService, topicSchema } from '@features/topic'
 export const useForm = (onSuccess: () => void) => {
   const { day } = useGoalContext()
   const addTopic = useAddMessage()
-  const { mutate } = useMutation(TopicService.create, {
+  const { mutateAsync } = useMutation(TopicService.create, {
     onSuccess(topic) {
       addTopic(topic)
       onSuccess()
@@ -21,8 +21,8 @@ export const useForm = (onSuccess: () => void) => {
       type: MessageType.Support,
     },
     validationSchema: topicSchema,
-    onSubmit(data) {
-      mutate(data)
+    async onSubmit(data) {
+      await mutateAsync(data)
     },
   })
 }

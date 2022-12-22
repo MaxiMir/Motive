@@ -6,7 +6,8 @@ import appleSrc from 'public/images/svg/apple.svg'
 import metaSrc from 'public/images/svg/meta.svg'
 import githubSrc from 'public/images/svg/github.svg'
 import googleSrc from 'public/images/svg/google.svg'
-import { useMessages, useProviders } from './hooks'
+import { useMessages } from './hooks/useMessages'
+import { useProviders } from './hooks/useProviders'
 
 const Loader = dynamic(() => import('./components/Loader'))
 const Provider = dynamic(() => import('./components/Provider'))

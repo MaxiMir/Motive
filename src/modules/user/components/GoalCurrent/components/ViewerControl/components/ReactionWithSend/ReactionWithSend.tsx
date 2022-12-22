@@ -1,7 +1,8 @@
-import { useGoalContext } from '@modules/user/components/GoalCurrent/hooks'
+import { useGoalContext } from '@modules/user/components/GoalCurrent/hooks/useGoalContext'
 import { DayCharacteristicName } from '@features/day'
 import ActionGoal from '@components/Action/ActionGoal'
-import { useMessages, useSetReaction } from './hooks'
+import { useMessages } from './hooks/useMessages'
+import { useSetReaction } from './hooks/useSetReaction'
 import { checkOnActive, getCount } from './helper'
 
 interface ReactionWithSendProps {

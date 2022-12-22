@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import dynamic from 'next/dynamic'
 import { Box, Button } from '@mui/material'
-import { useGoalContext } from '@modules/user/components/GoalCurrent/hooks'
+import { useGoalContext } from '@modules/user/components/GoalCurrent/hooks/useGoalContext'
 import AppEmoji from '@ui/AppEmoji'
 import { useMessages } from './hooks/useMessages'
 

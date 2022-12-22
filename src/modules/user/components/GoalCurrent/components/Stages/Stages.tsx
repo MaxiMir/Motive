@@ -1,6 +1,6 @@
 import dynamic from 'next/dynamic'
 import { Step, StepContent, Stepper } from '@mui/material'
-import { useGoalContext } from '@modules/user/components/GoalCurrent/hooks'
+import { useGoalContext } from '@modules/user/components/GoalCurrent/hooks/useGoalContext'
 import useToggle from '@hooks/useToggle'
 import StageLabel from './components/StageLabel'
 import { useMessages } from './hooks/useMessages'

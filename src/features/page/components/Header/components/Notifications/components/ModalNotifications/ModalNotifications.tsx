@@ -2,7 +2,8 @@ import dynamic from 'next/dynamic'
 import { Box } from '@mui/material'
 import { NotificationDto } from '@features/notification'
 import AppModal from '@ui/AppModal/AppModal'
-import { useMessages, useNotificationHint } from './hooks'
+import { useMessages } from './hooks/useMessages'
+import { useNotificationHint } from './hooks/useNotificationHint'
 
 const EmptyList = dynamic(() => import('./components/EmptyList/EmptyList'))
 const NotificationList = dynamic(() => import('./components/NotificationList'))

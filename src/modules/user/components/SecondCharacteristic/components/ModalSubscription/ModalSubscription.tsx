@@ -3,7 +3,8 @@ import { Box } from '@mui/material'
 import { useUserContext } from '@modules/user/hooks'
 import { SecondCharacteristicName } from '@features/characteristic'
 import AppModal from '@ui/AppModal/AppModal'
-import { useMessages, useSubscription } from './hooks'
+import { useMessages } from './hooks/useMessages'
+import { useSubscription } from './hooks/useSubscription'
 import Loader from './components/Loader'
 
 const EmptyList = dynamic(() => import('./components/EmptyList/EmptyList'))

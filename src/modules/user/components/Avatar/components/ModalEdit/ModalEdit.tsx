@@ -4,7 +4,8 @@ import { Box, Button, Divider, Typography } from '@mui/material'
 import { styled } from '@mui/system'
 import AppModal from '@ui/AppModal'
 import AppIcon from '@ui/AppIcon'
-import { useMessages, useUpdatePhoto } from './hooks'
+import { useMessages } from './hooks/useMessages'
+import { useUpdatePhoto } from './hooks/useUpdatePhoto'
 
 const CircularProgress = dynamic(() => import('@mui/material/CircularProgress'))
 

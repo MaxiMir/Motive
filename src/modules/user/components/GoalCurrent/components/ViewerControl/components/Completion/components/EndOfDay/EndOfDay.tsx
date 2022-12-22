@@ -3,7 +3,8 @@ import { Button, Tooltip } from '@mui/material'
 import { MemberDto } from '@features/member'
 import { getTomorrow } from '@lib/date'
 import AppEmoji from '@ui/AppEmoji'
-import { useMessages, useSendEndOfDay } from './hooks'
+import { useMessages } from './hooks/useMessages'
+import { useSendEndOfDay } from './hooks/useSendEndOfDay'
 
 const CircularProgress = dynamic(() => import('@mui/material/CircularProgress'))
 

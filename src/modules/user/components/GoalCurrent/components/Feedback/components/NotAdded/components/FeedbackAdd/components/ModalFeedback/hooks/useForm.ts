@@ -4,7 +4,7 @@ import { useIntl } from 'react-intl'
 import { useMutation } from 'react-query'
 import { GoalDto } from '@features/goal'
 import { useMutateGoals } from '@modules/user/hooks'
-import { useGoalContext } from '@modules/user/components/GoalCurrent/hooks'
+import { useGoalContext } from '@modules/user/components/GoalCurrent/hooks/useGoalContext'
 import { FeedbackDto, FeedbackService, feedbackSchema } from '@features/feedback'
 import useSnackbar from '@hooks/useSnackbar'
 

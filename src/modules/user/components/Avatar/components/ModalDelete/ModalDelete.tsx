@@ -2,7 +2,8 @@ import { Typography } from '@mui/material'
 import AppModal from '@ui/AppModal'
 import ActionCancel from '@components/Action/ActionCancel'
 import ActionSubmit from '@components/Action/ActionSubmit'
-import { useMessages, useRemovePhoto } from './hooks'
+import { useMessages } from './hooks/useMessages'
+import { useRemovePhoto } from './hooks/useRemovePhoto'
 
 interface ModalDeleteProps {
   onClose: () => void

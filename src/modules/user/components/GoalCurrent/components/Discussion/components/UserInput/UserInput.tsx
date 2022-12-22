@@ -5,7 +5,8 @@ import { UserBaseDto, ClientDto, getUserHref } from '@features/user'
 import { TopicDto, MessageType } from '@features/topic'
 import AppInput from '@ui/AppInput'
 import UserLink from '@components/User/UserLink'
-import { useMessages, useForm } from './hooks'
+import { useMessages } from './hooks/useMessages'
+import { useForm } from './hooks/useForm'
 
 const CircularProgress = dynamic(() => import('@mui/material/CircularProgress'))
 const AppIcon = dynamic(() => import('@ui/AppIcon'))

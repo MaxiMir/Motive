@@ -1,5 +1,5 @@
 import { useMutation } from 'react-query'
-import { useGoalContext } from '@modules/user/components/GoalCurrent/hooks'
+import { useGoalContext } from '@modules/user/components/GoalCurrent/hooks/useGoalContext'
 import { DayService } from '@features/day'
 import useClient from '@hooks/useClient'
 

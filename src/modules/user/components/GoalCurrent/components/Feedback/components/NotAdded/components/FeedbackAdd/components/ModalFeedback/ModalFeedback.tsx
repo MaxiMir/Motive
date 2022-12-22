@@ -11,7 +11,8 @@ import PhotoInput from '@components/Photo/PhotoInput/PhotoInput'
 import PhotoButton from '@components/Photo/PhotoButton'
 import VideoPreview from '@components/Video/VideoPreview/VideoPreview'
 import VideoInput from '@components/Video/VideoInput/VideoInput'
-import { useForm, useMessages } from './hooks'
+import { useMessages } from './hooks/useMessages'
+import { useForm } from './hooks/useForm'
 
 interface ModalFeedbackProps {
   onClose: () => void

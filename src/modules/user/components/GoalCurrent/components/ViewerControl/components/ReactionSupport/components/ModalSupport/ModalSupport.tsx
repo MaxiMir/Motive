@@ -8,7 +8,8 @@ import AppAccordion from '@ui/AppAccordion'
 import AppDecorEmoji from '@ui/AppDecorEmoji'
 import ActionSubmit from '@components/Action/ActionSubmit'
 import ActionCancel from '@components/Action/ActionCancel/ActionCancel'
-import { useForm, useMessages } from './hooks'
+import { useMessages } from './hooks/useMessages'
+import { useForm } from './hooks/useForm'
 
 interface ModalSupportProps {
   owner: UserBaseDto

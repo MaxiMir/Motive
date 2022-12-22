@@ -263,7 +263,7 @@
   "common.duration": "持续时间",
   "common.creator": "创造者",
   "common.repeat": "重复",
-  "common.repeat-loading": "重复的",
+  "common.repeating": "重复的",
   "common.sign-in": "登录",
   "common.with": "与",
   "common.nudity": "裸体",
@@ -320,5 +320,8 @@
   "common.photo-types": "我们支持JPG、GIF或PNG文件",
   "common.select-file": "选择文件",
   "common.photo-hint": "如果你在上传时有任何问题，请尝试使用较小的照片",
-  "common.delete": "删除"
+  "common.delete": "删除",
+  "common.deleting": "删除",
+  "common.delete-warning": "你确定要删除这张照片吗?",
+  "common.warning": "警告"
 }

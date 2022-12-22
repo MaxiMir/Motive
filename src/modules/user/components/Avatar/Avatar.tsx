@@ -6,7 +6,8 @@ import AvatarStatus from '@components/Avatar/AvatarStatus'
 
 const AppLightBox = dynamic(() => import('@ui/AppLightBox/AppLightBox'))
 const MenuList = dynamic(() => import('./components/MenuList/MenuList'))
-const ModalAvatar = dynamic(() => import('./components/ModalAvatar'))
+const ModalEdit = dynamic(() => import('./components/ModalEdit'))
+const ModalDelete = dynamic(() => import('./components/ModalDelete'))
 
 interface AvatarProps {
   clientPage: boolean
@@ -19,6 +20,7 @@ function Avatar({ clientPage }: AvatarProps) {
   const [openDelete, toggleDelete] = useToggle()
   const [anchorEl, setAnchorEl] = useState<HTMLElement | null>(null)
   const sources = !avatar ? null : [avatar]
+  const disabled = !sources && !clientPage
 
   const openPhoto = () => setIndex(0)
 
@@ -59,6 +61,7 @@ function Avatar({ clientPage }: AvatarProps) {
         online={online}
         lastSeen={lastSeen}
         device={device}
+        disabled={disabled}
         onClick={onClick}
       />
       {anchorEl && (
@@ -72,8 +75,8 @@ function Avatar({ clientPage }: AvatarProps) {
         />
       )}
       {sources && <AppLightBox sources={sources} index={index} setIndex={setIndex} />}
-      {openEdit && <ModalAvatar onClose={toggleEdit} />}
-      {openDelete && <div>1</div>}
+      {openEdit && <ModalEdit onClose={toggleEdit} />}
+      {openDelete && <ModalDelete onClose={toggleDelete} />}
     </>
   )
 }

@@ -18,13 +18,18 @@ const getNextState = (page: UserPageDto, user: UserBaseDto): UserPageDto =>
     draft.bio = user.bio
   })
 
+interface Options {
+  id: number
+  data: UpdateUserDto
+}
+
 export const useForm = (onSuccess: () => void) => {
   const router = useRouter()
   const user = useUserContext()
   const [page, mutatePage] = useMutateUserPage()
   const { formatMessage } = useIntl()
   const nicknameError = formatMessage({ id: 'page.user.modal-profile.nickname-error' })
-  const { mutateAsync } = useMutation(UserService.update, {
+  const { mutateAsync } = useMutation(({ id, data }: Options) => UserService.update(id, data), {
     onSuccess(dto) {
       const href = getUserHref(dto.nickname)
       const as = setSearchParams(href, getCurrentSearchParams())
@@ -45,7 +50,7 @@ export const useForm = (onSuccess: () => void) => {
     validationSchema: profileSchema,
     async onSubmit(data, { setFieldError }) {
       const { id } = user
-      const { nickname, avatar, ...restData } = data
+      const { nickname } = data
       const fetchParams = { where: { nickname }, page: 0, take: 1 }
       const usersDB = user.nickname === nickname ? null : await UserService.get(fetchParams)
 
@@ -54,7 +59,7 @@ export const useForm = (onSuccess: () => void) => {
         return
       }
 
-      await mutateAsync({ id, data: { nickname, ...restData } })
+      await mutateAsync({ id, data })
     },
   })
 }

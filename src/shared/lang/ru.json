@@ -263,7 +263,7 @@
   "common.duration": "Длительность",
   "common.creator": "Створювач",
   "common.repeat": "Повторить",
-  "common.repeat-loading": "Повторение",
+  "common.repeating": "Повторение",
   "common.sign-in": "Войти",
   "common.with": "через",
   "common.nudity": "Нагота",
@@ -320,5 +320,8 @@
   "common.photo-types": "Мы поддерживаем файлы JPG, GIF или PNG",
   "common.select-file": "Выбрать файл",
   "common.photo-hint": "Если у вас возникли проблемы с загрузкой, попробуйте использовать фотографию меньшего размера",
-  "common.delete": "Удалить"
+  "common.delete": "Удалить",
+  "common.deleting": "Удаление",
+  "common.delete-warning": "Вы уверены, что хотите удалить эту фотографию?",
+  "common.warning": "Предупреждение"
 }

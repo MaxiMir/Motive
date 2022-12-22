@@ -12,5 +12,5 @@ export const useMutateUserPage: UseMutateUserPage = () => {
     queryClient.setQueryData(ctx.nickname, page)
   }
 
-  return [ctx as UserPageDto, mutate]
+  return [ctx, mutate]
 }

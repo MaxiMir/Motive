@@ -263,7 +263,7 @@
   "common.duration": "Duration",
   "common.creator": "Creator",
   "common.repeat": "Repeat",
-  "common.repeat-loading": "Repeating",
+  "common.repeating": "Repeating",
   "common.sign-in": "Sign In",
   "common.with": "with",
   "common.nudity": "Nudity",
@@ -320,5 +320,8 @@
   "common.photo-types": "We support JPG, GIF or PNG files",
   "common.select-file": "Select a file",
   "common.photo-hint": "If you have any problems with your upload, try using a smaller photo",
-  "common.delete": "Delete"
+  "common.delete": "Delete",
+  "common.deleting": "Deleting",
+  "common.delete-warning": "Are you sure want to delete this photo?",
+  "common.warning": "Warning"
 }

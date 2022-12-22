@@ -16,7 +16,15 @@ function RatingModule({ tab, ...props }: RatingModuleProps) {
 
   return (
     <>
-      <Container fixed sx={{ mt: 3 }}>
+      <Container
+        fixed
+        sx={(theme) => ({
+          mt: 3,
+          [theme.breakpoints.only('xl')]: {
+            maxWidth: 900,
+          },
+        })}
+      >
         <AppHeader name="completed">{messages.header}</AppHeader>
       </Container>
       <Box display="flex" flexDirection="column" gap={2} mt={4} mb={3}>

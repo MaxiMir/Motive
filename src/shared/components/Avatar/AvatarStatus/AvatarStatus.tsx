@@ -4,7 +4,7 @@ import { Button } from '@mui/material'
 import { Device } from '@helpers/navigator'
 
 const StatusHub = dynamic(() => import('./components/StatusHub'))
-const Plug = dynamic(() => import('./components/Plug'))
+const Plug = dynamic(() => import('./components/Plug/Plug'))
 
 interface AvatarStatusProps {
   src?: string | null
@@ -12,13 +12,18 @@ interface AvatarStatusProps {
   online?: boolean | null
   lastSeen?: string | null
   device?: Device | null
+  disabled?: boolean
   size: number
   onClick?: (e: MouseEvent<HTMLElement>) => void
 }
 
-function AvatarStatus({ src, name, size, online, lastSeen, device, onClick }: AvatarStatusProps) {
+function AvatarStatus({ src, name, size, online, lastSeen, device, disabled, onClick }: AvatarStatusProps) {
   return (
-    <Button sx={{ minWidth: 'initial', padding: '3px', borderRadius: '50%', textTransform: 'none' }} onClick={onClick}>
+    <Button
+      sx={{ minWidth: 'initial', padding: '3px', borderRadius: '50%', textTransform: 'none' }}
+      disabled={disabled}
+      onClick={onClick}
+    >
       {!src ? (
         <Plug name={name} size={size} />
       ) : (

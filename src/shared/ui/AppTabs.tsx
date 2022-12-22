@@ -25,7 +25,14 @@ function AppTabs({ tabs, content, ariaLabel, initial = 0 }: AppTabsProps) {
 
   return (
     <>
-      <Container fixed>
+      <Container
+        fixed
+        sx={(theme) => ({
+          [theme.breakpoints.only('xl')]: {
+            maxWidth: 900,
+          },
+        })}
+      >
         <Tabs
           value={value}
           aria-label={ariaLabel}

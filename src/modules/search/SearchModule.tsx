@@ -40,7 +40,7 @@ function SearchModule({ q, hashtags, goals, users }: SearchModuleProps) {
             </AppHeader>
             <Grid container spacing={2}>
               {users.map((user) => (
-                <Grid item xs={12} sm={6} md={3} lg={2} key={user.id}>
+                <Grid item xs={12} sm={6} md={3} lg={3} key={user.id}>
                   <UserCard user={user} />
                 </Grid>
               ))}

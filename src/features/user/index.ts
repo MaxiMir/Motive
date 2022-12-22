@@ -1,5 +1,4 @@
 export * from './service'
-export * from './hooks'
 export * from './dto'
 export * from './schema'
 export * from './helper'

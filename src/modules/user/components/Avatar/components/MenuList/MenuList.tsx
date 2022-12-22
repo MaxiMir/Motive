@@ -38,7 +38,14 @@ function MenuList({ anchorEl, avatar, onOpen, onEdit, onDelete, onClose }: MenuL
         <AppMenuItemContent icon="edit" text={messages.editText} />
       </MenuItem>
       {avatar && (
-        <MenuItem disabled onClick={onDelete}>
+        <MenuItem
+          sx={{
+            '& span': {
+              color: 'error.dark',
+            },
+          }}
+          onClick={onDelete}
+        >
           <AppMenuItemContent icon="delete" text={messages.deleteText} />
         </MenuItem>
       )}

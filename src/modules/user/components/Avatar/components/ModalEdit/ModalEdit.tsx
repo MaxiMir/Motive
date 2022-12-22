@@ -2,33 +2,29 @@ import { ChangeEvent, useRef } from 'react'
 import dynamic from 'next/dynamic'
 import { Box, Button, Divider, Typography } from '@mui/material'
 import { styled } from '@mui/system'
-import { useUserContext, useUserPage } from '@modules/user/hooks'
-import { useUpdatePhoto } from '@features/user'
 import AppModal from '@ui/AppModal'
 import AppIcon from '@ui/AppIcon'
-import { useMessages } from './hooks/useMessages'
+import { useMessages, useUpdatePhoto } from './hooks'
 
 const CircularProgress = dynamic(() => import('@mui/material/CircularProgress'))
 
-interface ModalAvatarProps {
+interface ModalEditProps {
   onClose: () => void
 }
 
-function ModalAvatar({ onClose }: ModalAvatarProps) {
+function ModalEdit({ onClose }: ModalEditProps) {
   const messages = useMessages()
-  const user = useUserContext()
   const inputRef = useRef<HTMLInputElement>(null)
-  const { isLoading, mutateAsync } = useUpdatePhoto(user.id)
-  const { refetch } = useUserPage()
+  const { isLoading, mutateAsync } = useUpdatePhoto()
 
   const onClick = () => inputRef.current?.click()
 
   const onChange = (e: ChangeEvent<HTMLInputElement>) => {
     if (!e.target.files) return
 
-    mutateAsync(e.target.files[0])
-      .then(() => refetch())
-      .then(onClose)
+    const formData = new FormData()
+    formData.append('avatar', e.target.files[0])
+    mutateAsync(formData).then(onClose)
   }
 
   return (
@@ -49,7 +45,7 @@ function ModalAvatar({ onClose }: ModalAvatarProps) {
         </Button>
         <Input ref={inputRef} type="file" accept="image/*" onChange={onChange} />
         <Divider sx={{ width: '100%', mt: 2 }} light />
-        <Typography variant="caption" sx={{ color: 'zen.silent' }}>
+        <Typography variant="caption" textAlign="center" sx={{ color: 'zen.silent' }}>
           {messages.hintText}
         </Typography>
       </Box>
@@ -66,4 +62,4 @@ const Input = styled('input')({
   display: 'none',
 })
 
-export default ModalAvatar
+export default ModalEdit

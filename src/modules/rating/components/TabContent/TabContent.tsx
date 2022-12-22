@@ -16,7 +16,14 @@ function TabContent({ name, users }: TabContentProps) {
   return (
     <>
       <Box sx={{ background: '#21262C' }}>
-        <Container fixed>
+        <Container
+          fixed
+          sx={(theme) => ({
+            [theme.breakpoints.only('xl')]: {
+              maxWidth: 900,
+            },
+          })}
+        >
           <Grid container alignItems="center" sx={{ height: 55 }}>
             <Grid item xs>
               <Box display="flex" justifyContent="center" width={22}>

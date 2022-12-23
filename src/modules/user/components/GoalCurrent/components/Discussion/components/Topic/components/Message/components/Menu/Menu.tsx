@@ -4,7 +4,7 @@ import { MessageDto } from '@features/topic'
 import AppMenuButton from '@ui/AppMenuButton'
 import { useMessages } from './hooks/useMessages'
 
-const MenuList = dynamic(() => import('./components/MenuList/MenuList'))
+const MenuList = dynamic(() => import('./components/MenuList'))
 const ModalEditMessage = dynamic(() => import('./components/ModalEditMessage'))
 
 interface MenuProps {

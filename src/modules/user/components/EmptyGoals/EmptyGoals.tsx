@@ -1,7 +1,7 @@
 import { Box, Typography } from '@mui/material'
 import AppFadeIcon from '@ui/AppFadeIcon'
 import { useMessages } from './hooks/useMessages'
-import OwnerDescription from './components/OwnerDescription/OwnerDescription'
+import OwnerDescription from './components/OwnerDescription'
 
 interface AddGoalProps {
   clientPage: boolean

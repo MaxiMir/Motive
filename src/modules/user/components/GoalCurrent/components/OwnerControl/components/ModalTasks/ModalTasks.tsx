@@ -1,5 +1,4 @@
 import { ChangeEvent } from 'react'
-import { v4 as uuidV4 } from 'uuid'
 import { FieldArray, Form, FormikProvider } from 'formik'
 import {
   Accordion,
@@ -91,7 +90,7 @@ function ModalTasks({ onClose }: ModalTasksProps) {
                         variant="outlined"
                         size="small"
                         sx={{ alignSelf: 'baseline', textTransform: 'none' }}
-                        onClick={() => push({ id: uuidV4(), name: '', date: undefined })}
+                        onClick={() => push({ id: crypto.randomUUID(), name: '', date: undefined })}
                       >
                         {messages.addTaskText}
                       </Button>

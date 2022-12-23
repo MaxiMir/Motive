@@ -1,13 +1,9 @@
-import { useState } from 'react'
+import { useReducer } from 'react'
 
-type UseToggle = () => [open: boolean, toggle: () => void]
+type UseToggle = (initial?: boolean) => [open: boolean, toggle: () => void]
 
-const useToggle: UseToggle = () => {
-  const [open, setOpen] = useState(false)
-
-  const toggle = () => setOpen(!open)
-
-  return [open, toggle]
+const useToggle: UseToggle = (initial = false) => {
+  return useReducer((open) => !open, initial)
 }
 
 export default useToggle

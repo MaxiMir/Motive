@@ -1,5 +1,4 @@
 import produce from 'immer'
-import { v4 as uuidV4 } from 'uuid'
 import { useIntl } from 'react-intl'
 import { useMutation } from 'react-query'
 import { useFormik } from 'formik'
@@ -34,7 +33,7 @@ export const useForm = (onSuccess: () => void) => {
       name: '',
       hashtags: '',
       stages: [],
-      tasks: [{ id: uuidV4(), name: '', date: undefined }],
+      tasks: [{ id: crypto.randomUUID(), name: '', date: undefined }],
     },
     validationSchema: goalSchema,
     async onSubmit(data) {

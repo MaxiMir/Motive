@@ -5,7 +5,7 @@ import useToggle from '@hooks/useToggle'
 import AvatarStatus from '@components/Avatar/AvatarStatus'
 
 const AppLightBox = dynamic(() => import('@ui/AppLightBox/AppLightBox'))
-const MenuList = dynamic(() => import('./components/MenuList/MenuList'))
+const MenuList = dynamic(() => import('./components/MenuList'))
 const ModalEdit = dynamic(() => import('./components/ModalEdit'))
 const ModalDelete = dynamic(() => import('./components/ModalDelete'))
 
@@ -37,21 +37,6 @@ function Avatar({ clientPage }: AvatarProps) {
 
   const onClose = () => setAnchorEl(null)
 
-  const onOpen = () => {
-    onClose()
-    openPhoto()
-  }
-
-  const onEdit = () => {
-    onClose()
-    toggleEdit()
-  }
-
-  const onDelete = () => {
-    onClose()
-    toggleDelete()
-  }
-
   return (
     <>
       <AvatarStatus
@@ -68,9 +53,9 @@ function Avatar({ clientPage }: AvatarProps) {
         <MenuList
           anchorEl={anchorEl}
           avatar={avatar}
-          onOpen={onOpen}
-          onEdit={onEdit}
-          onDelete={onDelete}
+          onOpen={openPhoto}
+          onEdit={toggleEdit}
+          onDelete={toggleDelete}
           onClose={onClose}
         />
       )}

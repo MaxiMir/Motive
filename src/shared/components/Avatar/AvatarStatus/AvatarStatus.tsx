@@ -4,7 +4,7 @@ import { Button } from '@mui/material'
 import { Device } from '@helpers/navigator'
 
 const StatusHub = dynamic(() => import('./components/StatusHub'))
-const Plug = dynamic(() => import('./components/Plug/Plug'))
+const Plug = dynamic(() => import('./components/Plug'))
 
 interface AvatarStatusProps {
   src?: string | null

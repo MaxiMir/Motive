@@ -13,7 +13,7 @@ function MenuList({ anchorEl, onShare, onRemove, onClose }: MenuListProps) {
   const messages = useMessages()
 
   return (
-    <Menu id="user-menu" anchorEl={anchorEl} open={!!anchorEl} onClose={onClose}>
+    <Menu id="user-menu" anchorEl={anchorEl} open={!!anchorEl} onClick={onClose} onClose={onClose}>
       <MenuItem onClick={onShare}>
         <AppMenuItemContent icon="share" text={messages.shareText} />
       </MenuItem>

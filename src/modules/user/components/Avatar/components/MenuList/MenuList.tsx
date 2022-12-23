@@ -27,6 +27,7 @@ function MenuList({ anchorEl, avatar, onOpen, onEdit, onDelete, onClose }: MenuL
         vertical: 'bottom',
         horizontal: 'center',
       }}
+      onClick={onClose}
       onClose={onClose}
     >
       {avatar && (

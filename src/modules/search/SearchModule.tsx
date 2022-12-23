@@ -12,7 +12,7 @@ import SearchForm from './components/SearchForm'
 const GoalCard = dynamic(() => import('./components/GoalCard'))
 const UserCard = dynamic(() => import('./components/UserCard'))
 const Hashtag = dynamic(() => import('./components/Hashtag'))
-const NoResult = dynamic(() => import('./components/NoResult/NoResult'))
+const NoResult = dynamic(() => import('./components/NoResult'))
 
 interface SearchModuleProps {
   q: string

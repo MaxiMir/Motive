@@ -1,5 +1,4 @@
 import dynamic from 'next/dynamic'
-import { v4 as uuidV4 } from 'uuid'
 import { Field, FieldArray, Form, FormikProvider } from 'formik'
 import { Box, Button, Typography, FormControl, Tooltip, FormControlLabel, RadioGroup, Radio } from '@mui/material'
 import { styled } from '@mui/system'
@@ -113,7 +112,7 @@ function ModalGoal({ onClose }: ModalGoalProps) {
                       variant="outlined"
                       color="warning"
                       size="small"
-                      onClick={() => push({ id: uuidV4(), name: '' })}
+                      onClick={() => push({ id: crypto.randomUUID(), name: '' })}
                     >
                       + {messages.stageButtonText}
                     </ButtonCompact>
@@ -159,7 +158,7 @@ function ModalGoal({ onClose }: ModalGoalProps) {
                     <ButtonCompact
                       variant="outlined"
                       size="small"
-                      onClick={() => push({ id: uuidV4(), name: '', date: undefined })}
+                      onClick={() => push({ id: crypto.randomUUID(), name: '', date: undefined })}
                     >
                       {messages.addTaskText}
                     </ButtonCompact>

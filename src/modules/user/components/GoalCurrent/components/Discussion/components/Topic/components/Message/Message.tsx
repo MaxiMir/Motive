@@ -11,7 +11,7 @@ import LikeButton from './components/LikeButton'
 
 const Button = dynamic(() => import('@mui/material/Button'))
 const AppMarkdown = dynamic(() => import('@ui/AppMarkdown'))
-const SupportSign = dynamic(() => import('./components/SupportSign/SupportSign'))
+const SupportSign = dynamic(() => import('./components/SupportSign'))
 
 interface MessageProps {
   message: MessageDto

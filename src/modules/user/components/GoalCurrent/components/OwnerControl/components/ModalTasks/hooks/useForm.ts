@@ -1,5 +1,4 @@
 import produce from 'immer'
-import { v4 as uuidV4 } from 'uuid'
 import { useIntl } from 'react-intl'
 import { useFormik } from 'formik'
 import { useMutation } from 'react-query'
@@ -39,7 +38,7 @@ export const useForm = (onSuccess: () => void) => {
     initialValues: {
       id,
       date: getTomorrowISO(),
-      tasks: [{ id: uuidV4(), name: '', date: undefined }],
+      tasks: [{ id: crypto.randomUUID(), name: '', date: undefined }],
     },
     validationSchema: tasksSchema,
     async onSubmit(data) {

@@ -1,7 +1,6 @@
 import { useMutation } from 'react-query'
 import { useFormik } from 'formik'
-import { searchSchema } from '@modules/search/schemas'
-import { SearchDto } from '@features/search'
+import { SearchDto, searchSchema } from '@features/search'
 import { PageService } from '@features/page'
 
 export const useForm = (initial: string) => {

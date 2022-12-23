@@ -1,7 +1,7 @@
 import { Box } from '@mui/material'
 import { useUserContext } from '@modules/user/hooks'
 import AppModal from '@ui/AppModal/AppModal'
-import InfoRow from './components/InfoRow/InfoRow'
+import InfoRow from './components/InfoRow'
 import { useMessages } from './hooks/useMessages'
 import { ROWS } from './helpers/table'
 

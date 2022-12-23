@@ -4,7 +4,7 @@ import { MAIN_CHARACTERISTICS, MainCharacteristicName } from '@features/characte
 import AppHeader from '@ui/AppHeader'
 import AppTabs from '@ui/AppTabs'
 import { useMessages } from './hooks/useMessages'
-import TabName from './components/TabName/TabName'
+import TabName from './components/TabName'
 import TabContent from './components/TabContent'
 
 interface RatingModuleProps extends Record<MainCharacteristicName, UserDto[]> {

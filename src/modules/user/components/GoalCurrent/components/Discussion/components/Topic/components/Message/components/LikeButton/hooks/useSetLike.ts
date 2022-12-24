@@ -15,7 +15,10 @@ export interface Options {
   add: boolean
 }
 
-const getNextState = (discussion: InfiniteData<TopicDto[]>, options: Options): InfiniteData<TopicDto[]> => {
+const getNextState = (
+  discussion: InfiniteData<TopicDto[]>,
+  options: Options,
+): InfiniteData<TopicDto[]> => {
   const { message, answerFor, add } = options
   const searchId = answerFor || message.id
 
@@ -96,7 +99,9 @@ export const useSetLike: UseSetLike = (message, answerFor) => {
     },
   })
 
-  const mutateDebounce = useDebounceCb((value: boolean) => mutate({ message, answerFor, add: value }))
+  const mutateDebounce = useDebounceCb((value: boolean) =>
+    mutate({ message, answerFor, add: value }),
+  )
 
   return () => {
     if (!client) {

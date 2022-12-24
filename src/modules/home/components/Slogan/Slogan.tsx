@@ -5,7 +5,13 @@ function Slogan() {
   const messages = useMessages()
 
   return (
-    <Box display="flex" alignItems="center" justifyContent="center" flex={1} sx={{ backgroundColor: 'common.white' }}>
+    <Box
+      display="flex"
+      alignItems="center"
+      justifyContent="center"
+      flex={1}
+      sx={{ backgroundColor: 'common.white' }}
+    >
       <Box display="flex" flexDirection="column" alignItems="center">
         <Typography
           variant="h4"

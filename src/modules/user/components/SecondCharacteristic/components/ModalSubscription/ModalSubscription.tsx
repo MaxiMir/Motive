@@ -18,7 +18,11 @@ interface ModalFollowersProps {
 function ModalSubscription({ name, onClose }: ModalFollowersProps) {
   const messages = useMessages(name)
   const { id, characteristic } = useUserContext()
-  const { isLoading, followers, checkOnLoadMore, fetchNextPage } = useSubscription(id, characteristic.followers, name)
+  const { isLoading, followers, checkOnLoadMore, fetchNextPage } = useSubscription(
+    id,
+    characteristic.followers,
+    name,
+  )
 
   return (
     <AppModal title={messages.title} maxWidth="xs" onClose={onClose}>
@@ -42,7 +46,12 @@ function ModalSubscription({ name, onClose }: ModalFollowersProps) {
             {!followers?.length ? (
               <EmptyList />
             ) : (
-              <UserList users={followers} checkOnLoadMore={checkOnLoadMore} onView={fetchNextPage} onClose={onClose} />
+              <UserList
+                users={followers}
+                checkOnLoadMore={checkOnLoadMore}
+                onView={fetchNextPage}
+                onClose={onClose}
+              />
             )}
           </>
         )}

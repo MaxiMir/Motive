@@ -1,6 +1,15 @@
 import dynamic from 'next/dynamic'
 import { Field, FieldArray, Form, FormikProvider } from 'formik'
-import { Box, Button, Typography, FormControl, Tooltip, FormControlLabel, RadioGroup, Radio } from '@mui/material'
+import {
+  Box,
+  Button,
+  Typography,
+  FormControl,
+  Tooltip,
+  FormControlLabel,
+  RadioGroup,
+  Radio,
+} from '@mui/material'
 import { styled } from '@mui/system'
 import { getMidnightISO, getTomorrowISO } from '@lib/date'
 import useFocus from '@hooks/useFocus'
@@ -62,7 +71,12 @@ function ModalGoal({ onClose }: ModalGoalProps) {
                 inputRef={hashtagsRef}
                 component={AppInput}
               />
-              <ButtonCompact variant="outlined" color="secondary" size="small" onClick={onAddHashtag}>
+              <ButtonCompact
+                variant="outlined"
+                color="secondary"
+                size="small"
+                onClick={onAddHashtag}
+              >
                 # {messages.hashtagText}
               </ButtonCompact>
             </Box>
@@ -131,8 +145,16 @@ function ModalGoal({ onClose }: ModalGoalProps) {
                 row
                 onChange={(e) => setFieldValue('started', e.target.value)}
               >
-                <FormControlLabel label={messages.todayLabel} value={todayValue} control={<Radio />} />
-                <FormControlLabel label={messages.tomorrowLabel} value={tomorrowValue} control={<Radio />} />
+                <FormControlLabel
+                  label={messages.todayLabel}
+                  value={todayValue}
+                  control={<Radio />}
+                />
+                <FormControlLabel
+                  label={messages.tomorrowLabel}
+                  value={tomorrowValue}
+                  control={<Radio />}
+                />
               </RadioGroup>
             </FormControl>
             <Box display="flex" flexDirection="column" gap={2}>

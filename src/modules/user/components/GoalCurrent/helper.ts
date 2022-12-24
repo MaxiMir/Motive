@@ -1,34 +1,11 @@
 import produce from 'immer'
 import { ParsedUrlQuery } from 'querystring'
 import { differenceInCalendarDays } from 'date-fns'
-import { HashMark, SearchParam } from '@href'
+import { HashMark, SearchParam } from '@features/user'
 import { GoalDto } from '@features/goal'
 import { MemberDto, OwnershipDto } from '@features/member'
 import { TaskDto } from '@features/task'
 import { getMidnight } from '@lib/date'
-
-const SHOW_WEB_AFTER_DAYS = Number(process.env.NEXT_PUBLIC_SHOW_WEB_AFTER_DAYS || '')
-
-export const getMember = (goalId: number, membership: MemberDto[], userId?: number): MemberDto | undefined => {
-  return !userId ? undefined : membership.find((m) => m.userId === userId && m.goalId === goalId)
-}
-
-export const getClientOwnership = (
-  goal: GoalDto,
-  clientId: number | undefined,
-  clientPage: boolean,
-  clientMembership: MemberDto[],
-): OwnershipDto => {
-  const { id, owner } = goal
-  const clientGoal = owner.id === clientId
-  const clientMember = getMember(id, clientMembership, clientId)
-
-  return { page: clientPage, goal: clientGoal, member: clientMember }
-}
-
-export const checkOnOpenDiscussion = (query: ParsedUrlQuery, id: number): boolean => {
-  return query[SearchParam.ScrollTo] === HashMark.Discussion && query[SearchParam.ScrollId] === id.toString()
-}
 
 interface GoalInfo {
   daysGoneForOwner: number
@@ -40,7 +17,47 @@ interface GoalInfo {
   canEdit: boolean
 }
 
-export const getGoalInfo = (goal: GoalDto, clientOwnership: OwnershipDto, userMember?: MemberDto): GoalInfo => {
+type GetMember = (goalId: number, membership: MemberDto[], userId?: number) => MemberDto | undefined
+type GetClientOwnership = (
+  goal: GoalDto,
+  clientId: number | undefined,
+  clientPage: boolean,
+  clientMembership: MemberDto[],
+) => OwnershipDto
+type CheckOnOpenDiscussion = (query: ParsedUrlQuery, id: number) => boolean
+type GetGoalInfo = (
+  goal: GoalDto,
+  clientOwnership: OwnershipDto,
+  userMember?: MemberDto,
+) => GoalInfo
+
+const SHOW_WEB_AFTER_DAYS = Number(process.env.NEXT_PUBLIC_SHOW_WEB_AFTER_DAYS || '')
+
+export const getMember: GetMember = (goalId, membership, userId) => {
+  return !userId ? undefined : membership.find((m) => m.userId === userId && m.goalId === goalId)
+}
+
+export const getClientOwnership: GetClientOwnership = (
+  goal,
+  clientId,
+  clientPage,
+  clientMembership,
+) => {
+  const { id, owner } = goal
+  const clientGoal = owner.id === clientId
+  const clientMember = getMember(id, clientMembership, clientId)
+
+  return { page: clientPage, goal: clientGoal, member: clientMember }
+}
+
+export const checkOnOpenDiscussion: CheckOnOpenDiscussion = (query, id) => {
+  return (
+    query[SearchParam.ScrollTo] === HashMark.Discussion &&
+    query[SearchParam.ScrollId] === id.toString()
+  )
+}
+
+export const getGoalInfo: GetGoalInfo = (goal, clientOwnership, userMember) => {
   const { started, day, calendar, completed } = goal
   const today = getMidnight()
   const lastDay = !calendar || calendar[calendar.length - 1].date === day.date

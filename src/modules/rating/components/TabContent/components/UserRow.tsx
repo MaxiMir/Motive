@@ -59,7 +59,12 @@ function UserRow({ user, characteristicName, index }: UserRowProps) {
             </Box>
           </Grid>
           <Grid item xs>
-            <Typography variant="subtitle1" component="p" align="right" sx={{ color: `${characteristicName}.main` }}>
+            <Typography
+              variant="subtitle1"
+              component="p"
+              align="right"
+              sx={{ color: `${characteristicName}.main` }}
+            >
               <b>{ratingValue}</b>
             </Typography>
           </Grid>

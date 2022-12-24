@@ -1,6 +1,6 @@
 import { useRouter } from 'next/router'
 import { Box, Button, Typography } from '@mui/material'
-import { getHashtagHref } from '@href'
+import { getHashtagHref } from '@features/user'
 import useFormatNumber from '@hooks/useFormatNumber'
 
 interface HashtagProps {
@@ -41,14 +41,19 @@ function Hashtag({ name, gradient, views }: HashtagProps) {
           overflow: 'hidden',
         }}
       >
-        <Typography variant="subtitle1" component="p" sx={{ color: 'common.white', textTransform: 'none' }}>
+        <Typography
+          variant="subtitle1"
+          component="p"
+          sx={{ color: 'common.white', textTransform: 'none' }}
+        >
           <b>#{name}</b>
         </Typography>
         <Typography
           variant="h4"
           component="p"
           sx={{
-            background: 'linear-gradient(to right, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.01))',
+            background:
+              'linear-gradient(to right, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.01))',
             WebkitBackgroundClip: 'text',
             WebkitTextFillColor: 'transparent',
             color: 'rgba(255, 255, 255, 0.05)',

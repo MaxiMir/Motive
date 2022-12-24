@@ -45,7 +45,9 @@ function MenuList({ clientOwnership, anchorEl, onShare, onLeave, onClose }: Menu
           </MenuItem>
         )}
       </Menu>
-      {withReport && <Report entityId={id} type="goal" anchorEl={anchorEl} onClose={onCloseReport} />}
+      {withReport && (
+        <Report entityId={id} type="goal" anchorEl={anchorEl} onClose={onCloseReport} />
+      )}
     </>
   )
 }

@@ -19,7 +19,15 @@ interface PageProps {
   children?: ReactNode
 }
 
-function Page({ title, description, keywords, type = OGType.Website, image, canonical, children }: PageProps) {
+function Page({
+  title,
+  description,
+  keywords,
+  type = OGType.Website,
+  image,
+  canonical,
+  children,
+}: PageProps) {
   const { locale } = useIntl()
   const client = useClient()
   const { asPath } = useRouter()

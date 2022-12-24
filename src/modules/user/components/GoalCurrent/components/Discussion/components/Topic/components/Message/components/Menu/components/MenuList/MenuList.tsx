@@ -40,7 +40,9 @@ function MenuList({ anchorEl, message, onOpenModal, onClose }: MenuListProps) {
           </MenuItem>
         )}
       </Menu>
-      {withReport && <Report entityId={message.id} type="message" anchorEl={anchorEl} onClose={onCloseReport} />}
+      {withReport && (
+        <Report entityId={message.id} type="message" anchorEl={anchorEl} onClose={onCloseReport} />
+      )}
     </>
   )
 }

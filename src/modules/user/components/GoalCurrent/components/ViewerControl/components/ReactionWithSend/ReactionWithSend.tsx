@@ -17,7 +17,15 @@ function ReactionWithSend({ name }: ReactionWithSendProps) {
 
   const onSetReaction = useSetReaction(name, active)
 
-  return <ActionGoal name={name} title={messages.title} count={count} disabled={active} onClick={onSetReaction} />
+  return (
+    <ActionGoal
+      name={name}
+      title={messages.title}
+      count={count}
+      disabled={active}
+      onClick={onSetReaction}
+    />
+  )
 }
 
 export default ReactionWithSend

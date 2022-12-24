@@ -32,41 +32,44 @@ export const useRemoveFollowing = () => {
   const openSignIn = useOpenSignIn()
   const queryClient = useQueryClient()
   const [enqueueSnackbar, closeSnackbar] = useSnackbar()
-  const { mutate } = useMutation(({ user, insert }: Options) => SubscriptionService.update(user.id, insert), {
-    async onMutate({ user, index, insert }) {
-      await queryClient.cancelQueries(Route.Following)
-      const previous = queryClient.getQueryData<FollowingPageDto>(Route.Following)
+  const { mutate } = useMutation(
+    ({ user, insert }: Options) => SubscriptionService.update(user.id, insert),
+    {
+      async onMutate({ user, index, insert }) {
+        await queryClient.cancelQueries(Route.Following)
+        const previous = queryClient.getQueryData<FollowingPageDto>(Route.Following)
 
-      if (previous) {
-        queryClient.setQueryData(Route.Following, getNextState(previous, user, index, insert))
-      }
+        if (previous) {
+          queryClient.setQueryData(Route.Following, getNextState(previous, user, index, insert))
+        }
 
-      return { previous }
+        return { previous }
+      },
+      onSuccess(_, { user, index, insert }) {
+        const undoText = formatMessage({ id: 'page.following.menu.undo' })
+        const message = formatMessage({ id: 'page.following.menu.remove' })
+
+        const onClick = () => onUndo(user, index)
+
+        !insert &&
+          enqueueSnackbar({
+            message,
+            severity: 'success',
+            action: (
+              <Button variant="outlined" color="primary" onClick={onClick}>
+                {undoText}
+              </Button>
+            ),
+            icon: 'speaker',
+          })
+      },
+      onError(_, _1, context) {
+        if (context?.previous) {
+          queryClient.setQueryData<FollowingPageDto>(Route.Following, context.previous)
+        }
+      },
     },
-    onSuccess(_, { user, index, insert }) {
-      const undoText = formatMessage({ id: 'page.following.menu.undo' })
-      const message = formatMessage({ id: 'page.following.menu.remove' })
-
-      const onClick = () => onUndo(user, index)
-
-      !insert &&
-        enqueueSnackbar({
-          message,
-          severity: 'success',
-          action: (
-            <Button variant="outlined" color="primary" onClick={onClick}>
-              {undoText}
-            </Button>
-          ),
-          icon: 'speaker',
-        })
-    },
-    onError(_, _1, context) {
-      if (context?.previous) {
-        queryClient.setQueryData<FollowingPageDto>(Route.Following, context.previous)
-      }
-    },
-  })
+  )
 
   function onUndo(user: UserDto, index: number) {
     closeSnackbar()

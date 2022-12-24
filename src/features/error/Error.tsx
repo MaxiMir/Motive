@@ -17,7 +17,12 @@ function Error({ statusCode }: CustomErrorProps) {
   return (
     <AppContainer>
       <Box display="flex" alignItems="center" justifyContent="center" flex={1}>
-        <Box display="flex" flexDirection="column" alignItems="center" justifyContent="space-between">
+        <Box
+          display="flex"
+          flexDirection="column"
+          alignItems="center"
+          justifyContent="space-between"
+        >
           <Typography component="h1" variant="h5">
             {messages.header}
           </Typography>

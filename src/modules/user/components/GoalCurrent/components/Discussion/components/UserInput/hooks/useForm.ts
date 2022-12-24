@@ -5,7 +5,11 @@ import { useGoalContext } from '@modules/user/components/GoalCurrent/hooks/useGo
 import { CreateMessageDto, MessageType, TopicDto, TopicService } from '@features/topic'
 import useSnackbar from '@hooks/useSnackbar'
 
-export const useForm = (topicId: number | undefined, type: MessageType, onAdd: (topic: TopicDto) => void) => {
+export const useForm = (
+  topicId: number | undefined,
+  type: MessageType,
+  onAdd: (topic: TopicDto) => void,
+) => {
   const { formatMessage } = useIntl()
   const { day } = useGoalContext()
   const [enqueueSnackbar] = useSnackbar()

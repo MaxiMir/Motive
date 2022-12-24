@@ -1,11 +1,13 @@
-/**
- * Handler for copying text to the clipboard
- */
-export const copyHandler = async (
+type CopyHandler = (
   text: string,
   onSuccess: () => void,
   onError: (err: unknown) => void,
-): Promise<void> => {
+) => Promise<void>
+
+/**
+ * Handler for copying text to the clipboard
+ */
+export const copyHandler: CopyHandler = async (text, onSuccess, onError) => {
   try {
     await navigator.clipboard.writeText(text)
     onSuccess()
@@ -22,7 +24,9 @@ export const getDeviceType = (): Device => {
   switch (true) {
     case /(tablet|ipad|playbook|silk)|(android(?!.*mobi))/i.test(ua):
       return 'tablet'
-    case /Mobile|Android|iP(hone|od)|IEMobile|BlackBerry|Kindle|Silk-Accelerated|(hpw|web)OS|Opera M(obi|ini)/.test(ua):
+    case /Mobile|Android|iP(hone|od)|IEMobile|BlackBerry|Kindle|Silk-Accelerated|(hpw|web)OS|Opera M(obi|ini)/.test(
+      ua,
+    ):
       return 'mobile'
     default:
       return 'desktop'

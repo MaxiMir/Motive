@@ -38,7 +38,9 @@ function MenuList({ anchorEl, onShare, onClose }: MenuListProps) {
           </MenuItem>
         )}
       </Menu>
-      {withReport && <Report entityId={id} type="user" anchorEl={anchorEl} onClose={onCloseReport} />}
+      {withReport && (
+        <Report entityId={id} type="user" anchorEl={anchorEl} onClose={onCloseReport} />
+      )}
     </>
   )
 }

@@ -37,8 +37,20 @@ function Menu({ user, index }: MenuProps) {
 
   return (
     <>
-      <AppMenuButton title={messages.title} ariaControls={messages.ariaControls} horizontal onClick={onOpen} />
-      {anchorEl && <MenuList anchorEl={anchorEl} onShare={onShare} onRemove={onRemoveCombine} onClose={onClose} />}
+      <AppMenuButton
+        title={messages.title}
+        ariaControls={messages.ariaControls}
+        horizontal
+        onClick={onOpen}
+      />
+      {anchorEl && (
+        <MenuList
+          anchorEl={anchorEl}
+          onShare={onShare}
+          onRemove={onRemoveCombine}
+          onClose={onClose}
+        />
+      )}
       {withShare && <Share title={name} href={href} onClose={onCloseShare} />}
     </>
   )

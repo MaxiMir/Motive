@@ -78,7 +78,10 @@ function Notification({ notification, onClose }: NotificationProps) {
             aria-label={messages.viewTitle}
             onClick={onClose}
           >
-            <AppIcon name="south_east" sx={{ color: 'motivation.light', fontSize: '16px !important' }} />
+            <AppIcon
+              name="south_east"
+              sx={{ color: 'motivation.light', fontSize: '16px !important' }}
+            />
           </IconButton>
         </Box>
       </Box>

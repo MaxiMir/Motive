@@ -48,13 +48,26 @@ function ModalProfile({ onClose }: ModalProfileProps) {
               label={messages.nicknameLabel}
               color="primary"
               InputProps={{
-                startAdornment: <InputAdornment position="start">https://2bebetter.pro/</InputAdornment>,
+                startAdornment: (
+                  <InputAdornment position="start">https://2bebetter.pro/</InputAdornment>
+                ),
               }}
               component={AppInput}
             />
             <Field name="motto" label={messages.mottoLabel} color="primary" component={AppInput} />
-            <Field name="location" label={messages.locationLabel} color="primary" component={AppInput} />
-            <Field name="bio" multiline label={messages.bioLabel} color="primary" component={AppInput} />
+            <Field
+              name="location"
+              label={messages.locationLabel}
+              color="primary"
+              component={AppInput}
+            />
+            <Field
+              name="bio"
+              multiline
+              label={messages.bioLabel}
+              color="primary"
+              component={AppInput}
+            />
           </Box>
         </Form>
       </FormikProvider>

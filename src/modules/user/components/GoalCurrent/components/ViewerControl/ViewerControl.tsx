@@ -32,7 +32,11 @@ function Viewer({ owner, forTomorrow, clientOwnership }: ViewerProps) {
       {!clientOwnership.member ? (
         <Join />
       ) : (
-        <>{completion && <Completion forTomorrow={forTomorrow} clientMember={clientOwnership.member} />}</>
+        <>
+          {completion && (
+            <Completion forTomorrow={forTomorrow} clientMember={clientOwnership.member} />
+          )}
+        </>
       )}
     </Box>
   )

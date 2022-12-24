@@ -14,6 +14,8 @@ export const useMessages = () => {
     accordionTired: formatMessage({ id: 'component.modal-support.accordion-tired' }),
     accordionTherefore: formatMessage({ id: 'component.modal-support.accordion-therefore' }),
     accordionAdvice: formatMessage({ id: 'component.modal-support.accordion-advice' }),
-    accordionEncouragement: formatMessage({ id: 'component.modal-support.accordion-encouragement' }),
+    accordionEncouragement: formatMessage({
+      id: 'component.modal-support.accordion-encouragement',
+    }),
   }
 }

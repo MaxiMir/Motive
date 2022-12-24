@@ -1,4 +1,6 @@
 [//]: # (TODO)
+* nanoid()
+* TODO disabled control
 * редактирование фотки
 * https://docs.nestjs.com/techniques/caching
 * hydration error
@@ -49,7 +51,8 @@ sudo apt-get update
 sudo apt-get install nginx docker docker-compose mc 
 cd /etc/nginx 
 ls # sites-available
-nano 2bebetter.pro.conf
+nano 2bebetter.pro.c
+onf
 
 # виртуальный симлинк
 sudo ln -s /etc/nginx/sites-available/2bebetter.pro.conf /etc/nginx/sites-enabled/

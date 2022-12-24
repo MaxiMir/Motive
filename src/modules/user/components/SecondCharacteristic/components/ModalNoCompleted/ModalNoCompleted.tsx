@@ -23,7 +23,12 @@ function ModalNoCompleted({ onClose }: ModalNoCompletedProps) {
       maxWidth="xs"
       onClose={onClose}
     >
-      <Box display="flex" flexDirection="column" gap={2} sx={{ minHeight: 400, overflow: 'scroll' }}>
+      <Box
+        display="flex"
+        flexDirection="column"
+        gap={2}
+        sx={{ minHeight: 400, overflow: 'scroll' }}
+      >
         <EmptyList />
       </Box>
     </AppModal>

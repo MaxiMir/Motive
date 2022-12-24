@@ -22,10 +22,14 @@ const partialQueryFn = (
 export const useSubscription = (userId: number, count: number, name: SecondCharacteristicName) => {
   const queryFn = partialQueryFn(userId, name)
   const getNextPageParam = partialGetNextPageParam(count, TAKE)
-  const { isLoading, data, fetchNextPage, hasNextPage } = useInfiniteQuery([name, userId, count], queryFn, {
-    getNextPageParam,
-    enabled: !!count,
-  })
+  const { isLoading, data, fetchNextPage, hasNextPage } = useInfiniteQuery(
+    [name, userId, count],
+    queryFn,
+    {
+      getNextPageParam,
+      enabled: !!count,
+    },
+  )
   const followers = useMemo(() => data?.pages.flat() || [], [data?.pages])
   const checkOnLoadMore = partialCheckOnLoadMore(followers.length, hasNextPage, PRELOAD_DIFF)
 

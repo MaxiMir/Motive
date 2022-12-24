@@ -27,9 +27,18 @@ function Discussion({ owner, count, clientGoal }: DiscussionProps) {
   const minHeight = topics.length || showInput ? 130 : undefined
 
   return (
-    <Box display="flex" flexDirection="column" gap={2} flex={1} minHeight={minHeight} maxHeight={500}>
+    <Box
+      display="flex"
+      flexDirection="column"
+      gap={2}
+      flex={1}
+      minHeight={minHeight}
+      maxHeight={500}
+    >
       <>
-        {showInput && <UserInput user={client as ClientDto} type={MessageType.Question} onAdd={onAdd} />}
+        {showInput && (
+          <UserInput user={client as ClientDto} type={MessageType.Question} onAdd={onAdd} />
+        )}
         {!count ? (
           <Nothing />
         ) : (

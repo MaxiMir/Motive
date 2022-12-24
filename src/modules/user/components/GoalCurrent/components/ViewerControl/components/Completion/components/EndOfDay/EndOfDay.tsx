@@ -30,7 +30,11 @@ function EndOfDay({ nextDayId, forTomorrow, clientMember }: EndOfDayProps) {
           color="primary"
           disabled={forTomorrow || isLoading}
           startIcon={
-            isLoading ? <CircularProgress size="14.5px" color="primary" /> : <AppEmoji name="moon" onlyEmoji />
+            isLoading ? (
+              <CircularProgress size="14.5px" color="primary" />
+            ) : (
+              <AppEmoji name="moon" onlyEmoji />
+            )
           }
           onClick={onClick}
         >

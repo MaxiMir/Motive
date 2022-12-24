@@ -1,5 +1,5 @@
 import fetcher from '@lib/fetcher'
-import { FetchParams, getFetchParams } from '@helpers/url'
+import { Filter, getFilterParams } from '@helpers/url'
 import { CreateUserDto, UpdateUserDto, UserBaseDto } from './dto'
 
 export class UserService {
@@ -7,8 +7,8 @@ export class UserService {
     return fetcher.post('/users', dto)
   }
 
-  static get(fetchParams: FetchParams): Promise<UserBaseDto[]> {
-    const params = getFetchParams(fetchParams)
+  static get(filter: Filter): Promise<UserBaseDto[]> {
+    const params = getFilterParams(filter)
 
     return fetcher.get('/users', { params })
   }

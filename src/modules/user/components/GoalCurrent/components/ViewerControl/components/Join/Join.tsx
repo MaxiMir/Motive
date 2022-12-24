@@ -25,7 +25,12 @@ function Join() {
 
   return (
     <>
-      <Button variant="outlined" color="primary" startIcon={<AppEmoji name="join" onlyEmoji />} onClick={onClick}>
+      <Button
+        variant="outlined"
+        color="primary"
+        startIcon={<AppEmoji name="join" onlyEmoji />}
+        onClick={onClick}
+      >
         {messages.buttonText}
       </Button>
       {open && <ModalJoin onClose={toggle} />}

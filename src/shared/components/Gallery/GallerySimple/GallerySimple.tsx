@@ -9,7 +9,10 @@ interface GallerySimpleProps {
 }
 
 function GallerySimple({ photos, onClick }: GallerySimpleProps) {
-  const renderPhoto = useCallback((props: PhotoProps) => <GalleryPhoto {...props} onClick={onClick} />, [onClick])
+  const renderPhoto = useCallback(
+    (props: PhotoProps) => <GalleryPhoto {...props} onClick={onClick} />,
+    [onClick],
+  )
 
   return <PhotoAlbum layout="columns" photos={photos} renderPhoto={renderPhoto} />
 }

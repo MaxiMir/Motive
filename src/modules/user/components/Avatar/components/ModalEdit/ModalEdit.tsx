@@ -39,7 +39,13 @@ function ModalEdit({ onClose }: ModalEditProps) {
           variant="outlined"
           size="small"
           disabled={isLoading}
-          startIcon={isLoading ? <CircularProgress size="14.5px" color="inherit" /> : <AppIcon name="attach_file" />}
+          startIcon={
+            isLoading ? (
+              <CircularProgress size="14.5px" color="inherit" />
+            ) : (
+              <AppIcon name="attach_file" />
+            )
+          }
           onClick={onClick}
         >
           {messages.selectText}

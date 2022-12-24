@@ -3,6 +3,7 @@ import { Box, Typography, useTheme } from '@mui/material'
 import { MainCharacteristicName, SecondCharacteristicName } from '@features/characteristic'
 import AppEmoji from '@ui/AppEmoji'
 import { useMessages } from './hooks/useMessages'
+import { useWidth } from './hooks/useWidth'
 
 interface AdvantageProps {
   name: MainCharacteristicName | SecondCharacteristicName.Completed
@@ -12,19 +13,17 @@ interface AdvantageProps {
 function Advantage({ name, href }: AdvantageProps) {
   const theme = useTheme()
   const messages = useMessages(name)
+  const width = useWidth()
   const { light, dark } = theme.palette[name]
 
   return (
     <Box
       display="flex"
       justifyContent="center"
-      alignItems="center"
-      justifySelf="stretch"
-      alignSelf="stretch"
       flex={1}
       sx={{ background: `linear-gradient(90deg, ${light} 0%, ${dark} 100%)` }}
     >
-      <Box display="flex" alignItems="center" gap={2}>
+      <Box display="flex" alignItems="center" gap={2} width={width}>
         <Link href={href}>
           <AppEmoji name={name} variant="h2" />
         </Link>

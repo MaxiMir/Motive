@@ -35,12 +35,21 @@ function MenuModal({ onOpenSettings, onClose }: MenuModalProps) {
 
   return (
     <Drawer open onClose={onClose}>
-      <Box role="presentation" sx={{ minWidth: 230, height: '100%', padding: '60px 0 8px' }} onKeyDown={onKeyDown}>
+      <Box
+        role="presentation"
+        sx={{ minWidth: 230, height: '100%', padding: '60px 0 8px' }}
+        onKeyDown={onKeyDown}
+      >
         <Box display="flex" flexDirection="column" justifyContent="space-between" height="100%">
           <Box>
             <List>
               {menu.map(({ primary, icon, link }) => (
-                <ListItem button disabled={link !== 'contact'} onClick={() => push(link)} key={link}>
+                <ListItem
+                  button
+                  disabled={link !== 'contact'}
+                  onClick={() => push(link)}
+                  key={link}
+                >
                   <ListItemText primary={primary} />
                   <ListItemIcon>
                     <AppIcon name={icon} />

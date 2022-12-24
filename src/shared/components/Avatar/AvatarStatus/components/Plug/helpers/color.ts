@@ -1,14 +1,15 @@
+interface GenerateOptions {
+  saturation?: number
+  lightness?: number
+  range?: number
+}
+
 type Ranges = [number, number]
 type HSL = [number, number, number]
 type GenerateHSL = (name: string, saturationRanges: Ranges, lightnessRanges: Ranges) => HSL
 type NormalizeHash = (hash: number, min: number, max: number) => number
 type GenerateColorHsl = (id: string, saturationRanges: Ranges, lightnessRanges: Ranges) => string
 type GetRange = (value: number, range: number) => Ranges
-interface GenerateOptions {
-  saturation?: number
-  lightness?: number
-  range?: number
-}
 type GenerateColorByName = (name: string, options?: GenerateOptions) => string
 
 const getHashOfString = (value: string) => {

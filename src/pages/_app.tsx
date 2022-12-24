@@ -31,12 +31,19 @@ const generateClassName = createGenerateClassName({ productionPrefix: 'be' })
 const langLoader = makeMapLoader<Record<string, string>>()
 const dateFnsLangLoader = makeMapLoader<FnsLocale>()
 
-function App({ Component, pageProps: { session, dehydratedState, providers, ...pageProps } }: AppProps) {
+function App({
+  Component,
+  pageProps: { session, dehydratedState, providers, ...pageProps },
+}: AppProps) {
   const { locale } = useRouter()
   const currentLocale = locale || Locale.En
   const localeFolder = getLocaleFolder(currentLocale)
-  const messages = use(langLoader(currentLocale, () => import(`src/shared/lang/${currentLocale}.json`)))
-  const dateFnsLocale = use(dateFnsLangLoader(currentLocale, () => import(`date-fns/locale/${localeFolder}/index.js`)))
+  const messages = use(
+    langLoader(currentLocale, () => import(`src/shared/lang/${currentLocale}.json`)),
+  )
+  const dateFnsLocale = use(
+    dateFnsLangLoader(currentLocale, () => import(`date-fns/locale/${localeFolder}/index.js`)),
+  )
   const [mode, setMode] = useState<PaletteMode>('dark')
   const [snackbarProps, setSnackbarProps] = useState<ContextSnackbarProps | null>(null)
   const [options, setOptions] = useState<SignInOptions>()
@@ -64,7 +71,10 @@ function App({ Component, pageProps: { session, dehydratedState, providers, ...p
   const theme = useMemo(() => createTheme(getDesignTokens(mode)), [mode])
   const themeCtx = useMemo(() => ({ mode, setMode }), [mode])
   const modalSignInCtx = useMemo(() => ({ options, providers, setOptions }), [options, providers])
-  const snackbarCtx = useMemo(() => ({ props: snackbarProps, setProps: setSnackbarProps }), [snackbarProps])
+  const snackbarCtx = useMemo(
+    () => ({ props: snackbarProps, setProps: setSnackbarProps }),
+    [snackbarProps],
+  )
   useRemoveServerStyles()
 
   const onCloseSignIn = () => setOptions(undefined)

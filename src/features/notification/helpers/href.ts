@@ -1,8 +1,16 @@
-import { ClientDto, getUserHref } from '@features/user'
+import {
+  ClientDto,
+  getUserHref,
+  getDiscussionHref,
+  getFeedbackHref,
+  getGoalHref,
+  getDayHref,
+} from '@features/user'
 import { NotificationDto, NotificationType } from '@features/notification/dto'
-import { getDiscussionHref, getFeedbackHref, getGoalHref, getGoalDayHref } from '@href'
 
-export const getNotificationHref = (notification: NotificationDto, client?: ClientDto): string => {
+type GetNotificationHref = (notification: NotificationDto, client?: ClientDto) => string
+
+export const getNotificationHref: GetNotificationHref = (notification, client) => {
   const { user } = notification.details
   const userPage = [
     NotificationType.NewFollower,
@@ -25,6 +33,6 @@ export const getNotificationHref = (notification: NotificationDto, client?: Clie
     case NotificationType.NewSupport:
       return getDiscussionHref(nickname, notification.details.id, notification.details.day)
     default:
-      return getGoalDayHref(nickname, notification.details.id, notification.details.day)
+      return getDayHref(nickname, notification.details.id, notification.details.day)
   }
 }

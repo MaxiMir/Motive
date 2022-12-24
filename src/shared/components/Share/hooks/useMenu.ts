@@ -1,7 +1,11 @@
 import { useEffect, useState } from 'react'
 import useSnackbar from '@hooks/useSnackbar'
 
-type UseMenu = (title: string, url: string, onCloseShare: () => void) => [open: boolean, onClose: () => void]
+type UseMenu = (
+  title: string,
+  url: string,
+  onCloseShare: () => void,
+) => [open: boolean, onClose: () => void]
 
 export const useMenu: UseMenu = (title, url, onCloseShare) => {
   const [open, setOpen] = useState(false)

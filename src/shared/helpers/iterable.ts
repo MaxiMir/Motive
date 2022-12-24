@@ -1,11 +1,13 @@
-export const makeMapLoader = <T>() => {
-  const langMap = new Map<string, Promise<T>>()
+type MakeMapLoader = <T>() => (locale: string, query: () => Promise<T>) => Promise<T>
 
-  return (locale: string, query: () => Promise<T>) => {
+export const makeMapLoader: MakeMapLoader = () => {
+  const langMap = new Map()
+
+  return (locale, query) => {
     if (!langMap.has(locale)) {
       langMap.set(locale, query())
     }
 
-    return langMap.get(locale) as Promise<T>
+    return langMap.get(locale)
   }
 }

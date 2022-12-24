@@ -1,6 +1,9 @@
 import { MutableRefObject, useRef } from 'react'
 
-type UseFocus = () => [hashtagsRef: MutableRefObject<HTMLInputElement | null>, setHashtagsFocus: () => void]
+type UseFocus = () => [
+  hashtagsRef: MutableRefObject<HTMLInputElement | null>,
+  setHashtagsFocus: () => void,
+]
 
 const useFocus: UseFocus = () => {
   const htmlElRef = useRef<HTMLInputElement | null>(null)

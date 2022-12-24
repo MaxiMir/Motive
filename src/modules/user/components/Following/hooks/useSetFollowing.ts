@@ -28,28 +28,31 @@ export const useSetFollowing: UseSetFollowing = (userId, following) => {
   const queryClient = useQueryClient()
   const { nickname } = useUserContext()
   const [enqueueSnackbar] = useSnackbar()
-  const { mutate } = useMutation(({ insert }: Options) => SubscriptionService.update(userId, insert), {
-    async onMutate({ insert }: Options) {
-      await queryClient.cancelQueries(nickname)
-      const previous = queryClient.getQueryData<UserPageDto>(nickname)
+  const { mutate } = useMutation(
+    ({ insert }: Options) => SubscriptionService.update(userId, insert),
+    {
+      async onMutate({ insert }: Options) {
+        await queryClient.cancelQueries(nickname)
+        const previous = queryClient.getQueryData<UserPageDto>(nickname)
 
-      if (previous) {
-        queryClient.setQueryData(nickname, getNextState(previous, insert))
-      }
+        if (previous) {
+          queryClient.setQueryData(nickname, getNextState(previous, insert))
+        }
 
-      return { previous }
+        return { previous }
+      },
+      onSuccess(_, { insert }) {
+        const operation = insert ? 'add' : 'remove'
+        const message = formatMessage({ id: `page.user.following.message-${operation}` })
+        enqueueSnackbar({ message, severity: 'success', icon: 'speaker' })
+      },
+      onError(_, _1, context) {
+        if (context?.previous) {
+          queryClient.setQueryData(nickname, context?.previous)
+        }
+      },
     },
-    onSuccess(_, { insert }) {
-      const operation = insert ? 'add' : 'remove'
-      const message = formatMessage({ id: `page.user.following.message-${operation}` })
-      enqueueSnackbar({ message, severity: 'success', icon: 'speaker' })
-    },
-    onError(_, _1, context) {
-      if (context?.previous) {
-        queryClient.setQueryData(nickname, context?.previous)
-      }
-    },
-  })
+  )
   const sendDebounce = useDebounceCb((insert: boolean) => mutate({ insert }))
 
   return () => {

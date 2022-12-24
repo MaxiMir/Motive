@@ -4,7 +4,9 @@ import useToggle from '@hooks/useToggle'
 import AppEmoji from '@ui/AppEmoji'
 import { useMessages } from './hooks/useMessages'
 
-const ModalCompletion = dynamic(() => import('@modules/user/components/GoalCurrent/components/ModalCompletion'))
+const ModalCompletion = dynamic(
+  () => import('@modules/user/components/GoalCurrent/components/ModalCompletion'),
+)
 
 interface DoneProps {
   forTomorrow: boolean

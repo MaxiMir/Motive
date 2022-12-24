@@ -13,7 +13,11 @@ function Hint({ onClick }: HintProps) {
     <Alert severity="warning" icon={<>{null}</>} sx={{ mb: 4 }}>
       <Box display="flex" flexDirection="column" gap={1} alignItems="flex-start">
         {messages.title}:
-        <Button startIcon={<AppIcon name="notifications_active" />} aria-label={messages.buttonText} onClick={onClick}>
+        <Button
+          startIcon={<AppIcon name="notifications_active" />}
+          aria-label={messages.buttonText}
+          onClick={onClick}
+        >
           {messages.buttonText}
         </Button>
       </Box>

@@ -19,7 +19,15 @@ interface TaskProps {
   canEdit: boolean
 }
 
-function Task({ goalId, task, rest, clientMember, forTomorrow, daysGoneForOwner, canEdit }: TaskProps) {
+function Task({
+  goalId,
+  task,
+  rest,
+  clientMember,
+  forTomorrow,
+  daysGoneForOwner,
+  canEdit,
+}: TaskProps) {
   const { id, date, completed } = task
   const { formatMessage } = useIntl()
   const setCompleted = useSetCompleted(goalId, id, rest, clientMember)

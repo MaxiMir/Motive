@@ -27,8 +27,20 @@ function Menu({ message }: MenuProps) {
 
   return (
     <>
-      <AppMenuButton title={messages.title} color="primary" ariaControls={messages.ariaControls} onClick={onOpen} />
-      {anchorEl && <MenuList anchorEl={anchorEl} message={message} onOpenModal={toggleModal} onClose={onClose} />}
+      <AppMenuButton
+        title={messages.title}
+        color="primary"
+        ariaControls={messages.ariaControls}
+        onClick={onOpen}
+      />
+      {anchorEl && (
+        <MenuList
+          anchorEl={anchorEl}
+          message={message}
+          onOpenModal={toggleModal}
+          onClose={onClose}
+        />
+      )}
       {open && <ModalEditMessage message={message} onClose={toggleModal} />}
     </>
   )

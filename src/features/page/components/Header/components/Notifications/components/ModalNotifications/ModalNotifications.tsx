@@ -23,7 +23,11 @@ function ModalNotifications({ notifications, onClose }: ModalNotificationsProps)
     <AppModal title={messages.title} maxWidth="xs" onClose={onClose}>
       {showHint && <Hint onClick={onHintClick} />}
       <Box display="flex" alignItems={alignItems} minHeight={400} flex={1}>
-        {!notifications.length ? <EmptyList /> : <NotificationList notifications={notifications} onClose={onClose} />}
+        {!notifications.length ? (
+          <EmptyList />
+        ) : (
+          <NotificationList notifications={notifications} onClose={onClose} />
+        )}
       </Box>
     </AppModal>
   )

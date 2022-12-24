@@ -29,17 +29,20 @@ export const useForm = (initialValues: MessageDto, onSuccess: () => void) => {
   const { formatMessage } = useIntl()
   const [enqueueSnackbar] = useSnackbar()
   const queryClient = useQueryClient()
-  const { mutateAsync } = useMutation(({ id, text }: MessageDto) => TopicService.update(id, { text }), {
-    onSuccess(_, updatedMessage) {
-      const message = formatMessage({ id: 'common.message-updated' })
-      queryClient.setQueryData<InfiniteData<TopicDto[]> | undefined>(
-        ['discussion', updatedMessage.dayId],
-        (prev) => prev && getNextState(prev, updatedMessage),
-      )
-      enqueueSnackbar({ message, severity: 'success', icon: 'speaker' })
-      onSuccess()
+  const { mutateAsync } = useMutation(
+    ({ id, text }: MessageDto) => TopicService.update(id, { text }),
+    {
+      onSuccess(_, updatedMessage) {
+        const message = formatMessage({ id: 'common.message-updated' })
+        queryClient.setQueryData<InfiniteData<TopicDto[]> | undefined>(
+          ['discussion', updatedMessage.dayId],
+          (prev) => prev && getNextState(prev, updatedMessage),
+        )
+        enqueueSnackbar({ message, severity: 'success', icon: 'speaker' })
+        onSuccess()
+      },
     },
-  })
+  )
 
   return useFormik<MessageDto>({
     initialValues,

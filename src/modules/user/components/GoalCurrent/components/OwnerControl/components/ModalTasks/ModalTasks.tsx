@@ -119,7 +119,11 @@ function ModalTasks({ onClose }: ModalTasksProps) {
                       />
                     </span>
                   </Tooltip>
-                  <FormControlLabel label={messages.tomorrowText} value={tomorrowValue} control={<Radio />} />
+                  <FormControlLabel
+                    label={messages.tomorrowText}
+                    value={tomorrowValue}
+                    control={<Radio />}
+                  />
                 </RadioGroup>
               </FormControl>
             </Box>

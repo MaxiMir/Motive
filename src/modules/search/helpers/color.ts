@@ -1,4 +1,4 @@
-export const getGradients = (): string[] => [
+export const GRADIENTS = [
   'linear-gradient(to top left, rgba(16, 114, 236, 0.3) 0%, rgb(16, 114, 236) 100%)',
   'linear-gradient(to top left, rgba(39, 133, 106, 0.3) 0%, rgb(39, 133, 106) 100%)',
   'linear-gradient(to top left, rgba(212, 0, 255, 0.3) 0%, rgb(212, 0, 255) 100%)',

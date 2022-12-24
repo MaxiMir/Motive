@@ -2,11 +2,11 @@ import dynamic from 'next/dynamic'
 import { useRouter } from 'next/router'
 import { Box, Card } from '@mui/material'
 import { styled } from '@mui/system'
-import { getGoalDayHref, HashMark } from '@href'
 import { useUserContext } from '@modules/user/hooks'
 import { MemberDto } from '@features/member'
 import { GoalDto, GoalCharacteristicName } from '@features/goal'
 import { MAIN_CHARACTERISTICS } from '@features/characteristic'
+import { HashMark, getDayHref } from '@features/user'
 import useClient from '@hooks/useClient'
 import AppHeader from '@ui/AppHeader'
 import AppAccordion from '@ui/AppAccordion'
@@ -14,7 +14,13 @@ import CharacteristicGoal from '@components/Characteristic/CharacteristicGoal'
 import { useMessages } from './hooks/useMessages'
 import { useSwitchDay } from './hooks/useSwitchDay'
 import { GoalContext } from './hooks/useGoalContext'
-import { getGoalInfo, getClientOwnership, checkOnOpenDiscussion, redefineTasks, getMember } from './helper'
+import {
+  getGoalInfo,
+  getClientOwnership,
+  checkOnOpenDiscussion,
+  redefineTasks,
+  getMember,
+} from './helper'
 import ViewTrigger from './components/ViewTrigger'
 import Calendar from './components/Calendar'
 import Menu from './components/Menu'
@@ -49,8 +55,8 @@ function GoalCurrent({ goal, membership, clientPage, clientMembership }: GoalCur
   const { id: userId, nickname } = useUserContext()
   const clientOwnership = getClientOwnership(goal, client?.id, clientPage, clientMembership)
   const userMember = getMember(id, membership, userId)
-  const goalHref = getGoalDayHref(nickname, id, day.id)
   const goalInfo = getGoalInfo(goal, clientOwnership, userMember)
+  const dayHref = getDayHref(nickname, id, day.id)
   const showDiscussion = checkOnOpenDiscussion(query, id)
   const { isLoading, prev, next, onChangeDate, shouldDisableDate } = useSwitchDay(goal)
   const redefinedGoals = redefineTasks(day.tasks, userMember)
@@ -103,7 +109,7 @@ function GoalCurrent({ goal, membership, clientPage, clientMembership }: GoalCur
                   <AppHeader name="goal" variant="h6" component="h2">
                     <b>{name}</b>
                   </AppHeader>
-                  <Menu title={name} href={goalHref} clientOwnership={clientOwnership} />
+                  <Menu title={name} href={dayHref} clientOwnership={clientOwnership} />
                 </Box>
                 <Box display="flex" justifyContent="space-between" alignItems="center">
                   {CHARACTERISTICS.map((characteristicName) => (
@@ -131,14 +137,27 @@ function GoalCurrent({ goal, membership, clientPage, clientMembership }: GoalCur
                       }}
                       onClick={() => onChangeDate(prev)}
                     >
-                      <Box display="flex" justifyContent="space-between" alignItems="baseline" flex={1} py={2} px={3}>
+                      <Box
+                        display="flex"
+                        justifyContent="space-between"
+                        alignItems="baseline"
+                        flex={1}
+                        py={2}
+                        px={3}
+                      >
                         <DayAgo day={prev} />
                         <Date date={prev} />
                       </Box>
                     </DayCardControl>
                   )}
                   <Card variant="outlined" sx={{ width: '100%', pb: 4, borderRadius: '10px' }}>
-                    <Box display="flex" justifyContent="space-between" alignItems="center" py={2} px={3}>
+                    <Box
+                      display="flex"
+                      justifyContent="space-between"
+                      alignItems="center"
+                      py={2}
+                      px={3}
+                    >
                       <DayAgo day={day.date} />
                       <Box display="flex" alignItems="center" gap={1}>
                         <Calendar
@@ -155,7 +174,12 @@ function GoalCurrent({ goal, membership, clientPage, clientMembership }: GoalCur
                         id={`stage-${day.id}`}
                         ariaControls={messages.stagesAria}
                         defaultExpanded
-                        details={<Stages forTomorrow={goalInfo.forTomorrow} completeStage={goalInfo.completeStage} />}
+                        details={
+                          <Stages
+                            forTomorrow={goalInfo.forTomorrow}
+                            completeStage={goalInfo.completeStage}
+                          />
+                        }
                       />
                     )}
                     <AppAccordion
@@ -187,7 +211,12 @@ function GoalCurrent({ goal, membership, clientPage, clientMembership }: GoalCur
                       id={`${HashMark.Feedback}-${id}`}
                       ariaControls={messages.feedbackAria}
                       defaultExpanded={!showDiscussion}
-                      details={<Feedback forTomorrow={goalInfo.forTomorrow} clientOwnership={clientOwnership} />}
+                      details={
+                        <Feedback
+                          forTomorrow={goalInfo.forTomorrow}
+                          clientOwnership={clientOwnership}
+                        />
+                      }
                     />
                     <AppAccordion
                       name="discussion"
@@ -202,7 +231,13 @@ function GoalCurrent({ goal, membership, clientPage, clientMembership }: GoalCur
                       id={`${HashMark.Discussion}-${id}`}
                       ariaControls={messages.discussionAria}
                       defaultExpanded={showDiscussion}
-                      details={<Discussion owner={owner} count={day.topicCount} clientGoal={clientOwnership.goal} />}
+                      details={
+                        <Discussion
+                          owner={owner}
+                          count={day.topicCount}
+                          clientGoal={clientOwnership.goal}
+                        />
+                      }
                     />
                   </Card>
                   {next && (
@@ -219,7 +254,14 @@ function GoalCurrent({ goal, membership, clientPage, clientMembership }: GoalCur
                       }}
                       onClick={() => onChangeDate(next)}
                     >
-                      <Box display="flex" justifyContent="space-between" alignItems="baseline" flex={1} py={2} px={3}>
+                      <Box
+                        display="flex"
+                        justifyContent="space-between"
+                        alignItems="baseline"
+                        flex={1}
+                        py={2}
+                        px={3}
+                      >
                         <DayAgo day={next} />
                         <Date date={next} />
                       </Box>
@@ -234,7 +276,11 @@ function GoalCurrent({ goal, membership, clientPage, clientMembership }: GoalCur
                   {clientOwnership.goal ? (
                     <OwnerControl />
                   ) : (
-                    <ViewerControl owner={owner} forTomorrow={goalInfo.forTomorrow} clientOwnership={clientOwnership} />
+                    <ViewerControl
+                      owner={owner}
+                      forTomorrow={goalInfo.forTomorrow}
+                      clientOwnership={clientOwnership}
+                    />
                   )}
                 </>
               )}

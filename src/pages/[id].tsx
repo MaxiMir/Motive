@@ -18,7 +18,9 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
   const queryClient = new QueryClient()
   const session = await getSession(ctx)
   const nickname = (ctx.params?.id || '') as string
-  await queryClient.prefetchQuery(nickname, () => PageService.getUser(nickname, { headers, params }))
+  await queryClient.prefetchQuery(nickname, () =>
+    PageService.getUser(nickname, { headers, params }),
+  )
   const state = queryClient.getQueryState<PossiblePageError>(nickname)
   const statusCode = state?.data?.message?.statusCode || 200
 

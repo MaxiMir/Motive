@@ -41,7 +41,11 @@ function UserInput({ user, type, topicId, onAdd }: UserInputProps) {
             sx={{ flex: 1 }}
             component={AppInput}
           />
-          <IconButton disabled={isSubmitting || !values.text} sx={{ width: 40, height: 40 }} onClick={onClick}>
+          <IconButton
+            disabled={isSubmitting || !values.text}
+            sx={{ width: 40, height: 40 }}
+            onClick={onClick}
+          >
             {!isSubmitting ? (
               <AppIcon name="send" sx={{ paddingLeft: '3px' }} />
             ) : (

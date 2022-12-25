@@ -15,7 +15,9 @@ function UserList({ users }: UserListProps) {
       elements={users}
       gap={4}
       keyGetter={keyGetter}
-      render={(user, index) => <UserCharacteristic user={user} menu={<Menu user={user} index={index} />} />}
+      render={(user, index) => (
+        <UserCharacteristic user={user} menu={<Menu user={user} index={index} />} />
+      )}
     />
   )
 }

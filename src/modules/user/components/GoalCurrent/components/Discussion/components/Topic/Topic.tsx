@@ -36,7 +36,14 @@ function Topic({ owner, topic, isOwner, inView, onView, onAdd }: TopicProps) {
         supportFor={message.type !== MessageType.Support ? undefined : owner.name}
         onReply={!showReply ? undefined : onClick}
       />
-      {showInput && <UserInput user={owner} topicId={message.id} type={MessageType.Answer} onAdd={onAddCombine} />}
+      {showInput && (
+        <UserInput
+          user={owner}
+          topicId={message.id}
+          type={MessageType.Answer}
+          onAdd={onAddCombine}
+        />
+      )}
       {answer && <Message message={answer} answerFor={message.id} />}
       {inView && <AppInView onView={onView} />}
     </>

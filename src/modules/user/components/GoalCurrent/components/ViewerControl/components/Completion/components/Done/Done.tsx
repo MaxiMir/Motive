@@ -1,10 +1,12 @@
-import { useState } from 'react'
 import dynamic from 'next/dynamic'
 import { Button, Tooltip } from '@mui/material'
+import useToggle from '@hooks/useToggle'
 import AppEmoji from '@ui/AppEmoji'
 import { useMessages } from './hooks/useMessages'
 
-const ModalCompletion = dynamic(() => import('@modules/user/components/GoalCurrent/components/ModalCompletion'))
+const ModalCompletion = dynamic(
+  () => import('@modules/user/components/GoalCurrent/components/ModalCompletion'),
+)
 
 interface DoneProps {
   forTomorrow: boolean
@@ -12,9 +14,7 @@ interface DoneProps {
 
 function Done({ forTomorrow }: DoneProps) {
   const messages = useMessages(forTomorrow)
-  const [open, setOpen] = useState(false)
-
-  const toggleModal = () => setOpen(!open)
+  const [open, toggle] = useToggle()
 
   return (
     <>
@@ -27,13 +27,13 @@ function Done({ forTomorrow }: DoneProps) {
             startIcon={<AppEmoji name="cup" onlyEmoji />}
             aria-expanded={open ? 'true' : undefined}
             aria-haspopup="true"
-            onClick={toggleModal}
+            onClick={toggle}
           >
             {messages.buttonText}
           </Button>
         </span>
       </Tooltip>
-      {open && <ModalCompletion onClose={toggleModal} />}
+      {open && <ModalCompletion onClose={toggle} />}
     </>
   )
 }

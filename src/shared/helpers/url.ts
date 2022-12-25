@@ -1,16 +1,19 @@
-/**
- * Returns url information
- */
-export const parseUrl = (url: string) => {
-  const [base, params = ''] = url.split('?', 2)
-  const searchParams = new URLSearchParams(params)
-
-  return { base, searchParams }
+export interface Filter {
+  where?: Record<string, string | number>
+  page?: number
+  take?: number
+  insert?: boolean
 }
 
-/**
- * Returns search params
- */
+type SearchParamsEntries = Record<string, string | number>
+
+export const parseUrl = (url: string) => {
+  const [origin, params = ''] = url.split('?', 2)
+  const searchParams = new URLSearchParams(params)
+
+  return { origin, searchParams }
+}
+
 export const getCurrentSearchParams = (): Record<string, string> => {
   return getSearchParams(window.location.search)
 }
@@ -21,52 +24,29 @@ export const getSearchParams = (url: string): Record<string, string> => {
   return Object.fromEntries(searchParams)
 }
 
-/**
- * Returns the name of the method to insert
- */
-const getMethodName = (searchParams: URLSearchParams, name: string) => {
-  return !searchParams.has(name) ? 'append' : 'set'
-}
-
-/**
- * Set Search params
- */
-export const setSearchParams = (url: string, params: Record<string, string | number>): string => {
-  const { base, searchParams } = parseUrl(url)
+export const setSearchParams = (url: string, params: SearchParamsEntries): string => {
+  const { origin, searchParams } = parseUrl(url)
 
   Object.entries(params).forEach(([name, value]) => {
-    const methodName = getMethodName(searchParams, name)
-    searchParams[methodName](name, value.toString())
+    searchParams.set(name, value.toString())
   })
 
-  return toUrl(base, searchParams)
+  return toUrl(origin, searchParams)
 }
 
-const toUrl = (url: string, searchParams: URLSearchParams) =>
-  [url, searchParams].join(!searchParams.toString() ? '' : '?')
-
-export interface FetchParams {
-  where?: Record<string, string | number>
-  page?: number
-  take?: number
-  insert?: boolean
+const toUrl = (url: string, searchParams: URLSearchParams): string => {
+  return [url, searchParams].join(!searchParams.toString() ? '' : '?')
 }
 
-const getWhere = (where: FetchParams['where']) =>
-  !where ? null : Object.fromEntries(Object.entries(where).map(([k, v]) => [`where[${k}]`, v]))
-
-const getPagination = (page?: number, take?: number) =>
-  typeof page !== 'number' || typeof take !== 'number' ? null : { skip: page * take, take }
-
-const getOperation = (insert: FetchParams['insert']) => {
-  return !insert ? null : { operation: insert ? 'insert' : 'delete' }
-}
-
-export const getFetchParams = (fetchParams: FetchParams) => {
-  const { where, page, take, insert } = fetchParams
-  const wherePrepared = getWhere(where)
-  const paginationPrepared = getPagination(page, take)
-  const insertPrepared = getOperation(insert)
+export const getFilterParams = (filter: Filter): SearchParamsEntries => {
+  const { where, page, take, insert } = filter
+  const wherePrepared = !where
+    ? null
+    : Object.fromEntries(Object.entries(where).map(([k, v]) => [`where[${k}]`, v]))
+  const paginationPrepared =
+    typeof page !== 'number' || typeof take !== 'number' ? null : { skip: page * take, take }
+  const insertPrepared =
+    typeof insert !== 'boolean' ? null : { operation: insert ? 'insert' : 'delete' }
 
   return { ...wherePrepared, ...paginationPrepared, ...insertPrepared }
 }

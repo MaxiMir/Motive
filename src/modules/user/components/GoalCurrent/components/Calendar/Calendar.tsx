@@ -2,7 +2,7 @@ import dynamic from 'next/dynamic'
 import { Badge, Box } from '@mui/material'
 import { PickersDay } from '@mui/x-date-pickers'
 import { DatePicker } from '@mui/x-date-pickers/DatePicker'
-import { useGoalContext } from '@modules/user/components/GoalCurrent/hooks'
+import { useGoalContext } from '@modules/user/components/GoalCurrent/hooks/useGoalContext'
 import { useMessages } from './hooks/useMessages'
 import { getBorders } from './helper'
 import OpenPickerIcon from './components/OpenPickerIcon'
@@ -33,14 +33,22 @@ function Calendar({ isLoading, onChangeDate, shouldDisableDate }: CalendarProps)
         minDate={min}
         maxDate={max}
         closeOnSelect
-        onChange={onChangeDate}
-        renderInput={InputNotEditable}
         components={{ OpenPickerIcon }}
+        InputProps={{
+          readOnly: true,
+          endAdornment: <OpenPickerIcon />,
+        }}
+        renderInput={InputNotEditable}
         renderDay={(_, _value, { key, disabled, ...pickerProps }) => (
-          <Badge overlap="circular" badgeContent={disabled ? undefined : <AppEmoji name="task" onlyEmoji />} key={key}>
+          <Badge
+            overlap="circular"
+            badgeContent={disabled ? undefined : <AppEmoji name="task" onlyEmoji />}
+            key={key}
+          >
             <PickersDay {...pickerProps} disabled={disabled} />
           </Badge>
         )}
+        onChange={onChangeDate}
       />
     </Box>
   )

@@ -1,5 +1,5 @@
 import fetcher from '@lib/fetcher'
-import { getFetchParams } from '@helpers/url'
+import { getFilterParams } from '@helpers/url'
 import { CreateDayDto, DayCharacteristicUpdateDto } from '@features/day'
 import { CreatedGoal, CreateGoalDto, GoalStageDto } from './dto'
 
@@ -22,7 +22,7 @@ export class GoalService {
 
   static updateCharacteristic(dto: DayCharacteristicUpdateDto): Promise<void> {
     const { id, dayId, name, add } = dto
-    const params = getFetchParams({ insert: add })
+    const params = getFilterParams({ insert: add })
 
     return fetcher.patch(`/goals/${id}/days/${dayId}/characteristic/${name}`, { id }, { params })
   }

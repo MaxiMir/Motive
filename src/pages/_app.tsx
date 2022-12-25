@@ -14,15 +14,14 @@ import { PaletteMode } from '@mui/material'
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns'
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider'
 import CssBaseline from '@mui/material/CssBaseline'
-import { ContextSnackbarProps, SnackbarContext } from '@context/snackbarContext'
-import { ThemeContext } from '@context/themeContext'
 import { ModalSignInContext } from '@features/signin'
+import { SnackbarProps, SnackbarContext } from '@features/snackbar'
+import { ThemeContext, getDesignTokens } from '@features/theme'
 import { getLocaleFolder } from '@lib/date'
 import { makeMapLoader } from '@helpers/iterable'
 import { Locale } from '@features/locale'
 import useRemoveServerStyles from '@hooks/useRemoveServerStyles'
 import EventSocket from '@components/EventSocket'
-import { getDesignTokens } from 'src/shared/theme'
 
 const AppSnackbar = dynamic(() => import('@ui/AppSnackbar'))
 const ModalSignIn = dynamic(() => import('@features/signin'))
@@ -31,14 +30,21 @@ const generateClassName = createGenerateClassName({ productionPrefix: 'be' })
 const langLoader = makeMapLoader<Record<string, string>>()
 const dateFnsLangLoader = makeMapLoader<FnsLocale>()
 
-function App({ Component, pageProps: { session, dehydratedState, providers, ...pageProps } }: AppProps) {
+function App({
+  Component,
+  pageProps: { session, dehydratedState, providers, ...pageProps },
+}: AppProps) {
   const { locale } = useRouter()
   const currentLocale = locale || Locale.En
   const localeFolder = getLocaleFolder(currentLocale)
-  const messages = use(langLoader(currentLocale, () => import(`src/shared/lang/${currentLocale}.json`)))
-  const dateFnsLocale = use(dateFnsLangLoader(currentLocale, () => import(`date-fns/locale/${localeFolder}/index.js`)))
+  const messages = use(
+    langLoader(currentLocale, () => import(`src/shared/lang/${currentLocale}.json`)),
+  )
+  const dateFnsLocale = use(
+    dateFnsLangLoader(currentLocale, () => import(`date-fns/locale/${localeFolder}/index.js`)),
+  )
   const [mode, setMode] = useState<PaletteMode>('dark')
-  const [snackbarProps, setSnackbarProps] = useState<ContextSnackbarProps | null>(null)
+  const [snackbarProps, setSnackbarProps] = useState<SnackbarProps | null>(null)
   const [options, setOptions] = useState<SignInOptions>()
   const error = messages['common.error']
   const [queryClient] = useState(
@@ -64,7 +70,10 @@ function App({ Component, pageProps: { session, dehydratedState, providers, ...p
   const theme = useMemo(() => createTheme(getDesignTokens(mode)), [mode])
   const themeCtx = useMemo(() => ({ mode, setMode }), [mode])
   const modalSignInCtx = useMemo(() => ({ options, providers, setOptions }), [options, providers])
-  const snackbarCtx = useMemo(() => ({ props: snackbarProps, setProps: setSnackbarProps }), [snackbarProps])
+  const snackbarCtx = useMemo(
+    () => ({ props: snackbarProps, setProps: setSnackbarProps }),
+    [snackbarProps],
+  )
   useRemoveServerStyles()
 
   const onCloseSignIn = () => setOptions(undefined)

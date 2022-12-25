@@ -1,7 +1,7 @@
-import { useState } from 'react'
 import dynamic from 'next/dynamic'
 import { Step, StepContent, Stepper } from '@mui/material'
-import { useGoalContext } from '@modules/user/components/GoalCurrent/hooks'
+import { useGoalContext } from '@modules/user/components/GoalCurrent/hooks/useGoalContext'
+import useToggle from '@hooks/useToggle'
 import StageLabel from './components/StageLabel'
 import { useMessages } from './hooks/useMessages'
 
@@ -17,10 +17,8 @@ interface StagesProps {
 function Stages({ forTomorrow, completeStage }: StagesProps) {
   const messages = useMessages(forTomorrow)
   const { day, stages } = useGoalContext()
-  const [open, setOpen] = useState(false)
+  const [open, toggle] = useToggle()
   const activeStep = day.stage
-
-  const toggleModal = () => setOpen(!open)
 
   return (
     <>
@@ -52,7 +50,7 @@ function Stages({ forTomorrow, completeStage }: StagesProps) {
                       disabled={forTomorrow}
                       aria-expanded={open ? 'true' : undefined}
                       aria-haspopup="true"
-                      onClick={toggleModal}
+                      onClick={toggle}
                     >
                       {messages.buttonText}
                     </Button>
@@ -63,7 +61,7 @@ function Stages({ forTomorrow, completeStage }: StagesProps) {
           </Step>
         ))}
       </Stepper>
-      {open && <ModalStage onClose={toggleModal} />}
+      {open && <ModalStage onClose={toggle} />}
     </>
   )
 }

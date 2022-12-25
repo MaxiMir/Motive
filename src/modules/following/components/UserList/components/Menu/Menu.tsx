@@ -6,7 +6,7 @@ import { useRemoveFollowing } from '@features/subscription'
 import { useMessages } from './hooks/useMessages'
 
 const Share = dynamic(() => import('@components/Share'))
-const MenuList = dynamic(() => import('./components/MenuList/MenuList'))
+const MenuList = dynamic(() => import('./components/MenuList'))
 
 interface MenuProps {
   user: UserDto
@@ -26,12 +26,10 @@ function Menu({ user, index }: MenuProps) {
   const onClose = () => setAnchorEl(null)
 
   const onShare = () => {
-    onClose()
     setWithShare(true)
   }
 
   const onRemoveCombine = () => {
-    onClose()
     onRemove(user, index)
   }
 
@@ -39,8 +37,20 @@ function Menu({ user, index }: MenuProps) {
 
   return (
     <>
-      <AppMenuButton title={messages.title} ariaControls={messages.ariaControls} horizontal onClick={onOpen} />
-      {anchorEl && <MenuList anchorEl={anchorEl} onShare={onShare} onRemove={onRemoveCombine} onClose={onClose} />}
+      <AppMenuButton
+        title={messages.title}
+        ariaControls={messages.ariaControls}
+        horizontal
+        onClick={onOpen}
+      />
+      {anchorEl && (
+        <MenuList
+          anchorEl={anchorEl}
+          onShare={onShare}
+          onRemove={onRemoveCombine}
+          onClose={onClose}
+        />
+      )}
       {withShare && <Share title={name} href={href} onClose={onCloseShare} />}
     </>
   )

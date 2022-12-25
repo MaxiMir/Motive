@@ -47,9 +47,6 @@
       "@helpers/*": [
         "src/shared/helpers/*"
       ],
-      "@context/*": [
-        "src/shared/context/*"
-      ],
       "@href": [
         "src/shared/href"
       ],

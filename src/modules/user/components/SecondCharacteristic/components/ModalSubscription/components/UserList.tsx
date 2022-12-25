@@ -16,7 +16,12 @@ function UserList({ users, checkOnLoadMore, onView, onClose }: UserListProps) {
       gap={2}
       keyGetter={(user) => user.id}
       render={(user, index) => (
-        <UserCharacteristic user={user} inView={checkOnLoadMore(index)} onView={onView} onClose={onClose} />
+        <UserCharacteristic
+          user={user}
+          inView={checkOnLoadMore(index)}
+          onView={onView}
+          onClose={onClose}
+        />
       )}
     />
   )

@@ -6,7 +6,9 @@ interface AppCheckboxProps extends Omit<FormControlLabelProps, 'control' | 'labe
 }
 
 function AppCheckbox({ label, ...props }: AppCheckboxProps) {
-  return <FormControlLabel label={label} control={<Checkbox />} sx={{ marginRight: 0 }} {...props} />
+  return (
+    <FormControlLabel label={label} control={<Checkbox />} sx={{ marginRight: 0 }} {...props} />
+  )
 }
 
 export default AppCheckbox

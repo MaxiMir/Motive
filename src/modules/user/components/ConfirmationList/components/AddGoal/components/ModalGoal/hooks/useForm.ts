@@ -1,5 +1,4 @@
 import produce from 'immer'
-import { v4 as uuidV4 } from 'uuid'
 import { useIntl } from 'react-intl'
 import { useMutation } from 'react-query'
 import { useFormik } from 'formik'
@@ -18,7 +17,7 @@ export const useForm = (onSuccess: () => void) => {
   const { formatMessage } = useIntl()
   const [enqueueSnackbar] = useSnackbar()
   const [goals, mutateGoal] = useMutateGoals()
-  const { mutate } = useMutation(GoalService.create, {
+  const { mutateAsync } = useMutation(GoalService.create, {
     onSuccess(goal) {
       const message = formatMessage({ id: 'page.user.modal-goal.message' })
       mutateGoal(getNextState(goals, goal))
@@ -34,11 +33,11 @@ export const useForm = (onSuccess: () => void) => {
       name: '',
       hashtags: '',
       stages: [],
-      tasks: [{ id: uuidV4(), name: '', date: undefined }],
+      tasks: [{ id: crypto.randomUUID(), name: '', date: undefined }],
     },
     validationSchema: goalSchema,
-    onSubmit(data) {
-      mutate(data)
+    async onSubmit(data) {
+      await mutateAsync(data)
     },
   })
 }

@@ -1,6 +1,6 @@
 import { Box, Typography } from '@mui/material'
 import { styled } from '@mui/system'
-import { useGoalContext } from '@modules/user/components/GoalCurrent/hooks'
+import { useGoalContext } from '@modules/user/components/GoalCurrent/hooks/useGoalContext'
 import { getUserHref } from '@features/user'
 import UserLink from '@components/User/UserLink'
 import { useMessages } from './hooks/useMessages'

@@ -1,6 +1,7 @@
 import dynamic from 'next/dynamic'
 import useSnackbar from '@hooks/useSnackbar'
-import { useMessages, useMenu } from './hooks'
+import { useMessages } from './hooks/useMessages'
+import { useMenu } from './hooks/useMenu'
 
 const Menu = dynamic(() => import('./components/Menu'))
 
@@ -16,13 +17,22 @@ function Share({ title, href, onClose }: ShareProps) {
   const [open, onCloseMenu] = useMenu(title, href, onClose)
   const url = process.env.NEXT_PUBLIC_APP_URL + href
 
-  const onCopyEnd = () => enqueueSnackbar({ message: messages.copyText, severity: 'success', icon: 'keyboard' })
+  const onCopyEnd = () =>
+    enqueueSnackbar({ message: messages.copyText, severity: 'success', icon: 'keyboard' })
 
   const onCopyError = () => enqueueSnackbar({ message: messages.error, severity: 'error' })
 
   return (
     <>
-      {open && <Menu title={title} url={url} onCopyEnd={onCopyEnd} onCopyError={onCopyError} onClose={onCloseMenu} />}
+      {open && (
+        <Menu
+          title={title}
+          url={url}
+          onCopyEnd={onCopyEnd}
+          onCopyError={onCopyError}
+          onClose={onCloseMenu}
+        />
+      )}
     </>
   )
 }

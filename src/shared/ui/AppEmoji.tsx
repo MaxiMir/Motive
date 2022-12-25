@@ -70,6 +70,7 @@ export type AppEmojiName =
   | 'system'
   | 'dark'
   | 'barber'
+  | 'delete'
 
 interface AppEmojiProps {
   name: AppEmojiName
@@ -229,6 +230,8 @@ function getContent(name: AppEmojiName) {
       return '🇨🇳'
     case 'barber':
       return '💈'
+    case 'delete':
+      return '🗑'
     default:
       return ''
   }

@@ -1,7 +1,15 @@
 import dynamic from 'next/dynamic'
-import { v4 as uuidV4 } from 'uuid'
 import { Field, FieldArray, Form, FormikProvider } from 'formik'
-import { Box, Button, Typography, FormControl, Tooltip, FormControlLabel, RadioGroup, Radio } from '@mui/material'
+import {
+  Box,
+  Button,
+  Typography,
+  FormControl,
+  Tooltip,
+  FormControlLabel,
+  RadioGroup,
+  Radio,
+} from '@mui/material'
 import { styled } from '@mui/system'
 import { getMidnightISO, getTomorrowISO } from '@lib/date'
 import useFocus from '@hooks/useFocus'
@@ -13,7 +21,8 @@ import AppDot from '@ui/AppDot'
 import ActionSubmit from '@components/Action/ActionSubmit'
 import ActionCancel from '@components/Action/ActionCancel/ActionCancel'
 import TaskField from '@components/Task/TaskField/TaskField'
-import { useForm, useMessages } from './hooks'
+import { useMessages } from './hooks/useMessages'
+import { useForm } from './hooks/useForm'
 
 const IconButton = dynamic(() => import('@mui/material/IconButton'))
 
@@ -62,7 +71,12 @@ function ModalGoal({ onClose }: ModalGoalProps) {
                 inputRef={hashtagsRef}
                 component={AppInput}
               />
-              <ButtonCompact variant="outlined" color="secondary" size="small" onClick={onAddHashtag}>
+              <ButtonCompact
+                variant="outlined"
+                color="secondary"
+                size="small"
+                onClick={onAddHashtag}
+              >
                 # {messages.hashtagText}
               </ButtonCompact>
             </Box>
@@ -112,7 +126,7 @@ function ModalGoal({ onClose }: ModalGoalProps) {
                       variant="outlined"
                       color="warning"
                       size="small"
-                      onClick={() => push({ id: uuidV4(), name: '' })}
+                      onClick={() => push({ id: crypto.randomUUID(), name: '' })}
                     >
                       + {messages.stageButtonText}
                     </ButtonCompact>
@@ -131,8 +145,16 @@ function ModalGoal({ onClose }: ModalGoalProps) {
                 row
                 onChange={(e) => setFieldValue('started', e.target.value)}
               >
-                <FormControlLabel label={messages.todayLabel} value={todayValue} control={<Radio />} />
-                <FormControlLabel label={messages.tomorrowLabel} value={tomorrowValue} control={<Radio />} />
+                <FormControlLabel
+                  label={messages.todayLabel}
+                  value={todayValue}
+                  control={<Radio />}
+                />
+                <FormControlLabel
+                  label={messages.tomorrowLabel}
+                  value={tomorrowValue}
+                  control={<Radio />}
+                />
               </RadioGroup>
             </FormControl>
             <Box display="flex" flexDirection="column" gap={2}>
@@ -158,7 +180,7 @@ function ModalGoal({ onClose }: ModalGoalProps) {
                     <ButtonCompact
                       variant="outlined"
                       size="small"
-                      onClick={() => push({ id: uuidV4(), name: '', date: undefined })}
+                      onClick={() => push({ id: crypto.randomUUID(), name: '', date: undefined })}
                     >
                       {messages.addTaskText}
                     </ButtonCompact>

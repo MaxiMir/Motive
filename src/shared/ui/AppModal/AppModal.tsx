@@ -40,7 +40,14 @@ function AppModal({ title, actions, maxWidth, blur = true, children, onClose }: 
       }}
       onClose={onClose}
     >
-      <DialogTitle sx={{ padding: '16px 24px 8px', marginX: 6, textAlign: 'center', textTransform: 'uppercase' }}>
+      <DialogTitle
+        sx={{
+          padding: '16px 24px 8px',
+          marginX: 6,
+          textAlign: 'center',
+          textTransform: 'uppercase',
+        }}
+      >
         {title}
       </DialogTitle>
       <IconButton
@@ -52,7 +59,7 @@ function AppModal({ title, actions, maxWidth, blur = true, children, onClose }: 
         <AppIcon name="close" />
       </IconButton>
       <AppScrollbar>
-        <DialogContent sx={{ padding: '12px 24px 24px !important', minHeight: 150 }}>{children}</DialogContent>
+        <DialogContent sx={{ padding: '12px 24px 24px !important' }}>{children}</DialogContent>
       </AppScrollbar>
       {actions && (
         <DialogActions>

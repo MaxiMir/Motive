@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import dynamic from 'next/dynamic'
 import { Menu, MenuItem } from '@mui/material'
-import { useGoalContext } from '@modules/user/components/GoalCurrent/hooks'
+import { useGoalContext } from '@modules/user/components/GoalCurrent/hooks/useGoalContext'
 import { OwnershipDto } from '@features/member'
 import AppMenuItemContent from '@ui/AppMenuItemContent'
 import { useMessages } from './hooks/useMessages'
@@ -45,7 +45,9 @@ function MenuList({ clientOwnership, anchorEl, onShare, onLeave, onClose }: Menu
           </MenuItem>
         )}
       </Menu>
-      {withReport && <Report entityId={id} type="goal" anchorEl={anchorEl} onClose={onCloseReport} />}
+      {withReport && (
+        <Report entityId={id} type="goal" anchorEl={anchorEl} onClose={onCloseReport} />
+      )}
     </>
   )
 }

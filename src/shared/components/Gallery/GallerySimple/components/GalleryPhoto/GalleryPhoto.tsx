@@ -9,7 +9,13 @@ interface GalleryPhotoProps extends PhotoProps {
   onClick?: (index: number) => void
 }
 
-function GalleryPhoto({ photo, layout, imageProps, wrapperProps = {}, onClick }: GalleryPhotoProps) {
+function GalleryPhoto({
+  photo,
+  layout,
+  imageProps,
+  wrapperProps = {},
+  onClick,
+}: GalleryPhotoProps) {
   const messages = useMessages(!!onClick)
   const { width, height } = photo
   const { src, alt, title, style, sizes, className } = imageProps

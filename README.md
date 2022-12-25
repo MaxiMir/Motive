@@ -1,4 +1,6 @@
 [//]: # (TODO)
+* nanoid()
+* TODO disabled control
 * редактирование фотки
 * https://docs.nestjs.com/techniques/caching
 * hydration error
@@ -27,11 +29,11 @@
 * Push notification
 
 ```shell
-docker build -t maximir/frontend:1.0.88 .
+docker build -t maximir/frontend:1.0.89 .
 # artifactory:
-docker tag <IMAGE_ID> maximir.jfrog.io/default-docker-virtual/frontend:1.0.88
-docker push maximir.jfrog.io/default-docker-virtual/frontend:1.0.88
-docker pull maximir.jfrog.io/default-docker-virtual/frontend:1.0.88
+docker tag <IMAGE_ID> maximir.jfrog.io/default-docker-virtual/frontend:1.0.89
+docker push maximir.jfrog.io/default-docker-virtual/frontend:1.0.89
+docker pull maximir.jfrog.io/default-docker-virtual/frontend:1.0.89
 
 # copy:
 docker cp <IMAGE_ID>:/home/node/client /home # <-
@@ -49,7 +51,8 @@ sudo apt-get update
 sudo apt-get install nginx docker docker-compose mc 
 cd /etc/nginx 
 ls # sites-available
-nano 2bebetter.pro.conf
+nano 2bebetter.pro.c
+onf
 
 # виртуальный симлинк
 sudo ln -s /etc/nginx/sites-available/2bebetter.pro.conf /etc/nginx/sites-enabled/
@@ -59,7 +62,7 @@ version: '3.3'
 
 services:
   frontend:
-    image: maximir.jfrog.io/default-docker-virtual/frontend:1.0.88
+    image: maximir.jfrog.io/default-docker-virtual/frontend:1.0.89
     depends_on:
       - backend
     restart: unless-stopped

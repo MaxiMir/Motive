@@ -39,7 +39,12 @@ const getGoalNextState = (
       : draftMember.completedTasks.filter((id) => id === taskId)
   })
 
-export const useSetCompleted = (goalId: number, id: number, rest: number, clientMember?: MemberDto) => {
+export const useSetCompleted = (
+  goalId: number,
+  id: number,
+  rest: number,
+  clientMember?: MemberDto,
+) => {
   const timerRef = useRef<NodeJS.Timeout>()
   const { formatMessage } = useIntl()
   const client = useClient()
@@ -68,7 +73,9 @@ export const useSetCompleted = (goalId: number, id: number, rest: number, client
     const newRest = rest - 1
     const undoText = formatMessage({ id: 'common.undo' })
     const messagePart = formatMessage({ id: !newRest ? 'common.well-done' : 'common.do-it' })
-    const message = !newRest ? `${messagePart}, ${truncateUserName(client?.name)}!` : `${messagePart}: ${newRest}`
+    const message = !newRest
+      ? `${messagePart}, ${truncateUserName(client?.name)}!`
+      : `${messagePart}: ${newRest}`
     mutateCompleted(true)
     timerRef.current = setTimeout(() => mutate(id), 4000)
     enqueueSnackbar({

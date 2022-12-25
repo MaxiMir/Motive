@@ -19,10 +19,26 @@ function Footer({ nickname }: FooterProps) {
 
   function getRoutes() {
     return [
-      { title: formatMessage({ id: 'component.footer.top' }), href: Route.TopOfTheDay, Component: TopOfTheDayIcon },
-      { title: formatMessage({ id: 'component.footer.search' }), href: Route.Search, Component: SearchIcon },
-      { title: formatMessage({ id: 'component.footer.rating' }), href: Route.Rating, Component: RatingIcon },
-      { title: formatMessage({ id: 'common.following' }), href: Route.Following, Component: FollowingIcon },
+      {
+        title: formatMessage({ id: 'component.footer.top' }),
+        href: Route.TopOfTheDay,
+        Component: TopOfTheDayIcon,
+      },
+      {
+        title: formatMessage({ id: 'component.footer.search' }),
+        href: Route.Search,
+        Component: SearchIcon,
+      },
+      {
+        title: formatMessage({ id: 'component.footer.rating' }),
+        href: Route.Rating,
+        Component: RatingIcon,
+      },
+      {
+        title: formatMessage({ id: 'common.following' }),
+        href: Route.Following,
+        Component: FollowingIcon,
+      },
     ]
   }
 
@@ -48,7 +64,9 @@ function Footer({ nickname }: FooterProps) {
         <Box display="flex" justifyContent="space-between" alignItems="center" height={52}>
           {routes.map(({ title, href, Component }) => (
             <Button href={href} aria-label={title} key={title} component={Link}>
-              <Component sx={{ color: 'common.white', opacity: !asPath.includes(href) ? HOVER_OPACITY : 1 }} />
+              <Component
+                sx={{ color: 'common.white', opacity: !asPath.includes(href) ? HOVER_OPACITY : 1 }}
+              />
             </Button>
           ))}
           <ProfileLink nickname={nickname} asPath={asPath} hoverOpacity={HOVER_OPACITY} />

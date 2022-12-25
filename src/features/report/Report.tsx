@@ -1,7 +1,8 @@
 import { Menu, MenuItem } from '@mui/material'
 import AppMenuItemContent from '@ui/AppMenuItemContent'
 import { ReportType } from './dto'
-import { useMessages, useSendReport } from './hooks'
+import { useMessages } from './hooks/useMessages'
+import { useSendReport } from './hooks/useSendReport'
 
 interface ReportProps {
   entityId: number

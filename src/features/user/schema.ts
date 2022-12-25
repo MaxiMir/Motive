@@ -1,7 +1,11 @@
 import { object, string, mixed } from 'yup'
 
 export const profileSchema = object({
-  name: string().trim().required('The name is needed').min(3, "It's too short.").max(100, "It's so long."),
+  name: string()
+    .trim()
+    .required('The name is needed')
+    .min(3, "It's too short.")
+    .max(100, "It's so long."),
   nickname: string()
     .trim()
     .required('A nickname is needed')

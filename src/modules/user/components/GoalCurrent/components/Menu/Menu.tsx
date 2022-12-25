@@ -6,7 +6,7 @@ import { useMessages } from './hooks/useMessages'
 
 const Share = dynamic(() => import('@components/Share'))
 const ModalLeave = dynamic(() => import('./components/ModalLeave'))
-const MenuList = dynamic(() => import('./components/MenuList/MenuList'))
+const MenuList = dynamic(() => import('./components/MenuList'))
 
 interface MenuProps {
   title: string

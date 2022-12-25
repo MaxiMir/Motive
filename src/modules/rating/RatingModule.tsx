@@ -4,7 +4,7 @@ import { MAIN_CHARACTERISTICS, MainCharacteristicName } from '@features/characte
 import AppHeader from '@ui/AppHeader'
 import AppTabs from '@ui/AppTabs'
 import { useMessages } from './hooks/useMessages'
-import TabName from './components/TabName/TabName'
+import TabName from './components/TabName'
 import TabContent from './components/TabContent'
 
 interface RatingModuleProps extends Record<MainCharacteristicName, UserDto[]> {
@@ -16,7 +16,15 @@ function RatingModule({ tab, ...props }: RatingModuleProps) {
 
   return (
     <>
-      <Container fixed sx={{ mt: 3 }}>
+      <Container
+        fixed
+        sx={(theme) => ({
+          mt: 3,
+          [theme.breakpoints.only('xl')]: {
+            maxWidth: 900,
+          },
+        })}
+      >
         <AppHeader name="completed">{messages.header}</AppHeader>
       </Container>
       <Box display="flex" flexDirection="column" gap={2} mt={4} mb={3}>

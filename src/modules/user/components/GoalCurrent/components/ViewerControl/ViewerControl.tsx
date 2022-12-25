@@ -1,6 +1,6 @@
 import dynamic from 'next/dynamic'
 import { Box } from '@mui/material'
-import { useGoalContext } from '@modules/user/components/GoalCurrent/hooks'
+import { useGoalContext } from '@modules/user/components/GoalCurrent/hooks/useGoalContext'
 import { UserBaseDto } from '@features/user'
 import { OwnershipDto } from '@features/member'
 import { DAY_CHARACTERISTIC } from '@features/day'
@@ -32,7 +32,11 @@ function Viewer({ owner, forTomorrow, clientOwnership }: ViewerProps) {
       {!clientOwnership.member ? (
         <Join />
       ) : (
-        <>{completion && <Completion forTomorrow={forTomorrow} clientMember={clientOwnership.member} />}</>
+        <>
+          {completion && (
+            <Completion forTomorrow={forTomorrow} clientMember={clientOwnership.member} />
+          )}
+        </>
       )}
     </Box>
   )

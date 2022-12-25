@@ -3,7 +3,8 @@ import { IconButton } from '@mui/material'
 import { styled } from '@mui/system'
 import AppInput from '@ui/AppInput'
 import AppIcon from '@ui/AppIcon'
-import { useMessages, useForm } from './hooks'
+import { useMessages } from './hooks/useMessages'
+import { useForm } from './hooks/useForm'
 import AutoSend from './components/AutoSend'
 
 interface SearchFormProps {

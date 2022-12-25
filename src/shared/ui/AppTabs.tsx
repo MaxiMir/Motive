@@ -25,7 +25,14 @@ function AppTabs({ tabs, content, ariaLabel, initial = 0 }: AppTabsProps) {
 
   return (
     <>
-      <Container fixed>
+      <Container
+        fixed
+        sx={(theme) => ({
+          [theme.breakpoints.only('xl')]: {
+            maxWidth: 900,
+          },
+        })}
+      >
         <Tabs
           value={value}
           aria-label={ariaLabel}
@@ -48,7 +55,12 @@ function AppTabs({ tabs, content, ariaLabel, initial = 0 }: AppTabsProps) {
         const a11yContentProps = getA11yContentProps(index)
 
         return (
-          <Box role="tabpanel" hidden={value !== index} {...a11yContentProps} key={a11yContentProps.id}>
+          <Box
+            role="tabpanel"
+            hidden={value !== index}
+            {...a11yContentProps}
+            key={a11yContentProps.id}
+          >
             {value === index && tabContent}
           </Box>
         )

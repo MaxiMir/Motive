@@ -4,7 +4,7 @@ import { MessageDto } from '@features/topic'
 import AppMenuButton from '@ui/AppMenuButton'
 import { useMessages } from './hooks/useMessages'
 
-const MenuList = dynamic(() => import('./components/MenuList/MenuList'))
+const MenuList = dynamic(() => import('./components/MenuList'))
 const ModalEditMessage = dynamic(() => import('./components/ModalEditMessage'))
 
 interface MenuProps {
@@ -27,8 +27,20 @@ function Menu({ message }: MenuProps) {
 
   return (
     <>
-      <AppMenuButton title={messages.title} color="primary" ariaControls={messages.ariaControls} onClick={onOpen} />
-      {anchorEl && <MenuList anchorEl={anchorEl} message={message} onOpenModal={toggleModal} onClose={onClose} />}
+      <AppMenuButton
+        title={messages.title}
+        color="primary"
+        ariaControls={messages.ariaControls}
+        onClick={onOpen}
+      />
+      {anchorEl && (
+        <MenuList
+          anchorEl={anchorEl}
+          message={message}
+          onOpenModal={toggleModal}
+          onClose={onClose}
+        />
+      )}
       {open && <ModalEditMessage message={message} onClose={toggleModal} />}
     </>
   )

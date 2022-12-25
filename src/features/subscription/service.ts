@@ -1,22 +1,22 @@
 import { UserDto } from '@features/user'
 import fetcher from '@lib/fetcher'
-import { FetchParams, getFetchParams } from '@helpers/url'
+import { Filter, getFilterParams } from '@helpers/url'
 
 export class SubscriptionService {
-  static getFollowing(id: number, fetchParams: FetchParams): Promise<UserDto[]> {
-    const params = getFetchParams(fetchParams)
+  static getFollowing(id: number, filter: Filter): Promise<UserDto[]> {
+    const params = getFilterParams(filter)
 
     return fetcher.get(`/subscriptions/${id}/following`, { params })
   }
 
-  static getFollowers(id: number, fetchParams: FetchParams): Promise<UserDto[]> {
-    const params = getFetchParams(fetchParams)
+  static getFollowers(id: number, filter: Filter): Promise<UserDto[]> {
+    const params = getFilterParams(filter)
 
     return fetcher.get(`/subscriptions/${id}/followers`, { params })
   }
 
   static update(userId: number, insert: boolean): Promise<void> {
-    const params = getFetchParams({ insert })
+    const params = getFilterParams({ insert })
 
     return fetcher.patch('/subscriptions', { userId }, { params })
   }

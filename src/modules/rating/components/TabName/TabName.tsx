@@ -18,7 +18,7 @@ function TabName({ name, emoji }: TabNameProps) {
         sx={(theme) => ({
           textTransform: 'none',
           [theme.breakpoints.only('xs')]: {
-            fontSize: '12px',
+            fontSize: 12,
           },
         })}
       >

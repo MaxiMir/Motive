@@ -1,14 +1,15 @@
 import { ChangeEvent } from 'react'
 import { Form, FormikProvider } from 'formik'
 import { Box, FormControlLabel, Radio, RadioGroup, Typography } from '@mui/material'
-import { useGoalContext } from '@modules/user/components/GoalCurrent/hooks'
+import { useGoalContext } from '@modules/user/components/GoalCurrent/hooks/useGoalContext'
 import AppModal from '@ui/AppModal/AppModal'
 import AppEmoji from '@ui/AppEmoji'
 import AppAccordion from '@ui/AppAccordion'
 import AppDecorEmoji from '@ui/AppDecorEmoji'
 import ActionSubmit from '@components/Action/ActionSubmit'
 import ActionCancel from '@components/Action/ActionCancel/ActionCancel'
-import { useForm, useMessages } from './hooks'
+import { useMessages } from './hooks/useMessages'
+import { useForm } from './hooks/useForm'
 
 interface ModalJoinProps {
   onClose: () => void

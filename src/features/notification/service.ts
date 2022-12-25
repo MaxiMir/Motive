@@ -1,10 +1,10 @@
 import fetcher from '@lib/fetcher'
-import { getFetchParams, FetchParams } from '@helpers/url'
+import { getFilterParams, Filter } from '@helpers/url'
 import { NotificationDto } from '@features/notification/dto'
 
 export class NotificationService {
-  static get(where: FetchParams['where']): Promise<NotificationDto[]> {
-    const params = getFetchParams({ where })
+  static get(where: Filter['where']): Promise<NotificationDto[]> {
+    const params = getFilterParams({ where })
 
     return fetcher.get('/notifications', { params })
   }

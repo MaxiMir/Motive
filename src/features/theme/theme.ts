@@ -110,36 +110,36 @@ export const getDesignTokens = (mode: PaletteMode): ThemeOptions => {
       MuiTypography: {
         styleOverrides: {
           h1: {
-            fontSize: '48px',
+            fontSize: 48,
             lineHeight: '56px',
             maxWidthSm: {
-              fontSize: '40px',
+              fontSize: 40,
               lineHeight: '48px',
             },
           },
           h2: {
-            fontSize: '60px',
+            fontSize: 60,
             lineHeight: 1.2,
           },
           subtitle1: {
-            fontSize: '16px',
+            fontSize: 16,
             lineHeight: 1.75,
           },
           h4: {
-            fontSize: '34px',
+            fontSize: 34,
             lineHeight: 1.235,
           },
           h5: {
-            fontWeight: 'bold',
-            fontSize: '24px',
+            fontSize: 24,
             lineHeight: 1.334,
+            fontWeight: 'bold',
           },
           h6: {
-            fontSize: '18px',
+            fontSize: 18,
             lineHeight: 1.6,
           },
           caption: {
-            fontSize: '12px',
+            fontSize: 12,
           },
         },
       },
@@ -176,7 +176,7 @@ export const getDesignTokens = (mode: PaletteMode): ThemeOptions => {
           root: {
             lineHeight: '21px',
             '@media (max-width:365px)': {
-              fontSize: '13.5px',
+              fontSize: 13.5,
             },
           },
         },

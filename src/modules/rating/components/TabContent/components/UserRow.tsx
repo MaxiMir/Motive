@@ -34,7 +34,14 @@ function UserRow({ user, characteristicName, index }: UserRowProps) {
 
   return (
     <Box sx={{ background: isEven ? 'initial' : '#21262C' }}>
-      <Container fixed>
+      <Container
+        fixed
+        sx={(theme) => ({
+          [theme.breakpoints.only('xl')]: {
+            maxWidth: 900,
+          },
+        })}
+      >
         <Grid container alignItems="center" sx={{ height: 55 }}>
           <Grid item xs>
             <Box display="flex" justifyContent="center" width={22}>
@@ -52,7 +59,12 @@ function UserRow({ user, characteristicName, index }: UserRowProps) {
             </Box>
           </Grid>
           <Grid item xs>
-            <Typography variant="subtitle1" component="p" align="right" sx={{ color: `${characteristicName}.main` }}>
+            <Typography
+              variant="subtitle1"
+              component="p"
+              align="right"
+              sx={{ color: `${characteristicName}.main` }}
+            >
               <b>{ratingValue}</b>
             </Typography>
           </Grid>

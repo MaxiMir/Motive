@@ -12,15 +12,15 @@ interface PhotoInputProps {
 
 function PhotoInput({ multiple, disabled, onSelect }: PhotoInputProps) {
   const messages = useMessages()
-  const photoInputRef = useRef<HTMLInputElement>(null)
+  const inputRef = useRef<HTMLInputElement>(null)
 
-  const onAddPhoto = (e: ChangeEvent<HTMLInputElement>) => {
+  const onChange = (e: ChangeEvent<HTMLInputElement>) => {
     if (!e.target.files) return
 
     onSelect(Array.from(e.target.files))
   }
 
-  const onClick = () => photoInputRef.current?.click()
+  const onClick = () => inputRef.current?.click()
 
   return (
     <>
@@ -39,7 +39,7 @@ function PhotoInput({ multiple, disabled, onSelect }: PhotoInputProps) {
       >
         <AppEmoji name="tape" variant="h1" />
       </Button>
-      <Input ref={photoInputRef} type="file" accept="image/*" multiple={multiple} onChange={onAddPhoto} />
+      <Input ref={inputRef} type="file" accept="image/*" multiple={multiple} onChange={onChange} />
     </>
   )
 }

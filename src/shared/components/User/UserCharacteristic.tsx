@@ -25,7 +25,14 @@ function UserCharacteristic({ user, inView, menu, onView, onClose }: UserCharact
   return (
     <>
       <Box display="flex" alignItems="center" gap={2} height={60}>
-        <UserLink name={name} avatar={avatar} href={href} online={online} size={55} onClick={onClose} />
+        <UserLink
+          name={name}
+          avatar={avatar}
+          href={href}
+          online={online}
+          size={55}
+          onClick={onClose}
+        />
         <Box display="flex" flexDirection="column" justifyContent="space-between" flex={1}>
           <Box display="flex" justifyContent="space-between" alignItems="center">
             <Typography variant="subtitle1" component="span">

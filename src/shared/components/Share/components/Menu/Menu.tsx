@@ -1,9 +1,9 @@
 import { KeyboardEvent } from 'react'
-import { Box, Drawer, List, ListItem, ListItemIcon, ListItemText } from '@mui/material'
+import { Box, List, ListItem, Drawer, ListItemIcon, ListItemText } from '@mui/material'
 import EmailIcon from '@mui/icons-material/Email'
 import SMS from '@mui/icons-material/Textsms'
 import ContentCopyIcon from '@mui/icons-material/ContentCopy'
-import { copyHandler } from '@helpers/navigator'
+import { copyText } from '@helpers/navigator'
 import { FacebookIcon, TelegramIcon, TwitterIcon, VKIcon } from '@ui/icons'
 import { useMessages } from './hooks/useMessages'
 import { clickHandler } from './helper'
@@ -61,7 +61,7 @@ function Menu({ title, url, onCopyEnd, onCopyError, onClose }: MenuProps) {
       {
         text: messages.copyText,
         Icon: ContentCopyIcon,
-        onClick: () => copyHandler(url, onCopyEnd, onCopyError),
+        onClick: () => copyText(url).then(onCopyEnd).catch(onCopyError),
       },
     ]
   }

@@ -39,7 +39,12 @@ function ConfirmationStory({ confirmation }: ConfirmationStoryProps) {
             <AvatarStatus src={mainPhoto.src} name={user.name} size={60} onClick={onOpen} />
           </Box>
         </Box>
-        <Button id={`confirmation-${confirmation.id}`} size="small" sx={{ textTransform: 'none' }} onClick={onOpen}>
+        <Button
+          id={`confirmation-${confirmation.id}`}
+          size="small"
+          sx={{ textTransform: 'none' }}
+          onClick={onOpen}
+        >
           <Typography
             variant="caption"
             sx={{

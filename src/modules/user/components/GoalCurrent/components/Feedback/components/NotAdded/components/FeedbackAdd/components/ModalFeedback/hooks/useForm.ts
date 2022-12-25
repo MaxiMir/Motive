@@ -4,7 +4,7 @@ import { useIntl } from 'react-intl'
 import { useMutation } from 'react-query'
 import { GoalDto } from '@features/goal'
 import { useMutateGoals } from '@modules/user/hooks'
-import { useGoalContext } from '@modules/user/components/GoalCurrent/hooks'
+import { useGoalContext } from '@modules/user/components/GoalCurrent/hooks/useGoalContext'
 import { FeedbackDto, FeedbackService, feedbackSchema } from '@features/feedback'
 import useSnackbar from '@hooks/useSnackbar'
 
@@ -25,7 +25,7 @@ export const useForm = (onSuccess: () => void) => {
   const { formatMessage } = useIntl()
   const [enqueueSnackbar] = useSnackbar()
   const [goals, mutateGoals] = useMutateGoals()
-  const { mutate } = useMutation(FeedbackService.create, {
+  const { mutateAsync } = useMutation(FeedbackService.create, {
     onSuccess: (feedback) => {
       const message = formatMessage({ id: 'page.user.modal-feedback.message' })
       mutateGoals(getNextState(goals, id, feedback))
@@ -41,12 +41,12 @@ export const useForm = (onSuccess: () => void) => {
       video: '',
     },
     validationSchema: feedbackSchema,
-    onSubmit(data) {
+    async onSubmit(data) {
       const formData = new FormData()
       formData.append('dayId', day.id.toString())
       formData.append('text', data.text.trim())
       data.photos.forEach((photo) => formData.append('photos', photo))
-      mutate(formData)
+      await mutateAsync(formData)
     },
   })
 }

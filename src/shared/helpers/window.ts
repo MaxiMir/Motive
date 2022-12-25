@@ -1,1 +1,1 @@
-export const openBlank = (url: string) => window.open(url, '_blank')
+export const openBlank = (url: string): Window | null => window.open(url, '_blank')

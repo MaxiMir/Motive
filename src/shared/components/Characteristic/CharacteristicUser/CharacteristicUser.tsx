@@ -14,7 +14,8 @@ interface CharacteristicUserProps {
 
 function CharacteristicUser({ name, value }: CharacteristicUserProps) {
   const formatNumber = useFormatNumber()
-  const formattedValue = name !== SecondCharacteristicName.Followers ? Math.floor(value) : formatNumber(value)
+  const formattedValue =
+    name !== SecondCharacteristicName.Followers ? Math.floor(value) : formatNumber(value)
   const showLevel = !(SECOND_CHARACTERISTICS as ReadonlyArray<string>).includes(name)
 
   return (

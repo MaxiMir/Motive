@@ -6,7 +6,8 @@ import appleSrc from 'public/images/svg/apple.svg'
 import metaSrc from 'public/images/svg/meta.svg'
 import githubSrc from 'public/images/svg/github.svg'
 import googleSrc from 'public/images/svg/google.svg'
-import { useMessages, useProviders } from './hooks'
+import { useMessages } from './hooks/useMessages'
+import { useProviders } from './hooks/useProviders'
 
 const Loader = dynamic(() => import('./components/Loader'))
 const Provider = dynamic(() => import('./components/Provider'))
@@ -31,7 +32,7 @@ function ModalSignIn({ options, onClose }: ModalSignInProps) {
 
   return (
     <AppModal title={messages.title} maxWidth="xs" onClose={onClose}>
-      <Box display="flex" flexDirection="column" alignSelf="stretch" gap={2}>
+      <Box display="flex" flexDirection="column" alignSelf="stretch" gap={2} minHeight={159}>
         {!providers ? (
           <Loader count={4} />
         ) : (

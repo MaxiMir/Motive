@@ -23,7 +23,8 @@ interface UserModuleProps {
 }
 
 function UserModule({ user }: UserModuleProps) {
-  const { id, name, characteristic, goals, membership, clientMembership, confirmations, motto } = user
+  const { id, name, characteristic, goals, membership, clientMembership, confirmations, motto } =
+    user
   const clientPage = useCheckOnClientPage(id)
   const showConfirmationsList = !!confirmations.length || clientPage
 
@@ -48,7 +49,7 @@ function UserModule({ user }: UserModuleProps) {
             },
           }}
         >
-          <Avatar />
+          <Avatar clientPage={clientPage} />
           <Box
             display="flex"
             flexDirection="column"
@@ -103,7 +104,9 @@ function UserModule({ user }: UserModuleProps) {
           ))}
         </Box>
         <DashedDivider light sx={{ mb: 3 }} />
-        {showConfirmationsList && <ConfirmationList confirmations={confirmations} clientPage={clientPage} />}
+        {showConfirmationsList && (
+          <ConfirmationList confirmations={confirmations} clientPage={clientPage} />
+        )}
         {!goals.length ? (
           <EmptyGoals clientPage={clientPage} />
         ) : (

@@ -8,7 +8,8 @@ import AppAccordion from '@ui/AppAccordion'
 import AppDecorEmoji from '@ui/AppDecorEmoji'
 import ActionSubmit from '@components/Action/ActionSubmit'
 import ActionCancel from '@components/Action/ActionCancel/ActionCancel'
-import { useForm, useMessages } from './hooks'
+import { useMessages } from './hooks/useMessages'
+import { useForm } from './hooks/useForm'
 
 interface ModalSupportProps {
   owner: UserBaseDto
@@ -47,7 +48,14 @@ function ModalSupport({ owner, onClose }: ModalSupportProps) {
         <Form autoComplete="off">
           <Box display="flex" flexDirection="column" alignItems="center" gap={3}>
             <AppFadeIcon name="support" />
-            <Field name="text" label={messages.label} color="primary" multiline rows={3} component={AppInput} />
+            <Field
+              name="text"
+              label={messages.label}
+              color="primary"
+              multiline
+              rows={3}
+              component={AppInput}
+            />
             <Box sx={{ width: '100%' }}>
               <AppAccordion
                 name="helmet"

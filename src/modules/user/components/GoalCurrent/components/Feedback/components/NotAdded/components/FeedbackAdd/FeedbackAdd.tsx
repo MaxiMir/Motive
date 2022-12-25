@@ -1,6 +1,6 @@
-import { useState } from 'react'
 import dynamic from 'next/dynamic'
 import { Button, Tooltip } from '@mui/material'
+import useToggle from '@hooks/useToggle'
 import AppIcon from '@ui/AppIcon'
 import { useMessages } from './hooks/useMessages'
 
@@ -12,9 +12,7 @@ interface FeedbackAddProps {
 
 function FeedbackAdd({ forTomorrow }: FeedbackAddProps) {
   const messages = useMessages(forTomorrow)
-  const [open, setOpen] = useState(false)
-
-  const toggle = () => setOpen(!open)
+  const [open, toggle] = useToggle()
 
   return (
     <>

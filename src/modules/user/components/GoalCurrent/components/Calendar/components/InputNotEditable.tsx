@@ -7,7 +7,6 @@ function InputNotEditable({ inputProps, ...props }: TextFieldProps) {
       type="text"
       size="small"
       defaultValue={inputProps?.value}
-      inputProps={{ readOnly: true }}
       key={inputProps?.value}
     />
   )

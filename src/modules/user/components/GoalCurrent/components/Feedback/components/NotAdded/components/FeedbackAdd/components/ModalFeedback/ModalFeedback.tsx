@@ -11,7 +11,8 @@ import PhotoInput from '@components/Photo/PhotoInput/PhotoInput'
 import PhotoButton from '@components/Photo/PhotoButton'
 import VideoPreview from '@components/Video/VideoPreview/VideoPreview'
 import VideoInput from '@components/Video/VideoInput/VideoInput'
-import { useForm, useMessages } from './hooks'
+import { useMessages } from './hooks/useMessages'
+import { useForm } from './hooks/useForm'
 
 interface ModalFeedbackProps {
   onClose: () => void
@@ -51,7 +52,14 @@ function ModalFeedback({ onClose }: ModalFeedbackProps) {
                 {messages.subtitle}
               </Typography>
             </Box>
-            <Field name="text" label={messages.label} color="warning" multiline rows={3} component={AppInput} />
+            <Field
+              name="text"
+              label={messages.label}
+              color="warning"
+              multiline
+              rows={3}
+              component={AppInput}
+            />
             {!!values.photos.length && (
               <Box display="flex" flexDirection="column" gap={2} width="100%">
                 <AppHeader name="photo" variant="h6" component="h2" color="primary">
@@ -62,7 +70,11 @@ function ModalFeedback({ onClose }: ModalFeedbackProps) {
                     <Grid container spacing={2}>
                       {values.photos.map((file, index) => (
                         <Grid item xs={4} key={file.name}>
-                          <PhotoButton image={file} disabled={isSubmitting} onClick={() => remove(index)} />
+                          <PhotoButton
+                            image={file}
+                            disabled={isSubmitting}
+                            onClick={() => remove(index)}
+                          />
                         </Grid>
                       ))}
                     </Grid>

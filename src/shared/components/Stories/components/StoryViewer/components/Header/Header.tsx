@@ -84,7 +84,7 @@ function Header({ user, title, date, onClose }: HeaderProps): JSX.Element {
 }
 
 const TextTitle = styled(Typography)({
-  fontSize: '14px',
+  fontSize: 14,
   fontWeight: 'bold',
 })
 

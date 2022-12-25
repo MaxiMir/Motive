@@ -1,6 +1,5 @@
-export const toShortString = (value: string, count: number): string => {
-  return value.length < count ? value : `${value.slice(0, count - 3)}...`
-}
+export const toShortString = (value: string, count: number): string =>
+  value.length < count ? value : `${value.slice(0, count - 3)}...`
 
 export const toMarkdown = (value: string): string => {
   const replacer = (found: string) => {
@@ -18,10 +17,12 @@ export const toMarkdown = (value: string): string => {
     .replace(/\\n/g, '  ')
 }
 
-type TextOptions = [single: string, double: string, doubleGenitive: string]
+type Options = [single: string, double: string, doubleGenitive: string]
 
-export const getWordDeclination = (number: number, textOptions: TextOptions): string => {
-  const [single, double, doubleGenitive] = textOptions
+export const getWordDeclination = (
+  number: number,
+  [single, double, doubleGenitive]: Options,
+): string => {
   const numberAbs = Math.abs(number)
   const rest = numberAbs % 100
 
@@ -41,3 +42,5 @@ export const getWordDeclination = (number: number, textOptions: TextOptions): st
 
   return doubleGenitive
 }
+
+export const ucFirst = (value: string): string => value && value[0].toUpperCase() + value.slice(1)

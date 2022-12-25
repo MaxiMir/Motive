@@ -11,7 +11,7 @@ import LikeButton from './components/LikeButton'
 
 const Button = dynamic(() => import('@mui/material/Button'))
 const AppMarkdown = dynamic(() => import('@ui/AppMarkdown'))
-const SupportSign = dynamic(() => import('./components/SupportSign/SupportSign'))
+const SupportSign = dynamic(() => import('./components/SupportSign'))
 
 interface MessageProps {
   message: MessageDto
@@ -58,7 +58,7 @@ function Message({ message, answerFor, supportFor, onReply }: MessageProps) {
               </Box>
               {supportFor && <SupportSign name={supportFor} />}
               {edited && (
-                <Box component="span" sx={{ fontSize: '11px', color: 'zen.silent' }}>
+                <Box component="span" sx={{ fontSize: 11, color: 'zen.silent' }}>
                   {messages.editedText}
                 </Box>
               )}
@@ -68,7 +68,7 @@ function Message({ message, answerFor, supportFor, onReply }: MessageProps) {
           <AppMarkdown text={text} />
           <Box display="flex" justifyContent="space-between" alignItems="center">
             <LikeButton message={message} answerFor={answerFor} />
-            <Box component="span" sx={{ fontSize: '11px', color: 'zen.silent' }}>
+            <Box component="span" sx={{ fontSize: 11, color: 'zen.silent' }}>
               {dateDistance}
             </Box>
           </Box>
@@ -76,7 +76,12 @@ function Message({ message, answerFor, supportFor, onReply }: MessageProps) {
       </Box>
       {onReply && (
         <Box pl={6}>
-          <Button size="small" aria-label={messages.replyText} sx={{ color: 'support.main' }} onClick={onReply}>
+          <Button
+            size="small"
+            aria-label={messages.replyText}
+            sx={{ color: 'support.main' }}
+            onClick={onReply}
+          >
             {messages.replyText}
           </Button>
         </Box>

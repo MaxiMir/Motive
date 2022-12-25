@@ -18,7 +18,13 @@ function ActionSubmit({ emoji, text, loadingText, disabled, onClick }: ActionSub
     <AppGradientButton
       type="submit"
       disabled={disabled}
-      startIcon={disabled ? <CircularProgress size="14.5px" color="inherit" /> : <AppEmoji name={emoji} onlyEmoji />}
+      startIcon={
+        disabled ? (
+          <CircularProgress size="14.5px" color="inherit" />
+        ) : (
+          <AppEmoji name={emoji} onlyEmoji />
+        )
+      }
       onClick={onClick}
     >
       {!disabled ? text : loadingText}

@@ -67,7 +67,7 @@ function MainCharacteristic({ name, value }: MainCharacteristicProps) {
               variant="caption"
               component="b"
               sx={{
-                fontSize: '14px',
+                fontSize: 14,
                 fontWeight: 'bold',
                 color: 'white',
               }}
@@ -77,7 +77,7 @@ function MainCharacteristic({ name, value }: MainCharacteristicProps) {
             <Typography
               component="p"
               sx={{
-                fontSize: '9px',
+                fontSize: 9,
                 color: 'white',
               }}
             >

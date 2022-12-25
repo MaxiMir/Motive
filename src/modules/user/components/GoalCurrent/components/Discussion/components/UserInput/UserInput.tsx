@@ -5,7 +5,8 @@ import { UserBaseDto, ClientDto, getUserHref } from '@features/user'
 import { TopicDto, MessageType } from '@features/topic'
 import AppInput from '@ui/AppInput'
 import UserLink from '@components/User/UserLink'
-import { useMessages, useForm } from './hooks'
+import { useMessages } from './hooks/useMessages'
+import { useForm } from './hooks/useForm'
 
 const CircularProgress = dynamic(() => import('@mui/material/CircularProgress'))
 const AppIcon = dynamic(() => import('@ui/AppIcon'))
@@ -40,7 +41,11 @@ function UserInput({ user, type, topicId, onAdd }: UserInputProps) {
             sx={{ flex: 1 }}
             component={AppInput}
           />
-          <IconButton disabled={isSubmitting || !values.text} sx={{ width: 40, height: 40 }} onClick={onClick}>
+          <IconButton
+            disabled={isSubmitting || !values.text}
+            sx={{ width: 40, height: 40 }}
+            onClick={onClick}
+          >
             {!isSubmitting ? (
               <AppIcon name="send" sx={{ paddingLeft: '3px' }} />
             ) : (

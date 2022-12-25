@@ -41,7 +41,7 @@ function Offline({ lastSeen, device, children }: OfflineProps) {
         '& .MuiBadge-badge': {
           backgroundColor: 'gray',
           color: 'white',
-          fontSize: '10px',
+          fontSize: 10,
         },
       }}
     >

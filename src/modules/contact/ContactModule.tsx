@@ -11,7 +11,7 @@ import ETHSrc from 'public/images/svg/eth.svg'
 import LTCSrc from 'public/images/svg/ltc.svg'
 import DOGESrc from 'public/images/svg/doge.svg'
 import { useMessages } from './hooks/useMessages'
-import Wallet from './components/Wallet/Wallet'
+import Wallet from './components/Wallet'
 
 const CRYPTOS = [
   { name: 'BTC', wallet: '1AmJZzeVH6wkJZ6a1FojJbHD1im9UZBar7', src: BTCSrc },
@@ -48,7 +48,7 @@ function ContactModule() {
             >
               <ButtonContent display="flex" alignItems="center" justifyContent="center">
                 <Box display="flex" flexDirection="column" alignItems="center" gap={2}>
-                  <Typography variant="h5" component="p">
+                  <Typography variant="h6" component="p">
                     Email
                   </Typography>
                   <AppIcon name="email" />
@@ -65,7 +65,7 @@ function ContactModule() {
             >
               <ButtonContent display="flex" alignItems="center" justifyContent="center">
                 <Box display="flex" flexDirection="column" alignItems="center" gap={2}>
-                  <Typography variant="h5" component="p">
+                  <Typography variant="h6" component="p">
                     Telegram
                   </Typography>
                   <TelegramIcon />
@@ -82,7 +82,7 @@ function ContactModule() {
             >
               <ButtonContent display="flex" alignItems="center" justifyContent="center">
                 <Box display="flex" flexDirection="column" alignItems="center" gap={2}>
-                  <Typography variant="h5" component="p">
+                  <Typography variant="h6" component="p">
                     LinkedIn
                   </Typography>
                   <LinkedInIcon />
@@ -123,7 +123,7 @@ const ButtonContent = styled(Box)(({ theme }) => ({
   right: 0,
   [`& .${typographyClasses.root}`]: {
     [theme.breakpoints.down('md')]: {
-      fontSize: '16px',
+      fontSize: 16,
     },
   },
   '& .material-icons': {

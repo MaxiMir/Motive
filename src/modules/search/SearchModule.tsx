@@ -6,13 +6,13 @@ import { GoalDto } from '@features/goal'
 import AppHeader from '@ui/AppHeader'
 import AppContainer from '@ui/AppContainer'
 import { useMessages } from './hooks/useMessages'
-import { getGradients } from './helpers/color'
+import { GRADIENTS } from './helpers/color'
 import SearchForm from './components/SearchForm'
 
 const GoalCard = dynamic(() => import('./components/GoalCard'))
 const UserCard = dynamic(() => import('./components/UserCard'))
 const Hashtag = dynamic(() => import('./components/Hashtag'))
-const NoResult = dynamic(() => import('./components/NoResult/NoResult'))
+const NoResult = dynamic(() => import('./components/NoResult'))
 
 interface SearchModuleProps {
   q: string
@@ -23,7 +23,6 @@ interface SearchModuleProps {
 
 function SearchModule({ q, hashtags, goals, users }: SearchModuleProps) {
   const messages = useMessages()
-  const gradients = getGradients()
   const noResult = !users.length && !goals.length
 
   return (
@@ -40,7 +39,7 @@ function SearchModule({ q, hashtags, goals, users }: SearchModuleProps) {
             </AppHeader>
             <Grid container spacing={2}>
               {users.map((user) => (
-                <Grid item xs={12} sm={6} md={3} lg={2} key={user.id}>
+                <Grid item xs={12} sm={6} md={3} lg={3} key={user.id}>
                   <UserCard user={user} />
                 </Grid>
               ))}
@@ -55,7 +54,7 @@ function SearchModule({ q, hashtags, goals, users }: SearchModuleProps) {
           <Grid container spacing={2}>
             {hashtags.map(({ name, views }, key) => (
               <Grid item xs={6} md={3} lg={2} key={name}>
-                <Hashtag name={name} views={views} gradient={gradients[key]} />
+                <Hashtag name={name} views={views} gradient={GRADIENTS[key]} />
               </Grid>
             ))}
           </Grid>

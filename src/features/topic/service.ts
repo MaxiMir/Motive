@@ -1,10 +1,10 @@
 import fetcher from '@lib/fetcher'
-import { FetchParams, getFetchParams } from '@helpers/url'
+import { Filter, getFilterParams } from '@helpers/url'
 import { CreateMessageDto, TopicDto, UpdateMessageDto } from './dto'
 
 export class TopicService {
-  static get(fetchParams: FetchParams): Promise<TopicDto[]> {
-    const params = getFetchParams(fetchParams)
+  static get(filter: Filter): Promise<TopicDto[]> {
+    const params = getFilterParams(filter)
 
     return fetcher.get('/topics', { params })
   }
@@ -18,7 +18,7 @@ export class TopicService {
   }
 
   static updateLike(id: number, insert: boolean): Promise<void> {
-    const params = getFetchParams({ insert })
+    const params = getFilterParams({ insert })
 
     return fetcher.patch(`/topics/${id}/likes`, undefined, { params })
   }

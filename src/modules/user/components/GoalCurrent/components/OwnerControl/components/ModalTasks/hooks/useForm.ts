@@ -1,11 +1,10 @@
 import produce from 'immer'
-import { v4 as uuidV4 } from 'uuid'
 import { useIntl } from 'react-intl'
 import { useFormik } from 'formik'
 import { useMutation } from 'react-query'
 import { getTomorrowISO } from '@lib/date'
 import { useChangeDayUrl, useMutateGoals } from '@modules/user/hooks'
-import { useGoalContext } from '@modules/user/components/GoalCurrent/hooks'
+import { useGoalContext } from '@modules/user/components/GoalCurrent/hooks/useGoalContext'
 import { tasksSchema } from '@features/task'
 import { GoalDto, GoalService } from '@features/goal'
 import { CreateDayDto, DayDto } from '@features/day'
@@ -24,7 +23,7 @@ export const useForm = (onSuccess: () => void) => {
   const [enqueueSnackbar] = useSnackbar()
   const [goals, mutateGoals] = useMutateGoals()
   const changeDayUrl = useChangeDayUrl()
-  const { mutate } = useMutation(GoalService.createDay, {
+  const { mutateAsync } = useMutation(GoalService.createDay, {
     onSuccess({ days }) {
       const day = days[days.length - 1]
       const message = formatMessage({ id: 'common.next-day-loading' })
@@ -39,11 +38,11 @@ export const useForm = (onSuccess: () => void) => {
     initialValues: {
       id,
       date: getTomorrowISO(),
-      tasks: [{ id: uuidV4(), name: '', date: undefined }],
+      tasks: [{ id: crypto.randomUUID(), name: '', date: undefined }],
     },
     validationSchema: tasksSchema,
-    onSubmit(data) {
-      mutate(data)
+    async onSubmit(data) {
+      await mutateAsync(data)
     },
   })
 }

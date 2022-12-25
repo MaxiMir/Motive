@@ -1,11 +1,13 @@
 import { useState } from 'react'
 import dynamic from 'next/dynamic'
 import { Box, Button } from '@mui/material'
-import { useGoalContext } from '@modules/user/components/GoalCurrent/hooks'
+import { useGoalContext } from '@modules/user/components/GoalCurrent/hooks/useGoalContext'
 import AppEmoji from '@ui/AppEmoji'
 import { useMessages } from './hooks/useMessages'
 
-const ModalCompletion = dynamic(() => import('@modules/user/components/GoalCurrent/components/ModalCompletion'))
+const ModalCompletion = dynamic(
+  () => import('@modules/user/components/GoalCurrent/components/ModalCompletion'),
+)
 const ModalTasks = dynamic(() => import('./components/ModalTasks'))
 
 enum ModalType {
@@ -28,11 +30,20 @@ function OwnerControl() {
 
   return (
     <Box display="flex" justifyContent={justifyContent}>
-      <Button variant="outlined" startIcon={<AppEmoji name="moon" onlyEmoji />} onClick={onAddTasks}>
+      <Button
+        variant="outlined"
+        startIcon={<AppEmoji name="moon" onlyEmoji />}
+        onClick={onAddTasks}
+      >
         {messages.nextButtonText}
       </Button>
       {renderCompete && (
-        <Button variant="outlined" color="warning" startIcon={<AppEmoji name="cup" onlyEmoji />} onClick={onComplete}>
+        <Button
+          variant="outlined"
+          color="warning"
+          startIcon={<AppEmoji name="cup" onlyEmoji />}
+          onClick={onComplete}
+        >
           {messages.doneButtonText}
         </Button>
       )}

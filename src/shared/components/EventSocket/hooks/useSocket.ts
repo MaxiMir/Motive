@@ -5,7 +5,7 @@ import { useIntl } from 'react-intl'
 import { io } from 'socket.io-client'
 import { getImageSrc } from '@href'
 import { NotificationDto, getNotificationHref } from '@features/notification'
-import { getDeviceType } from '@helpers/navigator'
+import { getDevice } from '@helpers/navigator'
 import useSnackbar from '@hooks/useSnackbar'
 import useClient from '@hooks/useClient'
 
@@ -24,7 +24,7 @@ export const useSocket = () => {
     const socket = io(process.env.NEXT_PUBLIC_APP_URL || '', {
       auth: {
         id: client.id,
-        device: getDeviceType(),
+        device: getDevice(),
       },
       secure: true,
     })

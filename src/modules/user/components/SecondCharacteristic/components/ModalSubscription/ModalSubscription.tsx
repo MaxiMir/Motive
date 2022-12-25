@@ -3,7 +3,8 @@ import { Box } from '@mui/material'
 import { useUserContext } from '@modules/user/hooks'
 import { SecondCharacteristicName } from '@features/characteristic'
 import AppModal from '@ui/AppModal/AppModal'
-import { useMessages, useSubscription } from './hooks'
+import { useMessages } from './hooks/useMessages'
+import { useSubscription } from './hooks/useSubscription'
 import Loader from './components/Loader'
 
 const EmptyList = dynamic(() => import('./components/EmptyList/EmptyList'))
@@ -17,7 +18,11 @@ interface ModalFollowersProps {
 function ModalSubscription({ name, onClose }: ModalFollowersProps) {
   const messages = useMessages(name)
   const { id, characteristic } = useUserContext()
-  const { isLoading, followers, checkOnLoadMore, fetchNextPage } = useSubscription(id, characteristic.followers, name)
+  const { isLoading, followers, checkOnLoadMore, fetchNextPage } = useSubscription(
+    id,
+    characteristic.followers,
+    name,
+  )
 
   return (
     <AppModal title={messages.title} maxWidth="xs" onClose={onClose}>
@@ -41,7 +46,12 @@ function ModalSubscription({ name, onClose }: ModalFollowersProps) {
             {!followers?.length ? (
               <EmptyList />
             ) : (
-              <UserList users={followers} checkOnLoadMore={checkOnLoadMore} onView={fetchNextPage} onClose={onClose} />
+              <UserList
+                users={followers}
+                checkOnLoadMore={checkOnLoadMore}
+                onView={fetchNextPage}
+                onClose={onClose}
+              />
             )}
           </>
         )}

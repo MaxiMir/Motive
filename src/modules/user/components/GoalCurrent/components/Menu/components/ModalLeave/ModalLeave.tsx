@@ -1,5 +1,5 @@
 import { Box, Typography } from '@mui/material'
-import { useGoalContext } from '@modules/user/components/GoalCurrent/hooks'
+import { useGoalContext } from '@modules/user/components/GoalCurrent/hooks/useGoalContext'
 import { OwnershipDto } from '@features/member'
 import AppModal from '@ui/AppModal/AppModal'
 import AppFadeIcon from '@ui/AppFadeIcon'

@@ -263,7 +263,7 @@
   "common.duration": "Тривалість",
   "common.creator": "Создатель",
   "common.repeat": "Повторити",
-  "common.repeat-loading": "Повторення",
+  "common.repeating": "Повторення",
   "common.sign-in": "Увійти",
   "common.with": "через",
   "common.nudity": "Нагота",
@@ -313,5 +313,15 @@
   "common.registered": "Зареєстровані",
   "common.open": "Відкрити",
   "common.zoom-in": "Збільшити",
-  "common.zoom-out": "Зменшити"
+  "common.zoom-out": "Зменшити",
+  "common.update": "Оновити",
+  "common.upload-photo": "Завантажити нове фото",
+  "common.photo-description": "Будь ласка, завантажте свою реальну фотографію, щоб вас могли впізнати",
+  "common.photo-types": "Ми підтримуємо файли JPG, GIF або PNG",
+  "common.select-file": "Вибрати файл",
+  "common.photo-hint": "Якщо у вас виникли проблеми із завантаженням, спробуйте використати фотографію меншого розміру",
+  "common.delete": "Видалити",
+  "common.deleting": "Видалення",
+  "common.delete-warning": "Ви дійсно хочете видалити це фото?",
+  "common.warning": "Попередження"
 }

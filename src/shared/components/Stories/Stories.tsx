@@ -16,7 +16,15 @@ interface StoryProps {
   onClose: () => void
 }
 
-function Stories({ stories, title, date, user, fullscreenEnabled, fullscreenRef, onClose }: StoryProps) {
+function Stories({
+  stories,
+  title,
+  date,
+  user,
+  fullscreenEnabled,
+  fullscreenRef,
+  onClose,
+}: StoryProps) {
   const [closing, closeSlow] = useSlowClose(onClose)
 
   return (
@@ -68,7 +76,13 @@ function Stories({ stories, title, date, user, fullscreenEnabled, fullscreenRef,
               transitionDuration: '300ms',
             }}
           >
-            <StoryViewer stories={stories} user={user} title={title} date={date} onClose={closeSlow} />
+            <StoryViewer
+              stories={stories}
+              user={user}
+              title={title}
+              date={date}
+              onClose={closeSlow}
+            />
           </Container>
         </Container>
       </Box>

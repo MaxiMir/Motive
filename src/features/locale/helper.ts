@@ -1,8 +1,6 @@
 import { Locale } from '@features/locale/types'
 
-type GetLocaleHref = (asPath: string, locale?: Locale) => string
-
-const getLocaleHref: GetLocaleHref = (asPath, locale) => {
+const getLocaleHref = (asPath: string, locale?: Locale): string => {
   const localePath = !locale ? '' : `/${locale}`
 
   return [process.env.NEXT_PUBLIC_APP_URL, localePath, asPath].join('')

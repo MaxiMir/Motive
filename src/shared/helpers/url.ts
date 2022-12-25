@@ -6,60 +6,47 @@ export interface Filter {
 }
 
 type SearchParamsEntries = Record<string, string | number>
-type SetSearchParams = (url: string, params: SearchParamsEntries) => string
-type ToUrl = (url: string, searchParams: URLSearchParams) => string
-type GetFilterParams = (filter: Filter) => SearchParamsEntries
 
 export const parseUrl = (url: string) => {
-  const [base, params = ''] = url.split('?', 2)
+  const [origin, params = ''] = url.split('?', 2)
   const searchParams = new URLSearchParams(params)
 
-  return { base, searchParams }
+  return { origin, searchParams }
 }
 
-export const getCurrentSearchParams = () => {
+export const getCurrentSearchParams = (): Record<string, string> => {
   return getSearchParams(window.location.search)
 }
 
-export const getSearchParams = (url: string) => {
+export const getSearchParams = (url: string): Record<string, string> => {
   const { searchParams } = parseUrl(url)
 
   return Object.fromEntries(searchParams)
 }
 
-export const setSearchParams: SetSearchParams = (url, params) => {
-  const { base, searchParams } = parseUrl(url)
+export const setSearchParams = (url: string, params: SearchParamsEntries): string => {
+  const { origin, searchParams } = parseUrl(url)
 
   Object.entries(params).forEach(([name, value]) => {
     searchParams.set(name, value.toString())
   })
 
-  return toUrl(base, searchParams)
+  return toUrl(origin, searchParams)
 }
 
-const toUrl: ToUrl = (url, searchParams) => {
+const toUrl = (url: string, searchParams: URLSearchParams): string => {
   return [url, searchParams].join(!searchParams.toString() ? '' : '?')
 }
 
-export const getFilterParams: GetFilterParams = (filter) => {
+export const getFilterParams = (filter: Filter): SearchParamsEntries => {
   const { where, page, take, insert } = filter
-  const wherePrepared = getWhere()
-  const paginationPrepared = getPagination()
-  const insertPrepared = getOperation()
-
-  function getWhere() {
-    return !where
-      ? null
-      : Object.fromEntries(Object.entries(where).map(([k, v]) => [`where[${k}]`, v]))
-  }
-
-  function getPagination() {
-    return typeof page !== 'number' || typeof take !== 'number' ? null : { skip: page * take, take }
-  }
-
-  function getOperation() {
-    return typeof insert !== 'boolean' ? null : { operation: insert ? 'insert' : 'delete' }
-  }
+  const wherePrepared = !where
+    ? null
+    : Object.fromEntries(Object.entries(where).map(([k, v]) => [`where[${k}]`, v]))
+  const paginationPrepared =
+    typeof page !== 'number' || typeof take !== 'number' ? null : { skip: page * take, take }
+  const insertPrepared =
+    typeof insert !== 'boolean' ? null : { operation: insert ? 'insert' : 'delete' }
 
   return { ...wherePrepared, ...paginationPrepared, ...insertPrepared }
 }

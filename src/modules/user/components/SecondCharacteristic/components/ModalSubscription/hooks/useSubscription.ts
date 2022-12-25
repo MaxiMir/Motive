@@ -1,6 +1,5 @@
 import { useMemo } from 'react'
 import { QueryFunctionContext, useInfiniteQuery } from 'react-query'
-import { UserDto } from '@features/user'
 import { SecondCharacteristicName } from '@features/characteristic'
 import { SubscriptionService } from '@features/subscription'
 import { partialCheckOnLoadMore, partialGetNextPageParam } from '@helpers/partial'
@@ -8,10 +7,7 @@ import { partialCheckOnLoadMore, partialGetNextPageParam } from '@helpers/partia
 const TAKE = 20
 const PRELOAD_DIFF = 5
 
-const partialQueryFn = (
-  userId: number,
-  name: SecondCharacteristicName,
-): ((c: QueryFunctionContext) => Promise<UserDto[]>) => {
+const partialQueryFn = (userId: number, name: SecondCharacteristicName) => {
   return ({ pageParam = 0 }: QueryFunctionContext) => {
     const method = name === SecondCharacteristicName.Following ? 'getFollowing' : 'getFollowers'
 
@@ -31,7 +27,7 @@ export const useSubscription = (userId: number, count: number, name: SecondChara
     },
   )
   const followers = useMemo(() => data?.pages.flat() || [], [data?.pages])
-  const checkOnLoadMore = partialCheckOnLoadMore(followers.length, hasNextPage, PRELOAD_DIFF)
+  const checkOnLoadMore = partialCheckOnLoadMore(followers.length, PRELOAD_DIFF, hasNextPage)
 
   return { isLoading, followers, checkOnLoadMore, fetchNextPage }
 }

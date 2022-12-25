@@ -5,8 +5,8 @@ import { parseUrl } from '@helpers/url'
 
 export const useUserPage = () => {
   const { asPath } = useRouter()
-  const { base, searchParams } = parseUrl(asPath)
-  const nickname = base.replace('/', '')
+  const { origin, searchParams } = parseUrl(asPath)
+  const nickname = origin.replace('/', '')
 
   return useQuery(nickname, () => PageService.getUser(nickname, { params: searchParams }), {
     staleTime: 5_000,

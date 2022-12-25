@@ -1,8 +1,8 @@
 import { useState } from 'react'
 
-type UseNotificationHint = () => [show: boolean, onClose: () => void]
+type UseNotificationHintResult = [show: boolean, onClose: () => void]
 
-export const useNotificationHint: UseNotificationHint = () => {
+export const useNotificationHint = (): UseNotificationHintResult => {
   const notificationSupport = 'Notification' in window
   const [show, setShow] = useState(notificationSupport && Notification.permission === 'default')
 

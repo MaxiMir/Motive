@@ -19,7 +19,7 @@ import {
   getClientOwnership,
   checkOnOpenDiscussion,
   redefineTasks,
-  getMember,
+  findMember,
 } from './helper'
 import ViewTrigger from './components/ViewTrigger'
 import Calendar from './components/Calendar'
@@ -54,7 +54,7 @@ function GoalCurrent({ goal, membership, clientPage, clientMembership }: GoalCur
   const messages = useMessages()
   const { id: userId, nickname } = useUserContext()
   const clientOwnership = getClientOwnership(goal, client?.id, clientPage, clientMembership)
-  const userMember = getMember(id, membership, userId)
+  const userMember = findMember(id, membership, userId)
   const goalInfo = getGoalInfo(goal, clientOwnership, userMember)
   const dayHref = getDayHref(nickname, id, day.id)
   const showDiscussion = checkOnOpenDiscussion(query, id)

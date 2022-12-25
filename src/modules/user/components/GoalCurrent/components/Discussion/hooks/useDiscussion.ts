@@ -7,10 +7,8 @@ import { TopicDto, TopicService } from '@features/topic'
 const TAKE = 20
 const PRELOAD_DIFF = 5
 
-const partialGetNextPageParam = (
-  count: number,
-): GetNextPageParamFunction<TopicDto[]> | undefined => {
-  return (_: TopicDto[], allPages: TopicDto[][]) => {
+const partialGetNextPageParam = (count: number): GetNextPageParamFunction<TopicDto[]> => {
+  return (_, allPages) => {
     const allCount = allPages.flat().reduce((acc, t) => acc + (!t.answer ? 1 : 2), 0)
 
     return allCount < count ? allCount / TAKE : undefined
@@ -30,7 +28,7 @@ export const useDiscussion = () => {
     },
   )
   const topics = useMemo(() => data?.pages.flat() || [], [data?.pages])
-  const checkOnLoadMore = partialCheckOnLoadMore(topics.length, hasNextPage, PRELOAD_DIFF)
+  const checkOnLoadMore = partialCheckOnLoadMore(topics.length, PRELOAD_DIFF, hasNextPage)
 
   return { isLoading, topics, checkOnLoadMore, fetchNextPage }
 }

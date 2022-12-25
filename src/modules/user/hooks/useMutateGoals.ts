@@ -3,14 +3,12 @@ import { useMutateUserPage } from '@modules/user/hooks/useMutateUserPage'
 import { UserPageDto } from '@features/page'
 import { GoalDto } from '@features/goal'
 
-const getNextState = (page: UserPageDto, goals: GoalDto[]) =>
+const getNextState = (page: UserPageDto, goals: GoalDto[]): UserPageDto =>
   produce(page, (draft) => {
     draft.goals = goals
   })
 
-type UseMutateGoals = () => [GoalDto[], (goals: GoalDto[]) => void]
-
-export const useMutateGoals: UseMutateGoals = () => {
+export const useMutateGoals = (): [GoalDto[], (goals: GoalDto[]) => void] => {
   const [page, mutatePage] = useMutateUserPage()
 
   const mutateGoals = (goals: GoalDto[]) => {

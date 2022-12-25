@@ -1,24 +1,10 @@
-type CopyHandler = (
-  text: string,
-  onSuccess: () => void,
-  onError: (err: unknown) => void,
-) => Promise<void>
-
-/**
- * Handler for copying text to the clipboard
- */
-export const copyHandler: CopyHandler = async (text, onSuccess, onError) => {
-  try {
-    await navigator.clipboard.writeText(text)
-    onSuccess()
-  } catch (err) {
-    onError(err)
-  }
+export const copyText = (text: string): Promise<void> => {
+  return navigator.clipboard.writeText(text)
 }
 
 export type Device = 'mobile' | 'tablet' | 'desktop'
 
-export const getDeviceType = (): Device => {
+export const getDevice = (): Device => {
   const { userAgent: ua } = navigator
 
   switch (true) {

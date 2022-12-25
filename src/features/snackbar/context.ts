@@ -1,7 +1,7 @@
 import { createContext, ReactNode } from 'react'
 import { AppEmojiName } from '@ui/AppEmoji'
 
-export interface ContextSnackbarProps {
+export interface SnackbarProps {
   severity: 'success' | 'error' | 'warning'
   message: string
   icon?: AppEmojiName
@@ -9,11 +9,11 @@ export interface ContextSnackbarProps {
 }
 
 interface SnackbarContextType {
-  props: ContextSnackbarProps | null
-  setProps: (props: ContextSnackbarProps | null) => void
+  props: SnackbarProps | null
+  setProps: (props: SnackbarProps | null) => void
 }
 
 export const SnackbarContext = createContext<SnackbarContextType>({
   props: null,
-  setProps: (_: ContextSnackbarProps | null) => undefined,
+  setProps: (_: SnackbarProps | null) => undefined,
 })

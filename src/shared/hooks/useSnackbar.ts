@@ -1,14 +1,14 @@
 import { useContext } from 'react'
-import { ContextSnackbarProps, SnackbarContext } from '@context/snackbarContext'
+import { SnackbarProps, SnackbarContext } from '@features/snackbar'
 import useDebounceCb from '@hooks/useDebounceCb'
 
-type UseSnackbar = () => [enqueue: (t: ContextSnackbarProps) => void, close: () => void]
+type UseSnackbarResult = [enqueue: (t: SnackbarProps) => void, close: () => void]
 
-const useSnackbar: UseSnackbar = () => {
+const useSnackbar = (): UseSnackbarResult => {
   const { props, setProps } = useContext(SnackbarContext)
   const enqueueSnackbar = useDebounceCb(changeProps, 250)
 
-  function changeProps(propsNew: ContextSnackbarProps) {
+  function changeProps(propsNew: SnackbarProps) {
     props && setProps(null)
     setTimeout(() => setProps(propsNew), 1)
   }

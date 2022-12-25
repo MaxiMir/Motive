@@ -1,13 +1,10 @@
 import { GoalDto } from '@features/goal'
 import { DAY_CHARACTERISTIC, DayCharacteristicName } from '@features/day'
 
-type CheckOnActive = (goal: GoalDto, name: DayCharacteristicName) => boolean
-type GetCount = (goal: GoalDto, name: DayCharacteristicName) => number | undefined
-
-export const checkOnActive: CheckOnActive = (goal, name) =>
+export const checkOnActive = (goal: GoalDto, name: DayCharacteristicName): boolean =>
   !!goal.reactions?.[name].some((d) => d === goal.day.id)
 
-export const getCount: GetCount = (goal, name) => {
+export const getCount = (goal: GoalDto, name: DayCharacteristicName): number | undefined => {
   if (!DAY_CHARACTERISTIC.includes(name)) {
     return undefined
   }

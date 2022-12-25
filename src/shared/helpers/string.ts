@@ -1,8 +1,4 @@
-type TextOptions = [single: string, double: string, doubleGenitive: string]
-type ToShortString = (value: string, count: number) => string
-type GetWordDeclination = (number: number, textOptions: TextOptions) => string
-
-export const toShortString: ToShortString = (value, count) =>
+export const toShortString = (value: string, count: number): string =>
   value.length < count ? value : `${value.slice(0, count - 3)}...`
 
 export const toMarkdown = (value: string): string => {
@@ -21,8 +17,12 @@ export const toMarkdown = (value: string): string => {
     .replace(/\\n/g, '  ')
 }
 
-export const getWordDeclination: GetWordDeclination = (number, textOptions) => {
-  const [single, double, doubleGenitive] = textOptions
+type Options = [single: string, double: string, doubleGenitive: string]
+
+export const getWordDeclination = (
+  number: number,
+  [single, double, doubleGenitive]: Options,
+): string => {
   const numberAbs = Math.abs(number)
   const rest = numberAbs % 100
 

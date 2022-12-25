@@ -9,19 +9,17 @@ import useDebounceCb from '@hooks/useDebounceCb'
 import useOpenSignIn from '@hooks/useOpenSignIn'
 import useClient from '@hooks/useClient'
 
-interface Options {
-  insert: boolean
-}
-
-const getNextState = (page: UserPageDto, following: boolean) =>
+const getNextState = (page: UserPageDto, following: boolean): UserPageDto =>
   produce(page, (draft) => {
     draft.following = following
     draft.characteristic.followers += following ? 1 : -1
   })
 
-type UseSetFollowing = (userId: number, following: boolean) => () => void
+interface Options {
+  insert: boolean
+}
 
-export const useSetFollowing: UseSetFollowing = (userId, following) => {
+export const useSetFollowing = (userId: number, following: boolean): (() => void) => {
   const { formatMessage } = useIntl()
   const client = useClient()
   const openSignIn = useOpenSignIn()

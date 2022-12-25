@@ -1,6 +1,4 @@
 import { TaskDto } from '@features/task'
 
-type CheckOnCompletedByOthers = (task: TaskDto, daysGoneForOwner: number) => boolean
-
-export const checkOnCompletedByOthers: CheckOnCompletedByOthers = (task, daysGoneForOwner) =>
+export const checkOnCompletedByOthers = (task: TaskDto, daysGoneForOwner: number): boolean =>
   !daysGoneForOwner && task.completedByOthers && !task.completed

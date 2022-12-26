@@ -8,7 +8,7 @@ import { UserPageDto } from '@features/page'
 import { UpdateUserDto, UserBaseDto, UserService, getUserHref, profileSchema } from '@features/user'
 import { getCurrentSearchParams, setSearchParams } from '@helpers/url'
 
-const getNextState = (page: UserPageDto, user: UserBaseDto): UserPageDto =>
+const getNextState = (page: UserPageDto, user: UserBaseDto) =>
   produce(page, (draft) => {
     draft.name = user.name
     draft.nickname = user.nickname

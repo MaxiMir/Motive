@@ -5,6 +5,6 @@ export const useMessages = (following: boolean) => {
   const operation = following ? 'remove' : 'add'
 
   return {
-    buttonText: formatMessage({ id: `page.user.following.${operation}` }),
+    followingText: formatMessage({ id: `page.user.following.${operation}` }),
   }
 }

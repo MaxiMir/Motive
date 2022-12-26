@@ -1,5 +1,7 @@
 import dynamic from 'next/dynamic'
-import { Button } from '@mui/material'
+import { Button, Tooltip } from '@mui/material'
+import { styled } from '@mui/system'
+import { grey } from '@mui/material/colors'
 import useToggle from '@hooks/useToggle'
 import AppIcon from '@ui/AppIcon'
 import { useMessages } from './hooks/useMessages'
@@ -12,26 +14,31 @@ function Info() {
 
   return (
     <>
-      <Button
-        variant="outlined"
-        size="small"
-        startIcon={<AppIcon name="info" />}
-        sx={{
-          flex: 1,
-          maxWidth: {
-            md: 200,
-          },
-          textTransform: 'none',
-        }}
-        aria-expanded={open ? 'true' : undefined}
-        aria-haspopup="true"
-        onClick={toggle}
-      >
-        {messages.learnMoreText}
-      </Button>
+      <Tooltip title={messages.learnMoreText}>
+        <span>
+          <InfoButton
+            size="small"
+            aria-label={messages.learnMoreText}
+            aria-expanded={open ? 'true' : undefined}
+            aria-haspopup="true"
+            onClick={toggle}
+          >
+            <AppIcon name="info" />
+          </InfoButton>
+        </span>
+      </Tooltip>
       {open && <ModalInfo onClose={toggle} />}
     </>
   )
 }
+
+const InfoButton = styled(Button)({
+  minWidth: 'initial',
+  color: grey[200],
+  backgroundColor: grey[800],
+  '&:hover': {
+    backgroundColor: grey[500],
+  },
+})
 
 export default Info

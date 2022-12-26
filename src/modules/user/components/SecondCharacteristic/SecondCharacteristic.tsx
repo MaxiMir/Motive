@@ -78,10 +78,7 @@ function SecondCharacteristic({ confirmations, name, value }: CharacteristicProp
           <Typography
             sx={{
               textTransform: 'none',
-              fontSize: {
-                xs: '12px',
-                md: '13px',
-              },
+              fontSize: 14,
             }}
           >
             {buttonText}

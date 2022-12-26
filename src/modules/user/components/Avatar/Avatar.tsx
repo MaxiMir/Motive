@@ -42,7 +42,7 @@ function Avatar({ clientPage }: AvatarProps) {
       <AvatarStatus
         src={avatar}
         name={name}
-        size={190}
+        size={150}
         online={online}
         lastSeen={lastSeen}
         device={device}

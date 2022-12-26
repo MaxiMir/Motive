@@ -78,11 +78,7 @@ function Page({
         flexDirection="column"
         sx={{
           flex: 1,
-          background: (theme) => (theme.palette.mode === 'dark' ? '#19191A' : undefined),
-          '@supports not (-moz-appearance:none)': {
-            background: (theme) =>
-              theme.palette.mode === 'dark' ? 'linear-gradient(#19191A, #0A0A0A 60%)' : undefined,
-          },
+          background: (theme) => (theme.palette.mode === 'dark' ? '#121212' : undefined),
         }}
       >
         {children}

@@ -15,10 +15,7 @@ export interface Options {
   add: boolean
 }
 
-const getNextState = (
-  discussion: InfiniteData<TopicDto[]>,
-  options: Options,
-): InfiniteData<TopicDto[]> => {
+const getNextState = (discussion: InfiniteData<TopicDto[]>, options: Options) => {
   const { message, answerFor, add } = options
   const searchId = answerFor || message.id
 

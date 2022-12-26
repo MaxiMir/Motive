@@ -4,7 +4,7 @@ import { useMutateUserPage, useUserContext } from '@modules/user/hooks'
 import { UserBaseDto, UserService } from '@features/user'
 import { UserPageDto } from '@features/page'
 
-const getNextState = (page: UserPageDto, user: UserBaseDto): UserPageDto =>
+const getNextState = (page: UserPageDto, user: UserBaseDto) =>
   produce(page, (draft) => {
     draft.avatar = user.avatar
   })

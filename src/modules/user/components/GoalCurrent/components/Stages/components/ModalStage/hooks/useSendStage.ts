@@ -5,7 +5,7 @@ import { useMutateGoals } from '@modules/user/hooks'
 import { GoalDto, GoalService } from '@features/goal'
 import useSnackbar from '@hooks/useSnackbar'
 
-const getNextState = (goals: GoalDto[], goalId: number): GoalDto[] =>
+const getNextState = (goals: GoalDto[], goalId: number) =>
   produce(goals, (draft) => {
     const draftGoal = draft[draft.findIndex((g) => g.id === goalId)]
     draftGoal.stage += 1

@@ -1,7 +1,6 @@
 import { MouseEvent, useState } from 'react'
 import dynamic from 'next/dynamic'
 import { useRouter } from 'next/router'
-import { Box } from '@mui/material'
 import { useUserContext } from '@modules/user/hooks'
 import AppMenuButton from '@ui/AppMenuButton'
 import { useMessages } from './hooks/useMessages'
@@ -28,7 +27,7 @@ function Menu() {
   const onCloseShare = () => setWithShare(false)
 
   return (
-    <Box alignSelf="flex-end">
+    <>
       <AppMenuButton
         title={messages.title}
         color="primary"
@@ -38,7 +37,7 @@ function Menu() {
       />
       {anchorEl && <MenuList anchorEl={anchorEl} onShare={onShare} onClose={onClose} />}
       {withShare && <Share title={name} href={asPath} onClose={onCloseShare} />}
-    </Box>
+    </>
   )
 }
 

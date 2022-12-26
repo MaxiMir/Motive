@@ -8,7 +8,7 @@ import { useGoalContext } from '@modules/user/components/GoalCurrent/hooks/useGo
 import { FeedbackDto, FeedbackService, feedbackSchema } from '@features/feedback'
 import useSnackbar from '@hooks/useSnackbar'
 
-const getNextState = (goals: GoalDto[], goalId: number, feedback: FeedbackDto): GoalDto[] =>
+const getNextState = (goals: GoalDto[], goalId: number, feedback: FeedbackDto) =>
   produce(goals, (draft) => {
     const draftGoal = draft[draft.findIndex((g) => g.id === goalId)]
     draftGoal.day.feedback = feedback

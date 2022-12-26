@@ -94,13 +94,13 @@ function GoalCurrent({ goal, membership, clientPage, clientMembership }: GoalCur
             flexDirection="column"
             justifyContent="space-between"
             gap={3}
-            sx={(theme) => ({
+            sx={{
               position: 'relative',
               height: '100%',
               padding: '24px 16px 16px',
-              background: theme.palette.content,
+              backgroundColor: 'underlay',
               borderRadius: '13px',
-            })}
+            }}
           >
             {inherited && <Inheritance />}
             <ViewTrigger>
@@ -134,6 +134,7 @@ function GoalCurrent({ goal, membership, clientPage, clientMembership }: GoalCur
                         borderTopRightRadius: 12,
                         borderBottomLeftRadius: 0,
                         borderBottomRightRadius: 0,
+                        borderBottom: 'none',
                       }}
                       onClick={() => onChangeDate(prev)}
                     >
@@ -150,7 +151,10 @@ function GoalCurrent({ goal, membership, clientPage, clientMembership }: GoalCur
                       </Box>
                     </DayCardControl>
                   )}
-                  <Card variant="outlined" sx={{ width: '100%', pb: 4, borderRadius: '10px' }}>
+                  <Card
+                    variant="outlined"
+                    sx={{ width: '100%', pb: 4, borderRadius: '10px', background: '#0a0a0a' }}
+                  >
                     <Box
                       display="flex"
                       justifyContent="space-between"
@@ -245,6 +249,7 @@ function GoalCurrent({ goal, membership, clientPage, clientMembership }: GoalCur
                         borderTopRightRadius: 0,
                         borderBottomLeftRadius: 12,
                         borderBottomRightRadius: 12,
+                        borderTop: 'none',
                       }}
                       onClick={() => onChangeDate(next)}
                     >
@@ -291,7 +296,7 @@ function GoalCurrent({ goal, membership, clientPage, clientMembership }: GoalCur
 const DayCardControl = styled(Card)({
   width: '90%',
   height: 50,
-  background: '#2e2e2e',
+  background: '#191919',
   cursor: 'pointer',
   animation: 'opacity 1s ease-out',
   '&:hover': {

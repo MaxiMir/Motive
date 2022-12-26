@@ -38,7 +38,7 @@ function Stories({
           left: 0,
           width: '100vw',
           height: '100%',
-          background: 'black',
+          background: 'underlay',
           zIndex: 9999,
           userSelect: 'none',
           overflow: 'hidden',

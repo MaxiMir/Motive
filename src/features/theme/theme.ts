@@ -18,7 +18,7 @@ declare module '@mui/material/styles' {
   }
 
   interface Palette {
-    navigation: CSSProperties['color']
+    underlay: CSSProperties['color']
     content: CSSProperties['color']
     circle: CSSProperties['color']
     zen: ZenColor
@@ -32,7 +32,7 @@ declare module '@mui/material/styles' {
   }
 
   interface PaletteOptions {
-    navigation: CSSProperties['color']
+    underlay: CSSProperties['color']
     content: CSSProperties['color']
     circle: CSSProperties['color']
     zen: ZenColor
@@ -50,7 +50,7 @@ export const getDesignTokens = (mode: PaletteMode): ThemeOptions => {
   return {
     palette: {
       mode,
-      navigation: mode === 'dark' ? '#000000' : '#d7d7d7',
+      underlay: mode === 'dark' ? '#000000' : '#d7d7d7',
       content: mode === 'dark' ? '#19191a' : '#d7d7d7',
       circle: '#2d313e',
       zen: {

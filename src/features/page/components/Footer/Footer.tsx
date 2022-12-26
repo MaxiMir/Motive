@@ -46,7 +46,7 @@ function Footer({ nickname }: FooterProps) {
     <Box
       component="footer"
       sx={{
-        backgroundColor: 'navigation',
+        backgroundColor: 'underlay',
         position: 'sticky',
         bottom: 0,
         width: '100%',

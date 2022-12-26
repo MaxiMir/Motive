@@ -19,7 +19,7 @@ function Header({ authenticated, user }: HeaderProps) {
       position="static"
       sx={{
         paddingY: 1,
-        backgroundColor: 'navigation',
+        backgroundColor: 'underlay',
         backgroundImage: 'none',
         boxShadow: 'none',
       }}

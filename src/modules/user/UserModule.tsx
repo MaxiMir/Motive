@@ -9,7 +9,6 @@ import SecondCharacteristic from './components/SecondCharacteristic'
 import EmptyGoals from './components/EmptyGoals'
 import Following from './components/Following'
 import MainCharacteristic from './components/MainCharacteristic'
-import Menu from './components/Menu'
 import Avatar from './components/Avatar'
 import Info from './components/Info'
 
@@ -38,11 +37,10 @@ function UserModule({ user }: UserModuleProps) {
 
   return (
     <UserContext.Provider value={user}>
-      <AppContainer>
+      <UserContainer>
         <Box
           display="flex"
           flexWrap="wrap"
-          mb={3}
           component="section"
           sx={{
             gap: {
@@ -60,7 +58,6 @@ function UserModule({ user }: UserModuleProps) {
           <Box
             display="flex"
             flexDirection="column"
-            gap={1}
             flex={1}
             sx={{
               alignItems: {
@@ -69,17 +66,14 @@ function UserModule({ user }: UserModuleProps) {
               },
             }}
           >
-            <Box display="flex" justifyContent="space-between" alignItems="center" width="100%">
-              <Box display="flex" alignItems="center" gap={2}>
-                <Typography variant="h5" component="p" sx={{ fontWeight: 300 }}>
-                  {nickname}
-                </Typography>
-                <Info />
-                {clientPage ? <EditProfile /> : <Following />}
-              </Box>
-              <Menu />
+            <Box display="flex" alignItems="center" gap={2} mb={1}>
+              <Typography variant="h5" component="p" sx={{ fontWeight: 300 }}>
+                {nickname}
+              </Typography>
+              <Info />
+              {clientPage ? <EditProfile /> : <Following />}
             </Box>
-            <Box display="flex" flexWrap="wrap" justifyContent="space-between" gap={2}>
+            <Box display="flex" justifyContent="space-between" gap={2} mb={1}>
               {SECOND_CHARACTERISTICS.map((characteristicName) => (
                 <SecondCharacteristic
                   confirmations={confirmations}
@@ -89,14 +83,14 @@ function UserModule({ user }: UserModuleProps) {
                 />
               ))}
             </Box>
-            <Typography component="h1" sx={{ textTransform: 'uppercase', fontWeight: 'bold' }}>
+            <Typography component="h1" sx={{ fontWeight: 'bold' }}>
               {name}
             </Typography>
             {motto && <Typography sx={{ fontSize: 14 }}>{motto}</Typography>}
           </Box>
         </Box>
-        <DashedDivider light sx={{ mb: 3 }} />
-        <Box display="flex" justifyContent="space-between" mb={3} component="section">
+        <DashedDivider light />
+        <Box display="flex" justifyContent="space-between" component="section">
           {MAIN_CHARACTERISTICS.map((characteristicName) => (
             <MainCharacteristic
               name={characteristicName}
@@ -105,7 +99,7 @@ function UserModule({ user }: UserModuleProps) {
             />
           ))}
         </Box>
-        <DashedDivider light sx={{ mb: 3 }} />
+        <DashedDivider light />
         {showConfirmationsList && (
           <ConfirmationList confirmations={confirmations} clientPage={clientPage} />
         )}
@@ -124,10 +118,16 @@ function UserModule({ user }: UserModuleProps) {
             ))}
           </Box>
         )}
-      </AppContainer>
+      </UserContainer>
     </UserContext.Provider>
   )
 }
+
+const UserContainer = styled(AppContainer)({
+  display: 'flex',
+  flexDirection: 'column',
+  gap: 24,
+})
 
 const DashedDivider = styled(Divider)({
   borderStyle: 'dashed',

@@ -1,9 +1,9 @@
 import { useIntl } from 'react-intl'
 
-export const useMessages = (ariaLabel: boolean) => {
+export const useMessages = () => {
   const { formatMessage } = useIntl()
 
   return {
-    ariaLabel: !ariaLabel ? '' : formatMessage({ id: 'component.gallery-photo.aria' }),
+    ariaLabel: formatMessage({ id: 'component.gallery-photo.aria' }),
   }
 }

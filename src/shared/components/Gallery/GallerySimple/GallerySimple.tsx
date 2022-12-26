@@ -5,7 +5,7 @@ import GalleryPhoto from './components/GalleryPhoto/GalleryPhoto'
 
 interface GallerySimpleProps {
   photos: PhotoDto[]
-  onClick?: (index: number) => void
+  onClick: (index: number) => void
 }
 
 function GallerySimple({ photos, onClick }: GallerySimpleProps) {

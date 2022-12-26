@@ -4,6 +4,6 @@ export const useMessages = () => {
   const { formatMessage } = useIntl()
 
   return {
-    ariaControls: formatMessage({ id: 'component.notification.aria' }),
+    title: formatMessage({ id: 'component.notification.title' }),
   }
 }

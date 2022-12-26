@@ -1,9 +1,10 @@
 import { ChangeEvent } from 'react'
 import { Field } from 'formik'
-import { Box, IconButton, Switch, Tooltip, FormControlLabel } from '@mui/material'
+import { Box, IconButton, Switch, FormControlLabel } from '@mui/material'
 import { TimePicker } from '@mui/x-date-pickers'
 import AppInput from '@ui/AppInput'
 import AppIcon from '@ui/AppIcon'
+import TooltipArrow from '@ui/styled/TooltipArrow'
 import { useMessages } from './hooks/useMessages'
 
 interface TaskFieldProps {
@@ -47,15 +48,13 @@ function TaskField({ index, date, remind, taskCount, setFieldValue, onRemove }: 
       </Box>
       <Box display="flex" alignItems="center" gap={1} pl={1} height={48}>
         {/* TODO ADD  */}
-        <Tooltip title={messages.soonText}>
-          <span>
-            <FormControlLabel
-              label={messages.remindText}
-              disabled
-              control={<Switch size="small" onChange={onSwitchClick} />}
-            />
-          </span>
-        </Tooltip>
+        <TooltipArrow title={messages.soonText}>
+          <FormControlLabel
+            label={messages.remindText}
+            disabled
+            control={<Switch size="small" onChange={onSwitchClick} />}
+          />
+        </TooltipArrow>
         {remind && (
           <Field
             name={`tasks.${index}.date`}

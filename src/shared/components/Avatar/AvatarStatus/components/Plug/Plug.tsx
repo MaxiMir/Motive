@@ -18,7 +18,7 @@ function Plug({ name, size }: PlugProps) {
         bgcolor,
         width: size,
         height: size,
-        color: 'white',
+        color: 'common.white',
         fontSize: '1rem',
       }}
     >

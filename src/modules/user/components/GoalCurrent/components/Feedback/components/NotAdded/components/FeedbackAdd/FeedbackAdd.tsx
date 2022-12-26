@@ -1,10 +1,11 @@
 import dynamic from 'next/dynamic'
-import { Button, Tooltip } from '@mui/material'
+import { Button } from '@mui/material'
 import useToggle from '@hooks/useToggle'
 import AppIcon from '@ui/AppIcon'
+import TooltipArrow from '@ui/styled/TooltipArrow'
 import { useMessages } from './hooks/useMessages'
 
-const ModalFeedback = dynamic(() => import('./components/ModalFeedback'))
+const FeedbackModal = dynamic(() => import('./components/FeedbackModal'))
 
 interface FeedbackAddProps {
   forTomorrow: boolean
@@ -16,22 +17,20 @@ function FeedbackAdd({ forTomorrow }: FeedbackAddProps) {
 
   return (
     <>
-      <Tooltip title={messages.title} arrow followCursor>
-        <span>
-          <Button
-            variant="outlined"
-            color="secondary"
-            startIcon={<AppIcon name="psychology" />}
-            disabled={forTomorrow}
-            aria-expanded={open ? 'true' : undefined}
-            aria-haspopup="true"
-            onClick={toggle}
-          >
-            {messages.buttonText}
-          </Button>
-        </span>
-      </Tooltip>
-      {open && <ModalFeedback onClose={toggle} />}
+      <TooltipArrow title={messages.title}>
+        <Button
+          variant="outlined"
+          color="secondary"
+          startIcon={<AppIcon name="psychology" />}
+          disabled={forTomorrow}
+          aria-haspopup="true"
+          aria-expanded={open ? 'true' : undefined}
+          onClick={toggle}
+        >
+          {messages.buttonText}
+        </Button>
+      </TooltipArrow>
+      {open && <FeedbackModal onClose={toggle} />}
     </>
   )
 }

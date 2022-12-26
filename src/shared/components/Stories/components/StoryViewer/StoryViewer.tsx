@@ -1,10 +1,10 @@
 import { Box } from '@mui/material'
 import { UserBaseDto } from '@features/user'
 import { Story } from '@components/Stories/types'
-import Header from './components/Header/Header'
+import Top from './components/Top'
 import Pointers from './components/Pointers'
 import Slide from './components/Slide'
-import Details from './components/Details'
+import Bottom from './components/Bottom'
 
 interface StoryViewerProps {
   stories: Story[]
@@ -28,7 +28,7 @@ function StoryViewer({ stories, user, title, date, onClose }: StoryViewerProps) 
         transform: 'translateZ(50vw)',
       }}
     >
-      <Header user={user} title={title} date={date} onClose={onClose} />
+      <Top user={user} title={title} date={date} onClose={onClose} />
       <Pointers count={count} onClose={onClose} />
       <Box
         className="slides"
@@ -45,7 +45,7 @@ function StoryViewer({ stories, user, title, date, onClose }: StoryViewerProps) 
           <Slide story={story} key={story.src} />
         ))}
       </Box>
-      <Details user={user} />
+      <Bottom user={user} />
     </Box>
   )
 }

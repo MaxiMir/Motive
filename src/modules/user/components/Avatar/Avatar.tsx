@@ -4,10 +4,10 @@ import { useUserContext } from '@modules/user/hooks'
 import useToggle from '@hooks/useToggle'
 import AvatarStatus from '@components/Avatar/AvatarStatus'
 
-const AppLightBox = dynamic(() => import('@ui/AppLightBox/AppLightBox'))
-const MenuList = dynamic(() => import('./components/MenuList'))
-const ModalEdit = dynamic(() => import('./components/ModalEdit'))
-const ModalDelete = dynamic(() => import('./components/ModalDelete'))
+const AppLightBox = dynamic(() => import('@ui/AppLightBox'))
+const MenuActions = dynamic(() => import('./components/MenuActions'))
+const EditModal = dynamic(() => import('./components/EditModal'))
+const DeleteModal = dynamic(() => import('./components/DeleteModal'))
 
 interface AvatarProps {
   clientPage: boolean
@@ -50,7 +50,7 @@ function Avatar({ clientPage }: AvatarProps) {
         onClick={onClick}
       />
       {anchorEl && (
-        <MenuList
+        <MenuActions
           anchorEl={anchorEl}
           avatar={avatar}
           onOpen={openPhoto}
@@ -60,8 +60,8 @@ function Avatar({ clientPage }: AvatarProps) {
         />
       )}
       {sources && <AppLightBox sources={sources} index={index} setIndex={setIndex} />}
-      {openEdit && <ModalEdit onClose={toggleEdit} />}
-      {openDelete && <ModalDelete onClose={toggleDelete} />}
+      {openEdit && <EditModal onClose={toggleEdit} />}
+      {openDelete && <DeleteModal onClose={toggleDelete} />}
     </>
   )
 }

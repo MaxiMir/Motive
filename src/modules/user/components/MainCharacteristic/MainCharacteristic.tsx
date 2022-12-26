@@ -6,7 +6,7 @@ import AppCircle from '@ui/AppCircle'
 import { useMessages } from './hooks/useMessages'
 import { getOffset, RADIUS } from './helper'
 
-const ModalCharacteristic = dynamic(() => import('./components/ModalCharacteristic'))
+const CharacteristicModal = dynamic(() => import('./components/CharacteristicModal'))
 
 interface MainCharacteristicProps {
   name: MainCharacteristicName
@@ -27,16 +27,12 @@ function MainCharacteristic({ name, value }: MainCharacteristicProps) {
   return (
     <>
       <Button
+        aria-haspopup="true"
+        aria-expanded={modal ? 'true' : undefined}
         sx={{
           borderRadius: '50%',
           textTransform: 'none',
-          padding: {
-            xs: '4px',
-            md: '8px',
-          },
         }}
-        aria-expanded={modal ? 'true' : undefined}
-        aria-haspopup="true"
         onClick={onClick}
       >
         <AppCircle
@@ -59,7 +55,7 @@ function MainCharacteristic({ name, value }: MainCharacteristicProps) {
             bottom: 0,
             left: 0,
             right: 0,
-            color: 'white',
+            color: 'common.white',
           }}
         >
           <Box display="flex" flexDirection="column" alignItems="center">
@@ -69,7 +65,7 @@ function MainCharacteristic({ name, value }: MainCharacteristicProps) {
               sx={{
                 fontSize: 14,
                 fontWeight: 'bold',
-                color: 'white',
+                color: 'common.white',
               }}
             >
               {level} {messages.lvlText}
@@ -78,7 +74,7 @@ function MainCharacteristic({ name, value }: MainCharacteristicProps) {
               component="p"
               sx={{
                 fontSize: 9,
-                color: 'white',
+                color: 'common.white',
               }}
             >
               {messages.header}
@@ -86,7 +82,7 @@ function MainCharacteristic({ name, value }: MainCharacteristicProps) {
           </Box>
         </Box>
       </Button>
-      {modal && <ModalCharacteristic name={modal} value={value} onClose={onClose} />}
+      {modal && <CharacteristicModal name={modal} value={value} onClose={onClose} />}
     </>
   )
 }

@@ -1,6 +1,12 @@
+
 [//]: # (TODO)
 * nanoid()
+* (2) в title meta
+
+* https://mui.com/material-ui/react-menu/#basic-menu aria
 * TODO disabled control
+* Рефакторинг Box display flex
+* Loader photo
 * редактирование фотки
 * https://docs.nestjs.com/techniques/caching
 * hydration error

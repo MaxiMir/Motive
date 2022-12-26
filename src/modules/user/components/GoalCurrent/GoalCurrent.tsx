@@ -23,9 +23,9 @@ import {
 } from './helper'
 import ViewTrigger from './components/ViewTrigger'
 import Calendar from './components/Calendar'
-import Menu from './components/Menu'
+import MenuActions from './components/MenuActions'
 import Discussion from './components/Discussion'
-import Views from './components/Views'
+import Views from './components/Views/Views'
 import Feedback from './components/Feedback'
 import Task from './components/Task'
 import Date from './components/Date'
@@ -109,7 +109,7 @@ function GoalCurrent({ goal, membership, clientPage, clientMembership }: GoalCur
                   <AppHeader name="goal" variant="h6" component="h2">
                     <b>{name}</b>
                   </AppHeader>
-                  <Menu title={name} href={dayHref} clientOwnership={clientOwnership} />
+                  <MenuActions title={name} href={dayHref} clientOwnership={clientOwnership} />
                 </Box>
                 <Box display="flex" justifyContent="space-between" alignItems="center">
                   {CHARACTERISTICS.map((characteristicName) => (
@@ -159,20 +159,17 @@ function GoalCurrent({ goal, membership, clientPage, clientMembership }: GoalCur
                       px={3}
                     >
                       <DayAgo day={day.date} />
-                      <Box display="flex" alignItems="center" gap={1}>
-                        <Calendar
-                          isLoading={isLoading}
-                          onChangeDate={onChangeDate}
-                          shouldDisableDate={shouldDisableDate}
-                        />
-                      </Box>
+                      <Calendar
+                        isLoading={isLoading}
+                        onChangeDate={onChangeDate}
+                        shouldDisableDate={shouldDisableDate}
+                      />
                     </Box>
                     {!!stages.length && (
                       <AppAccordion
                         name="stage"
                         header={messages.stagesHeader}
                         id={`stage-${day.id}`}
-                        ariaControls={messages.stagesAria}
                         defaultExpanded
                         details={
                           <Stages
@@ -186,7 +183,6 @@ function GoalCurrent({ goal, membership, clientPage, clientMembership }: GoalCur
                       name="task"
                       header={messages.tasksHeader}
                       id={`tasksContent-${day.id}`}
-                      ariaControls={messages.tasksAria}
                       defaultExpanded
                       details={
                         <Box display="flex" flexDirection="column" gap={1}>
@@ -209,7 +205,6 @@ function GoalCurrent({ goal, membership, clientPage, clientMembership }: GoalCur
                       name="feedback"
                       header={messages.feedbackHeader}
                       id={`${HashMark.Feedback}-${id}`}
-                      ariaControls={messages.feedbackAria}
                       defaultExpanded={!showDiscussion}
                       details={
                         <Feedback
@@ -229,7 +224,6 @@ function GoalCurrent({ goal, membership, clientPage, clientMembership }: GoalCur
                         </>
                       }
                       id={`${HashMark.Discussion}-${id}`}
-                      ariaControls={messages.discussionAria}
                       defaultExpanded={showDiscussion}
                       details={
                         <Discussion

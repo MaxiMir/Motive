@@ -5,7 +5,7 @@ import { useIntl } from 'react-intl'
 import { Box } from '@mui/material'
 import { getLocaleHrefList } from '@features/locale'
 import useClient from '@hooks/useClient'
-import { OGType } from './dto'
+import { OGType, UserPageDto } from './dto'
 import Header from './components/Header'
 import Footer from './components/Footer'
 
@@ -16,6 +16,7 @@ interface PageProps {
   type?: OGType
   image?: string
   canonical?: string
+  user?: UserPageDto
   children?: ReactNode
 }
 
@@ -26,6 +27,7 @@ function Page({
   type = OGType.Website,
   image,
   canonical,
+  user,
   children,
 }: PageProps) {
   const { locale } = useIntl()
@@ -33,7 +35,6 @@ function Page({
   const { asPath } = useRouter()
   const localeHrefList = getLocaleHrefList(asPath)
   const url = localeHrefList[locale]
-  const showNickname = type === OGType.Profile
 
   return (
     <>
@@ -70,7 +71,7 @@ function Page({
         <link rel="alternate" href={localeHrefList.uk} hrefLang="uk" />
         <link rel="alternate" href={localeHrefList.en} hrefLang="x-default" />
       </Head>
-      <Header authenticated={!!client} nickname={showNickname} />
+      <Header authenticated={!!client} user={user} />
       <Box
         component="main"
         id="main"

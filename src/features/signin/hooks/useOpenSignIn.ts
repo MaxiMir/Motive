@@ -1,8 +1,8 @@
 import { useContext } from 'react'
-import { ModalSignInContext } from '@features/signin/context'
+import { SignInModalContext } from '@features/signin/context'
 
 export const useOpenSignIn = () => {
-  const { setOptions } = useContext(ModalSignInContext)
+  const { setOptions } = useContext(SignInModalContext)
 
   return setOptions
 }

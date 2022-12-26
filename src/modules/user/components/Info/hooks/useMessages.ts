@@ -4,6 +4,6 @@ export const useMessages = () => {
   const { formatMessage } = useIntl()
 
   return {
-    learnMoreText: formatMessage({ id: 'common.info' }),
+    info: formatMessage({ id: 'common.info' }),
   }
 }

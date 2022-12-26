@@ -5,10 +5,10 @@ import { useGoalContext } from '@modules/user/components/GoalCurrent/hooks/useGo
 import AppEmoji from '@ui/AppEmoji'
 import { useMessages } from './hooks/useMessages'
 
-const ModalCompletion = dynamic(
-  () => import('@modules/user/components/GoalCurrent/components/ModalCompletion'),
+const CompletionModal = dynamic(
+  () => import('@modules/user/components/GoalCurrent/components/CompletionModal'),
 )
-const ModalTasks = dynamic(() => import('./components/ModalTasks'))
+const TasksModal = dynamic(() => import('./components/TasksModal'))
 
 enum ModalType {
   Tasks,
@@ -47,8 +47,8 @@ function OwnerControl() {
           {messages.doneButtonText}
         </Button>
       )}
-      {modal === ModalType.Tasks && <ModalTasks onClose={closeModal} />}
-      {modal === ModalType.Completion && <ModalCompletion onClose={closeModal} />}
+      {modal === ModalType.Tasks && <TasksModal onClose={closeModal} />}
+      {modal === ModalType.Completion && <CompletionModal onClose={closeModal} />}
     </Box>
   )
 }

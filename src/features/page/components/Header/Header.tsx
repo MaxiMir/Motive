@@ -1,17 +1,19 @@
 import dynamic from 'next/dynamic'
 import { Box, AppBar, Container } from '@mui/material'
+import { UserPageDto } from '@features/page'
 import LeftMenu from './components/LeftMenu'
 
 const SignIn = dynamic(() => import('./components/SignIn'))
 const Notifications = dynamic(() => import('./components/Notifications'))
 const Nickname = dynamic(() => import('./components/Nickname'))
+const UserMenu = dynamic(() => import('./components/UserMenu'))
 
 interface HeaderProps {
   authenticated: boolean
-  nickname: boolean
+  user?: UserPageDto
 }
 
-function Header({ authenticated, nickname }: HeaderProps) {
+function Header({ authenticated, user }: HeaderProps) {
   return (
     <AppBar
       position="static"
@@ -32,8 +34,11 @@ function Header({ authenticated, nickname }: HeaderProps) {
       >
         <Box display="flex" justifyContent="space-between" alignItems="center">
           <LeftMenu />
-          {nickname && <Nickname />}
-          {authenticated ? <Notifications /> : <SignIn />}
+          {user && <Nickname nickname={user.nickname} />}
+          <Box display="flex" alignItems="center" gap={1}>
+            {authenticated ? <Notifications /> : <SignIn />}
+            {user && <UserMenu id={user.id} name={user.name} />}
+          </Box>
         </Box>
       </Container>
     </AppBar>

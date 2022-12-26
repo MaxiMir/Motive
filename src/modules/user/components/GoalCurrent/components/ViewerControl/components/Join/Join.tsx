@@ -6,7 +6,7 @@ import useToggle from '@hooks/useToggle'
 import AppEmoji from '@ui/AppEmoji'
 import { useMessages } from './hooks/useMessages'
 
-const ModalJoin = dynamic(() => import('./components/ModalJoin'))
+const JoinModal = dynamic(() => import('./components/JoinModal'))
 
 function Join() {
   const messages = useMessages()
@@ -33,7 +33,7 @@ function Join() {
       >
         {messages.buttonText}
       </Button>
-      {open && <ModalJoin onClose={toggle} />}
+      {open && <JoinModal onClose={toggle} />}
     </>
   )
 }

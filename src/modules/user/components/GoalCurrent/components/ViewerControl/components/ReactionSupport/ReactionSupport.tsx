@@ -6,7 +6,7 @@ import useOpenSignIn from '@hooks/useOpenSignIn'
 import ActionGoal from '@components/Action/ActionGoal'
 import { useMessages } from './hooks/useMessages'
 
-const ModalSupport = dynamic(() => import('./components/ModalSupport'))
+const SupportModal = dynamic(() => import('./components/SupportModal'))
 
 interface ReactionSupportProps {
   owner: UserBaseDto
@@ -30,7 +30,7 @@ function ReactionSupport({ owner }: ReactionSupportProps) {
   return (
     <>
       <ActionGoal name="support" title={messages.title} onClick={onClick} />
-      {open && <ModalSupport owner={owner} onClose={toggle} />}
+      {open && <SupportModal owner={owner} onClose={toggle} />}
     </>
   )
 }

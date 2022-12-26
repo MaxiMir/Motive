@@ -2,16 +2,19 @@ import { useRouter } from 'next/router'
 import { Button, Typography } from '@mui/material'
 import AppIcon from '@ui/AppIcon'
 
-function Nickname(): JSX.Element {
-  const { query, reload } = useRouter()
-  const nickname = query.id
+interface NicknameProps {
+  nickname: string
+}
+
+function Nickname({ nickname }: NicknameProps): JSX.Element {
+  const { reload } = useRouter()
 
   return (
     <Button
       sx={{
         textTransform: 'none',
         '.material-icons, span': {
-          color: 'white',
+          color: 'common.white',
           fontWeight: 'bold',
           fontSize: 16,
         },

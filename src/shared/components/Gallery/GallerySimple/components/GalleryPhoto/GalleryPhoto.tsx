@@ -6,7 +6,7 @@ import { useMessages } from './hooks/useMessages'
 
 interface GalleryPhotoProps extends PhotoProps {
   wrapperProps?: React.HTMLAttributes<HTMLDivElement>
-  onClick?: (index: number) => void
+  onClick: (index: number) => void
 }
 
 function GalleryPhoto({
@@ -16,7 +16,7 @@ function GalleryPhoto({
   wrapperProps = {},
   onClick,
 }: GalleryPhotoProps) {
-  const messages = useMessages(!!onClick)
+  const messages = useMessages()
   const { width, height } = photo
   const { src, alt, title, style, sizes, className } = imageProps
   const { style: wrapperStyle, ...restWrapperProps } = wrapperProps
@@ -25,12 +25,12 @@ function GalleryPhoto({
 
   return (
     <Box
-      aria-label={onClick && messages.ariaLabel}
+      aria-label={messages.ariaLabel}
       sx={{
         width: style.width,
         padding: style.padding,
         marginBottom: style.marginBottom,
-        cursor: onClick && 'pointer',
+        cursor: 'pointer',
         borderRadius: 1,
         overflow: 'hidden',
         ...wrapperStyle,

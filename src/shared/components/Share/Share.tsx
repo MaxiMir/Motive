@@ -3,7 +3,7 @@ import useSnackbar from '@hooks/useSnackbar'
 import { useMessages } from './hooks/useMessages'
 import { useMenu } from './hooks/useMenu'
 
-const Menu = dynamic(() => import('./components/Menu'))
+const MenuActions = dynamic(() => import('./components/MenuActions'))
 
 interface ShareProps {
   title: string
@@ -25,7 +25,7 @@ function Share({ title, href, onClose }: ShareProps) {
   return (
     <>
       {open && (
-        <Menu
+        <MenuActions
           title={title}
           url={url}
           onCopyEnd={onCopyEnd}

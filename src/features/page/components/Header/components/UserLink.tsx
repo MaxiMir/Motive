@@ -2,11 +2,11 @@ import { useRouter } from 'next/router'
 import { Button, Typography } from '@mui/material'
 import AppIcon from '@ui/AppIcon'
 
-interface NicknameProps {
+interface UserLinkProps {
   nickname: string
 }
 
-function Nickname({ nickname }: NicknameProps): JSX.Element {
+function UserLink({ nickname }: UserLinkProps): JSX.Element {
   const { reload } = useRouter()
 
   return (
@@ -23,7 +23,7 @@ function Nickname({ nickname }: NicknameProps): JSX.Element {
     >
       <AppIcon name="alternate_email" />
       <Typography
-        sx={{ maxWidth: 200, overflow: 'hidden', whiteSpace: 'nowrap', textOverflow: 'ellipsis' }}
+        sx={{ maxWidth: 180, overflow: 'hidden', whiteSpace: 'nowrap', textOverflow: 'ellipsis' }}
         component="span"
       >
         {nickname}
@@ -32,4 +32,4 @@ function Nickname({ nickname }: NicknameProps): JSX.Element {
   )
 }
 
-export default Nickname
+export default UserLink

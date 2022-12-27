@@ -59,7 +59,6 @@ function UserModule({ user }: UserModuleProps) {
           <Box
             display="flex"
             flexDirection="column"
-            flex={1}
             sx={{
               alignItems: {
                 xs: 'center',
@@ -79,11 +78,11 @@ function UserModule({ user }: UserModuleProps) {
                 },
               }}
             >
-              <Nickname nickname={nickname} />
-              <Box display="flex" gap={2}>
+              <Box display="flex" alignItems="center" gap={1}>
+                <Nickname nickname={nickname} />
                 <Info />
-                {clientPage ? <EditProfile /> : <Following />}
               </Box>
+              {clientPage ? <EditProfile /> : <Following />}
             </Box>
             <Box display="flex" justifyContent="space-between" gap={2} mb={1}>
               {SECOND_CHARACTERISTICS.map((characteristicName) => (

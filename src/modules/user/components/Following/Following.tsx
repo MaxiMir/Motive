@@ -1,9 +1,13 @@
+import dynamic from 'next/dynamic'
+import { styled } from '@mui/system'
+import { Button } from '@mui/material'
+import { blue, grey } from '@mui/material/colors'
 import { useUserContext } from '@modules/user/hooks'
 import AppIcon from '@ui/AppIcon'
-import BlueButton from '@ui/styled/BlueButton'
-import TooltipArrow from '@ui/styled/TooltipArrow'
 import { useSetFollowing } from './hooks/useSetFollowing'
 import { useMessages } from './hooks/useMessages'
+
+const CircularProgress = dynamic(() => import('@mui/material/CircularProgress'))
 
 function Following() {
   const { id, following } = useUserContext()
@@ -12,18 +16,38 @@ function Following() {
   const operation = following ? 'remove' : 'add'
 
   return (
-    <TooltipArrow title={messages.followingText}>
-      <BlueButton
-        size="small"
-        aria-label={messages.followingText}
-        sx={{ filter: following ? 'grayscale(0.4)' : undefined }}
-        disabled={isLoading}
-        onClick={onClick}
-      >
-        <AppIcon name={`person_${operation}`} />
-      </BlueButton>
-    </TooltipArrow>
+    <BlueButton
+      variant="outlined"
+      size="small"
+      startIcon={
+        isLoading ? (
+          <CircularProgress size="14.5px" color="inherit" />
+        ) : (
+          <AppIcon name={`person_${operation}`} />
+        )
+      }
+      disabled={isLoading}
+      sx={{
+        width: {
+          xs: 200,
+          md: 'initial',
+        },
+        filter: following ? 'grayscale(0.5)' : undefined,
+      }}
+      onClick={onClick}
+    >
+      {messages.followingText}
+    </BlueButton>
   )
 }
+
+const BlueButton = styled(Button)({
+  minWidth: 'initial',
+  color: grey[200],
+  backgroundColor: blue[800],
+  '&:hover': {
+    backgroundColor: blue[500],
+  },
+})
 
 export default Following

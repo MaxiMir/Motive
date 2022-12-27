@@ -5,6 +5,7 @@ import { useCheckOnClientPage, UserContext } from '@modules/user/hooks'
 import { UserPageDto } from '@features/page'
 import { MAIN_CHARACTERISTICS, SECOND_CHARACTERISTICS } from '@features/characteristic'
 import AppContainer from '@ui/AppContainer'
+import Nickname from './components/Nickname'
 import SecondCharacteristic from './components/SecondCharacteristic'
 import EmptyGoals from './components/EmptyGoals'
 import Following from './components/Following'
@@ -66,12 +67,23 @@ function UserModule({ user }: UserModuleProps) {
               },
             }}
           >
-            <Box display="flex" alignItems="center" gap={2} mb={1}>
-              <Typography variant="h5" component="p" sx={{ fontWeight: 300 }}>
-                {nickname}
-              </Typography>
-              <Info />
-              {clientPage ? <EditProfile /> : <Following />}
+            <Box
+              display="flex"
+              alignItems="center"
+              gap={2}
+              mb={1}
+              sx={{
+                flexDirection: {
+                  xs: 'column',
+                  md: 'row',
+                },
+              }}
+            >
+              <Nickname nickname={nickname} />
+              <Box display="flex" gap={2}>
+                <Info />
+                {clientPage ? <EditProfile /> : <Following />}
+              </Box>
             </Box>
             <Box display="flex" justifyContent="space-between" gap={2} mb={1}>
               {SECOND_CHARACTERISTICS.map((characteristicName) => (

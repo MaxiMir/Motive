@@ -31,12 +31,13 @@ function StageModal({ onClose }: StageModalProps) {
       }
       maxWidth="xs"
       actions={[
-        <ActionCancel onClick={onClose} />,
+        <ActionCancel key="cancel" onClick={onClose} />,
         <ActionSubmit
           disabled={isLoading}
           text={messages.button}
           loadingText={messages.buttonLoading}
           emoji="stage"
+          key="submit"
           onClick={onClick}
         />,
       ]}

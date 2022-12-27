@@ -2,7 +2,7 @@ import { useRouter } from 'next/router'
 import { Button } from '@mui/material'
 import { getUserHref } from '@features/user'
 import { useOpenSignIn } from '@features/signin'
-import { ProfileIcon } from '@ui/icons'
+import ProfileIcon from '@ui/icons/ProfileIcon'
 import { useMessages } from './hooks/useMessages'
 
 interface ProfileLinkProps {

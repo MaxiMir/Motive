@@ -28,12 +28,13 @@ function ProfileModal({ onClose }: ProfileModalProps) {
       }
       maxWidth="xs"
       actions={[
-        <ActionCancel onClick={onClose} />,
+        <ActionCancel key="cancel" onClick={onClose} />,
         <ActionSubmit
           disabled={isSubmitting}
           text={messages.buttonText}
           loadingText={messages.buttonLoading}
           emoji="followers"
+          key="submit"
           onClick={handleSubmit}
         />,
       ]}

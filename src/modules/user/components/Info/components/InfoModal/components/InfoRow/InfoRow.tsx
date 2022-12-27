@@ -14,13 +14,14 @@ function InfoRow({ icon, name, value = '-' }: InfoRowProps) {
   const messages = useMessages(name)
   const formatDate = useFormatDate()
   const text = name !== 'registered' ? value : formatDate(value, { month: 'long', year: 'numeric' })
+  const shownText = text || <>&mdash;</>
 
   return (
     <Box display="flex" gap={1}>
       <AppIcon name={icon} />
       <Typography>{messages.title}:</Typography>
       <Typography textAlign="right" sx={{ color: 'zen.silent', marginLeft: 'auto' }}>
-        {text}
+        {shownText}
       </Typography>
     </Box>
   )

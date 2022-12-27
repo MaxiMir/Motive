@@ -29,12 +29,13 @@ function LeaveModal({ clientOwnership, onClose }: LeaveModalProps) {
       title={messages.title}
       maxWidth="xs"
       actions={[
-        <ActionCancel onClick={onClose} />,
+        <ActionCancel key="cancel" onClick={onClose} />,
         <ActionSubmit
           disabled={isLoading}
           text={messages.buttonText}
           loadingText={messages.loadingText}
           emoji="leave"
+          key="submit"
           onClick={onClick}
         />,
       ]}

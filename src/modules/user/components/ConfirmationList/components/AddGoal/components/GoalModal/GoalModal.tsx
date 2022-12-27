@@ -48,12 +48,13 @@ function GoalModal({ onClose }: GoalModalProps) {
       title={messages.title}
       maxWidth="xs"
       actions={[
-        <ActionCancel onClick={onClose} />,
+        <ActionCancel key="cancel" onClick={onClose} />,
         <ActionSubmit
           disabled={isSubmitting}
           text={messages.buttonText}
           loadingText={messages.loadingText}
           emoji="goal"
+          key="submit"
           onClick={handleSubmit}
         />,
       ]}

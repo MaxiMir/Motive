@@ -20,12 +20,13 @@ function DeleteModal({ onClose }: DeleteModalProps) {
       title={<Typography sx={{ color: 'error.dark' }}>{messages.title}</Typography>}
       maxWidth="xs"
       actions={[
-        <ActionCancel onClick={onClose} />,
+        <ActionCancel key="cancel" onClick={onClose} />,
         <ActionSubmit
           disabled={isLoading}
           text={messages.deleteText}
           loadingText={messages.deletingText}
           emoji="delete"
+          key="submit"
           onClick={onClick}
         />,
       ]}

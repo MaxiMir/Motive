@@ -153,7 +153,7 @@ function GoalCurrent({ goal, membership, clientPage, clientMembership }: GoalCur
                   )}
                   <Card
                     variant="outlined"
-                    sx={{ width: '100%', pb: 4, borderRadius: '10px', background: '#0a0a0a' }}
+                    sx={{ width: '100%', pb: 4, borderRadius: '10px', background: '#121212' }}
                   >
                     <Box
                       display="flex"
@@ -296,7 +296,7 @@ function GoalCurrent({ goal, membership, clientPage, clientMembership }: GoalCur
 const DayCardControl = styled(Card)({
   width: '90%',
   height: 50,
-  background: '#191919',
+  background: '#262626',
   cursor: 'pointer',
   animation: 'opacity 1s ease-out',
   '&:hover': {

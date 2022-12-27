@@ -3,7 +3,10 @@ import Link from 'next/link'
 import { useIntl } from 'react-intl'
 import { Container, Box, Button } from '@mui/material'
 import { Route } from '@href'
-import { TopOfTheDayIcon, SearchIcon, RatingIcon, FollowingIcon } from '@ui/icons'
+import TopOfTheDayIcon from '@ui/icons/TopOfTheDayIcon'
+import SearchIcon from '@ui/icons/SearchIcon'
+import RatingIcon from '@ui/icons/RatingIcon'
+import FollowingIcon from '@ui/icons/FollowingIcon'
 import ProfileLink from './components/ProfileLink/ProfileLink'
 
 const HOVER_OPACITY = 0.6

@@ -35,12 +35,13 @@ function EditMessageModal({ message, onClose }: EditMessageModalProps) {
       }
       maxWidth="xs"
       actions={[
-        <ActionCancel onClick={onClose} />,
+        <ActionCancel key="cancel" onClick={onClose} />,
         <ActionSubmit
           disabled={isSubmitting}
           text={messages.buttonText}
           loadingText={messages.loadingText}
           emoji="save"
+          key="submit"
           onClick={handleSubmit}
         />,
       ]}

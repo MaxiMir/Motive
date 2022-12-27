@@ -16,7 +16,7 @@ import { getMidnightISO, getTomorrowISO } from '@lib/date'
 import { useGoalContext } from '@modules/user/components/GoalCurrent/hooks/useGoalContext'
 import AppIcon from '@ui/AppIcon'
 import AppHeader from '@ui/AppHeader'
-import { PaulIcon } from '@ui/icons'
+import PaulIcon from '@ui/icons/PaulIcon'
 import AppModal from '@ui/AppModal'
 import ActionSubmit from '@components/Action/ActionSubmit'
 import ActionCancel from '@components/Action/ActionCancel/ActionCancel'
@@ -56,12 +56,13 @@ function TasksModal({ onClose }: TasksModalProps) {
       }
       maxWidth="xs"
       actions={[
-        <ActionCancel onClick={onClose} />,
+        <ActionCancel key="cancel" onClick={onClose} />,
         <ActionSubmit
           disabled={isSubmitting}
           text={messages.buttonText}
           loadingText={messages.loadingText}
           emoji="task"
+          key="submit"
           onClick={handleSubmit}
         />,
       ]}

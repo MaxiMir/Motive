@@ -11,6 +11,7 @@ interface PlugProps {
 function Plug({ name, size }: PlugProps) {
   const bgcolor = useMemo(() => generateColorByName(name), [name])
   const shortName = getShortName(name)
+  const fontSize = size / 2.5
 
   return (
     <Avatar
@@ -19,7 +20,7 @@ function Plug({ name, size }: PlugProps) {
         width: size,
         height: size,
         color: 'common.white',
-        fontSize: '1rem',
+        fontSize,
       }}
     >
       {shortName}

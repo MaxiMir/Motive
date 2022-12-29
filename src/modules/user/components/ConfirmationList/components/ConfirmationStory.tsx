@@ -49,7 +49,7 @@ function ConfirmationStory({ confirmation }: ConfirmationStoryProps) {
             variant="caption"
             sx={{
               maxWidth: 95,
-              color: 'creativity.light',
+              color: 'common.white',
               overflow: 'hidden',
               whiteSpace: 'nowrap',
               textOverflow: 'ellipsis',

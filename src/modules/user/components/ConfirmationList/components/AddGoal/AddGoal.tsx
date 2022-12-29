@@ -46,7 +46,7 @@ function AddGoal() {
         sx={{ padding: '4px', textTransform: 'none' }}
         onClick={toggle}
       >
-        <Typography variant="caption" sx={{ color: 'creativity.light' }}>
+        <Typography variant="caption" sx={{ color: 'common.white' }}>
           {messages.buttonText}
         </Typography>
       </Button>

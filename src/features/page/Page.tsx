@@ -65,7 +65,6 @@ function Page({
         <meta name="twitter:card" content={type} />
         <meta property="og:locale" content={locale} />
         {canonical && <link rel="canonical" href={canonical} />}
-        {/* Add hreflang links */}
         <link rel="alternate" href={localeHrefList.en} hrefLang="en" />
         <link rel="alternate" href={localeHrefList.ru} hrefLang="ru" />
         <link rel="alternate" href={localeHrefList.uk} hrefLang="uk" />

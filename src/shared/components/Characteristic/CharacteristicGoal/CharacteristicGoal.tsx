@@ -17,9 +17,9 @@ function CharacteristicGoal({ name, value }: CharacteristicGoalProps) {
   const color = name === 'runningDays' ? '#c07d35' : `${name}.main`
 
   return (
-    <Box display="flex" flexDirection="column" alignItems="center" gap={1} width={40}>
+    <Box display="flex" flexDirection="column" alignItems="center" gap={0.5}>
       <TooltipArrow title={messages.title}>
-        <IconButton sx={{ width: 48, height: 48 }}>
+        <IconButton size="small" sx={{ width: 40, height: 40 }}>
           <AppEmoji name={name} variant="h5" />
         </IconButton>
       </TooltipArrow>

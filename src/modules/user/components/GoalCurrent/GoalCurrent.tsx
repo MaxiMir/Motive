@@ -93,7 +93,7 @@ function GoalCurrent({ goal, membership, clientPage, clientMembership }: GoalCur
             display="flex"
             flexDirection="column"
             justifyContent="space-between"
-            gap={3}
+            gap={2}
             sx={{
               position: 'relative',
               height: '100%',
@@ -104,7 +104,7 @@ function GoalCurrent({ goal, membership, clientPage, clientMembership }: GoalCur
           >
             {inherited && <Inheritance />}
             <ViewTrigger>
-              <Box display="flex" flexDirection="column" gap={3}>
+              <Box display="flex" flexDirection="column" gap={2}>
                 <Box display="flex" justifyContent="space-between" alignItems="center">
                   <AppHeader name="goal" variant="h6" component="h2">
                     <b>{name}</b>

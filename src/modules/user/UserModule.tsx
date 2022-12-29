@@ -11,7 +11,7 @@ import EmptyGoals from './components/EmptyGoals'
 import Following from './components/Following'
 import MainCharacteristic from './components/MainCharacteristic'
 import Avatar from './components/Avatar'
-import Info from './components/Info'
+import AdditionalInfo from './components/AdditionalInfo'
 
 const EditProfile = dynamic(() => import('./components/EditProfile'))
 const ConfirmationList = dynamic(() => import('./components/ConfirmationList'))
@@ -69,20 +69,27 @@ function UserModule({ user }: UserModuleProps) {
             <Box
               display="flex"
               alignItems="center"
-              gap={2}
               mb={1}
               sx={{
+                gap: {
+                  xs: 1,
+                  md: 2,
+                },
+                width: {
+                  xs: '100%',
+                  md: 'initial',
+                },
                 flexDirection: {
                   xs: 'column',
                   md: 'row',
                 },
               }}
             >
-              <Box display="flex" alignItems="center" gap={1}>
-                <Nickname nickname={nickname} />
-                <Info />
+              <Nickname nickname={nickname} />
+              <Box display="flex" alignItems="center" gap={1} width="100%">
+                {clientPage ? <EditProfile /> : <Following />}
+                <AdditionalInfo />
               </Box>
-              {clientPage ? <EditProfile /> : <Following />}
             </Box>
             <Box display="flex" justifyContent="space-between" gap={2} mb={1}>
               {SECOND_CHARACTERISTICS.map((characteristicName) => (

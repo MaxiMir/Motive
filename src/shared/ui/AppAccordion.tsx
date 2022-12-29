@@ -13,7 +13,11 @@ interface AppAccordionProps {
 
 function AppAccordion({ name, header, id, details, defaultExpanded }: AppAccordionProps) {
   return (
-    <Accordion defaultExpanded={defaultExpanded} TransitionProps={{ unmountOnExit: true }}>
+    <Accordion
+      defaultExpanded={defaultExpanded}
+      TransitionProps={{ unmountOnExit: true }}
+      disableGutters
+    >
       <AccordionSummary id={id} expandIcon={<AppIcon name="expand_more" />}>
         <AppHeader name={name} variant="h6" component="h3" color="primary">
           {header}

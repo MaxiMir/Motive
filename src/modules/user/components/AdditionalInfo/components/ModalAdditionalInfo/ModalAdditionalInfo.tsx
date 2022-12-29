@@ -1,18 +1,21 @@
+import Link from 'next/link'
 import { Box, Typography } from '@mui/material'
 import { useUserContext } from '@modules/user/hooks'
+import { getUserHref } from '@features/user'
 import AppModal from '@ui/AppModal'
 import AvatarStatus from '@components/Avatar/AvatarStatus'
 import InfoRow from './components/InfoRow'
 import { useMessages } from './hooks/useMessages'
 import { ROWS } from './helpers/table'
 
-interface InfoModalProps {
+interface ModalAdditionalInfoProps {
   onClose: () => void
 }
 
-function InfoModal({ onClose }: InfoModalProps) {
+function ModalAdditionalInfo({ onClose }: ModalAdditionalInfoProps) {
   const messages = useMessages()
   const user = useUserContext()
+  const userHref = getUserHref(user.nickname)
 
   return (
     <AppModal title={messages.title} maxWidth="xs" onClose={onClose}>
@@ -26,7 +29,11 @@ function InfoModal({ onClose }: InfoModalProps) {
           mb={2}
         >
           <AvatarStatus src={user.avatar} name={user.name} size={80} />
-          <Typography>{user.nickname}</Typography>
+          <Link href={userHref}>
+            <Typography color="primary" component="span">
+              {user.nickname}
+            </Typography>
+          </Link>
           <Typography>{user.motto}</Typography>
         </Box>
         {ROWS.map(({ name, icon }) => (
@@ -37,4 +44,4 @@ function InfoModal({ onClose }: InfoModalProps) {
   )
 }
 
-export default InfoModal
+export default ModalAdditionalInfo

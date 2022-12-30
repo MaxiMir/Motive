@@ -1,9 +1,9 @@
 import { useState } from 'react'
 import dynamic from 'next/dynamic'
-import { Menu, MenuItem } from '@mui/material'
+import { Menu } from '@mui/material'
 import { useGoalContext } from '@modules/user/components/GoalCurrent/hooks/useGoalContext'
 import { OwnershipDto } from '@features/member'
-import AppMenuItemContent from '@ui/AppMenuItemContent'
+import AppMenuItem from '@ui/AppMenuItem'
 import { useMessages } from './hooks/useMessages'
 
 const Report = dynamic(() => import('@features/report'))
@@ -31,18 +31,12 @@ function MenuList({ clientOwnership, anchorEl, onShare, onLeave, onClose }: Menu
   return (
     <>
       <Menu open anchorEl={anchorEl} onClose={onClose}>
-        <MenuItem onClick={onShare}>
-          <AppMenuItemContent icon="share" text={messages.shareText} />
-        </MenuItem>
+        <AppMenuItem icon="share" text={messages.shareText} onClick={onShare} />
         {!clientOwnership.goal && (
-          <MenuItem onClick={onOpenReport}>
-            <AppMenuItemContent icon="outlined_flag" text={messages.reportText} />
-          </MenuItem>
+          <AppMenuItem icon="outlined_flag" text={messages.reportText} onClick={onOpenReport} />
         )}
         {clientOwnership.member && (
-          <MenuItem onClick={onLeave}>
-            <AppMenuItemContent icon="logout" text={messages.leaveText} />
-          </MenuItem>
+          <AppMenuItem icon="logout" text={messages.leaveText} onClick={onLeave} />
         )}
       </Menu>
       {withReport && (

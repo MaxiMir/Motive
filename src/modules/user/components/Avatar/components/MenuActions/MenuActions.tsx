@@ -1,5 +1,5 @@
-import { Menu, MenuItem } from '@mui/material'
-import AppMenuItemContent from '@ui/AppMenuItemContent'
+import { Menu } from '@mui/material'
+import AppMenuItem from '@ui/AppMenuItem'
 import { useMessages } from './hooks/useMessages'
 
 interface MenuActionsProps {
@@ -30,25 +30,15 @@ function MenuActions({ anchorEl, avatar, onOpen, onEdit, onDelete, onClose }: Me
       onClick={onClose}
       onClose={onClose}
     >
+      {avatar && <AppMenuItem icon="photo" text={messages.openText} onClick={onOpen} />}
+      <AppMenuItem icon="edit" text={messages.editText} onClick={onEdit} />
       {avatar && (
-        <MenuItem onClick={onOpen}>
-          <AppMenuItemContent icon="photo" text={messages.openText} />
-        </MenuItem>
-      )}
-      <MenuItem onClick={onEdit}>
-        <AppMenuItemContent icon="edit" text={messages.editText} />
-      </MenuItem>
-      {avatar && (
-        <MenuItem
-          sx={{
-            '& span': {
-              color: 'error.dark',
-            },
-          }}
+        <AppMenuItem
+          icon="delete"
+          text={messages.deleteText}
+          color="'error.dark'"
           onClick={onDelete}
-        >
-          <AppMenuItemContent icon="delete" text={messages.deleteText} />
-        </MenuItem>
+        />
       )}
     </Menu>
   )

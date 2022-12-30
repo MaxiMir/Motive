@@ -17,15 +17,14 @@ const DialogActions = dynamic(() => import('@mui/material/DialogActions'))
 const Box = dynamic(() => import('@mui/material/Box'))
 
 interface AppModalProps {
-  title?: JSX.Element | string
+  title: JSX.Element | string
   maxWidth?: DialogProps['maxWidth']
   actions?: JSX.Element[]
-  blur?: boolean
   children: ReactNode
   onClose: () => void
 }
 
-function AppModal({ title, actions, maxWidth, blur = true, children, onClose }: AppModalProps) {
+function AppModal({ title, actions, maxWidth, children, onClose }: AppModalProps) {
   const { formatMessage } = useIntl()
   const ariaLabel = formatMessage({ id: 'common.close' })
 
@@ -36,7 +35,7 @@ function AppModal({ title, actions, maxWidth, blur = true, children, onClose }: 
       sx={{
         [`& .${backdropClasses.root}`]: {
           background: 'rgba(34, 34, 34, 0.75)',
-          backdropFilter: blur ? 'blur(5px)' : undefined,
+          backdropFilter: 'blur(5px)',
         },
       }}
       onClose={onClose}

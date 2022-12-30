@@ -26,6 +26,10 @@ function Following() {
       }
       disabled={isLoading}
       sx={{
+        flex: {
+          xs: 1,
+          md: 'initial',
+        },
         filter: following ? 'grayscale(0.5)' : undefined,
       }}
       onClick={onClick}

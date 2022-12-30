@@ -1,9 +1,9 @@
 import { useState } from 'react'
 import dynamic from 'next/dynamic'
-import { Menu, MenuItem } from '@mui/material'
+import { Menu } from '@mui/material'
 import { MessageDto } from '@features/topic'
 import useClient from '@hooks/useClient'
-import AppMenuItemContent from '@ui/AppMenuItemContent'
+import AppMenuItem from '@ui/AppMenuItem'
 import { useMessages } from './hooks/useMessages'
 
 const Report = dynamic(() => import('@features/report'))
@@ -31,13 +31,9 @@ function MenuList({ anchorEl, message, onOpenModal, onClose }: MenuListProps) {
     <>
       <Menu id="goal-menu" anchorEl={anchorEl} open onClose={onClose}>
         {message.user.id === client?.id ? (
-          <MenuItem onClick={onOpenModal}>
-            <AppMenuItemContent icon="edit" text={messages.editText} />
-          </MenuItem>
+          <AppMenuItem icon="edit" text={messages.editText} onClick={onOpenModal} />
         ) : (
-          <MenuItem onClick={onOpenReport}>
-            <AppMenuItemContent icon="outlined_flag" text={messages.reportText} />
-          </MenuItem>
+          <AppMenuItem icon="outlined_flag" text={messages.reportText} onClick={onOpenReport} />
         )}
       </Menu>
       {withReport && (

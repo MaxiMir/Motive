@@ -20,7 +20,10 @@ function EditProfile() {
         aria-expanded={open ? 'true' : undefined}
         startIcon={<AppIcon name="edit" />}
         sx={{
-          flex: 1,
+          flex: {
+            xs: 1,
+            md: 'initial',
+          },
           padding: '4px 8px',
         }}
         onClick={toggle}

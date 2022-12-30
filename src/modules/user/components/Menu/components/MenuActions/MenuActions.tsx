@@ -1,8 +1,8 @@
 import { useState } from 'react'
 import dynamic from 'next/dynamic'
-import { Menu, MenuItem } from '@mui/material'
+import { Menu } from '@mui/material'
 import { useCheckOnClientPage } from '@modules/user/hooks'
-import AppMenuItemContent from '@ui/AppMenuItemContent'
+import AppMenuItem from '@ui/AppMenuItem'
 import { useMessages } from './hooks/useMessages'
 
 const Report = dynamic(() => import('@features/report'))
@@ -29,20 +29,14 @@ function MenuActions({ anchorEl, id, onShare, onClose }: MenuActionsProps) {
   return (
     <>
       <Menu id="user-edit-menu" anchorEl={anchorEl} open onClose={onClose}>
-        <MenuItem onClick={onShare}>
-          <AppMenuItemContent icon="share" text={messages.shareText} />
-        </MenuItem>
+        <AppMenuItem icon="share" text={messages.shareText} onClick={onShare} />
         {!clientPage && (
-          <MenuItem
-            sx={{
-              '& span': {
-                color: 'error.dark',
-              },
-            }}
+          <AppMenuItem
+            icon="outlined_flag"
+            text={messages.reportText}
+            color="error.dark"
             onClick={onOpenReport}
-          >
-            <AppMenuItemContent icon="outlined_flag" text={messages.reportText} />
-          </MenuItem>
+          />
         )}
       </Menu>
       {withReport && (

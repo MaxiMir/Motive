@@ -12,6 +12,7 @@ import Following from './components/Following'
 import MainCharacteristic from './components/MainCharacteristic'
 import Avatar from './components/Avatar'
 import AdditionalInfo from './components/AdditionalInfo'
+import Menu from './components/Menu'
 
 const EditProfile = dynamic(() => import('./components/EditProfile'))
 const ConfirmationList = dynamic(() => import('./components/ConfirmationList'))
@@ -59,6 +60,7 @@ function UserModule({ user }: UserModuleProps) {
           <Box
             display="flex"
             flexDirection="column"
+            flex={1}
             sx={{
               alignItems: {
                 xs: 'center',
@@ -70,14 +72,11 @@ function UserModule({ user }: UserModuleProps) {
               display="flex"
               alignItems="center"
               mb={1}
+              width="100%"
               sx={{
                 gap: {
                   xs: 1,
                   md: 2,
-                },
-                width: {
-                  xs: '100%',
-                  md: 'initial',
                 },
                 flexDirection: {
                   xs: 'column',
@@ -89,6 +88,7 @@ function UserModule({ user }: UserModuleProps) {
               <Box display="flex" alignItems="center" gap={1} width="100%">
                 {clientPage ? <EditProfile /> : <Following />}
                 <AdditionalInfo />
+                <Menu />
               </Box>
             </Box>
             <Box display="flex" justifyContent="space-between" gap={2} mb={1}>

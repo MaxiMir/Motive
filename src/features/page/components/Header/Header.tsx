@@ -6,7 +6,6 @@ import LeftMenu from './components/LeftMenu'
 const SignIn = dynamic(() => import('./components/SignIn'))
 const Notifications = dynamic(() => import('./components/Notifications'))
 const UserLink = dynamic(() => import('./components/UserLink'))
-const UserMenu = dynamic(() => import('./components/UserMenu'))
 
 interface HeaderProps {
   authenticated: boolean
@@ -35,10 +34,7 @@ function Header({ authenticated, user }: HeaderProps) {
         <Box display="flex" justifyContent="space-between" alignItems="center">
           <LeftMenu />
           {user && <UserLink nickname={user.nickname} />}
-          <Box display="flex" alignItems="center" gap={1}>
-            {authenticated ? <Notifications /> : <SignIn />}
-            {user && <UserMenu id={user.id} name={user.name} />}
-          </Box>
+          {authenticated ? <Notifications /> : <SignIn />}
         </Box>
       </Container>
     </AppBar>

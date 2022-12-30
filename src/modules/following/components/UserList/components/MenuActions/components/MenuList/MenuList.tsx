@@ -1,5 +1,5 @@
-import { Menu, MenuItem } from '@mui/material'
-import AppMenuItemContent from '@ui/AppMenuItemContent'
+import { Menu } from '@mui/material'
+import AppMenuItem from '@ui/AppMenuItem'
 import { useMessages } from './hooks/useMessages'
 
 interface MenuListProps {
@@ -14,12 +14,8 @@ function MenuList({ anchorEl, onShare, onRemove, onClose }: MenuListProps) {
 
   return (
     <Menu id="user-menu" anchorEl={anchorEl} open={!!anchorEl} onClick={onClose} onClose={onClose}>
-      <MenuItem onClick={onShare}>
-        <AppMenuItemContent icon="share" text={messages.shareText} />
-      </MenuItem>
-      <MenuItem onClick={onRemove}>
-        <AppMenuItemContent icon="remove_circle_outline" text={messages.removeText} />
-      </MenuItem>
+      <AppMenuItem icon="share" text={messages.shareText} onClick={onShare} />
+      <AppMenuItem icon="remove_circle_outline" text={messages.removeText} onClick={onRemove} />
     </Menu>
   )
 }

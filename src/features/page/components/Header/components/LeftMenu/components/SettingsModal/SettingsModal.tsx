@@ -29,7 +29,7 @@ function SettingsModal({ onClose }: SettingsModalProps) {
   }
 
   return (
-    <AppModal title={messages.title} maxWidth="xs" blur={false} onClose={onClose}>
+    <AppModal title={messages.title} maxWidth="xs" onClose={onClose}>
       <Box display="flex" flexDirection="column" gap={3}>
         <Box display="flex" flexDirection="column" gap={1}>
           <Header variant="body2" gutterBottom>

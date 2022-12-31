@@ -7,8 +7,8 @@ const StatusHub = dynamic(() => import('./components/StatusHub'))
 const Plug = dynamic(() => import('./components/Plug'))
 
 interface AvatarStatusProps {
-  src?: string | null
   name: string
+  src?: string | null
   online?: boolean | null
   lastSeen?: string | null
   device?: Device | null
@@ -29,7 +29,7 @@ function AvatarStatus({
 }: AvatarStatusProps) {
   return (
     <Button
-      sx={{ minWidth: 'initial', padding: '3px', borderRadius: '50%', textTransform: 'none' }}
+      sx={{ minWidth: 'initial', padding: '3px', borderRadius: '50%' }}
       disabled={disabled}
       onClick={onClick}
     >

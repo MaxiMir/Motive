@@ -12,7 +12,7 @@ function Nickname({ nickname }: NicknameProps) {
         variant="h5"
         component="p"
         sx={{
-          maxWidth: 200,
+          maxWidth: 300,
           overflow: 'hidden',
           whiteSpace: 'nowrap',
           textOverflow: 'ellipsis',

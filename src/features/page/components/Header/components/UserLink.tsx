@@ -1,18 +1,15 @@
 import { useRouter } from 'next/router'
 import { Button, Typography } from '@mui/material'
 
-interface UserLinkProps {
-  nickname: string
-}
-
-function UserLink({ nickname }: UserLinkProps): JSX.Element {
-  const { reload } = useRouter()
+function UserLink(): JSX.Element {
+  const { query, reload } = useRouter()
+  const nickname = query.id
 
   return (
-    <Button sx={{ textTransform: 'none' }} onClick={reload}>
+    <Button onClick={reload}>
       <Typography
         sx={{
-          maxWidth: 200,
+          maxWidth: 300,
           overflow: 'hidden',
           whiteSpace: 'nowrap',
           textOverflow: 'ellipsis',

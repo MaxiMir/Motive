@@ -38,6 +38,7 @@ function MenuActions({ anchorEl, id, onShare, onClose }: MenuActionsProps) {
             onClick={onOpenReport}
           />
         )}
+        <AppMenuItem icon="block" text={messages.cancelText} color="grey" onClick={onClose} />
       </Menu>
       {withReport && (
         <Report entityId={id} type="user" anchorEl={anchorEl} onClose={onCloseReport} />

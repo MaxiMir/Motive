@@ -196,7 +196,6 @@ function GoalModal({ onClose }: GoalModalProps) {
 
 const ButtonCompact = styled(Button)({
   alignSelf: 'baseline',
-  textTransform: 'none',
 })
 
 export default GoalModal

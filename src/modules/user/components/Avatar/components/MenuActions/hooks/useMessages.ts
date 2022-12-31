@@ -7,5 +7,6 @@ export const useMessages = () => {
     openText: formatMessage({ id: 'common.open' }),
     editText: formatMessage({ id: 'common.edit' }),
     deleteText: formatMessage({ id: 'common.delete' }),
+    cancelText: formatMessage({ id: 'common.cancel' }),
   }
 }

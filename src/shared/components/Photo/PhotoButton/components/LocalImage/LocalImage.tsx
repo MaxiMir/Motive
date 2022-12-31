@@ -12,7 +12,7 @@ interface LocalImageProps {
 function LocalImage({ file }: LocalImageProps) {
   const src = useReadImage(file)
 
-  return <>{!src ? <CircularProgress size="14.5px" color="warning" /> : <Img src={src} />}</>
+  return <>{!src ? <CircularProgress size={14.5} color="warning" /> : <Img src={src} />}</>
 }
 
 export default LocalImage

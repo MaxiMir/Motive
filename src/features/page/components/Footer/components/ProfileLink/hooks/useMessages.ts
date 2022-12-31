@@ -4,6 +4,6 @@ export const useMessages = () => {
   const { formatMessage } = useIntl()
 
   return {
-    ariaLabel: formatMessage({ id: 'component.footer.my' }),
+    title: formatMessage({ id: 'component.footer.my' }),
   }
 }

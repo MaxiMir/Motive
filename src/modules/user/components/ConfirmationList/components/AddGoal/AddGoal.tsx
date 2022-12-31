@@ -43,7 +43,7 @@ function AddGoal() {
         aria-label={messages.buttonText}
         aria-haspopup="true"
         aria-expanded={open ? 'true' : undefined}
-        sx={{ padding: '4px', textTransform: 'none' }}
+        sx={{ padding: '4px' }}
         onClick={toggle}
       >
         <Typography variant="caption" sx={{ color: 'common.white' }}>

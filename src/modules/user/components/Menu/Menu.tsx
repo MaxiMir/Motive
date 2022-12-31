@@ -1,10 +1,8 @@
 import { MouseEvent, useState } from 'react'
 import dynamic from 'next/dynamic'
 import { useRouter } from 'next/router'
-import { Box } from '@mui/material'
 import { useUserContext } from '@modules/user/hooks'
 import AppIcon from '@ui/AppIcon'
-import TooltipArrow from '@ui/styled/TooltipArrow'
 import GreyButton from '@ui/styled/GreyButton'
 import { useMessages } from './hooks/useMessages'
 
@@ -30,21 +28,25 @@ function Menu() {
   const onCloseShare = () => setWithShare(false)
 
   return (
-    <Box sx={{ marginLeft: 'auto' }}>
-      <TooltipArrow title={messages.title}>
-        <GreyButton
-          size="small"
-          aria-label={messages.title}
-          aria-haspopup="true"
-          aria-expanded={anchorEl ? 'true' : undefined}
-          onClick={onOpen}
-        >
-          <AppIcon name="more_horiz" />
-        </GreyButton>
-      </TooltipArrow>
+    <>
+      <GreyButton
+        size="small"
+        aria-label={messages.title}
+        aria-haspopup="true"
+        aria-expanded={anchorEl ? 'true' : undefined}
+        endIcon={<AppIcon name="expand_more" />}
+        sx={{
+          minWidth: '96px',
+          height: 30,
+          paddingX: 1,
+        }}
+        onClick={onOpen}
+      >
+        {messages.title}
+      </GreyButton>
       {anchorEl && <MenuActions anchorEl={anchorEl} id={id} onShare={onShare} onClose={onClose} />}
       {withShare && <Share title={name} href={asPath} onClose={onCloseShare} />}
-    </Box>
+    </>
   )
 }
 

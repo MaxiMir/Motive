@@ -6,5 +6,6 @@ export const useMessages = (report: boolean) => {
   return {
     shareText: formatMessage({ id: 'common.share' }),
     reportText: !report ? '' : formatMessage({ id: 'common.report' }),
+    cancelText: formatMessage({ id: 'common.cancel' }),
   }
 }

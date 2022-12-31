@@ -8,17 +8,16 @@ type AppMenuItemContentProps = Pick<MenuItemProps, 'onClick'> & {
   text: string
 }
 
-function AppMenuItem({ icon, text, color, onClick }: AppMenuItemContentProps) {
+function AppMenuItem({ icon, text, color = 'primary.dark', onClick }: AppMenuItemContentProps) {
   return (
-    <MenuItem
-      sx={{
-        '& span': {
-          color,
-        },
-      }}
-      onClick={onClick}
-    >
-      <ListItemIconCompact>
+    <MenuItem onClick={onClick}>
+      <ListItemIconCompact
+        sx={{
+          '& span': {
+            color,
+          },
+        }}
+      >
         <AppIcon name={icon} />
       </ListItemIconCompact>
       <ListItemText>{text}</ListItemText>

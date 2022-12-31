@@ -23,9 +23,9 @@ import {
 } from './helper'
 import ViewTrigger from './components/ViewTrigger'
 import Calendar from './components/Calendar'
-import MenuActions from './components/MenuActions'
+import Menu from './components/Menu'
 import Discussion from './components/Discussion'
-import Views from './components/Views/Views'
+import Views from './components/Views'
 import Feedback from './components/Feedback'
 import Task from './components/Task'
 import Date from './components/Date'
@@ -109,7 +109,7 @@ function GoalCurrent({ goal, membership, clientPage, clientMembership }: GoalCur
                   <AppHeader name="goal" variant="h6" component="h2">
                     <b>{name}</b>
                   </AppHeader>
-                  <MenuActions title={name} href={dayHref} clientOwnership={clientOwnership} />
+                  <Menu title={name} href={dayHref} clientOwnership={clientOwnership} />
                 </Box>
                 <Box display="flex" justifyContent="space-between" alignItems="center">
                   {CHARACTERISTICS.map((characteristicName) => (

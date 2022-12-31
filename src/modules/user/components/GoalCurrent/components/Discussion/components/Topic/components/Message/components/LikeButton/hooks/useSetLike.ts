@@ -7,7 +7,6 @@ import { TopicService, MessageDto, MessageType, TopicDto } from '@features/topic
 import useClient from '@hooks/useClient'
 import useOpenSignIn from '@hooks/useOpenSignIn'
 import useSnackbar from '@hooks/useSnackbar'
-import useDebounceCb from '@hooks/useDebounceCb'
 
 export interface Options {
   message: MessageDto
@@ -41,9 +40,7 @@ export const getGoalNextState = (goals: GoalDto[], goalId: number, add: boolean)
     draftGoal.characteristic.support += add ? 1 : -1
   })
 
-type UseSetLike = (message: MessageDto, answerFor?: number) => () => void
-
-export const useSetLike: UseSetLike = (message, answerFor) => {
+export const useSetLike = (message: MessageDto, answerFor?: number): [boolean, () => void] => {
   const { id, like, dayId, goalId } = message
   const key = ['discussion', dayId]
   const { formatMessage } = useIntl()
@@ -52,60 +49,61 @@ export const useSetLike: UseSetLike = (message, answerFor) => {
   const [goals, mutateGoals] = useMutateGoals()
   const queryClient = useQueryClient()
   const [enqueueSnackbar] = useSnackbar()
-  const { mutate } = useMutation(({ add }: Options) => TopicService.updateLike(id, add), {
-    async onMutate(options: Options) {
-      await queryClient.cancelQueries(key)
-      const previous = queryClient.getQueryData<InfiniteData<TopicDto[]>>(key)
+  const { isLoading, mutate } = useMutation(
+    ({ add }: Options) => TopicService.updateLike(id, add),
+    {
+      async onMutate(options: Options) {
+        await queryClient.cancelQueries(key)
+        const previous = queryClient.getQueryData<InfiniteData<TopicDto[]>>(key)
 
-      if (previous) {
-        queryClient.setQueryData<InfiniteData<TopicDto[]> | undefined>(
-          key,
-          (prev) => prev && getNextState(prev, options),
-        )
-      }
+        if (previous) {
+          queryClient.setQueryData<InfiniteData<TopicDto[]> | undefined>(
+            key,
+            (prev) => prev && getNextState(prev, options),
+          )
+        }
 
-      return { previous }
+        return { previous }
+      },
+      onSuccess(_, { add }) {
+        const userMessageTmpl = formatMessage({ id: 'page.user.like-button.user-message' })
+        const userMessage = userMessageTmpl.replace('$0', message.user.name)
+
+        if (message.type === MessageType.Support) {
+          enqueueSnackbar({
+            message: userMessage,
+            severity: 'success',
+            icon: 'magic',
+          })
+        }
+
+        const goalMessage = formatMessage({ id: 'page.user.like-button.goal-message' })
+
+        if (answerFor) {
+          mutateGoals(getGoalNextState(goals, goalId, add))
+          enqueueSnackbar({
+            message: goalMessage,
+            severity: 'success',
+            icon: 'magic',
+          })
+        }
+      },
+      onError(_, _1, context) {
+        if (context?.previous) {
+          queryClient.setQueryData(key, context?.previous)
+        }
+      },
     },
-    onSuccess(_, { add }) {
-      const userMessageTmpl = formatMessage({ id: 'page.user.like-button.user-message' })
-      const userMessage = userMessageTmpl.replace('$0', message.user.name)
-
-      if (message.type === MessageType.Support) {
-        enqueueSnackbar({
-          message: userMessage,
-          severity: 'success',
-          icon: 'magic',
-        })
-      }
-
-      const goalMessage = formatMessage({ id: 'page.user.like-button.goal-message' })
-
-      if (answerFor) {
-        mutateGoals(getGoalNextState(goals, goalId, add))
-        enqueueSnackbar({
-          message: goalMessage,
-          severity: 'success',
-          icon: 'magic',
-        })
-      }
-    },
-    onError(_, _1, context) {
-      if (context?.previous) {
-        queryClient.setQueryData(key, context?.previous)
-      }
-    },
-  })
-
-  const mutateDebounce = useDebounceCb((value: boolean) =>
-    mutate({ message, answerFor, add: value }),
   )
 
-  return () => {
+  const onClick = () => {
     if (!client) {
       openSignIn({ callbackUrl: window.location.href })
       return
     }
 
-    mutateDebounce(!like)
+    mutate({ message, answerFor, add: !like })
   }
+
+  return [isLoading, onClick]
 }

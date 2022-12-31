@@ -49,7 +49,7 @@ function UserInput({ user, type, topicId, onAdd }: UserInputProps) {
             {!isSubmitting ? (
               <AppIcon name="send" sx={{ paddingLeft: '3px' }} />
             ) : (
-              <CircularProgress size="14.5px" color="primary" />
+              <CircularProgress size={14.5} color="primary" />
             )}
           </IconButton>
         </Box>

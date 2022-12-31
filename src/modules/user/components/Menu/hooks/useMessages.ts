@@ -4,6 +4,6 @@ export const useMessages = () => {
   const { formatMessage } = useIntl()
 
   return {
-    title: formatMessage({ id: 'common.open-menu' }),
+    title: formatMessage({ id: 'common.more' }),
   }
 }

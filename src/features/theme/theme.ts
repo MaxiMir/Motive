@@ -107,6 +107,13 @@ export const getDesignTokens = (mode: PaletteMode): ThemeOptions => {
         }),
     },
     components: {
+      MuiButton: {
+        styleOverrides: {
+          root: {
+            textTransform: 'none',
+          },
+        },
+      },
       MuiTypography: {
         styleOverrides: {
           h1: {

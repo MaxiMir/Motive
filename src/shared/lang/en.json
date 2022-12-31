@@ -312,5 +312,6 @@
   "common.delete": "Delete",
   "common.deleting": "Deleting",
   "common.delete-warning": "Are you sure want to delete this photo?",
-  "common.warning": "Warning"
+  "common.warning": "Warning",
+  "common.more": "More"
 }

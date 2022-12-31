@@ -6,7 +6,7 @@ import { MessageDto } from '@features/topic'
 import useFormatDistance from '@hooks/useFormatDistance'
 import UserLink from '@components/User/UserLink'
 import { useMessages } from './hooks/useMessages'
-import MenuActions from './components/MenuActions'
+import Menu from './components/Menu'
 import LikeButton from './components/LikeButton'
 
 const Button = dynamic(() => import('@mui/material/Button'))
@@ -63,7 +63,7 @@ function Message({ message, answerFor, supportFor, onReply }: MessageProps) {
                 </Box>
               )}
             </Box>
-            <MenuActions message={message} />
+            <Menu message={message} />
           </Box>
           <AppMarkdown text={text} />
           <Box display="flex" justifyContent="space-between" alignItems="center">

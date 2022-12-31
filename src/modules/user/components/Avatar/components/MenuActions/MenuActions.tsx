@@ -40,6 +40,7 @@ function MenuActions({ anchorEl, avatar, onOpen, onEdit, onDelete, onClose }: Me
           onClick={onDelete}
         />
       )}
+      <AppMenuItem icon="block" text={messages.cancelText} color="grey" onClick={onClose} />
     </Menu>
   )
 }

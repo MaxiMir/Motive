@@ -4,8 +4,7 @@ import Head from 'next/head'
 import { useIntl } from 'react-intl'
 import { Box } from '@mui/material'
 import { getLocaleHrefList } from '@features/locale'
-import useClient from '@hooks/useClient'
-import { OGType, UserPageDto } from './dto'
+import { OGType } from './dto'
 import Header from './components/Header'
 import Footer from './components/Footer'
 
@@ -16,7 +15,6 @@ interface PageProps {
   type?: OGType
   image?: string
   canonical?: string
-  user?: UserPageDto
   children?: ReactNode
 }
 
@@ -27,11 +25,9 @@ function Page({
   type = OGType.Website,
   image,
   canonical,
-  user,
   children,
 }: PageProps) {
   const { locale } = useIntl()
-  const client = useClient()
   const { asPath } = useRouter()
   const localeHrefList = getLocaleHrefList(asPath)
   const url = localeHrefList[locale]
@@ -70,7 +66,7 @@ function Page({
         <link rel="alternate" href={localeHrefList.uk} hrefLang="uk" />
         <link rel="alternate" href={localeHrefList.en} hrefLang="x-default" />
       </Head>
-      <Header authenticated={!!client} user={user} />
+      <Header type={type} />
       <Box
         component="main"
         id="main"
@@ -83,7 +79,7 @@ function Page({
       >
         {children}
       </Box>
-      <Footer nickname={client?.nickname} />
+      <Footer />
     </>
   )
 }

@@ -14,7 +14,7 @@ import { PaletteMode } from '@mui/material'
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns'
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider'
 import CssBaseline from '@mui/material/CssBaseline'
-import { SignInModalContext } from '@features/signin'
+import { ModalSignInContext } from '@features/signin'
 import { SnackbarProps, SnackbarContext } from '@features/snackbar'
 import { ThemeContext, getDesignTokens } from '@features/theme'
 import { getLocaleFolder } from '@lib/date'
@@ -24,7 +24,7 @@ import useRemoveServerStyles from '@hooks/useRemoveServerStyles'
 import EventSocket from '@components/EventSocket'
 
 const AppSnackbar = dynamic(() => import('@ui/AppSnackbar'))
-const SignInModal = dynamic(() => import('@features/signin'))
+const ModalSignIn = dynamic(() => import('@features/signin'))
 
 const generateClassName = createGenerateClassName({ productionPrefix: 'be' })
 const langLoader = makeMapLoader<Record<string, string>>()
@@ -89,7 +89,7 @@ function App({
               <ThemeContext.Provider value={themeCtx}>
                 <StylesProvider generateClassName={generateClassName}>
                   <ThemeProvider theme={theme}>
-                    <SignInModalContext.Provider value={modalSignInCtx}>
+                    <ModalSignInContext.Provider value={modalSignInCtx}>
                       <SnackbarContext.Provider value={snackbarCtx}>
                         <Script
                           src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS}`}
@@ -107,10 +107,10 @@ function App({
                         <CssBaseline />
                         <Component {...pageProps} />
                       </SnackbarContext.Provider>
-                    </SignInModalContext.Provider>
+                    </ModalSignInContext.Provider>
                     <EventSocket />
                     {snackbarProps && <AppSnackbar {...snackbarProps} onClose={onCloseSnackbar} />}
-                    {options && <SignInModal options={options} onClose={onCloseSignIn} />}
+                    {options && <ModalSignIn options={options} onClose={onCloseSignIn} />}
                   </ThemeProvider>
                 </StylesProvider>
               </ThemeContext.Provider>

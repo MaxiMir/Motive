@@ -11,7 +11,7 @@ import EmptyGoals from './components/EmptyGoals'
 import Following from './components/Following'
 import MainCharacteristic from './components/MainCharacteristic'
 import Avatar from './components/Avatar'
-import AdditionalInfo from './components/AdditionalInfo'
+import LearnMore from './components/LearnMore'
 import Menu from './components/Menu'
 
 const EditProfile = dynamic(() => import('./components/EditProfile'))
@@ -76,7 +76,7 @@ function UserModule({ user }: UserModuleProps) {
               sx={{
                 gap: {
                   xs: 1,
-                  md: 2,
+                  md: 3,
                 },
                 flexDirection: {
                   xs: 'column',
@@ -85,9 +85,8 @@ function UserModule({ user }: UserModuleProps) {
               }}
             >
               <Nickname nickname={nickname} />
-              <Box display="flex" alignItems="center" gap={1} width="100%">
+              <Box display="flex" alignItems="center" gap={1}>
                 {clientPage ? <EditProfile /> : <Following />}
-                <AdditionalInfo />
                 <Menu />
               </Box>
             </Box>
@@ -105,6 +104,7 @@ function UserModule({ user }: UserModuleProps) {
               {name}
             </Typography>
             {motto && <Typography sx={{ fontSize: 14 }}>{motto}</Typography>}
+            <LearnMore />
           </Box>
         </Box>
         <DashedDivider light />

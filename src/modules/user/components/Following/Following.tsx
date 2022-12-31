@@ -1,7 +1,8 @@
 import dynamic from 'next/dynamic'
-import { useUserContext } from '@modules/user/hooks'
 import AppIcon from '@ui/AppIcon'
-import BlueButton from '@ui/styled/BlueButton'
+import { Button } from '@mui/material'
+import { blue, grey } from '@mui/material/colors'
+import { useUserContext } from '@modules/user/hooks'
 import { useSetFollowing } from './hooks/useSetFollowing'
 import { useMessages } from './hooks/useMessages'
 
@@ -14,28 +15,25 @@ function Following() {
   const operation = following ? 'remove' : 'add'
 
   return (
-    <BlueButton
-      variant="contained"
+    <Button
       size="small"
-      startIcon={
-        isLoading ? (
-          <CircularProgress size="14.5px" color="inherit" />
-        ) : (
-          <AppIcon name={`person_${operation}`} />
-        )
-      }
       disabled={isLoading}
+      startIcon={isLoading ? undefined : <AppIcon name={`person_${operation}`} />}
       sx={{
-        flex: {
-          xs: 1,
-          md: 'initial',
+        minWidth: '96px',
+        height: 30,
+        paddingX: 1,
+        color: grey[200],
+        borderColor: following ? grey[800] : blue[800],
+        backgroundColor: following ? grey[800] : blue[800],
+        '&:hover': {
+          backgroundColor: following ? grey[900] : blue[400],
         },
-        filter: following ? 'grayscale(0.5)' : undefined,
       }}
       onClick={onClick}
     >
-      {messages.followingText}
-    </BlueButton>
+      {isLoading ? <CircularProgress size={14.5} color="inherit" /> : messages.buttonText}
+    </Button>
   )
 }
 

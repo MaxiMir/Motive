@@ -21,7 +21,6 @@ function GoalCard({ goal }: GoalCardProps) {
       href="#"
       sx={{
         width: '100%',
-        textTransform: 'none',
         padding: 16,
         borderRadius: 12,
       }}

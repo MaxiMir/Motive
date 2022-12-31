@@ -41,7 +41,7 @@ function EditModal({ onClose }: EditModalProps) {
           disabled={isLoading}
           startIcon={
             isLoading ? (
-              <CircularProgress size="14.5px" color="inherit" />
+              <CircularProgress size={14.5} color="inherit" />
             ) : (
               <AppIcon name="attach_file" />
             )

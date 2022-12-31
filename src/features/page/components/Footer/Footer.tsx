@@ -1,21 +1,18 @@
 import { useRouter } from 'next/router'
 import Link from 'next/link'
 import { useIntl } from 'react-intl'
-import { Container, Box, Button } from '@mui/material'
+import { Container, Box, IconButton } from '@mui/material'
 import { Route } from '@href'
 import TopOfTheDayIcon from '@ui/icons/TopOfTheDayIcon'
 import SearchIcon from '@ui/icons/SearchIcon'
 import RatingIcon from '@ui/icons/RatingIcon'
 import FollowingIcon from '@ui/icons/FollowingIcon'
-import ProfileLink from './components/ProfileLink/ProfileLink'
+import TooltipArrow from '@ui/styled/TooltipArrow'
+import ProfileLink from './components/ProfileLink'
 
 const HOVER_OPACITY = 0.6
 
-interface FooterProps {
-  nickname?: string
-}
-
-function Footer({ nickname }: FooterProps) {
+function Footer() {
   const { formatMessage } = useIntl()
   const { asPath } = useRouter()
   const routes = getRoutes()
@@ -66,13 +63,13 @@ function Footer({ nickname }: FooterProps) {
       >
         <Box display="flex" justifyContent="space-between" alignItems="center" height={52}>
           {routes.map(({ title, href, Component }) => (
-            <Button href={href} aria-label={title} key={title} component={Link}>
-              <Component
-                sx={{ color: 'common.white', opacity: !asPath.includes(href) ? HOVER_OPACITY : 1 }}
-              />
-            </Button>
+            <TooltipArrow title={title} key={href}>
+              <IconButton size="small" href={href} aria-label={title} component={Link}>
+                <Component sx={{ opacity: !asPath.includes(href) ? HOVER_OPACITY : 1 }} />
+              </IconButton>
+            </TooltipArrow>
           ))}
-          <ProfileLink nickname={nickname} asPath={asPath} hoverOpacity={HOVER_OPACITY} />
+          <ProfileLink asPath={asPath} hoverOpacity={HOVER_OPACITY} />
         </Box>
       </Container>
     </Box>

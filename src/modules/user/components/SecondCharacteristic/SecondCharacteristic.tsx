@@ -74,14 +74,7 @@ function SecondCharacteristic({ confirmations, name, value }: CharacteristicProp
           <Typography variant="h5" component="b">
             {formattedValue}
           </Typography>
-          <Typography
-            sx={{
-              textTransform: 'none',
-              fontSize: 14,
-            }}
-          >
-            {buttonText}
-          </Typography>
+          <Typography sx={{ fontSize: 14 }}>{buttonText}</Typography>
         </Box>
       </Button>
       {modal === Completed && <NoCompletedModal onClose={onClose} />}

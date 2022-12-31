@@ -41,11 +41,7 @@ function Hashtag({ name, gradient, views }: HashtagProps) {
           overflow: 'hidden',
         }}
       >
-        <Typography
-          variant="subtitle1"
-          component="p"
-          sx={{ color: 'common.white', textTransform: 'none' }}
-        >
+        <Typography variant="subtitle1" component="p" sx={{ color: 'common.white' }}>
           <b>#{name}</b>
         </Typography>
         <Typography

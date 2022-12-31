@@ -4,15 +4,9 @@ import AppIcon from './AppIcon'
 
 interface AppMenuButtonProps extends Pick<IconButtonProps, 'title' | 'onClick'> {
   color?: TypographyProps['color']
-  horizontal?: boolean
 }
 
-function AppMenuButton({
-  title,
-  color = 'secondary.main',
-  horizontal,
-  ...restProps
-}: AppMenuButtonProps) {
+function AppMenuButton({ title, color = 'secondary.main', ...restProps }: AppMenuButtonProps) {
   return (
     <TooltipArrow title={title}>
       <IconButton
@@ -21,7 +15,7 @@ function AppMenuButton({
         sx={{ color, padding: '3px' }}
         {...restProps}
       >
-        <AppIcon name={`more_${horizontal ? 'horiz' : 'vert'}`} />
+        <AppIcon name="more_horiz" />
       </IconButton>
     </TooltipArrow>
   )

@@ -9,11 +9,7 @@ function UserPage() {
   const { data } = useUserPage()
   const metaTags = useUserMetaTags(data)
 
-  return (
-    <Page {...metaTags} user={data}>
-      {data && <UserModule user={data} />}
-    </Page>
-  )
+  return <Page {...metaTags}>{data && <UserModule user={data} />}</Page>
 }
 
 export const getServerSideProps: GetServerSideProps = async (ctx) => {

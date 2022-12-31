@@ -20,7 +20,7 @@ function ActionSubmit({ emoji, text, loadingText, disabled, onClick }: ActionSub
       disabled={disabled}
       startIcon={
         disabled ? (
-          <CircularProgress size="14.5px" color="inherit" />
+          <CircularProgress size={14.5} color="inherit" />
         ) : (
           <AppEmoji name={emoji} onlyEmoji />
         )

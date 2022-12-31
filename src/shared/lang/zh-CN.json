@@ -312,5 +312,6 @@
   "common.delete": "删除",
   "common.deleting": "删除",
   "common.delete-warning": "你确定要删除这张照片吗?",
-  "common.warning": "警告"
+  "common.warning": "警告",
+  "common.more": "更多"
 }

@@ -312,5 +312,6 @@
   "common.delete": "Удалить",
   "common.deleting": "Удаление",
   "common.delete-warning": "Вы уверены, что хотите удалить эту фотографию?",
-  "common.warning": "Предупреждение"
+  "common.warning": "Предупреждение",
+  "common.more": "Ещё"
 }

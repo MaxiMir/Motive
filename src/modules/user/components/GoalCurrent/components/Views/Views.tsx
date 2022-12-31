@@ -1,8 +1,8 @@
-import { Box, Typography } from '@mui/material'
+import { Box, Button } from '@mui/material'
 import { useGoalContext } from '@modules/user/components/GoalCurrent/hooks/useGoalContext'
 import useFormatNumber from '@hooks/useFormatNumber'
-import AppEmoji from '@ui/AppEmoji'
 import TooltipArrow from '@ui/styled/TooltipArrow'
+import AppIcon from '@ui/AppIcon'
 import { useMessages } from './hooks/useMessages'
 
 function Views() {
@@ -13,14 +13,16 @@ function Views() {
 
   return (
     <Box display="flex" justifyContent="flex-end">
-      <Box display="flex" alignItems="center" gap={1}>
-        <TooltipArrow title={messages.title}>
-          <AppEmoji name="views" variant="h5" sx={{ opacity: 0.5 }} />
-        </TooltipArrow>
-        <Typography variant="subtitle1" component="p" sx={{ color: '#545d62' }}>
+      <TooltipArrow title={messages.title}>
+        <Button
+          size="small"
+          aria-label={messages.title}
+          startIcon={<AppIcon name="visibility" />}
+          sx={{ color: 'zen.silent' }}
+        >
           {formattedViews}
-        </Typography>
-      </Box>
+        </Button>
+      </TooltipArrow>
     </Box>
   )
 }

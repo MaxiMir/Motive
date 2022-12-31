@@ -1,7 +1,7 @@
 import produce from 'immer'
 import { useIntl } from 'react-intl'
-import { useMutation, useQueryClient } from 'react-query'
-import { useUserContext } from '@modules/user/hooks'
+import { useMutation } from 'react-query'
+import { useMutateUserPage } from '@modules/user/hooks'
 import { UserPageDto } from '@features/page'
 import { SubscriptionService } from '@features/subscription'
 import useSnackbar from '@hooks/useSnackbar'
@@ -22,31 +22,16 @@ export const useSetFollowing = (userId: number, following: boolean): [boolean, (
   const { formatMessage } = useIntl()
   const client = useClient()
   const openSignIn = useOpenSignIn()
-  const queryClient = useQueryClient()
-  const { nickname } = useUserContext()
+  const [page, mutatePage] = useMutateUserPage()
   const [enqueueSnackbar] = useSnackbar()
   const { isLoading, mutate } = useMutation(
     ({ insert }: Options) => SubscriptionService.update(userId, insert),
     {
-      async onMutate({ insert }: Options) {
-        await queryClient.cancelQueries(nickname)
-        const previous = queryClient.getQueryData<UserPageDto>(nickname)
-
-        if (previous) {
-          queryClient.setQueryData(nickname, getNextState(previous, insert))
-        }
-
-        return { previous }
-      },
       onSuccess(_, { insert }) {
         const operation = insert ? 'add' : 'remove'
         const message = formatMessage({ id: `page.user.following.message-${operation}` })
+        mutatePage(getNextState(page, insert))
         enqueueSnackbar({ message, severity: 'success', icon: 'speaker' })
-      },
-      onError(_, _1, context) {
-        if (context?.previous) {
-          queryClient.setQueryData(nickname, context?.previous)
-        }
       },
     },
   )

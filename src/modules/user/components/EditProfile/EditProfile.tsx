@@ -1,7 +1,7 @@
 import dynamic from 'next/dynamic'
 import useToggle from '@hooks/useToggle'
 import AppIcon from '@ui/AppIcon'
-import BlueButton from '@ui/styled/BlueButton'
+import GreyButton from '@ui/styled/GreyButton'
 import { useMessages } from './hooks/useMessages'
 
 const ProfileModal = dynamic(() => import('./components/ProfileModal'))
@@ -12,24 +12,20 @@ function EditProfile() {
 
   return (
     <>
-      <BlueButton
-        variant="contained"
+      <GreyButton
         size="small"
-        aria-label={messages.buttonText}
         aria-haspopup="true"
         aria-expanded={open ? 'true' : undefined}
-        startIcon={<AppIcon name="edit" />}
+        startIcon={<AppIcon name="edit_note" />}
         sx={{
-          flex: {
-            xs: 1,
-            md: 'initial',
-          },
-          padding: '4px 8px',
+          minWidth: '96px',
+          height: 30,
+          paddingX: 1,
         }}
         onClick={toggle}
       >
         {messages.buttonText}
-      </BlueButton>
+      </GreyButton>
       {open && <ProfileModal onClose={toggle} />}
     </>
   )

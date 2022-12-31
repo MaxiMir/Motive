@@ -90,7 +90,7 @@ function TasksModal({ onClose }: TasksModalProps) {
                       <Button
                         variant="outlined"
                         size="small"
-                        sx={{ alignSelf: 'baseline', textTransform: 'none' }}
+                        sx={{ alignSelf: 'baseline' }}
                         onClick={() => push({ id: crypto.randomUUID(), name: '', date: undefined })}
                       >
                         {messages.addTaskText}

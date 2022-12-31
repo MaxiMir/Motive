@@ -29,10 +29,7 @@ function MainCharacteristic({ name, value }: MainCharacteristicProps) {
       <Button
         aria-haspopup="true"
         aria-expanded={modal ? 'true' : undefined}
-        sx={{
-          borderRadius: '50%',
-          textTransform: 'none',
-        }}
+        sx={{ borderRadius: '50%' }}
         onClick={onClick}
       >
         <AppCircle

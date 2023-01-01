@@ -9,12 +9,7 @@ interface AppMenuButtonProps extends Pick<IconButtonProps, 'title' | 'onClick'> 
 function AppMenuButton({ title, color = 'secondary.main', ...restProps }: AppMenuButtonProps) {
   return (
     <TooltipArrow title={title}>
-      <IconButton
-        aria-label={title}
-        aria-haspopup="true"
-        sx={{ color, padding: '3px' }}
-        {...restProps}
-      >
+      <IconButton aria-haspopup="true" sx={{ color, padding: '3px' }} {...restProps}>
         <AppIcon name="more_horiz" />
       </IconButton>
     </TooltipArrow>

@@ -5,7 +5,7 @@ import { ConfirmationDto } from '@features/confirmation'
 import useFullScreen from '@hooks/useFullScreen'
 import AvatarStatus from '@components/Avatar/AvatarStatus'
 
-const Stories = dynamic(() => import('@components/Stories'))
+const Stories = dynamic(() => import('@features/stories'))
 
 interface ConfirmationStoryProps {
   confirmation: ConfirmationDto

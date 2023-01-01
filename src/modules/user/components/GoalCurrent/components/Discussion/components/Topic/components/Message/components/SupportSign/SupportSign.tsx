@@ -16,7 +16,6 @@ function SupportSign({ name }: SupportSignProps) {
         display="flex"
         justifyContent="center"
         alignItems="center"
-        aria-label={messages.title}
         sx={{
           width: 21,
           height: 21,

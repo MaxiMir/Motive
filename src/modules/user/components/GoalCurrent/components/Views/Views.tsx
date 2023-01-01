@@ -14,12 +14,7 @@ function Views() {
   return (
     <Box display="flex" justifyContent="flex-end">
       <TooltipArrow title={messages.title}>
-        <Button
-          size="small"
-          aria-label={messages.title}
-          startIcon={<AppIcon name="visibility" />}
-          sx={{ color: 'zen.silent' }}
-        >
+        <Button size="small" startIcon={<AppIcon name="visibility" />} sx={{ color: 'zen.silent' }}>
           {formattedViews}
         </Button>
       </TooltipArrow>

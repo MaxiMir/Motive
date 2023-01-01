@@ -26,7 +26,6 @@ function LeftMenu() {
     <>
       <TooltipArrow title={messages.ariaLabel}>
         <IconButton
-          aria-label={messages.ariaLabel}
           aria-haspopup="true"
           aria-expanded={openMenu ? 'true' : undefined}
           onClick={toggleMenu}

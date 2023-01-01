@@ -18,12 +18,7 @@ function Notifications() {
   return (
     <>
       <TooltipArrow title={messages.title}>
-        <IconButton
-          aria-label={messages.title}
-          aria-haspopup="true"
-          aria-expanded={open ? 'true' : undefined}
-          onClick={toggle}
-        >
+        <IconButton aria-haspopup="true" aria-expanded={open ? 'true' : undefined} onClick={toggle}>
           <Badge color="error" badgeContent={badgeContent} variant="dot" invisible={false}>
             <AppIcon name="notifications_none" />
           </Badge>

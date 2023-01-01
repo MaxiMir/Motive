@@ -36,7 +36,7 @@ function MenuActions({ anchorEl, avatar, onOpen, onEdit, onDelete, onClose }: Me
         <AppMenuItem
           icon="delete"
           text={messages.deleteText}
-          color="'error.dark'"
+          color="error.dark"
           onClick={onDelete}
         />
       )}

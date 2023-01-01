@@ -31,7 +31,6 @@ function Menu() {
     <>
       <GreyButton
         size="small"
-        aria-label={messages.title}
         aria-haspopup="true"
         aria-expanded={anchorEl ? 'true' : undefined}
         endIcon={<AppIcon name="expand_more" />}

@@ -40,7 +40,6 @@ function AddGoal() {
         </Button>
       </Box>
       <Button
-        aria-label={messages.buttonText}
         aria-haspopup="true"
         aria-expanded={open ? 'true' : undefined}
         sx={{ padding: '4px' }}

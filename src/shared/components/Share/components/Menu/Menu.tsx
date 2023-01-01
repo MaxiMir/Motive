@@ -77,7 +77,7 @@ function Menu({ title, url, onCopyEnd, onCopyError, onClose }: MenuProps) {
             <ListItem button sx={{ height: 65 }} key={text} onClick={onClick}>
               <Box display="flex" alignItems="center" sx={{ width: 240, marginInline: 'auto' }}>
                 <ListItemIcon>
-                  <Icon color="secondary" />
+                  <Icon sx={{ color: 'primary.dark' }} />
                 </ListItemIcon>
                 <ListItemText primary={text} sx={{ color: 'creativity.light' }} />
               </Box>

@@ -28,7 +28,6 @@ function LikeButton({ message, answerFor }: LikeButtonProps) {
     <TooltipArrow title={messages.title}>
       <Button
         size="small"
-        aria-label={messages.ariaLabel}
         disabled={disabled || isLoading}
         startIcon={<AppEmoji name={icon} onlyEmoji />}
         color="inherit"

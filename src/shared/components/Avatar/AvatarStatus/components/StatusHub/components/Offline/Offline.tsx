@@ -35,7 +35,7 @@ function Offline({ lastSeen, device, children }: OfflineProps) {
             </Box>
           }
         >
-          <span>{shortDistance}</span>
+          <>{shortDistance}</>
         </TooltipArrow>
       }
       sx={{

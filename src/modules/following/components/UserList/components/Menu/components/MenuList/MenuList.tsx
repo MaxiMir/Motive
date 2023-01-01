@@ -15,7 +15,12 @@ function MenuList({ anchorEl, onShare, onRemove, onClose }: MenuListProps) {
   return (
     <Menu id="user-menu" anchorEl={anchorEl} open={!!anchorEl} onClick={onClose} onClose={onClose}>
       <AppMenuItem icon="share" text={messages.shareText} onClick={onShare} />
-      <AppMenuItem icon="remove_circle_outline" text={messages.removeText} onClick={onRemove} />
+      <AppMenuItem
+        icon="remove_circle_outline"
+        text={messages.removeText}
+        color="error.dark"
+        onClick={onRemove}
+      />
       <AppMenuItem icon="block" text={messages.cancelText} color="grey" onClick={onClose} />
     </Menu>
   )

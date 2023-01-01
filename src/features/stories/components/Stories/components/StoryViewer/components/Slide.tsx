@@ -1,7 +1,7 @@
 import Image from 'next/image'
 import { Box } from '@mui/material'
 import { getImageSrc } from '@href'
-import { Story } from '@components/Stories/types'
+import { Story } from '@features/stories/components/Stories/types'
 
 interface SlideProps {
   story: Story

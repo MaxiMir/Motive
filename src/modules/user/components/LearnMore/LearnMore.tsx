@@ -17,7 +17,6 @@ function LearnMore() {
       <LearnMoreButton
         size="small"
         variant="text"
-        aria-label={messages.info}
         aria-haspopup="true"
         aria-expanded={open ? 'true' : undefined}
         startIcon={<AppIcon name="info" />}

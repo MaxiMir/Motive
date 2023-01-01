@@ -10,8 +10,6 @@ import FollowingIcon from '@ui/icons/FollowingIcon'
 import TooltipArrow from '@ui/styled/TooltipArrow'
 import ProfileLink from './components/ProfileLink'
 
-const HOVER_OPACITY = 0.6
-
 function Footer() {
   const { formatMessage } = useIntl()
   const { asPath } = useRouter()
@@ -64,12 +62,16 @@ function Footer() {
         <Box display="flex" justifyContent="space-between" alignItems="center" height={52}>
           {routes.map(({ title, href, Component }) => (
             <TooltipArrow title={title} key={href}>
-              <IconButton size="small" href={href} aria-label={title} component={Link}>
-                <Component sx={{ opacity: !asPath.includes(href) ? HOVER_OPACITY : 1 }} />
+              <IconButton
+                href={href}
+                component={Link}
+                sx={{ opacity: !asPath.includes(href) ? 0.6 : 1 }}
+              >
+                <Component />
               </IconButton>
             </TooltipArrow>
           ))}
-          <ProfileLink asPath={asPath} hoverOpacity={HOVER_OPACITY} />
+          <ProfileLink />
         </Box>
       </Container>
     </Box>

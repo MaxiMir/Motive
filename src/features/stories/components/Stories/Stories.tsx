@@ -2,7 +2,7 @@ import { MutableRefObject } from 'react'
 import { Box, Portal } from '@mui/material'
 import { styled } from '@mui/system'
 import { UserBaseDto } from '@features/user'
-import { Story } from '@components/Stories/types'
+import { Story } from '@features/stories/components/Stories/types'
 import { useSlowClose } from './hooks/useSlowClose'
 import StoryViewer from './components/StoryViewer'
 
@@ -38,7 +38,7 @@ function Stories({
           left: 0,
           width: '100vw',
           height: '100%',
-          background: 'underlay',
+          backgroundColor: 'underlay',
           zIndex: 9999,
           userSelect: 'none',
           overflow: 'hidden',

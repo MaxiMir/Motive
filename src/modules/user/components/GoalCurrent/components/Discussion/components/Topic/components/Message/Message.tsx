@@ -76,12 +76,7 @@ function Message({ message, answerFor, supportFor, onReply }: MessageProps) {
       </Box>
       {onReply && (
         <Box pl={6}>
-          <Button
-            size="small"
-            aria-label={messages.replyText}
-            sx={{ color: 'support.main' }}
-            onClick={onReply}
-          >
+          <Button size="small" sx={{ color: 'support.main' }} onClick={onReply}>
             {messages.replyText}
           </Button>
         </Box>

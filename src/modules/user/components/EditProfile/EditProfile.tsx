@@ -4,7 +4,7 @@ import AppIcon from '@ui/AppIcon'
 import GreyButton from '@ui/styled/GreyButton'
 import { useMessages } from './hooks/useMessages'
 
-const ProfileModal = dynamic(() => import('./components/ProfileModal'))
+const EditModal = dynamic(() => import('./components/EditModal/EditModal'))
 
 function EditProfile() {
   const messages = useMessages()
@@ -26,7 +26,7 @@ function EditProfile() {
       >
         {messages.buttonText}
       </GreyButton>
-      {open && <ProfileModal onClose={toggle} />}
+      {open && <EditModal onClose={toggle} />}
     </>
   )
 }

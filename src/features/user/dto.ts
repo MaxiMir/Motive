@@ -22,6 +22,12 @@ export interface UserBaseDto {
   readonly location?: string
   readonly bio?: string
   readonly registered?: string
+  readonly links?: ExternalLink[]
+}
+
+export interface ExternalLink {
+  href: string
+  title: string
 }
 
 export type CreateUserDto = Omit<UserBaseDto, 'id' | 'nickname'>

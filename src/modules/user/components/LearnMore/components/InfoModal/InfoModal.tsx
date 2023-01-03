@@ -8,11 +8,11 @@ import Row from './components/Row'
 import { useMessages } from './hooks/useMessages'
 import { ROWS } from './helpers/table'
 
-interface ModalLearnMoreProps {
+interface InfoModalProps {
   onClose: () => void
 }
 
-function ModalLearnMore({ onClose }: ModalLearnMoreProps) {
+function InfoModal({ onClose }: InfoModalProps) {
   const messages = useMessages()
   const user = useUserContext()
   const userHref = getUserHref(user.nickname)
@@ -44,4 +44,4 @@ function ModalLearnMore({ onClose }: ModalLearnMoreProps) {
   )
 }
 
-export default ModalLearnMore
+export default InfoModal

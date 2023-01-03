@@ -7,11 +7,11 @@ import ActionCancel from '@components/Action/ActionCancel/ActionCancel'
 import { useMessages } from './hooks/useMessages'
 import { useForm } from './hooks/useForm'
 
-interface ProfileModalProps {
+interface EditModalProps {
   onClose: () => void
 }
 
-function ProfileModal({ onClose }: ProfileModalProps) {
+function EditModal({ onClose }: EditModalProps) {
   const messages = useMessages()
   const form = useForm(onClose)
   const { isSubmitting, handleSubmit } = form
@@ -76,4 +76,4 @@ function ProfileModal({ onClose }: ProfileModalProps) {
   )
 }
 
-export default ProfileModal
+export default EditModal

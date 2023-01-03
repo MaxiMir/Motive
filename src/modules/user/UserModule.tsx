@@ -14,6 +14,7 @@ import Avatar from './components/Avatar'
 import LearnMore from './components/LearnMore'
 import Menu from './components/Menu'
 
+const Link = dynamic(() => import('@mui/material/Link'))
 const EditProfile = dynamic(() => import('./components/EditProfile'))
 const ConfirmationList = dynamic(() => import('./components/ConfirmationList'))
 const GoalCurrent = dynamic(() => import('./components/GoalCurrent'))
@@ -33,6 +34,7 @@ function UserModule({ user }: UserModuleProps) {
     clientMembership,
     confirmations,
     motto,
+    links,
   } = user
   const clientPage = useCheckOnClientPage(id)
   const showConfirmationsList = !!confirmations.length || clientPage
@@ -104,6 +106,17 @@ function UserModule({ user }: UserModuleProps) {
               {name}
             </Typography>
             {motto && <Typography sx={{ fontSize: 14 }}>{motto}</Typography>}
+            {links?.map(({ href, title }) => (
+              <ExternalLink
+                href={href}
+                title={title}
+                rel="nofollow noopener noreferrer"
+                target="_blank"
+                key={href}
+              >
+                {href}
+              </ExternalLink>
+            ))}
             <LearnMore />
           </Box>
         </Box>
@@ -149,6 +162,14 @@ const UserContainer = styled(AppContainer)({
 
 const DashedDivider = styled(Divider)({
   borderStyle: 'dashed',
+})
+
+const ExternalLink = styled(Link)({
+  fontSize: 14,
+  textDecoration: 'none',
+  '&:hover': {
+    textDecoration: 'underline',
+  },
 })
 
 export default UserModule

@@ -6,7 +6,7 @@ import useToggle from '@hooks/useToggle'
 import AppIcon from '@ui/AppIcon'
 import { useMessages } from './hooks/useMessages'
 
-const ModalLearnMore = dynamic(() => import('./components/ModalLearnMore'))
+const InfoModal = dynamic(() => import('./components/InfoModal'))
 
 function LearnMore() {
   const messages = useMessages()
@@ -25,7 +25,7 @@ function LearnMore() {
       >
         {messages.info}
       </LearnMoreButton>
-      {open && <ModalLearnMore onClose={toggle} />}
+      {open && <InfoModal onClose={toggle} />}
     </>
   )
 }

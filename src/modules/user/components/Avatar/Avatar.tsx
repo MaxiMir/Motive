@@ -1,11 +1,13 @@
-import { MouseEvent, useState } from 'react'
+import { MouseEvent, useId, useState } from 'react'
 import dynamic from 'next/dynamic'
+import { Menu } from '@mui/material'
 import { useUserContext } from '@modules/user/hooks'
 import useToggle from '@hooks/useToggle'
+import AppMenuItem from '@ui/AppMenuItem'
 import AvatarStatus from '@components/Avatar/AvatarStatus'
+import { useMessages } from './hooks/useMessages'
 
 const AppLightBox = dynamic(() => import('@ui/AppLightBox'))
-const MenuActions = dynamic(() => import('./components/MenuActions'))
 const EditModal = dynamic(() => import('./components/EditModal'))
 const DeleteModal = dynamic(() => import('./components/DeleteModal'))
 
@@ -14,13 +16,17 @@ interface AvatarProps {
 }
 
 function Avatar({ clientPage }: AvatarProps) {
+  const id = useId()
+  const menuId = useId()
+  const messages = useMessages()
   const { name, avatar, online, lastSeen, device } = useUserContext()
   const [index, setIndex] = useState<number>()
-  const [openEdit, toggleEdit] = useToggle()
-  const [openDelete, toggleDelete] = useToggle()
+  const [editing, toggleEditing] = useToggle()
+  const [deleting, toggleDeleting] = useToggle()
   const [anchorEl, setAnchorEl] = useState<HTMLElement | null>(null)
   const sources = !avatar ? null : [avatar]
   const disabled = !sources && !clientPage
+  const open = Boolean(anchorEl)
 
   const openPhoto = () => setIndex(0)
 
@@ -46,22 +52,40 @@ function Avatar({ clientPage }: AvatarProps) {
         online={online}
         lastSeen={lastSeen}
         device={device}
-        disabled={disabled}
-        onClick={onClick}
+        buttonProps={{
+          disabled,
+          id,
+          'aria-controls': open ? menuId : undefined,
+          'aria-haspopup': 'true',
+          'aria-expanded': open ? 'true' : undefined,
+          onClick,
+        }}
       />
-      {anchorEl && (
-        <MenuActions
-          anchorEl={anchorEl}
-          avatar={avatar}
-          onOpen={openPhoto}
-          onEdit={toggleEdit}
-          onDelete={toggleDelete}
-          onClose={onClose}
-        />
-      )}
+      <Menu
+        id={menuId}
+        anchorEl={anchorEl}
+        open={open}
+        MenuListProps={{
+          'aria-labelledby': id,
+        }}
+        onClick={onClose}
+        onClose={onClose}
+      >
+        {avatar && <AppMenuItem icon="photo" text={messages.openText} onClick={openPhoto} />}
+        <AppMenuItem icon="edit" text={messages.editText} onClick={toggleEditing} />
+        {avatar && (
+          <AppMenuItem
+            icon="delete"
+            text={messages.deleteText}
+            color="error.dark"
+            onClick={toggleDeleting}
+          />
+        )}
+        <AppMenuItem icon="block" text={messages.cancelText} color="grey" onClick={onClose} />
+      </Menu>
       {sources && <AppLightBox sources={sources} index={index} setIndex={setIndex} />}
-      {openEdit && <EditModal onClose={toggleEdit} />}
-      {openDelete && <DeleteModal onClose={toggleDelete} />}
+      {editing && <EditModal onClose={toggleEditing} />}
+      {deleting && <DeleteModal onClose={toggleDeleting} />}
     </>
   )
 }

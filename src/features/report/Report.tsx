@@ -7,7 +7,7 @@ import { useSendReport } from './hooks/useSendReport'
 interface ReportProps {
   entityId: number
   type: ReportType
-  anchorEl: HTMLElement
+  anchorEl: HTMLElement | null
   onClose: () => void
 }
 
@@ -17,7 +17,7 @@ function Report({ entityId, type, anchorEl, onClose }: ReportProps) {
   const onClick = useSendReport(entityId, type, onClose)
 
   return (
-    <Menu id="report-menu" anchorEl={anchorEl} open={!!anchorEl} onClose={onClose}>
+    <Menu open anchorEl={anchorEl} onClose={onClose}>
       <MenuItem disabled>{messages.title}:</MenuItem>
       {messages.reports.map((name) => (
         <AppMenuItem icon="outlined_flag" text={name} key={name} onClick={() => onClick(name)} />

@@ -12,7 +12,7 @@ import Following from './components/Following'
 import MainCharacteristic from './components/MainCharacteristic'
 import Avatar from './components/Avatar'
 import LearnMore from './components/LearnMore'
-import Menu from './components/Menu'
+import MenuActions from './components/MenuActions'
 
 const Link = dynamic(() => import('@mui/material/Link'))
 const EditProfile = dynamic(() => import('./components/EditProfile'))
@@ -89,7 +89,7 @@ function UserModule({ user }: UserModuleProps) {
               <Nickname nickname={nickname} />
               <Box display="flex" alignItems="center" gap={1}>
                 {clientPage ? <EditProfile /> : <Following />}
-                <Menu />
+                <MenuActions />
               </Box>
             </Box>
             <Box display="flex" justifyContent="space-between" gap={2} mb={1}>

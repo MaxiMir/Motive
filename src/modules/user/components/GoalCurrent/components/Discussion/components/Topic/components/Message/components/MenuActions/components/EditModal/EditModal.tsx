@@ -9,12 +9,12 @@ import ActionCancel from '@components/Action/ActionCancel/ActionCancel'
 import { useMessages } from './hooks/useMessages'
 import { useForm } from './hooks/useForm'
 
-interface EditMessageModalProps {
+interface EditModalProps {
   message: MessageDto
   onClose: () => void
 }
 
-function EditMessageModal({ message, onClose }: EditMessageModalProps) {
+function EditModal({ message, onClose }: EditModalProps) {
   const messages = useMessages()
   const form = useForm(message, onClose)
   const { isSubmitting, handleSubmit } = form
@@ -66,4 +66,4 @@ function EditMessageModal({ message, onClose }: EditMessageModalProps) {
   )
 }
 
-export default EditMessageModal
+export default EditModal

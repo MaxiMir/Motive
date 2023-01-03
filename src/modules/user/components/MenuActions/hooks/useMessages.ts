@@ -1,11 +1,12 @@
 import { useIntl } from 'react-intl'
 
-export const useMessages = () => {
+export const useMessages = (report: boolean) => {
   const { formatMessage } = useIntl()
 
   return {
+    title: formatMessage({ id: 'common.more' }),
     shareText: formatMessage({ id: 'common.share' }),
-    removeText: formatMessage({ id: 'common.remove' }),
+    reportText: !report ? '' : formatMessage({ id: 'common.report' }),
     cancelText: formatMessage({ id: 'common.cancel' }),
   }
 }

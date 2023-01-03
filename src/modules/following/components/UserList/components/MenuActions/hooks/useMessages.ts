@@ -5,5 +5,8 @@ export const useMessages = () => {
 
   return {
     title: formatMessage({ id: 'page.following.menu.title' }),
+    shareText: formatMessage({ id: 'common.share' }),
+    removeText: formatMessage({ id: 'common.remove' }),
+    cancelText: formatMessage({ id: 'common.cancel' }),
   }
 }

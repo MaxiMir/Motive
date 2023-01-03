@@ -9,12 +9,12 @@ import { checkOnDisabled } from './helper'
 import { useMessages } from './hooks/useMessages'
 import { useSetLike } from './hooks/useSetLike'
 
-interface LikeButtonProps {
+interface LikeProps {
   message: MessageDto
   answerFor?: number
 }
 
-function LikeButton({ message, answerFor }: LikeButtonProps) {
+function Like({ message, answerFor }: LikeProps) {
   const { likeCount, type } = message
   const client = useClient()
   const disabled = checkOnDisabled(message, client)
@@ -45,4 +45,4 @@ function LikeButton({ message, answerFor }: LikeButtonProps) {
   )
 }
 
-export default LikeButton
+export default Like

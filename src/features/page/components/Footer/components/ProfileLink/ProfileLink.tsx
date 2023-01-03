@@ -3,8 +3,8 @@ import useClient from '@hooks/useClient'
 import TooltipArrow from '@ui/styled/TooltipArrow'
 import { useMessages } from './hooks/useMessages'
 
-const SignInButton = dynamic(() => import('./components/SignInButton'))
-const UserButton = dynamic(() => import('./components/UserButton'))
+const SignIn = dynamic(() => import('./components/SignIn'))
+const User = dynamic(() => import('./components/User'))
 
 function ProfileLink() {
   const client = useClient()
@@ -12,7 +12,7 @@ function ProfileLink() {
 
   return (
     <TooltipArrow title={messages.title}>
-      {!client ? <SignInButton /> : <UserButton client={client} />}
+      {!client ? <SignIn /> : <User client={client} />}
     </TooltipArrow>
   )
 }

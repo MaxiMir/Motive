@@ -32,7 +32,7 @@ function RatingModule({ tab, ...props }: RatingModuleProps) {
           initial={tab}
           ariaLabel={messages.ariaLabel}
           tabs={MAIN_CHARACTERISTICS.map((name) => (
-            <TabName name={name} emoji={name} key={name} />
+            <TabName name={name} key={name} />
           ))}
           content={MAIN_CHARACTERISTICS.map((name) => (
             <TabContent name={name} users={props[name]} key={name} />

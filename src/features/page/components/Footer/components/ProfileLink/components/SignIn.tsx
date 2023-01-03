@@ -2,7 +2,7 @@ import { IconButton } from '@mui/material'
 import { useOpenSignIn } from '@features/signin'
 import ProfileIcon from '@ui/icons/ProfileIcon'
 
-function SignInButton() {
+function SignIn() {
   const openSignIn = useOpenSignIn()
 
   const onClick = () => openSignIn({ callbackUrl: '/' })
@@ -14,4 +14,4 @@ function SignInButton() {
   )
 }
 
-export default SignInButton
+export default SignIn

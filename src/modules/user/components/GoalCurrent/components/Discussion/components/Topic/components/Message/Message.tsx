@@ -7,7 +7,7 @@ import useFormatDistance from '@hooks/useFormatDistance'
 import UserLink from '@components/User/UserLink'
 import { useMessages } from './hooks/useMessages'
 import Menu from './components/Menu'
-import LikeButton from './components/LikeButton'
+import Like from './components/Like'
 
 const Button = dynamic(() => import('@mui/material/Button'))
 const AppMarkdown = dynamic(() => import('@ui/AppMarkdown'))
@@ -67,7 +67,7 @@ function Message({ message, answerFor, supportFor, onReply }: MessageProps) {
           </Box>
           <AppMarkdown text={text} />
           <Box display="flex" justifyContent="space-between" alignItems="center">
-            <LikeButton message={message} answerFor={answerFor} />
+            <Like message={message} answerFor={answerFor} />
             <Box component="span" sx={{ fontSize: 11, color: 'zen.silent' }}>
               {dateDistance}
             </Box>

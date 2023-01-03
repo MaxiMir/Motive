@@ -3,11 +3,11 @@ import { Box } from '@mui/material'
 import { ClientDto, getUserHref } from '@features/user'
 import AvatarStatus from '@components/Avatar/AvatarStatus'
 
-interface UserButtonProps {
+interface UserProps {
   client: ClientDto
 }
 
-function UserButton({ client }: UserButtonProps) {
+function User({ client }: UserProps) {
   const { asPath, push } = useRouter()
   const href = getUserHref(client.nickname)
   const selected = asPath.includes(href)
@@ -21,4 +21,4 @@ function UserButton({ client }: UserButtonProps) {
   )
 }
 
-export default UserButton
+export default User

@@ -1,6 +1,9 @@
 
 [//]: # (TODO)
 * nanoid()
+* useTryFullScreen
+* тип сообщений в обсуждении
+* модалки как в инсте
 * (2) в title meta
 * https://mui.com/material-ui/react-menu/#basic-menu aria
 * TODO disabled control

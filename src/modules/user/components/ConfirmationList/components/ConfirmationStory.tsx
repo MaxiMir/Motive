@@ -2,7 +2,8 @@ import dynamic from 'next/dynamic'
 import { Box, Button, Typography } from '@mui/material'
 import { useUserContext } from '@modules/user/hooks'
 import { ConfirmationDto } from '@features/confirmation'
-import useFullScreen from '@hooks/useFullScreen'
+import useTryFullScreen from '@hooks/useTryFullScreen'
+import useToggle from '@hooks/useToggle'
 import AvatarStatus from '@components/Avatar/AvatarStatus'
 
 const Stories = dynamic(() => import('@features/stories'))
@@ -13,9 +14,20 @@ interface ConfirmationStoryProps {
 
 function ConfirmationStory({ confirmation }: ConfirmationStoryProps) {
   const user = useUserContext()
-  const { ref, enabled, open, onOpen, onClose } = useFullScreen()
+  const [open, toggle] = useToggle()
+  const { ref, supported, enter, exit } = useTryFullScreen()
   const [mainPhoto] = confirmation.photos
   const stories = [mainPhoto] // TODO confirmation.photos.map
+
+  const onOpen = () => {
+    toggle()
+    enter()
+  }
+
+  const onClose = () => {
+    exit()
+    toggle()
+  }
 
   return (
     <>
@@ -60,8 +72,7 @@ function ConfirmationStory({ confirmation }: ConfirmationStoryProps) {
           stories={stories}
           title={confirmation.goal.name}
           date={confirmation.end}
-          fullscreenEnabled={enabled}
-          fullscreenRef={ref}
+          fullscreen={{ ref, supported }}
           onClose={onClose}
         />
       )}

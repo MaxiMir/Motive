@@ -21,6 +21,7 @@ function FeedbackAdd({ forTomorrow }: FeedbackAddProps) {
         <Button
           variant="outlined"
           color="secondary"
+          size="small"
           startIcon={<AppIcon name="psychology" />}
           disabled={forTomorrow}
           aria-haspopup="true"

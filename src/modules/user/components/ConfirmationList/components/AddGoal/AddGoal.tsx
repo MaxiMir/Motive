@@ -35,7 +35,7 @@ function AddGoal() {
           onClick={toggle}
         >
           <Box display="flex" justifyContent="center" alignItems="center" width={65} height={65}>
-            <AppIcon name="add" />
+            <AppIcon name="data_saver_on" />
           </Box>
         </Button>
       </Box>

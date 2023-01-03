@@ -38,6 +38,7 @@ function MenuModal({ onOpenSettings, onClose }: MenuModalProps) {
       <Box
         role="presentation"
         sx={{ minWidth: 230, height: '100%', padding: '60px 0 8px' }}
+        component="nav"
         onKeyDown={onKeyDown}
       >
         <Box display="flex" flexDirection="column" justifyContent="space-between" height="100%">

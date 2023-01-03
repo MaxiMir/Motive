@@ -17,15 +17,15 @@ function Pointers({ count, onClose }: PointersProps): JSX.Element {
         top: 0,
         left: {
           xs: 0,
-          xl: 'calc(50vw - 50vh)',
+          xl: 'calc(50dvw - 50dvh)',
         },
         right: {
           xs: 0,
-          xl: 'calc(50vw - 50vh)',
+          xl: 'calc(50dvw - 50dvh)',
         },
         width: {
-          xs: '100vw',
-          xl: '100vh',
+          xs: '100dvw',
+          xl: '100dvh',
         },
         display: 'table',
         tableLayout: 'fixed',
@@ -40,8 +40,8 @@ function Pointers({ count, onClose }: PointersProps): JSX.Element {
           display: 'table-row',
         }}
       >
-        {list.map((item) => (
-          <Progress key={item} onEnd={onClose} />
+        {list.map((_, index) => (
+          <Progress key={index} onEnd={onClose} />
         ))}
       </Box>
     </Box>

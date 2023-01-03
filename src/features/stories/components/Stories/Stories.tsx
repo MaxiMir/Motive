@@ -11,33 +11,28 @@ interface StoryProps {
   user: UserBaseDto
   title: string
   date: string
-  fullscreenEnabled: boolean
-  fullscreenRef: MutableRefObject<HTMLDivElement | null>
+  fullscreen: {
+    ref: MutableRefObject<HTMLDivElement | null>
+    supported: boolean
+  }
   onClose: () => void
 }
 
-function Stories({
-  stories,
-  title,
-  date,
-  user,
-  fullscreenEnabled,
-  fullscreenRef,
-  onClose,
-}: StoryProps) {
+function Stories({ stories, title, date, user, fullscreen, onClose }: StoryProps) {
   const [closing, closeSlow] = useSlowClose(onClose)
 
   return (
     <Portal>
       <Box
         id="zuck-modal"
-        ref={fullscreenRef}
+        ref={fullscreen.ref}
+        role="dialog"
         sx={{
           position: 'fixed',
           top: 0,
           left: 0,
-          width: '100vw',
-          height: '100%',
+          width: '100dvw',
+          height: '100dvh',
           backgroundColor: 'underlay',
           zIndex: 9999,
           userSelect: 'none',
@@ -45,7 +40,7 @@ function Stories({
           transformOrigin: 'center',
           transition: '0.25s',
           transform: closing ? 'translateY(100%)' : undefined,
-          animation: fullscreenEnabled ? undefined : 'open 0.25s ease-out',
+          animation: fullscreen.supported ? undefined : 'open 0.25s ease-out',
           '@keyframes open': {
             from: {
               transform: 'scale(0.01)',
@@ -55,13 +50,12 @@ function Stories({
             },
           },
         }}
-        role="dialog"
       >
         <Container
           id="zuck-modal-content"
           sx={{
-            width: '100vw',
-            perspective: '1000vw',
+            width: '100dvw',
+            perspective: '1000dvw',
             transform: 'scale(0.95)',
             perspectiveOrigin: '50% 50%',
             transition: '0.3s',
@@ -70,7 +64,7 @@ function Stories({
           <Container
             id="zuck-modal-slider-stories"
             sx={{
-              width: '300vw',
+              width: '300dvw',
               transform: 'rotateY(0deg)',
               transformStyle: 'preserve-3d',
               transitionDuration: '300ms',

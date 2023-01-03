@@ -21,11 +21,11 @@ function StoryViewer({ stories, user, title, date, onClose }: StoryViewerProps) 
     <Box
       className="story-viewer viewing"
       sx={{
-        width: '100vw',
+        width: '100dvw',
         height: '100%',
         backfaceVisibility: 'hidden',
-        left: '100vw',
-        transform: 'translateZ(50vw)',
+        left: '100dvw',
+        transform: 'translateZ(50dvw)',
       }}
     >
       <Top user={user} title={title} date={date} onClose={onClose} />
@@ -36,7 +36,7 @@ function StoryViewer({ stories, user, title, date, onClose }: StoryViewerProps) 
           position: 'absolute',
           top: 0,
           bottom: 0,
-          width: '100vw',
+          width: '100dvw',
           height: '100%',
           overflow: 'hidden',
         }}

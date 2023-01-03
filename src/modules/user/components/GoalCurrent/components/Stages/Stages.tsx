@@ -1,7 +1,9 @@
 import dynamic from 'next/dynamic'
 import { Step, StepContent, Stepper } from '@mui/material'
+import { teal } from '@mui/material/colors'
 import { useGoalContext } from '@modules/user/components/GoalCurrent/hooks/useGoalContext'
 import useToggle from '@hooks/useToggle'
+import AppIcon from '@ui/AppIcon'
 import StageLabel from './components/StageLabel'
 import { useMessages } from './hooks/useMessages'
 
@@ -44,11 +46,18 @@ function Stages({ forTomorrow, completeStage }: StagesProps) {
                 <TooltipArrow title={messages.title}>
                   <Button
                     variant="outlined"
-                    color="success"
                     size="small"
                     disabled={forTomorrow}
                     aria-haspopup="true"
                     aria-expanded={open ? 'true' : undefined}
+                    startIcon={<AppIcon name="done_outline" />}
+                    sx={{
+                      color: teal[600],
+                      borderColor: teal[600],
+                      '&:hover': {
+                        borderColor: teal[400],
+                      },
+                    }}
                     onClick={toggle}
                   >
                     {messages.buttonText}

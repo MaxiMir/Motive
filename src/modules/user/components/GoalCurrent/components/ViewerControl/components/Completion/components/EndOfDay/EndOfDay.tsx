@@ -1,9 +1,9 @@
 import dynamic from 'next/dynamic'
-import { Button } from '@mui/material'
 import { MemberDto } from '@features/member'
 import { getTomorrow } from '@lib/date'
 import AppEmoji from '@ui/AppEmoji'
 import TooltipArrow from '@ui/styled/TooltipArrow'
+import BlueButton from '@ui/styled/BlueButton'
 import { useMessages } from './hooks/useMessages'
 import { useSendEndOfDay } from './hooks/useSendEndOfDay'
 
@@ -25,9 +25,8 @@ function EndOfDay({ nextDayId, forTomorrow, clientMember }: EndOfDayProps) {
 
   return (
     <TooltipArrow title={messages.title}>
-      <Button
-        variant="outlined"
-        color="primary"
+      <BlueButton
+        size="small"
         disabled={forTomorrow || isLoading}
         startIcon={
           isLoading ? (
@@ -39,7 +38,7 @@ function EndOfDay({ nextDayId, forTomorrow, clientMember }: EndOfDayProps) {
         onClick={onClick}
       >
         {messages.buttonText}
-      </Button>
+      </BlueButton>
     </TooltipArrow>
   )
 }

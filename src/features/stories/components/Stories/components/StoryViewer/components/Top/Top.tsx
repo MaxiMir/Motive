@@ -1,6 +1,5 @@
 import Link from 'next/link'
 import { Box, IconButton, Typography } from '@mui/material'
-import { styled } from '@mui/system'
 import { UserBaseDto, getUserHref } from '@features/user'
 import useFormatDistance from '@hooks/useFormatDistance'
 import AppIcon from '@ui/AppIcon'
@@ -51,14 +50,17 @@ function Top({ user, title, date, onClose }: TopProps): JSX.Element {
           <UserLink name={name} avatar={avatar} href={href} size={42} />
         </Box>
         <Box display="flex" flexDirection="column">
-          <Box component="b">
-            <Link href={href}>{name}</Link>
-          </Box>
-          <Box display="flex" alignItems="center" gap={1}>
-            <TextTitle sx={{ color: 'motivation.light' }}>
-              <b>{title}</b>
-            </TextTitle>
-            <Typography variant="caption" sx={{ color: 'text.disabled' }}>
+          <Typography>
+            <b>{title}</b>
+          </Typography>
+          <Box display="flex" alignItems="baseline" gap={1}>
+            <Box
+              component="span"
+              sx={{ fontSize: 14, textShadow: '0px 1px 3px rgba(0, 0, 0, 0.36)' }}
+            >
+              <Link href={href}>{name}</Link>
+            </Box>
+            <Typography variant="caption" sx={{ color: 'rgba(255, 255, 255, 0.72)' }}>
               {distance}
             </Typography>
           </Box>
@@ -81,10 +83,5 @@ function Top({ user, title, date, onClose }: TopProps): JSX.Element {
     </Box>
   )
 }
-
-const TextTitle = styled(Typography)({
-  fontSize: 14,
-  fontWeight: 'bold',
-})
 
 export default Top

@@ -208,7 +208,7 @@ export const getDesignTokens = (mode: PaletteMode): ThemeOptions => {
           '#__next': {
             display: 'flex',
             flexDirection: 'column',
-            height: '100vh',
+            height: '100dvh',
           },
           '.ps .ps__rail-y:hover, .ps .ps--clicking': {
             background: 'transparent!important',

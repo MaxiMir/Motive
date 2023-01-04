@@ -20,7 +20,7 @@ function SearchForm({ q = '' }: SearchFormProps) {
 
   return (
     <FormikProvider value={form}>
-      <Form autoComplete="off">
+      <Form>
         <Field
           name="q"
           label={messages.label}

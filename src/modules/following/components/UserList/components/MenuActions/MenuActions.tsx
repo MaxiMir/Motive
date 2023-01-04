@@ -1,11 +1,12 @@
 import { useState, MouseEvent, useId } from 'react'
 import dynamic from 'next/dynamic'
-import { Menu } from '@mui/material'
+import { IconButton, Menu } from '@mui/material'
 import { UserDto, getUserHref } from '@features/user'
 import { useRemoveFollowing } from '@features/subscription'
 import useToggle from '@hooks/useToggle'
-import AppMenuButton from '@ui/AppMenuButton'
 import AppMenuItem from '@ui/AppMenuItem'
+import AppIcon from '@ui/AppIcon'
+import TooltipArrow from '@ui/styled/TooltipArrow'
 import { useMessages } from './hooks/useMessages'
 
 const Share = dynamic(() => import('@components/Share'))
@@ -22,7 +23,7 @@ function MenuActions({ user, index }: MenuActionsProps) {
   const messages = useMessages()
   const [anchorEl, setAnchorEl] = useState<HTMLElement | null>(null)
   const [sharing, toggleSharing] = useToggle()
-  const removeFollowing = useRemoveFollowing()
+  const [isLoading, removeFollowing] = useRemoveFollowing()
   const href = getUserHref(nickname)
   const open = Boolean(anchorEl)
 
@@ -34,14 +35,18 @@ function MenuActions({ user, index }: MenuActionsProps) {
 
   return (
     <>
-      <AppMenuButton
-        id={id}
-        title={messages.title}
-        aria-controls={open ? menuId : undefined}
-        aria-haspopup="true"
-        aria-expanded={open ? 'true' : undefined}
-        onClick={onOpen}
-      />
+      <TooltipArrow title={messages.title}>
+        <IconButton
+          id={id}
+          size="small"
+          aria-controls={open ? menuId : undefined}
+          aria-haspopup="true"
+          aria-expanded={open ? 'true' : undefined}
+          onClick={onOpen}
+        >
+          <AppIcon name="more_horiz" />
+        </IconButton>
+      </TooltipArrow>
       <Menu
         id={menuId}
         anchorEl={anchorEl}
@@ -57,6 +62,7 @@ function MenuActions({ user, index }: MenuActionsProps) {
           icon="remove_circle_outline"
           text={messages.removeText}
           color="error.dark"
+          disabled={isLoading}
           onClick={onRemove}
         />
         <AppMenuItem icon="block" text={messages.cancelText} color="grey" onClick={onClose} />

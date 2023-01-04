@@ -70,7 +70,7 @@ function TasksModal({ onClose }: TasksModalProps) {
     >
       <Box display="flex" flexDirection="column" gap={3}>
         <FormikProvider value={form}>
-          <Form autoComplete="off">
+          <Form>
             <Box display="flex" flexDirection="column" gap={3}>
               <Box>
                 <FieldArray name="tasks">

@@ -25,7 +25,7 @@ function Loader({ count, withInput }: LoaderProps) {
           <Skeleton variant="circular" animation="wave" width={38} height={38} />
           <Skeleton
             variant="rounded"
-            width={220}
+            width="100%"
             height={120}
             sx={{
               borderBottomLeftRadius: 4,

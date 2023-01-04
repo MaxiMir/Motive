@@ -30,7 +30,7 @@ function RatingModule({ tab, ...props }: RatingModuleProps) {
       <Box display="flex" flexDirection="column" gap={2} mt={4} mb={3}>
         <AppTabs
           initial={tab}
-          ariaLabel={messages.ariaLabel}
+          aria-label={messages.ariaLabel}
           tabs={MAIN_CHARACTERISTICS.map((name) => (
             <TabName name={name} key={name} />
           ))}

@@ -54,7 +54,7 @@ function JoinModal({ onClose }: JoinModalProps) {
       onClose={onClose}
     >
       <FormikProvider value={form}>
-        <Form autoComplete="off">
+        <Form>
           <RadioGroup name="dayId" value={values.dayId?.toString()} onChange={onChange}>
             <FormControlLabel
               value={disableBeginning ? 'none' : beginningDay.toString()}

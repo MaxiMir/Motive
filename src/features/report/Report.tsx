@@ -5,16 +5,16 @@ import { useMessages } from './hooks/useMessages'
 import { useSendReport } from './hooks/useSendReport'
 
 interface ReportProps {
-  entityId: number
+  id: number
   type: ReportType
   anchorEl: HTMLElement | null
   onClose: () => void
 }
 
-function Report({ entityId, type, anchorEl, onClose }: ReportProps) {
+function Report({ id, type, anchorEl, onClose }: ReportProps) {
   const messages = useMessages()
 
-  const onClick = useSendReport(entityId, type, onClose)
+  const onClick = useSendReport(id, type, onClose)
 
   return (
     <Menu open anchorEl={anchorEl} onClose={onClose}>

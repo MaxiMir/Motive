@@ -27,7 +27,7 @@ export interface UserBaseDto {
 
 export interface ExternalLink {
   href: string
-  title: string
+  title?: string
 }
 
 export type CreateUserDto = Omit<UserBaseDto, 'id' | 'nickname'>
@@ -39,6 +39,7 @@ export interface UpdateUserDto {
   motto?: string
   location?: string
   bio?: string
+  links?: ExternalLink[]
 }
 
 export interface UserDto extends UserBaseDto {

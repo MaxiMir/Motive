@@ -26,13 +26,13 @@ const getNextState = (page: FollowingPageDto, user: UserDto, index: number, add:
     draft.following.splice(index, 1)
   })
 
-export const useRemoveFollowing = () => {
+export const useRemoveFollowing = (): [boolean, (user: UserDto, index: number) => void] => {
   const client = useClient()
   const { formatMessage } = useIntl()
   const openSignIn = useOpenSignIn()
   const queryClient = useQueryClient()
   const [enqueueSnackbar, closeSnackbar] = useSnackbar()
-  const { mutate } = useMutation(
+  const { isLoading, mutate } = useMutation(
     ({ user, insert }: Options) => SubscriptionService.update(user.id, insert),
     {
       async onMutate({ user, index, insert }) {
@@ -76,7 +76,7 @@ export const useRemoveFollowing = () => {
     mutate({ user, index, insert: true })
   }
 
-  return (user: UserDto, index: number) => {
+  const removeFollowing = (user: UserDto, index: number) => {
     if (!client) {
       openSignIn({ callbackUrl: window.location.href })
       return
@@ -84,4 +84,6 @@ export const useRemoveFollowing = () => {
 
     mutate({ user, index, insert: false })
   }
+
+  return [isLoading, removeFollowing]
 }

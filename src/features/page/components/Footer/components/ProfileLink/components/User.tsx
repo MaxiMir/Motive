@@ -16,7 +16,7 @@ function User({ client }: UserProps) {
 
   return (
     <Box sx={{ opacity: !selected ? 0.6 : 1 }}>
-      <AvatarStatus name={client.name} src={client.avatar} size={24} onClick={onClick} />
+      <AvatarStatus name={client.name} src={client.avatar} size={24} buttonProps={{ onClick }} />
     </Box>
   )
 }

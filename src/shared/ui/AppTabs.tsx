@@ -1,14 +1,13 @@
 import { ChangeEvent, useState } from 'react'
-import { Container, Box, Tab, Tabs, tabsClasses } from '@mui/material'
+import { Container, Box, Tab, Tabs, tabsClasses, TabsProps } from '@mui/material'
 
-interface AppTabsProps {
+interface AppTabsProps extends Pick<TabsProps, 'aria-label'> {
   tabs: string[] | JSX.Element[]
   content: string[] | JSX.Element[]
-  ariaLabel: string
   initial?: number
 }
 
-function AppTabs({ tabs, content, ariaLabel, initial = 0 }: AppTabsProps) {
+function AppTabs({ tabs, content, initial = 0, ...tabsProps }: AppTabsProps) {
   const [value, setValue] = useState(initial)
 
   const getA11yTabProps = (index: number) => ({
@@ -35,7 +34,7 @@ function AppTabs({ tabs, content, ariaLabel, initial = 0 }: AppTabsProps) {
       >
         <Tabs
           value={value}
-          aria-label={ariaLabel}
+          {...tabsProps}
           variant="fullWidth"
           sx={(theme) => ({
             [`& .${tabsClasses.indicator}`]: {

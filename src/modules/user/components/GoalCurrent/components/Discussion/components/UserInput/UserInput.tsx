@@ -29,7 +29,7 @@ function UserInput({ user, type, topicId, onAdd }: UserInputProps) {
 
   return (
     <FormikProvider value={form}>
-      <Form autoComplete="off">
+      <Form>
         <Box display="flex" gap={2} flex={1} mb={2} pr={2}>
           <UserLink name={name} avatar={avatar} href={href} size={32} />
           <Field

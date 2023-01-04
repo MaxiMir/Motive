@@ -45,7 +45,7 @@ function ModalFeedback({ onClose }: FeedbackModalProps) {
       onClose={onClose}
     >
       <FormikProvider value={form}>
-        <Form autoComplete="off">
+        <Form>
           <Box display="flex" flexDirection="column" alignItems="center" gap={3}>
             <Box display="flex" flexDirection="column" alignItems="center" gap={1}>
               <AppShakeIcon name="congratulations" />

@@ -5,12 +5,19 @@ import AppIcon from './AppIcon'
 type AppMenuItemContentProps = Pick<MenuItemProps, 'onClick'> & {
   icon: string
   color?: string
+  disabled?: boolean
   text: string
 }
 
-function AppMenuItem({ icon, text, color = 'primary.dark', onClick }: AppMenuItemContentProps) {
+function AppMenuItem({
+  icon,
+  text,
+  color = 'primary.dark',
+  disabled,
+  onClick,
+}: AppMenuItemContentProps) {
   return (
-    <MenuItem onClick={onClick}>
+    <MenuItem disabled={disabled} onClick={onClick}>
       <ListItemIconCompact
         sx={{
           '& span': {

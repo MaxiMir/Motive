@@ -48,7 +48,7 @@ function EditModal({ message, onClose }: EditModalProps) {
       onClose={onClose}
     >
       <FormikProvider value={form}>
-        <Form autoComplete="off">
+        <Form>
           <Box display="flex" flexDirection="column" alignItems="center" gap={3}>
             <Field
               name="text"

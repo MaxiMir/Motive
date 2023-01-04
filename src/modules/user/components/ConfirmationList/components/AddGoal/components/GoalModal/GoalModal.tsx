@@ -61,7 +61,7 @@ function GoalModal({ onClose }: GoalModalProps) {
       onClose={onClose}
     >
       <FormikProvider value={form}>
-        <Form autoComplete="off">
+        <Form>
           <Box display="flex" flexDirection="column" gap={2}>
             <Field name="name" label={messages.nameLabel} component={AppInput} />
             <Box display="flex" flexDirection="column" gap={1}>

@@ -46,6 +46,7 @@ export const useForm = (onSuccess: () => void) => {
       motto: user.motto,
       location: user.location,
       bio: user.bio,
+      links: user.links,
     },
     validationSchema: profileSchema,
     async onSubmit(data, { setFieldError }) {

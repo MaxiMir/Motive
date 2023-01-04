@@ -34,8 +34,8 @@ function MenuActions() {
   }
 
   const onCloseReport = () => {
-    toggleReporting()
     onClose()
+    toggleReporting()
   }
 
   return (
@@ -76,9 +76,7 @@ function MenuActions() {
         )}
         <AppMenuItem icon="block" text={messages.cancelText} color="grey" onClick={onClose} />
       </Menu>
-      {reporting && (
-        <Report entityId={userId} type="user" anchorEl={anchorEl} onClose={onCloseReport} />
-      )}
+      {reporting && <Report id={userId} type="user" anchorEl={anchorEl} onClose={onCloseReport} />}
       {sharing && <Share title={name} href={asPath} onClose={toggleSharing} />}
     </>
   )

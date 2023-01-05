@@ -27,8 +27,8 @@ function AppTabs({ tabs, content, initial = 0, ...tabsProps }: AppTabsProps) {
     <>
       <Container
         fixed
-        sx={(theme) => ({
-          [theme.breakpoints.only('xl')]: {
+        sx={({ breakpoints }) => ({
+          [breakpoints.only('xl')]: {
             maxWidth: 900,
           },
         })}
@@ -37,9 +37,9 @@ function AppTabs({ tabs, content, initial = 0, ...tabsProps }: AppTabsProps) {
           value={value}
           {...tabsProps}
           variant="fullWidth"
-          sx={(theme) => ({
+          sx={({ palette }) => ({
             [`& .${tabsClasses.indicator}`]: {
-              background: `linear-gradient(to right, ${theme.palette.motivation.main}, ${theme.palette.creativity.dark}, ${theme.palette.support.dark})`,
+              background: `linear-gradient(to right, ${palette.motivation.main}, ${palette.creativity.dark}, ${palette.support.dark})`,
             },
           })}
           onChange={onChange}

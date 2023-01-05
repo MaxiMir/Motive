@@ -53,8 +53,8 @@ function Footer() {
     >
       <Container
         fixed
-        sx={(theme) => ({
-          [theme.breakpoints.only('xl')]: {
+        sx={({ breakpoints }) => ({
+          [breakpoints.only('xl')]: {
             maxWidth: 900,
           },
         })}

@@ -18,9 +18,9 @@ function RatingModule({ tab, ...props }: RatingModuleProps) {
     <>
       <Container
         fixed
-        sx={(theme) => ({
+        sx={({ breakpoints }) => ({
           mt: 3,
-          [theme.breakpoints.only('xl')]: {
+          [breakpoints.only('xl')]: {
             maxWidth: 900,
           },
         })}

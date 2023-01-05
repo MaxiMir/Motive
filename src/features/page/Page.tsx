@@ -72,10 +72,10 @@ function Page({
         id="main"
         display="flex"
         flexDirection="column"
-        sx={{
+        sx={({ palette }) => ({
           flex: 1,
-          background: (theme) => (theme.palette.mode === 'dark' ? '#121212' : undefined),
-        }}
+          background: palette.mode === 'dark' ? '#121212' : undefined,
+        })}
       >
         {children}
       </Box>

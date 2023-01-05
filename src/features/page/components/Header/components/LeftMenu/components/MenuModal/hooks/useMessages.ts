@@ -9,5 +9,6 @@ export const useMessages = () => {
     news: formatMessage({ id: 'common.articles' }),
     features: formatMessage({ id: 'common.features' }),
     contact: formatMessage({ id: 'common.contact' }),
+    closeText: formatMessage({ id: 'common.close' }),
   }
 }

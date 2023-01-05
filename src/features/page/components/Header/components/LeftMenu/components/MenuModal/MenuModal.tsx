@@ -1,7 +1,17 @@
 import { KeyboardEvent } from 'react'
 import { useRouter } from 'next/router'
 import { signOut } from 'next-auth/react'
-import { Box, List, Divider, ListItem, Drawer, ListItemText, ListItemIcon } from '@mui/material'
+import {
+  Box,
+  List,
+  Divider,
+  ListItem,
+  IconButton,
+  Drawer,
+  ListItemText,
+  ListItemIcon,
+} from '@mui/material'
+import { drawerClasses } from '@mui/material/Drawer'
 import useClient from '@hooks/useClient'
 import AppIcon from '@ui/AppIcon'
 import { useMessages } from './hooks/useMessages'
@@ -34,17 +44,25 @@ function MenuModal({ onOpenSettings, onClose }: MenuModalProps) {
   }
 
   return (
-    <Drawer open onClose={onClose}>
-      <Box
-        role="presentation"
-        component="nav"
-        sx={{
-          minWidth: 230,
-          height: '100%',
-          padding: '60px 0 8px',
-        }}
-        onKeyDown={onKeyDown}
-      >
+    <Drawer
+      open
+      anchor="left"
+      sx={{
+        [`& .${drawerClasses.paper}`]: {
+          width: 230,
+          backgroundColor: 'underlay',
+          borderRight: '1px solid rgb(38, 38, 38)',
+        },
+      }}
+      onClose={onClose}
+    >
+      <Box display="flex" justifyContent="flex-end" alignItems="center" pr={1} height={56}>
+        <IconButton aria-label={messages.closeText} onClick={onClose}>
+          <AppIcon name="chevron_left" />
+        </IconButton>
+      </Box>
+      <Divider />
+      <Box role="presentation" component="nav" sx={{ height: '100%' }} onKeyDown={onKeyDown}>
         <Box display="flex" flexDirection="column" justifyContent="space-between" height="100%">
           <Box>
             <List>
@@ -55,20 +73,20 @@ function MenuModal({ onOpenSettings, onClose }: MenuModalProps) {
                   onClick={() => push(link)}
                   key={link}
                 >
-                  <ListItemText primary={primary} />
                   <ListItemIcon>
                     <AppIcon name={icon} />
                   </ListItemIcon>
+                  <ListItemText primary={primary} />
                 </ListItem>
               ))}
             </List>
             <Divider light />
             <List>
               <ListItem button onClick={onOpenSettings}>
-                <ListItemText primary={messages.settings} />
                 <ListItemIcon>
                   <AppIcon name="settings" />
                 </ListItemIcon>
+                <ListItemText primary={messages.settings} />
               </ListItem>
             </List>
             {client && (
@@ -76,20 +94,15 @@ function MenuModal({ onOpenSettings, onClose }: MenuModalProps) {
                 <Divider light />
                 <List>
                   <ListItem button onClick={onSignOut}>
-                    <ListItemText primary={messages.logOut} />
                     <ListItemIcon>
                       <AppIcon name="logout" />
                     </ListItemIcon>
+                    <ListItemText primary={messages.logOut} />
                   </ListItem>
                 </List>
               </>
             )}
           </Box>
-          <List>
-            <ListItem>
-              <ListItemText primary="Alpha 1.0.91" sx={{ color: 'zen.sand' }} />
-            </ListItem>
-          </List>
         </Box>
       </Box>
     </Drawer>

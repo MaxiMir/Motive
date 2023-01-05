@@ -13,9 +13,9 @@ function AddGoal() {
   return (
     <Box display="flex" flexDirection="column" alignItems="center" minWidth={100} gap={1}>
       <Box
-        sx={(theme) => ({
+        sx={({ palette }) => ({
           padding: '2px',
-          background: `linear-gradient(to top left, ${theme.palette.creativity.dark}, ${theme.palette.support.dark})`,
+          background: `linear-gradient(to top left, ${palette.creativity.dark}, ${palette.support.dark})`,
           borderRadius: '50%',
         })}
       >
@@ -26,11 +26,11 @@ function AddGoal() {
           aria-label={messages.buttonText}
           aria-haspopup="true"
           aria-expanded={open ? 'true' : undefined}
-          sx={(theme) => ({
+          sx={({ palette }) => ({
             minWidth: 'initial',
             padding: 0,
             borderRadius: '50%',
-            background: theme.palette.background.default,
+            background: palette.background.default,
           })}
           onClick={toggle}
         >

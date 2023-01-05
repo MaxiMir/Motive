@@ -82,10 +82,10 @@ function GoalCurrent({ goal, membership, clientPage, clientMembership }: GoalCur
         }}
       >
         <Box
-          sx={(theme) => ({
+          sx={({ palette }) => ({
             padding: '3px',
             height: '100%',
-            background: `linear-gradient(to top left, ${theme.palette.motivation.main}, ${theme.palette.creativity.dark}, ${theme.palette.support.dark})`,
+            background: `linear-gradient(to top left, ${palette.motivation.main}, ${palette.creativity.dark}, ${palette.support.dark})`,
             borderRadius: '16px',
           })}
         >
@@ -157,7 +157,7 @@ function GoalCurrent({ goal, membership, clientPage, clientMembership }: GoalCur
                       width: '100%',
                       pb: 4,
                       borderRadius: '10px',
-                      backgroundColor: 'underlay',
+                      backgroundColor: '#121212',
                     }}
                   >
                     <Box

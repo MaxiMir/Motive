@@ -18,8 +18,8 @@ function TabContent({ name, users }: TabContentProps) {
       <Box sx={{ background: '#21262C' }}>
         <Container
           fixed
-          sx={(theme) => ({
-            [theme.breakpoints.only('xl')]: {
+          sx={({ breakpoints }) => ({
+            [breakpoints.only('xl')]: {
               maxWidth: 900,
             },
           })}

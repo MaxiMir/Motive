@@ -34,7 +34,7 @@ function AppModal({ title, actions, maxWidth, children, onClose }: AppModalProps
       maxWidth={maxWidth}
       sx={{
         [`& .${backdropClasses.root}`]: {
-          background: 'rgba(34, 34, 34, 0.75)',
+          background: 'rgba(0, 0, 0, 0.8)',
           backdropFilter: 'blur(5px)',
         },
       }}

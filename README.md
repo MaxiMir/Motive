@@ -1,8 +1,6 @@
 aria-label=""
 
 [//]: # (TODO)
-* nanoid()
-* modularizeImports
 * useTryFullScreen
 * тип сообщений в обсуждении
 * меню дл мобильной версии и десктопа

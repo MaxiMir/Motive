@@ -41,7 +41,7 @@ function ContactModule() {
           {messages.subheader} <AppEmoji name="wink" onlyEmoji />.
         </Typography>
         <Grid container spacing={2}>
-          <Grid item xs={4} sm={4} md={3} lg={2}>
+          <Grid item xs={3} md={2}>
             <ButtonLink
               sx={(theme: Theme) => ({
                 background: `linear-gradient(to top left, ${theme.palette.motivation.light}, ${theme.palette.motivation.dark})`,
@@ -58,7 +58,7 @@ function ContactModule() {
               </ButtonContent>
             </ButtonLink>
           </Grid>
-          <Grid item xs={4} sm={4} md={3} lg={2}>
+          <Grid item xs={3} md={2}>
             <ButtonLink
               sx={(theme: Theme) => ({
                 background: `linear-gradient(to top left, ${theme.palette.creativity.light}, ${theme.palette.creativity.dark})`,
@@ -75,7 +75,7 @@ function ContactModule() {
               </ButtonContent>
             </ButtonLink>
           </Grid>
-          <Grid item xs={4} sm={4} md={3} lg={2}>
+          <Grid item xs={3} md={2}>
             <ButtonLink
               sx={(theme: Theme) => ({
                 background: `linear-gradient(to top left, ${theme.palette.support.light}, ${theme.palette.support.dark})`,

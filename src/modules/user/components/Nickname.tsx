@@ -13,11 +13,10 @@ function Nickname({ nickname }: NicknameProps) {
         component="p"
         sx={{
           maxWidth: 300,
-          overflow: 'hidden',
-          whiteSpace: 'nowrap',
           textOverflow: 'ellipsis',
           fontWeight: 300,
         }}
+        noWrap
       >
         {nickname}
       </Typography>

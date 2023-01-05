@@ -27,7 +27,10 @@ function NoCompletedModal({ onClose }: NoCompletedModalProps) {
         display="flex"
         flexDirection="column"
         gap={2}
-        sx={{ minHeight: 400, overflow: 'scroll' }}
+        sx={{
+          minHeight: 400,
+          overflow: 'scroll',
+        }}
       >
         <EmptyList />
       </Box>

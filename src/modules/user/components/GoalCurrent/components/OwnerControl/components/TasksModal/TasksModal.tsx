@@ -16,7 +16,7 @@ import { getMidnightISO, getTomorrowISO } from '@lib/date'
 import { useGoalContext } from '@modules/user/components/GoalCurrent/hooks/useGoalContext'
 import AppIcon from '@ui/AppIcon'
 import AppHeader from '@ui/AppHeader'
-import PaulIcon from '@ui/icons/PaulIcon'
+import Paul from '@ui/icons/Paul'
 import AppModal from '@ui/AppModal'
 import ActionSubmit from '@components/Action/ActionSubmit'
 import ActionCancel from '@components/Action/ActionCancel/ActionCancel'
@@ -131,7 +131,7 @@ function TasksModal({ onClose }: TasksModalProps) {
         <Accordion>
           <AccordionSummary expandIcon={<AppIcon name="expand_more" />} id="old-pitt-note">
             <Box display="flex" alignItems="center" gap={1}>
-              <PaulIcon />
+              <Paul />
               <Typography variant="h6" component="h3">
                 {messages.pittText}
               </Typography>

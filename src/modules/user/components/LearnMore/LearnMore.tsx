@@ -1,7 +1,6 @@
 import dynamic from 'next/dynamic'
 import { Button } from '@mui/material'
 import { styled } from '@mui/system'
-import { grey } from '@mui/material/colors'
 import useToggle from '@hooks/useToggle'
 import AppIcon from '@ui/AppIcon'
 import { useMessages } from './hooks/useMessages'
@@ -30,9 +29,9 @@ function LearnMore() {
   )
 }
 
-const LearnMoreButton = styled(Button)({
+const LearnMoreButton = styled(Button)(({ theme }) => ({
   minWidth: 'initial',
-  color: grey[500],
-})
+  color: theme.palette.grey[500],
+}))
 
 export default LearnMore

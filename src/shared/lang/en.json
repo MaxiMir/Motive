@@ -116,7 +116,6 @@
   "page.user.modal-stage.message": "The stage for the next day has been successfully set",
   "page.user.modal-stage.title-final": "Final stage is",
   "page.user.modal-stage.title-next": "Next stage is",
-  "page.user.like-button.area": "along with $0 other people",
   "page.user.like-button.goal-message": "You have increased goal's support points",
   "page.user.like-button.user-message": "You have increased $0 support points",
   "page.user.user-input.question": "Your question",
@@ -271,7 +270,7 @@
   "common.do-it": "Do it! Remains to be done",
   "common.supporting": "Support",
   "common.load-photo": "Load photo",
-  "common.news": "News",
+  "common.articles": "Articles",
   "common.features": "New Features",
   "common.contact": "Contact us",
   "common.settings": "Settings",
@@ -313,5 +312,6 @@
   "common.deleting": "Deleting",
   "common.delete-warning": "Are you sure want to delete this photo?",
   "common.warning": "Warning",
-  "common.more": "More"
+  "common.more": "More",
+  "common.open-photo": "Open the photo"
 }

@@ -1,4 +1,5 @@
-import { LinearProgress, Box, linearProgressClasses } from '@mui/material'
+import { LinearProgress, Box } from '@mui/material'
+import { linearProgressClasses } from '@mui/material/LinearProgress'
 import useShowProgress from '@hooks/useShowProgress'
 
 interface ProgressProps {

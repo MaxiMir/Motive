@@ -1,5 +1,5 @@
-import { Box, LinearProgress, linearProgressClasses, Typography } from '@mui/material'
-import { grey } from '@mui/material/colors'
+import { Box, LinearProgress, Typography } from '@mui/material'
+import { linearProgressClasses } from '@mui/material/LinearProgress'
 import { MainCharacteristicName } from '@features/characteristic'
 import useShowProgress from '@hooks/useShowProgress'
 
@@ -18,16 +18,16 @@ function Progress({ characteristic, value }: ProgressProps) {
       <LinearProgress
         variant="determinate"
         value={progress}
-        sx={{
+        sx={({ palette }) => ({
           width: '100%',
           height: 10,
           borderRadius: 5,
-          backgroundColor: grey[800],
+          backgroundColor: palette.grey[800],
           [`& .${linearProgressClasses.bar}`]: {
             borderRadius: 5,
             backgroundColor: `${characteristic}.dark`,
           },
-        }}
+        })}
       />
       <Box display="flex" width={35} justifyContent="flex-end">
         <Typography variant="body2" color="text.secondary">

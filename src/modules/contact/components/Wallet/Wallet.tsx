@@ -44,7 +44,7 @@ function Wallet({ name, wallet, src }: WalletProps) {
           {wallet}
         </Typography>
       </Box>
-      <IconButton disableFocusRipple sx={{ color: 'zen.silent' }} onClick={onClick}>
+      <IconButton aria-label="" disableFocusRipple sx={{ color: 'zen.silent' }} onClick={onClick}>
         <AppIcon name="content_copy" />
       </IconButton>
     </Box>

@@ -153,7 +153,12 @@ function GoalCurrent({ goal, membership, clientPage, clientMembership }: GoalCur
                   )}
                   <Card
                     variant="outlined"
-                    sx={{ width: '100%', pb: 4, borderRadius: '10px', background: '#121212' }}
+                    sx={{
+                      width: '100%',
+                      pb: 4,
+                      borderRadius: '10px',
+                      backgroundColor: 'underlay',
+                    }}
                   >
                     <Box
                       display="flex"

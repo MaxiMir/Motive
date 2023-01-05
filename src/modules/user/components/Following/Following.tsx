@@ -1,7 +1,7 @@
 import dynamic from 'next/dynamic'
 import AppIcon from '@ui/AppIcon'
 import { Button } from '@mui/material'
-import { blue, grey } from '@mui/material/colors'
+import { blue } from '@mui/material/colors'
 import { useUserContext } from '@modules/user/hooks'
 import { useSetFollowing } from './hooks/useSetFollowing'
 import { useMessages } from './hooks/useMessages'
@@ -19,17 +19,17 @@ function Following() {
       size="small"
       disabled={isLoading}
       startIcon={isLoading ? undefined : <AppIcon name={`person_${operation}`} />}
-      sx={{
+      sx={({ palette }) => ({
         minWidth: '96px',
         height: 30,
         paddingX: 1,
-        color: grey[200],
-        borderColor: following ? grey[800] : blue[800],
-        backgroundColor: following ? grey[800] : blue[800],
+        color: palette.grey[200],
+        borderColor: following ? palette.grey[800] : blue[800],
+        backgroundColor: following ? palette.grey[800] : blue[800],
         '&:hover': {
-          backgroundColor: following ? grey[900] : blue[400],
+          backgroundColor: following ? palette.grey[900] : blue[400],
         },
-      }}
+      })}
       onClick={onClick}
     >
       {isLoading ? <CircularProgress size={14.5} color="inherit" /> : messages.buttonText}

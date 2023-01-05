@@ -1,6 +1,6 @@
 import { IconButton } from '@mui/material'
 import { useOpenSignIn } from '@features/signin'
-import ProfileIcon from '@ui/icons/ProfileIcon'
+import Profile from '@ui/icons/Profile'
 
 function SignIn() {
   const openSignIn = useOpenSignIn()
@@ -9,7 +9,7 @@ function SignIn() {
 
   return (
     <IconButton sx={{ opacity: 0.6 }} onClick={onClick}>
-      <ProfileIcon />
+      <Profile />
     </IconButton>
   )
 }

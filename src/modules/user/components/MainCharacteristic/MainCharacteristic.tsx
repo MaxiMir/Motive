@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import dynamic from 'next/dynamic'
-import { Box, Button, Typography, useTheme } from '@mui/material'
+import { Box, Button, Typography } from '@mui/material'
+import { useTheme } from '@mui/material/styles'
 import { MainCharacteristicName } from '@features/characteristic'
 import AppCircle from '@ui/AppCircle'
 import { useMessages } from './hooks/useMessages'

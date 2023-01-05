@@ -25,7 +25,14 @@ function AvatarStatus({
   buttonProps,
 }: AvatarStatusProps) {
   return (
-    <Button sx={{ minWidth: 'initial', padding: '3px', borderRadius: '50%' }} {...buttonProps}>
+    <Button
+      sx={{
+        minWidth: 'initial',
+        padding: '3px',
+        borderRadius: '50%',
+      }}
+      {...buttonProps}
+    >
       {!src ? (
         <Plug name={name} size={size} />
       ) : (

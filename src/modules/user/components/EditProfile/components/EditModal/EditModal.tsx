@@ -1,11 +1,15 @@
-import { Field, Form, FormikProvider } from 'formik'
-import { Box, InputAdornment } from '@mui/material'
+import { Field, FieldArray, Form, FormikProvider } from 'formik'
+import { Box, IconButton, InputAdornment } from '@mui/material'
 import AppModal from '@ui/AppModal'
 import AppInput from '@ui/AppInput'
 import ActionSubmit from '@components/Action/ActionSubmit'
 import ActionCancel from '@components/Action/ActionCancel/ActionCancel'
+import dynamic from 'next/dynamic'
+import AppIcon from '@ui/AppIcon'
 import { useMessages } from './hooks/useMessages'
 import { useForm } from './hooks/useForm'
+
+const Button = dynamic(() => import('@mui/material/Button'))
 
 interface EditModalProps {
   onClose: () => void
@@ -14,7 +18,7 @@ interface EditModalProps {
 function EditModal({ onClose }: EditModalProps) {
   const messages = useMessages()
   const form = useForm(onClose)
-  const { isSubmitting, handleSubmit } = form
+  const { values, isSubmitting, handleSubmit } = form
 
   return (
     <AppModal
@@ -41,7 +45,7 @@ function EditModal({ onClose }: EditModalProps) {
       onClose={onClose}
     >
       <FormikProvider value={form}>
-        <Form autoComplete="off">
+        <Form>
           <Box display="flex" flexDirection="column" gap={3}>
             <Field name="name" label={messages.nameLabel} color="primary" component={AppInput} />
             <Field
@@ -69,6 +73,34 @@ function EditModal({ onClose }: EditModalProps) {
               color="primary"
               component={AppInput}
             />
+            <FieldArray name="links">
+              {({ push, remove }) => (
+                <>
+                  {values.links?.map(({ href }, index) => (
+                    <Box display="flex" alignItems="center" gap={1} key={href}>
+                      <Box display="flex" flexDirection="column" gap={1} flex={1}>
+                        <Field
+                          name={`stages.${index}.href`}
+                          label="Url"
+                          color="primary"
+                          component={AppInput}
+                        />
+                        <Field
+                          name={`stages.${index}.url`}
+                          label="Title"
+                          color="primary"
+                          component={AppInput}
+                        />
+                      </Box>
+                      <IconButton aria-label="" disableFocusRipple onClick={() => remove(index)}>
+                        <AppIcon name="close" />
+                      </IconButton>
+                    </Box>
+                  ))}
+                  <Button onClick={push}>1</Button>
+                </>
+              )}
+            </FieldArray>
           </Box>
         </Form>
       </FormikProvider>

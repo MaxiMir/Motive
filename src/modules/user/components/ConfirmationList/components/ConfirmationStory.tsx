@@ -19,7 +19,7 @@ function ConfirmationStory({ confirmation }: ConfirmationStoryProps) {
   const [mainPhoto] = confirmation.photos
   const stories = [mainPhoto] // TODO confirmation.photos.map
 
-  const onOpen = () => {
+  const onClick = () => {
     toggle()
     enter()
   }
@@ -48,10 +48,15 @@ function ConfirmationStory({ confirmation }: ConfirmationStoryProps) {
               },
             })}
           >
-            <AvatarStatus src={mainPhoto.src} name={user.name} size={60} onClick={onOpen} />
+            <AvatarStatus
+              src={mainPhoto.src}
+              name={user.name}
+              size={60}
+              buttonProps={{ onClick }}
+            />
           </Box>
         </Box>
-        <Button id={`confirmation-${confirmation.id}`} size="small" onClick={onOpen}>
+        <Button id={`confirmation-${confirmation.id}`} size="small" onClick={onClick}>
           <Typography
             variant="caption"
             sx={{

@@ -4,6 +4,6 @@ export const useMessages = () => {
   const { formatMessage } = useIntl()
 
   return {
-    ariaLabel: formatMessage({ id: 'component.photo-button.aria' }),
+    title: formatMessage({ id: 'component.photo-button.aria' }),
   }
 }

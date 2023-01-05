@@ -21,9 +21,8 @@ function Header({ type }: HeaderProps) {
       position="static"
       sx={{
         paddingY: 1,
-        backgroundColor: 'underlay',
-        backgroundImage: 'none',
         boxShadow: 'none',
+        backgroundColor: 'underlay',
       }}
     >
       <Container

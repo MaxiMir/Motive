@@ -116,7 +116,6 @@
   "page.user.modal-stage.message": "Этап для следующего дня успешно установлен",
   "page.user.modal-stage.title-final": "Заключительный этап",
   "page.user.modal-stage.title-next": "Следующий этап",
-  "page.user.like-button.area": "вместе с $0 другими людьми",
   "page.user.like-button.goal-message": "Вы увеличили очки поддержки для цели",
   "page.user.like-button.user-message": "Вы увеличили очки поддержки $0",
   "page.user.user-input.question": "Ваш вопрос",
@@ -271,7 +270,7 @@
   "common.do-it": "Сделай это! Осталось",
   "common.supporting": "Поддержать",
   "common.load-photo": "Загрузить фото",
-  "common.news": "Новости",
+  "common.articles": "Статті",
   "common.features": "Что нового",
   "common.contact": "Контакты",
   "common.settings": "Настройки",
@@ -313,5 +312,6 @@
   "common.deleting": "Удаление",
   "common.delete-warning": "Вы уверены, что хотите удалить эту фотографию?",
   "common.warning": "Предупреждение",
-  "common.more": "Ещё"
+  "common.more": "Ещё",
+  "common.open-photo": "Открыть фото"
 }

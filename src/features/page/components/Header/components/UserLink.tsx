@@ -9,14 +9,12 @@ function UserLink(): JSX.Element {
     <Button onClick={reload}>
       <Typography
         sx={{
-          maxWidth: 300,
-          overflow: 'hidden',
-          whiteSpace: 'nowrap',
-          textOverflow: 'ellipsis',
           color: 'common.white',
+          textOverflow: 'ellipsis',
           fontWeight: 'bold',
         }}
         component="span"
+        noWrap
       >
         {nickname}
       </Typography>

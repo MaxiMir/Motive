@@ -24,7 +24,7 @@ function Bottom({ user }: BottomProps) {
         zIndex: 9999,
       }}
     >
-      <IconButton disabled onClick={toggle}>
+      <IconButton aria-label="" disabled onClick={toggle}>
         <AppIcon name="expand_less" />
       </IconButton>
       {open && <Description onClose={toggle} />}

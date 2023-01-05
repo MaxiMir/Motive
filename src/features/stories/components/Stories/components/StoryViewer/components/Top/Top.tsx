@@ -56,7 +56,10 @@ function Top({ user, title, date, onClose }: TopProps): JSX.Element {
           <Box display="flex" alignItems="baseline" gap={1}>
             <Box
               component="span"
-              sx={{ fontSize: 14, textShadow: '0px 1px 3px rgba(0, 0, 0, 0.36)' }}
+              sx={{
+                fontSize: 14,
+                textShadow: '0px 1px 3px rgba(0, 0, 0, 0.36)',
+              }}
             >
               <Link href={href}>{name}</Link>
             </Box>
@@ -66,6 +69,7 @@ function Top({ user, title, date, onClose }: TopProps): JSX.Element {
           </Box>
         </Box>
         <IconButton
+          aria-label={messages.close}
           sx={{
             marginLeft: 'auto',
             display: {
@@ -74,7 +78,6 @@ function Top({ user, title, date, onClose }: TopProps): JSX.Element {
               md: 'flex',
             },
           }}
-          aria-label={messages.close}
           onClick={onClose}
         >
           <AppIcon name="close" />

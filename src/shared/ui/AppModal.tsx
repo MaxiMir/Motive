@@ -7,9 +7,9 @@ import {
   DialogTitle,
   GlobalStyles,
   DialogProps,
-  backdropClasses,
   IconButton,
 } from '@mui/material'
+import { backdropClasses } from '@mui/material/Backdrop'
 import AppScrollbar from '@ui/AppScrollbar'
 import AppIcon from '@ui/AppIcon'
 
@@ -26,7 +26,7 @@ interface AppModalProps {
 
 function AppModal({ title, actions, maxWidth, children, onClose }: AppModalProps) {
   const { formatMessage } = useIntl()
-  const ariaLabel = formatMessage({ id: 'common.close' })
+  const closeText = formatMessage({ id: 'common.close' })
 
   return (
     <Dialog
@@ -51,15 +51,20 @@ function AppModal({ title, actions, maxWidth, children, onClose }: AppModalProps
         {title}
       </DialogTitle>
       <IconButton
+        aria-label={closeText}
         edge="start"
-        aria-label={ariaLabel}
-        sx={{ position: 'absolute', top: 10, right: 13, color: 'zen.silent' }}
+        sx={{
+          position: 'absolute',
+          top: 10,
+          right: 13,
+          color: 'zen.silent',
+        }}
         onClick={onClose}
       >
         <AppIcon name="close" />
       </IconButton>
       <AppScrollbar>
-        <DialogContent sx={{ padding: '12px 24px 24px !important' }}>{children}</DialogContent>
+        <DialogContent>{children}</DialogContent>
       </AppScrollbar>
       {actions && (
         <DialogActions>

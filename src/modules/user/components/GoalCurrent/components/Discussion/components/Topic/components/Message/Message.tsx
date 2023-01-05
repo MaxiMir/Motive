@@ -1,7 +1,7 @@
 import dynamic from 'next/dynamic'
 import Link from 'next/link'
 import { Box, Typography } from '@mui/material'
-import { grey, indigo } from '@mui/material/colors'
+import { indigo } from '@mui/material/colors'
 import { getUserHref } from '@features/user'
 import { MessageDto } from '@features/topic'
 import useFormatDistance from '@hooks/useFormatDistance'
@@ -42,7 +42,7 @@ function Message({ message, answerFor, supportFor, onReply }: MessageProps) {
           py={1}
           sx={{
             width: '100%',
-            backgroundColor: !answerFor ? '#000000' : indigo[600],
+            backgroundColor: !answerFor ? 'underlay' : indigo[600],
             borderBottomLeftRadius: !answerFor ? 4 : 16,
             borderTopLeftRadius: 20,
             borderTopRightRadius: 20,
@@ -58,7 +58,13 @@ function Message({ message, answerFor, supportFor, onReply }: MessageProps) {
               </Box>
               {supportFor && <SupportSign name={supportFor} />}
               {edited && (
-                <Box component="span" sx={{ fontSize: 11, color: 'zen.silent' }}>
+                <Box
+                  component="span"
+                  sx={{
+                    fontSize: 11,
+                    color: 'zen.silent',
+                  }}
+                >
                   {messages.editedText}
                 </Box>
               )}
@@ -68,7 +74,7 @@ function Message({ message, answerFor, supportFor, onReply }: MessageProps) {
           <AppMarkdown text={text} />
           <Box display="flex" justifyContent="space-between" alignItems="center">
             <Box display="flex" alignItems="center" gap={1}>
-              <Typography variant="caption" sx={{ color: grey[300] }}>
+              <Typography variant="caption" sx={({ palette }) => ({ color: palette.grey[300] })}>
                 {dateDistance}
               </Typography>
               {onReply && (

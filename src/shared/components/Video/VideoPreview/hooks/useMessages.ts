@@ -4,6 +4,6 @@ export const useMessages = () => {
   const { formatMessage } = useIntl()
 
   return {
-    label: formatMessage({ id: 'component.video-preview.label' }),
+    removeText: formatMessage({ id: 'component.video-preview.label' }),
   }
 }

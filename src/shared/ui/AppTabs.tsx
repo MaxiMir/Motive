@@ -1,5 +1,6 @@
 import { ChangeEvent, useState } from 'react'
-import { Container, Box, Tab, Tabs, tabsClasses, TabsProps } from '@mui/material'
+import { Container, Box, Tab, Tabs, TabsProps } from '@mui/material'
+import { tabsClasses } from '@mui/material/Tabs'
 
 interface AppTabsProps extends Pick<TabsProps, 'aria-label'> {
   tabs: string[] | JSX.Element[]

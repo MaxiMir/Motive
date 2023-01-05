@@ -116,7 +116,6 @@
   "page.user.modal-stage.message": "第二天的阶段已经成功设定",
   "page.user.modal-stage.title-final": "最后阶段是",
   "page.user.modal-stage.title-next": "下一个阶段是",
-  "page.user.like-button.area": "与其他0美元的人一起",
   "page.user.like-button.goal-message": "你已经增加了目标的支持点",
   "page.user.like-button.user-message": "你已经增加了0美元的支持点数",
   "page.user.user-input.question": "你的问题",
@@ -271,7 +270,7 @@
   "common.do-it": "完成了! 剩余的工作",
   "common.supporting": "支持",
   "common.load-photo": "加载照片",
-  "common.news": "新闻",
+  "common.articles": "文章",
   "common.features": "新功能",
   "common.contact": "联系我们",
   "common.settings": "设置",
@@ -313,5 +312,6 @@
   "common.deleting": "删除",
   "common.delete-warning": "你确定要删除这张照片吗?",
   "common.warning": "警告",
-  "common.more": "更多"
+  "common.more": "更多",
+  "common.open-photo": "打开照片"
 }

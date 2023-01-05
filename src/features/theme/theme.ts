@@ -153,6 +153,7 @@ export const getDesignTokens = (mode: PaletteMode): ThemeOptions => {
       MuiPaper: {
         styleOverrides: {
           root: {
+            background: mode === 'dark' ? '#000000' : '#d7d7d7',
             backgroundImage: 'none',
           },
         },

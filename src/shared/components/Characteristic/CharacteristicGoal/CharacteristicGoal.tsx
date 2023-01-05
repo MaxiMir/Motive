@@ -19,7 +19,13 @@ function CharacteristicGoal({ name, value }: CharacteristicGoalProps) {
   return (
     <Box display="flex" flexDirection="column" alignItems="center" gap={0.5}>
       <TooltipArrow title={messages.title}>
-        <IconButton size="small" sx={{ width: 40, height: 40 }}>
+        <IconButton
+          size="small"
+          sx={{
+            width: 40,
+            height: 40,
+          }}
+        >
           <AppEmoji name={name} variant="h5" />
         </IconButton>
       </TooltipArrow>

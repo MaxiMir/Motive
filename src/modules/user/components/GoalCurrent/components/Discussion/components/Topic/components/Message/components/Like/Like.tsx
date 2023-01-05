@@ -1,5 +1,4 @@
 import { Button } from '@mui/material'
-import { grey } from '@mui/material/colors'
 import { MessageDto, MessageType } from '@features/topic'
 import useClient from '@hooks/useClient'
 import useFormatNumber from '@hooks/useFormatNumber'
@@ -31,12 +30,12 @@ function Like({ message, answerFor }: LikeProps) {
         disabled={disabled || isLoading}
         startIcon={<AppEmoji name={icon} onlyEmoji />}
         color="inherit"
-        sx={{
+        sx={({ palette }) => ({
           paddingX: 1,
-          color: grey[400],
+          color: palette.grey[400],
           minWidth: 'initial',
           filter: !message.like ? 'grayscale(1)' : undefined,
-        }}
+        })}
         onClick={onClick}
       >
         {formattedNumber}

@@ -24,6 +24,7 @@ function UserInput({ user, type, topicId, onAdd }: UserInputProps) {
   const form = useForm(topicId, type, onAdd)
   const { isSubmitting, values, handleSubmit } = form
   const href = getUserHref(nickname)
+  const disabled = isSubmitting || !values.text
 
   const onClick = () => handleSubmit()
 
@@ -42,12 +43,17 @@ function UserInput({ user, type, topicId, onAdd }: UserInputProps) {
             component={AppInput}
           />
           <IconButton
-            disabled={isSubmitting || !values.text}
-            sx={{ width: 40, height: 40 }}
+            aria-label=""
+            disabled={disabled}
+            sx={{
+              width: 40,
+              height: 40,
+              paddingLeft: '3px',
+            }}
             onClick={onClick}
           >
             {!isSubmitting ? (
-              <AppIcon name="send" sx={{ paddingLeft: '3px' }} />
+              <AppIcon name="send" />
             ) : (
               <CircularProgress size={14.5} color="primary" />
             )}

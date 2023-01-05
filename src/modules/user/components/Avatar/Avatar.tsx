@@ -5,6 +5,7 @@ import { useUserContext } from '@modules/user/hooks'
 import useToggle from '@hooks/useToggle'
 import AppMenuItem from '@ui/AppMenuItem'
 import AvatarStatus from '@components/Avatar/AvatarStatus'
+import TooltipArrow from '@ui/styled/TooltipArrow'
 import { useMessages } from './hooks/useMessages'
 
 const AppLightBox = dynamic(() => import('@ui/AppLightBox'))
@@ -18,12 +19,12 @@ interface AvatarProps {
 function Avatar({ clientPage }: AvatarProps) {
   const id = useId()
   const menuId = useId()
-  const messages = useMessages()
   const { name, avatar, online, lastSeen, device } = useUserContext()
   const [index, setIndex] = useState<number>()
   const [editing, toggleEditing] = useToggle()
   const [deleting, toggleDeleting] = useToggle()
   const [anchorEl, setAnchorEl] = useState<HTMLElement | null>(null)
+  const messages = useMessages()
   const sources = !avatar ? null : [avatar]
   const disabled = !sources && !clientPage
   const open = Boolean(anchorEl)
@@ -45,28 +46,56 @@ function Avatar({ clientPage }: AvatarProps) {
 
   return (
     <>
-      <AvatarStatus
-        src={avatar}
-        name={name}
-        size={175}
-        online={online}
-        lastSeen={lastSeen}
-        device={device}
-        buttonProps={{
-          disabled,
-          id,
-          'aria-controls': open ? menuId : undefined,
-          'aria-haspopup': 'true',
-          'aria-expanded': open ? 'true' : undefined,
-          onClick,
-        }}
-      />
+      <TooltipArrow title={messages.title}>
+        <AvatarStatus
+          src={avatar}
+          name={name}
+          size={175}
+          online={online}
+          lastSeen={lastSeen}
+          device={device}
+          buttonProps={{
+            disabled,
+            id,
+            'aria-controls': open ? menuId : undefined,
+            'aria-haspopup': 'true',
+            'aria-expanded': open ? 'true' : undefined,
+            onClick,
+          }}
+        />
+      </TooltipArrow>
       <Menu
         id={menuId}
         anchorEl={anchorEl}
         open={open}
         MenuListProps={{
           'aria-labelledby': id,
+        }}
+        PaperProps={{
+          elevation: 0,
+          sx: {
+            overflow: 'visible',
+            filter: 'drop-shadow(0px 2px 8px rgba(0,0,0,0.32))',
+            mt: 1.5,
+            '& .MuiAvatar-root': {
+              width: 175,
+              height: 175,
+              ml: -0.5,
+              mr: 1,
+            },
+            '&:before': {
+              content: '""',
+              display: 'block',
+              position: 'absolute',
+              top: 0,
+              right: 14,
+              width: 10,
+              height: 10,
+              bgcolor: 'background.paper',
+              transform: 'translateY(-50%) rotate(45deg)',
+              zIndex: 0,
+            },
+          },
         }}
         onClick={onClose}
         onClose={onClose}

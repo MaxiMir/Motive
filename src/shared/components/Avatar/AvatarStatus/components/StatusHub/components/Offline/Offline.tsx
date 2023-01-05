@@ -29,7 +29,16 @@ function Offline({ lastSeen, device, children }: OfflineProps) {
       badgeContent={
         <TooltipArrow
           title={
-            <Box display="flex" alignItems="center" gap={0.5}>
+            <Box
+              display="flex"
+              alignItems="center"
+              gap={0.5}
+              sx={{
+                '& span': {
+                  fontSize: 12,
+                },
+              }}
+            >
               {device && <DeviceIcon device={device} />}
               {messages.seenText} {distance}
             </Box>

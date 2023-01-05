@@ -36,8 +36,8 @@ function TaskField({ index, date, remind, taskCount, setFieldValue, onRemove }: 
         />
         <Box display="flex" alignSelf="flex-start">
           <IconButton
-            disableFocusRipple
             aria-label={messages.closeText}
+            disableFocusRipple
             disabled={taskCount === 1}
             sx={{ color: 'zen.silent' }}
             onClick={onRemove}

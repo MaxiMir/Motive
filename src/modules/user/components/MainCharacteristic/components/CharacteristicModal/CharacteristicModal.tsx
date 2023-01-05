@@ -27,7 +27,14 @@ function CharacteristicModal({ name, value, onClose }: CharacteristicModalProps)
     >
       <Progress characteristic={name} value={value} />
       <Box mt={2}>
-        <Typography variant="h6" component="h3" sx={{ color: `${name}.light`, mb: 1 }}>
+        <Typography
+          variant="h6"
+          component="h3"
+          sx={{
+            color: `${name}.light`,
+            mb: 1,
+          }}
+        >
           {messages.header}:
         </Typography>
         {list.map((element) => (

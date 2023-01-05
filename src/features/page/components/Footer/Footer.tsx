@@ -3,10 +3,10 @@ import Link from 'next/link'
 import { useIntl } from 'react-intl'
 import { Container, Box, IconButton } from '@mui/material'
 import { Route } from '@href'
-import TopOfTheDayIcon from '@ui/icons/TopOfTheDayIcon'
-import SearchIcon from '@ui/icons/SearchIcon'
-import RatingIcon from '@ui/icons/RatingIcon'
-import FollowingIcon from '@ui/icons/FollowingIcon'
+import TopOfTheDay from '@ui/icons/TopOfTheDay'
+import Search from '@ui/icons/Search'
+import Rating from '@ui/icons/Rating'
+import Following from '@ui/icons/Following'
 import TooltipArrow from '@ui/styled/TooltipArrow'
 import ProfileLink from './components/ProfileLink'
 
@@ -20,22 +20,22 @@ function Footer() {
       {
         title: formatMessage({ id: 'component.footer.top' }),
         href: Route.TopOfTheDay,
-        Component: TopOfTheDayIcon,
+        Component: TopOfTheDay,
       },
       {
         title: formatMessage({ id: 'component.footer.search' }),
         href: Route.Search,
-        Component: SearchIcon,
+        Component: Search,
       },
       {
         title: formatMessage({ id: 'component.footer.rating' }),
         href: Route.Rating,
-        Component: RatingIcon,
+        Component: Rating,
       },
       {
         title: formatMessage({ id: 'common.following' }),
         href: Route.Following,
-        Component: FollowingIcon,
+        Component: Following,
       },
     ]
   }
@@ -44,11 +44,11 @@ function Footer() {
     <Box
       component="footer"
       sx={{
-        backgroundColor: 'underlay',
         position: 'sticky',
         bottom: 0,
         width: '100%',
         zIndex: 30,
+        backgroundColor: 'underlay',
       }}
     >
       <Container
@@ -59,7 +59,7 @@ function Footer() {
           },
         })}
       >
-        <Box display="flex" justifyContent="space-between" alignItems="center" height={52}>
+        <Box display="flex" justifyContent="space-between" alignItems="center" py={1}>
           {routes.map(({ title, href, Component }) => (
             <TooltipArrow title={title} key={href}>
               <IconButton

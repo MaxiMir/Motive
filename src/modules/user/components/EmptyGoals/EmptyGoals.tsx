@@ -17,7 +17,6 @@ function EmptyGoals({ clientPage }: AddGoalProps) {
       justifyContent="center"
       alignItems="center"
       gap={1}
-      mt={3}
       flex={1}
     >
       <Typography variant="h6" component="p" color="primary">

@@ -4,7 +4,6 @@ import Head from 'next/head'
 import { useIntl } from 'react-intl'
 import { Box } from '@mui/material'
 import { getLocaleHrefList } from '@features/locale'
-import useClient from '@hooks/useClient'
 import { OGType } from './dto'
 import Header from './components/Header'
 import Footer from './components/Footer'
@@ -29,11 +28,9 @@ function Page({
   children,
 }: PageProps) {
   const { locale } = useIntl()
-  const client = useClient()
   const { asPath } = useRouter()
   const localeHrefList = getLocaleHrefList(asPath)
   const url = localeHrefList[locale]
-  const showNickname = type === OGType.Profile
 
   return (
     <>
@@ -64,13 +61,12 @@ function Page({
         <meta name="twitter:card" content={type} />
         <meta property="og:locale" content={locale} />
         {canonical && <link rel="canonical" href={canonical} />}
-        {/* Add hreflang links */}
         <link rel="alternate" href={localeHrefList.en} hrefLang="en" />
         <link rel="alternate" href={localeHrefList.ru} hrefLang="ru" />
         <link rel="alternate" href={localeHrefList.uk} hrefLang="uk" />
         <link rel="alternate" href={localeHrefList.en} hrefLang="x-default" />
       </Head>
-      <Header authenticated={!!client} nickname={showNickname} />
+      <Header type={type} />
       <Box
         component="main"
         id="main"
@@ -78,16 +74,12 @@ function Page({
         flexDirection="column"
         sx={{
           flex: 1,
-          background: (theme) => (theme.palette.mode === 'dark' ? '#19191A' : undefined),
-          '@supports not (-moz-appearance:none)': {
-            background: (theme) =>
-              theme.palette.mode === 'dark' ? 'linear-gradient(#19191A, #0A0A0A 60%)' : undefined,
-          },
+          background: (theme) => (theme.palette.mode === 'dark' ? '#121212' : undefined),
         }}
       >
         {children}
       </Box>
-      <Footer nickname={client?.nickname} />
+      <Footer />
     </>
   )
 }

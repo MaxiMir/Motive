@@ -23,7 +23,7 @@ import {
 } from './helper'
 import ViewTrigger from './components/ViewTrigger'
 import Calendar from './components/Calendar'
-import Menu from './components/Menu'
+import MenuActions from './components/MenuActions'
 import Discussion from './components/Discussion'
 import Views from './components/Views'
 import Feedback from './components/Feedback'
@@ -93,23 +93,23 @@ function GoalCurrent({ goal, membership, clientPage, clientMembership }: GoalCur
             display="flex"
             flexDirection="column"
             justifyContent="space-between"
-            gap={3}
-            sx={(theme) => ({
+            gap={2}
+            sx={{
               position: 'relative',
               height: '100%',
               padding: '24px 16px 16px',
-              background: theme.palette.content,
+              backgroundColor: 'underlay',
               borderRadius: '13px',
-            })}
+            }}
           >
             {inherited && <Inheritance />}
             <ViewTrigger>
-              <Box display="flex" flexDirection="column" gap={3}>
+              <Box display="flex" flexDirection="column" gap={2}>
                 <Box display="flex" justifyContent="space-between" alignItems="center">
                   <AppHeader name="goal" variant="h6" component="h2">
                     <b>{name}</b>
                   </AppHeader>
-                  <Menu title={name} href={dayHref} clientOwnership={clientOwnership} />
+                  <MenuActions title={name} href={dayHref} clientOwnership={clientOwnership} />
                 </Box>
                 <Box display="flex" justifyContent="space-between" alignItems="center">
                   {CHARACTERISTICS.map((characteristicName) => (
@@ -134,6 +134,7 @@ function GoalCurrent({ goal, membership, clientPage, clientMembership }: GoalCur
                         borderTopRightRadius: 12,
                         borderBottomLeftRadius: 0,
                         borderBottomRightRadius: 0,
+                        borderBottom: 'none',
                       }}
                       onClick={() => onChangeDate(prev)}
                     >
@@ -150,7 +151,15 @@ function GoalCurrent({ goal, membership, clientPage, clientMembership }: GoalCur
                       </Box>
                     </DayCardControl>
                   )}
-                  <Card variant="outlined" sx={{ width: '100%', pb: 4, borderRadius: '10px' }}>
+                  <Card
+                    variant="outlined"
+                    sx={{
+                      width: '100%',
+                      pb: 4,
+                      borderRadius: '10px',
+                      backgroundColor: 'underlay',
+                    }}
+                  >
                     <Box
                       display="flex"
                       justifyContent="space-between"
@@ -159,20 +168,17 @@ function GoalCurrent({ goal, membership, clientPage, clientMembership }: GoalCur
                       px={3}
                     >
                       <DayAgo day={day.date} />
-                      <Box display="flex" alignItems="center" gap={1}>
-                        <Calendar
-                          isLoading={isLoading}
-                          onChangeDate={onChangeDate}
-                          shouldDisableDate={shouldDisableDate}
-                        />
-                      </Box>
+                      <Calendar
+                        isLoading={isLoading}
+                        onChangeDate={onChangeDate}
+                        shouldDisableDate={shouldDisableDate}
+                      />
                     </Box>
                     {!!stages.length && (
                       <AppAccordion
                         name="stage"
                         header={messages.stagesHeader}
                         id={`stage-${day.id}`}
-                        ariaControls={messages.stagesAria}
                         defaultExpanded
                         details={
                           <Stages
@@ -186,7 +192,6 @@ function GoalCurrent({ goal, membership, clientPage, clientMembership }: GoalCur
                       name="task"
                       header={messages.tasksHeader}
                       id={`tasksContent-${day.id}`}
-                      ariaControls={messages.tasksAria}
                       defaultExpanded
                       details={
                         <Box display="flex" flexDirection="column" gap={1}>
@@ -209,7 +214,6 @@ function GoalCurrent({ goal, membership, clientPage, clientMembership }: GoalCur
                       name="feedback"
                       header={messages.feedbackHeader}
                       id={`${HashMark.Feedback}-${id}`}
-                      ariaControls={messages.feedbackAria}
                       defaultExpanded={!showDiscussion}
                       details={
                         <Feedback
@@ -229,7 +233,6 @@ function GoalCurrent({ goal, membership, clientPage, clientMembership }: GoalCur
                         </>
                       }
                       id={`${HashMark.Discussion}-${id}`}
-                      ariaControls={messages.discussionAria}
                       defaultExpanded={showDiscussion}
                       details={
                         <Discussion
@@ -251,6 +254,7 @@ function GoalCurrent({ goal, membership, clientPage, clientMembership }: GoalCur
                         borderTopRightRadius: 0,
                         borderBottomLeftRadius: 12,
                         borderBottomRightRadius: 12,
+                        borderTop: 'none',
                       }}
                       onClick={() => onChangeDate(next)}
                     >
@@ -297,7 +301,7 @@ function GoalCurrent({ goal, membership, clientPage, clientMembership }: GoalCur
 const DayCardControl = styled(Card)({
   width: '90%',
   height: 50,
-  background: '#2e2e2e',
+  background: '#262626',
   cursor: 'pointer',
   animation: 'opacity 1s ease-out',
   '&:hover': {

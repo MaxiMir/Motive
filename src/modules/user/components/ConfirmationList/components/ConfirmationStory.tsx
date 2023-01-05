@@ -2,10 +2,11 @@ import dynamic from 'next/dynamic'
 import { Box, Button, Typography } from '@mui/material'
 import { useUserContext } from '@modules/user/hooks'
 import { ConfirmationDto } from '@features/confirmation'
-import useFullScreen from '@hooks/useFullScreen'
+import useTryFullScreen from '@hooks/useTryFullScreen'
+import useToggle from '@hooks/useToggle'
 import AvatarStatus from '@components/Avatar/AvatarStatus'
 
-const Stories = dynamic(() => import('@components/Stories'))
+const Stories = dynamic(() => import('@features/stories'))
 
 interface ConfirmationStoryProps {
   confirmation: ConfirmationDto
@@ -13,9 +14,20 @@ interface ConfirmationStoryProps {
 
 function ConfirmationStory({ confirmation }: ConfirmationStoryProps) {
   const user = useUserContext()
-  const { ref, enabled, open, onOpen, onClose } = useFullScreen()
+  const [open, toggle] = useToggle()
+  const { ref, supported, enter, exit } = useTryFullScreen()
   const [mainPhoto] = confirmation.photos
   const stories = [mainPhoto] // TODO confirmation.photos.map
+
+  const onClick = () => {
+    toggle()
+    enter()
+  }
+
+  const onClose = () => {
+    exit()
+    toggle()
+  }
 
   return (
     <>
@@ -36,20 +48,20 @@ function ConfirmationStory({ confirmation }: ConfirmationStoryProps) {
               },
             })}
           >
-            <AvatarStatus src={mainPhoto.src} name={user.name} size={60} onClick={onOpen} />
+            <AvatarStatus
+              src={mainPhoto.src}
+              name={user.name}
+              size={60}
+              buttonProps={{ onClick }}
+            />
           </Box>
         </Box>
-        <Button
-          id={`confirmation-${confirmation.id}`}
-          size="small"
-          sx={{ textTransform: 'none' }}
-          onClick={onOpen}
-        >
+        <Button id={`confirmation-${confirmation.id}`} size="small" onClick={onClick}>
           <Typography
             variant="caption"
             sx={{
               maxWidth: 95,
-              color: 'creativity.light',
+              color: 'common.white',
               overflow: 'hidden',
               whiteSpace: 'nowrap',
               textOverflow: 'ellipsis',
@@ -65,8 +77,7 @@ function ConfirmationStory({ confirmation }: ConfirmationStoryProps) {
           stories={stories}
           title={confirmation.goal.name}
           date={confirmation.end}
-          fullscreenEnabled={enabled}
-          fullscreenRef={ref}
+          fullscreen={{ ref, supported }}
           onClose={onClose}
         />
       )}

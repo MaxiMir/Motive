@@ -7,26 +7,18 @@ interface AppAccordionProps {
   id: string
   name: AppEmojiName
   header: string | JSX.Element
-  ariaControls: string
   details: JSX.Element
   defaultExpanded?: boolean
 }
 
-function AppAccordion({
-  name,
-  header,
-  id,
-  ariaControls,
-  details,
-  defaultExpanded,
-}: AppAccordionProps) {
+function AppAccordion({ name, header, id, details, defaultExpanded }: AppAccordionProps) {
   return (
-    <Accordion defaultExpanded={defaultExpanded} TransitionProps={{ unmountOnExit: true }}>
-      <AccordionSummary
-        id={id}
-        expandIcon={<AppIcon name="expand_more" />}
-        aria-controls={ariaControls}
-      >
+    <Accordion
+      defaultExpanded={defaultExpanded}
+      TransitionProps={{ unmountOnExit: true }}
+      disableGutters
+    >
+      <AccordionSummary id={id} expandIcon={<AppIcon name="expand_more" />}>
         <AppHeader name={name} variant="h6" component="h3" color="primary">
           {header}
         </AppHeader>

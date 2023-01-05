@@ -12,7 +12,7 @@ export default class MyDocument extends Document {
           {/* PWA */}
           <link rel="manifest" href="/manifest.json" />
           <link rel="apple-touch-icon" href="/apple-icon.png" />
-          <meta name="theme-color" content="#121212" />
+          <meta name="theme-color" content="#000000" />
           <meta
             name="google-site-verification"
             content="agmCksft6b7nOz-CbmrjAcflYLb5ztxWLN6o9vFImak"
@@ -24,7 +24,10 @@ export default class MyDocument extends Document {
             rel="stylesheet"
             href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"
           />
-          <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
+          <link
+            rel="stylesheet"
+            href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"
+          />
           <meta
             httpEquiv="Content-Security-Policy"
             content={`

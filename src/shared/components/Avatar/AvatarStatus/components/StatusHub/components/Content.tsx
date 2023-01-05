@@ -14,7 +14,11 @@ function Content({ src, size }: ContentProps) {
       src={imageSrc}
       alt=""
       draggable={false}
-      sx={{ width: size, height: size, pointerEvents: 'none' }}
+      sx={{
+        width: size,
+        height: size,
+        pointerEvents: 'none',
+      }}
     />
   )
 }

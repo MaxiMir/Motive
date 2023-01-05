@@ -1,6 +1,7 @@
 import dynamic from 'next/dynamic'
 import { Box, Button, IconButton } from '@mui/material'
 import AppIcon from '@ui/AppIcon'
+import TooltipArrow from '@ui/styled/TooltipArrow'
 import { useMessages } from './hooks/useMessages'
 
 const LocalImage = dynamic(() => import('./components/LocalImage'))
@@ -44,18 +45,19 @@ function PhotoButton({ image, disabled, onClick }: PhotoButtonProps) {
         ) : (
           <AppImage src={image} layout="fill" objectFit="contain" />
         )}
-        <IconButton
-          aria-label={messages.ariaLabel}
-          disabled={disabled}
-          sx={{
-            position: 'absolute',
-            top: -8,
-            right: -8,
-          }}
-          onClick={onClick}
-        >
-          <AppIcon name="cancel" />
-        </IconButton>
+        <TooltipArrow title={messages.title}>
+          <IconButton
+            disabled={disabled}
+            sx={{
+              position: 'absolute',
+              top: -8,
+              right: -8,
+            }}
+            onClick={onClick}
+          >
+            <AppIcon name="cancel" />
+          </IconButton>
+        </TooltipArrow>
       </Box>
     </Button>
   )

@@ -65,7 +65,7 @@ export const getGoalInfo = (
   const canEdit = checkCanEdit()
 
   function checkOnControls() {
-    if (completed && clientOwnership.goal) {
+    if (clientOwnership.goal && (!clientOwnership.page || completed)) {
       return false
     }
 

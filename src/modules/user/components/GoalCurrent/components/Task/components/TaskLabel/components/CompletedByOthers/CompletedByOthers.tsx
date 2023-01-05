@@ -1,16 +1,14 @@
-import { Tooltip } from '@mui/material'
 import AppEmoji from '@ui/AppEmoji'
+import TooltipArrow from '@ui/styled/TooltipArrow'
 import { useMessages } from './hooks/useMessages'
 
 function CompletedByOthers() {
   const messages = useMessages()
 
   return (
-    <Tooltip arrow title={messages.title}>
-      <span>
-        <AppEmoji name="fire" onlyEmoji />
-      </span>
-    </Tooltip>
+    <TooltipArrow title={messages.title}>
+      <AppEmoji name="fire" onlyEmoji />
+    </TooltipArrow>
   )
 }
 

@@ -7,9 +7,9 @@ import useFormatNumber from '@hooks/useFormatNumber'
 import { getWordDeclination } from '@helpers/string'
 import { useMessages } from './hooks/useMessages'
 
-const ModalSubscription = dynamic(() => import('./components/ModalSubscription'))
-const ModalNoCompleted = dynamic(() => import('./components/ModalNoCompleted'))
-const ModalAbandoned = dynamic(() => import('./components/ModalAbandoned/ModalAbandoned'))
+const SubscriptionModal = dynamic(() => import('./components/SubscriptionModal'))
+const NoCompletedModal = dynamic(() => import('./components/NoCompletedModal'))
+const AbandonedModal = dynamic(() => import('./components/AbandonedModal'))
 
 const { Completed, Abandoned, Followers, Following } = SecondCharacteristicName
 
@@ -50,15 +50,14 @@ function SecondCharacteristic({ confirmations, name, value }: CharacteristicProp
     <>
       <Button
         size="small"
-        sx={{ flex: 1, minWidth: 70 }}
-        aria-expanded={modal ? 'true' : undefined}
         aria-haspopup="true"
+        aria-expanded={modal ? 'true' : undefined}
         onClick={onClick}
       >
         <Box
           display="flex"
           sx={{
-            color: 'white',
+            color: 'common.white',
             gap: {
               md: 0.5,
             },
@@ -75,23 +74,13 @@ function SecondCharacteristic({ confirmations, name, value }: CharacteristicProp
           <Typography variant="h5" component="b">
             {formattedValue}
           </Typography>
-          <Typography
-            sx={{
-              textTransform: 'none',
-              fontSize: {
-                xs: '12px',
-                md: '13px',
-              },
-            }}
-          >
-            {buttonText}
-          </Typography>
+          <Typography sx={{ fontSize: 14 }}>{buttonText}</Typography>
         </Box>
       </Button>
-      {modal === Completed && <ModalNoCompleted onClose={onClose} />}
-      {modal === Abandoned && <ModalAbandoned onClose={onClose} />}
-      {modal === Followers && <ModalSubscription name={Followers} onClose={onClose} />}
-      {modal === Following && <ModalSubscription name={Following} onClose={onClose} />}
+      {modal === Completed && <NoCompletedModal onClose={onClose} />}
+      {modal === Abandoned && <AbandonedModal onClose={onClose} />}
+      {modal === Followers && <SubscriptionModal name={Followers} onClose={onClose} />}
+      {modal === Following && <SubscriptionModal name={Following} onClose={onClose} />}
     </>
   )
 }

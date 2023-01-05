@@ -21,7 +21,6 @@ function ConfirmationList({ confirmations, clientPage }: ConfirmationListProps) 
           display: 'none',
         },
       }}
-      sx={{ mb: 3 }}
     >
       {clientPage && <AddGoal />}
       {confirmations.map((confirmation) => (

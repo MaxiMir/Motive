@@ -1,5 +1,6 @@
 import Link from 'next/link'
-import { Box, Typography, useTheme } from '@mui/material'
+import { Box, Typography } from '@mui/material'
+import { useTheme } from '@mui/material/styles'
 import { MainCharacteristicName, SecondCharacteristicName } from '@features/characteristic'
 import AppEmoji from '@ui/AppEmoji'
 import { useMessages } from './hooks/useMessages'

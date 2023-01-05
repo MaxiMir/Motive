@@ -19,7 +19,6 @@ function UserCard({ user }: UserCardProps) {
       href={href}
       sx={{
         width: '100%',
-        textTransform: 'none',
         padding: 2,
         borderRadius: '12px',
       }}

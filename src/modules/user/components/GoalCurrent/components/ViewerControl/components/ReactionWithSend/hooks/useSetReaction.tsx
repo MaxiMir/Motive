@@ -6,7 +6,6 @@ import { useGoalContext } from '@modules/user/components/GoalCurrent/hooks/useGo
 import { UserPageDto } from '@features/page'
 import { GoalService } from '@features/goal'
 import { DayCharacteristicName, DayCharacteristicUpdateDto } from '@features/day'
-import useDebounceCb from '@hooks/useDebounceCb'
 import useSnackbar from '@hooks/useSnackbar'
 import useClient from '@hooks/useClient'
 import useOpenSignIn from '@hooks/useOpenSignIn'
@@ -27,7 +26,10 @@ const getNextState = (page: UserPageDto, { id, dayId, add, name }: DayCharacteri
       : draftGoal.reactions[name].filter((r) => r !== dayId)
   })
 
-export const useSetReaction = (name: DayCharacteristicName, active: boolean) => {
+export const useSetReaction = (
+  name: DayCharacteristicName,
+  active: boolean,
+): [boolean, () => void] => {
   const { formatMessage } = useIntl()
   const { id, day } = useGoalContext()
   const client = useClient()
@@ -35,7 +37,7 @@ export const useSetReaction = (name: DayCharacteristicName, active: boolean) => 
   const queryClient = useQueryClient()
   const { nickname } = useUserContext()
   const [enqueueSnackbar] = useSnackbar()
-  const { mutate } = useMutation(GoalService.updateCharacteristic, {
+  const { isLoading, mutate } = useMutation(GoalService.updateCharacteristic, {
     async onMutate(options) {
       await queryClient.cancelQueries(nickname)
       const previous = queryClient.getQueryData<UserPageDto>(nickname)
@@ -58,14 +60,15 @@ export const useSetReaction = (name: DayCharacteristicName, active: boolean) => 
       }
     },
   })
-  const sendDebounce = useDebounceCb((add: boolean) => mutate({ id, dayId: day.id, name, add }))
 
-  return () => {
+  const onClick = () => {
     if (!client) {
       openSignIn({ callbackUrl: window.location.href })
       return
     }
 
-    sendDebounce(!active)
+    mutate({ id, dayId: day.id, name, add: !active })
   }
+
+  return [isLoading, onClick]
 }

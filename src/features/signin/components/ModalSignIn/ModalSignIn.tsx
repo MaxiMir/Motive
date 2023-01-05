@@ -1,7 +1,7 @@
 import dynamic from 'next/dynamic'
 import { SignInOptions } from 'next-auth/react'
 import { Box } from '@mui/material'
-import AppModal from '@ui/AppModal/AppModal'
+import AppModal from '@ui/AppModal'
 import appleSrc from 'public/images/svg/apple.svg'
 import metaSrc from 'public/images/svg/meta.svg'
 import githubSrc from 'public/images/svg/github.svg'

@@ -1,12 +1,13 @@
 import dynamic from 'next/dynamic'
-import { Badge, Button } from '@mui/material'
+import { Badge, IconButton } from '@mui/material'
 import { useNotifications } from '@features/notification'
 import useToggle from '@hooks/useToggle'
 import AppIcon from '@ui/AppIcon'
+import TooltipArrow from '@ui/styled/TooltipArrow'
 import { useMessages } from './hooks/useMessages'
 import { checkOnBadgeContent } from './helper'
 
-const ModalNotifications = dynamic(() => import('./components/ModalNotifications'))
+const NotificationsModal = dynamic(() => import('./components/NotificationsModal'))
 
 function Notifications() {
   const messages = useMessages()
@@ -16,18 +17,14 @@ function Notifications() {
 
   return (
     <>
-      <Button
-        aria-controls={open ? messages.ariaControls : undefined}
-        aria-haspopup="true"
-        aria-expanded={open ? 'true' : undefined}
-        sx={{ color: 'common.white' }}
-        onClick={toggle}
-      >
-        <Badge color="error" badgeContent={badgeContent} variant="dot" invisible={false}>
-          <AppIcon name="notifications_none" />
-        </Badge>
-      </Button>
-      {open && <ModalNotifications notifications={data} onClose={toggle} />}
+      <TooltipArrow title={messages.title}>
+        <IconButton aria-haspopup="true" aria-expanded={open ? 'true' : undefined} onClick={toggle}>
+          <Badge color="error" badgeContent={badgeContent} variant="dot" invisible={false}>
+            <AppIcon name="notifications_none" />
+          </Badge>
+        </IconButton>
+      </TooltipArrow>
+      {open && <NotificationsModal notifications={data} onClose={toggle} />}
     </>
   )
 }

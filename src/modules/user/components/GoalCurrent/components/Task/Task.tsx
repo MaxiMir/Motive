@@ -1,9 +1,10 @@
 import dynamic from 'next/dynamic'
 import { useIntl } from 'react-intl'
-import { Box, Tooltip } from '@mui/material'
+import { Box } from '@mui/material'
 import { MemberDto } from '@features/member'
 import { TaskDto } from '@features/task'
 import AppCheckbox from '@ui/AppCheckbox'
+import TooltipArrow from '@ui/styled/TooltipArrow'
 import TaskLabel from './components/TaskLabel'
 import { useSetCompleted } from './hooks/useSetCompleted'
 
@@ -37,17 +38,15 @@ function Task({
   return (
     <Box display="flex" flexDirection="column" gap={1}>
       <form>
-        <Tooltip title={title} arrow followCursor>
-          <span>
-            <AppCheckbox
-              name={id.toString()}
-              label={<TaskLabel task={task} daysGoneForOwner={daysGoneForOwner} />}
-              checked={completed}
-              disabled={disabled}
-              onChange={setCompleted}
-            />
-          </span>
-        </Tooltip>
+        <TooltipArrow title={title}>
+          <AppCheckbox
+            name={id.toString()}
+            label={<TaskLabel task={task} daysGoneForOwner={daysGoneForOwner} />}
+            checked={completed}
+            disabled={disabled}
+            onChange={setCompleted}
+          />
+        </TooltipArrow>
       </form>
       {date && <TaskDate date={date} />}
     </Box>

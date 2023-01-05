@@ -1,12 +1,11 @@
 import dynamic from 'next/dynamic'
-import { Button } from '@mui/material'
 import useClient from '@hooks/useClient'
 import useOpenSignIn from '@hooks/useOpenSignIn'
 import useToggle from '@hooks/useToggle'
-import AppEmoji from '@ui/AppEmoji'
+import BlueButton from '@ui/styled/BlueButton'
 import { useMessages } from './hooks/useMessages'
 
-const ModalJoin = dynamic(() => import('./components/ModalJoin'))
+const JoinModal = dynamic(() => import('./components/JoinModal'))
 
 function Join() {
   const messages = useMessages()
@@ -25,15 +24,10 @@ function Join() {
 
   return (
     <>
-      <Button
-        variant="outlined"
-        color="primary"
-        startIcon={<AppEmoji name="join" onlyEmoji />}
-        onClick={onClick}
-      >
+      <BlueButton size="small" onClick={onClick}>
         {messages.buttonText}
-      </Button>
-      {open && <ModalJoin onClose={toggle} />}
+      </BlueButton>
+      {open && <JoinModal onClose={toggle} />}
     </>
   )
 }

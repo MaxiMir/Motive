@@ -1,13 +1,15 @@
 import dynamic from 'next/dynamic'
 import { Step, StepContent, Stepper } from '@mui/material'
+import { teal } from '@mui/material/colors'
 import { useGoalContext } from '@modules/user/components/GoalCurrent/hooks/useGoalContext'
 import useToggle from '@hooks/useToggle'
+import AppIcon from '@ui/AppIcon'
 import StageLabel from './components/StageLabel'
 import { useMessages } from './hooks/useMessages'
 
 const Button = dynamic(() => import('@mui/material/Button'))
-const Tooltip = dynamic(() => import('@mui/material/Tooltip'))
-const ModalStage = dynamic(() => import('./components/ModalStage'))
+const TooltipArrow = dynamic(() => import('@ui/styled/TooltipArrow'))
+const StageModal = dynamic(() => import('./components/StageModal'))
 
 interface StagesProps {
   forTomorrow: boolean
@@ -41,27 +43,32 @@ function Stages({ forTomorrow, completeStage }: StagesProps) {
               <StepContent />
             ) : (
               <StepContent>
-                <Tooltip title={messages.title} arrow followCursor>
-                  <span>
-                    <Button
-                      variant="outlined"
-                      color="success"
-                      size="small"
-                      disabled={forTomorrow}
-                      aria-expanded={open ? 'true' : undefined}
-                      aria-haspopup="true"
-                      onClick={toggle}
-                    >
-                      {messages.buttonText}
-                    </Button>
-                  </span>
-                </Tooltip>
+                <TooltipArrow title={messages.title}>
+                  <Button
+                    variant="outlined"
+                    size="small"
+                    disabled={forTomorrow}
+                    aria-haspopup="true"
+                    aria-expanded={open ? 'true' : undefined}
+                    startIcon={<AppIcon name="done_outline" />}
+                    sx={{
+                      color: teal[600],
+                      borderColor: teal[600],
+                      '&:hover': {
+                        borderColor: teal[400],
+                      },
+                    }}
+                    onClick={toggle}
+                  >
+                    {messages.buttonText}
+                  </Button>
+                </TooltipArrow>
               </StepContent>
             )}
           </Step>
         ))}
       </Stepper>
-      {open && <ModalStage onClose={toggle} />}
+      {open && <StageModal onClose={toggle} />}
     </>
   )
 }

@@ -1,11 +1,13 @@
-import { Grid, Box, Button, Typography, typographyClasses } from '@mui/material'
+import { Grid, Box, Button, Typography } from '@mui/material'
+import { typographyClasses } from '@mui/material/Typography'
 import { styled, Theme } from '@mui/system'
 import { openBlank } from '@helpers/window'
 import AppContainer from '@ui/AppContainer'
 import AppHeader from '@ui/AppHeader'
-import AppIcon from '@ui/AppIcon'
 import AppEmoji from '@ui/AppEmoji'
-import { TelegramIcon, LinkedInIcon } from '@ui/icons'
+import Telegram from '@ui/icons/Telegram'
+import LinkedIn from '@ui/icons/LinkedIn'
+import Email from '@ui/icons/Email'
 import BTCSrc from 'public/images/svg/btc.svg'
 import ETHSrc from 'public/images/svg/eth.svg'
 import LTCSrc from 'public/images/svg/ltc.svg'
@@ -51,7 +53,7 @@ function ContactModule() {
                   <Typography variant="h6" component="p">
                     Email
                   </Typography>
-                  <AppIcon name="email" />
+                  <Email />
                 </Box>
               </ButtonContent>
             </ButtonLink>
@@ -68,7 +70,7 @@ function ContactModule() {
                   <Typography variant="h6" component="p">
                     Telegram
                   </Typography>
-                  <TelegramIcon />
+                  <Telegram />
                 </Box>
               </ButtonContent>
             </ButtonLink>
@@ -85,7 +87,7 @@ function ContactModule() {
                   <Typography variant="h6" component="p">
                     LinkedIn
                   </Typography>
-                  <LinkedInIcon />
+                  <LinkedIn />
                 </Box>
               </ButtonContent>
             </ButtonLink>

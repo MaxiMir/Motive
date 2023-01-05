@@ -8,7 +8,7 @@ import { UserPageDto } from '@features/page'
 import { MemberDto, MemberService } from '@features/member'
 import useSnackbar from '@hooks/useSnackbar'
 
-const getNextState = (page: UserPageDto, member: MemberDto): UserPageDto =>
+const getNextState = (page: UserPageDto, member: MemberDto) =>
   produce(page, (draft: Draft<UserPageDto>) => {
     const draftMember = draft.clientMembership.find((m) => m.id === member.id)
 

@@ -1,25 +1,28 @@
 import dynamic from 'next/dynamic'
-import { Box, AppBar, Container } from '@mui/material'
+import { AppBar, Box, Container } from '@mui/material'
+import { OGType } from '@features/page'
+import useClient from '@hooks/useClient'
 import LeftMenu from './components/LeftMenu'
 
 const SignIn = dynamic(() => import('./components/SignIn'))
 const Notifications = dynamic(() => import('./components/Notifications'))
-const Nickname = dynamic(() => import('./components/Nickname'))
+const UserLink = dynamic(() => import('./components/UserLink'))
 
 interface HeaderProps {
-  authenticated: boolean
-  nickname: boolean
+  type: OGType
 }
 
-function Header({ authenticated, nickname }: HeaderProps) {
+function Header({ type }: HeaderProps) {
+  const client = useClient()
+  const renderNickname = type === OGType.Profile
+
   return (
     <AppBar
       position="static"
       sx={{
         paddingY: 1,
-        backgroundColor: 'navigation',
-        backgroundImage: 'none',
         boxShadow: 'none',
+        backgroundColor: 'underlay',
       }}
     >
       <Container
@@ -32,8 +35,8 @@ function Header({ authenticated, nickname }: HeaderProps) {
       >
         <Box display="flex" justifyContent="space-between" alignItems="center">
           <LeftMenu />
-          {nickname && <Nickname />}
-          {authenticated ? <Notifications /> : <SignIn />}
+          {renderNickname && <UserLink />}
+          {client ? <Notifications /> : <SignIn />}
         </Box>
       </Container>
     </AppBar>

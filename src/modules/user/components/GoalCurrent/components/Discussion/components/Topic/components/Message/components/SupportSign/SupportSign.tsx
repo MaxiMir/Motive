@@ -1,5 +1,6 @@
-import { Box, Tooltip } from '@mui/material'
+import { Box } from '@mui/material'
 import AppEmoji from '@ui/AppEmoji'
+import TooltipArrow from '@ui/styled/TooltipArrow'
 import { useMessages } from './hooks/useMessages'
 
 interface SupportSignProps {
@@ -10,7 +11,7 @@ function SupportSign({ name }: SupportSignProps) {
   const messages = useMessages(name)
 
   return (
-    <Tooltip arrow title={messages.title} aria-label={messages.title}>
+    <TooltipArrow title={messages.title}>
       <Box
         display="flex"
         justifyContent="center"
@@ -25,7 +26,7 @@ function SupportSign({ name }: SupportSignProps) {
       >
         <AppEmoji name="support" onlyEmoji />
       </Box>
-    </Tooltip>
+    </TooltipArrow>
   )
 }
 

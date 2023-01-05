@@ -14,16 +14,15 @@ function ReactionWithSend({ name }: ReactionWithSendProps) {
   const active = checkOnActive(goal, name)
   const messages = useMessages(name, active)
   const count = getCount(goal, name)
-
-  const onSetReaction = useSetReaction(name, active)
+  const [isLoading, onClick] = useSetReaction(name, active)
 
   return (
     <ActionGoal
       name={name}
       title={messages.title}
       count={count}
-      disabled={active}
-      onClick={onSetReaction}
+      disabled={active || isLoading}
+      onClick={onClick}
     />
   )
 }

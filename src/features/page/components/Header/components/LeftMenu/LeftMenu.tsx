@@ -1,11 +1,12 @@
 import { useState } from 'react'
 import dynamic from 'next/dynamic'
-import { Button } from '@mui/material'
+import { IconButton } from '@mui/material'
 import AppIcon from '@ui/AppIcon'
+import TooltipArrow from '@ui/styled/TooltipArrow'
 import { useMessages } from './hooks/useMessages'
 
 const MenuModal = dynamic(() => import('./components/MenuModal'))
-const ModalSettings = dynamic(() => import('./components/ModalSettings'))
+const SettingsModal = dynamic(() => import('./components/SettingsModal'))
 
 function LeftMenu() {
   const messages = useMessages()
@@ -23,17 +24,17 @@ function LeftMenu() {
 
   return (
     <>
-      <Button
-        aria-label={messages.ariaLabel}
-        aria-expanded={openMenu ? 'true' : undefined}
-        aria-haspopup="true"
-        sx={{ color: 'common.white' }}
-        onClick={toggleMenu}
-      >
-        <AppIcon name="menu" />
-      </Button>
+      <TooltipArrow title={messages.title}>
+        <IconButton
+          aria-haspopup="true"
+          aria-expanded={openMenu ? 'true' : undefined}
+          onClick={toggleMenu}
+        >
+          <AppIcon name="menu" />
+        </IconButton>
+      </TooltipArrow>
       {openMenu && <MenuModal onOpenSettings={onOpenSettings} onClose={toggleMenu} />}
-      {openSettings && <ModalSettings onClose={onCloseSettings} />}
+      {openSettings && <SettingsModal onClose={onCloseSettings} />}
     </>
   )
 }

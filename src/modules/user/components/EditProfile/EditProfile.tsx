@@ -1,10 +1,10 @@
 import dynamic from 'next/dynamic'
-import { Button } from '@mui/material'
 import useToggle from '@hooks/useToggle'
 import AppIcon from '@ui/AppIcon'
+import GreyButton from '@ui/styled/GreyButton'
 import { useMessages } from './hooks/useMessages'
 
-const ModalProfile = dynamic(() => import('./components/ModalProfile'))
+const EditModal = dynamic(() => import('./components/EditModal/EditModal'))
 
 function EditProfile() {
   const messages = useMessages()
@@ -12,21 +12,21 @@ function EditProfile() {
 
   return (
     <>
-      <Button
-        variant="outlined"
+      <GreyButton
         size="small"
-        startIcon={<AppIcon name="edit" />}
-        aria-expanded={open ? 'true' : undefined}
         aria-haspopup="true"
+        aria-expanded={open ? 'true' : undefined}
+        startIcon={<AppIcon name="edit_note" />}
         sx={{
-          flex: 1,
-          textTransform: 'none',
+          minWidth: '96px',
+          height: 30,
+          paddingX: 1,
         }}
         onClick={toggle}
       >
         {messages.buttonText}
-      </Button>
-      {open && <ModalProfile onClose={toggle} />}
+      </GreyButton>
+      {open && <EditModal onClose={toggle} />}
     </>
   )
 }

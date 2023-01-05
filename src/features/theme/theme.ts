@@ -18,7 +18,7 @@ declare module '@mui/material/styles' {
   }
 
   interface Palette {
-    navigation: CSSProperties['color']
+    underlay: CSSProperties['color']
     content: CSSProperties['color']
     circle: CSSProperties['color']
     zen: ZenColor
@@ -32,7 +32,7 @@ declare module '@mui/material/styles' {
   }
 
   interface PaletteOptions {
-    navigation: CSSProperties['color']
+    underlay: CSSProperties['color']
     content: CSSProperties['color']
     circle: CSSProperties['color']
     zen: ZenColor
@@ -50,11 +50,11 @@ export const getDesignTokens = (mode: PaletteMode): ThemeOptions => {
   return {
     palette: {
       mode,
-      navigation: mode === 'dark' ? '#121212' : '#d7d7d7',
+      underlay: mode === 'dark' ? '#000000' : '#d7d7d7',
       content: mode === 'dark' ? '#19191a' : '#d7d7d7',
       circle: '#2d313e',
       zen: {
-        silent: '#99989D',
+        silent: '#8e8e8e',
         sand: '#ad998b',
         tender: '#C8B1BB',
         wave: '#80cbc4',
@@ -107,6 +107,13 @@ export const getDesignTokens = (mode: PaletteMode): ThemeOptions => {
         }),
     },
     components: {
+      MuiButton: {
+        styleOverrides: {
+          root: {
+            textTransform: 'none',
+          },
+        },
+      },
       MuiTypography: {
         styleOverrides: {
           h1: {
@@ -146,6 +153,7 @@ export const getDesignTokens = (mode: PaletteMode): ThemeOptions => {
       MuiPaper: {
         styleOverrides: {
           root: {
+            background: mode === 'dark' ? '#000000' : '#d7d7d7',
             backgroundImage: 'none',
           },
         },
@@ -201,7 +209,7 @@ export const getDesignTokens = (mode: PaletteMode): ThemeOptions => {
           '#__next': {
             display: 'flex',
             flexDirection: 'column',
-            height: '100vh',
+            height: '100dvh',
           },
           '.ps .ps__rail-y:hover, .ps .ps--clicking': {
             background: 'transparent!important',

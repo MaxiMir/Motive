@@ -10,14 +10,7 @@ function Hashtag({ hashtag }: HashtagProps) {
   const href = getHashtagHref(hashtag)
 
   return (
-    <Button
-      href={href}
-      variant="text"
-      color="primary"
-      size="small"
-      sx={{ textTransform: 'none' }}
-      component={Link}
-    >
+    <Button href={href} variant="text" color="primary" size="small" component={Link}>
       {hashtag}
     </Button>
   )

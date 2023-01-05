@@ -1,6 +1,17 @@
+aria-label=""
+
 [//]: # (TODO)
 * nanoid()
+* modularizeImports
+* useTryFullScreen
+* тип сообщений в обсуждении
+* меню дл мобильной версии и десктопа
+* модалки как в инсте
+* (2) в title meta
+* https://mui.com/material-ui/react-menu/#basic-menu aria
 * TODO disabled control
+* Рефакторинг Box display flex
+* Loader photo
 * редактирование фотки
 * https://docs.nestjs.com/techniques/caching
 * hydration error
@@ -29,11 +40,11 @@
 * Push notification
 
 ```shell
-docker build -t maximir/frontend:1.0.89 .
+docker build -t maximir/frontend:1.0.91 .
 # artifactory:
-docker tag <IMAGE_ID> maximir.jfrog.io/default-docker-virtual/frontend:1.0.89
-docker push maximir.jfrog.io/default-docker-virtual/frontend:1.0.89
-docker pull maximir.jfrog.io/default-docker-virtual/frontend:1.0.89
+docker tag <IMAGE_ID> maximir.jfrog.io/default-docker-virtual/frontend:1.0.91
+docker push maximir.jfrog.io/default-docker-virtual/frontend:1.0.91
+docker pull maximir.jfrog.io/default-docker-virtual/frontend:1.0.91
 
 # copy:
 docker cp <IMAGE_ID>:/home/node/client /home # <-
@@ -62,7 +73,7 @@ version: '3.3'
 
 services:
   frontend:
-    image: maximir.jfrog.io/default-docker-virtual/frontend:1.0.89
+    image: maximir.jfrog.io/default-docker-virtual/frontend:1.0.91
     depends_on:
       - backend
     restart: unless-stopped

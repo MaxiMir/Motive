@@ -1,6 +1,6 @@
 {
   "name": "bebetter",
-  "version": "1.0.89",
+  "version": "1.0.91",
   "private": true,
   "scripts": {
     "dev": "next dev --show-all",
@@ -28,7 +28,6 @@
   "dependencies": {
     "@emotion/react": "^11.10.5",
     "@emotion/styled": "^11.10.5",
-    "@mui/icons-material": "^5.10.9",
     "@mui/material": "^5.10.13",
     "@mui/styles": "^5.10.10",
     "@mui/system": "^5.10.13",
@@ -41,7 +40,7 @@
     "fscreen": "^1.2.0",
     "immer": "^9.0.16",
     "markdown-to-jsx": "^7.1.7",
-    "next": "^13.0.3",
+    "next": "^13.1.1",
     "next-auth": "^4.16.4",
     "next-pwa": "^5.6.0",
     "nextjs-progressbar": "^0.0.16",
@@ -72,7 +71,7 @@
     "cz-customizable": "^7.0.0",
     "eslint": "^8.27.0",
     "eslint-config-airbnb": "^19.0.4",
-    "eslint-config-next": "^13.0.3",
+    "eslint-config-next": "^13.1.1",
     "eslint-config-prettier": "^8.5.0",
     "eslint-plugin-jest": "^27.1.5",
     "eslint-plugin-prettier": "^4.2.1",

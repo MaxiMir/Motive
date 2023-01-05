@@ -1,26 +1,33 @@
-import { MouseEvent, useState } from 'react'
+import { MouseEvent, useId, useState } from 'react'
 import dynamic from 'next/dynamic'
+import { Menu } from '@mui/material'
 import { useUserContext } from '@modules/user/hooks'
 import useToggle from '@hooks/useToggle'
+import AppMenuItem from '@ui/AppMenuItem'
 import AvatarStatus from '@components/Avatar/AvatarStatus'
+import TooltipArrow from '@ui/styled/TooltipArrow'
+import { useMessages } from './hooks/useMessages'
 
-const AppLightBox = dynamic(() => import('@ui/AppLightBox/AppLightBox'))
-const MenuList = dynamic(() => import('./components/MenuList'))
-const ModalEdit = dynamic(() => import('./components/ModalEdit'))
-const ModalDelete = dynamic(() => import('./components/ModalDelete'))
+const AppLightBox = dynamic(() => import('@ui/AppLightBox'))
+const EditModal = dynamic(() => import('./components/EditModal'))
+const DeleteModal = dynamic(() => import('./components/DeleteModal'))
 
 interface AvatarProps {
   clientPage: boolean
 }
 
 function Avatar({ clientPage }: AvatarProps) {
+  const id = useId()
+  const menuId = useId()
   const { name, avatar, online, lastSeen, device } = useUserContext()
   const [index, setIndex] = useState<number>()
-  const [openEdit, toggleEdit] = useToggle()
-  const [openDelete, toggleDelete] = useToggle()
+  const [editing, toggleEditing] = useToggle()
+  const [deleting, toggleDeleting] = useToggle()
   const [anchorEl, setAnchorEl] = useState<HTMLElement | null>(null)
+  const messages = useMessages()
   const sources = !avatar ? null : [avatar]
   const disabled = !sources && !clientPage
+  const open = Boolean(anchorEl)
 
   const openPhoto = () => setIndex(0)
 
@@ -39,29 +46,75 @@ function Avatar({ clientPage }: AvatarProps) {
 
   return (
     <>
-      <AvatarStatus
-        src={avatar}
-        name={name}
-        size={190}
-        online={online}
-        lastSeen={lastSeen}
-        device={device}
-        disabled={disabled}
-        onClick={onClick}
-      />
-      {anchorEl && (
-        <MenuList
-          anchorEl={anchorEl}
-          avatar={avatar}
-          onOpen={openPhoto}
-          onEdit={toggleEdit}
-          onDelete={toggleDelete}
-          onClose={onClose}
+      <TooltipArrow title={messages.title}>
+        <AvatarStatus
+          src={avatar}
+          name={name}
+          size={175}
+          online={online}
+          lastSeen={lastSeen}
+          device={device}
+          buttonProps={{
+            disabled,
+            id,
+            'aria-controls': open ? menuId : undefined,
+            'aria-haspopup': 'true',
+            'aria-expanded': open ? 'true' : undefined,
+            onClick,
+          }}
         />
-      )}
+      </TooltipArrow>
+      <Menu
+        id={menuId}
+        anchorEl={anchorEl}
+        open={open}
+        MenuListProps={{
+          'aria-labelledby': id,
+        }}
+        PaperProps={{
+          elevation: 0,
+          sx: {
+            overflow: 'visible',
+            filter: 'drop-shadow(0px 2px 8px rgba(0,0,0,0.32))',
+            mt: 1.5,
+            '& .MuiAvatar-root': {
+              width: 175,
+              height: 175,
+              ml: -0.5,
+              mr: 1,
+            },
+            '&:before': {
+              content: '""',
+              display: 'block',
+              position: 'absolute',
+              top: 0,
+              right: 14,
+              width: 10,
+              height: 10,
+              bgcolor: 'background.paper',
+              transform: 'translateY(-50%) rotate(45deg)',
+              zIndex: 0,
+            },
+          },
+        }}
+        onClick={onClose}
+        onClose={onClose}
+      >
+        {avatar && <AppMenuItem icon="photo" text={messages.openText} onClick={openPhoto} />}
+        <AppMenuItem icon="edit" text={messages.editText} onClick={toggleEditing} />
+        {avatar && (
+          <AppMenuItem
+            icon="delete"
+            text={messages.deleteText}
+            color="error.dark"
+            onClick={toggleDeleting}
+          />
+        )}
+        <AppMenuItem icon="block" text={messages.cancelText} color="grey" onClick={onClose} />
+      </Menu>
       {sources && <AppLightBox sources={sources} index={index} setIndex={setIndex} />}
-      {openEdit && <ModalEdit onClose={toggleEdit} />}
-      {openDelete && <ModalDelete onClose={toggleDelete} />}
+      {editing && <EditModal onClose={toggleEditing} />}
+      {deleting && <DeleteModal onClose={toggleDeleting} />}
     </>
   )
 }

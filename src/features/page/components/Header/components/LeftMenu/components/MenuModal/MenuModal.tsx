@@ -37,7 +37,12 @@ function MenuModal({ onOpenSettings, onClose }: MenuModalProps) {
     <Drawer open onClose={onClose}>
       <Box
         role="presentation"
-        sx={{ minWidth: 230, height: '100%', padding: '60px 0 8px' }}
+        component="nav"
+        sx={{
+          minWidth: 230,
+          height: '100%',
+          padding: '60px 0 8px',
+        }}
         onKeyDown={onKeyDown}
       >
         <Box display="flex" flexDirection="column" justifyContent="space-between" height="100%">
@@ -72,6 +77,9 @@ function MenuModal({ onOpenSettings, onClose }: MenuModalProps) {
                 <List>
                   <ListItem button onClick={onSignOut}>
                     <ListItemText primary={messages.logOut} />
+                    <ListItemIcon>
+                      <AppIcon name="logout" />
+                    </ListItemIcon>
                   </ListItem>
                 </List>
               </>
@@ -79,7 +87,7 @@ function MenuModal({ onOpenSettings, onClose }: MenuModalProps) {
           </Box>
           <List>
             <ListItem>
-              <ListItemText primary="Alpha 1.0.89" sx={{ color: 'zen.sand' }} />
+              <ListItemText primary="Alpha 1.0.91" sx={{ color: 'zen.sand' }} />
             </ListItem>
           </List>
         </Box>

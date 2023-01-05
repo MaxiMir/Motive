@@ -1,6 +1,7 @@
 import { Box, Button } from '@mui/material'
 import useFormatNumber from '@hooks/useFormatNumber'
 import AppEmoji, { AppEmojiName } from '@ui/AppEmoji'
+import TooltipArrow from '@ui/styled/TooltipArrow'
 
 interface ActionGoalProps {
   name: AppEmojiName
@@ -15,26 +16,28 @@ function ActionGoal({ name, title, count, disabled, onClick }: ActionGoalProps) 
   const formattedCount = count && formatNumber(count)
 
   return (
-    <Button
-      variant="outlined"
-      title={title}
-      size="small"
-      aria-label={title}
-      disabled={disabled}
-      sx={{
-        height: 36.5,
-        minWidth: 'initial',
-        transition: 'all .2s ease-in-out',
-        borderColor: `${name}.main`,
-        color: 'common.white',
-      }}
-      onClick={onClick}
-    >
-      <Box display="flex" gap={1}>
-        <AppEmoji name={name} />
-        {formattedCount}
-      </Box>
-    </Button>
+    <TooltipArrow title={title}>
+      <Button
+        variant="outlined"
+        size="small"
+        disabled={disabled}
+        sx={{
+          minWidth: 'initial',
+          transition: 'all .2s ease-in-out',
+          borderColor: `${name}.main`,
+          color: 'common.white',
+          '&:hover': {
+            borderColor: `${name}.dark`,
+          },
+        }}
+        onClick={onClick}
+      >
+        <Box display="flex" gap={1}>
+          <AppEmoji name={name} />
+          {formattedCount}
+        </Box>
+      </Button>
+    </TooltipArrow>
   )
 }
 

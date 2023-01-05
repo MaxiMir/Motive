@@ -2,7 +2,7 @@ import { useCallback, useRef } from 'react'
 
 type Cb<T> = (t: T) => void
 
-const useDebounceCb = <T>(cb: Cb<T>, delay?: number): Cb<T> => {
+const useDebounceCb = <T>(cb: Cb<T>, delay = 1000): Cb<T> => {
   const timerRef = useRef<NodeJS.Timeout>()
 
   return useCallback(

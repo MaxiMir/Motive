@@ -11,7 +11,7 @@ function TopOfTheDayModule() {
       <AppHeader name="energy" mb={4}>
         {messages.header}
       </AppHeader>
-      <Box display="flex" alignItems="center" justifyContent="center" flex={1} height="80vh">
+      <Box display="flex" alignItems="center" justifyContent="center" flex={1} height="80dvh">
         <Typography variant="h5" component="p">
           {messages.text}
         </Typography>

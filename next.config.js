@@ -13,7 +13,12 @@ module.exports = withPWA({
   reactStrictMode: true,
   output: 'standalone',
   images: {
-    domains: ['localhost', '2bebetter.pro', 'avatars.githubusercontent.com', 'lh3.googleusercontent.com'],
+    domains: [
+      'localhost',
+      '2bebetter.pro',
+      'avatars.githubusercontent.com',
+      'lh3.googleusercontent.com',
+    ],
   },
   i18n: {
     locales: ['en', 'ru', 'uk', 'zh-CN'],
@@ -21,6 +26,20 @@ module.exports = withPWA({
   },
   experimental: {
     appDir: true,
+  },
+  modularizeImports: {
+    '@mui/material': {
+      transform: '@mui/material/{{member}}',
+    },
+    '@mui/system': {
+      transform: '@mui/system/{{member}}',
+    },
+    '@mui/styles': {
+      transform: '@mui/styles/{{member}}',
+    },
+    'date-fns': {
+      transform: 'date-fns/{{member}}',
+    },
   },
   async headers() {
     return [

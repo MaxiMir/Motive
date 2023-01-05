@@ -4,7 +4,7 @@ import useToggle from '@hooks/useToggle'
 import AppIcon from '@ui/AppIcon'
 import { useMessages } from './hooks/useMessages'
 
-const ModalGoal = dynamic(() => import('./components/ModalGoal'))
+const GoalModal = dynamic(() => import('./components/GoalModal'))
 
 function AddGoal() {
   const messages = useMessages()
@@ -23,34 +23,33 @@ function AddGoal() {
           variant="text"
           color="primary"
           size="small"
+          aria-label={messages.buttonText}
+          aria-haspopup="true"
+          aria-expanded={open ? 'true' : undefined}
           sx={(theme) => ({
             minWidth: 'initial',
             padding: 0,
             borderRadius: '50%',
             background: theme.palette.background.default,
           })}
-          aria-label={messages.buttonText}
-          aria-expanded={open ? 'true' : undefined}
-          aria-haspopup="true"
           onClick={toggle}
         >
           <Box display="flex" justifyContent="center" alignItems="center" width={65} height={65}>
-            <AppIcon name="add" />
+            <AppIcon name="data_saver_on" />
           </Box>
         </Button>
       </Box>
       <Button
-        aria-label={messages.buttonText}
-        aria-expanded={open ? 'true' : undefined}
         aria-haspopup="true"
-        sx={{ padding: '4px', textTransform: 'none' }}
+        aria-expanded={open ? 'true' : undefined}
+        sx={{ padding: '4px' }}
         onClick={toggle}
       >
-        <Typography variant="caption" sx={{ color: 'creativity.light' }}>
+        <Typography variant="caption" sx={{ color: 'common.white' }}>
           {messages.buttonText}
         </Typography>
       </Button>
-      {open && <ModalGoal onClose={toggle} />}
+      {open && <GoalModal onClose={toggle} />}
     </Box>
   )
 }

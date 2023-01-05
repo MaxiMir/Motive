@@ -6,7 +6,7 @@ export const useMessages = () => {
   return {
     logOut: formatMessage({ id: 'common.log-out' }),
     settings: formatMessage({ id: 'common.settings' }),
-    news: formatMessage({ id: 'common.news' }),
+    news: formatMessage({ id: 'common.articles' }),
     features: formatMessage({ id: 'common.features' }),
     contact: formatMessage({ id: 'common.contact' }),
   }

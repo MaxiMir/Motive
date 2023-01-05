@@ -30,13 +30,7 @@ function Error({ statusCode }: CustomErrorProps) {
           <Typography sx={{ fontSize: '9em' }}>
             <AppEmoji name="error" onlyEmoji />
           </Typography>
-          <Button
-            aria-label={messages.backText}
-            sx={{
-              color: 'warning.light',
-            }}
-            onClick={onClick}
-          >
+          <Button sx={{ color: 'warning.light' }} onClick={onClick}>
             {messages.backText}
           </Button>
         </Box>

@@ -53,7 +53,7 @@ function UserRow({ user, characteristicName, index }: UserRowProps) {
           <Grid item xs={8}>
             <Box display="flex" alignItems="center" gap={2}>
               <UserLink name={name} avatar={avatar} href={href} online={online} size={35} />
-              <Button href={href} sx={{ textTransform: 'none', color: 'inherit' }} component={Link}>
+              <Button href={href} sx={{ color: 'inherit' }} component={Link}>
                 {name}
               </Button>
             </Box>

@@ -1,36 +1,19 @@
-import { useRouter } from 'next/router'
-import { Button } from '@mui/material'
-import { getUserHref } from '@features/user'
-import { useOpenSignIn } from '@features/signin'
-import { ProfileIcon } from '@ui/icons'
+import dynamic from 'next/dynamic'
+import useClient from '@hooks/useClient'
+import TooltipArrow from '@ui/styled/TooltipArrow'
 import { useMessages } from './hooks/useMessages'
 
-interface ProfileLinkProps {
-  nickname?: string
-  asPath: string
-  hoverOpacity: number
-}
+const SignIn = dynamic(() => import('./components/SignIn'))
+const User = dynamic(() => import('./components/User'))
 
-function ProfileLink({ nickname, asPath, hoverOpacity }: ProfileLinkProps) {
-  const { push } = useRouter()
+function ProfileLink() {
+  const client = useClient()
   const messages = useMessages()
-  const openSignIn = useOpenSignIn()
-  const href = !nickname ? undefined : getUserHref(nickname)
-  const selected = !href ? false : asPath.includes(href)
-
-  const onClick = () => {
-    if (href) {
-      push(href)
-      return
-    }
-
-    openSignIn({ callbackUrl: '/' })
-  }
 
   return (
-    <Button aria-label={messages.ariaLabel} onClick={onClick}>
-      <ProfileIcon sx={{ color: 'common.white', opacity: !selected ? hoverOpacity : 1 }} />
-    </Button>
+    <TooltipArrow title={messages.title}>
+      {!client ? <SignIn /> : <User client={client} />}
+    </TooltipArrow>
   )
 }
 

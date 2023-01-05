@@ -1,12 +1,10 @@
 import dynamic from 'next/dynamic'
-import { Button, Tooltip } from '@mui/material'
+import { Button } from '@mui/material'
 import useToggle from '@hooks/useToggle'
-import AppEmoji from '@ui/AppEmoji'
+import TooltipArrow from '@ui/styled/TooltipArrow'
 import { useMessages } from './hooks/useMessages'
 
-const ModalCompletion = dynamic(
-  () => import('@modules/user/components/GoalCurrent/components/ModalCompletion'),
-)
+const CompletionModal = dynamic(() => import('@features/confirmation'))
 
 interface DoneProps {
   forTomorrow: boolean
@@ -18,22 +16,19 @@ function Done({ forTomorrow }: DoneProps) {
 
   return (
     <>
-      <Tooltip title={messages.title} arrow followCursor>
-        <span>
-          <Button
-            variant="outlined"
-            color="warning"
-            disabled={forTomorrow}
-            startIcon={<AppEmoji name="cup" onlyEmoji />}
-            aria-expanded={open ? 'true' : undefined}
-            aria-haspopup="true"
-            onClick={toggle}
-          >
-            {messages.buttonText}
-          </Button>
-        </span>
-      </Tooltip>
-      {open && <ModalCompletion onClose={toggle} />}
+      <TooltipArrow title={messages.title}>
+        <Button
+          size="small"
+          variant="contained"
+          disabled={forTomorrow}
+          aria-haspopup="true"
+          aria-expanded={open ? 'true' : undefined}
+          onClick={toggle}
+        >
+          {messages.buttonText}
+        </Button>
+      </TooltipArrow>
+      {open && <CompletionModal onClose={toggle} />}
     </>
   )
 }

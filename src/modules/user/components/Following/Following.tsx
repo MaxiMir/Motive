@@ -1,29 +1,38 @@
-import { Button } from '@mui/material'
-import { useUserContext } from '@modules/user/hooks'
+import dynamic from 'next/dynamic'
 import AppIcon from '@ui/AppIcon'
+import { Button } from '@mui/material'
+import { blue } from '@mui/material/colors'
+import { useUserContext } from '@modules/user/hooks'
 import { useSetFollowing } from './hooks/useSetFollowing'
 import { useMessages } from './hooks/useMessages'
+
+const CircularProgress = dynamic(() => import('@mui/material/CircularProgress'))
 
 function Following() {
   const { id, following } = useUserContext()
   const messages = useMessages(following)
-  const setFollowing = useSetFollowing(id, following)
+  const [isLoading, onClick] = useSetFollowing(id, following)
   const operation = following ? 'remove' : 'add'
 
   return (
     <Button
-      variant="outlined"
-      color="info"
       size="small"
-      startIcon={<AppIcon name={`person_${operation}`} />}
-      sx={{
-        flex: 1,
-        filter: following ? 'grayscale(0.6)' : undefined,
-        textTransform: 'none',
-      }}
-      onClick={setFollowing}
+      disabled={isLoading}
+      startIcon={isLoading ? undefined : <AppIcon name={`person_${operation}`} />}
+      sx={({ palette }) => ({
+        minWidth: '96px',
+        height: 30,
+        paddingX: 1,
+        color: palette.grey[200],
+        borderColor: following ? palette.grey[800] : blue[800],
+        backgroundColor: following ? palette.grey[800] : blue[800],
+        '&:hover': {
+          backgroundColor: following ? palette.grey[900] : blue[400],
+        },
+      })}
+      onClick={onClick}
     >
-      {messages.buttonText}
+      {isLoading ? <CircularProgress size={14.5} color="inherit" /> : messages.buttonText}
     </Button>
   )
 }

@@ -15,11 +15,9 @@ function AppGradientButton({ disabled, ...props }: AppGradientButtonProps) {
       <Button
         variant="text"
         color="primary"
-        size="small"
         disabled={disabled}
         sx={(theme) => ({
           minWidth: '120px',
-          textTransform: 'none',
           background: theme.palette.background.default,
         })}
         {...props}

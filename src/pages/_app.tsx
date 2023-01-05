@@ -103,7 +103,7 @@ function App({
                             gtag('config', '${process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS}');
                           `}
                         </Script>
-                        <NextNprogress color="#b46a5a" />
+                        <NextNprogress color="#7638fa" />
                         <CssBaseline />
                         <Component {...pageProps} />
                       </SnackbarContext.Provider>

@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { PhotoDto } from '@features/feedback'
-import AppLightBox from '@ui/AppLightBox/AppLightBox'
+import AppLightBox from '@ui/AppLightBox'
 import GallerySimple from './GallerySimple'
 
 export interface GalleryViewerProps {

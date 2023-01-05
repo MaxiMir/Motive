@@ -1,14 +1,13 @@
 import { useState } from 'react'
 import dynamic from 'next/dynamic'
-import { Box, Button } from '@mui/material'
+import { Box } from '@mui/material'
 import { useGoalContext } from '@modules/user/components/GoalCurrent/hooks/useGoalContext'
-import AppEmoji from '@ui/AppEmoji'
+import BlueButton from '@ui/styled/BlueButton'
 import { useMessages } from './hooks/useMessages'
 
-const ModalCompletion = dynamic(
-  () => import('@modules/user/components/GoalCurrent/components/ModalCompletion'),
-)
-const ModalTasks = dynamic(() => import('./components/ModalTasks'))
+const Button = dynamic(() => import('@mui/material/Button'))
+const CompletionModal = dynamic(() => import('@features/confirmation'))
+const TasksModal = dynamic(() => import('./components/TasksModal'))
 
 enum ModalType {
   Tasks,
@@ -29,27 +28,20 @@ function OwnerControl() {
   const closeModal = () => setModal(undefined)
 
   return (
-    <Box display="flex" justifyContent={justifyContent}>
-      <Button
-        variant="outlined"
-        startIcon={<AppEmoji name="moon" onlyEmoji />}
-        onClick={onAddTasks}
-      >
-        {messages.nextButtonText}
-      </Button>
-      {renderCompete && (
-        <Button
-          variant="outlined"
-          color="warning"
-          startIcon={<AppEmoji name="cup" onlyEmoji />}
-          onClick={onComplete}
-        >
-          {messages.doneButtonText}
-        </Button>
-      )}
-      {modal === ModalType.Tasks && <ModalTasks onClose={closeModal} />}
-      {modal === ModalType.Completion && <ModalCompletion onClose={closeModal} />}
-    </Box>
+    <>
+      <Box display="flex" justifyContent={justifyContent} gap={1}>
+        <BlueButton size="small" onClick={onAddTasks}>
+          {messages.nextButtonText}
+        </BlueButton>
+        {renderCompete && (
+          <Button size="small" variant="contained" color="warning" onClick={onComplete}>
+            {messages.doneButtonText}
+          </Button>
+        )}
+      </Box>
+      {modal === ModalType.Tasks && <TasksModal onClose={closeModal} />}
+      {modal === ModalType.Completion && <CompletionModal onClose={closeModal} />}
+    </>
   )
 }
 

@@ -34,14 +34,11 @@ function UserCharacteristic({ user, inView, menu, onView, onClose }: UserCharact
           onClick={onClose}
         />
         <Box display="flex" flexDirection="column" justifyContent="space-between" flex={1}>
-          <Box display="flex" justifyContent="space-between" alignItems="center">
-            <Typography variant="subtitle1" component="span">
-              <Link href={href} onClick={onClose}>
-                {name}
-              </Link>
-            </Typography>
-            {menu}
-          </Box>
+          <Typography variant="subtitle1" component="span">
+            <Link href={href} onClick={onClose}>
+              {name}
+            </Link>
+          </Typography>
           <Box display="flex" justifyContent="space-between" alignItems="center">
             {CHARACTERISTICS.map((characteristicName) => (
               <CharacteristicUser
@@ -52,6 +49,7 @@ function UserCharacteristic({ user, inView, menu, onView, onClose }: UserCharact
             ))}
           </Box>
         </Box>
+        {menu}
       </Box>
       {onView && <>{inView && <AppInView onView={onView} />}</>}
     </>

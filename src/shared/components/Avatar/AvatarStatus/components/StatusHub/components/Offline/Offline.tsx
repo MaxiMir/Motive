@@ -1,8 +1,9 @@
 import { ReactNode } from 'react'
 import dynamic from 'next/dynamic'
-import { Badge, Box, Tooltip } from '@mui/material'
+import { Badge, Box } from '@mui/material'
 import useFormatDistance from '@hooks/useFormatDistance'
 import { Device } from '@helpers/navigator'
+import TooltipArrow from '@ui/styled/TooltipArrow'
 import { useMessages } from './hooks/useMessages'
 import { getShortDistance } from './helper'
 
@@ -26,21 +27,30 @@ function Offline({ lastSeen, device, children }: OfflineProps) {
       color="secondary"
       anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
       badgeContent={
-        <Tooltip
+        <TooltipArrow
           title={
-            <Box display="flex" alignItems="center" gap={0.5}>
+            <Box
+              display="flex"
+              alignItems="center"
+              gap={0.5}
+              sx={{
+                '& span': {
+                  fontSize: 12,
+                },
+              }}
+            >
               {device && <DeviceIcon device={device} />}
               {messages.seenText} {distance}
             </Box>
           }
         >
-          <span>{shortDistance}</span>
-        </Tooltip>
+          <>{shortDistance}</>
+        </TooltipArrow>
       }
       sx={{
         '& .MuiBadge-badge': {
           backgroundColor: 'gray',
-          color: 'white',
+          color: 'common.white',
           fontSize: 10,
         },
       }}

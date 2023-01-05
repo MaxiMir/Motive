@@ -8,6 +8,7 @@ import { toShortString } from '@helpers/string'
 import AppEmoji from '@ui/AppEmoji'
 import AppIcon from '@ui/AppIcon'
 import UserLink from '@components/User/UserLink'
+import TooltipArrow from '@ui/styled/TooltipArrow'
 import { NotificationDto } from './dto'
 import { useMessages } from './hooks/useMessages'
 import { useUpdateRead } from './hooks/useUpdateRead'
@@ -69,20 +70,29 @@ function Notification({ notification, onClose }: NotificationProps) {
           {detailsName && `: ${detailsName}`}
         </Typography>
         <Box display="flex" alignItems="center" gap={2}>
-          <Box component="span" sx={{ color: 'zen.silent', fontSize: 14 }}>
+          <Box
+            component="span"
+            sx={{
+              color: 'zen.silent',
+              fontSize: 14,
+            }}
+          >
             {dateDistance}
           </Box>
-          <IconButton
-            href={notificationHref}
-            title={messages.viewTitle}
-            aria-label={messages.viewTitle}
-            onClick={onClose}
-          >
-            <AppIcon
-              name="south_east"
-              sx={{ color: 'motivation.light', fontSize: '16px !important' }}
-            />
-          </IconButton>
+          <TooltipArrow title={messages.viewTitle}>
+            <IconButton
+              href={notificationHref}
+              size="small"
+              sx={{
+                '& span': {
+                  fontSize: 16,
+                },
+              }}
+              onClick={onClose}
+            >
+              <AppIcon name="south_east" sx={{ color: 'motivation.light' }} />
+            </IconButton>
+          </TooltipArrow>
         </Box>
       </Box>
       {!read && <AppInView onView={onView} />}

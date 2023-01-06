@@ -18,8 +18,8 @@ function ActionGoal({ name, title, count, disabled, onClick }: ActionGoalProps) 
   return (
     <TooltipArrow title={title}>
       <Button
-        variant="outlined"
         size="small"
+        variant="outlined"
         disabled={disabled}
         sx={{
           minWidth: 'initial',

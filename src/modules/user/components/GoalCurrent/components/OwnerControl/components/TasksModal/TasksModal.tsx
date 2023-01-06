@@ -88,8 +88,8 @@ function TasksModal({ onClose }: TasksModalProps) {
                         />
                       ))}
                       <Button
-                        variant="outlined"
                         size="small"
+                        variant="outlined"
                         sx={{ alignSelf: 'baseline' }}
                         onClick={() => push({ id: crypto.randomUUID(), name: '', date: undefined })}
                       >

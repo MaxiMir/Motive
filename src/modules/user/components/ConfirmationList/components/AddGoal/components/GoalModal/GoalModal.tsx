@@ -73,9 +73,9 @@ function GoalModal({ onClose }: GoalModalProps) {
                 component={AppInput}
               />
               <ButtonCompact
+                size="small"
                 variant="outlined"
                 color="secondary"
-                size="small"
                 onClick={onAddHashtag}
               >
                 # {messages.hashtagText}
@@ -126,9 +126,9 @@ function GoalModal({ onClose }: GoalModalProps) {
                       </Box>
                     ))}
                     <ButtonCompact
+                      size="small"
                       variant="outlined"
                       color="warning"
-                      size="small"
                       onClick={() => push({ id: crypto.randomUUID(), name: '' })}
                     >
                       + {messages.stageButtonText}
@@ -181,8 +181,8 @@ function GoalModal({ onClose }: GoalModalProps) {
                       />
                     ))}
                     <ButtonCompact
-                      variant="outlined"
                       size="small"
+                      variant="outlined"
                       onClick={() => push({ id: crypto.randomUUID(), name: '', date: undefined })}
                     >
                       {messages.addTaskText}

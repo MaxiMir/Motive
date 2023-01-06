@@ -36,8 +36,8 @@ function EditModal({ onClose }: EditModalProps) {
           <Description sx={{ color: 'zen.sand' }}>{messages.typesText}.</Description>
         </Box>
         <Button
-          variant="outlined"
           size="small"
+          variant="outlined"
           disabled={isLoading}
           startIcon={
             isLoading ? (

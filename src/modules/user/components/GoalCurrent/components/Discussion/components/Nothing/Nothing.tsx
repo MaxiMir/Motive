@@ -4,7 +4,7 @@ import { useMessages } from './hooks/useMessages'
 function Nothing() {
   const messages = useMessages()
 
-  return <Typography>{messages.nothingText}</Typography>
+  return <Typography>{messages.nothingText}...</Typography>
 }
 
 export default Nothing

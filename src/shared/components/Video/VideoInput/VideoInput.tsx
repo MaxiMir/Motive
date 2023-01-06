@@ -36,8 +36,8 @@ function VideoInput({ disabled, onSelect }: VideoInputProps) {
       >
         <AppEmoji name="cassette" variant="h1" />
         <Chip
-          label={messages.soonText}
           size="small"
+          label={messages.soonText}
           sx={{
             position: 'absolute',
             top: -12,

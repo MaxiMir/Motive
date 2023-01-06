@@ -50,10 +50,7 @@ function Top({ user, title, date, onClose }: TopProps): JSX.Element {
           <UserLink name={name} avatar={avatar} href={href} size={42} />
         </Box>
         <Box display="flex" flexDirection="column">
-          <Typography>
-            <b>{title}</b>
-          </Typography>
-          <Box display="flex" alignItems="baseline" gap={1}>
+          <Box display="flex" alignItems="flex-end" gap={1}>
             <Box
               component="span"
               sx={{
@@ -67,6 +64,9 @@ function Top({ user, title, date, onClose }: TopProps): JSX.Element {
               {distance}
             </Typography>
           </Box>
+          <Typography sx={{ textShadow: '0 1px 1px 0 rgba(0, 0, 0, 0.1)' }}>
+            <b>{title}</b>
+          </Typography>
         </Box>
         <IconButton
           aria-label={messages.close}

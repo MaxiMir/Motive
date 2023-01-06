@@ -20,9 +20,9 @@ function AddGoal() {
         })}
       >
         <Button
+          size="small"
           variant="text"
           color="primary"
-          size="small"
           aria-label={messages.buttonText}
           aria-haspopup="true"
           aria-expanded={open ? 'true' : undefined}

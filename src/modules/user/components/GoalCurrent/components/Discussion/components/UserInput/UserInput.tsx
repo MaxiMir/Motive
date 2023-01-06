@@ -1,6 +1,8 @@
 import dynamic from 'next/dynamic'
 import { Field, Form, FormikProvider } from 'formik'
 import { Box, IconButton } from '@mui/material'
+import { styled } from '@mui/system'
+import { blue } from '@mui/material/colors'
 import { UserBaseDto, ClientDto, getUserHref } from '@features/user'
 import { TopicDto, MessageType } from '@features/topic'
 import AppInput from '@ui/AppInput'
@@ -31,7 +33,7 @@ function UserInput({ user, type, topicId, onAdd }: UserInputProps) {
   return (
     <FormikProvider value={form}>
       <Form>
-        <Box display="flex" gap={2} flex={1} mb={2} pr={2}>
+        <Box display="flex" alignItems="center" flex={1} gap={1}>
           <UserLink name={name} avatar={avatar} href={href} size={32} />
           <Field
             name="text"
@@ -39,29 +41,29 @@ function UserInput({ user, type, topicId, onAdd }: UserInputProps) {
             variant="standard"
             InputLabelProps={{ shrink: false }}
             disabled={isSubmitting}
+            autoComplete={false}
             sx={{ flex: 1 }}
             component={AppInput}
           />
-          <IconButton
-            aria-label=""
-            disabled={disabled}
-            sx={{
-              width: 40,
-              height: 40,
-              paddingLeft: '3px',
-            }}
-            onClick={onClick}
-          >
-            {!isSubmitting ? (
-              <AppIcon name="send" />
-            ) : (
-              <CircularProgress size={14.5} color="primary" />
-            )}
-          </IconButton>
+          <SendButton size="small" aria-label="" disabled={disabled} onClick={onClick}>
+            {!isSubmitting ? <AppIcon name="arrow_upward" /> : <CircularProgress size={14.5} />}
+          </SendButton>
         </Box>
       </Form>
     </FormikProvider>
   )
 }
+
+const SendButton = styled(IconButton)({
+  color: '#fff',
+  borderColor: blue[800],
+  backgroundColor: blue[800],
+  '& span': {
+    fontSize: 19,
+  },
+  '&:hover': {
+    backgroundColor: blue[400],
+  },
+})
 
 export default UserInput

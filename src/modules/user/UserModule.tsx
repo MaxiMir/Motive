@@ -49,12 +49,13 @@ function UserModule({ user }: UserModuleProps) {
           sx={{
             gap: {
               xs: 2,
+              sm: 4,
               md: 6,
             },
             alignItems: 'flex-end',
             justifyContent: {
               xs: 'center',
-              md: 'flex-start',
+              sm: 'flex-start',
             },
           }}
         >
@@ -78,11 +79,11 @@ function UserModule({ user }: UserModuleProps) {
               sx={{
                 gap: {
                   xs: 1,
-                  md: 3,
+                  sm: 3,
                 },
                 flexDirection: {
                   xs: 'column',
-                  md: 'row',
+                  sm: 'row',
                 },
               }}
             >

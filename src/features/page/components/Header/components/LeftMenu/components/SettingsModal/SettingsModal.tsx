@@ -42,18 +42,18 @@ function SettingsModal({ onClose }: SettingsModalProps) {
             aria-label={messages.languageHeader}
             onChange={onChangeLocale}
           >
-            <GroupButton value={Locale.En} size="small">
+            <GroupButton size="small" value={Locale.En}>
               <AppEmoji name="en" />
               <Box component="span">EN</Box>
             </GroupButton>
-            <GroupButton value={Locale.Ru} size="small">
+            <GroupButton size="small" value={Locale.Ru}>
               <AppEmoji name="ru" />
               <Box component="span">РУ</Box>
             </GroupButton>
-            <GroupButton value={Locale.Uk} size="small">
+            <GroupButton size="small" value={Locale.Uk}>
               <AppEmoji name="uk" /> УК
             </GroupButton>
-            <GroupButton value={Locale.Zh} size="small">
+            <GroupButton size="small" value={Locale.Zh}>
               <AppEmoji name="zh" /> 中国
             </GroupButton>
           </ToggleButtonGroup>
@@ -69,13 +69,13 @@ function SettingsModal({ onClose }: SettingsModalProps) {
             aria-label={messages.modeHeader}
             onChange={onChangeMode}
           >
-            <GroupButton value="light" size="small" disabled>
+            <GroupButton size="small" value="light" disabled>
               <AppEmoji name="light" /> {messages.lightText}
             </GroupButton>
-            <GroupButton value="system" size="small" disabled>
+            <GroupButton size="small" value="system" disabled>
               <AppEmoji name="system" /> {messages.systemText}
             </GroupButton>
-            <GroupButton value="dark" size="small" disabled>
+            <GroupButton size="small" value="dark" disabled>
               <AppEmoji name="dark" /> {messages.darkText}
             </GroupButton>
           </ToggleButtonGroup>

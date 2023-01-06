@@ -40,14 +40,14 @@ function Message({ message, answerFor, supportFor, onReply }: MessageProps) {
           gap={1}
           px={2}
           py={1}
-          sx={{
+          sx={(theme) => ({
             width: '100%',
-            backgroundColor: !answerFor ? 'underlay' : indigo[600],
+            backgroundColor: !answerFor ? theme.palette.grey[900] : indigo[600],
             borderBottomLeftRadius: !answerFor ? 4 : 16,
             borderTopLeftRadius: 20,
             borderTopRightRadius: 20,
             borderBottomRightRadius: !answerFor ? 16 : 4,
-          }}
+          })}
         >
           <Box display="flex" justifyContent="space-between" gap={1}>
             <Box display="flex" alignItems="center" gap={1}>

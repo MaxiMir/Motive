@@ -1,6 +1,6 @@
-import { Grid, Box, Button, Typography } from '@mui/material'
-import { typographyClasses } from '@mui/material/Typography'
-import { styled, Theme } from '@mui/system'
+import { Box, Button, Typography } from '@mui/material'
+import { styled } from '@mui/system'
+import { lightBlue, red, yellow } from '@mui/material/colors'
 import { openBlank } from '@helpers/window'
 import AppContainer from '@ui/AppContainer'
 import AppHeader from '@ui/AppHeader'
@@ -40,59 +40,30 @@ function ContactModule() {
         <Typography>
           {messages.subheader} <AppEmoji name="wink" onlyEmoji />.
         </Typography>
-        <Grid container spacing={2}>
-          <Grid item xs={3} md={2}>
-            <ButtonLink
-              sx={(theme: Theme) => ({
-                background: `linear-gradient(to top left, ${theme.palette.motivation.light}, ${theme.palette.motivation.dark})`,
-              })}
-              onClick={onClickEmail}
-            >
-              <ButtonContent display="flex" alignItems="center" justifyContent="center">
-                <Box display="flex" flexDirection="column" alignItems="center" gap={2}>
-                  <Typography variant="h6" component="p">
-                    Email
-                  </Typography>
-                  <Email />
-                </Box>
-              </ButtonContent>
-            </ButtonLink>
-          </Grid>
-          <Grid item xs={3} md={2}>
-            <ButtonLink
-              sx={(theme: Theme) => ({
-                background: `linear-gradient(to top left, ${theme.palette.creativity.light}, ${theme.palette.creativity.dark})`,
-              })}
-              onClick={onClickTelegram}
-            >
-              <ButtonContent display="flex" alignItems="center" justifyContent="center">
-                <Box display="flex" flexDirection="column" alignItems="center" gap={2}>
-                  <Typography variant="h6" component="p">
-                    Telegram
-                  </Typography>
-                  <Telegram />
-                </Box>
-              </ButtonContent>
-            </ButtonLink>
-          </Grid>
-          <Grid item xs={3} md={2}>
-            <ButtonLink
-              sx={(theme: Theme) => ({
-                background: `linear-gradient(to top left, ${theme.palette.support.light}, ${theme.palette.support.dark})`,
-              })}
-              onClick={onClickLinkedIn}
-            >
-              <ButtonContent display="flex" alignItems="center" justifyContent="center">
-                <Box display="flex" flexDirection="column" alignItems="center" gap={2}>
-                  <Typography variant="h6" component="p">
-                    LinkedIn
-                  </Typography>
-                  <LinkedIn />
-                </Box>
-              </ButtonContent>
-            </ButtonLink>
-          </Grid>
-        </Grid>
+        <Box display="flex" gap={2}>
+          <ButtonLink variant="outlined" sx={{ borderColor: yellow[500] }} onClick={onClickEmail}>
+            <Box display="flex" flexDirection="column" alignItems="center" gap={1}>
+              <Typography variant="caption">Email</Typography>
+              <Email sx={{ color: yellow[500] }} />
+            </Box>
+          </ButtonLink>
+          <ButtonLink
+            variant="outlined"
+            sx={{ borderColor: lightBlue[500] }}
+            onClick={onClickTelegram}
+          >
+            <Box display="flex" flexDirection="column" alignItems="center" gap={1}>
+              <Typography variant="caption">Telegram</Typography>
+              <Telegram sx={{ color: lightBlue[500] }} />
+            </Box>
+          </ButtonLink>
+          <ButtonLink variant="outlined" sx={{ borderColor: red[300] }} onClick={onClickLinkedIn}>
+            <Box display="flex" flexDirection="column" alignItems="center" gap={1}>
+              <Typography variant="caption">LinkedIn</Typography>
+              <LinkedIn sx={{ color: red[300] }} />
+            </Box>
+          </ButtonLink>
+        </Box>
         <Box display="flex" flexDirection="column" gap={1} mt={3}>
           <AppHeader name="coin" variant="h1" component="h3" mb={3}>
             {messages.support}
@@ -107,38 +78,12 @@ function ContactModule() {
 }
 
 const ButtonLink = styled(Button)(({ theme }) => ({
-  width: '100%',
-  aspectRatio: '1',
-  borderRadius: 12,
+  width: 80,
+  height: 80,
   color: theme.palette.common.white,
+  borderRadius: 12,
   '&:hover': {
     opacity: 0.8,
-  },
-}))
-
-const ButtonContent = styled(Box)(({ theme }) => ({
-  width: '100%',
-  position: 'absolute',
-  top: 0,
-  bottom: 0,
-  left: 0,
-  right: 0,
-  [`& .${typographyClasses.root}`]: {
-    [theme.breakpoints.down('md')]: {
-      fontSize: 16,
-    },
-  },
-  '& .material-icons': {
-    fontSize: '4em',
-    [theme.breakpoints.down('md')]: {
-      fontSize: '3em',
-    },
-  },
-  '& svg': {
-    fontSize: '4em',
-    [theme.breakpoints.down('md')]: {
-      fontSize: '3em',
-    },
   },
 }))
 

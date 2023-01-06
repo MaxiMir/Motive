@@ -15,7 +15,7 @@ import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns'
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider'
 import CssBaseline from '@mui/material/CssBaseline'
 import { ModalSignInContext } from '@features/signin'
-import { SnackbarProps, SnackbarContext } from '@features/snackbar'
+import { SnackbarContext, SnackbarState } from '@features/snackbar'
 import { ThemeContext, getDesignTokens } from '@features/theme'
 import { getLocaleFolder } from '@lib/date'
 import { makeMapLoader } from '@helpers/iterable'
@@ -27,24 +27,21 @@ const AppSnackbar = dynamic(() => import('@ui/AppSnackbar'))
 const ModalSignIn = dynamic(() => import('@features/signin'))
 
 const generateClassName = createGenerateClassName({ productionPrefix: 'be' })
-const langLoader = makeMapLoader<Record<string, string>>()
-const dateFnsLangLoader = makeMapLoader<FnsLocale>()
+const messagesLoader = makeMapLoader<Record<string, string>>()
+const adapterLocaleLoader = makeMapLoader<FnsLocale>()
 
 function App({
   Component,
   pageProps: { session, dehydratedState, providers, ...pageProps },
 }: AppProps) {
-  const { locale } = useRouter()
-  const currentLocale = locale || Locale.En
-  const localeFolder = getLocaleFolder(currentLocale)
-  const messages = use(
-    langLoader(currentLocale, () => import(`src/shared/lang/${currentLocale}.json`)),
-  )
-  const dateFnsLocale = use(
-    dateFnsLangLoader(currentLocale, () => import(`date-fns/locale/${localeFolder}/index.js`)),
+  const { locale = Locale.En } = useRouter()
+  const folder = getLocaleFolder(locale)
+  const messages = use(messagesLoader(locale, () => import(`src/shared/lang/${locale}.json`)))
+  const adapterLocale = use(
+    adapterLocaleLoader(locale, () => import(`date-fns/locale/${folder}/index.js`)),
   )
   const [mode, setMode] = useState<PaletteMode>('dark')
-  const [snackbarProps, setSnackbarProps] = useState<SnackbarProps | null>(null)
+  const [state, setState] = useState<SnackbarState | null>(null)
   const [options, setOptions] = useState<SignInOptions>()
   const error = messages['common.error']
   const [queryClient] = useState(
@@ -57,12 +54,12 @@ function App({
         },
         queryCache: new QueryCache({
           onError() {
-            setSnackbarProps({ message: error, severity: 'error' })
+            setState({ message: error, severity: 'error' })
           },
         }),
         mutationCache: new MutationCache({
           onError() {
-            setSnackbarProps({ message: error, severity: 'error' })
+            setState({ message: error, severity: 'error' })
           },
         }),
       }),
@@ -70,22 +67,19 @@ function App({
   const theme = useMemo(() => createTheme(getDesignTokens(mode)), [mode])
   const themeCtx = useMemo(() => ({ mode, setMode }), [mode])
   const modalSignInCtx = useMemo(() => ({ options, providers, setOptions }), [options, providers])
-  const snackbarCtx = useMemo(
-    () => ({ props: snackbarProps, setProps: setSnackbarProps }),
-    [snackbarProps],
-  )
+  const snackbarCtx = useMemo(() => ({ state, setState }), [state])
   useRemoveServerStyles()
 
   const onCloseSignIn = () => setOptions(undefined)
 
-  const onCloseSnackbar = () => setSnackbarProps(null)
+  const onCloseSnackbar = () => setState(null)
 
   return (
-    <IntlProvider locale={currentLocale} messages={messages}>
+    <IntlProvider locale={locale} messages={messages}>
       <SessionProvider session={session} refetchOnWindowFocus>
         <QueryClientProvider client={queryClient}>
           <Hydrate state={dehydratedState}>
-            <LocalizationProvider dateAdapter={AdapterDateFns} adapterLocale={dateFnsLocale}>
+            <LocalizationProvider dateAdapter={AdapterDateFns} adapterLocale={adapterLocale}>
               <ThemeContext.Provider value={themeCtx}>
                 <StylesProvider generateClassName={generateClassName}>
                   <ThemeProvider theme={theme}>
@@ -109,7 +103,7 @@ function App({
                       </SnackbarContext.Provider>
                     </ModalSignInContext.Provider>
                     <EventSocket />
-                    {snackbarProps && <AppSnackbar {...snackbarProps} onClose={onCloseSnackbar} />}
+                    {state && <AppSnackbar {...state} onClose={onCloseSnackbar} />}
                     {options && <ModalSignIn options={options} onClose={onCloseSignIn} />}
                   </ThemeProvider>
                 </StylesProvider>

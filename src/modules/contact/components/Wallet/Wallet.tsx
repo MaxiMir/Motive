@@ -3,6 +3,7 @@ import { Box, IconButton, Typography } from '@mui/material'
 import { copyText } from '@helpers/navigator'
 import useSnackbar from '@hooks/useSnackbar'
 import AppIcon from '@ui/AppIcon'
+import TooltipArrow from '@ui/styled/TooltipArrow'
 import { useMessages } from './hooks/useMessages'
 
 interface WalletProps {
@@ -16,7 +17,7 @@ function Wallet({ name, wallet, src }: WalletProps) {
   const [enqueueSnackbar] = useSnackbar()
 
   const onSuccess = () => {
-    enqueueSnackbar({ message: messages.copyText, severity: 'success', icon: 'keyboard' })
+    enqueueSnackbar({ message: messages.copiedText, severity: 'success', icon: 'keyboard' })
   }
 
   const onError = () => {
@@ -44,9 +45,11 @@ function Wallet({ name, wallet, src }: WalletProps) {
           {wallet}
         </Typography>
       </Box>
-      <IconButton aria-label="" disableFocusRipple sx={{ color: 'primary.dark' }} onClick={onClick}>
-        <AppIcon name="content_copy" />
-      </IconButton>
+      <TooltipArrow title={messages.copyText}>
+        <IconButton disableFocusRipple onClick={onClick}>
+          <AppIcon name="content_copy" />
+        </IconButton>
+      </TooltipArrow>
     </Box>
   )
 }

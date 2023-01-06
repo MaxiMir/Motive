@@ -1,7 +1,7 @@
-import { useEffect } from 'react'
+import { useInsertionEffect } from 'react'
 
 const useRemoveServerStyles = () => {
-  useEffect(() => {
+  useInsertionEffect(() => {
     // Remove the server-side injected CSS.
     const jssStyles = document.querySelector('#jss-server-side')
 

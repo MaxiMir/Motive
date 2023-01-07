@@ -3,7 +3,7 @@ import { Route } from '@href'
 import { PageService } from '@features/page'
 
 export const useFollowingPage = () => {
-  return useQuery(Route.Following, PageService.getFollowing, {
+  return useQuery(['page', Route.Following], PageService.getFollowing, {
     staleTime: 5_000,
   })
 }

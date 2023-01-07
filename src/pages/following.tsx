@@ -21,7 +21,9 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
   const { headers } = ctx.req
   const queryClient = new QueryClient()
   const session = await getSession(ctx)
-  await queryClient.prefetchQuery(Route.Following, () => PageService.getFollowing({ headers }))
+  await queryClient.prefetchQuery(['page', Route.Following], () =>
+    PageService.getFollowing({ headers }),
+  )
 
   return {
     props: {

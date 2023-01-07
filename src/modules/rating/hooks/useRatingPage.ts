@@ -3,7 +3,7 @@ import { Route } from '@href'
 import { PageService } from '@features/page'
 
 export const useRatingPage = () => {
-  return useQuery(Route.Rating, PageService.getRating, {
+  return useQuery(['page', Route.Rating], PageService.getRating, {
     staleTime: 5_000,
   })
 }

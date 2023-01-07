@@ -5,7 +5,7 @@ import { PageService } from '@features/page'
 export const useSearchPage = () => {
   const { asPath, query: params } = useRouter()
 
-  return useQuery(asPath, () => PageService.getSearch({ params }), {
+  return useQuery(['page', asPath], () => PageService.getSearch({ params }), {
     staleTime: 5_000,
   })
 }

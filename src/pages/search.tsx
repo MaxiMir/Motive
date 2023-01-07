@@ -32,7 +32,7 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
 
   const queryClient = new QueryClient()
   const session = await getSession(ctx)
-  await queryClient.prefetchQuery(url, () => PageService.getSearch({ headers, params }))
+  await queryClient.prefetchQuery(['page', url], () => PageService.getSearch({ headers, params }))
 
   return {
     props: {

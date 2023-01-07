@@ -1,12 +1,16 @@
 import { ReactNode } from 'react'
+import dynamic from 'next/dynamic'
 import { useRouter } from 'next/router'
 import Head from 'next/head'
 import { useIntl } from 'react-intl'
+import { useIsFetching } from 'react-query'
 import { Box } from '@mui/material'
 import { getLocaleHrefList } from '@features/locale'
 import { OGType } from './dto'
 import Header from './components/Header'
 import Footer from './components/Footer'
+
+const CircularProgress = dynamic(() => import('@mui/material/CircularProgress'))
 
 interface PageProps {
   title?: string
@@ -29,8 +33,10 @@ function Page({
 }: PageProps) {
   const { locale } = useIntl()
   const { asPath } = useRouter()
+  const fetchingNumber = useIsFetching({ queryKey: 'page' })
   const localeHrefList = getLocaleHrefList(asPath)
   const url = localeHrefList[locale]
+  const renderLoader = fetchingNumber > 0
 
   return (
     <>
@@ -77,6 +83,11 @@ function Page({
           background: palette.mode === 'dark' ? '#121212' : undefined,
         })}
       >
+        {renderLoader && (
+          <Box display="flex" mt={3} justifyContent="center">
+            <CircularProgress size={14.5} />
+          </Box>
+        )}
         {children}
       </Box>
       <Footer />

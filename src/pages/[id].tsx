@@ -14,14 +14,14 @@ function UserPage() {
 
 export const getServerSideProps: GetServerSideProps = async (ctx) => {
   const { url = '', headers } = ctx.req
-  const { id: _, ...params } = getSearchParams(url)
   const queryClient = new QueryClient()
-  const session = await getSession(ctx)
+  const { id, ...params } = getSearchParams(url)
   const nickname = (ctx.params?.id || '') as string
-  await queryClient.prefetchQuery(nickname, () =>
+  const session = await getSession(ctx)
+  await queryClient.prefetchQuery(['page', nickname], () =>
     PageService.getUser(nickname, { headers, params }),
   )
-  const state = queryClient.getQueryState<PossiblePageError>(nickname)
+  const state = queryClient.getQueryState<PossiblePageError>(['page', nickname])
   const statusCode = state?.data?.message?.statusCode || 200
 
   if (statusCode === 404) {

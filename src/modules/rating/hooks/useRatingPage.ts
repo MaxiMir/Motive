@@ -4,6 +4,6 @@ import { PageService } from '@features/page'
 
 export const useRatingPage = () => {
   return useQuery(['page', Route.Rating], PageService.getRating, {
-    staleTime: 5_000,
+    staleTime: 30000,
   })
 }

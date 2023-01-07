@@ -33,7 +33,7 @@ function Page({
 }: PageProps) {
   const { locale } = useIntl()
   const { asPath } = useRouter()
-  const fetchingNumber = useIsFetching({ queryKey: 'page' })
+  const fetchingNumber = useIsFetching({ queryKey: ['page'] })
   const localeHrefList = getLocaleHrefList(asPath)
   const url = localeHrefList[locale]
   const renderLoader = fetchingNumber > 0
@@ -85,7 +85,7 @@ function Page({
       >
         {renderLoader && (
           <Box display="flex" mt={3} justifyContent="center">
-            <CircularProgress size={14.5} />
+            <CircularProgress size={14.5} sx={{ color: '#7638fa' }} />
           </Box>
         )}
         {children}

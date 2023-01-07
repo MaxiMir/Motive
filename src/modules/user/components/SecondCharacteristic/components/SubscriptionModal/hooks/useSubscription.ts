@@ -26,8 +26,8 @@ export const useSubscription = (userId: number, count: number, name: SecondChara
       enabled: !!count,
     },
   )
-  const followers = useMemo(() => data?.pages.flat() || [], [data?.pages])
-  const checkOnLoadMore = partialCheckOnLoadMore(followers.length, PRELOAD_DIFF, hasNextPage)
+  const users = useMemo(() => data?.pages.flat() || [], [data?.pages])
+  const checkOnLoadMore = partialCheckOnLoadMore(users.length, PRELOAD_DIFF, hasNextPage)
 
-  return { isLoading, followers, checkOnLoadMore, fetchNextPage }
+  return { isLoading, users, checkOnLoadMore, fetchNextPage }
 }

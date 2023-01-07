@@ -1,5 +1,13 @@
+import { Roboto } from '@next/font/google'
 import { CSSProperties } from 'react'
 import { PaletteMode, ThemeOptions } from '@mui/material'
+
+export const roboto = Roboto({
+  weight: ['300', '400', '500', '700'],
+  subsets: ['latin'],
+  display: 'swap',
+  fallback: ['Helvetica', 'Arial', 'sans-serif'],
+})
 
 // Override Mui theme typings to include the new theme property
 declare module '@mui/material/styles' {
@@ -105,6 +113,9 @@ export const getDesignTokens = (mode: PaletteMode): ThemeOptions => {
         {
           //
         }),
+    },
+    typography: {
+      fontFamily: roboto.style.fontFamily,
     },
     components: {
       MuiButton: {

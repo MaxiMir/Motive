@@ -2,11 +2,12 @@ import { Children } from 'react'
 import Document, { Html, Main, Head, NextScript } from 'next/document'
 import produce from 'immer'
 import { ServerStyleSheets } from '@mui/styles'
+import { roboto } from '@features/theme'
 
 export default class MyDocument extends Document {
   render() {
     return (
-      <Html>
+      <Html className={roboto.className}>
         <Head>
           <meta charSet="UTF-8" />
           {/* PWA */}

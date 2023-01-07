@@ -288,6 +288,7 @@
   "common.message-updated": "Message successfully updated",
   "common.complete": "Complete",
   "common.completing": "Completing",
+  "common.send": "Send",
   "common.sending": "Sending",
   "common.helpful": "Marked as very helpful",
   "common.like": "Like",

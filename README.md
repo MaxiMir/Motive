@@ -1,5 +1,3 @@
-aria-label=""
-
 [//]: # (TODO)
 * useTryFullScreen
 * тип сообщений в обсуждении

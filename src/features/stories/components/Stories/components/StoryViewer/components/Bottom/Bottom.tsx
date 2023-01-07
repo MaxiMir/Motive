@@ -11,6 +11,7 @@ interface BottomProps {
 function Bottom({ user }: BottomProps) {
   const [open, toggle] = useToggle()
   console.log(user)
+  // TODO aria-label
 
   return (
     <Box

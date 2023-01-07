@@ -94,7 +94,7 @@ function GoalModal({ onClose }: GoalModalProps) {
                     </>
                   }
                 >
-                  <IconButton aria-label="" color="info">
+                  <IconButton color="info">
                     <AppIcon name="help_outline" />
                   </IconButton>
                 </TooltipArrow>
@@ -116,7 +116,7 @@ function GoalModal({ onClose }: GoalModalProps) {
                         />
                         <Box display="flex" alignSelf="flex-start">
                           <IconButton
-                            aria-label=""
+                            aria-label={messages.deleteText}
                             disableFocusRipple
                             onClick={() => remove(index)}
                           >

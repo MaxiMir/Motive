@@ -21,5 +21,6 @@ export const useMessages = () => {
     tomorrowLabel: formatMessage({ id: 'common.tomorrow' }),
     tasksHeader: formatMessage({ id: 'page.user.modal-goal.tasks-header' }),
     addTaskText: formatMessage({ id: 'common.task-add' }),
+    deleteText: formatMessage({ id: '"common.delete"' }),
   }
 }

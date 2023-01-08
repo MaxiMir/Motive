@@ -154,7 +154,6 @@
   "component.notification.new-answer": "ответил(-а) Вам",
   "component.notification.new-feedback": "добавил(-а) отзыв",
   "component.notification.web-coverage": "забросил(-а) цель",
-  "component.gallery-photo.aria": "Открыть галерею",
   "component.modal-completion.title": "Завершение цели",
   "component.modal-completion.subtitle": "Поздравляю, Вы сделали это!",
   "component.modal-completion.label": "Как это было",

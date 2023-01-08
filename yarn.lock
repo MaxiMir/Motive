@@ -6679,10 +6679,10 @@ react-perfect-scrollbar@^1.5.8:
     perfect-scrollbar "^1.5.0"
     prop-types "^15.6.1"
 
-react-photo-album@^1.16.1:
-  version "1.16.1"
-  resolved "https://registry.yarnpkg.com/react-photo-album/-/react-photo-album-1.16.1.tgz#46c9247326eafd5afc687b631459d45ba675f558"
-  integrity sha512-RNzqxSpAT7Vg5pOKlAETBCc5mfPwcgGl0DqwW5Z2FH79CDNIJBA/WNqInLVDZ1p4MqOciPrAS8z480tLUDsiYg==
+react-photo-album@^2.0.0:
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/react-photo-album/-/react-photo-album-2.0.0.tgz#5c93bbbe6818019b31788bdc93d741f10f8a69dd"
+  integrity sha512-kmtHZ5XOMF6dozMlyM8/NhK9PQbEkvZVryCYqB1L9JavZNGGx5bUT7SBw401HeGO9xY1MI1+49l5l+7xok4zRA==
 
 react-player@^2.11.0:
   version "2.11.0"

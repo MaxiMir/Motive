@@ -183,6 +183,7 @@ function GoalModal({ onClose }: GoalModalProps) {
                     <ButtonCompact
                       size="small"
                       variant="outlined"
+                      startIcon={<AppIcon name="add" />}
                       onClick={() => push({ id: crypto.randomUUID(), name: '', date: undefined })}
                     >
                       {messages.addTaskText}

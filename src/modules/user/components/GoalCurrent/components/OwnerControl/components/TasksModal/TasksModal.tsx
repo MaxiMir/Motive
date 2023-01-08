@@ -91,6 +91,7 @@ function TasksModal({ onClose }: TasksModalProps) {
                         size="small"
                         variant="outlined"
                         sx={{ alignSelf: 'baseline' }}
+                        startIcon={<AppIcon name="add" />}
                         onClick={() => push({ id: crypto.randomUUID(), name: '', date: undefined })}
                       >
                         {messages.addTaskText}

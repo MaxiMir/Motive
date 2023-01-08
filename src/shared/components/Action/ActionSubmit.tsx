@@ -16,6 +16,7 @@ interface ActionSubmitProps {
 function ActionSubmit({ emoji, text, loadingText, disabled, onClick }: ActionSubmitProps) {
   return (
     <AppGradientButton
+      size="small"
       type="submit"
       disabled={disabled}
       startIcon={

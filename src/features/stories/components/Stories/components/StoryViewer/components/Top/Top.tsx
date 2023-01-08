@@ -31,7 +31,7 @@ function Top({ user, title, date, onClose }: TopProps): JSX.Element {
         transition: 'opacity 0.5s',
       }}
     >
-      <Box display="flex" alignItems="flex-start" gap={2}>
+      <Box display="flex" alignItems="center" gap={2}>
         <UserLink name={name} avatar={avatar} href={href} size={42} />
         <Box display="flex" flexDirection="column">
           <Box display="flex" alignItems="flex-end" gap={0.5}>

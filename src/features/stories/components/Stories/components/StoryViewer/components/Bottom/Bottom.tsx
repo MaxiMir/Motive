@@ -20,7 +20,7 @@ function Bottom() {
         zIndex: 9999,
       }}
     >
-      <IconButton aria-label={messages.ariaLabel} onClick={toggle}>
+      <IconButton aria-label={messages.ariaLabel} disabled onClick={toggle}>
         <AppIcon name="expand_less" />
       </IconButton>
       {open && <Description onClose={toggle} />}

@@ -52,6 +52,7 @@ function SecondCharacteristic({ confirmations, name, value }: CharacteristicProp
         size="small"
         aria-haspopup="true"
         aria-expanded={modal ? 'true' : undefined}
+        sx={{ padding: '4px' }}
         onClick={onClick}
       >
         <Box
@@ -74,7 +75,7 @@ function SecondCharacteristic({ confirmations, name, value }: CharacteristicProp
           <Typography variant="h5" component="b">
             {formattedValue}
           </Typography>
-          <Typography sx={{ fontSize: 14 }}>{buttonText}</Typography>
+          <Typography sx={{ fontSize: 13 }}>{buttonText}</Typography>
         </Box>
       </Button>
       {modal === Completed && <NoCompletedModal onClose={onClose} />}

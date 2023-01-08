@@ -10,7 +10,11 @@ function ActionCancel({ onClick }: ActionCloseProps) {
   const messages = useMessages()
 
   return (
-    <AppGradientButton startIcon={<AppEmoji name="cancel" onlyEmoji />} onClick={onClick}>
+    <AppGradientButton
+      size="small"
+      startIcon={<AppEmoji name="cancel" onlyEmoji />}
+      onClick={onClick}
+    >
       {messages.buttonText}
     </AppGradientButton>
   )

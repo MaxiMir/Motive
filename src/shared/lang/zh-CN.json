@@ -240,7 +240,7 @@
   "common.goal-completion": "目标完成",
   "common.no-results": "没有找到结果",
   "common.no-results-description": "尝试改变搜索短语",
-  "common.task-add": "+添加任务",
+  "common.task-add": "添加任务",
   "common.close": "关闭",
   "common.view": "查看",
   "common.nothing": "到目前为止，没有什么...",

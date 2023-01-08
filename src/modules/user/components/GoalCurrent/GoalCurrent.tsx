@@ -62,7 +62,7 @@ function GoalCurrent({ goal, membership, clientPage, clientMembership }: GoalCur
   const redefinedGoals = redefineTasks(day.tasks, userMember)
   const restGoals = redefinedGoals.length - redefinedGoals.filter((t) => t.completed).length // TODO backend
 
-  // TODO disabled control
+  // TODO Button
 
   return (
     <GoalContext.Provider value={goal}>

@@ -1,17 +1,12 @@
 import { Box, IconButton } from '@mui/material'
-import { UserBaseDto } from '@features/user'
 import useToggle from '@hooks/useToggle'
 import AppIcon from '@ui/AppIcon'
+import { useMessages } from './hooks/useMessages'
 import Description from './components/Description'
 
-interface BottomProps {
-  user: UserBaseDto
-}
-
-function Bottom({ user }: BottomProps) {
+function Bottom() {
   const [open, toggle] = useToggle()
-  console.log(user)
-  // TODO aria-label
+  const messages = useMessages()
 
   return (
     <Box
@@ -21,11 +16,11 @@ function Bottom({ user }: BottomProps) {
         position: 'absolute',
         left: 0,
         right: 0,
-        bottom: 0,
+        bottom: 8,
         zIndex: 9999,
       }}
     >
-      <IconButton aria-label="" disabled onClick={toggle}>
+      <IconButton aria-label={messages.ariaLabel} onClick={toggle}>
         <AppIcon name="expand_less" />
       </IconButton>
       {open && <Description onClose={toggle} />}

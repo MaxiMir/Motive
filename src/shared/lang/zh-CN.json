@@ -130,7 +130,7 @@
   "page.user.views.title": "今天的观点",
   "page.404.title": "404: 页面未找到",
   "page.404.header": "页面未找到",
-  "page.500.title": "500：对不起，出了点问题...",
+  "page.500.title": "500：对不起，出了点问题",
 
   "component.share.share": "分享到",
   "component.share.send": "发送至",
@@ -194,7 +194,7 @@
   "common.remove": "删除",
   "common.edited": "已编辑",
   "common.reply": "回复",
-  "common.error": "出了问题......",
+  "common.error": "出了问题",
   "common.motivation": "激励",
   "common.creativity": "创意",
   "common.support": "支持",
@@ -242,7 +242,7 @@
   "common.task-add": "添加任务",
   "common.close": "关闭",
   "common.view": "查看",
-  "common.nothing": "到目前为止，没有什么...",
+  "common.nothing": "到目前为止，没有什么",
   "common.nothing-so-far": "到目前为止，没有什么",
   "common.together": "与",
   "common.join": "加入",
@@ -314,5 +314,7 @@
   "common.delete-warning": "你确定要删除这张照片吗?",
   "common.warning": "警告",
   "common.more": "更多",
-  "common.open-photo": "打开照片"
+  "common.open-photo": "打开照片",
+  "common.play": "播放",
+  "common.fullscreen": "进入全屏"
 }

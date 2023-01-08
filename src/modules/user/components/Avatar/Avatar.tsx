@@ -27,9 +27,10 @@ function Avatar({ clientPage }: AvatarProps) {
   const [deleting, toggleDeleting] = useToggle()
   const [anchorEl, setAnchorEl] = useState<HTMLElement | null>(null)
   const messages = useMessages()
-  const sources = !avatar ? null : [avatar]
+  const sources = !avatar ? [] : [avatar]
   const disabled = !sources && !clientPage
   const open = Boolean(anchorEl)
+  const openLightbox = typeof index === 'number'
 
   const openPhoto = () => setIndex(0)
 
@@ -45,6 +46,8 @@ function Avatar({ clientPage }: AvatarProps) {
   }
 
   const onClose = () => setAnchorEl(null)
+
+  const onCloseLightBox = () => setIndex(undefined)
 
   return (
     <>
@@ -91,7 +94,7 @@ function Avatar({ clientPage }: AvatarProps) {
         )}
         <AppMenuItem icon="block" text={messages.cancelText} color="grey" onClick={onClose} />
       </Menu>
-      {sources && <AppLightBox sources={sources} index={index} setIndex={setIndex} />}
+      {openLightbox && <AppLightBox sources={sources} index={index} onClose={onCloseLightBox} />}
       {editing && <EditModal onClose={toggleEditing} />}
       {deleting && <DeleteModal onClose={toggleDeleting} />}
     </>

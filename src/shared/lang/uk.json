@@ -130,7 +130,7 @@
   "page.user.views.title": "Переглядів дня",
   "page.404.title": "404: Сторінка не знайдена",
   "page.404.header": "Сторінку не знайдено",
-  "page.500.title": "500: Щось пішло не так...",
+  "page.500.title": "500: Щось пішло не так",
 
   "component.share.share": "Поділитися у",
   "component.share.send": "Надіслати",
@@ -194,7 +194,7 @@
   "common.remove": "Видалити",
   "common.edited": "ред.",
   "common.reply": "Відповісти",
-  "common.error": "Щось пішло не так...",
+  "common.error": "Щось пішло не так",
   "common.motivation": "Мотивація",
   "common.creativity": "Креативність",
   "common.support": "Підтримка",
@@ -314,5 +314,7 @@
   "common.delete-warning": "Ви дійсно хочете видалити це фото?",
   "common.warning": "Попередження",
   "common.more": "Більше",
-  "common.open-photo": "Відкрити фото"
+  "common.open-photo": "Відкрити фото",
+  "common.play": "Відтворити",
+  "common.fullscreen": "Увійти в повноекранний режим"
 }

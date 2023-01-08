@@ -8,7 +8,15 @@ function GalleryPhoto({
 }: RenderPhotoProps) {
   return (
     <div style={wrapperStyle}>
-      <div style={{ display: 'block', position: 'relative', width: '100%', height: '100%' }}>
+      <div
+        style={{
+          display: 'block',
+          position: 'relative',
+          width: '100%',
+          height: '100%',
+          cursor: 'pointer',
+        }}
+      >
         <AppImage
           fill
           src={src}

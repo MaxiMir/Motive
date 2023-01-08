@@ -130,7 +130,7 @@
   "page.user.views.title": "Просмотров дня",
   "page.404.title": "404: Страница не найдена",
   "page.404.header": "Страница не найдена",
-  "page.500.title": "500: Что-то пошло не так...",
+  "page.500.title": "500: Что-то пошло не так",
 
   "component.share.share": "Поделиться в",
   "component.share.send": "Отправить в",
@@ -194,7 +194,7 @@
   "common.remove": "Удалить",
   "common.edited": "ред.",
   "common.reply": "Ответить",
-  "common.error": "Что-то пошло не так...",
+  "common.error": "Что-то пошло не так",
   "common.motivation": "Мотивация",
   "common.creativity": "Креативность",
   "common.support": "Поддержка",
@@ -314,5 +314,7 @@
   "common.delete-warning": "Вы уверены, что хотите удалить эту фотографию?",
   "common.warning": "Предупреждение",
   "common.more": "Ещё",
-  "common.open-photo": "Открыть фото"
+  "common.open-photo": "Открыть фото",
+  "common.play": "Воспроизвести",
+  "common.fullscreen": "Увійти в повноекранний режим"
 }

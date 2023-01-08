@@ -130,7 +130,7 @@
   "page.user.views.title": "Day Views",
   "page.404.title": "404: Page Not Found",
   "page.404.header": "Page Not Found",
-  "page.500.title": "500: Sorry, something went wrong...",
+  "page.500.title": "500: Sorry, something went wrong",
 
   "component.share.share": "Share to",
   "component.share.send": "Send to",
@@ -194,7 +194,7 @@
   "common.remove": "Remove",
   "common.edited": "edited",
   "common.reply": "Reply",
-  "common.error": "Something went wrong...",
+  "common.error": "Something went wrong",
   "common.motivation": "Motivation",
   "common.creativity": "Creativity",
   "common.support": "Support",
@@ -314,5 +314,7 @@
   "common.delete-warning": "Are you sure want to delete this photo?",
   "common.warning": "Warning",
   "common.more": "More",
-  "common.open-photo": "Open the photo"
+  "common.open-photo": "Open the photo",
+  "common.play": "Play",
+  "common.fullscreen": "Enter Fullscreen"
 }

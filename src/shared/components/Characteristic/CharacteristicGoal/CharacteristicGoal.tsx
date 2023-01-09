@@ -29,11 +29,9 @@ function CharacteristicGoal({ name, value }: CharacteristicGoalProps) {
           <AppEmoji name={name} variant="h5" />
         </IconButton>
       </TooltipArrow>
-      <Box>
-        <Typography component="p" sx={{ color }}>
-          {formattedValue}
-        </Typography>
-      </Box>
+      <Typography component="p" sx={{ color }}>
+        {formattedValue}
+      </Typography>
     </Box>
   )
 }

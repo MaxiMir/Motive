@@ -1,4 +1,5 @@
 import { Box, Button } from '@mui/material'
+import { blue } from '@mui/material/colors'
 import useFormatNumber from '@hooks/useFormatNumber'
 import AppEmoji, { AppEmojiName } from '@ui/AppEmoji'
 import TooltipArrow from '@ui/styled/TooltipArrow'
@@ -24,10 +25,10 @@ function ActionGoal({ name, title, count, disabled, onClick }: ActionGoalProps) 
         sx={{
           minWidth: 'initial',
           transition: 'all .2s ease-in-out',
-          borderColor: `${name}.main`,
           color: 'common.white',
+          borderColor: blue[500],
           '&:hover': {
-            borderColor: `${name}.dark`,
+            borderColor: blue[300],
           },
         }}
         onClick={onClick}

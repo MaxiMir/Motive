@@ -5,7 +5,6 @@ export const enum Route {
   Following = '/following',
   Contact = '/contact',
   Articles = '',
-  Features = '',
 }
 
 export const getImageSrc = (src: string): string => {

@@ -33,7 +33,7 @@ function UserRow({ user, characteristicName, index }: UserRowProps) {
   }
 
   return (
-    <Box sx={{ background: isEven ? 'underlay' : '#21262C' }}>
+    <Box sx={{ backgroundColor: isEven ? 'underlay' : '#21262C' }}>
       <Container
         fixed
         sx={({ breakpoints }) => ({

@@ -36,7 +36,8 @@ function AppSnackbar({ severity, icon, message, onClose, ...props }: AppSnackbar
           color: 'common.white',
         },
         bottom: {
-          xs: 100,
+          xs: 80,
+          lg: 24,
         },
       }}
       TransitionComponent={Fade}

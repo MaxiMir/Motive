@@ -31,11 +31,6 @@ export const useRoutes = () => {
       href: Route.Articles,
     },
     {
-      primary: formatMessage({ id: 'common.features' }),
-      icon: 'widgets',
-      href: Route.Features,
-    },
-    {
       primary: formatMessage({ id: 'common.contact' }),
       icon: 'mark_as_unread',
       href: Route.Contact,

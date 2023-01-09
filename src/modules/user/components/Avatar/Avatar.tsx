@@ -28,7 +28,7 @@ function Avatar({ clientPage }: AvatarProps) {
   const [anchorEl, setAnchorEl] = useState<HTMLElement | null>(null)
   const messages = useMessages()
   const sources = !avatar ? [] : [avatar]
-  const disabled = !sources && !clientPage
+  const disabled = !sources.length && !clientPage
   const open = Boolean(anchorEl)
   const openLightbox = typeof index === 'number'
 

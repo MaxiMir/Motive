@@ -94,13 +94,13 @@ function GoalCurrent({ goal, membership, clientPage, clientMembership }: GoalCur
             flexDirection="column"
             justifyContent="space-between"
             gap={2}
-            sx={{
+            sx={(theme) => ({
               position: 'relative',
               height: '100%',
-              padding: '24px 16px 16px',
+              padding: theme.spacing(3, 2, 2),
               backgroundColor: 'underlay',
               borderRadius: '13px',
-            }}
+            })}
           >
             {inherited && <Inheritance />}
             <ViewTrigger>

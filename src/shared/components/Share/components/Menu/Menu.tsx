@@ -1,4 +1,3 @@
-import { KeyboardEvent } from 'react'
 import { Box, List, ListItem, Drawer, ListItemIcon, ListItemText } from '@mui/material'
 import { copyText } from '@helpers/navigator'
 import ContentCopy from '@ui/icons/ContentCopy'
@@ -22,12 +21,6 @@ interface MenuProps {
 function Menu({ title, url, onCopyEnd, onCopyError, onClose }: MenuProps) {
   const messages = useMessages()
   const shareItems = getShareItems()
-
-  const onKeyDown = (event: KeyboardEvent) => {
-    if (['Tab', 'Shift'].includes(event.key)) return
-
-    onClose()
-  }
 
   function getShareItems() {
     return [
@@ -71,7 +64,7 @@ function Menu({ title, url, onCopyEnd, onCopyError, onClose }: MenuProps) {
 
   return (
     <Drawer open anchor="bottom" onClose={onClose}>
-      <Box role="presentation" onKeyDown={onKeyDown} onClick={onClose}>
+      <Box role="presentation" onClick={onClose}>
         <List>
           {shareItems.map(({ text, Icon, onClick }) => (
             <ListItem button sx={{ height: 65 }} key={text} onClick={onClick}>

@@ -182,7 +182,6 @@
   "component.footer.search": "Пошук",
   "component.footer.rating": "Рейтинг",
   "component.footer.following": "Підписки",
-  "component.footer.my": "Моя сторінка",
 
   "hook.use-select-photo": "Ви не можете додати більше $0 фото",
 
@@ -277,6 +276,7 @@
   "common.language": "Мова",
   "common.log-out": "Вийти",
   "common.mode": "Режим",
+  "common.switch-mode": "Переключити режим",
   "common.light": "Світла",
   "common.system": "Системна",
   "common.dark": "Темна",
@@ -316,5 +316,6 @@
   "common.more": "Більше",
   "common.open-photo": "Відкрити фото",
   "common.play": "Відтворити",
-  "common.fullscreen": "Увійти в повноекранний режим"
+  "common.fullscreen": "Увійти в повноекранний режим",
+  "common.my-page": "Моя сторінка"
 }

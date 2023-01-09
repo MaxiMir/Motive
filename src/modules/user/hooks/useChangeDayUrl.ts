@@ -1,22 +1,16 @@
 import { useRouter } from 'next/router'
-import { useIntl } from 'react-intl'
 import { SearchParam } from '@features/user'
 import { GoalDto } from '@features/goal'
-import { getCurrentSearchParams, setSearchParams } from '@helpers/url'
+import { setSearchParams } from '@helpers/url'
 
 export const useChangeDayUrl = () => {
-  const { locale } = useIntl()
-  const { asPath, pathname, push } = useRouter()
+  const { asPath, push } = useRouter()
 
   return (goals: GoalDto[], goalId: number, dayId: number) => {
-    const { [SearchParam.Dates]: _, ...restParams } = getCurrentSearchParams()
     const datesParam = goals
       .map(({ id, day }) => `${id}:${id !== goalId ? day.id : dayId}`)
       .join(',')
-    const as = setSearchParams(asPath, {
-      [SearchParam.Dates]: datesParam,
-      ...restParams,
-    })
-    push(pathname, as, { shallow: true, locale })
+    const as = setSearchParams(asPath, { [SearchParam.Dates]: datesParam })
+    push(as, as, { shallow: true })
   }
 }

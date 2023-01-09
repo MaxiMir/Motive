@@ -1,4 +1,3 @@
-import React from 'react'
 import { RenderPhotoProps } from 'react-photo-album'
 import AppImage from '@ui/AppImage'
 

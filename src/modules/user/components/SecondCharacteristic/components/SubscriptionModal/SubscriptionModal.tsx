@@ -7,7 +7,7 @@ import { useMessages } from './hooks/useMessages'
 import { useSubscription } from './hooks/useSubscription'
 import Loader from './components/Loader'
 
-const EmptyList = dynamic(() => import('./components/EmptyList/EmptyList'))
+const EmptyList = dynamic(() => import('./components/EmptyList'))
 const UserList = dynamic(() => import('./components/UserList'))
 
 interface SubscriptionModalProps {

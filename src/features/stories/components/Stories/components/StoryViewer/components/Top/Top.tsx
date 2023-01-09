@@ -22,14 +22,14 @@ function Top({ user, title, date, onClose }: TopProps): JSX.Element {
 
   return (
     <Box
-      sx={{
+      sx={(theme) => ({
         position: 'absolute',
         left: 0,
         right: 0,
         zIndex: 9999,
-        padding: '24px 12px 12px',
+        padding: theme.spacing(3, '12px', '12px'),
         transition: 'opacity 0.5s',
-      }}
+      })}
     >
       <Box display="flex" alignItems="center" gap={2}>
         <UserLink name={name} avatar={avatar} href={href} size={42} />

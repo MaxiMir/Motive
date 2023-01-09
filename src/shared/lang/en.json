@@ -182,7 +182,6 @@
   "component.footer.search": "Search",
   "component.footer.rating": "Rating",
   "component.footer.following": "Following",
-  "component.footer.my": "My Page",
 
   "hook.use-select-photo": "You cannot add more than $0 photos",
 
@@ -277,6 +276,7 @@
   "common.language": "Language",
   "common.log-out": "Sign out",
   "common.mode": "Mode",
+  "common.switch-mode": "Switch mode",
   "common.light": "Light",
   "common.system": "System",
   "common.dark": "Dark",
@@ -316,5 +316,6 @@
   "common.more": "More",
   "common.open-photo": "Open the photo",
   "common.play": "Play",
-  "common.fullscreen": "Enter Fullscreen"
+  "common.fullscreen": "Enter Fullscreen",
+  "common.my-page": "My Page"
 }

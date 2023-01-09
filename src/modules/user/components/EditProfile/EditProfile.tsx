@@ -4,7 +4,7 @@ import AppIcon from '@ui/AppIcon'
 import GreyButton from '@ui/styled/GreyButton'
 import { useMessages } from './hooks/useMessages'
 
-const EditModal = dynamic(() => import('./components/EditModal/EditModal'))
+const EditModal = dynamic(() => import('./components/EditModal'))
 
 function EditProfile() {
   const messages = useMessages()

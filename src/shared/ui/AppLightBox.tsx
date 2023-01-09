@@ -18,13 +18,6 @@ interface AppLightBoxProps {
 
 function AppLightBox({ sources, index, onClose }: AppLightBoxProps) {
   const { formatMessage } = useIntl()
-  const nextLabel = formatMessage({ id: 'common.next' })
-  const prevLabel = formatMessage({ id: 'common.previous' })
-  const zoomInLabel = formatMessage({ id: 'common.zoom-in' })
-  const zoomOutLabel = formatMessage({ id: 'common.zoom-out' })
-  const closeLabel = formatMessage({ id: 'common.close' })
-  const playLabel = formatMessage({ id: 'common.play' })
-  const fullscreenLabel = formatMessage({ id: 'common.fullscreen' })
   const slides = sources.map((source) => ({ src: getImageSrc(source) }))
   const single = sources.length === 1
   const plugins = [Fullscreen, Slideshow, Zoom, ...(single ? [] : [Thumbnails])]
@@ -35,13 +28,13 @@ function AppLightBox({ sources, index, onClose }: AppLightBoxProps) {
       slides={slides}
       open
       labels={{
-        Next: nextLabel,
-        Prev: prevLabel,
-        Play: playLabel,
-        'Enter Fullscreen': fullscreenLabel,
-        Close: closeLabel,
-        'Zoom in': zoomInLabel,
-        'Zoom out': zoomOutLabel,
+        Next: formatMessage({ id: 'common.next' }),
+        Prev: formatMessage({ id: 'common.previous' }),
+        Play: formatMessage({ id: 'common.play' }),
+        'Enter Fullscreen': formatMessage({ id: 'common.fullscreen' }),
+        Close: formatMessage({ id: 'common.close' }),
+        'Zoom in': formatMessage({ id: 'common.zoom-in' }),
+        'Zoom out': formatMessage({ id: 'common.zoom-out' }),
       }}
       close={onClose}
       plugins={plugins}

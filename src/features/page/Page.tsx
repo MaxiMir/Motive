@@ -1,16 +1,18 @@
-import { ReactNode } from 'react'
+import { Fragment, ReactNode } from 'react'
 import dynamic from 'next/dynamic'
 import { useRouter } from 'next/router'
 import Head from 'next/head'
 import { useIntl } from 'react-intl'
 import { useIsFetching } from 'react-query'
-import { Box } from '@mui/material'
+import { Box, useMediaQuery } from '@mui/material'
+import { useTheme } from '@mui/material/styles'
 import { getLocaleHrefList } from '@features/locale'
 import { OGType } from './dto'
-import Header from './components/Header'
-import Footer from './components/Footer'
 
 const CircularProgress = dynamic(() => import('@mui/material/CircularProgress'))
+const HeaderMobile = dynamic(() => import('./components/mobile/Header'))
+const FooterMobile = dynamic(() => import('./components/mobile/Footer'))
+const Navigation = dynamic(() => import('./components/Navigation'))
 
 interface PageProps {
   title?: string
@@ -31,12 +33,15 @@ function Page({
   canonical,
   children,
 }: PageProps) {
+  const theme = useTheme()
   const { locale } = useIntl()
   const { asPath } = useRouter()
   const fetchingNumber = useIsFetching({ queryKey: ['page'] })
+  const mobile = useMediaQuery(theme.breakpoints.down('lg'))
   const localeHrefList = getLocaleHrefList(asPath)
   const url = localeHrefList[locale]
   const renderLoader = fetchingNumber > 0
+  const MainWrap = mobile ? Fragment : Navigation
 
   return (
     <>
@@ -72,25 +77,28 @@ function Page({
         <link rel="alternate" href={localeHrefList.uk} hrefLang="uk" />
         <link rel="alternate" href={localeHrefList.en} hrefLang="x-default" />
       </Head>
-      <Header type={type} />
-      <Box
-        component="main"
-        id="main"
-        display="flex"
-        flexDirection="column"
-        sx={({ palette }) => ({
-          flex: 1,
-          background: palette.mode === 'dark' ? '#121212' : undefined,
-        })}
-      >
-        {renderLoader && (
-          <Box display="flex" mt={3} justifyContent="center">
-            <CircularProgress size={14.5} sx={{ color: '#7638fa' }} />
-          </Box>
-        )}
-        {children}
-      </Box>
-      <Footer />
+      {mobile && <HeaderMobile type={type} />}
+      <MainWrap>
+        <Box
+          component="main"
+          id="main"
+          display="flex"
+          flexDirection="column"
+          sx={({ palette }) => ({
+            flex: 1,
+            flexGrow: 1,
+            background: palette.mode === 'dark' ? '#121212' : undefined,
+          })}
+        >
+          {renderLoader && (
+            <Box display="flex" mt={3} justifyContent="center">
+              <CircularProgress size={14.5} sx={{ color: '#7638fa' }} />
+            </Box>
+          )}
+          {children}
+        </Box>
+      </MainWrap>
+      {mobile && <FooterMobile />}
     </>
   )
 }

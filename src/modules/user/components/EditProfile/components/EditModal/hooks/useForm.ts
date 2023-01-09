@@ -24,7 +24,7 @@ interface Options {
 }
 
 export const useForm = (onSuccess: () => void) => {
-  const router = useRouter()
+  const { push } = useRouter()
   const user = useUserContext()
   const [page, mutatePage] = useMutateUserPage()
   const { formatMessage } = useIntl()
@@ -34,7 +34,7 @@ export const useForm = (onSuccess: () => void) => {
       const href = getUserHref(dto.nickname)
       const as = setSearchParams(href, getCurrentSearchParams())
       mutatePage(getNextState(page, dto))
-      router.push(as, as, { shallow: true }).then(onSuccess)
+      push(as, as, { shallow: true }).then(onSuccess)
     },
   })
 

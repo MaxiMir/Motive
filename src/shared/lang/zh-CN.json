@@ -182,7 +182,6 @@
   "component.footer.search": "搜索",
   "component.footer.rating": "评级",
   "component.footer.following": "关注",
-  "component.footer.my": "我的页面",
 
   "hook.use-select-photo": "您不能添加超过0美元的照片",
 
@@ -277,6 +276,7 @@
   "common.language": "语言",
   "common.log-out": "签出",
   "common.mode": "模式",
+  "common.switch-mode": "开关模式",
   "common.light": "灯光",
   "common.system": "系统",
   "common.dark": "黑暗",
@@ -316,5 +316,6 @@
   "common.more": "更多",
   "common.open-photo": "打开照片",
   "common.play": "播放",
-  "common.fullscreen": "进入全屏"
+  "common.fullscreen": "进入全屏",
+  "common.my-page": "我的页面"
 }

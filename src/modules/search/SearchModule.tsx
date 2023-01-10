@@ -27,7 +27,7 @@ function SearchModule({ q, hashtags, goals, users }: SearchModuleProps) {
 
   return (
     <AppContainer>
-      <AppHeader name="search" mb={4}>
+      <AppHeader name="search" mb={3}>
         {messages.header}
       </AppHeader>
       <Box display="flex" flexDirection="column" gap={4}>

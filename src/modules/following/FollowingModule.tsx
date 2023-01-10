@@ -16,7 +16,7 @@ function FollowingModule({ following }: FollowingModuleProps) {
 
   return (
     <AppContainer>
-      <AppHeader name="following" mb={4}>
+      <AppHeader name="following" mb={3}>
         {messages.header}
       </AppHeader>
       {!following.length ? <EmptyList /> : <UserList users={following} />}

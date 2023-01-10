@@ -1,4 +1,5 @@
-import { Container, Grid, Box, Typography } from '@mui/material'
+import { Grid, Box, Typography } from '@mui/material'
+import { blueGrey } from '@mui/material/colors'
 import { UserDto } from '@features/user'
 import { MainCharacteristicName } from '@features/characteristic'
 import AppList from '@ui/AppList'
@@ -15,35 +16,33 @@ function TabContent({ name, users }: TabContentProps) {
 
   return (
     <>
-      <Box sx={{ background: '#21262C' }}>
-        <Container
-          fixed
-          sx={({ breakpoints }) => ({
-            [breakpoints.only('xl')]: {
-              maxWidth: 900,
-            },
-          })}
-        >
-          <Grid container alignItems="center" sx={{ height: 55 }}>
-            <Grid item xs>
-              <Box display="flex" justifyContent="center" width={22}>
-                <Typography variant="subtitle1" component="p">
-                  <b>№</b>
-                </Typography>
-              </Box>
-            </Grid>
-            <Grid item xs={8}>
+      <Box
+        px={3}
+        sx={{
+          background: blueGrey[900],
+          boxShadow: `0 0 0 100vmax ${blueGrey[900]}`,
+          clipPath: 'inset(0 -100vmax)',
+        }}
+      >
+        <Grid container alignItems="center" sx={{ height: 55 }}>
+          <Grid item xs>
+            <Box display="flex" justifyContent="center" width={22}>
               <Typography variant="subtitle1" component="p">
-                <b>{messages.userText}</b>
+                <b>№</b>
               </Typography>
-            </Grid>
-            <Grid item xs>
-              <Typography variant="subtitle1" component="p" align="right">
-                <b>{messages.lvlText}</b>
-              </Typography>
-            </Grid>
+            </Box>
           </Grid>
-        </Container>
+          <Grid item xs={8}>
+            <Typography variant="subtitle1" component="p">
+              <b>{messages.userText}</b>
+            </Typography>
+          </Grid>
+          <Grid item xs>
+            <Typography variant="subtitle1" component="p" align="right">
+              <b>{messages.lvlText}</b>
+            </Typography>
+          </Grid>
+        </Grid>
       </Box>
       <AppList<UserDto>
         elements={users}

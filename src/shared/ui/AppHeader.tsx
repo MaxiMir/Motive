@@ -1,11 +1,11 @@
 import { ElementType } from 'react'
-import { Box, Typography, TypographyProps } from '@mui/material'
+import { Box, Typography, BoxProps, TypographyProps } from '@mui/material'
 import AppEmoji, { AppEmojiName } from './AppEmoji'
 
 interface AppHeaderProps extends TypographyProps {
   name: AppEmojiName
   component?: ElementType
-  mb?: number
+  mb?: BoxProps['mb']
 }
 
 function AppHeader({ name, variant = 'h1', component = 'h1', mb, children }: AppHeaderProps) {

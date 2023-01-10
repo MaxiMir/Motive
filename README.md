@@ -1,7 +1,6 @@
 [//]: # (TODO)
 * useTryFullScreen
 * тип сообщений в обсуждении
-* меню дл мобильной версии и десктопа
 * модалки как в инсте
 * (2) в title meta
 * https://mui.com/material-ui/react-menu/#basic-menu aria

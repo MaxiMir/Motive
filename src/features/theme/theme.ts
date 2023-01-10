@@ -215,7 +215,6 @@ export const getDesignTokens = (mode: PaletteMode): ThemeOptions => {
             backgroundImage: 'none',
             borderRadius: '12px',
             width: 'calc(100% - 16px)',
-            maxHeight: '700px',
             margin: '16px',
           },
         },

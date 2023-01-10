@@ -20,11 +20,12 @@ interface AppModalProps {
   title: JSX.Element | string
   maxWidth?: DialogProps['maxWidth']
   actions?: JSX.Element[]
+  sx?: DialogProps['sx']
   children: ReactNode
   onClose: () => void
 }
 
-function AppModal({ title, actions, maxWidth, children, onClose }: AppModalProps) {
+function AppModal({ title, actions, maxWidth, sx, children, onClose }: AppModalProps) {
   const { formatMessage } = useIntl()
   const closeText = formatMessage({ id: 'common.close' })
 
@@ -33,6 +34,7 @@ function AppModal({ title, actions, maxWidth, children, onClose }: AppModalProps
       open
       maxWidth={maxWidth}
       sx={{
+        ...sx,
         [`& .${backdropClasses.root}`]: {
           background: 'rgba(34, 34, 34, 0.75)',
           backdropFilter: 'blur(5px)',

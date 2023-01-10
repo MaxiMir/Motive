@@ -19,9 +19,9 @@ function FeedbackAdd({ forTomorrow }: FeedbackAddProps) {
     <>
       <TooltipArrow title={messages.title}>
         <Button
+          size="small"
           variant="outlined"
           color="secondary"
-          size="small"
           startIcon={<AppIcon name="psychology" />}
           disabled={forTomorrow}
           aria-haspopup="true"

@@ -5,11 +5,7 @@ interface DescriptionProps {
 }
 
 function Description({ onClose }: DescriptionProps) {
-  return (
-    <Drawer open anchor="bottom" onClose={onClose}>
-      Description
-    </Drawer>
-  )
+  return <Drawer open anchor="bottom" onClose={onClose} />
 }
 
 export default Description

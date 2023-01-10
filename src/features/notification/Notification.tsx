@@ -81,8 +81,8 @@ function Notification({ notification, onClose }: NotificationProps) {
           </Box>
           <TooltipArrow title={messages.viewTitle}>
             <IconButton
-              href={notificationHref}
               size="small"
+              href={notificationHref}
               sx={{
                 '& span': {
                   fontSize: 16,

@@ -17,6 +17,7 @@ function AppAccordion({ name, header, id, details, defaultExpanded }: AppAccordi
       defaultExpanded={defaultExpanded}
       TransitionProps={{ unmountOnExit: true }}
       disableGutters
+      sx={{ backgroundColor: '#121212' }}
     >
       <AccordionSummary id={id} expandIcon={<AppIcon name="expand_more" />}>
         <AppHeader name={name} variant="h6" component="h3" color="primary">

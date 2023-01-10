@@ -1,5 +1,7 @@
 import Link from 'next/link'
-import { Container, Typography, Grid, Box, Button } from '@mui/material'
+import { Typography, Grid, Box, Button } from '@mui/material'
+import { blueGrey } from '@mui/material/colors'
+import { useTheme } from '@mui/material/styles'
 import { UserCharacteristicName, UserDto, getUserHref } from '@features/user'
 import AppEmoji from '@ui/AppEmoji'
 import UserLink from '@components/User/UserLink'
@@ -12,10 +14,11 @@ interface UserRowProps {
 
 function UserRow({ user, characteristicName, index }: UserRowProps) {
   const { nickname, name, avatar, characteristic, online } = user
+  const theme = useTheme()
   const number = getNumber()
   const href = getUserHref(nickname)
   const ratingValue = Math.floor(characteristic[characteristicName])
-  const isEven = index % 2 === 0
+  const backgroundColor = index % 2 === 0 ? theme.palette.underlay : blueGrey[900]
 
   function getNumber() {
     const incrementedNumber = index + 1
@@ -33,43 +36,41 @@ function UserRow({ user, characteristicName, index }: UserRowProps) {
   }
 
   return (
-    <Box sx={{ background: isEven ? 'initial' : '#21262C' }}>
-      <Container
-        fixed
-        sx={(theme) => ({
-          [theme.breakpoints.only('xl')]: {
-            maxWidth: 900,
-          },
-        })}
-      >
-        <Grid container alignItems="center" sx={{ height: 55 }}>
-          <Grid item xs>
-            <Box display="flex" justifyContent="center" width={22}>
-              <Typography variant={index <= 2 ? 'h5' : undefined} component="p">
-                {number}
-              </Typography>
-            </Box>
-          </Grid>
-          <Grid item xs={8}>
-            <Box display="flex" alignItems="center" gap={2}>
-              <UserLink name={name} avatar={avatar} href={href} online={online} size={35} />
-              <Button href={href} sx={{ color: 'inherit' }} component={Link}>
-                {name}
-              </Button>
-            </Box>
-          </Grid>
-          <Grid item xs>
-            <Typography
-              variant="subtitle1"
-              component="p"
-              align="right"
-              sx={{ color: `${characteristicName}.main` }}
-            >
-              <b>{ratingValue}</b>
+    <Box
+      sx={{
+        backgroundColor,
+        boxShadow: `0 0 0 100vmax ${backgroundColor}`,
+        clipPath: 'inset(0 -100vmax)',
+      }}
+      px={3}
+    >
+      <Grid container alignItems="center" sx={{ height: 55 }}>
+        <Grid item xs>
+          <Box display="flex" justifyContent="center" width={22}>
+            <Typography variant={index <= 2 ? 'h5' : undefined} component="p">
+              {number}
             </Typography>
-          </Grid>
+          </Box>
         </Grid>
-      </Container>
+        <Grid item xs={8}>
+          <Box display="flex" alignItems="center" gap={2}>
+            <UserLink name={name} avatar={avatar} href={href} online={online} size={35} />
+            <Button href={href} sx={{ color: 'inherit' }} component={Link}>
+              {name}
+            </Button>
+          </Box>
+        </Grid>
+        <Grid item xs>
+          <Typography
+            variant="subtitle1"
+            component="p"
+            align="right"
+            sx={{ color: `${characteristicName}.main` }}
+          >
+            <b>{ratingValue}</b>
+          </Typography>
+        </Grid>
+      </Grid>
     </Box>
   )
 }

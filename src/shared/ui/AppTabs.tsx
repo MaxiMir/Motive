@@ -1,5 +1,5 @@
 import { ChangeEvent, useState } from 'react'
-import { Container, Box, Tab, Tabs, TabsProps } from '@mui/material'
+import { Box, Tab, Tabs, TabsProps } from '@mui/material'
 import { tabsClasses } from '@mui/material/Tabs'
 
 interface AppTabsProps extends Pick<TabsProps, 'aria-label'> {
@@ -25,21 +25,14 @@ function AppTabs({ tabs, content, initial = 0, ...tabsProps }: AppTabsProps) {
 
   return (
     <>
-      <Container
-        fixed
-        sx={(theme) => ({
-          [theme.breakpoints.only('xl')]: {
-            maxWidth: 900,
-          },
-        })}
-      >
+      <Box sx={{ borderBottom: 1, borderColor: 'divider', mb: 2 }}>
         <Tabs
           value={value}
-          {...tabsProps}
           variant="fullWidth"
-          sx={(theme) => ({
+          {...tabsProps}
+          sx={({ palette }) => ({
             [`& .${tabsClasses.indicator}`]: {
-              background: `linear-gradient(to right, ${theme.palette.motivation.main}, ${theme.palette.creativity.dark}, ${theme.palette.support.dark})`,
+              background: `linear-gradient(to right, ${palette.motivation.main}, ${palette.creativity.dark}, ${palette.support.dark})`,
             },
           })}
           onChange={onChange}
@@ -50,7 +43,7 @@ function AppTabs({ tabs, content, initial = 0, ...tabsProps }: AppTabsProps) {
             return <Tab label={tab} key={a11yTabProps.id} {...a11yTabProps} />
           })}
         </Tabs>
-      </Container>
+      </Box>
       {content.map((tabContent, index) => {
         const a11yContentProps = getA11yContentProps(index)
 
@@ -61,7 +54,7 @@ function AppTabs({ tabs, content, initial = 0, ...tabsProps }: AppTabsProps) {
             {...a11yContentProps}
             key={a11yContentProps.id}
           >
-            {value === index && tabContent}
+            {tabContent}
           </Box>
         )
       })}

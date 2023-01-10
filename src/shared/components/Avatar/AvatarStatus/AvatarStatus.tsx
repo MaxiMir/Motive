@@ -27,7 +27,7 @@ function AvatarStatus({
   return (
     <Button
       sx={{
-        minWidth: 'initial',
+        minWidth: size,
         padding: '3px',
         borderRadius: '50%',
       }}

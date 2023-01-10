@@ -1,5 +1,4 @@
-// TODO REMOVE LEGACY
-import Image, { ImageProps } from 'next/legacy/image'
+import Image, { ImageProps } from 'next/image'
 import { getImageSrc } from '@href'
 
 interface AppImageProps extends Omit<ImageProps, 'src'> {

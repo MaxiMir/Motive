@@ -17,11 +17,11 @@ function Slogan() {
           variant="h4"
           align="center"
           component="h1"
-          sx={(theme) => ({
-            background: `linear-gradient(90deg, ${theme.palette.motivation.main}, ${theme.palette.creativity.dark}, ${theme.palette.support.dark})`,
+          sx={({ palette }) => ({
+            background: `linear-gradient(90deg, ${palette.motivation.main}, ${palette.creativity.dark}, ${palette.support.dark})`,
             WebkitBackgroundClip: 'text',
             WebkitTextFillColor: 'transparent',
-            color: theme.palette.support.dark,
+            color: palette.support.dark,
             fontWeight: 500,
           })}
         >

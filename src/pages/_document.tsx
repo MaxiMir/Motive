@@ -1,12 +1,13 @@
 import { Children } from 'react'
-import Document, { Html, Head, Main, NextScript } from 'next/document'
+import Document, { Html, Main, Head, NextScript } from 'next/document'
 import produce from 'immer'
 import { ServerStyleSheets } from '@mui/styles'
+import { roboto } from '@features/theme'
 
 export default class MyDocument extends Document {
   render() {
     return (
-      <Html>
+      <Html className={roboto.className}>
         <Head>
           <meta charSet="UTF-8" />
           {/* PWA */}
@@ -18,15 +19,10 @@ export default class MyDocument extends Document {
             content="agmCksft6b7nOz-CbmrjAcflYLb5ztxWLN6o9vFImak"
           />
           <link rel="icon" type="image/x-icon" href="/favicon.png" />
-          <link rel="preconnect" href="https://fonts.googleapis.com" />
-          <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+          <link rel="preconnect" href="https://fonts.gstatic.com" />
           <link
             rel="stylesheet"
-            href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"
-          />
-          <link
-            rel="stylesheet"
-            href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"
+            href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&display=swap"
           />
           <meta
             httpEquiv="Content-Security-Policy"

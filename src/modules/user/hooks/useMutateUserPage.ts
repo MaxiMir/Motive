@@ -7,7 +7,7 @@ export const useMutateUserPage = (): [UserPageDto, (page: UserPageDto) => void] 
   const ctx = useUserContext()
 
   const mutate = (page: UserPageDto) => {
-    queryClient.setQueryData(ctx.nickname, page)
+    queryClient.setQueryData(['page', ctx.nickname], page)
   }
 
   return [ctx, mutate]

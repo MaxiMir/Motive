@@ -88,7 +88,7 @@ function AppEmoji({ name, onlyEmoji = false, ...restProps }: AppEmojiProps) {
       {onlyEmoji ? (
         content
       ) : (
-        <Typography paragraph role="img" aria-label={name} m={0} {...restProps}>
+        <Typography aria-label={name} paragraph m={0} {...restProps}>
           {content}
         </Typography>
       )}

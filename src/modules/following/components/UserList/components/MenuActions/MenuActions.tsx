@@ -59,7 +59,7 @@ function MenuActions({ user, index }: MenuActionsProps) {
       >
         <AppMenuItem icon="share" text={messages.shareText} onClick={toggleSharing} />
         <AppMenuItem
-          icon="remove_circle_outline"
+          icon="delete"
           text={messages.removeText}
           color="error.dark"
           disabled={isLoading}

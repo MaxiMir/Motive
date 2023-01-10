@@ -33,16 +33,16 @@ function ConfirmationStory({ confirmation }: ConfirmationStoryProps) {
     <>
       <Box display="flex" flexDirection="column" alignItems="center" minWidth={100} gap={1}>
         <Box
-          sx={(theme) => ({
+          sx={({ palette }) => ({
             padding: '2px',
-            background: `linear-gradient(to top left, ${theme.palette.motivation.dark}, ${theme.palette.creativity.dark})`,
+            background: `linear-gradient(to top left, ${palette.motivation.dark}, ${palette.creativity.dark})`,
             borderRadius: '50%',
           })}
         >
           <Box
-            sx={(theme) => ({
+            sx={({ palette }) => ({
               borderRadius: '50%',
-              background: theme.palette.background.default,
+              background: palette.background.default,
               '&:hover': {
                 background: 'rgba(144, 202, 249, 0.08)',
               },

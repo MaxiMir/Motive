@@ -23,7 +23,7 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
   const { headers } = ctx.req
   const queryClient = new QueryClient()
   const session = await getSession(ctx)
-  await queryClient.prefetchQuery(Route.Rating, () => PageService.getRating({ headers }))
+  await queryClient.prefetchQuery(['page', Route.Rating], () => PageService.getRating({ headers }))
 
   return {
     props: {

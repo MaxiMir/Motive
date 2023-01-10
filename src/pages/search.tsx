@@ -20,19 +20,12 @@ function SearchPage() {
 
 export const getServerSideProps: GetServerSideProps = async (ctx) => {
   const { headers, url = Route.Search } = ctx.req
-  const params = getSearchParams(url)
-
-  if (ctx.req.url?.includes('_next')) {
-    return {
-      props: {
-        statusCode: 200,
-      },
-    }
-  }
-
   const queryClient = new QueryClient()
+  const params = getSearchParams(url)
   const session = await getSession(ctx)
-  await queryClient.prefetchQuery(url, () => PageService.getSearch({ headers, params }))
+  await queryClient.prefetchQuery(['page', Route.Search], () =>
+    PageService.getSearch({ headers, params }),
+  )
 
   return {
     props: {

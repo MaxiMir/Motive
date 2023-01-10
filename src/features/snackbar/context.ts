@@ -1,19 +1,14 @@
-import { createContext, ReactNode } from 'react'
-import { AppEmojiName } from '@ui/AppEmoji'
+import { createContext } from 'react'
+import { AppSnackbarProps } from '@ui/AppSnackbar'
 
-export interface SnackbarProps {
-  severity: 'success' | 'error' | 'warning'
-  message: string
-  icon?: AppEmojiName
-  action?: ReactNode
-}
+export type SnackbarState = Omit<AppSnackbarProps, 'onClose'>
 
 interface SnackbarContextType {
-  props: SnackbarProps | null
-  setProps: (props: SnackbarProps | null) => void
+  state: SnackbarState | null
+  setState: (props: SnackbarState | null) => void
 }
 
 export const SnackbarContext = createContext<SnackbarContextType>({
-  props: null,
-  setProps: (_: SnackbarProps | null) => undefined,
+  state: null,
+  setState: (_: SnackbarState | null) => undefined,
 })

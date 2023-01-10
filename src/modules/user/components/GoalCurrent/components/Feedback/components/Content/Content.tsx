@@ -4,7 +4,7 @@ import { FeedbackDto } from '@features/feedback'
 
 const AppPlayer = dynamic(() => import('@ui/AppPlayer'))
 const AppMarkdown = dynamic(() => import('@ui/AppMarkdown'))
-const Gallery = dynamic(() => import('./components/Gallery'))
+const Gallery = dynamic(() => import('@components/Gallery'))
 
 interface ContentProps {
   feedback: FeedbackDto

@@ -1,7 +1,7 @@
 import dynamic from 'next/dynamic'
 import { Box } from '@mui/material'
 import { useAddMessage } from '@modules/user/hooks'
-import { UserBaseDto, ClientDto } from '@features/user'
+import { UserBaseDto } from '@features/user'
 import { TopicDto, MessageType } from '@features/topic'
 import useClient from '@hooks/useClient'
 import { AppListProps } from '@ui/AppList'
@@ -23,8 +23,8 @@ function Discussion({ owner, count, clientGoal }: DiscussionProps) {
   const client = useClient()
   const { isLoading, topics, checkOnLoadMore, fetchNextPage } = useDiscussion()
   const onAdd = useAddMessage()
-  const showInput = !!client && (!count || !!topics.length) && !clientGoal
-  const minHeight = topics.length || showInput ? 130 : undefined
+  const withInput = !!client && !clientGoal
+  const minHeight = topics.length || withInput ? 130 : undefined
 
   return (
     <Box
@@ -36,21 +36,18 @@ function Discussion({ owner, count, clientGoal }: DiscussionProps) {
       maxHeight={500}
     >
       <>
-        {showInput && (
-          <UserInput user={client as ClientDto} type={MessageType.Question} onAdd={onAdd} />
-        )}
-        {!count ? (
-          <Nothing />
+        {isLoading ? (
+          <Loader count={count} withInput={withInput} />
         ) : (
           <>
-            {isLoading ? (
-              <Loader count={count} withInput={!clientGoal} />
+            {withInput && <UserInput user={client} type={MessageType.Question} onAdd={onAdd} />}
+            {!count ? (
+              <Nothing />
             ) : (
               <AppList
                 elements={topics}
                 keyGetter={(topic) => topic.id}
-                gap={2}
-                pb={2}
+                gap={3}
                 render={(topic, index) => (
                   <Topic
                     topic={topic}

@@ -4,8 +4,8 @@ function InputNotEditable({ inputProps, ...props }: TextFieldProps) {
   return (
     <TextField
       {...props}
-      type="text"
       size="small"
+      type="text"
       defaultValue={inputProps?.value}
       key={inputProps?.value}
     />

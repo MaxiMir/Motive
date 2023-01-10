@@ -1,11 +1,11 @@
 import { ListItemIcon, ListItemText, MenuItem, MenuItemProps } from '@mui/material'
-import { styled } from '@mui/system'
 import AppIcon from './AppIcon'
 
-type AppMenuItemContentProps = Pick<MenuItemProps, 'onClick'> & {
+type AppMenuItemProps = Pick<MenuItemProps, 'onClick'> & {
   icon: string
   color?: string
   disabled?: boolean
+  smallIcon?: boolean
   text: string
 }
 
@@ -14,28 +14,24 @@ function AppMenuItem({
   text,
   color = 'primary.dark',
   disabled,
+  smallIcon = true,
   onClick,
-}: AppMenuItemContentProps) {
+}: AppMenuItemProps) {
   return (
     <MenuItem disabled={disabled} onClick={onClick}>
-      <ListItemIconCompact
+      <ListItemIcon
         sx={{
           '& span': {
             color,
+            fontSize: smallIcon ? 18 : 24,
           },
         }}
       >
         <AppIcon name={icon} />
-      </ListItemIconCompact>
+      </ListItemIcon>
       <ListItemText>{text}</ListItemText>
     </MenuItem>
   )
 }
-
-const ListItemIconCompact = styled(ListItemIcon)({
-  '& .material-icons': {
-    fontSize: 18,
-  },
-})
 
 export default AppMenuItem

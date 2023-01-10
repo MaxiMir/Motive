@@ -3,6 +3,8 @@ export const enum Route {
   Search = '/search',
   Rating = '/rating',
   Following = '/following',
+  Contact = '/contact',
+  Articles = '',
 }
 
 export const getImageSrc = (src: string): string => {

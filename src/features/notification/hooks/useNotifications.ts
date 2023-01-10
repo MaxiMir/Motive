@@ -9,7 +9,7 @@ export const useNotifications = () => {
     ['notifications', client?.id],
     () => NotificationService.get({ recipient: client?.id || 0 }),
     {
-      staleTime: 15_000,
+      staleTime: 5_000,
     },
   )
 }

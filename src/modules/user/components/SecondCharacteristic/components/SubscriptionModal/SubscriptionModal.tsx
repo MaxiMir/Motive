@@ -7,7 +7,7 @@ import { useMessages } from './hooks/useMessages'
 import { useSubscription } from './hooks/useSubscription'
 import Loader from './components/Loader'
 
-const EmptyList = dynamic(() => import('./components/EmptyList/EmptyList'))
+const EmptyList = dynamic(() => import('./components/EmptyList'))
 const UserList = dynamic(() => import('./components/UserList'))
 
 interface SubscriptionModalProps {
@@ -18,11 +18,8 @@ interface SubscriptionModalProps {
 function SubscriptionModal({ name, onClose }: SubscriptionModalProps) {
   const messages = useMessages(name)
   const { id, characteristic } = useUserContext()
-  const { isLoading, followers, checkOnLoadMore, fetchNextPage } = useSubscription(
-    id,
-    characteristic.followers,
-    name,
-  )
+  const count = characteristic[name]
+  const { isLoading, users, checkOnLoadMore, fetchNextPage } = useSubscription(id, count, name)
 
   return (
     <AppModal title={messages.title} maxWidth="xs" onClose={onClose}>
@@ -40,14 +37,14 @@ function SubscriptionModal({ name, onClose }: SubscriptionModalProps) {
         }}
       >
         {isLoading ? (
-          <Loader count={characteristic.followers} />
+          <Loader count={count} />
         ) : (
           <>
-            {!followers?.length ? (
+            {!users?.length ? (
               <EmptyList />
             ) : (
               <UserList
-                users={followers}
+                users={users}
                 checkOnLoadMore={checkOnLoadMore}
                 onView={fetchNextPage}
                 onClose={onClose}

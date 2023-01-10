@@ -1,4 +1,4 @@
-import { Box, LinearProgress, Typography } from '@mui/material'
+import { Box, Typography, LinearProgress, BoxProps } from '@mui/material'
 import { linearProgressClasses } from '@mui/material/LinearProgress'
 import { MainCharacteristicName } from '@features/characteristic'
 import useShowProgress from '@hooks/useShowProgress'
@@ -6,15 +6,16 @@ import useShowProgress from '@hooks/useShowProgress'
 interface ProgressProps {
   characteristic: MainCharacteristicName
   value: number
+  mb?: BoxProps['mb']
 }
 
-function Progress({ characteristic, value }: ProgressProps) {
+function Progress({ characteristic, value, mb }: ProgressProps) {
   const rest = (value % 1) * 100
   const progress = useShowProgress(rest)
   const preparedProgress = Math.round(progress)
 
   return (
-    <Box display="flex" alignItems="center" gap={1}>
+    <Box display="flex" alignItems="center" gap={1} mb={mb}>
       <LinearProgress
         variant="determinate"
         value={progress}

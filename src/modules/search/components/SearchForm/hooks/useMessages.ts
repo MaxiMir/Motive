@@ -5,5 +5,6 @@ export const useMessages = () => {
 
   return {
     label: formatMessage({ id: 'page.search.form' }),
+    deleteText: formatMessage({ id: 'common.delete' }),
   }
 }

@@ -22,64 +22,42 @@ function Top({ user, title, date, onClose }: TopProps): JSX.Element {
 
   return (
     <Box
-      sx={{
+      sx={(theme) => ({
         position: 'absolute',
         left: 0,
         right: 0,
         zIndex: 9999,
-        padding: '24px 12px 12px',
+        padding: theme.spacing(3, '12px', '12px'),
         transition: 'opacity 0.5s',
-      }}
+      })}
     >
       <Box display="flex" alignItems="center" gap={2}>
-        <Box display="flex" alignItems="center">
-          <IconButton
-            size="small"
-            aria-label={messages.close}
-            sx={{
-              display: {
-                xs: 'flex',
-                sm: 'flex',
-                md: 'none',
-              },
-            }}
-            onClick={onClose}
-          >
-            <AppIcon name="arrow_back_ios" />
-          </IconButton>
-          <UserLink name={name} avatar={avatar} href={href} size={42} />
-        </Box>
+        <UserLink name={name} avatar={avatar} href={href} size={42} />
         <Box display="flex" flexDirection="column">
-          <Typography>
-            <b>{title}</b>
-          </Typography>
-          <Box display="flex" alignItems="baseline" gap={1}>
-            <Box
+          <Box display="flex" alignItems="flex-end" gap={0.5}>
+            <Typography
+              variant="caption"
               component="span"
-              sx={{
-                fontSize: 14,
-                textShadow: '0px 1px 3px rgba(0, 0, 0, 0.36)',
-              }}
+              sx={{ textShadow: '0px 1px 3px rgba(0, 0, 0, 0.36)' }}
             >
               <Link href={href}>{name}</Link>
-            </Box>
-            <Typography variant="caption" sx={{ color: 'rgba(255, 255, 255, 0.72)' }}>
+            </Typography>
+            <Typography
+              variant="caption"
+              component="span"
+              sx={{ color: 'rgba(255, 255, 255, 0.72)' }}
+            >
               {distance}
             </Typography>
           </Box>
+          <Typography
+            component="span"
+            sx={{ fontSize: 14, textShadow: '0 1px 1px 0 rgba(0, 0, 0, 0.1)' }}
+          >
+            {title}
+          </Typography>
         </Box>
-        <IconButton
-          aria-label={messages.close}
-          sx={{
-            marginLeft: 'auto',
-            display: {
-              xs: 'none',
-              sm: 'none',
-              md: 'flex',
-            },
-          }}
-          onClick={onClose}
-        >
+        <IconButton aria-label={messages.close} sx={{ marginLeft: 'auto' }} onClick={onClose}>
           <AppIcon name="close" />
         </IconButton>
       </Box>

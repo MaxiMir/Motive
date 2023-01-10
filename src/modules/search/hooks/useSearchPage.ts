@@ -1,11 +1,12 @@
 import { useRouter } from 'next/router'
 import { useQuery } from 'react-query'
 import { PageService } from '@features/page'
+import { Route } from '@href'
 
 export const useSearchPage = () => {
-  const { asPath, query: params } = useRouter()
+  const { query: params } = useRouter()
 
-  return useQuery(asPath, () => PageService.getSearch({ params }), {
+  return useQuery(['page', Route.Search], () => PageService.getSearch({ params }), {
     staleTime: 5_000,
   })
 }

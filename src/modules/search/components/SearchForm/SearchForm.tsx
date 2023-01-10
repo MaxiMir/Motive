@@ -33,7 +33,11 @@ function SearchForm({ q = '' }: SearchFormProps) {
               </InputAdornment>
             ),
             endAdornment: values.q && (
-              <InputAdornment aria-label="" disableFocusRipple onClick={onClickClose}>
+              <InputAdornment
+                aria-label={messages.deleteText}
+                disableFocusRipple
+                onClick={onClickClose}
+              >
                 <AppIcon name="close" />
               </InputAdornment>
             ),

@@ -62,7 +62,7 @@ function GoalCurrent({ goal, membership, clientPage, clientMembership }: GoalCur
   const redefinedGoals = redefineTasks(day.tasks, userMember)
   const restGoals = redefinedGoals.length - redefinedGoals.filter((t) => t.completed).length // TODO backend
 
-  // TODO disabled control
+  // TODO Button
 
   return (
     <GoalContext.Provider value={goal}>
@@ -82,10 +82,10 @@ function GoalCurrent({ goal, membership, clientPage, clientMembership }: GoalCur
         }}
       >
         <Box
-          sx={(theme) => ({
+          sx={({ palette }) => ({
             padding: '3px',
             height: '100%',
-            background: `linear-gradient(to top left, ${theme.palette.motivation.main}, ${theme.palette.creativity.dark}, ${theme.palette.support.dark})`,
+            background: `linear-gradient(to top left, ${palette.motivation.main}, ${palette.creativity.dark}, ${palette.support.dark})`,
             borderRadius: '16px',
           })}
         >
@@ -94,13 +94,13 @@ function GoalCurrent({ goal, membership, clientPage, clientMembership }: GoalCur
             flexDirection="column"
             justifyContent="space-between"
             gap={2}
-            sx={{
+            sx={(theme) => ({
               position: 'relative',
               height: '100%',
-              padding: '24px 16px 16px',
+              padding: theme.spacing(3, 2, 2),
               backgroundColor: 'underlay',
               borderRadius: '13px',
-            }}
+            })}
           >
             {inherited && <Inheritance />}
             <ViewTrigger>
@@ -157,7 +157,7 @@ function GoalCurrent({ goal, membership, clientPage, clientMembership }: GoalCur
                       width: '100%',
                       pb: 4,
                       borderRadius: '10px',
-                      backgroundColor: 'underlay',
+                      backgroundColor: '#121212',
                     }}
                   >
                     <Box

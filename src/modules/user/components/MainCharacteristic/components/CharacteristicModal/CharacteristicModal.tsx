@@ -25,22 +25,13 @@ function CharacteristicModal({ name, value, onClose }: CharacteristicModalProps)
       maxWidth="xs"
       onClose={onClose}
     >
-      <Progress characteristic={name} value={value} />
-      <Box mt={2}>
-        <Typography
-          variant="h6"
-          component="h3"
-          sx={{
-            color: `${name}.light`,
-            mb: 1,
-          }}
-        >
-          {messages.header}:
-        </Typography>
-        {list.map((element) => (
-          <ListItem name={element} key={element} />
-        ))}
-      </Box>
+      <Progress characteristic={name} value={value} mb={2} />
+      <Typography variant="h6" component="h3" sx={{ color: `${name}.light` }}>
+        {messages.header}:
+      </Typography>
+      {list.map((element) => (
+        <ListItem name={element} key={element} />
+      ))}
     </AppModal>
   )
 }

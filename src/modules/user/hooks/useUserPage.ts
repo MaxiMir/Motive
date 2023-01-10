@@ -8,7 +8,11 @@ export const useUserPage = () => {
   const { origin, searchParams } = parseUrl(asPath)
   const nickname = origin.replace('/', '')
 
-  return useQuery(nickname, () => PageService.getUser(nickname, { params: searchParams }), {
-    staleTime: 5_000,
-  })
+  return useQuery(
+    ['page', nickname],
+    () => PageService.getUser(nickname, { params: searchParams }),
+    {
+      staleTime: 5_000,
+    },
+  )
 }

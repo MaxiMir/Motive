@@ -8,7 +8,7 @@ function TopOfTheDayModule() {
 
   return (
     <AppContainer>
-      <AppHeader name="energy" mb={4}>
+      <AppHeader name="energy" mb={3}>
         {messages.header}
       </AppHeader>
       <Box display="flex" alignItems="center" justifyContent="center" flex={1} height="80dvh">

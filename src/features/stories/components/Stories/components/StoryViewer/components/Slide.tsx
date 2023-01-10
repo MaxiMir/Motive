@@ -29,6 +29,7 @@ function Slide({ story }: SlideProps) {
           left: '50%',
           height: '100%',
           transform: 'translateX(-50%)',
+          pointerEvents: 'none',
           margin: 'auto',
         }}
       />

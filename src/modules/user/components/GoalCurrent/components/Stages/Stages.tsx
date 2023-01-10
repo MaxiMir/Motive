@@ -45,8 +45,8 @@ function Stages({ forTomorrow, completeStage }: StagesProps) {
               <StepContent>
                 <TooltipArrow title={messages.title}>
                   <Button
-                    variant="outlined"
                     size="small"
+                    variant="outlined"
                     disabled={forTomorrow}
                     aria-haspopup="true"
                     aria-expanded={open ? 'true' : undefined}

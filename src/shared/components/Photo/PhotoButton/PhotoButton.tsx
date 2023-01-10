@@ -43,7 +43,7 @@ function PhotoButton({ image, disabled, onClick }: PhotoButtonProps) {
         {image instanceof File ? (
           <LocalImage file={image} />
         ) : (
-          <AppImage src={image} layout="fill" objectFit="contain" />
+          <AppImage src={image} alt="" layout="fill" objectFit="contain" />
         )}
         <TooltipArrow title={messages.title}>
           <IconButton

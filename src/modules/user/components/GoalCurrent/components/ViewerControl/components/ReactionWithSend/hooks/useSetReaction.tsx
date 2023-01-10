@@ -39,11 +39,11 @@ export const useSetReaction = (
   const [enqueueSnackbar] = useSnackbar()
   const { isLoading, mutate } = useMutation(GoalService.updateCharacteristic, {
     async onMutate(options) {
-      await queryClient.cancelQueries(nickname)
-      const previous = queryClient.getQueryData<UserPageDto>(nickname)
+      await queryClient.cancelQueries(['page', nickname])
+      const previous = queryClient.getQueryData<UserPageDto>(['page', nickname])
 
       if (previous) {
-        queryClient.setQueryData(nickname, getNextState(previous, options))
+        queryClient.setQueryData(['page', nickname], getNextState(previous, options))
       }
 
       return { previous }

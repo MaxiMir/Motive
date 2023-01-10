@@ -1,40 +1,53 @@
-import { Box, Button } from '@mui/material'
+import dynamic from 'next/dynamic'
+import { Button } from '@mui/material'
+import { buttonClasses } from '@mui/material/Button'
 import { blue } from '@mui/material/colors'
 import useFormatNumber from '@hooks/useFormatNumber'
 import AppEmoji, { AppEmojiName } from '@ui/AppEmoji'
+import TooltipArrow from '@ui/styled/TooltipArrow'
+
+const CircularProgress = dynamic(() => import('@mui/material/CircularProgress'))
 
 interface ActionGoalProps {
   name: AppEmojiName
   title: string
   count?: number
-  disabled?: boolean
+  active: boolean
+  isLoading?: boolean
   onClick: () => void
 }
 
-function ActionGoal({ name, title, count, disabled, onClick }: ActionGoalProps) {
+function ActionGoal({ name, title, count, active, isLoading, onClick }: ActionGoalProps) {
   const formatNumber = useFormatNumber()
-  const formattedCount = count && formatNumber(count)
-  const startIcon = typeof count !== 'number' ? undefined : <AppEmoji name={name} />
+  const shownCount = typeof count !== 'number' ? null : formatNumber(count)
+  const disabled = active || isLoading
 
   return (
-    <Button
-      disabled={disabled}
-      startIcon={startIcon}
-      title={title}
-      sx={{
-        color: 'common.white',
-        borderColor: blue[500],
-        '&:hover': {
-          borderColor: blue[300],
-        },
-      }}
-      onClick={onClick}
-    >
-      <Box display="flex" gap={1}>
-        {!startIcon && <AppEmoji name={name} />}
-        {formattedCount}
-      </Box>
-    </Button>
+    <TooltipArrow title={!disabled && title}>
+      <Button
+        size="small"
+        variant="outlined"
+        disabled={disabled}
+        startIcon={
+          isLoading ? <CircularProgress size={18} color="inherit" /> : <AppEmoji name={name} />
+        }
+        sx={{
+          minWidth: 'initial',
+          height: 35,
+          color: 'common.white',
+          borderColor: blue[500],
+          '&:hover': {
+            borderColor: blue[300],
+          },
+          [`& .${buttonClasses.startIcon}`]: {
+            margin: !shownCount ? 0 : undefined,
+          },
+        }}
+        onClick={onClick}
+      >
+        {shownCount}
+      </Button>
+    </TooltipArrow>
   )
 }
 

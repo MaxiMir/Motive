@@ -48,7 +48,7 @@ function UserInput({ user, type, topicId, onAdd }: UserInputProps) {
           />
           <TooltipArrow title={messages.sendText}>
             <SendButton size="small" disabled={disabled} onClick={onClick}>
-              {!isSubmitting ? <AppIcon name="arrow_upward" /> : <CircularProgress size={14.5} />}
+              {isSubmitting ? <CircularProgress size={14.5} /> : <AppIcon name="arrow_upward" />}
             </SendButton>
           </TooltipArrow>
         </Box>

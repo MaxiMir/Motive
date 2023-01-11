@@ -17,9 +17,10 @@ import CssBaseline from '@mui/material/CssBaseline'
 import { ModalSignInContext } from '@features/signin'
 import { SnackbarContext, SnackbarState } from '@features/snackbar'
 import { ThemeContext, getDesignTokens } from '@features/theme'
+import { Locale } from '@features/locale'
+import { DeviceContext } from '@features/device'
 import { getLocaleFolder } from '@lib/date'
 import { makeMapLoader } from '@helpers/iterable'
-import { Locale } from '@features/locale'
 import useRemoveServerStyles from '@hooks/useRemoveServerStyles'
 import EventSocket from '@components/EventSocket'
 
@@ -32,7 +33,7 @@ const adapterLocaleLoader = makeMapLoader<FnsLocale>()
 
 function App({
   Component,
-  pageProps: { session, dehydratedState, providers, ...pageProps },
+  pageProps: { session, dehydratedState, providers, device, ...pageProps },
 }: AppProps) {
   const { locale = Locale.En } = useRouter()
   const folder = getLocaleFolder(locale)
@@ -79,36 +80,38 @@ function App({
       <SessionProvider session={session} refetchOnWindowFocus>
         <QueryClientProvider client={queryClient}>
           <Hydrate state={dehydratedState}>
-            <LocalizationProvider dateAdapter={AdapterDateFns} adapterLocale={adapterLocale}>
-              <ThemeContext.Provider value={themeCtx}>
-                <StylesProvider generateClassName={generateClassName}>
-                  <ThemeProvider theme={theme}>
-                    <ModalSignInContext.Provider value={modalSignInCtx}>
-                      <SnackbarContext.Provider value={snackbarCtx}>
-                        <Script
-                          src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS}`}
-                          strategy="afterInteractive"
-                        />
-                        <Script id="google-analytics" strategy="afterInteractive">
-                          {`
+            <DeviceContext.Provider value={device.type}>
+              <LocalizationProvider dateAdapter={AdapterDateFns} adapterLocale={adapterLocale}>
+                <ThemeContext.Provider value={themeCtx}>
+                  <StylesProvider generateClassName={generateClassName}>
+                    <ThemeProvider theme={theme}>
+                      <ModalSignInContext.Provider value={modalSignInCtx}>
+                        <SnackbarContext.Provider value={snackbarCtx}>
+                          <Script
+                            src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS}`}
+                            strategy="afterInteractive"
+                          />
+                          <Script id="google-analytics" strategy="afterInteractive">
+                            {`
                             window.dataLayer = window.dataLayer || [];
                             function gtag(){window.dataLayer.push(arguments);}
                             gtag('js', new Date());
                             gtag('config', '${process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS}');
                           `}
-                        </Script>
-                        <NextNprogress color="#7638fa" options={{ showSpinner: false }} />
-                        <CssBaseline />
-                        <Component {...pageProps} />
-                      </SnackbarContext.Provider>
-                    </ModalSignInContext.Provider>
-                    <EventSocket />
-                    {state && <AppSnackbar {...state} onClose={onCloseSnackbar} />}
-                    {options && <ModalSignIn options={options} onClose={onCloseSignIn} />}
-                  </ThemeProvider>
-                </StylesProvider>
-              </ThemeContext.Provider>
-            </LocalizationProvider>
+                          </Script>
+                          <NextNprogress color="#7638fa" options={{ showSpinner: false }} />
+                          <CssBaseline />
+                          <Component {...pageProps} />
+                        </SnackbarContext.Provider>
+                      </ModalSignInContext.Provider>
+                      <EventSocket />
+                      {state && <AppSnackbar {...state} onClose={onCloseSnackbar} />}
+                      {options && <ModalSignIn options={options} onClose={onCloseSignIn} />}
+                    </ThemeProvider>
+                  </StylesProvider>
+                </ThemeContext.Provider>
+              </LocalizationProvider>
+            </DeviceContext.Provider>
           </Hydrate>
         </QueryClientProvider>
       </SessionProvider>

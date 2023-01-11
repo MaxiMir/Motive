@@ -25,14 +25,14 @@ function TabContent({ name, users }: TabContentProps) {
         }}
       >
         <Grid container alignItems="center" sx={{ height: 55 }}>
-          <Grid item xs>
+          <Grid item xs={2}>
             <Box display="flex" justifyContent="center" width={22}>
               <Typography variant="subtitle1" component="p">
                 <b>№</b>
               </Typography>
             </Box>
           </Grid>
-          <Grid item xs={8}>
+          <Grid item xs={7}>
             <Typography variant="subtitle1" component="p">
               <b>{messages.userText}</b>
             </Typography>

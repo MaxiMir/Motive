@@ -239,6 +239,15 @@ export const getDesignTokens = (mode: PaletteMode): ThemeOptions => {
           },
         },
       },
+      MuiContainer: {
+        styleOverrides: {
+          root: {
+            '@media (min-width: 1200px)': {
+              maxWidth: 900,
+            },
+          },
+        },
+      },
     },
   }
 }

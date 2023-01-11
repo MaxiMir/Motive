@@ -15,15 +15,7 @@ function RatingModule({ tab, ...props }: RatingModuleProps) {
   const messages = useMessages()
 
   return (
-    <Container
-      fixed
-      sx={({ breakpoints }) => ({
-        mt: 3,
-        [breakpoints.only('xl')]: {
-          maxWidth: 900,
-        },
-      })}
-    >
+    <Container fixed sx={{ my: 3 }}>
       <AppHeader name="completed" mb={3}>
         {messages.header}
       </AppHeader>

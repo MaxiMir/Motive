@@ -25,14 +25,7 @@ function Header({ type }: HeaderProps) {
         backgroundColor: 'underlay',
       }}
     >
-      <Container
-        fixed
-        sx={({ breakpoints }) => ({
-          [breakpoints.only('xl')]: {
-            maxWidth: 900,
-          },
-        })}
-      >
+      <Container fixed>
         <Box display="flex" justifyContent="space-between" alignItems="center">
           <Navigation />
           {renderNickname && <UserLink />}

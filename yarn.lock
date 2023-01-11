@@ -6082,6 +6082,13 @@ nextjs-progressbar@^0.0.16:
     nprogress "^0.2.0"
     prop-types "^15.8.1"
 
+node-device-detector@^2.0.10:
+  version "2.0.10"
+  resolved "https://registry.yarnpkg.com/node-device-detector/-/node-device-detector-2.0.10.tgz#06964bb78dc1c57acd128c4512a6061759a92ace"
+  integrity sha512-c3+RkvMiN2Hfovat85/SSiGdhTaGzHBkill6pXKDspRUUp+zeTjcG1bI989sJivJRQ64YhWc2nGCPRGsKTjxYg==
+  dependencies:
+    js-yaml "^4.1.0"
+
 node-int64@^0.4.0:
   version "0.4.0"
   resolved "https://registry.yarnpkg.com/node-int64/-/node-int64-0.4.0.tgz#87a9065cdb355d3182d8f94ce11188b825c68a3b"

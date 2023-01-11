@@ -1,4 +1,4 @@
-import { Device } from '@helpers/navigator'
+import { Device } from '@features/device'
 import { MainCharacteristicName, SecondCharacteristicName } from '@features/characteristic'
 
 export type UserCharacteristicName = MainCharacteristicName | SecondCharacteristicName

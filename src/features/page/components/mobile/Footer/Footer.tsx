@@ -20,14 +20,7 @@ function Footer() {
         backgroundColor: 'underlay',
       }}
     >
-      <Container
-        fixed
-        sx={({ breakpoints }) => ({
-          [breakpoints.only('xl')]: {
-            maxWidth: 900,
-          },
-        })}
-      >
+      <Container fixed>
         <Box display="flex" justifyContent="space-between" alignItems="center" py={1}>
           {routes.map(({ title, href, Component }) => (
             <TooltipArrow title={title} key={href}>

@@ -12,9 +12,8 @@ function TabName({ name }: TabNameProps) {
   return (
     <Typography
       sx={({ breakpoints }) => ({
-        textTransform: 'none',
         [breakpoints.only('xs')]: {
-          fontSize: 13,
+          fontSize: 14,
         },
       })}
     >

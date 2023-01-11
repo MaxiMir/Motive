@@ -4,9 +4,9 @@ import { useRouter } from 'next/router'
 import Head from 'next/head'
 import { useIntl } from 'react-intl'
 import { useIsFetching } from 'react-query'
-import { Box, useMediaQuery } from '@mui/material'
-import { useTheme } from '@mui/material/styles'
+import { Box } from '@mui/material'
 import { getLocaleHrefList } from '@features/locale'
+import { useDeviceContext } from '@features/device'
 import { OGType } from './dto'
 
 const CircularProgress = dynamic(() => import('@mui/material/CircularProgress'))
@@ -33,15 +33,15 @@ function Page({
   canonical,
   children,
 }: PageProps) {
-  const theme = useTheme()
   const { locale } = useIntl()
+  const device = useDeviceContext()
   const { asPath } = useRouter()
   const fetchingNumber = useIsFetching({ queryKey: ['page'] })
-  const mobile = useMediaQuery(theme.breakpoints.down('lg'))
   const localeHrefList = getLocaleHrefList(asPath)
   const url = localeHrefList[locale]
   const renderLoader = fetchingNumber > 0
-  const MainWrap = mobile ? Fragment : Navigation
+  const compact = device !== 'desktop'
+  const MainWrap = compact ? Fragment : Navigation
 
   return (
     <>
@@ -77,7 +77,7 @@ function Page({
         <link rel="alternate" href={localeHrefList.uk} hrefLang="uk" />
         <link rel="alternate" href={localeHrefList.en} hrefLang="x-default" />
       </Head>
-      {mobile && <HeaderMobile type={type} />}
+      {compact && <HeaderMobile type={type} />}
       <MainWrap>
         <Box
           component="main"
@@ -98,7 +98,7 @@ function Page({
           {children}
         </Box>
       </MainWrap>
-      {mobile && <FooterMobile />}
+      {compact && <FooterMobile />}
     </>
   )
 }

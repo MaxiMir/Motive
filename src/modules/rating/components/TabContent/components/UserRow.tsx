@@ -45,15 +45,15 @@ function UserRow({ user, characteristicName, index }: UserRowProps) {
       px={3}
     >
       <Grid container alignItems="center" sx={{ height: 55 }}>
-        <Grid item xs>
+        <Grid item xs={2}>
           <Box display="flex" justifyContent="center" width={22}>
             <Typography variant={index <= 2 ? 'h5' : undefined} component="p">
               {number}
             </Typography>
           </Box>
         </Grid>
-        <Grid item xs={8}>
-          <Box display="flex" alignItems="center" gap={2}>
+        <Grid item xs={9}>
+          <Box display="flex" alignItems="center" gap={1}>
             <UserLink name={name} avatar={avatar} href={href} online={online} size={35} />
             <Button href={href} sx={{ color: 'inherit' }} component={Link}>
               {name}

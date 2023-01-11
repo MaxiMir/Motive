@@ -1,10 +1,11 @@
 import { Fragment, ReactNode } from 'react'
+import Head from 'next/head'
 import dynamic from 'next/dynamic'
 import { useRouter } from 'next/router'
-import Head from 'next/head'
 import { useIntl } from 'react-intl'
 import { useIsFetching } from 'react-query'
-import { Box } from '@mui/material'
+import { Box, useMediaQuery } from '@mui/material'
+import { useTheme } from '@mui/material/styles'
 import { getLocaleHrefList } from '@features/locale'
 import { useDeviceContext } from '@features/device'
 import { OGType } from './dto'
@@ -33,14 +34,16 @@ function Page({
   canonical,
   children,
 }: PageProps) {
+  const theme = useTheme()
   const { locale } = useIntl()
   const device = useDeviceContext()
   const { asPath } = useRouter()
   const fetchingNumber = useIsFetching({ queryKey: ['page'] })
   const localeHrefList = getLocaleHrefList(asPath)
+  const compactClient = useMediaQuery(theme.breakpoints.down('xl'))
   const url = localeHrefList[locale]
   const renderLoader = fetchingNumber > 0
-  const compact = device !== 'desktop'
+  const compact = !device ? compactClient : device !== 'desktop'
   const MainWrap = compact ? Fragment : Navigation
 
   return (

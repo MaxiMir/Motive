@@ -1,14 +1,6 @@
 import dynamic from 'next/dynamic'
 import { Field, FieldArray, Form, FormikProvider } from 'formik'
-import {
-  Box,
-  Button,
-  Typography,
-  FormControl,
-  FormControlLabel,
-  RadioGroup,
-  Radio,
-} from '@mui/material'
+import { Box, Button, FormControl, FormControlLabel, RadioGroup, Radio } from '@mui/material'
 import { styled } from '@mui/system'
 import { getMidnightISO, getTomorrowISO } from '@lib/date'
 import useFocus from '@hooks/useFocus'
@@ -16,7 +8,6 @@ import AppModal from '@ui/AppModal'
 import AppHeader from '@ui/AppHeader'
 import AppInput from '@ui/AppInput'
 import AppIcon from '@ui/AppIcon'
-import AppDot from '@ui/AppDot'
 import TooltipArrow from '@ui/styled/TooltipArrow'
 import ActionSubmit from '@components/Action/ActionSubmit'
 import ActionCancel from '@components/Action/ActionCancel/ActionCancel'
@@ -86,14 +77,7 @@ function GoalModal({ onClose }: GoalModalProps) {
                 <AppHeader name="stage" variant="h6" component="h4" color="primary">
                   {messages.stagesHeader}
                 </AppHeader>
-                <TooltipArrow
-                  title={
-                    <>
-                      <Typography>{messages.stageHintStart}.</Typography>
-                      <Typography>{messages.stageHintEnd}.</Typography>
-                    </>
-                  }
-                >
+                <TooltipArrow title={messages.stageHint}>
                   <IconButton color="info">
                     <AppIcon name="help_outline" />
                   </IconButton>
@@ -104,9 +88,6 @@ function GoalModal({ onClose }: GoalModalProps) {
                   <>
                     {values.stages.map(({ id }, index) => (
                       <Box display="flex" gap={1} key={id}>
-                        <Box display="flex" height={40} alignItems="center" alignSelf="flex-start">
-                          <AppDot size={10} />
-                        </Box>
                         <Field
                           name={`stages.${index}.name`}
                           label={`${messages.stageLabel} ${index + 1}`}
@@ -118,6 +99,7 @@ function GoalModal({ onClose }: GoalModalProps) {
                           <IconButton
                             aria-label={messages.deleteText}
                             disableFocusRipple
+                            sx={{ color: 'zen.silent' }}
                             onClick={() => remove(index)}
                           >
                             <AppIcon name="close" />

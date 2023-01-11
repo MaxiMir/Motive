@@ -80,7 +80,7 @@ function App({
       <SessionProvider session={session} refetchOnWindowFocus>
         <QueryClientProvider client={queryClient}>
           <Hydrate state={dehydratedState}>
-            <DeviceContext.Provider value={device.type}>
+            <DeviceContext.Provider value={device?.type}>
               <LocalizationProvider dateAdapter={AdapterDateFns} adapterLocale={adapterLocale}>
                 <ThemeContext.Provider value={themeCtx}>
                   <StylesProvider generateClassName={generateClassName}>

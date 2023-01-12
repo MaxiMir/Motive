@@ -8,7 +8,7 @@ function SignIn() {
   const onClick = () => openSignIn({ callbackUrl: '/' })
 
   return (
-    <IconButton sx={{ color: 'grey' }} onClick={onClick}>
+    <IconButton sx={{ fontSize: 21, color: 'grey' }} onClick={onClick}>
       <Profile />
     </IconButton>
   )

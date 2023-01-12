@@ -29,7 +29,7 @@ function ReactionSupport({ owner }: ReactionSupportProps) {
 
   return (
     <>
-      <ActionGoal name="support" title={messages.title} active onClick={onClick} />
+      <ActionGoal name="support" title={messages.title} active={false} onClick={onClick} />
       {open && <SupportModal owner={owner} onClose={toggle} />}
     </>
   )

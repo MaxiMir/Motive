@@ -4,15 +4,14 @@ import dynamic from 'next/dynamic'
 import { useRouter } from 'next/router'
 import { useIntl } from 'react-intl'
 import { useIsFetching } from 'react-query'
-import { Box, useMediaQuery } from '@mui/material'
-import { useTheme } from '@mui/material/styles'
+import { Box } from '@mui/material'
 import { getLocaleHrefList } from '@features/locale'
 import { useDeviceContext } from '@features/device'
 import { OGType } from './dto'
 
 const CircularProgress = dynamic(() => import('@mui/material/CircularProgress'))
-const HeaderMobile = dynamic(() => import('./components/mobile/Header'))
-const FooterMobile = dynamic(() => import('./components/mobile/Footer'))
+const Header = dynamic(() => import('./components/Header'))
+const Footer = dynamic(() => import('./components/Footer'))
 const Navigation = dynamic(() => import('./components/Navigation'))
 
 interface PageProps {
@@ -34,17 +33,17 @@ function Page({
   canonical,
   children,
 }: PageProps) {
-  const theme = useTheme()
   const { locale } = useIntl()
   const device = useDeviceContext()
   const { asPath } = useRouter()
   const fetchingNumber = useIsFetching({ queryKey: ['page'] })
   const localeHrefList = getLocaleHrefList(asPath)
-  const compactClient = useMediaQuery(theme.breakpoints.down('xl'))
   const url = localeHrefList[locale]
   const renderLoader = fetchingNumber > 0
-  const compact = !device ? compactClient : device !== 'desktop'
-  const MainWrap = compact ? Fragment : Navigation
+  const possibleDesktop = device === 'desktop'
+  const renderDesktop = !device || possibleDesktop
+  const renderCompact = !device || !possibleDesktop
+  const MainWrap = renderDesktop ? Navigation : Fragment
 
   return (
     <>
@@ -80,7 +79,7 @@ function Page({
         <link rel="alternate" href={localeHrefList.uk} hrefLang="uk" />
         <link rel="alternate" href={localeHrefList.en} hrefLang="x-default" />
       </Head>
-      {compact && <HeaderMobile type={type} />}
+      {renderCompact && <Header type={type} />}
       <MainWrap>
         <Box
           component="main"
@@ -101,7 +100,7 @@ function Page({
           {children}
         </Box>
       </MainWrap>
-      {compact && <FooterMobile />}
+      {renderCompact && <Footer />}
     </>
   )
 }

@@ -13,6 +13,10 @@ function Footer() {
     <Box
       component="footer"
       sx={{
+        display: {
+          xs: 'block',
+          xl: 'none',
+        },
         position: 'sticky',
         bottom: 0,
         width: '100%',
@@ -25,7 +29,9 @@ function Footer() {
           {routes.map(({ title, href, Component }) => (
             <TooltipArrow title={title} key={href}>
               <IconButton href={href} component={Link}>
-                <Component sx={{ color: asPath.includes(href) ? 'inherit' : 'grey' }} />
+                <Component
+                  sx={{ fontSize: 21, color: asPath.includes(href) ? 'inherit' : 'grey' }}
+                />
               </IconButton>
             </TooltipArrow>
           ))}

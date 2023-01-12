@@ -22,22 +22,26 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
     PageService.getUser(nickname, { headers, params }),
   )
   const state = queryClient.getQueryState<PossiblePageError>(['page', nickname])
+  const detector = new DeviceDetector()
+  const { device } = detector.detect(headers['user-agent'] || '')
+  const session = await getSession(ctx)
   const statusCode = state?.data?.message?.statusCode || 200
 
   if (statusCode === 404) {
     return {
+      props: {
+        session,
+        device,
+      },
       notFound: true,
     }
   }
-
-  const detector = new DeviceDetector()
-  const { device } = detector.detect(headers['user-agent'] || '')
-  const session = await getSession(ctx)
 
   return {
     props: {
       session,
       device,
+      statusCode,
       dehydratedState: dehydrate(queryClient),
     },
   }

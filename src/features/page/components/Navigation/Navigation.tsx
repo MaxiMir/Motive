@@ -24,7 +24,16 @@ function Navigation({ children }: NavigationProps) {
 
   return (
     <Box display="flex" height="100%">
-      <Drawer variant="permanent" open={open}>
+      <Drawer
+        variant="permanent"
+        open={open}
+        sx={{
+          display: {
+            xs: 'none',
+            xl: 'block',
+          },
+        }}
+      >
         <Box
           role="presentation"
           component="nav"

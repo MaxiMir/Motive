@@ -20,6 +20,10 @@ function Header({ type }: HeaderProps) {
     <AppBar
       position="static"
       sx={{
+        display: {
+          xs: 'block',
+          xl: 'none',
+        },
         paddingY: 1,
         boxShadow: 'none',
         backgroundColor: 'underlay',

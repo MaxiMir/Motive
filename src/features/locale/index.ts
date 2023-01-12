@@ -1,3 +1,3 @@
-export * from './hooks/useSetLocale'
+export * from './hooks'
 export * from './helpers'
 export * from './types'

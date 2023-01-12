@@ -1,2 +1,2 @@
-export { default } from './Error'
-export * from './hooks/useTitle'
+export { default } from './components/Error'
+export * from './hooks'

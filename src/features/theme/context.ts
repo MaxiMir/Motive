@@ -1,12 +1,14 @@
-import { createContext } from 'react'
+import { createContext, useContext } from 'react'
 import { PaletteMode } from '@mui/material'
 
-interface ThemeContextType {
+interface PaletteModeContextType {
   mode: PaletteMode
   setMode: (mode: PaletteMode) => void
 }
 
-export const ThemeContext = createContext<ThemeContextType>({
+export const PaletteModeContext = createContext<PaletteModeContextType>({
   mode: 'dark',
   setMode: (_: PaletteMode) => false,
 })
+
+export const usePaletteModeContext = () => useContext(PaletteModeContext)

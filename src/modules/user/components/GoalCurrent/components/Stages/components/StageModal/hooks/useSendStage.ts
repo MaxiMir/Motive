@@ -3,7 +3,7 @@ import { useIntl } from 'react-intl'
 import { useMutation } from 'react-query'
 import { useMutateGoals } from '@modules/user/hooks'
 import { GoalDto, GoalService } from '@features/goal'
-import useSnackbar from '@hooks/useSnackbar'
+import { useSnackbar } from '@features/snackbar'
 
 const getNextState = (goals: GoalDto[], goalId: number) =>
   produce(goals, (draft) => {

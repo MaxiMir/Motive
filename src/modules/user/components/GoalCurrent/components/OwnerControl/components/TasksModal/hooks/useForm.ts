@@ -8,7 +8,7 @@ import { useGoalContext } from '@modules/user/components/GoalCurrent/hooks/useGo
 import { tasksSchema } from '@features/task'
 import { GoalDto, GoalService } from '@features/goal'
 import { CreateDayDto, DayDto } from '@features/day'
-import useSnackbar from '@hooks/useSnackbar'
+import { useSnackbar } from '@features/snackbar'
 
 const getNextState = (goals: GoalDto[], id: number, day: DayDto) =>
   produce(goals, (draft) => {

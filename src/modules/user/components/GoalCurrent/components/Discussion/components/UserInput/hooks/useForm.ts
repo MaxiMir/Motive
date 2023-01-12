@@ -3,7 +3,7 @@ import { useIntl } from 'react-intl'
 import { useMutation } from 'react-query'
 import { useGoalContext } from '@modules/user/components/GoalCurrent/hooks/useGoalContext'
 import { CreateMessageDto, MessageType, TopicDto, TopicService } from '@features/topic'
-import useSnackbar from '@hooks/useSnackbar'
+import { useSnackbar } from '@features/snackbar'
 
 export const useForm = (
   topicId: number | undefined,

@@ -33,6 +33,7 @@ function AppModal({ title, actions, maxWidth, sx, children, onClose }: AppModalP
     <Dialog
       open
       maxWidth={maxWidth}
+      disableScrollLock
       sx={{
         ...sx,
         [`& .${backdropClasses.root}`]: {

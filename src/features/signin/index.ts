@@ -1,3 +1,2 @@
-export { default } from './components/ModalSignIn'
-export * from './context'
-export * from './hooks/useOpenSignIn'
+export { default } from './components/SignInProvider'
+export * from './hooks'

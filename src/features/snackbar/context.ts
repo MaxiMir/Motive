@@ -1,7 +1,5 @@
 import { createContext } from 'react'
-import { AppSnackbarProps } from '@ui/AppSnackbar'
-
-export type SnackbarState = Omit<AppSnackbarProps, 'onClose'>
+import { SnackbarState } from '@features/snackbar/types'
 
 interface SnackbarContextType {
   state: SnackbarState | null

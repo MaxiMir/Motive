@@ -1,1 +1,2 @@
-export * from './hooks/useDeviceContext'
+export * from './context'
+export * from './types'

@@ -6,7 +6,7 @@ import { io } from 'socket.io-client'
 import { getImageSrc } from '@href'
 import { NotificationDto, getNotificationHref } from '@features/notification'
 import { useDeviceContext } from '@features/device'
-import useSnackbar from '@hooks/useSnackbar'
+import { useSnackbar } from '@features/snackbar'
 import useClient from '@hooks/useClient'
 
 export const useSocket = () => {

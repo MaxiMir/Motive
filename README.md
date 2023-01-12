@@ -1,4 +1,6 @@
 [//]: # (TODO)
+* No internet connection
+* 
 * Add external links
 * Добавить удаление цели без очков
 * useTryFullScreen

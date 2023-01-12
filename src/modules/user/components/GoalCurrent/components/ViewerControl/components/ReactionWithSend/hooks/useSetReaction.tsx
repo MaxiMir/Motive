@@ -6,9 +6,9 @@ import { useGoalContext } from '@modules/user/components/GoalCurrent/hooks/useGo
 import { UserPageDto } from '@features/page'
 import { GoalService } from '@features/goal'
 import { DayCharacteristicName, DayCharacteristicUpdateDto } from '@features/day'
-import useSnackbar from '@hooks/useSnackbar'
+import { useOpenSignIn } from '@features/signin'
+import { useSnackbar } from '@features/snackbar'
 import useClient from '@hooks/useClient'
-import useOpenSignIn from '@hooks/useOpenSignIn'
 
 const getNextState = (page: UserPageDto, { id, dayId, add, name }: DayCharacteristicUpdateDto) =>
   produce(page, (draft) => {

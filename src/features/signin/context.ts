@@ -1,14 +1,13 @@
-import { createContext } from 'react'
 import { SignInOptions } from 'next-auth/react'
-import { Provider } from 'next-auth/providers'
+import { createContext } from 'react'
+import { Providers } from '@features/signin/types'
 
-interface ModalSignInContextType {
-  options?: SignInOptions
-  providers: Record<string, Provider> | null
+export interface SignInContextType {
+  providers: Providers
   setOptions: (options: SignInOptions) => void
 }
 
-export const ModalSignInContext = createContext<ModalSignInContextType>({
+export const SignInContext = createContext<SignInContextType>({
   providers: null,
   setOptions: () => false,
 })

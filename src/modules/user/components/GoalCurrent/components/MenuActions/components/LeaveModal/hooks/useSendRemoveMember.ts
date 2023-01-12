@@ -4,8 +4,8 @@ import { useMutation, useQueryClient } from 'react-query'
 import { useUserContext } from '@modules/user/hooks'
 import { UserPageDto } from '@features/page'
 import { MemberService } from '@features/member'
+import { useSnackbar } from '@features/snackbar'
 import useClient from '@hooks/useClient'
-import useSnackbar from '@hooks/useSnackbar'
 
 const getNextState = (page: UserPageDto, goalId: number, memberId: number, clientPage: boolean) =>
   produce(page, (draft: Draft<UserPageDto>) => {

@@ -6,7 +6,7 @@ import { useMutateUserPage } from '@modules/user/hooks'
 import { useGoalContext } from '@modules/user/components/GoalCurrent/hooks/useGoalContext'
 import { UserPageDto } from '@features/page'
 import { MemberDto, MemberService } from '@features/member'
-import useSnackbar from '@hooks/useSnackbar'
+import { useSnackbar } from '@features/snackbar'
 
 const getNextState = (page: UserPageDto, member: MemberDto) =>
   produce(page, (draft: Draft<UserPageDto>) => {

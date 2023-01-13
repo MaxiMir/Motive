@@ -1,6 +1,6 @@
 [//]: # (TODO)
 * No internet connection
-* 
+* Обратная связь
 * Add external links
 * Добавить удаление цели без очков
 * useTryFullScreen
@@ -14,7 +14,6 @@
 * https://docs.nestjs.com/techniques/caching
 * hydration error
 * мэпинг календаря
-* обратная связь не обязательна
 * Загрузка нотификаций не сразу
 * Генерация картинок для og
 * https://validator.w3.org/nu/?doc=https%3A%2F%2F2bebetter.pro%2Fmaximir

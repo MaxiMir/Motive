@@ -1,4 +1,5 @@
 [//]: # (TODO)
+* Нотификации в десктопе
 * No internet connection
 * Обратная связь
 * Add external links

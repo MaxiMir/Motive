@@ -1,4 +1,4 @@
-import React, { MouseEvent, useId, useState } from 'react'
+import { MouseEvent, useId, useState } from 'react'
 import dynamic from 'next/dynamic'
 import { signOut } from 'next-auth/react'
 import { List, ListItem, ListItemIcon, ListItemText, Menu } from '@mui/material'

@@ -1,5 +1,6 @@
-import Notification, { NotificationDto } from '@features/notification'
 import AppList from '@ui/AppList'
+import { NotificationDto } from '@features/notification/dto'
+import Notification from './components/Notification'
 
 interface NotificationListProps {
   notifications: NotificationDto[]

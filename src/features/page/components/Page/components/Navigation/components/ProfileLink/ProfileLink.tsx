@@ -1,4 +1,5 @@
 import dynamic from 'next/dynamic'
+import { List } from '@mui/material'
 import useClient from '@hooks/useClient'
 import TooltipArrow from '@ui/styled/TooltipArrow'
 import { useMessages } from './hooks/useMessages'
@@ -7,21 +8,23 @@ const SignIn = dynamic(() => import('./components/SignIn'))
 const User = dynamic(() => import('./components/User'))
 
 interface ProfileLinkProps {
-  open: boolean
+  expanded: boolean
 }
 
-function ProfileLink({ open }: ProfileLinkProps) {
+function ProfileLink({ expanded }: ProfileLinkProps) {
   const client = useClient()
   const messages = useMessages(client)
 
   return (
-    <TooltipArrow title={!open && messages.title} placement="right">
-      {!client ? (
-        <SignIn primary={messages.title} />
-      ) : (
-        <User client={client} primary={messages.title} />
-      )}
-    </TooltipArrow>
+    <List>
+      <TooltipArrow title={!expanded && messages.title} placement="right">
+        {!client ? (
+          <SignIn primary={messages.title} />
+        ) : (
+          <User client={client} primary={messages.title} />
+        )}
+      </TooltipArrow>
+    </List>
   )
 }
 

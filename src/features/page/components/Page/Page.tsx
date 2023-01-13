@@ -44,6 +44,7 @@ function Page({
   const renderDesktop = !device || possibleDesktop
   const renderCompact = !device || !possibleDesktop
   const MainWrap = renderDesktop ? Navigation : Fragment
+  const mainWrapProps = { breakpoints: !device }
 
   return (
     <>
@@ -80,7 +81,7 @@ function Page({
         <link rel="alternate" href={localeHrefList.en} hrefLang="x-default" />
       </Head>
       {renderCompact && <Header type={type} />}
-      <MainWrap>
+      <MainWrap {...mainWrapProps}>
         <Box
           component="main"
           id="main"

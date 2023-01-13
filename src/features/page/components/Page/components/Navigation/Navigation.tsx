@@ -1,8 +1,10 @@
-import React, { ReactNode } from 'react'
+import { ReactNode } from 'react'
 import Link from 'next/link'
+import dynamic from 'next/dynamic'
 import { useRouter } from 'next/router'
 import { Box, List, Divider, IconButton, ListItem, ListItemIcon, ListItemText } from '@mui/material'
 import useToggle from '@hooks/useToggle'
+import useClient from '@hooks/useClient'
 import AppIcon from '@ui/AppIcon'
 import TooltipArrow from '@ui/styled/TooltipArrow'
 import Drawer from '@ui/styled/Drawer'
@@ -11,27 +13,33 @@ import { useMessages } from './hooks/useMessages'
 import ProfileLink from './components/ProfileLink'
 import More from './components/More'
 
+const Notifications = dynamic(() => import('./components/Notifications'))
+
 interface NavigationProps {
+  breakpoints: boolean
   children: ReactNode
 }
 
-function Navigation({ children }: NavigationProps) {
+function Navigation({ breakpoints, children }: NavigationProps) {
   const { asPath } = useRouter()
-  const [open, toggle] = useToggle(true)
-  const messages = useMessages(open)
+  const client = useClient()
+  const [expanded, toggleExpanded] = useToggle(true)
+  const messages = useMessages(expanded)
   const routes = useRoutes()
-  const menuIcon = open ? 'arrow_left' : 'arrow_right'
+  const menuIcon = expanded ? 'arrow_left' : 'arrow_right'
 
   return (
     <Box display="flex" height="100%">
       <Drawer
         variant="permanent"
-        open={open}
+        open={expanded}
         sx={{
-          display: {
-            xs: 'none',
-            xl: 'block',
-          },
+          display: !breakpoints
+            ? undefined
+            : {
+                xs: 'none',
+                xl: 'block',
+              },
         }}
       >
         <Box
@@ -45,14 +53,14 @@ function Navigation({ children }: NavigationProps) {
         >
           <Box>
             <Box display="flex" alignItems="center" paddingLeft={1} sx={{ height: 56 }}>
-              <IconButton aria-label={messages.ariaLabel} onClick={toggle}>
+              <IconButton aria-label={messages.ariaLabel} onClick={toggleExpanded}>
                 <AppIcon name={menuIcon} sx={{ color: 'grey' }} />
               </IconButton>
             </Box>
             <Divider light />
             <List>
               {routes.map(({ primary, href, icon }) => (
-                <TooltipArrow title={!open && primary} placement="right" key={href}>
+                <TooltipArrow title={!expanded && primary} placement="right" key={href}>
                   <ListItem
                     button
                     href={href}
@@ -73,9 +81,13 @@ function Navigation({ children }: NavigationProps) {
               ))}
             </List>
             <Divider light />
-            <List>
-              <ProfileLink open={open} />
-            </List>
+            {client && (
+              <>
+                <Notifications expanded={expanded} />
+                <Divider light />
+              </>
+            )}
+            <ProfileLink expanded={expanded} />
           </Box>
           <More />
         </Box>

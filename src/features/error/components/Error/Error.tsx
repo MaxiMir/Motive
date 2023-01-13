@@ -1,5 +1,6 @@
 import { useRouter } from 'next/router'
 import { Box, Button, Typography } from '@mui/material'
+import { styled } from '@mui/system'
 import AppEmoji from '@ui/AppEmoji'
 import AppContainer from '@ui/AppContainer'
 import { useMessages } from './hooks/useMessages'
@@ -26,10 +27,10 @@ function Error({ statusCode }: CustomErrorProps) {
           <Typography component="h1" variant="h5">
             {messages.header}
           </Typography>
-          <Typography sx={{ fontSize: '9em' }}>{statusCode}</Typography>
-          <Typography sx={{ fontSize: '9em' }}>
+          <DescriptionText>{statusCode}</DescriptionText>
+          <DescriptionText>
             <AppEmoji name="error" onlyEmoji />
-          </Typography>
+          </DescriptionText>
           <Button sx={{ color: 'warning.light' }} onClick={onClick}>
             {messages.backText}
           </Button>
@@ -39,4 +40,7 @@ function Error({ statusCode }: CustomErrorProps) {
   )
 }
 
+const DescriptionText = styled(Typography)({
+  fontSize: '9em',
+})
 export default Error

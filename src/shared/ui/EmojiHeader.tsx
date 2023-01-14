@@ -8,7 +8,7 @@ interface AppHeaderProps extends TypographyProps {
   mb?: BoxProps['mb']
 }
 
-function AppHeader({ name, variant = 'h1', component = 'h1', mb, children }: AppHeaderProps) {
+function EmojiHeader({ name, variant = 'h1', component = 'h1', mb, children }: AppHeaderProps) {
   const gap = variant === 'h1' ? 2 : 1
 
   return (
@@ -21,4 +21,4 @@ function AppHeader({ name, variant = 'h1', component = 'h1', mb, children }: App
   )
 }
 
-export default AppHeader
+export default EmojiHeader

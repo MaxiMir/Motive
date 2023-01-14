@@ -1,6 +1,6 @@
 import { Accordion, AccordionDetails, AccordionSummary } from '@mui/material'
 import AppIcon from './AppIcon'
-import AppHeader from './AppHeader'
+import EmojiHeader from './EmojiHeader'
 import { AppEmojiName } from './AppEmoji'
 
 interface AppAccordionProps {
@@ -20,9 +20,9 @@ function AppAccordion({ name, header, id, details, defaultExpanded }: AppAccordi
       sx={{ backgroundColor: '#121212' }}
     >
       <AccordionSummary id={id} expandIcon={<AppIcon name="expand_more" />}>
-        <AppHeader name={name} variant="h6" component="h3" color="primary">
+        <EmojiHeader name={name} variant="h6" component="h3" color="primary">
           {header}
-        </AppHeader>
+        </EmojiHeader>
       </AccordionSummary>
       <AccordionDetails sx={{ overflow: 'auto' }}>{details}</AccordionDetails>
     </Accordion>

@@ -8,7 +8,7 @@ import { GoalDto, GoalCharacteristicName } from '@features/goal'
 import { MAIN_CHARACTERISTICS } from '@features/characteristic'
 import { HashMark, getDayHref } from '@features/user'
 import useClient from '@hooks/useClient'
-import AppHeader from '@ui/AppHeader'
+import EmojiHeader from '@ui/EmojiHeader'
 import AppAccordion from '@ui/AppAccordion'
 import CharacteristicGoal from '@components/Characteristic/CharacteristicGoal'
 import { useMessages } from './hooks/useMessages'
@@ -106,9 +106,9 @@ function GoalCurrent({ goal, membership, clientPage, clientMembership }: GoalCur
             <ViewTrigger>
               <Box display="flex" flexDirection="column" gap={2}>
                 <Box display="flex" justifyContent="space-between" alignItems="center">
-                  <AppHeader name="goal" variant="h6" component="h2">
+                  <EmojiHeader name="goal" variant="h6" component="h2">
                     <b>{name}</b>
-                  </AppHeader>
+                  </EmojiHeader>
                   <MenuActions title={name} href={dayHref} clientOwnership={clientOwnership} />
                 </Box>
                 <Box display="flex" justifyContent="space-between" alignItems="center">

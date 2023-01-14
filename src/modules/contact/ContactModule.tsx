@@ -3,7 +3,7 @@ import { styled } from '@mui/system'
 import { lightBlue, red, yellow } from '@mui/material/colors'
 import { openBlank } from '@helpers/window'
 import AppContainer from '@ui/AppContainer'
-import AppHeader from '@ui/AppHeader'
+import EmojiHeader from '@ui/EmojiHeader'
 import AppEmoji from '@ui/AppEmoji'
 import Telegram from '@ui/icons/Telegram'
 import LinkedIn from '@ui/icons/LinkedIn'
@@ -33,9 +33,9 @@ function ContactModule() {
 
   return (
     <AppContainer>
-      <AppHeader name="contact" mb={3}>
+      <EmojiHeader name="contact" mb={3}>
         {messages.header}
-      </AppHeader>
+      </EmojiHeader>
       <Box display="flex" flexDirection="column" gap={2}>
         <Typography>
           {messages.subheader} <AppEmoji name="wink" onlyEmoji />.
@@ -65,9 +65,9 @@ function ContactModule() {
           </ButtonLink>
         </Box>
         <Box display="flex" flexDirection="column" gap={1} mt={3}>
-          <AppHeader name="coin" variant="h1" component="h3" mb={3}>
+          <EmojiHeader name="coin" variant="h1" component="h3" mb={3}>
             {messages.support}
-          </AppHeader>
+          </EmojiHeader>
           {CRYPTOS.map(({ name, wallet, src }) => (
             <Wallet name={name} wallet={wallet} src={src} key={name} />
           ))}

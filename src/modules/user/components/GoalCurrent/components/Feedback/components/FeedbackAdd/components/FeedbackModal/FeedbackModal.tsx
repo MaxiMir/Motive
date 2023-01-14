@@ -3,7 +3,7 @@ import { Grid, Box, Typography } from '@mui/material'
 import useSelectPhoto from '@hooks/useSelectPhoto'
 import AppModal from '@ui/AppModal'
 import AppInput from '@ui/AppInput'
-import AppHeader from '@ui/AppHeader'
+import EmojiHeader from '@ui/EmojiHeader'
 import AppShakeIcon from '@ui/AppShakeIcon'
 import ActionSubmit from '@components/Action/ActionSubmit'
 import ActionCancel from '@components/Action/ActionCancel/ActionCancel'
@@ -63,9 +63,9 @@ function ModalFeedback({ onClose }: FeedbackModalProps) {
             />
             {!!values.photos.length && (
               <Box display="flex" flexDirection="column" gap={2} width="100%">
-                <AppHeader name="photo" variant="h6" component="h2" color="primary">
+                <EmojiHeader name="photo" variant="h6" component="h2" color="primary">
                   {messages.photoTitle}
-                </AppHeader>
+                </EmojiHeader>
                 <FieldArray name="photos">
                   {({ remove }) => (
                     <Grid container spacing={2}>
@@ -85,9 +85,9 @@ function ModalFeedback({ onClose }: FeedbackModalProps) {
             )}
             {values.video && (
               <Box display="flex" flexDirection="column" gap={2} width="100%">
-                <AppHeader name="video" variant="h6" component="h2" color="primary">
+                <EmojiHeader name="video" variant="h6" component="h2" color="primary">
                   {messages.videoTitle}
-                </AppHeader>
+                </EmojiHeader>
                 <VideoPreview
                   video={values.video}
                   disabled={isSubmitting}

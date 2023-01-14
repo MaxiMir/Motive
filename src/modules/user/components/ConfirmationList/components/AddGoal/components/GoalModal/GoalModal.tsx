@@ -5,7 +5,7 @@ import { styled } from '@mui/system'
 import { getMidnightISO, getTomorrowISO } from '@lib/date'
 import useFocus from '@hooks/useFocus'
 import AppModal from '@ui/AppModal'
-import AppHeader from '@ui/AppHeader'
+import EmojiHeader from '@ui/EmojiHeader'
 import AppInput from '@ui/AppInput'
 import AppIcon from '@ui/AppIcon'
 import TooltipArrow from '@ui/styled/TooltipArrow'
@@ -74,9 +74,9 @@ function GoalModal({ onClose }: GoalModalProps) {
             </Box>
             <Box display="flex" flexDirection="column" gap={1}>
               <Box display="flex" gap={1}>
-                <AppHeader name="stage" variant="h6" component="h4" color="primary">
+                <EmojiHeader name="stage" variant="h6" component="h4" color="primary">
                   {messages.stagesHeader}
-                </AppHeader>
+                </EmojiHeader>
                 <TooltipArrow title={messages.stageHint}>
                   <IconButton color="info">
                     <AppIcon name="help_outline" />
@@ -120,9 +120,9 @@ function GoalModal({ onClose }: GoalModalProps) {
               </FieldArray>
             </Box>
             <FormControl variant="standard">
-              <AppHeader name="clock" variant="h6" component="label">
+              <EmojiHeader name="clock" variant="h6" component="label">
                 {messages.startHeader}
-              </AppHeader>
+              </EmojiHeader>
               <RadioGroup
                 name="started"
                 value={values.started}
@@ -144,9 +144,9 @@ function GoalModal({ onClose }: GoalModalProps) {
             </FormControl>
             <Box display="flex" flexDirection="column" gap={2}>
               <Box display="flex" gap={1}>
-                <AppHeader name="task" variant="h6" component="h4" color="primary">
+                <EmojiHeader name="task" variant="h6" component="h4" color="primary">
                   {messages.tasksHeader}
-                </AppHeader>
+                </EmojiHeader>
               </Box>
               <FieldArray name="tasks">
                 {({ push, remove }) => (

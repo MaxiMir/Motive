@@ -43,7 +43,7 @@ function ConfirmationStory({ confirmation }: ConfirmationStoryProps) {
             sx={({ palette }) => ({
               borderRadius: '50%',
               background: palette.background.default,
-              '&:hover': {
+              ':hover': {
                 background: 'rgba(144, 202, 249, 0.08)',
               },
             })}

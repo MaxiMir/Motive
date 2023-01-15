@@ -51,7 +51,7 @@ function SearchForm({ q = '' }: SearchFormProps) {
 }
 
 const InputAdornment = styled(IconButton)({
-  '&:hover': {
+  ':hover': {
     background: 'none',
   },
 })

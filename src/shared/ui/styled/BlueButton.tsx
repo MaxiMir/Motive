@@ -6,7 +6,7 @@ const BlueButton = styled(Button)({
   color: '#fff',
   borderColor: blue[800],
   backgroundColor: blue[800],
-  '&:hover': {
+  ':hover': {
     backgroundColor: blue[400],
   },
 })

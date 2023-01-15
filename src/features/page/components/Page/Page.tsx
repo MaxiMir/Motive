@@ -44,7 +44,7 @@ function Page({
   const renderDesktop = !device || possibleDesktop
   const renderCompact = !device || !possibleDesktop
   const MainWrap = renderDesktop ? Navigation : Fragment
-  const mainWrapProps = { breakpoints: !device }
+  const mainWrapProps = renderDesktop ? { breakpoints: !device } : null
 
   return (
     <>

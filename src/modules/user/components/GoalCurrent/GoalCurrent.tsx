@@ -1,6 +1,6 @@
 import dynamic from 'next/dynamic'
 import { useRouter } from 'next/router'
-import { Box, Card } from '@mui/material'
+import { Box, Card, Typography } from '@mui/material'
 import { styled } from '@mui/system'
 import { useUserContext } from '@modules/user/hooks'
 import { MemberDto } from '@features/member'
@@ -8,7 +8,6 @@ import { GoalDto, GoalCharacteristicName } from '@features/goal'
 import { MAIN_CHARACTERISTICS } from '@features/characteristic'
 import { HashMark, getDayHref } from '@features/user'
 import useClient from '@hooks/useClient'
-import EmojiHeader from '@ui/EmojiHeader'
 import AppAccordion from '@ui/AppAccordion'
 import CharacteristicGoal from '@components/Characteristic/CharacteristicGoal'
 import { useMessages } from './hooks/useMessages'
@@ -71,7 +70,6 @@ function GoalCurrent({ goal, membership, clientPage, clientMembership }: GoalCur
         display="flex"
         flexDirection="column"
         gap={2}
-        mt={2}
         component="article"
         sx={{
           flex: {
@@ -99,16 +97,16 @@ function GoalCurrent({ goal, membership, clientPage, clientMembership }: GoalCur
               height: '100%',
               padding: theme.spacing(3, 2, 2),
               backgroundColor: 'underlay',
-              borderRadius: '13px',
+              borderRadius: '12px',
             })}
           >
-            {inherited && <Inheritance />}
             <ViewTrigger>
               <Box display="flex" flexDirection="column" gap={2}>
-                <Box display="flex" justifyContent="space-between" alignItems="center">
-                  <EmojiHeader name="goal" variant="h6" component="h2">
+                <Box display="flex" alignItems="center" gap={0.5}>
+                  <Typography variant="subtitle1" component="h2">
                     <b>{name}</b>
-                  </EmojiHeader>
+                  </Typography>
+                  {inherited && <Inheritance />}
                   <MenuActions title={name} href={dayHref} clientOwnership={clientOwnership} />
                 </Box>
                 <Box display="flex" justifyContent="space-between" alignItems="center">
@@ -130,10 +128,7 @@ function GoalCurrent({ goal, membership, clientPage, clientMembership }: GoalCur
                         display: 'flex',
                         alignItems: 'center',
                         cursor: isLoading ? 'progress' : 'pointer',
-                        borderTopLeftRadius: 12,
-                        borderTopRightRadius: 12,
-                        borderBottomLeftRadius: 0,
-                        borderBottomRightRadius: 0,
+                        borderRadius: '12px 12px 0 0',
                         borderBottom: 'none',
                       }}
                       onClick={() => onChangeDate(prev)}
@@ -250,10 +245,7 @@ function GoalCurrent({ goal, membership, clientPage, clientMembership }: GoalCur
                         display: 'flex',
                         alignItems: 'center',
                         cursor: isLoading ? 'progress' : 'pointer',
-                        borderTopLeftRadius: 0,
-                        borderTopRightRadius: 0,
-                        borderBottomLeftRadius: 12,
-                        borderBottomRightRadius: 12,
+                        borderRadius: '0 0 12px 12px',
                         borderTop: 'none',
                       }}
                       onClick={() => onChangeDate(next)}
@@ -298,15 +290,15 @@ function GoalCurrent({ goal, membership, clientPage, clientMembership }: GoalCur
   )
 }
 
-const DayCardControl = styled(Card)({
+const DayCardControl = styled(Card)(({ theme }) => ({
   width: '90%',
   height: 50,
-  background: '#262626',
+  background: theme.palette.grey[900],
   cursor: 'pointer',
   animation: 'opacity 1s ease-out',
-  '&:hover': {
+  ':hover': {
     opacity: 0.7,
   },
-})
+}))
 
 export default GoalCurrent

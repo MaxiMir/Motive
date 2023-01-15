@@ -10,7 +10,7 @@ export const useQueryClient = (message: string) => {
       new QueryClient({
         defaultOptions: {
           queries: {
-            refetchOnWindowFocus: true,
+            refetchOnWindowFocus: process.env.NODE_ENV !== 'development',
           },
         },
         queryCache: new QueryCache({

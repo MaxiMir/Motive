@@ -43,10 +43,7 @@ function Message({ message, answerFor, supportFor, onReply }: MessageProps) {
           sx={(theme) => ({
             width: '100%',
             backgroundColor: !answerFor ? theme.palette.grey[900] : indigo[600],
-            borderBottomLeftRadius: !answerFor ? 4 : 16,
-            borderTopLeftRadius: 20,
-            borderTopRightRadius: 20,
-            borderBottomRightRadius: !answerFor ? 16 : 4,
+            borderRadius: `20px 20px ${!answerFor ? 16 : 4}px ${!answerFor ? 4 : 16}px`,
           })}
         >
           <Box display="flex" justifyContent="space-between" gap={1}>

@@ -1,4 +1,9 @@
 [//]: # (TODO)
+* Modal External Links
+* Show more in description
+* hover in user sections
+* lock icon for disabled
+* Loader in stories
 * No internet connection
 * Обратная связь
 * Add external links

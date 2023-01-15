@@ -26,7 +26,7 @@ function Following() {
         color: palette.grey[200],
         borderColor: following ? palette.grey[800] : blue[800],
         backgroundColor: following ? palette.grey[800] : blue[800],
-        '&:hover': {
+        ':hover': {
           backgroundColor: following ? palette.grey[900] : blue[400],
         },
       })}

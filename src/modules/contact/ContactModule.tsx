@@ -41,7 +41,16 @@ function ContactModule() {
           {messages.subheader} <AppEmoji name="wink" onlyEmoji />.
         </Typography>
         <Box display="flex" gap={2}>
-          <ButtonLink variant="outlined" sx={{ borderColor: yellow[500] }} onClick={onClickEmail}>
+          <ButtonLink
+            variant="outlined"
+            sx={{
+              borderColor: yellow[500],
+              ':hover': {
+                borderColor: yellow[100],
+              },
+            }}
+            onClick={onClickEmail}
+          >
             <Box display="flex" flexDirection="column" alignItems="center" gap={1}>
               <Typography variant="caption">Email</Typography>
               <Email sx={{ color: yellow[500] }} />
@@ -49,7 +58,12 @@ function ContactModule() {
           </ButtonLink>
           <ButtonLink
             variant="outlined"
-            sx={{ borderColor: lightBlue[500] }}
+            sx={{
+              borderColor: lightBlue[500],
+              ':hover': {
+                borderColor: lightBlue[100],
+              },
+            }}
             onClick={onClickTelegram}
           >
             <Box display="flex" flexDirection="column" alignItems="center" gap={1}>
@@ -57,7 +71,16 @@ function ContactModule() {
               <Telegram sx={{ color: lightBlue[500] }} />
             </Box>
           </ButtonLink>
-          <ButtonLink variant="outlined" sx={{ borderColor: red[300] }} onClick={onClickLinkedIn}>
+          <ButtonLink
+            variant="outlined"
+            sx={{
+              borderColor: red[300],
+              ':hover': {
+                borderColor: red[100],
+              },
+            }}
+            onClick={onClickLinkedIn}
+          >
             <Box display="flex" flexDirection="column" alignItems="center" gap={1}>
               <Typography variant="caption">LinkedIn</Typography>
               <LinkedIn sx={{ color: red[300] }} />
@@ -82,9 +105,6 @@ const ButtonLink = styled(Button)(({ theme }) => ({
   height: 80,
   color: theme.palette.common.white,
   borderRadius: 12,
-  '&:hover': {
-    opacity: 0.8,
-  },
 }))
 
 export default ContactModule

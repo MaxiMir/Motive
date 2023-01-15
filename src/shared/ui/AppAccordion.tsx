@@ -19,7 +19,12 @@ function AppAccordion({ name, header, id, details, defaultExpanded }: AppAccordi
       disableGutters
       sx={{ backgroundColor: '#121212' }}
     >
-      <AccordionSummary id={id} expandIcon={<AppIcon name="expand_more" />}>
+      <AccordionSummary
+        id={id}
+        expandIcon={
+          <AppIcon name="expand_more" sx={({ palette }) => ({ color: palette.grey[700] })} />
+        }
+      >
         <EmojiHeader name={name} variant="h6" component="h3" color="primary">
           {header}
         </EmojiHeader>

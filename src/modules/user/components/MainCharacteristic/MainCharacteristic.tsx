@@ -30,7 +30,12 @@ function MainCharacteristic({ name, value }: MainCharacteristicProps) {
       <Button
         aria-haspopup="true"
         aria-expanded={modal ? 'true' : undefined}
-        sx={{ borderRadius: '50%' }}
+        sx={{
+          borderRadius: '50%',
+          ':hover': {
+            backgroundColor: '#1a1a1a',
+          },
+        }}
         onClick={onClick}
       >
         <AppCircle
@@ -53,13 +58,12 @@ function MainCharacteristic({ name, value }: MainCharacteristicProps) {
             bottom: 0,
             left: 0,
             right: 0,
-            color: 'common.white',
           }}
         >
           <Box display="flex" flexDirection="column" alignItems="center">
             <Typography
               variant="caption"
-              component="b"
+              component="p"
               sx={{
                 fontSize: 14,
                 fontWeight: 'bold',

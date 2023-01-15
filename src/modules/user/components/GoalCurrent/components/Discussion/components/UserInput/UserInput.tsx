@@ -64,7 +64,7 @@ const SendButton = styled(IconButton)({
   '& span': {
     fontSize: 19,
   },
-  '&:hover': {
+  ':hover': {
     backgroundColor: blue[400],
   },
 })

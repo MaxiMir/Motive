@@ -7,16 +7,16 @@ import useToggle from '@hooks/useToggle'
 import useClient from '@hooks/useClient'
 import AppIcon from '@ui/AppIcon'
 import TooltipArrow from '@ui/styled/TooltipArrow'
-import Drawer from '@ui/styled/Drawer'
 import { useRoutes } from './hooks/useRoutes'
 import { useMessages } from './hooks/useMessages'
 import ProfileLink from './components/ProfileLink'
 import More from './components/More'
+import Drawer from './components/Drawer'
 
 const Notifications = dynamic(() => import('./components/Notifications'))
 
 interface NavigationProps {
-  breakpoints: boolean
+  breakpoints?: boolean
   children: ReactNode
 }
 

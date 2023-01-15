@@ -36,7 +36,7 @@ function ActionGoal({ name, title, count, active, isLoading, onClick }: ActionGo
           height: 35,
           color: 'common.white',
           borderColor: blue[500],
-          '&:hover': {
+          ':hover': {
             borderColor: blue[300],
           },
           [`& .${buttonClasses.startIcon}`]: {

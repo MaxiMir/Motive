@@ -8,5 +8,7 @@ export const useMessages = () => {
     tasksHeader: formatMessage({ id: 'page.user.goal-current.tasks-header' }),
     feedbackHeader: formatMessage({ id: 'page.user.goal-current.feedback-header' }),
     discussionHeader: formatMessage({ id: 'page.user.goal-current.discussion-header' }),
+    nextDayText: formatMessage({ id: 'common.next-day' }),
+    prevDayText: formatMessage({ id: 'common.prev-day' }),
   }
 }

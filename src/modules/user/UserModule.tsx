@@ -75,8 +75,8 @@ function UserModule({ user }: UserModuleProps) {
               <Box
                 display="flex"
                 alignItems="center"
-                mb={1}
                 width="100%"
+                mb={1}
                 sx={{
                   gap: {
                     xs: 1,

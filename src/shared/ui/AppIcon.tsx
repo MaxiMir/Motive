@@ -6,7 +6,7 @@ interface AppIconProps extends BoxProps {
 
 function AppIcon({ name, ...props }: AppIconProps) {
   return (
-    <Box component="span" className="material-symbols-outlined" {...props}>
+    <Box component="span" className="material-symbols-sharp" {...props}>
       {name}
     </Box>
   )

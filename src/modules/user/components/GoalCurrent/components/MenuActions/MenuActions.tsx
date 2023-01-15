@@ -59,7 +59,7 @@ function MenuActions({ title, href, clientOwnership }: MenuActionsProps) {
             aria-controls={open ? menuId : undefined}
             aria-haspopup="true"
             aria-expanded={open ? 'true' : undefined}
-            sx={({ palette }) => ({ color: palette.grey[700] })}
+            sx={({ palette }) => ({ color: palette.grey[500] })}
             onClick={onOpen}
           >
             <AppIcon name="more_horiz" />

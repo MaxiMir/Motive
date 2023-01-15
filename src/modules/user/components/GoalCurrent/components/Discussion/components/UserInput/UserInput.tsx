@@ -57,8 +57,8 @@ function UserInput({ user, type, topicId, onAdd }: UserInputProps) {
   )
 }
 
-const SendButton = styled(IconButton)({
-  color: '#fff',
+const SendButton = styled(IconButton)(({ theme }) => ({
+  color: theme.palette.common.white,
   borderColor: blue[800],
   backgroundColor: blue[800],
   '& span': {
@@ -67,6 +67,6 @@ const SendButton = styled(IconButton)({
   ':hover': {
     backgroundColor: blue[400],
   },
-})
+}))
 
 export default UserInput

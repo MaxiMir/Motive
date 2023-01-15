@@ -1,6 +1,6 @@
 import dynamic from 'next/dynamic'
 import { useRouter } from 'next/router'
-import { Box, Card, Typography } from '@mui/material'
+import { Box, Button, Card, Typography } from '@mui/material'
 import { styled } from '@mui/system'
 import { useUserContext } from '@modules/user/hooks'
 import { MemberDto } from '@features/member'
@@ -61,7 +61,9 @@ function GoalCurrent({ goal, membership, clientPage, clientMembership }: GoalCur
   const redefinedGoals = redefineTasks(day.tasks, userMember)
   const restGoals = redefinedGoals.length - redefinedGoals.filter((t) => t.completed).length // TODO backend
 
-  // TODO Button
+  const onClickPrevDay = () => onChangeDate(prev)
+
+  const onClickNextDay = () => onChangeDate(next)
 
   return (
     <GoalContext.Provider value={goal}>
@@ -122,29 +124,19 @@ function GoalCurrent({ goal, membership, clientPage, clientMembership }: GoalCur
                 {!!hashtags.length && <Hashtags hashtags={hashtags} />}
                 <Box display="flex" flexDirection="column" alignItems="center">
                   {prev && (
-                    <DayCardControl
-                      variant="outlined"
+                    <DayCardButton
+                      variant="text"
+                      disabled={isLoading}
+                      aria-label={messages.prevDayText}
                       sx={{
-                        display: 'flex',
-                        alignItems: 'center',
-                        cursor: isLoading ? 'progress' : 'pointer',
                         borderRadius: '12px 12px 0 0',
                         borderBottom: 'none',
                       }}
-                      onClick={() => onChangeDate(prev)}
+                      onClick={onClickPrevDay}
                     >
-                      <Box
-                        display="flex"
-                        justifyContent="space-between"
-                        alignItems="baseline"
-                        flex={1}
-                        py={2}
-                        px={3}
-                      >
-                        <DayAgo day={prev} />
-                        <Date date={prev} />
-                      </Box>
-                    </DayCardControl>
+                      <DayAgo day={prev} />
+                      <Date date={prev} />
+                    </DayCardButton>
                   )}
                   <Card
                     variant="outlined"
@@ -159,8 +151,8 @@ function GoalCurrent({ goal, membership, clientPage, clientMembership }: GoalCur
                       display="flex"
                       justifyContent="space-between"
                       alignItems="center"
-                      py={2}
-                      px={3}
+                      flex={1}
+                      p={2}
                     >
                       <DayAgo day={day.date} />
                       <Calendar
@@ -239,29 +231,19 @@ function GoalCurrent({ goal, membership, clientPage, clientMembership }: GoalCur
                     />
                   </Card>
                   {next && (
-                    <DayCardControl
-                      variant="outlined"
+                    <DayCardButton
+                      variant="text"
+                      disabled={isLoading}
+                      aria-label={messages.nextDayText}
                       sx={{
-                        display: 'flex',
-                        alignItems: 'center',
-                        cursor: isLoading ? 'progress' : 'pointer',
                         borderRadius: '0 0 12px 12px',
                         borderTop: 'none',
                       }}
-                      onClick={() => onChangeDate(next)}
+                      onClick={onClickNextDay}
                     >
-                      <Box
-                        display="flex"
-                        justifyContent="space-between"
-                        alignItems="baseline"
-                        flex={1}
-                        py={2}
-                        px={3}
-                      >
-                        <DayAgo day={next} />
-                        <Date date={next} />
-                      </Box>
-                    </DayCardControl>
+                      <DayAgo day={next} />
+                      <Date date={next} />
+                    </DayCardButton>
                   )}
                 </Box>
               </Box>
@@ -290,15 +272,16 @@ function GoalCurrent({ goal, membership, clientPage, clientMembership }: GoalCur
   )
 }
 
-const DayCardControl = styled(Card)(({ theme }) => ({
+const DayCardButton = styled(Button)(({ theme }) => ({
   width: '90%',
   height: 50,
-  background: theme.palette.grey[900],
-  cursor: 'pointer',
-  animation: 'opacity 1s ease-out',
-  ':hover': {
-    opacity: 0.7,
-  },
+  padding: 16,
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'space-between',
+  backgroundColor: theme.palette.grey[900],
+  color: theme.palette.common.white,
+  border: '1px solid rgba(255, 255, 255, 0.12)',
 }))
 
 export default GoalCurrent

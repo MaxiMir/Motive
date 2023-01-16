@@ -1,11 +1,11 @@
 import { useRef } from 'react'
 import dynamic from 'next/dynamic'
 import MarkdownToJSX from 'markdown-to-jsx'
-import { Box, Link } from '@mui/material'
+import { Box, Link, Typography } from '@mui/material'
 import useToggle from '@hooks/useToggle'
 import { useDetectTruncated } from './hooks/useDetectTruncated'
 import { getParagraphCount, toMarkdown } from './helpers/content'
-import { MarkdownLinkProps } from './types'
+import { MarkdownLinkProps, MarkdownTypographyProps } from './types'
 
 const ToggleButton = dynamic(() => import('./components/ToggleButton'))
 
@@ -23,28 +23,31 @@ function Markdown({ text }: MarkdownProps) {
 
   const renderLink = (props: MarkdownLinkProps) => <Link {...props} target="_blank" />
 
-  return (
-    <Box
-      ref={ref}
+  const renderParagraph = (props: MarkdownTypographyProps) => (
+    <Typography
+      {...props}
       sx={({ spacing }) => ({
-        '& p': {
-          margin: spacing(0, 0, 1),
-          ':first-of-type': {
-            display: '-webkit-box',
-            WebkitLineClamp: !open ? '3' : 'unset',
-            WebkitBoxOrient: 'vertical',
-            overflow: 'hidden',
-          },
-          ':not(:first-of-type)': {
-            display: truncated || !open ? 'none' : 'block',
-          },
+        margin: spacing(0, 0, 1),
+        ':first-of-type': {
+          display: '-webkit-box',
+          WebkitLineClamp: !open ? '3' : 'unset',
+          WebkitBoxOrient: 'vertical',
+          overflow: 'hidden',
+        },
+        ':not(:first-of-type)': {
+          display: truncated || !open ? 'none' : 'block',
         },
       })}
-    >
+    />
+  )
+
+  return (
+    <Box ref={ref}>
       <MarkdownToJSX
         options={{
           overrides: {
             a: renderLink,
+            p: renderParagraph,
           },
         }}
       >

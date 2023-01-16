@@ -6,9 +6,9 @@ import { useGoalContext } from '@modules/user/components/GoalCurrent/hooks/useGo
 import { UserPageDto } from '@features/page'
 import { GoalService } from '@features/goal'
 import { DayCharacteristicName, DayCharacteristicUpdateDto } from '@features/day'
-import useSnackbar from '@hooks/useSnackbar'
+import { useOpenSignIn } from '@features/signin'
+import { useSnackbar } from '@features/snackbar'
 import useClient from '@hooks/useClient'
-import useOpenSignIn from '@hooks/useOpenSignIn'
 
 const getNextState = (page: UserPageDto, { id, dayId, add, name }: DayCharacteristicUpdateDto) =>
   produce(page, (draft) => {
@@ -39,11 +39,11 @@ export const useSetReaction = (
   const [enqueueSnackbar] = useSnackbar()
   const { isLoading, mutate } = useMutation(GoalService.updateCharacteristic, {
     async onMutate(options) {
-      await queryClient.cancelQueries(nickname)
-      const previous = queryClient.getQueryData<UserPageDto>(nickname)
+      await queryClient.cancelQueries(['page', nickname])
+      const previous = queryClient.getQueryData<UserPageDto>(['page', nickname])
 
       if (previous) {
-        queryClient.setQueryData(nickname, getNextState(previous, options))
+        queryClient.setQueryData(['page', nickname], getNextState(previous, options))
       }
 
       return { previous }

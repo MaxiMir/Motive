@@ -1,6 +1,6 @@
 import dynamic from 'next/dynamic'
+import { Typography } from '@mui/material'
 import { UserDto } from '@features/user'
-import AppHeader from '@ui/AppHeader'
 import AppContainer from '@ui/AppContainer'
 import { useMessages } from './hooks/useMessages'
 
@@ -16,9 +16,9 @@ function FollowingModule({ following }: FollowingModuleProps) {
 
   return (
     <AppContainer>
-      <AppHeader name="following" mb={3}>
+      <Typography variant="h1" sx={{ mb: 3 }}>
         {messages.header}
-      </AppHeader>
+      </Typography>
       {!following.length ? <EmptyList /> : <UserList users={following} />}
     </AppContainer>
   )

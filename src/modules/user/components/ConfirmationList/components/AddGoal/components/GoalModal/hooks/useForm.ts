@@ -5,7 +5,7 @@ import { useFormik } from 'formik'
 import { getMidnightISO } from '@lib/date'
 import { useMutateGoals } from '@modules/user/hooks'
 import { CreatedGoal, CreateGoalDto, GoalDto, GoalService, goalSchema } from '@features/goal'
-import useSnackbar from '@hooks/useSnackbar'
+import { useSnackbar } from '@features/snackbar'
 import { scrollToElem } from '@helpers/document'
 
 const getNextState = (goals: GoalDto[], goal: CreatedGoal) =>

@@ -4,9 +4,9 @@ import { InfiniteData, useMutation, useQueryClient } from 'react-query'
 import { useMutateGoals } from '@modules/user/hooks'
 import { GoalDto } from '@features/goal'
 import { TopicService, MessageDto, MessageType, TopicDto } from '@features/topic'
+import { useOpenSignIn } from '@features/signin'
+import { useSnackbar } from '@features/snackbar'
 import useClient from '@hooks/useClient'
-import useOpenSignIn from '@hooks/useOpenSignIn'
-import useSnackbar from '@hooks/useSnackbar'
 
 export interface Options {
   message: MessageDto

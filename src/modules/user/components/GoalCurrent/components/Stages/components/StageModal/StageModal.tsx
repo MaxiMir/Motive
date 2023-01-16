@@ -43,19 +43,17 @@ function StageModal({ onClose }: StageModalProps) {
       ]}
       onClose={onClose}
     >
-      <Box display="flex" flexDirection="column" gap={3}>
-        <Box display="flex" flexDirection="column" alignItems="center" gap={1}>
-          <AppFlyIcon name="stage" />
-          <Typography variant="subtitle1" sx={{ color: 'support.main' }}>
-            <b>{messages.behind}</b>
-          </Typography>
-          <Typography>
-            {messages.nextTitle}:{' '}
-            <Box component="b" sx={{ color: 'zen.wave' }}>
-              {stages[nextStage]}
-            </Box>
-          </Typography>
-        </Box>
+      <Box display="flex" flexDirection="column" alignItems="center" gap={1}>
+        <AppFlyIcon name="stage" />
+        <Typography variant="subtitle1" sx={{ color: 'support.main' }}>
+          <b>{messages.behind}</b>
+        </Typography>
+        <Typography>
+          {messages.nextTitle}:{' '}
+          <Box component="b" sx={{ color: 'zen.wave' }}>
+            {stages[nextStage]}
+          </Box>
+        </Typography>
       </Box>
     </AppModal>
   )

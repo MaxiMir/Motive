@@ -48,7 +48,7 @@ function UserInput({ user, type, topicId, onAdd }: UserInputProps) {
           />
           <TooltipArrow title={messages.sendText}>
             <SendButton size="small" disabled={disabled} onClick={onClick}>
-              {!isSubmitting ? <AppIcon name="arrow_upward" /> : <CircularProgress size={14.5} />}
+              {isSubmitting ? <CircularProgress size={14.5} /> : <AppIcon name="arrow_upward" />}
             </SendButton>
           </TooltipArrow>
         </Box>
@@ -57,16 +57,16 @@ function UserInput({ user, type, topicId, onAdd }: UserInputProps) {
   )
 }
 
-const SendButton = styled(IconButton)({
-  color: '#fff',
+const SendButton = styled(IconButton)(({ theme }) => ({
+  color: theme.palette.common.white,
   borderColor: blue[800],
   backgroundColor: blue[800],
   '& span': {
     fontSize: 19,
   },
-  '&:hover': {
+  ':hover': {
     backgroundColor: blue[400],
   },
-})
+}))
 
 export default UserInput

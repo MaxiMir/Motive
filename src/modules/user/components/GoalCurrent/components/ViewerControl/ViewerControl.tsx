@@ -1,36 +1,34 @@
 import dynamic from 'next/dynamic'
-import { Box, ButtonGroup } from '@mui/material'
+import { Box } from '@mui/material'
 import { useGoalContext } from '@modules/user/components/GoalCurrent/hooks/useGoalContext'
 import { UserBaseDto } from '@features/user'
 import { OwnershipDto } from '@features/member'
 import { DAY_CHARACTERISTIC } from '@features/day'
 import ReactionWithSend from './components/ReactionWithSend'
 import ReactionSupport from './components/ReactionSupport'
-import { useMessages } from './hooks/useMessages'
 import { checkOnCompletion } from './helper'
 
 const Join = dynamic(() => import('./components/Join'))
 const Completion = dynamic(() => import('./components/Completion'))
 
-interface ViewerProps {
+interface ViewerControlProps {
   owner: UserBaseDto
   forTomorrow: boolean
   clientOwnership: OwnershipDto
 }
 
-function Viewer({ owner, forTomorrow, clientOwnership }: ViewerProps) {
-  const messages = useMessages()
+function ViewerControl({ owner, forTomorrow, clientOwnership }: ViewerControlProps) {
   const { day } = useGoalContext()
   const completion = checkOnCompletion(clientOwnership, day.id)
 
   return (
     <Box display="flex" justifyContent="space-between" flexWrap="wrap">
-      <ButtonGroup size="small" aria-label={messages.arialLabel}>
+      <Box display="flex" gap={1}>
         {DAY_CHARACTERISTIC.map((name) => (
           <ReactionWithSend name={name} key={name} />
         ))}
         <ReactionSupport owner={owner} />
-      </ButtonGroup>
+      </Box>
       {!clientOwnership.member ? (
         <Join />
       ) : (
@@ -44,4 +42,4 @@ function Viewer({ owner, forTomorrow, clientOwnership }: ViewerProps) {
   )
 }
 
-export default Viewer
+export default ViewerControl

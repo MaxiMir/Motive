@@ -6,7 +6,7 @@ import { GoalDto } from '@features/goal'
 import { useMutateGoals } from '@modules/user/hooks'
 import { useGoalContext } from '@modules/user/components/GoalCurrent/hooks/useGoalContext'
 import { FeedbackDto, FeedbackService, feedbackSchema } from '@features/feedback'
-import useSnackbar from '@hooks/useSnackbar'
+import { useSnackbar } from '@features/snackbar'
 
 const getNextState = (goals: GoalDto[], goalId: number, feedback: FeedbackDto) =>
   produce(goals, (draft) => {

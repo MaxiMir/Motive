@@ -7,7 +7,7 @@ import { useMutateUserPage } from '@modules/user/hooks'
 import { UserPageDto } from '@features/page'
 import { MemberDto } from '@features/member'
 import { TaskService } from '@features/task'
-import useSnackbar from '@hooks/useSnackbar'
+import { useSnackbar } from '@features/snackbar'
 import useClient from '@hooks/useClient'
 
 const Button = dynamic(() => import('@mui/material/Button'))

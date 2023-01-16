@@ -4,8 +4,8 @@ import { useMutation } from 'react-query'
 import { useMutateUserPage } from '@modules/user/hooks'
 import { UserPageDto } from '@features/page'
 import { SubscriptionService } from '@features/subscription'
-import useSnackbar from '@hooks/useSnackbar'
-import useOpenSignIn from '@hooks/useOpenSignIn'
+import { useOpenSignIn } from '@features/signin'
+import { useSnackbar } from '@features/snackbar'
 import useClient from '@hooks/useClient'
 
 const getNextState = (page: UserPageDto, following: boolean) =>

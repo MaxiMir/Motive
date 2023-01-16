@@ -1,5 +1,5 @@
 import dynamic from 'next/dynamic'
-import { Box, Divider, Typography } from '@mui/material'
+import { Box, Typography } from '@mui/material'
 import { styled } from '@mui/system'
 import { useCheckOnClientPage, UserContext } from '@modules/user/hooks'
 import { UserPageDto } from '@features/page'
@@ -37,102 +37,102 @@ function UserModule({ user }: UserModuleProps) {
     links,
   } = user
   const clientPage = useCheckOnClientPage(id)
-  const showConfirmationsList = !!confirmations.length || clientPage
+  const renderConfirmationsList = !!confirmations.length || clientPage
 
   return (
     <UserContext.Provider value={user}>
       <UserContainer>
-        <Box
-          display="flex"
-          flexWrap="wrap"
-          component="section"
-          sx={{
-            gap: {
-              xs: 2,
-              sm: 4,
-              md: 6,
-            },
-            alignItems: 'flex-end',
-            justifyContent: {
-              xs: 'center',
-              sm: 'flex-start',
-            },
-          }}
-        >
-          <Avatar clientPage={clientPage} />
-          <Box
+        <Box display="flex" flexDirection="column" gap="12px">
+          <Section
             display="flex"
-            flexDirection="column"
-            flex={1}
+            flexWrap="wrap"
+            component="section"
             sx={{
-              alignItems: {
+              gap: {
+                xs: 2,
+                sm: 4,
+                md: 6,
+              },
+              alignItems: 'flex-end',
+              justifyContent: {
                 xs: 'center',
                 sm: 'flex-start',
               },
             }}
           >
+            <Avatar clientPage={clientPage} />
             <Box
               display="flex"
-              alignItems="center"
-              mb={1}
-              width="100%"
+              flexDirection="column"
+              flex={1}
               sx={{
-                gap: {
-                  xs: 1,
-                  sm: 3,
-                },
-                flexDirection: {
-                  xs: 'column',
-                  sm: 'row',
+                alignItems: {
+                  xs: 'center',
+                  sm: 'flex-start',
                 },
               }}
             >
-              <Nickname nickname={nickname} />
-              <Box display="flex" alignItems="center" gap={1}>
-                {clientPage ? <EditProfile /> : <Following />}
-                <MenuActions />
-              </Box>
-            </Box>
-            <Box display="flex" justifyContent="space-between" gap={2} mb={1}>
-              {SECOND_CHARACTERISTICS.map((characteristicName) => (
-                <SecondCharacteristic
-                  confirmations={confirmations}
-                  name={characteristicName}
-                  value={characteristic[characteristicName]}
-                  key={characteristicName}
-                />
-              ))}
-            </Box>
-            <Typography component="h1" sx={{ fontWeight: 'bold' }}>
-              {name}
-            </Typography>
-            {motto && <Typography sx={{ fontSize: 14 }}>{motto}</Typography>}
-            {links?.map(({ href, title }) => (
-              <ExternalLink
-                href={href}
-                title={title}
-                rel="nofollow noopener noreferrer"
-                target="_blank"
-                key={href}
+              <Box
+                display="flex"
+                alignItems="center"
+                width="100%"
+                mb={1}
+                sx={{
+                  gap: {
+                    xs: 1,
+                    sm: 3,
+                  },
+                  flexDirection: {
+                    xs: 'column',
+                    sm: 'row',
+                  },
+                }}
               >
-                {href}
-              </ExternalLink>
+                <Nickname nickname={nickname} />
+                <Box display="flex" alignItems="center" gap={1}>
+                  {clientPage ? <EditProfile /> : <Following />}
+                  <MenuActions />
+                </Box>
+              </Box>
+              <Box display="flex" justifyContent="space-between" gap={2} mb={1}>
+                {SECOND_CHARACTERISTICS.map((characteristicName) => (
+                  <SecondCharacteristic
+                    confirmations={confirmations}
+                    name={characteristicName}
+                    value={characteristic[characteristicName]}
+                    key={characteristicName}
+                  />
+                ))}
+              </Box>
+              <Typography component="h1" sx={{ fontWeight: 'bold' }}>
+                {name}
+              </Typography>
+              {motto && <Typography sx={{ fontSize: 14 }}>{motto}</Typography>}
+              {links?.map(({ href, title }) => (
+                <ExternalLink
+                  href={href}
+                  title={title}
+                  rel="nofollow noopener noreferrer"
+                  target="_blank"
+                  key={href}
+                >
+                  {href}
+                </ExternalLink>
+              ))}
+              <LearnMore />
+            </Box>
+          </Section>
+          <Section display="flex" justifyContent="space-between" component="section">
+            {MAIN_CHARACTERISTICS.map((characteristicName) => (
+              <MainCharacteristic
+                name={characteristicName}
+                value={characteristic[characteristicName]}
+                key={characteristicName}
+              />
             ))}
-            <LearnMore />
-          </Box>
+          </Section>
         </Box>
-        <DashedDivider light />
-        <Box display="flex" justifyContent="space-between" component="section">
-          {MAIN_CHARACTERISTICS.map((characteristicName) => (
-            <MainCharacteristic
-              name={characteristicName}
-              value={characteristic[characteristicName]}
-              key={characteristicName}
-            />
-          ))}
-        </Box>
-        <DashedDivider light />
-        {showConfirmationsList && (
+        {renderConfirmationsList && (
           <ConfirmationList confirmations={confirmations} clientPage={clientPage} />
         )}
         {!goals.length ? (
@@ -161,16 +161,14 @@ const UserContainer = styled(AppContainer)({
   gap: 24,
 })
 
-const DashedDivider = styled(Divider)({
-  borderStyle: 'dashed',
-})
+const Section = styled(Box)(({ theme }) => ({
+  padding: 8,
+  borderRadius: '12px',
+  backgroundColor: theme.palette.grey[900],
+}))
 
 const ExternalLink = styled(Link)({
   fontSize: 14,
-  textDecoration: 'none',
-  '&:hover': {
-    textDecoration: 'underline',
-  },
 })
 
 export default UserModule

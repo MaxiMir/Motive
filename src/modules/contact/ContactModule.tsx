@@ -3,7 +3,7 @@ import { styled } from '@mui/system'
 import { lightBlue, red, yellow } from '@mui/material/colors'
 import { openBlank } from '@helpers/window'
 import AppContainer from '@ui/AppContainer'
-import AppHeader from '@ui/AppHeader'
+import EmojiHeader from '@ui/EmojiHeader'
 import AppEmoji from '@ui/AppEmoji'
 import Telegram from '@ui/icons/Telegram'
 import LinkedIn from '@ui/icons/LinkedIn'
@@ -33,15 +33,24 @@ function ContactModule() {
 
   return (
     <AppContainer>
-      <AppHeader name="contact" mb={3}>
+      <EmojiHeader name="contact" mb={3}>
         {messages.header}
-      </AppHeader>
+      </EmojiHeader>
       <Box display="flex" flexDirection="column" gap={2}>
         <Typography>
           {messages.subheader} <AppEmoji name="wink" onlyEmoji />.
         </Typography>
         <Box display="flex" gap={2}>
-          <ButtonLink variant="outlined" sx={{ borderColor: yellow[500] }} onClick={onClickEmail}>
+          <ButtonLink
+            variant="outlined"
+            sx={{
+              borderColor: yellow[500],
+              ':hover': {
+                borderColor: yellow[100],
+              },
+            }}
+            onClick={onClickEmail}
+          >
             <Box display="flex" flexDirection="column" alignItems="center" gap={1}>
               <Typography variant="caption">Email</Typography>
               <Email sx={{ color: yellow[500] }} />
@@ -49,7 +58,12 @@ function ContactModule() {
           </ButtonLink>
           <ButtonLink
             variant="outlined"
-            sx={{ borderColor: lightBlue[500] }}
+            sx={{
+              borderColor: lightBlue[500],
+              ':hover': {
+                borderColor: lightBlue[100],
+              },
+            }}
             onClick={onClickTelegram}
           >
             <Box display="flex" flexDirection="column" alignItems="center" gap={1}>
@@ -57,7 +71,16 @@ function ContactModule() {
               <Telegram sx={{ color: lightBlue[500] }} />
             </Box>
           </ButtonLink>
-          <ButtonLink variant="outlined" sx={{ borderColor: red[300] }} onClick={onClickLinkedIn}>
+          <ButtonLink
+            variant="outlined"
+            sx={{
+              borderColor: red[300],
+              ':hover': {
+                borderColor: red[100],
+              },
+            }}
+            onClick={onClickLinkedIn}
+          >
             <Box display="flex" flexDirection="column" alignItems="center" gap={1}>
               <Typography variant="caption">LinkedIn</Typography>
               <LinkedIn sx={{ color: red[300] }} />
@@ -65,9 +88,9 @@ function ContactModule() {
           </ButtonLink>
         </Box>
         <Box display="flex" flexDirection="column" gap={1} mt={3}>
-          <AppHeader name="coin" variant="h1" component="h3" mb={3}>
+          <EmojiHeader name="coin" variant="h1" component="h3" mb={3}>
             {messages.support}
-          </AppHeader>
+          </EmojiHeader>
           {CRYPTOS.map(({ name, wallet, src }) => (
             <Wallet name={name} wallet={wallet} src={src} key={name} />
           ))}
@@ -82,9 +105,6 @@ const ButtonLink = styled(Button)(({ theme }) => ({
   height: 80,
   color: theme.palette.common.white,
   borderRadius: 12,
-  '&:hover': {
-    opacity: 0.8,
-  },
 }))
 
 export default ContactModule

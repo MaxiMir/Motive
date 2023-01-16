@@ -15,7 +15,7 @@ import {
 import { getMidnightISO, getTomorrowISO } from '@lib/date'
 import { useGoalContext } from '@modules/user/components/GoalCurrent/hooks/useGoalContext'
 import AppIcon from '@ui/AppIcon'
-import AppHeader from '@ui/AppHeader'
+import EmojiHeader from '@ui/EmojiHeader'
 import Paul from '@ui/icons/Paul'
 import AppModal from '@ui/AppModal'
 import ActionSubmit from '@components/Action/ActionSubmit'
@@ -101,9 +101,9 @@ function TasksModal({ onClose }: TasksModalProps) {
                 </FieldArray>
               </Box>
               <FormControl variant="standard">
-                <AppHeader name="clock" variant="h6" component="label">
+                <EmojiHeader name="clock" variant="h6" component="label">
                   {messages.doItText}
-                </AppHeader>
+                </EmojiHeader>
                 <RadioGroup
                   name="date"
                   value={values.date}

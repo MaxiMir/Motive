@@ -4,17 +4,14 @@ function AppContainer(props: ContainerProps) {
   return (
     <Container
       fixed
-      sx={({ breakpoints }) => ({
+      sx={{
         flex: 1,
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'stretch',
         py: 3,
         mb: 2,
-        [breakpoints.only('xl')]: {
-          maxWidth: 900,
-        },
-      })}
+      }}
       {...props}
     />
   )

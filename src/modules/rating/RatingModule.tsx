@@ -1,8 +1,8 @@
-import { Container } from '@mui/material'
+import { Typography } from '@mui/material'
 import { UserDto } from '@features/user'
 import { MAIN_CHARACTERISTICS, MainCharacteristicName } from '@features/characteristic'
-import AppHeader from '@ui/AppHeader'
 import AppTabs from '@ui/AppTabs'
+import AppContainer from '@ui/AppContainer'
 import { useMessages } from './hooks/useMessages'
 import TabName from './components/TabName'
 import TabContent from './components/TabContent'
@@ -15,18 +15,10 @@ function RatingModule({ tab, ...props }: RatingModuleProps) {
   const messages = useMessages()
 
   return (
-    <Container
-      fixed
-      sx={({ breakpoints }) => ({
-        mt: 3,
-        [breakpoints.only('xl')]: {
-          maxWidth: 900,
-        },
-      })}
-    >
-      <AppHeader name="completed" mb={3}>
+    <AppContainer>
+      <Typography variant="h1" sx={{ mb: 3 }}>
         {messages.header}
-      </AppHeader>
+      </Typography>
       <AppTabs
         initial={tab}
         aria-label={messages.ariaLabel}
@@ -37,7 +29,7 @@ function RatingModule({ tab, ...props }: RatingModuleProps) {
           <TabContent name={name} users={props[name]} key={name} />
         ))}
       />
-    </Container>
+    </AppContainer>
   )
 }
 

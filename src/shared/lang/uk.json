@@ -74,8 +74,7 @@
   "page.user.modal-goal.stages": "Етапи",
   "page.user.modal-goal.stage": "Етап",
   "page.user.modal-goal.stage-button": "Додати етап",
-  "page.user.modal-goal.stage-hint-start": "Ми рекомендуємо розділяти великі цілі на етапи",
-  "page.user.modal-goal.stage-hint-end": "Додайте кожен етап у полі нижче",
+  "page.user.modal-goal.stage-hint": "Ми рекомендуємо розділяти великі цілі на етапи. Додайте кожен етап у полі нижче.",
   "page.user.modal-goal.start": "Починаємо з",
   "page.user.modal-goal.start-labelledby": "починаємо-с",
   "page.user.modal-goal.tasks-header": "Завдання на день",
@@ -296,7 +295,7 @@
   "common.unmark-helpful": "Прибрати відмітку про корисність",
   "common.motto": "Девіз",
   "common.location": "Місто",
-  "common.bio": "Коротка інформація",
+  "common.bio": "Про себе",
   "common.nickname": "Нікнейм",
   "common.info": "Інформація",
   "common.registered": "Зареєстровані",
@@ -318,5 +317,7 @@
   "common.play": "Відтворити",
   "common.fullscreen": "Увійти в повноекранний режим",
   "common.my-page": "Моя сторінка",
-  "common.reactions": "Реакції"
+  "common.reactions": "Реакції",
+  "common.show-more": "Читати далі",
+  "common.show-less": "Скрити"
 }

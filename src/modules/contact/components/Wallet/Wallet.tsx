@@ -1,7 +1,7 @@
 import Image, { ImageProps } from 'next/image'
 import { Box, IconButton, Typography } from '@mui/material'
 import { copyText } from '@helpers/navigator'
-import useSnackbar from '@hooks/useSnackbar'
+import { useSnackbar } from '@features/snackbar'
 import AppIcon from '@ui/AppIcon'
 import TooltipArrow from '@ui/styled/TooltipArrow'
 import { useMessages } from './hooks/useMessages'

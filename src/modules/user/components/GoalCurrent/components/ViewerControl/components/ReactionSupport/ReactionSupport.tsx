@@ -1,8 +1,8 @@
 import dynamic from 'next/dynamic'
 import { UserBaseDto } from '@features/user'
+import { useOpenSignIn } from '@features/signin'
 import useClient from '@hooks/useClient'
 import useToggle from '@hooks/useToggle'
-import useOpenSignIn from '@hooks/useOpenSignIn'
 import ActionGoal from '@components/Action/ActionGoal'
 import { useMessages } from './hooks/useMessages'
 
@@ -29,7 +29,7 @@ function ReactionSupport({ owner }: ReactionSupportProps) {
 
   return (
     <>
-      <ActionGoal name="support" title={messages.title} onClick={onClick} />
+      <ActionGoal name="support" title={messages.title} active={false} onClick={onClick} />
       {open && <SupportModal owner={owner} onClose={toggle} />}
     </>
   )

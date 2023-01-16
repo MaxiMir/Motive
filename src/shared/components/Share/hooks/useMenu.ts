@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import useSnackbar from '@hooks/useSnackbar'
+import { useSnackbar } from '@features/snackbar'
 
 type UseMenuResult = [open: boolean, onClose: () => void]
 

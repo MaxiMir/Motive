@@ -74,8 +74,7 @@
   "page.user.modal-goal.stages": "Этапы",
   "page.user.modal-goal.stage": "Этап",
   "page.user.modal-goal.stage-button": "Добавить этап",
-  "page.user.modal-goal.stage-hint-start": "Мы рекомендуем разделять большие цели на этапы",
-  "page.user.modal-goal.stage-hint-end": "Добавьте каждый этап в поле ниже",
+  "page.user.modal-goal.stage-hint": "Мы рекомендуем разделять большие цели на этапы. Добавьте каждый этап в поле ниже.",
   "page.user.modal-goal.start": "Начинаем с",
   "page.user.modal-goal.start-labelledby": "начинаем-с",
   "page.user.modal-goal.tasks-header": "Задачи на день",
@@ -296,7 +295,7 @@
   "common.unmark-helpful": "Убрать отметку о полезности",
   "common.motto": "Девиз",
   "common.location": "Город",
-  "common.bio": "Краткая информация",
+  "common.bio": "О себе",
   "common.nickname": "Никнейм",
   "common.info": "Подробная информация",
   "common.registered": "Зарегистрирован",
@@ -318,5 +317,7 @@
   "common.play": "Воспроизвести",
   "common.fullscreen": "Увійти в повноекранний режим",
   "common.my-page": "Моя страница",
-  "common.reactions": "Реакции"
+  "common.reactions": "Реакции",
+  "common.show-more": "Читать далее",
+  "common.show-less": "Скрыть"
 }

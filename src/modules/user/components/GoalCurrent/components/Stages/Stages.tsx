@@ -54,7 +54,7 @@ function Stages({ forTomorrow, completeStage }: StagesProps) {
                     sx={{
                       color: teal[600],
                       borderColor: teal[600],
-                      '&:hover': {
+                      ':hover': {
                         borderColor: teal[400],
                       },
                     }}

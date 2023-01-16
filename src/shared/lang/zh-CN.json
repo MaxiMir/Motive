@@ -22,8 +22,8 @@
   "page.following.menu.remove": "从关注中删除",
   "page.following.menu.undo": "撤销",
   "page.following.menu.title": "打开用户菜单",
-  "page.top.title": "当日之首",
-  "page.top.header": "一天之首",
+  "page.top.title": "今日头条",
+  "page.top.header": "今日头条",
   "page.top.dev": "开发中",
   "page.search.title": "搜索",
   "page.search.description": "通过用户🥷、目标💎或标签搜索",
@@ -74,8 +74,7 @@
   "page.user.modal-goal.stages": "阶段",
   "page.user.modal-goal.stage": "阶段",
   "page.user.modal-goal.stage-button": "添加阶段",
-  "page.user.modal-goal.stage-hint-start": "我们建议将大型目标分为阶段",
-  "page.user.modal-goal.stage-hint-end": "在下面的字段中添加每个阶段",
+  "page.user.modal-goal.stage-hint": "我们建议将大型目标分为几个阶段。在下面的字段中添加每个阶段。",
   "page.user.modal-goal.start": "开始于",
   "page.user.modal-goal.start-labelledby": "开始-从",
   "page.user.modal-goal.tasks-header": "当天的任务",
@@ -178,7 +177,7 @@
   "component.old-pitt-rules.covers": "在第0天，他覆盖他们",
   "component.old-pitt-rules.eats": "在第0天，他吃了它们",
   "component.old-pitt-rules.burn": "积累的积分💪🧠🙏 ，会燃烧殆尽，放弃的目标数量增加",
-  "component.footer.top": "当天的TOP",
+  "component.footer.top": "今日头条",
   "component.footer.search": "搜索",
   "component.footer.rating": "评级",
   "component.footer.following": "关注",
@@ -318,5 +317,7 @@
   "common.play": "播放",
   "common.fullscreen": "进入全屏",
   "common.my-page": "我的页面",
-  "common.reactions": "反应"
+  "common.reactions": "反应",
+  "common.show-more": "阅读更多",
+  "common.show-less": "显示更少"
 }

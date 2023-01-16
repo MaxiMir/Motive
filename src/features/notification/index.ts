@@ -1,4 +1,5 @@
-export { default } from './Notification'
+export { default } from './components/NotificationModal'
+export { default as NotificationBadge } from './components/NotificationBadge'
 export * from './dto'
-export * from './hooks/useNotifications'
-export * from './helpers/href'
+export * from './hooks'
+export * from './helpers'

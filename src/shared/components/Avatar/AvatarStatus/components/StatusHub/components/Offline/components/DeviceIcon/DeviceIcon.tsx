@@ -1,4 +1,4 @@
-import { Device } from '@helpers/navigator'
+import { Device } from '@features/device'
 import AppIcon from '@ui/AppIcon'
 import { getIconName } from './helper'
 

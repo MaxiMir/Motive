@@ -1,5 +1,5 @@
 import dynamic from 'next/dynamic'
-import useSnackbar from '@hooks/useSnackbar'
+import { useSnackbar } from '@features/snackbar'
 import { useMessages } from './hooks/useMessages'
 import { useMenu } from './hooks/useMenu'
 

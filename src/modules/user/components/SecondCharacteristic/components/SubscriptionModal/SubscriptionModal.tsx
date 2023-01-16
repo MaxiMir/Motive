@@ -1,5 +1,6 @@
 import dynamic from 'next/dynamic'
 import { Box } from '@mui/material'
+import { paperClasses } from '@mui/material/Paper'
 import { useUserContext } from '@modules/user/hooks'
 import { SecondCharacteristicName } from '@features/characteristic'
 import AppModal from '@ui/AppModal'
@@ -22,11 +23,19 @@ function SubscriptionModal({ name, onClose }: SubscriptionModalProps) {
   const { isLoading, users, checkOnLoadMore, fetchNextPage } = useSubscription(id, count, name)
 
   return (
-    <AppModal title={messages.title} maxWidth="xs" onClose={onClose}>
+    <AppModal
+      title={messages.title}
+      maxWidth="xs"
+      sx={{
+        [`& .${paperClasses.root}`]: {
+          height: 600,
+        },
+      }}
+      onClose={onClose}
+    >
       <Box
         display="flex"
         flex={1}
-        minHeight={400}
         sx={{
           '& sup': {
             display: {

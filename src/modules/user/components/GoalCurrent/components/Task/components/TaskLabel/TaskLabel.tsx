@@ -3,8 +3,8 @@ import { Box } from '@mui/material'
 import { TaskDto } from '@features/task'
 import { checkOnCompletedByOthers } from './helper'
 
-const CompletedByOthers = dynamic(() => import('./components/CompletedByOthers/CompletedByOthers'))
-const AppMarkdown = dynamic(() => import('@ui/AppMarkdown'))
+const AppMarkdown = dynamic(() => import('@features/markdown'))
+const CompletedByOthers = dynamic(() => import('./components/CompletedByOthers'))
 
 interface TaskLabelProps {
   task: TaskDto

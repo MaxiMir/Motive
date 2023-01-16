@@ -7,7 +7,7 @@ import { useUserPage } from '@modules/user/hooks'
 import { useGoalContext } from '@modules/user/components/GoalCurrent/hooks/useGoalContext'
 import { confirmationSchema } from '@features/confirmation/schema'
 import { ConfirmationService } from '@features/confirmation/service'
-import useSnackbar from '@hooks/useSnackbar'
+import { useSnackbar } from '@features/snackbar'
 import { scrollToElem } from '@helpers/document'
 
 interface Values {

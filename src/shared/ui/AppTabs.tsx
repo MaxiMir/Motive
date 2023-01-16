@@ -40,7 +40,14 @@ function AppTabs({ tabs, content, initial = 0, ...tabsProps }: AppTabsProps) {
           {tabs.map((tab, index) => {
             const a11yTabProps = getA11yTabProps(index)
 
-            return <Tab label={tab} key={a11yTabProps.id} {...a11yTabProps} />
+            return (
+              <Tab
+                label={tab}
+                key={a11yTabProps.id}
+                {...a11yTabProps}
+                sx={{ textTransform: 'none' }}
+              />
+            )
           })}
         </Tabs>
       </Box>

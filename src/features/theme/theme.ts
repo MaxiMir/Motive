@@ -178,6 +178,11 @@ export const getDesignTokens = (mode: PaletteMode): ThemeOptions => {
           },
         },
       },
+      MuiLink: {
+        defaultProps: {
+          underline: 'hover',
+        },
+      },
       MuiAlert: {
         styleOverrides: {
           standardSuccess: {
@@ -215,7 +220,6 @@ export const getDesignTokens = (mode: PaletteMode): ThemeOptions => {
             backgroundImage: 'none',
             borderRadius: '12px',
             width: 'calc(100% - 16px)',
-            maxHeight: '700px',
             margin: '16px',
           },
         },
@@ -235,8 +239,17 @@ export const getDesignTokens = (mode: PaletteMode): ThemeOptions => {
             background: 'transparent!important',
           },
           a: {
-            textDecoration: 'none',
             color: 'inherit',
+            textDecoration: 'none',
+          },
+        },
+      },
+      MuiContainer: {
+        styleOverrides: {
+          root: {
+            '@media (min-width: 1200px)': {
+              maxWidth: 900,
+            },
           },
         },
       },

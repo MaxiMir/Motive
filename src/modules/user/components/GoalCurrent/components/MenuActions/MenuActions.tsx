@@ -1,6 +1,6 @@
 import { MouseEvent, useId, useState } from 'react'
 import dynamic from 'next/dynamic'
-import { IconButton, Menu } from '@mui/material'
+import { Box, IconButton, Menu } from '@mui/material'
 import { useGoalContext } from '@modules/user/components/GoalCurrent/hooks/useGoalContext'
 import { OwnershipDto } from '@features/member'
 import useToggle from '@hooks/useToggle'
@@ -51,18 +51,21 @@ function MenuActions({ title, href, clientOwnership }: MenuActionsProps) {
 
   return (
     <>
-      <TooltipArrow title={messages.buttonTitle}>
-        <IconButton
-          id={id}
-          size="small"
-          aria-controls={open ? menuId : undefined}
-          aria-haspopup="true"
-          aria-expanded={open ? 'true' : undefined}
-          onClick={onOpen}
-        >
-          <AppIcon name="more_horiz" />
-        </IconButton>
-      </TooltipArrow>
+      <Box sx={{ marginLeft: 'auto ' }}>
+        <TooltipArrow title={messages.buttonTitle}>
+          <IconButton
+            id={id}
+            size="small"
+            aria-controls={open ? menuId : undefined}
+            aria-haspopup="true"
+            aria-expanded={open ? 'true' : undefined}
+            sx={({ palette }) => ({ color: palette.grey[500] })}
+            onClick={onOpen}
+          >
+            <AppIcon name="more_horiz" />
+          </IconButton>
+        </TooltipArrow>
+      </Box>
       <Menu
         open={open}
         anchorEl={anchorEl}

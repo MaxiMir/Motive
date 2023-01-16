@@ -1,25 +1,30 @@
 [//]: # (TODO)
+* Scroll to up
+* Modal External Links
+* Show more in description
+* hover in user sections
+* lock icon for disabled
+* Loader in stories
+* No internet connection
+* Обратная связь
+* Add external links
+* Добавить удаление цели без очков
 * useTryFullScreen
 * тип сообщений в обсуждении
 * модалки как в инсте
 * (2) в title meta
 * https://mui.com/material-ui/react-menu/#basic-menu aria
 * TODO disabled control
-* Рефакторинг Box display flex
-* Loader photo
+* Loader для photo (+ для историй)
 * редактирование фотки
 * https://docs.nestjs.com/techniques/caching
 * hydration error
 * мэпинг календаря
-* обратная связь не обязательна
 * Загрузка нотификаций не сразу
 * Генерация картинок для og
 * https://validator.w3.org/nu/?doc=https%3A%2F%2F2bebetter.pro%2Fmaximir
 * Redis для страниц
-* Аватарка клик
-* Название цели с затемнением в историях
 * Генерация картинок og
-* Загрузка фото в историях
 * Редактирование в течение 15 минут сообщений
 * Группировка уведомлений
 * Обновление сообщений
@@ -29,7 +34,6 @@
 * Геометаданные
 * Будильник
 * Наведение на хар-ки -> список пользователей
-* Переделать завершенные цели
 * Добавить редактирование обратной связи
 * Подсказки
 * Push notification
@@ -57,7 +61,7 @@ sudo apt-get update
 sudo apt-get install nginx docker docker-compose mc 
 cd /etc/nginx 
 ls # sites-available
-nano 2bebetter.pro.c
+nano 2bebetter.pro.conf
 onf
 
 # виртуальный симлинк

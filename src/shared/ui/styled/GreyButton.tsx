@@ -1,14 +1,13 @@
 import { styled } from '@mui/system'
 import { Button } from '@mui/material'
-import { grey } from '@mui/material/colors'
 
-const GreyButton = styled(Button)({
-  color: '#fff',
-  borderColor: grey[800],
-  backgroundColor: grey[800],
-  '&:hover': {
-    backgroundColor: grey[900],
+const GreyButton = styled(Button)(({ theme }) => ({
+  color: theme.palette.common.white,
+  borderColor: theme.palette.grey[800],
+  backgroundColor: theme.palette.grey[800],
+  ':hover': {
+    backgroundColor: '#1a1a1a',
   },
-})
+}))
 
 export default GreyButton

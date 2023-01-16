@@ -21,7 +21,8 @@ function ReactionWithSend({ name }: ReactionWithSendProps) {
       name={name}
       title={messages.title}
       count={count}
-      disabled={active || isLoading}
+      isLoading={isLoading}
+      active={active}
       onClick={onClick}
     />
   )

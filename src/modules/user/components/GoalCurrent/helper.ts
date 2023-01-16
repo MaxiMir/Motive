@@ -97,11 +97,11 @@ export const getGoalInfo = (
   }
 
   function checkCanEdit() {
-    if (clientOwnership.page && clientOwnership.member) {
-      return clientOwnership.member.dayId === day.id
+    if (!clientOwnership.page) {
+      return false
     }
 
-    return clientOwnership.goal
+    return clientOwnership.member ? clientOwnership.member.dayId === day.id : clientOwnership.goal
   }
 
   return {

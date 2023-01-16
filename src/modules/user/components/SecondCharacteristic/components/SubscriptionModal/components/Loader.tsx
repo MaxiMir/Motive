@@ -7,8 +7,8 @@ interface LoaderProps {
 }
 
 function Loader({ count }: LoaderProps) {
-  const displayedCount = count > VISIBLE_QUANTITY ? VISIBLE_QUANTITY : count
-  const list = [...new Array(displayedCount)]
+  const shownCount = count > VISIBLE_QUANTITY ? VISIBLE_QUANTITY : count
+  const list = [...new Array(shownCount)]
 
   return (
     <Box display="flex" flexDirection="column" gap={2} flex={1}>

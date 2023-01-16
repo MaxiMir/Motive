@@ -1,3 +1,3 @@
-export { default } from './Page'
+export { default } from './components/Page'
 export * from './service'
 export * from './dto'

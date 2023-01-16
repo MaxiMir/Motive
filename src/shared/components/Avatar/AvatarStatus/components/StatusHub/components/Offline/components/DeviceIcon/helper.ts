@@ -1,4 +1,4 @@
-import { Device } from '@helpers/navigator'
+import { Device } from '@features/device'
 
 export const getIconName = (device: Device): string => {
   switch (device) {

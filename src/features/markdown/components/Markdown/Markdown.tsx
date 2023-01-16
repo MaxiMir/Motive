@@ -1,4 +1,4 @@
-import { useRef } from 'react'
+import { useMemo, useRef } from 'react'
 import dynamic from 'next/dynamic'
 import MarkdownToJSX from 'markdown-to-jsx'
 import { Box, Link, Typography } from '@mui/material'
@@ -16,7 +16,7 @@ interface MarkdownProps {
 function Markdown({ text }: MarkdownProps) {
   const ref = useRef<HTMLDivElement>(null)
   const [open, toggle] = useToggle()
-  const markdown = toMarkdown(text)
+  const markdown = useMemo(() => toMarkdown(text), [text])
   const paragraphCount = getParagraphCount(text)
   const truncated = useDetectTruncated(ref)
   const renderButton = truncated || paragraphCount > 1

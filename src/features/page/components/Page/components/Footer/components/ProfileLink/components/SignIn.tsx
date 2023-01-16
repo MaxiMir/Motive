@@ -8,8 +8,8 @@ function SignIn() {
   const onClick = () => openSignIn({ callbackUrl: '/' })
 
   return (
-    <IconButton sx={{ fontSize: 21, color: 'grey' }} onClick={onClick}>
-      <Profile />
+    <IconButton onClick={onClick}>
+      <Profile sx={{ fontSize: 21, color: 'grey' }} />
     </IconButton>
   )
 }

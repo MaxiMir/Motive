@@ -240,6 +240,7 @@ export const getDesignTokens = (mode: PaletteMode): ThemeOptions => {
           },
           a: {
             color: 'inherit',
+            textDecoration: 'none',
           },
         },
       },

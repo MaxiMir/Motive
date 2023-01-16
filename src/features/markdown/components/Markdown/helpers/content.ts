@@ -1,13 +1,11 @@
-import { toShortString } from '@helpers/string'
-
 export const getParagraphCount = (text: string) => text.split('\n').length
 
 export const toMarkdown = (value: string): string => {
   const replacer = (found: string) => {
-    const textLink = toShortString(found, 40)
-    const prefix = /http.?:\/\//.test(found) ? '' : '//'
+    const url = /http.?:\/\//.test(found) ? found : `https://${found}`
+    const { host } = new URL(url)
 
-    return `[${textLink}](${prefix}${found})`
+    return `[${host}](${url})`
   }
 
   return value

@@ -317,5 +317,7 @@
   "common.play": "Play",
   "common.fullscreen": "Enter Fullscreen",
   "common.my-page": "My Page",
-  "common.reactions": "Reactions"
+  "common.reactions": "Reactions",
+  "common.show-more": "Read more",
+  "common.show-less": "Show less"
 }

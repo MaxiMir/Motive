@@ -94,10 +94,10 @@ function GoalCurrent({ goal, membership, clientPage, clientMembership }: GoalCur
             flexDirection="column"
             justifyContent="space-between"
             gap={2}
-            sx={(theme) => ({
+            sx={({ spacing }) => ({
               position: 'relative',
               height: '100%',
-              padding: theme.spacing(3, 2, 2),
+              padding: spacing(3, 2, 2),
               backgroundColor: 'underlay',
               borderRadius: '12px',
             })}

@@ -178,6 +178,11 @@ export const getDesignTokens = (mode: PaletteMode): ThemeOptions => {
           },
         },
       },
+      MuiLink: {
+        defaultProps: {
+          underline: 'hover',
+        },
+      },
       MuiAlert: {
         styleOverrides: {
           standardSuccess: {
@@ -234,7 +239,6 @@ export const getDesignTokens = (mode: PaletteMode): ThemeOptions => {
             background: 'transparent!important',
           },
           a: {
-            textDecoration: 'none',
             color: 'inherit',
           },
         },

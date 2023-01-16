@@ -11,7 +11,7 @@ import MenuActions from './components/MenuActions'
 import Like from './components/Like'
 
 const Button = dynamic(() => import('@mui/material/Button'))
-const AppMarkdown = dynamic(() => import('@ui/AppMarkdown'))
+const AppMarkdown = dynamic(() => import('@features/markdown'))
 const SupportSign = dynamic(() => import('./components/SupportSign'))
 
 interface MessageProps {

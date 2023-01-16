@@ -44,8 +44,8 @@ function AppModal({ title, actions, maxWidth, sx, children, onClose }: AppModalP
       onClose={onClose}
     >
       <DialogTitle
-        sx={(theme) => ({
-          padding: theme.spacing(2, 3, 1),
+        sx={({ spacing }) => ({
+          padding: spacing(2, 3, 1),
           marginX: 6,
           textAlign: 'center',
           textTransform: 'uppercase',

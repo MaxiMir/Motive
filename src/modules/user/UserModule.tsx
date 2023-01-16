@@ -169,10 +169,6 @@ const Section = styled(Box)(({ theme }) => ({
 
 const ExternalLink = styled(Link)({
   fontSize: 14,
-  textDecoration: 'none',
-  ':hover': {
-    textDecoration: 'underline',
-  },
 })
 
 export default UserModule

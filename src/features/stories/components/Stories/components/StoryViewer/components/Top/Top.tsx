@@ -22,12 +22,12 @@ function Top({ user, title, date, onClose }: TopProps): JSX.Element {
 
   return (
     <Box
-      sx={(theme) => ({
+      sx={({ spacing }) => ({
         position: 'absolute',
         left: 0,
         right: 0,
         zIndex: 9999,
-        padding: theme.spacing(3, '12px', '12px'),
+        padding: spacing(3, '12px', '12px'),
         transition: 'opacity 0.5s',
       })}
     >

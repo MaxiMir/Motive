@@ -317,5 +317,7 @@
   "common.play": "Відтворити",
   "common.fullscreen": "Увійти в повноекранний режим",
   "common.my-page": "Моя сторінка",
-  "common.reactions": "Реакції"
+  "common.reactions": "Реакції",
+  "common.show-more": "Читати далі",
+  "common.show-less": "Скрити"
 }

@@ -9,7 +9,7 @@ const Button = dynamic(() => import('@mui/material/Button'))
 const CompletionModal = dynamic(() => import('@features/confirmation'))
 const TasksModal = dynamic(() => import('./components/TasksModal'))
 
-enum ModalType {
+const enum ModalType {
   Tasks,
   Completion,
 }

@@ -54,7 +54,6 @@
     "react-photo-album": "^2.0.0",
     "react-player": "^2.11.0",
     "react-query": "^3.39.2",
-    "sharp": "^0.31.3",
     "socket.io-client": "^4.5.4",
     "yet-another-react-lightbox": "^2.2.5",
     "yup": "^0.32.11"

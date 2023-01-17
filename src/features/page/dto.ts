@@ -4,7 +4,7 @@ import { ConfirmationDto } from '@features/confirmation'
 import { MainCharacteristicName } from '@features/characteristic'
 import { MemberDto } from '@features/member'
 
-export enum OGType {
+export const enum OGType {
   Website = 'website',
   Profile = 'profile',
 }

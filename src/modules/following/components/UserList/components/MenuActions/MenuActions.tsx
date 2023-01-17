@@ -1,10 +1,10 @@
 import { useState, MouseEvent, useId } from 'react'
 import dynamic from 'next/dynamic'
-import { IconButton, Menu } from '@mui/material'
+import { IconButton, Menu, MenuItem } from '@mui/material'
 import { UserDto, getUserHref } from '@features/user'
 import { useRemoveFollowing } from '@features/subscription'
 import useToggle from '@hooks/useToggle'
-import AppMenuItem from '@ui/AppMenuItem'
+import AppListItem from '@ui/AppListItem'
 import AppIcon from '@ui/AppIcon'
 import TooltipArrow from '@ui/styled/TooltipArrow'
 import { useMessages } from './hooks/useMessages'
@@ -57,15 +57,15 @@ function MenuActions({ user, index }: MenuActionsProps) {
         onClick={onClose}
         onClose={onClose}
       >
-        <AppMenuItem icon="share" text={messages.shareText} onClick={toggleSharing} />
-        <AppMenuItem
-          icon="delete"
-          text={messages.removeText}
-          color="error.dark"
-          disabled={isLoading}
-          onClick={onRemove}
-        />
-        <AppMenuItem icon="block" text={messages.cancelText} color="grey" onClick={onClose} />
+        <MenuItem onClick={toggleSharing}>
+          <AppListItem icon="share" primary={messages.shareText} />
+        </MenuItem>
+        <MenuItem disabled={isLoading} onClick={onRemove}>
+          <AppListItem icon="delete" primary={messages.removeText} color="error.dark" />
+        </MenuItem>
+        <MenuItem onClick={onClose}>
+          <AppListItem icon="block" primary={messages.cancelText} color="grey" />
+        </MenuItem>
       </Menu>
       {sharing && <Share title={name} href={href} onClose={toggleSharing} />}
     </>

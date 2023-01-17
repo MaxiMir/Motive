@@ -12,5 +12,6 @@ export const useMessages = () => {
       formatMessage({ id: 'common.spam' }),
       formatMessage({ id: 'common.something-else' }),
     ],
+    cancelText: formatMessage({ id: 'common.cancel' }),
   }
 }

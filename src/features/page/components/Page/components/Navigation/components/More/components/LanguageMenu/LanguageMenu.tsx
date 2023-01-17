@@ -3,7 +3,7 @@ import { paperClasses } from '@mui/material/Paper'
 import { Locale, useSetLocale } from '@features/locale'
 import { useIntl } from 'react-intl'
 import AppEmoji from '@ui/AppEmoji'
-import AppMenuItem from '@ui/AppMenuItem'
+import AppListItem from '@ui/AppListItem'
 import { useMessages } from './hooks/useMessages'
 
 const LANGUAGES = [
@@ -47,13 +47,9 @@ function LanguageMenu({ anchorEl, onClose }: LanguageMenuProps) {
           <ListItemText primary={primary} />
         </MenuItem>
       ))}
-      <AppMenuItem
-        icon="block"
-        text={messages.cancelText}
-        color="grey"
-        smallIcon={false}
-        onClick={onClose}
-      />
+      <MenuItem onClick={onClose}>
+        <AppListItem icon="block" primary={messages.cancelText} compact={false} color="grey" />
+      </MenuItem>
     </Menu>
   )
 }

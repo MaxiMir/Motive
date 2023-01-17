@@ -1,12 +1,12 @@
 import { MouseEvent, useId, useState } from 'react'
 import dynamic from 'next/dynamic'
 import { useRouter } from 'next/router'
-import { Menu } from '@mui/material'
+import { Menu, MenuItem } from '@mui/material'
 import { useCheckOnClientPage, useUserContext } from '@modules/user/hooks'
 import AppIcon from '@ui/AppIcon'
 import GreyButton from '@ui/styled/GreyButton'
 import useToggle from '@hooks/useToggle'
-import AppMenuItem from '@ui/AppMenuItem'
+import AppListItem from '@ui/AppListItem'
 import { useMessages } from './hooks/useMessages'
 
 const Share = dynamic(() => import('@components/Share'))
@@ -65,16 +65,17 @@ function MenuActions() {
         }}
         onClose={onClose}
       >
-        <AppMenuItem icon="share" text={messages.shareText} onClick={onShare} />
+        <MenuItem onClick={onShare}>
+          <AppListItem icon="share" primary={messages.shareText} />
+        </MenuItem>
         {!clientPage && (
-          <AppMenuItem
-            icon="outlined_flag"
-            text={messages.reportText}
-            color="error.dark"
-            onClick={toggleReporting}
-          />
+          <MenuItem onClick={toggleReporting}>
+            <AppListItem icon="outlined_flag" primary={messages.reportText} color="error.dark" />
+          </MenuItem>
         )}
-        <AppMenuItem icon="block" text={messages.cancelText} color="grey" onClick={onClose} />
+        <MenuItem onClick={onClose}>
+          <AppListItem icon="block" primary={messages.cancelText} color="grey" />
+        </MenuItem>
       </Menu>
       {reporting && <Report id={userId} type="user" anchorEl={anchorEl} onClose={onCloseReport} />}
       {sharing && <Share title={name} href={asPath} onClose={toggleSharing} />}

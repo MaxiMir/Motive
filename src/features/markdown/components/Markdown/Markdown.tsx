@@ -21,7 +21,9 @@ function Markdown({ text }: MarkdownProps) {
   const truncated = useDetectTruncated(ref)
   const renderButton = truncated || paragraphCount > 1
 
-  const renderLink = (props: MarkdownLinkProps) => <Link {...props} target="_blank" />
+  const renderLink = (props: MarkdownLinkProps) => (
+    <Link {...props} target="_blank" rel="nofollow noopener noreferrer" />
+  )
 
   const renderParagraph = (props: MarkdownTypographyProps) => (
     <Typography

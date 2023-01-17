@@ -138,7 +138,7 @@ function UserModule({ user }: UserModuleProps) {
         {!goals.length ? (
           <EmptyGoals clientPage={clientPage} />
         ) : (
-          <Box display="flex" flexWrap="wrap" gap={3}>
+          <Box display="flex" flexWrap="wrap" alignItems="baseline" gap={3}>
             {goals.map((goal) => (
               <GoalCurrent
                 goal={goal}

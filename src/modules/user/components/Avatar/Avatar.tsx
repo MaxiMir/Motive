@@ -1,11 +1,11 @@
 import { MouseEvent, useId, useState } from 'react'
 import dynamic from 'next/dynamic'
-import { Menu } from '@mui/material'
+import { Menu, MenuItem } from '@mui/material'
 import { paperClasses } from '@mui/material/Paper'
 import { useUserContext } from '@modules/user/hooks'
 import useToggle from '@hooks/useToggle'
-import AppMenuItem from '@ui/AppMenuItem'
 import AvatarStatus from '@components/Avatar/AvatarStatus'
+import AppListItem from '@ui/AppListItem'
 import { useMessages } from './hooks/useMessages'
 
 const AppLightBox = dynamic(() => import('@ui/AppLightBox'))
@@ -77,22 +77,28 @@ function Avatar({ clientPage }: AvatarProps) {
         sx={{
           [`& .${paperClasses.root}`]: {
             width: SIZE,
+            backgroundColor: 'underlay',
           },
         }}
         onClick={onClose}
         onClose={onClose}
       >
-        {avatar && <AppMenuItem icon="photo" text={messages.openText} onClick={openPhoto} />}
-        <AppMenuItem icon="edit" text={messages.editText} onClick={toggleEditing} />
         {avatar && (
-          <AppMenuItem
-            icon="delete"
-            text={messages.deleteText}
-            color="error.dark"
-            onClick={toggleDeleting}
-          />
+          <MenuItem onClick={openPhoto}>
+            <AppListItem icon="photo" primary={messages.openText} />
+          </MenuItem>
         )}
-        <AppMenuItem icon="block" text={messages.cancelText} color="grey" onClick={onClose} />
+        <MenuItem onClick={toggleEditing}>
+          <AppListItem icon="edit" primary={messages.editText} />
+        </MenuItem>
+        {avatar && (
+          <MenuItem onClick={toggleDeleting}>
+            <AppListItem icon="delete" primary={messages.deleteText} color="error.dark" />
+          </MenuItem>
+        )}
+        <MenuItem onClick={onClose}>
+          <AppListItem icon="block" primary={messages.cancelText} color="grey" />
+        </MenuItem>
       </Menu>
       {openLightbox && <AppLightBox sources={sources} index={index} onClose={onCloseLightBox} />}
       {editing && <EditModal onClose={toggleEditing} />}

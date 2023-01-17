@@ -1,6 +1,6 @@
 import { Menu, MenuItem } from '@mui/material'
-import AppMenuItem from '@ui/AppMenuItem'
 import { ReportType } from '@features/report/dto'
+import AppListItem from '@ui/AppListItem'
 import { useMessages } from './hooks/useMessages'
 import { useSendReport } from './hooks/useSendReport'
 
@@ -20,8 +20,13 @@ function Report({ id, type, anchorEl, onClose }: ReportProps) {
     <Menu open anchorEl={anchorEl} onClose={onClose}>
       <MenuItem disabled>{messages.title}:</MenuItem>
       {messages.reports.map((name) => (
-        <AppMenuItem icon="outlined_flag" text={name} key={name} onClick={() => onClick(name)} />
+        <MenuItem key={name} onClick={() => onClick(name)}>
+          <AppListItem icon="outlined_flag" primary={name} color="error.dark" />
+        </MenuItem>
       ))}
+      <MenuItem onClick={onClose}>
+        <AppListItem icon="block" primary={messages.cancelText} color="grey" />
+      </MenuItem>
     </Menu>
   )
 }

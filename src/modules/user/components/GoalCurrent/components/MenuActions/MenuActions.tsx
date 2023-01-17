@@ -1,11 +1,11 @@
 import { MouseEvent, useId, useState } from 'react'
 import dynamic from 'next/dynamic'
-import { Box, IconButton, Menu } from '@mui/material'
+import { Box, IconButton, Menu, MenuItem } from '@mui/material'
 import { useGoalContext } from '@modules/user/components/GoalCurrent/hooks/useGoalContext'
 import { OwnershipDto } from '@features/member'
 import useToggle from '@hooks/useToggle'
 import AppIcon from '@ui/AppIcon'
-import AppMenuItem from '@ui/AppMenuItem'
+import AppListItem from '@ui/AppListItem'
 import TooltipArrow from '@ui/styled/TooltipArrow'
 import { useMessages } from './hooks/useMessages'
 
@@ -74,19 +74,22 @@ function MenuActions({ title, href, clientOwnership }: MenuActionsProps) {
         }}
         onClose={onClose}
       >
-        <AppMenuItem icon="share" text={messages.shareText} onClick={onShare} />
+        <MenuItem onClick={onShare}>
+          <AppListItem icon="share" primary={messages.shareText} />
+        </MenuItem>
         {!clientOwnership.goal && (
-          <AppMenuItem
-            icon="outlined_flag"
-            text={messages.reportText}
-            color="error.dark"
-            onClick={toggleReporting}
-          />
+          <MenuItem onClick={toggleReporting}>
+            <AppListItem icon="outlined_flag" primary={messages.reportText} color="error.dark" />
+          </MenuItem>
         )}
         {clientOwnership.member && (
-          <AppMenuItem icon="logout" text={messages.leaveText} onClick={onLeave} />
+          <MenuItem onClick={onLeave}>
+            <AppListItem icon="logout" primary={messages.leaveText} />
+          </MenuItem>
         )}
-        <AppMenuItem icon="block" text={messages.cancelText} color="grey" onClick={onClose} />
+        <MenuItem onClick={onClose}>
+          <AppListItem icon="block" primary={messages.cancelText} color="grey" />
+        </MenuItem>
       </Menu>
       {reporting && <Report id={goalId} type="goal" anchorEl={anchorEl} onClose={onCloseReport} />}
       {sharing && <Share title={title} href={href} onClose={toggleSharing} />}

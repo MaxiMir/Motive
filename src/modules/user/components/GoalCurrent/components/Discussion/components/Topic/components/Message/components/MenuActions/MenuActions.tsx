@@ -1,8 +1,8 @@
 import { MouseEvent, useId, useState } from 'react'
 import dynamic from 'next/dynamic'
-import { IconButton, Menu } from '@mui/material'
+import { IconButton, Menu, MenuItem } from '@mui/material'
 import { MessageDto } from '@features/topic'
-import AppMenuItem from '@ui/AppMenuItem'
+import AppListItem from '@ui/AppListItem'
 import useClient from '@hooks/useClient'
 import useToggle from '@hooks/useToggle'
 import AppIcon from '@ui/AppIcon'
@@ -66,16 +66,17 @@ function MenuActions({ message }: MenuActionsProps) {
         onClose={onClose}
       >
         {canEdit ? (
-          <AppMenuItem icon="edit" text={messages.editText} onClick={toggleEdit} />
+          <MenuItem onClick={toggleEdit}>
+            <AppListItem icon="edit" primary={messages.editText} />
+          </MenuItem>
         ) : (
-          <AppMenuItem
-            icon="outlined_flag"
-            text={messages.reportText}
-            color="error.dark"
-            onClick={toggleReporting}
-          />
+          <MenuItem onClick={toggleReporting}>
+            <AppListItem icon="outlined_flag" primary={messages.reportText} color="error.dark" />
+          </MenuItem>
         )}
-        <AppMenuItem icon="block" text={messages.cancelText} color="grey" onClick={onClose} />
+        <MenuItem onClick={onClose}>
+          <AppListItem icon="block" primary={messages.cancelText} color="grey" />
+        </MenuItem>
       </Menu>
       {reporting && (
         <Report id={message.id} type="message" anchorEl={anchorEl} onClose={onCloseReport} />

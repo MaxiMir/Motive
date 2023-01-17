@@ -1,18 +1,23 @@
-import { RefObject, useLayoutEffect, useState } from 'react'
+import { RefObject, useEffect, useState } from 'react'
 
 export const useDetectTruncated = (containerRef: RefObject<HTMLDivElement>) => {
   const [truncated, setTruncated] = useState(false)
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     const paragraph = containerRef.current?.querySelector('p:first-of-type')
-
-    if (!paragraph) return
-
     const observer = new ResizeObserver((entries) => {
       setTruncated(entries.some((e) => e.target.scrollHeight > e.contentRect.height))
     })
 
-    observer.observe(paragraph)
+    if (paragraph) {
+      observer.observe(paragraph)
+    }
+
+    return () => {
+      if (!paragraph) return
+
+      observer.unobserve(paragraph)
+    }
   }, [containerRef])
 
   return truncated

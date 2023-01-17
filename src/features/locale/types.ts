@@ -1,4 +1,4 @@
-export enum Locale {
+export const enum Locale {
   En = 'en',
   Ru = 'ru',
   Uk = 'uk',

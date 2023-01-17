@@ -8,7 +8,7 @@ interface AppImageProps extends Omit<ImageProps, 'src'> {
 function AppImage({ src, alt, ...props }: AppImageProps) {
   const absoluteSrc = getImageSrc(src)
 
-  return <Image src={absoluteSrc} alt={alt} {...props} />
+  return <Image src={absoluteSrc} alt={alt} draggable={false} {...props} />
 }
 
 export default AppImage

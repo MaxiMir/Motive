@@ -23,7 +23,6 @@ function GalleryPhoto({
           title={title}
           sizes={sizes}
           className={className}
-          draggable={false}
           onClick={onClick}
         />
       </div>

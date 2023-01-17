@@ -1,7 +1,6 @@
-import Image from 'next/image'
 import { Box } from '@mui/material'
-import { getImageSrc } from '@href'
 import { Story } from '@features/stories/types'
+import AppImage from '@ui/AppImage'
 
 interface SlideProps {
   story: Story
@@ -9,7 +8,6 @@ interface SlideProps {
 
 function Slide({ story }: SlideProps) {
   const { src } = story
-  const absoluteSrc = getImageSrc(src)
 
   return (
     <Box
@@ -17,13 +15,12 @@ function Slide({ story }: SlideProps) {
         background: '#000',
       }}
     >
-      <Image
-        src={absoluteSrc}
+      <AppImage
+        src={src}
         alt=""
         fill
         priority
         objectFit="contain"
-        draggable={false}
         style={{
           position: 'absolute',
           left: '50%',

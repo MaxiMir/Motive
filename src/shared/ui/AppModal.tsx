@@ -16,26 +16,24 @@ import AppIcon from '@ui/AppIcon'
 const DialogActions = dynamic(() => import('@mui/material/DialogActions'))
 const Box = dynamic(() => import('@mui/material/Box'))
 
-interface AppModalProps {
+interface AppModalProps extends Pick<DialogProps, 'maxWidth' | 'PaperProps'> {
   title: JSX.Element | string
-  maxWidth?: DialogProps['maxWidth']
   actions?: JSX.Element[]
-  sx?: DialogProps['sx']
   children: ReactNode
   onClose: () => void
 }
 
-function AppModal({ title, actions, maxWidth, sx, children, onClose }: AppModalProps) {
+function AppModal({ title, actions, children, maxWidth, PaperProps, onClose }: AppModalProps) {
   const { formatMessage } = useIntl()
   const closeText = formatMessage({ id: 'common.close' })
 
   return (
     <Dialog
       open
-      maxWidth={maxWidth}
       disableScrollLock
+      maxWidth={maxWidth}
+      PaperProps={PaperProps}
       sx={{
-        ...sx,
         [`& .${backdropClasses.root}`]: {
           background: 'rgba(34, 34, 34, 0.75)',
           backdropFilter: 'blur(5px)',

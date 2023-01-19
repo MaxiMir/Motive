@@ -1,6 +1,6 @@
 import {
   ClientDto,
-  getUserHref,
+  toHref,
   getDiscussionHref,
   getFeedbackHref,
   getGoalHref,
@@ -23,7 +23,7 @@ export const getNotificationHref: GetNotificationHref = (notification, client) =
 
   switch (notification.type) {
     case NotificationType.NewFollower:
-      return getUserHref(nickname)
+      return toHref(nickname)
     case NotificationType.WebCoverage:
       return getGoalHref(nickname, notification.details.id)
     case NotificationType.NewFeedback:

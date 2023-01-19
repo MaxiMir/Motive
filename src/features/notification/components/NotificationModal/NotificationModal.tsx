@@ -2,7 +2,6 @@ import dynamic from 'next/dynamic'
 import { Box } from '@mui/material'
 import { NotificationDto } from '@features/notification'
 import AppModal from '@ui/AppModal'
-import { paperClasses } from '@mui/material/Paper'
 import { useMessages } from './hooks/useMessages'
 import { useNotificationHint } from './hooks/useNotificationHint'
 
@@ -20,20 +19,19 @@ interface NotificationModalProps {
 function NotificationModal({ notifications, isLoading, onClose }: NotificationModalProps) {
   const messages = useMessages()
   const [showHint, onHintClick] = useNotificationHint()
-  const alignItems = !notifications.length ? 'center' : undefined
 
   return (
     <AppModal
       title={messages.title}
       maxWidth="xs"
-      sx={{
-        [`& .${paperClasses.root}`]: {
+      PaperProps={{
+        sx: {
           height: 600,
         },
       }}
       onClose={onClose}
     >
-      <Box display="flex" alignItems={alignItems} flex={1}>
+      <Box display="flex" flexDirection="column" flex={1}>
         {isLoading ? (
           <Loader />
         ) : (

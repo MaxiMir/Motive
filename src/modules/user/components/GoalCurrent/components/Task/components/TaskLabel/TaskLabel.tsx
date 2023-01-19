@@ -3,7 +3,7 @@ import { Box } from '@mui/material'
 import { TaskDto } from '@features/task'
 import { checkOnCompletedByOthers } from './helper'
 
-const AppMarkdown = dynamic(() => import('@features/markdown'))
+const Markdown = dynamic(() => import('@components/Markdown'))
 const CompletedByOthers = dynamic(() => import('./components/CompletedByOthers'))
 
 interface TaskLabelProps {
@@ -16,7 +16,7 @@ function TaskLabel({ task, daysGoneForOwner }: TaskLabelProps) {
 
   return (
     <Box display="flex" alignItems="center" gap={1}>
-      <AppMarkdown text={task.name} />
+      <Markdown text={task.name} />
       {completedByOthers && <CompletedByOthers />}
     </Box>
   )

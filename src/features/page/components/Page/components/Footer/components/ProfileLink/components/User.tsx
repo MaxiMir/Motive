@@ -1,6 +1,6 @@
 import { useRouter } from 'next/router'
 import { Box } from '@mui/material'
-import { ClientDto, getUserHref } from '@features/user'
+import { ClientDto, toHref } from '@features/user'
 import AvatarStatus from '@components/Avatar/AvatarStatus'
 
 interface UserProps {
@@ -9,7 +9,7 @@ interface UserProps {
 
 function User({ client }: UserProps) {
   const { asPath, push } = useRouter()
-  const href = getUserHref(client.nickname)
+  const href = toHref(client.nickname)
   const selected = asPath.includes(href)
 
   const onClick = () => push(href)

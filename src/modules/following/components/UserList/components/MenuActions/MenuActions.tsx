@@ -1,9 +1,10 @@
 import { useState, MouseEvent, useId } from 'react'
 import dynamic from 'next/dynamic'
 import { IconButton, Menu, MenuItem } from '@mui/material'
-import { UserDto, getUserHref } from '@features/user'
+import { UserDto, toHref } from '@features/user'
 import { useRemoveFollowing } from '@features/subscription'
 import useToggle from '@hooks/useToggle'
+import { share } from '@helpers/navigator'
 import AppListItem from '@ui/AppListItem'
 import AppIcon from '@ui/AppIcon'
 import TooltipArrow from '@ui/styled/TooltipArrow'
@@ -24,12 +25,14 @@ function MenuActions({ user, index }: MenuActionsProps) {
   const [anchorEl, setAnchorEl] = useState<HTMLElement | null>(null)
   const [sharing, toggleSharing] = useToggle()
   const [isLoading, removeFollowing] = useRemoveFollowing()
-  const href = getUserHref(nickname)
+  const href = toHref(nickname)
   const open = Boolean(anchorEl)
 
-  const onOpen = (e: MouseEvent<HTMLButtonElement>) => setAnchorEl(e.currentTarget)
+  const onOpenMenu = (e: MouseEvent<HTMLButtonElement>) => setAnchorEl(e.currentTarget)
 
-  const onClose = () => setAnchorEl(null)
+  const onCloseMenu = () => setAnchorEl(null)
+
+  const onShare = () => share(href, name, toggleSharing)
 
   const onRemove = () => removeFollowing(user, index)
 
@@ -42,7 +45,8 @@ function MenuActions({ user, index }: MenuActionsProps) {
           aria-controls={open ? menuId : undefined}
           aria-haspopup="true"
           aria-expanded={open ? 'true' : undefined}
-          onClick={onOpen}
+          sx={({ palette }) => ({ color: palette.grey[500] })}
+          onClick={onOpenMenu}
         >
           <AppIcon name="more_horiz" />
         </IconButton>
@@ -54,20 +58,20 @@ function MenuActions({ user, index }: MenuActionsProps) {
         MenuListProps={{
           'aria-labelledby': id,
         }}
-        onClick={onClose}
-        onClose={onClose}
+        onClick={onCloseMenu}
+        onClose={onCloseMenu}
       >
-        <MenuItem onClick={toggleSharing}>
+        <MenuItem onClick={onShare}>
           <AppListItem icon="share" primary={messages.shareText} />
         </MenuItem>
         <MenuItem disabled={isLoading} onClick={onRemove}>
           <AppListItem icon="delete" primary={messages.removeText} color="error.dark" />
         </MenuItem>
-        <MenuItem onClick={onClose}>
+        <MenuItem onClick={onCloseMenu}>
           <AppListItem icon="block" primary={messages.cancelText} color="grey" />
         </MenuItem>
       </Menu>
-      {sharing && <Share title={name} href={href} onClose={toggleSharing} />}
+      {sharing && <Share href={href} title={name} onClose={toggleSharing} />}
     </>
   )
 }

@@ -6,7 +6,7 @@ import useTryFullScreen from '@hooks/useTryFullScreen'
 import useToggle from '@hooks/useToggle'
 import AvatarStatus from '@components/Avatar/AvatarStatus'
 
-const Stories = dynamic(() => import('@features/stories'))
+const Stories = dynamic(() => import('@components/Stories'))
 
 interface ConfirmationStoryProps {
   confirmation: ConfirmationDto

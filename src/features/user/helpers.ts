@@ -13,12 +13,12 @@ export const enum HashMark {
   Discussion = 'discussion',
 }
 
-export const getUserHref = (nickname: string): string => `/${nickname}`
+export const toHref = (...args: string[]): string => `/${args.join('')}`
 
-export const getGoalHref = (userHref: string, goalId: number): string => {
+export const getGoalHref = (nickname: string, goalId: number): string => {
   const hashMark = `#${HashMark.Goal}-${goalId}`
 
-  return userHref + hashMark
+  return toHref(nickname, hashMark)
 }
 
 export const getDayHref = (userHref: string, goalId: number, dayId: number): string => {
@@ -27,22 +27,22 @@ export const getDayHref = (userHref: string, goalId: number, dayId: number): str
   return getGoalHref(url, goalId)
 }
 
-export const getDiscussionHref = (userHref: string, goalId: number, dayId: number): string => {
-  const url = setSearchParams(userHref, {
+export const getDiscussionHref = (nickname: string, goalId: number, dayId: number): string => {
+  const url = setSearchParams(nickname, {
     [SearchParam.ScrollTo]: HashMark.Discussion,
     [SearchParam.ScrollId]: goalId,
     [SearchParam.Dates]: `${goalId}:${dayId}`,
   })
   const hash = `#${HashMark.Discussion}-${goalId}`
 
-  return url + hash
+  return toHref(url, hash)
 }
 
-export const getFeedbackHref = (userHref: string, goalId: number, dayId: number): string => {
-  const url = setSearchParams(userHref, { [SearchParam.Dates]: `${goalId}:${dayId}` })
+export const getFeedbackHref = (nickname: string, goalId: number, dayId: number): string => {
+  const url = setSearchParams(nickname, { [SearchParam.Dates]: `${goalId}:${dayId}` })
   const hash = `#${HashMark.Feedback}-${goalId}`
 
-  return url + hash
+  return toHref(url, hash)
 }
 
 export const getHashtagHref = (q: string): string => {

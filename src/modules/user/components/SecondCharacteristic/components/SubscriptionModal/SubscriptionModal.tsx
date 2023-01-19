@@ -1,6 +1,5 @@
 import dynamic from 'next/dynamic'
 import { Box } from '@mui/material'
-import { paperClasses } from '@mui/material/Paper'
 import { useUserContext } from '@modules/user/hooks'
 import { SecondCharacteristicName } from '@features/characteristic'
 import AppModal from '@ui/AppModal'
@@ -26,8 +25,8 @@ function SubscriptionModal({ name, onClose }: SubscriptionModalProps) {
     <AppModal
       title={messages.title}
       maxWidth="xs"
-      sx={{
-        [`& .${paperClasses.root}`]: {
+      PaperProps={{
+        sx: {
           height: 600,
         },
       }}

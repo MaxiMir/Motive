@@ -1,4 +1,4 @@
-import Error from '@features/error'
+import Error from '@components/Error'
 
 interface CustomErrorProps {
   statusCode?: number

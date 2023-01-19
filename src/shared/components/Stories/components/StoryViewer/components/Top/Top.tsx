@@ -1,6 +1,6 @@
 import Link from 'next/link'
 import { Box, IconButton, Typography } from '@mui/material'
-import { UserBaseDto, getUserHref } from '@features/user'
+import { UserBaseDto, toHref } from '@features/user'
 import useFormatDistance from '@hooks/useFormatDistance'
 import AppIcon from '@ui/AppIcon'
 import UserLink from '@components/User/UserLink'
@@ -18,7 +18,7 @@ function Top({ user, title, date, onClose }: TopProps): JSX.Element {
   const messages = useMessages()
   const formatDistance = useFormatDistance()
   const distance = formatDistance(date)
-  const href = getUserHref(nickname)
+  const href = toHref(nickname)
 
   return (
     <Box

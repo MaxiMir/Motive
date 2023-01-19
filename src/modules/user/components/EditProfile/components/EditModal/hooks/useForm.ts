@@ -5,7 +5,7 @@ import { useIntl } from 'react-intl'
 import { useMutation } from 'react-query'
 import { useMutateUserPage, useUserContext } from '@modules/user/hooks'
 import { UserPageDto } from '@features/page'
-import { UpdateUserDto, UserBaseDto, UserService, getUserHref, profileSchema } from '@features/user'
+import { UpdateUserDto, UserBaseDto, UserService, toHref, profileSchema } from '@features/user'
 import { getCurrentSearchParams, setSearchParams } from '@helpers/url'
 
 const getNextState = (page: UserPageDto, user: UserBaseDto) =>
@@ -31,7 +31,7 @@ export const useForm = (onSuccess: () => void) => {
   const nicknameError = formatMessage({ id: 'page.user.modal-profile.nickname-error' })
   const { mutateAsync } = useMutation(({ id, data }: Options) => UserService.update(id, data), {
     onSuccess(dto) {
-      const href = getUserHref(dto.nickname)
+      const href = toHref(dto.nickname)
       const as = setSearchParams(href, getCurrentSearchParams())
       mutatePage(getNextState(page, dto))
       push(as, as, { shallow: true }).then(onSuccess)

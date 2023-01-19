@@ -1,5 +1,5 @@
 import { Box } from '@mui/material'
-import { Story } from '@features/stories/types'
+import { Story } from '@components/Stories/types'
 import AppImage from '@ui/AppImage'
 
 interface SlideProps {

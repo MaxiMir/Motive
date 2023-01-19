@@ -63,7 +63,7 @@ function Menu({ title, url, onCopyEnd, onCopyError, onClose }: MenuProps) {
   }
 
   return (
-    <Drawer open anchor="bottom" onClose={onClose}>
+    <Drawer open anchor="bottom" sx={{ zIndex: 1450 }} onClose={onClose}>
       <Box role="presentation" onClick={onClose}>
         <List>
           {shareItems.map(({ text, Icon, onClick }) => (

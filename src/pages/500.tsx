@@ -1,11 +1,12 @@
 import Page from '@features/page'
-import Error, { useTitle } from '@features/error'
+import Error from '@components/Error'
+import useMetaTags from '@hooks/useMetaTags'
 
 function Page500() {
-  const title = useTitle('500')
+  const metaTags = useMetaTags('500')
 
   return (
-    <Page title={title}>
+    <Page {...metaTags}>
       <Error statusCode={500} />
     </Page>
   )

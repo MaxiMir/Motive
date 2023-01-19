@@ -1,7 +1,7 @@
 import Link from 'next/link'
 import { Box, Typography } from '@mui/material'
 import { useUserContext } from '@modules/user/hooks'
-import { getUserHref } from '@features/user'
+import { toHref } from '@features/user'
 import AppModal from '@ui/AppModal'
 import AvatarStatus from '@components/Avatar/AvatarStatus'
 import Row from './components/Row'
@@ -15,7 +15,7 @@ interface InfoModalProps {
 function InfoModal({ onClose }: InfoModalProps) {
   const messages = useMessages()
   const user = useUserContext()
-  const userHref = getUserHref(user.nickname)
+  const userHref = toHref(user.nickname)
 
   return (
     <AppModal title={messages.title} maxWidth="xs" onClose={onClose}>

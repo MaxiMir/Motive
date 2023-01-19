@@ -6,11 +6,11 @@ import GalleryPhoto from './components/GalleryPhoto'
 
 const AppLightBox = dynamic(() => import('@ui/AppLightBox'))
 
-export interface GalleryViewerProps {
+export interface GalleryProps {
   photos: PhotoDto[]
 }
 
-function Gallery({ photos }: GalleryViewerProps) {
+function Gallery({ photos }: GalleryProps) {
   const [index, setIndex] = useState<number>()
   const sources = photos.map((p) => p.src)
   const open = typeof index === 'number'

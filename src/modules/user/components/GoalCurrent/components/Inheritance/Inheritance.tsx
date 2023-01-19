@@ -1,6 +1,6 @@
 import { Typography } from '@mui/material'
 import { useGoalContext } from '@modules/user/components/GoalCurrent/hooks/useGoalContext'
-import { getUserHref } from '@features/user'
+import { toHref } from '@features/user'
 import UserLink from '@components/User/UserLink'
 import { useMessages } from './hooks/useMessages'
 
@@ -8,7 +8,7 @@ function Inheritance() {
   const messages = useMessages()
   const { owner } = useGoalContext()
   const { name, nickname, avatar } = owner
-  const href = getUserHref(nickname)
+  const href = toHref(nickname)
 
   return (
     <>

@@ -1,11 +1,12 @@
 import Page from '@features/page'
-import Error, { useTitle } from '@features/error'
+import Error from '@components/Error'
+import useMetaTags from '@hooks/useMetaTags'
 
 function Page404() {
-  const title = useTitle('404')
+  const metaTags = useMetaTags('404')
 
   return (
-    <Page title={title}>
+    <Page {...metaTags}>
       <Error statusCode={404} />
     </Page>
   )

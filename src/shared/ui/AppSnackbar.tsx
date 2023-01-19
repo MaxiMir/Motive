@@ -35,6 +35,9 @@ function AppSnackbar({ severity, icon, message, onClose, ...props }: AppSnackbar
           backgroundColor: severity === 'success' ? teal[900] : undefined,
           color: 'common.white',
         },
+        [`& .${alertClasses.message}`]: {
+          lineHeight: 1.9,
+        },
         bottom: {
           xs: 80,
           lg: 24,

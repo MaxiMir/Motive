@@ -2,7 +2,7 @@ import dynamic from 'next/dynamic'
 import Link from 'next/link'
 import { Box, Typography } from '@mui/material'
 import { indigo } from '@mui/material/colors'
-import { getUserHref } from '@features/user'
+import { toHref } from '@features/user'
 import { MessageDto } from '@features/topic'
 import useFormatDistance from '@hooks/useFormatDistance'
 import UserLink from '@components/User/UserLink'
@@ -11,7 +11,7 @@ import MenuActions from './components/MenuActions'
 import Like from './components/Like'
 
 const Button = dynamic(() => import('@mui/material/Button'))
-const AppMarkdown = dynamic(() => import('@features/markdown'))
+const Markdown = dynamic(() => import('@components/Markdown'))
 const SupportSign = dynamic(() => import('./components/SupportSign'))
 
 interface MessageProps {
@@ -27,7 +27,7 @@ function Message({ message, answerFor, supportFor, onReply }: MessageProps) {
   const messages = useMessages()
   const formatDistance = useFormatDistance()
   const dateDistance = formatDistance(date)
-  const href = getUserHref(nickname)
+  const href = toHref(nickname)
   const flexDirection = !answerFor ? 'row' : 'row-reverse'
 
   return (
@@ -68,7 +68,7 @@ function Message({ message, answerFor, supportFor, onReply }: MessageProps) {
             </Box>
             <MenuActions message={message} />
           </Box>
-          <AppMarkdown text={text} />
+          <Markdown text={text} />
           <Box display="flex" justifyContent="space-between" alignItems="center">
             <Box display="flex" alignItems="center" gap={1}>
               <Typography variant="caption" sx={({ palette }) => ({ color: palette.grey[300] })}>

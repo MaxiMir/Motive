@@ -2,7 +2,7 @@ import Link from 'next/link'
 import { Typography, Grid, Box, Button } from '@mui/material'
 import { blueGrey } from '@mui/material/colors'
 import { useTheme } from '@mui/material/styles'
-import { UserCharacteristicName, UserDto, getUserHref } from '@features/user'
+import { UserCharacteristicName, UserDto, toHref } from '@features/user'
 import AppEmoji from '@ui/AppEmoji'
 import UserLink from '@components/User/UserLink'
 
@@ -16,7 +16,7 @@ function UserRow({ user, characteristicName, index }: UserRowProps) {
   const { nickname, name, avatar, characteristic, online } = user
   const theme = useTheme()
   const number = getNumber()
-  const href = getUserHref(nickname)
+  const href = toHref(nickname)
   const ratingValue = Math.floor(characteristic[characteristicName])
   const backgroundColor = index % 2 === 0 ? theme.palette.underlay : blueGrey[900]
 

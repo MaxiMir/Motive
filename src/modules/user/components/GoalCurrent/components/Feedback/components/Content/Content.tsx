@@ -2,7 +2,7 @@ import dynamic from 'next/dynamic'
 import { Box } from '@mui/material'
 import { FeedbackDto } from '@features/feedback'
 
-const AppMarkdown = dynamic(() => import('@features/markdown'))
+const Markdown = dynamic(() => import('@components/Markdown'))
 const AppPlayer = dynamic(() => import('@ui/AppPlayer'))
 const Gallery = dynamic(() => import('@components/Gallery'))
 
@@ -15,7 +15,7 @@ function Content({ feedback }: ContentProps) {
 
   return (
     <Box display="flex" flexDirection="column" gap={2} flex={1}>
-      {text && <AppMarkdown text={text} />}
+      {text && <Markdown text={text} />}
       {photos?.length && <Gallery photos={photos} />}
       {video && <AppPlayer url={video} width="100%" height="auto" />}
     </Box>

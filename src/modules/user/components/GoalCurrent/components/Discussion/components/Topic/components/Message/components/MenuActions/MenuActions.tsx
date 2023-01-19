@@ -27,17 +27,17 @@ function MenuActions({ message }: MenuActionsProps) {
   const canEdit = message.user.id === client?.id
   const open = Boolean(anchorEl)
 
-  const onOpen = (e: MouseEvent<HTMLButtonElement>) => setAnchorEl(e.currentTarget)
+  const onOpenMenu = (e: MouseEvent<HTMLButtonElement>) => setAnchorEl(e.currentTarget)
 
-  const onClose = () => setAnchorEl(null)
+  const onCloseMenu = () => setAnchorEl(null)
 
   const toggleEdit = () => {
     toggleEditing()
-    onClose()
+    onCloseMenu()
   }
 
   const onCloseReport = () => {
-    onClose()
+    onCloseMenu()
     toggleReporting()
   }
 
@@ -51,7 +51,7 @@ function MenuActions({ message }: MenuActionsProps) {
           aria-haspopup="true"
           aria-expanded={open ? 'true' : undefined}
           sx={{ padding: '3px' }}
-          onClick={onOpen}
+          onClick={onOpenMenu}
         >
           <AppIcon name="more_horiz" />
         </IconButton>
@@ -63,7 +63,7 @@ function MenuActions({ message }: MenuActionsProps) {
         MenuListProps={{
           'aria-labelledby': id,
         }}
-        onClose={onClose}
+        onClose={onCloseMenu}
       >
         {canEdit ? (
           <MenuItem onClick={toggleEdit}>
@@ -74,7 +74,7 @@ function MenuActions({ message }: MenuActionsProps) {
             <AppListItem icon="outlined_flag" primary={messages.reportText} color="error.dark" />
           </MenuItem>
         )}
-        <MenuItem onClick={onClose}>
+        <MenuItem onClick={onCloseMenu}>
           <AppListItem icon="block" primary={messages.cancelText} color="grey" />
         </MenuItem>
       </Menu>

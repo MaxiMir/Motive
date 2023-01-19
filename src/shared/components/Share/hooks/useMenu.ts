@@ -1,16 +1,9 @@
-import { useEffect, useState } from 'react'
-import { useSnackbar } from '@features/snackbar'
+import { Dispatch, SetStateAction, useEffect, useState } from 'react'
 
-type UseMenuResult = [open: boolean, onClose: () => void]
+type UseMenuResult = [boolean, Dispatch<SetStateAction<boolean>>]
 
-export const useMenu = (title: string, url: string, onCloseShare: () => void): UseMenuResult => {
+export const useMenu = (url: string, title: string): UseMenuResult => {
   const [open, setOpen] = useState(false)
-  const [, closeSnackbar] = useSnackbar()
-
-  const onClose = () => {
-    setOpen(false)
-    onCloseShare()
-  }
 
   useEffect(() => {
     if (!navigator.share) {
@@ -18,12 +11,8 @@ export const useMenu = (title: string, url: string, onCloseShare: () => void): U
       return
     }
 
-    navigator.share({ title, url }).catch(onCloseShare)
-  }, [onCloseShare, title, url])
+    navigator.share({ title, url }).catch(() => false)
+  }, [title, url])
 
-  useEffect(() => {
-    open && closeSnackbar()
-  }, [closeSnackbar, open])
-
-  return [open, onClose]
+  return [open, setOpen]
 }

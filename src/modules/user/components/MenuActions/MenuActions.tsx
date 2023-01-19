@@ -3,6 +3,7 @@ import dynamic from 'next/dynamic'
 import { useRouter } from 'next/router'
 import { Menu, MenuItem } from '@mui/material'
 import { useCheckOnClientPage, useUserContext } from '@modules/user/hooks'
+import { share } from '@helpers/navigator'
 import AppIcon from '@ui/AppIcon'
 import GreyButton from '@ui/styled/GreyButton'
 import useToggle from '@hooks/useToggle'
@@ -24,17 +25,17 @@ function MenuActions() {
   const [sharing, toggleSharing] = useToggle()
   const open = Boolean(anchorEl)
 
-  const onOpen = (e: MouseEvent<HTMLButtonElement>) => setAnchorEl(e.currentTarget)
+  const onOpenMenu = (e: MouseEvent<HTMLButtonElement>) => setAnchorEl(e.currentTarget)
 
-  const onClose = () => setAnchorEl(null)
+  const onCloseMenu = () => setAnchorEl(null)
 
-  const onShare = () => {
-    onClose()
-    toggleSharing()
+  const onShare = async () => {
+    onCloseMenu()
+    await share(asPath, name, toggleSharing)
   }
 
   const onCloseReport = () => {
-    onClose()
+    onCloseMenu()
     toggleReporting()
   }
 
@@ -52,7 +53,7 @@ function MenuActions() {
           height: 30,
           paddingX: 1,
         }}
-        onClick={onOpen}
+        onClick={onOpenMenu}
       >
         {messages.title}
       </GreyButton>
@@ -63,7 +64,7 @@ function MenuActions() {
         MenuListProps={{
           'aria-labelledby': id,
         }}
-        onClose={onClose}
+        onClose={onCloseMenu}
       >
         <MenuItem onClick={onShare}>
           <AppListItem icon="share" primary={messages.shareText} />
@@ -73,12 +74,12 @@ function MenuActions() {
             <AppListItem icon="outlined_flag" primary={messages.reportText} color="error.dark" />
           </MenuItem>
         )}
-        <MenuItem onClick={onClose}>
+        <MenuItem onClick={onCloseMenu}>
           <AppListItem icon="block" primary={messages.cancelText} color="grey" />
         </MenuItem>
       </Menu>
       {reporting && <Report id={userId} type="user" anchorEl={anchorEl} onClose={onCloseReport} />}
-      {sharing && <Share title={name} href={asPath} onClose={toggleSharing} />}
+      {sharing && <Share href={asPath} title={name} onClose={toggleSharing} />}
     </>
   )
 }

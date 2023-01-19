@@ -1,7 +1,7 @@
 import dynamic from 'next/dynamic'
 import Link from 'next/link'
 import { Box, Typography } from '@mui/material'
-import { UserDto, getUserHref } from '@features/user'
+import { UserDto, toHref } from '@features/user'
 import { MAIN_CHARACTERISTICS, SecondCharacteristicName } from '@features/characteristic'
 import CharacteristicUser from '@components/Characteristic/CharacteristicUser'
 import UserLink from './UserLink'
@@ -20,7 +20,7 @@ interface UserCharacteristicProps {
 
 function UserCharacteristic({ user, inView, menu, onView, onClose }: UserCharacteristicProps) {
   const { nickname, name, avatar, characteristic, online } = user
-  const href = getUserHref(nickname)
+  const href = toHref(nickname)
 
   return (
     <>

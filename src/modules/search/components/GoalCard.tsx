@@ -1,5 +1,5 @@
 import { Box, Button, Typography } from '@mui/material'
-import { getUserHref } from '@features/user'
+import { toHref } from '@features/user'
 import { GoalDto } from '@features/goal'
 import { MAIN_CHARACTERISTICS } from '@features/characteristic'
 import CharacteristicGoal from '@components/Characteristic/CharacteristicGoal'
@@ -12,7 +12,7 @@ interface GoalCardProps {
 function GoalCard({ goal }: GoalCardProps) {
   const { name, characteristic, owner } = goal
   const { name: ownerName, nickname, avatar } = owner
-  const href = getUserHref(nickname)
+  const href = toHref(nickname)
 
   return (
     <Button

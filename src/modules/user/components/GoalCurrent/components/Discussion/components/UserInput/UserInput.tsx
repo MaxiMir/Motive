@@ -3,7 +3,7 @@ import { Field, Form, FormikProvider } from 'formik'
 import { Box, IconButton } from '@mui/material'
 import { styled } from '@mui/system'
 import { blue } from '@mui/material/colors'
-import { UserBaseDto, ClientDto, getUserHref } from '@features/user'
+import { UserBaseDto, ClientDto, toHref } from '@features/user'
 import { TopicDto, MessageType } from '@features/topic'
 import AppInput from '@ui/AppInput'
 import UserLink from '@components/User/UserLink'
@@ -26,7 +26,7 @@ function UserInput({ user, type, topicId, onAdd }: UserInputProps) {
   const messages = useMessages(type)
   const form = useForm(topicId, type, onAdd)
   const { isSubmitting, values, handleSubmit } = form
-  const href = getUserHref(nickname)
+  const href = toHref(nickname)
   const disabled = isSubmitting || !values.text
 
   const onClick = () => handleSubmit()

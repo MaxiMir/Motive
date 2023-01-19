@@ -4,6 +4,7 @@ import { Box, IconButton, Menu, MenuItem } from '@mui/material'
 import { useGoalContext } from '@modules/user/components/GoalCurrent/hooks/useGoalContext'
 import { OwnershipDto } from '@features/member'
 import useToggle from '@hooks/useToggle'
+import { share } from '@helpers/navigator'
 import AppIcon from '@ui/AppIcon'
 import AppListItem from '@ui/AppListItem'
 import TooltipArrow from '@ui/styled/TooltipArrow'
@@ -14,12 +15,12 @@ const Share = dynamic(() => import('@components/Share'))
 const LeaveModal = dynamic(() => import('./components/LeaveModal'))
 
 interface MenuActionsProps {
-  title: string
   href: string
+  title: string
   clientOwnership: OwnershipDto
 }
 
-function MenuActions({ title, href, clientOwnership }: MenuActionsProps) {
+function MenuActions({ href, title, clientOwnership }: MenuActionsProps) {
   const id = useId()
   const menuId = useId()
   const messages = useMessages()
@@ -30,22 +31,22 @@ function MenuActions({ title, href, clientOwnership }: MenuActionsProps) {
   const [reporting, toggleReporting] = useToggle()
   const open = Boolean(anchorEl)
 
-  const onOpen = (e: MouseEvent<HTMLButtonElement>) => setAnchorEl(e.currentTarget)
+  const onOpenMenu = (e: MouseEvent<HTMLButtonElement>) => setAnchorEl(e.currentTarget)
 
-  const onClose = () => setAnchorEl(null)
+  const onCloseMenu = () => setAnchorEl(null)
 
-  const onShare = () => {
-    onClose()
-    toggleSharing()
+  const onShare = async () => {
+    onCloseMenu()
+    await share(href, title, toggleSharing)
   }
 
   const onLeave = () => {
-    onClose()
+    onCloseMenu()
     toggleLeaving()
   }
 
   const onCloseReport = () => {
-    onClose()
+    onCloseMenu()
     toggleReporting()
   }
 
@@ -60,7 +61,7 @@ function MenuActions({ title, href, clientOwnership }: MenuActionsProps) {
             aria-haspopup="true"
             aria-expanded={open ? 'true' : undefined}
             sx={({ palette }) => ({ color: palette.grey[500] })}
-            onClick={onOpen}
+            onClick={onOpenMenu}
           >
             <AppIcon name="more_horiz" />
           </IconButton>
@@ -72,7 +73,7 @@ function MenuActions({ title, href, clientOwnership }: MenuActionsProps) {
         MenuListProps={{
           'aria-labelledby': id,
         }}
-        onClose={onClose}
+        onClose={onCloseMenu}
       >
         <MenuItem onClick={onShare}>
           <AppListItem icon="share" primary={messages.shareText} />
@@ -87,12 +88,12 @@ function MenuActions({ title, href, clientOwnership }: MenuActionsProps) {
             <AppListItem icon="logout" primary={messages.leaveText} />
           </MenuItem>
         )}
-        <MenuItem onClick={onClose}>
+        <MenuItem onClick={onCloseMenu}>
           <AppListItem icon="block" primary={messages.cancelText} color="grey" />
         </MenuItem>
       </Menu>
       {reporting && <Report id={goalId} type="goal" anchorEl={anchorEl} onClose={onCloseReport} />}
-      {sharing && <Share title={title} href={href} onClose={toggleSharing} />}
+      {sharing && <Share href={href} title={title} onClose={toggleSharing} />}
       {leaving && <LeaveModal clientOwnership={clientOwnership} onClose={toggleLeaving} />}
     </>
   )

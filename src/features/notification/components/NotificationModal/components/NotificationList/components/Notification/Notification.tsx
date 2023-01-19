@@ -1,7 +1,7 @@
 import dynamic from 'next/dynamic'
 import Link from 'next/link'
 import { Box, IconButton, Typography } from '@mui/material'
-import { getUserHref } from '@features/user'
+import { toHref } from '@features/user'
 import { NotificationDto } from '@features/notification/dto'
 import { getNotificationHref } from '@features/notification/helpers'
 import useClient from '@hooks/useClient'
@@ -32,7 +32,7 @@ function Notification({ notification, onClose }: NotificationProps) {
   const dateDistance = formatDistance(created)
   const { emoji, color } = getNotificationInfo(type)
   const notificationHref = getNotificationHref(notification, client)
-  const href = getUserHref(nickname)
+  const href = toHref(nickname)
   const detailsName = !details.name ? '' : toShortString(details.name, 40)
 
   const onView = () => mutate(id)

@@ -2,17 +2,15 @@ import { useContext } from 'react'
 import { SnackbarContext } from './context'
 import { SnackbarState } from './types'
 
-type UseSnackbarResult = [enqueue: (t: SnackbarState) => void, close: () => void]
-
-export const useSnackbar = (): UseSnackbarResult => {
+export const useSnackbar = () => {
   const { state, setState } = useContext(SnackbarContext)
 
-  function enqueueSnackbar(propsNew: SnackbarState) {
+  function enqueueSnackbar(values: SnackbarState) {
     state && setState(null)
-    setTimeout(() => setState(propsNew), 100)
+    setTimeout(() => setState(values), 300)
   }
 
   const closeSnackbar = () => setState(null)
 
-  return [enqueueSnackbar, closeSnackbar]
+  return { enqueueSnackbar, closeSnackbar } as const
 }

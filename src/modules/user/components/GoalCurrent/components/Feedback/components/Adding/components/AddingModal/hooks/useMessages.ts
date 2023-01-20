@@ -11,5 +11,6 @@ export const useMessages = () => {
     videoTitle: formatMessage({ id: 'page.user.modal-feedback.video-title' }),
     buttonText: formatMessage({ id: 'page.user.modal-feedback.button' }),
     loadingText: formatMessage({ id: 'page.user.modal-feedback.loading' }),
+    errorText: formatMessage({ id: 'common.error' }),
   }
 }

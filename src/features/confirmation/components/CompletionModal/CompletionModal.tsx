@@ -1,5 +1,5 @@
 import dynamic from 'next/dynamic'
-import { Field, FieldArray, Form, FormikProvider } from 'formik'
+import { ErrorMessage, Field, FieldArray, Form, FormikProvider } from 'formik'
 import { Grid, Box, Typography } from '@mui/material'
 import useSelectPhoto from '@hooks/useSelectPhoto'
 import AppModal from '@ui/AppModal'
@@ -25,8 +25,7 @@ interface CompletionModalProps {
 function CompletionModal({ onClose }: CompletionModalProps) {
   const messages = useMessages()
   const form = useForm(onClose)
-  const { isSubmitting, values, touched, errors, setFieldValue, handleSubmit } = form
-  const photoError = !Array.isArray(errors.photos) ? errors.photos : errors.photos.join(', ')
+  const { isSubmitting, values, setFieldValue, handleSubmit } = form
 
   const onSelectPhoto = useSelectPhoto(form)
 
@@ -104,11 +103,13 @@ function CompletionModal({ onClose }: CompletionModalProps) {
               <PhotoInput disabled={isSubmitting} multiple onSelect={onSelectPhoto} />
               <VideoInput disabled onSelect={onSelectVideo} />
             </Box>
-            {touched.photos && photoError && (
-              <Alert severity="error" variant="outlined" sx={{ width: '100%' }}>
-                {photoError}
-              </Alert>
-            )}
+            <ErrorMessage name="photos">
+              {(msg) => (
+                <Alert severity="error" variant="outlined" sx={{ width: '100%' }}>
+                  {msg}
+                </Alert>
+              )}
+            </ErrorMessage>
             <Box sx={{ width: '100%' }}>
               <AppAccordion
                 name="switch"

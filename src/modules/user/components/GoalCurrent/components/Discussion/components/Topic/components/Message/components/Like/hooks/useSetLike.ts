@@ -1,11 +1,11 @@
 import produce from 'immer'
 import { useIntl } from 'react-intl'
 import { InfiniteData, useMutation, useQueryClient } from 'react-query'
+import { useSnackbar } from '@features/snackbar'
 import { useMutateGoals } from '@modules/user/hooks'
 import { GoalDto } from '@features/goal'
 import { TopicService, MessageDto, MessageType, TopicDto } from '@features/topic'
 import { useOpenSignIn } from '@features/signin'
-import { useSnackbar } from '@features/snackbar'
 import useClient from '@hooks/useClient'
 
 export interface Options {
@@ -48,7 +48,7 @@ export const useSetLike = (message: MessageDto, answerFor?: number): [boolean, (
   const openSignIn = useOpenSignIn()
   const [goals, mutateGoals] = useMutateGoals()
   const queryClient = useQueryClient()
-  const [enqueueSnackbar] = useSnackbar()
+  const { enqueueSnackbar } = useSnackbar()
   const { isLoading, mutate } = useMutation(
     ({ add }: Options) => TopicService.updateLike(id, add),
     {
@@ -70,22 +70,14 @@ export const useSetLike = (message: MessageDto, answerFor?: number): [boolean, (
         const userMessage = userMessageTmpl.replace('$0', message.user.name)
 
         if (message.type === MessageType.Support) {
-          enqueueSnackbar({
-            message: userMessage,
-            severity: 'success',
-            icon: 'magic',
-          })
+          enqueueSnackbar({ message: userMessage, severity: 'success', icon: 'magic' })
         }
 
         const goalMessage = formatMessage({ id: 'page.user.like-button.goal-message' })
 
         if (answerFor) {
           mutateGoals(getGoalNextState(goals, goalId, add))
-          enqueueSnackbar({
-            message: goalMessage,
-            severity: 'success',
-            icon: 'magic',
-          })
+          enqueueSnackbar({ message: goalMessage, severity: 'success', icon: 'magic' })
         }
       },
       onError(_, _1, context) {

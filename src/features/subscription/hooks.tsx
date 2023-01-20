@@ -1,13 +1,13 @@
 import produce from 'immer'
 import { useMutation, useQueryClient } from 'react-query'
 import { useIntl } from 'react-intl'
+import { useSnackbar } from '@features/snackbar'
 import { Button } from '@mui/material'
 import { Route } from '@href'
 import { FollowingPageDto } from '@features/page'
 import { UserDto } from '@features/user'
 import { SubscriptionService } from '@features/subscription/service'
 import { useOpenSignIn } from '@features/signin'
-import { useSnackbar } from '@features/snackbar'
 import useClient from '@hooks/useClient'
 
 interface Options {
@@ -31,7 +31,7 @@ export const useRemoveFollowing = (): [boolean, (user: UserDto, index: number) =
   const { formatMessage } = useIntl()
   const openSignIn = useOpenSignIn()
   const queryClient = useQueryClient()
-  const [enqueueSnackbar, closeSnackbar] = useSnackbar()
+  const { enqueueSnackbar, closeSnackbar } = useSnackbar()
   const { isLoading, mutate } = useMutation(
     ({ user, insert }: Options) => SubscriptionService.update(user.id, insert),
     {
@@ -60,7 +60,6 @@ export const useRemoveFollowing = (): [boolean, (user: UserDto, index: number) =
                 {undoText}
               </Button>
             ),
-            icon: 'speaker',
           })
       },
       onError(_, _1, context) {

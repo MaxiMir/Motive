@@ -1,20 +1,20 @@
 import { useIntl } from 'react-intl'
 import { useMutation } from 'react-query'
+import { useSnackbar } from '@features/snackbar'
 import { ReportType } from '@features/report/dto'
 import { ReportService } from '@features/report/service'
 import { useOpenSignIn } from '@features/signin'
-import { useSnackbar } from '@features/snackbar'
 import useClient from '@hooks/useClient'
 
 export const useSendReport = (entityId: number, type: ReportType, onSettled: () => void) => {
   const { formatMessage } = useIntl()
   const client = useClient()
   const openSignIn = useOpenSignIn()
-  const [enqueueSnackbar] = useSnackbar()
+  const { enqueueSnackbar } = useSnackbar()
   const { mutate } = useMutation(ReportService.create, {
     onSuccess() {
       const message = formatMessage({ id: 'component.report.message' })
-      enqueueSnackbar({ message, severity: 'success', icon: 'speaker' })
+      enqueueSnackbar({ message, severity: 'success' })
     },
     onSettled,
   })

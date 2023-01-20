@@ -2,11 +2,11 @@ import produce from 'immer'
 import { useFormik } from 'formik'
 import { useIntl } from 'react-intl'
 import { useMutation } from 'react-query'
+import { useSnackbar } from '@features/snackbar'
 import { GoalDto } from '@features/goal'
 import { useMutateGoals } from '@modules/user/hooks'
 import { useGoalContext } from '@modules/user/components/GoalCurrent/hooks/useGoalContext'
 import { FeedbackDto, FeedbackService, feedbackSchema } from '@features/feedback'
-import { useSnackbar } from '@features/snackbar'
 
 const getNextState = (goals: GoalDto[], goalId: number, feedback: FeedbackDto) =>
   produce(goals, (draft) => {
@@ -23,7 +23,7 @@ interface Values {
 export const useForm = (onSuccess: () => void) => {
   const { id, day } = useGoalContext()
   const { formatMessage } = useIntl()
-  const [enqueueSnackbar] = useSnackbar()
+  const { enqueueSnackbar } = useSnackbar()
   const [goals, mutateGoals] = useMutateGoals()
   const { mutateAsync } = useMutation(FeedbackService.create, {
     onSuccess: (feedback) => {
@@ -46,7 +46,7 @@ export const useForm = (onSuccess: () => void) => {
       formData.append('dayId', day.id.toString())
       formData.append('text', data.text.trim())
       data.photos.forEach((photo) => formData.append('photos', photo))
-      await mutateAsync(formData)
+      await mutateAsync(formData).catch(() => false)
     },
   })
 }

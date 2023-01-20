@@ -1,13 +1,13 @@
 import produce from 'immer'
 import { useMutation, useQueryClient } from 'react-query'
 import { useIntl } from 'react-intl'
+import { useSnackbar } from '@features/snackbar'
 import { useUserContext } from '@modules/user/hooks'
 import { useGoalContext } from '@modules/user/components/GoalCurrent/hooks/useGoalContext'
 import { UserPageDto } from '@features/page'
 import { GoalService } from '@features/goal'
 import { DayCharacteristicName, DayCharacteristicUpdateDto } from '@features/day'
 import { useOpenSignIn } from '@features/signin'
-import { useSnackbar } from '@features/snackbar'
 import useClient from '@hooks/useClient'
 
 const getNextState = (page: UserPageDto, { id, dayId, add, name }: DayCharacteristicUpdateDto) =>
@@ -36,7 +36,7 @@ export const useSetReaction = (
   const openSignIn = useOpenSignIn()
   const queryClient = useQueryClient()
   const { nickname } = useUserContext()
-  const [enqueueSnackbar] = useSnackbar()
+  const { enqueueSnackbar } = useSnackbar()
   const { isLoading, mutate } = useMutation(GoalService.updateCharacteristic, {
     async onMutate(options) {
       await queryClient.cancelQueries(['page', nickname])

@@ -3,17 +3,17 @@ import { useRouter } from 'next/router'
 import { useQueryClient } from 'react-query'
 import { useIntl } from 'react-intl'
 import { io } from 'socket.io-client'
+import { useSnackbar } from '@features/snackbar'
 import { getImageSrc } from '@href'
 import { NotificationDto, getNotificationHref } from '@features/notification'
 import { useDeviceContext } from '@features/device'
-import { useSnackbar } from '@features/snackbar'
 import useClient from '@hooks/useClient'
 
 export const useSocket = () => {
   const { formatMessage } = useIntl()
   const client = useClient()
   const { push } = useRouter()
-  const [enqueueSnackbar] = useSnackbar()
+  const { enqueueSnackbar } = useSnackbar()
   const queryClient = useQueryClient()
   const device = useDeviceContext()
 
@@ -46,13 +46,12 @@ export const useSocket = () => {
         const tag = id.toString()
         const body = formatMessage({ id: `component.notification.${type}` })
         const notificator = new Notification(name, { tag, body, icon })
-        notificator.addEventListener('click', () => {
-          push(notificationHref)
-        })
+        notificator.addEventListener('click', () => push(notificationHref))
       })
     })
+
     return () => {
       socket.close()
     }
-  }, [queryClient])
+  }, [device, queryClient])
 }

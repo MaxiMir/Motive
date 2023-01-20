@@ -3,22 +3,22 @@ import { useRouter } from 'next/router'
 import Script from 'next/script'
 import { AppProps } from 'next/app'
 import { SessionProvider } from 'next-auth/react'
-import { Hydrate, QueryClientProvider } from 'react-query'
+import { Hydrate } from 'react-query'
 import NextNprogress from 'nextjs-progressbar'
 import { IntlProvider } from 'react-intl'
 import { Locale as FnsLocale } from 'date-fns'
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns'
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider'
 import CssBaseline from '@mui/material/CssBaseline'
-import SnackbarProvider from '@features/snackbar'
 import SignInProvider from '@features/signin'
 import ThemeProvider from '@features/theme'
 import { Locale } from '@features/locale'
 import { DeviceContext } from '@features/device'
+import SnackbarProvider from '@features/snackbar'
 import { getLocaleFolder } from '@lib/date'
 import { makeMapLoader } from '@helpers/iterable'
 import EventSocket from '@components/EventSocket'
-import { useQueryClient } from '@hooks/useQueryClient'
+import CacheProvider from '@components/CacheProvider'
 
 const messagesLoader = makeMapLoader<Record<string, string>>()
 const adapterLocaleLoader = makeMapLoader<FnsLocale>()
@@ -33,13 +33,12 @@ function App({
   const adapterLocale = use(
     adapterLocaleLoader(locale, () => import(`date-fns/locale/${folder}/index.js`)),
   )
-  const queryClient = useQueryClient(messages['common.error'])
 
   return (
     <IntlProvider locale={locale} messages={messages}>
       <SessionProvider session={session} refetchOnWindowFocus>
         <SnackbarProvider>
-          <QueryClientProvider client={queryClient}>
+          <CacheProvider message={messages['common.error']}>
             <Hydrate state={dehydratedState}>
               <DeviceContext.Provider value={device?.type}>
                 <LocalizationProvider dateAdapter={AdapterDateFns} adapterLocale={adapterLocale}>
@@ -51,11 +50,11 @@ function App({
                       />
                       <Script id="google-analytics" strategy="afterInteractive">
                         {`
-                            window.dataLayer = window.dataLayer || [];
-                            function gtag(){window.dataLayer.push(arguments);}
-                            gtag('js', new Date());
-                            gtag('config', '${process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS}');
-                          `}
+                          window.dataLayer = window.dataLayer || [];
+                          function gtag(){window.dataLayer.push(arguments);}
+                          gtag('js', new Date());
+                          gtag('config', '${process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS}');
+                        `}
                       </Script>
                       <NextNprogress color="#7638fa" options={{ showSpinner: false }} />
                       <CssBaseline />
@@ -66,7 +65,7 @@ function App({
                 </LocalizationProvider>
               </DeviceContext.Provider>
             </Hydrate>
-          </QueryClientProvider>
+          </CacheProvider>
         </SnackbarProvider>
       </SessionProvider>
     </IntlProvider>

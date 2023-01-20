@@ -2,13 +2,13 @@ import produce from 'immer'
 import { useIntl } from 'react-intl'
 import { useFormik } from 'formik'
 import { useMutation } from 'react-query'
+import { useSnackbar } from '@features/snackbar'
 import { getTomorrowISO } from '@lib/date'
 import { useChangeDayUrl, useMutateGoals } from '@modules/user/hooks'
 import { useGoalContext } from '@modules/user/components/GoalCurrent/hooks/useGoalContext'
 import { tasksSchema } from '@features/task'
 import { GoalDto, GoalService } from '@features/goal'
 import { CreateDayDto, DayDto } from '@features/day'
-import { useSnackbar } from '@features/snackbar'
 
 const getNextState = (goals: GoalDto[], id: number, day: DayDto) =>
   produce(goals, (draft) => {
@@ -20,7 +20,7 @@ const getNextState = (goals: GoalDto[], id: number, day: DayDto) =>
 export const useForm = (onSuccess: () => void) => {
   const { formatMessage } = useIntl()
   const { id } = useGoalContext()
-  const [enqueueSnackbar] = useSnackbar()
+  const { enqueueSnackbar } = useSnackbar()
   const [goals, mutateGoals] = useMutateGoals()
   const changeDayUrl = useChangeDayUrl()
   const { mutateAsync } = useMutation(GoalService.createDay, {
@@ -29,7 +29,7 @@ export const useForm = (onSuccess: () => void) => {
       const message = formatMessage({ id: 'common.next-day-loading' })
       mutateGoals(getNextState(goals, id, day))
       changeDayUrl(goals, id, day.id)
-      enqueueSnackbar({ message, severity: 'success', icon: 'speaker' })
+      enqueueSnackbar({ message, severity: 'success' })
       onSuccess()
     },
   })

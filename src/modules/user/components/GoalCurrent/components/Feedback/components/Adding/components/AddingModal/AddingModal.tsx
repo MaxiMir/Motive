@@ -14,14 +14,14 @@ import VideoInput from '@components/Video/VideoInput/VideoInput'
 import { useMessages } from './hooks/useMessages'
 import { useForm } from './hooks/useForm'
 
-interface FeedbackModalProps {
+interface AddingModalProps {
   onClose: () => void
 }
 
-function ModalFeedback({ onClose }: FeedbackModalProps) {
+function AddingModal({ onClose }: AddingModalProps) {
   const messages = useMessages()
   const form = useForm(onClose)
-  const { isSubmitting, values, setFieldValue, handleSubmit } = form
+  const { isSubmitting, values, setFieldValue, submitForm } = form
 
   const onSelectPhoto = useSelectPhoto(form)
 
@@ -39,7 +39,7 @@ function ModalFeedback({ onClose }: FeedbackModalProps) {
           loadingText={messages.loadingText}
           emoji="feedback"
           key="submit"
-          onClick={handleSubmit}
+          onClick={submitForm}
         />,
       ]}
       onClose={onClose}
@@ -106,4 +106,4 @@ function ModalFeedback({ onClose }: FeedbackModalProps) {
   )
 }
 
-export default ModalFeedback
+export default AddingModal

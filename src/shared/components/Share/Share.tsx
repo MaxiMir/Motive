@@ -12,7 +12,7 @@ interface ShareProps {
 
 function Share({ href, title, onClose }: ShareProps) {
   const messages = useMessages()
-  const [enqueueSnackbar] = useSnackbar()
+  const { enqueueSnackbar } = useSnackbar()
   const url = process.env.NEXT_PUBLIC_APP_URL + href
 
   const onCopyEnd = () => {
@@ -20,7 +20,7 @@ function Share({ href, title, onClose }: ShareProps) {
   }
 
   const onCopyError = () => {
-    enqueueSnackbar({ message: messages.error, severity: 'error' })
+    enqueueSnackbar({ message: messages.error, severity: 'error', icon: 'error' })
   }
 
   return (

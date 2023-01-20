@@ -34,8 +34,8 @@ function Page({
   children,
 }: PageProps) {
   const { locale } = useIntl()
-  const device = useDeviceContext()
   const { asPath } = useRouter()
+  const device = useDeviceContext()
   const fetchingNumber = useIsFetching({ queryKey: ['page'] })
   const localeHrefList = getLocaleHrefList(asPath)
   const url = localeHrefList[locale]

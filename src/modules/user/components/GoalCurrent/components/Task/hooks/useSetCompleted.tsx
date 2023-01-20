@@ -83,7 +83,7 @@ export const useSetCompleted = (
       severity: 'success',
       icon: !newRest ? 'motivation-tech' : 'energy',
       action: (
-        <Button variant="outlined" onClick={onUndo}>
+        <Button variant="text" sx={{ color: 'error.dark' }} onClick={onUndo}>
           {undoText}
         </Button>
       ),

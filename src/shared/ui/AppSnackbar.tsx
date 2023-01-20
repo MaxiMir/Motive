@@ -35,8 +35,8 @@ function AppSnackbar({ severity, icon, message, onClose, ...props }: AppSnackbar
         [`& .${alertClasses.standardSuccess}`]: {
           backgroundColor: teal[900],
         },
-        [`& .${alertClasses.message}`]: {
-          lineHeight: 1.9,
+        [`& .${alertClasses.action}`]: {
+          alignItems: 'center',
         },
         bottom: {
           xs: 80,

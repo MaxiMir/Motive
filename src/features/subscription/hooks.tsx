@@ -56,7 +56,7 @@ export const useRemoveFollowing = (): [boolean, (user: UserDto, index: number) =
             message,
             severity: 'success',
             action: (
-              <Button variant="outlined" color="primary" onClick={onClick}>
+              <Button variant="text" sx={{ color: 'error.dark' }} onClick={onClick}>
                 {undoText}
               </Button>
             ),

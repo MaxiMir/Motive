@@ -31,7 +31,7 @@ export const useSetFollowing = (userId: number, following: boolean): [boolean, (
         const operation = insert ? 'add' : 'remove'
         const message = formatMessage({ id: `page.user.following.message-${operation}` })
         mutatePage(getNextState(page, insert))
-        enqueueSnackbar({ message, severity: 'success' })
+        enqueueSnackbar({ message, severity: 'success', icon: 'speaker' })
       },
     },
   )

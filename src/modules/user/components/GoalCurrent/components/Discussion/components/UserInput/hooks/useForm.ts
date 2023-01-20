@@ -16,7 +16,7 @@ export const useForm = (
   const { mutateAsync } = useMutation(TopicService.create, {
     onSuccess() {
       const message = formatMessage({ id: `page.user.user-input.message-${type}` })
-      enqueueSnackbar({ message, severity: 'success' })
+      enqueueSnackbar({ message, severity: 'success', icon: 'speaker' })
     },
   })
 

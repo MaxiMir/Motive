@@ -37,7 +37,7 @@ export const useSendRemoveMember = (goalId: number, clientPage: boolean) => {
         nickname,
         (page) => page && getNextState(page, goalId, id, clientPage),
       )
-      enqueueSnackbar({ message, severity: 'success' })
+      enqueueSnackbar({ message, severity: 'success', icon: 'speaker' })
     },
   })
 }

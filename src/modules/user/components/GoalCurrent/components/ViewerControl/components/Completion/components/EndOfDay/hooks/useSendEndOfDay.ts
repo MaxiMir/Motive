@@ -29,7 +29,7 @@ export const useSendEndOfDay = () => {
       const message = formatMessage({ id: 'common.next-day-loading' })
       mutatePage(getNextState(page, member))
       setTimeout(() => clickOnElem(`next-${id}`), 1)
-      enqueueSnackbar({ message, severity: 'success' })
+      enqueueSnackbar({ message, severity: 'success', icon: 'speaker' })
     },
   })
 }

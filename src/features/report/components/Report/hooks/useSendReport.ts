@@ -14,7 +14,7 @@ export const useSendReport = (entityId: number, type: ReportType, onSettled: () 
   const { mutate } = useMutation(ReportService.create, {
     onSuccess() {
       const message = formatMessage({ id: 'component.report.message' })
-      enqueueSnackbar({ message, severity: 'success' })
+      enqueueSnackbar({ message, severity: 'success', icon: 'speaker' })
     },
     onSettled,
   })

@@ -29,7 +29,7 @@ export const useForm = (onSuccess: () => void) => {
       const message = formatMessage({ id: 'common.next-day-loading' })
       mutateGoals(getNextState(goals, id, day))
       changeDayUrl(goals, id, day.id)
-      enqueueSnackbar({ message, severity: 'success' })
+      enqueueSnackbar({ message, severity: 'success', icon: 'speaker' })
       onSuccess()
     },
   })

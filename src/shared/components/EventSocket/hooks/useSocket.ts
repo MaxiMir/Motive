@@ -29,6 +29,7 @@ export const useSocket = () => {
       },
       secure: true,
     })
+
     socket.on('notification', (notification: NotificationDto) => {
       const { id, type, details } = notification
       const message = formatMessage({ id: 'common.new-event' })

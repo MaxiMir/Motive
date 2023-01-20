@@ -21,7 +21,7 @@ export const useSocket = () => {
     if (!client) {
       return () => false
     }
-
+    console.log('🚨')
     const socket = io(process.env.NEXT_PUBLIC_APP_URL || '', {
       auth: {
         id: client.id,

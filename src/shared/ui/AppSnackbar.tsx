@@ -16,7 +16,7 @@ export interface AppSnackbarProps {
   onClose: () => void
 }
 
-function AppSnackbar({ severity, icon = 'speaker', message, onClose, ...props }: AppSnackbarProps) {
+function AppSnackbar({ severity, icon, message, onClose, ...props }: AppSnackbarProps) {
   const handleClose = (_event: SyntheticEvent | Event, reason: SnackbarCloseReason) => {
     if (reason === 'clickaway') return
 
@@ -26,7 +26,7 @@ function AppSnackbar({ severity, icon = 'speaker', message, onClose, ...props }:
   return (
     <Snackbar
       open
-      autoHideDuration={5000}
+      autoHideDuration={3000}
       anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }}
       sx={{
         [`& .${alertClasses.root}`]: {

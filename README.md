@@ -1,4 +1,5 @@
 [//]: # (TODO)
+* Stack + user in notification
 * Scroll to up
 * Modal External Links
 * Show more in description

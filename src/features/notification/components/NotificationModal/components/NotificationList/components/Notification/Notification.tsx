@@ -9,7 +9,7 @@ import useFormatDistance from '@hooks/useFormatDistance'
 import { toShortString } from '@helpers/string'
 import AppEmoji from '@ui/AppEmoji'
 import AppIcon from '@ui/AppIcon'
-import UserLink from '@components/User/UserLink'
+import AvatarStatus from '@components/Avatar/AvatarStatus'
 import TooltipArrow from '@ui/styled/TooltipArrow'
 import { useMessages } from './hooks/useMessages'
 import { useUpdateRead } from './hooks/useUpdateRead'
@@ -40,7 +40,9 @@ function Notification({ notification, onClose }: NotificationProps) {
   return (
     <Box display="flex" gap={2}>
       <Box height={55} position="relative">
-        <UserLink name={name} avatar={avatar} href={href} size={55} onClick={onClose} />
+        <Link href={href} title={name} onClick={onClose}>
+          <AvatarStatus src={avatar} name={name} size={55} />
+        </Link>
         <Box
           display="flex"
           justifyContent="center"

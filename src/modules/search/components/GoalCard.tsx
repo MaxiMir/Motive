@@ -1,9 +1,10 @@
+import Link from 'next/link'
 import { Box, Button, Typography } from '@mui/material'
 import { toHref } from '@features/user'
 import { GoalDto } from '@features/goal'
 import { MAIN_CHARACTERISTICS } from '@features/characteristic'
 import CharacteristicGoal from '@components/Characteristic/CharacteristicGoal'
-import UserLink from '@components/User/UserLink'
+import AvatarStatus from '@components/Avatar/AvatarStatus'
 
 interface GoalCardProps {
   goal: GoalDto
@@ -31,7 +32,9 @@ function GoalCard({ goal }: GoalCardProps) {
           <Typography variant="caption">Completed: +</Typography>
         </Box>
         <Box display="flex" alignItems="center" gap={1}>
-          <UserLink name={ownerName} avatar={avatar} href={href} />
+          <Link href={href} title={ownerName}>
+            <AvatarStatus src={avatar} name={ownerName} size={26} />
+          </Link>
           <Typography variant="caption">{owner.name}</Typography>
         </Box>
         <Box display="flex" justifyContent="space-between" alignItems="center">

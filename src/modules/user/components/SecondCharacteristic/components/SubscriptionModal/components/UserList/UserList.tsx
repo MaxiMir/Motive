@@ -1,6 +1,6 @@
 import { UserDto } from '@features/user'
 import AppList from '@ui/AppList'
-import UserCharacteristic from '@components/User/UserCharacteristic'
+import UserRow from './components/UserRow'
 
 interface UserListProps {
   users: UserDto[]
@@ -16,12 +16,7 @@ function UserList({ users, checkOnLoadMore, onView, onClose }: UserListProps) {
       gap={2}
       keyGetter={(user) => user.id}
       render={(user, index) => (
-        <UserCharacteristic
-          user={user}
-          inView={checkOnLoadMore(index)}
-          onView={onView}
-          onClose={onClose}
-        />
+        <UserRow user={user} inView={checkOnLoadMore(index)} onView={onView} onClose={onClose} />
       )}
     />
   )

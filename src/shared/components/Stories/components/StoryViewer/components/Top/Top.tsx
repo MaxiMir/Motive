@@ -3,7 +3,7 @@ import { Box, IconButton, Typography } from '@mui/material'
 import { UserBaseDto, toHref } from '@features/user'
 import useFormatDistance from '@hooks/useFormatDistance'
 import AppIcon from '@ui/AppIcon'
-import UserLink from '@components/User/UserLink'
+import AvatarStatus from '@components/Avatar/AvatarStatus'
 import { useMessages } from './hooks/useMessages'
 
 interface TopProps {
@@ -32,7 +32,9 @@ function Top({ user, title, date, onClose }: TopProps): JSX.Element {
       })}
     >
       <Box display="flex" alignItems="center" gap={2}>
-        <UserLink name={name} avatar={avatar} href={href} size={42} />
+        <Link href={href} title={name}>
+          <AvatarStatus src={avatar} name={name} size={42} />
+        </Link>
         <Box display="flex" flexDirection="column">
           <Box display="flex" alignItems="flex-end" gap={0.5}>
             <Typography

@@ -3,7 +3,7 @@ import { Box, InputAdornment } from '@mui/material'
 import AppModal from '@ui/AppModal'
 import AppInput from '@ui/AppInput'
 import ActionSubmit from '@components/Action/ActionSubmit'
-import ActionCancel from '@components/Action/ActionCancel/ActionCancel'
+import ActionCancel from '@components/Action/ActionCancel'
 import { useMessages } from './hooks/useMessages'
 import { useForm } from './hooks/useForm'
 

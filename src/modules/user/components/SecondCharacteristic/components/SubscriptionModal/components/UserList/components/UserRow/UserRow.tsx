@@ -4,35 +4,29 @@ import { Box, Typography } from '@mui/material'
 import { UserDto, toHref } from '@features/user'
 import { MAIN_CHARACTERISTICS, SecondCharacteristicName } from '@features/characteristic'
 import CharacteristicUser from '@components/Characteristic/CharacteristicUser'
-import UserLink from './UserLink'
+import AvatarStatus from '@components/Avatar/AvatarStatus'
 
 const AppInView = dynamic(() => import('@ui/AppInView'))
 
 const CHARACTERISTICS = [...MAIN_CHARACTERISTICS, SecondCharacteristicName.Completed]
 
-interface UserCharacteristicProps {
+interface UserRowProps {
   user: UserDto
-  inView?: boolean
-  menu?: JSX.Element
-  onView?: () => void
-  onClose?: () => void
+  inView: boolean
+  onView: () => void
+  onClose: () => void
 }
 
-function UserCharacteristic({ user, inView, menu, onView, onClose }: UserCharacteristicProps) {
+function UserRow({ user, inView, onView, onClose }: UserRowProps) {
   const { nickname, name, avatar, characteristic, online } = user
   const href = toHref(nickname)
 
   return (
     <>
-      <Box display="flex" alignItems="center" gap={2} height={60}>
-        <UserLink
-          name={name}
-          avatar={avatar}
-          href={href}
-          online={online}
-          size={55}
-          onClick={onClose}
-        />
+      <Box display="flex" alignItems="center" gap={2}>
+        <Link href={href} title={name} onClick={onClose}>
+          <AvatarStatus src={avatar} name={name} online={online} size={55} />
+        </Link>
         <Box display="flex" flexDirection="column" justifyContent="space-between" flex={1}>
           <Typography variant="subtitle1" component="span">
             <Link href={href} onClick={onClose}>
@@ -49,11 +43,10 @@ function UserCharacteristic({ user, inView, menu, onView, onClose }: UserCharact
             ))}
           </Box>
         </Box>
-        {menu}
       </Box>
       {onView && <>{inView && <AppInView onView={onView} />}</>}
     </>
   )
 }
 
-export default UserCharacteristic
+export default UserRow

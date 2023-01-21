@@ -1,7 +1,7 @@
 import Image, { ImageProps } from 'next/image'
 import { Box, IconButton, Typography } from '@mui/material'
-import { copyText } from '@helpers/navigator'
 import { useSnackbar } from '@features/snackbar'
+import { copyText } from '@helpers/navigator'
 import AppIcon from '@ui/AppIcon'
 import TooltipArrow from '@ui/styled/TooltipArrow'
 import { useMessages } from './hooks/useMessages'
@@ -14,14 +14,14 @@ interface WalletProps {
 
 function Wallet({ name, wallet, src }: WalletProps) {
   const messages = useMessages()
-  const [enqueueSnackbar] = useSnackbar()
+  const { enqueueSnackbar } = useSnackbar()
 
   const onSuccess = () => {
     enqueueSnackbar({ message: messages.copiedText, severity: 'success', icon: 'keyboard' })
   }
 
   const onError = () => {
-    enqueueSnackbar({ message: messages.errorText, severity: 'error' })
+    enqueueSnackbar({ message: messages.errorText, severity: 'error', icon: 'error' })
   }
 
   const onClick = () => copyText(wallet).then(onSuccess).catch(onError)

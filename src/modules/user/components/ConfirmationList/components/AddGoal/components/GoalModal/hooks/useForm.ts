@@ -2,10 +2,10 @@ import produce from 'immer'
 import { useIntl } from 'react-intl'
 import { useMutation } from 'react-query'
 import { useFormik } from 'formik'
+import { useSnackbar } from '@features/snackbar'
 import { getMidnightISO } from '@lib/date'
 import { useMutateGoals } from '@modules/user/hooks'
 import { CreatedGoal, CreateGoalDto, GoalDto, GoalService, goalSchema } from '@features/goal'
-import { useSnackbar } from '@features/snackbar'
 import { scrollToElem } from '@helpers/document'
 
 const getNextState = (goals: GoalDto[], goal: CreatedGoal) =>
@@ -15,7 +15,7 @@ const getNextState = (goals: GoalDto[], goal: CreatedGoal) =>
 
 export const useForm = (onSuccess: () => void) => {
   const { formatMessage } = useIntl()
-  const [enqueueSnackbar] = useSnackbar()
+  const { enqueueSnackbar } = useSnackbar()
   const [goals, mutateGoal] = useMutateGoals()
   const { mutateAsync } = useMutation(GoalService.create, {
     onSuccess(goal) {

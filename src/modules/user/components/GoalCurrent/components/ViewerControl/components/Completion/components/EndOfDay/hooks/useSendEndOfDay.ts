@@ -1,12 +1,12 @@
 import produce, { Draft } from 'immer'
 import { useIntl } from 'react-intl'
 import { useMutation } from 'react-query'
+import { useSnackbar } from '@features/snackbar'
 import { clickOnElem } from '@helpers/document'
 import { useMutateUserPage } from '@modules/user/hooks'
 import { useGoalContext } from '@modules/user/components/GoalCurrent/hooks/useGoalContext'
 import { UserPageDto } from '@features/page'
 import { MemberDto, MemberService } from '@features/member'
-import { useSnackbar } from '@features/snackbar'
 
 const getNextState = (page: UserPageDto, member: MemberDto) =>
   produce(page, (draft: Draft<UserPageDto>) => {
@@ -21,7 +21,7 @@ const getNextState = (page: UserPageDto, member: MemberDto) =>
 export const useSendEndOfDay = () => {
   const { id } = useGoalContext()
   const { formatMessage } = useIntl()
-  const [enqueueSnackbar] = useSnackbar()
+  const { enqueueSnackbar } = useSnackbar()
   const [page, mutatePage] = useMutateUserPage()
 
   return useMutation(MemberService.update, {

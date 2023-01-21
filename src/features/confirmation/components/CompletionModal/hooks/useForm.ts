@@ -2,12 +2,12 @@ import { useIntl } from 'react-intl'
 import { useMutation } from 'react-query'
 import { formatISO } from 'date-fns'
 import { useFormik } from 'formik'
+import { useSnackbar } from '@features/snackbar'
 import { getMidnight } from '@lib/date'
 import { useUserPage } from '@modules/user/hooks'
 import { useGoalContext } from '@modules/user/components/GoalCurrent/hooks/useGoalContext'
 import { confirmationSchema } from '@features/confirmation/schema'
 import { ConfirmationService } from '@features/confirmation/service'
-import { useSnackbar } from '@features/snackbar'
 import { scrollToElem } from '@helpers/document'
 
 interface Values {
@@ -22,7 +22,7 @@ export const useForm = (onSuccess: () => void) => {
   const { formatMessage } = useIntl()
   const { id } = useGoalContext()
   const { refetch } = useUserPage()
-  const [enqueueSnackbar] = useSnackbar()
+  const { enqueueSnackbar } = useSnackbar()
   const { mutateAsync } = useMutation(ConfirmationService.create, {
     onSuccess() {
       const message = formatMessage({ id: 'component.modal-completion.message' })

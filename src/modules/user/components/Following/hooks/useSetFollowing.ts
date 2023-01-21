@@ -1,11 +1,11 @@
 import produce from 'immer'
 import { useIntl } from 'react-intl'
 import { useMutation } from 'react-query'
+import { useSnackbar } from '@features/snackbar'
 import { useMutateUserPage } from '@modules/user/hooks'
 import { UserPageDto } from '@features/page'
 import { SubscriptionService } from '@features/subscription'
 import { useOpenSignIn } from '@features/signin'
-import { useSnackbar } from '@features/snackbar'
 import useClient from '@hooks/useClient'
 
 const getNextState = (page: UserPageDto, following: boolean) =>
@@ -23,7 +23,7 @@ export const useSetFollowing = (userId: number, following: boolean): [boolean, (
   const client = useClient()
   const openSignIn = useOpenSignIn()
   const [page, mutatePage] = useMutateUserPage()
-  const [enqueueSnackbar] = useSnackbar()
+  const { enqueueSnackbar } = useSnackbar()
   const { isLoading, mutate } = useMutation(
     ({ insert }: Options) => SubscriptionService.update(userId, insert),
     {

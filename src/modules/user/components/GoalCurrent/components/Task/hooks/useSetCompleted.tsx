@@ -3,11 +3,11 @@ import dynamic from 'next/dynamic'
 import produce from 'immer'
 import { useIntl } from 'react-intl'
 import { useMutation } from 'react-query'
+import { useSnackbar } from '@features/snackbar'
 import { useMutateUserPage } from '@modules/user/hooks'
 import { UserPageDto } from '@features/page'
 import { MemberDto } from '@features/member'
 import { TaskService } from '@features/task'
-import { useSnackbar } from '@features/snackbar'
 import useClient from '@hooks/useClient'
 
 const Button = dynamic(() => import('@mui/material/Button'))
@@ -48,7 +48,7 @@ export const useSetCompleted = (
   const timerRef = useRef<NodeJS.Timeout>()
   const { formatMessage } = useIntl()
   const client = useClient()
-  const [enqueueSnackbar, closeSnackbar] = useSnackbar()
+  const { enqueueSnackbar, closeSnackbar } = useSnackbar()
   const [page, mutatePage] = useMutateUserPage()
   const { mutate } = useMutation(TaskService.updateCompleted, {
     onError() {
@@ -83,7 +83,7 @@ export const useSetCompleted = (
       severity: 'success',
       icon: !newRest ? 'motivation-tech' : 'energy',
       action: (
-        <Button variant="outlined" onClick={onUndo}>
+        <Button variant="text" sx={{ color: 'error.dark' }} onClick={onUndo}>
           {undoText}
         </Button>
       ),

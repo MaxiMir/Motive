@@ -1,10 +1,10 @@
 import produce, { Draft } from 'immer'
 import { useIntl } from 'react-intl'
 import { useMutation, useQueryClient } from 'react-query'
+import { useSnackbar } from '@features/snackbar'
 import { useUserContext } from '@modules/user/hooks'
 import { UserPageDto } from '@features/page'
 import { MemberService } from '@features/member'
-import { useSnackbar } from '@features/snackbar'
 import useClient from '@hooks/useClient'
 
 const getNextState = (page: UserPageDto, goalId: number, memberId: number, clientPage: boolean) =>
@@ -26,7 +26,7 @@ export const useSendRemoveMember = (goalId: number, clientPage: boolean) => {
   const client = useClient()
   const { nickname } = useUserContext()
   const queryClient = useQueryClient()
-  const [enqueueSnackbar] = useSnackbar()
+  const { enqueueSnackbar } = useSnackbar()
 
   return useMutation(MemberService.delete, {
     onSuccess(_, id) {

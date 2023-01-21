@@ -5,13 +5,13 @@ import AppIcon from '@ui/AppIcon'
 import TooltipArrow from '@ui/styled/TooltipArrow'
 import { useMessages } from './hooks/useMessages'
 
-const FeedbackModal = dynamic(() => import('./components/FeedbackModal'))
+const AddingModal = dynamic(() => import('./components/AddingModal'))
 
-interface FeedbackAddProps {
+interface AddingProps {
   forTomorrow: boolean
 }
 
-function FeedbackAdd({ forTomorrow }: FeedbackAddProps) {
+function Adding({ forTomorrow }: AddingProps) {
   const messages = useMessages(forTomorrow)
   const [open, toggle] = useToggle()
 
@@ -31,9 +31,9 @@ function FeedbackAdd({ forTomorrow }: FeedbackAddProps) {
           {messages.buttonText}
         </Button>
       </TooltipArrow>
-      {open && <FeedbackModal onClose={toggle} />}
+      {open && <AddingModal onClose={toggle} />}
     </>
   )
 }
 
-export default FeedbackAdd
+export default Adding

@@ -4,7 +4,7 @@ import { OwnershipDto } from '@features/member'
 
 const Content = dynamic(() => import('./components/Content'))
 const Soon = dynamic(() => import('./components/Soon'))
-const FeedbackAdd = dynamic(() => import('./components/FeedbackAdd'))
+const Adding = dynamic(() => import('./components/Adding'))
 
 interface FeedbackProps {
   forTomorrow: boolean
@@ -19,7 +19,7 @@ function Feedback({ forTomorrow, clientOwnership }: FeedbackProps) {
       {day.feedback ? (
         <Content feedback={day.feedback} />
       ) : (
-        <>{!clientOwnership.goal ? <Soon /> : <FeedbackAdd forTomorrow={forTomorrow} />}</>
+        <>{!clientOwnership.goal ? <Soon /> : <Adding forTomorrow={forTomorrow} />}</>
       )}
     </>
   )

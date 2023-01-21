@@ -1,11 +1,6 @@
-import { MutableRefObject, useRef } from 'react'
+import { useRef } from 'react'
 
-type UseFocusResult = [
-  hashtagsRef: MutableRefObject<HTMLInputElement | null>,
-  setHashtagsFocus: () => void,
-]
-
-const useFocus = (): UseFocusResult => {
+const useFocus = () => {
   const htmlElRef = useRef<HTMLInputElement | null>(null)
 
   const setFocus = () => {
@@ -14,7 +9,7 @@ const useFocus = (): UseFocusResult => {
     htmlElRef.current?.setSelectionRange(length, length)
   }
 
-  return [htmlElRef, setFocus]
+  return [htmlElRef, setFocus] as const
 }
 
 export default useFocus

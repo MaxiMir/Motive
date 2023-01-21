@@ -17,8 +17,6 @@ export interface AppSnackbarProps {
 }
 
 function AppSnackbar({ severity, icon, message, onClose, ...props }: AppSnackbarProps) {
-  const iconFinal = severity === 'error' ? 'error' : icon
-
   const handleClose = (_event: SyntheticEvent | Event, reason: SnackbarCloseReason) => {
     if (reason === 'clickaway') return
 
@@ -32,11 +30,13 @@ function AppSnackbar({ severity, icon, message, onClose, ...props }: AppSnackbar
       anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }}
       sx={{
         [`& .${alertClasses.root}`]: {
-          backgroundColor: severity === 'success' ? teal[900] : undefined,
           color: 'common.white',
         },
-        [`& .${alertClasses.message}`]: {
-          lineHeight: 1.9,
+        [`& .${alertClasses.standardSuccess}`]: {
+          backgroundColor: teal[900],
+        },
+        [`& .${alertClasses.action}`]: {
+          alignItems: 'center',
         },
         bottom: {
           xs: 80,
@@ -46,11 +46,7 @@ function AppSnackbar({ severity, icon, message, onClose, ...props }: AppSnackbar
       TransitionComponent={Fade}
       onClose={handleClose}
     >
-      <Alert
-        icon={iconFinal && <AppEmoji name={iconFinal} onlyEmoji />}
-        severity={severity}
-        {...props}
-      >
+      <Alert icon={icon && <AppEmoji name={icon} onlyEmoji />} severity={severity} {...props}>
         {message}
       </Alert>
     </Snackbar>

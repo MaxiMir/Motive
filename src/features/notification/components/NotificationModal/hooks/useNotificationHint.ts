@@ -1,8 +1,6 @@
 import { useState } from 'react'
 
-type UseNotificationHintResult = [show: boolean, onClose: () => void]
-
-export const useNotificationHint = (): UseNotificationHintResult => {
+export const useNotificationHint = () => {
   const notificationSupport = 'Notification' in window
   const [show, setShow] = useState(notificationSupport && Notification.permission === 'default')
 
@@ -21,5 +19,5 @@ export const useNotificationHint = (): UseNotificationHintResult => {
     Notification.requestPermission().then(onFulfilled)
   }
 
-  return [show, onClick]
+  return [show, onClick] as const
 }

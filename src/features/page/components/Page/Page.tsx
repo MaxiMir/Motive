@@ -9,7 +9,7 @@ import { getLocaleHrefList } from '@features/locale'
 import { useDeviceContext } from '@features/device'
 import { OGType } from '@features/page/dto'
 
-const CircularProgress = dynamic(() => import('@mui/material/CircularProgress'))
+const Loader = dynamic(() => import('./components/Loader'))
 const Header = dynamic(() => import('./components/Header'))
 const Footer = dynamic(() => import('./components/Footer'))
 const Navigation = dynamic(() => import('./components/Navigation'))
@@ -34,8 +34,8 @@ function Page({
   children,
 }: PageProps) {
   const { locale } = useIntl()
-  const device = useDeviceContext()
   const { asPath } = useRouter()
+  const device = useDeviceContext()
   const fetchingNumber = useIsFetching({ queryKey: ['page'] })
   const localeHrefList = getLocaleHrefList(asPath)
   const url = localeHrefList[locale]
@@ -93,11 +93,7 @@ function Page({
             background: palette.mode === 'dark' ? '#121212' : undefined,
           })}
         >
-          {renderLoader && (
-            <Box display="flex" mt={3} justifyContent="center">
-              <CircularProgress size={14.5} sx={{ color: '#7638fa' }} />
-            </Box>
-          )}
+          {renderLoader && <Loader />}
           {children}
         </Box>
       </MainWrap>

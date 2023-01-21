@@ -1,7 +1,8 @@
+import Link from 'next/link'
 import { Typography } from '@mui/material'
 import { useGoalContext } from '@modules/user/components/GoalCurrent/hooks/useGoalContext'
 import { toHref } from '@features/user'
-import UserLink from '@components/User/UserLink'
+import AvatarStatus from '@components/Avatar/AvatarStatus'
 import { useMessages } from './hooks/useMessages'
 
 function Inheritance() {
@@ -15,7 +16,9 @@ function Inheritance() {
       <Typography variant="subtitle1" component="p">
         <b>{messages.title}</b>
       </Typography>
-      <UserLink name={name} avatar={avatar} href={href} />
+      <Link href={href} title={name}>
+        <AvatarStatus src={avatar} name={name} size={26} />
+      </Link>
     </>
   )
 }

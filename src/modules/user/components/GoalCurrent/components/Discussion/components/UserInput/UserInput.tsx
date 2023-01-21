@@ -1,4 +1,5 @@
 import dynamic from 'next/dynamic'
+import Link from 'next/link'
 import { Field, Form, FormikProvider } from 'formik'
 import { Box, IconButton } from '@mui/material'
 import { styled } from '@mui/system'
@@ -6,7 +7,7 @@ import { blue } from '@mui/material/colors'
 import { UserBaseDto, ClientDto, toHref } from '@features/user'
 import { TopicDto, MessageType } from '@features/topic'
 import AppInput from '@ui/AppInput'
-import UserLink from '@components/User/UserLink'
+import AvatarStatus from '@components/Avatar/AvatarStatus'
 import TooltipArrow from '@ui/styled/TooltipArrow'
 import { useMessages } from './hooks/useMessages'
 import { useForm } from './hooks/useForm'
@@ -35,7 +36,9 @@ function UserInput({ user, type, topicId, onAdd }: UserInputProps) {
     <FormikProvider value={form}>
       <Form>
         <Box display="flex" alignItems="center" flex={1} gap={1}>
-          <UserLink name={name} avatar={avatar} href={href} size={32} />
+          <Link href={href} title={name}>
+            <AvatarStatus src={avatar} name={name} size={32} />
+          </Link>
           <Field
             name="text"
             placeholder={messages.placeholder}

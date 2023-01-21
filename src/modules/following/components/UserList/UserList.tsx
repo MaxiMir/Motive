@@ -1,7 +1,6 @@
 import { UserDto } from '@features/user'
 import AppList from '@ui/AppList'
-import UserCharacteristic from '@components/User/UserCharacteristic'
-import MenuActions from './components/MenuActions'
+import UserRow from './components/UserRow'
 
 interface UserListProps {
   users: UserDto[]
@@ -15,9 +14,7 @@ function UserList({ users }: UserListProps) {
       elements={users}
       gap={4}
       keyGetter={keyGetter}
-      render={(user, index) => (
-        <UserCharacteristic user={user} menu={<MenuActions user={user} index={index} />} />
-      )}
+      render={(user, index) => <UserRow user={user} index={index} />}
     />
   )
 }

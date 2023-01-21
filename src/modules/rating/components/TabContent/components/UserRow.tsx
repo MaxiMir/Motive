@@ -4,7 +4,7 @@ import { blueGrey } from '@mui/material/colors'
 import { useTheme } from '@mui/material/styles'
 import { UserCharacteristicName, UserDto, toHref } from '@features/user'
 import AppEmoji from '@ui/AppEmoji'
-import UserLink from '@components/User/UserLink'
+import AvatarStatus from '@components/Avatar/AvatarStatus'
 
 interface UserRowProps {
   user: UserDto
@@ -54,7 +54,9 @@ function UserRow({ user, characteristicName, index }: UserRowProps) {
         </Grid>
         <Grid item xs={9}>
           <Box display="flex" alignItems="center" gap={1}>
-            <UserLink name={name} avatar={avatar} href={href} online={online} size={35} />
+            <Link href={href} title={name}>
+              <AvatarStatus src={avatar} name={name} online={online} size={35} />
+            </Link>
             <Button href={href} sx={{ color: 'inherit' }} component={Link}>
               {name}
             </Button>

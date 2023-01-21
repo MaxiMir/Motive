@@ -5,7 +5,7 @@ import { indigo } from '@mui/material/colors'
 import { toHref } from '@features/user'
 import { MessageDto } from '@features/topic'
 import useFormatDistance from '@hooks/useFormatDistance'
-import UserLink from '@components/User/UserLink'
+import AvatarStatus from '@components/Avatar/AvatarStatus'
 import { useMessages } from './hooks/useMessages'
 import MenuActions from './components/MenuActions'
 import Like from './components/Like'
@@ -23,7 +23,7 @@ interface MessageProps {
 
 function Message({ message, answerFor, supportFor, onReply }: MessageProps) {
   const { date, user, text, edited } = message
-  const { name, nickname, avatar } = user
+  const { name, nickname, avatar, online } = user
   const messages = useMessages()
   const formatDistance = useFormatDistance()
   const dateDistance = formatDistance(date)
@@ -33,7 +33,9 @@ function Message({ message, answerFor, supportFor, onReply }: MessageProps) {
   return (
     <Box display="flex" flexDirection="column" gap={1}>
       <Box display="flex" alignItems="flex-end" flexDirection={flexDirection} gap={1}>
-        <UserLink name={name} avatar={avatar} href={href} size={32} />
+        <Link href={href} title={name}>
+          <AvatarStatus src={avatar} name={name} online={online} size={32} />
+        </Link>
         <Box
           display="flex"
           flexDirection="column"

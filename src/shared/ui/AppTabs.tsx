@@ -25,7 +25,7 @@ function AppTabs({ tabs, content, initial = 0, ...tabsProps }: AppTabsProps) {
 
   return (
     <>
-      <Box sx={{ borderBottom: 1, borderColor: 'divider', mb: 2 }}>
+      <Box borderBottom={1} borderColor="divider" mb={2}>
         <Tabs
           value={value}
           variant="fullWidth"

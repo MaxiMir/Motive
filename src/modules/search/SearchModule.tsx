@@ -1,5 +1,5 @@
 import dynamic from 'next/dynamic'
-import { Grid, Box, Typography } from '@mui/material'
+import { Grid, Typography, Stack } from '@mui/material'
 import { HashtagDto } from '@features/page'
 import { UserDto } from '@features/user'
 import { GoalDto } from '@features/goal'
@@ -30,10 +30,10 @@ function SearchModule({ q, hashtags, goals, users }: SearchModuleProps) {
       <Typography variant="h1" sx={{ mb: 3 }}>
         {messages.header}
       </Typography>
-      <Box display="flex" flexDirection="column" gap={4}>
+      <Stack spacing={4}>
         <SearchForm q={q} />
         {!!users.length && (
-          <Box display="flex" flexDirection="column" gap={2}>
+          <Stack spacing={2}>
             <EmojiHeader variant="h4" component="h2" name="followers">
               {messages.userText}
             </EmojiHeader>
@@ -44,10 +44,10 @@ function SearchModule({ q, hashtags, goals, users }: SearchModuleProps) {
                 </Grid>
               ))}
             </Grid>
-          </Box>
+          </Stack>
         )}
         {noResult && <NoResult phrase={q} />}
-        <Box display="flex" flexDirection="column" gap={2}>
+        <Stack spacing={2}>
           <EmojiHeader variant="h4" component="h2" name="trending">
             {messages.trendText}
           </EmojiHeader>
@@ -58,9 +58,9 @@ function SearchModule({ q, hashtags, goals, users }: SearchModuleProps) {
               </Grid>
             ))}
           </Grid>
-        </Box>
+        </Stack>
         {!!goals.length && false && (
-          <Box display="flex" flexDirection="column" gap={2}>
+          <Stack spacing={2}>
             <EmojiHeader variant="h4" component="h2" name="goal">
               {messages.goalText}
             </EmojiHeader>
@@ -71,9 +71,9 @@ function SearchModule({ q, hashtags, goals, users }: SearchModuleProps) {
                 </Grid>
               ))}
             </Grid>
-          </Box>
+          </Stack>
         )}
-      </Box>
+      </Stack>
     </AppContainer>
   )
 }

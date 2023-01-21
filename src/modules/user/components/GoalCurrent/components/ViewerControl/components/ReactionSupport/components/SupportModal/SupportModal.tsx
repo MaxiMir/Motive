@@ -1,5 +1,5 @@
 import { Field, Form, FormikProvider } from 'formik'
-import { Box, Typography } from '@mui/material'
+import { Box, Stack, Typography } from '@mui/material'
 import { UserBaseDto } from '@features/user'
 import AppModal from '@ui/AppModal'
 import AppFadeIcon from '@ui/AppFadeIcon'
@@ -47,7 +47,7 @@ function SupportModal({ owner, onClose }: SupportModalProps) {
     >
       <FormikProvider value={form}>
         <Form>
-          <Box display="flex" flexDirection="column" alignItems="center" gap={3}>
+          <Stack alignItems="center" spacing={3}>
             <AppFadeIcon name="support" />
             <Field
               name="text"
@@ -79,7 +79,7 @@ function SupportModal({ owner, onClose }: SupportModalProps) {
                 }
               />
             </Box>
-          </Box>
+          </Stack>
         </Form>
       </FormikProvider>
     </AppModal>

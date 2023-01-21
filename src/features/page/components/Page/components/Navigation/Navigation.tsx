@@ -2,7 +2,16 @@ import { ReactNode } from 'react'
 import Link from 'next/link'
 import dynamic from 'next/dynamic'
 import { useRouter } from 'next/router'
-import { Box, List, Divider, IconButton, ListItem, ListItemIcon, ListItemText } from '@mui/material'
+import {
+  Box,
+  List,
+  Divider,
+  IconButton,
+  ListItem,
+  ListItemIcon,
+  ListItemText,
+  Stack,
+} from '@mui/material'
 import useToggle from '@hooks/useToggle'
 import useClient from '@hooks/useClient'
 import AppIcon from '@ui/AppIcon'
@@ -42,11 +51,9 @@ function Navigation({ breakpoints, children }: NavigationProps) {
               },
         }}
       >
-        <Box
+        <Stack
           role="presentation"
           component="nav"
-          display="flex"
-          flexDirection="column"
           justifyContent="space-between"
           pb={2}
           height="100%"
@@ -90,7 +97,7 @@ function Navigation({ breakpoints, children }: NavigationProps) {
             <ProfileLink expanded={expanded} />
           </Box>
           <More />
-        </Box>
+        </Stack>
       </Drawer>
       {children}
     </Box>

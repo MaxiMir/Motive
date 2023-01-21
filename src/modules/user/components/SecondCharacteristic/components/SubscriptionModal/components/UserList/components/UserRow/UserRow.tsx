@@ -1,6 +1,6 @@
 import dynamic from 'next/dynamic'
 import Link from 'next/link'
-import { Box, Typography } from '@mui/material'
+import { Stack, Typography } from '@mui/material'
 import { UserDto, toHref } from '@features/user'
 import { MAIN_CHARACTERISTICS, SecondCharacteristicName } from '@features/characteristic'
 import CharacteristicUser from '@components/Characteristic/CharacteristicUser'
@@ -23,17 +23,17 @@ function UserRow({ user, inView, onView, onClose }: UserRowProps) {
 
   return (
     <>
-      <Box display="flex" alignItems="center" gap={2}>
+      <Stack display="flex" alignItems="center" gap={2}>
         <Link href={href} title={name} onClick={onClose}>
           <AvatarStatus src={avatar} name={name} online={online} size={55} />
         </Link>
-        <Box display="flex" flexDirection="column" justifyContent="space-between" flex={1}>
+        <Stack justifyContent="space-between" flex={1}>
           <Typography variant="subtitle1" component="span">
             <Link href={href} onClick={onClose}>
               {name}
             </Link>
           </Typography>
-          <Box display="flex" justifyContent="space-between" alignItems="center">
+          <Stack direction="row" justifyContent="space-between" alignItems="center">
             {CHARACTERISTICS.map((characteristicName) => (
               <CharacteristicUser
                 name={characteristicName}
@@ -41,9 +41,9 @@ function UserRow({ user, inView, onView, onClose }: UserRowProps) {
                 key={characteristicName}
               />
             ))}
-          </Box>
-        </Box>
-      </Box>
+          </Stack>
+        </Stack>
+      </Stack>
       {onView && <>{inView && <AppInView onView={onView} />}</>}
     </>
   )

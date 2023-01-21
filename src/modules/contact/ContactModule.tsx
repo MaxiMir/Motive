@@ -1,4 +1,4 @@
-import { Box, Button, Typography } from '@mui/material'
+import { Button, Stack, Typography } from '@mui/material'
 import { styled } from '@mui/system'
 import { lightBlue, red, yellow } from '@mui/material/colors'
 import { openBlank } from '@helpers/window'
@@ -36,11 +36,11 @@ function ContactModule() {
       <EmojiHeader name="contact" mb={3}>
         {messages.header}
       </EmojiHeader>
-      <Box display="flex" flexDirection="column" gap={2}>
+      <Stack spacing={3} mb={6}>
         <Typography>
           {messages.subheader} <AppEmoji name="wink" onlyEmoji />.
         </Typography>
-        <Box display="flex" gap={2}>
+        <Stack direction="row" spacing={2} mb={4}>
           <ButtonLink
             variant="outlined"
             sx={{
@@ -51,10 +51,10 @@ function ContactModule() {
             }}
             onClick={onClickEmail}
           >
-            <Box display="flex" flexDirection="column" alignItems="center" gap={1}>
+            <Stack alignItems="center" spacing={1}>
               <Typography variant="caption">Email</Typography>
               <Email sx={{ color: yellow[500] }} />
-            </Box>
+            </Stack>
           </ButtonLink>
           <ButtonLink
             variant="outlined"
@@ -66,10 +66,10 @@ function ContactModule() {
             }}
             onClick={onClickTelegram}
           >
-            <Box display="flex" flexDirection="column" alignItems="center" gap={1}>
+            <Stack alignItems="center" spacing={1}>
               <Typography variant="caption">Telegram</Typography>
               <Telegram sx={{ color: lightBlue[500] }} />
-            </Box>
+            </Stack>
           </ButtonLink>
           <ButtonLink
             variant="outlined"
@@ -81,21 +81,23 @@ function ContactModule() {
             }}
             onClick={onClickLinkedIn}
           >
-            <Box display="flex" flexDirection="column" alignItems="center" gap={1}>
+            <Stack alignItems="center" spacing={1}>
               <Typography variant="caption">LinkedIn</Typography>
               <LinkedIn sx={{ color: red[300] }} />
-            </Box>
+            </Stack>
           </ButtonLink>
-        </Box>
-        <Box display="flex" flexDirection="column" gap={1} mt={3}>
-          <EmojiHeader name="coin" variant="h1" component="h3" mb={3}>
-            {messages.support}
-          </EmojiHeader>
+        </Stack>
+      </Stack>
+      <Stack spacing={3}>
+        <EmojiHeader name="coin" variant="h1" component="h3">
+          {messages.support}
+        </EmojiHeader>
+        <Stack spacing={1}>
           {CRYPTOS.map(({ name, wallet, src }) => (
             <Wallet name={name} wallet={wallet} src={src} key={name} />
           ))}
-        </Box>
-      </Box>
+        </Stack>
+      </Stack>
     </AppContainer>
   )
 }

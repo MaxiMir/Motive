@@ -31,14 +31,11 @@ function Wallet({ name, wallet, src }: WalletProps) {
       <Image src={src} alt="" width={32} height={32} />
       <Typography>{name}:</Typography>
       <Box
-        display="flex"
         alignItems="flex-end"
         height={24}
-        sx={{
-          display: {
-            xs: 'none',
-            md: 'block',
-          },
+        display={{
+          xs: 'none',
+          md: 'block',
         }}
       >
         <Typography variant="caption" sx={{ color: 'zen.silent' }}>

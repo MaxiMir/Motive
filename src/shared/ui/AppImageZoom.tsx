@@ -8,11 +8,11 @@ interface AppImageZoomProps {
 function AppImageZoom({ children }: AppImageZoomProps) {
   return (
     <Box
+      width="100%"
+      overflow="hidden"
       sx={{
-        width: '100%',
         animation: 'zoom-in 10s ease-in infinite',
         transition: 'all .5s ease-in-out',
-        overflow: 'hidden',
         '@keyframes zoom-in': {
           '0%': {
             transform: 'scale(1)',
@@ -27,10 +27,10 @@ function AppImageZoom({ children }: AppImageZoomProps) {
       }}
     >
       <Box
+        overflow="hidden"
         sx={{
           animation: 'zoom-out 10s ease-in infinite',
           transition: 'all .5s ease-in-out',
-          overflow: 'hidden',
           '@keyframes zoom-out': {
             '0%': {
               transform: 'scale(1)',

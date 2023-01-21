@@ -37,12 +37,12 @@ function UserRow({ user, characteristicName, index }: UserRowProps) {
 
   return (
     <Box
+      px={3}
       sx={{
         backgroundColor,
         boxShadow: `0 0 0 100vmax ${backgroundColor}`,
         clipPath: 'inset(0 -100vmax)',
       }}
-      px={3}
     >
       <Grid container alignItems="center" sx={{ height: 55 }}>
         <Grid item xs={2}>

@@ -1,6 +1,6 @@
 import dynamic from 'next/dynamic'
 import { useRouter } from 'next/router'
-import { Box, Button, Card, Typography } from '@mui/material'
+import { Box, Button, Card, Stack, Typography } from '@mui/material'
 import { styled } from '@mui/system'
 import { useUserContext } from '@modules/user/hooks'
 import { MemberDto } from '@features/member'
@@ -67,19 +67,15 @@ function GoalCurrent({ goal, membership, clientPage, clientMembership }: GoalCur
 
   return (
     <GoalContext.Provider value={goal}>
-      <Box
+      <Stack
         id={`goal-${id}`}
-        display="flex"
-        flexDirection="column"
-        gap={2}
         component="article"
-        sx={{
-          flex: {
-            xs: '0 1 100%',
-            md: '0 1 calc(50% - 12px)',
-          },
-          maxWidth: '100%',
+        spacing={2}
+        flex={{
+          xs: '0 1 100%',
+          md: '0 1 calc(50% - 12px)',
         }}
+        maxWidth="100%"
       >
         <Box
           sx={({ palette }) => ({
@@ -89,21 +85,19 @@ function GoalCurrent({ goal, membership, clientPage, clientMembership }: GoalCur
             borderRadius: '16px',
           })}
         >
-          <Box
-            display="flex"
-            flexDirection="column"
+          <Stack
             justifyContent="space-between"
-            gap={2}
+            spacing={2}
+            position="relative"
+            height="100%"
             sx={({ spacing }) => ({
-              position: 'relative',
-              height: '100%',
               padding: spacing(3, 2, 2),
               backgroundColor: 'underlay',
               borderRadius: '12px',
             })}
           >
             <ViewTrigger>
-              <Box display="flex" flexDirection="column" gap={2}>
+              <Stack spacing={2}>
                 <Box display="flex" alignItems="center" gap={0.5}>
                   <Typography variant="subtitle1" component="h2">
                     <b>{name}</b>
@@ -122,7 +116,7 @@ function GoalCurrent({ goal, membership, clientPage, clientMembership }: GoalCur
                   <CharacteristicGoal name="runningDays" value={goalInfo.runningDays} />
                 </Box>
                 {!!hashtags.length && <Hashtags hashtags={hashtags} />}
-                <Box display="flex" flexDirection="column" alignItems="center">
+                <Stack alignItems="center">
                   {prev && (
                     <DayCardButton
                       variant="text"
@@ -181,7 +175,7 @@ function GoalCurrent({ goal, membership, clientPage, clientMembership }: GoalCur
                       id={`tasksContent-${day.id}`}
                       defaultExpanded
                       details={
-                        <Box display="flex" flexDirection="column" gap={1}>
+                        <Stack spacing={1}>
                           {redefinedGoals.map((task) => (
                             <Task
                               goalId={id}
@@ -194,7 +188,7 @@ function GoalCurrent({ goal, membership, clientPage, clientMembership }: GoalCur
                               key={task.id}
                             />
                           ))}
-                        </Box>
+                        </Stack>
                       }
                     />
                     <AppAccordion
@@ -245,10 +239,10 @@ function GoalCurrent({ goal, membership, clientPage, clientMembership }: GoalCur
                       <Date date={next} />
                     </DayCardButton>
                   )}
-                </Box>
-              </Box>
+                </Stack>
+              </Stack>
             </ViewTrigger>
-            <Box display="flex" flexDirection="column" gap={2}>
+            <Stack spacing={2}>
               {goalInfo.controls && (
                 <>
                   {clientOwnership.goal ? (
@@ -263,11 +257,11 @@ function GoalCurrent({ goal, membership, clientPage, clientMembership }: GoalCur
                 </>
               )}
               <Views />
-            </Box>
+            </Stack>
             {goalInfo.web && <Web />}
-          </Box>
+          </Stack>
         </Box>
-      </Box>
+      </Stack>
     </GoalContext.Provider>
   )
 }

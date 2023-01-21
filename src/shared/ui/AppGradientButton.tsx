@@ -5,10 +5,10 @@ type AppGradientButtonProps = Omit<ButtonProps, 'variant' | 'color' | 'sx' | 'cl
 function AppGradientButton({ disabled, ...props }: AppGradientButtonProps) {
   return (
     <Box
+      padding="1px"
+      borderRadius="5px"
       sx={({ palette }) => ({
-        padding: '1px',
         background: `linear-gradient(to top left, ${palette.creativity.dark}, ${palette.support.dark})`,
-        borderRadius: '5px',
         opacity: disabled ? 0.7 : undefined,
       })}
     >

@@ -8,6 +8,7 @@ import {
   RadioGroup,
   AccordionSummary,
   Box,
+  Stack,
   Button,
   FormControl,
   Typography,
@@ -68,10 +69,10 @@ function TasksModal({ onClose }: TasksModalProps) {
       ]}
       onClose={onClose}
     >
-      <Box display="flex" flexDirection="column" gap={3}>
+      <Stack spacing={3}>
         <FormikProvider value={form}>
           <Form>
-            <Box display="flex" flexDirection="column" gap={3}>
+            <Stack spacing={3}>
               <Box>
                 <FieldArray name="tasks">
                   {({ push, remove }) => (
@@ -126,7 +127,7 @@ function TasksModal({ onClose }: TasksModalProps) {
                   />
                 </RadioGroup>
               </FormControl>
-            </Box>
+            </Stack>
           </Form>
         </FormikProvider>
         <Accordion>
@@ -142,7 +143,7 @@ function TasksModal({ onClose }: TasksModalProps) {
             <OldPittRules />
           </AccordionDetails>
         </Accordion>
-      </Box>
+      </Stack>
     </AppModal>
   )
 }

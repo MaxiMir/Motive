@@ -1,5 +1,5 @@
 import Image from 'next/image'
-import { Box, Typography } from '@mui/material'
+import { Box, Stack, Typography } from '@mui/material'
 import { useUserContext } from '@modules/user/hooks'
 import useShowProgress from '@hooks/useShowProgress'
 import AppModal from '@ui/AppModal'
@@ -27,20 +27,18 @@ function AbandonedModal({ onClose }: AbandonedModalProps) {
       maxWidth="xs"
       onClose={onClose}
     >
-      <Box display="flex" flexDirection="column" gap={2} position="relative">
-        <Box display="flex" justifyContent="center">
-          <Box display="flex" alignItems="center" gap={2}>
-            <Typography variant="h2" component="p" sx={{ color: 'abandoned.main' }}>
-              {roundedProgress}
-            </Typography>
-            <Image src={webSrc} alt="" width={60} height={60} />
-          </Box>
-        </Box>
+      <Stack position="relative" spacing={2}>
+        <Stack direction="row" alignItems="center" spacing={2} alignSelf="center">
+          <Typography variant="h2" component="p" sx={{ color: 'abandoned.main' }}>
+            {roundedProgress}
+          </Typography>
+          <Image src={webSrc} alt="" width={60} height={60} />
+        </Stack>
         <Typography component="h3" textAlign="center">
           {messages.header}.
         </Typography>
         <OldPittRules />
-      </Box>
+      </Stack>
     </AppModal>
   )
 }

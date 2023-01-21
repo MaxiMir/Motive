@@ -1,23 +1,23 @@
 import { ElementType } from 'react'
-import { Box, Typography, BoxProps, TypographyProps } from '@mui/material'
+import { Typography, Stack, TypographyProps, StackProps } from '@mui/material'
 import AppEmoji, { AppEmojiName } from './AppEmoji'
 
 interface AppHeaderProps extends TypographyProps {
   name: AppEmojiName
   component?: ElementType
-  mb?: BoxProps['mb']
+  mb?: StackProps['mb']
 }
 
 function EmojiHeader({ name, variant = 'h1', component = 'h1', mb, children }: AppHeaderProps) {
-  const gap = variant === 'h1' ? 2 : 1
+  const spacing = variant === 'h1' ? 2 : 1
 
   return (
-    <Box display="flex" alignItems="center" gap={gap} mb={mb}>
+    <Stack direction="row" alignItems="center" spacing={spacing} mb={mb}>
       <AppEmoji name={name} variant={variant} />
       <Typography variant={variant} component={component}>
         {children}
       </Typography>
-    </Box>
+    </Stack>
   )
 }
 

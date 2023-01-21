@@ -1,4 +1,4 @@
-import { Box } from '@mui/material'
+import { Box, Stack } from '@mui/material'
 import AppModal from '@ui/AppModal'
 import { useMessages } from './hooks/useMessages'
 import EmptyList from './components/EmptyList/EmptyList'
@@ -23,17 +23,9 @@ function NoCompletedModal({ onClose }: NoCompletedModalProps) {
       maxWidth="xs"
       onClose={onClose}
     >
-      <Box
-        display="flex"
-        flexDirection="column"
-        gap={2}
-        sx={{
-          minHeight: 400,
-          overflow: 'scroll',
-        }}
-      >
+      <Stack spacing={2} minHeight={400} overflow="scroll">
         <EmptyList />
-      </Box>
+      </Stack>
     </AppModal>
   )
 }

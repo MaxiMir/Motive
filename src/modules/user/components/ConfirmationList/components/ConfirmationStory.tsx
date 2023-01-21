@@ -1,5 +1,5 @@
 import dynamic from 'next/dynamic'
-import { Box, Button, Typography } from '@mui/material'
+import { Box, Button, Stack, Typography } from '@mui/material'
 import { useUserContext } from '@modules/user/hooks'
 import { ConfirmationDto } from '@features/confirmation'
 import useTryFullScreen from '@hooks/useTryFullScreen'
@@ -31,7 +31,7 @@ function ConfirmationStory({ confirmation }: ConfirmationStoryProps) {
 
   return (
     <>
-      <Box display="flex" flexDirection="column" alignItems="center" minWidth={100} gap={1}>
+      <Stack alignItems="center" spacing={1} minWidth={100}>
         <Box
           sx={({ palette }) => ({
             padding: '2px',
@@ -70,7 +70,7 @@ function ConfirmationStory({ confirmation }: ConfirmationStoryProps) {
             {confirmation.goal.name}
           </Typography>
         </Button>
-      </Box>
+      </Stack>
       {open && (
         <Stories
           user={user}

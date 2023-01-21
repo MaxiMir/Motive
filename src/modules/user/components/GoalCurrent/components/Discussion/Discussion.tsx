@@ -1,5 +1,5 @@
 import dynamic from 'next/dynamic'
-import { Box } from '@mui/material'
+import { Stack } from '@mui/material'
 import { useAddMessage } from '@modules/user/hooks'
 import { UserBaseDto } from '@features/user'
 import { TopicDto, MessageType } from '@features/topic'
@@ -27,14 +27,7 @@ function Discussion({ owner, count, clientGoal }: DiscussionProps) {
   const minHeight = topics.length || withInput ? 130 : undefined
 
   return (
-    <Box
-      display="flex"
-      flexDirection="column"
-      gap={2}
-      flex={1}
-      minHeight={minHeight}
-      maxHeight={500}
-    >
+    <Stack spacing={2} minHeight={minHeight} maxHeight={500} flex={1}>
       <>
         {isLoading ? (
           <Loader count={count} withInput={withInput} />
@@ -47,7 +40,7 @@ function Discussion({ owner, count, clientGoal }: DiscussionProps) {
               <AppList
                 elements={topics}
                 keyGetter={(topic) => topic.id}
-                gap={3}
+                spacing={3}
                 render={(topic, index) => (
                   <Topic
                     topic={topic}
@@ -63,7 +56,7 @@ function Discussion({ owner, count, clientGoal }: DiscussionProps) {
           </>
         )}
       </>
-    </Box>
+    </Stack>
   )
 }
 

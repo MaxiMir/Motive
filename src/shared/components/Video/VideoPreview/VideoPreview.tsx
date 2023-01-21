@@ -15,12 +15,7 @@ function VideoPreview({ video, disabled, onRemove }: VideoPreviewProps) {
   const url = URL.createObjectURL(video)
 
   return (
-    <Box
-      sx={{
-        position: 'relative',
-        background: '#000000',
-      }}
-    >
+    <Box position="relative" sx={{ background: '#000000' }}>
       <AppPlayer
         url={url}
         width="100%"

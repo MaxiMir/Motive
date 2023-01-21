@@ -1,6 +1,6 @@
 import { ChangeEvent } from 'react'
 import { Field } from 'formik'
-import { Box, IconButton, Switch, FormControlLabel } from '@mui/material'
+import { IconButton, Switch, FormControlLabel, Stack } from '@mui/material'
 import { TimePicker } from '@mui/x-date-pickers'
 import AppInput from '@ui/AppInput'
 import AppIcon from '@ui/AppIcon'
@@ -25,8 +25,8 @@ function TaskField({ index, date, remind, taskCount, setFieldValue, onRemove }: 
   }
 
   return (
-    <Box display="flex" flexDirection="column">
-      <Box display="flex" justifyContent="space-between" gap={1}>
+    <Stack>
+      <Stack direction="row" justifyContent="space-between" alignItems="flex-start" spacing={1}>
         <Field
           name={`tasks.${index}.name`}
           label={messages.label}
@@ -34,19 +34,17 @@ function TaskField({ index, date, remind, taskCount, setFieldValue, onRemove }: 
           autoFocus={autoFocus}
           component={AppInput}
         />
-        <Box display="flex" alignSelf="flex-start">
-          <IconButton
-            aria-label={messages.closeText}
-            disableFocusRipple
-            disabled={taskCount === 1}
-            sx={{ color: 'zen.silent' }}
-            onClick={onRemove}
-          >
-            <AppIcon name="close" />
-          </IconButton>
-        </Box>
-      </Box>
-      <Box display="flex" alignItems="center" gap={1} pl={1} height={48}>
+        <IconButton
+          aria-label={messages.closeText}
+          disableFocusRipple
+          disabled={taskCount === 1}
+          sx={{ color: 'zen.silent' }}
+          onClick={onRemove}
+        >
+          <AppIcon name="close" />
+        </IconButton>
+      </Stack>
+      <Stack direction="row" alignItems="center" spacing={1} pl={1} height={48}>
         {/* TODO ADD  */}
         <TooltipArrow title={messages.soonText}>
           <FormControlLabel
@@ -64,8 +62,8 @@ function TaskField({ index, date, remind, taskCount, setFieldValue, onRemove }: 
             component={TimePicker}
           />
         )}
-      </Box>
-    </Box>
+      </Stack>
+    </Stack>
   )
 }
 

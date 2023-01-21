@@ -1,6 +1,6 @@
 import dynamic from 'next/dynamic'
 import { ErrorMessage, Field, FieldArray, Form, FormikProvider } from 'formik'
-import { Grid, Box, Typography } from '@mui/material'
+import { Grid, Box, Typography, Stack } from '@mui/material'
 import useSelectPhoto from '@hooks/useSelectPhoto'
 import AppModal from '@ui/AppModal'
 import AppAccordion from '@ui/AppAccordion'
@@ -50,13 +50,13 @@ function CompletionModal({ onClose }: CompletionModalProps) {
     >
       <FormikProvider value={form}>
         <Form>
-          <Box display="flex" flexDirection="column" alignItems="center" gap={3}>
-            <Box display="flex" flexDirection="column" alignItems="center" gap={1}>
+          <Stack alignItems="center" spacing={3}>
+            <Stack alignItems="center" spacing={1}>
               <AppSpinIcon name="completed" />
               <Typography variant="subtitle1" sx={{ color: '#ffa300' }}>
                 {messages.subtitle}
               </Typography>
-            </Box>
+            </Stack>
             <Field
               name="text"
               label={messages.label}
@@ -66,7 +66,7 @@ function CompletionModal({ onClose }: CompletionModalProps) {
               component={AppInput}
             />
             {!!values.photos.length && (
-              <Box display="flex" flexDirection="column" gap={2} width="100%">
+              <Stack spacing={2} width="100%">
                 <EmojiHeader name="photo" variant="h6" component="h2" color="primary">
                   {messages.photoTitle}
                 </EmojiHeader>
@@ -85,10 +85,10 @@ function CompletionModal({ onClose }: CompletionModalProps) {
                     </Grid>
                   )}
                 </FieldArray>
-              </Box>
+              </Stack>
             )}
             {values.video && (
-              <Box display="flex" flexDirection="column" gap={2} width="100%">
+              <Stack spacing={2} width="100%">
                 <EmojiHeader name="video" variant="h6" component="h2" color="primary">
                   {messages.videoTitle}
                 </EmojiHeader>
@@ -97,12 +97,12 @@ function CompletionModal({ onClose }: CompletionModalProps) {
                   disabled={isSubmitting}
                   onRemove={() => setFieldValue('video', null)}
                 />
-              </Box>
+              </Stack>
             )}
-            <Box display="flex" gap={2} width="100%">
+            <Stack direction="row" spacing={2} width="100%">
               <PhotoInput disabled={isSubmitting} multiple onSelect={onSelectPhoto} />
               <VideoInput disabled onSelect={onSelectVideo} />
-            </Box>
+            </Stack>
             <ErrorMessage name="photos">
               {(msg) => (
                 <Alert severity="error" variant="outlined" sx={{ width: '100%' }}>
@@ -128,7 +128,7 @@ function CompletionModal({ onClose }: CompletionModalProps) {
                 }
               />
             </Box>
-          </Box>
+          </Stack>
         </Form>
       </FormikProvider>
     </AppModal>

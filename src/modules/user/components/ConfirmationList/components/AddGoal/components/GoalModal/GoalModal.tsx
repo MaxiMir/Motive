@@ -1,6 +1,6 @@
 import dynamic from 'next/dynamic'
 import { Field, FieldArray, Form, FormikProvider } from 'formik'
-import { Box, Button, FormControl, FormControlLabel, RadioGroup, Radio } from '@mui/material'
+import { Box, Button, FormControl, FormControlLabel, RadioGroup, Radio, Stack } from '@mui/material'
 import { styled } from '@mui/system'
 import { getMidnightISO, getTomorrowISO } from '@lib/date'
 import useFocus from '@hooks/useFocus'
@@ -53,9 +53,9 @@ function GoalModal({ onClose }: GoalModalProps) {
     >
       <FormikProvider value={form}>
         <Form>
-          <Box display="flex" flexDirection="column" gap={2}>
+          <Stack spacing={2}>
             <Field name="name" label={messages.nameLabel} component={AppInput} />
-            <Box display="flex" flexDirection="column" gap={1}>
+            <Stack spacing={1}>
               <Field
                 name="hashtags"
                 color="secondary"
@@ -71,8 +71,8 @@ function GoalModal({ onClose }: GoalModalProps) {
               >
                 # {messages.hashtagText}
               </ButtonCompact>
-            </Box>
-            <Box display="flex" flexDirection="column" gap={1}>
+            </Stack>
+            <Stack spacing={1}>
               <Box display="flex" gap={1}>
                 <EmojiHeader name="stage" variant="h6" component="h4" color="primary">
                   {messages.stagesHeader}
@@ -118,7 +118,7 @@ function GoalModal({ onClose }: GoalModalProps) {
                   </>
                 )}
               </FieldArray>
-            </Box>
+            </Stack>
             <FormControl variant="standard">
               <EmojiHeader name="clock" variant="h6" component="label">
                 {messages.startHeader}
@@ -142,7 +142,7 @@ function GoalModal({ onClose }: GoalModalProps) {
                 />
               </RadioGroup>
             </FormControl>
-            <Box display="flex" flexDirection="column" gap={2}>
+            <Stack spacing={2}>
               <Box display="flex" gap={1}>
                 <EmojiHeader name="task" variant="h6" component="h4" color="primary">
                   {messages.tasksHeader}
@@ -173,8 +173,8 @@ function GoalModal({ onClose }: GoalModalProps) {
                   </>
                 )}
               </FieldArray>
-            </Box>
-          </Box>
+            </Stack>
+          </Stack>
         </Form>
       </FormikProvider>
     </AppModal>

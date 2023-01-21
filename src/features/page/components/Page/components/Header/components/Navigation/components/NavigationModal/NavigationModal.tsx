@@ -6,6 +6,7 @@ import {
   Divider,
   ListItem,
   IconButton,
+  Stack,
   Drawer,
   ListItemText,
   ListItemIcon,
@@ -48,7 +49,7 @@ function NavigationModal({ onOpenSettings, onClose }: NavigationModalProps) {
       </Box>
       <Divider />
       <Box role="presentation" component="nav" sx={{ height: '100%' }}>
-        <Box display="flex" flexDirection="column" justifyContent="space-between" height="100%">
+        <Stack justifyContent="space-between" height="100%">
           <Box>
             <List>
               {routes.map(({ primary, icon, href }) => (
@@ -83,7 +84,7 @@ function NavigationModal({ onOpenSettings, onClose }: NavigationModalProps) {
               </>
             )}
           </Box>
-        </Box>
+        </Stack>
       </Box>
     </Drawer>
   )

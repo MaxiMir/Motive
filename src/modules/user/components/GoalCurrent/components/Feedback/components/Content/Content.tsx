@@ -1,5 +1,5 @@
 import dynamic from 'next/dynamic'
-import { Box } from '@mui/material'
+import { Stack } from '@mui/material'
 import { FeedbackDto } from '@features/feedback'
 
 const Markdown = dynamic(() => import('@components/Markdown'))
@@ -14,11 +14,11 @@ function Content({ feedback }: ContentProps) {
   const { text, photos, video } = feedback
 
   return (
-    <Box display="flex" flexDirection="column" gap={2} flex={1}>
+    <Stack spacing={2} flex={1}>
       {text && <Markdown text={text} />}
       {photos?.length && <Gallery photos={photos} />}
       {video && <AppPlayer url={video} width="100%" height="auto" />}
-    </Box>
+    </Stack>
   )
 }
 

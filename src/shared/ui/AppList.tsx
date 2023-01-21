@@ -1,21 +1,21 @@
 import { Fragment } from 'react'
-import { Box, BoxProps } from '@mui/material'
+import { Stack, StackProps } from '@mui/material'
 
 export interface AppListProps<T> {
   elements: T[]
-  gap?: BoxProps['gap']
-  pb?: BoxProps['mb']
+  spacing?: StackProps['spacing']
+  pb?: StackProps['mb']
   keyGetter: (element: T) => string | number
   render: (element: T, index: number) => JSX.Element
 }
 
-function AppList<T>({ elements, gap, pb, render, keyGetter }: AppListProps<T>) {
+function AppList<T>({ elements, spacing, pb, render, keyGetter }: AppListProps<T>) {
   return (
-    <Box display="flex" flexDirection="column" flexWrap="wrap" flex={1} gap={gap} pb={pb}>
+    <Stack flexWrap="wrap" flex={1} spacing={spacing} pb={pb}>
       {elements.map((element, key) => (
         <Fragment key={keyGetter(element).toString()}>{render(element, key)}</Fragment>
       ))}
-    </Box>
+    </Stack>
   )
 }
 

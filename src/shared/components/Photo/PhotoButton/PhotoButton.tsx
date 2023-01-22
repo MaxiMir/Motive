@@ -1,5 +1,5 @@
 import dynamic from 'next/dynamic'
-import { Box, Button, IconButton } from '@mui/material'
+import { Button, IconButton, Stack } from '@mui/material'
 import AppIcon from '@ui/AppIcon'
 import TooltipArrow from '@ui/styled/TooltipArrow'
 import { useMessages } from './hooks/useMessages'
@@ -28,17 +28,15 @@ function PhotoButton({ image, disabled, onClick }: PhotoButtonProps) {
         overflow: 'hidden',
       }}
     >
-      <Box
-        display="flex"
+      <Stack
+        direction="row"
         justifyContent="center"
         alignItems="center"
-        sx={{
-          position: 'absolute',
-          top: 0,
-          left: 0,
-          bottom: 0,
-          right: 0,
-        }}
+        position="absolute"
+        top={0}
+        left={0}
+        bottom={0}
+        right={0}
       >
         {image instanceof File ? (
           <LocalImage file={image} />
@@ -58,7 +56,7 @@ function PhotoButton({ image, disabled, onClick }: PhotoButtonProps) {
             <AppIcon name="cancel" />
           </IconButton>
         </TooltipArrow>
-      </Box>
+      </Stack>
     </Button>
   )
 }

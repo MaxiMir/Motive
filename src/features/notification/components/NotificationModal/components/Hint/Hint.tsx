@@ -1,4 +1,4 @@
-import { Alert, Box, Button } from '@mui/material'
+import { Alert, Button, Stack } from '@mui/material'
 import AppIcon from '@ui/AppIcon'
 import { useMessages } from './hooks/useMessages'
 
@@ -11,12 +11,12 @@ function Hint({ onClick }: HintProps) {
 
   return (
     <Alert severity="warning" icon={false} sx={{ mb: 3 }}>
-      <Box display="flex" flexDirection="column" gap={1} alignItems="flex-start">
+      <Stack alignItems="flex-start" spacing={1}>
         {messages.title}:
         <Button startIcon={<AppIcon name="notifications_active" />} onClick={onClick}>
           {messages.buttonText}
         </Button>
-      </Box>
+      </Stack>
     </Alert>
   )
 }

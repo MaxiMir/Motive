@@ -1,5 +1,5 @@
 import dynamic from 'next/dynamic'
-import { Box, Typography } from '@mui/material'
+import { Box, Stack, Typography } from '@mui/material'
 import { styled } from '@mui/system'
 import { useCheckOnClientPage, UserContext } from '@modules/user/hooks'
 import { UserPageDto } from '@features/page'
@@ -42,7 +42,7 @@ function UserModule({ user }: UserModuleProps) {
   return (
     <UserContext.Provider value={user}>
       <UserContainer>
-        <Box display="flex" flexDirection="column" gap="12px">
+        <Stack spacing="12px">
           <Section
             display="flex"
             flexWrap="wrap"
@@ -61,40 +61,33 @@ function UserModule({ user }: UserModuleProps) {
             }}
           >
             <Avatar clientPage={clientPage} />
-            <Box
-              display="flex"
-              flexDirection="column"
-              flex={1}
-              sx={{
-                alignItems: {
-                  xs: 'center',
-                  sm: 'flex-start',
-                },
+            <Stack
+              alignItems={{
+                xs: 'center',
+                sm: 'flex-start',
               }}
+              flex={1}
             >
-              <Box
-                display="flex"
+              <Stack
+                direction={{
+                  xs: 'column',
+                  sm: 'row',
+                }}
                 alignItems="center"
+                spacing={{
+                  xs: 1,
+                  sm: 3,
+                }}
                 width="100%"
                 mb={1}
-                sx={{
-                  gap: {
-                    xs: 1,
-                    sm: 3,
-                  },
-                  flexDirection: {
-                    xs: 'column',
-                    sm: 'row',
-                  },
-                }}
               >
                 <Nickname nickname={nickname} />
-                <Box display="flex" alignItems="center" gap={1}>
+                <Stack direction="row" alignItems="center" spacing={1}>
                   {clientPage ? <EditProfile /> : <Following />}
                   <MenuActions />
-                </Box>
-              </Box>
-              <Box display="flex" justifyContent="space-between" gap={2} mb={1}>
+                </Stack>
+              </Stack>
+              <Stack direction="row" justifyContent="space-between" spacing={2} mb={1}>
                 {SECOND_CHARACTERISTICS.map((characteristicName) => (
                   <SecondCharacteristic
                     confirmations={confirmations}
@@ -103,7 +96,7 @@ function UserModule({ user }: UserModuleProps) {
                     key={characteristicName}
                   />
                 ))}
-              </Box>
+              </Stack>
               <Typography component="h1" sx={{ fontWeight: 'bold' }}>
                 {name}
               </Typography>
@@ -120,7 +113,7 @@ function UserModule({ user }: UserModuleProps) {
                 </ExternalLink>
               ))}
               <LearnMore />
-            </Box>
+            </Stack>
           </Section>
           <Section display="flex" justifyContent="space-between" component="section">
             {MAIN_CHARACTERISTICS.map((characteristicName) => (
@@ -131,7 +124,7 @@ function UserModule({ user }: UserModuleProps) {
               />
             ))}
           </Section>
-        </Box>
+        </Stack>
         {renderConfirmationsList && (
           <ConfirmationList confirmations={confirmations} clientPage={clientPage} />
         )}

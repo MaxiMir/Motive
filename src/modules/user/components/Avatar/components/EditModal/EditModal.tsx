@@ -1,6 +1,6 @@
 import { ChangeEvent, useRef } from 'react'
 import dynamic from 'next/dynamic'
-import { Box, Button, Divider, Typography } from '@mui/material'
+import { Button, Divider, Stack, Typography } from '@mui/material'
 import { styled } from '@mui/system'
 import AppModal from '@ui/AppModal'
 import AppIcon from '@ui/AppIcon'
@@ -30,11 +30,11 @@ function EditModal({ onClose }: EditModalProps) {
 
   return (
     <AppModal title={messages.title} maxWidth="xs" onClose={onClose}>
-      <Box display="flex" flexDirection="column" alignItems="center" gap={2}>
-        <Box display="flex" flexDirection="column" alignItems="center" gap={1}>
+      <Stack alignItems="center" spacing={2}>
+        <Stack alignItems="center" spacing={1}>
           <Description>{messages.description}.</Description>
           <Description sx={{ color: 'zen.sand' }}>{messages.typesText}.</Description>
-        </Box>
+        </Stack>
         <Button
           size="small"
           variant="outlined"
@@ -55,7 +55,7 @@ function EditModal({ onClose }: EditModalProps) {
         <Typography variant="caption" textAlign="center" sx={{ color: 'zen.silent' }}>
           {messages.hintText}
         </Typography>
-      </Box>
+      </Stack>
     </AppModal>
   )
 }

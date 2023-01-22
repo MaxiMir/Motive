@@ -7,13 +7,7 @@ interface AppSpinIconProps {
 
 function AppFlyIcon({ name }: AppSpinIconProps) {
   return (
-    <Box
-      sx={{
-        height: 180,
-        width: 150,
-        position: 'relative',
-      }}
-    >
+    <Box position="relative" width={150} height={180}>
       <AppEmoji
         name={name}
         variant="h2"

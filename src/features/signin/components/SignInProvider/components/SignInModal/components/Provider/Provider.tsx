@@ -22,7 +22,7 @@ function Provider({ id, name, options, src, disabled }: ProviderProps) {
       color="warning"
       onClick={() => signIn(id, options)}
     >
-      <Box display="flex" width={150} justifyContent="flex-start">
+      <Box display="flex" justifyContent="flex-start" width={150}>
         {messages.signInText} {messages.withText} {name}
       </Box>
     </Button>

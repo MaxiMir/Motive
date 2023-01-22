@@ -27,16 +27,16 @@ function Stories({ stories, title, date, user, fullscreen, onClose }: StoryProps
         id="zuck-modal"
         ref={fullscreen.ref}
         role="dialog"
+        position="fixed"
+        top={0}
+        left={0}
+        zIndex={9999}
+        width="100dvw"
+        height="100dvh"
+        overflow="hidden"
         sx={{
-          position: 'fixed',
-          top: 0,
-          left: 0,
-          width: '100dvw',
-          height: '100dvh',
           backgroundColor: 'underlay',
-          zIndex: 9999,
           userSelect: 'none',
-          overflow: 'hidden',
           transformOrigin: 'center',
           transition: '0.25s',
           transform: closing ? 'translateY(100%)' : undefined,

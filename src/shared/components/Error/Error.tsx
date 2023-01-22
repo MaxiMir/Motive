@@ -1,5 +1,5 @@
 import { useRouter } from 'next/router'
-import { Box, Button, Typography } from '@mui/material'
+import { Box, Button, Stack, Typography } from '@mui/material'
 import { styled } from '@mui/system'
 import AppEmoji from '@ui/AppEmoji'
 import AppContainer from '@ui/AppContainer'
@@ -18,12 +18,7 @@ function Error({ statusCode }: CustomErrorProps) {
   return (
     <AppContainer>
       <Box display="flex" alignItems="center" justifyContent="center" flex={1}>
-        <Box
-          display="flex"
-          flexDirection="column"
-          alignItems="center"
-          justifyContent="space-between"
-        >
+        <Stack alignItems="center" justifyContent="space-between">
           <Typography component="h1" variant="h5">
             {messages.header}
           </Typography>
@@ -34,7 +29,7 @@ function Error({ statusCode }: CustomErrorProps) {
           <Button sx={{ color: 'warning.light' }} onClick={onClick}>
             {messages.backText}
           </Button>
-        </Box>
+        </Stack>
       </Box>
     </AppContainer>
   )

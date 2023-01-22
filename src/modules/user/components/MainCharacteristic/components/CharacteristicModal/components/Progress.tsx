@@ -1,4 +1,4 @@
-import { Box, Typography, LinearProgress, BoxProps } from '@mui/material'
+import { Stack, Box, Typography, LinearProgress, StackProps } from '@mui/material'
 import { linearProgressClasses } from '@mui/material/LinearProgress'
 import { MainCharacteristicName } from '@features/characteristic'
 import useShowProgress from '@hooks/useShowProgress'
@@ -6,7 +6,7 @@ import useShowProgress from '@hooks/useShowProgress'
 interface ProgressProps {
   characteristic: MainCharacteristicName
   value: number
-  mb?: BoxProps['mb']
+  mb?: StackProps['mb']
 }
 
 function Progress({ characteristic, value, mb }: ProgressProps) {
@@ -15,7 +15,7 @@ function Progress({ characteristic, value, mb }: ProgressProps) {
   const preparedProgress = Math.round(progress)
 
   return (
-    <Box display="flex" alignItems="center" gap={1} mb={mb}>
+    <Stack direction="row" alignItems="center" spacing={1} mb={mb}>
       <LinearProgress
         variant="determinate"
         value={progress}
@@ -35,7 +35,7 @@ function Progress({ characteristic, value, mb }: ProgressProps) {
           {preparedProgress}%
         </Typography>
       </Box>
-    </Box>
+    </Stack>
   )
 }
 

@@ -6,5 +6,6 @@ export const useMessages = () => {
   return {
     title: formatMessage({ id: 'common.completed' }),
     subtitle: formatMessage({ id: 'common.goals' }),
+    header: formatMessage({ id: 'common.empty' }),
   }
 }

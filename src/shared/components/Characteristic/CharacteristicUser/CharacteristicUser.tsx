@@ -1,5 +1,5 @@
 import dynamic from 'next/dynamic'
-import { Box, Typography } from '@mui/material'
+import { Box, Stack, Typography } from '@mui/material'
 import { UserCharacteristicName } from '@features/user'
 import { SECOND_CHARACTERISTICS, SecondCharacteristicName } from '@features/characteristic'
 import useFormatNumber from '@hooks/useFormatNumber'
@@ -19,15 +19,15 @@ function CharacteristicUser({ name, value }: CharacteristicUserProps) {
   const showLevel = !(SECOND_CHARACTERISTICS as ReadonlyArray<string>).includes(name)
 
   return (
-    <Box display="flex" alignItems="baseline" gap={0.5}>
+    <Stack direction="row" alignItems="baseline" spacing={0.5}>
       <AppEmoji name={name} variant="subtitle1" />
-      <Box display="flex" width={35}>
-        <Typography variant="h6" component="p" sx={{ color: `${name}.main` }}>
+      <Box display="flex" minWidth={35}>
+        <Typography component="p" color={`${name}.main`}>
           {formattedValue}
           {showLevel && <Level />}
         </Typography>
       </Box>
-    </Box>
+    </Stack>
   )
 }
 

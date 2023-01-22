@@ -1,4 +1,4 @@
-import { Box } from '@mui/material'
+import { Stack } from '@mui/material'
 import useFormatDate from '@hooks/useFormatDate'
 import DatePart from './components/DatePart'
 
@@ -12,11 +12,11 @@ function Date({ date }: DateProps) {
   const parts = formattedDate.split(' ')
 
   return (
-    <Box display="flex" alignItems="baseline" gap={1}>
+    <Stack direction="row" alignItems="baseline" spacing={1}>
       {parts.map((datePart) => (
         <DatePart datePart={datePart} key={datePart} />
       ))}
-    </Box>
+    </Stack>
   )
 }
 

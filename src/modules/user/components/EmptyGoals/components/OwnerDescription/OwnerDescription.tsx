@@ -10,13 +10,13 @@ function OwnerDescription() {
     <>
       <Typography>
         {messages.title}{' '}
-        <Box component="span" sx={{ color: 'primary' }}>
+        <Box component="span" color="primary">
           {messages.subtitle}
         </Box>
       </Typography>
       <Typography>
         {messages.description}{' '}
-        <Box component="span" sx={{ color: 'warning.light' }}>
+        <Box component="span" color="warning.light">
           <Link href={Route.Search}>{messages.link}</Link>
         </Box>
       </Typography>

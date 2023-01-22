@@ -20,10 +20,15 @@ function SubscriptionModal({ name, onClose }: SubscriptionModalProps) {
   const { id, characteristic } = useUserContext()
   const count = characteristic[name]
   const { isLoading, users, checkOnLoadMore, fetchNextPage } = useSubscription(id, count, name)
+  const titleColor = name === SecondCharacteristicName.Followers ? 'zen.sand' : undefined
 
   return (
     <AppModal
-      title={messages.title}
+      title={
+        <Box component="span" color={titleColor}>
+          {messages.title}
+        </Box>
+      }
       maxWidth="xs"
       PaperProps={{
         sx: {

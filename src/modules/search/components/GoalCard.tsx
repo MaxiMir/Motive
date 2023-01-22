@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import { Box, Button, Typography } from '@mui/material'
+import { Box, Button, Stack, Typography } from '@mui/material'
 import { toHref } from '@features/user'
 import { GoalDto } from '@features/goal'
 import { MAIN_CHARACTERISTICS } from '@features/characteristic'
@@ -26,18 +26,18 @@ function GoalCard({ goal }: GoalCardProps) {
         borderRadius: 12,
       }}
     >
-      <Box display="flex" flexDirection="column" alignItems="center" gap={2}>
+      <Stack alignItems="center" spacing={2}>
         <Typography>{name}</Typography>
         <Box display="flex" justifyContent="flex-start" flex={1}>
           <Typography variant="caption">Completed: +</Typography>
         </Box>
-        <Box display="flex" alignItems="center" gap={1}>
+        <Stack direction="row" alignItems="center" spacing={1}>
           <Link href={href} title={ownerName}>
             <AvatarStatus src={avatar} name={ownerName} size={26} />
           </Link>
           <Typography variant="caption">{owner.name}</Typography>
-        </Box>
-        <Box display="flex" justifyContent="space-between" alignItems="center">
+        </Stack>
+        <Stack direction="row" justifyContent="space-between" alignItems="center">
           {MAIN_CHARACTERISTICS.map((characteristicName) => (
             <CharacteristicGoal
               name={characteristicName}
@@ -46,8 +46,8 @@ function GoalCard({ goal }: GoalCardProps) {
             />
           ))}
           <CharacteristicGoal name="runningDays" value={231} />
-        </Box>
-      </Box>
+        </Stack>
+      </Stack>
     </Button>
   )
 }

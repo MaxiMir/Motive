@@ -1,4 +1,4 @@
-import { Box, Typography, IconButton } from '@mui/material'
+import { Typography, IconButton, Stack } from '@mui/material'
 import { GoalCharacteristicName } from '@features/goal'
 import useFormatNumber from '@hooks/useFormatNumber'
 import AppEmoji from '@ui/AppEmoji'
@@ -17,7 +17,7 @@ function CharacteristicGoal({ name, value }: CharacteristicGoalProps) {
   const color = name === 'runningDays' ? '#c07d35' : `${name}.main`
 
   return (
-    <Box display="flex" flexDirection="column" alignItems="center" gap={0.5}>
+    <Stack alignItems="center" spacing={0.5}>
       <TooltipArrow title={messages.title}>
         <IconButton
           size="small"
@@ -32,7 +32,7 @@ function CharacteristicGoal({ name, value }: CharacteristicGoalProps) {
       <Typography component="p" sx={{ color }}>
         {formattedValue}
       </Typography>
-    </Box>
+    </Stack>
   )
 }
 

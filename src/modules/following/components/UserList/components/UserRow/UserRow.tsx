@@ -1,6 +1,6 @@
 import dynamic from 'next/dynamic'
 import Link from 'next/link'
-import { Box, Typography } from '@mui/material'
+import { Stack, Typography } from '@mui/material'
 import { UserDto, toHref } from '@features/user'
 import { MAIN_CHARACTERISTICS, SecondCharacteristicName } from '@features/characteristic'
 import CharacteristicUser from '@components/Characteristic/CharacteristicUser'
@@ -21,16 +21,16 @@ function UserRow({ user, index }: UserRowProps) {
   const href = toHref(nickname)
 
   return (
-    <Box display="flex" alignItems="center" gap={2}>
+    <Stack direction="row" alignItems="center" spacing={2}>
       <Link href={href} title={name}>
         <AvatarStatus src={avatar} name={name} online={online} size={55} />
       </Link>
-      <Box display="flex" flexDirection="column" justifyContent="space-between" flex={1}>
+      <Stack justifyContent="space-between" flex={1}>
         <Typography variant="subtitle1" component="span">
           <Link href={href}>{name}</Link>
         </Typography>
         {lastSeen && <LastSeen lastSeen={lastSeen} />}
-        <Box display="flex" justifyContent="space-between" alignItems="center">
+        <Stack direction="row" justifyContent="space-between" alignItems="center">
           {CHARACTERISTICS.map((characteristicName) => (
             <CharacteristicUser
               name={characteristicName}
@@ -38,10 +38,10 @@ function UserRow({ user, index }: UserRowProps) {
               key={characteristicName}
             />
           ))}
-        </Box>
-      </Box>
+        </Stack>
+      </Stack>
       <MenuActions user={user} index={index} />
-    </Box>
+    </Stack>
   )
 }
 

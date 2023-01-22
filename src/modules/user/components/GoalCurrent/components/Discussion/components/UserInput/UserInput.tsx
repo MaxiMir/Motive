@@ -1,7 +1,7 @@
 import dynamic from 'next/dynamic'
 import Link from 'next/link'
 import { Field, Form, FormikProvider } from 'formik'
-import { Box, IconButton } from '@mui/material'
+import { IconButton, Stack } from '@mui/material'
 import { styled } from '@mui/system'
 import { blue } from '@mui/material/colors'
 import { UserBaseDto, ClientDto, toHref } from '@features/user'
@@ -35,7 +35,7 @@ function UserInput({ user, type, topicId, onAdd }: UserInputProps) {
   return (
     <FormikProvider value={form}>
       <Form>
-        <Box display="flex" alignItems="center" flex={1} gap={1}>
+        <Stack direction="row" alignItems="center" flex={1} spacing={1}>
           <Link href={href} title={name}>
             <AvatarStatus src={avatar} name={name} size={32} />
           </Link>
@@ -54,7 +54,7 @@ function UserInput({ user, type, topicId, onAdd }: UserInputProps) {
               {isSubmitting ? <CircularProgress size={14.5} /> : <AppIcon name="arrow_upward" />}
             </SendButton>
           </TooltipArrow>
-        </Box>
+        </Stack>
       </Form>
     </FormikProvider>
   )

@@ -1,6 +1,6 @@
 import { MouseEvent } from 'react'
 import { useIntl } from 'react-intl'
-import { ToggleButtonGroup, ToggleButton, Box, Typography, PaletteMode } from '@mui/material'
+import { ToggleButtonGroup, ToggleButton, Typography, Stack, PaletteMode } from '@mui/material'
 import { styled } from '@mui/system'
 import { usePaletteModeContext } from '@features/theme'
 import { useSetLocale, Locale } from '@features/locale'
@@ -30,8 +30,8 @@ function SettingsModal({ onClose }: SettingsModalProps) {
 
   return (
     <AppModal title={messages.title} maxWidth="xs" onClose={onClose}>
-      <Box display="flex" flexDirection="column" gap={3}>
-        <Box display="flex" flexDirection="column" gap={1}>
+      <Stack spacing={3}>
+        <Stack spacing={1}>
           <Header variant="body2" gutterBottom>
             {messages.languageHeader}:
           </Header>
@@ -43,12 +43,10 @@ function SettingsModal({ onClose }: SettingsModalProps) {
             onChange={onChangeLocale}
           >
             <GroupButton size="small" value={Locale.En}>
-              <AppEmoji name="en" />
-              <Box component="span">EN</Box>
+              <AppEmoji name="en" /> EN
             </GroupButton>
             <GroupButton size="small" value={Locale.Ru}>
-              <AppEmoji name="ru" />
-              <Box component="span">РУ</Box>
+              <AppEmoji name="ru" /> РУ
             </GroupButton>
             <GroupButton size="small" value={Locale.Uk}>
               <AppEmoji name="uk" /> УК
@@ -57,8 +55,8 @@ function SettingsModal({ onClose }: SettingsModalProps) {
               <AppEmoji name="zh" /> 中国
             </GroupButton>
           </ToggleButtonGroup>
-        </Box>
-        <Box display="flex" flexDirection="column" gap={1}>
+        </Stack>
+        <Stack spacing={1}>
           <Header variant="body2" gutterBottom>
             {messages.modeHeader}:
           </Header>
@@ -79,8 +77,8 @@ function SettingsModal({ onClose }: SettingsModalProps) {
               <AppEmoji name="dark" /> {messages.darkText}
             </GroupButton>
           </ToggleButtonGroup>
-        </Box>
-      </Box>
+        </Stack>
+      </Stack>
     </AppModal>
   )
 }

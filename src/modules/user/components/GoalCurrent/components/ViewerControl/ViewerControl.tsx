@@ -1,5 +1,5 @@
 import dynamic from 'next/dynamic'
-import { Box } from '@mui/material'
+import { Stack } from '@mui/material'
 import { useGoalContext } from '@modules/user/components/GoalCurrent/hooks/useGoalContext'
 import { UserBaseDto } from '@features/user'
 import { OwnershipDto } from '@features/member'
@@ -22,13 +22,13 @@ function ViewerControl({ owner, forTomorrow, clientOwnership }: ViewerControlPro
   const completion = checkOnCompletion(clientOwnership, day.id)
 
   return (
-    <Box display="flex" justifyContent="space-between" flexWrap="wrap">
-      <Box display="flex" gap={1}>
+    <Stack direction="row" justifyContent="space-between">
+      <Stack direction="row" spacing={1}>
         {DAY_CHARACTERISTIC.map((name) => (
           <ReactionWithSend name={name} key={name} />
         ))}
         <ReactionSupport owner={owner} />
-      </Box>
+      </Stack>
       {!clientOwnership.member ? (
         <Join />
       ) : (
@@ -38,7 +38,7 @@ function ViewerControl({ owner, forTomorrow, clientOwnership }: ViewerControlPro
           )}
         </>
       )}
-    </Box>
+    </Stack>
   )
 }
 

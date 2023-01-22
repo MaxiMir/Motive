@@ -1,6 +1,6 @@
 import { ReactNode } from 'react'
 import dynamic from 'next/dynamic'
-import { Badge, Box } from '@mui/material'
+import { Badge, Stack } from '@mui/material'
 import useFormatDistance from '@hooks/useFormatDistance'
 import { Device } from '@features/device'
 import TooltipArrow from '@ui/styled/TooltipArrow'
@@ -29,10 +29,10 @@ function Offline({ lastSeen, device, children }: OfflineProps) {
       badgeContent={
         <TooltipArrow
           title={
-            <Box
-              display="flex"
+            <Stack
+              direction="row"
               alignItems="center"
-              gap={0.5}
+              spacing={0.5}
               sx={{
                 '& span': {
                   fontSize: 12,
@@ -41,7 +41,7 @@ function Offline({ lastSeen, device, children }: OfflineProps) {
             >
               {device && <DeviceIcon device={device} />}
               {messages.seenText} {distance}
-            </Box>
+            </Stack>
           }
         >
           <>{shortDistance}</>

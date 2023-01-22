@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import { Typography, Grid, Box, Button } from '@mui/material'
+import { Typography, Grid, Box, Button, Stack } from '@mui/material'
 import { blueGrey } from '@mui/material/colors'
 import { useTheme } from '@mui/material/styles'
 import { UserCharacteristicName, UserDto, toHref } from '@features/user'
@@ -37,12 +37,12 @@ function UserRow({ user, characteristicName, index }: UserRowProps) {
 
   return (
     <Box
+      px={3}
       sx={{
         backgroundColor,
         boxShadow: `0 0 0 100vmax ${backgroundColor}`,
         clipPath: 'inset(0 -100vmax)',
       }}
-      px={3}
     >
       <Grid container alignItems="center" sx={{ height: 55 }}>
         <Grid item xs={2}>
@@ -53,14 +53,14 @@ function UserRow({ user, characteristicName, index }: UserRowProps) {
           </Box>
         </Grid>
         <Grid item xs={9}>
-          <Box display="flex" alignItems="center" gap={1}>
+          <Stack direction="row" alignItems="center" spacing={1}>
             <Link href={href} title={name}>
               <AvatarStatus src={avatar} name={name} online={online} size={35} />
             </Link>
             <Button href={href} sx={{ color: 'inherit' }} component={Link}>
               {name}
             </Button>
-          </Box>
+          </Stack>
         </Grid>
         <Grid item xs>
           <Typography

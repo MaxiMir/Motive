@@ -1,5 +1,5 @@
 import dynamic from 'next/dynamic'
-import { Box } from '@mui/material'
+import { Stack } from '@mui/material'
 import { NotificationDto } from '@features/notification'
 import AppModal from '@ui/AppModal'
 import { useMessages } from './hooks/useMessages'
@@ -31,7 +31,7 @@ function NotificationModal({ notifications, isLoading, onClose }: NotificationMo
       }}
       onClose={onClose}
     >
-      <Box display="flex" flexDirection="column" flex={1}>
+      <Stack flex={1}>
         {isLoading ? (
           <Loader />
         ) : (
@@ -44,7 +44,7 @@ function NotificationModal({ notifications, isLoading, onClose }: NotificationMo
             )}
           </>
         )}
-      </Box>
+      </Stack>
     </AppModal>
   )
 }

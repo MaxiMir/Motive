@@ -1,6 +1,6 @@
 import { toShortString } from '@helpers/string'
 
-export const getParagraphCount = (text: string) => text.split('\n').length
+export const getBreakCount = (text: string) => text.split('\n').length
 
 export const toMarkdown = (value: string): string => {
   const replacer = (found: string) => {

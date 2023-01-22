@@ -8,7 +8,7 @@ import { useMessages } from './hooks/useMessages'
 const NavigationModal = dynamic(() => import('./components/NavigationModal'))
 const SettingsModal = dynamic(() => import('./components/SettingsModal'))
 
-function Navigation() {
+function Sidebar() {
   const messages = useMessages()
   const [openMenu, setOpenMenu] = useState(false)
   const [openSettings, setOpenSettings] = useState(false)
@@ -39,4 +39,4 @@ function Navigation() {
   )
 }
 
-export default Navigation
+export default Sidebar

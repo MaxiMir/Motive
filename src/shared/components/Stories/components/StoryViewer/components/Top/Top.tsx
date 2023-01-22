@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import { Box, IconButton, Typography } from '@mui/material'
+import { Box, IconButton, Stack, Typography } from '@mui/material'
 import { UserBaseDto, toHref } from '@features/user'
 import useFormatDistance from '@hooks/useFormatDistance'
 import AppIcon from '@ui/AppIcon'
@@ -22,11 +22,11 @@ function Top({ user, title, date, onClose }: TopProps): JSX.Element {
 
   return (
     <Box
+      position="absolute"
+      left={0}
+      right={0}
+      zIndex={9999}
       sx={({ spacing }) => ({
-        position: 'absolute',
-        left: 0,
-        right: 0,
-        zIndex: 9999,
         padding: spacing(3, '12px', '12px'),
         transition: 'opacity 0.5s',
       })}
@@ -35,8 +35,8 @@ function Top({ user, title, date, onClose }: TopProps): JSX.Element {
         <Link href={href} title={name}>
           <AvatarStatus src={avatar} name={name} size={42} />
         </Link>
-        <Box display="flex" flexDirection="column">
-          <Box display="flex" alignItems="flex-end" gap={0.5}>
+        <Stack>
+          <Stack direction="row" alignItems="flex-end" spacing={0.5}>
             <Typography
               variant="caption"
               component="span"
@@ -51,14 +51,14 @@ function Top({ user, title, date, onClose }: TopProps): JSX.Element {
             >
               {distance}
             </Typography>
-          </Box>
+          </Stack>
           <Typography
             component="span"
             sx={{ fontSize: 14, textShadow: '0 1px 1px 0 rgba(0, 0, 0, 0.1)' }}
           >
             {title}
           </Typography>
-        </Box>
+        </Stack>
         <IconButton aria-label={messages.close} sx={{ marginLeft: 'auto' }} onClick={onClose}>
           <AppIcon name="close" />
         </IconButton>

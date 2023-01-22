@@ -1,6 +1,6 @@
 import dynamic from 'next/dynamic'
 import Link from 'next/link'
-import { Box, IconButton, Typography } from '@mui/material'
+import { Box, IconButton, Stack, Typography } from '@mui/material'
 import { toHref } from '@features/user'
 import { NotificationDto } from '@features/notification/dto'
 import { getNotificationHref } from '@features/notification/helpers'
@@ -38,7 +38,7 @@ function Notification({ notification, onClose }: NotificationProps) {
   const onView = () => mutate(id)
 
   return (
-    <Box display="flex" gap={2}>
+    <Stack direction="row" spacing={2}>
       <Box height={55} position="relative">
         <Link href={href} title={name} onClick={onClose}>
           <AvatarStatus src={avatar} name={name} size={55} />
@@ -47,21 +47,19 @@ function Notification({ notification, onClose }: NotificationProps) {
           display="flex"
           justifyContent="center"
           alignItems="center"
-          sx={{
-            position: 'absolute',
-            bottom: '-6px',
-            right: '2px',
-            width: 21,
-            height: 21,
-            backgroundColor: '#262626',
-            borderRadius: '50%',
-            fontSize: 11,
-          }}
+          position="absolute"
+          bottom="-6px"
+          right="2px"
+          width={21}
+          height={21}
+          borderRadius="50%"
+          fontSize={11}
+          sx={{ backgroundColor: '#262626' }}
         >
           <AppEmoji name={emoji} onlyEmoji />
         </Box>
       </Box>
-      <Box display="flex" flexDirection="column" justifyContent="space-between">
+      <Stack justifyContent="space-between">
         <Typography sx={{ fontSize: 14 }}>
           <Box component="b" sx={{ color }}>
             <Link href={href} onClick={onClose}>
@@ -71,7 +69,7 @@ function Notification({ notification, onClose }: NotificationProps) {
           {messages.header}
           {detailsName && `: ${detailsName}`}
         </Typography>
-        <Box display="flex" alignItems="center" gap={2}>
+        <Stack direction="row" alignItems="center" spacing={2}>
           <Box
             component="span"
             sx={{
@@ -95,10 +93,10 @@ function Notification({ notification, onClose }: NotificationProps) {
               <AppIcon name="south_east" sx={{ color: 'motivation.light' }} />
             </IconButton>
           </TooltipArrow>
-        </Box>
-      </Box>
+        </Stack>
+      </Stack>
       {!read && <AppInView onView={onView} />}
-    </Box>
+    </Stack>
   )
 }
 

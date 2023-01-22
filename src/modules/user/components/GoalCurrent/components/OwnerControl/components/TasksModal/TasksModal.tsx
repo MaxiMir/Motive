@@ -8,6 +8,7 @@ import {
   RadioGroup,
   AccordionSummary,
   Box,
+  Stack,
   Button,
   FormControl,
   Typography,
@@ -49,7 +50,7 @@ function TasksModal({ onClose }: TasksModalProps) {
       title={
         <>
           {messages.titleText}{' '}
-          <Box component="span" sx={{ color: 'zen.sand' }}>
+          <Box component="span" color="zen.sand">
             {messages.subtitleText}
           </Box>
         </>
@@ -68,38 +69,36 @@ function TasksModal({ onClose }: TasksModalProps) {
       ]}
       onClose={onClose}
     >
-      <Box display="flex" flexDirection="column" gap={3}>
+      <Stack spacing={3}>
         <FormikProvider value={form}>
           <Form>
-            <Box display="flex" flexDirection="column" gap={3}>
-              <Box>
-                <FieldArray name="tasks">
-                  {({ push, remove }) => (
-                    <>
-                      {values.tasks.map(({ id, date }, index) => (
-                        <TaskField
-                          taskCount={values.tasks.length}
-                          date={values.date}
-                          remind={date}
-                          index={index}
-                          key={id}
-                          setFieldValue={setFieldValue}
-                          onRemove={() => remove(index)}
-                        />
-                      ))}
-                      <Button
-                        size="small"
-                        variant="outlined"
-                        sx={{ alignSelf: 'baseline' }}
-                        startIcon={<AppIcon name="add" />}
-                        onClick={() => push({ id: crypto.randomUUID(), name: '', date: undefined })}
-                      >
-                        {messages.addTaskText}
-                      </Button>
-                    </>
-                  )}
-                </FieldArray>
-              </Box>
+            <Stack spacing={3}>
+              <FieldArray name="tasks">
+                {({ push, remove }) => (
+                  <>
+                    {values.tasks.map(({ id, date }, index) => (
+                      <TaskField
+                        taskCount={values.tasks.length}
+                        date={values.date}
+                        remind={date}
+                        index={index}
+                        key={id}
+                        setFieldValue={setFieldValue}
+                        onRemove={() => remove(index)}
+                      />
+                    ))}
+                    <Button
+                      size="small"
+                      variant="outlined"
+                      sx={{ alignSelf: 'baseline' }}
+                      startIcon={<AppIcon name="add" />}
+                      onClick={() => push({ id: crypto.randomUUID(), name: '', date: undefined })}
+                    >
+                      {messages.addTaskText}
+                    </Button>
+                  </>
+                )}
+              </FieldArray>
               <FormControl variant="standard">
                 <EmojiHeader name="clock" variant="h6" component="label">
                   {messages.doItText}
@@ -126,23 +125,23 @@ function TasksModal({ onClose }: TasksModalProps) {
                   />
                 </RadioGroup>
               </FormControl>
-            </Box>
+            </Stack>
           </Form>
         </FormikProvider>
         <Accordion>
           <AccordionSummary expandIcon={<AppIcon name="expand_more" />} id="old-pitt-note">
-            <Box display="flex" alignItems="center" gap={1}>
+            <Stack direction="row" alignItems="center" spacing={1}>
               <Paul />
               <Typography variant="h6" component="h3">
                 {messages.pittText}
               </Typography>
-            </Box>
+            </Stack>
           </AccordionSummary>
           <AccordionDetails>
             <OldPittRules />
           </AccordionDetails>
         </Accordion>
-      </Box>
+      </Stack>
     </AppModal>
   )
 }

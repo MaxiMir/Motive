@@ -11,35 +11,31 @@ function Pointers({ count, onClose }: PointersProps): JSX.Element {
 
   return (
     <Box
+      position="absolute"
+      top={0}
+      left={{
+        xs: 0,
+        xl: 'calc(50dvw - 50dvh)',
+      }}
+      right={{
+        xs: 0,
+        xl: 'calc(50dvw - 50dvh)',
+      }}
+      zIndex={9999}
+      display="table"
+      width={{
+        xs: '100dvw',
+        xl: '100dvh',
+      }}
       className="slides-pointers"
       sx={{
-        position: 'absolute',
-        top: 0,
-        left: {
-          xs: 0,
-          xl: 'calc(50dvw - 50dvh)',
-        },
-        right: {
-          xs: 0,
-          xl: 'calc(50dvw - 50dvh)',
-        },
-        width: {
-          xs: '100dvw',
-          xl: '100dvh',
-        },
-        display: 'table',
         tableLayout: 'fixed',
         borderSpacing: '6px',
         borderCollapse: 'separate',
-        zIndex: 9999,
         transition: 'opacity 0.5s',
       }}
     >
-      <Box
-        sx={{
-          display: 'table-row',
-        }}
-      >
+      <Box display="table-cell">
         {list.map((_, index) => (
           <Progress key={index} onEnd={onClose} />
         ))}

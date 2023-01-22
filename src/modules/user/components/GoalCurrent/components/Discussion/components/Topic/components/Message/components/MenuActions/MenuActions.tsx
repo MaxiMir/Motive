@@ -1,6 +1,6 @@
 import { MouseEvent, useId, useState } from 'react'
 import dynamic from 'next/dynamic'
-import { IconButton, Menu, MenuItem } from '@mui/material'
+import { Box, IconButton, MenuItem, Menu } from '@mui/material'
 import { MessageDto } from '@features/topic'
 import AppListItem from '@ui/AppListItem'
 import useClient from '@hooks/useClient'
@@ -43,19 +43,21 @@ function MenuActions({ message }: MenuActionsProps) {
 
   return (
     <>
-      <TooltipArrow title={messages.title}>
-        <IconButton
-          id={id}
-          size="small"
-          aria-controls={open ? menuId : undefined}
-          aria-haspopup="true"
-          aria-expanded={open ? 'true' : undefined}
-          sx={{ padding: '3px' }}
-          onClick={onOpenMenu}
-        >
-          <AppIcon name="more_horiz" />
-        </IconButton>
-      </TooltipArrow>
+      <Box marginLeft="auto">
+        <TooltipArrow title={messages.title}>
+          <IconButton
+            id={id}
+            size="small"
+            aria-controls={open ? menuId : undefined}
+            aria-haspopup="true"
+            aria-expanded={open ? 'true' : undefined}
+            sx={{ padding: '3px' }}
+            onClick={onOpenMenu}
+          >
+            <AppIcon name="more_horiz" />
+          </IconButton>
+        </TooltipArrow>
+      </Box>
       <Menu
         id={menuId}
         anchorEl={anchorEl}

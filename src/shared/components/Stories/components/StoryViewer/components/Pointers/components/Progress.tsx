@@ -10,11 +10,7 @@ function Progress({ onEnd }: ProgressProps) {
   const progress = useShowProgress(100, { step: 1, onEnd })
 
   return (
-    <Box
-      sx={{
-        display: 'table-cell',
-      }}
-    >
+    <Box display="table-cell">
       <LinearProgress
         variant="determinate"
         value={progress}

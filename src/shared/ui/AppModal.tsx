@@ -4,17 +4,17 @@ import { useIntl } from 'react-intl'
 import {
   Dialog,
   DialogContent,
-  DialogTitle,
   GlobalStyles,
-  DialogProps,
+  DialogTitle,
   IconButton,
+  DialogProps,
 } from '@mui/material'
 import { backdropClasses } from '@mui/material/Backdrop'
 import AppScrollbar from '@ui/AppScrollbar'
 import AppIcon from '@ui/AppIcon'
 
 const DialogActions = dynamic(() => import('@mui/material/DialogActions'))
-const Box = dynamic(() => import('@mui/material/Box'))
+const Stack = dynamic(() => import('@mui/material/Stack'))
 
 interface AppModalProps extends Pick<DialogProps, 'maxWidth' | 'PaperProps'> {
   title: JSX.Element | string
@@ -69,11 +69,11 @@ function AppModal({ title, actions, children, maxWidth, PaperProps, onClose }: A
       </AppScrollbar>
       {actions && (
         <DialogActions>
-          <Box display="flex" flex={1} justifyContent="space-between" pb={2} px={2}>
+          <Stack direction="row" justifyContent="space-between" flex={1} pb={2} px={2}>
             {actions.map((a, index) => (
               <Fragment key={index}>{a}</Fragment>
             ))}
-          </Box>
+          </Stack>
         </DialogActions>
       )}
       <GlobalStyles

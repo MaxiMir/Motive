@@ -1,5 +1,5 @@
 import { Field, Form, FormikProvider } from 'formik'
-import { Box, InputAdornment } from '@mui/material'
+import { Box, InputAdornment, Stack } from '@mui/material'
 import AppModal from '@ui/AppModal'
 import AppInput from '@ui/AppInput'
 import ActionSubmit from '@components/Action/ActionSubmit'
@@ -21,7 +21,7 @@ function EditModal({ onClose }: EditModalProps) {
       title={
         <>
           {messages.title}{' '}
-          <Box component="span" sx={{ color: 'zen.sand' }}>
+          <Box component="span" color="zen.sand">
             {messages.profile}
           </Box>
         </>
@@ -42,7 +42,7 @@ function EditModal({ onClose }: EditModalProps) {
     >
       <FormikProvider value={form}>
         <Form>
-          <Box display="flex" flexDirection="column" gap={3}>
+          <Stack spacing={3}>
             <Field name="name" label={messages.nameLabel} color="primary" component={AppInput} />
             <Field
               name="nickname"
@@ -69,7 +69,7 @@ function EditModal({ onClose }: EditModalProps) {
               color="primary"
               component={AppInput}
             />
-          </Box>
+          </Stack>
         </Form>
       </FormikProvider>
     </AppModal>

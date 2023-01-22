@@ -12,7 +12,7 @@ function UserList({ users }: UserListProps) {
   return (
     <AppList
       elements={users}
-      gap={4}
+      spacing={4}
       keyGetter={keyGetter}
       render={(user, index) => <UserRow user={user} index={index} />}
     />

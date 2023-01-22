@@ -1,4 +1,4 @@
-import { Box, List, ListItem, Drawer, ListItemIcon, ListItemText } from '@mui/material'
+import { Box, List, ListItem, Stack, Drawer, ListItemIcon, ListItemText } from '@mui/material'
 import { copyText } from '@helpers/navigator'
 import ContentCopy from '@ui/icons/ContentCopy'
 import Email from '@ui/icons/Email'
@@ -68,19 +68,12 @@ function Menu({ title, url, onCopyEnd, onCopyError, onClose }: MenuProps) {
         <List>
           {shareItems.map(({ text, Icon, onClick }) => (
             <ListItem button sx={{ height: 65 }} key={text} onClick={onClick}>
-              <Box
-                display="flex"
-                alignItems="center"
-                sx={{
-                  width: 240,
-                  marginInline: 'auto',
-                }}
-              >
+              <Stack direction="row" alignItems="center" width={240} sx={{ marginInline: 'auto' }}>
                 <ListItemIcon>
                   <Icon sx={{ color: 'primary.dark' }} />
                 </ListItemIcon>
                 <ListItemText primary={text} sx={{ color: 'creativity.light' }} />
-              </Box>
+              </Stack>
             </ListItem>
           ))}
         </List>

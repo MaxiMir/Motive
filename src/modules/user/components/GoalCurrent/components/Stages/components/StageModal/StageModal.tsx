@@ -1,4 +1,4 @@
-import { Box, Typography } from '@mui/material'
+import { Box, Stack, Typography } from '@mui/material'
 import { useGoalContext } from '@modules/user/components/GoalCurrent/hooks/useGoalContext'
 import AppModal from '@ui/AppModal'
 import AppFlyIcon from '@ui/AppFlyIcon'
@@ -24,7 +24,7 @@ function StageModal({ onClose }: StageModalProps) {
       title={
         <>
           {messages.title} <br />
-          <Box component="span" sx={{ color: 'zen.sand' }}>
+          <Box component="span" color="zen.sand">
             {stages[day.stage]}
           </Box>
         </>
@@ -43,18 +43,18 @@ function StageModal({ onClose }: StageModalProps) {
       ]}
       onClose={onClose}
     >
-      <Box display="flex" flexDirection="column" alignItems="center" gap={1}>
+      <Stack alignItems="center" spacing={1}>
         <AppFlyIcon name="stage" />
         <Typography variant="subtitle1" sx={{ color: 'support.main' }}>
           <b>{messages.behind}</b>
         </Typography>
         <Typography>
           {messages.nextTitle}:{' '}
-          <Box component="b" sx={{ color: 'zen.wave' }}>
+          <Box component="b" color="zen.wave">
             {stages[nextStage]}
           </Box>
         </Typography>
-      </Box>
+      </Stack>
     </AppModal>
   )
 }

@@ -1,5 +1,5 @@
 import { Field, FieldArray, Form, FormikProvider } from 'formik'
-import { Grid, Box, Typography } from '@mui/material'
+import { Grid, Typography, Stack } from '@mui/material'
 import useSelectPhoto from '@hooks/useSelectPhoto'
 import AppModal from '@ui/AppModal'
 import AppInput from '@ui/AppInput'
@@ -46,13 +46,13 @@ function AddingModal({ onClose }: AddingModalProps) {
     >
       <FormikProvider value={form}>
         <Form>
-          <Box display="flex" flexDirection="column" alignItems="center" gap={3}>
-            <Box display="flex" flexDirection="column" alignItems="center" gap={1}>
+          <Stack alignItems="center" spacing={3}>
+            <Stack alignItems="center" spacing={1}>
               <AppShakeIcon name="congratulations" />
               <Typography variant="subtitle1" sx={{ color: 'support.main' }}>
                 {messages.subtitle}
               </Typography>
-            </Box>
+            </Stack>
             <Field
               name="text"
               label={messages.label}
@@ -62,7 +62,7 @@ function AddingModal({ onClose }: AddingModalProps) {
               component={AppInput}
             />
             {!!values.photos.length && (
-              <Box display="flex" flexDirection="column" gap={2} width="100%">
+              <Stack spacing={2} width="100%">
                 <EmojiHeader name="photo" variant="h6" component="h2" color="primary">
                   {messages.photoTitle}
                 </EmojiHeader>
@@ -81,10 +81,10 @@ function AddingModal({ onClose }: AddingModalProps) {
                     </Grid>
                   )}
                 </FieldArray>
-              </Box>
+              </Stack>
             )}
             {values.video && (
-              <Box display="flex" flexDirection="column" gap={2} width="100%">
+              <Stack spacing={2} width="100%">
                 <EmojiHeader name="video" variant="h6" component="h2" color="primary">
                   {messages.videoTitle}
                 </EmojiHeader>
@@ -93,13 +93,13 @@ function AddingModal({ onClose }: AddingModalProps) {
                   disabled={isSubmitting}
                   onRemove={() => setFieldValue('video', null)}
                 />
-              </Box>
+              </Stack>
             )}
-            <Box display="flex" gap={2} width="100%">
+            <Stack direction="row" spacing={2} width="100%">
               <PhotoInput multiple disabled={isSubmitting} onSelect={onSelectPhoto} />
               <VideoInput disabled onSelect={onSelectVideo} />
-            </Box>
-          </Box>
+            </Stack>
+          </Stack>
         </Form>
       </FormikProvider>
     </AppModal>

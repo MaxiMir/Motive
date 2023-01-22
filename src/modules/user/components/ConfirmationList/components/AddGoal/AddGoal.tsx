@@ -1,5 +1,5 @@
 import dynamic from 'next/dynamic'
-import { Box, Button, Typography } from '@mui/material'
+import { Box, Button, Stack, Typography } from '@mui/material'
 import useToggle from '@hooks/useToggle'
 import AppIcon from '@ui/AppIcon'
 import { useMessages } from './hooks/useMessages'
@@ -11,12 +11,12 @@ function AddGoal() {
   const [open, toggle] = useToggle()
 
   return (
-    <Box display="flex" flexDirection="column" alignItems="center" minWidth={100} gap={1}>
+    <Stack alignItems="center" spacing={1} minWidth={100}>
       <Box
+        padding="2px"
+        borderRadius="50%"
         sx={({ palette }) => ({
-          padding: '2px',
           background: `linear-gradient(to top left, ${palette.creativity.dark}, ${palette.support.dark})`,
-          borderRadius: '50%',
         })}
       >
         <Button
@@ -50,7 +50,7 @@ function AddGoal() {
         </Typography>
       </Button>
       {open && <GoalModal onClose={toggle} />}
-    </Box>
+    </Stack>
   )
 }
 

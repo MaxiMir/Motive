@@ -16,13 +16,11 @@ function SupportSign({ name }: SupportSignProps) {
         display="flex"
         justifyContent="center"
         alignItems="center"
-        sx={{
-          width: 21,
-          height: 21,
-          backgroundColor: 'support.main',
-          borderRadius: '50%',
-          fontSize: 10,
-        }}
+        width={21}
+        height={21}
+        fontSize={10}
+        borderRadius="50%"
+        sx={{ backgroundColor: 'support.main' }}
       >
         <AppEmoji name="support" onlyEmoji />
       </Box>

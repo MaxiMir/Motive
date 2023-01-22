@@ -1,6 +1,6 @@
 import dynamic from 'next/dynamic'
 import { SignInOptions } from 'next-auth/react'
-import { Box } from '@mui/material'
+import { Stack } from '@mui/material'
 import AppModal from '@ui/AppModal'
 import appleSrc from 'public/images/svg/apple.svg'
 import metaSrc from 'public/images/svg/meta.svg'
@@ -32,7 +32,7 @@ function SignInModal({ options, onClose }: SignInModalProps) {
 
   return (
     <AppModal title={messages.title} maxWidth="xs" onClose={onClose}>
-      <Box display="flex" flexDirection="column" alignSelf="stretch" gap={2} minHeight={159}>
+      <Stack alignSelf="stretch" spacing={2} minHeight={159}>
         {!providers ? (
           <Loader count={4} />
         ) : (
@@ -49,7 +49,7 @@ function SignInModal({ options, onClose }: SignInModalProps) {
             ))}
           </>
         )}
-      </Box>
+      </Stack>
     </AppModal>
   )
 }

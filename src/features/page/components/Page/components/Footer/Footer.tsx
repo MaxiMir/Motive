@@ -1,6 +1,6 @@
 import { useRouter } from 'next/router'
 import Link from 'next/link'
-import { Container, Box, IconButton } from '@mui/material'
+import { Container, Box, IconButton, Stack } from '@mui/material'
 import TooltipArrow from '@ui/styled/TooltipArrow'
 import { useRoutes } from './hooks/useRoutes'
 import ProfileLink from './components/ProfileLink'
@@ -11,21 +11,19 @@ function Footer() {
 
   return (
     <Box
+      position="sticky"
       component="footer"
-      sx={{
-        display: {
-          xs: 'block',
-          xl: 'none',
-        },
-        position: 'sticky',
-        bottom: 0,
-        width: '100%',
-        zIndex: 30,
-        backgroundColor: 'underlay',
+      bottom={0}
+      zIndex={30}
+      display={{
+        xs: 'block',
+        xl: 'none',
       }}
+      width="100%"
+      sx={{ backgroundColor: 'underlay' }}
     >
       <Container fixed>
-        <Box display="flex" justifyContent="space-between" alignItems="center" py={1}>
+        <Stack direction="row" justifyContent="space-between" alignItems="center" py={1}>
           {routes.map(({ title, href, Component }) => (
             <TooltipArrow title={title} key={href}>
               <IconButton href={href} component={Link}>
@@ -36,7 +34,7 @@ function Footer() {
             </TooltipArrow>
           ))}
           <ProfileLink />
-        </Box>
+        </Stack>
       </Container>
     </Box>
   )

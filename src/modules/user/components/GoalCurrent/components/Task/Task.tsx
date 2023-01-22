@@ -1,6 +1,6 @@
 import dynamic from 'next/dynamic'
 import { useIntl } from 'react-intl'
-import { Box } from '@mui/material'
+import { Stack } from '@mui/material'
 import { MemberDto } from '@features/member'
 import { TaskDto } from '@features/task'
 import AppCheckbox from '@ui/AppCheckbox'
@@ -36,7 +36,7 @@ function Task({
   const disabled = completed || forTomorrow || !canEdit
 
   return (
-    <Box display="flex" flexDirection="column" gap={1}>
+    <Stack spacing={1}>
       <form>
         <TooltipArrow title={title}>
           <AppCheckbox
@@ -49,7 +49,7 @@ function Task({
         </TooltipArrow>
       </form>
       {date && <TaskDate date={date} />}
-    </Box>
+    </Stack>
   )
 }
 

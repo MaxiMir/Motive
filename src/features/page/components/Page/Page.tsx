@@ -4,7 +4,7 @@ import dynamic from 'next/dynamic'
 import { useRouter } from 'next/router'
 import { useIntl } from 'react-intl'
 import { useIsFetching } from 'react-query'
-import { Box } from '@mui/material'
+import { Stack } from '@mui/material'
 import { getLocaleHrefList } from '@features/locale'
 import { useDeviceContext } from '@features/device'
 import { OGType } from '@features/page/dto'
@@ -12,7 +12,7 @@ import { OGType } from '@features/page/dto'
 const Loader = dynamic(() => import('./components/Loader'))
 const Header = dynamic(() => import('./components/Header'))
 const Footer = dynamic(() => import('./components/Footer'))
-const Navigation = dynamic(() => import('./components/Navigation'))
+const Sidebar = dynamic(() => import('./components/Sidebar'))
 
 interface PageProps {
   title?: string
@@ -43,7 +43,7 @@ function Page({
   const possibleDesktop = device === 'desktop'
   const renderDesktop = !device || possibleDesktop
   const renderCompact = !device || !possibleDesktop
-  const MainWrap = renderDesktop ? Navigation : Fragment
+  const MainWrap = renderDesktop ? Sidebar : Fragment
   const mainWrapProps = renderDesktop ? { breakpoints: !device } : null
 
   return (
@@ -82,20 +82,15 @@ function Page({
       </Head>
       {renderCompact && <Header type={type} />}
       <MainWrap {...mainWrapProps}>
-        <Box
+        <Stack
           component="main"
           id="main"
-          display="flex"
-          flexDirection="column"
-          sx={({ palette }) => ({
-            flex: 1,
-            flexGrow: 1,
-            background: palette.mode === 'dark' ? '#121212' : undefined,
-          })}
+          flex={1}
+          sx={({ palette }) => ({ background: palette.mode === 'dark' ? '#121212' : undefined })}
         >
           {renderLoader && <Loader />}
           {children}
-        </Box>
+        </Stack>
       </MainWrap>
       {renderCompact && <Footer />}
     </>

@@ -11,7 +11,7 @@ function NotificationList({ notifications, onClose }: NotificationListProps) {
   return (
     <AppList
       elements={notifications}
-      gap={2}
+      spacing={2}
       keyGetter={(notification) => notification.id}
       render={(notification) => <Notification notification={notification} onClose={onClose} />}
     />

@@ -1,6 +1,6 @@
 import { FocusEvent } from 'react'
 import { Field, Form, FormikProvider } from 'formik'
-import { Box } from '@mui/material'
+import { Box, Stack } from '@mui/material'
 import { MessageDto } from '@features/topic'
 import AppModal from '@ui/AppModal'
 import AppInput from '@ui/AppInput'
@@ -28,7 +28,7 @@ function EditModal({ message, onClose }: EditModalProps) {
       title={
         <>
           {messages.title}{' '}
-          <Box component="span" sx={{ color: 'zen.sand' }}>
+          <Box component="span" color="zen.sand">
             {messages.subtitle}
           </Box>
         </>
@@ -49,7 +49,7 @@ function EditModal({ message, onClose }: EditModalProps) {
     >
       <FormikProvider value={form}>
         <Form>
-          <Box display="flex" flexDirection="column" alignItems="center" gap={3}>
+          <Stack alignItems="center" spacing={3}>
             <Field
               name="text"
               label={messages.label}
@@ -59,7 +59,7 @@ function EditModal({ message, onClose }: EditModalProps) {
               onFocus={onFocus}
               component={AppInput}
             />
-          </Box>
+          </Stack>
         </Form>
       </FormikProvider>
     </AppModal>

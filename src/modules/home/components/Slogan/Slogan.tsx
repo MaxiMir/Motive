@@ -1,18 +1,17 @@
-import { Box, Typography } from '@mui/material'
+import { Stack, Typography } from '@mui/material'
 import { useMessages } from './hooks/useMessages'
 
 function Slogan() {
   const messages = useMessages()
 
   return (
-    <Box
-      display="flex"
+    <Stack
       alignItems="center"
       justifyContent="center"
       flex={1}
       sx={{ backgroundColor: 'common.white' }}
     >
-      <Box display="flex" flexDirection="column" alignItems="center">
+      <Stack alignItems="center">
         <Typography
           variant="h4"
           align="center"
@@ -30,8 +29,8 @@ function Slogan() {
         <Typography variant="caption" align="center" sx={{ color: '#A1A1A6' }}>
           {messages.subheader}
         </Typography>
-      </Box>
-    </Box>
+      </Stack>
+    </Stack>
   )
 }
 

@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import dynamic from 'next/dynamic'
-import { Box, Button, Typography } from '@mui/material'
+import { Button, Stack, Typography } from '@mui/material'
 import { SecondCharacteristicName } from '@features/characteristic'
 import { ConfirmationDto } from '@features/confirmation'
 import useFormatNumber from '@hooks/useFormatNumber'
@@ -55,28 +55,25 @@ function SecondCharacteristic({ confirmations, name, value }: CharacteristicProp
         sx={{ padding: '4px' }}
         onClick={onClick}
       >
-        <Box
-          display="flex"
-          sx={{
-            color: 'common.white',
-            gap: {
-              md: 0.5,
-            },
-            alignItems: {
-              xs: 'center',
-              md: 'baseline',
-            },
-            flexDirection: {
-              xs: 'column',
-              md: 'row',
-            },
+        <Stack
+          alignItems={{
+            xs: 'center',
+            md: 'baseline',
           }}
+          direction={{
+            xs: 'column',
+            md: 'row',
+          }}
+          spacing={{
+            md: 0.5,
+          }}
+          color="common.white"
         >
           <Typography variant="h5" component="b">
             {formattedValue}
           </Typography>
           <Typography sx={{ fontSize: 13 }}>{buttonText}</Typography>
-        </Box>
+        </Stack>
       </Button>
       {modal === Completed && <NoCompletedModal onClose={onClose} />}
       {modal === Abandoned && <AbandonedModal onClose={onClose} />}

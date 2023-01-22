@@ -1,5 +1,5 @@
 import { useRouter } from 'next/router'
-import { Box, Button, Typography } from '@mui/material'
+import { Button, Stack, Typography } from '@mui/material'
 import { getHashtagHref } from '@features/user'
 import useFormatNumber from '@hooks/useFormatNumber'
 
@@ -29,17 +29,13 @@ function Hashtag({ name, gradient, views }: HashtagProps) {
       }}
       onClick={onClick}
     >
-      <Box
-        display="flex"
+      <Stack
         alignItems="flex-start"
-        flexDirection="column"
         justifyContent="space-between"
         p={1}
-        sx={{
-          width: '100%',
-          height: '100%',
-          overflow: 'hidden',
-        }}
+        width="100%"
+        height="100%"
+        overflow="hidden"
       >
         <Typography variant="subtitle1" component="p" sx={{ color: 'common.white' }}>
           <b>#{name}</b>
@@ -58,7 +54,7 @@ function Hashtag({ name, gradient, views }: HashtagProps) {
           <b>{name}</b>
         </Typography>
         <Typography sx={{ opacity: 0.5 }}>{formattedViews}</Typography>
-      </Box>
+      </Stack>
     </Button>
   )
 }

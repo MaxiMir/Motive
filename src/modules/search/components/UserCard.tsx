@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import { Box, Typography, Button } from '@mui/material'
+import { Typography, Button, Stack } from '@mui/material'
 import { UserDto, toHref } from '@features/user'
 import { MAIN_CHARACTERISTICS } from '@features/characteristic'
 import AvatarStatus from '@components/Avatar/AvatarStatus'
@@ -24,31 +24,17 @@ function UserCard({ user }: UserCardProps) {
       }}
       component={Link}
     >
-      <Box
-        display="flex"
-        alignItems="center"
-        gap={2}
-        sx={{
-          flexDirection: {
-            xs: 'row',
-            md: 'column',
-          },
-        }}
-      >
+      <Stack alignItems="center" direction={{ xs: 'row', md: 'column' }} spacing={2}>
         <AvatarStatus src={avatar} name={name} size={120} />
-        <Box
-          display="flex"
-          flexDirection="column"
-          gap={2}
-          sx={{
-            alignItems: {
-              xs: 'flex-start',
-              md: 'center',
-            },
+        <Stack
+          alignItems={{
+            xs: 'flex-start',
+            md: 'center',
           }}
+          spacing={2}
         >
           <Typography sx={{ color: 'common.white' }}>{name}</Typography>
-          <Box display="flex" justifyContent="space-between" alignItems="center">
+          <Stack direction="row" justifyContent="space-between" alignItems="center">
             {MAIN_CHARACTERISTICS.map((characteristicName) => (
               <CharacteristicUser
                 name={characteristicName}
@@ -56,9 +42,9 @@ function UserCard({ user }: UserCardProps) {
                 key={characteristicName}
               />
             ))}
-          </Box>
-        </Box>
-      </Box>
+          </Stack>
+        </Stack>
+      </Stack>
     </Button>
   )
 }

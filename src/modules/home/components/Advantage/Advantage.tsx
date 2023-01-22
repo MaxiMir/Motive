@@ -1,6 +1,5 @@
 import Link from 'next/link'
-import { Box, Typography } from '@mui/material'
-import { useTheme } from '@mui/material/styles'
+import { Box, Stack, Typography } from '@mui/material'
 import { MainCharacteristicName, SecondCharacteristicName } from '@features/characteristic'
 import AppEmoji from '@ui/AppEmoji'
 import { useMessages } from './hooks/useMessages'
@@ -12,23 +11,23 @@ interface AdvantageProps {
 }
 
 function Advantage({ name, href }: AdvantageProps) {
-  const theme = useTheme()
   const messages = useMessages(name)
   const width = useWidth()
-  const { light, dark } = theme.palette[name]
 
   return (
     <Box
       display="flex"
       justifyContent="center"
       flex={1}
-      sx={{ background: `linear-gradient(90deg, ${light} 0%, ${dark} 100%)` }}
+      sx={({ palette }) => ({
+        background: `linear-gradient(90deg, ${palette[name].light} 0%, ${palette[name].dark} 100%)`,
+      })}
     >
-      <Box display="flex" alignItems="center" gap={2} width={width}>
+      <Stack direction="row" alignItems="center" spacing={2} width={width}>
         <Link href={href}>
           <AppEmoji name={name} variant="h2" />
         </Link>
-        <Box display="flex" flexDirection="column" alignItems="space-between">
+        <Stack alignItems="space-between">
           <Typography
             variant="h5"
             component="span"
@@ -40,8 +39,8 @@ function Advantage({ name, href }: AdvantageProps) {
             <Link href={href}>{messages.title}</Link>
           </Typography>
           <Typography sx={{ color: '#f5f5f799' }}>{messages.subtitle}</Typography>
-        </Box>
-      </Box>
+        </Stack>
+      </Stack>
     </Box>
   )
 }

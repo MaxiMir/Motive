@@ -1,4 +1,4 @@
-import { Box, Typography } from '@mui/material'
+import { Box, Stack, Typography } from '@mui/material'
 import { useGoalContext } from '@modules/user/components/GoalCurrent/hooks/useGoalContext'
 import { OwnershipDto } from '@features/member'
 import AppModal from '@ui/AppModal'
@@ -41,15 +41,15 @@ function LeaveModal({ clientOwnership, onClose }: LeaveModalProps) {
       ]}
       onClose={onClose}
     >
-      <Box display="flex" flexDirection="column" justifyItems="center" alignItems="center" gap={1}>
+      <Stack justifyItems="center" alignItems="center" spacing={1}>
         <Typography>
           {messages.subtitle}{' '}
-          <Box component="span" sx={{ color: 'motivation.light' }}>
+          <Box component="span" color="motivation.light">
             {name}
           </Box>
         </Typography>
         <AppFadeIcon name="luggage" />
-      </Box>
+      </Stack>
     </AppModal>
   )
 }

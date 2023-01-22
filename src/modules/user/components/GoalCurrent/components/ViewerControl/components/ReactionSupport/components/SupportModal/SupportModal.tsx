@@ -1,5 +1,5 @@
 import { Field, Form, FormikProvider } from 'formik'
-import { Box, Typography } from '@mui/material'
+import { Box, Stack, Typography } from '@mui/material'
 import { UserBaseDto } from '@features/user'
 import AppModal from '@ui/AppModal'
 import AppFadeIcon from '@ui/AppFadeIcon'
@@ -26,7 +26,7 @@ function SupportModal({ owner, onClose }: SupportModalProps) {
       title={
         <>
           {messages.title} <br />
-          <Box component="span" sx={{ color: 'zen.sand' }}>
+          <Box component="span" color="zen.sand">
             {owner.name}
           </Box>
         </>
@@ -47,7 +47,7 @@ function SupportModal({ owner, onClose }: SupportModalProps) {
     >
       <FormikProvider value={form}>
         <Form>
-          <Box display="flex" flexDirection="column" alignItems="center" gap={3}>
+          <Stack alignItems="center" spacing={3}>
             <AppFadeIcon name="support" />
             <Field
               name="text"
@@ -57,13 +57,13 @@ function SupportModal({ owner, onClose }: SupportModalProps) {
               rows={3}
               component={AppInput}
             />
-            <Box sx={{ width: '100%' }}>
+            <Box width="100%">
               <AppAccordion
                 name="helmet"
                 header={messages.header}
                 id="support"
                 details={
-                  <Box sx={{ color: 'zen.silent' }}>
+                  <Box color="zen.silent">
                     <Typography>
                       {messages.accordionGoal}
                       <AppDecorEmoji name="goal" />.
@@ -79,7 +79,7 @@ function SupportModal({ owner, onClose }: SupportModalProps) {
                 }
               />
             </Box>
-          </Box>
+          </Stack>
         </Form>
       </FormikProvider>
     </AppModal>

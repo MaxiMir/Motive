@@ -5,14 +5,7 @@ function Level() {
   const messages = useMessages()
 
   return (
-    <Box
-      component="sup"
-      sx={{
-        marginLeft: '2px',
-        fontSize: 10,
-        color: 'text.disabled',
-      }}
-    >
+    <Box component="sup" marginLeft="2px" fontSize={10} color="text.disabled">
       {messages.lvlText}
     </Box>
   )

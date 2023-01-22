@@ -4,8 +4,8 @@ import { ToggleButtonGroup, ToggleButton, Typography, Stack, PaletteMode } from 
 import { styled } from '@mui/system'
 import { usePaletteModeContext } from '@features/theme'
 import { useSetLocale, Locale } from '@features/locale'
-import AppModal from '@ui/AppModal'
-import AppEmoji from '@ui/AppEmoji'
+import Modal from '@ui/Modal'
+import Emoji from '@ui/Emoji'
 import { useMessages } from './hooks/useMessages'
 
 interface SettingsModalProps {
@@ -29,7 +29,7 @@ function SettingsModal({ onClose }: SettingsModalProps) {
   }
 
   return (
-    <AppModal title={messages.title} maxWidth="xs" onClose={onClose}>
+    <Modal title={messages.title} maxWidth="xs" onClose={onClose}>
       <Stack spacing={3}>
         <Stack spacing={1}>
           <Header variant="body2" gutterBottom>
@@ -43,16 +43,16 @@ function SettingsModal({ onClose }: SettingsModalProps) {
             onChange={onChangeLocale}
           >
             <GroupButton size="small" value={Locale.En}>
-              <AppEmoji name="en" /> EN
+              <Emoji name="en" /> EN
             </GroupButton>
             <GroupButton size="small" value={Locale.Ru}>
-              <AppEmoji name="ru" /> РУ
+              <Emoji name="ru" /> РУ
             </GroupButton>
             <GroupButton size="small" value={Locale.Uk}>
-              <AppEmoji name="uk" /> УК
+              <Emoji name="uk" /> УК
             </GroupButton>
             <GroupButton size="small" value={Locale.Zh}>
-              <AppEmoji name="zh" /> 中国
+              <Emoji name="zh" /> 中国
             </GroupButton>
           </ToggleButtonGroup>
         </Stack>
@@ -68,18 +68,18 @@ function SettingsModal({ onClose }: SettingsModalProps) {
             onChange={onChangeMode}
           >
             <GroupButton size="small" value="light" disabled>
-              <AppEmoji name="light" /> {messages.lightText}
+              <Emoji name="light" /> {messages.lightText}
             </GroupButton>
             <GroupButton size="small" value="system" disabled>
-              <AppEmoji name="system" /> {messages.systemText}
+              <Emoji name="system" /> {messages.systemText}
             </GroupButton>
             <GroupButton size="small" value="dark" disabled>
-              <AppEmoji name="dark" /> {messages.darkText}
+              <Emoji name="dark" /> {messages.darkText}
             </GroupButton>
           </ToggleButtonGroup>
         </Stack>
       </Stack>
-    </AppModal>
+    </Modal>
   )
 }
 

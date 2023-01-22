@@ -1,5 +1,5 @@
 import { Box } from '@mui/material'
-import AppEmoji from '@ui/AppEmoji'
+import Emoji from '@ui/Emoji'
 import TooltipArrow from '@ui/styled/TooltipArrow'
 import { useMessages } from './hooks/useMessages'
 
@@ -22,7 +22,7 @@ function SupportSign({ name }: SupportSignProps) {
         borderRadius="50%"
         sx={{ backgroundColor: 'support.main' }}
       >
-        <AppEmoji name="support" onlyEmoji />
+        <Emoji name="support" onlyEmoji />
       </Box>
     </TooltipArrow>
   )

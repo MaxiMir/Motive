@@ -4,10 +4,10 @@ import { useAddMessage } from '@modules/user/hooks'
 import { UserBaseDto } from '@features/user'
 import { TopicDto, MessageType } from '@features/topic'
 import useClient from '@hooks/useClient'
-import { AppListProps } from '@ui/AppList'
+import { ListProps } from '@ui/List'
 import { useDiscussion } from './hooks/useDiscussion'
 
-const AppList = dynamic<AppListProps<TopicDto>>(() => import('@ui/AppList'))
+const List = dynamic<ListProps<TopicDto>>(() => import('@ui/List'))
 const UserInput = dynamic(() => import('./components/UserInput'))
 const Nothing = dynamic(() => import('./components/Nothing'))
 const Loader = dynamic(() => import('./components/Loader'))
@@ -37,7 +37,7 @@ function Discussion({ owner, count, clientGoal }: DiscussionProps) {
             {!count ? (
               <Nothing />
             ) : (
-              <AppList
+              <List
                 elements={topics}
                 keyGetter={(topic) => topic.id}
                 spacing={3}

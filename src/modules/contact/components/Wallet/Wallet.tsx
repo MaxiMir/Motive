@@ -2,7 +2,7 @@ import Image, { ImageProps } from 'next/image'
 import { Box, IconButton, Stack, Typography } from '@mui/material'
 import { useSnackbar } from '@features/snackbar'
 import { copyText } from '@helpers/navigator'
-import AppIcon from '@ui/AppIcon'
+import Icon from '@ui/Icon'
 import TooltipArrow from '@ui/styled/TooltipArrow'
 import { useMessages } from './hooks/useMessages'
 
@@ -44,7 +44,7 @@ function Wallet({ name, wallet, src }: WalletProps) {
       </Box>
       <TooltipArrow title={messages.copyText}>
         <IconButton disableFocusRipple onClick={onClick}>
-          <AppIcon name="content_copy" />
+          <Icon name="content_copy" />
         </IconButton>
       </TooltipArrow>
     </Stack>

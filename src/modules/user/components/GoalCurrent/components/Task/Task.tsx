@@ -3,7 +3,7 @@ import { useIntl } from 'react-intl'
 import { Stack } from '@mui/material'
 import { MemberDto } from '@features/member'
 import { TaskDto } from '@features/task'
-import AppCheckbox from '@ui/AppCheckbox'
+import Checkbox from '@ui/Checkbox'
 import TooltipArrow from '@ui/styled/TooltipArrow'
 import TaskLabel from './components/TaskLabel'
 import { useSetCompleted } from './hooks/useSetCompleted'
@@ -39,7 +39,7 @@ function Task({
     <Stack spacing={1}>
       <form>
         <TooltipArrow title={title}>
-          <AppCheckbox
+          <Checkbox
             name={id.toString()}
             label={<TaskLabel task={task} daysGoneForOwner={daysGoneForOwner} />}
             checked={completed}

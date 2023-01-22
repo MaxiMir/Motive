@@ -1,4 +1,4 @@
-import AppEmoji from '@ui/AppEmoji'
+import Emoji from '@ui/Emoji'
 import TooltipArrow from '@ui/styled/TooltipArrow'
 import { useMessages } from './hooks/useMessages'
 
@@ -7,7 +7,7 @@ function CompletedByOthers() {
 
   return (
     <TooltipArrow title={messages.title}>
-      <AppEmoji name="fire" onlyEmoji />
+      <Emoji name="fire" onlyEmoji />
     </TooltipArrow>
   )
 }

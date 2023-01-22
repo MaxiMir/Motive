@@ -14,7 +14,7 @@ import {
 } from '@mui/material'
 import useToggle from '@hooks/useToggle'
 import useClient from '@hooks/useClient'
-import AppIcon from '@ui/AppIcon'
+import Icon from '@ui/Icon'
 import TooltipArrow from '@ui/styled/TooltipArrow'
 import { useRoutes } from './hooks/useRoutes'
 import { useMessages } from './hooks/useMessages'
@@ -61,7 +61,7 @@ function Sidebar({ breakpoints, children }: SidebarProps) {
           <Box>
             <Box display="flex" alignItems="center" paddingLeft={1} sx={{ height: 56 }}>
               <IconButton aria-label={messages.ariaLabel} onClick={toggleExpanded}>
-                <AppIcon name={menuIcon} sx={{ color: 'grey' }} />
+                <Icon name={menuIcon} sx={{ color: 'grey' }} />
               </IconButton>
             </Box>
             <Divider light />
@@ -80,7 +80,7 @@ function Sidebar({ breakpoints, children }: SidebarProps) {
                     }}
                   >
                     <ListItemIcon>
-                      <AppIcon name={icon} />
+                      <Icon name={icon} />
                     </ListItemIcon>
                     <ListItemText primary={primary} />
                   </ListItem>

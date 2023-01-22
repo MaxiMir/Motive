@@ -1,7 +1,7 @@
 import { Typography, IconButton, Stack } from '@mui/material'
 import { GoalCharacteristicName } from '@features/goal'
 import useFormatNumber from '@hooks/useFormatNumber'
-import AppEmoji from '@ui/AppEmoji'
+import Emoji from '@ui/Emoji'
 import TooltipArrow from '@ui/styled/TooltipArrow'
 import { useMessages } from './hooks/useMessages'
 
@@ -26,7 +26,7 @@ function CharacteristicGoal({ name, value }: CharacteristicGoalProps) {
             height: 40,
           }}
         >
-          <AppEmoji name={name} variant="h5" />
+          <Emoji name={name} variant="h5" />
         </IconButton>
       </TooltipArrow>
       <Typography component="p" sx={{ color }}>

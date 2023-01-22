@@ -4,7 +4,7 @@ import { styled } from '@mui/system'
 import { useCheckOnClientPage, UserContext } from '@modules/user/hooks'
 import { UserPageDto } from '@features/page'
 import { MAIN_CHARACTERISTICS, SECOND_CHARACTERISTICS } from '@features/characteristic'
-import AppContainer from '@ui/AppContainer'
+import Container from '@ui/Container'
 import Nickname from './components/Nickname'
 import SecondCharacteristic from './components/SecondCharacteristic'
 import EmptyGoals from './components/EmptyGoals'
@@ -148,7 +148,7 @@ function UserModule({ user }: UserModuleProps) {
   )
 }
 
-const UserContainer = styled(AppContainer)({
+const UserContainer = styled(Container)({
   display: 'flex',
   flexDirection: 'column',
   gap: 24,

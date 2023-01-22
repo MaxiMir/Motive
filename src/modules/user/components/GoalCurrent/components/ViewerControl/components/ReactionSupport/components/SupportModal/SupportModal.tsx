@@ -1,13 +1,13 @@
 import { Field, Form, FormikProvider } from 'formik'
 import { Box, Stack, Typography } from '@mui/material'
 import { UserBaseDto } from '@features/user'
-import AppModal from '@ui/AppModal'
-import AppFadeIcon from '@ui/AppFadeIcon'
-import AppInput from '@ui/AppInput'
-import AppAccordion from '@ui/AppAccordion'
-import AppDecorEmoji from '@ui/AppDecorEmoji'
-import ActionSubmit from '@components/Action/ActionSubmit'
-import ActionCancel from '@components/Action/ActionCancel/ActionCancel'
+import Modal from '@ui/Modal'
+import FadeEmoji from '@ui/FadeEmoji'
+import Input from '@ui/Input'
+import Accordion from '@ui/Accordion'
+import DecorEmoji from '@ui/DecorEmoji'
+import SubmitButton from '@ui/SubmitButton'
+import CancelButton from '@ui/CancelButton'
 import { useMessages } from './hooks/useMessages'
 import { useForm } from './hooks/useForm'
 
@@ -22,7 +22,7 @@ function SupportModal({ owner, onClose }: SupportModalProps) {
   const { isSubmitting, handleSubmit } = form
 
   return (
-    <AppModal
+    <Modal
       title={
         <>
           {messages.title} <br />
@@ -33,8 +33,8 @@ function SupportModal({ owner, onClose }: SupportModalProps) {
       }
       maxWidth="xs"
       actions={[
-        <ActionCancel key="cancel" onClick={onClose} />,
-        <ActionSubmit
+        <CancelButton key="cancel" onClick={onClose} />,
+        <SubmitButton
           disabled={isSubmitting}
           text={messages.buttonText}
           loadingText={messages.loadingText}
@@ -48,17 +48,17 @@ function SupportModal({ owner, onClose }: SupportModalProps) {
       <FormikProvider value={form}>
         <Form>
           <Stack alignItems="center" spacing={3}>
-            <AppFadeIcon name="support" />
+            <FadeEmoji name="support" />
             <Field
               name="text"
               label={messages.label}
               color="primary"
               multiline
               rows={3}
-              component={AppInput}
+              component={Input}
             />
             <Box width="100%">
-              <AppAccordion
+              <Accordion
                 name="helmet"
                 header={messages.header}
                 id="support"
@@ -66,11 +66,11 @@ function SupportModal({ owner, onClose }: SupportModalProps) {
                   <Box color="zen.silent">
                     <Typography>
                       {messages.accordionGoal}
-                      <AppDecorEmoji name="goal" />.
+                      <DecorEmoji name="goal" />.
                     </Typography>
                     <Typography>
                       {messages.accordionTired}
-                      <AppDecorEmoji name="tired" />.
+                      <DecorEmoji name="tired" />.
                     </Typography>
                     <Typography>{messages.accordionTherefore}:</Typography>
                     <Typography>&#9679; {messages.accordionAdvice};</Typography>
@@ -82,7 +82,7 @@ function SupportModal({ owner, onClose }: SupportModalProps) {
           </Stack>
         </Form>
       </FormikProvider>
-    </AppModal>
+    </Modal>
   )
 }
 

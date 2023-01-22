@@ -3,7 +3,7 @@ import dynamic from 'next/dynamic'
 import { SnackbarContext } from '@features/snackbar/context'
 import { SnackbarState } from '@features/snackbar/types'
 
-const AppSnackbar = dynamic(() => import('@ui/AppSnackbar'))
+const Snackbar = dynamic(() => import('@ui/Snackbar'))
 
 interface SignInProviderProps {
   children: ReactNode
@@ -18,7 +18,7 @@ function SnackbarProvider({ children }: SignInProviderProps) {
   return (
     <SnackbarContext.Provider value={value}>
       {children}
-      {state && <AppSnackbar {...state} onClose={onCloseSnackbar} />}
+      {state && <Snackbar {...state} onClose={onCloseSnackbar} />}
     </SnackbarContext.Provider>
   )
 }

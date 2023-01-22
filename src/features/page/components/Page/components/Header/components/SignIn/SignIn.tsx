@@ -1,6 +1,6 @@
 import { IconButton } from '@mui/material'
 import { useOpenSignIn } from '@features/signin'
-import AppIcon from '@ui/AppIcon'
+import Icon from '@ui/Icon'
 import TooltipArrow from '@ui/styled/TooltipArrow'
 import { useMessages } from './hooks/useMessages'
 
@@ -15,7 +15,7 @@ function SignIn() {
   return (
     <TooltipArrow title={messages.title}>
       <IconButton onClick={onClick}>
-        <AppIcon name="login" />
+        <Icon name="login" />
       </IconButton>
     </TooltipArrow>
   )

@@ -2,7 +2,7 @@ import Link from 'next/link'
 import { Typography, Button, Stack } from '@mui/material'
 import { UserDto, toHref } from '@features/user'
 import { MAIN_CHARACTERISTICS } from '@features/characteristic'
-import AvatarStatus from '@components/Avatar/AvatarStatus'
+import AvatarStatus from '@components/AvatarStatus'
 import CharacteristicUser from '@components/Characteristic/CharacteristicUser'
 
 interface UserCardProps {

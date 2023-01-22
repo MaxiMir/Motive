@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import dynamic from 'next/dynamic'
 import { IconButton } from '@mui/material'
-import AppIcon from '@ui/AppIcon'
+import Icon from '@ui/Icon'
 import TooltipArrow from '@ui/styled/TooltipArrow'
 import { useMessages } from './hooks/useMessages'
 
@@ -30,7 +30,7 @@ function Sidebar() {
           aria-expanded={openMenu ? 'true' : undefined}
           onClick={toggleMenu}
         >
-          <AppIcon name="menu" />
+          <Icon name="menu" />
         </IconButton>
       </TooltipArrow>
       {openMenu && <NavigationModal onOpenSettings={onOpenSettings} onClose={toggleMenu} />}

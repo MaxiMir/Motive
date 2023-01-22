@@ -3,8 +3,8 @@ import { Typography, Grid, Box, Button, Stack } from '@mui/material'
 import { blueGrey } from '@mui/material/colors'
 import { useTheme } from '@mui/material/styles'
 import { UserCharacteristicName, UserDto, toHref } from '@features/user'
-import AppEmoji from '@ui/AppEmoji'
-import AvatarStatus from '@components/Avatar/AvatarStatus'
+import Emoji from '@ui/Emoji'
+import AvatarStatus from '@components/AvatarStatus'
 
 interface UserRowProps {
   user: UserDto
@@ -25,11 +25,11 @@ function UserRow({ user, characteristicName, index }: UserRowProps) {
 
     switch (incrementedNumber) {
       case 1:
-        return <AppEmoji name="first" onlyEmoji />
+        return <Emoji name="first" onlyEmoji />
       case 2:
-        return <AppEmoji name="second" onlyEmoji />
+        return <Emoji name="second" onlyEmoji />
       case 3:
-        return <AppEmoji name="third" onlyEmoji />
+        return <Emoji name="third" onlyEmoji />
       default:
         return incrementedNumber
     }

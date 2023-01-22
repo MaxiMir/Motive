@@ -2,7 +2,7 @@ import dynamic from 'next/dynamic'
 import { Box } from '@mui/material'
 import { useUserContext } from '@modules/user/hooks'
 import { SecondCharacteristicName } from '@features/characteristic'
-import AppModal from '@ui/AppModal'
+import Modal from '@ui/Modal'
 import { useMessages } from './hooks/useMessages'
 import { useSubscription } from './hooks/useSubscription'
 import Loader from './components/Loader'
@@ -23,7 +23,7 @@ function SubscriptionModal({ name, onClose }: SubscriptionModalProps) {
   const titleColor = name === SecondCharacteristicName.Followers ? 'zen.sand' : undefined
 
   return (
-    <AppModal
+    <Modal
       title={
         <Box component="span" color={titleColor}>
           {messages.title}
@@ -66,7 +66,7 @@ function SubscriptionModal({ name, onClose }: SubscriptionModalProps) {
           </>
         )}
       </Box>
-    </AppModal>
+    </Modal>
   )
 }
 

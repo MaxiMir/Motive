@@ -2,10 +2,10 @@ import { MouseEvent, useId, useState } from 'react'
 import dynamic from 'next/dynamic'
 import { Box, IconButton, MenuItem, Menu } from '@mui/material'
 import { MessageDto } from '@features/topic'
-import AppListItem from '@ui/AppListItem'
+import ListItem from '@ui/ListItem'
 import useClient from '@hooks/useClient'
 import useToggle from '@hooks/useToggle'
-import AppIcon from '@ui/AppIcon'
+import Icon from '@ui/Icon'
 import TooltipArrow from '@ui/styled/TooltipArrow'
 import { useMessages } from './hooks/useMessages'
 
@@ -54,7 +54,7 @@ function MenuActions({ message }: MenuActionsProps) {
             sx={{ padding: '3px' }}
             onClick={onOpenMenu}
           >
-            <AppIcon name="more_horiz" />
+            <Icon name="more_horiz" />
           </IconButton>
         </TooltipArrow>
       </Box>
@@ -69,15 +69,15 @@ function MenuActions({ message }: MenuActionsProps) {
       >
         {canEdit ? (
           <MenuItem onClick={toggleEdit}>
-            <AppListItem icon="edit" primary={messages.editText} />
+            <ListItem icon="edit" primary={messages.editText} />
           </MenuItem>
         ) : (
           <MenuItem onClick={toggleReporting}>
-            <AppListItem icon="outlined_flag" primary={messages.reportText} color="error.dark" />
+            <ListItem icon="outlined_flag" primary={messages.reportText} color="error.dark" />
           </MenuItem>
         )}
         <MenuItem onClick={onCloseMenu}>
-          <AppListItem icon="block" primary={messages.cancelText} color="grey" />
+          <ListItem icon="block" primary={messages.cancelText} color="grey" />
         </MenuItem>
       </Menu>
       {reporting && (

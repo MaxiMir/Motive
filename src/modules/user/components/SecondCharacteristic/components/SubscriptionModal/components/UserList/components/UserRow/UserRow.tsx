@@ -4,9 +4,9 @@ import { Stack, Typography } from '@mui/material'
 import { UserDto, toHref } from '@features/user'
 import { MAIN_CHARACTERISTICS, SecondCharacteristicName } from '@features/characteristic'
 import CharacteristicUser from '@components/Characteristic/CharacteristicUser'
-import AvatarStatus from '@components/Avatar/AvatarStatus'
+import AvatarStatus from '@components/AvatarStatus'
 
-const AppInView = dynamic(() => import('@ui/AppInView'))
+const InView = dynamic(() => import('@ui/InView'))
 
 const CHARACTERISTICS = [...MAIN_CHARACTERISTICS, SecondCharacteristicName.Completed]
 
@@ -44,7 +44,7 @@ function UserRow({ user, inView, onView, onClose }: UserRowProps) {
           </Stack>
         </Stack>
       </Stack>
-      {onView && <>{inView && <AppInView onView={onView} />}</>}
+      {onView && <>{inView && <InView onView={onView} />}</>}
     </>
   )
 }

@@ -4,7 +4,7 @@ import { useUserContext } from '@modules/user/hooks'
 import { ConfirmationDto } from '@features/confirmation'
 import useTryFullScreen from '@hooks/useTryFullScreen'
 import useToggle from '@hooks/useToggle'
-import AvatarStatus from '@components/Avatar/AvatarStatus'
+import AvatarStatus from '@components/AvatarStatus'
 
 const Stories = dynamic(() => import('@components/Stories'))
 

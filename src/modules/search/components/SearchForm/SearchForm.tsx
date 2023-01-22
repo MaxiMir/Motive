@@ -1,8 +1,8 @@
 import { Field, Form, FormikProvider } from 'formik'
 import { IconButton } from '@mui/material'
 import { styled } from '@mui/system'
-import AppInput from '@ui/AppInput'
-import AppIcon from '@ui/AppIcon'
+import Input from '@ui/Input'
+import Icon from '@ui/Icon'
 import { useMessages } from './hooks/useMessages'
 import { useForm } from './hooks/useForm'
 import AutoSend from './components/AutoSend'
@@ -29,7 +29,7 @@ function SearchForm({ q = '' }: SearchFormProps) {
             disabled: true,
             startAdornment: (
               <InputAdornment disableFocusRipple disabled>
-                <AppIcon name="search" />
+                <Icon name="search" />
               </InputAdornment>
             ),
             endAdornment: values.q && (
@@ -38,11 +38,11 @@ function SearchForm({ q = '' }: SearchFormProps) {
                 disableFocusRipple
                 onClick={onClickClose}
               >
-                <AppIcon name="close" />
+                <Icon name="close" />
               </InputAdornment>
             ),
           }}
-          component={AppInput}
+          component={Input}
         />
         <AutoSend />
       </Form>

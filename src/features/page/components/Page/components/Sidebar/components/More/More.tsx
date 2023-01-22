@@ -6,7 +6,7 @@ import { paperClasses } from '@mui/material/Paper'
 import { usePaletteModeContext } from '@features/theme'
 import useClient from '@hooks/useClient'
 import useToggle from '@hooks/useToggle'
-import AppIcon from '@ui/AppIcon'
+import Icon from '@ui/Icon'
 import { useMessages } from './hooks/useMessages'
 
 const LanguageMenu = dynamic(() => import('./components/LanguageMenu'))
@@ -52,7 +52,7 @@ function More() {
           onClick={onClick}
         >
           <ListItemIcon>
-            <AppIcon name="menu" />
+            <Icon name="menu" />
           </ListItemIcon>
           <ListItemText primary={messages.moreText} />
         </ListItem>
@@ -72,27 +72,27 @@ function More() {
       >
         <ListItem button onClick={toggleShowLanguage}>
           <ListItemIcon>
-            <AppIcon name="translate" />
+            <Icon name="translate" />
           </ListItemIcon>
           <ListItemText primary={messages.languageText} />
         </ListItem>
         <ListItem button disabled onClick={onClickMode}>
           <ListItemIcon>
-            <AppIcon name={modeIcon} />
+            <Icon name={modeIcon} />
           </ListItemIcon>
           <ListItemText primary={messages.switchMode} />
         </ListItem>
         {client && (
           <ListItem button onClick={onSignOut}>
             <ListItemIcon>
-              <AppIcon name="logout" />
+              <Icon name="logout" />
             </ListItemIcon>
             <ListItemText primary={messages.logOut} />
           </ListItem>
         )}
         <ListItem button onClick={onClose}>
           <ListItemIcon>
-            <AppIcon name="block" sx={{ color: 'grey' }} />
+            <Icon name="block" sx={{ color: 'grey' }} />
           </ListItemIcon>
           <ListItemText primary={messages.cancelText} />
         </ListItem>

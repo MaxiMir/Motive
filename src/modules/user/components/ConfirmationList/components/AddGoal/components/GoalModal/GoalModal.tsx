@@ -4,13 +4,13 @@ import { Box, Button, FormControl, Stack, FormControlLabel, RadioGroup, Radio } 
 import { styled } from '@mui/system'
 import { getMidnightISO, getTomorrowISO } from '@lib/date'
 import useFocus from '@hooks/useFocus'
-import AppModal from '@ui/AppModal'
+import Modal from '@ui/Modal'
 import EmojiHeader from '@ui/EmojiHeader'
-import AppInput from '@ui/AppInput'
-import AppIcon from '@ui/AppIcon'
+import Input from '@ui/Input'
+import Icon from '@ui/Icon'
 import TooltipArrow from '@ui/styled/TooltipArrow'
-import ActionSubmit from '@components/Action/ActionSubmit'
-import ActionCancel from '@components/Action/ActionCancel/ActionCancel'
+import SubmitButton from '@ui/SubmitButton'
+import CancelButton from '@ui/CancelButton'
 import TaskField from '@components/Task/TaskField/TaskField'
 import { useMessages } from './hooks/useMessages'
 import { useForm } from './hooks/useForm'
@@ -36,12 +36,12 @@ function GoalModal({ onClose }: GoalModalProps) {
   }
 
   return (
-    <AppModal
+    <Modal
       title={messages.title}
       maxWidth="xs"
       actions={[
-        <ActionCancel key="cancel" onClick={onClose} />,
-        <ActionSubmit
+        <CancelButton key="cancel" onClick={onClose} />,
+        <SubmitButton
           disabled={isSubmitting}
           text={messages.buttonText}
           loadingText={messages.loadingText}
@@ -55,14 +55,14 @@ function GoalModal({ onClose }: GoalModalProps) {
       <FormikProvider value={form}>
         <Form>
           <Stack spacing={2}>
-            <Field name="name" label={messages.nameLabel} component={AppInput} />
+            <Field name="name" label={messages.nameLabel} component={Input} />
             <Stack spacing={1}>
               <Field
                 name="hashtags"
                 color="secondary"
                 label={messages.hashtagsLabel}
                 inputRef={hashtagsRef}
-                component={AppInput}
+                component={Input}
               />
               <ButtonCompact
                 size="small"
@@ -81,7 +81,7 @@ function GoalModal({ onClose }: GoalModalProps) {
                 </EmojiHeader>
                 <TooltipArrow title={messages.stageHint}>
                   <IconButton color="info">
-                    <AppIcon name="help_outline" />
+                    <Icon name="help_outline" />
                   </IconButton>
                 </TooltipArrow>
               </Stack>
@@ -95,7 +95,7 @@ function GoalModal({ onClose }: GoalModalProps) {
                           label={`${messages.stageLabel} ${index + 1}`}
                           autoFocus={index === values.stages.length - 1}
                           color="warning"
-                          component={AppInput}
+                          component={Input}
                         />
                         <Box display="flex" alignSelf="flex-start">
                           <IconButton
@@ -104,7 +104,7 @@ function GoalModal({ onClose }: GoalModalProps) {
                             sx={{ color: 'zen.silent' }}
                             onClick={() => remove(index)}
                           >
-                            <AppIcon name="close" />
+                            <Icon name="close" />
                           </IconButton>
                         </Box>
                       </Stack>
@@ -165,7 +165,7 @@ function GoalModal({ onClose }: GoalModalProps) {
                     <ButtonCompact
                       size="small"
                       variant="outlined"
-                      startIcon={<AppIcon name="add" />}
+                      startIcon={<Icon name="add" />}
                       onClick={() => push({ id: crypto.randomUUID(), name: '', date: undefined })}
                     >
                       {messages.addTaskText}
@@ -177,7 +177,7 @@ function GoalModal({ onClose }: GoalModalProps) {
           </Stack>
         </Form>
       </FormikProvider>
-    </AppModal>
+    </Modal>
   )
 }
 

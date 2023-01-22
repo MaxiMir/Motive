@@ -1,6 +1,6 @@
 import { format } from 'date-fns'
 import { Stack, Typography } from '@mui/material'
-import AppIcon from '@ui/AppIcon'
+import Icon from '@ui/Icon'
 
 interface TaskDateProps {
   date: string
@@ -11,7 +11,7 @@ function TaskDate({ date }: TaskDateProps) {
 
   return (
     <Stack direction="row" alignItems="center" spacing={1} marginLeft={4} color="zen.silent">
-      <AppIcon name="schedule" />
+      <Icon name="schedule" />
       <Typography>{formattedDate}</Typography>
     </Stack>
   )

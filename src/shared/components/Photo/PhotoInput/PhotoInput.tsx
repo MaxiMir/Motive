@@ -1,7 +1,7 @@
 import { ChangeEvent, useRef } from 'react'
 import { Button } from '@mui/material'
 import { styled } from '@mui/system'
-import AppEmoji from '@ui/AppEmoji'
+import Emoji from '@ui/Emoji'
 import { useMessages } from './hooks/useMessages'
 
 interface PhotoInputProps {
@@ -37,7 +37,7 @@ function PhotoInput({ multiple, disabled, onSelect }: PhotoInputProps) {
         }}
         onClick={onClick}
       >
-        <AppEmoji name="tape" variant="h1" />
+        <Emoji name="tape" variant="h1" />
       </Button>
       <Input ref={inputRef} type="file" accept="image/*" multiple={multiple} onChange={onChange} />
     </>

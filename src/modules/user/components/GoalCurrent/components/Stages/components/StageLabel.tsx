@@ -1,5 +1,5 @@
 import { StepLabel, Typography } from '@mui/material'
-import AppIcon from '@ui/AppIcon'
+import Icon from '@ui/Icon'
 
 interface StageLabelProps {
   index: number
@@ -11,7 +11,7 @@ function StageLabel({ index, activeStep, stage }: StageLabelProps) {
   const icon = activeStep > index ? 'task_alt' : 'radio_button_unchecked'
   const color = activeStep >= index ? 'zen.wave' : 'zen.silent'
 
-  const stepIconComponent = () => <AppIcon name={icon} />
+  const stepIconComponent = () => <Icon name={icon} />
 
   return (
     <StepLabel

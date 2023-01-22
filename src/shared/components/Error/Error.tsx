@@ -1,8 +1,8 @@
 import { useRouter } from 'next/router'
 import { Box, Button, Stack, Typography } from '@mui/material'
 import { styled } from '@mui/system'
-import AppEmoji from '@ui/AppEmoji'
-import AppContainer from '@ui/AppContainer'
+import Emoji from '@ui/Emoji'
+import Container from '@ui/Container'
 import { useMessages } from './hooks/useMessages'
 
 interface CustomErrorProps {
@@ -16,7 +16,7 @@ function Error({ statusCode }: CustomErrorProps) {
   const onClick = () => router.back()
 
   return (
-    <AppContainer>
+    <Container>
       <Box display="flex" alignItems="center" justifyContent="center" flex={1}>
         <Stack alignItems="center" justifyContent="space-between">
           <Typography component="h1" variant="h5">
@@ -24,14 +24,14 @@ function Error({ statusCode }: CustomErrorProps) {
           </Typography>
           <DescriptionText>{statusCode}</DescriptionText>
           <DescriptionText>
-            <AppEmoji name="error" onlyEmoji />
+            <Emoji name="error" onlyEmoji />
           </DescriptionText>
           <Button sx={{ color: 'warning.light' }} onClick={onClick}>
             {messages.backText}
           </Button>
         </Stack>
       </Box>
-    </AppContainer>
+    </Container>
   )
 }
 

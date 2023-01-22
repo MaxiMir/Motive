@@ -1,3 +1,3 @@
-import { AppSnackbarProps } from '@ui/AppSnackbar'
+import { SnackbarProps } from '@ui/Snackbar'
 
-export type SnackbarState = Omit<AppSnackbarProps, 'onClose'>
+export type SnackbarState = Omit<SnackbarProps, 'onClose'>

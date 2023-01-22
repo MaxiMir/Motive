@@ -2,7 +2,7 @@ import { Box, Button } from '@mui/material'
 import { useGoalContext } from '@modules/user/components/GoalCurrent/hooks/useGoalContext'
 import useFormatNumber from '@hooks/useFormatNumber'
 import TooltipArrow from '@ui/styled/TooltipArrow'
-import AppIcon from '@ui/AppIcon'
+import Icon from '@ui/Icon'
 import { useMessages } from './hooks/useMessages'
 
 function Views() {
@@ -14,7 +14,7 @@ function Views() {
   return (
     <Box display="flex" justifyContent="flex-end">
       <TooltipArrow title={messages.title}>
-        <Button size="small" startIcon={<AppIcon name="visibility" />} sx={{ color: 'zen.silent' }}>
+        <Button size="small" startIcon={<Icon name="visibility" />} sx={{ color: 'zen.silent' }}>
           {formattedViews}
         </Button>
       </TooltipArrow>

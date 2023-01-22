@@ -2,8 +2,8 @@ import Link from 'next/link'
 import { Box, IconButton, Stack, Typography } from '@mui/material'
 import { UserBaseDto, toHref } from '@features/user'
 import useFormatDistance from '@hooks/useFormatDistance'
-import AppIcon from '@ui/AppIcon'
-import AvatarStatus from '@components/Avatar/AvatarStatus'
+import Icon from '@ui/Icon'
+import AvatarStatus from '@components/AvatarStatus'
 import { useMessages } from './hooks/useMessages'
 
 interface TopProps {
@@ -60,7 +60,7 @@ function Top({ user, title, date, onClose }: TopProps): JSX.Element {
           </Typography>
         </Stack>
         <IconButton aria-label={messages.close} sx={{ marginLeft: 'auto' }} onClick={onClose}>
-          <AppIcon name="close" />
+          <Icon name="close" />
         </IconButton>
       </Box>
     </Box>

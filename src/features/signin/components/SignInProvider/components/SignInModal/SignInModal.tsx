@@ -1,7 +1,7 @@
 import dynamic from 'next/dynamic'
 import { SignInOptions } from 'next-auth/react'
 import { Stack } from '@mui/material'
-import AppModal from '@ui/AppModal'
+import Modal from '@ui/Modal'
 import appleSrc from 'public/images/svg/apple.svg'
 import metaSrc from 'public/images/svg/meta.svg'
 import githubSrc from 'public/images/svg/github.svg'
@@ -31,7 +31,7 @@ function SignInModal({ options, onClose }: SignInModalProps) {
   const providers = useProviders()
 
   return (
-    <AppModal title={messages.title} maxWidth="xs" onClose={onClose}>
+    <Modal title={messages.title} maxWidth="xs" onClose={onClose}>
       <Stack alignSelf="stretch" spacing={2} minHeight={159}>
         {!providers ? (
           <Loader count={4} />
@@ -50,7 +50,7 @@ function SignInModal({ options, onClose }: SignInModalProps) {
           </>
         )}
       </Stack>
-    </AppModal>
+    </Modal>
   )
 }
 

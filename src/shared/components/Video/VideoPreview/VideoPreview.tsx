@@ -1,6 +1,6 @@
 import { Box, IconButton } from '@mui/material'
-import AppIcon from '@ui/AppIcon'
-import AppPlayer from '@ui/AppPlayer'
+import Icon from '@ui/Icon'
+import Player from '@ui/Player'
 import TooltipArrow from '@ui/styled/TooltipArrow'
 import { useMessages } from './hooks/useMessages'
 
@@ -16,7 +16,7 @@ function VideoPreview({ video, disabled, onRemove }: VideoPreviewProps) {
 
   return (
     <Box position="relative" sx={{ background: '#000000' }}>
-      <AppPlayer
+      <Player
         url={url}
         width="100%"
         height="auto"
@@ -36,7 +36,7 @@ function VideoPreview({ video, disabled, onRemove }: VideoPreviewProps) {
           }}
           onClick={onRemove}
         >
-          <AppIcon name="cancel" />
+          <Icon name="cancel" />
         </IconButton>
       </TooltipArrow>
     </Box>

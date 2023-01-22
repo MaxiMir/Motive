@@ -1,6 +1,6 @@
 import { Box, Typography } from '@mui/material'
 import { MainCharacteristicName } from '@features/characteristic'
-import AppModal from '@ui/AppModal'
+import Modal from '@ui/Modal'
 import { useMessages } from './hooks/useMessages'
 import Progress from './components/Progress'
 import ListItem from './components/ListItem'
@@ -16,7 +16,7 @@ function CharacteristicModal({ name, value, onClose }: CharacteristicModalProps)
   const list = [...(!messages.completion ? [] : [messages.completion]), messages.points]
 
   return (
-    <AppModal
+    <Modal
       title={
         <Box component="span" color={`${name}.main`}>
           {messages.title}
@@ -32,7 +32,7 @@ function CharacteristicModal({ name, value, onClose }: CharacteristicModalProps)
       {list.map((element) => (
         <ListItem name={element} key={element} />
       ))}
-    </AppModal>
+    </Modal>
   )
 }
 

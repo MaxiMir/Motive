@@ -2,10 +2,10 @@ import { FocusEvent } from 'react'
 import { Field, Form, FormikProvider } from 'formik'
 import { Box, Stack } from '@mui/material'
 import { MessageDto } from '@features/topic'
-import AppModal from '@ui/AppModal'
-import AppInput from '@ui/AppInput'
-import ActionSubmit from '@components/Action/ActionSubmit'
-import ActionCancel from '@components/Action/ActionCancel/ActionCancel'
+import Modal from '@ui/Modal'
+import Input from '@ui/Input'
+import SubmitButton from '@ui/SubmitButton'
+import CancelButton from '@ui/CancelButton'
 import { useMessages } from './hooks/useMessages'
 import { useForm } from './hooks/useForm'
 
@@ -24,7 +24,7 @@ function EditModal({ message, onClose }: EditModalProps) {
   }
 
   return (
-    <AppModal
+    <Modal
       title={
         <>
           {messages.title}{' '}
@@ -35,8 +35,8 @@ function EditModal({ message, onClose }: EditModalProps) {
       }
       maxWidth="xs"
       actions={[
-        <ActionCancel key="cancel" onClick={onClose} />,
-        <ActionSubmit
+        <CancelButton key="cancel" onClick={onClose} />,
+        <SubmitButton
           disabled={isSubmitting}
           text={messages.buttonText}
           loadingText={messages.loadingText}
@@ -57,12 +57,12 @@ function EditModal({ message, onClose }: EditModalProps) {
               rows={3}
               inputRef={(input: HTMLInputElement | null) => input?.focus()}
               onFocus={onFocus}
-              component={AppInput}
+              component={Input}
             />
           </Stack>
         </Form>
       </FormikProvider>
-    </AppModal>
+    </Modal>
   )
 }
 

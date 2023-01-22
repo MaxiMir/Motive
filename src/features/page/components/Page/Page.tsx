@@ -8,6 +8,7 @@ import { Stack } from '@mui/material'
 import { getLocaleHrefList } from '@features/locale'
 import { useDeviceContext } from '@features/device'
 import { OGType } from '@features/page/dto'
+import Scrollbar from '@ui/Scrollbar'
 
 const Loader = dynamic(() => import('./components/Loader'))
 const Header = dynamic(() => import('./components/Header'))
@@ -81,17 +82,19 @@ function Page({
         <link rel="alternate" href={localeHrefList.en} hrefLang="x-default" />
       </Head>
       {renderCompact && <Header type={type} />}
-      <MainWrap {...mainWrapProps}>
-        <Stack
-          component="main"
-          id="main"
-          flex={1}
-          sx={({ palette }) => ({ background: palette.mode === 'dark' ? '#121212' : undefined })}
-        >
-          {renderLoader && <Loader />}
-          {children}
-        </Stack>
-      </MainWrap>
+      <Scrollbar>
+        <MainWrap {...mainWrapProps}>
+          <Stack
+            component="main"
+            id="main"
+            flex={1}
+            sx={({ palette }) => ({ background: palette.mode === 'dark' ? '#121212' : undefined })}
+          >
+            {renderLoader && <Loader />}
+            {children}
+          </Stack>
+        </MainWrap>
+      </Scrollbar>
       {renderCompact && <Footer />}
     </>
   )

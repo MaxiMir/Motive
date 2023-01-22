@@ -1,9 +1,9 @@
 import { Box, Stack, Typography } from '@mui/material'
 import { useGoalContext } from '@modules/user/components/GoalCurrent/hooks/useGoalContext'
-import AppModal from '@ui/AppModal'
-import AppFlyIcon from '@ui/AppFlyIcon'
-import ActionSubmit from '@components/Action/ActionSubmit'
-import ActionCancel from '@components/Action/ActionCancel/ActionCancel'
+import Modal from '@ui/Modal'
+import FlyEmoji from '@ui/FlyEmoji'
+import SubmitButton from '@ui/SubmitButton'
+import CancelButton from '@ui/CancelButton'
 import { useMessages } from './hooks/useMessages'
 import { useSendStage } from './hooks/useSendStage'
 
@@ -20,7 +20,7 @@ function StageModal({ onClose }: StageModalProps) {
   const onClick = () => mutate({ id, stage: nextStage })
 
   return (
-    <AppModal
+    <Modal
       title={
         <>
           {messages.title} <br />
@@ -31,8 +31,8 @@ function StageModal({ onClose }: StageModalProps) {
       }
       maxWidth="xs"
       actions={[
-        <ActionCancel key="cancel" onClick={onClose} />,
-        <ActionSubmit
+        <CancelButton key="cancel" onClick={onClose} />,
+        <SubmitButton
           disabled={isLoading}
           text={messages.button}
           loadingText={messages.buttonLoading}
@@ -44,7 +44,7 @@ function StageModal({ onClose }: StageModalProps) {
       onClose={onClose}
     >
       <Stack alignItems="center" spacing={1}>
-        <AppFlyIcon name="stage" />
+        <FlyEmoji name="stage" />
         <Typography variant="subtitle1" sx={{ color: 'support.main' }}>
           <b>{messages.behind}</b>
         </Typography>
@@ -55,7 +55,7 @@ function StageModal({ onClose }: StageModalProps) {
           </Box>
         </Typography>
       </Stack>
-    </AppModal>
+    </Modal>
   )
 }
 

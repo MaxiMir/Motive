@@ -1,11 +1,11 @@
 import dynamic from 'next/dynamic'
 import { Button, IconButton, Stack } from '@mui/material'
-import AppIcon from '@ui/AppIcon'
+import Icon from '@ui/Icon'
 import TooltipArrow from '@ui/styled/TooltipArrow'
 import { useMessages } from './hooks/useMessages'
 
 const LocalImage = dynamic(() => import('./components/LocalImage'))
-const AppImage = dynamic(() => import('@ui/AppImage'))
+const Image = dynamic(() => import('@ui/Image'))
 
 interface PhotoButtonProps {
   image: File | string
@@ -41,7 +41,7 @@ function PhotoButton({ image, disabled, onClick }: PhotoButtonProps) {
         {image instanceof File ? (
           <LocalImage file={image} />
         ) : (
-          <AppImage src={image} alt="" layout="fill" objectFit="contain" />
+          <Image src={image} alt="" layout="fill" objectFit="contain" />
         )}
         <TooltipArrow title={messages.title}>
           <IconButton
@@ -53,7 +53,7 @@ function PhotoButton({ image, disabled, onClick }: PhotoButtonProps) {
             }}
             onClick={onClick}
           >
-            <AppIcon name="cancel" />
+            <Icon name="cancel" />
           </IconButton>
         </TooltipArrow>
       </Stack>

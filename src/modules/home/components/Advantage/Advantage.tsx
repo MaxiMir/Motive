@@ -1,7 +1,7 @@
 import Link from 'next/link'
 import { Box, Stack, Typography } from '@mui/material'
 import { MainCharacteristicName, SecondCharacteristicName } from '@features/characteristic'
-import AppEmoji from '@ui/AppEmoji'
+import Emoji from '@ui/Emoji'
 import { useMessages } from './hooks/useMessages'
 import { useWidth } from './hooks/useWidth'
 
@@ -25,7 +25,7 @@ function Advantage({ name, href }: AdvantageProps) {
     >
       <Stack direction="row" alignItems="center" spacing={2} width={width}>
         <Link href={href}>
-          <AppEmoji name={name} variant="h2" />
+          <Emoji name={name} variant="h2" />
         </Link>
         <Stack alignItems="space-between">
           <Typography

@@ -2,7 +2,7 @@ import { Grid, Box, Typography } from '@mui/material'
 import { blueGrey } from '@mui/material/colors'
 import { UserDto } from '@features/user'
 import { MainCharacteristicName } from '@features/characteristic'
-import AppList from '@ui/AppList'
+import List from '@ui/List'
 import { useMessages } from './hooks/useMessages'
 import UserRow from './components/UserRow'
 
@@ -44,7 +44,7 @@ function TabContent({ name, users }: TabContentProps) {
           </Grid>
         </Grid>
       </Box>
-      <AppList<UserDto>
+      <List<UserDto>
         elements={users}
         keyGetter={(el) => el.id}
         render={(user, index) => <UserRow user={user} characteristicName={name} index={index} />}

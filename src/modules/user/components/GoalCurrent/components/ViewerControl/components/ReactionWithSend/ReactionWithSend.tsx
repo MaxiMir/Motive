@@ -1,6 +1,6 @@
 import { useGoalContext } from '@modules/user/components/GoalCurrent/hooks/useGoalContext'
 import { DayCharacteristicName } from '@features/day'
-import ActionGoal from '@components/Action/ActionGoal'
+import EmojiButton from '@ui/EmojiButton'
 import { useMessages } from './hooks/useMessages'
 import { useSetReaction } from './hooks/useSetReaction'
 import { checkOnActive, getCount } from './helper'
@@ -17,7 +17,7 @@ function ReactionWithSend({ name }: ReactionWithSendProps) {
   const [isLoading, onClick] = useSetReaction(name, active)
 
   return (
-    <ActionGoal
+    <EmojiButton
       name={name}
       title={messages.title}
       count={count}

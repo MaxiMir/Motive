@@ -8,7 +8,7 @@ import { getBorders } from './helper'
 import OpenPickerIcon from './components/OpenPickerIcon'
 import InputNotEditable from './components/InputNotEditable'
 
-const AppEmoji = dynamic(() => import('@ui/AppEmoji'))
+const Emoji = dynamic(() => import('@ui/Emoji'))
 
 interface CalendarProps {
   isLoading: boolean
@@ -42,7 +42,7 @@ function Calendar({ isLoading, onChangeDate, shouldDisableDate }: CalendarProps)
         renderDay={(_, _value, { key, disabled, ...pickerProps }) => (
           <Badge
             overlap="circular"
-            badgeContent={disabled ? undefined : <AppEmoji name="task" onlyEmoji />}
+            badgeContent={disabled ? undefined : <Emoji name="task" onlyEmoji />}
             key={key}
           >
             <PickersDay {...pickerProps} disabled={disabled} />

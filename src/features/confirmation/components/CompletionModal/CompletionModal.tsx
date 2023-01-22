@@ -2,13 +2,13 @@ import dynamic from 'next/dynamic'
 import { ErrorMessage, Field, FieldArray, Form, FormikProvider } from 'formik'
 import { Grid, Box, Typography, Stack } from '@mui/material'
 import useSelectPhoto from '@hooks/useSelectPhoto'
-import AppModal from '@ui/AppModal'
-import AppAccordion from '@ui/AppAccordion'
-import AppInput from '@ui/AppInput'
+import Modal from '@ui/Modal'
+import Accordion from '@ui/Accordion'
+import Input from '@ui/Input'
 import EmojiHeader from '@ui/EmojiHeader'
-import AppSpinIcon from '@ui/AppSpinIcon'
-import ActionSubmit from '@components/Action/ActionSubmit'
-import ActionCancel from '@components/Action/ActionCancel/ActionCancel'
+import SpinEmoji from '@ui/SpinEmoji'
+import SubmitButton from '@ui/SubmitButton'
+import CancelButton from '@ui/CancelButton'
 import PhotoInput from '@components/Photo/PhotoInput/PhotoInput'
 import PhotoButton from '@components/Photo/PhotoButton'
 import VideoPreview from '@components/Video/VideoPreview/VideoPreview'
@@ -32,12 +32,12 @@ function CompletionModal({ onClose }: CompletionModalProps) {
   const onSelectVideo = (file: File) => setFieldValue('video', file)
 
   return (
-    <AppModal
+    <Modal
       title={messages.title}
       maxWidth="xs"
       actions={[
-        <ActionCancel key="cancel" onClick={onClose} />,
-        <ActionSubmit
+        <CancelButton key="cancel" onClick={onClose} />,
+        <SubmitButton
           disabled={isSubmitting}
           text={messages.buttonText}
           loadingText={messages.loadingText}
@@ -52,7 +52,7 @@ function CompletionModal({ onClose }: CompletionModalProps) {
         <Form>
           <Stack alignItems="center" spacing={3}>
             <Stack alignItems="center" spacing={1}>
-              <AppSpinIcon name="completed" />
+              <SpinEmoji name="completed" />
               <Typography variant="subtitle1" sx={{ color: '#ffa300' }}>
                 {messages.subtitle}
               </Typography>
@@ -63,7 +63,7 @@ function CompletionModal({ onClose }: CompletionModalProps) {
               color="warning"
               multiline
               rows={3}
-              component={AppInput}
+              component={Input}
             />
             {!!values.photos.length && (
               <Stack spacing={2} width="100%">
@@ -111,7 +111,7 @@ function CompletionModal({ onClose }: CompletionModalProps) {
               )}
             </ErrorMessage>
             <Box width="100%">
-              <AppAccordion
+              <Accordion
                 name="switch"
                 header={messages.accordionHeader}
                 id="goal"
@@ -131,7 +131,7 @@ function CompletionModal({ onClose }: CompletionModalProps) {
           </Stack>
         </Form>
       </FormikProvider>
-    </AppModal>
+    </Modal>
   )
 }
 

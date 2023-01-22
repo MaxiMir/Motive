@@ -3,7 +3,7 @@ import { Box, Stack, Typography } from '@mui/material'
 import { UserCharacteristicName } from '@features/user'
 import { SECOND_CHARACTERISTICS, SecondCharacteristicName } from '@features/characteristic'
 import useFormatNumber from '@hooks/useFormatNumber'
-import AppEmoji from '@ui/AppEmoji'
+import Emoji from '@ui/Emoji'
 
 const Level = dynamic(() => import('./components/Level/Level'))
 
@@ -20,7 +20,7 @@ function CharacteristicUser({ name, value }: CharacteristicUserProps) {
 
   return (
     <Stack direction="row" alignItems="baseline" spacing={0.5}>
-      <AppEmoji name={name} variant="subtitle1" />
+      <Emoji name={name} variant="subtitle1" />
       <Box display="flex" minWidth={35}>
         <Typography component="p" color={`${name}.main`}>
           {formattedValue}

@@ -1,6 +1,6 @@
 import dynamic from 'next/dynamic'
 import { Field, FieldArray, Form, FormikProvider } from 'formik'
-import { Box, Button, FormControl, FormControlLabel, RadioGroup, Radio, Stack } from '@mui/material'
+import { Box, Button, FormControl, Stack, FormControlLabel, RadioGroup, Radio } from '@mui/material'
 import { styled } from '@mui/system'
 import { getMidnightISO, getTomorrowISO } from '@lib/date'
 import useFocus from '@hooks/useFocus'
@@ -73,7 +73,7 @@ function GoalModal({ onClose }: GoalModalProps) {
               </ButtonCompact>
             </Stack>
             <Stack spacing={1}>
-              <Box display="flex" gap={1}>
+              <Stack direction="row" spacing={1}>
                 <EmojiHeader name="stage" variant="h6" component="h4" color="primary">
                   {messages.stagesHeader}
                 </EmojiHeader>
@@ -82,12 +82,12 @@ function GoalModal({ onClose }: GoalModalProps) {
                     <AppIcon name="help_outline" />
                   </IconButton>
                 </TooltipArrow>
-              </Box>
+              </Stack>
               <FieldArray name="stages">
                 {({ push, remove }) => (
                   <>
                     {values.stages.map(({ id }, index) => (
-                      <Box display="flex" gap={1} key={id}>
+                      <Stack direction="row" spacing={1} key={id}>
                         <Field
                           name={`stages.${index}.name`}
                           label={`${messages.stageLabel} ${index + 1}`}
@@ -105,7 +105,7 @@ function GoalModal({ onClose }: GoalModalProps) {
                             <AppIcon name="close" />
                           </IconButton>
                         </Box>
-                      </Box>
+                      </Stack>
                     ))}
                     <ButtonCompact
                       size="small"
@@ -143,11 +143,9 @@ function GoalModal({ onClose }: GoalModalProps) {
               </RadioGroup>
             </FormControl>
             <Stack spacing={2}>
-              <Box display="flex" gap={1}>
-                <EmojiHeader name="task" variant="h6" component="h4" color="primary">
-                  {messages.tasksHeader}
-                </EmojiHeader>
-              </Box>
+              <EmojiHeader name="task" variant="h6" component="h4" color="primary">
+                {messages.tasksHeader}
+              </EmojiHeader>
               <FieldArray name="tasks">
                 {({ push, remove }) => (
                   <>

@@ -73,34 +73,32 @@ function TasksModal({ onClose }: TasksModalProps) {
         <FormikProvider value={form}>
           <Form>
             <Stack spacing={3}>
-              <Box>
-                <FieldArray name="tasks">
-                  {({ push, remove }) => (
-                    <>
-                      {values.tasks.map(({ id, date }, index) => (
-                        <TaskField
-                          taskCount={values.tasks.length}
-                          date={values.date}
-                          remind={date}
-                          index={index}
-                          key={id}
-                          setFieldValue={setFieldValue}
-                          onRemove={() => remove(index)}
-                        />
-                      ))}
-                      <Button
-                        size="small"
-                        variant="outlined"
-                        sx={{ alignSelf: 'baseline' }}
-                        startIcon={<AppIcon name="add" />}
-                        onClick={() => push({ id: crypto.randomUUID(), name: '', date: undefined })}
-                      >
-                        {messages.addTaskText}
-                      </Button>
-                    </>
-                  )}
-                </FieldArray>
-              </Box>
+              <FieldArray name="tasks">
+                {({ push, remove }) => (
+                  <>
+                    {values.tasks.map(({ id, date }, index) => (
+                      <TaskField
+                        taskCount={values.tasks.length}
+                        date={values.date}
+                        remind={date}
+                        index={index}
+                        key={id}
+                        setFieldValue={setFieldValue}
+                        onRemove={() => remove(index)}
+                      />
+                    ))}
+                    <Button
+                      size="small"
+                      variant="outlined"
+                      sx={{ alignSelf: 'baseline' }}
+                      startIcon={<AppIcon name="add" />}
+                      onClick={() => push({ id: crypto.randomUUID(), name: '', date: undefined })}
+                    >
+                      {messages.addTaskText}
+                    </Button>
+                  </>
+                )}
+              </FieldArray>
               <FormControl variant="standard">
                 <EmojiHeader name="clock" variant="h6" component="label">
                   {messages.doItText}

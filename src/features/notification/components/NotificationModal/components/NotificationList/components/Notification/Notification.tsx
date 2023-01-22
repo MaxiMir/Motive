@@ -47,16 +47,14 @@ function Notification({ notification, onClose }: NotificationProps) {
           display="flex"
           justifyContent="center"
           alignItems="center"
-          sx={{
-            position: 'absolute',
-            bottom: '-6px',
-            right: '2px',
-            width: 21,
-            height: 21,
-            backgroundColor: '#262626',
-            borderRadius: '50%',
-            fontSize: 11,
-          }}
+          position="absolute"
+          bottom="-6px"
+          right="2px"
+          width={21}
+          height={21}
+          borderRadius="50%"
+          fontSize={11}
+          sx={{ backgroundColor: '#262626' }}
         >
           <AppEmoji name={emoji} onlyEmoji />
         </Box>
@@ -71,7 +69,7 @@ function Notification({ notification, onClose }: NotificationProps) {
           {messages.header}
           {detailsName && `: ${detailsName}`}
         </Typography>
-        <Box display="flex" alignItems="center" gap={2}>
+        <Stack direction="row" alignItems="center" spacing={2}>
           <Box
             component="span"
             sx={{
@@ -95,7 +93,7 @@ function Notification({ notification, onClose }: NotificationProps) {
               <AppIcon name="south_east" sx={{ color: 'motivation.light' }} />
             </IconButton>
           </TooltipArrow>
-        </Box>
+        </Stack>
       </Stack>
       {!read && <AppInView onView={onView} />}
     </Stack>

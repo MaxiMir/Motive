@@ -53,56 +53,56 @@ function JoinModal({ onClose }: JoinModalProps) {
       ]}
       onClose={onClose}
     >
-      <FormikProvider value={form}>
-        <Form>
-          <RadioGroup name="dayId" value={values.dayId?.toString()} onChange={onChange}>
-            <FormControlLabel
-              value={disableBeginning ? 'none' : beginningDay.toString()}
-              label={
-                <Stack direction="row" spacing={1}>
-                  {messages.beginLabel} <AppEmoji name="serenity" onlyEmoji />
-                </Stack>
-              }
-              disabled={isSubmitting || disableBeginning}
-              control={<Radio />}
-            />
-            <FormControlLabel
-              value={thisDay.toString()}
-              label={
-                <Stack direction="row" spacing={1}>
-                  {messages.dayLabel} <AppEmoji name="blast" onlyEmoji />
-                </Stack>
-              }
-              disabled={isSubmitting}
-              control={<Radio />}
-            />
-          </RadioGroup>
-          <Box>
-            <AppAccordion
-              name="knot"
-              header={messages.accordionHeader}
-              id="tips"
-              details={
-                <Box color="zen.silent">
-                  <Typography>&#9679; {messages.accordingMotivation}.</Typography>
-                  <Typography>&#9679; {messages.accordingCreative}.</Typography>
-                  <Typography>
-                    &#9679; {messages.accordingSupport}{' '}
-                    <Box component="span" color="support.main">
-                      {owner.name}
-                    </Box>
-                    {', '}
-                    {messages.accordingNeeded}.
-                  </Typography>
-                  <Typography>
-                    &#9679; {messages.accordingQuestions} <AppDecorEmoji name="discussion" />.
-                  </Typography>
+      <Stack spacing={1}>
+        <FormikProvider value={form}>
+          <Form>
+            <RadioGroup name="dayId" value={values.dayId?.toString()} onChange={onChange}>
+              <FormControlLabel
+                value={disableBeginning ? 'none' : beginningDay.toString()}
+                label={
+                  <Stack direction="row" spacing={1}>
+                    {messages.beginLabel} <AppEmoji name="serenity" onlyEmoji />
+                  </Stack>
+                }
+                disabled={isSubmitting || disableBeginning}
+                control={<Radio />}
+              />
+              <FormControlLabel
+                value={thisDay.toString()}
+                label={
+                  <Stack direction="row" spacing={1}>
+                    {messages.dayLabel} <AppEmoji name="blast" onlyEmoji />
+                  </Stack>
+                }
+                disabled={isSubmitting}
+                control={<Radio />}
+              />
+            </RadioGroup>
+          </Form>
+        </FormikProvider>
+        <AppAccordion
+          name="knot"
+          header={messages.accordionHeader}
+          id="tips"
+          details={
+            <Box color="zen.silent">
+              <Typography>&#9679; {messages.accordingMotivation}.</Typography>
+              <Typography>&#9679; {messages.accordingCreative}.</Typography>
+              <Typography>
+                &#9679; {messages.accordingSupport}{' '}
+                <Box component="span" color="support.main">
+                  {owner.name}
                 </Box>
-              }
-            />
-          </Box>
-        </Form>
-      </FormikProvider>
+                {', '}
+                {messages.accordingNeeded}.
+              </Typography>
+              <Typography>
+                &#9679; {messages.accordingQuestions} <AppDecorEmoji name="discussion" />.
+              </Typography>
+            </Box>
+          }
+        />
+      </Stack>
     </AppModal>
   )
 }

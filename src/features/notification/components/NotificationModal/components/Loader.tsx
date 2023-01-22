@@ -1,4 +1,4 @@
-import { Box, Skeleton, Stack } from '@mui/material'
+import { Skeleton, Stack } from '@mui/material'
 
 const SHOWN_COUNT = 8
 
@@ -8,7 +8,7 @@ function Loader() {
   return (
     <Stack spacing={2} flex={1}>
       {list.map((_, key) => (
-        <Box display="flex" gap={1} height={60} key={key}>
+        <Stack direction="row" spacing={1} height={60} key={key}>
           <Skeleton animation="wave" variant="circular" width={60} height={60} />
           <Stack justifyContent="space-between" flex={1}>
             <Skeleton animation="wave" width="100%" height={42} />
@@ -17,7 +17,7 @@ function Loader() {
               <Skeleton animation="wave" width={21} height={21} />
             </Stack>
           </Stack>
-        </Box>
+        </Stack>
       ))}
     </Stack>
   )

@@ -1,5 +1,5 @@
 import dynamic from 'next/dynamic'
-import { AppBar, Box, Container } from '@mui/material'
+import { AppBar, Container, Stack } from '@mui/material'
 import { OGType } from '@features/page'
 import useClient from '@hooks/useClient'
 import Navigation from './components/Navigation'
@@ -30,11 +30,11 @@ function Header({ type }: HeaderProps) {
       }}
     >
       <Container fixed>
-        <Box display="flex" justifyContent="space-between" alignItems="center">
+        <Stack direction="row" justifyContent="space-between" alignItems="center">
           <Navigation />
           {renderNickname && <UserLink />}
           {client ? <Notifications /> : <SignIn />}
-        </Box>
+        </Stack>
       </Container>
     </AppBar>
   )

@@ -1,5 +1,5 @@
 import { Field, FieldArray, Form, FormikProvider } from 'formik'
-import { Grid, Box, Typography, Stack } from '@mui/material'
+import { Grid, Typography, Stack } from '@mui/material'
 import useSelectPhoto from '@hooks/useSelectPhoto'
 import AppModal from '@ui/AppModal'
 import AppInput from '@ui/AppInput'
@@ -95,10 +95,10 @@ function AddingModal({ onClose }: AddingModalProps) {
                 />
               </Stack>
             )}
-            <Box display="flex" gap={2} width="100%">
+            <Stack direction="row" spacing={2} width="100%">
               <PhotoInput multiple disabled={isSubmitting} onSelect={onSelectPhoto} />
               <VideoInput disabled onSelect={onSelectVideo} />
-            </Box>
+            </Stack>
           </Stack>
         </Form>
       </FormikProvider>

@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import dynamic from 'next/dynamic'
-import { Box } from '@mui/material'
+import { Stack } from '@mui/material'
 import { useGoalContext } from '@modules/user/components/GoalCurrent/hooks/useGoalContext'
 import BlueButton from '@ui/styled/BlueButton'
 import { useMessages } from './hooks/useMessages'
@@ -29,7 +29,7 @@ function OwnerControl() {
 
   return (
     <>
-      <Box display="flex" justifyContent={justifyContent} gap={1}>
+      <Stack direction="row" justifyContent={justifyContent} spacing={1}>
         <BlueButton size="small" onClick={onAddTasks}>
           {messages.nextButtonText}
         </BlueButton>
@@ -38,7 +38,7 @@ function OwnerControl() {
             {messages.doneButtonText}
           </Button>
         )}
-      </Box>
+      </Stack>
       {modal === ModalType.Tasks && <TasksModal onClose={closeModal} />}
       {modal === ModalType.Completion && <CompletionModal onClose={closeModal} />}
     </>

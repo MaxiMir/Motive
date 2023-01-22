@@ -1,7 +1,6 @@
 import dynamic from 'next/dynamic'
 import Link from 'next/link'
 import { Box, Stack, Typography } from '@mui/material'
-import { indigo } from '@mui/material/colors'
 import { toHref } from '@features/user'
 import { MessageDto } from '@features/topic'
 import useFormatDistance from '@hooks/useFormatDistance'
@@ -41,7 +40,7 @@ function Message({ message, answerFor, supportFor, onReply }: MessageProps) {
         px={2}
         py={1}
         sx={(theme) => ({
-          backgroundColor: !answerFor ? theme.palette.grey[900] : indigo[600],
+          backgroundColor: !answerFor ? theme.palette.grey[900] : '#111a47',
           borderRadius: `20px 20px ${!answerFor ? 16 : 4}px ${!answerFor ? 4 : 16}px`,
         })}
       >

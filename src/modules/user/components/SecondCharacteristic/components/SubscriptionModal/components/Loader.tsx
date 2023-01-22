@@ -1,4 +1,4 @@
-import { Skeleton, Stack } from '@mui/material'
+import { Box, Stack, Skeleton } from '@mui/material'
 
 const VISIBLE_QUANTITY = 8
 
@@ -13,7 +13,7 @@ function Loader({ count }: LoaderProps) {
   return (
     <Stack spacing={2} flex={1}>
       {list.map((_, key) => (
-        <Stack spacing={1} height={60} key={key}>
+        <Box display="flex" gap={1} height={60} key={key}>
           <Skeleton animation="wave" variant="circular" width={55} height={55} />
           <Stack justifyContent="space-between" flex={1}>
             <Skeleton animation="wave" width={100} height={16} />
@@ -24,7 +24,7 @@ function Loader({ count }: LoaderProps) {
               <Skeleton animation="wave" width={50} height={30} />
             </Stack>
           </Stack>
-        </Stack>
+        </Box>
       ))}
     </Stack>
   )

@@ -43,7 +43,7 @@ function StoryViewer({ stories, user, title, date, onClose }: StoryViewerProps) 
           <Slide story={story} key={story.src} />
         ))}
       </Box>
-      <Bottom />
+      {false && <Bottom />}
     </Box>
   )
 }

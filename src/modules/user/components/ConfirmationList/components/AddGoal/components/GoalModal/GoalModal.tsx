@@ -28,6 +28,7 @@ function GoalModal({ onClose }: GoalModalProps) {
   const { isSubmitting, values, setFieldValue, handleSubmit } = form
   const todayValue = getMidnightISO()
   const tomorrowValue = getTomorrowISO()
+  const disabledHashtag = values.hashtags.endsWith('#')
 
   const onAddHashtag = () => {
     setFieldValue('hashtags', !values.hashtags ? '#' : `${values.hashtags} #`)
@@ -67,6 +68,7 @@ function GoalModal({ onClose }: GoalModalProps) {
                 size="small"
                 variant="outlined"
                 color="secondary"
+                disabled={disabledHashtag}
                 onClick={onAddHashtag}
               >
                 # {messages.hashtagText}

@@ -4,10 +4,10 @@ import { useRouter } from 'next/router'
 import { Menu, MenuItem } from '@mui/material'
 import { useCheckOnClientPage, useUserContext } from '@modules/user/hooks'
 import { share } from '@helpers/navigator'
-import AppIcon from '@ui/AppIcon'
+import Icon from '@ui/Icon'
 import GreyButton from '@ui/styled/GreyButton'
 import useToggle from '@hooks/useToggle'
-import AppListItem from '@ui/AppListItem'
+import ListItem from '@ui/ListItem'
 import { useMessages } from './hooks/useMessages'
 
 const Share = dynamic(() => import('@components/Share'))
@@ -44,7 +44,7 @@ function MenuActions() {
       <GreyButton
         id={id}
         size="small"
-        endIcon={<AppIcon name="expand_more" />}
+        endIcon={<Icon name="expand_more" />}
         aria-controls={open ? menuId : undefined}
         aria-haspopup="true"
         aria-expanded={open ? 'true' : undefined}
@@ -67,15 +67,15 @@ function MenuActions() {
         onClose={onCloseMenu}
       >
         <MenuItem onClick={onShare}>
-          <AppListItem icon="share" primary={messages.shareText} />
+          <ListItem icon="share" primary={messages.shareText} />
         </MenuItem>
         {!clientPage && (
           <MenuItem onClick={toggleReporting}>
-            <AppListItem icon="outlined_flag" primary={messages.reportText} color="error.dark" />
+            <ListItem icon="outlined_flag" primary={messages.reportText} color="error.dark" />
           </MenuItem>
         )}
         <MenuItem onClick={onCloseMenu}>
-          <AppListItem icon="block" primary={messages.cancelText} color="grey" />
+          <ListItem icon="block" primary={messages.cancelText} color="grey" />
         </MenuItem>
       </Menu>
       {reporting && <Report id={userId} type="user" anchorEl={anchorEl} onClose={onCloseReport} />}

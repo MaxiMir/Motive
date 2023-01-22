@@ -2,7 +2,7 @@ import Image from 'next/image'
 import { Box, Stack, Typography } from '@mui/material'
 import { useUserContext } from '@modules/user/hooks'
 import useShowProgress from '@hooks/useShowProgress'
-import AppModal from '@ui/AppModal'
+import Modal from '@ui/Modal'
 import OldPittRules from '@components/OldPitt/OldPittRules/OldPittRules'
 import webSrc from 'public/images/svg/web.svg'
 import { useMessages } from './hooks/useMessages'
@@ -18,7 +18,7 @@ function AbandonedModal({ onClose }: AbandonedModalProps) {
   const roundedProgress = Math.round(progress)
 
   return (
-    <AppModal
+    <Modal
       title={
         <Box component="span" color="abandoned.main">
           {messages.title}
@@ -39,7 +39,7 @@ function AbandonedModal({ onClose }: AbandonedModalProps) {
         </Typography>
         <OldPittRules />
       </Stack>
-    </AppModal>
+    </Modal>
   )
 }
 

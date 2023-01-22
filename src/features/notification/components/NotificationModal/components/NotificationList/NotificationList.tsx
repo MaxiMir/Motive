@@ -1,4 +1,4 @@
-import AppList from '@ui/AppList'
+import List from '@ui/List'
 import { NotificationDto } from '@features/notification/dto'
 import Notification from './components/Notification'
 
@@ -9,7 +9,7 @@ interface NotificationListProps {
 
 function NotificationList({ notifications, onClose }: NotificationListProps) {
   return (
-    <AppList
+    <List
       elements={notifications}
       spacing={2}
       keyGetter={(notification) => notification.id}

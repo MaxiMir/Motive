@@ -1,5 +1,5 @@
 import { Box, Stack, Typography } from '@mui/material'
-import AppFadeIcon from '@ui/AppFadeIcon'
+import FadeEmoji from '@ui/FadeEmoji'
 import { useMessages } from './hooks/useMessages'
 
 function EmptyList() {
@@ -11,7 +11,7 @@ function EmptyList() {
         <Typography variant="h6" color="primary" component="p" mb={2}>
           {messages.title}
         </Typography>
-        <AppFadeIcon name="notification" />
+        <FadeEmoji name="notification" />
       </Stack>
     </Box>
   )

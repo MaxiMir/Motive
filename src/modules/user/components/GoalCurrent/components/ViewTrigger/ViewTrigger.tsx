@@ -1,5 +1,5 @@
 import { ReactNode } from 'react'
-import AppInView from '@ui/AppInView'
+import InView from '@ui/InView'
 import { useIncreaseViews } from './hooks/useIncreaseViews'
 
 interface ViewTriggerProps {
@@ -10,9 +10,9 @@ function ViewTrigger({ children }: ViewTriggerProps) {
   const { mutate } = useIncreaseViews()
 
   return (
-    <AppInView triggerOnce onView={() => mutate()}>
+    <InView triggerOnce onView={() => mutate()}>
       {children}
-    </AppInView>
+    </InView>
   )
 }
 

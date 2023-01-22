@@ -2,12 +2,12 @@ import { ChangeEvent } from 'react'
 import { Form, FormikProvider } from 'formik'
 import { Box, Stack, Typography, FormControlLabel, Radio, RadioGroup } from '@mui/material'
 import { useGoalContext } from '@modules/user/components/GoalCurrent/hooks/useGoalContext'
-import AppModal from '@ui/AppModal'
-import AppEmoji from '@ui/AppEmoji'
-import AppAccordion from '@ui/AppAccordion'
-import AppDecorEmoji from '@ui/AppDecorEmoji'
-import ActionSubmit from '@components/Action/ActionSubmit'
-import ActionCancel from '@components/Action/ActionCancel/ActionCancel'
+import Modal from '@ui/Modal'
+import Emoji from '@ui/Emoji'
+import Accordion from '@ui/Accordion'
+import DecorEmoji from '@ui/DecorEmoji'
+import SubmitButton from '@ui/SubmitButton'
+import CancelButton from '@ui/CancelButton'
 import { useMessages } from './hooks/useMessages'
 import { useForm } from './hooks/useForm'
 
@@ -29,7 +29,7 @@ function JoinModal({ onClose }: JoinModalProps) {
   }
 
   return (
-    <AppModal
+    <Modal
       title={
         <>
           {messages.title}{' '}
@@ -41,8 +41,8 @@ function JoinModal({ onClose }: JoinModalProps) {
       }
       maxWidth="xs"
       actions={[
-        <ActionCancel key="cancel" onClick={onClose} />,
-        <ActionSubmit
+        <CancelButton key="cancel" onClick={onClose} />,
+        <SubmitButton
           disabled={isSubmitting}
           text={messages.buttonText}
           loadingText={messages.loadingText}
@@ -61,7 +61,7 @@ function JoinModal({ onClose }: JoinModalProps) {
                 value={disableBeginning ? 'none' : beginningDay.toString()}
                 label={
                   <Stack direction="row" spacing={1}>
-                    {messages.beginLabel} <AppEmoji name="serenity" onlyEmoji />
+                    {messages.beginLabel} <Emoji name="serenity" onlyEmoji />
                   </Stack>
                 }
                 disabled={isSubmitting || disableBeginning}
@@ -71,7 +71,7 @@ function JoinModal({ onClose }: JoinModalProps) {
                 value={thisDay.toString()}
                 label={
                   <Stack direction="row" spacing={1}>
-                    {messages.dayLabel} <AppEmoji name="blast" onlyEmoji />
+                    {messages.dayLabel} <Emoji name="blast" onlyEmoji />
                   </Stack>
                 }
                 disabled={isSubmitting}
@@ -80,7 +80,7 @@ function JoinModal({ onClose }: JoinModalProps) {
             </RadioGroup>
           </Form>
         </FormikProvider>
-        <AppAccordion
+        <Accordion
           name="knot"
           header={messages.accordionHeader}
           id="tips"
@@ -97,13 +97,13 @@ function JoinModal({ onClose }: JoinModalProps) {
                 {messages.accordingNeeded}.
               </Typography>
               <Typography>
-                &#9679; {messages.accordingQuestions} <AppDecorEmoji name="discussion" />.
+                &#9679; {messages.accordingQuestions} <DecorEmoji name="discussion" />.
               </Typography>
             </Box>
           }
         />
       </Stack>
-    </AppModal>
+    </Modal>
   )
 }
 

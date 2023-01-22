@@ -3,7 +3,7 @@ import { UserBaseDto } from '@features/user'
 import { useOpenSignIn } from '@features/signin'
 import useClient from '@hooks/useClient'
 import useToggle from '@hooks/useToggle'
-import ActionGoal from '@components/Action/ActionGoal'
+import EmojiButton from '@ui/EmojiButton'
 import { useMessages } from './hooks/useMessages'
 
 const SupportModal = dynamic(() => import('./components/SupportModal'))
@@ -29,7 +29,7 @@ function ReactionSupport({ owner }: ReactionSupportProps) {
 
   return (
     <>
-      <ActionGoal name="support" title={messages.title} active={false} onClick={onClick} />
+      <EmojiButton name="support" title={messages.title} active={false} onClick={onClick} />
       {open && <SupportModal owner={owner} onClose={toggle} />}
     </>
   )

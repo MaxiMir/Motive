@@ -5,7 +5,7 @@ import { TopicDto, MessageType } from '@features/topic'
 import Message from './components/Message'
 import { checkOnReply } from './helper'
 
-const AppInView = dynamic(() => import('@ui/AppInView'))
+const InView = dynamic(() => import('@ui/InView'))
 const UserInput = dynamic(() => import('../UserInput'))
 
 interface TopicProps {
@@ -45,7 +45,7 @@ function Topic({ owner, topic, isOwner, inView, onView, onAdd }: TopicProps) {
         />
       )}
       {answer && <Message message={answer} answerFor={message.id} />}
-      {inView && <AppInView onView={onView} />}
+      {inView && <InView onView={onView} />}
     </>
   )
 }

@@ -1,5 +1,5 @@
 import dynamic from 'next/dynamic'
-import AppIcon from '@ui/AppIcon'
+import Icon from '@ui/Icon'
 import { Button } from '@mui/material'
 import { blue } from '@mui/material/colors'
 import { useUserContext } from '@modules/user/hooks'
@@ -18,7 +18,7 @@ function Following() {
     <Button
       size="small"
       disabled={isLoading}
-      startIcon={isLoading ? undefined : <AppIcon name={`person_${operation}`} />}
+      startIcon={isLoading ? undefined : <Icon name={`person_${operation}`} />}
       sx={({ palette }) => ({
         minWidth: '96px',
         height: 30,

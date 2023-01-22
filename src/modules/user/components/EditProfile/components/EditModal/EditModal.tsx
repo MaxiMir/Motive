@@ -1,9 +1,9 @@
 import { Field, Form, FormikProvider } from 'formik'
 import { Box, InputAdornment, Stack } from '@mui/material'
-import AppModal from '@ui/AppModal'
-import AppInput from '@ui/AppInput'
-import ActionSubmit from '@components/Action/ActionSubmit'
-import ActionCancel from '@components/Action/ActionCancel'
+import Modal from '@ui/Modal'
+import Input from '@ui/Input'
+import SubmitButton from '@ui/SubmitButton'
+import CancelButton from '@ui/CancelButton'
 import { useMessages } from './hooks/useMessages'
 import { useForm } from './hooks/useForm'
 
@@ -17,7 +17,7 @@ function EditModal({ onClose }: EditModalProps) {
   const { isSubmitting, handleSubmit } = form
 
   return (
-    <AppModal
+    <Modal
       title={
         <>
           {messages.title}{' '}
@@ -28,8 +28,8 @@ function EditModal({ onClose }: EditModalProps) {
       }
       maxWidth="xs"
       actions={[
-        <ActionCancel key="cancel" onClick={onClose} />,
-        <ActionSubmit
+        <CancelButton key="cancel" onClick={onClose} />,
+        <SubmitButton
           disabled={isSubmitting}
           text={messages.buttonText}
           loadingText={messages.buttonLoading}
@@ -43,7 +43,7 @@ function EditModal({ onClose }: EditModalProps) {
       <FormikProvider value={form}>
         <Form>
           <Stack spacing={3}>
-            <Field name="name" label={messages.nameLabel} color="primary" component={AppInput} />
+            <Field name="name" label={messages.nameLabel} color="primary" component={Input} />
             <Field
               name="nickname"
               label={messages.nicknameLabel}
@@ -53,26 +53,26 @@ function EditModal({ onClose }: EditModalProps) {
                   <InputAdornment position="start">https://2bebetter.pro/</InputAdornment>
                 ),
               }}
-              component={AppInput}
+              component={Input}
             />
-            <Field name="motto" label={messages.mottoLabel} color="primary" component={AppInput} />
+            <Field name="motto" label={messages.mottoLabel} color="primary" component={Input} />
             <Field
               name="location"
               label={messages.locationLabel}
               color="primary"
-              component={AppInput}
+              component={Input}
             />
             <Field
               name="bio"
               multiline
               label={messages.bioLabel}
               color="primary"
-              component={AppInput}
+              component={Input}
             />
           </Stack>
         </Form>
       </FormikProvider>
-    </AppModal>
+    </Modal>
   )
 }
 

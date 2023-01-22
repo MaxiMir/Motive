@@ -4,11 +4,11 @@ import { Menu, MenuItem } from '@mui/material'
 import { paperClasses } from '@mui/material/Paper'
 import { useUserContext } from '@modules/user/hooks'
 import useToggle from '@hooks/useToggle'
-import AvatarStatus from '@components/Avatar/AvatarStatus'
-import AppListItem from '@ui/AppListItem'
+import AvatarStatus from '@components/AvatarStatus'
+import ListItem from '@ui/ListItem'
 import { useMessages } from './hooks/useMessages'
 
-const AppLightBox = dynamic(() => import('@ui/AppLightBox'))
+const LightBox = dynamic(() => import('@ui/LightBox'))
 const EditModal = dynamic(() => import('./components/EditModal'))
 const DeleteModal = dynamic(() => import('./components/DeleteModal'))
 
@@ -85,22 +85,22 @@ function Avatar({ clientPage }: AvatarProps) {
       >
         {avatar && (
           <MenuItem onClick={openPhoto}>
-            <AppListItem icon="photo" primary={messages.openText} />
+            <ListItem icon="photo" primary={messages.openText} />
           </MenuItem>
         )}
         <MenuItem onClick={toggleEditing}>
-          <AppListItem icon="edit" primary={messages.editText} />
+          <ListItem icon="edit" primary={messages.editText} />
         </MenuItem>
         {avatar && (
           <MenuItem onClick={toggleDeleting}>
-            <AppListItem icon="delete" primary={messages.deleteText} color="error.dark" />
+            <ListItem icon="delete" primary={messages.deleteText} color="error.dark" />
           </MenuItem>
         )}
         <MenuItem onClick={onClose}>
-          <AppListItem icon="block" primary={messages.cancelText} color="grey" />
+          <ListItem icon="block" primary={messages.cancelText} color="grey" />
         </MenuItem>
       </Menu>
-      {openLightbox && <AppLightBox sources={sources} index={index} onClose={onCloseLightBox} />}
+      {openLightbox && <LightBox sources={sources} index={index} onClose={onCloseLightBox} />}
       {editing && <EditModal onClose={toggleEditing} />}
       {deleting && <DeleteModal onClose={toggleDeleting} />}
     </>

@@ -4,7 +4,7 @@ import PhotoAlbum, { ClickHandlerProps } from 'react-photo-album'
 import { PhotoDto } from '@features/feedback'
 import GalleryPhoto from './components/GalleryPhoto'
 
-const AppLightBox = dynamic(() => import('@ui/AppLightBox'))
+const LightBox = dynamic(() => import('@ui/LightBox'))
 
 export interface GalleryProps {
   photos: PhotoDto[]
@@ -21,7 +21,7 @@ function Gallery({ photos }: GalleryProps) {
 
   return (
     <>
-      {open && <AppLightBox sources={sources} index={index} onClose={onClose} />}
+      {open && <LightBox sources={sources} index={index} onClose={onClose} />}
       <PhotoAlbum layout="rows" photos={photos} renderPhoto={GalleryPhoto} onClick={onClick} />
     </>
   )

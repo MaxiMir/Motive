@@ -2,8 +2,8 @@ import { ListItemIcon, ListItemText, Menu, MenuItem } from '@mui/material'
 import { paperClasses } from '@mui/material/Paper'
 import { Locale, useSetLocale } from '@features/locale'
 import { useIntl } from 'react-intl'
-import AppEmoji from '@ui/AppEmoji'
-import AppListItem from '@ui/AppListItem'
+import Emoji from '@ui/Emoji'
+import ListItem from '@ui/ListItem'
 import { useMessages } from './hooks/useMessages'
 
 const LANGUAGES = [
@@ -42,13 +42,13 @@ function LanguageMenu({ anchorEl, onClose }: LanguageMenuProps) {
       {LANGUAGES.map(({ name, primary, value }) => (
         <MenuItem disabled={locale === value} key={name} onClick={() => onClick(value)}>
           <ListItemIcon>
-            <AppEmoji name={name} sx={{ fontSize: 24 }} />
+            <Emoji name={name} sx={{ fontSize: 24 }} />
           </ListItemIcon>
           <ListItemText primary={primary} />
         </MenuItem>
       ))}
       <MenuItem onClick={onClose}>
-        <AppListItem icon="block" primary={messages.cancelText} compact={false} color="grey" />
+        <ListItem icon="block" primary={messages.cancelText} compact={false} color="grey" />
       </MenuItem>
     </Menu>
   )

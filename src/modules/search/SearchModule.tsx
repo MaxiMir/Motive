@@ -4,7 +4,7 @@ import { HashtagDto } from '@features/page'
 import { UserDto } from '@features/user'
 import { GoalDto } from '@features/goal'
 import EmojiHeader from '@ui/EmojiHeader'
-import AppContainer from '@ui/AppContainer'
+import Container from '@ui/Container'
 import { useMessages } from './hooks/useMessages'
 import { GRADIENTS } from './helpers/color'
 import SearchForm from './components/SearchForm'
@@ -26,7 +26,7 @@ function SearchModule({ q, hashtags, goals, users }: SearchModuleProps) {
   const noResult = !users.length && !goals.length
 
   return (
-    <AppContainer>
+    <Container>
       <Typography variant="h1" sx={{ mb: 3 }}>
         {messages.header}
       </Typography>
@@ -74,7 +74,7 @@ function SearchModule({ q, hashtags, goals, users }: SearchModuleProps) {
           </Stack>
         )}
       </Stack>
-    </AppContainer>
+    </Container>
   )
 }
 

@@ -3,7 +3,7 @@ import { Step, StepContent, Stepper } from '@mui/material'
 import { teal } from '@mui/material/colors'
 import { useGoalContext } from '@modules/user/components/GoalCurrent/hooks/useGoalContext'
 import useToggle from '@hooks/useToggle'
-import AppIcon from '@ui/AppIcon'
+import Icon from '@ui/Icon'
 import StageLabel from './components/StageLabel'
 import { useMessages } from './hooks/useMessages'
 
@@ -50,7 +50,7 @@ function Stages({ forTomorrow, completeStage }: StagesProps) {
                     disabled={forTomorrow}
                     aria-haspopup="true"
                     aria-expanded={open ? 'true' : undefined}
-                    startIcon={<AppIcon name="done_outline" />}
+                    startIcon={<Icon name="done_outline" />}
                     sx={{
                       color: teal[600],
                       borderColor: teal[600],

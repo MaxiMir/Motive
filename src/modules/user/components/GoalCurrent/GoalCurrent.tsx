@@ -8,7 +8,7 @@ import { GoalDto, GoalCharacteristicName } from '@features/goal'
 import { MAIN_CHARACTERISTICS } from '@features/characteristic'
 import { HashMark, getDayHref } from '@features/user'
 import useClient from '@hooks/useClient'
-import AppAccordion from '@ui/AppAccordion'
+import Accordion from '@ui/Accordion'
 import CharacteristicGoal from '@components/Characteristic/CharacteristicGoal'
 import { useMessages } from './hooks/useMessages'
 import { useSwitchDay } from './hooks/useSwitchDay'
@@ -156,7 +156,7 @@ function GoalCurrent({ goal, membership, clientPage, clientMembership }: GoalCur
                       />
                     </Stack>
                     {!!stages.length && (
-                      <AppAccordion
+                      <Accordion
                         name="stage"
                         header={messages.stagesHeader}
                         id={`stage-${day.id}`}
@@ -169,7 +169,7 @@ function GoalCurrent({ goal, membership, clientPage, clientMembership }: GoalCur
                         }
                       />
                     )}
-                    <AppAccordion
+                    <Accordion
                       name="task"
                       header={messages.tasksHeader}
                       id={`tasksContent-${day.id}`}
@@ -191,7 +191,7 @@ function GoalCurrent({ goal, membership, clientPage, clientMembership }: GoalCur
                         </Stack>
                       }
                     />
-                    <AppAccordion
+                    <Accordion
                       name="feedback"
                       header={messages.feedbackHeader}
                       id={`${HashMark.Feedback}-${id}`}
@@ -203,7 +203,7 @@ function GoalCurrent({ goal, membership, clientPage, clientMembership }: GoalCur
                         />
                       }
                     />
-                    <AppAccordion
+                    <Accordion
                       name="discussion"
                       header={
                         <>

@@ -2,8 +2,8 @@ import { ChangeEvent } from 'react'
 import { Field } from 'formik'
 import { IconButton, Switch, FormControlLabel, Stack } from '@mui/material'
 import { TimePicker } from '@mui/x-date-pickers'
-import AppInput from '@ui/AppInput'
-import AppIcon from '@ui/AppIcon'
+import Input from '@ui/Input'
+import Icon from '@ui/Icon'
 import TooltipArrow from '@ui/styled/TooltipArrow'
 import { useMessages } from './hooks/useMessages'
 
@@ -32,7 +32,7 @@ function TaskField({ index, date, remind, taskCount, setFieldValue, onRemove }: 
           label={messages.label}
           placeholder={messages.placeholder}
           autoFocus={autoFocus}
-          component={AppInput}
+          component={Input}
         />
         <IconButton
           aria-label={messages.closeText}
@@ -41,7 +41,7 @@ function TaskField({ index, date, remind, taskCount, setFieldValue, onRemove }: 
           sx={{ color: 'zen.silent' }}
           onClick={onRemove}
         >
-          <AppIcon name="close" />
+          <Icon name="close" />
         </IconButton>
       </Stack>
       <Stack direction="row" alignItems="center" spacing={1} pl={1} height={48}>
@@ -57,7 +57,7 @@ function TaskField({ index, date, remind, taskCount, setFieldValue, onRemove }: 
           <Field
             name={`tasks.${index}.date`}
             ampm={false}
-            keyboardIcon={<AppIcon name="query_builder" />}
+            keyboardIcon={<Icon name="query_builder" />}
             sx={{ width: 100 }}
             component={TimePicker}
           />

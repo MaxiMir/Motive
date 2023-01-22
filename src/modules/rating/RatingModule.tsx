@@ -1,8 +1,8 @@
 import { Typography } from '@mui/material'
 import { UserDto } from '@features/user'
 import { MAIN_CHARACTERISTICS, MainCharacteristicName } from '@features/characteristic'
-import AppTabs from '@ui/AppTabs'
-import AppContainer from '@ui/AppContainer'
+import Tabs from '@ui/Tabs'
+import Container from '@ui/Container'
 import { useMessages } from './hooks/useMessages'
 import TabName from './components/TabName'
 import TabContent from './components/TabContent'
@@ -15,11 +15,11 @@ function RatingModule({ tab, ...props }: RatingModuleProps) {
   const messages = useMessages()
 
   return (
-    <AppContainer>
+    <Container>
       <Typography variant="h1" sx={{ mb: 3 }}>
         {messages.header}
       </Typography>
-      <AppTabs
+      <Tabs
         initial={tab}
         aria-label={messages.ariaLabel}
         tabs={MAIN_CHARACTERISTICS.map((name) => (
@@ -29,7 +29,7 @@ function RatingModule({ tab, ...props }: RatingModuleProps) {
           <TabContent name={name} users={props[name]} key={name} />
         ))}
       />
-    </AppContainer>
+    </Container>
   )
 }
 

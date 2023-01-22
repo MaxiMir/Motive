@@ -1,6 +1,6 @@
 import { Box, Stack, Typography } from '@mui/material'
-import AppModal from '@ui/AppModal'
-import AppSpinIcon from '@ui/AppSpinIcon'
+import Modal from '@ui/Modal'
+import SpinEmoji from '@ui/SpinEmoji'
 import { useMessages } from './hooks/useMessages'
 
 interface NoCompletedModalProps {
@@ -11,7 +11,7 @@ function NoCompletedModal({ onClose }: NoCompletedModalProps) {
   const messages = useMessages()
 
   return (
-    <AppModal
+    <Modal
       title={
         <>
           <Box component="span" color="zen.sand">
@@ -28,10 +28,10 @@ function NoCompletedModal({ onClose }: NoCompletedModalProps) {
           <Typography variant="h6" component="p">
             {messages.header}
           </Typography>
-          <AppSpinIcon name="completed" />
+          <SpinEmoji name="completed" />
         </Stack>
       </Stack>
-    </AppModal>
+    </Modal>
   )
 }
 

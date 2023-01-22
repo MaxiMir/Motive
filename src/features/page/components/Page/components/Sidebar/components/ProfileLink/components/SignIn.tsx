@@ -1,6 +1,6 @@
 import { ListItem, ListItemIcon, ListItemText } from '@mui/material'
 import { useOpenSignIn } from '@features/signin'
-import AppIcon from '@ui/AppIcon'
+import Icon from '@ui/Icon'
 
 interface SignInProps {
   primary: string
@@ -22,7 +22,7 @@ function SignIn({ primary }: SignInProps) {
       onClick={onClick}
     >
       <ListItemIcon>
-        <AppIcon name="login" />
+        <Icon name="login" />
       </ListItemIcon>
       <ListItemText primary={primary} />
     </ListItem>

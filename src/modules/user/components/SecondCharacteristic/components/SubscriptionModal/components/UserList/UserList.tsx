@@ -1,5 +1,5 @@
 import { UserDto } from '@features/user'
-import AppList from '@ui/AppList'
+import List from '@ui/List'
 import UserRow from './components/UserRow'
 
 interface UserListProps {
@@ -11,7 +11,7 @@ interface UserListProps {
 
 function UserList({ users, checkOnLoadMore, onView, onClose }: UserListProps) {
   return (
-    <AppList
+    <List
       elements={users}
       spacing={2}
       keyGetter={(user) => user.id}

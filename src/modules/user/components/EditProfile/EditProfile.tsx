@@ -1,6 +1,6 @@
 import dynamic from 'next/dynamic'
 import useToggle from '@hooks/useToggle'
-import AppIcon from '@ui/AppIcon'
+import Icon from '@ui/Icon'
 import GreyButton from '@ui/styled/GreyButton'
 import { useMessages } from './hooks/useMessages'
 
@@ -16,7 +16,7 @@ function EditProfile() {
         size="small"
         aria-haspopup="true"
         aria-expanded={open ? 'true' : undefined}
-        startIcon={<AppIcon name="edit_note" />}
+        startIcon={<Icon name="edit_note" />}
         sx={{
           minWidth: '96px',
           height: 30,

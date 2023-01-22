@@ -1,7 +1,7 @@
 import dynamic from 'next/dynamic'
 import { Typography } from '@mui/material'
 import { UserDto } from '@features/user'
-import AppContainer from '@ui/AppContainer'
+import Container from '@ui/Container'
 import { useMessages } from './hooks/useMessages'
 
 const EmptyList = dynamic(() => import('./components/EmptyList'))
@@ -15,12 +15,12 @@ function FollowingModule({ following }: FollowingModuleProps) {
   const messages = useMessages()
 
   return (
-    <AppContainer>
+    <Container>
       <Typography variant="h1" sx={{ mb: 3 }}>
         {messages.header}
       </Typography>
       {!following.length ? <EmptyList /> : <UserList users={following} />}
-    </AppContainer>
+    </Container>
   )
 }
 

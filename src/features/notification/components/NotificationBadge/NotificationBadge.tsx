@@ -1,6 +1,6 @@
 import { Badge } from '@mui/material'
 import { NotificationDto } from '@features/notification/dto'
-import AppIcon from '@ui/AppIcon'
+import Icon from '@ui/Icon'
 import { getReadCount } from './helpers/content'
 
 interface NotificationBadgeProps {
@@ -12,7 +12,7 @@ function NotificationBadge({ notifications }: NotificationBadgeProps) {
 
   return (
     <Badge color="error" badgeContent={readCount} variant="dot" invisible={false}>
-      <AppIcon name="notifications" />
+      <Icon name="notifications" />
     </Badge>
   )
 }

@@ -4,7 +4,7 @@ import { Stack, Typography } from '@mui/material'
 import { UserDto, toHref } from '@features/user'
 import { MAIN_CHARACTERISTICS, SecondCharacteristicName } from '@features/characteristic'
 import CharacteristicUser from '@components/Characteristic/CharacteristicUser'
-import AvatarStatus from '@components/Avatar/AvatarStatus'
+import AvatarStatus from '@components/AvatarStatus'
 import MenuActions from './components/MenuActions'
 
 const LastSeen = dynamic(() => import('./components/LastSeen'))

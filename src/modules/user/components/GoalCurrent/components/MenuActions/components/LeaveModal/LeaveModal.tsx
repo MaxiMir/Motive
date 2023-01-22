@@ -1,10 +1,10 @@
 import { Box, Stack, Typography } from '@mui/material'
 import { useGoalContext } from '@modules/user/components/GoalCurrent/hooks/useGoalContext'
 import { OwnershipDto } from '@features/member'
-import AppModal from '@ui/AppModal'
-import AppFadeIcon from '@ui/AppFadeIcon'
-import ActionSubmit from '@components/Action/ActionSubmit'
-import ActionCancel from '@components/Action/ActionCancel/ActionCancel'
+import Modal from '@ui/Modal'
+import FadeEmoji from '@ui/FadeEmoji'
+import SubmitButton from '@ui/SubmitButton'
+import CancelButton from '@ui/CancelButton'
 import { useSendRemoveMember } from './hooks/useSendRemoveMember'
 import { useMessages } from './hooks/useMessages'
 
@@ -25,12 +25,12 @@ function LeaveModal({ clientOwnership, onClose }: LeaveModalProps) {
   }
 
   return (
-    <AppModal
+    <Modal
       title={messages.title}
       maxWidth="xs"
       actions={[
-        <ActionCancel key="cancel" onClick={onClose} />,
-        <ActionSubmit
+        <CancelButton key="cancel" onClick={onClose} />,
+        <SubmitButton
           disabled={isLoading}
           text={messages.buttonText}
           loadingText={messages.loadingText}
@@ -48,9 +48,9 @@ function LeaveModal({ clientOwnership, onClose }: LeaveModalProps) {
             {name}
           </Box>
         </Typography>
-        <AppFadeIcon name="luggage" />
+        <FadeEmoji name="luggage" />
       </Stack>
-    </AppModal>
+    </Modal>
   )
 }
 

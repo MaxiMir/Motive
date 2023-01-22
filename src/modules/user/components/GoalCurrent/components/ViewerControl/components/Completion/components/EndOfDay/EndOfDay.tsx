@@ -1,7 +1,7 @@
 import dynamic from 'next/dynamic'
 import { MemberDto } from '@features/member'
 import { getTomorrow } from '@lib/date'
-import AppEmoji from '@ui/AppEmoji'
+import Emoji from '@ui/Emoji'
 import TooltipArrow from '@ui/styled/TooltipArrow'
 import BlueButton from '@ui/styled/BlueButton'
 import { useMessages } from './hooks/useMessages'
@@ -32,7 +32,7 @@ function EndOfDay({ nextDayId, forTomorrow, clientMember }: EndOfDayProps) {
           isLoading ? (
             <CircularProgress size={14.5} color="primary" />
           ) : (
-            <AppEmoji name="moon" onlyEmoji />
+            <Emoji name="moon" onlyEmoji />
           )
         }
         onClick={onClick}

@@ -3,7 +3,7 @@ import { Stack } from '@mui/material'
 import { FeedbackDto } from '@features/feedback'
 
 const Markdown = dynamic(() => import('@components/Markdown'))
-const AppPlayer = dynamic(() => import('@ui/AppPlayer'))
+const Player = dynamic(() => import('@ui/Player'))
 const Gallery = dynamic(() => import('@components/Gallery'))
 
 interface ContentProps {
@@ -17,7 +17,7 @@ function Content({ feedback }: ContentProps) {
     <Stack spacing={2} flex={1}>
       {text && <Markdown text={text} />}
       {photos?.length && <Gallery photos={photos} />}
-      {video && <AppPlayer url={video} width="100%" height="auto" />}
+      {video && <Player url={video} width="100%" height="auto" />}
     </Stack>
   )
 }

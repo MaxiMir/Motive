@@ -5,8 +5,8 @@ import { UserDto, toHref } from '@features/user'
 import { useRemoveFollowing } from '@features/subscription'
 import useToggle from '@hooks/useToggle'
 import { share } from '@helpers/navigator'
-import AppListItem from '@ui/AppListItem'
-import AppIcon from '@ui/AppIcon'
+import ListItem from '@ui/ListItem'
+import Icon from '@ui/Icon'
 import TooltipArrow from '@ui/styled/TooltipArrow'
 import { useMessages } from './hooks/useMessages'
 
@@ -48,7 +48,7 @@ function MenuActions({ user, index }: MenuActionsProps) {
           sx={({ palette }) => ({ color: palette.grey[500] })}
           onClick={onOpenMenu}
         >
-          <AppIcon name="more_horiz" />
+          <Icon name="more_horiz" />
         </IconButton>
       </TooltipArrow>
       <Menu
@@ -62,13 +62,13 @@ function MenuActions({ user, index }: MenuActionsProps) {
         onClose={onCloseMenu}
       >
         <MenuItem onClick={onShare}>
-          <AppListItem icon="share" primary={messages.shareText} />
+          <ListItem icon="share" primary={messages.shareText} />
         </MenuItem>
         <MenuItem disabled={isLoading} onClick={onRemove}>
-          <AppListItem icon="delete" primary={messages.removeText} color="error.dark" />
+          <ListItem icon="delete" primary={messages.removeText} color="error.dark" />
         </MenuItem>
         <MenuItem onClick={onCloseMenu}>
-          <AppListItem icon="block" primary={messages.cancelText} color="grey" />
+          <ListItem icon="block" primary={messages.cancelText} color="grey" />
         </MenuItem>
       </Menu>
       {sharing && <Share href={href} title={name} onClose={toggleSharing} />}

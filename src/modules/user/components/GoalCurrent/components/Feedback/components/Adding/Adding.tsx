@@ -1,7 +1,7 @@
 import dynamic from 'next/dynamic'
 import { Button } from '@mui/material'
 import useToggle from '@hooks/useToggle'
-import AppIcon from '@ui/AppIcon'
+import Icon from '@ui/Icon'
 import TooltipArrow from '@ui/styled/TooltipArrow'
 import { useMessages } from './hooks/useMessages'
 
@@ -22,7 +22,7 @@ function Adding({ forTomorrow }: AddingProps) {
           size="small"
           variant="outlined"
           color="secondary"
-          startIcon={<AppIcon name="psychology" />}
+          startIcon={<Icon name="psychology" />}
           disabled={forTomorrow}
           aria-haspopup="true"
           aria-expanded={open ? 'true' : undefined}

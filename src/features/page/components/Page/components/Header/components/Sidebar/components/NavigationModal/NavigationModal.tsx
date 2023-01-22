@@ -12,7 +12,7 @@ import {
 } from '@mui/material'
 import { drawerClasses } from '@mui/material/Drawer'
 import useClient from '@hooks/useClient'
-import AppIcon from '@ui/AppIcon'
+import Icon from '@ui/Icon'
 import { useMessages } from './hooks/useMessages'
 import { useRoutes } from './hooks/useRoutes'
 
@@ -43,7 +43,7 @@ function NavigationModal({ onOpenSettings, onClose }: NavigationModalProps) {
     >
       <Box display="flex" justifyContent="flex-end" alignItems="center" pr={1} height={56}>
         <IconButton aria-label={messages.closeText} onClick={onClose}>
-          <AppIcon name="close" />
+          <Icon name="close" />
         </IconButton>
       </Box>
       <Divider />
@@ -52,7 +52,7 @@ function NavigationModal({ onOpenSettings, onClose }: NavigationModalProps) {
           {routes.map(({ primary, icon, href }) => (
             <ListItem button href={href} disabled={!href} component={Link} key={href}>
               <ListItemIcon>
-                <AppIcon name={icon} />
+                <Icon name={icon} />
               </ListItemIcon>
               <ListItemText primary={primary} />
             </ListItem>
@@ -62,7 +62,7 @@ function NavigationModal({ onOpenSettings, onClose }: NavigationModalProps) {
         <List>
           <ListItem button onClick={onOpenSettings}>
             <ListItemIcon>
-              <AppIcon name="settings" />
+              <Icon name="settings" />
             </ListItemIcon>
             <ListItemText primary={messages.settings} />
           </ListItem>
@@ -73,7 +73,7 @@ function NavigationModal({ onOpenSettings, onClose }: NavigationModalProps) {
             <List>
               <ListItem button onClick={onSignOut}>
                 <ListItemIcon>
-                  <AppIcon name="logout" />
+                  <Icon name="logout" />
                 </ListItemIcon>
                 <ListItemText primary={messages.logOut} />
               </ListItem>

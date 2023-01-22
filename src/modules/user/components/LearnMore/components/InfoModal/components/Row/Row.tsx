@@ -1,7 +1,7 @@
 import { Box, Typography } from '@mui/material'
 import { UserPageDto } from '@features/page'
 import useFormatDate from '@hooks/useFormatDate'
-import AppIcon from '@ui/AppIcon'
+import Icon from '@ui/Icon'
 import { useMessages } from './hooks/useMessages'
 
 interface RowProps {
@@ -18,7 +18,7 @@ function Row({ icon, name, value = '-' }: RowProps) {
 
   return (
     <Box display="flex" gap={1}>
-      <AppIcon name={icon} />
+      <Icon name={icon} />
       <Typography sx={{ whiteSpace: 'nowrap' }}>{messages.title}:</Typography>
       <Typography textAlign="right" sx={{ color: 'zen.silent', marginLeft: 'auto' }}>
         {shownText}

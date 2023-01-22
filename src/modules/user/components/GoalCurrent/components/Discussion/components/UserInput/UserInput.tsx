@@ -6,14 +6,14 @@ import { styled } from '@mui/system'
 import { blue } from '@mui/material/colors'
 import { UserBaseDto, ClientDto, toHref } from '@features/user'
 import { TopicDto, MessageType } from '@features/topic'
-import AppInput from '@ui/AppInput'
-import AvatarStatus from '@components/Avatar/AvatarStatus'
+import Input from '@ui/Input'
+import AvatarStatus from '@components/AvatarStatus'
 import TooltipArrow from '@ui/styled/TooltipArrow'
 import { useMessages } from './hooks/useMessages'
 import { useForm } from './hooks/useForm'
 
 const CircularProgress = dynamic(() => import('@mui/material/CircularProgress'))
-const AppIcon = dynamic(() => import('@ui/AppIcon'))
+const Icon = dynamic(() => import('@ui/Icon'))
 
 interface UserInputProps {
   user: ClientDto | UserBaseDto
@@ -47,11 +47,11 @@ function UserInput({ user, type, topicId, onAdd }: UserInputProps) {
             disabled={isSubmitting}
             autoComplete={false}
             sx={{ flex: 1 }}
-            component={AppInput}
+            component={Input}
           />
           <TooltipArrow title={messages.sendText}>
             <SendButton size="small" disabled={disabled} onClick={onClick}>
-              {isSubmitting ? <CircularProgress size={14.5} /> : <AppIcon name="arrow_upward" />}
+              {isSubmitting ? <CircularProgress size={14.5} /> : <Icon name="arrow_upward" />}
             </SendButton>
           </TooltipArrow>
         </Stack>

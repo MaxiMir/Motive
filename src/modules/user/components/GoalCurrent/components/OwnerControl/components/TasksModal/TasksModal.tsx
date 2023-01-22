@@ -15,12 +15,12 @@ import {
 } from '@mui/material'
 import { getMidnightISO, getTomorrowISO } from '@lib/date'
 import { useGoalContext } from '@modules/user/components/GoalCurrent/hooks/useGoalContext'
-import AppIcon from '@ui/AppIcon'
+import Icon from '@ui/Icon'
 import EmojiHeader from '@ui/EmojiHeader'
 import Paul from '@ui/icons/Paul'
-import AppModal from '@ui/AppModal'
-import ActionSubmit from '@components/Action/ActionSubmit'
-import ActionCancel from '@components/Action/ActionCancel/ActionCancel'
+import Modal from '@ui/Modal'
+import SubmitButton from '@ui/SubmitButton'
+import CancelButton from '@ui/CancelButton'
 import TaskField from '@components/Task/TaskField/TaskField'
 import OldPittRules from '@components/OldPitt/OldPittRules/OldPittRules'
 import TooltipArrow from '@ui/styled/TooltipArrow'
@@ -46,7 +46,7 @@ function TasksModal({ onClose }: TasksModalProps) {
   }
 
   return (
-    <AppModal
+    <Modal
       title={
         <>
           {messages.titleText}{' '}
@@ -57,8 +57,8 @@ function TasksModal({ onClose }: TasksModalProps) {
       }
       maxWidth="xs"
       actions={[
-        <ActionCancel key="cancel" onClick={onClose} />,
-        <ActionSubmit
+        <CancelButton key="cancel" onClick={onClose} />,
+        <SubmitButton
           disabled={isSubmitting}
           text={messages.buttonText}
           loadingText={messages.loadingText}
@@ -91,7 +91,7 @@ function TasksModal({ onClose }: TasksModalProps) {
                       size="small"
                       variant="outlined"
                       sx={{ alignSelf: 'baseline' }}
-                      startIcon={<AppIcon name="add" />}
+                      startIcon={<Icon name="add" />}
                       onClick={() => push({ id: crypto.randomUUID(), name: '', date: undefined })}
                     >
                       {messages.addTaskText}
@@ -129,7 +129,7 @@ function TasksModal({ onClose }: TasksModalProps) {
           </Form>
         </FormikProvider>
         <Accordion>
-          <AccordionSummary expandIcon={<AppIcon name="expand_more" />} id="old-pitt-note">
+          <AccordionSummary expandIcon={<Icon name="expand_more" />} id="old-pitt-note">
             <Stack direction="row" alignItems="center" spacing={1}>
               <Paul />
               <Typography variant="h6" component="h3">
@@ -142,7 +142,7 @@ function TasksModal({ onClose }: TasksModalProps) {
           </AccordionDetails>
         </Accordion>
       </Stack>
-    </AppModal>
+    </Modal>
   )
 }
 

@@ -2,8 +2,8 @@ import { ChangeEvent, useRef } from 'react'
 import dynamic from 'next/dynamic'
 import { Button, Divider, Stack, Typography } from '@mui/material'
 import { styled } from '@mui/system'
-import AppModal from '@ui/AppModal'
-import AppIcon from '@ui/AppIcon'
+import Modal from '@ui/Modal'
+import Icon from '@ui/Icon'
 import { useMessages } from './hooks/useMessages'
 import { useUpdatePhoto } from './hooks/useUpdatePhoto'
 
@@ -29,7 +29,7 @@ function EditModal({ onClose }: EditModalProps) {
   }
 
   return (
-    <AppModal title={messages.title} maxWidth="xs" onClose={onClose}>
+    <Modal title={messages.title} maxWidth="xs" onClose={onClose}>
       <Stack alignItems="center" spacing={2}>
         <Stack alignItems="center" spacing={1}>
           <Description>{messages.description}.</Description>
@@ -43,7 +43,7 @@ function EditModal({ onClose }: EditModalProps) {
             isLoading ? (
               <CircularProgress size={14.5} color="inherit" />
             ) : (
-              <AppIcon name="attach_file" />
+              <Icon name="attach_file" />
             )
           }
           onClick={onClick}
@@ -56,7 +56,7 @@ function EditModal({ onClose }: EditModalProps) {
           {messages.hintText}
         </Typography>
       </Stack>
-    </AppModal>
+    </Modal>
   )
 }
 

@@ -2,7 +2,7 @@ import { Button } from '@mui/material'
 import { MessageDto, MessageType } from '@features/topic'
 import useClient from '@hooks/useClient'
 import useFormatNumber from '@hooks/useFormatNumber'
-import AppEmoji from '@ui/AppEmoji'
+import Emoji from '@ui/Emoji'
 import TooltipArrow from '@ui/styled/TooltipArrow'
 import { checkOnDisabled } from './helper'
 import { useMessages } from './hooks/useMessages'
@@ -28,7 +28,7 @@ function Like({ message, answerFor }: LikeProps) {
       <Button
         size="small"
         disabled={disabled || isLoading}
-        startIcon={<AppEmoji name={icon} onlyEmoji />}
+        startIcon={<Emoji name={icon} onlyEmoji />}
         color="inherit"
         sx={({ palette }) => ({
           paddingX: 1,

@@ -2,7 +2,7 @@ import dynamic from 'next/dynamic'
 import { Button } from '@mui/material'
 import { styled } from '@mui/system'
 import useToggle from '@hooks/useToggle'
-import AppIcon from '@ui/AppIcon'
+import Icon from '@ui/Icon'
 import { useMessages } from './hooks/useMessages'
 
 const InfoModal = dynamic(() => import('./components/InfoModal'))
@@ -18,7 +18,7 @@ function LearnMore() {
         variant="text"
         aria-haspopup="true"
         aria-expanded={open ? 'true' : undefined}
-        startIcon={<AppIcon name="info" />}
+        startIcon={<Icon name="info" />}
         sx={{ mt: 1 }}
         onClick={toggle}
       >

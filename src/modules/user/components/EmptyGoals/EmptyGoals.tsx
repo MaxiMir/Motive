@@ -1,5 +1,5 @@
 import { Stack, Typography } from '@mui/material'
-import AppFadeIcon from '@ui/AppFadeIcon'
+import FadeEmoji from '@ui/FadeEmoji'
 import { useMessages } from './hooks/useMessages'
 import OwnerDescription from './components/OwnerDescription'
 
@@ -15,7 +15,7 @@ function EmptyGoals({ clientPage }: AddGoalProps) {
       <Typography variant="h6" component="p" color="primary" mb={2}>
         {messages.title}
       </Typography>
-      <AppFadeIcon name="goal" />
+      <FadeEmoji name="goal" />
       {clientPage && <OwnerDescription />}
     </Stack>
   )

@@ -1,9 +1,9 @@
 import { NotificationType } from '@features/notification/dto'
 import { MainCharacteristicName } from '@features/characteristic'
-import { AppEmojiName } from '@ui/AppEmoji'
+import { EmojiName } from '@ui/Emoji'
 
 interface NotificationInfo {
-  emoji: AppEmojiName
+  emoji: EmojiName
   color: string
 }
 

@@ -1,13 +1,13 @@
 import { Box, Typography } from '@mui/material'
-import AppContainer from '@ui/AppContainer'
-import AppFadeIcon from '@ui/AppFadeIcon'
+import Container from '@ui/Container'
+import FadeEmoji from '@ui/FadeEmoji'
 import { useMessages } from './hooks/useMessages'
 
 function TopOfTheDayModule() {
   const messages = useMessages()
 
   return (
-    <AppContainer>
+    <Container>
       <Typography variant="h1" sx={{ mb: 3 }}>
         {messages.header}
       </Typography>
@@ -23,9 +23,9 @@ function TopOfTheDayModule() {
         <Typography variant="h5" component="p" color="primary">
           {messages.text}
         </Typography>
-        <AppFadeIcon name="keyboard" />
+        <FadeEmoji name="keyboard" />
       </Box>
-    </AppContainer>
+    </Container>
   )
 }
 

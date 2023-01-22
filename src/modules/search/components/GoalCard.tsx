@@ -4,7 +4,7 @@ import { toHref } from '@features/user'
 import { GoalDto } from '@features/goal'
 import { MAIN_CHARACTERISTICS } from '@features/characteristic'
 import CharacteristicGoal from '@components/Characteristic/CharacteristicGoal'
-import AvatarStatus from '@components/Avatar/AvatarStatus'
+import AvatarStatus from '@components/AvatarStatus'
 
 interface GoalCardProps {
   goal: GoalDto

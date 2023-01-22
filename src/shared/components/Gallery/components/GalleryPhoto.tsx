@@ -1,5 +1,5 @@
 import { RenderPhotoProps } from 'react-photo-album'
-import AppImage from '@ui/AppImage'
+import Image from '@ui/Image'
 
 function GalleryPhoto({
   imageProps: { src, alt, title, sizes, className, onClick },
@@ -16,7 +16,7 @@ function GalleryPhoto({
           cursor: 'pointer',
         }}
       >
-        <AppImage
+        <Image
           fill
           src={src}
           alt={alt}

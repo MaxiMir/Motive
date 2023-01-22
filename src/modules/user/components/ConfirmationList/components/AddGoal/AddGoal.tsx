@@ -1,7 +1,7 @@
 import dynamic from 'next/dynamic'
 import { Box, Button, Stack, Typography } from '@mui/material'
 import useToggle from '@hooks/useToggle'
-import AppIcon from '@ui/AppIcon'
+import Icon from '@ui/Icon'
 import { useMessages } from './hooks/useMessages'
 
 const GoalModal = dynamic(() => import('./components/GoalModal'))
@@ -35,7 +35,7 @@ function AddGoal() {
           onClick={toggle}
         >
           <Box display="flex" justifyContent="center" alignItems="center" width={65} height={65}>
-            <AppIcon name="data_saver_on" />
+            <Icon name="data_saver_on" />
           </Box>
         </Button>
       </Box>

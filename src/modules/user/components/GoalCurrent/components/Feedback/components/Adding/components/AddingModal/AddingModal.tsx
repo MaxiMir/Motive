@@ -1,12 +1,12 @@
 import { Field, FieldArray, Form, FormikProvider } from 'formik'
 import { Grid, Typography, Stack } from '@mui/material'
 import useSelectPhoto from '@hooks/useSelectPhoto'
-import AppModal from '@ui/AppModal'
-import AppInput from '@ui/AppInput'
+import Modal from '@ui/Modal'
+import Input from '@ui/Input'
 import EmojiHeader from '@ui/EmojiHeader'
-import AppShakeIcon from '@ui/AppShakeIcon'
-import ActionSubmit from '@components/Action/ActionSubmit'
-import ActionCancel from '@components/Action/ActionCancel/ActionCancel'
+import ShakeEmoji from '@ui/ShakeEmoji'
+import SubmitButton from '@ui/SubmitButton'
+import CancelButton from '@ui/CancelButton'
 import PhotoInput from '@components/Photo/PhotoInput/PhotoInput'
 import PhotoButton from '@components/Photo/PhotoButton'
 import VideoPreview from '@components/Video/VideoPreview/VideoPreview'
@@ -28,12 +28,12 @@ function AddingModal({ onClose }: AddingModalProps) {
   const onSelectVideo = (file: File) => setFieldValue('video', file)
 
   return (
-    <AppModal
+    <Modal
       title={messages.title}
       maxWidth="xs"
       actions={[
-        <ActionCancel key="cancel" onClick={onClose} />,
-        <ActionSubmit
+        <CancelButton key="cancel" onClick={onClose} />,
+        <SubmitButton
           disabled={isSubmitting}
           text={messages.buttonText}
           loadingText={messages.loadingText}
@@ -48,7 +48,7 @@ function AddingModal({ onClose }: AddingModalProps) {
         <Form>
           <Stack alignItems="center" spacing={3}>
             <Stack alignItems="center" spacing={1}>
-              <AppShakeIcon name="congratulations" />
+              <ShakeEmoji name="congratulations" />
               <Typography variant="subtitle1" sx={{ color: 'support.main' }}>
                 {messages.subtitle}
               </Typography>
@@ -59,7 +59,7 @@ function AddingModal({ onClose }: AddingModalProps) {
               color="warning"
               multiline
               rows={3}
-              component={AppInput}
+              component={Input}
             />
             {!!values.photos.length && (
               <Stack spacing={2} width="100%">
@@ -102,7 +102,7 @@ function AddingModal({ onClose }: AddingModalProps) {
           </Stack>
         </Form>
       </FormikProvider>
-    </AppModal>
+    </Modal>
   )
 }
 

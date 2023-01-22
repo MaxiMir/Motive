@@ -3,7 +3,7 @@ import dynamic from 'next/dynamic'
 import { Button, Stack, Typography } from '@mui/material'
 import { useTheme } from '@mui/material/styles'
 import { MainCharacteristicName } from '@features/characteristic'
-import AppCircle from '@ui/AppCircle'
+import Circle from '@ui/Circle'
 import { useMessages } from './hooks/useMessages'
 import { getOffset, RADIUS } from './helper'
 
@@ -38,7 +38,7 @@ function MainCharacteristic({ name, value }: MainCharacteristicProps) {
         }}
         onClick={onClick}
       >
-        <AppCircle
+        <Circle
           size={100}
           strokeWidth={50}
           strokeWidthBg={50}

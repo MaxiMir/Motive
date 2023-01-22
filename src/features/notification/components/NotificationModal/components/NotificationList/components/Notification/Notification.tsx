@@ -7,15 +7,15 @@ import { getNotificationHref } from '@features/notification/helpers'
 import useClient from '@hooks/useClient'
 import useFormatDistance from '@hooks/useFormatDistance'
 import { toShortString } from '@helpers/string'
-import AppEmoji from '@ui/AppEmoji'
-import AppIcon from '@ui/AppIcon'
-import AvatarStatus from '@components/Avatar/AvatarStatus'
+import Emoji from '@ui/Emoji'
+import Icon from '@ui/Icon'
+import AvatarStatus from '@components/AvatarStatus'
 import TooltipArrow from '@ui/styled/TooltipArrow'
 import { useMessages } from './hooks/useMessages'
 import { useUpdateRead } from './hooks/useUpdateRead'
 import { getNotificationInfo } from './helpers/content'
 
-const AppInView = dynamic(() => import('@ui/AppInView'))
+const InView = dynamic(() => import('@ui/InView'))
 
 interface NotificationProps {
   notification: NotificationDto
@@ -56,7 +56,7 @@ function Notification({ notification, onClose }: NotificationProps) {
           fontSize={11}
           sx={{ backgroundColor: '#262626' }}
         >
-          <AppEmoji name={emoji} onlyEmoji />
+          <Emoji name={emoji} onlyEmoji />
         </Box>
       </Box>
       <Stack justifyContent="space-between">
@@ -90,12 +90,12 @@ function Notification({ notification, onClose }: NotificationProps) {
               }}
               onClick={onClose}
             >
-              <AppIcon name="south_east" sx={{ color: 'motivation.light' }} />
+              <Icon name="south_east" sx={{ color: 'motivation.light' }} />
             </IconButton>
           </TooltipArrow>
         </Stack>
       </Stack>
-      {!read && <AppInView onView={onView} />}
+      {!read && <InView onView={onView} />}
     </Stack>
   )
 }

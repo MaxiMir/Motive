@@ -5,8 +5,8 @@ import { useGoalContext } from '@modules/user/components/GoalCurrent/hooks/useGo
 import { OwnershipDto } from '@features/member'
 import useToggle from '@hooks/useToggle'
 import { share } from '@helpers/navigator'
-import AppIcon from '@ui/AppIcon'
-import AppListItem from '@ui/AppListItem'
+import Icon from '@ui/Icon'
+import ListItem from '@ui/ListItem'
 import TooltipArrow from '@ui/styled/TooltipArrow'
 import { useMessages } from './hooks/useMessages'
 
@@ -63,7 +63,7 @@ function MenuActions({ href, title, clientOwnership }: MenuActionsProps) {
             sx={({ palette }) => ({ color: palette.grey[500] })}
             onClick={onOpenMenu}
           >
-            <AppIcon name="more_horiz" />
+            <Icon name="more_horiz" />
           </IconButton>
         </TooltipArrow>
       </Box>
@@ -76,20 +76,20 @@ function MenuActions({ href, title, clientOwnership }: MenuActionsProps) {
         onClose={onCloseMenu}
       >
         <MenuItem onClick={onShare}>
-          <AppListItem icon="share" primary={messages.shareText} />
+          <ListItem icon="share" primary={messages.shareText} />
         </MenuItem>
         {!clientOwnership.goal && (
           <MenuItem onClick={toggleReporting}>
-            <AppListItem icon="outlined_flag" primary={messages.reportText} color="error.dark" />
+            <ListItem icon="outlined_flag" primary={messages.reportText} color="error.dark" />
           </MenuItem>
         )}
         {clientOwnership.member && (
           <MenuItem onClick={onLeave}>
-            <AppListItem icon="logout" primary={messages.leaveText} />
+            <ListItem icon="logout" primary={messages.leaveText} />
           </MenuItem>
         )}
         <MenuItem onClick={onCloseMenu}>
-          <AppListItem icon="block" primary={messages.cancelText} color="grey" />
+          <ListItem icon="block" primary={messages.cancelText} color="grey" />
         </MenuItem>
       </Menu>
       {reporting && <Report id={goalId} type="goal" anchorEl={anchorEl} onClose={onCloseReport} />}

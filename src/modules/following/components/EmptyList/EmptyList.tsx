@@ -1,5 +1,5 @@
 import { Box, Stack, Typography } from '@mui/material'
-import AppFadeIcon from '@ui/AppFadeIcon'
+import FadeEmoji from '@ui/FadeEmoji'
 import { useMessages } from './hooks/useMessages'
 
 function EmptyList() {
@@ -12,7 +12,7 @@ function EmptyList() {
           {messages.title}
         </Typography>
         <Typography mb={2}>{messages.hint}</Typography>
-        <AppFadeIcon name="followers" />
+        <FadeEmoji name="followers" />
       </Stack>
     </Box>
   )

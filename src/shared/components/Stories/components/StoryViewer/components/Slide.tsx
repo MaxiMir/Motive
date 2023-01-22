@@ -1,6 +1,6 @@
 import { Box } from '@mui/material'
 import { Story } from '@components/Stories/types'
-import AppImage from '@ui/AppImage'
+import Image from '@ui/Image'
 
 interface SlideProps {
   story: Story
@@ -15,7 +15,7 @@ function Slide({ story }: SlideProps) {
         background: '#000',
       }}
     >
-      <AppImage
+      <Image
         src={src}
         alt=""
         fill

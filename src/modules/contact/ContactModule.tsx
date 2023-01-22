@@ -2,9 +2,9 @@ import { Button, Stack, Typography } from '@mui/material'
 import { styled } from '@mui/system'
 import { lightBlue, red, yellow } from '@mui/material/colors'
 import { openBlank } from '@helpers/window'
-import AppContainer from '@ui/AppContainer'
+import Container from '@ui/Container'
 import EmojiHeader from '@ui/EmojiHeader'
-import AppEmoji from '@ui/AppEmoji'
+import Emoji from '@ui/Emoji'
 import Telegram from '@ui/icons/Telegram'
 import LinkedIn from '@ui/icons/LinkedIn'
 import Email from '@ui/icons/Email'
@@ -32,13 +32,13 @@ function ContactModule() {
   const onClickLinkedIn = () => openBlank('https://www.linkedin.com/in/maxim-minchenko-085b26149/')
 
   return (
-    <AppContainer>
+    <Container>
       <EmojiHeader name="contact" mb={3}>
         {messages.header}
       </EmojiHeader>
       <Stack spacing={3} mb={6}>
         <Typography>
-          {messages.subheader} <AppEmoji name="wink" onlyEmoji />.
+          {messages.subheader} <Emoji name="wink" onlyEmoji />.
         </Typography>
         <Stack direction="row" spacing={2} mb={4}>
           <ButtonLink
@@ -98,7 +98,7 @@ function ContactModule() {
           ))}
         </Stack>
       </Stack>
-    </AppContainer>
+    </Container>
   )
 }
 

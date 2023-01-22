@@ -1,7 +1,7 @@
 import dynamic from 'next/dynamic'
 import { Stack } from '@mui/material'
 import { NotificationDto } from '@features/notification'
-import AppModal from '@ui/AppModal'
+import Modal from '@ui/Modal'
 import { useMessages } from './hooks/useMessages'
 import { useNotificationHint } from './hooks/useNotificationHint'
 
@@ -21,7 +21,7 @@ function NotificationModal({ notifications, isLoading, onClose }: NotificationMo
   const [showHint, onHintClick] = useNotificationHint()
 
   return (
-    <AppModal
+    <Modal
       title={messages.title}
       maxWidth="xs"
       PaperProps={{
@@ -45,7 +45,7 @@ function NotificationModal({ notifications, isLoading, onClose }: NotificationMo
           </>
         )}
       </Stack>
-    </AppModal>
+    </Modal>
   )
 }
 

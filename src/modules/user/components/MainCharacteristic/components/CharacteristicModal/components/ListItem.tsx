@@ -1,5 +1,5 @@
 import { Stack, Typography } from '@mui/material'
-import AppEmoji from '@ui/AppEmoji'
+import Emoji from '@ui/Emoji'
 
 interface ListItemProps {
   name: JSX.Element | string
@@ -8,7 +8,7 @@ interface ListItemProps {
 function ListItem({ name }: ListItemProps) {
   return (
     <Stack direction="row" alignItems="center" spacing={1} paddingY="4px">
-      <AppEmoji name="barber" onlyEmoji />
+      <Emoji name="barber" onlyEmoji />
       <Typography>{name}</Typography>
     </Stack>
   )

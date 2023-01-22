@@ -68,29 +68,26 @@ function UserModule({ user }: UserModuleProps) {
               }}
               flex={1}
             >
-              <Box
-                display="flex"
+              <Stack
+                direction={{
+                  xs: 'column',
+                  sm: 'row',
+                }}
                 alignItems="center"
+                spacing={{
+                  xs: 1,
+                  sm: 3,
+                }}
                 width="100%"
                 mb={1}
-                sx={{
-                  gap: {
-                    xs: 1,
-                    sm: 3,
-                  },
-                  flexDirection: {
-                    xs: 'column',
-                    sm: 'row',
-                  },
-                }}
               >
                 <Nickname nickname={nickname} />
-                <Box display="flex" alignItems="center" gap={1}>
+                <Stack direction="row" alignItems="center" spacing={1}>
                   {clientPage ? <EditProfile /> : <Following />}
                   <MenuActions />
-                </Box>
-              </Box>
-              <Box display="flex" justifyContent="space-between" gap={2} mb={1}>
+                </Stack>
+              </Stack>
+              <Stack direction="row" justifyContent="space-between" spacing={2} mb={1}>
                 {SECOND_CHARACTERISTICS.map((characteristicName) => (
                   <SecondCharacteristic
                     confirmations={confirmations}
@@ -99,7 +96,7 @@ function UserModule({ user }: UserModuleProps) {
                     key={characteristicName}
                   />
                 ))}
-              </Box>
+              </Stack>
               <Typography component="h1" sx={{ fontWeight: 'bold' }}>
                 {name}
               </Typography>

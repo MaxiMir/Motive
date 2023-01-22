@@ -1,6 +1,6 @@
 import { ChangeEvent } from 'react'
 import { Form, FormikProvider } from 'formik'
-import { Box, FormControlLabel, Radio, RadioGroup, Typography } from '@mui/material'
+import { Box, Stack, Typography, FormControlLabel, Radio, RadioGroup } from '@mui/material'
 import { useGoalContext } from '@modules/user/components/GoalCurrent/hooks/useGoalContext'
 import AppModal from '@ui/AppModal'
 import AppEmoji from '@ui/AppEmoji'
@@ -33,7 +33,7 @@ function JoinModal({ onClose }: JoinModalProps) {
       title={
         <>
           {messages.title}{' '}
-          <Box component="span" sx={{ color: 'zen.sand' }}>
+          <Box component="span" color="zen.sand">
             {messages.subtitle}
           </Box>
           ?
@@ -59,9 +59,9 @@ function JoinModal({ onClose }: JoinModalProps) {
             <FormControlLabel
               value={disableBeginning ? 'none' : beginningDay.toString()}
               label={
-                <Box display="flex" gap={1}>
+                <Stack direction="row" spacing={1}>
                   {messages.beginLabel} <AppEmoji name="serenity" onlyEmoji />
-                </Box>
+                </Stack>
               }
               disabled={isSubmitting || disableBeginning}
               control={<Radio />}
@@ -69,9 +69,9 @@ function JoinModal({ onClose }: JoinModalProps) {
             <FormControlLabel
               value={thisDay.toString()}
               label={
-                <Box display="flex" gap={1}>
+                <Stack direction="row" spacing={1}>
                   {messages.dayLabel} <AppEmoji name="blast" onlyEmoji />
-                </Box>
+                </Stack>
               }
               disabled={isSubmitting}
               control={<Radio />}
@@ -83,12 +83,12 @@ function JoinModal({ onClose }: JoinModalProps) {
               header={messages.accordionHeader}
               id="tips"
               details={
-                <Box sx={{ color: 'zen.silent' }}>
+                <Box color="zen.silent">
                   <Typography>&#9679; {messages.accordingMotivation}.</Typography>
                   <Typography>&#9679; {messages.accordingCreative}.</Typography>
                   <Typography>
                     &#9679; {messages.accordingSupport}{' '}
-                    <Box component="span" sx={{ color: 'support.main' }}>
+                    <Box component="span" color="support.main">
                       {owner.name}
                     </Box>
                     {', '}

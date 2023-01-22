@@ -110,16 +110,16 @@ function CompletionModal({ onClose }: CompletionModalProps) {
                 </Alert>
               )}
             </ErrorMessage>
-            <Box sx={{ width: '100%' }}>
+            <Box width="100%">
               <AppAccordion
                 name="switch"
                 header={messages.accordionHeader}
                 id="goal"
                 details={
-                  <Box sx={{ color: 'zen.silent' }}>
+                  <Box color="zen.silent">
                     <Typography>
                       {messages.detailsStart}{' '}
-                      <Box component="b" sx={{ color: 'text.primary' }}>
+                      <Box component="b" color="text.primary">
                         5
                       </Box>{' '}
                       {messages.detailsEnd}.

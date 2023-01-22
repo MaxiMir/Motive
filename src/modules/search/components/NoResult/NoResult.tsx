@@ -12,7 +12,7 @@ function NoResult({ phrase }: NoResultProps) {
     <Stack spacing={1}>
       <Typography variant="h5" component="p">
         {messages.title} &#171;
-        <Box component="span" sx={{ color: 'zen.sand' }}>
+        <Box component="span" color="zen.sand">
           {phrase}
         </Box>
         &#187;.

@@ -1,4 +1,4 @@
-import { Box, Typography } from '@mui/material'
+import { Stack, Typography } from '@mui/material'
 import AppEmoji from '@ui/AppEmoji'
 
 interface ListItemProps {
@@ -7,10 +7,10 @@ interface ListItemProps {
 
 function ListItem({ name }: ListItemProps) {
   return (
-    <Box display="flex" alignItems="center" gap={1} sx={{ paddingY: '4px' }}>
+    <Stack direction="row" alignItems="center" spacing={1} paddingY="4px">
       <AppEmoji name="barber" onlyEmoji />
       <Typography>{name}</Typography>
-    </Box>
+    </Stack>
   )
 }
 

@@ -13,7 +13,7 @@ function Loader({ count }: LoaderProps) {
   return (
     <Stack spacing={2} flex={1}>
       {list.map((_, key) => (
-        <Stack display="flex" gap={1} height={60} key={key}>
+        <Stack spacing={1} height={60} key={key}>
           <Skeleton animation="wave" variant="circular" width={55} height={55} />
           <Stack justifyContent="space-between" flex={1}>
             <Skeleton animation="wave" width={100} height={16} />

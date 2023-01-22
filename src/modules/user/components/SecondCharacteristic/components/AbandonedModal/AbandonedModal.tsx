@@ -20,7 +20,7 @@ function AbandonedModal({ onClose }: AbandonedModalProps) {
   return (
     <AppModal
       title={
-        <Box component="span" sx={{ color: 'abandoned.main' }}>
+        <Box component="span" color="abandoned.main">
           {messages.title}
         </Box>
       }

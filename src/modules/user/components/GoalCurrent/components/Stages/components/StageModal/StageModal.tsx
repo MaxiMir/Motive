@@ -24,7 +24,7 @@ function StageModal({ onClose }: StageModalProps) {
       title={
         <>
           {messages.title} <br />
-          <Box component="span" sx={{ color: 'zen.sand' }}>
+          <Box component="span" color="zen.sand">
             {stages[day.stage]}
           </Box>
         </>
@@ -50,7 +50,7 @@ function StageModal({ onClose }: StageModalProps) {
         </Typography>
         <Typography>
           {messages.nextTitle}:{' '}
-          <Box component="b" sx={{ color: 'zen.wave' }}>
+          <Box component="b" color="zen.wave">
             {stages[nextStage]}
           </Box>
         </Typography>

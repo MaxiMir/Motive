@@ -69,7 +69,7 @@ function AppModal({ title, actions, children, maxWidth, PaperProps, onClose }: A
       </AppScrollbar>
       {actions && (
         <DialogActions>
-          <Stack direction="row" flex={1} justifyContent="space-between" pb={2} px={2}>
+          <Stack direction="row" justifyContent="space-between" flex={1} pb={2} px={2}>
             {actions.map((a, index) => (
               <Fragment key={index}>{a}</Fragment>
             ))}

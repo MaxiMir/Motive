@@ -28,10 +28,10 @@ function Message({ message, answerFor, supportFor, onReply }: MessageProps) {
   const formatDistance = useFormatDistance()
   const dateDistance = formatDistance(date)
   const href = toHref(nickname)
-  const flexDirection = !answerFor ? 'row' : 'row-reverse'
+  const direction = !answerFor ? 'row' : 'row-reverse'
 
   return (
-    <Box display="flex" alignItems="flex-end" flexDirection={flexDirection} gap={1}>
+    <Stack direction={direction} alignItems="flex-end" spacing={1}>
       <Link href={href} title={name}>
         <AvatarStatus src={avatar} name={name} online={online} size={32} />
       </Link>
@@ -45,30 +45,22 @@ function Message({ message, answerFor, supportFor, onReply }: MessageProps) {
           borderRadius: `20px 20px ${!answerFor ? 16 : 4}px ${!answerFor ? 4 : 16}px`,
         })}
       >
-        <Box display="flex" justifyContent="space-between" gap={1}>
-          <Box display="flex" alignItems="center" gap={1}>
-            <Box component="b">
-              <Link href={href} title={user.name}>
-                {user.name}
-              </Link>
-            </Box>
-            {supportFor && <SupportSign name={supportFor} />}
-            {edited && (
-              <Box
-                component="span"
-                sx={{
-                  fontSize: 11,
-                  color: 'zen.silent',
-                }}
-              >
-                {messages.editedText}
-              </Box>
-            )}
+        <Box display="flex" alignItems="center" gap={1}>
+          <Box component="b">
+            <Link href={href} title={user.name}>
+              {user.name}
+            </Link>
           </Box>
+          {supportFor && <SupportSign name={supportFor} />}
+          {edited && (
+            <Box component="span" fontSize={11} color="zen.silent">
+              {messages.editedText}
+            </Box>
+          )}
           <MenuActions message={message} />
         </Box>
         <Markdown text={text} />
-        <Box display="flex" justifyContent="space-between" alignItems="center">
+        <Stack direction="row" justifyContent="space-between" alignItems="center">
           <Box display="flex" alignItems="center" gap={1}>
             <Typography variant="caption" sx={({ palette }) => ({ color: palette.grey[300] })}>
               {dateDistance}
@@ -80,9 +72,9 @@ function Message({ message, answerFor, supportFor, onReply }: MessageProps) {
             )}
           </Box>
           <Like message={message} answerFor={answerFor} />
-        </Box>
+        </Stack>
       </Stack>
-    </Box>
+    </Stack>
   )
 }
 

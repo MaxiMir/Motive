@@ -21,7 +21,7 @@ function EditModal({ onClose }: EditModalProps) {
       title={
         <>
           {messages.title}{' '}
-          <Box component="span" sx={{ color: 'zen.sand' }}>
+          <Box component="span" color="zen.sand">
             {messages.profile}
           </Box>
         </>

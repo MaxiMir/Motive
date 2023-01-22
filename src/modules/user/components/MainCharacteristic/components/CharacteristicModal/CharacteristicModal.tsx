@@ -18,7 +18,7 @@ function CharacteristicModal({ name, value, onClose }: CharacteristicModalProps)
   return (
     <AppModal
       title={
-        <Box component="span" sx={{ color: `${name}.main` }}>
+        <Box component="span" color={`${name}.main`}>
           {messages.title}
         </Box>
       }

@@ -50,7 +50,7 @@ function TasksModal({ onClose }: TasksModalProps) {
       title={
         <>
           {messages.titleText}{' '}
-          <Box component="span" sx={{ color: 'zen.sand' }}>
+          <Box component="span" color="zen.sand">
             {messages.subtitleText}
           </Box>
         </>
@@ -132,12 +132,12 @@ function TasksModal({ onClose }: TasksModalProps) {
         </FormikProvider>
         <Accordion>
           <AccordionSummary expandIcon={<AppIcon name="expand_more" />} id="old-pitt-note">
-            <Box display="flex" alignItems="center" gap={1}>
+            <Stack direction="row" alignItems="center" spacing={1}>
               <Paul />
               <Typography variant="h6" component="h3">
                 {messages.pittText}
               </Typography>
-            </Box>
+            </Stack>
           </AccordionSummary>
           <AccordionDetails>
             <OldPittRules />

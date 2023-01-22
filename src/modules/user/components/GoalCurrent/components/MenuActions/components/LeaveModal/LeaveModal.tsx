@@ -44,7 +44,7 @@ function LeaveModal({ clientOwnership, onClose }: LeaveModalProps) {
       <Stack justifyItems="center" alignItems="center" spacing={1}>
         <Typography>
           {messages.subtitle}{' '}
-          <Box component="span" sx={{ color: 'motivation.light' }}>
+          <Box component="span" color="motivation.light">
             {name}
           </Box>
         </Typography>

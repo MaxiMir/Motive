@@ -1,5 +1,5 @@
 import { format } from 'date-fns'
-import { Box, Typography } from '@mui/material'
+import { Stack, Typography } from '@mui/material'
 import AppIcon from '@ui/AppIcon'
 
 interface TaskDateProps {
@@ -10,10 +10,10 @@ function TaskDate({ date }: TaskDateProps) {
   const formattedDate = format(new Date(date), 'hh:mm')
 
   return (
-    <Box display="flex" alignItems="center" gap={1} marginLeft={4} sx={{ color: 'zen.silent' }}>
+    <Stack direction="row" alignItems="center" spacing={1} marginLeft={4} color="zen.silent">
       <AppIcon name="schedule" />
       <Typography>{formattedDate}</Typography>
-    </Box>
+    </Stack>
   )
 }
 

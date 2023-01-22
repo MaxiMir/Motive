@@ -26,7 +26,7 @@ function SupportModal({ owner, onClose }: SupportModalProps) {
       title={
         <>
           {messages.title} <br />
-          <Box component="span" sx={{ color: 'zen.sand' }}>
+          <Box component="span" color="zen.sand">
             {owner.name}
           </Box>
         </>
@@ -57,13 +57,13 @@ function SupportModal({ owner, onClose }: SupportModalProps) {
               rows={3}
               component={AppInput}
             />
-            <Box sx={{ width: '100%' }}>
+            <Box width="100%">
               <AppAccordion
                 name="helmet"
                 header={messages.header}
                 id="support"
                 details={
-                  <Box sx={{ color: 'zen.silent' }}>
+                  <Box color="zen.silent">
                     <Typography>
                       {messages.accordionGoal}
                       <AppDecorEmoji name="goal" />.

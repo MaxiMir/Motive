@@ -14,7 +14,7 @@ function NoCompletedModal({ onClose }: NoCompletedModalProps) {
     <AppModal
       title={
         <>
-          <Box component="span" sx={{ color: 'zen.sand' }}>
+          <Box component="span" color="zen.sand">
             {messages.title}
           </Box>{' '}
           {messages.subtitle}

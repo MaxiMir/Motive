@@ -19,27 +19,25 @@ function StoryViewer({ stories, user, title, date, onClose }: StoryViewerProps) 
 
   return (
     <Box
+      width="100dvw"
+      height="100%"
+      left="100dvw"
       className="story-viewer viewing"
       sx={{
-        width: '100dvw',
-        height: '100%',
         backfaceVisibility: 'hidden',
-        left: '100dvw',
         transform: 'translateZ(50dvw)',
       }}
     >
       <Top user={user} title={title} date={date} onClose={onClose} />
       <Pointers count={count} onClose={onClose} />
       <Box
+        position="absolute"
+        top={0}
+        bottom={0}
+        width="100dvw"
+        height="100%"
+        overflow="hidden"
         className="slides"
-        sx={{
-          position: 'absolute',
-          top: 0,
-          bottom: 0,
-          width: '100dvw',
-          height: '100%',
-          overflow: 'hidden',
-        }}
       >
         {stories.map((story) => (
           <Slide story={story} key={story.src} />

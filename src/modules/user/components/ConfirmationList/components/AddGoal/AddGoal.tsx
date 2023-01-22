@@ -13,10 +13,10 @@ function AddGoal() {
   return (
     <Stack alignItems="center" spacing={1} minWidth={100}>
       <Box
+        padding="2px"
+        borderRadius="50%"
         sx={({ palette }) => ({
-          padding: '2px',
           background: `linear-gradient(to top left, ${palette.creativity.dark}, ${palette.support.dark})`,
-          borderRadius: '50%',
         })}
       >
         <Button

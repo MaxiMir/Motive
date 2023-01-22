@@ -11,18 +11,16 @@ function Footer() {
 
   return (
     <Box
+      position="sticky"
       component="footer"
-      sx={{
-        display: {
-          xs: 'block',
-          xl: 'none',
-        },
-        position: 'sticky',
-        bottom: 0,
-        width: '100%',
-        zIndex: 30,
-        backgroundColor: 'underlay',
+      bottom={0}
+      zIndex={30}
+      display={{
+        xs: 'block',
+        xl: 'none',
       }}
+      width="100%"
+      sx={{ backgroundColor: 'underlay' }}
     >
       <Container fixed>
         <Stack direction="row" justifyContent="space-between" alignItems="center" py={1}>

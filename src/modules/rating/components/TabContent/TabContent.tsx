@@ -19,9 +19,9 @@ function TabContent({ name, users }: TabContentProps) {
       <Box
         px={3}
         sx={{
+          clipPath: 'inset(0 -100vmax)',
           background: blueGrey[900],
           boxShadow: `0 0 0 100vmax ${blueGrey[900]}`,
-          clipPath: 'inset(0 -100vmax)',
         }}
       >
         <Grid container alignItems="center" sx={{ height: 55 }}>

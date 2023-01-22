@@ -52,7 +52,7 @@ function MenuActions({ href, title, clientOwnership }: MenuActionsProps) {
 
   return (
     <>
-      <Box sx={{ marginLeft: 'auto ' }}>
+      <Box marginLeft="auto">
         <TooltipArrow title={messages.buttonTitle}>
           <IconButton
             id={id}

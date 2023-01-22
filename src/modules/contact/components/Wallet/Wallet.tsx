@@ -1,5 +1,5 @@
 import Image, { ImageProps } from 'next/image'
-import { Box, IconButton, Typography } from '@mui/material'
+import { Box, IconButton, Stack, Typography } from '@mui/material'
 import { useSnackbar } from '@features/snackbar'
 import { copyText } from '@helpers/navigator'
 import AppIcon from '@ui/AppIcon'
@@ -27,7 +27,7 @@ function Wallet({ name, wallet, src }: WalletProps) {
   const onClick = () => copyText(wallet).then(onSuccess).catch(onError)
 
   return (
-    <Box display="flex" flexWrap="wrap" alignItems="center" gap={1}>
+    <Stack direction="row" alignItems="center" spacing={1}>
       <Image src={src} alt="" width={32} height={32} />
       <Typography>{name}:</Typography>
       <Box
@@ -47,7 +47,7 @@ function Wallet({ name, wallet, src }: WalletProps) {
           <AppIcon name="content_copy" />
         </IconButton>
       </TooltipArrow>
-    </Box>
+    </Stack>
   )
 }
 

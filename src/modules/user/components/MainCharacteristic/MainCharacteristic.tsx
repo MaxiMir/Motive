@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import dynamic from 'next/dynamic'
-import { Box, Button, Stack, Typography } from '@mui/material'
+import { Button, Stack, Typography } from '@mui/material'
 import { useTheme } from '@mui/material/styles'
 import { MainCharacteristicName } from '@features/characteristic'
 import AppCircle from '@ui/AppCircle'
@@ -48,17 +48,14 @@ function MainCharacteristic({ name, value }: MainCharacteristicProps) {
           light={theme.palette.circle}
           dark={theme.palette[name].border}
         />
-        <Box
-          display="flex"
+        <Stack
           justifyContent="center"
           alignItems="center"
-          sx={{
-            position: 'absolute',
-            top: 0,
-            bottom: 0,
-            left: 0,
-            right: 0,
-          }}
+          position="absolute"
+          top={0}
+          bottom={0}
+          left={0}
+          right={0}
         >
           <Stack alignItems="center">
             <Typography
@@ -82,7 +79,7 @@ function MainCharacteristic({ name, value }: MainCharacteristicProps) {
               {messages.header}
             </Typography>
           </Stack>
-        </Box>
+        </Stack>
       </Button>
       {modal && <CharacteristicModal name={modal} value={value} onClose={onClose} />}
     </>

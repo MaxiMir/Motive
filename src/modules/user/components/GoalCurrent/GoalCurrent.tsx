@@ -78,11 +78,11 @@ function GoalCurrent({ goal, membership, clientPage, clientMembership }: GoalCur
         maxWidth="100%"
       >
         <Box
+          padding="3px"
+          height="100%"
+          borderRadius="16px"
           sx={({ palette }) => ({
-            padding: '3px',
-            height: '100%',
             background: `linear-gradient(to top left, ${palette.motivation.main}, ${palette.creativity.dark}, ${palette.support.dark})`,
-            borderRadius: '16px',
           })}
         >
           <Stack
@@ -105,7 +105,7 @@ function GoalCurrent({ goal, membership, clientPage, clientMembership }: GoalCur
                   {inherited && <Inheritance />}
                   <MenuActions title={name} href={dayHref} clientOwnership={clientOwnership} />
                 </Box>
-                <Box display="flex" justifyContent="space-between" alignItems="center">
+                <Stack direction="row" justifyContent="space-between" alignItems="center">
                   {CHARACTERISTICS.map((characteristicName) => (
                     <CharacteristicGoal
                       name={characteristicName}
@@ -114,7 +114,7 @@ function GoalCurrent({ goal, membership, clientPage, clientMembership }: GoalCur
                     />
                   ))}
                   <CharacteristicGoal name="runningDays" value={goalInfo.runningDays} />
-                </Box>
+                </Stack>
                 {!!hashtags.length && <Hashtags hashtags={hashtags} />}
                 <Stack alignItems="center">
                   {prev && (
@@ -141,8 +141,8 @@ function GoalCurrent({ goal, membership, clientPage, clientMembership }: GoalCur
                       backgroundColor: '#121212',
                     }}
                   >
-                    <Box
-                      display="flex"
+                    <Stack
+                      direction="row"
                       justifyContent="space-between"
                       alignItems="center"
                       flex={1}
@@ -154,7 +154,7 @@ function GoalCurrent({ goal, membership, clientPage, clientMembership }: GoalCur
                         onChangeDate={onChangeDate}
                         shouldDisableDate={shouldDisableDate}
                       />
-                    </Box>
+                    </Stack>
                     {!!stages.length && (
                       <AppAccordion
                         name="stage"

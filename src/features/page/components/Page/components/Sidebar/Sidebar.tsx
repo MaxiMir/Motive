@@ -24,12 +24,12 @@ import Drawer from './components/Drawer'
 
 const Notifications = dynamic(() => import('./components/Notifications'))
 
-interface NavigationProps {
+interface SidebarProps {
   breakpoints?: boolean
   children: ReactNode
 }
 
-function Navigation({ breakpoints, children }: NavigationProps) {
+function Sidebar({ breakpoints, children }: SidebarProps) {
   const { asPath } = useRouter()
   const client = useClient()
   const [expanded, toggleExpanded] = useToggle(true)
@@ -104,4 +104,4 @@ function Navigation({ breakpoints, children }: NavigationProps) {
   )
 }
 
-export default Navigation
+export default Sidebar

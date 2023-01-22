@@ -12,7 +12,7 @@ import { OGType } from '@features/page/dto'
 const Loader = dynamic(() => import('./components/Loader'))
 const Header = dynamic(() => import('./components/Header'))
 const Footer = dynamic(() => import('./components/Footer'))
-const Navigation = dynamic(() => import('./components/Navigation'))
+const Sidebar = dynamic(() => import('./components/Sidebar'))
 
 interface PageProps {
   title?: string
@@ -43,7 +43,7 @@ function Page({
   const possibleDesktop = device === 'desktop'
   const renderDesktop = !device || possibleDesktop
   const renderCompact = !device || !possibleDesktop
-  const MainWrap = renderDesktop ? Navigation : Fragment
+  const MainWrap = renderDesktop ? Sidebar : Fragment
   const mainWrapProps = renderDesktop ? { breakpoints: !device } : null
 
   return (

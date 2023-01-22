@@ -2,7 +2,7 @@ import dynamic from 'next/dynamic'
 import { AppBar, Container, Stack } from '@mui/material'
 import { OGType } from '@features/page'
 import useClient from '@hooks/useClient'
-import Navigation from './components/Navigation'
+import Sidebar from './components/Sidebar'
 
 const SignIn = dynamic(() => import('./components/SignIn'))
 const Notifications = dynamic(() => import('./components/Notifications'))
@@ -31,7 +31,7 @@ function Header({ type }: HeaderProps) {
     >
       <Container fixed>
         <Stack direction="row" justifyContent="space-between" alignItems="center">
-          <Navigation />
+          <Sidebar />
           {renderNickname && <UserLink />}
           {client ? <Notifications /> : <SignIn />}
         </Stack>

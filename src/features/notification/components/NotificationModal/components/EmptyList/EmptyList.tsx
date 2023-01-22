@@ -8,7 +8,7 @@ function EmptyList() {
   return (
     <Box display="flex" alignItems="center" height={490}>
       <Stack alignItems="center" spacing={2} width="100%">
-        <Typography variant="h6" color="primary" mb={2}>
+        <Typography variant="h6" color="primary" component="p" mb={2}>
           {messages.title}
         </Typography>
         <AppFadeIcon name="notification" />

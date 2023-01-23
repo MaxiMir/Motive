@@ -35,7 +35,7 @@ function Pointers({ count, onClose }: PointersProps): JSX.Element {
         transition: 'opacity 0.5s',
       }}
     >
-      <Box display="table-cell">
+      <Box display="table-row">
         {list.map((_, index) => (
           <Progress key={index} onEnd={onClose} />
         ))}

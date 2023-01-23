@@ -58,7 +58,7 @@ export const getDesignTokens = (mode: PaletteMode): ThemeOptions => {
   return {
     palette: {
       mode,
-      underlay: mode === 'dark' ? '#000000' : '#d7d7d7',
+      underlay: mode === 'dark' ? '#000000' : '#ffffff',
       content: mode === 'dark' ? '#19191a' : '#d7d7d7',
       circle: '#2d313e',
       zen: {

@@ -5,7 +5,7 @@ import Icon from '@ui/Icon'
 import TooltipArrow from '@ui/styled/TooltipArrow'
 import { useMessages } from './hooks/useMessages'
 
-const NavigationModal = dynamic(() => import('./components/NavigationModal'))
+const SidebarModal = dynamic(() => import('./components/SidebarModal'))
 const SettingsModal = dynamic(() => import('./components/SettingsModal'))
 
 function Sidebar() {
@@ -33,7 +33,7 @@ function Sidebar() {
           <Icon name="menu" />
         </IconButton>
       </TooltipArrow>
-      {openMenu && <NavigationModal onOpenSettings={onOpenSettings} onClose={toggleMenu} />}
+      {openMenu && <SidebarModal onOpenSettings={onOpenSettings} onClose={toggleMenu} />}
       {openSettings && <SettingsModal onClose={onCloseSettings} />}
     </>
   )

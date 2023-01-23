@@ -8,7 +8,6 @@ export const useMessages = () => {
     modeHeader: formatMessage({ id: 'common.mode' }),
     languageHeader: formatMessage({ id: 'common.language' }),
     lightText: formatMessage({ id: 'common.light' }),
-    systemText: formatMessage({ id: 'common.system' }),
     darkText: formatMessage({ id: 'common.dark' }),
   }
 }

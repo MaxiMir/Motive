@@ -76,7 +76,7 @@ function More() {
           </ListItemIcon>
           <ListItemText primary={messages.languageText} />
         </ListItem>
-        <ListItem button disabled onClick={onClickMode}>
+        <ListItem button onClick={onClickMode}>
           <ListItemIcon>
             <Icon name={modeIcon} />
           </ListItemIcon>

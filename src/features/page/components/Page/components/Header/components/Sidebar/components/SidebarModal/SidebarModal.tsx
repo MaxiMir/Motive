@@ -16,12 +16,12 @@ import Icon from '@ui/Icon'
 import { useMessages } from './hooks/useMessages'
 import { useRoutes } from './hooks/useRoutes'
 
-interface NavigationModalProps {
+interface SidebarModalProps {
   onClose: () => void
   onOpenSettings: () => void
 }
 
-function NavigationModal({ onOpenSettings, onClose }: NavigationModalProps) {
+function SidebarModal({ onOpenSettings, onClose }: SidebarModalProps) {
   const client = useClient()
   const messages = useMessages()
   const routes = useRoutes()
@@ -85,4 +85,4 @@ function NavigationModal({ onOpenSettings, onClose }: NavigationModalProps) {
   )
 }
 
-export default NavigationModal
+export default SidebarModal

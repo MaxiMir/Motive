@@ -1,5 +1,5 @@
 import { ReactNode, useMemo, useState } from 'react'
-import { PaletteMode } from '@mui/material'
+import { PaletteMode, useMediaQuery } from '@mui/material'
 import { createTheme, ThemeProvider as MuiThemeProvider } from '@mui/material/styles'
 import { createGenerateClassName, StylesProvider } from '@mui/styles'
 import { PaletteModeContext } from '@features/theme/context'
@@ -13,7 +13,8 @@ interface ThemeProviderProps {
 }
 
 function ThemeProvider({ children }: ThemeProviderProps) {
-  const [mode, setMode] = useState<PaletteMode>('dark')
+  const prefersDarkMode = useMediaQuery('(prefers-color-scheme: dark)')
+  const [mode, setMode] = useState<PaletteMode>(prefersDarkMode ? 'dark' : 'light')
   const theme = useMemo(() => createTheme(getDesignTokens(mode)), [mode])
   const paletteModeValue = useMemo(() => ({ mode, setMode }), [mode])
   useRemoveServerStyles()

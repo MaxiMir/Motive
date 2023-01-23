@@ -67,13 +67,10 @@ function SettingsModal({ onClose }: SettingsModalProps) {
             aria-label={messages.modeHeader}
             onChange={onChangeMode}
           >
-            <GroupButton size="small" value="light" disabled>
+            <GroupButton size="small" value="light">
               <Emoji name="light" /> {messages.lightText}
             </GroupButton>
-            <GroupButton size="small" value="system" disabled>
-              <Emoji name="system" /> {messages.systemText}
-            </GroupButton>
-            <GroupButton size="small" value="dark" disabled>
+            <GroupButton size="small" value="dark">
               <Emoji name="dark" /> {messages.darkText}
             </GroupButton>
           </ToggleButtonGroup>

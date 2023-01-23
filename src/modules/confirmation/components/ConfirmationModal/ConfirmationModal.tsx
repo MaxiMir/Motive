@@ -18,13 +18,14 @@ import { useForm } from './hooks/useForm'
 
 const Alert = dynamic(() => import('@mui/material/Alert'))
 
-interface CompletionModalProps {
+interface ConfirmationModalProps {
+  id: number
   onClose: () => void
 }
 
-function CompletionModal({ onClose }: CompletionModalProps) {
+function ConfirmationModal({ id, onClose }: ConfirmationModalProps) {
   const messages = useMessages()
-  const form = useForm(onClose)
+  const form = useForm(id, onClose)
   const { isSubmitting, values, setFieldValue, handleSubmit } = form
 
   const onSelectPhoto = useSelectPhoto(form)
@@ -135,4 +136,4 @@ function CompletionModal({ onClose }: CompletionModalProps) {
   )
 }
 
-export default CompletionModal
+export default ConfirmationModal

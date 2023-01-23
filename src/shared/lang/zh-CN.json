@@ -22,9 +22,8 @@
   "page.following.menu.remove": "从关注中删除",
   "page.following.menu.undo": "撤销",
   "page.following.menu.title": "打开用户菜单",
-  "page.top.title": "今日头条",
-  "page.top.header": "今日头条",
-  "page.top.dev": "开发中",
+  "page.feed.title": "饲料",
+  "page.feed.header": "饲料",
   "page.search.title": "搜索",
   "page.search.description": "通过用户、目标 或标签搜索",
   "page.search.header": "搜索",
@@ -177,7 +176,6 @@
   "component.old-pitt-rules.covers": "在第0天，他覆盖他们",
   "component.old-pitt-rules.eats": "在第0天，他吃了它们",
   "component.old-pitt-rules.burn": "积累的积分💪🧠🙏 ，会燃烧殆尽，放弃的目标数量增加",
-  "component.footer.top": "今日头条",
   "component.footer.search": "搜索",
   "component.footer.rating": "评级",
   "component.footer.following": "关注",
@@ -319,5 +317,6 @@
   "common.my-page": "我的页面",
   "common.reactions": "反应",
   "common.show-more": "阅读更多",
-  "common.show-less": "显示更少"
+  "common.show-less": "显示更少",
+  "common.dev": "开发中"
 }

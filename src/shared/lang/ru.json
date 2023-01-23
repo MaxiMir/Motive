@@ -22,9 +22,8 @@
   "page.following.menu.remove": "Подписка удалена",
   "page.following.menu.undo": "Отменить",
   "page.following.menu.title": "Открыть меню пользователя",
-  "page.top.title": "Топ дня",
-  "page.top.header": "Топ дня",
-  "page.top.dev": "В разработке",
+  "page.feed.title": "Лента",
+  "page.feed.header": "Лента",
   "page.search.title": "Поиск",
   "page.search.description": "Поиск по пользователям, целям или хэштегам",
   "page.search.header": "Поиск",
@@ -177,7 +176,6 @@
   "component.old-pitt-rules.covers": "На $0-й день он покрывает их",
   "component.old-pitt-rules.eats": "На $0-й день он съедает их",
   "component.old-pitt-rules.burn": "Накопленные баллы 💪 🧠 🙏 , сгорают и количество заброшенных целей увеличивается",
-  "component.footer.top": "Топ дня",
   "component.footer.search": "Поиск",
   "component.footer.rating": "Рейтинг",
   "component.footer.following": "Подписки",
@@ -319,5 +317,6 @@
   "common.my-page": "Моя страница",
   "common.reactions": "Реакции",
   "common.show-more": "Читать далее",
-  "common.show-less": "Скрыть"
+  "common.show-less": "Скрыть",
+  "common.dev": "В разработке"
 }

@@ -22,9 +22,8 @@
   "page.following.menu.remove": "Removed from following",
   "page.following.menu.undo": "Undo",
   "page.following.menu.title": "Open user menu",
-  "page.top.title": "Top of the day",
-  "page.top.header": "Top of the day",
-  "page.top.dev": "In development",
+  "page.feed.title": "Feed",
+  "page.feed.header": "Feed",
   "page.search.title": "Search",
   "page.search.description": "Search by user, target, or hashtag",
   "page.search.header": "Search",
@@ -177,7 +176,6 @@
   "component.old-pitt-rules.covers": "On the $0th day he covers them",
   "component.old-pitt-rules.eats": "On the $0th day he eats them",
   "component.old-pitt-rules.burn": "The accumulated points 💪 🧠 🙏 , will burn out and the number of abandoned goals increases",
-  "component.footer.top": "Тop of the day",
   "component.footer.search": "Search",
   "component.footer.rating": "Rating",
   "component.footer.following": "Following",
@@ -319,5 +317,6 @@
   "common.my-page": "My Page",
   "common.reactions": "Reactions",
   "common.show-more": "Read more",
-  "common.show-less": "Show less"
+  "common.show-less": "Show less",
+  "common.dev": "In development"
 }

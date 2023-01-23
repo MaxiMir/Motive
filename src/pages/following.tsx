@@ -2,10 +2,10 @@ import { GetServerSideProps } from 'next'
 import { dehydrate, QueryClient } from 'react-query'
 import { getSession } from 'next-auth/react'
 import DeviceDetector from 'node-device-detector'
-import { Route } from '@href'
-import FollowingModule, { useFollowingPage } from '@modules/following'
-import Page, { PageService } from '@features/page'
+import FollowingView from '@views/following'
+import Page, { PageService, useFollowingPage } from '@features/page'
 import useMetaTags from '@hooks/useMetaTags'
+import { Route } from '@href'
 
 function FollowingPage() {
   const { data } = useFollowingPage()
@@ -13,7 +13,7 @@ function FollowingPage() {
 
   return (
     <Page title={metaTags.title} description={metaTags.description}>
-      {data && <FollowingModule following={data.following} />}
+      {data && <FollowingView following={data.following} />}
     </Page>
   )
 }

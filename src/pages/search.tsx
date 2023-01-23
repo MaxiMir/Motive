@@ -1,12 +1,12 @@
 import { GetServerSideProps } from 'next'
 import { dehydrate, QueryClient } from 'react-query'
-import { Route } from '@href'
-import SearchModule, { useSearchPage } from '@modules/search'
-import Page, { PageService } from '@features/page'
+import { getSession } from 'next-auth/react'
+import DeviceDetector from 'node-device-detector'
+import SearchView from '@views/search'
+import Page, { PageService, useSearchPage } from '@features/page'
 import useMetaTags from '@hooks/useMetaTags'
 import { getSearchParams } from '@helpers/url'
-import DeviceDetector from 'node-device-detector'
-import { getSession } from 'next-auth/react'
+import { Route } from '@href'
 
 function SearchPage() {
   const { data } = useSearchPage()
@@ -14,7 +14,7 @@ function SearchPage() {
 
   return (
     <Page title={metaTags.title} description={metaTags.description}>
-      {data && <SearchModule {...data} />}
+      {data && <SearchView {...data} />}
     </Page>
   )
 }

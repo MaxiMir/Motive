@@ -1,14 +1,14 @@
 import produce from 'immer'
 import { useMutation, useQueryClient } from 'react-query'
 import { useIntl } from 'react-intl'
-import { useSnackbar } from '@features/snackbar'
 import { Button } from '@mui/material'
-import { Route } from '@href'
+import { useSnackbar } from '@features/snackbar'
 import { FollowingPageDto } from '@features/page'
 import { UserDto } from '@features/user'
 import { SubscriptionService } from '@features/subscription/service'
 import { useOpenSignIn } from '@features/signin'
 import useClient from '@hooks/useClient'
+import { Route } from '@href'
 
 interface Options {
   user: UserDto

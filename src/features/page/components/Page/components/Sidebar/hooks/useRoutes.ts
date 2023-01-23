@@ -6,9 +6,9 @@ export const useRoutes = () => {
 
   return [
     {
-      primary: formatMessage({ id: 'component.footer.top' }),
+      primary: formatMessage({ id: 'page.feed.title' }),
       icon: 'show_chart',
-      href: Route.TopOfTheDay,
+      href: Route.Feed,
     },
     {
       primary: formatMessage({ id: 'component.footer.search' }),

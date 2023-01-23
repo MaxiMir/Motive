@@ -1,4 +1,4 @@
-import { useMemo, useRef } from 'react'
+import { useMemo } from 'react'
 import dynamic from 'next/dynamic'
 import MarkdownToJSX from 'markdown-to-jsx'
 import { Box, Link, Typography } from '@mui/material'
@@ -14,11 +14,10 @@ interface MarkdownProps {
 }
 
 function Markdown({ text }: MarkdownProps) {
-  const ref = useRef<HTMLDivElement>(null)
   const [open, toggle] = useToggle()
   const markdown = useMemo(() => toMarkdown(text), [text])
   const breakCount = getBreakCount(text)
-  const truncated = useDetectTruncated(ref)
+  const { ref, truncated } = useDetectTruncated()
   const renderButton = truncated || breakCount > 1
 
   const renderLink = (props: MarkdownLinkProps) => (
@@ -26,12 +25,7 @@ function Markdown({ text }: MarkdownProps) {
   )
 
   const renderParagraph = (props: MarkdownTypographyProps) => (
-    <Typography
-      {...props}
-      sx={({ spacing }) => ({
-        margin: spacing(0, 0, 1),
-      })}
-    />
+    <Typography {...props} sx={({ spacing }) => ({ margin: spacing(0, 0, 1) })} />
   )
 
   return (

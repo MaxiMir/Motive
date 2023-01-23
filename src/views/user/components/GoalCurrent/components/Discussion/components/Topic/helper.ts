@@ -1,4 +1,4 @@
-import { TopicDto, MessageType } from '@features/topic'
+import { TopicDto, MessageType } from '@modules/topic'
 
 export const checkOnReply = (isOwner: boolean, topic: TopicDto): boolean =>
   isOwner && !topic.answer && topic.type === MessageType.Question

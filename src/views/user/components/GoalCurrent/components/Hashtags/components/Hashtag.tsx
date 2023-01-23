@@ -1,6 +1,6 @@
 import Link from 'next/link'
 import { Button } from '@mui/material'
-import { getHashtagHref } from '@features/user'
+import { getHashtagHref } from '@modules/user'
 
 interface HashtagProps {
   hashtag: string

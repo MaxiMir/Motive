@@ -1,5 +1,5 @@
 import dynamic from 'next/dynamic'
-import { MemberDto } from '@features/member'
+import { MemberDto } from '@modules/member'
 import { getTomorrow } from '@lib/date'
 import Emoji from '@ui/Emoji'
 import TooltipArrow from '@ui/styled/TooltipArrow'

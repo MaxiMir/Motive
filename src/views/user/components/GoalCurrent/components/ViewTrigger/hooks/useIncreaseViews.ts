@@ -1,6 +1,6 @@
 import { useMutation } from 'react-query'
 import { useGoalContext } from '@views/user/components/GoalCurrent/hooks/useGoalContext'
-import { DayService } from '@features/day'
+import { DayService } from '@modules/day'
 import useClient from '@hooks/useClient'
 
 export const useIncreaseViews = () => {

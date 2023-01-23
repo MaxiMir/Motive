@@ -1,5 +1,5 @@
 import dynamic from 'next/dynamic'
-import { useOpenSignIn } from '@features/signin'
+import { useOpenSignIn } from '@modules/signin'
 import useClient from '@hooks/useClient'
 import useToggle from '@hooks/useToggle'
 import BlueButton from '@ui/styled/BlueButton'

@@ -1,7 +1,7 @@
 import { FocusEvent } from 'react'
 import { Field, Form, FormikProvider } from 'formik'
 import { Box, Stack } from '@mui/material'
-import { MessageDto } from '@features/topic'
+import { MessageDto } from '@modules/topic'
 import Modal from '@ui/Modal'
 import Input from '@ui/Input'
 import SubmitButton from '@ui/SubmitButton'

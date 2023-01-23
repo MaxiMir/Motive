@@ -2,15 +2,17 @@ import dynamic from 'next/dynamic'
 import { Button } from '@mui/material'
 import useToggle from '@hooks/useToggle'
 import TooltipArrow from '@ui/styled/TooltipArrow'
+import { useGoalContext } from '@views/user/components/GoalCurrent/hooks/useGoalContext'
 import { useMessages } from './hooks/useMessages'
 
-const CompletionModal = dynamic(() => import('@features/confirmation'))
+const ConfirmationModal = dynamic(() => import('@modules/confirmation'))
 
 interface DoneProps {
   forTomorrow: boolean
 }
 
 function Done({ forTomorrow }: DoneProps) {
+  const { id } = useGoalContext()
   const messages = useMessages(forTomorrow)
   const [open, toggle] = useToggle()
 
@@ -28,7 +30,7 @@ function Done({ forTomorrow }: DoneProps) {
           {messages.buttonText}
         </Button>
       </TooltipArrow>
-      {open && <CompletionModal onClose={toggle} />}
+      {open && <ConfirmationModal id={id} onClose={toggle} />}
     </>
   )
 }

@@ -2,8 +2,8 @@ import produce from 'immer'
 import { useIntl } from 'react-intl'
 import { InfiniteData, useMutation, useQueryClient } from 'react-query'
 import { useFormik } from 'formik'
-import { useSnackbar } from '@features/snackbar'
-import { MessageDto, TopicDto, TopicService, topicSchema } from '@features/topic'
+import { useSnackbar } from '@modules/snackbar'
+import { MessageDto, TopicDto, TopicService, topicSchema } from '@modules/topic'
 
 const getNextState = (discussion: InfiniteData<TopicDto[]>, message: MessageDto) => {
   const { id, parentId, text } = message

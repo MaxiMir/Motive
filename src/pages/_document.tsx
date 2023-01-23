@@ -2,7 +2,7 @@ import { Children } from 'react'
 import Document, { Html, Main, Head, NextScript } from 'next/document'
 import produce from 'immer'
 import { ServerStyleSheets } from '@mui/styles'
-import { roboto } from '@features/theme'
+import { roboto } from '@modules/theme'
 
 export default class MyDocument extends Document {
   render() {

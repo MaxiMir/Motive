@@ -1,4 +1,4 @@
-import { UserDto } from '@features/user'
+import { UserDto } from '@modules/user'
 import List from '@ui/List'
 import UserRow from './components/UserRow'
 

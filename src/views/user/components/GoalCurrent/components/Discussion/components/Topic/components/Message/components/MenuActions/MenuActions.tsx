@@ -1,7 +1,7 @@
 import { MouseEvent, useId, useState } from 'react'
 import dynamic from 'next/dynamic'
 import { Box, IconButton, MenuItem, Menu } from '@mui/material'
-import { MessageDto } from '@features/topic'
+import { MessageDto } from '@modules/topic'
 import ListItem from '@ui/ListItem'
 import useClient from '@hooks/useClient'
 import useToggle from '@hooks/useToggle'
@@ -9,7 +9,7 @@ import Icon from '@ui/Icon'
 import TooltipArrow from '@ui/styled/TooltipArrow'
 import { useMessages } from './hooks/useMessages'
 
-const Report = dynamic(() => import('@features/report'))
+const Report = dynamic(() => import('@modules/report'))
 const EditModal = dynamic(() => import('./components/EditModal'))
 
 interface MenuActionsProps {

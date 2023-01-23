@@ -1,4 +1,4 @@
-import { OwnershipDto } from '@features/member'
+import { OwnershipDto } from '@modules/member'
 
 export const checkOnCompletion = (clientOwnership: OwnershipDto, dayId: number): boolean => {
   const { page, member } = clientOwnership

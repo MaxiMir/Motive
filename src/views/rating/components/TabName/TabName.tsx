@@ -1,5 +1,5 @@
 import { Typography } from '@mui/material'
-import { MainCharacteristicName } from '@features/characteristic'
+import { MainCharacteristicName } from '@modules/characteristic'
 import { useMessages } from './hooks/useMessages'
 
 interface TabNameProps {

@@ -1,6 +1,6 @@
 import dynamic from 'next/dynamic'
 import { Stack } from '@mui/material'
-import { TaskDto } from '@features/task'
+import { TaskDto } from '@modules/task'
 import { checkOnCompletedByOthers } from './helper'
 
 const Markdown = dynamic(() => import('@components/Markdown'))

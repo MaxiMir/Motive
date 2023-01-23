@@ -11,7 +11,7 @@ import ListItem from '@ui/ListItem'
 import { useMessages } from './hooks/useMessages'
 
 const Share = dynamic(() => import('@components/Share'))
-const Report = dynamic(() => import('@features/report'))
+const Report = dynamic(() => import('@modules/report'))
 
 function MenuActions() {
   const id = useId()

@@ -1,9 +1,9 @@
 import { useFormik } from 'formik'
 import { useIntl } from 'react-intl'
 import { useMutation } from 'react-query'
-import { useSnackbar } from '@features/snackbar'
+import { useSnackbar } from '@modules/snackbar'
 import { useGoalContext } from '@views/user/components/GoalCurrent/hooks/useGoalContext'
-import { CreateMessageDto, MessageType, TopicDto, TopicService } from '@features/topic'
+import { CreateMessageDto, MessageType, TopicDto, TopicService } from '@modules/topic'
 
 export const useForm = (
   topicId: number | undefined,

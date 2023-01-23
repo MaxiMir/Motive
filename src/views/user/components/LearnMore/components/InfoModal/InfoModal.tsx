@@ -1,7 +1,7 @@
 import Link from 'next/link'
 import { Stack, Typography } from '@mui/material'
 import { useUserContext } from '@views/user/hooks'
-import { toHref } from '@features/user'
+import { toHref } from '@modules/user'
 import Modal from '@ui/Modal'
 import AvatarStatus from '@components/AvatarStatus'
 import Row from './components/Row'

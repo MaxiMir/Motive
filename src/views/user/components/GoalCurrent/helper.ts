@@ -1,10 +1,10 @@
 import produce from 'immer'
 import { ParsedUrlQuery } from 'querystring'
 import { differenceInCalendarDays } from 'date-fns'
-import { HashMark, SearchParam } from '@features/user'
-import { GoalDto } from '@features/goal'
-import { MemberDto, OwnershipDto } from '@features/member'
-import { TaskDto } from '@features/task'
+import { HashMark, SearchParam } from '@modules/user'
+import { GoalDto } from '@modules/goal'
+import { MemberDto, OwnershipDto } from '@modules/member'
+import { TaskDto } from '@modules/task'
 import { getMidnight } from '@lib/date'
 
 const SHOW_WEB_AFTER_DAYS = Number(process.env.NEXT_PUBLIC_SHOW_WEB_AFTER_DAYS || '')

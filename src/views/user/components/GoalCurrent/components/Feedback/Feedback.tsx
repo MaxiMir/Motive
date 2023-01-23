@@ -1,6 +1,6 @@
 import dynamic from 'next/dynamic'
 import { useGoalContext } from '@views/user/components/GoalCurrent/hooks/useGoalContext'
-import { OwnershipDto } from '@features/member'
+import { OwnershipDto } from '@modules/member'
 
 const Content = dynamic(() => import('./components/Content'))
 const Soon = dynamic(() => import('./components/Soon'))

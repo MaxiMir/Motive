@@ -2,10 +2,10 @@ import produce from 'immer'
 import { useIntl } from 'react-intl'
 import { useMutation } from 'react-query'
 import { useFormik } from 'formik'
-import { useSnackbar } from '@features/snackbar'
+import { useSnackbar } from '@modules/snackbar'
 import { getMidnightISO } from '@lib/date'
 import { useMutateGoals } from '@views/user/hooks'
-import { CreatedGoal, CreateGoalDto, GoalDto, GoalService, goalSchema } from '@features/goal'
+import { CreatedGoal, CreateGoalDto, GoalDto, GoalService, goalSchema } from '@modules/goal'
 import { scrollToElem } from '@helpers/document'
 
 const getNextState = (goals: GoalDto[], goal: CreatedGoal) =>

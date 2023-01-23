@@ -1,7 +1,7 @@
 import dynamic from 'next/dynamic'
 import { Box } from '@mui/material'
 import { useUserContext } from '@views/user/hooks'
-import { SecondCharacteristicName } from '@features/characteristic'
+import { SecondCharacteristicName } from '@modules/characteristic'
 import Modal from '@ui/Modal'
 import { useMessages } from './hooks/useMessages'
 import { useSubscription } from './hooks/useSubscription'

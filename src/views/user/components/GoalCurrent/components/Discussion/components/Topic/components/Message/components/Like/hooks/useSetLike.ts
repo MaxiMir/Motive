@@ -1,11 +1,11 @@
 import produce from 'immer'
 import { useIntl } from 'react-intl'
 import { InfiniteData, useMutation, useQueryClient } from 'react-query'
-import { useSnackbar } from '@features/snackbar'
+import { useSnackbar } from '@modules/snackbar'
 import { useMutateGoals } from '@views/user/hooks'
-import { GoalDto } from '@features/goal'
-import { TopicService, MessageDto, MessageType, TopicDto } from '@features/topic'
-import { useOpenSignIn } from '@features/signin'
+import { GoalDto } from '@modules/goal'
+import { TopicService, MessageDto, MessageType, TopicDto } from '@modules/topic'
+import { useOpenSignIn } from '@modules/signin'
 import useClient from '@hooks/useClient'
 
 export interface Options {

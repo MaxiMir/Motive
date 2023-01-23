@@ -3,8 +3,8 @@ import { dehydrate, QueryClient } from 'react-query'
 import { getSession } from 'next-auth/react'
 import DeviceDetector from 'node-device-detector'
 import RatingView from '@views/rating'
-import Page, { PageService, useRatingPage } from '@features/page'
-import { useRatingTab, useRatingMeta } from '@features/rating'
+import Page, { PageService, useRatingPage } from '@modules/page'
+import { useRatingTab, useRatingMeta } from '@modules/rating'
 import { Route } from '@href'
 
 function RatingPage() {

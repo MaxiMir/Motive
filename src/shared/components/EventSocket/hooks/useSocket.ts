@@ -3,10 +3,10 @@ import { useRouter } from 'next/router'
 import { useQueryClient } from 'react-query'
 import { useIntl } from 'react-intl'
 import { io } from 'socket.io-client'
-import { useSnackbar } from '@features/snackbar'
+import { useSnackbar } from '@modules/snackbar'
 import { getImageSrc } from '@href'
-import { NotificationDto, getNotificationHref } from '@features/notification'
-import { useDeviceContext } from '@features/device'
+import { NotificationDto, getNotificationHref } from '@modules/notification'
+import { useDeviceContext } from '@modules/device'
 import useClient from '@hooks/useClient'
 
 export const useSocket = () => {

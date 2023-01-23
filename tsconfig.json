@@ -50,9 +50,6 @@
       "@href": [
         "src/shared/href"
       ],
-      "@features/*": [
-        "src/features/*"
-      ],
       "@modules/*": [
         "src/modules/*"
       ],

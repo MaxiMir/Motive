@@ -1,6 +1,6 @@
 import dynamic from 'next/dynamic'
 import { Stack } from '@mui/material'
-import { FeedbackDto } from '@features/feedback'
+import { FeedbackDto } from '@modules/feedback'
 
 const Markdown = dynamic(() => import('@components/Markdown'))
 const Player = dynamic(() => import('@ui/Player'))

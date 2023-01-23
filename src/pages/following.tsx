@@ -3,7 +3,7 @@ import { dehydrate, QueryClient } from 'react-query'
 import { getSession } from 'next-auth/react'
 import DeviceDetector from 'node-device-detector'
 import FollowingView from '@views/following'
-import Page, { PageService, useFollowingPage } from '@features/page'
+import Page, { PageService, useFollowingPage } from '@modules/page'
 import useMetaTags from '@hooks/useMetaTags'
 import { Route } from '@href'
 

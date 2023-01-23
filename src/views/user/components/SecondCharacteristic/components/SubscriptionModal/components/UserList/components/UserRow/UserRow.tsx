@@ -1,8 +1,8 @@
 import dynamic from 'next/dynamic'
 import Link from 'next/link'
 import { Stack, Typography } from '@mui/material'
-import { UserDto, toHref } from '@features/user'
-import { MAIN_CHARACTERISTICS, SecondCharacteristicName } from '@features/characteristic'
+import { UserDto, toHref } from '@modules/user'
+import { MAIN_CHARACTERISTICS, SecondCharacteristicName } from '@modules/characteristic'
 import CharacteristicUser from '@components/Characteristic/CharacteristicUser'
 import AvatarStatus from '@components/AvatarStatus'
 

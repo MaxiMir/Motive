@@ -1,5 +1,5 @@
 import { Button } from '@mui/material'
-import { MessageDto, MessageType } from '@features/topic'
+import { MessageDto, MessageType } from '@modules/topic'
 import useClient from '@hooks/useClient'
 import useFormatNumber from '@hooks/useFormatNumber'
 import Emoji from '@ui/Emoji'

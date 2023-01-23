@@ -4,8 +4,8 @@ import { useFormik } from 'formik'
 import { useIntl } from 'react-intl'
 import { useMutation } from 'react-query'
 import { useMutateUserPage, useUserContext } from '@views/user/hooks'
-import { UserPageDto } from '@features/page'
-import { UpdateUserDto, UserBaseDto, UserService, toHref, profileSchema } from '@features/user'
+import { UserPageDto } from '@modules/page'
+import { UpdateUserDto, UserBaseDto, UserService, toHref, profileSchema } from '@modules/user'
 import { getCurrentSearchParams, setSearchParams } from '@helpers/url'
 
 const getNextState = (page: UserPageDto, user: UserBaseDto) =>

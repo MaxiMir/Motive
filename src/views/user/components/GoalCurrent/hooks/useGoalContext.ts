@@ -1,5 +1,5 @@
 import { createContext, useContext } from 'react'
-import { GoalDto } from '@features/goal'
+import { GoalDto } from '@modules/goal'
 
 export const GoalContext = createContext<GoalDto | null>(null)
 

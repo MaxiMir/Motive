@@ -1,6 +1,6 @@
 import Image, { ImageProps } from 'next/image'
 import { Box, IconButton, Stack, Typography } from '@mui/material'
-import { useSnackbar } from '@features/snackbar'
+import { useSnackbar } from '@modules/snackbar'
 import { copyText } from '@helpers/navigator'
 import Icon from '@ui/Icon'
 import TooltipArrow from '@ui/styled/TooltipArrow'

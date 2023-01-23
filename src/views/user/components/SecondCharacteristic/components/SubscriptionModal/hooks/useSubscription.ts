@@ -1,7 +1,7 @@
 import { useMemo } from 'react'
 import { QueryFunctionContext, useInfiniteQuery } from 'react-query'
-import { SecondCharacteristicName } from '@features/characteristic'
-import { SubscriptionService } from '@features/subscription'
+import { SecondCharacteristicName } from '@modules/characteristic'
+import { SubscriptionService } from '@modules/subscription'
 import { partialCheckOnLoadMore, partialGetNextPageParam } from '@helpers/partial'
 
 const TAKE = 20

@@ -1,4 +1,4 @@
-import { MainCharacteristicName, SecondCharacteristicName } from '@features/characteristic'
+import { MainCharacteristicName, SecondCharacteristicName } from '@modules/characteristic'
 import { setSearchParams } from '@helpers/url'
 import { Route } from '@href'
 

@@ -6,7 +6,7 @@ import BlueButton from '@ui/styled/BlueButton'
 import { useMessages } from './hooks/useMessages'
 
 const Button = dynamic(() => import('@mui/material/Button'))
-const CompletionModal = dynamic(() => import('@features/confirmation'))
+const ConfirmationModal = dynamic(() => import('@modules/confirmation'))
 const TasksModal = dynamic(() => import('./components/TasksModal'))
 
 const enum ModalType {
@@ -15,7 +15,7 @@ const enum ModalType {
 }
 
 function OwnerControl() {
-  const { stages, day } = useGoalContext()
+  const { id, stages, day } = useGoalContext()
   const messages = useMessages()
   const [modal, setModal] = useState<ModalType>()
   const renderCompete = stages.length === day.stage
@@ -40,7 +40,7 @@ function OwnerControl() {
         )}
       </Stack>
       {modal === ModalType.Tasks && <TasksModal onClose={closeModal} />}
-      {modal === ModalType.Completion && <CompletionModal onClose={closeModal} />}
+      {modal === ModalType.Completion && <ConfirmationModal id={id} onClose={closeModal} />}
     </>
   )
 }

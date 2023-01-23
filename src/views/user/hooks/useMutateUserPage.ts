@@ -1,6 +1,6 @@
 import { useQueryClient } from 'react-query'
 import { useUserContext } from '@views/user/hooks/useUserContext'
-import { UserPageDto } from '@features/page'
+import { UserPageDto } from '@modules/page'
 
 export const useMutateUserPage = (): [UserPageDto, (page: UserPageDto) => void] => {
   const queryClient = useQueryClient()

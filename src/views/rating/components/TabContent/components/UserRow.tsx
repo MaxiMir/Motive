@@ -2,7 +2,7 @@ import Link from 'next/link'
 import { Typography, Grid, Box, Button, Stack } from '@mui/material'
 import { blueGrey } from '@mui/material/colors'
 import { useTheme } from '@mui/material/styles'
-import { UserCharacteristicName, UserDto, toHref } from '@features/user'
+import { UserCharacteristicName, UserDto, toHref } from '@modules/user'
 import Emoji from '@ui/Emoji'
 import AvatarStatus from '@components/AvatarStatus'
 

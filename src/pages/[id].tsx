@@ -4,7 +4,7 @@ import { getSession } from 'next-auth/react'
 import DeviceDetector from 'node-device-detector'
 import { getSearchParams } from '@helpers/url'
 import UserView from '@views/user'
-import Page, { PageService, PossiblePageError, useUserPage, useUserMetaTags } from '@features/page'
+import Page, { PageService, PossiblePageError, useUserPage, useUserMetaTags } from '@modules/page'
 
 function UserPage() {
   const { data } = useUserPage()

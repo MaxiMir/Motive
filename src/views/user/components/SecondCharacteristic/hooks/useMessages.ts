@@ -1,5 +1,5 @@
 import { useIntl } from 'react-intl'
-import { SecondCharacteristicName } from '@features/characteristic'
+import { SecondCharacteristicName } from '@modules/characteristic'
 
 export const useMessages = (name: SecondCharacteristicName) => {
   const { formatMessage } = useIntl()

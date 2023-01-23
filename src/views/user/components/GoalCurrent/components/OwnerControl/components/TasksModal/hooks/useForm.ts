@@ -2,13 +2,13 @@ import produce from 'immer'
 import { useIntl } from 'react-intl'
 import { useFormik } from 'formik'
 import { useMutation } from 'react-query'
-import { useSnackbar } from '@features/snackbar'
+import { useSnackbar } from '@modules/snackbar'
 import { getTomorrowISO } from '@lib/date'
 import { useChangeDayUrl, useMutateGoals } from '@views/user/hooks'
 import { useGoalContext } from '@views/user/components/GoalCurrent/hooks/useGoalContext'
-import { tasksSchema } from '@features/task'
-import { GoalDto, GoalService } from '@features/goal'
-import { CreateDayDto, DayDto } from '@features/day'
+import { tasksSchema } from '@modules/task'
+import { GoalDto, GoalService } from '@modules/goal'
+import { CreateDayDto, DayDto } from '@modules/day'
 
 const getNextState = (goals: GoalDto[], id: number, day: DayDto) =>
   produce(goals, (draft) => {

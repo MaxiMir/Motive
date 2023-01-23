@@ -1,7 +1,7 @@
 import Link from 'next/link'
 import { Typography, Button, Stack } from '@mui/material'
-import { UserDto, toHref } from '@features/user'
-import { MAIN_CHARACTERISTICS } from '@features/characteristic'
+import { UserDto, toHref } from '@modules/user'
+import { MAIN_CHARACTERISTICS } from '@modules/characteristic'
 import AvatarStatus from '@components/AvatarStatus'
 import CharacteristicUser from '@components/Characteristic/CharacteristicUser'
 

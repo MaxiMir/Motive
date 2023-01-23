@@ -2,9 +2,9 @@ import { useRouter } from 'next/router'
 import { useMutation } from 'react-query'
 import { useFormik } from 'formik'
 import { getMidnight } from '@lib/date'
-import { SearchParam, toHref } from '@features/user'
+import { SearchParam, toHref } from '@modules/user'
 import { setSearchParams } from '@helpers/url'
-import { CreateMemberDto, MemberService, memberSchema } from '@features/member'
+import { CreateMemberDto, MemberService, memberSchema } from '@modules/member'
 import useClient from '@hooks/useClient'
 
 export const useForm = (goalId: number, dayId: number) => {

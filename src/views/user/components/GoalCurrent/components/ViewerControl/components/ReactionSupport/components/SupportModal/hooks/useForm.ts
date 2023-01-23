@@ -2,7 +2,7 @@ import { useFormik } from 'formik'
 import { useMutation } from 'react-query'
 import { useAddMessage } from '@views/user/hooks'
 import { useGoalContext } from '@views/user/components/GoalCurrent/hooks/useGoalContext'
-import { MessageType, TopicService, topicSchema } from '@features/topic'
+import { MessageType, TopicService, topicSchema } from '@modules/topic'
 
 export const useForm = (onSuccess: () => void) => {
   const { day } = useGoalContext()

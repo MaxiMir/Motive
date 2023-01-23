@@ -1,6 +1,6 @@
 import dynamic from 'next/dynamic'
-import { UserBaseDto } from '@features/user'
-import { useOpenSignIn } from '@features/signin'
+import { UserBaseDto } from '@modules/user'
+import { useOpenSignIn } from '@modules/signin'
 import useClient from '@hooks/useClient'
 import useToggle from '@hooks/useToggle'
 import EmojiButton from '@ui/EmojiButton'

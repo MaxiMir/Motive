@@ -1,8 +1,8 @@
 import Link from 'next/link'
 import { Box, Button, Stack, Typography } from '@mui/material'
-import { toHref } from '@features/user'
-import { GoalDto } from '@features/goal'
-import { MAIN_CHARACTERISTICS } from '@features/characteristic'
+import { toHref } from '@modules/user'
+import { GoalDto } from '@modules/goal'
+import { MAIN_CHARACTERISTICS } from '@modules/characteristic'
 import CharacteristicGoal from '@components/Characteristic/CharacteristicGoal'
 import AvatarStatus from '@components/AvatarStatus'
 

@@ -1,6 +1,6 @@
 import { FormikProps } from 'formik'
 import { useIntl } from 'react-intl'
-import { useSnackbar } from '@features/snackbar'
+import { useSnackbar } from '@modules/snackbar'
 
 const PHOTO_LIMIT = 10
 

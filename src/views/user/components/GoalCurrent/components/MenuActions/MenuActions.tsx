@@ -2,7 +2,7 @@ import { MouseEvent, useId, useState } from 'react'
 import dynamic from 'next/dynamic'
 import { Box, IconButton, Menu, MenuItem } from '@mui/material'
 import { useGoalContext } from '@views/user/components/GoalCurrent/hooks/useGoalContext'
-import { OwnershipDto } from '@features/member'
+import { OwnershipDto } from '@modules/member'
 import useToggle from '@hooks/useToggle'
 import { share } from '@helpers/navigator'
 import Icon from '@ui/Icon'
@@ -10,7 +10,7 @@ import ListItem from '@ui/ListItem'
 import TooltipArrow from '@ui/styled/TooltipArrow'
 import { useMessages } from './hooks/useMessages'
 
-const Report = dynamic(() => import('@features/report'))
+const Report = dynamic(() => import('@modules/report'))
 const Share = dynamic(() => import('@components/Share'))
 const LeaveModal = dynamic(() => import('./components/LeaveModal'))
 

@@ -32,7 +32,7 @@ function Markdown({ text }: MarkdownProps) {
     <Box
       ref={ref}
       sx={{
-        '& div': {
+        '& div > *': {
           ':first-of-type': {
             display: '-webkit-box',
             WebkitLineClamp: !open ? '3' : 'unset',
@@ -40,7 +40,7 @@ function Markdown({ text }: MarkdownProps) {
             overflow: 'hidden',
           },
           ':not(:first-of-type)': {
-            display: truncated || !open ? 'none' : 'block',
+            display: truncated || !open ? 'none' : '-webkit-box',
           },
         },
       }}

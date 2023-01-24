@@ -1,2 +1,2 @@
-export { default } from './SearchModule'
-export { useSearchPage } from './hooks/useSearchPage'
+export * from './dto'
+export * from './schema'

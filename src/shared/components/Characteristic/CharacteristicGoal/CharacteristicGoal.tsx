@@ -1,5 +1,5 @@
 import { Typography, IconButton, Stack } from '@mui/material'
-import { GoalCharacteristicName } from '@features/goal'
+import { GoalCharacteristicName } from '@modules/goal'
 import useFormatNumber from '@hooks/useFormatNumber'
 import Emoji from '@ui/Emoji'
 import TooltipArrow from '@ui/styled/TooltipArrow'

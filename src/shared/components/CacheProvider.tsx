@@ -1,6 +1,6 @@
 import { ReactNode, useState } from 'react'
 import { QueryClientProvider, MutationCache, QueryCache, QueryClient } from 'react-query'
-import { useSnackbar } from '@features/snackbar'
+import { useSnackbar } from '@modules/snackbar'
 
 interface CacheProviderProps {
   message: string

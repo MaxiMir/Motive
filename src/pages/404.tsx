@@ -1,4 +1,4 @@
-import Page from '@features/page'
+import Page from '@modules/page'
 import Error from '@components/Error'
 import useMetaTags from '@hooks/useMetaTags'
 

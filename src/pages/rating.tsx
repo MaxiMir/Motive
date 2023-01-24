@@ -1,21 +1,20 @@
 import { GetServerSideProps } from 'next'
-import { useRouter } from 'next/router'
 import { dehydrate, QueryClient } from 'react-query'
-import DeviceDetector from 'node-device-detector'
-import { Route } from '@href'
-import RatingModule, { useRatingPage, useMetaTags } from '@modules/rating'
-import Page, { PageService } from '@features/page'
 import { getSession } from 'next-auth/react'
+import DeviceDetector from 'node-device-detector'
+import RatingView from '@views/rating'
+import Page, { PageService, useRatingPage } from '@modules/page'
+import { useRatingTab, useRatingMeta } from '@modules/rating'
+import { Route } from '@href'
 
 function RatingPage() {
-  const { query } = useRouter()
+  const tab = useRatingTab()
+  const meta = useRatingMeta(tab)
   const { data } = useRatingPage()
-  const tab = !query.tab ? 0 : +query.tab
-  const metaTags = useMetaTags(tab)
 
   return (
-    <Page title={metaTags.title} description={metaTags.description}>
-      {data && <RatingModule {...data} tab={tab} />}
+    <Page title={meta.title} description={meta.description}>
+      {data && <RatingView {...data} tab={tab} />}
     </Page>
   )
 }

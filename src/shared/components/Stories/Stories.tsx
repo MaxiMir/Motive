@@ -1,7 +1,7 @@
 import { MutableRefObject } from 'react'
 import { Box, Portal } from '@mui/material'
 import { styled } from '@mui/system'
-import { UserBaseDto } from '@features/user'
+import { UserBaseDto } from '@modules/user'
 import { Story } from '@components/Stories/types'
 import { useSlowClose } from './hooks/useSlowClose'
 import StoryViewer from './components/StoryViewer'

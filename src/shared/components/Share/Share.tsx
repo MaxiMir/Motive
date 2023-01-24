@@ -1,5 +1,5 @@
 import dynamic from 'next/dynamic'
-import { useSnackbar } from '@features/snackbar'
+import { useSnackbar } from '@modules/snackbar'
 import { useMessages } from './hooks/useMessages'
 
 const Menu = dynamic(() => import('./components/Menu'))

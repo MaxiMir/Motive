@@ -1,3 +1,4 @@
-export { default } from './UserModule'
-export * from './hooks/useUserMetaTags'
-export * from './hooks/useUserPage'
+export * from './service'
+export * from './dto'
+export * from './schema'
+export * from './helpers'

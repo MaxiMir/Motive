@@ -1,7 +1,7 @@
 import dynamic from 'next/dynamic'
 import { Box, Stack, Typography } from '@mui/material'
-import { UserCharacteristicName } from '@features/user'
-import { SECOND_CHARACTERISTICS, SecondCharacteristicName } from '@features/characteristic'
+import { UserCharacteristicName } from '@modules/user'
+import { SECOND_CHARACTERISTICS, SecondCharacteristicName } from '@modules/characteristic'
 import useFormatNumber from '@hooks/useFormatNumber'
 import Emoji from '@ui/Emoji'
 

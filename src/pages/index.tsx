@@ -1,17 +1,17 @@
 import { GetServerSideProps } from 'next'
-import { ClientDto } from '@features/user'
-import HomeModule from '@modules/home'
-import Page from '@features/page'
-import useMetaTags from '@hooks/useMetaTags'
-import DeviceDetector from 'node-device-detector'
 import { getSession } from 'next-auth/react'
+import DeviceDetector from 'node-device-detector'
+import { ClientDto } from '@modules/user'
+import HomeView from '@views/home'
+import Page from '@modules/page'
+import useMetaTags from '@hooks/useMetaTags'
 
 function HomePage() {
   const metaTags = useMetaTags('home')
 
   return (
     <Page title={metaTags.title} description={metaTags.description}>
-      <HomeModule />
+      <HomeView />
     </Page>
   )
 }

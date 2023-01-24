@@ -1,8 +1,8 @@
 import { GetServerSideProps } from 'next'
 import { getSession } from 'next-auth/react'
 import DeviceDetector from 'node-device-detector'
-import ContactModule from '@modules/contact'
-import Page from '@features/page'
+import ContactView from '@views/contact'
+import Page from '@modules/page'
 import useMetaTags from '@hooks/useMetaTags'
 
 function ContactPage() {
@@ -10,7 +10,7 @@ function ContactPage() {
 
   return (
     <Page title={metaTags.title} description={metaTags.description}>
-      <ContactModule />
+      <ContactView />
     </Page>
   )
 }

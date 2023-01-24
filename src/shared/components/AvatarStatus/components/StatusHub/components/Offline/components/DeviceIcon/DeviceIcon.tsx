@@ -1,4 +1,4 @@
-import { Device } from '@features/device'
+import { Device } from '@modules/device'
 import Icon from '@ui/Icon'
 import { getIconName } from './helper'
 

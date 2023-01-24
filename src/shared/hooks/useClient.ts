@@ -1,5 +1,5 @@
 import { useSession } from 'next-auth/react'
-import { ClientDto } from '@features/user'
+import { ClientDto } from '@modules/user'
 
 const useClient = (): ClientDto | undefined => {
   const { data, status } = useSession()

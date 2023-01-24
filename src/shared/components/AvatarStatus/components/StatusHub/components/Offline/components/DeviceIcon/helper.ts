@@ -1,4 +1,4 @@
-import { Device } from '@features/device'
+import { Device } from '@modules/device'
 
 export const getIconName = (device: Device): string => {
   switch (device) {

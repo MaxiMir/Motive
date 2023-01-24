@@ -1,5 +1,5 @@
 export const enum Route {
-  TopOfTheDay = '/top-of-the-day',
+  Feed = '/feed',
   Search = '/search',
   Rating = '/rating',
   Following = '/following',

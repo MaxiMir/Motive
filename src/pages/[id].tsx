@@ -3,14 +3,14 @@ import { dehydrate, QueryClient } from 'react-query'
 import { getSession } from 'next-auth/react'
 import DeviceDetector from 'node-device-detector'
 import { getSearchParams } from '@helpers/url'
-import UserModule, { useUserMetaTags, useUserPage } from '@modules/user'
-import Page, { PageService, PossiblePageError } from '@features/page'
+import UserView from '@views/user'
+import Page, { PageService, PossiblePageError, useUserPage, useUserMetaTags } from '@modules/page'
 
 function UserPage() {
   const { data } = useUserPage()
   const metaTags = useUserMetaTags(data)
 
-  return <Page {...metaTags}>{data && <UserModule user={data} />}</Page>
+  return <Page {...metaTags}>{data && <UserView user={data} />}</Page>
 }
 
 export const getServerSideProps: GetServerSideProps = async (ctx) => {

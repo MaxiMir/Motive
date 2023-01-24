@@ -50,3 +50,7 @@ export const getFilterParams = (filter: Filter): SearchParamsEntries => {
 
   return { ...wherePrepared, ...paginationPrepared, ...insertPrepared }
 }
+
+export const getImageSrc = (src: string): string => {
+  return src.includes('https://') ? src : process.env.NEXT_PUBLIC_APP_URL + src
+}

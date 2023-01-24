@@ -1,4 +1,4 @@
-import { Device } from '@modules/device'
+import { Device } from '@entities/device'
 import Icon from '@ui/Icon'
 import { getIconName } from './helper'
 

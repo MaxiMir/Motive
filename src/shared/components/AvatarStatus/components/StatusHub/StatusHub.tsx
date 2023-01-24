@@ -1,5 +1,5 @@
 import dynamic from 'next/dynamic'
-import { Device } from '@modules/device'
+import { Device } from '@entities/device'
 import Content from './components/Content'
 
 const Online = dynamic(() => import('./components/Online'))

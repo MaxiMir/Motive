@@ -1,5 +1,5 @@
 import NextImage, { ImageProps as MuiImageProps } from 'next/image'
-import { getImageSrc } from '@href'
+import { getImageSrc } from '@helpers/url'
 
 interface ImageProps extends Omit<MuiImageProps, 'src'> {
   src: string

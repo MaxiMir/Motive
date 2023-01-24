@@ -1,5 +1,5 @@
 import { useIntl } from 'react-intl'
-import { GoalCharacteristicName } from '@modules/goal'
+import { GoalCharacteristicName } from '@entities/goal'
 
 export const useMessages = (name: GoalCharacteristicName | 'runningDays') => {
   const { formatMessage } = useIntl()

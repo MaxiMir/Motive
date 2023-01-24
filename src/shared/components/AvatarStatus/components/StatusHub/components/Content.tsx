@@ -1,5 +1,5 @@
 import { Avatar } from '@mui/material'
-import { getImageSrc } from '@href'
+import { getImageSrc } from '@helpers/url'
 
 interface ContentProps {
   src: string

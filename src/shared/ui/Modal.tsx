@@ -1,6 +1,7 @@
 import { Fragment, ReactNode } from 'react'
 import dynamic from 'next/dynamic'
 import { useIntl } from 'react-intl'
+import PerfectScrollbar from 'react-perfect-scrollbar'
 import {
   Dialog,
   DialogContent,
@@ -10,7 +11,6 @@ import {
   DialogProps,
 } from '@mui/material'
 import { backdropClasses } from '@mui/material/Backdrop'
-import Scrollbar from '@shared/ui/Scrollbar'
 import Icon from '@shared/ui/Icon'
 
 const DialogActions = dynamic(() => import('@mui/material/DialogActions'))
@@ -64,9 +64,9 @@ function Modal({ title, actions, children, maxWidth, PaperProps, onClose }: Moda
       >
         <Icon name="close" />
       </IconButton>
-      <Scrollbar>
+      <PerfectScrollbar>
         <DialogContent>{children}</DialogContent>
-      </Scrollbar>
+      </PerfectScrollbar>
       {actions && (
         <DialogActions>
           <Stack direction="row" justifyContent="space-between" flex={1} pb={2} px={2}>

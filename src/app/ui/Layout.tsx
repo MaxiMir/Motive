@@ -4,11 +4,11 @@ import dynamic from 'next/dynamic'
 import { useRouter } from 'next/router'
 import { useIntl } from 'react-intl'
 import { useIsFetching } from 'react-query'
+import PerfectScrollbar from 'react-perfect-scrollbar'
 import { Stack } from '@mui/material'
 import { getLocaleHrefList } from '@entities/locale'
 import { useDeviceContext } from '@entities/device'
 import { OGType } from '@shared/api/pages'
-import Scrollbar from '@shared/ui/Scrollbar'
 
 const Loader = dynamic(() => import('@widgets/loader/ui'))
 const Header = dynamic(() => import('@widgets/header/ui'))
@@ -82,7 +82,7 @@ function Layout({
         <link rel="alternate" href={localeHrefList.en} hrefLang="x-default" />
       </Head>
       {renderCompact && <Header type={type} />}
-      <Scrollbar>
+      <PerfectScrollbar>
         <MainWrap {...mainWrapProps}>
           <Stack
             component="main"
@@ -94,7 +94,7 @@ function Layout({
             {children}
           </Stack>
         </MainWrap>
-      </Scrollbar>
+      </PerfectScrollbar>
       {renderCompact && <Footer />}
     </>
   )

@@ -1,6 +1,6 @@
+import { useIntl } from 'react-intl'
 import Emoji from '@shared/ui/Emoji'
 import GradientButton from '@shared/ui/GradientButton'
-import { useIntl } from 'react-intl'
 
 interface ActionCloseProps {
   onClick: () => void

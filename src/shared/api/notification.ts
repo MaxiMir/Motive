@@ -13,13 +13,13 @@ export const enum NotificationType {
 }
 
 interface NotificationBase {
-  id: number
-  created: string
-  read: boolean
+  readonly id: number
+  readonly created: string
+  readonly read: boolean
 }
 
 interface NotificationGoalDto extends NotificationBase {
-  type:
+  readonly type:
     | NotificationType.NewGoal
     | NotificationType.AddMotivation
     | NotificationType.AddCreativity
@@ -28,7 +28,7 @@ interface NotificationGoalDto extends NotificationBase {
     | NotificationType.NewAnswer
     | NotificationType.NewFeedback
     | NotificationType.WebCoverage
-  details: {
+  readonly details: {
     id: number
     day: number
     name?: string
@@ -37,8 +37,8 @@ interface NotificationGoalDto extends NotificationBase {
 }
 
 interface NotificationUserDto extends NotificationBase {
-  type: NotificationType.NewFollower
-  details: {
+  readonly type: NotificationType.NewFollower
+  readonly details: {
     name?: string
     user: UserBaseDto
   }

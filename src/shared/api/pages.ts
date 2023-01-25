@@ -10,7 +10,7 @@ export const enum OGType {
 }
 
 export interface PossiblePageError {
-  message?: {
+  readonly message?: {
     statusCode: number
   }
 }
@@ -21,22 +21,22 @@ export interface HashtagDto {
 }
 
 export interface SearchPageDto {
-  q: string
-  hashtags: HashtagDto[]
-  goals: GoalDto[]
-  users: UserDto[]
+  readonly q: string
+  readonly hashtags: HashtagDto[]
+  readonly goals: GoalDto[]
+  readonly users: UserDto[]
 }
 
-export type RatingPageDto = { [k in MainCharacteristicName]: UserDto[] }
+export type RatingPageDto = Readonly<{ [k in MainCharacteristicName]: UserDto[] }>
 
 export interface FollowingPageDto {
-  following: UserDto[]
+  readonly following: UserDto[]
 }
 
 export interface UserPageDto extends UserDto {
-  following: boolean
-  goals: GoalDto[]
-  membership: MemberDto[]
-  clientMembership: MemberDto[]
-  confirmations: ConfirmationDto[]
+  readonly following: boolean
+  readonly goals: GoalDto[]
+  readonly membership: MemberDto[]
+  readonly clientMembership: MemberDto[]
+  readonly confirmations: ConfirmationDto[]
 }

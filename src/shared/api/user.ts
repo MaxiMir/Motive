@@ -29,20 +29,20 @@ export interface UserBaseDto {
 }
 
 export interface ExternalLink {
-  href: string
-  title?: string
+  readonly href: string
+  readonly title?: string
 }
 
 export type CreateUserDto = Omit<UserBaseDto, 'id' | 'nickname'>
 
 export interface UpdateUserDto {
-  name: UserBaseDto['name']
-  nickname: UserBaseDto['nickname']
-  avatar?: File | string | null
-  motto?: string
-  location?: string
-  bio?: string
-  links?: ExternalLink[]
+  readonly name: UserBaseDto['name']
+  readonly nickname: UserBaseDto['nickname']
+  readonly avatar?: File | string | null
+  readonly motto?: string
+  readonly location?: string
+  readonly bio?: string
+  readonly links?: ExternalLink[]
 }
 
 export interface UserDto extends UserBaseDto {
@@ -57,9 +57,9 @@ export interface ClientDto {
 }
 
 export interface UserPageDto extends UserDto {
-  following: boolean
-  goals: GoalDto[]
-  membership: MemberDto[]
-  clientMembership: MemberDto[]
-  confirmations: ConfirmationDto[]
+  readonly following: boolean
+  readonly goals: GoalDto[]
+  readonly membership: MemberDto[]
+  readonly clientMembership: MemberDto[]
+  readonly confirmations: ConfirmationDto[]
 }

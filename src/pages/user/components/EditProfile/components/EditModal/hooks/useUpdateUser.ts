@@ -3,7 +3,6 @@ import { useRouter } from 'next/router'
 import { useIntl } from 'react-intl'
 import { useMutation } from 'react-query'
 import { useFormik } from 'formik'
-import { getCurrentSearchParams, setSearchParams } from '@shared/lib/helpers/url'
 import { useMutateUserPage, useUserContext } from '@pages/user/hooks'
 import {
   UserPageDto,
@@ -14,6 +13,7 @@ import {
   getUsers,
   updateUser,
 } from '@entities/user'
+import { getCurrentSearchParams, setSearchParams } from '@shared/lib/helpers/url'
 
 const getNextState = (page: UserPageDto, user: UserBaseDto) =>
   produce(page, (draft) => {

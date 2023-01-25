@@ -1,8 +1,8 @@
 import { useMemo } from 'react'
 import { GetNextPageParamFunction, useInfiniteQuery } from 'react-query'
-import { partialCheckOnLoadMore } from '@shared/lib/helpers/partial'
 import { useGoalContext } from '@pages/user/components/GoalCurrent/hooks/useGoalContext'
 import { TopicDto, getTopics } from '@entities/topic'
+import { partialCheckOnLoadMore } from '@shared/lib/helpers/partial'
 
 const TAKE = 20
 const PRELOAD_DIFF = 5

@@ -1,11 +1,11 @@
 import produce, { Draft } from 'immer'
 import { useIntl } from 'react-intl'
 import { useMutation, useQueryClient } from 'react-query'
-import useClient from '@shared/lib/hooks/useClient'
-import { useSnackbar } from '@entities/snackbar'
 import { useUserContext } from '@pages/user/hooks'
+import { useSnackbar } from '@entities/snackbar'
 import { UserPageDto } from '@entities/user'
 import { deleteMember } from '@entities/member'
+import useClient from '@shared/lib/hooks/useClient'
 
 const getNextState = (page: UserPageDto, goalId: number, memberId: number, clientPage: boolean) =>
   produce(page, (draft: Draft<UserPageDto>) => {

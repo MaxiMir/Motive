@@ -3,9 +3,9 @@ import { dehydrate, QueryClient } from 'react-query'
 import { getSession } from 'next-auth/react'
 import DeviceDetector from 'node-device-detector'
 import Layout from '@app/ui/Layout'
-import { getSearchParams } from '@shared/lib/helpers/url'
 import UserPage from '@pages/user'
 import { PossiblePageError, getUserPage, useUserMetaTags, useUserPage } from '@entities/pages'
+import { getSearchParams } from '@shared/lib/helpers/url'
 
 function UserRoute() {
   const { data } = useUserPage()

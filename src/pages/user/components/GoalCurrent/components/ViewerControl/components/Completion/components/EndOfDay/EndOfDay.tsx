@@ -1,6 +1,6 @@
 import dynamic from 'next/dynamic'
-import { getTomorrow } from '@shared/lib/utils/date'
 import { MemberDto } from '@app/model/member'
+import { getTomorrow } from '@shared/lib/utils/date'
 import Emoji from '@shared/ui/Emoji'
 import TooltipArrow from '@shared/ui/styled/TooltipArrow'
 import BlueButton from '@shared/ui/styled/BlueButton'

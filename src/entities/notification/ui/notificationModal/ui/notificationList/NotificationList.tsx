@@ -1,5 +1,5 @@
-import List from '@shared/ui/List'
 import { NotificationDto } from '@entities/notification/model/dto'
+import List from '@shared/ui/List'
 import Notification from './ui/notification/Notification'
 
 interface NotificationListProps {

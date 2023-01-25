@@ -3,7 +3,7 @@ import { Typography, Button, Stack } from '@mui/material'
 import AvatarStatus from '@features/avatar-status'
 import { UserDto, toHref } from '@entities/user'
 import { CharacteristicUser } from '@entities/characteristic'
-import { MAIN_CHARACTERISTICS } from '@app//model/characteristic'
+import { MAIN_CHARACTERISTICS } from '@app/model/characteristic'
 
 interface UserCardProps {
   user: UserDto

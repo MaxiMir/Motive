@@ -1,10 +1,10 @@
 import { useState } from 'react'
 import dynamic from 'next/dynamic'
 import { Button, Stack, Typography } from '@mui/material'
-import { getWordDeclination } from '@shared/lib/helpers/string'
-import useFormatNumber from '@shared/lib/hooks/useFormatNumber'
 import { ConfirmationDto } from '@app/model/confirmation'
 import { SecondCharacteristicName } from '@app/model/characteristic'
+import { getWordDeclination } from '@shared/lib/helpers/string'
+import useFormatNumber from '@shared/lib/hooks/useFormatNumber'
 import { useMessages } from './hooks/useMessages'
 
 const SubscriptionModal = dynamic(() => import('./components/SubscriptionModal'))

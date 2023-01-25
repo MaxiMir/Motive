@@ -10,8 +10,6 @@ import { Locale as FnsLocale } from 'date-fns'
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns'
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider'
 import CssBaseline from '@mui/material/CssBaseline'
-import { getLocaleFolder } from '@shared/lib/utils/date'
-import { makeMapLoader } from '@shared/lib/helpers/iterable'
 import ThemeProvider from '@app/providers/ThemeProvider'
 import SnackbarProvider from '@app/providers/SnackbarProvider'
 import SignInProvider from '@app/providers/SignInProvider'
@@ -19,6 +17,8 @@ import DeviceProvider from '@app/providers/DeviceProvider'
 import CacheProvider from '@app/providers/CacheProvider'
 import { Locale } from '@entities/locale'
 import EventSocket from '@app/ui/EventSocket'
+import { getLocaleFolder } from '@shared/lib/utils/date'
+import { makeMapLoader } from '@shared/lib/helpers/iterable'
 
 const messagesLoader = makeMapLoader<Record<string, string>>()
 const adapterLocaleLoader = makeMapLoader<FnsLocale>()

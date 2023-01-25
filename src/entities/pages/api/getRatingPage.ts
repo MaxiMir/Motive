@@ -1,6 +1,6 @@
 import { AxiosRequestConfig } from 'axios'
-import fetcher from '@shared/api/fetcher'
 import { RatingPageDto } from '@entities/pages/model/dto'
+import fetcher from '@shared/api/fetcher'
 
 export const getRatingPage = (options?: AxiosRequestConfig): Promise<RatingPageDto> =>
   fetcher.get('/pages/rating', options)

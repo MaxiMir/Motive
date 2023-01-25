@@ -1,8 +1,8 @@
 import { useMemo } from 'react'
 import { QueryFunctionContext, useInfiniteQuery } from 'react-query'
-import { partialCheckOnLoadMore, partialGetNextPageParam } from '@shared/lib/helpers/partial'
 import { SecondCharacteristicName } from '@app/model/characteristic'
 import { getSubscription } from '@entities/subscription/api/getSubscription'
+import { partialCheckOnLoadMore, partialGetNextPageParam } from '@shared/lib/helpers/partial'
 
 type Type = SecondCharacteristicName.Following | SecondCharacteristicName.Followers
 

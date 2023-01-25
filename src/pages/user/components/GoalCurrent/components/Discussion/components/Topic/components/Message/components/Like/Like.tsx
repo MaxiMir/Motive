@@ -1,7 +1,7 @@
 import { Button } from '@mui/material'
+import { MessageDto, MessageType } from '@entities/topic'
 import useClient from '@shared/lib/hooks/useClient'
 import useFormatNumber from '@shared/lib/hooks/useFormatNumber'
-import { MessageDto, MessageType } from '@entities/topic'
 import Emoji from '@shared/ui/Emoji'
 import TooltipArrow from '@shared/ui/styled/TooltipArrow'
 import { checkOnDisabled } from './helper'

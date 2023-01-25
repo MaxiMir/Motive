@@ -1,6 +1,6 @@
 import { Typography } from '@mui/material'
 import { UserDto } from '@entities/user'
-import { MAIN_CHARACTERISTICS, MainCharacteristicName } from '@app//model/characteristic'
+import { MAIN_CHARACTERISTICS, MainCharacteristicName } from '@app/model/characteristic'
 import Tabs from '@shared/ui/Tabs'
 import Container from '@shared/ui/Container'
 import { useMessages } from './hooks/useMessages'

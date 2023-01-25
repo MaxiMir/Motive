@@ -1,8 +1,8 @@
 import { Typography, IconButton, Stack } from '@mui/material'
-import useFormatNumber from '@shared/lib/hooks/useFormatNumber'
 import { GoalCharacteristicName } from '@app/model/characteristic'
-import Emoji from '@shared/ui/Emoji'
+import useFormatNumber from '@shared/lib/hooks/useFormatNumber'
 import TooltipArrow from '@shared/ui/styled/TooltipArrow'
+import Emoji from '@shared/ui/Emoji'
 import { useMessages } from './lib/hooks/useMessages'
 
 interface CharacteristicGoalProps {

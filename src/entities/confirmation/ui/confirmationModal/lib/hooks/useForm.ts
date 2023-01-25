@@ -2,12 +2,12 @@ import { useIntl } from 'react-intl'
 import { useMutation } from 'react-query'
 import { formatISO } from 'date-fns'
 import { useFormik } from 'formik'
-import { getMidnight } from '@shared/lib/utils/date'
-import { scrollToElem } from '@shared/lib/helpers/document'
 import { useSnackbar } from '@entities/snackbar'
 import { useUserPage } from '@entities/pages'
 import { createConfirmation } from '@entities/confirmation/api/createConfirmation'
 import { confirmationSchema } from '@entities/confirmation/config/schema'
+import { getMidnight } from '@shared/lib/utils/date'
+import { scrollToElem } from '@shared/lib/helpers/document'
 
 interface Values {
   text: string

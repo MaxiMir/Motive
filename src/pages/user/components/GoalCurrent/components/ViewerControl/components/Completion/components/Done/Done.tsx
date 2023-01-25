@@ -1,8 +1,8 @@
 import dynamic from 'next/dynamic'
 import { Button } from '@mui/material'
+import { useGoalContext } from '@pages/user/components/GoalCurrent/hooks/useGoalContext'
 import useToggle from '@shared/lib/hooks/useToggle'
 import TooltipArrow from '@shared/ui/styled/TooltipArrow'
-import { useGoalContext } from '@pages/user/components/GoalCurrent/hooks/useGoalContext'
 import { useMessages } from './hooks/useMessages'
 
 const ConfirmationModal = dynamic(() => import('@entities/confirmation'))

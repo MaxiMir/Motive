@@ -7,8 +7,8 @@ import { UserDto } from '@entities/user'
 import { useOpenSignIn } from '@entities/signin'
 import { updateSubscription } from '@entities/subscription/api/updateSubscription'
 import { FollowingPageDto } from '@entities/pages'
-import useClient from '@hooks/useClient'
-import { Route } from '@shared/consts/routes'
+import useClient from '@lib/hooks/useClient'
+import { Route } from '@shared/config/routes'
 
 interface Options {
   user: UserDto

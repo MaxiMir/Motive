@@ -1,7 +1,7 @@
 import { Stack, Box, Typography, LinearProgress, StackProps } from '@mui/material'
 import { linearProgressClasses } from '@mui/material/LinearProgress'
 import { MainCharacteristicName } from '@entities/characteristic'
-import useShowProgress from '@hooks/useShowProgress'
+import useShowProgress from '@lib/hooks/useShowProgress'
 
 interface ProgressProps {
   characteristic: MainCharacteristicName

@@ -1,2 +1,3 @@
-export { default } from './components/SnackbarProvider'
-export * from './hooks'
+export * from './lib/context'
+export * from './lib/hooks/useSnackbar'
+export * from './model/types'

@@ -1,6 +1,6 @@
 import Layout from '@app/ui/Layout'
 import Error from '@components/Error'
-import useMetaTags from '@hooks/useMetaTags'
+import useMetaTags from '@lib/hooks/useMetaTags'
 
 function Page500() {
   const metaTags = useMetaTags('500')

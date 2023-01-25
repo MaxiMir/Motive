@@ -2,7 +2,7 @@ import dynamic from 'next/dynamic'
 import { Button } from '@mui/material'
 import { buttonClasses } from '@mui/material/Button'
 import { blue } from '@mui/material/colors'
-import useFormatNumber from '@hooks/useFormatNumber'
+import useFormatNumber from '@lib/hooks/useFormatNumber'
 import Emoji, { EmojiName } from '@ui/Emoji'
 import TooltipArrow from '@ui/styled/TooltipArrow'
 

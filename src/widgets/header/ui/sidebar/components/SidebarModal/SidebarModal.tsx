@@ -11,7 +11,7 @@ import {
   ListItemIcon,
 } from '@mui/material'
 import { drawerClasses } from '@mui/material/Drawer'
-import useClient from '@hooks/useClient'
+import useClient from '@lib/hooks/useClient'
 import Icon from '@ui/Icon'
 import { useMessages } from './hooks/useMessages'
 import { useRoutes } from './hooks/useRoutes'

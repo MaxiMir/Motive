@@ -2,9 +2,9 @@ import { GetServerSideProps } from 'next'
 import { getSession } from 'next-auth/react'
 import DeviceDetector from 'node-device-detector'
 import Layout from '@app/ui/Layout'
-import { ClientDto } from '@entities/user'
 import HomePage from '@pages/home'
-import useMetaTags from '@hooks/useMetaTags'
+import { ClientDto } from '@entities/user'
+import useMetaTags from '@lib/hooks/useMetaTags'
 
 function HomeRoute() {
   const metaTags = useMetaTags('home')

@@ -1,10 +1,10 @@
 import { useState } from 'react'
 import dynamic from 'next/dynamic'
 import { Button, Stack, Typography } from '@mui/material'
-import { getWordDeclination } from '@helpers/string'
+import { getWordDeclination } from '@lib/helpers/string'
 import { SecondCharacteristicName } from '@entities/characteristic'
 import { ConfirmationDto } from '@entities/confirmation'
-import useFormatNumber from '@hooks/useFormatNumber'
+import useFormatNumber from '@lib/hooks/useFormatNumber'
 import { useMessages } from './hooks/useMessages'
 
 const SubscriptionModal = dynamic(() => import('./components/SubscriptionModal'))
@@ -40,7 +40,7 @@ function SecondCharacteristic({ confirmations, name, value }: CharacteristicProp
     }
 
     const [{ id }] = confirmations
-    const { clickOnElem } = await import('@helpers/document')
+    const { clickOnElem } = await import('@lib/helpers/document')
     clickOnElem(`confirmation-${id}`)
   }
 

@@ -1,5 +1,5 @@
 import { useIntl } from 'react-intl'
-import { getImageSrc } from '@helpers/url'
+import { getImageSrc } from '@lib/helpers/url'
 import { UserPageDto } from '@entities/user'
 import { OGType } from '@entities/pages/model/dto'
 

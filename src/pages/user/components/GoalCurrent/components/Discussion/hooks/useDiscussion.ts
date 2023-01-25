@@ -1,6 +1,6 @@
 import { useMemo } from 'react'
 import { GetNextPageParamFunction, useInfiniteQuery } from 'react-query'
-import { partialCheckOnLoadMore } from '@helpers/partial'
+import { partialCheckOnLoadMore } from '@lib/helpers/partial'
 import { useGoalContext } from '@pages/user/components/GoalCurrent/hooks/useGoalContext'
 import { TopicDto, TopicService } from '@entities/topic'
 

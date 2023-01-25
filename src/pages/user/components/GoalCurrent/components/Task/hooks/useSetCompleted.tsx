@@ -8,7 +8,7 @@ import { useMutateUserPage } from '@pages/user/hooks'
 import { UserPageDto } from '@entities/user'
 import { MemberDto } from '@entities/member'
 import { TaskService } from '@entities/task'
-import useClient from '@hooks/useClient'
+import useClient from '@lib/hooks/useClient'
 
 const Button = dynamic(() => import('@mui/material/Button'))
 

@@ -1,5 +1,5 @@
 import { Box, List, ListItem, Stack, Drawer, ListItemIcon, ListItemText } from '@mui/material'
-import { copyText } from '@helpers/navigator'
+import { copyText } from '@lib/helpers/navigator'
 import ContentCopy from '@ui/icons/ContentCopy'
 import Email from '@ui/icons/Email'
 import SMS from '@ui/icons/SMS'

@@ -7,8 +7,6 @@ interface SearchDto {
   q: string
 }
 
-const validationSchema = object({ q: string() })
-
 export const useSearchPageAsync = (initial: string) => {
   const { mutateAsync } = useMutation(({ q }: SearchDto) => getSearchPage({ params: { q } }), {
     onSuccess(data) {
@@ -20,7 +18,7 @@ export const useSearchPageAsync = (initial: string) => {
     initialValues: {
       q: initial,
     },
-    validationSchema,
+    validationSchema: object({ q: string() }),
     async onSubmit(data) {
       await mutateAsync(data)
     },

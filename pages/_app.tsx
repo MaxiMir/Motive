@@ -10,15 +10,15 @@ import { Locale as FnsLocale } from 'date-fns'
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns'
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider'
 import CssBaseline from '@mui/material/CssBaseline'
-import SignInProvider from '@entities/signin'
-import ThemeProvider from '@entities/theme'
+import { getLocaleFolder } from '@lib/utils/date'
+import { makeMapLoader } from '@lib/helpers/iterable'
+import ThemeProvider from '@app/providers/ThemeProvider'
+import SnackbarProvider from '@app/providers/SnackbarProvider'
+import SignInProvider from '@app/providers/SignInProvider'
+import DeviceProvider from '@app/providers/DeviceProvider'
+import CacheProvider from '@app/providers/CacheProvider'
 import { Locale } from '@entities/locale'
-import { DeviceContext } from '@entities/device'
-import SnackbarProvider from '@entities/snackbar'
-import { getLocaleFolder } from '@lib/date'
-import { makeMapLoader } from '@helpers/iterable'
-import EventSocket from '@components/EventSocket'
-import CacheProvider from '@components/CacheProvider'
+import EventSocket from '@app/ui/EventSocket'
 
 const messagesLoader = makeMapLoader<Record<string, string>>()
 const adapterLocaleLoader = makeMapLoader<FnsLocale>()
@@ -29,7 +29,9 @@ function App({
 }: AppProps) {
   const { locale = Locale.En } = useRouter()
   const folder = getLocaleFolder(locale)
-  const messages = use(messagesLoader(locale, () => import(`src/shared/lang/${locale}.json`)))
+  const messages = use(
+    messagesLoader(locale, () => import(`src/shared/config/lang/${locale}.json`)),
+  )
   const adapterLocale = use(
     adapterLocaleLoader(locale, () => import(`date-fns/locale/${folder}/index.js`)),
   )
@@ -40,7 +42,7 @@ function App({
         <SnackbarProvider>
           <CacheProvider message={messages['common.error']}>
             <Hydrate state={dehydratedState}>
-              <DeviceContext.Provider value={device?.type}>
+              <DeviceProvider value={device?.type}>
                 <LocalizationProvider dateAdapter={AdapterDateFns} adapterLocale={adapterLocale}>
                   <ThemeProvider>
                     <SignInProvider providers={providers}>
@@ -63,7 +65,7 @@ function App({
                     <EventSocket />
                   </ThemeProvider>
                 </LocalizationProvider>
-              </DeviceContext.Provider>
+              </DeviceProvider>
             </Hydrate>
           </CacheProvider>
         </SnackbarProvider>

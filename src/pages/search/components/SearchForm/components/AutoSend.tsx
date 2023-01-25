@@ -1,4 +1,4 @@
-import useAutoSend from '@hooks/useAutoSend'
+import useAutoSend from '@lib/hooks/useAutoSend'
 
 function AutoSend() {
   useAutoSend()

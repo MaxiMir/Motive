@@ -5,7 +5,7 @@ import { HashMark, SearchParam } from '@entities/user'
 import { GoalDto } from '@entities/goal'
 import { MemberDto, OwnershipDto } from '@entities/member'
 import { TaskDto } from '@entities/task'
-import { getMidnight } from '@lib/date'
+import { getMidnight } from '@lib/utils/date'
 
 const SHOW_WEB_AFTER_DAYS = Number(process.env.NEXT_PUBLIC_SHOW_WEB_AFTER_DAYS || '')
 

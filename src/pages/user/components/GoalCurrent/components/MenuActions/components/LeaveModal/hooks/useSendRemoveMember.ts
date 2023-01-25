@@ -5,7 +5,7 @@ import { useSnackbar } from '@entities/snackbar'
 import { useUserContext } from '@pages/user/hooks'
 import { UserPageDto } from '@entities/user'
 import { MemberService } from '@entities/member'
-import useClient from '@hooks/useClient'
+import useClient from '@lib/hooks/useClient'
 
 const getNextState = (page: UserPageDto, goalId: number, memberId: number, clientPage: boolean) =>
   produce(page, (draft: Draft<UserPageDto>) => {

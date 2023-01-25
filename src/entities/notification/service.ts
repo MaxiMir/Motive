@@ -1,5 +1,5 @@
 import fetcher from '@shared/api/fetcher'
-import { getFilterParams, Filter } from '@helpers/url'
+import { getFilterParams, Filter } from '@lib/helpers/url'
 import { NotificationDto } from '@entities/notification/dto'
 
 export class NotificationService {

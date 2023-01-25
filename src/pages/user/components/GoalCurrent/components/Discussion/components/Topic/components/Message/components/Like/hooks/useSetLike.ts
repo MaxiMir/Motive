@@ -6,7 +6,7 @@ import { useMutateGoals } from '@pages/user/hooks'
 import { GoalDto } from '@entities/goal'
 import { TopicService, MessageDto, MessageType, TopicDto } from '@entities/topic'
 import { useOpenSignIn } from '@entities/signin'
-import useClient from '@hooks/useClient'
+import useClient from '@lib/hooks/useClient'
 
 export interface Options {
   message: MessageDto

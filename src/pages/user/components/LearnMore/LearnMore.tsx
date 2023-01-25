@@ -1,7 +1,7 @@
 import dynamic from 'next/dynamic'
 import { Button } from '@mui/material'
 import { styled } from '@mui/system'
-import useToggle from '@hooks/useToggle'
+import useToggle from '@lib/hooks/useToggle'
 import Icon from '@ui/Icon'
 import { useMessages } from './hooks/useMessages'
 

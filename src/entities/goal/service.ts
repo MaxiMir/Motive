@@ -1,7 +1,7 @@
 import fetcher from '@shared/api/fetcher'
-import { getFilterParams } from '@helpers/url'
+import { getFilterParams } from '@lib/helpers/url'
 import { CreateDayDto, DayCharacteristicUpdateDto } from '@entities/day'
-import { CreatedGoal, CreateGoalDto, GoalStageDto } from '@entities/goal'
+import { CreatedGoal, CreateGoalDto, GoalStageDto } from '@entities/goal/model/dto'
 
 export class GoalService {
   static create(dto: CreateGoalDto): Promise<CreatedGoal> {

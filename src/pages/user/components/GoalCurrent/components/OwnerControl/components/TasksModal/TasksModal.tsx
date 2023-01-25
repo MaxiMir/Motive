@@ -13,7 +13,7 @@ import {
   FormControl,
   Typography,
 } from '@mui/material'
-import { getMidnightISO, getTomorrowISO } from '@lib/date'
+import { getMidnightISO, getTomorrowISO } from '@lib/utils/date'
 import { useGoalContext } from '@pages/user/components/GoalCurrent/hooks/useGoalContext'
 import Icon from '@ui/Icon'
 import EmojiHeader from '@ui/EmojiHeader'

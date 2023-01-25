@@ -1,6 +1,6 @@
 import { useRouter } from 'next/router'
 import { useQuery } from 'react-query'
-import { parseUrl } from '@helpers/url'
+import { parseUrl } from '@lib/helpers/url'
 import { getUserPage } from '@entities/pages/api/getUserPage'
 
 export const useUserPage = () => {

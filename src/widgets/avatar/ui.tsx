@@ -3,14 +3,14 @@ import dynamic from 'next/dynamic'
 import { Menu, MenuItem } from '@mui/material'
 import { paperClasses } from '@mui/material/Paper'
 import { UserPageDto } from '@entities/user'
-import useToggle from '@hooks/useToggle'
+import useToggle from '@lib/hooks/useToggle'
 import AvatarStatus from '@components/AvatarStatus'
 import ListItem from '@ui/ListItem'
 import { useMessages } from './lib/hooks/useMessages'
 
 const LightBox = dynamic(() => import('@ui/LightBox'))
-const UpdateModal = dynamic(() => import('@features/update-avatar'))
-const DeleteModal = dynamic(() => import('@features/delete-avatar'))
+const UpdatingModal = dynamic(() => import('@features/updating-avatar'))
+const DeletingModal = dynamic(() => import('@features/deleting-avatar'))
 
 const SIZE = 175
 
@@ -102,8 +102,8 @@ function Avatar({ user, clientPage }: AvatarProps) {
         </MenuItem>
       </Menu>
       {openLightbox && <LightBox sources={sources} index={index} onClose={onCloseLightBox} />}
-      {editing && <UpdateModal userId={userId} onClose={toggleEditing} />}
-      {deleting && <DeleteModal onClose={toggleDeleting} />}
+      {editing && <UpdatingModal userId={userId} onClose={toggleEditing} />}
+      {deleting && <DeletingModal userId={userId} onClose={toggleDeleting} />}
     </>
   )
 }

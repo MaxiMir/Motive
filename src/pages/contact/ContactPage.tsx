@@ -1,7 +1,8 @@
 import { Button, Stack, Typography } from '@mui/material'
 import { styled } from '@mui/system'
 import { lightBlue, red, yellow } from '@mui/material/colors'
-import { openBlank } from '@helpers/window'
+import { openBlank } from '@lib/helpers/window'
+import Wallet from '@features/wallet'
 import Container from '@ui/Container'
 import EmojiHeader from '@ui/EmojiHeader'
 import Emoji from '@ui/Emoji'
@@ -13,7 +14,6 @@ import ETHSrc from 'public/images/svg/eth.svg'
 import LTCSrc from 'public/images/svg/ltc.svg'
 import DOGESrc from 'public/images/svg/doge.svg'
 import { useMessages } from './lib/hooks/useMessages'
-import Wallet from './ui/wallet/Wallet'
 
 const CRYPTOS = [
   { name: 'BTC', wallet: '1AmJZzeVH6wkJZ6a1FojJbHD1im9UZBar7', src: BTCSrc },

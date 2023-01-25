@@ -1,5 +1,5 @@
 import fetcher from '@shared/api/fetcher'
-import { Filter, getFilterParams } from '@helpers/url'
+import { Filter, getFilterParams } from '@lib/helpers/url'
 import { CreateMessageDto, TopicDto, UpdateMessageDto } from './model/dto'
 
 export class TopicService {

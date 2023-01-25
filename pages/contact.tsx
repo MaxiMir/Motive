@@ -3,7 +3,7 @@ import { getSession } from 'next-auth/react'
 import DeviceDetector from 'node-device-detector'
 import Layout from '@app/ui/Layout'
 import ContactPage from '@pages/contact'
-import useMetaTags from '@hooks/useMetaTags'
+import useMetaTags from '@lib/hooks/useMetaTags'
 
 function ContactRoute() {
   const metaTags = useMetaTags('contact')

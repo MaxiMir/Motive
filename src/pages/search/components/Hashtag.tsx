@@ -1,7 +1,7 @@
 import { useRouter } from 'next/router'
 import { Button, Stack, Typography } from '@mui/material'
 import { getHashtagHref } from '@entities/user'
-import useFormatNumber from '@hooks/useFormatNumber'
+import useFormatNumber from '@lib/hooks/useFormatNumber'
 
 interface HashtagProps {
   name: string

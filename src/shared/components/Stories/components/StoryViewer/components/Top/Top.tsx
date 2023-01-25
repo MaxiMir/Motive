@@ -1,7 +1,7 @@
 import Link from 'next/link'
 import { Box, IconButton, Stack, Typography } from '@mui/material'
 import { UserBaseDto, toHref } from '@entities/user'
-import useFormatDistance from '@hooks/useFormatDistance'
+import useFormatDistance from '@lib/hooks/useFormatDistance'
 import Icon from '@ui/Icon'
 import AvatarStatus from '@components/AvatarStatus'
 import { useMessages } from './hooks/useMessages'

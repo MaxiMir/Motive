@@ -1,7 +1,7 @@
 import { ReactNode } from 'react'
 import dynamic from 'next/dynamic'
 import { Badge, Stack } from '@mui/material'
-import useFormatDistance from '@hooks/useFormatDistance'
+import useFormatDistance from '@lib/hooks/useFormatDistance'
 import { Device } from '@entities/device'
 import TooltipArrow from '@ui/styled/TooltipArrow'
 import { useMessages } from './hooks/useMessages'

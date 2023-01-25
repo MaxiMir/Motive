@@ -1,6 +1,6 @@
 import dynamic from 'next/dynamic'
 import { List } from '@mui/material'
-import useClient from '@hooks/useClient'
+import useClient from '@lib/hooks/useClient'
 import TooltipArrow from '@ui/styled/TooltipArrow'
 import { useMessages } from './hooks/useMessages'
 

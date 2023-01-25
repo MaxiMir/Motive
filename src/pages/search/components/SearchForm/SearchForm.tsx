@@ -1,7 +1,7 @@
 import { Field, Form, FormikProvider } from 'formik'
 import { IconButton } from '@mui/material'
 import { styled } from '@mui/system'
-import { useSearchPageAsync } from '@entities/search'
+import { useSearchPageAsync } from '@entities/pages'
 import Input from '@ui/Input'
 import Icon from '@ui/Icon'
 import { useMessages } from './hooks/useMessages'

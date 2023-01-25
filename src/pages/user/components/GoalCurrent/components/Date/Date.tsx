@@ -1,5 +1,5 @@
 import { Stack } from '@mui/material'
-import useFormatDate from '@hooks/useFormatDate'
+import useFormatDate from '@lib/hooks/useFormatDate'
 import DatePart from './components/DatePart'
 
 interface DateProps {

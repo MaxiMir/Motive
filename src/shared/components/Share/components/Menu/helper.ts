@@ -1,5 +1,5 @@
-import { setSearchParams } from '@helpers/url'
-import { openBlank } from '@helpers/window'
+import { setSearchParams } from '@lib/helpers/url'
+import { openBlank } from '@lib/helpers/window'
 
 const HASHTAG = process.env.NEXT_PUBLIC_APP_NAME as string
 

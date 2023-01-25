@@ -1,4 +1,4 @@
-import useClient from '@hooks/useClient'
+import useClient from '@lib/hooks/useClient'
 
 export const useCheckOnClientPage = (id: number) => {
   const client = useClient()

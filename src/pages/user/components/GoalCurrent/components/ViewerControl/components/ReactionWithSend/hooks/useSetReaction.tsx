@@ -8,7 +8,7 @@ import { UserPageDto } from '@entities/user'
 import { GoalService } from '@entities/goal'
 import { DayCharacteristicName, DayCharacteristicUpdateDto } from '@entities/day'
 import { useOpenSignIn } from '@entities/signin'
-import useClient from '@hooks/useClient'
+import useClient from '@lib/hooks/useClient'
 
 const getNextState = (page: UserPageDto, { id, dayId, add, name }: DayCharacteristicUpdateDto) =>
   produce(page, (draft) => {

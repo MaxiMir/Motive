@@ -1,13 +1,6 @@
-import { UserBaseDto } from '@entities/user'
 import { DayDto } from '@entities/day'
 import { CreateTaskDto } from '@entities/task'
-import { MainCharacteristicName } from '@entities/characteristic'
-
-export type GoalCharacteristicName = MainCharacteristicName | 'members'
-
-export type GoalCharacteristicDto = Readonly<{
-  [k in GoalCharacteristicName]: number
-}>
+import { GoalCharacteristicDto, MainCharacteristicName } from '@entities/characteristic'
 
 export interface CreateGoalDto {
   readonly name: string
@@ -30,21 +23,27 @@ export interface GoalBaseDto {
   readonly stages: string[]
   readonly stage: number
   readonly characteristic: GoalCharacteristicDto
-  readonly owner: UserBaseDto
+  readonly owner: Owner
 }
 
-type ReactionsDto = Readonly<{
-  [key in MainCharacteristicName]: number[]
-}>
+interface Owner {
+  readonly id: number
+  readonly name: string
+  readonly nickname: string
+  readonly avatar?: string | null
+}
 
 export interface GoalDto extends GoalBaseDto {
-  readonly owner: UserBaseDto
   readonly day: DayDto
   readonly calendar: CalendarDto[]
   readonly reactions: ReactionsDto
   readonly inherited: boolean
   readonly completed: boolean
 }
+
+type ReactionsDto = Readonly<{
+  [key in MainCharacteristicName]: number[]
+}>
 
 export interface CreatedGoal extends Readonly<Omit<GoalDto, 'day'>> {
   readonly days: DayDto[]

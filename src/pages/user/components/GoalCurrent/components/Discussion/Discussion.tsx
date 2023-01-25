@@ -3,7 +3,7 @@ import { Stack } from '@mui/material'
 import { useAddMessage } from '@pages/user/hooks'
 import { UserBaseDto } from '@entities/user'
 import { TopicDto, MessageType } from '@entities/topic'
-import useClient from '@hooks/useClient'
+import useClient from '@lib/hooks/useClient'
 import { ListProps } from '@ui/List'
 import { useDiscussion } from './hooks/useDiscussion'
 

@@ -1,6 +1,6 @@
 import { useMemo } from 'react'
 import { QueryFunctionContext, useInfiniteQuery } from 'react-query'
-import { partialCheckOnLoadMore, partialGetNextPageParam } from '@helpers/partial'
+import { partialCheckOnLoadMore, partialGetNextPageParam } from '@lib/helpers/partial'
 import { SecondCharacteristicName } from '@entities/characteristic'
 import { getSubscription } from '@entities/subscription/api/getSubscription'
 

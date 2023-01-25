@@ -1,7 +1,7 @@
 import produce, { Draft } from 'immer'
 import { useIntl } from 'react-intl'
 import { useMutation } from 'react-query'
-import { clickOnElem } from '@helpers/document'
+import { clickOnElem } from '@lib/helpers/document'
 import { useMutateUserPage } from '@pages/user/hooks'
 import { useGoalContext } from '@pages/user/components/GoalCurrent/hooks/useGoalContext'
 import { useSnackbar } from '@entities/snackbar'

@@ -3,7 +3,7 @@ import TopOfTheDay from '@ui/icons/TopOfTheDay'
 import Search from '@ui/icons/Search'
 import Rating from '@ui/icons/Rating'
 import Following from '@ui/icons/Following'
-import { Route } from '@shared/consts/routes'
+import { Route } from '@shared/config/routes'
 
 export const useRoutes = () => {
   const { formatMessage } = useIntl()

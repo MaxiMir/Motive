@@ -10,7 +10,3 @@ export const tasksListSchema = array().of(
     date: date(),
   }),
 )
-
-export const tasksSchema = object({
-  tasks: tasksListSchema,
-})

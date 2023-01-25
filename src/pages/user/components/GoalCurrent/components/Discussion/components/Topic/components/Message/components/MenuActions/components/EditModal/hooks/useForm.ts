@@ -2,8 +2,9 @@ import produce from 'immer'
 import { useIntl } from 'react-intl'
 import { InfiniteData, useMutation, useQueryClient } from 'react-query'
 import { useFormik } from 'formik'
+import { object, string } from 'yup'
 import { useSnackbar } from '@entities/snackbar'
-import { MessageDto, TopicDto, TopicService, topicSchema } from '@entities/topic'
+import { MessageDto, TopicDto, TopicService } from '@entities/topic'
 
 const getNextState = (discussion: InfiniteData<TopicDto[]>, message: MessageDto) => {
   const { id, parentId, text } = message
@@ -46,7 +47,9 @@ export const useForm = (initialValues: MessageDto, onSuccess: () => void) => {
 
   return useFormik<MessageDto>({
     initialValues,
-    validationSchema: topicSchema,
+    validationSchema: object({
+      text: string().required('The message is needed').min(5).max(1000),
+    }),
     async onSubmit(data) {
       await mutateAsync(data)
     },

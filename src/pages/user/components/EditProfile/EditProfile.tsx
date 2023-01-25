@@ -1,5 +1,5 @@
 import dynamic from 'next/dynamic'
-import useToggle from '@hooks/useToggle'
+import useToggle from '@lib/hooks/useToggle'
 import Icon from '@ui/Icon'
 import GreyButton from '@ui/styled/GreyButton'
 import { useMessages } from './hooks/useMessages'

@@ -2,7 +2,7 @@ import { useRouter } from 'next/router'
 import Link from 'next/link'
 import { Container, Box, IconButton, Stack } from '@mui/material'
 import TooltipArrow from '@ui/styled/TooltipArrow'
-import ProfileLink from '@features/open-profile'
+import OpeningProfile from '@features/opening-profile'
 import { useRoutes } from './lib/hooks/useRoutes'
 
 function Footer() {
@@ -33,7 +33,7 @@ function Footer() {
               </IconButton>
             </TooltipArrow>
           ))}
-          <ProfileLink />
+          <OpeningProfile />
         </Stack>
       </Container>
     </Box>

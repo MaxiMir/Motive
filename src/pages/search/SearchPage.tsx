@@ -1,6 +1,6 @@
 import dynamic from 'next/dynamic'
 import { Grid, Typography, Stack } from '@mui/material'
-import { HashtagDto } from '@entities/search'
+import { HashtagDto } from '@entities/pages'
 import { UserDto } from '@entities/user'
 import { GoalDto } from '@entities/goal'
 import EmojiHeader from '@ui/EmojiHeader'

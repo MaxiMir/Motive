@@ -1,4 +1,4 @@
-import { toShortString } from '@helpers/string'
+import { toShortString } from '@lib/helpers/string'
 
 export const getBreakCount = (text: string) => text.split('\n').length
 

@@ -1,5 +1,5 @@
 import Layout from '@app/ui/Layout'
-import useMetaTags from '@hooks/useMetaTags'
+import useMetaTags from '@lib/hooks/useMetaTags'
 import Error from '@components/Error'
 
 function Page404() {

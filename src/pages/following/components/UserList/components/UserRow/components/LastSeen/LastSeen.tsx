@@ -1,5 +1,5 @@
 import { Typography } from '@mui/material'
-import useFormatDistance from '@lib/hooks/useFormatDistance'
+import useFormatDistance from '@shared/lib/hooks/useFormatDistance'
 import { useMessages } from './hooks/useMessages'
 
 interface LastSeenProps {

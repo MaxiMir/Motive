@@ -2,13 +2,13 @@ import { MouseEvent, useId, useState } from 'react'
 import dynamic from 'next/dynamic'
 import { Menu, MenuItem } from '@mui/material'
 import { paperClasses } from '@mui/material/Paper'
+import AvatarStatus from '@features/avatar-status'
 import { UserPageDto } from '@entities/user'
-import useToggle from '@lib/hooks/useToggle'
-import AvatarStatus from '@components/AvatarStatus'
-import ListItem from '@ui/ListItem'
+import useToggle from '@shared/lib/hooks/useToggle'
+import ListItem from '@shared/ui/ListItem'
 import { useMessages } from './lib/hooks/useMessages'
 
-const LightBox = dynamic(() => import('@ui/LightBox'))
+const LightBox = dynamic(() => import('@shared/ui/LightBox'))
 const UpdatingModal = dynamic(() => import('@features/updating-avatar'))
 const DeletingModal = dynamic(() => import('@features/deleting-avatar'))
 

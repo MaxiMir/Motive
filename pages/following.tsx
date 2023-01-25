@@ -5,7 +5,7 @@ import DeviceDetector from 'node-device-detector'
 import Layout from '@app/ui/Layout'
 import FollowingPage from '@pages/following'
 import { getFollowingPage, useFollowingPage } from '@entities/pages'
-import useMetaTags from '@lib/hooks/useMetaTags'
+import useMetaTags from '@shared/lib/hooks/useMetaTags'
 import { Route } from '@shared/config/routes'
 
 function FollowingRoute() {

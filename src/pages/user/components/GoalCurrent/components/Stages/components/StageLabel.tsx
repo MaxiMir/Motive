@@ -1,5 +1,5 @@
 import { StepLabel, Typography } from '@mui/material'
-import Icon from '@ui/Icon'
+import Icon from '@shared/ui/Icon'
 
 interface StageLabelProps {
   index: number

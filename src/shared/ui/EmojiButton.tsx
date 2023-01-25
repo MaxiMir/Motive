@@ -2,9 +2,9 @@ import dynamic from 'next/dynamic'
 import { Button } from '@mui/material'
 import { buttonClasses } from '@mui/material/Button'
 import { blue } from '@mui/material/colors'
-import useFormatNumber from '@lib/hooks/useFormatNumber'
-import Emoji, { EmojiName } from '@ui/Emoji'
-import TooltipArrow from '@ui/styled/TooltipArrow'
+import useFormatNumber from '@shared/lib/hooks/useFormatNumber'
+import Emoji, { EmojiName } from '@shared/ui/Emoji'
+import TooltipArrow from '@shared/ui/styled/TooltipArrow'
 
 const CircularProgress = dynamic(() => import('@mui/material/CircularProgress'))
 

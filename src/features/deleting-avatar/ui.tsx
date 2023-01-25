@@ -1,7 +1,7 @@
 import { Typography } from '@mui/material'
-import Modal from '@ui/Modal'
-import SubmitButton from '@ui/SubmitButton'
-import CancelButton from '@ui/CancelButton'
+import Modal from '@shared/ui/Modal'
+import SubmitButton from '@shared/ui/SubmitButton'
+import CancelButton from '@shared/ui/CancelButton'
 import { useMessages } from './lib/hooks/useMessages'
 import { useDeleteAvatar } from './lib/hooks/useDeleteAvatar'
 

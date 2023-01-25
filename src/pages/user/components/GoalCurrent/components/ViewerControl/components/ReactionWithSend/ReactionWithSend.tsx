@@ -1,6 +1,6 @@
 import { DayCharacteristicName } from '@app/model/day'
 import { useGoalContext } from '@pages/user/components/GoalCurrent/hooks/useGoalContext'
-import EmojiButton from '@ui/EmojiButton'
+import EmojiButton from '@shared/ui/EmojiButton'
 import { useMessages } from './hooks/useMessages'
 import { useSetReaction } from './hooks/useSetReaction'
 import { checkOnActive, getCount } from './helper'

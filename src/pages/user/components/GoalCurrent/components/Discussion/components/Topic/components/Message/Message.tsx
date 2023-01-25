@@ -1,16 +1,16 @@
 import dynamic from 'next/dynamic'
 import Link from 'next/link'
 import { Box, Stack, Typography } from '@mui/material'
+import AvatarStatus from '@features/avatar-status'
 import { toHref } from '@entities/user'
 import { MessageDto } from '@entities/topic'
-import useFormatDistance from '@lib/hooks/useFormatDistance'
-import AvatarStatus from '@components/AvatarStatus'
+import useFormatDistance from '@shared/lib/hooks/useFormatDistance'
 import { useMessages } from './hooks/useMessages'
 import MenuActions from './components/MenuActions'
 import Like from './components/Like'
 
 const Button = dynamic(() => import('@mui/material/Button'))
-const Markdown = dynamic(() => import('@components/Markdown'))
+const Markdown = dynamic(() => import('@features/markdown'))
 const SupportSign = dynamic(() => import('./components/SupportSign'))
 
 interface MessageProps {

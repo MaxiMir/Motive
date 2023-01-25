@@ -1,4 +1,4 @@
-import { setSearchParams } from '@lib/helpers/url'
+import { setSearchParams } from '@shared/lib/helpers/url'
 import { Route } from '@shared/config/routes'
 
 export const enum SearchParam {

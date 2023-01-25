@@ -1,5 +1,5 @@
 import { ReactNode } from 'react'
-import InView from '@ui/InView'
+import InView from '@shared/ui/InView'
 import { useIncreaseViews } from './hooks/useIncreaseViews'
 
 interface ViewTriggerProps {

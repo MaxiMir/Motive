@@ -1,4 +1,4 @@
-import Emoji, { EmojiName } from '@ui/Emoji'
+import Emoji, { EmojiName } from '@shared/ui/Emoji'
 
 interface SpinIconProps {
   name: EmojiName

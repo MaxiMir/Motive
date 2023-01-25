@@ -8,7 +8,7 @@ import { getBorders } from './helper'
 import OpenPickerIcon from './components/OpenPickerIcon'
 import InputNotEditable from './components/InputNotEditable'
 
-const Emoji = dynamic(() => import('@ui/Emoji'))
+const Emoji = dynamic(() => import('@shared/ui/Emoji'))
 
 interface CalendarProps {
   isLoading: boolean

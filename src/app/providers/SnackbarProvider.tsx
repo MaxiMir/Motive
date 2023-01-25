@@ -2,7 +2,7 @@ import { ReactNode, useMemo, useState } from 'react'
 import dynamic from 'next/dynamic'
 import { SnackbarState, SnackbarContext } from '@entities/snackbar'
 
-const Snackbar = dynamic(() => import('@ui/Snackbar'))
+const Snackbar = dynamic(() => import('@shared/ui/Snackbar'))
 
 interface SignInProviderProps {
   children: ReactNode

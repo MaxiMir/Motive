@@ -1,7 +1,7 @@
 import { useRouter } from 'next/router'
 import { Box } from '@mui/material'
+import AvatarStatus from '@features/avatar-status'
 import { ClientDto, toHref } from '@entities/user'
-import AvatarStatus from '@components/AvatarStatus'
 
 interface UserProps {
   client: ClientDto

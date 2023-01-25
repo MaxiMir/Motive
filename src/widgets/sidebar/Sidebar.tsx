@@ -12,10 +12,10 @@ import {
   ListItemText,
   Stack,
 } from '@mui/material'
-import useToggle from '@lib/hooks/useToggle'
-import useClient from '@lib/hooks/useClient'
-import Icon from '@ui/Icon'
-import TooltipArrow from '@ui/styled/TooltipArrow'
+import useToggle from '@shared/lib/hooks/useToggle'
+import useClient from '@shared/lib/hooks/useClient'
+import Icon from '@shared/ui/Icon'
+import TooltipArrow from '@shared/ui/styled/TooltipArrow'
 import { useRoutes } from './lib/hooks/useRoutes'
 import { useMessages } from './lib/hooks/useMessages'
 import ProfileLink from './ui/profileLink/ProfileLink'

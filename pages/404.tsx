@@ -1,4 +1,4 @@
-import useMetaTags from '@lib/hooks/useMetaTags'
+import useMetaTags from '@shared/lib/hooks/useMetaTags'
 import Layout from '@app/ui/Layout'
 import Error from '@widgets/error'
 

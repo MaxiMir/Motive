@@ -1,5 +1,5 @@
 import fetcher from '@shared/api/fetcher'
-import { Filter, getFilterParams } from '@lib/helpers/url'
+import { Filter, getFilterParams } from '@shared/lib/helpers/url'
 import { UserDto } from '@entities/user'
 import { SecondCharacteristicName } from '@app//model/characteristic'
 

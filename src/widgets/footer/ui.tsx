@@ -1,7 +1,7 @@
 import { useRouter } from 'next/router'
 import Link from 'next/link'
 import { Container, Box, IconButton, Stack } from '@mui/material'
-import TooltipArrow from '@ui/styled/TooltipArrow'
+import TooltipArrow from '@shared/ui/styled/TooltipArrow'
 import OpeningProfile from '@features/opening-profile'
 import { useRoutes } from './lib/hooks/useRoutes'
 

@@ -4,16 +4,16 @@ import { Field, Form, FormikProvider } from 'formik'
 import { IconButton, Stack } from '@mui/material'
 import { styled } from '@mui/system'
 import { blue } from '@mui/material/colors'
+import AvatarStatus from '@features/avatar-status'
 import { UserBaseDto, ClientDto, toHref } from '@entities/user'
 import { TopicDto, MessageType } from '@entities/topic'
-import Input from '@ui/Input'
-import AvatarStatus from '@components/AvatarStatus'
-import TooltipArrow from '@ui/styled/TooltipArrow'
+import Input from '@shared/ui/Input'
+import TooltipArrow from '@shared/ui/styled/TooltipArrow'
 import { useMessages } from './hooks/useMessages'
 import { useForm } from './hooks/useForm'
 
 const CircularProgress = dynamic(() => import('@mui/material/CircularProgress'))
-const Icon = dynamic(() => import('@ui/Icon'))
+const Icon = dynamic(() => import('@shared/ui/Icon'))
 
 interface UserInputProps {
   user: ClientDto | UserBaseDto

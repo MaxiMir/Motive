@@ -1,12 +1,12 @@
 import { MouseEvent, useId, useState } from 'react'
 import dynamic from 'next/dynamic'
 import { Box, IconButton, MenuItem, Menu } from '@mui/material'
-import useClient from '@lib/hooks/useClient'
-import useToggle from '@lib/hooks/useToggle'
+import useClient from '@shared/lib/hooks/useClient'
+import useToggle from '@shared/lib/hooks/useToggle'
 import { MessageDto } from '@entities/topic'
-import ListItem from '@ui/ListItem'
-import Icon from '@ui/Icon'
-import TooltipArrow from '@ui/styled/TooltipArrow'
+import ListItem from '@shared/ui/ListItem'
+import Icon from '@shared/ui/Icon'
+import TooltipArrow from '@shared/ui/styled/TooltipArrow'
 import { useMessages } from './hooks/useMessages'
 
 const Report = dynamic(() => import('@features/creating-report'))

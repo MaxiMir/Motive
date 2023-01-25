@@ -4,8 +4,8 @@ import { ToggleButtonGroup, ToggleButton, Typography, Stack, PaletteMode } from 
 import { styled } from '@mui/system'
 import { usePaletteModeContext } from '@entities/theme'
 import { useSetLocale, Locale } from '@entities/locale'
-import Modal from '@ui/Modal'
-import Emoji from '@ui/Emoji'
+import Modal from '@shared/ui/Modal'
+import Emoji from '@shared/ui/Emoji'
 import { useMessages } from './hooks/useMessages'
 
 interface SettingsModalProps {

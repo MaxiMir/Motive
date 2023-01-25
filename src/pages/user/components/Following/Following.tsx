@@ -1,5 +1,5 @@
 import dynamic from 'next/dynamic'
-import Icon from '@ui/Icon'
+import Icon from '@shared/ui/Icon'
 import { Button } from '@mui/material'
 import { blue } from '@mui/material/colors'
 import { useUserContext } from '@pages/user/hooks'

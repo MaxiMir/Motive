@@ -1,9 +1,9 @@
 import dynamic from 'next/dynamic'
-import GradientButton from '@ui/GradientButton'
-import { EmojiName } from '@ui/Emoji'
+import GradientButton from '@shared/ui/GradientButton'
+import { EmojiName } from '@shared/ui/Emoji'
 
 const CircularProgress = dynamic(() => import('@mui/material/CircularProgress'))
-const Emoji = dynamic(() => import('@ui/Emoji'))
+const Emoji = dynamic(() => import('@shared/ui/Emoji'))
 
 interface SubmitButtonProps {
   emoji: EmojiName

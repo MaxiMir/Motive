@@ -1,7 +1,7 @@
 import dynamic from 'next/dynamic'
 import { SignInOptions } from 'next-auth/react'
 import { Stack } from '@mui/material'
-import Modal from '@ui/Modal'
+import Modal from '@shared/ui/Modal'
 import appleSrc from 'public/images/svg/apple.svg'
 import metaSrc from 'public/images/svg/meta.svg'
 import githubSrc from 'public/images/svg/github.svg'

@@ -1,7 +1,7 @@
 import produce from 'immer'
 import { useIntl } from 'react-intl'
 import { InfiniteData, useMutation, useQueryClient } from 'react-query'
-import useClient from '@lib/hooks/useClient'
+import useClient from '@shared/lib/hooks/useClient'
 import { useSnackbar } from '@entities/snackbar'
 import { useMutateGoals } from '@pages/user/hooks'
 import { GoalDto } from '@entities/goal'

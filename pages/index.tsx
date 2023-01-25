@@ -4,7 +4,7 @@ import DeviceDetector from 'node-device-detector'
 import Layout from '@app/ui/Layout'
 import HomePage from '@pages/home'
 import { ClientDto } from '@entities/user'
-import useMetaTags from '@lib/hooks/useMetaTags'
+import useMetaTags from '@shared/lib/hooks/useMetaTags'
 
 function HomeRoute() {
   const metaTags = useMetaTags('home')

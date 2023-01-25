@@ -1,5 +1,5 @@
 import { useRouter } from 'next/router'
-import { setSearchParams } from '@lib/helpers/url'
+import { setSearchParams } from '@shared/lib/helpers/url'
 import { SearchParam } from '@entities/user'
 import { GoalDto } from '@entities/goal'
 

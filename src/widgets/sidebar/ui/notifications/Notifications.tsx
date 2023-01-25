@@ -1,7 +1,7 @@
 import dynamic from 'next/dynamic'
 import { useNotifications, NotificationBadge } from '@entities/notification'
-import useToggle from '@lib/hooks/useToggle'
-import TooltipArrow from '@ui/styled/TooltipArrow'
+import useToggle from '@shared/lib/hooks/useToggle'
+import TooltipArrow from '@shared/ui/styled/TooltipArrow'
 import { List, ListItem, ListItemIcon, ListItemText } from '@mui/material'
 import { useMessages } from './lib/hooks/useMessages'
 

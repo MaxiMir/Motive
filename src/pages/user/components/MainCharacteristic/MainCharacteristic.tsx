@@ -3,7 +3,7 @@ import dynamic from 'next/dynamic'
 import { Button, Stack, Typography } from '@mui/material'
 import { useTheme } from '@mui/material/styles'
 import { MainCharacteristicName } from '@app/model/characteristic'
-import Circle from '@ui/Circle'
+import Circle from '@shared/ui/Circle'
 import { useMessages } from './hooks/useMessages'
 import { getOffset, RADIUS } from './helper'
 

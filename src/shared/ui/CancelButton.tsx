@@ -1,5 +1,5 @@
-import Emoji from '@ui/Emoji'
-import GradientButton from '@ui/GradientButton'
+import Emoji from '@shared/ui/Emoji'
+import GradientButton from '@shared/ui/GradientButton'
 import { useIntl } from 'react-intl'
 
 interface ActionCloseProps {

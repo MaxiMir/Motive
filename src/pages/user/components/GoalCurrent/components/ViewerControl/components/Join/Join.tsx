@@ -1,8 +1,8 @@
 import dynamic from 'next/dynamic'
-import useClient from '@lib/hooks/useClient'
-import useToggle from '@lib/hooks/useToggle'
+import useClient from '@shared/lib/hooks/useClient'
+import useToggle from '@shared/lib/hooks/useToggle'
 import { useOpenSignIn } from '@entities/signin'
-import BlueButton from '@ui/styled/BlueButton'
+import BlueButton from '@shared/ui/styled/BlueButton'
 import { useMessages } from './hooks/useMessages'
 
 const JoinModal = dynamic(() => import('./components/JoinModal'))

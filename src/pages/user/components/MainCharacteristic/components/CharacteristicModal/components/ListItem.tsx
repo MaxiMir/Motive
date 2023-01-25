@@ -1,5 +1,5 @@
 import { Stack, Typography } from '@mui/material'
-import Emoji from '@ui/Emoji'
+import Emoji from '@shared/ui/Emoji'
 
 interface ListItemProps {
   name: JSX.Element | string

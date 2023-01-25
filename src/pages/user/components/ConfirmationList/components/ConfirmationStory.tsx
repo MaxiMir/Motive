@@ -1,12 +1,12 @@
 import dynamic from 'next/dynamic'
 import { Box, Button, Stack, Typography } from '@mui/material'
+import useTryFullScreen from '@shared/lib/hooks/useTryFullScreen'
+import useToggle from '@shared/lib/hooks/useToggle'
 import { useUserContext } from '@pages/user/hooks'
-import useTryFullScreen from '@lib/hooks/useTryFullScreen'
-import useToggle from '@lib/hooks/useToggle'
+import AvatarStatus from '@features/avatar-status'
 import { ConfirmationDto } from '@app/model/confirmation'
-import AvatarStatus from '@components/AvatarStatus'
 
-const Stories = dynamic(() => import('@components/Stories'))
+const Stories = dynamic(() => import('@features/stories'))
 
 interface ConfirmationStoryProps {
   confirmation: ConfirmationDto

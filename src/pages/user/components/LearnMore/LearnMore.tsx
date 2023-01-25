@@ -1,8 +1,8 @@
 import dynamic from 'next/dynamic'
 import { Button } from '@mui/material'
 import { styled } from '@mui/system'
-import useToggle from '@lib/hooks/useToggle'
-import Icon from '@ui/Icon'
+import useToggle from '@shared/lib/hooks/useToggle'
+import Icon from '@shared/ui/Icon'
 import { useMessages } from './hooks/useMessages'
 
 const InfoModal = dynamic(() => import('./components/InfoModal'))

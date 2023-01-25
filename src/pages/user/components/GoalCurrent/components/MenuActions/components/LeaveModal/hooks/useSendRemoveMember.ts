@@ -1,7 +1,7 @@
 import produce, { Draft } from 'immer'
 import { useIntl } from 'react-intl'
 import { useMutation, useQueryClient } from 'react-query'
-import useClient from '@lib/hooks/useClient'
+import useClient from '@shared/lib/hooks/useClient'
 import { useSnackbar } from '@entities/snackbar'
 import { useUserContext } from '@pages/user/hooks'
 import { UserPageDto } from '@entities/user'

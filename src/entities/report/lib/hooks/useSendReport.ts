@@ -1,6 +1,6 @@
 import { useIntl } from 'react-intl'
 import { useMutation } from 'react-query'
-import useClient from '@lib/hooks/useClient'
+import useClient from '@shared/lib/hooks/useClient'
 import { useSnackbar } from '@entities/snackbar'
 import { ReportType } from '@entities/report/model/dto'
 import { useOpenSignIn } from '@entities/signin'

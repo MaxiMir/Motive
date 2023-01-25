@@ -2,11 +2,11 @@ import dynamic from 'next/dynamic'
 import Link from 'next/link'
 import { Stack, Typography } from '@mui/material'
 import { MAIN_CHARACTERISTICS, SecondCharacteristicName } from '@app/model/characteristic'
+import AvatarStatus from '@features/avatar-status'
 import { UserDto, toHref } from '@entities/user'
 import { CharacteristicUser } from '@entities/characteristic'
-import AvatarStatus from '@components/AvatarStatus'
 
-const InView = dynamic(() => import('@ui/InView'))
+const InView = dynamic(() => import('@shared/ui/InView'))
 
 const CHARACTERISTICS = [...MAIN_CHARACTERISTICS, SecondCharacteristicName.Completed]
 

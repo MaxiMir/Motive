@@ -1,5 +1,5 @@
 import fetcher from '@shared/api/fetcher'
-import { Filter, getFilterParams } from '@lib/helpers/url'
+import { Filter, getFilterParams } from '@shared/lib/helpers/url'
 import { TopicDto } from '@entities/topic/model/dto'
 
 export const getTopics = (filter: Filter): Promise<TopicDto[]> => {

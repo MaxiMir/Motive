@@ -1,5 +1,5 @@
-import Emoji from '@ui/Emoji'
-import TooltipArrow from '@ui/styled/TooltipArrow'
+import Emoji from '@shared/ui/Emoji'
+import TooltipArrow from '@shared/ui/styled/TooltipArrow'
 import { useMessages } from './hooks/useMessages'
 
 function CompletedByOthers() {

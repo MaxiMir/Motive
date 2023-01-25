@@ -1,9 +1,9 @@
 import Image, { ImageProps } from 'next/image'
 import { Box, IconButton, Stack, Typography } from '@mui/material'
-import { copyText } from '@lib/helpers/navigator'
+import { copyText } from '@shared/lib/helpers/navigator'
 import { useSnackbar } from '@entities/snackbar'
-import Icon from '@ui/Icon'
-import TooltipArrow from '@ui/styled/TooltipArrow'
+import Icon from '@shared/ui/Icon'
+import TooltipArrow from '@shared/ui/styled/TooltipArrow'
 import { useMessages } from './lib/hooks/useMessages'
 
 interface WalletProps {

@@ -3,7 +3,7 @@ import { Stack } from '@mui/material'
 import { TaskDto } from '@entities/task'
 import { checkOnCompletedByOthers } from './helper'
 
-const Markdown = dynamic(() => import('@components/Markdown'))
+const Markdown = dynamic(() => import('@features/markdown'))
 const CompletedByOthers = dynamic(() => import('./components/CompletedByOthers'))
 
 interface TaskLabelProps {

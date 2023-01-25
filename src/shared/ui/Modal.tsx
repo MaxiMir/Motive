@@ -10,8 +10,8 @@ import {
   DialogProps,
 } from '@mui/material'
 import { backdropClasses } from '@mui/material/Backdrop'
-import Scrollbar from '@ui/Scrollbar'
-import Icon from '@ui/Icon'
+import Scrollbar from '@shared/ui/Scrollbar'
+import Icon from '@shared/ui/Icon'
 
 const DialogActions = dynamic(() => import('@mui/material/DialogActions'))
 const Stack = dynamic(() => import('@mui/material/Stack'))

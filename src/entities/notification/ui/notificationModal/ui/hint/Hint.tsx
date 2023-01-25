@@ -1,5 +1,5 @@
 import { Alert, Button, Stack } from '@mui/material'
-import Icon from '@ui/Icon'
+import Icon from '@shared/ui/Icon'
 import { useMessages } from './lib/hooks/useMessages'
 
 interface HintProps {

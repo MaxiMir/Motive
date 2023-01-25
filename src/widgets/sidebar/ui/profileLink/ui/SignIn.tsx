@@ -1,6 +1,6 @@
 import { ListItem, ListItemIcon, ListItemText } from '@mui/material'
 import { useOpenSignIn } from '@entities/signin'
-import Icon from '@ui/Icon'
+import Icon from '@shared/ui/Icon'
 
 interface SignInProps {
   primary: string

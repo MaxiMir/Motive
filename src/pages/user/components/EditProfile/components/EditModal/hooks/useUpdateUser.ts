@@ -3,7 +3,7 @@ import { useRouter } from 'next/router'
 import { useIntl } from 'react-intl'
 import { useMutation } from 'react-query'
 import { useFormik } from 'formik'
-import { getCurrentSearchParams, setSearchParams } from '@lib/helpers/url'
+import { getCurrentSearchParams, setSearchParams } from '@shared/lib/helpers/url'
 import { useMutateUserPage, useUserContext } from '@pages/user/hooks'
 import {
   UserPageDto,

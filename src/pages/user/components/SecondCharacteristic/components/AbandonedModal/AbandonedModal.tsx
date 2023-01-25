@@ -1,9 +1,9 @@
 import Image from 'next/image'
 import { Box, Stack, Typography } from '@mui/material'
 import { useUserContext } from '@pages/user/hooks'
-import useShowProgress from '@lib/hooks/useShowProgress'
-import Modal from '@ui/Modal'
-import OldPittRules from '@components/OldPitt/OldPittRules/OldPittRules'
+import OldPittRules from '@features/old-pitt-rules'
+import useShowProgress from '@shared/lib/hooks/useShowProgress'
+import Modal from '@shared/ui/Modal'
 import webSrc from 'public/images/svg/web.svg'
 import { useMessages } from './hooks/useMessages'
 

@@ -3,10 +3,10 @@ import dynamic from 'next/dynamic'
 import { signOut } from 'next-auth/react'
 import { List, ListItem, ListItemIcon, ListItemText, Menu } from '@mui/material'
 import { paperClasses } from '@mui/material/Paper'
-import useClient from '@lib/hooks/useClient'
-import useToggle from '@lib/hooks/useToggle'
+import useClient from '@shared/lib/hooks/useClient'
+import useToggle from '@shared/lib/hooks/useToggle'
 import { usePaletteModeContext } from '@entities/theme'
-import Icon from '@ui/Icon'
+import Icon from '@shared/ui/Icon'
 import { useMessages } from './lib/hooks/useMessages'
 
 const LanguageMenu = dynamic(() => import('./ui/languageMenu/LanguageMenu'))

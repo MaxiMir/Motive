@@ -1,5 +1,5 @@
 import { useQuery } from 'react-query'
-import useClient from '@lib/hooks/useClient'
+import useClient from '@shared/lib/hooks/useClient'
 import { getNotifications } from '@entities/notification/api/getNotifications'
 
 export const useNotifications = () => {

@@ -1,16 +1,16 @@
 import { useState, MouseEvent, useId } from 'react'
 import dynamic from 'next/dynamic'
 import { IconButton, Menu, MenuItem } from '@mui/material'
-import { share } from '@lib/helpers/navigator'
+import { share } from '@shared/lib/helpers/navigator'
 import { UserDto, toHref } from '@entities/user'
 import { useRemoveFollowing } from '@entities/subscription'
-import useToggle from '@lib/hooks/useToggle'
-import ListItem from '@ui/ListItem'
-import Icon from '@ui/Icon'
-import TooltipArrow from '@ui/styled/TooltipArrow'
+import useToggle from '@shared/lib/hooks/useToggle'
+import ListItem from '@shared/ui/ListItem'
+import Icon from '@shared/ui/Icon'
+import TooltipArrow from '@shared/ui/styled/TooltipArrow'
 import { useMessages } from './hooks/useMessages'
 
-const Share = dynamic(() => import('@components/Share'))
+const Share = dynamic(() => import('@features/share'))
 
 interface MenuActionsProps {
   user: UserDto

@@ -1,7 +1,7 @@
 import produce from 'immer'
 import { ParsedUrlQuery } from 'querystring'
 import { differenceInCalendarDays } from 'date-fns'
-import { getMidnight } from '@lib/utils/date'
+import { getMidnight } from '@shared/lib/utils/date'
 import { MemberDto, OwnershipDto } from '@app/model/member'
 import { HashMark, SearchParam } from '@entities/user'
 import { GoalDto } from '@entities/goal'

@@ -2,7 +2,7 @@ import { Grid, Box, Typography } from '@mui/material'
 import { blueGrey } from '@mui/material/colors'
 import { MainCharacteristicName } from '@app/model/characteristic'
 import { UserDto } from '@entities/user'
-import List from '@ui/List'
+import List from '@shared/ui/List'
 import { useMessages } from './hooks/useMessages'
 import UserRow from './components/UserRow'
 

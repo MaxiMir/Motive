@@ -29,27 +29,6 @@
       }
     ],
     "paths": {
-      "@components/*": [
-        "src/shared/components/*"
-      ],
-      "@ui/*": [
-        "src/shared/ui/*"
-      ],
-      "@layout": [
-        "src/shared/layout"
-      ],
-      "@hooks/*": [
-        "src/shared/hooks/*"
-      ],
-      "@lib/*": [
-        "src/shared/lib/*"
-      ],
-      "@helpers/*": [
-        "src/shared/helpers/*"
-      ],
-      "@href": [
-        "src/shared/href"
-      ],
       "@app/*": [
         "src/app/*"
       ],

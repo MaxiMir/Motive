@@ -1,4 +1,4 @@
-import List from '@ui/List'
+import List from '@shared/ui/List'
 import { NotificationDto } from '@entities/notification/model/dto'
 import Notification from './ui/notification/Notification'
 

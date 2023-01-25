@@ -1,8 +1,8 @@
 import dynamic from 'next/dynamic'
 import { IconButton } from '@mui/material'
 import { useNotifications, NotificationBadge } from '@entities/notification'
-import useToggle from '@lib/hooks/useToggle'
-import TooltipArrow from '@ui/styled/TooltipArrow'
+import useToggle from '@shared/lib/hooks/useToggle'
+import TooltipArrow from '@shared/ui/styled/TooltipArrow'
 import { useMessages } from './lib/hooks/useMessages'
 
 const NotificationModal = dynamic(() => import('@entities/notification'))

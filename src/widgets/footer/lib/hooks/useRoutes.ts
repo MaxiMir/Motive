@@ -1,8 +1,8 @@
 import { useIntl } from 'react-intl'
-import TopOfTheDay from '@ui/icons/TopOfTheDay'
-import Search from '@ui/icons/Search'
-import Rating from '@ui/icons/Rating'
-import Following from '@ui/icons/Following'
+import TopOfTheDay from '@shared/ui/icons/TopOfTheDay'
+import Search from '@shared/ui/icons/Search'
+import Rating from '@shared/ui/icons/Rating'
+import Following from '@shared/ui/icons/Following'
 import { Route } from '@shared/config/routes'
 
 export const useRoutes = () => {

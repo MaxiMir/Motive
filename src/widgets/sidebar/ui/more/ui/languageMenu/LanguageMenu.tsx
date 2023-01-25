@@ -2,8 +2,8 @@ import { ListItemIcon, ListItemText, Menu, MenuItem } from '@mui/material'
 import { paperClasses } from '@mui/material/Paper'
 import { Locale, useSetLocale } from '@entities/locale'
 import { useIntl } from 'react-intl'
-import Emoji from '@ui/Emoji'
-import ListItem from '@ui/ListItem'
+import Emoji from '@shared/ui/Emoji'
+import ListItem from '@shared/ui/ListItem'
 import { useMessages } from './lib/hooks/useMessages'
 
 const LANGUAGES = [

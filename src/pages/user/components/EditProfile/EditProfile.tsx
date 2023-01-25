@@ -1,7 +1,7 @@
 import dynamic from 'next/dynamic'
-import useToggle from '@lib/hooks/useToggle'
-import Icon from '@ui/Icon'
-import GreyButton from '@ui/styled/GreyButton'
+import useToggle from '@shared/lib/hooks/useToggle'
+import Icon from '@shared/ui/Icon'
+import GreyButton from '@shared/ui/styled/GreyButton'
 import { useMessages } from './hooks/useMessages'
 
 const EditModal = dynamic(() => import('./components/EditModal'))

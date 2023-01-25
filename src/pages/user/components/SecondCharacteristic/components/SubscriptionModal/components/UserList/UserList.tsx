@@ -1,5 +1,5 @@
 import { UserDto } from '@entities/user'
-import List from '@ui/List'
+import List from '@shared/ui/List'
 import UserRow from './components/UserRow'
 
 interface UserListProps {

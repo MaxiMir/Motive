@@ -6,7 +6,7 @@ import Thumbnails from 'yet-another-react-lightbox/plugins/thumbnails'
 import Zoom from 'yet-another-react-lightbox/plugins/zoom'
 import 'yet-another-react-lightbox/styles.css'
 import 'yet-another-react-lightbox/plugins/thumbnails.css'
-import { getImageSrc } from '@lib/helpers/url'
+import { getImageSrc } from '@shared/lib/helpers/url'
 
 const ReactLightbox = dynamic(() => import('yet-another-react-lightbox'))
 

@@ -1,19 +1,19 @@
 import { Button, Stack, Typography } from '@mui/material'
 import { styled } from '@mui/system'
 import { lightBlue, red, yellow } from '@mui/material/colors'
-import { openBlank } from '@lib/helpers/window'
 import Wallet from '@features/wallet'
-import Container from '@ui/Container'
-import EmojiHeader from '@ui/EmojiHeader'
-import Emoji from '@ui/Emoji'
-import Telegram from '@ui/icons/Telegram'
-import LinkedIn from '@ui/icons/LinkedIn'
-import Email from '@ui/icons/Email'
+import Container from '@shared/ui/Container'
+import EmojiHeader from '@shared/ui/EmojiHeader'
+import Emoji from '@shared/ui/Emoji'
+import Telegram from '@shared/ui/icons/Telegram'
+import LinkedIn from '@shared/ui/icons/LinkedIn'
+import Email from '@shared/ui/icons/Email'
 import BTCSrc from 'public/images/svg/btc.svg'
 import ETHSrc from 'public/images/svg/eth.svg'
 import LTCSrc from 'public/images/svg/ltc.svg'
 import DOGESrc from 'public/images/svg/doge.svg'
 import { useMessages } from './lib/hooks/useMessages'
+import { openBlank } from './lib/helpers/url'
 
 const CRYPTOS = [
   { name: 'BTC', wallet: '1AmJZzeVH6wkJZ6a1FojJbHD1im9UZBar7', src: BTCSrc },
@@ -29,7 +29,7 @@ function ContactPage() {
 
   const onClickEmail = () => openBlank('mailto:mmirrev@gmail.com')
 
-  const onClickLinkedIn = () => openBlank('https://www.linkedin.com/in/maxim-minchenko-085b26149/')
+  const onClickLinkedIn = () => openBlank('https://www.linkedin.com/in/maximir/')
 
   return (
     <Container>

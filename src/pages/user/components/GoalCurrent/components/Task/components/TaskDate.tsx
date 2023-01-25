@@ -1,6 +1,6 @@
 import { format } from 'date-fns'
 import { Stack, Typography } from '@mui/material'
-import Icon from '@ui/Icon'
+import Icon from '@shared/ui/Icon'
 
 interface TaskDateProps {
   date: string

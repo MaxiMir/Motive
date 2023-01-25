@@ -1,13 +1,13 @@
 import dynamic from 'next/dynamic'
 import { Stack } from '@mui/material'
-import useClient from '@lib/hooks/useClient'
+import useClient from '@shared/lib/hooks/useClient'
 import { useAddMessage } from '@pages/user/hooks'
 import { UserBaseDto } from '@entities/user'
 import { TopicDto, MessageType } from '@entities/topic'
-import { ListProps } from '@ui/List'
+import { ListProps } from '@shared/ui/List'
 import { useDiscussion } from './hooks/useDiscussion'
 
-const List = dynamic<ListProps<TopicDto>>(() => import('@ui/List'))
+const List = dynamic<ListProps<TopicDto>>(() => import('@shared/ui/List'))
 const UserInput = dynamic(() => import('./components/UserInput'))
 const Nothing = dynamic(() => import('./components/Nothing'))
 const Loader = dynamic(() => import('./components/Loader'))

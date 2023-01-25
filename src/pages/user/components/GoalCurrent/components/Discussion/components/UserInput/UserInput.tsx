@@ -9,7 +9,7 @@ import { toHref } from '@entities/user'
 import { TopicDto, MessageType } from '@shared/api/topic'
 import { UserBaseDto, ClientDto } from '@shared/api/user'
 import Input from '@shared/ui/Input'
-import TooltipArrow from '@shared/ui/styled/TooltipArrow'
+import { TooltipArrow } from '@shared/ui/styled'
 import { useForm } from './hooks/useForm'
 import { useMessages } from './hooks/useMessages'
 

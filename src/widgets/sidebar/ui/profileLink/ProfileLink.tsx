@@ -1,7 +1,7 @@
 import { List } from '@mui/material'
 import dynamic from 'next/dynamic'
 import { useClient } from '@entities/user'
-import TooltipArrow from '@shared/ui/styled/TooltipArrow'
+import { TooltipArrow } from '@shared/ui/styled'
 import { useMessages } from './lib/hooks/useMessages'
 
 const SignIn = dynamic(() => import('./ui/SignIn'))

@@ -7,7 +7,7 @@ import { share } from '@shared/lib/helpers'
 import { useToggle } from '@shared/lib/hooks'
 import Icon from '@shared/ui/Icon'
 import ListItem from '@shared/ui/ListItem'
-import TooltipArrow from '@shared/ui/styled/TooltipArrow'
+import { TooltipArrow } from '@shared/ui/styled'
 import { useMessages } from './hooks/useMessages'
 
 const Report = dynamic(() => import('@features/creating-report'))

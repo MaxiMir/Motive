@@ -13,8 +13,7 @@ import SpinEmoji from '@shared/ui/SpinEmoji'
 import SubmitButton from '@shared/ui/SubmitButton'
 import VideoInput from '@shared/ui/videoInput'
 import VideoPreview from '@shared/ui/videoPreview'
-import { useForm } from './lib/hooks/useForm'
-import { useMessages } from './lib/hooks/useMessages'
+import { useForm, useMessages } from './lib'
 
 const Alert = dynamic(() => import('@mui/material/Alert'))
 
@@ -23,7 +22,7 @@ interface ConfirmationModalProps {
   onClose: () => void
 }
 
-function ConfirmationModal({ id, onClose }: ConfirmationModalProps) {
+export function ConfirmationModal({ id, onClose }: ConfirmationModalProps) {
   const messages = useMessages()
   const form = useForm(id, onClose)
   const { isSubmitting, values, setFieldValue, handleSubmit } = form
@@ -135,5 +134,3 @@ function ConfirmationModal({ id, onClose }: ConfirmationModalProps) {
     </Modal>
   )
 }
-
-export default ConfirmationModal

@@ -5,7 +5,7 @@ import { UserCharacteristicName } from '@shared/api/user'
 import { useFormatNumber } from '@shared/lib/hooks'
 import Emoji from '@shared/ui/Emoji'
 
-const Level = dynamic(() => import('./ui/level/Level'))
+const Level = dynamic(() => import('./ui').then((m) => m.Level))
 
 interface CharacteristicUserProps {
   name: UserCharacteristicName

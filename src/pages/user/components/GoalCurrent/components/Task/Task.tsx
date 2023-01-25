@@ -4,7 +4,7 @@ import dynamic from 'next/dynamic'
 import { MemberDto } from '@shared/api/member'
 import { TaskDto } from '@shared/api/task'
 import Checkbox from '@shared/ui/Checkbox'
-import TooltipArrow from '@shared/ui/styled/TooltipArrow'
+import { TooltipArrow } from '@shared/ui/styled'
 import TaskLabel from './components/TaskLabel'
 import { useSetCompleted } from './hooks/useSetCompleted'
 

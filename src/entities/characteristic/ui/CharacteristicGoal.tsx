@@ -1,9 +1,9 @@
 import { Typography, IconButton, Stack } from '@mui/material'
+import { useIntl } from 'react-intl'
 import { GoalCharacteristicName } from '@shared/api/characteristic'
 import { useFormatNumber } from '@shared/lib/hooks'
 import Emoji from '@shared/ui/Emoji'
-import TooltipArrow from '@shared/ui/styled/TooltipArrow'
-import { useMessages } from './lib/hooks/useMessages'
+import { TooltipArrow } from '@shared/ui/styled'
 
 interface CharacteristicGoalProps {
   name: GoalCharacteristicName | 'runningDays'
@@ -11,14 +11,15 @@ interface CharacteristicGoalProps {
 }
 
 export function CharacteristicGoal({ name, value }: CharacteristicGoalProps) {
-  const messages = useMessages(name)
+  const { formatMessage } = useIntl()
   const formatNumber = useFormatNumber()
   const formattedValue = formatNumber(value)
   const color = name === 'runningDays' ? '#c07d35' : `${name}.main`
+  const title = formatMessage({ id: `component.characteristic-goal.${name}` })
 
   return (
     <Stack alignItems="center" spacing={0.5}>
-      <TooltipArrow title={messages.title}>
+      <TooltipArrow title={title}>
         <IconButton
           size="small"
           sx={{

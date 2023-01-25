@@ -1,2 +1,2 @@
-export * from './config/schema'
-export * from './api/createFeedback'
+export * from './config'
+export * from './api'

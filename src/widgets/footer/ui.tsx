@@ -2,7 +2,7 @@ import { Container, Box, IconButton, Stack } from '@mui/material'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import OpeningProfile from '@features/opening-profile'
-import TooltipArrow from '@shared/ui/styled/TooltipArrow'
+import { TooltipArrow } from '@shared/ui/styled'
 import { useRoutes } from './lib/hooks/useRoutes'
 
 function Footer() {

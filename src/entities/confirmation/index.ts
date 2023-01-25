@@ -1,3 +1,3 @@
-export { default } from './ui/confirmationModal/ConfirmationModal'
-export * from './config/schema'
-export * from './api/createConfirmation'
+export * from './api'
+export * from './config'
+export * from './ui'

@@ -2,7 +2,7 @@ import { Tooltip, TooltipProps } from '@mui/material'
 import { tooltipClasses } from '@mui/material/Tooltip'
 import { styled } from '@mui/system'
 
-const TooltipArrow = styled(({ children, className, ...props }: TooltipProps) => (
+export const TooltipArrow = styled(({ children, className, ...props }: TooltipProps) => (
   <Tooltip {...props} arrow classes={{ popper: className }}>
     <span>{children}</span>
   </Tooltip>
@@ -14,5 +14,3 @@ const TooltipArrow = styled(({ children, className, ...props }: TooltipProps) =>
     backgroundColor: theme.palette.grey[900],
   },
 }))
-
-export default TooltipArrow

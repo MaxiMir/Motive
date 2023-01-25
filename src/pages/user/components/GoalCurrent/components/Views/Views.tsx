@@ -2,7 +2,7 @@ import { Box, Button } from '@mui/material'
 import { useGoalContext } from '@pages/user/components/GoalCurrent/hooks/useGoalContext'
 import { useFormatNumber } from '@shared/lib/hooks'
 import Icon from '@shared/ui/Icon'
-import TooltipArrow from '@shared/ui/styled/TooltipArrow'
+import { TooltipArrow } from '@shared/ui/styled'
 import { useMessages } from './hooks/useMessages'
 
 function Views() {

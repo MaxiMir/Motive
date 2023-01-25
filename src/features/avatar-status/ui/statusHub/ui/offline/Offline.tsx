@@ -3,7 +3,7 @@ import { ReactNode } from 'react'
 import dynamic from 'next/dynamic'
 import { Device } from '@shared/api/device'
 import { useFormatDistance } from '@shared/lib/hooks'
-import TooltipArrow from '@shared/ui/styled/TooltipArrow'
+import { TooltipArrow } from '@shared/ui/styled'
 import { getShortDistance } from './lib/helpers/content'
 import { useMessages } from './lib/hooks/useMessages'
 

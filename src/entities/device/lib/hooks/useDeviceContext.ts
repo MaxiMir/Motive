@@ -1,4 +1,4 @@
 import { useContext } from 'react'
-import { DeviceContext } from '@entities/device/lib/context'
+import { DeviceContext } from '../context'
 
 export const useDeviceContext = () => useContext(DeviceContext)

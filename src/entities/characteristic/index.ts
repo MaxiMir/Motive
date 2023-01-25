@@ -1,2 +1,1 @@
-export * from './ui/characteristicGoal/CharacteristicGoal'
-export * from './ui/characteristicUser/CharacteristicUser'
+export * from './ui'

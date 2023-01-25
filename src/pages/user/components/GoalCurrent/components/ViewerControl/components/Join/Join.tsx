@@ -2,7 +2,7 @@ import dynamic from 'next/dynamic'
 import { useOpenSignIn } from '@features/sign-in'
 import { useClient } from '@entities/user'
 import { useToggle } from '@shared/lib/hooks'
-import BlueButton from '@shared/ui/styled/BlueButton'
+import { BlueButton } from '@shared/ui/styled'
 import { useMessages } from './hooks/useMessages'
 
 const JoinModal = dynamic(() => import('./components/JoinModal'))

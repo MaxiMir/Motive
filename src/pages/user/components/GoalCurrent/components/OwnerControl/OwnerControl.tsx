@@ -2,11 +2,13 @@ import { Stack } from '@mui/material'
 import { useState } from 'react'
 import dynamic from 'next/dynamic'
 import { useGoalContext } from '@pages/user/components/GoalCurrent/hooks/useGoalContext'
-import BlueButton from '@shared/ui/styled/BlueButton'
+import { BlueButton } from '@shared/ui/styled'
 import { useMessages } from './hooks/useMessages'
 
 const Button = dynamic(() => import('@mui/material/Button'))
-const ConfirmationModal = dynamic(() => import('@entities/confirmation'))
+const ConfirmationModal = dynamic(() =>
+  import('@entities/confirmation').then((m) => m.ConfirmationModal),
+)
 const TasksModal = dynamic(() => import('./components/TasksModal'))
 
 const enum ModalType {

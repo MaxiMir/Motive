@@ -1,4 +1,4 @@
-import { useSocket } from '@app/lib/hooks/useSocket'
+import { useSocket } from '@processes/lib/hooks/useSocket'
 
 function EventSocket() {
   useSocket()

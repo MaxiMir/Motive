@@ -32,6 +32,9 @@
       "@app/*": [
         "src/app/*"
       ],
+      "@processes/*": [
+        "src/processes/*"
+      ],
       "@pages/*": [
         "src/pages/*"
       ],

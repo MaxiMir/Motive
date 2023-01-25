@@ -4,8 +4,9 @@ import { InfiniteData, useMutation, useQueryClient } from 'react-query'
 import { useMutateGoals } from '@pages/user/hooks'
 import { useOpenSignIn } from '@features/sign-in'
 import { useSnackbar } from '@entities/snackbar'
-import { GoalDto } from '@entities/goal'
-import { MessageDto, MessageType, TopicDto, updateLike } from '@entities/topic'
+import { updateLike } from '@entities/topic'
+import { GoalDto } from '@shared/api/goal'
+import { MessageDto, MessageType, TopicDto } from '@shared/api/topic'
 import useClient from '@shared/lib/hooks/useClient'
 
 export interface Options {

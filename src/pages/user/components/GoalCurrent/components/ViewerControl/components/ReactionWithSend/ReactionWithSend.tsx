@@ -1,4 +1,4 @@
-import { DayCharacteristicName } from '@app/model/day'
+import { DayCharacteristicName } from '@shared/api/day'
 import { useGoalContext } from '@pages/user/components/GoalCurrent/hooks/useGoalContext'
 import EmojiButton from '@shared/ui/EmojiButton'
 import { useMessages } from './hooks/useMessages'

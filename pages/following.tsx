@@ -6,7 +6,7 @@ import Layout from '@app/ui/Layout'
 import FollowingPage from '@pages/following'
 import { getFollowingPage, useFollowingPage } from '@entities/pages'
 import useMetaTags from '@shared/lib/hooks/useMetaTags'
-import { Route } from '@shared/config/routes'
+import { Route } from '@shared/consts/routes'
 
 function FollowingRoute() {
   const { data } = useFollowingPage()

@@ -1,5 +1,5 @@
-import fetcher from '@shared/api/fetcher'
-import { CreateReportDto } from '@entities/report/model/dto'
+import fetcher from '@shared/config/fetcher'
+import { CreateReportDto } from '@shared/api/report'
 
 export const createReport = (data: CreateReportDto): Promise<void> => {
   return fetcher.post('/reports', data)

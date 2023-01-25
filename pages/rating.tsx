@@ -5,7 +5,7 @@ import DeviceDetector from 'node-device-detector'
 import Layout from '@app/ui/Layout'
 import RatingPage from '@pages/rating'
 import { getRatingPage, useRatingTab, useRatingMeta, useRatingPage } from '@entities/pages'
-import { Route } from '@shared/config/routes'
+import { Route } from '@shared/consts/routes'
 
 function RatingRoute() {
   const tab = useRatingTab()

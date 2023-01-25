@@ -1,6 +1,6 @@
 import { Field, Form, FormikProvider } from 'formik'
 import { Box, Stack, Typography } from '@mui/material'
-import { UserBaseDto } from '@entities/user'
+import { UserBaseDto } from '@shared/api/user'
 import Modal from '@shared/ui/Modal'
 import FadeEmoji from '@shared/ui/FadeEmoji'
 import Input from '@shared/ui/Input'

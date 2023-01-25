@@ -1,6 +1,6 @@
 import dynamic from 'next/dynamic'
 import { Stack } from '@mui/material'
-import { NotificationDto } from '@entities/notification/model/dto'
+import { NotificationDto } from '@shared/api/notification'
 import Modal from '@shared/ui/Modal'
 import { useMessages } from './lib/hooks/useMessages'
 import { useNotificationHint } from './lib/hooks/useNotificationHint'

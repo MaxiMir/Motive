@@ -5,8 +5,9 @@ import { useFormik } from 'formik'
 import { useMutateGoals } from '@pages/user/hooks'
 import { useGoalContext } from '@pages/user/components/GoalCurrent/hooks/useGoalContext'
 import { useSnackbar } from '@entities/snackbar'
-import { GoalDto } from '@entities/goal'
-import { FeedbackDto, createFeedback, feedbackSchema } from '@entities/feedback'
+import { createFeedback, feedbackSchema } from '@entities/feedback'
+import { FeedbackDto } from '@shared/api/feedback'
+import { GoalDto } from '@shared/api/goal'
 
 const getNextState = (goals: GoalDto[], goalId: number, feedback: FeedbackDto) =>
   produce(goals, (draft) => {

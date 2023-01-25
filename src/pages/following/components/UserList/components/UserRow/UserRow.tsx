@@ -1,10 +1,11 @@
 import dynamic from 'next/dynamic'
 import Link from 'next/link'
 import { Stack, Typography } from '@mui/material'
-import { MAIN_CHARACTERISTICS, SecondCharacteristicName } from '@app/model/characteristic'
+import { MAIN_CHARACTERISTICS, SecondCharacteristicName } from '@shared/api/characteristic'
 import AvatarStatus from '@features/avatar-status'
-import { UserDto, toHref } from '@entities/user'
+import { toHref } from '@entities/user'
 import { CharacteristicUser } from '@entities/characteristic'
+import { UserDto } from '@shared/api/user'
 import MenuActions from './components/MenuActions'
 
 const LastSeen = dynamic(() => import('./components/LastSeen'))

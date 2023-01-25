@@ -1,4 +1,4 @@
-import { UserDto } from '@entities/user'
+import { UserDto } from '@shared/api/user'
 import List from '@shared/ui/List'
 import UserRow from './components/UserRow'
 

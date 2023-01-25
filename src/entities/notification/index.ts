@@ -1,5 +1,5 @@
 export { default } from './ui/notificationModal/NotificationModal'
-export * from './model/dto'
+export * from '@shared/api/notification'
 export * from './ui/notificationBadge/NotificationBadge'
 export * from './lib/hooks/useNotifications'
 export * from './lib/helpers/href'

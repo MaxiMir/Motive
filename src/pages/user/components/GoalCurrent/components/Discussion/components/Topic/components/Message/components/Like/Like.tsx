@@ -1,5 +1,5 @@
 import { Button } from '@mui/material'
-import { MessageDto, MessageType } from '@entities/topic'
+import { MessageDto, MessageType } from '@shared/api/topic'
 import useClient from '@shared/lib/hooks/useClient'
 import useFormatNumber from '@shared/lib/hooks/useFormatNumber'
 import Emoji from '@shared/ui/Emoji'

@@ -1,5 +1,5 @@
-import { FeedbackDto, PhotoDto } from '@entities/feedback'
-import { GoalBaseDto } from '@entities/goal'
+import { FeedbackDto, PhotoDto } from './feedback'
+import { GoalBaseDto } from './goal'
 
 export interface ConfirmationDto extends FeedbackDto {
   readonly id: number

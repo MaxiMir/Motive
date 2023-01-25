@@ -1,8 +1,8 @@
-import { Device } from '@entities/device'
-import { GoalDto } from '@entities/goal'
-import { MemberDto } from '@app/model/member'
-import { ConfirmationDto } from '@app/model/confirmation'
-import { MainCharacteristicName, SecondCharacteristicName } from '@app/model/characteristic'
+import { Device } from './device'
+import { GoalDto } from './goal'
+import { MemberDto } from './member'
+import { ConfirmationDto } from './confirmation'
+import { MainCharacteristicName, SecondCharacteristicName } from './characteristic'
 
 export type UserCharacteristicName = MainCharacteristicName | SecondCharacteristicName
 

@@ -1,4 +1,4 @@
-import { Device } from '@entities/device'
+import { Device } from '@shared/api/device'
 import Icon from '@shared/ui/Icon'
 import { getIconName } from './lib/helpers/content'
 

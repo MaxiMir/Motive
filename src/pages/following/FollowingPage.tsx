@@ -1,6 +1,6 @@
 import dynamic from 'next/dynamic'
 import { Typography } from '@mui/material'
-import { UserDto } from '@entities/user'
+import { UserDto } from '@shared/api/user'
 import Container from '@shared/ui/Container'
 import { useMessages } from './hooks/useMessages'
 

@@ -1,4 +1,4 @@
-import { CalendarDto } from '@entities/goal'
+import { CalendarDto } from '@shared/api/goal'
 
 export const getBorders = (calendar?: CalendarDto[]): [min?: Date, max?: Date] => {
   if (!calendar) {

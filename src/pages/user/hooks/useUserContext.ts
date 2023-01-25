@@ -1,5 +1,5 @@
 import { createContext, useContext } from 'react'
-import { UserPageDto } from '@entities/user'
+import { UserPageDto } from '@shared/api/user'
 
 export const UserContext = createContext<UserPageDto | null>(null)
 

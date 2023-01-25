@@ -1,6 +1,6 @@
 import dynamic from 'next/dynamic'
 import { Box, Button, Stack, Typography } from '@mui/material'
-import { ConfirmationDto } from '@app/model/confirmation'
+import { ConfirmationDto } from '@shared/api/confirmation'
 import { useUserContext } from '@pages/user/hooks'
 import AvatarStatus from '@features/avatar-status'
 import useTryFullScreen from '@shared/lib/hooks/useTryFullScreen'

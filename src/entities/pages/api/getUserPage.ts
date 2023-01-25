@@ -1,6 +1,6 @@
 import { AxiosRequestConfig } from 'axios'
-import { UserPageDto } from '@entities/user/model/dto'
-import fetcher from '@shared/api/fetcher'
+import { UserPageDto } from '@shared/api/user'
+import fetcher from '@shared/config/fetcher'
 
 export const getUserPage = (
   nickname: string,

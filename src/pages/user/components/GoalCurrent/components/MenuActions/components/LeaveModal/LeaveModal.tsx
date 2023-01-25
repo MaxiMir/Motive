@@ -1,5 +1,5 @@
 import { Box, Stack, Typography } from '@mui/material'
-import { OwnershipDto } from '@app/model/member'
+import { OwnershipDto } from '@shared/api/member'
 import { useGoalContext } from '@pages/user/components/GoalCurrent/hooks/useGoalContext'
 import Modal from '@shared/ui/Modal'
 import FadeEmoji from '@shared/ui/FadeEmoji'

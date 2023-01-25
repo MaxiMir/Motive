@@ -1,5 +1,5 @@
 import { useIntl } from 'react-intl'
-import { MessageDto, MessageType } from '@entities/topic'
+import { MessageDto, MessageType } from '@shared/api/topic'
 
 export const useMessages = (message: MessageDto, disabled: boolean) => {
   const { like, type } = message

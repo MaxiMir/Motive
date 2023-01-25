@@ -1,5 +1,5 @@
 import { Box, Typography } from '@mui/material'
-import { UserPageDto } from '@entities/user'
+import { UserPageDto } from '@shared/api/user'
 import useFormatDate from '@shared/lib/hooks/useFormatDate'
 import Icon from '@shared/ui/Icon'
 import { useMessages } from './hooks/useMessages'

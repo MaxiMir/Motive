@@ -1,5 +1,5 @@
-import { CreateTaskDto, TaskDto } from '@entities/task'
-import { FeedbackDto } from '@entities/feedback'
+import { CreateTaskDto, TaskDto } from './task'
+import { FeedbackDto } from './feedback'
 
 interface DayCharacteristicDto {
   readonly motivation: number

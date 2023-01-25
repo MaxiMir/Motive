@@ -1,5 +1,5 @@
 import { Box, Typography } from '@mui/material'
-import { MainCharacteristicName } from '@app/model/characteristic'
+import { MainCharacteristicName } from '@shared/api/characteristic'
 import Modal from '@shared/ui/Modal'
 import { useMessages } from './hooks/useMessages'
 import Progress from './components/Progress'

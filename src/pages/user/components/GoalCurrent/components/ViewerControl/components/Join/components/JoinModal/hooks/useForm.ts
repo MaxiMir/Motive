@@ -1,7 +1,7 @@
 import { useRouter } from 'next/router'
 import { useMutation } from 'react-query'
 import { useFormik } from 'formik'
-import { CreateMemberDto } from '@app/model/member'
+import { CreateMemberDto } from '@shared/api/member'
 import { SearchParam, toHref } from '@entities/user'
 import { memberSchema, createMember } from '@entities/member'
 import { getMidnight } from '@shared/lib/utils/date'

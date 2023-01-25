@@ -7,7 +7,7 @@ import SearchPage from '@pages/search'
 import { getSearchPage, useSearchPage } from '@entities/pages'
 import { getSearchParams } from '@shared/lib/helpers/url'
 import useMetaTags from '@shared/lib/hooks/useMetaTags'
-import { Route } from '@shared/config/routes'
+import { Route } from '@shared/consts/routes'
 
 function SearchRoute() {
   const { data } = useSearchPage()

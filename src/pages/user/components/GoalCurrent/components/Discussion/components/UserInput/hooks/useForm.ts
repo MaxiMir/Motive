@@ -3,7 +3,8 @@ import { useMutation } from 'react-query'
 import { useFormik } from 'formik'
 import { useSnackbar } from '@entities/snackbar'
 import { useGoalContext } from '@pages/user/components/GoalCurrent/hooks/useGoalContext'
-import { CreateMessageDto, MessageType, TopicDto, createTopic } from '@entities/topic'
+import { createTopic } from '@entities/topic'
+import { CreateMessageDto, MessageType, TopicDto } from '@shared/api/topic'
 
 export const useForm = (
   topicId: number | undefined,

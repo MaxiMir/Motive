@@ -1,6 +1,6 @@
 import produce from 'immer'
 import { useMutation, useQueryClient } from 'react-query'
-import { NotificationDto } from '@entities/notification/model/dto'
+import { NotificationDto } from '@shared/api/notification'
 import { updateRead } from '@entities/notification/api/updateRead'
 import useClient from '@shared/lib/hooks/useClient'
 

@@ -1,5 +1,4 @@
 export * from './config/schema'
-export * from './model/dto'
 export * from './api/getTopics'
 export * from './api/createTopic'
 export * from './api/updateTopic'

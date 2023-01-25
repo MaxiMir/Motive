@@ -1,4 +1,4 @@
-import { UserBaseDto } from '@entities/user'
+import { UserBaseDto } from './user'
 
 export const enum MessageType {
   Question = 'question',

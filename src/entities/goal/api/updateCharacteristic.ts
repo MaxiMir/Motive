@@ -1,5 +1,5 @@
-import fetcher from '@shared/api/fetcher'
-import { DayCharacteristicUpdateDto } from '@app/model/day'
+import fetcher from '@shared/config/fetcher'
+import { DayCharacteristicUpdateDto } from '@shared/api/day'
 import { getFilterParams } from '@shared/lib/helpers/url'
 
 export const updateCharacteristic = (dto: DayCharacteristicUpdateDto): Promise<void> => {

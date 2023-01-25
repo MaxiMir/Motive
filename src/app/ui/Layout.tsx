@@ -7,7 +7,7 @@ import { useIsFetching } from 'react-query'
 import { Stack } from '@mui/material'
 import { getLocaleHrefList } from '@entities/locale'
 import { useDeviceContext } from '@entities/device'
-import { OGType } from '@entities/pages'
+import { OGType } from '@shared/api/pages'
 import Scrollbar from '@shared/ui/Scrollbar'
 
 const Loader = dynamic(() => import('@widgets/loader/ui'))

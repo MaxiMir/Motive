@@ -1,6 +1,6 @@
 import dynamic from 'next/dynamic'
 import { AppBar, Container, Stack } from '@mui/material'
-import { OGType } from '@entities/pages'
+import { OGType } from '@shared/api/pages'
 import useClient from '@shared/lib/hooks/useClient'
 import Sidebar from './ui/sidebar/Sidebar'
 

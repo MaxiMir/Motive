@@ -1,4 +1,4 @@
 import { createContext } from 'react'
-import { Device } from '@entities/device/model/types'
+import { Device } from '@shared/api/device'
 
 export const DeviceContext = createContext<Device | undefined>(undefined)

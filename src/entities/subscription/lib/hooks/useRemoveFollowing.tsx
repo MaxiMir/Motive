@@ -4,11 +4,11 @@ import { useIntl } from 'react-intl'
 import { Button } from '@mui/material'
 import { useOpenSignIn } from '@features/sign-in'
 import { useSnackbar } from '@entities/snackbar'
-import { UserDto } from '@entities/user'
 import { updateSubscription } from '@entities/subscription/api/updateSubscription'
-import { FollowingPageDto } from '@entities/pages'
+import { FollowingPageDto } from '@shared/api/pages'
+import { UserDto } from '@shared/api/user'
 import useClient from '@shared/lib/hooks/useClient'
-import { Route } from '@shared/config/routes'
+import { Route } from '@shared/consts/routes'
 
 interface Options {
   user: UserDto

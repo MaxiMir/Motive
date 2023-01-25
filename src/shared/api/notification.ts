@@ -1,4 +1,4 @@
-import { UserBaseDto } from '@entities/user'
+import { UserBaseDto } from './user'
 
 export const enum NotificationType {
   NewGoal = 'new-goal',

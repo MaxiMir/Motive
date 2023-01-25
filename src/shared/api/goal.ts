@@ -1,6 +1,7 @@
-import { DayDto } from '@app/model/day'
-import { CreateTaskDto } from '@entities/task'
-import { GoalCharacteristicDto, MainCharacteristicName } from '@app/model/characteristic'
+import { DayDto } from './day'
+import { CreateTaskDto } from './task'
+import { GoalCharacteristicDto, MainCharacteristicName } from './characteristic'
+import { UserBaseDto } from './user'
 
 export interface CreateGoalDto {
   readonly name: string
@@ -23,14 +24,7 @@ export interface GoalBaseDto {
   readonly stages: string[]
   readonly stage: number
   readonly characteristic: GoalCharacteristicDto
-  readonly owner: Owner
-}
-
-interface Owner {
-  readonly id: number
-  readonly name: string
-  readonly nickname: string
-  readonly avatar?: string | null
+  readonly owner: UserBaseDto
 }
 
 export interface GoalDto extends GoalBaseDto {

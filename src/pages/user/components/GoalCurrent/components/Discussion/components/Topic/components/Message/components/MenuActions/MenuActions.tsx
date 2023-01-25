@@ -1,7 +1,7 @@
 import { MouseEvent, useId, useState } from 'react'
 import dynamic from 'next/dynamic'
 import { Box, IconButton, MenuItem, Menu } from '@mui/material'
-import { MessageDto } from '@entities/topic'
+import { MessageDto } from '@shared/api/topic'
 import useClient from '@shared/lib/hooks/useClient'
 import useToggle from '@shared/lib/hooks/useToggle'
 import ListItem from '@shared/ui/ListItem'

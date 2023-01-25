@@ -1,5 +1,5 @@
 import { createContext, useContext } from 'react'
-import { GoalDto } from '@entities/goal'
+import { GoalDto } from '@shared/api/goal'
 
 export const GoalContext = createContext<GoalDto | null>(null)
 

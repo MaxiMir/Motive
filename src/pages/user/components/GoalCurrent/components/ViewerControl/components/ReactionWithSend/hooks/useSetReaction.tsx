@@ -1,13 +1,13 @@
 import produce from 'immer'
 import { useMutation, useQueryClient } from 'react-query'
 import { useIntl } from 'react-intl'
-import { DayCharacteristicName, DayCharacteristicUpdateDto } from '@app/model/day'
+import { DayCharacteristicName, DayCharacteristicUpdateDto } from '@shared/api/day'
 import { useUserContext } from '@pages/user/hooks'
 import { useGoalContext } from '@pages/user/components/GoalCurrent/hooks/useGoalContext'
 import { useOpenSignIn } from '@features/sign-in'
 import { useSnackbar } from '@entities/snackbar'
-import { UserPageDto } from '@entities/user'
 import { updateStage } from '@entities/goal'
+import { UserPageDto } from '@shared/api/user'
 import useClient from '@shared/lib/hooks/useClient'
 
 const getNextState = (page: UserPageDto, { id, dayId, add, name }: DayCharacteristicUpdateDto) =>

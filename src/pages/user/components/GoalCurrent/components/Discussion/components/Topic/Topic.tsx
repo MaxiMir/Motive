@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import dynamic from 'next/dynamic'
-import { UserBaseDto } from '@entities/user'
-import { TopicDto, MessageType } from '@entities/topic'
+import { TopicDto, MessageType } from '@shared/api/topic'
+import { UserBaseDto } from '@shared/api/user'
 import Message from './components/Message'
 import { checkOnReply } from './helper'
 

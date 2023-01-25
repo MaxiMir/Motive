@@ -1,5 +1,5 @@
-import { CreatedGoal, CreateGoalDto } from '@entities/goal/model/dto'
-import fetcher from '@shared/api/fetcher'
+import { CreatedGoal, CreateGoalDto } from '@shared/api/goal'
+import fetcher from '@shared/config/fetcher'
 
 export const createGoal = (dto: CreateGoalDto): Promise<CreatedGoal> => {
   return fetcher.post('/goals', dto)

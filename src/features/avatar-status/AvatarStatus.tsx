@@ -1,6 +1,6 @@
 import dynamic from 'next/dynamic'
 import { Button, ButtonProps } from '@mui/material'
-import { Device } from '@entities/device'
+import { Device } from '@shared/api/device'
 
 const StatusHub = dynamic(() => import('./ui/statusHub/StatusHub'))
 const Plug = dynamic(() => import('./ui/plug/Plug'))

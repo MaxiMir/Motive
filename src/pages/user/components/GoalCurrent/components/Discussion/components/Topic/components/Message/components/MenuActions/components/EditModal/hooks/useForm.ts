@@ -3,7 +3,8 @@ import { useIntl } from 'react-intl'
 import { InfiniteData, useMutation, useQueryClient } from 'react-query'
 import { useFormik } from 'formik'
 import { useSnackbar } from '@entities/snackbar'
-import { MessageDto, TopicDto, topicSchema, updateTopic } from '@entities/topic'
+import { topicSchema, updateTopic } from '@entities/topic'
+import { MessageDto, TopicDto } from '@shared/api/topic'
 
 const getNextState = (discussion: InfiniteData<TopicDto[]>, message: MessageDto) => {
   const { id, parentId, text } = message

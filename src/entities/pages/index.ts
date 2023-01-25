@@ -1,4 +1,3 @@
-export * from './model/dto'
 export * from './api/getSearchPage'
 export * from './api/getUserPage'
 export * from './api/getFollowingPage'

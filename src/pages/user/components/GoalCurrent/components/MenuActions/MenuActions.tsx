@@ -1,7 +1,7 @@
 import { MouseEvent, useId, useState } from 'react'
 import dynamic from 'next/dynamic'
 import { Box, IconButton, Menu, MenuItem } from '@mui/material'
-import { OwnershipDto } from '@app/model/member'
+import { OwnershipDto } from '@shared/api/member'
 import { useGoalContext } from '@pages/user/components/GoalCurrent/hooks/useGoalContext'
 import { share } from '@shared/lib/helpers/navigator'
 import useToggle from '@shared/lib/hooks/useToggle'

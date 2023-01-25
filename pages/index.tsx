@@ -3,7 +3,7 @@ import { getSession } from 'next-auth/react'
 import DeviceDetector from 'node-device-detector'
 import Layout from '@app/ui/Layout'
 import HomePage from '@pages/home'
-import { ClientDto } from '@entities/user'
+import { ClientDto } from '@shared/api/user'
 import useMetaTags from '@shared/lib/hooks/useMetaTags'
 
 function HomeRoute() {

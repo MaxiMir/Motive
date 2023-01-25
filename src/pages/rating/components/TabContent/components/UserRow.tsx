@@ -3,7 +3,8 @@ import { Typography, Grid, Box, Button, Stack } from '@mui/material'
 import { blueGrey } from '@mui/material/colors'
 import { useTheme } from '@mui/material/styles'
 import AvatarStatus from '@features/avatar-status'
-import { UserCharacteristicName, UserDto, toHref } from '@entities/user'
+import { toHref } from '@entities/user'
+import { UserCharacteristicName, UserDto } from '@shared/api/user'
 import Emoji from '@shared/ui/Emoji'
 
 interface UserRowProps {

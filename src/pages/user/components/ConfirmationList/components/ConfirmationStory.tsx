@@ -3,8 +3,8 @@ import { Box, Button, Stack, Typography } from '@mui/material'
 import { useUserContext } from '@pages/user/hooks'
 import useTryFullScreen from '@lib/hooks/useTryFullScreen'
 import useToggle from '@lib/hooks/useToggle'
+import { ConfirmationDto } from '@app/model/confirmation'
 import AvatarStatus from '@components/AvatarStatus'
-import { ConfirmationDto } from '@shared/model/confirmation'
 
 const Stories = dynamic(() => import('@components/Stories'))
 

@@ -3,7 +3,7 @@ import { Box } from '@mui/material'
 import { useUserContext } from '@pages/user/hooks'
 import { useSubscription } from '@entities/subscription'
 import Modal from '@ui/Modal'
-import { SecondCharacteristicName } from '@shared/model/characteristic'
+import { SecondCharacteristicName } from '@app/model/characteristic'
 import { useMessages } from './hooks/useMessages'
 import Loader from './components/Loader'
 

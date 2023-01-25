@@ -1,6 +1,6 @@
-import { DayDto } from '@shared/model/day'
+import { DayDto } from '@app//model/day'
 import { CreateTaskDto } from '@entities/task'
-import { GoalCharacteristicDto, MainCharacteristicName } from '@shared/model/characteristic'
+import { GoalCharacteristicDto, MainCharacteristicName } from '@app//model/characteristic'
 
 export interface CreateGoalDto {
   readonly name: string

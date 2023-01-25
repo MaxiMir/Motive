@@ -1,7 +1,7 @@
 import fetcher from '@shared/api/fetcher'
 import { Filter, getFilterParams } from '@lib/helpers/url'
 import { UserDto } from '@entities/user'
-import { SecondCharacteristicName } from '@shared/model/characteristic'
+import { SecondCharacteristicName } from '@app//model/characteristic'
 
 type Subscription = SecondCharacteristicName.Following | SecondCharacteristicName.Followers
 

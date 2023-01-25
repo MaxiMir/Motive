@@ -1,7 +1,7 @@
 import Link from 'next/link'
 import { Box, Stack, Typography } from '@mui/material'
+import { MainCharacteristicName, SecondCharacteristicName } from '@app/model/characteristic'
 import Emoji from '@ui/Emoji'
-import { MainCharacteristicName, SecondCharacteristicName } from '@shared/model/characteristic'
 import { useMessages } from './hooks/useMessages'
 import { useWidth } from './hooks/useWidth'
 

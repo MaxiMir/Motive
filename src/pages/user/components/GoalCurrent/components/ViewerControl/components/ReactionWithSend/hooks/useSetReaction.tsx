@@ -2,12 +2,12 @@ import produce from 'immer'
 import { useMutation, useQueryClient } from 'react-query'
 import { useIntl } from 'react-intl'
 import useClient from '@lib/hooks/useClient'
+import { DayCharacteristicName, DayCharacteristicUpdateDto } from '@app/model/day'
 import { useUserContext } from '@pages/user/hooks'
 import { useGoalContext } from '@pages/user/components/GoalCurrent/hooks/useGoalContext'
 import { useSnackbar } from '@entities/snackbar'
 import { UserPageDto } from '@entities/user'
 import { updateStage } from '@entities/goal'
-import { DayCharacteristicName, DayCharacteristicUpdateDto } from '@shared/model/day'
 import { useOpenSignIn } from '@entities/signin'
 
 const getNextState = (page: UserPageDto, { id, dayId, add, name }: DayCharacteristicUpdateDto) =>

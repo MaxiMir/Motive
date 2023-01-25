@@ -3,8 +3,8 @@ import dynamic from 'next/dynamic'
 import { Button, Stack, Typography } from '@mui/material'
 import { getWordDeclination } from '@lib/helpers/string'
 import useFormatNumber from '@lib/hooks/useFormatNumber'
-import { ConfirmationDto } from '@shared/model/confirmation'
-import { SecondCharacteristicName } from '@shared/model/characteristic'
+import { ConfirmationDto } from '@app/model/confirmation'
+import { SecondCharacteristicName } from '@app/model/characteristic'
 import { useMessages } from './hooks/useMessages'
 
 const SubscriptionModal = dynamic(() => import('./components/SubscriptionModal'))

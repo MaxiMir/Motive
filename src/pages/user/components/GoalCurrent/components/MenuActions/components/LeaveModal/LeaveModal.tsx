@@ -1,10 +1,10 @@
 import { Box, Stack, Typography } from '@mui/material'
+import { OwnershipDto } from '@app/model/member'
 import { useGoalContext } from '@pages/user/components/GoalCurrent/hooks/useGoalContext'
 import Modal from '@ui/Modal'
 import FadeEmoji from '@ui/FadeEmoji'
 import SubmitButton from '@ui/SubmitButton'
 import CancelButton from '@ui/CancelButton'
-import { OwnershipDto } from '@shared/model/member'
 import { useSendRemoveMember } from './hooks/useSendRemoveMember'
 import { useMessages } from './hooks/useMessages'
 

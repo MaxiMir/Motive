@@ -3,11 +3,11 @@ import dynamic from 'next/dynamic'
 import { Box, IconButton, Menu, MenuItem } from '@mui/material'
 import { share } from '@lib/helpers/navigator'
 import useToggle from '@lib/hooks/useToggle'
+import { OwnershipDto } from '@app/model/member'
 import { useGoalContext } from '@pages/user/components/GoalCurrent/hooks/useGoalContext'
 import Icon from '@ui/Icon'
 import ListItem from '@ui/ListItem'
 import TooltipArrow from '@ui/styled/TooltipArrow'
-import { OwnershipDto } from '@shared/model/member'
 import { useMessages } from './hooks/useMessages'
 
 const Report = dynamic(() => import('@features/creating-report'))

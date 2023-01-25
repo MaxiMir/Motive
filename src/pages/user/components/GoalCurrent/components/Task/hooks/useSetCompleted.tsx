@@ -4,11 +4,11 @@ import produce from 'immer'
 import { useIntl } from 'react-intl'
 import { useMutation } from 'react-query'
 import useClient from '@lib/hooks/useClient'
+import { MemberDto } from '@app/model/member'
 import { useMutateUserPage } from '@pages/user/hooks'
 import { useSnackbar } from '@entities/snackbar'
 import { UserPageDto } from '@entities/user'
 import { updateCompleted } from '@entities/task'
-import { MemberDto } from '@shared/model/member'
 
 const Button = dynamic(() => import('@mui/material/Button'))
 

@@ -4,9 +4,9 @@ import { useFormik } from 'formik'
 import { getMidnight } from '@lib/utils/date'
 import { setSearchParams } from '@lib/helpers/url'
 import useClient from '@lib/hooks/useClient'
+import { CreateMemberDto } from '@app/model/member'
 import { SearchParam, toHref } from '@entities/user'
 import { memberSchema, createMember } from '@entities/member'
-import { CreateMemberDto } from '@shared/model/member'
 
 export const useForm = (goalId: number, dayId: number) => {
   const client = useClient()

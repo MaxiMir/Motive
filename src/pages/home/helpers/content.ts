@@ -1,5 +1,5 @@
 import { setSearchParams } from '@lib/helpers/url'
-import { MainCharacteristicName, SecondCharacteristicName } from '@shared/model/characteristic'
+import { MainCharacteristicName, SecondCharacteristicName } from '@app//model/characteristic'
 import { Route } from '@shared/config/routes'
 
 export const ADVANTAGES = [

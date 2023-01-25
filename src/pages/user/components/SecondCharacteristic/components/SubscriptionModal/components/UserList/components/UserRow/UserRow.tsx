@@ -1,10 +1,10 @@
 import dynamic from 'next/dynamic'
 import Link from 'next/link'
 import { Stack, Typography } from '@mui/material'
+import { MAIN_CHARACTERISTICS, SecondCharacteristicName } from '@app/model/characteristic'
 import { UserDto, toHref } from '@entities/user'
 import { CharacteristicUser } from '@entities/characteristic'
 import AvatarStatus from '@components/AvatarStatus'
-import { MAIN_CHARACTERISTICS, SecondCharacteristicName } from '@shared/model/characteristic'
 
 const InView = dynamic(() => import('@ui/InView'))
 

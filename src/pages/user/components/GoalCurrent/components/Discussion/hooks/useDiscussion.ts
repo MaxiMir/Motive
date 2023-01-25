@@ -3,7 +3,7 @@ import { GetNextPageParamFunction, useInfiniteQuery } from 'react-query'
 import { useGoalContext } from '@pages/user/components/GoalCurrent/hooks/useGoalContext'
 import { getTopics } from '@entities/topic'
 import { TopicDto } from '@shared/api/topic'
-import { partialCheckOnLoadMore } from '@shared/lib/helpers/partial'
+import { partialCheckOnLoadMore } from '@shared/lib/helpers'
 
 const TAKE = 20
 const PRELOAD_DIFF = 5

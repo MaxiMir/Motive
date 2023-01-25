@@ -1,10 +1,10 @@
-import Image from 'next/image'
 import { Box, Stack, Typography } from '@mui/material'
+import Image from 'next/image'
+import webSrc from 'public/images/svg/web.svg'
 import { useUserContext } from '@pages/user/hooks'
 import OldPittRules from '@features/old-pitt-rules'
-import useShowProgress from '@shared/lib/hooks/useShowProgress'
+import { useShowProgress } from '@shared/lib/hooks'
 import Modal from '@shared/ui/Modal'
-import webSrc from 'public/images/svg/web.svg'
 import { useMessages } from './hooks/useMessages'
 
 interface AbandonedModalProps {

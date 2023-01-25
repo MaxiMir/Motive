@@ -5,9 +5,9 @@ import { useMutateGoals } from '@pages/user/hooks'
 import { useOpenSignIn } from '@features/sign-in'
 import { useSnackbar } from '@entities/snackbar'
 import { updateLike } from '@entities/topic'
+import { useClient } from '@entities/user'
 import { GoalDto } from '@shared/api/goal'
 import { MessageDto, MessageType, TopicDto } from '@shared/api/topic'
-import useClient from '@shared/lib/hooks/useClient'
 
 export interface Options {
   message: MessageDto

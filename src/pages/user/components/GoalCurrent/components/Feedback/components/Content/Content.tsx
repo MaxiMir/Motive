@@ -1,5 +1,5 @@
-import dynamic from 'next/dynamic'
 import { Stack } from '@mui/material'
+import dynamic from 'next/dynamic'
 import { FeedbackDto } from '@shared/api/feedback'
 
 const Markdown = dynamic(() => import('@features/markdown'))

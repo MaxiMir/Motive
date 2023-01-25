@@ -1,15 +1,15 @@
+import { useFormik } from 'formik'
 import produce from 'immer'
 import { useIntl } from 'react-intl'
 import { useMutation } from 'react-query'
-import { useFormik } from 'formik'
-import { CreateDayDto, DayDto } from '@shared/api/day'
-import { useChangeDayUrl, useMutateGoals } from '@pages/user/hooks'
 import { useGoalContext } from '@pages/user/components/GoalCurrent/hooks/useGoalContext'
-import { tasksSchema } from '@entities/task'
-import { useSnackbar } from '@entities/snackbar'
+import { useChangeDayUrl, useMutateGoals } from '@pages/user/hooks'
 import { createDay } from '@entities/goal'
+import { useSnackbar } from '@entities/snackbar'
+import { tasksSchema } from '@entities/task'
+import { CreateDayDto, DayDto } from '@shared/api/day'
 import { GoalDto } from '@shared/api/goal'
-import { getTomorrowISO } from '@shared/lib/utils/date'
+import { getTomorrowISO } from '@shared/lib/utils'
 
 const getNextState = (goals: GoalDto[], id: number, day: DayDto) =>
   produce(goals, (draft) => {

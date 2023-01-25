@@ -1,7 +1,7 @@
 import { Accordion as MuiAccordion, AccordionDetails, AccordionSummary } from '@mui/material'
-import Icon from './Icon'
-import EmojiHeader from './EmojiHeader'
 import { EmojiName } from './Emoji'
+import EmojiHeader from './EmojiHeader'
+import Icon from './Icon'
 
 interface AccordionProps {
   id: string

@@ -1,7 +1,3 @@
-import { ReactNode } from 'react'
-import Link from 'next/link'
-import dynamic from 'next/dynamic'
-import { useRouter } from 'next/router'
 import {
   Box,
   List,
@@ -12,15 +8,19 @@ import {
   ListItemText,
   Stack,
 } from '@mui/material'
-import useToggle from '@shared/lib/hooks/useToggle'
-import useClient from '@shared/lib/hooks/useClient'
+import { ReactNode } from 'react'
+import dynamic from 'next/dynamic'
+import Link from 'next/link'
+import { useRouter } from 'next/router'
+import { useClient } from '@entities/user'
+import { useToggle } from '@shared/lib/hooks'
 import Icon from '@shared/ui/Icon'
 import TooltipArrow from '@shared/ui/styled/TooltipArrow'
-import { useRoutes } from './lib/hooks/useRoutes'
 import { useMessages } from './lib/hooks/useMessages'
-import ProfileLink from './ui/profileLink/ProfileLink'
-import More from './ui/more/More'
+import { useRoutes } from './lib/hooks/useRoutes'
 import Drawer from './ui/Drawer'
+import More from './ui/more/More'
+import ProfileLink from './ui/profileLink/ProfileLink'
 
 const Notifications = dynamic(() => import('./ui/notifications/Notifications'))
 

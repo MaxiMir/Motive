@@ -1,9 +1,9 @@
-import { ChangeEvent, useRef } from 'react'
-import dynamic from 'next/dynamic'
 import { Button, Divider, Stack, Typography } from '@mui/material'
 import { styled } from '@mui/system'
-import Modal from '@shared/ui/Modal'
+import { ChangeEvent, useRef } from 'react'
+import dynamic from 'next/dynamic'
 import Icon from '@shared/ui/Icon'
+import Modal from '@shared/ui/Modal'
 import { useMessages } from './lib/hooks/useMessages'
 import { useUpdateAvatar } from './lib/hooks/useUpdateAvatar'
 

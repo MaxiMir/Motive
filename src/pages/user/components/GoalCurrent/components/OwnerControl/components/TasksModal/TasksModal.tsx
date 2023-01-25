@@ -1,5 +1,3 @@
-import { ChangeEvent } from 'react'
-import { FieldArray, Form, FormikProvider } from 'formik'
 import {
   Accordion,
   AccordionDetails,
@@ -13,19 +11,21 @@ import {
   FormControl,
   Typography,
 } from '@mui/material'
-import { getMidnightISO, getTomorrowISO } from '@shared/lib/utils/date'
+import { FieldArray, Form, FormikProvider } from 'formik'
+import { ChangeEvent } from 'react'
 import { useGoalContext } from '@pages/user/components/GoalCurrent/hooks/useGoalContext'
 import OldPittRules from '@features/old-pitt-rules'
 import { TaskField } from '@entities/task'
-import Icon from '@shared/ui/Icon'
+import { getMidnightISO, getTomorrowISO } from '@shared/lib/utils'
+import CancelButton from '@shared/ui/CancelButton'
 import EmojiHeader from '@shared/ui/EmojiHeader'
+import Icon from '@shared/ui/Icon'
 import Paul from '@shared/ui/icons/Paul'
 import Modal from '@shared/ui/Modal'
-import SubmitButton from '@shared/ui/SubmitButton'
-import CancelButton from '@shared/ui/CancelButton'
 import TooltipArrow from '@shared/ui/styled/TooltipArrow'
-import { useMessages } from './hooks/useMessages'
+import SubmitButton from '@shared/ui/SubmitButton'
 import { useForm } from './hooks/useForm'
+import { useMessages } from './hooks/useMessages'
 
 interface TasksModalProps {
   onClose: () => void

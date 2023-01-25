@@ -1,18 +1,18 @@
-import dynamic from 'next/dynamic'
 import { Box, Stack, Typography } from '@mui/material'
 import { styled } from '@mui/system'
+import dynamic from 'next/dynamic'
 import { useCheckOnClientPage, UserContext } from '@pages/user/hooks'
-import { MAIN_CHARACTERISTICS, SECOND_CHARACTERISTICS } from '@shared/api/characteristic'
 import Avatar from '@widgets/avatar'
+import { MAIN_CHARACTERISTICS, SECOND_CHARACTERISTICS } from '@shared/api/characteristic'
 import { UserPageDto } from '@shared/api/user'
 import Container from '@shared/ui/Container'
-import Nickname from './components/Nickname'
-import SecondCharacteristic from './components/SecondCharacteristic'
 import EmptyGoals from './components/EmptyGoals'
 import Following from './components/Following'
-import MainCharacteristic from './components/MainCharacteristic'
 import LearnMore from './components/LearnMore'
+import MainCharacteristic from './components/MainCharacteristic'
 import MenuActions from './components/MenuActions'
+import Nickname from './components/Nickname'
+import SecondCharacteristic from './components/SecondCharacteristic'
 
 const Link = dynamic(() => import('@mui/material/Link'))
 const EditProfile = dynamic(() => import('./components/EditProfile'))

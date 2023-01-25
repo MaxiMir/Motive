@@ -1,7 +1,7 @@
-import { useMemo } from 'react'
 import { Avatar } from '@mui/material'
-import { getShortName } from './lib/helpers/content'
+import { useMemo } from 'react'
 import { generateColorByName } from './lib/helpers/color'
+import { getShortName } from './lib/helpers/content'
 
 interface PlugProps {
   name: string

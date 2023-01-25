@@ -1,15 +1,15 @@
-import { ChangeEvent } from 'react'
-import { Form, FormikProvider } from 'formik'
 import { Box, Stack, Typography, FormControlLabel, Radio, RadioGroup } from '@mui/material'
+import { Form, FormikProvider } from 'formik'
+import { ChangeEvent } from 'react'
 import { useGoalContext } from '@pages/user/components/GoalCurrent/hooks/useGoalContext'
-import Modal from '@shared/ui/Modal'
-import Emoji from '@shared/ui/Emoji'
 import Accordion from '@shared/ui/Accordion'
-import DecorEmoji from '@shared/ui/DecorEmoji'
-import SubmitButton from '@shared/ui/SubmitButton'
 import CancelButton from '@shared/ui/CancelButton'
-import { useMessages } from './hooks/useMessages'
+import DecorEmoji from '@shared/ui/DecorEmoji'
+import Emoji from '@shared/ui/Emoji'
+import Modal from '@shared/ui/Modal'
+import SubmitButton from '@shared/ui/SubmitButton'
 import { useForm } from './hooks/useForm'
+import { useMessages } from './hooks/useMessages'
 
 interface JoinModalProps {
   onClose: () => void

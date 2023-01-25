@@ -1,7 +1,7 @@
-import dynamic from 'next/dynamic'
 import { Button } from '@mui/material'
+import dynamic from 'next/dynamic'
 import { useGoalContext } from '@pages/user/components/GoalCurrent/hooks/useGoalContext'
-import useToggle from '@shared/lib/hooks/useToggle'
+import { useToggle } from '@shared/lib/hooks'
 import TooltipArrow from '@shared/ui/styled/TooltipArrow'
 import { useMessages } from './hooks/useMessages'
 

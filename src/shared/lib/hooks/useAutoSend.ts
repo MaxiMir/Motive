@@ -1,8 +1,8 @@
-import { useEffect } from 'react'
 import { useFormikContext } from 'formik'
-import useDebounceCb from '@shared/lib/hooks/useDebounceCb'
+import { useEffect } from 'react'
+import { useDebounceCb } from './useDebounceCb'
 
-const useAutoSend = (debounceMs = 1000): void => {
+export const useAutoSend = (debounceMs = 1000): void => {
   const formik = useFormikContext()
   const debouncedSubmit = useDebounceCb<void>(() => {
     if (!formik.dirty) return
@@ -12,5 +12,3 @@ const useAutoSend = (debounceMs = 1000): void => {
 
   useEffect(debouncedSubmit, [formik.values, debouncedSubmit])
 }
-
-export default useAutoSend

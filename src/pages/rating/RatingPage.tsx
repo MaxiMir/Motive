@@ -1,11 +1,11 @@
 import { Typography } from '@mui/material'
-import { UserDto } from '@shared/api/user'
 import { MAIN_CHARACTERISTICS, MainCharacteristicName } from '@shared/api/characteristic'
-import Tabs from '@shared/ui/Tabs'
+import { UserDto } from '@shared/api/user'
 import Container from '@shared/ui/Container'
-import { useMessages } from './hooks/useMessages'
-import TabName from './components/TabName'
+import Tabs from '@shared/ui/Tabs'
 import TabContent from './components/TabContent'
+import TabName from './components/TabName'
+import { useMessages } from './hooks/useMessages'
 
 interface RatingPageProps extends Record<MainCharacteristicName, UserDto[]> {
   tab: number

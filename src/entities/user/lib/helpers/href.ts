@@ -1,5 +1,5 @@
-import { setSearchParams } from '@shared/lib/helpers/url'
-import { Route } from '@shared/consts/routes'
+import { Route } from '@shared/consts'
+import { setSearchParams } from '@shared/lib/helpers'
 
 export const enum SearchParam {
   Dates = 'd',

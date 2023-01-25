@@ -1,6 +1,6 @@
-import Image, { ImageProps } from 'next/image'
-import { signIn, SignInOptions } from 'next-auth/react'
 import { Box, Button } from '@mui/material'
+import { signIn, SignInOptions } from 'next-auth/react'
+import Image, { ImageProps } from 'next/image'
 import { useMessages } from './lib/hooks/useMessages'
 
 interface ProviderProps {

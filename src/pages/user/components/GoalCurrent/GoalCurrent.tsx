@@ -1,18 +1,23 @@
-import dynamic from 'next/dynamic'
-import { useRouter } from 'next/router'
 import { Box, Button, Card, Stack, Typography } from '@mui/material'
 import { styled } from '@mui/system'
-import { MAIN_CHARACTERISTICS, GoalCharacteristicName } from '@shared/api/characteristic'
-import { MemberDto } from '@shared/api/member'
+import dynamic from 'next/dynamic'
+import { useRouter } from 'next/router'
 import { useUserContext } from '@pages/user/hooks'
 import { CharacteristicGoal } from '@entities/characteristic'
-import { HashMark, getDayHref } from '@entities/user'
+import { HashMark, getDayHref, useClient } from '@entities/user'
+import { MAIN_CHARACTERISTICS, GoalCharacteristicName } from '@shared/api/characteristic'
 import { GoalDto } from '@shared/api/goal'
-import useClient from '@shared/lib/hooks/useClient'
+import { MemberDto } from '@shared/api/member'
 import Accordion from '@shared/ui/Accordion'
-import { useMessages } from './hooks/useMessages'
-import { useSwitchDay } from './hooks/useSwitchDay'
-import { GoalContext } from './hooks/useGoalContext'
+import Calendar from './components/Calendar'
+import Date from './components/Date'
+import DayAgo from './components/DayAgo'
+import Discussion from './components/Discussion'
+import Feedback from './components/Feedback'
+import MenuActions from './components/MenuActions'
+import Task from './components/Task'
+import Views from './components/Views'
+import ViewTrigger from './components/ViewTrigger'
 import {
   getGoalInfo,
   getClientOwnership,
@@ -20,15 +25,9 @@ import {
   redefineTasks,
   findMember,
 } from './helper'
-import ViewTrigger from './components/ViewTrigger'
-import Calendar from './components/Calendar'
-import MenuActions from './components/MenuActions'
-import Discussion from './components/Discussion'
-import Views from './components/Views'
-import Feedback from './components/Feedback'
-import Task from './components/Task'
-import Date from './components/Date'
-import DayAgo from './components/DayAgo'
+import { GoalContext } from './hooks/useGoalContext'
+import { useMessages } from './hooks/useMessages'
+import { useSwitchDay } from './hooks/useSwitchDay'
 
 const Inheritance = dynamic(() => import('./components/Inheritance'))
 const Stages = dynamic(() => import('./components/Stages'))

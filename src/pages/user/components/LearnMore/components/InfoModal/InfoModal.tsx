@@ -1,12 +1,12 @@
-import Link from 'next/link'
 import { Stack, Typography } from '@mui/material'
+import Link from 'next/link'
 import { useUserContext } from '@pages/user/hooks'
 import AvatarStatus from '@features/avatar-status'
 import { toHref } from '@entities/user'
 import Modal from '@shared/ui/Modal'
 import Row from './components/Row'
-import { useMessages } from './hooks/useMessages'
 import { ROWS } from './helpers/table'
+import { useMessages } from './hooks/useMessages'
 
 interface InfoModalProps {
   onClose: () => void

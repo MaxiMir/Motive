@@ -1,5 +1,5 @@
-import dynamic from 'next/dynamic'
 import { Stack } from '@mui/material'
+import dynamic from 'next/dynamic'
 import { TaskDto } from '@shared/api/task'
 import { checkOnCompletedByOthers } from './helper'
 

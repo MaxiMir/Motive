@@ -1,5 +1,5 @@
-import { useIntl } from 'react-intl'
 import { FormikProps } from 'formik'
+import { useIntl } from 'react-intl'
 import { useSnackbar } from '@entities/snackbar'
 
 const PHOTO_LIMIT = 10

@@ -1,10 +1,10 @@
+import { Stack, Typography } from '@mui/material'
 import dynamic from 'next/dynamic'
 import Link from 'next/link'
-import { Stack, Typography } from '@mui/material'
-import { MAIN_CHARACTERISTICS, SecondCharacteristicName } from '@shared/api/characteristic'
 import AvatarStatus from '@features/avatar-status'
-import { toHref } from '@entities/user'
 import { CharacteristicUser } from '@entities/characteristic'
+import { toHref } from '@entities/user'
+import { MAIN_CHARACTERISTICS, SecondCharacteristicName } from '@shared/api/characteristic'
 import { UserDto } from '@shared/api/user'
 
 const InView = dynamic(() => import('@shared/ui/InView'))

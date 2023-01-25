@@ -1,5 +1,3 @@
-import Link from 'next/link'
-import { signOut } from 'next-auth/react'
 import {
   Box,
   List,
@@ -11,7 +9,9 @@ import {
   ListItemIcon,
 } from '@mui/material'
 import { drawerClasses } from '@mui/material/Drawer'
-import useClient from '@shared/lib/hooks/useClient'
+import { signOut } from 'next-auth/react'
+import Link from 'next/link'
+import { useClient } from '@entities/user'
 import Icon from '@shared/ui/Icon'
 import { useMessages } from './hooks/useMessages'
 import { useRoutes } from './hooks/useRoutes'

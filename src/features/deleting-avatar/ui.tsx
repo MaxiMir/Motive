@@ -1,9 +1,9 @@
 import { Typography } from '@mui/material'
+import CancelButton from '@shared/ui/CancelButton'
 import Modal from '@shared/ui/Modal'
 import SubmitButton from '@shared/ui/SubmitButton'
-import CancelButton from '@shared/ui/CancelButton'
-import { useMessages } from './lib/hooks/useMessages'
 import { useDeleteAvatar } from './lib/hooks/useDeleteAvatar'
+import { useMessages } from './lib/hooks/useMessages'
 
 interface DeletingAvatarModalProps {
   userId: number

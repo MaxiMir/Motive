@@ -1,5 +1,5 @@
-import { useRouter } from 'next/router'
 import { Button, Typography } from '@mui/material'
+import { useRouter } from 'next/router'
 
 function UserLink(): JSX.Element {
   const { query, reload } = useRouter()

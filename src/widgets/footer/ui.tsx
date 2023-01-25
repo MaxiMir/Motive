@@ -1,8 +1,8 @@
-import { useRouter } from 'next/router'
-import Link from 'next/link'
 import { Container, Box, IconButton, Stack } from '@mui/material'
-import TooltipArrow from '@shared/ui/styled/TooltipArrow'
+import Link from 'next/link'
+import { useRouter } from 'next/router'
 import OpeningProfile from '@features/opening-profile'
+import TooltipArrow from '@shared/ui/styled/TooltipArrow'
 import { useRoutes } from './lib/hooks/useRoutes'
 
 function Footer() {

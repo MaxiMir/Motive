@@ -1,9 +1,9 @@
 import { useIntl } from 'react-intl'
-import TopOfTheDay from '@shared/ui/icons/TopOfTheDay'
-import Search from '@shared/ui/icons/Search'
-import Rating from '@shared/ui/icons/Rating'
+import { Route } from '@shared/consts'
 import Following from '@shared/ui/icons/Following'
-import { Route } from '@shared/consts/routes'
+import Rating from '@shared/ui/icons/Rating'
+import Search from '@shared/ui/icons/Search'
+import TopOfTheDay from '@shared/ui/icons/TopOfTheDay'
 
 export const useRoutes = () => {
   const { formatMessage } = useIntl()

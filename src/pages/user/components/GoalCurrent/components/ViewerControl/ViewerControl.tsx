@@ -1,11 +1,11 @@
-import dynamic from 'next/dynamic'
 import { Stack } from '@mui/material'
-import { OwnershipDto } from '@shared/api/member'
-import { DAY_CHARACTERISTIC } from '@shared/api/day'
+import dynamic from 'next/dynamic'
 import { useGoalContext } from '@pages/user/components/GoalCurrent/hooks/useGoalContext'
+import { DAY_CHARACTERISTIC } from '@shared/api/day'
+import { OwnershipDto } from '@shared/api/member'
 import { UserBaseDto } from '@shared/api/user'
-import ReactionWithSend from './components/ReactionWithSend'
 import ReactionSupport from './components/ReactionSupport'
+import ReactionWithSend from './components/ReactionWithSend'
 import { checkOnCompletion } from './helper'
 
 const Join = dynamic(() => import('./components/Join'))

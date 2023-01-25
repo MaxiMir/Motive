@@ -1,5 +1,5 @@
-import fetcher from '@shared/config/fetcher'
-import { getFilterParams } from '@shared/lib/helpers/url'
+import { fetcher } from '@shared/config'
+import { getFilterParams } from '@shared/lib/helpers'
 
 export const updateLike = (id: number, insert: boolean): Promise<void> => {
   const params = getFilterParams({ insert })

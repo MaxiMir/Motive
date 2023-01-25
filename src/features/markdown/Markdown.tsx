@@ -1,10 +1,10 @@
+import { Box, Link, Typography } from '@mui/material'
+import MarkdownToJSX from 'markdown-to-jsx'
 import { useMemo } from 'react'
 import dynamic from 'next/dynamic'
-import MarkdownToJSX from 'markdown-to-jsx'
-import { Box, Link, Typography } from '@mui/material'
-import useToggle from '@shared/lib/hooks/useToggle'
-import { useDetectTruncated } from './lib/hooks/useDetectTruncated'
+import { useToggle } from '@shared/lib/hooks'
 import { getBreakCount, toMarkdown } from './lib/helpers/content'
+import { useDetectTruncated } from './lib/hooks/useDetectTruncated'
 import { MarkdownLinkProps, MarkdownTypographyProps } from './model/types'
 
 const ToggleButton = dynamic(() => import('./ui/toggleButton/ToggleButton'))

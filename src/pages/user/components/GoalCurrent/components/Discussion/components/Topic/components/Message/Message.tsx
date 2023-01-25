@@ -1,13 +1,13 @@
+import { Box, Stack, Typography } from '@mui/material'
 import dynamic from 'next/dynamic'
 import Link from 'next/link'
-import { Box, Stack, Typography } from '@mui/material'
 import AvatarStatus from '@features/avatar-status'
 import { toHref } from '@entities/user'
 import { MessageDto } from '@shared/api/topic'
-import useFormatDistance from '@shared/lib/hooks/useFormatDistance'
-import { useMessages } from './hooks/useMessages'
-import MenuActions from './components/MenuActions'
+import { useFormatDistance } from '@shared/lib/hooks'
 import Like from './components/Like'
+import MenuActions from './components/MenuActions'
+import { useMessages } from './hooks/useMessages'
 
 const Button = dynamic(() => import('@mui/material/Button'))
 const Markdown = dynamic(() => import('@features/markdown'))

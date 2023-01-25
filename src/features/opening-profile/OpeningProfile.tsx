@@ -1,5 +1,5 @@
 import dynamic from 'next/dynamic'
-import useClient from '@shared/lib/hooks/useClient'
+import { useClient } from '@entities/user'
 import TooltipArrow from '@shared/ui/styled/TooltipArrow'
 import { useMessages } from './lib/hooks/useMessages'
 

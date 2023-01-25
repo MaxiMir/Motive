@@ -1,4 +1,4 @@
-import { setSearchParams } from '@shared/lib/helpers/url'
+import { setSearchParams } from '@shared/lib/helpers'
 
 const HASHTAG = process.env.NEXT_PUBLIC_APP_NAME as string
 

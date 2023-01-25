@@ -1,9 +1,9 @@
 import { Box, Stack, Typography } from '@mui/material'
 import { useGoalContext } from '@pages/user/components/GoalCurrent/hooks/useGoalContext'
-import Modal from '@shared/ui/Modal'
-import FlyEmoji from '@shared/ui/FlyEmoji'
-import SubmitButton from '@shared/ui/SubmitButton'
 import CancelButton from '@shared/ui/CancelButton'
+import FlyEmoji from '@shared/ui/FlyEmoji'
+import Modal from '@shared/ui/Modal'
+import SubmitButton from '@shared/ui/SubmitButton'
 import { useMessages } from './hooks/useMessages'
 import { useSendStage } from './hooks/useSendStage'
 

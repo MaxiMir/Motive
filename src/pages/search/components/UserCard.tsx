@@ -1,10 +1,10 @@
-import Link from 'next/link'
 import { Typography, Button, Stack } from '@mui/material'
+import Link from 'next/link'
 import AvatarStatus from '@features/avatar-status'
-import { toHref } from '@entities/user'
 import { CharacteristicUser } from '@entities/characteristic'
-import { UserDto } from '@shared/api/user'
+import { toHref } from '@entities/user'
 import { MAIN_CHARACTERISTICS } from '@shared/api/characteristic'
+import { UserDto } from '@shared/api/user'
 
 interface UserCardProps {
   user: UserDto

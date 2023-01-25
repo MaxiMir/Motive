@@ -1,8 +1,8 @@
-import dynamic from 'next/dynamic'
 import { Button } from '@mui/material'
 import { buttonClasses } from '@mui/material/Button'
 import { blue } from '@mui/material/colors'
-import useFormatNumber from '@shared/lib/hooks/useFormatNumber'
+import dynamic from 'next/dynamic'
+import { useFormatNumber } from '@shared/lib/hooks'
 import Emoji, { EmojiName } from '@shared/ui/Emoji'
 import TooltipArrow from '@shared/ui/styled/TooltipArrow'
 

@@ -1,12 +1,12 @@
 import { Box, Stack, Typography } from '@mui/material'
-import { OwnershipDto } from '@shared/api/member'
 import { useGoalContext } from '@pages/user/components/GoalCurrent/hooks/useGoalContext'
-import Modal from '@shared/ui/Modal'
-import FadeEmoji from '@shared/ui/FadeEmoji'
-import SubmitButton from '@shared/ui/SubmitButton'
+import { OwnershipDto } from '@shared/api/member'
 import CancelButton from '@shared/ui/CancelButton'
-import { useSendRemoveMember } from './hooks/useSendRemoveMember'
+import FadeEmoji from '@shared/ui/FadeEmoji'
+import Modal from '@shared/ui/Modal'
+import SubmitButton from '@shared/ui/SubmitButton'
 import { useMessages } from './hooks/useMessages'
+import { useSendRemoveMember } from './hooks/useSendRemoveMember'
 
 interface LeaveModalProps {
   clientOwnership: OwnershipDto

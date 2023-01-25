@@ -1,7 +1,7 @@
-import { useRouter } from 'next/router'
 import { useQuery } from 'react-query'
+import { useRouter } from 'next/router'
 import { getSearchPage } from '@entities/pages/api/getSearchPage'
-import { Route } from '@shared/consts/routes'
+import { Route } from '@shared/consts'
 
 export const useSearchPage = () => {
   const { query: params } = useRouter()

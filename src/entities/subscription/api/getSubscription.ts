@@ -1,7 +1,7 @@
-import fetcher from '@shared/config/fetcher'
 import { SecondCharacteristicName } from '@shared/api/characteristic'
 import { UserDto } from '@shared/api/user'
-import { Filter, getFilterParams } from '@shared/lib/helpers/url'
+import { fetcher } from '@shared/config'
+import { Filter, getFilterParams } from '@shared/lib/helpers'
 
 type Subscription = SecondCharacteristicName.Following | SecondCharacteristicName.Followers
 

@@ -1,10 +1,10 @@
 import { Box } from '@mui/material'
 import { Story } from '@features/stories/models/types'
 import { UserBaseDto } from '@shared/api/user'
-import Top from './ui/top/Top'
+import Bottom from './ui/bottom/Bottom'
 import Pointers from './ui/pointers/Pointers'
 import Slide from './ui/Slide'
-import Bottom from './ui/bottom/Bottom'
+import Top from './ui/top/Top'
 
 interface StoryViewerProps {
   stories: Story[]

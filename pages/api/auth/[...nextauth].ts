@@ -1,8 +1,8 @@
 import NextAuth from 'next-auth'
 import AppleProvider from 'next-auth/providers/apple'
-import GoogleProvider from 'next-auth/providers/google'
-import GithubProvider from 'next-auth/providers/github'
 import FacebookProvider from 'next-auth/providers/facebook'
+import GithubProvider from 'next-auth/providers/github'
+import GoogleProvider from 'next-auth/providers/google'
 import { createUser, getUsers } from '@entities/user'
 
 export default NextAuth({

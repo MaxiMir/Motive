@@ -1,11 +1,11 @@
-import dynamic from 'next/dynamic'
 import { Box } from '@mui/material'
+import dynamic from 'next/dynamic'
 import { useUserContext } from '@pages/user/hooks'
 import { useSubscription } from '@entities/subscription'
-import Modal from '@shared/ui/Modal'
 import { SecondCharacteristicName } from '@shared/api/characteristic'
-import { useMessages } from './hooks/useMessages'
+import Modal from '@shared/ui/Modal'
 import Loader from './components/Loader'
+import { useMessages } from './hooks/useMessages'
 
 const EmptyList = dynamic(() => import('./components/EmptyList'))
 const UserList = dynamic(() => import('./components/UserList'))

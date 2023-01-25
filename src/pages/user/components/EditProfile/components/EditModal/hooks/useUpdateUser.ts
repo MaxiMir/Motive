@@ -1,19 +1,12 @@
+import { useFormik } from 'formik'
 import produce from 'immer'
-import { useRouter } from 'next/router'
 import { useIntl } from 'react-intl'
 import { useMutation } from 'react-query'
-import { useFormik } from 'formik'
+import { useRouter } from 'next/router'
 import { useMutateUserPage, useUserContext } from '@pages/user/hooks'
-import {
-  UserPageDto,
-  UpdateUserDto,
-  UserBaseDto,
-  userSchema,
-  toHref,
-  getUsers,
-  updateUser,
-} from '@entities/user'
-import { getCurrentSearchParams, setSearchParams } from '@shared/lib/helpers/url'
+import { userSchema, toHref, getUsers, updateUser } from '@entities/user'
+import { UserPageDto, UpdateUserDto, UserBaseDto } from '@shared/api/user'
+import { getCurrentSearchParams, setSearchParams } from '@shared/lib/helpers'
 
 const getNextState = (page: UserPageDto, user: UserBaseDto) =>
   produce(page, (draft) => {

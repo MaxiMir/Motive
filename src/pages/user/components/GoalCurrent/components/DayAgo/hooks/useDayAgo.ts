@@ -1,8 +1,7 @@
 import { differenceInDays } from 'date-fns'
-import { getMidnight } from '@shared/lib/utils/date'
-import { ucFirst } from '@shared/lib/helpers/string'
-import useFormatRelativeTime from '@shared/lib/hooks/useFormatRelativeTime'
-import useFormatDistance from '@shared/lib/hooks/useFormatDistance'
+import { ucFirst } from '@shared/lib/helpers'
+import { useFormatDistance, useFormatRelativeTime } from '@shared/lib/hooks'
+import { getMidnight } from '@shared/lib/utils'
 
 export const useDayAgo = (day: string) => {
   const formatRelativeTime = useFormatRelativeTime()

@@ -1,7 +1,7 @@
+import { useFormik } from 'formik'
 import produce from 'immer'
 import { useIntl } from 'react-intl'
 import { InfiniteData, useMutation, useQueryClient } from 'react-query'
-import { useFormik } from 'formik'
 import { useSnackbar } from '@entities/snackbar'
 import { topicSchema, updateTopic } from '@entities/topic'
 import { MessageDto, TopicDto } from '@shared/api/topic'

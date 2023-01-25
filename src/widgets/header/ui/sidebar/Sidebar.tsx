@@ -1,6 +1,6 @@
+import { IconButton } from '@mui/material'
 import { useState } from 'react'
 import dynamic from 'next/dynamic'
-import { IconButton } from '@mui/material'
 import Icon from '@shared/ui/Icon'
 import TooltipArrow from '@shared/ui/styled/TooltipArrow'
 import { useMessages } from './lib/hooks/useMessages'

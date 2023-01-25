@@ -1,13 +1,13 @@
-import { FocusEvent } from 'react'
-import { Field, Form, FormikProvider } from 'formik'
 import { Box, Stack } from '@mui/material'
+import { Field, Form, FormikProvider } from 'formik'
+import { FocusEvent } from 'react'
 import { MessageDto } from '@shared/api/topic'
-import Modal from '@shared/ui/Modal'
-import Input from '@shared/ui/Input'
-import SubmitButton from '@shared/ui/SubmitButton'
 import CancelButton from '@shared/ui/CancelButton'
-import { useMessages } from './hooks/useMessages'
+import Input from '@shared/ui/Input'
+import Modal from '@shared/ui/Modal'
+import SubmitButton from '@shared/ui/SubmitButton'
 import { useForm } from './hooks/useForm'
+import { useMessages } from './hooks/useMessages'
 
 interface EditModalProps {
   message: MessageDto

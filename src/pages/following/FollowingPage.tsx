@@ -1,5 +1,5 @@
-import dynamic from 'next/dynamic'
 import { Typography } from '@mui/material'
+import dynamic from 'next/dynamic'
 import { UserDto } from '@shared/api/user'
 import Container from '@shared/ui/Container'
 import { useMessages } from './hooks/useMessages'

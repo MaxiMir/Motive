@@ -1,6 +1,6 @@
+import { GoalCharacteristicDto, MainCharacteristicName } from './characteristic'
 import { DayDto } from './day'
 import { CreateTaskDto } from './task'
-import { GoalCharacteristicDto, MainCharacteristicName } from './characteristic'
 
 export interface CreateGoalDto {
   readonly name: string

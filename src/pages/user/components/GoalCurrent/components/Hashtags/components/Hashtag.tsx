@@ -1,5 +1,5 @@
-import Link from 'next/link'
 import { Button } from '@mui/material'
+import Link from 'next/link'
 import { getHashtagHref } from '@entities/user'
 
 interface HashtagProps {

@@ -1,6 +1,6 @@
-import dynamic from 'next/dynamic'
-import { useIntl } from 'react-intl'
 import { Stack } from '@mui/material'
+import { useIntl } from 'react-intl'
+import dynamic from 'next/dynamic'
 import { MemberDto } from '@shared/api/member'
 import { TaskDto } from '@shared/api/task'
 import Checkbox from '@shared/ui/Checkbox'

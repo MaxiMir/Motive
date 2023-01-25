@@ -1,8 +1,8 @@
-import { GoalDto } from './goal'
-import { UserDto } from './user'
-import { MemberDto } from './member'
 import { MainCharacteristicName } from './characteristic'
 import { ConfirmationDto } from './confirmation'
+import { GoalDto } from './goal'
+import { MemberDto } from './member'
+import { UserDto } from './user'
 
 export const enum OGType {
   Website = 'website',

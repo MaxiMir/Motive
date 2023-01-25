@@ -1,11 +1,11 @@
+import { Badge, Stack } from '@mui/material'
 import { ReactNode } from 'react'
 import dynamic from 'next/dynamic'
-import { Badge, Stack } from '@mui/material'
-import useFormatDistance from '@shared/lib/hooks/useFormatDistance'
 import { Device } from '@shared/api/device'
+import { useFormatDistance } from '@shared/lib/hooks'
 import TooltipArrow from '@shared/ui/styled/TooltipArrow'
-import { useMessages } from './lib/hooks/useMessages'
 import { getShortDistance } from './lib/helpers/content'
+import { useMessages } from './lib/hooks/useMessages'
 
 const DeviceIcon = dynamic(() => import('./ui/deviceIcon/DeviceIcon'))
 

@@ -3,8 +3,8 @@ import { blueGrey } from '@mui/material/colors'
 import { MainCharacteristicName } from '@shared/api/characteristic'
 import { UserDto } from '@shared/api/user'
 import List from '@shared/ui/List'
-import { useMessages } from './hooks/useMessages'
 import UserRow from './components/UserRow'
+import { useMessages } from './hooks/useMessages'
 
 interface TabContentProps {
   name: MainCharacteristicName

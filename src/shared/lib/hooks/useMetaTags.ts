@@ -2,7 +2,7 @@ import { useIntl } from 'react-intl'
 
 type Page = 'feed' | 'home' | 'contact' | 'search' | 'following' | '404' | '500'
 
-const useMetaTags = (page: Page) => {
+export const useMetaTags = (page: Page) => {
   const { formatMessage } = useIntl()
   const skipDescription = ['404', '500', 'feed'].includes(page)
 
@@ -11,5 +11,3 @@ const useMetaTags = (page: Page) => {
     description: skipDescription ? undefined : formatMessage({ id: `page.${page}.description` }),
   }
 }
-
-export default useMetaTags

@@ -1,7 +1,7 @@
 import { useIntl } from 'react-intl'
 import { OGType } from '@shared/api/pages'
-import { getImageSrc } from '@shared/lib/helpers/url'
 import { UserPageDto } from '@shared/api/user'
+import { getImageSrc } from '@shared/lib/helpers'
 
 export const useUserMetaTags = (user?: UserPageDto) => {
   const { formatMessage } = useIntl()

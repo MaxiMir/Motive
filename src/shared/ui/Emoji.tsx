@@ -1,5 +1,5 @@
-import dynamic from 'next/dynamic'
 import { TypographyProps } from '@mui/material'
+import dynamic from 'next/dynamic'
 
 const Typography = dynamic(() => import('@mui/material/Typography'))
 

@@ -1,13 +1,13 @@
+import { useFormik } from 'formik'
 import produce from 'immer'
 import { useIntl } from 'react-intl'
 import { useMutation } from 'react-query'
-import { useFormik } from 'formik'
 import { useMutateGoals } from '@pages/user/hooks'
-import { useSnackbar } from '@entities/snackbar'
 import { goalSchema, createGoal } from '@entities/goal'
+import { useSnackbar } from '@entities/snackbar'
 import { CreatedGoal, CreateGoalDto, GoalDto } from '@shared/api/goal'
-import { getMidnightISO } from '@shared/lib/utils/date'
-import { scrollToElem } from '@shared/lib/helpers/document'
+import { scrollToElem } from '@shared/lib/helpers'
+import { getMidnightISO } from '@shared/lib/utils'
 
 const getNextState = (goals: GoalDto[], goal: CreatedGoal) =>
   produce(goals, (draft) => {

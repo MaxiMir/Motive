@@ -1,9 +1,9 @@
 import { Box, Typography } from '@mui/material'
 import { MainCharacteristicName } from '@shared/api/characteristic'
 import Modal from '@shared/ui/Modal'
-import { useMessages } from './hooks/useMessages'
-import Progress from './components/Progress'
 import ListItem from './components/ListItem'
+import Progress from './components/Progress'
+import { useMessages } from './hooks/useMessages'
 
 interface CharacteristicModalProps {
   name: MainCharacteristicName

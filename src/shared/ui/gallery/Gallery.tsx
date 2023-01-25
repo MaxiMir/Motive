@@ -1,6 +1,6 @@
 import { useState } from 'react'
-import dynamic from 'next/dynamic'
 import PhotoAlbum, { ClickHandlerProps } from 'react-photo-album'
+import dynamic from 'next/dynamic'
 import { PhotoDto } from '@shared/api/feedback'
 import GalleryPhoto from './ui/GalleryPhoto'
 

@@ -1,11 +1,11 @@
-import { Field, Form, FormikProvider } from 'formik'
 import { Box, InputAdornment, Stack } from '@mui/material'
-import Modal from '@shared/ui/Modal'
-import Input from '@shared/ui/Input'
-import SubmitButton from '@shared/ui/SubmitButton'
+import { Field, Form, FormikProvider } from 'formik'
 import CancelButton from '@shared/ui/CancelButton'
-import { useUpdateUser } from './hooks/useUpdateUser'
+import Input from '@shared/ui/Input'
+import Modal from '@shared/ui/Modal'
+import SubmitButton from '@shared/ui/SubmitButton'
 import { useMessages } from './hooks/useMessages'
+import { useUpdateUser } from './hooks/useUpdateUser'
 
 interface EditModalProps {
   onClose: () => void

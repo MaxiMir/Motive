@@ -1,7 +1,7 @@
-import { useMutation } from 'react-query'
 import { useFormik } from 'formik'
-import { useAddMessage } from '@pages/user/hooks'
+import { useMutation } from 'react-query'
 import { useGoalContext } from '@pages/user/components/GoalCurrent/hooks/useGoalContext'
+import { useAddMessage } from '@pages/user/hooks'
 import { topicSchema, createTopic } from '@entities/topic'
 import { MessageType } from '@shared/api/topic'
 

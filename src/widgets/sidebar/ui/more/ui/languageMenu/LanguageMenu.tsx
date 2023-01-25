@@ -1,7 +1,7 @@
 import { ListItemIcon, ListItemText, Menu, MenuItem } from '@mui/material'
 import { paperClasses } from '@mui/material/Paper'
-import { Locale, useSetLocale } from '@entities/locale'
 import { useIntl } from 'react-intl'
+import { Locale, useSetLocale } from '@entities/locale'
 import Emoji from '@shared/ui/Emoji'
 import ListItem from '@shared/ui/ListItem'
 import { useMessages } from './lib/hooks/useMessages'

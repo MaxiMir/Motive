@@ -1,6 +1,6 @@
+import { Stack } from '@mui/material'
 import { useState } from 'react'
 import dynamic from 'next/dynamic'
-import { Stack } from '@mui/material'
 import { useGoalContext } from '@pages/user/components/GoalCurrent/hooks/useGoalContext'
 import BlueButton from '@shared/ui/styled/BlueButton'
 import { useMessages } from './hooks/useMessages'

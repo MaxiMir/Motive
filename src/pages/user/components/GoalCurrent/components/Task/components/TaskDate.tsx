@@ -1,5 +1,5 @@
-import { format } from 'date-fns'
 import { Stack, Typography } from '@mui/material'
+import { format } from 'date-fns'
 import Icon from '@shared/ui/Icon'
 
 interface TaskDateProps {

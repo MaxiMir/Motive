@@ -1,9 +1,9 @@
-import dynamic from 'next/dynamic'
-import Icon from '@shared/ui/Icon'
 import { Button } from '@mui/material'
 import { blue } from '@mui/material/colors'
+import dynamic from 'next/dynamic'
 import { useUserContext } from '@pages/user/hooks'
 import { useUpdateFollowing } from '@entities/subscription'
+import Icon from '@shared/ui/Icon'
 import { useMessages } from './hooks/useMessages'
 
 const CircularProgress = dynamic(() => import('@mui/material/CircularProgress'))

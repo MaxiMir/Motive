@@ -1,8 +1,8 @@
+import { useFormik } from 'formik'
 import { useIntl } from 'react-intl'
 import { useMutation } from 'react-query'
-import { useFormik } from 'formik'
-import { useSnackbar } from '@entities/snackbar'
 import { useGoalContext } from '@pages/user/components/GoalCurrent/hooks/useGoalContext'
+import { useSnackbar } from '@entities/snackbar'
 import { createTopic } from '@entities/topic'
 import { CreateMessageDto, MessageType, TopicDto } from '@shared/api/topic'
 

@@ -1,6 +1,6 @@
-import { MutableRefObject } from 'react'
 import { Box, Portal } from '@mui/material'
 import { styled } from '@mui/system'
+import { MutableRefObject } from 'react'
 import { Story } from '@features/stories/models/types'
 import { UserBaseDto } from '@shared/api/user'
 import { useSlowClose } from './lib/hooks/useSlowClose'

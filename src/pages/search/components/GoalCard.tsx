@@ -1,10 +1,10 @@
-import Link from 'next/link'
 import { Box, Button, Stack, Typography } from '@mui/material'
+import Link from 'next/link'
 import AvatarStatus from '@features/avatar-status'
-import { toHref } from '@entities/user'
 import { CharacteristicGoal } from '@entities/characteristic'
-import { GoalDto } from '@shared/api/goal'
+import { toHref } from '@entities/user'
 import { MAIN_CHARACTERISTICS } from '@shared/api/characteristic'
+import { GoalDto } from '@shared/api/goal'
 
 interface GoalCardProps {
   goal: GoalDto

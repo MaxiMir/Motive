@@ -1,8 +1,8 @@
+import { MainCharacteristicName, SecondCharacteristicName } from './characteristic'
+import { ConfirmationDto } from './confirmation'
 import { Device } from './device'
 import { GoalDto } from './goal'
 import { MemberDto } from './member'
-import { ConfirmationDto } from './confirmation'
-import { MainCharacteristicName, SecondCharacteristicName } from './characteristic'
 
 export type UserCharacteristicName = MainCharacteristicName | SecondCharacteristicName
 

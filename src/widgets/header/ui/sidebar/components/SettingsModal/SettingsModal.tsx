@@ -1,11 +1,11 @@
-import { MouseEvent } from 'react'
-import { useIntl } from 'react-intl'
 import { ToggleButtonGroup, ToggleButton, Typography, Stack, PaletteMode } from '@mui/material'
 import { styled } from '@mui/system'
-import { usePaletteModeContext } from '@entities/theme'
+import { MouseEvent } from 'react'
+import { useIntl } from 'react-intl'
 import { useSetLocale, Locale } from '@entities/locale'
-import Modal from '@shared/ui/Modal'
+import { usePaletteModeContext } from '@entities/theme'
 import Emoji from '@shared/ui/Emoji'
+import Modal from '@shared/ui/Modal'
 import { useMessages } from './hooks/useMessages'
 
 interface SettingsModalProps {

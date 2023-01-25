@@ -1,9 +1,9 @@
-import dynamic from 'next/dynamic'
 import { Stack } from '@mui/material'
+import dynamic from 'next/dynamic'
 import { useAddMessage } from '@pages/user/hooks'
+import { useClient } from '@entities/user'
 import { TopicDto, MessageType } from '@shared/api/topic'
 import { UserBaseDto } from '@shared/api/user'
-import useClient from '@shared/lib/hooks/useClient'
 import { ListProps } from '@shared/ui/List'
 import { useDiscussion } from './hooks/useDiscussion'
 

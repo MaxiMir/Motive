@@ -1,8 +1,8 @@
-import { useContext } from 'react'
 import { MuiPickersAdapterContext } from '@mui/x-date-pickers'
 import { formatDistance } from 'date-fns'
+import { useContext } from 'react'
 
-const useFormatDistance = () => {
+export const useFormatDistance = () => {
   const ctx = useContext(MuiPickersAdapterContext)
   const locale = ctx?.utils.locale
 
@@ -10,5 +10,3 @@ const useFormatDistance = () => {
     return formatDistance(new Date(date), baseDate, { addSuffix: true, locale })
   }
 }
-
-export default useFormatDistance

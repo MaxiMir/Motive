@@ -1,5 +1,5 @@
-import Image from 'next/image'
 import { Box } from '@mui/material'
+import Image from 'next/image'
 import webSrc from 'public/images/svg/web.svg'
 
 function Web() {

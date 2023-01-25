@@ -1,9 +1,9 @@
 import dynamic from 'next/dynamic'
 import { MemberDto } from '@shared/api/member'
-import { getTomorrow } from '@shared/lib/utils/date'
+import { getTomorrow } from '@shared/lib/utils'
 import Emoji from '@shared/ui/Emoji'
-import TooltipArrow from '@shared/ui/styled/TooltipArrow'
 import BlueButton from '@shared/ui/styled/BlueButton'
+import TooltipArrow from '@shared/ui/styled/TooltipArrow'
 import { useMessages } from './hooks/useMessages'
 import { useSendEndOfDay } from './hooks/useSendEndOfDay'
 

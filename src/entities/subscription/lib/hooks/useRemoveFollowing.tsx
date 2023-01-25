@@ -1,14 +1,14 @@
-import produce from 'immer'
-import { useMutation, useQueryClient } from 'react-query'
-import { useIntl } from 'react-intl'
 import { Button } from '@mui/material'
+import produce from 'immer'
+import { useIntl } from 'react-intl'
+import { useMutation, useQueryClient } from 'react-query'
+import { FollowingPageDto } from '@shared/api/pages'
 import { useOpenSignIn } from '@features/sign-in'
 import { useSnackbar } from '@entities/snackbar'
 import { updateSubscription } from '@entities/subscription/api/updateSubscription'
-import { FollowingPageDto } from '@shared/api/pages'
+import { useClient } from '@entities/user'
 import { UserDto } from '@shared/api/user'
-import useClient from '@shared/lib/hooks/useClient'
-import { Route } from '@shared/consts/routes'
+import { Route } from '@shared/consts'
 
 interface Options {
   user: UserDto

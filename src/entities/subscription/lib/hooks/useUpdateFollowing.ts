@@ -5,8 +5,8 @@ import { useMutateUserPage } from '@pages/user/hooks'
 import { useOpenSignIn } from '@features/sign-in'
 import { useSnackbar } from '@entities/snackbar'
 import { updateSubscription } from '@entities/subscription/api/updateSubscription'
+import { useClient } from '@entities/user'
 import { UserPageDto } from '@shared/api/user'
-import useClient from '@shared/lib/hooks/useClient'
 
 const getNextState = (page: UserPageDto, following: boolean) =>
   produce(page, (draft) => {

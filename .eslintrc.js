@@ -12,6 +12,7 @@ module.exports = {
     'plugin:import/typescript',
     'eslint:recommended',
     'next',
+    '@feature-sliced',
   ],
   settings: {
     react: {

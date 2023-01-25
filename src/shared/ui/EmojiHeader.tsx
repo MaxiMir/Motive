@@ -1,5 +1,5 @@
-import { ElementType } from 'react'
 import { Typography, Stack, TypographyProps, StackProps } from '@mui/material'
+import { ElementType } from 'react'
 import Emoji, { EmojiName } from './Emoji'
 
 interface HeaderProps extends TypographyProps {

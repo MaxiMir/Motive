@@ -1,14 +1,14 @@
 import { Box, List, ListItem, Stack, Drawer, ListItemIcon, ListItemText } from '@mui/material'
-import { copyText } from '@shared/lib/helpers/navigator'
+import { copyText } from '@shared/lib/helpers'
 import ContentCopy from '@shared/ui/icons/ContentCopy'
 import Email from '@shared/ui/icons/Email'
-import SMS from '@shared/ui/icons/SMS'
 import Facebook from '@shared/ui/icons/Facebook'
+import SMS from '@shared/ui/icons/SMS'
 import Telegram from '@shared/ui/icons/Telegram'
 import Twitter from '@shared/ui/icons/Twitter'
 import VK from '@shared/ui/icons/VK'
-import { useMessages } from './lib/hooks/useMessages'
 import { clickHandler } from './lib/helpers/handler'
+import { useMessages } from './lib/hooks/useMessages'
 
 interface MenuProps {
   title: string

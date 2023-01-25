@@ -1,5 +1,5 @@
-import { CreateTaskDto, TaskDto } from './task'
 import { FeedbackDto } from './feedback'
+import { CreateTaskDto, TaskDto } from './task'
 
 interface DayCharacteristicDto {
   readonly motivation: number

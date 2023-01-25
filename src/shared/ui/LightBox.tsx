@@ -1,12 +1,12 @@
-import dynamic from 'next/dynamic'
 import { useIntl } from 'react-intl'
 import Fullscreen from 'yet-another-react-lightbox/plugins/fullscreen'
 import Slideshow from 'yet-another-react-lightbox/plugins/slideshow'
 import Thumbnails from 'yet-another-react-lightbox/plugins/thumbnails'
 import Zoom from 'yet-another-react-lightbox/plugins/zoom'
+import dynamic from 'next/dynamic'
 import 'yet-another-react-lightbox/styles.css'
 import 'yet-another-react-lightbox/plugins/thumbnails.css'
-import { getImageSrc } from '@shared/lib/helpers/url'
+import { getImageSrc } from '@shared/lib/helpers'
 
 const ReactLightbox = dynamic(() => import('yet-another-react-lightbox'))
 

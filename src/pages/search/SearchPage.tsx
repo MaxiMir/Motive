@@ -1,13 +1,13 @@
-import dynamic from 'next/dynamic'
 import { Grid, Typography, Stack } from '@mui/material'
-import { GoalDto } from '@shared/api/goal'
+import dynamic from 'next/dynamic'
 import { HashtagDto } from '@shared/api/pages'
-import EmojiHeader from '@shared/ui/EmojiHeader'
+import { GoalDto } from '@shared/api/goal'
 import { UserDto } from '@shared/api/user'
 import Container from '@shared/ui/Container'
-import { useMessages } from './hooks/useMessages'
-import { GRADIENTS } from './helpers/color'
+import EmojiHeader from '@shared/ui/EmojiHeader'
 import SearchForm from './components/SearchForm'
+import { GRADIENTS } from './helpers/color'
+import { useMessages } from './hooks/useMessages'
 
 const GoalCard = dynamic(() => import('./components/GoalCard'))
 const UserCard = dynamic(() => import('./components/UserCard'))

@@ -1,15 +1,15 @@
-import { Field, Form, FormikProvider } from 'formik'
 import { Box, Stack, Typography } from '@mui/material'
+import { Field, Form, FormikProvider } from 'formik'
 import { UserBaseDto } from '@shared/api/user'
-import Modal from '@shared/ui/Modal'
+import Accordion from '@shared/ui/Accordion'
+import CancelButton from '@shared/ui/CancelButton'
+import DecorEmoji from '@shared/ui/DecorEmoji'
 import FadeEmoji from '@shared/ui/FadeEmoji'
 import Input from '@shared/ui/Input'
-import Accordion from '@shared/ui/Accordion'
-import DecorEmoji from '@shared/ui/DecorEmoji'
+import Modal from '@shared/ui/Modal'
 import SubmitButton from '@shared/ui/SubmitButton'
-import CancelButton from '@shared/ui/CancelButton'
-import { useMessages } from './hooks/useMessages'
 import { useForm } from './hooks/useForm'
+import { useMessages } from './hooks/useMessages'
 
 interface SupportModalProps {
   owner: UserBaseDto

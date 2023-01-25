@@ -1,18 +1,18 @@
-import { Fragment, ReactNode } from 'react'
-import Head from 'next/head'
-import dynamic from 'next/dynamic'
-import { useRouter } from 'next/router'
-import { useIntl } from 'react-intl'
-import { useIsFetching } from 'react-query'
-import PerfectScrollbar from 'react-perfect-scrollbar'
 import { Stack } from '@mui/material'
-import { getLocaleHrefList } from '@entities/locale'
-import { useDeviceContext } from '@entities/device'
+import { Fragment, ReactNode } from 'react'
+import { useIntl } from 'react-intl'
+import PerfectScrollbar from 'react-perfect-scrollbar'
+import { useIsFetching } from 'react-query'
+import dynamic from 'next/dynamic'
+import Head from 'next/head'
+import { useRouter } from 'next/router'
 import { OGType } from '@shared/api/pages'
+import { useDeviceContext } from '@entities/device'
+import { getLocaleHrefList } from '@entities/locale'
 
-const Loader = dynamic(() => import('@widgets/loader/ui'))
-const Header = dynamic(() => import('@widgets/header/ui'))
-const Footer = dynamic(() => import('@widgets/footer/ui'))
+const Loader = dynamic(() => import('@widgets/loader'))
+const Header = dynamic(() => import('@widgets/header'))
+const Footer = dynamic(() => import('@widgets/footer'))
 const Sidebar = dynamic(() => import('@widgets/sidebar/Sidebar'))
 
 interface LayoutProps {

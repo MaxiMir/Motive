@@ -1,10 +1,10 @@
-import { MouseEvent, useId, useState } from 'react'
-import dynamic from 'next/dynamic'
 import { Menu, MenuItem } from '@mui/material'
 import { paperClasses } from '@mui/material/Paper'
+import { MouseEvent, useId, useState } from 'react'
+import dynamic from 'next/dynamic'
 import AvatarStatus from '@features/avatar-status'
 import { UserPageDto } from '@shared/api/user'
-import useToggle from '@shared/lib/hooks/useToggle'
+import { useToggle } from '@shared/lib/hooks'
 import ListItem from '@shared/ui/ListItem'
 import { useMessages } from './lib/hooks/useMessages'
 

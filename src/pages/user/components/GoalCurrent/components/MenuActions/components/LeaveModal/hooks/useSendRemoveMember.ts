@@ -34,7 +34,7 @@ export const useSendRemoveMember = (goalId: number, clientPage: boolean) => {
 
       const message = formatMessage({ id: 'page.user.modal-goal.message' })
       queryClient.setQueriesData<UserPageDto | undefined>(
-        nickname,
+        ['page', nickname],
         (page) => page && getNextState(page, goalId, id, clientPage),
       )
       enqueueSnackbar({ message, severity: 'success', icon: 'speaker' })

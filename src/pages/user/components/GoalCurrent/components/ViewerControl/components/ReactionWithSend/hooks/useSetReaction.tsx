@@ -56,7 +56,7 @@ export const useSetReaction = (
     },
     onError(_, _1, context) {
       if (context?.previous) {
-        queryClient.setQueryData(nickname, context?.previous)
+        queryClient.setQueryData(['page', nickname], context?.previous)
       }
     },
   })

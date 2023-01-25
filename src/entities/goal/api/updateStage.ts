@@ -1,6 +1,6 @@
 import fetcher from '@shared/api/fetcher'
-import { GoalStageDto } from '@entities/goal/model/dto'
+import { DayCharacteristicUpdateDto } from '@app/model/day'
 
-export const updateStage = ({ id, ...data }: GoalStageDto): Promise<void> => {
+export const updateStage = ({ id, ...data }: DayCharacteristicUpdateDto): Promise<void> => {
   return fetcher.patch(`/goals/${id}/stage`, data)
 }

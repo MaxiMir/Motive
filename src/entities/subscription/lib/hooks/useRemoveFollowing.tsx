@@ -38,11 +38,14 @@ export const useRemoveFollowing = (): UseRemoveFollowing => {
     ({ user, insert }: Options) => updateSubscription(user.id, insert),
     {
       async onMutate({ user, index, insert }) {
-        await queryClient.cancelQueries(Route.Following)
-        const previous = queryClient.getQueryData<FollowingPageDto>(Route.Following)
+        await queryClient.cancelQueries(['page', Route.Following])
+        const previous = queryClient.getQueryData<FollowingPageDto>(['page', Route.Following])
 
         if (previous) {
-          queryClient.setQueryData(Route.Following, getNextState(previous, user, index, insert))
+          queryClient.setQueryData(
+            ['page', Route.Following],
+            getNextState(previous, user, index, insert),
+          )
         }
 
         return { previous }
@@ -57,6 +60,7 @@ export const useRemoveFollowing = (): UseRemoveFollowing => {
           enqueueSnackbar({
             message,
             severity: 'success',
+            icon: 'delete',
             action: (
               <Button variant="text" sx={{ color: 'error.dark' }} onClick={onClick}>
                 {undoText}

@@ -7,9 +7,9 @@ import useClient from '@lib/hooks/useClient'
 import useToggle from '@lib/hooks/useToggle'
 import { usePaletteModeContext } from '@entities/theme'
 import Icon from '@ui/Icon'
-import { useMessages } from './hooks/useMessages'
+import { useMessages } from './lib/hooks/useMessages'
 
-const LanguageMenu = dynamic(() => import('./components/LanguageMenu'))
+const LanguageMenu = dynamic(() => import('./ui/languageMenu/LanguageMenu'))
 
 function More() {
   const id = useId()

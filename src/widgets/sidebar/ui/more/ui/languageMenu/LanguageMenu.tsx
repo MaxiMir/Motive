@@ -4,7 +4,7 @@ import { Locale, useSetLocale } from '@entities/locale'
 import { useIntl } from 'react-intl'
 import Emoji from '@ui/Emoji'
 import ListItem from '@ui/ListItem'
-import { useMessages } from './hooks/useMessages'
+import { useMessages } from './lib/hooks/useMessages'
 
 const LANGUAGES = [
   { primary: 'EN', name: 'en', value: Locale.En },

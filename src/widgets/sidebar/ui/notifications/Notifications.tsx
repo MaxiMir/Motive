@@ -3,7 +3,7 @@ import { useNotifications, NotificationBadge } from '@entities/notification'
 import useToggle from '@lib/hooks/useToggle'
 import TooltipArrow from '@ui/styled/TooltipArrow'
 import { List, ListItem, ListItemIcon, ListItemText } from '@mui/material'
-import { useMessages } from './hooks/useMessages'
+import { useMessages } from './lib/hooks/useMessages'
 
 const NotificationModal = dynamic(() => import('@entities/notification'))
 

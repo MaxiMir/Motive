@@ -18,11 +18,11 @@ import Icon from '@ui/Icon'
 import TooltipArrow from '@ui/styled/TooltipArrow'
 import { useRoutes } from './lib/hooks/useRoutes'
 import { useMessages } from './lib/hooks/useMessages'
-import ProfileLink from './ui/ProfileLink'
-import More from './ui/More'
+import ProfileLink from './ui/profileLink/ProfileLink'
+import More from './ui/more/More'
 import Drawer from './ui/Drawer'
 
-const Notifications = dynamic(() => import('./ui/Notifications'))
+const Notifications = dynamic(() => import('./ui/notifications/Notifications'))
 
 interface SidebarProps {
   breakpoints?: boolean

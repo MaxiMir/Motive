@@ -1,10 +1,10 @@
-import { FormikProps } from 'formik'
 import { useIntl } from 'react-intl'
+import { FormikProps } from 'formik'
 import { useSnackbar } from '@entities/snackbar'
 
 const PHOTO_LIMIT = 10
 
-const useSelectPhoto = <T>(formik: FormikProps<T & { photos: File[] }>) => {
+export const useSelectPhoto = <T>(formik: FormikProps<T & { photos: File[] }>) => {
   const { formatMessage } = useIntl()
   const { enqueueSnackbar } = useSnackbar()
 
@@ -20,5 +20,3 @@ const useSelectPhoto = <T>(formik: FormikProps<T & { photos: File[] }>) => {
     formik.setFieldValue('photos', photos.slice(0, PHOTO_LIMIT))
   }
 }
-
-export default useSelectPhoto

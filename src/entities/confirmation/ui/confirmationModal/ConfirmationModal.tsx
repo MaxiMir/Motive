@@ -1,7 +1,7 @@
 import dynamic from 'next/dynamic'
 import { ErrorMessage, Field, FieldArray, Form, FormikProvider } from 'formik'
 import { Grid, Box, Typography, Stack } from '@mui/material'
-import useSelectPhoto from '@shared/lib/hooks/useSelectPhoto'
+import { useSelectPhoto } from '@features/select-photo'
 import Modal from '@shared/ui/Modal'
 import Accordion from '@shared/ui/Accordion'
 import Input from '@shared/ui/Input'

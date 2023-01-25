@@ -1,6 +1,6 @@
 import { Field, FieldArray, Form, FormikProvider } from 'formik'
 import { Grid, Typography, Stack } from '@mui/material'
-import useSelectPhoto from '@shared/lib/hooks/useSelectPhoto'
+import { useSelectPhoto } from '@features/select-photo'
 import Modal from '@shared/ui/Modal'
 import Input from '@shared/ui/Input'
 import EmojiHeader from '@shared/ui/EmojiHeader'

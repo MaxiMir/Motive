@@ -5,7 +5,7 @@ import { TimePicker } from '@mui/x-date-pickers'
 import Input from '@ui/Input'
 import Icon from '@ui/Icon'
 import TooltipArrow from '@ui/styled/TooltipArrow'
-import { useMessages } from './hooks/useMessages'
+import { useMessages } from './lib/hooks/useMessages'
 
 interface TaskFieldProps {
   index: number
@@ -16,7 +16,14 @@ interface TaskFieldProps {
   onRemove: () => void
 }
 
-function TaskField({ index, date, remind, taskCount, setFieldValue, onRemove }: TaskFieldProps) {
+export function TaskField({
+  index,
+  date,
+  remind,
+  taskCount,
+  setFieldValue,
+  onRemove,
+}: TaskFieldProps) {
   const messages = useMessages()
   const autoFocus = !!index && index === taskCount - 1
 
@@ -66,5 +73,3 @@ function TaskField({ index, date, remind, taskCount, setFieldValue, onRemove }: 
     </Stack>
   )
 }
-
-export default TaskField

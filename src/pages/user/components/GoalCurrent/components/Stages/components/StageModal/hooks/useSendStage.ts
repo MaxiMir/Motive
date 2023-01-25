@@ -3,7 +3,7 @@ import { useIntl } from 'react-intl'
 import { useMutation } from 'react-query'
 import { useSnackbar } from '@entities/snackbar'
 import { useMutateGoals } from '@pages/user/hooks'
-import { GoalDto, GoalService } from '@entities/goal'
+import { GoalDto, updateStage } from '@entities/goal'
 
 const getNextState = (goals: GoalDto[], goalId: number) =>
   produce(goals, (draft) => {
@@ -16,7 +16,7 @@ export const useSendStage = (onSuccess: () => void) => {
   const [goals, mutateGoals] = useMutateGoals()
   const { enqueueSnackbar } = useSnackbar()
 
-  return useMutation(GoalService.updateStage, {
+  return useMutation(updateStage, {
     onSuccess(_, { id }) {
       const message = formatMessage({ id: 'component.modal-completion.message' })
       mutateGoals(getNextState(goals, id))

@@ -1,7 +1,7 @@
 import { useMutation } from 'react-query'
 import { useFormik } from 'formik'
-import { object, string } from 'yup'
 import { getSearchPage } from '@entities/pages/api/getSearchPage'
+import { searchSchema } from '@entities/pages/config/searchSchema'
 
 interface SearchDto {
   q: string
@@ -18,7 +18,7 @@ export const useSearchPageAsync = (initial: string) => {
     initialValues: {
       q: initial,
     },
-    validationSchema: object({ q: string() }),
+    validationSchema: searchSchema,
     async onSubmit(data) {
       await mutateAsync(data)
     },

@@ -2,9 +2,8 @@ import produce from 'immer'
 import { useIntl } from 'react-intl'
 import { InfiniteData, useMutation, useQueryClient } from 'react-query'
 import { useFormik } from 'formik'
-import { object, string } from 'yup'
 import { useSnackbar } from '@entities/snackbar'
-import { MessageDto, TopicDto, TopicService } from '@entities/topic'
+import { MessageDto, TopicDto, topicSchema, updateTopic } from '@entities/topic'
 
 const getNextState = (discussion: InfiniteData<TopicDto[]>, message: MessageDto) => {
   const { id, parentId, text } = message
@@ -30,26 +29,21 @@ export const useForm = (initialValues: MessageDto, onSuccess: () => void) => {
   const { formatMessage } = useIntl()
   const { enqueueSnackbar } = useSnackbar()
   const queryClient = useQueryClient()
-  const { mutateAsync } = useMutation(
-    ({ id, text }: MessageDto) => TopicService.update(id, { text }),
-    {
-      onSuccess(_, updatedMessage) {
-        const message = formatMessage({ id: 'common.message-updated' })
-        queryClient.setQueryData<InfiniteData<TopicDto[]> | undefined>(
-          ['discussion', updatedMessage.dayId],
-          (prev) => prev && getNextState(prev, updatedMessage),
-        )
-        enqueueSnackbar({ message, severity: 'success', icon: 'speaker' })
-        onSuccess()
-      },
+  const { mutateAsync } = useMutation(({ id, text }: MessageDto) => updateTopic(id, { text }), {
+    onSuccess(_, updatedMessage) {
+      const message = formatMessage({ id: 'common.message-updated' })
+      queryClient.setQueryData<InfiniteData<TopicDto[]> | undefined>(
+        ['discussion', updatedMessage.dayId],
+        (prev) => prev && getNextState(prev, updatedMessage),
+      )
+      enqueueSnackbar({ message, severity: 'success', icon: 'speaker' })
+      onSuccess()
     },
-  )
+  })
 
   return useFormik<MessageDto>({
     initialValues,
-    validationSchema: object({
-      text: string().required('The message is needed').min(5).max(1000),
-    }),
+    validationSchema: topicSchema,
     async onSubmit(data) {
       await mutateAsync(data)
     },

@@ -1,5 +1,5 @@
 import { useGoalContext } from '@pages/user/components/GoalCurrent/hooks/useGoalContext'
-import { DayCharacteristicName } from '@entities/day'
+import { DayCharacteristicName } from '@shared/model/day'
 import EmojiButton from '@ui/EmojiButton'
 import { useMessages } from './hooks/useMessages'
 import { useSetReaction } from './hooks/useSetReaction'

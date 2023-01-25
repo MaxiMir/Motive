@@ -1,2 +1,2 @@
-export * from './service'
-export * from './model/dto'
+export * from './api/getDay'
+export * from './api/incrementDayViews'

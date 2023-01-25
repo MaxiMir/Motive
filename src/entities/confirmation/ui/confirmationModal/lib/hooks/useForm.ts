@@ -2,12 +2,12 @@ import { useIntl } from 'react-intl'
 import { useMutation } from 'react-query'
 import { formatISO } from 'date-fns'
 import { useFormik } from 'formik'
-import { array, object, string } from 'yup'
 import { getMidnight } from '@lib/utils/date'
 import { scrollToElem } from '@lib/helpers/document'
 import { useSnackbar } from '@entities/snackbar'
-import { ConfirmationService } from '@entities/confirmation/service'
 import { useUserPage } from '@entities/pages'
+import { createConfirmation } from '@entities/confirmation/api/createConfirmation'
+import { confirmationSchema } from '@entities/confirmation/config/schema'
 
 interface Values {
   text: string
@@ -21,7 +21,7 @@ export const useForm = (id: number, onSuccess: () => void) => {
   const { formatMessage } = useIntl()
   const { refetch } = useUserPage()
   const { enqueueSnackbar } = useSnackbar()
-  const { mutateAsync } = useMutation(ConfirmationService.create, {
+  const { mutateAsync } = useMutation(createConfirmation, {
     onSuccess() {
       const message = formatMessage({ id: 'component.modal-completion.message' })
       onSuccess()
@@ -39,10 +39,7 @@ export const useForm = (id: number, onSuccess: () => void) => {
       goalId: id,
       end: getMidnight(),
     },
-    validationSchema: object({
-      description: string().max(400),
-      photos: array().required().min(1),
-    }),
+    validationSchema: confirmationSchema,
     async onSubmit(data) {
       const formData = new FormData()
       formData.append('text', data.text.trim())

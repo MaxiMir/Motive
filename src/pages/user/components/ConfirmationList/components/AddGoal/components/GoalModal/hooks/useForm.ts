@@ -2,13 +2,11 @@ import produce from 'immer'
 import { useIntl } from 'react-intl'
 import { useMutation } from 'react-query'
 import { useFormik } from 'formik'
-import { array, object, string } from 'yup'
 import { getMidnightISO } from '@lib/utils/date'
 import { scrollToElem } from '@lib/helpers/document'
 import { useMutateGoals } from '@pages/user/hooks'
 import { useSnackbar } from '@entities/snackbar'
-import { CreatedGoal, CreateGoalDto, GoalDto, GoalService } from '@entities/goal'
-import { tasksListSchema } from '@entities/task'
+import { CreatedGoal, CreateGoalDto, GoalDto, goalSchema, createGoal } from '@entities/goal'
 
 const getNextState = (goals: GoalDto[], goal: CreatedGoal) =>
   produce(goals, (draft) => {
@@ -19,7 +17,7 @@ export const useForm = (onSuccess: () => void) => {
   const { formatMessage } = useIntl()
   const { enqueueSnackbar } = useSnackbar()
   const [goals, mutateGoal] = useMutateGoals()
-  const { mutateAsync } = useMutation(GoalService.create, {
+  const { mutateAsync } = useMutation(createGoal, {
     onSuccess(goal) {
       const message = formatMessage({ id: 'page.user.modal-goal.message' })
       mutateGoal(getNextState(goals, goal))
@@ -37,24 +35,7 @@ export const useForm = (onSuccess: () => void) => {
       stages: [],
       tasks: [{ id: crypto.randomUUID(), name: '', date: undefined }],
     },
-    validationSchema: object({
-      name: string()
-        .trim()
-        .required('The name is needed')
-        .min(5, "It's too short.")
-        .max(32, "It's so long."),
-      hashtags: string().trim().max(255, "It's so long."),
-      stages: array().of(
-        object({
-          name: string()
-            .trim()
-            .required('The stage name is needed')
-            .min(5, "It's too short.")
-            .max(32, "It's so long."),
-        }),
-      ),
-      tasks: tasksListSchema,
-    }),
+    validationSchema: goalSchema,
     async onSubmit(data) {
       await mutateAsync(data)
     },

@@ -1,3 +1,3 @@
-export { TaskService } from './service'
 export * from './model/dto'
-export * from './schema'
+export * from './config/schema'
+export * from './api/updateCompleted'

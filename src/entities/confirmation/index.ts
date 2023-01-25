@@ -1,2 +1,3 @@
 export { default } from './ui/confirmationModal/ConfirmationModal'
-export * from './model/dto'
+export * from './config/schema'
+export * from './api/createConfirmation'

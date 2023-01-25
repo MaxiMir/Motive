@@ -1,7 +1,7 @@
 import dynamic from 'next/dynamic'
 import { AppBar, Container, Stack } from '@mui/material'
-import { OGType } from '@entities/pages'
 import useClient from '@lib/hooks/useClient'
+import { OGType } from '@entities/pages'
 import Sidebar from './ui/sidebar/Sidebar'
 
 const SignIn = dynamic(() => import('./ui/signIn/SignIn'))

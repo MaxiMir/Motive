@@ -1,10 +1,10 @@
 import dynamic from 'next/dynamic'
 import { useIntl } from 'react-intl'
 import { Stack } from '@mui/material'
-import { MemberDto } from '@entities/member'
-import { TaskDto } from '@entities/task'
 import Checkbox from '@ui/Checkbox'
 import TooltipArrow from '@ui/styled/TooltipArrow'
+import { TaskDto } from '@entities/task'
+import { MemberDto } from '@shared/model/member'
 import TaskLabel from './components/TaskLabel'
 import { useSetCompleted } from './hooks/useSetCompleted'
 

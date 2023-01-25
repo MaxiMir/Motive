@@ -1,10 +1,10 @@
 import dynamic from 'next/dynamic'
 import { Box, Button, Stack, Typography } from '@mui/material'
 import { useUserContext } from '@pages/user/hooks'
-import { ConfirmationDto } from '@entities/confirmation'
 import useTryFullScreen from '@lib/hooks/useTryFullScreen'
 import useToggle from '@lib/hooks/useToggle'
 import AvatarStatus from '@components/AvatarStatus'
+import { ConfirmationDto } from '@shared/model/confirmation'
 
 const Stories = dynamic(() => import('@components/Stories'))
 

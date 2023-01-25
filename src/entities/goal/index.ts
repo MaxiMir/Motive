@@ -1,2 +1,6 @@
-export * from './service'
 export * from './model/dto'
+export * from './config/schema'
+export * from './api/createGoal'
+export * from './api/createDay'
+export * from './api/updateCharacteristic'
+export * from './api/updateStage'

@@ -1,5 +1,5 @@
 import { GoalDto } from '@entities/goal'
-import { DAY_CHARACTERISTIC, DayCharacteristicName } from '@entities/day'
+import { DAY_CHARACTERISTIC, DayCharacteristicName } from '@shared/model/day'
 
 export const checkOnActive = (goal: GoalDto, name: DayCharacteristicName): boolean =>
   goal.reactions?.[name].some((d) => d === goal.day.id)

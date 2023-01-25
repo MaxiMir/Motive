@@ -6,7 +6,8 @@ import { useMutateUserPage } from '@pages/user/hooks'
 import { useGoalContext } from '@pages/user/components/GoalCurrent/hooks/useGoalContext'
 import { useSnackbar } from '@entities/snackbar'
 import { UserPageDto } from '@entities/user'
-import { MemberDto, MemberService } from '@entities/member'
+import { updateMember } from '@entities/member'
+import { MemberDto } from '@shared/model/member'
 
 const getNextState = (page: UserPageDto, member: MemberDto) =>
   produce(page, (draft: Draft<UserPageDto>) => {
@@ -24,7 +25,7 @@ export const useSendEndOfDay = () => {
   const { enqueueSnackbar } = useSnackbar()
   const [page, mutatePage] = useMutateUserPage()
 
-  return useMutation(MemberService.update, {
+  return useMutation(updateMember, {
     onSuccess(member) {
       const message = formatMessage({ id: 'common.next-day-loading' })
       mutatePage(getNextState(page, member))

@@ -4,10 +4,10 @@ import { useQueryClient } from 'react-query'
 import { useIntl } from 'react-intl'
 import { io } from 'socket.io-client'
 import { getImageSrc } from '@lib/helpers/url'
+import useClient from '@lib/hooks/useClient'
 import { useSnackbar } from '@entities/snackbar'
 import { NotificationDto, getNotificationHref } from '@entities/notification'
 import { useDeviceContext } from '@entities/device'
-import useClient from '@lib/hooks/useClient'
 
 export const useSocket = () => {
   const { formatMessage } = useIntl()

@@ -1,4 +1,5 @@
 export * from './model/dto'
+export * from './config/schema'
 export * from './lib/helpers/href'
 export * from './api/getUsers'
 export * from './api/createUser'

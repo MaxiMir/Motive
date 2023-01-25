@@ -2,7 +2,7 @@ import { Typography, IconButton, Stack } from '@mui/material'
 import useFormatNumber from '@lib/hooks/useFormatNumber'
 import Emoji from '@ui/Emoji'
 import TooltipArrow from '@ui/styled/TooltipArrow'
-import { GoalCharacteristicName } from '@entities/characteristic/model/types'
+import { GoalCharacteristicName } from '@shared/model/characteristic'
 import { useMessages } from './lib/hooks/useMessages'
 
 interface CharacteristicGoalProps {
@@ -35,4 +35,3 @@ export function CharacteristicGoal({ name, value }: CharacteristicGoalProps) {
     </Stack>
   )
 }
-

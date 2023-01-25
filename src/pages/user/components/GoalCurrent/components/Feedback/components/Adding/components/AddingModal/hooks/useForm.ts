@@ -2,12 +2,11 @@ import produce from 'immer'
 import { useIntl } from 'react-intl'
 import { useMutation } from 'react-query'
 import { useFormik } from 'formik'
-import { object, string } from 'yup'
-import { useSnackbar } from '@entities/snackbar'
-import { GoalDto } from '@entities/goal'
 import { useMutateGoals } from '@pages/user/hooks'
 import { useGoalContext } from '@pages/user/components/GoalCurrent/hooks/useGoalContext'
-import { FeedbackDto, FeedbackService } from '@entities/feedback'
+import { useSnackbar } from '@entities/snackbar'
+import { GoalDto } from '@entities/goal'
+import { FeedbackDto, createFeedback, feedbackSchema } from '@entities/feedback'
 
 const getNextState = (goals: GoalDto[], goalId: number, feedback: FeedbackDto) =>
   produce(goals, (draft) => {
@@ -26,7 +25,7 @@ export const useForm = (onSuccess: () => void) => {
   const { formatMessage } = useIntl()
   const { enqueueSnackbar } = useSnackbar()
   const [goals, mutateGoals] = useMutateGoals()
-  const { mutateAsync } = useMutation(FeedbackService.create, {
+  const { mutateAsync } = useMutation(createFeedback, {
     onSuccess: (feedback) => {
       const message = formatMessage({ id: 'page.user.modal-feedback.message' })
       mutateGoals(getNextState(goals, id, feedback))
@@ -41,14 +40,7 @@ export const useForm = (onSuccess: () => void) => {
       photos: [],
       video: '',
     },
-    validationSchema: object().shape({
-      text: string()
-        .max(1000)
-        .when('photos', {
-          is: (photos: File[]) => !photos.length,
-          then: string().required('You need to fill in this field or upload a photo'),
-        }),
-    }),
+    validationSchema: feedbackSchema,
     async onSubmit(data) {
       const formData = new FormData()
       formData.append('dayId', day.id.toString())

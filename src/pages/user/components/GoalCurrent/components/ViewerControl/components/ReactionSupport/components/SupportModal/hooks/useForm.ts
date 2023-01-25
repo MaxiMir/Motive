@@ -1,14 +1,13 @@
 import { useMutation } from 'react-query'
 import { useFormik } from 'formik'
-import { object, string } from 'yup'
 import { useAddMessage } from '@pages/user/hooks'
 import { useGoalContext } from '@pages/user/components/GoalCurrent/hooks/useGoalContext'
-import { MessageType, TopicService } from '@entities/topic'
+import { MessageType, topicSchema, createTopic } from '@entities/topic'
 
 export const useForm = (onSuccess: () => void) => {
   const { day } = useGoalContext()
   const addTopic = useAddMessage()
-  const { mutateAsync } = useMutation(TopicService.create, {
+  const { mutateAsync } = useMutation(createTopic, {
     onSuccess(topic) {
       addTopic(topic)
       onSuccess()
@@ -21,9 +20,7 @@ export const useForm = (onSuccess: () => void) => {
       text: '',
       type: MessageType.Support,
     },
-    validationSchema: object({
-      text: string().required('The message is needed').min(5).max(1000),
-    }),
+    validationSchema: topicSchema,
     async onSubmit(data) {
       await mutateAsync(data)
     },

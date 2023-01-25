@@ -2,12 +2,12 @@ import produce from 'immer'
 import { useMutation, useQueryClient } from 'react-query'
 import { useIntl } from 'react-intl'
 import { Button } from '@mui/material'
+import useClient from '@lib/hooks/useClient'
 import { useSnackbar } from '@entities/snackbar'
 import { UserDto } from '@entities/user'
 import { useOpenSignIn } from '@entities/signin'
 import { updateSubscription } from '@entities/subscription/api/updateSubscription'
 import { FollowingPageDto } from '@entities/pages'
-import useClient from '@lib/hooks/useClient'
 import { Route } from '@shared/config/routes'
 
 interface Options {

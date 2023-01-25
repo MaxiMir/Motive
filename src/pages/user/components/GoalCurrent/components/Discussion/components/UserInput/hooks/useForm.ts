@@ -3,7 +3,7 @@ import { useMutation } from 'react-query'
 import { useFormik } from 'formik'
 import { useSnackbar } from '@entities/snackbar'
 import { useGoalContext } from '@pages/user/components/GoalCurrent/hooks/useGoalContext'
-import { CreateMessageDto, MessageType, TopicDto, TopicService } from '@entities/topic'
+import { CreateMessageDto, MessageType, TopicDto, createTopic } from '@entities/topic'
 
 export const useForm = (
   topicId: number | undefined,
@@ -13,7 +13,7 @@ export const useForm = (
   const { formatMessage } = useIntl()
   const { day } = useGoalContext()
   const { enqueueSnackbar } = useSnackbar()
-  const { mutateAsync } = useMutation(TopicService.create, {
+  const { mutateAsync } = useMutation(createTopic, {
     onSuccess() {
       const message = formatMessage({ id: `page.user.user-input.message-${type}` })
       enqueueSnackbar({ message, severity: 'success', icon: 'speaker' })

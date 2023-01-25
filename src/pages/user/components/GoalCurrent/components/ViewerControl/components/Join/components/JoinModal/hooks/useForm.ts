@@ -1,17 +1,17 @@
 import { useRouter } from 'next/router'
 import { useMutation } from 'react-query'
 import { useFormik } from 'formik'
-import { object, string } from 'yup'
 import { getMidnight } from '@lib/utils/date'
 import { setSearchParams } from '@lib/helpers/url'
-import { SearchParam, toHref } from '@entities/user'
-import { CreateMemberDto, MemberService } from '@entities/member'
 import useClient from '@lib/hooks/useClient'
+import { SearchParam, toHref } from '@entities/user'
+import { memberSchema, createMember } from '@entities/member'
+import { CreateMemberDto } from '@shared/model/member'
 
 export const useForm = (goalId: number, dayId: number) => {
   const client = useClient()
   const { push } = useRouter()
-  const { mutateAsync } = useMutation(MemberService.create, {
+  const { mutateAsync } = useMutation(createMember, {
     onSuccess({ dayId: selectedDay }) {
       if (!client) return
 
@@ -27,10 +27,7 @@ export const useForm = (goalId: number, dayId: number) => {
       dayId: dayId.toString(),
       started: getMidnight(),
     },
-    validationSchema: object({
-      goalId: string().required(),
-      dayId: string().required(),
-    }),
+    validationSchema: memberSchema,
     async onSubmit(data) {
       await mutateAsync(data)
     },

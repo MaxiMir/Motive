@@ -3,13 +3,13 @@ import { useRouter } from 'next/router'
 import { useIntl } from 'react-intl'
 import { useMutation } from 'react-query'
 import { useFormik } from 'formik'
-import { mixed, object, string } from 'yup'
 import { getCurrentSearchParams, setSearchParams } from '@lib/helpers/url'
 import { useMutateUserPage, useUserContext } from '@pages/user/hooks'
 import {
   UserPageDto,
   UpdateUserDto,
   UserBaseDto,
+  userSchema,
   toHref,
   getUsers,
   updateUser,
@@ -55,23 +55,7 @@ export const useUpdateUser = (onSuccess: () => void) => {
       bio: user.bio,
       links: user.links,
     },
-    validationSchema: object({
-      name: string()
-        .trim()
-        .required('The name is needed')
-        .min(3, "It's too short.")
-        .max(100, "It's so long."),
-      nickname: string()
-        .trim()
-        .required('A nickname is needed')
-        .min(3, "It's too short.")
-        .max(255, "It's so long.")
-        .matches(/^[a-z0-9\-_]+$/, 'Only lowercase letters, numbers and "-" and "_"'),
-      avatar: mixed().required('An avatar is needed'),
-      motto: string().trim().max(140, "It's so long."),
-      location: string().trim().min(3, "It's too short.").max(64, "It's so long."),
-      bio: string().trim().max(320, "It's so long."),
-    }),
+    validationSchema: userSchema,
     async onSubmit(data, { setFieldError }) {
       const { id } = user
       const { nickname } = data

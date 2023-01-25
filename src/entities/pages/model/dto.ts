@@ -1,8 +1,8 @@
 import { UserDto } from '@entities/user'
 import { GoalDto } from '@entities/goal'
-import { ConfirmationDto } from '@entities/confirmation'
-import { MainCharacteristicName } from '@entities/characteristic'
-import { MemberDto } from '@entities/member'
+import { MemberDto } from '@shared/model/member'
+import { MainCharacteristicName } from '@shared/model/characteristic'
+import { ConfirmationDto } from '@shared/model/confirmation'
 
 export const enum OGType {
   Website = 'website',

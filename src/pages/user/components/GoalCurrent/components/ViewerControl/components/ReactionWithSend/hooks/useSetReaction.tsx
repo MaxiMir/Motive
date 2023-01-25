@@ -1,14 +1,14 @@
 import produce from 'immer'
 import { useMutation, useQueryClient } from 'react-query'
 import { useIntl } from 'react-intl'
-import { useSnackbar } from '@entities/snackbar'
+import useClient from '@lib/hooks/useClient'
 import { useUserContext } from '@pages/user/hooks'
 import { useGoalContext } from '@pages/user/components/GoalCurrent/hooks/useGoalContext'
+import { useSnackbar } from '@entities/snackbar'
 import { UserPageDto } from '@entities/user'
-import { GoalService } from '@entities/goal'
-import { DayCharacteristicName, DayCharacteristicUpdateDto } from '@entities/day'
+import { updateStage } from '@entities/goal'
+import { DayCharacteristicName, DayCharacteristicUpdateDto } from '@shared/model/day'
 import { useOpenSignIn } from '@entities/signin'
-import useClient from '@lib/hooks/useClient'
 
 const getNextState = (page: UserPageDto, { id, dayId, add, name }: DayCharacteristicUpdateDto) =>
   produce(page, (draft) => {
@@ -37,7 +37,7 @@ export const useSetReaction = (
   const queryClient = useQueryClient()
   const { nickname } = useUserContext()
   const { enqueueSnackbar } = useSnackbar()
-  const { isLoading, mutate } = useMutation(GoalService.updateCharacteristic, {
+  const { isLoading, mutate } = useMutation(updateStage, {
     async onMutate(options) {
       await queryClient.cancelQueries(['page', nickname])
       const previous = queryClient.getQueryData<UserPageDto>(['page', nickname])

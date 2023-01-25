@@ -2,7 +2,7 @@ import { useMemo } from 'react'
 import { GetNextPageParamFunction, useInfiniteQuery } from 'react-query'
 import { partialCheckOnLoadMore } from '@lib/helpers/partial'
 import { useGoalContext } from '@pages/user/components/GoalCurrent/hooks/useGoalContext'
-import { TopicDto, TopicService } from '@entities/topic'
+import { TopicDto, getTopics } from '@entities/topic'
 
 const TAKE = 20
 const PRELOAD_DIFF = 5
@@ -20,8 +20,7 @@ export const useDiscussion = () => {
   const getNextPageParam = partialGetNextPageParam(day.topicCount)
   const { isLoading, data, fetchNextPage, hasNextPage } = useInfiniteQuery(
     ['discussion', day.id],
-    ({ pageParam = 0 }) =>
-      TopicService.get({ where: { day: day.id }, page: pageParam, take: TAKE }),
+    ({ pageParam = 0 }) => getTopics({ where: { day: day.id }, page: pageParam, take: TAKE }),
     {
       getNextPageParam,
       enabled: !!day.topicCount,

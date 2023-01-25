@@ -1,8 +1,8 @@
 import { Device } from '@entities/device'
-import { MainCharacteristicName, SecondCharacteristicName } from '@entities/characteristic'
 import { GoalDto } from '@entities/goal'
-import { MemberDto } from '@entities/member'
-import { ConfirmationDto } from '@entities/confirmation'
+import { MemberDto } from '@shared/model/member'
+import { ConfirmationDto } from '@shared/model/confirmation'
+import { MainCharacteristicName, SecondCharacteristicName } from '@shared/model/characteristic'
 
 export type UserCharacteristicName = MainCharacteristicName | SecondCharacteristicName
 

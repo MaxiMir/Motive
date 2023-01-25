@@ -3,7 +3,8 @@ import { AxiosError } from 'axios'
 import { useMutation, UseMutationResult } from 'react-query'
 import { useChangeDayUrl, useMutateGoals } from '@pages/user/hooks'
 import { GoalDto } from '@entities/goal'
-import { DayDto, DayService } from '@entities/day'
+import { getDay } from '@entities/day'
+import { DayDto } from '@shared/model/day'
 
 const getGoalNextState = (goals: GoalDto[], goalId: number, day: DayDto): GoalDto[] =>
   produce(goals, (draft) => {
@@ -15,7 +16,7 @@ export const useChangeDay = (goalId: number): UseMutationResult<DayDto, AxiosErr
   const [goals, mutateGoals] = useMutateGoals()
   const changeDayUrl = useChangeDayUrl()
 
-  return useMutation(DayService.getById, {
+  return useMutation(getDay, {
     onSuccess: (day) => {
       mutateGoals(getGoalNextState(goals, goalId, day))
       changeDayUrl(goals, goalId, day.id)

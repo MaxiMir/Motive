@@ -1,9 +1,9 @@
 import dynamic from 'next/dynamic'
 import { Box, Stack, Typography } from '@mui/material'
 import { UserCharacteristicName } from '@entities/user'
-import { SECOND_CHARACTERISTICS, SecondCharacteristicName } from '@entities/characteristic'
 import useFormatNumber from '@lib/hooks/useFormatNumber'
 import Emoji from '@ui/Emoji'
+import { SECOND_CHARACTERISTICS, SecondCharacteristicName } from '@shared/model/characteristic'
 
 const Level = dynamic(() => import('./ui/level/Level'))
 

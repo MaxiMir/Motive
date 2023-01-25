@@ -3,12 +3,12 @@ import dynamic from 'next/dynamic'
 import produce from 'immer'
 import { useIntl } from 'react-intl'
 import { useMutation } from 'react-query'
-import { useSnackbar } from '@entities/snackbar'
-import { useMutateUserPage } from '@pages/user/hooks'
-import { UserPageDto } from '@entities/user'
-import { MemberDto } from '@entities/member'
-import { TaskService } from '@entities/task'
 import useClient from '@lib/hooks/useClient'
+import { useMutateUserPage } from '@pages/user/hooks'
+import { useSnackbar } from '@entities/snackbar'
+import { UserPageDto } from '@entities/user'
+import { updateCompleted } from '@entities/task'
+import { MemberDto } from '@shared/model/member'
 
 const Button = dynamic(() => import('@mui/material/Button'))
 
@@ -50,7 +50,7 @@ export const useSetCompleted = (
   const client = useClient()
   const { enqueueSnackbar, closeSnackbar } = useSnackbar()
   const [page, mutatePage] = useMutateUserPage()
-  const { mutate } = useMutation(TaskService.updateCompleted, {
+  const { mutate } = useMutation(updateCompleted, {
     onError() {
       mutateCompleted(false)
     },

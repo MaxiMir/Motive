@@ -3,13 +3,13 @@ import { Box, Button, Stack, Typography } from '@mui/material'
 import { styled } from '@mui/system'
 import Emoji from '@ui/Emoji'
 import Container from '@ui/Container'
-import { useMessages } from './hooks/useMessages'
+import { useMessages } from './lib/hooks/useMessages'
 
-interface CustomErrorProps {
+interface ErrorProps {
   statusCode: number
 }
 
-function Error({ statusCode }: CustomErrorProps) {
+function Error({ statusCode }: ErrorProps) {
   const messages = useMessages(statusCode)
   const router = useRouter()
 

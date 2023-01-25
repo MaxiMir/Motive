@@ -1,6 +1,6 @@
-import Layout from '@app/ui/Layout'
 import useMetaTags from '@lib/hooks/useMetaTags'
-import Error from '@components/Error'
+import Layout from '@app/ui/Layout'
+import Error from '@widgets/error'
 
 function Page404() {
   const metaTags = useMetaTags('404')

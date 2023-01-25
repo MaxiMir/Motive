@@ -1,5 +1,5 @@
 import Layout from '@app/ui/Layout'
-import Error from '@components/Error'
+import Error from '@widgets/error'
 import useMetaTags from '@lib/hooks/useMetaTags'
 
 function Page500() {

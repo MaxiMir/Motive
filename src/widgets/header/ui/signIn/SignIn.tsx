@@ -1,5 +1,5 @@
 import { IconButton } from '@mui/material'
-import { useOpenSignIn } from '@entities/signin'
+import { useOpenSignIn } from '@features/sign-in'
 import Icon from '@shared/ui/Icon'
 import TooltipArrow from '@shared/ui/styled/TooltipArrow'
 import { useMessages } from './lib/hooks/useMessages'

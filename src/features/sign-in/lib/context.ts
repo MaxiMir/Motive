@@ -1,6 +1,6 @@
 import { SignInOptions } from 'next-auth/react'
 import { createContext } from 'react'
-import { Providers } from '@entities/signin/model/types'
+import { Providers } from '@features/sign-in/model/types'
 
 export interface SignInContextType {
   providers: Providers

@@ -1,9 +1,9 @@
 import { ReactNode, useMemo, useState } from 'react'
 import dynamic from 'next/dynamic'
 import { SignInOptions } from 'next-auth/react'
-import { Providers, SignInContext } from '@entities/signin'
+import { Providers, SignInContext } from '@features/sign-in'
 
-const SignInModal = dynamic(() => import('@entities/signin'))
+const SignInModal = dynamic(() => import('@features/sign-in'))
 
 interface SignInProviderProps {
   providers: Providers

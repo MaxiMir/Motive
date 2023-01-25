@@ -1,5 +1,5 @@
 import { useContext } from 'react'
-import { SignInContext } from '@entities/signin/lib/context'
+import { SignInContext } from '@features/sign-in/lib/context'
 
 export const useOpenSignIn = () => {
   const { setOptions } = useContext(SignInContext)

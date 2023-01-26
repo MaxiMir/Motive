@@ -1,1 +1,1 @@
-export { default } from './VideoPreview'
+export { default } from './ui'

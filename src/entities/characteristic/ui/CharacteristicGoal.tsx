@@ -1,6 +1,6 @@
 import { Typography, IconButton, Stack } from '@mui/material'
 import { useIntl } from 'react-intl'
-import { GoalCharacteristicName } from '@shared/api/characteristic'
+import { GoalCharacteristicName } from '@shared/api/dto'
 import { useFormatNumber } from '@shared/lib/hooks'
 import Emoji from '@shared/ui/Emoji'
 import { TooltipArrow } from '@shared/ui/styled'

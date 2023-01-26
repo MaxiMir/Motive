@@ -1,6 +1,6 @@
 import { Box, Stack, Typography } from '@mui/material'
-import { useGoalContext } from '@pages/user/components/GoalCurrent/hooks/useGoalContext'
-import { OwnershipDto } from '@shared/api/member'
+import { useGoalContext } from '@entities/goal'
+import { OwnershipDto } from '@shared/api/dto'
 import CancelButton from '@shared/ui/CancelButton'
 import FadeEmoji from '@shared/ui/FadeEmoji'
 import Modal from '@shared/ui/Modal'

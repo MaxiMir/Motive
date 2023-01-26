@@ -1,5 +1,1 @@
-export * from './config/schema'
-export * from './api/getTopics'
-export * from './api/createTopic'
-export * from './api/updateTopic'
-export * from './api/updateLike'
+export * from './api'

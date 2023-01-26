@@ -1,1 +1,1 @@
-export { default } from './OpeningProfile'
+export { default } from './ui'

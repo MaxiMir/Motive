@@ -1,5 +1,5 @@
 import { Badge } from '@mui/material'
-import { NotificationDto } from '@shared/api/notification'
+import { NotificationDto } from '@shared/api/dto'
 import Icon from '@shared/ui/Icon'
 import { getReadCount } from './lib/helpers/content'
 

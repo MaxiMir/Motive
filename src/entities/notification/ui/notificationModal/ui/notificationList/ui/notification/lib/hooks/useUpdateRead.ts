@@ -2,7 +2,7 @@ import produce from 'immer'
 import { useMutation, useQueryClient } from 'react-query'
 import { updateRead } from '@entities/notification/api/updateRead'
 import { useClient } from '@entities/user'
-import { NotificationDto } from '@shared/api/notification'
+import { NotificationDto } from '@shared/api/dto'
 
 const getNextState = (notifications: NotificationDto[], id: number) =>
   produce(notifications, (draft) => {

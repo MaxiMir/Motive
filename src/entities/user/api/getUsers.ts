@@ -1,5 +1,5 @@
-import { UserBaseDto } from '@shared/api/user'
-import { fetcher } from '@shared/config'
+import { UserBaseDto } from '@shared/api/dto'
+import { fetcher } from '@shared/api/fetcher'
 import { Filter, getFilterParams } from '@shared/lib/helpers'
 
 export const getUsers = (filter: Filter): Promise<UserBaseDto[]> => {

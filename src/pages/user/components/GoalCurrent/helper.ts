@@ -1,10 +1,8 @@
 import { ParsedUrlQuery } from 'querystring'
 import { differenceInCalendarDays } from 'date-fns'
 import produce from 'immer'
-import { HashMark, SearchParam } from '@entities/user'
-import { GoalDto } from '@shared/api/goal'
-import { MemberDto, OwnershipDto } from '@shared/api/member'
-import { TaskDto } from '@shared/api/task'
+import { GoalDto, MemberDto, OwnershipDto, TaskDto } from '@shared/api/dto'
+import { HashMark, SearchParam } from '@shared/consts'
 import { getMidnight } from '@shared/lib/utils'
 
 const SHOW_WEB_AFTER_DAYS = Number(process.env.NEXT_PUBLIC_SHOW_WEB_AFTER_DAYS || '')

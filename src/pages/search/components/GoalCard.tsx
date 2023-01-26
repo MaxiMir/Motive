@@ -3,8 +3,7 @@ import Link from 'next/link'
 import AvatarStatus from '@features/avatar-status'
 import { CharacteristicGoal } from '@entities/characteristic'
 import { toHref } from '@entities/user'
-import { MAIN_CHARACTERISTICS } from '@shared/api/characteristic'
-import { GoalDto } from '@shared/api/goal'
+import { MAIN_CHARACTERISTICS, GoalDto } from '@shared/api/dto'
 
 interface GoalCardProps {
   goal: GoalDto

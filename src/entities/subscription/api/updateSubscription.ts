@@ -1,4 +1,4 @@
-import { fetcher } from '@shared/config'
+import { fetcher } from '@shared/api/fetcher'
 import { getFilterParams } from '@shared/lib/helpers'
 
 export const updateSubscription = (userId: number, insert: boolean): Promise<void> => {

@@ -1,4 +1,4 @@
-import { Locale } from '@entities/locale/model/types'
+import { Locale } from '@entities/locale/types'
 
 const getLocaleHref = (asPath: string, locale?: Locale): string => {
   const localePath = !locale ? '' : `/${locale}`

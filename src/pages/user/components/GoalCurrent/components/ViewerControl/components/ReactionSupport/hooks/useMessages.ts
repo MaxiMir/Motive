@@ -1,5 +1,5 @@
 import { useIntl } from 'react-intl'
-import { UserBaseDto } from '@shared/api/user'
+import { UserBaseDto } from '@shared/api/dto'
 
 export const useMessages = (owner: UserBaseDto) => {
   const { formatMessage } = useIntl()

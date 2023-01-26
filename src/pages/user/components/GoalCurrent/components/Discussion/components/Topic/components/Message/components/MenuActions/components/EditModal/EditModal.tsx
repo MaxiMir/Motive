@@ -1,7 +1,7 @@
 import { Box, Stack } from '@mui/material'
 import { Field, Form, FormikProvider } from 'formik'
 import { FocusEvent } from 'react'
-import { MessageDto } from '@shared/api/topic'
+import { MessageDto } from '@shared/api/dto'
 import CancelButton from '@shared/ui/CancelButton'
 import Input from '@shared/ui/Input'
 import Modal from '@shared/ui/Modal'

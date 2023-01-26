@@ -1,6 +1,6 @@
 import { IconButton } from '@mui/material'
 import { useOpenSignIn } from '@features/sign-in'
-import Profile from '@shared/ui/icons/Profile'
+import { Profile } from '@shared/ui/icons'
 
 function Unauthorized() {
   const openSignIn = useOpenSignIn()

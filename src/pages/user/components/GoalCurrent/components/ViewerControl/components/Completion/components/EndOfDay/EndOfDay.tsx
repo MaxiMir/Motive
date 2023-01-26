@@ -1,5 +1,5 @@
 import dynamic from 'next/dynamic'
-import { MemberDto } from '@shared/api/member'
+import { MemberDto } from '@shared/api/dto'
 import { getTomorrow } from '@shared/lib/utils'
 import Emoji from '@shared/ui/Emoji'
 import { BlueButton, TooltipArrow } from '@shared/ui/styled'

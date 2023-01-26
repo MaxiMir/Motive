@@ -1,4 +1,3 @@
-export { default } from './ui/signInModal/SignInModal'
-export * from './model/types'
-export * from './lib/context'
-export * from './lib/hooks/useOpenSignIn'
+export * from './types'
+export * from './lib'
+export * from './ui'

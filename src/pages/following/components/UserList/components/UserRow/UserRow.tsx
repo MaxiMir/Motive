@@ -4,8 +4,7 @@ import Link from 'next/link'
 import AvatarStatus from '@features/avatar-status'
 import { CharacteristicUser } from '@entities/characteristic'
 import { toHref } from '@entities/user'
-import { MAIN_CHARACTERISTICS, SecondCharacteristicName } from '@shared/api/characteristic'
-import { UserDto } from '@shared/api/user'
+import { MAIN_CHARACTERISTICS, SecondCharacteristicName, UserDto } from '@shared/api/dto'
 import MenuActions from './components/MenuActions'
 
 const LastSeen = dynamic(() => import('./components/LastSeen'))

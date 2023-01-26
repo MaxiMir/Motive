@@ -1,8 +1,8 @@
 import { useMemo } from 'react'
 import { GetNextPageParamFunction, useInfiniteQuery } from 'react-query'
-import { useGoalContext } from '@pages/user/components/GoalCurrent/hooks/useGoalContext'
+import { useGoalContext } from '@entities/goal'
 import { getTopics } from '@entities/topic'
-import { TopicDto } from '@shared/api/topic'
+import { TopicDto } from '@shared/api/dto'
 import { partialCheckOnLoadMore } from '@shared/lib/helpers'
 
 const TAKE = 20

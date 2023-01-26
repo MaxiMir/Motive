@@ -1,5 +1,5 @@
 import { useQuery } from 'react-query'
-import { getRatingPage } from '@entities/pages/api/getRatingPage'
+import { getRatingPage } from '@entities/pages'
 import { Route } from '@shared/consts'
 
 export const useRatingPage = () => {

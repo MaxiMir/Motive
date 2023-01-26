@@ -1,1 +1,1 @@
-export { default } from './VideoInput'
+export { default } from './ui'

@@ -1,5 +1,5 @@
 import { Box, Stack, Typography } from '@mui/material'
-import { useGoalContext } from '@pages/user/components/GoalCurrent/hooks/useGoalContext'
+import { useGoalContext } from '@entities/goal'
 import CancelButton from '@shared/ui/CancelButton'
 import FlyEmoji from '@shared/ui/FlyEmoji'
 import Modal from '@shared/ui/Modal'

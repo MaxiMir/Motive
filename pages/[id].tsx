@@ -5,7 +5,7 @@ import { dehydrate, QueryClient } from 'react-query'
 import { Layout } from '@app/ui'
 import { getUserPage, useUserMetaTags, useUserPage } from '@entities/pages'
 import UserPage from '@pages/user'
-import { PossiblePageError } from '@shared/api/pages'
+import { PossiblePageError } from '@shared/api/dto'
 import { getSearchParams } from '@shared/lib/helpers'
 
 function UserRoute() {

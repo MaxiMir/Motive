@@ -1,4 +1,4 @@
-import { useGoalContext } from '@pages/user/components/GoalCurrent/hooks/useGoalContext'
+import { useGoalContext } from '@entities/goal'
 
 export const useNextDayId = (): number | undefined => {
   const { day, calendar } = useGoalContext()

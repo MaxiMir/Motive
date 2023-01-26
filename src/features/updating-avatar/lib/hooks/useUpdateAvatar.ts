@@ -1,8 +1,7 @@
 import produce from 'immer'
 import { useMutation } from 'react-query'
-import { useMutateUserPage } from '@pages/user/hooks'
-import { updateAvatar } from '@entities/user/api/updateAvatar'
-import { UserBaseDto, UserPageDto } from '@shared/api/user'
+import { updateAvatar, useMutateUserPage } from '@entities/user'
+import { UserBaseDto, UserPageDto } from '@shared/api/dto'
 
 const getNextState = (page: UserPageDto, user: UserBaseDto) =>
   produce(page, (draft) => {

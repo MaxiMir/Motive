@@ -1,7 +1,7 @@
 import { useFormik } from 'formik'
 import { useMutation } from 'react-query'
-import { getSearchPage } from '@entities/pages/api/getSearchPage'
-import { searchSchema } from '@entities/pages/config/searchSchema'
+import { getSearchPage } from '@entities/pages'
+import { searchSchema } from '@shared/api/schemas'
 
 interface SearchDto {
   q: string

@@ -1,17 +1,5 @@
-import { Route } from '@shared/consts'
+import { Route, HashMark, SearchParam } from '@shared/consts'
 import { setSearchParams } from '@shared/lib/helpers'
-
-export const enum SearchParam {
-  Dates = 'd',
-  ScrollTo = 's',
-  ScrollId = 'i',
-}
-
-export const enum HashMark {
-  Goal = 'goal',
-  Feedback = 'feedback',
-  Discussion = 'discussion',
-}
 
 export const toHref = (...args: string[]): string => `/${args.join('')}`
 

@@ -1,5 +1,4 @@
-import { DAY_CHARACTERISTIC, DayCharacteristicName } from '@shared/api/day'
-import { GoalDto } from '@shared/api/goal'
+import { DAY_CHARACTERISTIC, DayCharacteristicName, GoalDto } from '@shared/api/dto'
 
 export const checkOnActive = (goal: GoalDto, name: DayCharacteristicName): boolean =>
   goal.reactions?.[name].some((d) => d === goal.day.id)

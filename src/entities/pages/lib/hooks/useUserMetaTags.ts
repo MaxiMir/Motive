@@ -1,6 +1,5 @@
 import { useIntl } from 'react-intl'
-import { OGType } from '@shared/api/pages'
-import { UserPageDto } from '@shared/api/user'
+import { OGType, UserPageDto } from '@shared/api/dto'
 import { getImageSrc } from '@shared/lib/helpers'
 
 export const useUserMetaTags = (user?: UserPageDto) => {

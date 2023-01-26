@@ -1,13 +1,11 @@
 import produce from 'immer'
 import { useIntl } from 'react-intl'
 import { InfiniteData, useMutation, useQueryClient } from 'react-query'
-import { useMutateGoals } from '@pages/user/hooks'
 import { useOpenSignIn } from '@features/sign-in'
 import { useSnackbar } from '@entities/snackbar'
 import { updateLike } from '@entities/topic'
-import { useClient } from '@entities/user'
-import { GoalDto } from '@shared/api/goal'
-import { MessageDto, MessageType, TopicDto } from '@shared/api/topic'
+import { useMutateGoals, useClient } from '@entities/user'
+import { GoalDto, MessageDto, MessageType, TopicDto } from '@shared/api/dto'
 
 export interface Options {
   message: MessageDto

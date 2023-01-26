@@ -1,11 +1,12 @@
 import { Box, Stack, Typography } from '@mui/material'
 import Image from 'next/image'
+// eslint-disable-next-line import/no-internal-modules
 import webSrc from 'public/images/svg/web.svg'
-import { useUserContext } from '@pages/user/hooks'
-import OldPittRules from '@features/old-pitt-rules'
+import { useUserContext } from '@entities/user'
 import { useShowProgress } from '@shared/lib/hooks'
 import Modal from '@shared/ui/Modal'
-import { useMessages } from './hooks/useMessages'
+import { OldPittRules } from '@shared/ui/oldPittRules'
+import { useMessages } from './lib'
 
 interface AbandonedModalProps {
   onClose: () => void

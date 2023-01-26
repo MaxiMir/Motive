@@ -3,8 +3,7 @@ import Link from 'next/link'
 import AvatarStatus from '@features/avatar-status'
 import { CharacteristicUser } from '@entities/characteristic'
 import { toHref } from '@entities/user'
-import { MAIN_CHARACTERISTICS } from '@shared/api/characteristic'
-import { UserDto } from '@shared/api/user'
+import { MAIN_CHARACTERISTICS, UserDto } from '@shared/api/dto'
 
 interface UserCardProps {
   user: UserDto

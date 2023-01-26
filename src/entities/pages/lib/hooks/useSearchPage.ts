@@ -1,6 +1,6 @@
 import { useQuery } from 'react-query'
 import { useRouter } from 'next/router'
-import { getSearchPage } from '@entities/pages/api/getSearchPage'
+import { getSearchPage } from '@entities/pages'
 import { Route } from '@shared/consts'
 
 export const useSearchPage = () => {

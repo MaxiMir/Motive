@@ -1,5 +1,5 @@
 import { useSession } from 'next-auth/react'
-import { ClientDto } from '@shared/api/user'
+import { ClientDto } from '@shared/api/dto'
 
 export const useClient = (): ClientDto | undefined => {
   const { data, status } = useSession()

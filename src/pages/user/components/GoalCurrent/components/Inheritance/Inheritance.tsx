@@ -1,7 +1,7 @@
 import { Typography } from '@mui/material'
 import Link from 'next/link'
-import { useGoalContext } from '@pages/user/components/GoalCurrent/hooks/useGoalContext'
 import AvatarStatus from '@features/avatar-status'
+import { useGoalContext } from '@entities/goal'
 import { toHref } from '@entities/user'
 import { useMessages } from './hooks/useMessages'
 

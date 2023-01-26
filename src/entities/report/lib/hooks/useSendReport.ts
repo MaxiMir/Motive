@@ -4,7 +4,7 @@ import { useOpenSignIn } from '@features/sign-in'
 import { createReport } from '@entities/report/api/createReport'
 import { useSnackbar } from '@entities/snackbar'
 import { useClient } from '@entities/user'
-import { ReportType } from '@shared/api/report'
+import { ReportType } from '@shared/api/dto'
 
 export const useSendReport = (entityId: number, type: ReportType, onSettled: () => void) => {
   const { formatMessage } = useIntl()

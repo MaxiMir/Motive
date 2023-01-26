@@ -4,7 +4,7 @@ import { useSnackbar } from '@entities/snackbar'
 import { copyText } from '@shared/lib/helpers'
 import Icon from '@shared/ui/Icon'
 import { TooltipArrow } from '@shared/ui/styled'
-import { useMessages } from './lib/hooks/useMessages'
+import { useMessages } from './lib'
 
 interface WalletProps {
   name: string

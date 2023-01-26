@@ -1,5 +1,5 @@
 import { Box, Button } from '@mui/material'
-import { useGoalContext } from '@pages/user/components/GoalCurrent/hooks/useGoalContext'
+import { useGoalContext } from '@entities/goal'
 import { useFormatNumber } from '@shared/lib/hooks'
 import Icon from '@shared/ui/Icon'
 import { TooltipArrow } from '@shared/ui/styled'

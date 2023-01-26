@@ -1,6 +1,6 @@
 import { ReactNode } from 'react'
 import { DeviceContext } from '@entities/device'
-import { Device } from '@shared/api/device'
+import { Device } from '@shared/api/dto'
 
 interface DeviceProviderProps {
   value?: Device

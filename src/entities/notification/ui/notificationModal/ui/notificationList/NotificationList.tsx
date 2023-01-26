@@ -1,4 +1,4 @@
-import { NotificationDto } from '@shared/api/notification'
+import { NotificationDto } from '@shared/api/dto'
 import List from '@shared/ui/List'
 import Notification from './ui/notification/Notification'
 

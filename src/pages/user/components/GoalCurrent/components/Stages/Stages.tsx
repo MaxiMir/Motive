@@ -1,7 +1,7 @@
 import { Step, StepContent, Stepper } from '@mui/material'
 import { teal } from '@mui/material/colors'
 import dynamic from 'next/dynamic'
-import { useGoalContext } from '@pages/user/components/GoalCurrent/hooks/useGoalContext'
+import { useGoalContext } from '@entities/goal'
 import { useToggle } from '@shared/lib/hooks'
 import Icon from '@shared/ui/Icon'
 import StageLabel from './components/StageLabel'

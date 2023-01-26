@@ -1,6 +1,5 @@
-import { SecondCharacteristicName } from '@shared/api/characteristic'
-import { UserDto } from '@shared/api/user'
-import { fetcher } from '@shared/config'
+import { SecondCharacteristicName, UserDto } from '@shared/api/dto'
+import { fetcher } from '@shared/api/fetcher'
 import { Filter, getFilterParams } from '@shared/lib/helpers'
 
 type Subscription = SecondCharacteristicName.Following | SecondCharacteristicName.Followers

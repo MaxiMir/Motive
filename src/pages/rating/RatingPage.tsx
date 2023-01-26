@@ -1,6 +1,5 @@
 import { Typography } from '@mui/material'
-import { MAIN_CHARACTERISTICS, MainCharacteristicName } from '@shared/api/characteristic'
-import { UserDto } from '@shared/api/user'
+import { MAIN_CHARACTERISTICS, MainCharacteristicName, UserDto } from '@shared/api/dto'
 import Container from '@shared/ui/Container'
 import Tabs from '@shared/ui/Tabs'
 import TabContent from './components/TabContent'

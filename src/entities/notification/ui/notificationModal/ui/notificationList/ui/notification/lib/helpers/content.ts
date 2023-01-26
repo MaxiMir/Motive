@@ -1,5 +1,4 @@
-import { MainCharacteristicName } from '@shared/api/characteristic'
-import { NotificationType } from '@shared/api/notification'
+import { MainCharacteristicName, NotificationType } from '@shared/api/dto'
 import { EmojiName } from '@shared/ui/Emoji'
 
 interface NotificationInfo {

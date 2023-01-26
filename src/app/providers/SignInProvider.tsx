@@ -3,7 +3,7 @@ import { ReactNode, useMemo, useState } from 'react'
 import dynamic from 'next/dynamic'
 import { Providers, SignInContext } from '@features/sign-in'
 
-const SignInModal = dynamic(() => import('@features/sign-in'))
+const SignInModal = dynamic(() => import('@features/sign-in').then((m) => m.SignInModal))
 
 interface SignInProviderProps {
   providers: Providers

@@ -1,6 +1,6 @@
 import { Box } from '@mui/material'
-import { Story } from '@features/stories/models/types'
-import { UserBaseDto } from '@shared/api/user'
+import { Story } from '@features/stories/types'
+import { UserBaseDto } from '@shared/api/dto'
 import Bottom from './ui/bottom/Bottom'
 import Pointers from './ui/pointers/Pointers'
 import Slide from './ui/Slide'

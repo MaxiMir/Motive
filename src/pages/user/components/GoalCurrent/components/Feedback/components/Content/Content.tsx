@@ -1,6 +1,6 @@
 import { Stack } from '@mui/material'
 import dynamic from 'next/dynamic'
-import { FeedbackDto } from '@shared/api/feedback'
+import { FeedbackDto } from '@shared/api/dto'
 
 const Markdown = dynamic(() => import('@features/markdown'))
 const Gallery = dynamic(() => import('@shared/ui/gallery'))

@@ -1,6 +1,6 @@
 import { useMutation } from 'react-query'
-import { useGoalContext } from '@pages/user/components/GoalCurrent/hooks/useGoalContext'
 import { incrementDayViews } from '@entities/day'
+import { useGoalContext } from '@entities/goal'
 import { useClient } from '@entities/user'
 
 export const useIncreaseViews = () => {

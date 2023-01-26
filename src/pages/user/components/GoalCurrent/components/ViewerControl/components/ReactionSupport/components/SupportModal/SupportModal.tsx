@@ -1,6 +1,6 @@
 import { Box, Stack, Typography } from '@mui/material'
 import { Field, Form, FormikProvider } from 'formik'
-import { UserBaseDto } from '@shared/api/user'
+import { UserBaseDto } from '@shared/api/dto'
 import Accordion from '@shared/ui/Accordion'
 import CancelButton from '@shared/ui/CancelButton'
 import DecorEmoji from '@shared/ui/DecorEmoji'

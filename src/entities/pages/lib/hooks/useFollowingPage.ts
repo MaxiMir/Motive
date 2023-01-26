@@ -1,5 +1,5 @@
 import { useQuery } from 'react-query'
-import { getFollowingPage } from '@entities/pages/api/getFollowingPage'
+import { getFollowingPage } from '@entities/pages'
 import { Route } from '@shared/consts'
 
 export const useFollowingPage = () => {

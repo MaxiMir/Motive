@@ -2,12 +2,12 @@ import { useFormik } from 'formik'
 import produce from 'immer'
 import { useIntl } from 'react-intl'
 import { useMutation } from 'react-query'
-import { useGoalContext } from '@pages/user/components/GoalCurrent/hooks/useGoalContext'
-import { useMutateGoals } from '@pages/user/hooks'
-import { createFeedback, feedbackSchema } from '@entities/feedback'
+import { createFeedback } from '@entities/feedback'
+import { useGoalContext } from '@entities/goal'
 import { useSnackbar } from '@entities/snackbar'
-import { FeedbackDto } from '@shared/api/feedback'
-import { GoalDto } from '@shared/api/goal'
+import { useMutateGoals } from '@entities/user'
+import { GoalDto, FeedbackDto } from '@shared/api/dto'
+import { feedbackSchema } from '@shared/api/schemas'
 
 const getNextState = (goals: GoalDto[], goalId: number, feedback: FeedbackDto) =>
   produce(goals, (draft) => {

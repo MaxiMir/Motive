@@ -1,12 +1,11 @@
 import produce, { Draft } from 'immer'
 import { useIntl } from 'react-intl'
 import { useMutation } from 'react-query'
-import { useGoalContext } from '@pages/user/components/GoalCurrent/hooks/useGoalContext'
-import { useMutateUserPage } from '@pages/user/hooks'
+import { useGoalContext } from '@entities/goal'
 import { updateMember } from '@entities/member'
 import { useSnackbar } from '@entities/snackbar'
-import { MemberDto } from '@shared/api/member'
-import { UserPageDto } from '@shared/api/user'
+import { useMutateUserPage } from '@entities/user'
+import { MemberDto, UserPageDto } from '@shared/api/dto'
 import { clickOnElem } from '@shared/lib/helpers'
 
 const getNextState = (page: UserPageDto, member: MemberDto) =>

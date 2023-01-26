@@ -3,8 +3,9 @@ import produce from 'immer'
 import { useIntl } from 'react-intl'
 import { InfiniteData, useMutation, useQueryClient } from 'react-query'
 import { useSnackbar } from '@entities/snackbar'
-import { topicSchema, updateTopic } from '@entities/topic'
-import { MessageDto, TopicDto } from '@shared/api/topic'
+import { updateTopic } from '@entities/topic'
+import { MessageDto, TopicDto } from '@shared/api/dto'
+import { topicSchema } from '@shared/api/schemas'
 
 const getNextState = (discussion: InfiniteData<TopicDto[]>, message: MessageDto) => {
   const { id, parentId, text } = message

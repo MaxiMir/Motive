@@ -1,5 +1,5 @@
 import { Box, Typography } from '@mui/material'
-import { MainCharacteristicName } from '@shared/api/characteristic'
+import { MainCharacteristicName } from '@shared/api/dto'
 import Modal from '@shared/ui/Modal'
 import ListItem from './components/ListItem'
 import Progress from './components/Progress'

@@ -1,7 +1,7 @@
 import { Box, Stack, Typography, FormControlLabel, Radio, RadioGroup } from '@mui/material'
 import { Form, FormikProvider } from 'formik'
 import { ChangeEvent } from 'react'
-import { useGoalContext } from '@pages/user/components/GoalCurrent/hooks/useGoalContext'
+import { useGoalContext } from '@entities/goal'
 import Accordion from '@shared/ui/Accordion'
 import CancelButton from '@shared/ui/CancelButton'
 import DecorEmoji from '@shared/ui/DecorEmoji'

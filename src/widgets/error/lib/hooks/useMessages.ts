@@ -2,7 +2,7 @@ import { useIntl } from 'react-intl'
 
 export const useMessages = (statusCode: number) => {
   const { formatMessage } = useIntl()
-  const id = statusCode === 404 ? 'page.404.title' : 'common.error'
+  const id = [404, 500].includes(statusCode) ? `page.${statusCode}.title` : 'common.error'
 
   return {
     header: formatMessage({ id }),

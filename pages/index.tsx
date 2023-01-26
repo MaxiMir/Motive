@@ -1,7 +1,7 @@
 import { GetServerSideProps } from 'next'
 import { getSession } from 'next-auth/react'
 import DeviceDetector from 'node-device-detector'
-import Layout from '@app/ui/Layout'
+import { Layout } from '@app/ui'
 import HomePage from '@pages/home'
 import { ClientDto } from '@shared/api/user'
 import { useMetaTags } from '@shared/lib/hooks'

@@ -1,4 +1,4 @@
-import Layout from '@app/ui/Layout'
+import { Layout } from '@app/ui'
 import Error from '@widgets/error'
 import { useMetaTags } from '@shared/lib/hooks'
 

@@ -2,18 +2,17 @@ import { Stack } from '@mui/material'
 import { Fragment, ReactNode } from 'react'
 import { useIntl } from 'react-intl'
 import PerfectScrollbar from 'react-perfect-scrollbar'
-import { useIsFetching } from 'react-query'
 import dynamic from 'next/dynamic'
 import Head from 'next/head'
 import { useRouter } from 'next/router'
 import { OGType } from '@shared/api/pages'
+import ShowUpdate from '@features/show-update'
 import { useDeviceContext } from '@entities/device'
 import { getLocaleHrefList } from '@entities/locale'
 
-const Loader = dynamic(() => import('@widgets/loader'))
 const Header = dynamic(() => import('@widgets/header'))
 const Footer = dynamic(() => import('@widgets/footer'))
-const Sidebar = dynamic(() => import('@widgets/sidebar/Sidebar'))
+const Sidebar = dynamic(() => import('@widgets/sidebar'))
 
 interface LayoutProps {
   title?: string
@@ -25,7 +24,7 @@ interface LayoutProps {
   children?: ReactNode
 }
 
-function Layout({
+export function Layout({
   title,
   description,
   keywords,
@@ -37,10 +36,8 @@ function Layout({
   const { locale } = useIntl()
   const { asPath } = useRouter()
   const device = useDeviceContext()
-  const fetchingNumber = useIsFetching({ queryKey: ['page'] })
   const localeHrefList = getLocaleHrefList(asPath)
   const url = localeHrefList[locale]
-  const renderLoader = fetchingNumber > 0
   const possibleDesktop = device === 'desktop'
   const renderDesktop = !device || possibleDesktop
   const renderCompact = !device || !possibleDesktop
@@ -90,7 +87,7 @@ function Layout({
             flex={1}
             sx={({ palette }) => ({ background: palette.mode === 'dark' ? '#121212' : undefined })}
           >
-            {renderLoader && <Loader />}
+            <ShowUpdate />
             {children}
           </Stack>
         </MainWrap>
@@ -99,5 +96,3 @@ function Layout({
     </>
   )
 }
-
-export default Layout

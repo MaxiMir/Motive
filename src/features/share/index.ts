@@ -1,1 +1,2 @@
-export { default } from './Share'
+export { default } from './ui'
+export { tryNativeShare } from './lib'

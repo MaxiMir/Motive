@@ -5,7 +5,9 @@ import { useToggle } from 'shared/lib/hooks'
 import { TooltipArrow } from 'shared/ui/styled'
 import { useMessages } from './lib'
 
-const NotificationModal = dynamic(() => import('entities/notification'))
+const NotificationModal = dynamic(() =>
+  import('entities/notification').then((m) => m.NotificationModal),
+)
 
 interface NotificationsProps {
   expanded: boolean

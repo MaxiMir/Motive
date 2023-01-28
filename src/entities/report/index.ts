@@ -1,1 +1,1 @@
-export * from './lib/hooks/useSendReport'
+export * from './lib'

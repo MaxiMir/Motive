@@ -6,7 +6,7 @@ interface TabNameProps {
   name: MainCharacteristicName
 }
 
-function TabName({ name }: TabNameProps) {
+export function TabName({ name }: TabNameProps) {
   const messages = useMessages(name)
 
   return (
@@ -21,5 +21,3 @@ function TabName({ name }: TabNameProps) {
     </Typography>
   )
 }
-
-export default TabName

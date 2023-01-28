@@ -1,15 +1,15 @@
 import { Typography } from '@mui/material'
 import Link from 'next/link'
-import AvatarStatus from 'features/avatar-status'
 import { useGoalContext } from 'entities/goal'
-import { toHref } from 'entities/user'
+import { joinToHref } from 'shared/lib/helpers'
+import Avatar from 'shared/ui/avatar'
 import { useMessages } from './hooks/useMessages'
 
 function Inheritance() {
   const messages = useMessages()
   const { owner } = useGoalContext()
   const { name, nickname, avatar } = owner
-  const href = toHref(nickname)
+  const href = joinToHref(nickname)
 
   return (
     <>
@@ -17,7 +17,7 @@ function Inheritance() {
         <b>{messages.title}</b>
       </Typography>
       <Link href={href} title={name}>
-        <AvatarStatus src={avatar} name={name} size={26} />
+        <Avatar src={avatar} name={name} size={26} />
       </Link>
     </>
   )

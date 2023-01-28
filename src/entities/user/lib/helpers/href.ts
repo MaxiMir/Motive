@@ -1,12 +1,10 @@
 import { Route, HashMark, SearchParam } from 'shared/config'
-import { setSearchParams } from 'shared/lib/helpers'
-
-export const toHref = (...args: string[]): string => `/${args.join('')}`
+import { joinToHref, setSearchParams } from 'shared/lib/helpers'
 
 export const getGoalHref = (nickname: string, goalId: number): string => {
   const hashMark = `#${HashMark.Goal}-${goalId}`
 
-  return toHref(nickname, hashMark)
+  return joinToHref(nickname, hashMark)
 }
 
 export const getDayHref = (userHref: string, goalId: number, dayId: number): string => {
@@ -23,14 +21,14 @@ export const getDiscussionHref = (nickname: string, goalId: number, dayId: numbe
   })
   const hash = `#${HashMark.Discussion}-${goalId}`
 
-  return toHref(url, hash)
+  return joinToHref(url, hash)
 }
 
 export const getFeedbackHref = (nickname: string, goalId: number, dayId: number): string => {
   const url = setSearchParams(nickname, { [SearchParam.Dates]: `${goalId}:${dayId}` })
   const hash = `#${HashMark.Feedback}-${goalId}`
 
-  return toHref(url, hash)
+  return joinToHref(url, hash)
 }
 
 export const getHashtagHref = (q: string): string => {

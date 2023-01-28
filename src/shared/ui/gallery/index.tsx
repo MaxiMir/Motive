@@ -2,7 +2,7 @@ import { useState } from 'react'
 import PhotoAlbum, { ClickHandlerProps } from 'react-photo-album'
 import dynamic from 'next/dynamic'
 import { PhotoDto } from 'shared/api'
-import GalleryPhoto from './galleryPhoto'
+import { GalleryPhoto } from './galleryPhoto'
 
 const LightBox = dynamic(() => import('shared/ui/LightBox'))
 

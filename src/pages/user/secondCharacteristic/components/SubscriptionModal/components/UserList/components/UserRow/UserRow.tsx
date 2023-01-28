@@ -1,10 +1,10 @@
 import { Stack, Typography } from '@mui/material'
 import dynamic from 'next/dynamic'
 import Link from 'next/link'
-import AvatarStatus from 'features/avatar-status'
 import { CharacteristicUser } from 'entities/characteristic'
-import { toHref } from 'entities/user'
 import { MAIN_CHARACTERISTICS, SecondCharacteristicName, UserDto } from 'shared/api'
+import { joinToHref } from 'shared/lib/helpers'
+import Avatar from 'shared/ui/avatar'
 
 const InView = dynamic(() => import('shared/ui/InView'))
 
@@ -19,13 +19,13 @@ interface UserRowProps {
 
 function UserRow({ user, inView, onView, onClose }: UserRowProps) {
   const { nickname, name, avatar, characteristic, online } = user
-  const href = toHref(nickname)
+  const href = joinToHref(nickname)
 
   return (
     <>
       <Stack direction="row" alignItems="center" spacing={2}>
         <Link href={href} title={name} onClick={onClose}>
-          <AvatarStatus src={avatar} name={name} online={online} size={55} />
+          <Avatar src={avatar} name={name} online={online} size={55} />
         </Link>
         <Stack justifyContent="space-between" flex={1}>
           <Typography variant="subtitle1" component="span">

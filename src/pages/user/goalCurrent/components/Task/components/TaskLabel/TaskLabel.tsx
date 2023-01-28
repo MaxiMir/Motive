@@ -3,7 +3,7 @@ import dynamic from 'next/dynamic'
 import { TaskDto } from 'shared/api'
 import { checkOnCompletedByOthers } from './helper'
 
-const Markdown = dynamic(() => import('features/markdown'))
+const Markdown = dynamic(() => import('shared/ui/markdown'))
 const CompletedByOthers = dynamic(() => import('./components/CompletedByOthers'))
 
 interface TaskLabelProps {

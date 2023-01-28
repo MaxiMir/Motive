@@ -4,7 +4,7 @@ import dynamic from 'next/dynamic'
 import { useCheckOnClientPage, UserContext } from 'entities/user'
 import { MAIN_CHARACTERISTICS, SECOND_CHARACTERISTICS, UserPageDto } from 'shared/api'
 import Container from 'shared/ui/Container'
-import Avatar from './avatar'
+import AvatarActions from './avatarActions'
 import EmptyGoals from './emptyGoals'
 import Following from './following'
 import LearnMore from './learnMore'
@@ -22,7 +22,7 @@ interface UserViewProps {
   user: UserPageDto
 }
 
-function UserPage({ user }: UserViewProps) {
+export function UserPage({ user }: UserViewProps) {
   const {
     id,
     name,
@@ -59,7 +59,7 @@ function UserPage({ user }: UserViewProps) {
               },
             }}
           >
-            <Avatar user={user} clientPage={clientPage} />
+            <AvatarActions user={user} clientPage={clientPage} />
             <Stack
               alignItems={{
                 xs: 'center',
@@ -162,5 +162,3 @@ const Section = styled(Box)(({ theme }) => ({
 const ExternalLink = styled(Link)({
   fontSize: 14,
 })
-
-export default UserPage

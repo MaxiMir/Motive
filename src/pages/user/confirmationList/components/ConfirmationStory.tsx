@@ -1,9 +1,9 @@
 import { Box, Button, Stack, Typography } from '@mui/material'
 import dynamic from 'next/dynamic'
-import AvatarStatus from 'features/avatar-status'
 import { useUserContext } from 'entities/user'
 import { ConfirmationDto } from 'shared/api'
 import { useTryFullScreen, useToggle } from 'shared/lib/hooks'
+import Avatar from 'shared/ui/avatar'
 
 const Stories = dynamic(() => import('features/stories'))
 
@@ -47,12 +47,7 @@ function ConfirmationStory({ confirmation }: ConfirmationStoryProps) {
               },
             })}
           >
-            <AvatarStatus
-              src={mainPhoto.src}
-              name={user.name}
-              size={60}
-              buttonProps={{ onClick }}
-            />
+            <Avatar src={mainPhoto.src} name={user.name} size={60} buttonProps={{ onClick }} />
           </Box>
         </Box>
         <Button id={`confirmation-${confirmation.id}`} size="small" onClick={onClick}>

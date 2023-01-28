@@ -1,16 +1,16 @@
 import { Grid, Box, Typography } from '@mui/material'
 import { blueGrey } from '@mui/material/colors'
+import { UserRating } from 'entities/user'
 import { MainCharacteristicName, UserDto } from 'shared/api'
 import List from 'shared/ui/List'
 import { useMessages } from './lib'
-import { UserRow } from './userRow'
 
 interface TabContentProps {
   name: MainCharacteristicName
   users: UserDto[]
 }
 
-function TabContent({ name, users }: TabContentProps) {
+export function TabContent({ name, users }: TabContentProps) {
   const messages = useMessages()
 
   return (
@@ -46,10 +46,8 @@ function TabContent({ name, users }: TabContentProps) {
       <List<UserDto>
         elements={users}
         keyGetter={(el) => el.id}
-        render={(user, index) => <UserRow user={user} characteristicName={name} index={index} />}
+        render={(user, index) => <UserRating user={user} characteristicName={name} index={index} />}
       />
     </>
   )
 }
-
-export default TabContent

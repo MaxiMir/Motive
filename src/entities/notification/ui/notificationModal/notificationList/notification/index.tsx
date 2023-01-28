@@ -1,12 +1,12 @@
 import { Box, IconButton, Stack, Typography } from '@mui/material'
 import dynamic from 'next/dynamic'
 import Link from 'next/link'
-import AvatarStatus from 'features/avatar-status'
 import { getNotificationHref } from 'entities/notification/lib/helpers/href'
-import { useClient, toHref } from 'entities/user'
+import { useClient } from 'entities/user'
 import { NotificationDto } from 'shared/api'
-import { toShortString } from 'shared/lib/helpers'
+import { joinToHref, toShortString } from 'shared/lib/helpers'
 import { useFormatDistance } from 'shared/lib/hooks'
+import Avatar from 'shared/ui/avatar'
 import Emoji from 'shared/ui/Emoji'
 import Icon from 'shared/ui/Icon'
 import { TooltipArrow } from 'shared/ui/styled'
@@ -29,7 +29,7 @@ export function Notification({ notification, onClose }: NotificationProps) {
   const dateDistance = formatDistance(created)
   const { emoji, color } = getNotificationInfo(type)
   const notificationHref = getNotificationHref(notification, client)
-  const href = toHref(nickname)
+  const href = joinToHref(nickname)
   const detailsName = !details.name ? '' : toShortString(details.name, 40)
 
   const onView = () => mutate(id)
@@ -38,7 +38,7 @@ export function Notification({ notification, onClose }: NotificationProps) {
     <Stack direction="row" spacing={2}>
       <Box height={55} position="relative">
         <Link href={href} title={name} onClick={onClose}>
-          <AvatarStatus src={avatar} name={name} size={55} />
+          <Avatar src={avatar} name={name} size={55} />
         </Link>
         <Box
           display="flex"

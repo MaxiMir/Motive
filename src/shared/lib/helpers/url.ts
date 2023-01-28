@@ -1,5 +1,7 @@
 type SearchParamsEntries = Record<string, string | number>
 
+export const joinToHref = (...args: string[]): string => `/${args.join('')}`
+
 export const parseUrl = (url: string) => {
   const [origin, params = ''] = url.split('?', 2)
   const searchParams = new URLSearchParams(params)

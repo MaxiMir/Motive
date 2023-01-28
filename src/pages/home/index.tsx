@@ -1,7 +1,7 @@
 import { Advantages } from './advantages'
 import { Slogan } from './slogan'
 
-function HomePage() {
+export function HomePage() {
   return (
     <>
       <Slogan />
@@ -9,5 +9,3 @@ function HomePage() {
     </>
   )
 }
-
-export default HomePage

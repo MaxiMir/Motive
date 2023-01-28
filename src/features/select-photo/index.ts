@@ -1,1 +1,1 @@
-export * from './lib/hooks/useSelectPhoto'
+export * from './lib'

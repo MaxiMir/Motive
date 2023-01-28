@@ -2,7 +2,7 @@ import { GetServerSideProps } from 'next'
 import { getSession } from 'next-auth/react'
 import DeviceDetector from 'node-device-detector'
 import { Layout } from 'app/layout'
-import FeedPage from 'pages/feed'
+import { FeedPage } from 'pages/feed'
 import { useMetaTags } from 'entities/page'
 
 function FeedRoute() {

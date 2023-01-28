@@ -1,6 +1,6 @@
 import { UserDto } from 'shared/api'
 import List from 'shared/ui/List'
-import UserRow from './userRow'
+import { UserRow } from './userRow'
 
 interface UserListProps {
   users: UserDto[]

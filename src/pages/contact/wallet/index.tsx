@@ -12,7 +12,7 @@ interface WalletProps {
   src: ImageProps['src']
 }
 
-function Wallet({ name, wallet, src }: WalletProps) {
+export function Wallet({ name, wallet, src }: WalletProps) {
   const messages = useMessages()
   const { enqueueSnackbar } = useSnackbar()
 
@@ -50,5 +50,3 @@ function Wallet({ name, wallet, src }: WalletProps) {
     </Stack>
   )
 }
-
-export default Wallet

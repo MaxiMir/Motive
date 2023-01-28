@@ -1,5 +1,6 @@
-import { toHref, getDiscussionHref, getFeedbackHref, getGoalHref, getDayHref } from 'entities/user'
+import { getDiscussionHref, getFeedbackHref, getGoalHref, getDayHref } from 'entities/user'
 import { NotificationDto, NotificationType, ClientDto } from 'shared/api'
+import { joinToHref } from 'shared/lib/helpers'
 
 type GetNotificationHref = (notification: NotificationDto, client?: ClientDto) => string
 
@@ -16,7 +17,7 @@ export const getNotificationHref: GetNotificationHref = (notification, client) =
 
   switch (notification.type) {
     case NotificationType.NewFollower:
-      return toHref(nickname)
+      return joinToHref(nickname)
     case NotificationType.WebCoverage:
       return getGoalHref(nickname, notification.details.id)
     case NotificationType.NewFeedback:

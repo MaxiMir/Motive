@@ -3,7 +3,7 @@ import Container from 'shared/ui/Container'
 import FadeEmoji from 'shared/ui/FadeEmoji'
 import { useMessages } from './lib'
 
-function FeedPage() {
+export function FeedPage() {
   const messages = useMessages()
 
   return (
@@ -28,5 +28,3 @@ function FeedPage() {
     </Container>
   )
 }
-
-export default FeedPage

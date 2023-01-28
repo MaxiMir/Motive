@@ -1,11 +1,11 @@
 import { Stack, Typography } from '@mui/material'
 import dynamic from 'next/dynamic'
 import Link from 'next/link'
-import AvatarStatus from 'features/avatar-status'
 import { CharacteristicUser } from 'entities/characteristic'
-import { toHref } from 'entities/user'
 import { MAIN_CHARACTERISTICS, SecondCharacteristicName, UserDto } from 'shared/api'
-import MenuActions from './menuActions'
+import { joinToHref } from 'shared/lib/helpers'
+import Avatar from 'shared/ui/avatar'
+import { MenuActions } from './menuActions'
 
 const LastSeen = dynamic(() => import('./lastSeen'))
 
@@ -16,14 +16,14 @@ interface UserRowProps {
   index: number
 }
 
-function UserRow({ user, index }: UserRowProps) {
+export function UserRow({ user, index }: UserRowProps) {
   const { nickname, name, avatar, characteristic, online, lastSeen } = user
-  const href = toHref(nickname)
+  const href = joinToHref(nickname)
 
   return (
     <Stack direction="row" alignItems="center" spacing={2}>
       <Link href={href} title={name}>
-        <AvatarStatus src={avatar} name={name} online={online} size={55} />
+        <Avatar src={avatar} name={name} online={online} size={55} />
       </Link>
       <Stack justifyContent="space-between" flex={1}>
         <Typography variant="subtitle1" component="span">
@@ -44,5 +44,3 @@ function UserRow({ user, index }: UserRowProps) {
     </Stack>
   )
 }
-
-export default UserRow

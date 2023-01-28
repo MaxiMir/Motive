@@ -1,8 +1,8 @@
 import { ListItem, ListItemIcon, ListItemText } from '@mui/material'
 import { useRouter } from 'next/router'
-import AvatarStatus from 'features/avatar-status'
-import { toHref } from 'entities/user'
 import { ClientDto } from 'shared/api'
+import { joinToHref } from 'shared/lib/helpers'
+import Avatar from 'shared/ui/avatar'
 
 interface UserProps {
   client: ClientDto
@@ -11,7 +11,7 @@ interface UserProps {
 
 function User({ client, primary }: UserProps) {
   const { asPath, push } = useRouter()
-  const href = toHref(client.nickname)
+  const href = joinToHref(client.nickname)
   const selected = asPath.includes(href)
 
   const onClick = () => push(href)
@@ -19,7 +19,7 @@ function User({ client, primary }: UserProps) {
   return (
     <ListItem button onClick={onClick}>
       <ListItemIcon sx={{ opacity: selected ? 1 : 0.6 }}>
-        <AvatarStatus name={client.name} src={client.avatar} size={24} buttonProps={{ onClick }} />
+        <Avatar name={client.name} src={client.avatar} size={24} buttonProps={{ onClick }} />
       </ListItemIcon>
       <ListItemText primary={primary} sx={{ color: selected ? 'inherit' : 'grey' }} />
     </ListItem>

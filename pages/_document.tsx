@@ -2,7 +2,7 @@ import { ServerStyleSheets } from '@mui/styles'
 import produce from 'immer'
 import { Children } from 'react'
 import Document, { Html, Main, Head, NextScript } from 'next/document'
-import { roboto } from 'entities/theme'
+import { roboto } from 'shared/config'
 
 export default class MyDocument extends Document {
   render() {

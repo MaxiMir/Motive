@@ -1,16 +1,16 @@
 import { Box, Stack, Typography } from '@mui/material'
 import dynamic from 'next/dynamic'
 import Link from 'next/link'
-import AvatarStatus from 'features/avatar-status'
-import { toHref } from 'entities/user'
 import { MessageDto } from 'shared/api'
+import { joinToHref } from 'shared/lib/helpers'
 import { useFormatDistance } from 'shared/lib/hooks'
+import Avatar from 'shared/ui/avatar'
 import Like from './components/Like'
 import MenuActions from './components/MenuActions'
 import { useMessages } from './hooks/useMessages'
 
 const Button = dynamic(() => import('@mui/material/Button'))
-const Markdown = dynamic(() => import('features/markdown'))
+const Markdown = dynamic(() => import('shared/ui/markdown'))
 const SupportSign = dynamic(() => import('./components/SupportSign'))
 
 interface MessageProps {
@@ -26,13 +26,13 @@ function Message({ message, answerFor, supportFor, onReply }: MessageProps) {
   const messages = useMessages()
   const formatDistance = useFormatDistance()
   const dateDistance = formatDistance(date)
-  const href = toHref(nickname)
+  const href = joinToHref(nickname)
   const direction = !answerFor ? 'row' : 'row-reverse'
 
   return (
     <Stack direction={direction} alignItems="flex-end" spacing={1}>
       <Link href={href} title={name}>
-        <AvatarStatus src={avatar} name={name} online={online} size={32} />
+        <Avatar src={avatar} name={name} online={online} size={32} />
       </Link>
       <Stack
         spacing={1}

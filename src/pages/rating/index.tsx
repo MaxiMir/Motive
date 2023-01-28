@@ -3,14 +3,14 @@ import { MAIN_CHARACTERISTICS, MainCharacteristicName, UserDto } from 'shared/ap
 import Container from 'shared/ui/Container'
 import Tabs from 'shared/ui/Tabs'
 import { useMessages } from './lib'
-import TabContent from './tabContent'
-import TabName from './tabName'
+import { TabContent } from './tabContent'
+import { TabName } from './tabName'
 
 interface RatingPageProps extends Record<MainCharacteristicName, UserDto[]> {
   tab: number
 }
 
-function RatingPage({ tab, ...props }: RatingPageProps) {
+export function RatingPage({ tab, ...props }: RatingPageProps) {
   const messages = useMessages()
 
   return (
@@ -31,5 +31,3 @@ function RatingPage({ tab, ...props }: RatingPageProps) {
     </Container>
   )
 }
-
-export default RatingPage

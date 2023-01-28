@@ -1,7 +1,7 @@
 import { RenderPhotoProps } from 'react-photo-album'
 import Image from 'shared/ui/Image'
 
-function GalleryPhoto({
+export function GalleryPhoto({
   imageProps: { src, alt, title, sizes, className, onClick },
   wrapperStyle,
 }: RenderPhotoProps) {
@@ -29,5 +29,3 @@ function GalleryPhoto({
     </div>
   )
 }
-
-export default GalleryPhoto

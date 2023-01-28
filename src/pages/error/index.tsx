@@ -10,7 +10,7 @@ interface ErrorPageProps {
   header?: string
 }
 
-function ErrorPage({ statusCode, header }: ErrorPageProps) {
+export function ErrorPage({ statusCode, header }: ErrorPageProps) {
   const messages = useMessages(header)
   const router = useRouter()
 
@@ -39,5 +39,3 @@ function ErrorPage({ statusCode, header }: ErrorPageProps) {
 const DescriptionText = styled(Typography)({
   fontSize: '9em',
 })
-
-export default ErrorPage

@@ -1,4 +1,4 @@
-import ErrorPage from 'pages/error'
+import { ErrorPage } from 'pages/error'
 
 interface CustomErrorProps {
   statusCode?: number

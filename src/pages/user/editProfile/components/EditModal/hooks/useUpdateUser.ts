@@ -3,9 +3,16 @@ import produce from 'immer'
 import { useIntl } from 'react-intl'
 import { useMutation } from 'react-query'
 import { useRouter } from 'next/router'
-import { useMutateUserPage, useUserContext, toHref } from 'entities/user'
-import { UserPageDto, UpdateUserDto, UserBaseDto, getUsers, updateUser } from 'shared/api'
-import { getCurrentSearchParams, setSearchParams } from 'shared/lib/helpers'
+import { useMutateUserPage, useUserContext } from 'entities/user'
+import {
+  UserPageDto,
+  UpdateUserDto,
+  UserBaseDto,
+  getUsers,
+  updateUser,
+  userSchema,
+} from 'shared/api'
+import { getCurrentSearchParams, joinToHref, setSearchParams } from 'shared/lib/helpers'
 
 const getNextState = (page: UserPageDto, user: UserBaseDto) =>
   produce(page, (draft) => {
@@ -30,7 +37,7 @@ export const useUpdateUser = (onSuccess: () => void) => {
   const nicknameError = formatMessage({ id: 'page.user.modal-profile.nickname-error' })
   const { mutateAsync } = useMutation(({ id, data }: Options) => updateUser(id, data), {
     onSuccess(dto) {
-      const href = toHref(dto.nickname)
+      const href = joinToHref(dto.nickname)
       const as = setSearchParams(href, getCurrentSearchParams())
       mutatePage(getNextState(page, dto))
       push(as, as, { shallow: true }).then(onSuccess)

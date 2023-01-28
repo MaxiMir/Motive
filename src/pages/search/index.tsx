@@ -3,14 +3,14 @@ import dynamic from 'next/dynamic'
 import { HashtagDto, GoalDto, UserDto } from 'shared/api'
 import Container from 'shared/ui/Container'
 import EmojiHeader from 'shared/ui/EmojiHeader'
-import SearchForm from './components/SearchForm'
-import { GRADIENTS } from './helpers/color'
+import { GRADIENTS } from './consts'
 import { useMessages } from './lib'
+import { SearchForm } from './searchForm'
 
-const GoalCard = dynamic(() => import('./components/GoalCard'))
-const UserCard = dynamic(() => import('./components/UserCard'))
-const Hashtag = dynamic(() => import('./components/Hashtag'))
-const NoResult = dynamic(() => import('./components/NoResult'))
+const GoalCard = dynamic(() => import('./goalCard'))
+const UserCard = dynamic(() => import('./userCard'))
+const Hashtag = dynamic(() => import('./hashtag'))
+const NoResult = dynamic(() => import('./noResult'))
 
 interface SearchPageProps {
   q: string
@@ -19,7 +19,7 @@ interface SearchPageProps {
   users: UserDto[]
 }
 
-function SearchPage({ q, hashtags, goals, users }: SearchPageProps) {
+export function SearchPage({ q, hashtags, goals, users }: SearchPageProps) {
   const messages = useMessages()
   const noResult = !users.length && !goals.length
 

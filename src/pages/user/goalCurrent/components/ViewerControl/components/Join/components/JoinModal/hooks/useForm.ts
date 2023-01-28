@@ -1,9 +1,10 @@
 import { useFormik } from 'formik'
 import { useMutation } from 'react-query'
 import { useRouter } from 'next/router'
-import { SearchParam, toHref, useClient } from 'entities/user'
+import { useClient } from 'entities/user'
 import { CreateMemberDto, createMember, memberSchema } from 'shared/api'
-import { setSearchParams } from 'shared/lib/helpers'
+import { SearchParam } from 'shared/config'
+import { joinToHref, setSearchParams } from 'shared/lib/helpers'
 import { getMidnight } from 'shared/lib/utils'
 
 export const useForm = (goalId: number, dayId: number) => {
@@ -13,7 +14,7 @@ export const useForm = (goalId: number, dayId: number) => {
     onSuccess({ dayId: selectedDay }) {
       if (!client) return
 
-      const href = toHref(client.nickname)
+      const href = joinToHref(client.nickname)
       const params = { [SearchParam.Dates]: `${goalId}:${selectedDay}` }
       push(setSearchParams(href, params))
     },

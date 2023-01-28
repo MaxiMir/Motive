@@ -2,9 +2,9 @@ import { IconButton, Menu, MenuItem } from '@mui/material'
 import { useState, MouseEvent, useId } from 'react'
 import dynamic from 'next/dynamic'
 import { tryNativeShare } from 'features/share'
-import { useRemoveFollowing } from 'entities/subscription'
-import { toHref } from 'entities/user'
+import { useRemoveFollowing } from 'features/subscription/remove-following'
 import { UserDto } from 'shared/api'
+import { joinToHref } from 'shared/lib/helpers'
 import { useToggle } from 'shared/lib/hooks'
 import Icon from 'shared/ui/Icon'
 import ListItem from 'shared/ui/ListItem'
@@ -18,7 +18,7 @@ interface MenuActionsProps {
   index: number
 }
 
-function MenuActions({ user, index }: MenuActionsProps) {
+export function MenuActions({ user, index }: MenuActionsProps) {
   const { name, nickname } = user
   const id = useId()
   const menuId = useId()
@@ -26,7 +26,7 @@ function MenuActions({ user, index }: MenuActionsProps) {
   const [anchorEl, setAnchorEl] = useState<HTMLElement | null>(null)
   const [sharing, toggleSharing] = useToggle()
   const [isLoading, removeFollowing] = useRemoveFollowing()
-  const href = toHref(nickname)
+  const href = joinToHref(nickname)
   const open = Boolean(anchorEl)
 
   const onOpenMenu = (e: MouseEvent<HTMLButtonElement>) => setAnchorEl(e.currentTarget)
@@ -76,5 +76,3 @@ function MenuActions({ user, index }: MenuActionsProps) {
     </>
   )
 }
-
-export default MenuActions

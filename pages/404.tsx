@@ -1,5 +1,5 @@
 import { Layout } from 'app/layout'
-import ErrorPage from 'pages/error'
+import { ErrorPage } from 'pages/error'
 import { useMetaTags } from 'entities/page'
 
 function Page404() {

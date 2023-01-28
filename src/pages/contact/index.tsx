@@ -7,9 +7,9 @@ import EmojiHeader from 'shared/ui/EmojiHeader'
 import { Email, LinkedIn, Telegram } from 'shared/ui/icons'
 import { MY_WALLETS } from './consts'
 import { useMessages } from './lib'
-import Wallet from './wallet'
+import { Wallet } from './wallet'
 
-function ContactPage() {
+export function ContactPage() {
   const messages = useMessages()
 
   const onClickTelegram = () => window.open('https://t.me/MaximMir', '_blank')
@@ -95,5 +95,3 @@ const ButtonLink = styled(Button)(({ theme }) => ({
   color: theme.palette.common.white,
   borderRadius: 12,
 }))
-
-export default ContactPage

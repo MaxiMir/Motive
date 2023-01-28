@@ -11,7 +11,7 @@ interface FollowingPageProps {
   following: UserDto[]
 }
 
-function FollowingPage({ following }: FollowingPageProps) {
+export function FollowingPage({ following }: FollowingPageProps) {
   const messages = useMessages()
 
   return (
@@ -23,5 +23,3 @@ function FollowingPage({ following }: FollowingPageProps) {
     </Container>
   )
 }
-
-export default FollowingPage

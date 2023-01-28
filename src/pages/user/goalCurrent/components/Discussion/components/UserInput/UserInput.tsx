@@ -4,9 +4,9 @@ import { styled } from '@mui/system'
 import { Field, Form, FormikProvider } from 'formik'
 import dynamic from 'next/dynamic'
 import Link from 'next/link'
-import AvatarStatus from 'features/avatar-status'
-import { toHref } from 'entities/user'
 import { TopicDto, MessageType, UserBaseDto, ClientDto } from 'shared/api'
+import { joinToHref } from 'shared/lib/helpers'
+import Avatar from 'shared/ui/avatar'
 import Input from 'shared/ui/Input'
 import { TooltipArrow } from 'shared/ui/styled'
 import { useForm } from './hooks/useForm'
@@ -27,7 +27,7 @@ function UserInput({ user, type, topicId, onAdd }: UserInputProps) {
   const messages = useMessages(type)
   const form = useForm(topicId, type, onAdd)
   const { isSubmitting, values, handleSubmit } = form
-  const href = toHref(nickname)
+  const href = joinToHref(nickname)
   const disabled = isSubmitting || !values.text
 
   const onClick = () => handleSubmit()
@@ -37,7 +37,7 @@ function UserInput({ user, type, topicId, onAdd }: UserInputProps) {
       <Form>
         <Stack direction="row" alignItems="center" flex={1} spacing={1}>
           <Link href={href} title={name}>
-            <AvatarStatus src={avatar} name={name} size={32} />
+            <Avatar src={avatar} name={name} size={32} />
           </Link>
           <Field
             name="text"

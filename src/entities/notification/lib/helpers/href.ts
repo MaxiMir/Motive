@@ -1,5 +1,5 @@
-import { toHref, getDiscussionHref, getFeedbackHref, getGoalHref, getDayHref } from '@entities/user'
-import { NotificationDto, NotificationType, ClientDto } from '@shared/api/dto'
+import { toHref, getDiscussionHref, getFeedbackHref, getGoalHref, getDayHref } from 'entities/user'
+import { NotificationDto, NotificationType, ClientDto } from 'shared/api'
 
 type GetNotificationHref = (notification: NotificationDto, client?: ClientDto) => string
 

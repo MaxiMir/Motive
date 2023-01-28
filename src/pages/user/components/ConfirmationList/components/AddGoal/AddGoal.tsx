@@ -1,7 +1,7 @@
 import { Box, Button, Stack, Typography } from '@mui/material'
 import dynamic from 'next/dynamic'
-import { useToggle } from '@shared/lib/hooks'
-import Icon from '@shared/ui/Icon'
+import { useToggle } from 'shared/lib/hooks'
+import Icon from 'shared/ui/Icon'
 import { useMessages } from './hooks/useMessages'
 
 const GoalModal = dynamic(() => import('./components/GoalModal'))

@@ -1,7 +1,7 @@
 import { Box, IconButton } from '@mui/material'
-import Icon from '@shared/ui/Icon'
-import Player from '@shared/ui/Player'
-import { TooltipArrow } from '@shared/ui/styled'
+import Icon from 'shared/ui/Icon'
+import Player from 'shared/ui/Player'
+import { TooltipArrow } from 'shared/ui/styled'
 import { useMessages } from './lib'
 
 interface VideoPreviewProps {

@@ -1,6 +1,6 @@
 import { IconButton, Stack } from '@mui/material'
-import { useToggle } from '@shared/lib/hooks'
-import Icon from '@shared/ui/Icon'
+import { useToggle } from 'shared/lib/hooks'
+import Icon from 'shared/ui/Icon'
 import { useMessages } from './lib/hooks/useMessages'
 import Description from './ui/Description'
 

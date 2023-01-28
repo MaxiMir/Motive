@@ -5,14 +5,14 @@ import PerfectScrollbar from 'react-perfect-scrollbar'
 import dynamic from 'next/dynamic'
 import Head from 'next/head'
 import { useRouter } from 'next/router'
-import ShowUpdate from '@features/show-update'
-import { useDeviceContext } from '@entities/device'
-import { getLocaleHrefList } from '@entities/locale'
-import { OGType } from '@shared/api/dto'
+import ShowUpdate from 'features/show-update'
+import { useDeviceContext } from 'entities/device'
+import { getLocaleHrefList } from 'entities/locale'
+import { OGType } from 'shared/api'
 
-const Header = dynamic(() => import('@widgets/header'))
-const Footer = dynamic(() => import('@widgets/footer'))
-const Sidebar = dynamic(() => import('@widgets/sidebar'))
+const Header = dynamic(() => import('widgets/header'))
+const Footer = dynamic(() => import('widgets/footer'))
+const Sidebar = dynamic(() => import('widgets/sidebar'))
 
 interface LayoutProps {
   title?: string

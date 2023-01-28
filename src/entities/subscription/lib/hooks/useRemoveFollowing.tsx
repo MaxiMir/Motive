@@ -2,12 +2,11 @@ import { Button } from '@mui/material'
 import produce from 'immer'
 import { useIntl } from 'react-intl'
 import { useMutation, useQueryClient } from 'react-query'
-import { useOpenSignIn } from '@features/sign-in'
-import { useSnackbar } from '@entities/snackbar'
-import { updateSubscription } from '@entities/subscription/api/updateSubscription'
-import { useClient } from '@entities/user'
-import { FollowingPageDto, UserDto } from '@shared/api/dto'
-import { Route } from '@shared/consts'
+import { useOpenSignIn } from 'features/sign-in'
+import { useSnackbar } from 'entities/snackbar'
+import { useClient } from 'entities/user'
+import { FollowingPageDto, UserDto, updateSubscription } from 'shared/api'
+import { Route } from 'shared/consts'
 
 interface Options {
   user: UserDto

@@ -3,9 +3,9 @@ import produce from 'immer'
 import { useIntl } from 'react-intl'
 import { useMutation } from 'react-query'
 import { useRouter } from 'next/router'
-import { useMutateUserPage, useUserContext, toHref, getUsers, updateUser } from '@entities/user'
-import { UserPageDto, UpdateUserDto, UserBaseDto } from '@shared/api/dto'
-import { getCurrentSearchParams, setSearchParams } from '@shared/lib/helpers'
+import { useMutateUserPage, useUserContext, toHref } from 'entities/user'
+import { UserPageDto, UpdateUserDto, UserBaseDto, getUsers, updateUser } from 'shared/api'
+import { getCurrentSearchParams, setSearchParams } from 'shared/lib/helpers'
 
 const getNextState = (page: UserPageDto, user: UserBaseDto) =>
   produce(page, (draft) => {

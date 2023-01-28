@@ -1,8 +1,8 @@
 import { Box, Button } from '@mui/material'
-import { useGoalContext } from '@entities/goal'
-import { useFormatNumber } from '@shared/lib/hooks'
-import Icon from '@shared/ui/Icon'
-import { TooltipArrow } from '@shared/ui/styled'
+import { useGoalContext } from 'entities/goal'
+import { useFormatNumber } from 'shared/lib/hooks'
+import Icon from 'shared/ui/Icon'
+import { TooltipArrow } from 'shared/ui/styled'
 import { useMessages } from './hooks/useMessages'
 
 function Views() {

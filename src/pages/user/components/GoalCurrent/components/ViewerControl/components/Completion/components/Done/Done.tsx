@@ -1,11 +1,11 @@
 import { Button } from '@mui/material'
 import dynamic from 'next/dynamic'
-import { useGoalContext } from '@entities/goal'
-import { useToggle } from '@shared/lib/hooks'
-import { TooltipArrow } from '@shared/ui/styled'
+import { useGoalContext } from 'entities/goal'
+import { useToggle } from 'shared/lib/hooks'
+import { TooltipArrow } from 'shared/ui/styled'
 import { useMessages } from './hooks/useMessages'
 
-const ConfirmationModal = dynamic(() => import('@entities/confirmation'))
+const ConfirmationModal = dynamic(() => import('entities/confirmation'))
 
 interface DoneProps {
   forTomorrow: boolean

@@ -1,14 +1,14 @@
 import { Step, StepContent, Stepper } from '@mui/material'
 import { teal } from '@mui/material/colors'
 import dynamic from 'next/dynamic'
-import { useGoalContext } from '@entities/goal'
-import { useToggle } from '@shared/lib/hooks'
-import Icon from '@shared/ui/Icon'
+import { useGoalContext } from 'entities/goal'
+import { useToggle } from 'shared/lib/hooks'
+import Icon from 'shared/ui/Icon'
 import StageLabel from './components/StageLabel'
 import { useMessages } from './hooks/useMessages'
 
 const Button = dynamic(() => import('@mui/material/Button'))
-const TooltipArrow = dynamic(() => import('@shared/ui/styled/TooltipArrow'))
+const TooltipArrow = dynamic(() => import('shared/ui/styled/TooltipArrow'))
 const StageModal = dynamic(() => import('./components/StageModal'))
 
 interface StagesProps {

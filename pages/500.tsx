@@ -1,6 +1,6 @@
 import { Layout } from '@app/ui'
-import Error from '@widgets/error'
-import { useMetaTags } from '@shared/lib/hooks'
+import Error from 'widgets/error'
+import { useMetaTags } from 'shared/lib/hooks'
 
 function Page500() {
   const metaTags = useMetaTags('500')

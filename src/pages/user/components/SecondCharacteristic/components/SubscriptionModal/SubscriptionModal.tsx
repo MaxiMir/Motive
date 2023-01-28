@@ -1,9 +1,9 @@
 import { Box } from '@mui/material'
 import dynamic from 'next/dynamic'
-import { useSubscription } from '@entities/subscription'
-import { useUserContext } from '@entities/user'
-import { SecondCharacteristicName } from '@shared/api/dto'
-import Modal from '@shared/ui/Modal'
+import { useSubscription } from 'entities/subscription'
+import { useUserContext } from 'entities/user'
+import { SecondCharacteristicName } from 'shared/api'
+import Modal from 'shared/ui/Modal'
 import Loader from './components/Loader'
 import { useMessages } from './hooks/useMessages'
 

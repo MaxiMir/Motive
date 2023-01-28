@@ -1,7 +1,7 @@
 import { useMutation } from 'react-query'
-import { incrementDayViews } from '@entities/day'
-import { useGoalContext } from '@entities/goal'
-import { useClient } from '@entities/user'
+import { useGoalContext } from 'entities/goal'
+import { useClient } from 'entities/user'
+import { incrementDayViews } from 'shared/api'
 
 export const useIncreaseViews = () => {
   const client = useClient()

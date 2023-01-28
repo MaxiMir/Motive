@@ -1,5 +1,5 @@
 import dynamic from 'next/dynamic'
-import { MemberDto } from '@shared/api/dto'
+import { MemberDto } from 'shared/api'
 import { useNextDayId } from './hooks/useNextDayId'
 
 const EndOfDay = dynamic(() => import('./components/EndOfDay'))

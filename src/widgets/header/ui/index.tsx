@@ -1,7 +1,7 @@
 import { AppBar, Container, Stack } from '@mui/material'
 import dynamic from 'next/dynamic'
-import { useClient } from '@entities/user'
-import { OGType } from '@shared/api/dto'
+import { useClient } from 'entities/user'
+import { OGType } from 'shared/api'
 import { Sidebar } from './sidebar'
 
 const SignIn = dynamic(() => import('./signIn'))

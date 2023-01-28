@@ -1,10 +1,9 @@
 import { useIntl } from 'react-intl'
 import { useMutation } from 'react-query'
-import { useOpenSignIn } from '@features/sign-in'
-import { createReport } from '@entities/report/api/createReport'
-import { useSnackbar } from '@entities/snackbar'
-import { useClient } from '@entities/user'
-import { ReportType } from '@shared/api/dto'
+import { useOpenSignIn } from 'features/sign-in'
+import { useSnackbar } from 'entities/snackbar'
+import { useClient } from 'entities/user'
+import { ReportType, createReport } from 'shared/api'
 
 export const useSendReport = (entityId: number, type: ReportType, onSettled: () => void) => {
   const { formatMessage } = useIntl()

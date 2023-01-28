@@ -1,6 +1,6 @@
 import { Box } from '@mui/material'
-import Emoji from '@shared/ui/Emoji'
-import { TooltipArrow } from '@shared/ui/styled'
+import Emoji from 'shared/ui/Emoji'
+import { TooltipArrow } from 'shared/ui/styled'
 import { useMessages } from './hooks/useMessages'
 
 interface SupportSignProps {

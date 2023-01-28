@@ -1,11 +1,11 @@
 import { Button, Stack, Typography } from '@mui/material'
 import { lightBlue, red, yellow } from '@mui/material/colors'
 import { styled } from '@mui/system'
-import Wallet, { MY_WALLETS } from '@features/wallet'
-import Container from '@shared/ui/Container'
-import Emoji from '@shared/ui/Emoji'
-import EmojiHeader from '@shared/ui/EmojiHeader'
-import { Email, LinkedIn, Telegram } from '@shared/ui/icons'
+import Wallet, { MY_WALLETS } from 'features/wallet'
+import Container from 'shared/ui/Container'
+import Emoji from 'shared/ui/Emoji'
+import EmojiHeader from 'shared/ui/EmojiHeader'
+import { Email, LinkedIn, Telegram } from 'shared/ui/icons'
 import { useMessages } from './lib'
 
 function ContactPage() {

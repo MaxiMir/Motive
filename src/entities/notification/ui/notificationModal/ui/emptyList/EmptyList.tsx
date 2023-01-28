@@ -1,5 +1,5 @@
 import { Box, Stack, Typography } from '@mui/material'
-import FadeEmoji from '@shared/ui/FadeEmoji'
+import FadeEmoji from 'shared/ui/FadeEmoji'
 import { useMessages } from './lib/hooks/useMessages'
 
 function EmptyList() {

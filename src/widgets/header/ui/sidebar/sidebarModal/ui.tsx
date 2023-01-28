@@ -11,8 +11,8 @@ import {
 import { drawerClasses } from '@mui/material/Drawer'
 import { signOut } from 'next-auth/react'
 import Link from 'next/link'
-import { useClient } from '@entities/user'
-import Icon from '@shared/ui/Icon'
+import { useClient } from 'entities/user'
+import Icon from 'shared/ui/Icon'
 import { useRoutes, useMessages } from './lib'
 
 interface SidebarModalProps {

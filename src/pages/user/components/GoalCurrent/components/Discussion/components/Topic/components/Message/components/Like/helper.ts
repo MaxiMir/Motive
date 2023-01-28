@@ -1,4 +1,4 @@
-import { MessageDto, MessageType, ClientDto } from '@shared/api/dto'
+import { MessageDto, MessageType, ClientDto } from 'shared/api'
 
 export const checkOnDisabled = (message: MessageDto, client?: ClientDto): boolean => {
   return (

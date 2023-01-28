@@ -1,4 +1,4 @@
-import { Device } from '@shared/api/dto'
+import { Device } from 'shared/api'
 
 export const getIconName = (device: Device): string => {
   switch (device) {

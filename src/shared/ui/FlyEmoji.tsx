@@ -1,5 +1,5 @@
 import { Box } from '@mui/material'
-import Emoji, { EmojiName } from '@shared/ui/Emoji'
+import Emoji, { EmojiName } from 'shared/ui/Emoji'
 
 interface SpinIconProps {
   name: EmojiName

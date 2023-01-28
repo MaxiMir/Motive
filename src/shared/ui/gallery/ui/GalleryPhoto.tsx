@@ -1,5 +1,5 @@
 import { RenderPhotoProps } from 'react-photo-album'
-import Image from '@shared/ui/Image'
+import Image from 'shared/ui/Image'
 
 function GalleryPhoto({
   imageProps: { src, alt, title, sizes, className, onClick },

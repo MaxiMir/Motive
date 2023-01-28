@@ -1,7 +1,7 @@
 import { Box, Typography } from '@mui/material'
-import { UserPageDto } from '@shared/api/dto'
-import { useFormatDate } from '@shared/lib/hooks'
-import Icon from '@shared/ui/Icon'
+import { UserPageDto } from 'shared/api'
+import { useFormatDate } from 'shared/lib/hooks'
+import Icon from 'shared/ui/Icon'
 import { useMessages } from './hooks/useMessages'
 
 interface RowProps {

@@ -2,10 +2,10 @@ import { Typography, Grid, Box, Button, Stack } from '@mui/material'
 import { blueGrey } from '@mui/material/colors'
 import { useTheme } from '@mui/material/styles'
 import Link from 'next/link'
-import AvatarStatus from '@features/avatar-status'
-import { toHref } from '@entities/user'
-import { UserCharacteristicName, UserDto } from '@shared/api/dto'
-import Emoji from '@shared/ui/Emoji'
+import AvatarStatus from 'features/avatar-status'
+import { toHref } from 'entities/user'
+import { UserCharacteristicName, UserDto } from 'shared/api'
+import Emoji from 'shared/ui/Emoji'
 
 interface UserRowProps {
   user: UserDto

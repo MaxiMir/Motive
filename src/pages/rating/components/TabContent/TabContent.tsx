@@ -1,7 +1,7 @@
 import { Grid, Box, Typography } from '@mui/material'
 import { blueGrey } from '@mui/material/colors'
-import { MainCharacteristicName, UserDto } from '@shared/api/dto'
-import List from '@shared/ui/List'
+import { MainCharacteristicName, UserDto } from 'shared/api'
+import List from 'shared/ui/List'
 import UserRow from './components/UserRow'
 import { useMessages } from './hooks/useMessages'
 

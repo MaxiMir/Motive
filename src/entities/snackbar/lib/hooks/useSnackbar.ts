@@ -1,6 +1,6 @@
 import { useContext } from 'react'
-import { SnackbarContext } from '@entities/snackbar/lib/context'
-import { SnackbarState } from '@entities/snackbar/types'
+import { SnackbarContext } from 'entities/snackbar/lib/context'
+import { SnackbarState } from 'entities/snackbar/types'
 
 export const useSnackbar = () => {
   const { state, setState } = useContext(SnackbarContext)

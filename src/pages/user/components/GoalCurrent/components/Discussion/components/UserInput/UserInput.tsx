@@ -4,16 +4,16 @@ import { styled } from '@mui/system'
 import { Field, Form, FormikProvider } from 'formik'
 import dynamic from 'next/dynamic'
 import Link from 'next/link'
-import AvatarStatus from '@features/avatar-status'
-import { toHref } from '@entities/user'
-import { TopicDto, MessageType, UserBaseDto, ClientDto } from '@shared/api/dto'
-import Input from '@shared/ui/Input'
-import { TooltipArrow } from '@shared/ui/styled'
+import AvatarStatus from 'features/avatar-status'
+import { toHref } from 'entities/user'
+import { TopicDto, MessageType, UserBaseDto, ClientDto } from 'shared/api'
+import Input from 'shared/ui/Input'
+import { TooltipArrow } from 'shared/ui/styled'
 import { useForm } from './hooks/useForm'
 import { useMessages } from './hooks/useMessages'
 
 const CircularProgress = dynamic(() => import('@mui/material/CircularProgress'))
-const Icon = dynamic(() => import('@shared/ui/Icon'))
+const Icon = dynamic(() => import('shared/ui/Icon'))
 
 interface UserInputProps {
   user: ClientDto | UserBaseDto

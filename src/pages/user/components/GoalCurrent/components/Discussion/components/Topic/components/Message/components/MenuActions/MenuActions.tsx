@@ -1,15 +1,15 @@
 import { Box, IconButton, MenuItem, Menu } from '@mui/material'
 import { MouseEvent, useId, useState } from 'react'
 import dynamic from 'next/dynamic'
-import { useClient } from '@entities/user'
-import { MessageDto } from '@shared/api/dto'
-import { useToggle } from '@shared/lib/hooks'
-import Icon from '@shared/ui/Icon'
-import ListItem from '@shared/ui/ListItem'
-import { TooltipArrow } from '@shared/ui/styled'
+import { useClient } from 'entities/user'
+import { MessageDto } from 'shared/api'
+import { useToggle } from 'shared/lib/hooks'
+import Icon from 'shared/ui/Icon'
+import ListItem from 'shared/ui/ListItem'
+import { TooltipArrow } from 'shared/ui/styled'
 import { useMessages } from './hooks/useMessages'
 
-const Report = dynamic(() => import('@features/creating-report'))
+const Report = dynamic(() => import('features/creating-report'))
 const EditModal = dynamic(() => import('./components/EditModal'))
 
 interface MenuActionsProps {

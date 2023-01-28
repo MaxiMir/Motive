@@ -2,11 +2,11 @@ import { Box, Link, Typography } from '@mui/material'
 import MarkdownToJSX from 'markdown-to-jsx'
 import { useMemo } from 'react'
 import dynamic from 'next/dynamic'
-import { useToggle } from '@shared/lib/hooks'
+import { useToggle } from 'shared/lib/hooks'
 import { useDetectTruncated, getBreakCount, toMarkdown } from './lib'
 import { MarkdownLinkProps, MarkdownTypographyProps } from './types'
 
-const ShowMore = dynamic(() => import('@shared/ui/showMore'))
+const ShowMore = dynamic(() => import('shared/ui/showMore'))
 
 interface MarkdownProps {
   text: string

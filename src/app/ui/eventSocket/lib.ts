@@ -3,11 +3,12 @@ import { useIntl } from 'react-intl'
 import { useQueryClient } from 'react-query'
 import { io } from 'socket.io-client'
 import { useRouter } from 'next/router'
-import { useDeviceContext } from '@entities/device'
-import { NotificationDto, getNotificationHref } from '@entities/notification'
-import { useSnackbar } from '@entities/snackbar'
-import { useClient } from '@entities/user'
-import { getImageSrc } from '@shared/lib/helpers'
+import { useDeviceContext } from 'entities/device'
+import { getNotificationHref } from 'entities/notification'
+import { useSnackbar } from 'entities/snackbar'
+import { useClient } from 'entities/user'
+import { NotificationDto } from 'shared/api'
+import { getImageSrc } from 'shared/lib/helpers'
 
 export const useSocket = () => {
   const { formatMessage } = useIntl()

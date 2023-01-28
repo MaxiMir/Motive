@@ -1,6 +1,6 @@
 import dynamic from 'next/dynamic'
-import { useClient } from '@entities/user'
-import { TooltipArrow } from '@shared/ui/styled'
+import { useClient } from 'entities/user'
+import { TooltipArrow } from 'shared/ui/styled'
 import { useMessages } from './lib'
 
 const Unauthorized = dynamic(() => import('./ui/Unauthorized'))

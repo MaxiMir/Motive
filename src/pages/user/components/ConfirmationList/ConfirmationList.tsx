@@ -1,6 +1,6 @@
 import { Tabs } from '@mui/material'
 import dynamic from 'next/dynamic'
-import { ConfirmationDto } from '@shared/api/dto'
+import { ConfirmationDto } from 'shared/api'
 
 const ConfirmationStory = dynamic(() => import('./components/ConfirmationStory'))
 const AddGoal = dynamic(() => import('./components/AddGoal'))

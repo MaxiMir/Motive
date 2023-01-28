@@ -2,7 +2,7 @@ import { PaletteMode } from '@mui/material'
 import { createTheme, ThemeProvider as MuiThemeProvider } from '@mui/material/styles'
 import { createGenerateClassName, StylesProvider } from '@mui/styles'
 import { ReactNode, useMemo, useState } from 'react'
-import { getDesignTokens, useRemoveServerStyles, PaletteModeContext } from '@entities/theme'
+import { getDesignTokens, useRemoveServerStyles, PaletteModeContext } from 'entities/theme'
 
 const generateClassName = createGenerateClassName({ productionPrefix: 'bb' })
 

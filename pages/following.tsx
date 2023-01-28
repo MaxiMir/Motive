@@ -3,10 +3,11 @@ import { getSession } from 'next-auth/react'
 import DeviceDetector from 'node-device-detector'
 import { dehydrate, QueryClient } from 'react-query'
 import { Layout } from '@app/ui'
-import { getFollowingPage, useFollowingPage } from '@entities/pages'
 import FollowingPage from '@pages/following'
-import { Route } from '@shared/consts'
-import { useMetaTags } from '@shared/lib/hooks'
+import { useFollowingPage } from 'entities/page'
+import { getFollowingPage } from 'shared/api'
+import { Route } from 'shared/consts'
+import { useMetaTags } from 'shared/lib/hooks'
 
 function FollowingRoute() {
   const { data } = useFollowingPage()

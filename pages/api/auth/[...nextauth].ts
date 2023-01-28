@@ -3,7 +3,7 @@ import AppleProvider from 'next-auth/providers/apple'
 import FacebookProvider from 'next-auth/providers/facebook'
 import GithubProvider from 'next-auth/providers/github'
 import GoogleProvider from 'next-auth/providers/google'
-import { createUser, getUsers } from '@entities/user'
+import { createUser, getUsers } from 'shared/api'
 
 export default NextAuth({
   providers: [

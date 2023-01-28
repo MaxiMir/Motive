@@ -13,14 +13,14 @@ import { useIntl } from 'react-intl'
 import dynamic from 'next/dynamic'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
-import { useClient } from '@entities/user'
-import { useDesktopRoutes } from '@shared/consts'
-import { useToggle } from '@shared/lib/hooks'
-import Icon from '@shared/ui/Icon'
-import { TooltipArrow } from '@shared/ui/styled'
+import { useClient } from 'entities/user'
+import { useToggle } from 'shared/lib/hooks'
+import Icon from 'shared/ui/Icon'
+import { TooltipArrow } from 'shared/ui/styled'
 import { Drawer } from './drawer'
 import { More } from './more'
 import { ProfileLink } from './profileLink'
+import { useRoutes } from './lib'
 
 const Notifications = dynamic(() => import('./notifications'))
 
@@ -35,7 +35,7 @@ function Sidebar({ breakpoints, children }: SidebarProps) {
   const client = useClient()
   const [expanded, toggleExpanded] = useToggle(true)
   const ariaLabel = formatMessage({ id: expanded ? 'common.close' : 'common.open-menu' })
-  const routes = useDesktopRoutes()
+  const routes = useRoutes()
   const menuIcon = expanded ? 'arrow_left' : 'arrow_right'
 
   return (

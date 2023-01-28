@@ -1,5 +1,0 @@
-export * from './getUsers'
-export * from './createUser'
-export * from './updateUser'
-export * from './updateAvatar'
-export * from './deleteAvatar'

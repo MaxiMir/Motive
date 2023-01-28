@@ -1,8 +1,8 @@
 import { IconButton } from '@mui/material'
 import { useState } from 'react'
 import dynamic from 'next/dynamic'
-import Icon from '@shared/ui/Icon'
-import { TooltipArrow } from '@shared/ui/styled'
+import Icon from 'shared/ui/Icon'
+import { TooltipArrow } from 'shared/ui/styled'
 import { useMessages } from './lib'
 
 const SidebarModal = dynamic(() => import('./sidebarModal'))

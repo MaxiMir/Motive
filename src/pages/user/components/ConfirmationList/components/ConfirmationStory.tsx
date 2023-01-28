@@ -1,11 +1,11 @@
 import { Box, Button, Stack, Typography } from '@mui/material'
 import dynamic from 'next/dynamic'
-import AvatarStatus from '@features/avatar-status'
-import { useUserContext } from '@entities/user'
-import { ConfirmationDto } from '@shared/api/dto'
-import { useTryFullScreen, useToggle } from '@shared/lib/hooks'
+import AvatarStatus from 'features/avatar-status'
+import { useUserContext } from 'entities/user'
+import { ConfirmationDto } from 'shared/api'
+import { useTryFullScreen, useToggle } from 'shared/lib/hooks'
 
-const Stories = dynamic(() => import('@features/stories'))
+const Stories = dynamic(() => import('features/stories'))
 
 interface ConfirmationStoryProps {
   confirmation: ConfirmationDto

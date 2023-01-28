@@ -1,10 +1,10 @@
 import { Stack } from '@mui/material'
 import dynamic from 'next/dynamic'
-import { FeedbackDto } from '@shared/api/dto'
+import { FeedbackDto } from 'shared/api'
 
-const Markdown = dynamic(() => import('@features/markdown'))
-const Gallery = dynamic(() => import('@shared/ui/gallery'))
-const Player = dynamic(() => import('@shared/ui/Player'))
+const Markdown = dynamic(() => import('features/markdown'))
+const Gallery = dynamic(() => import('shared/ui/gallery'))
+const Player = dynamic(() => import('shared/ui/Player'))
 
 interface ContentProps {
   feedback: FeedbackDto

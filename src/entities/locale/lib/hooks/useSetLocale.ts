@@ -1,5 +1,5 @@
 import { useRouter } from 'next/router'
-import { Locale } from '@entities/locale/types'
+import { Locale } from 'entities/locale/types'
 
 export const useSetLocale = () => {
   const { asPath, push } = useRouter()

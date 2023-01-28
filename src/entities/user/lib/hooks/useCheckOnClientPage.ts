@@ -1,4 +1,4 @@
-import { useClient } from '@entities/user'
+import { useClient } from 'entities/user'
 
 export const useCheckOnClientPage = (id: number) => {
   const client = useClient()

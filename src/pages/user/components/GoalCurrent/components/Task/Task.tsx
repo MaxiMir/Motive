@@ -1,9 +1,9 @@
 import { Stack } from '@mui/material'
 import { useIntl } from 'react-intl'
 import dynamic from 'next/dynamic'
-import { MemberDto, TaskDto } from '@shared/api/dto'
-import Checkbox from '@shared/ui/Checkbox'
-import { TooltipArrow } from '@shared/ui/styled'
+import { MemberDto, TaskDto } from 'shared/api'
+import Checkbox from 'shared/ui/Checkbox'
+import { TooltipArrow } from 'shared/ui/styled'
 import TaskLabel from './components/TaskLabel'
 import { useSetCompleted } from './hooks/useSetCompleted'
 

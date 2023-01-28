@@ -1,5 +1,5 @@
 import { format } from 'date-fns'
-import { GoalDto, CalendarDto, DayDto } from '@shared/api/dto'
+import { GoalDto, CalendarDto, DayDto } from 'shared/api'
 import { useChangeDay } from './useChangeDay'
 
 const getDayKey = (date: Date | string) => {

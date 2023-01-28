@@ -3,9 +3,10 @@ import { getSession } from 'next-auth/react'
 import DeviceDetector from 'node-device-detector'
 import { dehydrate, QueryClient } from 'react-query'
 import { Layout } from '@app/ui'
-import { getRatingPage, useRatingTab, useRatingMeta, useRatingPage } from '@entities/pages'
 import RatingPage from '@pages/rating'
-import { Route } from '@shared/consts'
+import { useRatingTab, useRatingMeta, useRatingPage } from 'entities/page'
+import { getRatingPage } from 'shared/api'
+import { Route } from 'shared/consts'
 
 function RatingRoute() {
   const tab = useRatingTab()

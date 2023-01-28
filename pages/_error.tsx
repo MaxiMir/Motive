@@ -1,4 +1,4 @@
-import Error from '@widgets/error'
+import Error from 'widgets/error'
 
 interface CustomErrorProps {
   statusCode?: number

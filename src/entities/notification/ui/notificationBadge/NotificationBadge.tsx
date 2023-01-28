@@ -1,6 +1,6 @@
 import { Badge } from '@mui/material'
-import { NotificationDto } from '@shared/api/dto'
-import Icon from '@shared/ui/Icon'
+import { NotificationDto } from 'shared/api'
+import Icon from 'shared/ui/Icon'
 import { getReadCount } from './lib/helpers/content'
 
 interface NotificationBadgeProps {

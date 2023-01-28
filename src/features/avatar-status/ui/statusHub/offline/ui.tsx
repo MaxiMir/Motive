@@ -1,12 +1,12 @@
 import { Badge, Stack } from '@mui/material'
 import { ReactNode } from 'react'
 import dynamic from 'next/dynamic'
-import { Device } from '@shared/api/dto'
-import { useFormatDistance } from '@shared/lib/hooks'
-import { TooltipArrow } from '@shared/ui/styled'
+import { Device } from 'shared/api'
+import { useFormatDistance } from 'shared/lib/hooks'
+import { TooltipArrow } from 'shared/ui/styled'
 import { useMessages, getShortDistance } from './lib'
 
-const DeviceIcon = dynamic(() => import('@entities/device').then((m) => m.DeviceIcon))
+const DeviceIcon = dynamic(() => import('entities/device').then((m) => m.DeviceIcon))
 
 interface OfflineProps {
   lastSeen: string

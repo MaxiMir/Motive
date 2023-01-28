@@ -1,10 +1,10 @@
 import { useState } from 'react'
 import dynamic from 'next/dynamic'
-import { TopicDto, MessageType, UserBaseDto } from '@shared/api/dto'
+import { TopicDto, MessageType, UserBaseDto } from 'shared/api'
 import Message from './components/Message'
 import { checkOnReply } from './helper'
 
-const InView = dynamic(() => import('@shared/ui/InView'))
+const InView = dynamic(() => import('shared/ui/InView'))
 const UserInput = dynamic(() => import('../UserInput'))
 
 interface TopicProps {

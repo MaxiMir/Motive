@@ -2,15 +2,15 @@ import { Menu, MenuItem } from '@mui/material'
 import { paperClasses } from '@mui/material/Paper'
 import { MouseEvent, useId, useState } from 'react'
 import dynamic from 'next/dynamic'
-import AvatarStatus from '@features/avatar-status'
-import { UserPageDto } from '@shared/api/dto'
-import { useToggle } from '@shared/lib/hooks'
-import ListItem from '@shared/ui/ListItem'
+import AvatarStatus from 'features/avatar-status'
+import { UserPageDto } from 'shared/api'
+import { useToggle } from 'shared/lib/hooks'
+import ListItem from 'shared/ui/ListItem'
 import { useMessages } from './lib'
 
-const LightBox = dynamic(() => import('@shared/ui/LightBox'))
-const UpdatingModal = dynamic(() => import('@features/updating-avatar'))
-const DeletingModal = dynamic(() => import('@features/deleting-avatar'))
+const LightBox = dynamic(() => import('shared/ui/LightBox'))
+const UpdatingModal = dynamic(() => import('features/updating-avatar'))
+const DeletingModal = dynamic(() => import('features/deleting-avatar'))
 
 const SIZE = 175
 

@@ -1,5 +1,5 @@
-import { Device } from '@shared/api/dto'
-import Icon from '@shared/ui/Icon'
+import { Device } from 'shared/api'
+import Icon from 'shared/ui/Icon'
 import { getIconName } from './lib'
 
 interface DeviceIconProps {

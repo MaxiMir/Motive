@@ -1,12 +1,12 @@
 import { Stack, Typography } from '@mui/material'
 import dynamic from 'next/dynamic'
 import Link from 'next/link'
-import AvatarStatus from '@features/avatar-status'
-import { CharacteristicUser } from '@entities/characteristic'
-import { toHref } from '@entities/user'
-import { MAIN_CHARACTERISTICS, SecondCharacteristicName, UserDto } from '@shared/api/dto'
+import AvatarStatus from 'features/avatar-status'
+import { CharacteristicUser } from 'entities/characteristic'
+import { toHref } from 'entities/user'
+import { MAIN_CHARACTERISTICS, SecondCharacteristicName, UserDto } from 'shared/api'
 
-const InView = dynamic(() => import('@shared/ui/InView'))
+const InView = dynamic(() => import('shared/ui/InView'))
 
 const CHARACTERISTICS = [...MAIN_CHARACTERISTICS, SecondCharacteristicName.Completed]
 

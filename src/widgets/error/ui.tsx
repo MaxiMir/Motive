@@ -1,8 +1,8 @@
 import { Box, Button, Stack, Typography } from '@mui/material'
 import { styled } from '@mui/system'
 import { useRouter } from 'next/router'
-import Container from '@shared/ui/Container'
-import Emoji from '@shared/ui/Emoji'
+import Container from 'shared/ui/Container'
+import Emoji from 'shared/ui/Emoji'
 import { useMessages } from './lib'
 
 interface ErrorProps {

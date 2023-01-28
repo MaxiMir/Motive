@@ -1,17 +1,17 @@
 import { IconButton, Menu, MenuItem } from '@mui/material'
 import { useState, MouseEvent, useId } from 'react'
 import dynamic from 'next/dynamic'
-import { useRemoveFollowing } from '@entities/subscription'
-import { toHref } from '@entities/user'
-import { UserDto } from '@shared/api/dto'
-import { share } from '@shared/lib/helpers'
-import { useToggle } from '@shared/lib/hooks'
-import Icon from '@shared/ui/Icon'
-import ListItem from '@shared/ui/ListItem'
-import { TooltipArrow } from '@shared/ui/styled'
+import { useRemoveFollowing } from 'entities/subscription'
+import { toHref } from 'entities/user'
+import { UserDto } from 'shared/api'
+import { share } from 'shared/lib/helpers'
+import { useToggle } from 'shared/lib/hooks'
+import Icon from 'shared/ui/Icon'
+import ListItem from 'shared/ui/ListItem'
+import { TooltipArrow } from 'shared/ui/styled'
 import { useMessages } from './lib'
 
-const Share = dynamic(() => import('@features/share'))
+const Share = dynamic(() => import('features/share'))
 
 interface MenuActionsProps {
   user: UserDto

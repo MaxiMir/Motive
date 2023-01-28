@@ -1,6 +1,6 @@
 import { useQueryClient } from 'react-query'
-import { useUserContext } from '@entities/user'
-import { UserPageDto } from '@shared/api/dto'
+import { useUserContext } from 'entities/user'
+import { UserPageDto } from 'shared/api'
 
 export const useMutateUserPage = (): [UserPageDto, (page: UserPageDto) => void] => {
   const queryClient = useQueryClient()

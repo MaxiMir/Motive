@@ -1,8 +1,8 @@
 import { Box, Portal } from '@mui/material'
 import { styled } from '@mui/system'
 import { MutableRefObject } from 'react'
-import { Story } from '@features/stories/types'
-import { UserBaseDto } from '@shared/api/dto'
+import { Story } from 'features/stories/types'
+import { UserBaseDto } from 'shared/api'
 import { useSlowClose } from './lib/hooks/useSlowClose'
 import StoryViewer from './ui/storyViewer/StoryViewer'
 

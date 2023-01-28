@@ -1,5 +1,5 @@
 import dynamic from 'next/dynamic'
-import { Device } from '@shared/api/dto'
+import { Device } from 'shared/api'
 import { TunedAvatar } from './tunedAvatar'
 
 const Online = dynamic(() => import('./online'))

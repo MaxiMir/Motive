@@ -3,10 +3,9 @@ import { useRef } from 'react'
 import { useIntl } from 'react-intl'
 import { useMutation } from 'react-query'
 import dynamic from 'next/dynamic'
-import { useSnackbar } from '@entities/snackbar'
-import { updateCompleted } from '@entities/task'
-import { useMutateUserPage, useClient } from '@entities/user'
-import { MemberDto, UserPageDto } from '@shared/api/dto'
+import { useSnackbar } from 'entities/snackbar'
+import { useMutateUserPage, useClient } from 'entities/user'
+import { MemberDto, UserPageDto, updateCompleted } from 'shared/api'
 
 const Button = dynamic(() => import('@mui/material/Button'))
 

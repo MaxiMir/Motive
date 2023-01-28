@@ -2,13 +2,13 @@ import { Badge, Box } from '@mui/material'
 import { PickersDay } from '@mui/x-date-pickers'
 import { DatePicker } from '@mui/x-date-pickers/DatePicker'
 import dynamic from 'next/dynamic'
-import { useGoalContext } from '@entities/goal'
+import { useGoalContext } from 'entities/goal'
 import InputNotEditable from './components/InputNotEditable'
 import OpenPickerIcon from './components/OpenPickerIcon'
 import { getBorders } from './helper'
 import { useMessages } from './hooks/useMessages'
 
-const Emoji = dynamic(() => import('@shared/ui/Emoji'))
+const Emoji = dynamic(() => import('shared/ui/Emoji'))
 
 interface CalendarProps {
   isLoading: boolean

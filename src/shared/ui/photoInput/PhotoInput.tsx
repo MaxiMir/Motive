@@ -1,7 +1,7 @@
 import { Button } from '@mui/material'
 import { styled } from '@mui/system'
 import { ChangeEvent, useRef } from 'react'
-import Emoji from '@shared/ui/Emoji'
+import Emoji from 'shared/ui/Emoji'
 import { useMessages } from './lib/hooks/useMessages'
 
 interface PhotoInputProps {

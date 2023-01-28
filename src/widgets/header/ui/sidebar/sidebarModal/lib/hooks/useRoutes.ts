@@ -1,5 +1,5 @@
 import { useIntl } from 'react-intl'
-import { Route } from '@shared/consts'
+import { Route } from 'shared/consts'
 
 export const useRoutes = () => {
   const { formatMessage } = useIntl()

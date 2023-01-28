@@ -2,16 +2,16 @@ import { Menu, MenuItem } from '@mui/material'
 import { MouseEvent, useId, useState } from 'react'
 import dynamic from 'next/dynamic'
 import { useRouter } from 'next/router'
-import { useCheckOnClientPage, useUserContext } from '@entities/user'
-import { share } from '@shared/lib/helpers'
-import { useToggle } from '@shared/lib/hooks'
-import Icon from '@shared/ui/Icon'
-import ListItem from '@shared/ui/ListItem'
-import { GreyButton } from '@shared/ui/styled'
+import { useCheckOnClientPage, useUserContext } from 'entities/user'
+import { share } from 'shared/lib/helpers'
+import { useToggle } from 'shared/lib/hooks'
+import Icon from 'shared/ui/Icon'
+import ListItem from 'shared/ui/ListItem'
+import { GreyButton } from 'shared/ui/styled'
 import { useMessages } from './hooks/useMessages'
 
-const Report = dynamic(() => import('@features/creating-report'))
-const Share = dynamic(() => import('@features/share'))
+const Report = dynamic(() => import('features/creating-report'))
+const Share = dynamic(() => import('features/share'))
 
 function MenuActions() {
   const id = useId()

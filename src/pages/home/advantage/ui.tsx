@@ -1,7 +1,7 @@
 import { Box, Stack, Typography } from '@mui/material'
 import Link from 'next/link'
-import { MainCharacteristicName, SecondCharacteristicName } from '@shared/api/dto'
-import Emoji from '@shared/ui/Emoji'
+import { MainCharacteristicName, SecondCharacteristicName } from 'shared/api'
+import Emoji from 'shared/ui/Emoji'
 import { useWidth, useMessages } from './lib'
 
 interface AdvantageProps {

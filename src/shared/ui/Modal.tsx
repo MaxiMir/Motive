@@ -11,7 +11,7 @@ import { Fragment, ReactNode } from 'react'
 import { useIntl } from 'react-intl'
 import PerfectScrollbar from 'react-perfect-scrollbar'
 import dynamic from 'next/dynamic'
-import Icon from '@shared/ui/Icon'
+import Icon from 'shared/ui/Icon'
 
 const DialogActions = dynamic(() => import('@mui/material/DialogActions'))
 const Stack = dynamic(() => import('@mui/material/Stack'))

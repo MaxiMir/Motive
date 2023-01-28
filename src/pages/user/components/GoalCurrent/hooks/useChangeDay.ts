@@ -1,9 +1,8 @@
 import { AxiosError } from 'axios'
 import produce from 'immer'
 import { useMutation, UseMutationResult } from 'react-query'
-import { getDay } from '@entities/day'
-import { useChangeDayUrl, useMutateGoals } from '@entities/user'
-import { DayDto, GoalDto } from '@shared/api/dto'
+import { useChangeDayUrl, useMutateGoals } from 'entities/user'
+import { DayDto, GoalDto, getDay } from 'shared/api'
 
 const getGoalNextState = (goals: GoalDto[], goalId: number, day: DayDto): GoalDto[] =>
   produce(goals, (draft) => {

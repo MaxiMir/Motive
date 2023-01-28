@@ -1,5 +1,5 @@
-import { NotificationDto } from '@shared/api/dto'
-import List from '@shared/ui/List'
+import { NotificationDto } from 'shared/api'
+import List from 'shared/ui/List'
 import Notification from './ui/notification/Notification'
 
 interface NotificationListProps {

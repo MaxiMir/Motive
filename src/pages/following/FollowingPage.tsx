@@ -1,7 +1,7 @@
 import { Typography } from '@mui/material'
 import dynamic from 'next/dynamic'
-import { UserDto } from '@shared/api/dto'
-import Container from '@shared/ui/Container'
+import { UserDto } from 'shared/api'
+import Container from 'shared/ui/Container'
 import { useMessages } from './hooks/useMessages'
 
 const EmptyList = dynamic(() => import('./components/EmptyList'))

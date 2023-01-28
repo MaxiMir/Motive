@@ -2,12 +2,11 @@ import { formatISO } from 'date-fns'
 import { useFormik } from 'formik'
 import { useIntl } from 'react-intl'
 import { useMutation } from 'react-query'
-import { useUserPage } from '@entities/pages'
-import { createConfirmation } from '@entities/confirmation'
-import { useSnackbar } from '@entities/snackbar'
-import { confirmationSchema } from '@shared/api/schemas'
-import { scrollToElem } from '@shared/lib/helpers'
-import { getMidnight } from '@shared/lib/utils'
+import { useUserPage } from 'entities/page'
+import { useSnackbar } from 'entities/snackbar'
+import { createConfirmation, confirmationSchema } from 'shared/api'
+import { scrollToElem } from 'shared/lib/helpers'
+import { getMidnight } from 'shared/lib/utils'
 
 interface Values {
   text: string

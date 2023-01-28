@@ -1,6 +1,6 @@
 import { Avatar } from '@mui/material'
 import { useMemo } from 'react'
-import { getShortName } from '@entities/user'
+import { getShortName } from 'entities/user'
 import { generateColorByName } from './lib'
 
 interface PlugProps {

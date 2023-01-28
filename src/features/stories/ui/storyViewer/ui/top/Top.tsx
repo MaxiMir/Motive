@@ -1,10 +1,10 @@
 import { Box, IconButton, Stack, Typography } from '@mui/material'
 import Link from 'next/link'
-import AvatarStatus from '@features/avatar-status'
-import { toHref } from '@entities/user'
-import { UserBaseDto } from '@shared/api/dto'
-import { useFormatDistance } from '@shared/lib/hooks'
-import Icon from '@shared/ui/Icon'
+import AvatarStatus from 'features/avatar-status'
+import { toHref } from 'entities/user'
+import { UserBaseDto } from 'shared/api'
+import { useFormatDistance } from 'shared/lib/hooks'
+import Icon from 'shared/ui/Icon'
 import { useMessages } from './lib/hooks/useMessages'
 
 interface TopProps {

@@ -1,6 +1,6 @@
 import { Box, Typography } from '@mui/material'
-import Container from '@shared/ui/Container'
-import FadeEmoji from '@shared/ui/FadeEmoji'
+import Container from 'shared/ui/Container'
+import FadeEmoji from 'shared/ui/FadeEmoji'
 import { useMessages } from './lib'
 
 function FeedPage() {

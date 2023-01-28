@@ -1,5 +1,5 @@
 import { useIntl } from 'react-intl'
-import { NotificationType } from '@shared/api/dto'
+import { NotificationType } from 'shared/api'
 
 export const useMessages = (type: NotificationType) => {
   const { formatMessage } = useIntl()

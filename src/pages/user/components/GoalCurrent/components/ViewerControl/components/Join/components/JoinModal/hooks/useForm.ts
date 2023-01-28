@@ -1,12 +1,10 @@
 import { useFormik } from 'formik'
 import { useMutation } from 'react-query'
 import { useRouter } from 'next/router'
-import { createMember } from '@entities/member'
-import { SearchParam, toHref, useClient } from '@entities/user'
-import { CreateMemberDto } from '@shared/api/dto'
-import { memberSchema } from '@shared/api/schemas'
-import { setSearchParams } from '@shared/lib/helpers'
-import { getMidnight } from '@shared/lib/utils'
+import { SearchParam, toHref, useClient } from 'entities/user'
+import { CreateMemberDto, createMember, memberSchema } from 'shared/api'
+import { setSearchParams } from 'shared/lib/helpers'
+import { getMidnight } from 'shared/lib/utils'
 
 export const useForm = (goalId: number, dayId: number) => {
   const client = useClient()

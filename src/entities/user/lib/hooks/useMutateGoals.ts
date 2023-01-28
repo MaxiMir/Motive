@@ -1,6 +1,6 @@
 import produce from 'immer'
-import { useMutateUserPage } from '@entities/user'
-import { GoalDto, UserPageDto } from '@shared/api/dto'
+import { useMutateUserPage } from 'entities/user'
+import { GoalDto, UserPageDto } from 'shared/api'
 
 const getNextState = (page: UserPageDto, goals: GoalDto[]) =>
   produce(page, (draft) => {

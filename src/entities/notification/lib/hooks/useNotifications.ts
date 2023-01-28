@@ -1,6 +1,6 @@
 import { useQuery } from 'react-query'
-import { getNotifications } from '@entities/notification'
-import { useClient } from '@entities/user'
+import { useClient } from 'entities/user'
+import { getNotifications } from 'shared/api'
 
 export const useNotifications = () => {
   const client = useClient()

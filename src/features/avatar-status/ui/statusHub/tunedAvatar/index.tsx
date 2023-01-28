@@ -1,5 +1,5 @@
 import { Avatar } from '@mui/material'
-import { getImageSrc } from '@shared/lib/helpers'
+import { getImageSrc } from 'shared/lib/helpers'
 
 interface ContentProps {
   src: string

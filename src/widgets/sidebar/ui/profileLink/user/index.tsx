@@ -1,8 +1,8 @@
 import { ListItem, ListItemIcon, ListItemText } from '@mui/material'
 import { useRouter } from 'next/router'
-import AvatarStatus from '@features/avatar-status'
-import { toHref } from '@entities/user'
-import { ClientDto } from '@shared/api/dto'
+import AvatarStatus from 'features/avatar-status'
+import { toHref } from 'entities/user'
+import { ClientDto } from 'shared/api'
 
 interface UserProps {
   client: ClientDto

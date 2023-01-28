@@ -1,5 +1,5 @@
 import { useIntl } from 'react-intl'
-import { Locale } from '@entities/locale'
+import { Locale } from 'entities/locale'
 
 export const useWidth = () => {
   const { locale } = useIntl()

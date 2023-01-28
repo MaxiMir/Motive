@@ -2,10 +2,8 @@ import { useFormik } from 'formik'
 import produce from 'immer'
 import { useIntl } from 'react-intl'
 import { InfiniteData, useMutation, useQueryClient } from 'react-query'
-import { useSnackbar } from '@entities/snackbar'
-import { updateTopic } from '@entities/topic'
-import { MessageDto, TopicDto } from '@shared/api/dto'
-import { topicSchema } from '@shared/api/schemas'
+import { useSnackbar } from 'entities/snackbar'
+import { MessageDto, TopicDto, topicSchema, updateTopic } from 'shared/api'
 
 const getNextState = (discussion: InfiniteData<TopicDto[]>, message: MessageDto) => {
   const { id, parentId, text } = message

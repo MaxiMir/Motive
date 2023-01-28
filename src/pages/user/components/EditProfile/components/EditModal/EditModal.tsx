@@ -1,9 +1,9 @@
 import { Box, InputAdornment, Stack } from '@mui/material'
 import { Field, Form, FormikProvider } from 'formik'
-import CancelButton from '@shared/ui/CancelButton'
-import Input from '@shared/ui/Input'
-import Modal from '@shared/ui/Modal'
-import SubmitButton from '@shared/ui/SubmitButton'
+import CancelButton from 'shared/ui/CancelButton'
+import Input from 'shared/ui/Input'
+import Modal from 'shared/ui/Modal'
+import SubmitButton from 'shared/ui/SubmitButton'
 import { useMessages } from './hooks/useMessages'
 import { useUpdateUser } from './hooks/useUpdateUser'
 

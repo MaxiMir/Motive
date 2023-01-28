@@ -3,10 +3,10 @@ import { getSession } from 'next-auth/react'
 import DeviceDetector from 'node-device-detector'
 import { dehydrate, QueryClient } from 'react-query'
 import { Layout } from '@app/ui'
-import { getUserPage, useUserMetaTags, useUserPage } from '@entities/pages'
 import UserPage from '@pages/user'
-import { PossiblePageError } from '@shared/api/dto'
-import { getSearchParams } from '@shared/lib/helpers'
+import { useUserMetaTags, useUserPage } from 'entities/page'
+import { PossiblePageError, getUserPage } from 'shared/api'
+import { getSearchParams } from 'shared/lib/helpers'
 
 function UserRoute() {
   const { data } = useUserPage()

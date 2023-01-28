@@ -1,6 +1,6 @@
 import { Box, List, ListItem, Stack, Drawer, ListItemIcon, ListItemText } from '@mui/material'
-import { copyText } from '@shared/lib/helpers'
-import { ContentCopy, Email, Facebook, SMS, Telegram, Twitter, VK } from '@shared/ui/icons'
+import { copyText } from 'shared/lib/helpers'
+import { ContentCopy, Email, Facebook, SMS, Telegram, Twitter, VK } from 'shared/ui/icons'
 import { clickHandler } from './lib/helpers/handler'
 import { useMessages } from './lib/hooks/useMessages'
 

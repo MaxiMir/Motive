@@ -22,35 +22,12 @@
     "noFallthroughCasesInSwitch": true, // Сообщить об ошибке в случае обнаружения проваливания в конструкции switch-case
     "noUnusedLocals": true,
     "noUnusedParameters": true,
-    "baseUrl": ".",
+    "baseUrl": "./src",
     "plugins": [
       {
         "name": "next"
       }
     ],
-    "paths": {
-      "@app/*": [
-        "src/app/*"
-      ],
-      "@processes/*": [
-        "src/processes/*"
-      ],
-      "@pages/*": [
-        "src/pages/*"
-      ],
-      "@widgets/*": [
-        "src/widgets/*"
-      ],
-      "@features/*": [
-        "src/features/*"
-      ],
-      "@entities/*": [
-        "src/entities/*"
-      ],
-      "@shared/*": [
-        "src/shared/*"
-      ]
-    }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
   "exclude": ["node_modules"]

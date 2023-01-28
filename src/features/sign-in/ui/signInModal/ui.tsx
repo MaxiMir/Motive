@@ -5,7 +5,7 @@ import appleSrc from 'public/images/svg/apple.svg'
 import githubSrc from 'public/images/svg/github.svg'
 import googleSrc from 'public/images/svg/google.svg'
 import metaSrc from 'public/images/svg/meta.svg'
-import Modal from '@shared/ui/Modal'
+import Modal from 'shared/ui/Modal'
 
 const Loader = dynamic(() => import('./ui/Loader'))
 const Provider = dynamic(() => import('./ui/provider/Provider'))

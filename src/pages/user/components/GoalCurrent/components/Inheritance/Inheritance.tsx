@@ -1,8 +1,8 @@
 import { Typography } from '@mui/material'
 import Link from 'next/link'
-import AvatarStatus from '@features/avatar-status'
-import { useGoalContext } from '@entities/goal'
-import { toHref } from '@entities/user'
+import AvatarStatus from 'features/avatar-status'
+import { useGoalContext } from 'entities/goal'
+import { toHref } from 'entities/user'
 import { useMessages } from './hooks/useMessages'
 
 function Inheritance() {

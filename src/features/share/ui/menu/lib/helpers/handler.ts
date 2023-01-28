@@ -1,4 +1,4 @@
-import { SHARERS } from '@features/share/ui/menu/consts/sharers'
+import { SHARERS } from 'features/share/ui/menu/consts/sharers'
 
 type ShareType = keyof typeof SHARERS
 

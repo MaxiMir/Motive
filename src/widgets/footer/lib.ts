@@ -1,6 +1,6 @@
 import { useIntl } from 'react-intl'
-import { Route } from '@shared/consts'
-import { Following, Rating, Search, Feed } from '@shared/ui/icons'
+import { Route } from 'shared/consts'
+import { Following, Rating, Search, Feed } from 'shared/ui/icons'
 
 export const useRoutes = () => {
   const { formatMessage } = useIntl()

@@ -1,20 +1,20 @@
 import { Box, IconButton, Stack, Typography } from '@mui/material'
 import dynamic from 'next/dynamic'
 import Link from 'next/link'
-import AvatarStatus from '@features/avatar-status'
-import { getNotificationHref } from '@entities/notification/lib/helpers/href'
-import { useClient, toHref } from '@entities/user'
-import { NotificationDto } from '@shared/api/dto'
-import { toShortString } from '@shared/lib/helpers'
-import { useFormatDistance } from '@shared/lib/hooks'
-import Emoji from '@shared/ui/Emoji'
-import Icon from '@shared/ui/Icon'
-import { TooltipArrow } from '@shared/ui/styled'
+import AvatarStatus from 'features/avatar-status'
+import { getNotificationHref } from 'entities/notification/lib/helpers/href'
+import { useClient, toHref } from 'entities/user'
+import { NotificationDto } from 'shared/api'
+import { toShortString } from 'shared/lib/helpers'
+import { useFormatDistance } from 'shared/lib/hooks'
+import Emoji from 'shared/ui/Emoji'
+import Icon from 'shared/ui/Icon'
+import { TooltipArrow } from 'shared/ui/styled'
 import { getNotificationInfo } from './lib/helpers/content'
 import { useMessages } from './lib/hooks/useMessages'
 import { useUpdateRead } from './lib/hooks/useUpdateRead'
 
-const InView = dynamic(() => import('@shared/ui/InView'))
+const InView = dynamic(() => import('shared/ui/InView'))
 
 interface NotificationProps {
   notification: NotificationDto

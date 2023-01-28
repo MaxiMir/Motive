@@ -1,9 +1,9 @@
 import { Stack } from '@mui/material'
 import dynamic from 'next/dynamic'
-import { TaskDto } from '@shared/api/dto'
+import { TaskDto } from 'shared/api'
 import { checkOnCompletedByOthers } from './helper'
 
-const Markdown = dynamic(() => import('@features/markdown'))
+const Markdown = dynamic(() => import('features/markdown'))
 const CompletedByOthers = dynamic(() => import('./components/CompletedByOthers'))
 
 interface TaskLabelProps {

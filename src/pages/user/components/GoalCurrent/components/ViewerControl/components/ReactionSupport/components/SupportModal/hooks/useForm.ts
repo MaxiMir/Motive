@@ -1,10 +1,8 @@
 import { useFormik } from 'formik'
 import { useMutation } from 'react-query'
-import { useGoalContext } from '@entities/goal'
-import { createTopic } from '@entities/topic'
-import { useAddMessage } from '@entities/user'
-import { MessageType } from '@shared/api/dto'
-import { topicSchema } from '@shared/api/schemas'
+import { useGoalContext } from 'entities/goal'
+import { useAddMessage } from 'entities/user'
+import { MessageType, topicSchema, createTopic } from 'shared/api'
 
 export const useForm = (onSuccess: () => void) => {
   const { day } = useGoalContext()

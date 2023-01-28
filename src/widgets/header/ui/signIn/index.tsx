@@ -1,8 +1,8 @@
 import { IconButton } from '@mui/material'
 import { useIntl } from 'react-intl'
-import { useOpenSignIn } from '@features/sign-in'
-import Icon from '@shared/ui/Icon'
-import { TooltipArrow } from '@shared/ui/styled'
+import { useOpenSignIn } from 'features/sign-in'
+import Icon from 'shared/ui/Icon'
+import { TooltipArrow } from 'shared/ui/styled'
 
 function SignIn() {
   const { formatMessage } = useIntl()

@@ -1,7 +1,7 @@
 import { Menu, MenuItem } from '@mui/material'
-import { useSendReport } from '@entities/report'
-import { ReportType } from '@shared/api/dto'
-import ListItem from '@shared/ui/ListItem'
+import { useSendReport } from 'entities/report'
+import { ReportType } from 'shared/api'
+import ListItem from 'shared/ui/ListItem'
 import { useMessages } from './lib'
 
 interface ReportProps {

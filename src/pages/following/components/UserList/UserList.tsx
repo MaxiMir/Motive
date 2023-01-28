@@ -1,5 +1,5 @@
-import { UserDto } from '@shared/api/dto'
-import List from '@shared/ui/List'
+import { UserDto } from 'shared/api'
+import List from 'shared/ui/List'
 import UserRow from './components/UserRow'
 
 interface UserListProps {

@@ -1,6 +1,6 @@
 import { Box, Stack, Typography } from '@mui/material'
-import Modal from '@shared/ui/Modal'
-import SpinEmoji from '@shared/ui/SpinEmoji'
+import Modal from 'shared/ui/Modal'
+import SpinEmoji from 'shared/ui/SpinEmoji'
 import { useMessages } from './hooks/useMessages'
 
 interface NoCompletedModalProps {

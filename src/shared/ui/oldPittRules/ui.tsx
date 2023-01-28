@@ -1,5 +1,5 @@
 import { Typography } from '@mui/material'
-import DecorEmoji from '@shared/ui/DecorEmoji'
+import DecorEmoji from 'shared/ui/DecorEmoji'
 import { useMessages } from './lib'
 
 export function OldPittRules() {

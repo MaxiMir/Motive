@@ -16,9 +16,9 @@ import SnackbarProvider from '@app/providers/SnackbarProvider'
 import ThemeProvider from '@app/providers/ThemeProvider'
 import { EventSocket } from '@app/ui'
 import { AppProps } from 'next/app'
-import { Locale } from '@entities/locale'
-import { makeMapLoader } from '@shared/lib/helpers'
-import { getLocaleFolder } from '@shared/lib/utils'
+import { Locale } from 'entities/locale'
+import { makeMapLoader } from 'shared/lib/helpers'
+import { getLocaleFolder } from 'shared/lib/utils'
 
 const messagesLoader = makeMapLoader<Record<string, string>>()
 const adapterLocaleLoader = makeMapLoader<FnsLocale>()
@@ -29,9 +29,7 @@ function App({
 }: AppProps) {
   const { locale = Locale.En } = useRouter()
   const folder = getLocaleFolder(locale)
-  const messages = use(
-    messagesLoader(locale, () => import(`src/shared/config/lang/${locale}.json`)),
-  )
+  const messages = use(messagesLoader(locale, () => import(`src/app/config/lang/${locale}.json`)))
   const adapterLocale = use(
     adapterLocaleLoader(locale, () => import(`date-fns/locale/${folder}/index.js`)),
   )

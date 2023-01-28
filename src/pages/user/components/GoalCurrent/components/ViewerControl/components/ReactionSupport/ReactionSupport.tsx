@@ -1,9 +1,9 @@
 import dynamic from 'next/dynamic'
-import { useOpenSignIn } from '@features/sign-in'
-import { useClient } from '@entities/user'
-import { UserBaseDto } from '@shared/api/dto'
-import { useToggle } from '@shared/lib/hooks'
-import EmojiButton from '@shared/ui/EmojiButton'
+import { useOpenSignIn } from 'features/sign-in'
+import { useClient } from 'entities/user'
+import { UserBaseDto } from 'shared/api'
+import { useToggle } from 'shared/lib/hooks'
+import EmojiButton from 'shared/ui/EmojiButton'
 import { useMessages } from './hooks/useMessages'
 
 const SupportModal = dynamic(() => import('./components/SupportModal'))

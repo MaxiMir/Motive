@@ -1,5 +1,5 @@
 import dynamic from 'next/dynamic'
-import { useSnackbar } from '@entities/snackbar'
+import { useSnackbar } from 'entities/snackbar'
 import { useMessages } from './lib/hooks/useMessages'
 
 const Menu = dynamic(() => import('./ui/menu/Menu'))

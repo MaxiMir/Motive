@@ -1,9 +1,9 @@
 import { IconButton } from '@mui/material'
 import { styled } from '@mui/system'
 import { Field, Form, FormikProvider } from 'formik'
-import { useSearchPageAsync } from '@entities/pages'
-import Icon from '@shared/ui/Icon'
-import Input from '@shared/ui/Input'
+import { useSearchPageAsync } from 'entities/page'
+import Icon from 'shared/ui/Icon'
+import Input from 'shared/ui/Input'
 import AutoSend from './components/AutoSend'
 import { useMessages } from './hooks/useMessages'
 

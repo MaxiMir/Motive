@@ -1,11 +1,11 @@
 import { List, ListItem, ListItemIcon, ListItemText } from '@mui/material'
 import dynamic from 'next/dynamic'
-import { useNotifications, NotificationBadge } from '@entities/notification'
-import { useToggle } from '@shared/lib/hooks'
-import { TooltipArrow } from '@shared/ui/styled'
+import { useNotifications, NotificationBadge } from 'entities/notification'
+import { useToggle } from 'shared/lib/hooks'
+import { TooltipArrow } from 'shared/ui/styled'
 import { useMessages } from './lib'
 
-const NotificationModal = dynamic(() => import('@entities/notification'))
+const NotificationModal = dynamic(() => import('entities/notification'))
 
 interface NotificationsProps {
   expanded: boolean

@@ -1,4 +1,4 @@
-import { CalendarDto } from '@shared/api/dto'
+import { CalendarDto } from 'shared/api'
 
 export const getBorders = (calendar?: CalendarDto[]): [min?: Date, max?: Date] => {
   if (!calendar) {

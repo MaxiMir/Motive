@@ -1,5 +1,5 @@
 import { useIntl } from 'react-intl'
-import { SecondCharacteristicName } from '@shared/api/dto'
+import { SecondCharacteristicName } from 'shared/api'
 
 export const useMessages = (name: SecondCharacteristicName) => {
   const { formatMessage } = useIntl()

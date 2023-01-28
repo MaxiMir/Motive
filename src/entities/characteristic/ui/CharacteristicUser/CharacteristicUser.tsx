@@ -4,9 +4,9 @@ import {
   SECOND_CHARACTERISTICS,
   SecondCharacteristicName,
   UserCharacteristicName,
-} from '@shared/api/dto'
-import { useFormatNumber } from '@shared/lib/hooks'
-import Emoji from '@shared/ui/Emoji'
+} from 'shared/api'
+import { useFormatNumber } from 'shared/lib/hooks'
+import Emoji from 'shared/ui/Emoji'
 
 const Level = dynamic(() => import('./ui').then((m) => m.Level))
 

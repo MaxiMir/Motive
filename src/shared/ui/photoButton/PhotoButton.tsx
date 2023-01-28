@@ -1,11 +1,11 @@
 import { Button, IconButton, Stack } from '@mui/material'
 import dynamic from 'next/dynamic'
-import Icon from '@shared/ui/Icon'
-import { TooltipArrow } from '@shared/ui/styled'
+import Icon from 'shared/ui/Icon'
+import { TooltipArrow } from 'shared/ui/styled'
 import { useMessages } from './lib/hooks/useMessages'
 
 const LocalImage = dynamic(() => import('./ui/localImage/LocalImage'))
-const Image = dynamic(() => import('@shared/ui/Image'))
+const Image = dynamic(() => import('shared/ui/Image'))
 
 interface PhotoButtonProps {
   image: File | string

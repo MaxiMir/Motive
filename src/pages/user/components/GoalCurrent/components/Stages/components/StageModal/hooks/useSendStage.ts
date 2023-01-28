@@ -1,10 +1,9 @@
 import produce from 'immer'
 import { useIntl } from 'react-intl'
 import { useMutation } from 'react-query'
-import { updateStage } from '@entities/goal'
-import { useSnackbar } from '@entities/snackbar'
-import { useMutateGoals } from '@entities/user'
-import { GoalDto } from '@shared/api/dto'
+import { useSnackbar } from 'entities/snackbar'
+import { useMutateGoals } from 'entities/user'
+import { GoalDto, updateStage } from 'shared/api'
 
 const getNextState = (goals: GoalDto[], goalId: number) =>
   produce(goals, (draft) => {

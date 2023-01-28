@@ -1,11 +1,10 @@
 import produce from 'immer'
 import { useIntl } from 'react-intl'
 import { useMutation } from 'react-query'
-import { useOpenSignIn } from '@features/sign-in'
-import { useSnackbar } from '@entities/snackbar'
-import { updateSubscription } from '@entities/subscription/api/updateSubscription'
-import { useMutateUserPage, useClient } from '@entities/user'
-import { UserPageDto } from '@shared/api/dto'
+import { useOpenSignIn } from 'features/sign-in'
+import { useSnackbar } from 'entities/snackbar'
+import { useMutateUserPage, useClient } from 'entities/user'
+import { UserPageDto, updateSubscription } from 'shared/api'
 
 const getNextState = (page: UserPageDto, following: boolean) =>
   produce(page, (draft) => {

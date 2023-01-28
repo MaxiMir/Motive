@@ -1,5 +1,5 @@
 import { useIntl } from 'react-intl'
-import { ClientDto } from '@shared/api/dto'
+import { ClientDto } from 'shared/api'
 
 export const useMessages = (client?: ClientDto) => {
   const { formatMessage } = useIntl()

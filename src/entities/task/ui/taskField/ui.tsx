@@ -2,9 +2,9 @@ import { IconButton, Switch, FormControlLabel, Stack } from '@mui/material'
 import { TimePicker } from '@mui/x-date-pickers'
 import { Field } from 'formik'
 import { ChangeEvent } from 'react'
-import Icon from '@shared/ui/Icon'
-import Input from '@shared/ui/Input'
-import { TooltipArrow } from '@shared/ui/styled'
+import Icon from 'shared/ui/Icon'
+import Input from 'shared/ui/Input'
+import { TooltipArrow } from 'shared/ui/styled'
 import { useMessages } from './lib'
 
 interface TaskFieldProps {

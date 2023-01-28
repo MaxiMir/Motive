@@ -1,6 +1,7 @@
 import { Box } from '@mui/material'
 import Image from 'next/image'
-import webSrc from '../public/images/svg/web.svg'
+// eslint-disable-next-line import/no-internal-modules
+import webSrc from 'public/images/svg/web.svg'
 
 function Web() {
   return (

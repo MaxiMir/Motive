@@ -1,14 +1,15 @@
 import { Button, Stack, Typography } from '@mui/material'
 import { useState } from 'react'
 import dynamic from 'next/dynamic'
+import { useUserContext } from 'entities/user'
 import { SecondCharacteristicName, ConfirmationDto } from 'shared/api'
 import { getWordDeclination } from 'shared/lib/helpers'
 import { useFormatNumber } from 'shared/lib/hooks'
-import { useMessages } from './hooks/useMessages'
+import { useMessages } from './lib'
 
-const SubscriptionModal = dynamic(() => import('./components/SubscriptionModal'))
-const NoCompletedModal = dynamic(() => import('./components/NoCompletedModal'))
-const AbandonedModal = dynamic(() => import('./components/AbandonedModal'))
+const SubscriptionModal = dynamic(() => import('./subscriptionModal'))
+const NoCompletedModal = dynamic(() => import('./noCompletedModal'))
+const AbandonedModal = dynamic(() => import('./abandonedModal'))
 
 const { Completed, Abandoned, Followers, Following } = SecondCharacteristicName
 
@@ -21,6 +22,7 @@ interface CharacteristicProps {
 function SecondCharacteristic({ confirmations, name, value }: CharacteristicProps) {
   const messages = useMessages(name)
   const formatNumber = useFormatNumber()
+  const { id, characteristic } = useUserContext()
   const [modal, setModal] = useState<SecondCharacteristicName>()
   const formattedValue = formatNumber(value)
   const wordDeclination = getWordDeclination(value, [
@@ -38,9 +40,9 @@ function SecondCharacteristic({ confirmations, name, value }: CharacteristicProp
       return
     }
 
-    const [{ id }] = confirmations
+    const [confirmation] = confirmations
     const { clickOnElem } = await import('shared/lib/helpers')
-    clickOnElem(`confirmation-${id}`)
+    clickOnElem(`confirmation-${confirmation.id}`)
   }
 
   const onClose = () => setModal(undefined)
@@ -76,8 +78,14 @@ function SecondCharacteristic({ confirmations, name, value }: CharacteristicProp
       </Button>
       {modal === Completed && <NoCompletedModal onClose={onClose} />}
       {modal === Abandoned && <AbandonedModal onClose={onClose} />}
-      {modal === Followers && <SubscriptionModal name={Followers} onClose={onClose} />}
-      {modal === Following && <SubscriptionModal name={Following} onClose={onClose} />}
+      {(modal === Followers || modal === Following) && (
+        <SubscriptionModal
+          userId={id}
+          count={characteristic[modal]}
+          type={modal}
+          onClose={onClose}
+        />
+      )}
     </>
   )
 }

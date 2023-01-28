@@ -1,10 +1,12 @@
 import { Stack } from '@mui/material'
 import { SignInOptions } from 'next-auth/react'
 import dynamic from 'next/dynamic'
+/* eslint-disable import/no-internal-modules */
 import appleSrc from 'public/images/svg/apple.svg'
 import githubSrc from 'public/images/svg/github.svg'
 import googleSrc from 'public/images/svg/google.svg'
 import metaSrc from 'public/images/svg/meta.svg'
+/* eslint-disable import/no-internal-modules */
 import Modal from 'shared/ui/Modal'
 
 const Loader = dynamic(() => import('./ui/Loader'))

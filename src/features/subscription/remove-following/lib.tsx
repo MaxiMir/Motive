@@ -22,9 +22,7 @@ const getNextState = (page: FollowingPageDto, user: UserDto, index: number, add:
     draft.following.splice(index, 1)
   })
 
-type UseRemoveFollowing = [boolean, (user: UserDto, index: number) => void]
-
-export const useRemoveFollowing = (): UseRemoveFollowing => {
+export const useRemoveFollowing = () => {
   const { formatMessage } = useIntl()
   const queryClient = useQueryClient()
   const { enqueueSnackbar, closeSnackbar } = useSnackbar()
@@ -75,9 +73,9 @@ export const useRemoveFollowing = (): UseRemoveFollowing => {
     mutate({ user, index, insert: true })
   }
 
-  const removeFollowing = (user: UserDto, index: number) => {
+  const remove = (user: UserDto, index: number) => {
     mutate({ user, index, insert: false })
   }
 
-  return [isLoading, removeFollowing]
+  return { isLoading, remove }
 }

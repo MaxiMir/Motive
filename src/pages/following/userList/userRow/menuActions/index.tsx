@@ -25,7 +25,7 @@ export function MenuActions({ user, index }: MenuActionsProps) {
   const messages = useMessages()
   const [anchorEl, setAnchorEl] = useState<HTMLElement | null>(null)
   const [sharing, toggleSharing] = useToggle()
-  const [isLoading, removeFollowing] = useRemoveFollowing()
+  const { isLoading, remove } = useRemoveFollowing()
   const href = joinToHref(nickname)
   const open = Boolean(anchorEl)
 
@@ -35,7 +35,7 @@ export function MenuActions({ user, index }: MenuActionsProps) {
 
   const onShare = () => tryNativeShare(href, name, toggleSharing)
 
-  const onRemove = () => removeFollowing(user, index)
+  const onRemove = () => remove(user, index)
 
   return (
     <>

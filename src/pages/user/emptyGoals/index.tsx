@@ -1,7 +1,7 @@
 import { Stack, Typography } from '@mui/material'
 import FadeEmoji from 'shared/ui/FadeEmoji'
-import OwnerDescription from './components/OwnerDescription'
-import { useMessages } from './hooks/useMessages'
+import { useMessages } from './lib'
+import OwnerDescription from './ownerDescription'
 
 interface AddGoalProps {
   clientPage: boolean

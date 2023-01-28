@@ -1,4 +1,4 @@
-import { Route, HashMark, SearchParam } from 'shared/consts'
+import { Route, HashMark, SearchParam } from 'shared/config'
 import { setSearchParams } from 'shared/lib/helpers'
 
 export const toHref = (...args: string[]): string => `/${args.join('')}`

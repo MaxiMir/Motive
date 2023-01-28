@@ -2,11 +2,11 @@ import { GetServerSideProps } from 'next'
 import { getSession } from 'next-auth/react'
 import DeviceDetector from 'node-device-detector'
 import { dehydrate, QueryClient } from 'react-query'
-import { Layout } from '@app/ui'
-import RatingPage from '@pages/rating'
+import { Layout } from 'app/layout'
+import RatingPage from 'pages/rating'
 import { useRatingTab, useRatingMeta, useRatingPage } from 'entities/page'
 import { getRatingPage } from 'shared/api'
-import { Route } from 'shared/consts'
+import { Route } from 'shared/config'
 
 function RatingRoute() {
   const tab = useRatingTab()

@@ -1,11 +1,11 @@
-import Error from 'widgets/error'
+import ErrorPage from 'pages/error'
 
 interface CustomErrorProps {
   statusCode?: number
 }
 
 function CustomError({ statusCode = 500 }: CustomErrorProps) {
-  return <Error statusCode={statusCode} />
+  return <ErrorPage statusCode={statusCode} />
 }
 
 export default CustomError

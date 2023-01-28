@@ -1,13 +1,13 @@
-import { Layout } from '@app/ui'
-import Error from 'widgets/error'
-import { useMetaTags } from 'shared/lib/hooks'
+import { Layout } from 'app/layout'
+import ErrorPage from 'pages/error'
+import { useMetaTags } from 'entities/page'
 
 function Page500() {
   const metaTags = useMetaTags('500')
 
   return (
     <Layout {...metaTags}>
-      <Error statusCode={500} />
+      <ErrorPage statusCode={500} header={metaTags.title} />
     </Layout>
   )
 }

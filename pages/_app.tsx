@@ -9,12 +9,12 @@ import { IntlProvider } from 'react-intl'
 import { Hydrate } from 'react-query'
 import { useRouter } from 'next/router'
 import Script from 'next/script'
-import CacheProvider from '@app/providers/CacheProvider'
-import DeviceProvider from '@app/providers/DeviceProvider'
-import SignInProvider from '@app/providers/SignInProvider'
-import SnackbarProvider from '@app/providers/SnackbarProvider'
-import ThemeProvider from '@app/providers/ThemeProvider'
-import { EventSocket } from '@app/ui'
+import CacheProvider from 'app/providers/CacheProvider'
+import DeviceProvider from 'app/providers/DeviceProvider'
+import SignInProvider from 'app/providers/SignInProvider'
+import SnackbarProvider from 'app/providers/SnackbarProvider'
+import ThemeProvider from 'app/providers/ThemeProvider'
+import { Socket } from 'app/socket'
 import { AppProps } from 'next/app'
 import { Locale } from 'entities/locale'
 import { makeMapLoader } from 'shared/lib/helpers'
@@ -29,7 +29,7 @@ function App({
 }: AppProps) {
   const { locale = Locale.En } = useRouter()
   const folder = getLocaleFolder(locale)
-  const messages = use(messagesLoader(locale, () => import(`src/app/config/lang/${locale}.json`)))
+  const messages = use(messagesLoader(locale, () => import(`shared/config/lang/${locale}.json`)))
   const adapterLocale = use(
     adapterLocaleLoader(locale, () => import(`date-fns/locale/${folder}/index.js`)),
   )
@@ -60,7 +60,7 @@ function App({
                       <CssBaseline />
                       <Component {...pageProps} />
                     </SignInProvider>
-                    <EventSocket />
+                    <Socket />
                   </ThemeProvider>
                 </LocalizationProvider>
               </DeviceProvider>

@@ -1,6 +1,6 @@
 import { useRouter } from 'next/router'
 import { GoalDto } from 'shared/api'
-import { SearchParam } from 'shared/consts'
+import { SearchParam } from 'shared/config'
 import { setSearchParams } from 'shared/lib/helpers'
 
 export const useChangeDayUrl = () => {

@@ -2,12 +2,11 @@ import { GetServerSideProps } from 'next'
 import { getSession } from 'next-auth/react'
 import DeviceDetector from 'node-device-detector'
 import { dehydrate, QueryClient } from 'react-query'
-import { Layout } from '@app/ui'
-import FollowingPage from '@pages/following'
-import { useFollowingPage } from 'entities/page'
+import { Layout } from 'app/layout'
+import FollowingPage from 'pages/following'
+import { useFollowingPage, useMetaTags } from 'entities/page'
 import { getFollowingPage } from 'shared/api'
-import { Route } from 'shared/consts'
-import { useMetaTags } from 'shared/lib/hooks'
+import { Route } from 'shared/config'
 
 function FollowingRoute() {
   const { data } = useFollowingPage()

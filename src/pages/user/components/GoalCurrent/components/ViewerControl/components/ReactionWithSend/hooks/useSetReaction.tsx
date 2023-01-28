@@ -9,7 +9,7 @@ import {
   DayCharacteristicName,
   DayCharacteristicUpdateDto,
   UserPageDto,
-  updateStage,
+  updateCharacteristic,
 } from 'shared/api'
 
 const getNextState = (page: UserPageDto, { id, dayId, add, name }: DayCharacteristicUpdateDto) =>
@@ -39,7 +39,7 @@ export const useSetReaction = (
   const queryClient = useQueryClient()
   const { nickname } = useUserContext()
   const { enqueueSnackbar } = useSnackbar()
-  const { isLoading, mutate } = useMutation(updateStage, {
+  const { isLoading, mutate } = useMutation(updateCharacteristic, {
     async onMutate(options) {
       await queryClient.cancelQueries(['page', nickname])
       const previous = queryClient.getQueryData<UserPageDto>(['page', nickname])

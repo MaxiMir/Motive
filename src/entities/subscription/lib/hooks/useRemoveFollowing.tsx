@@ -6,7 +6,7 @@ import { useOpenSignIn } from 'features/sign-in'
 import { useSnackbar } from 'entities/snackbar'
 import { useClient } from 'entities/user'
 import { FollowingPageDto, UserDto, updateSubscription } from 'shared/api'
-import { Route } from 'shared/consts'
+import { Route } from 'shared/config'
 
 interface Options {
   user: UserDto

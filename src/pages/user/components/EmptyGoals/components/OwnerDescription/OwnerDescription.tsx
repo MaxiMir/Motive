@@ -1,6 +1,6 @@
 import { Box, Typography } from '@mui/material'
 import Link from 'next/link'
-import { Route } from 'shared/consts'
+import { Route } from 'shared/config'
 import { useMessages } from './hooks/useMessages'
 
 function OwnerDescription() {

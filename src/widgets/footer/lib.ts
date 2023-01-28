@@ -1,5 +1,5 @@
 import { useIntl } from 'react-intl'
-import { Route } from 'shared/consts'
+import { Route } from 'shared/config'
 import { Following, Rating, Search, Feed } from 'shared/ui/icons'
 
 export const useRoutes = () => {

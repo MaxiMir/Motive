@@ -1,8 +1,8 @@
 import produce from 'immer'
 import { useIntl } from 'react-intl'
 import { useMutation, useQueryClient } from 'react-query'
-import { useOpenSignIn } from 'features/sign-in'
 import { useGoalContext } from 'entities/goal'
+import { useOpenSignIn } from 'entities/signin'
 import { useSnackbar } from 'entities/snackbar'
 import { useUserContext, useClient } from 'entities/user'
 import {

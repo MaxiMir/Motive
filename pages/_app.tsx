@@ -25,7 +25,7 @@ const adapterLocaleLoader = makeMapLoader<FnsLocale>()
 
 function App({
   Component,
-  pageProps: { session, dehydratedState, providers, device, ...pageProps },
+  pageProps: { session, dehydratedState, device, ...pageProps },
 }: AppProps) {
   const { locale = Locale.En } = useRouter()
   const folder = getLocaleFolder(locale)
@@ -43,7 +43,7 @@ function App({
               <DeviceProvider value={device?.type}>
                 <LocalizationProvider dateAdapter={AdapterDateFns} adapterLocale={adapterLocale}>
                   <ThemeProvider>
-                    <SignInProvider providers={providers}>
+                    <SignInProvider>
                       <Script
                         src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS}`}
                         strategy="afterInteractive"

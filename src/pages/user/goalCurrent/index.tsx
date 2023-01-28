@@ -32,7 +32,7 @@ const Stages = dynamic(() => import('./components/Stages'))
 const Hashtags = dynamic(() => import('./components/Hashtags'))
 const Web = dynamic(() => import('./components/Web'))
 const ViewerControl = dynamic(() => import('./components/ViewerControl'))
-const OwnerControl = dynamic(() => import('./components/OwnerControl'))
+const OwnerControl = dynamic(() => import('./components/ownerControl'))
 
 const CHARACTERISTICS: GoalCharacteristicName[] = [...MAIN_CHARACTERISTICS, 'members']
 

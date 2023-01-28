@@ -1,6 +1,6 @@
 import { useIntl } from 'react-intl'
 import { useMutation } from 'react-query'
-import { useOpenSignIn } from 'features/sign-in'
+import { useOpenSignIn } from 'entities/signin'
 import { useSnackbar } from 'entities/snackbar'
 import { useClient } from 'entities/user'
 import { ReportType, createReport } from 'shared/api'

@@ -1,7 +1,7 @@
 import produce from 'immer'
 import { useIntl } from 'react-intl'
 import { InfiniteData, useMutation, useQueryClient } from 'react-query'
-import { useOpenSignIn } from 'features/sign-in'
+import { useOpenSignIn } from 'entities/signin'
 import { useSnackbar } from 'entities/snackbar'
 import { useMutateGoals, useClient } from 'entities/user'
 import { GoalDto, MessageDto, MessageType, TopicDto, updateLike } from 'shared/api'

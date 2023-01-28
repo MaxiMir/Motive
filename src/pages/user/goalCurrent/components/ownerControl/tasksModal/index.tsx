@@ -24,8 +24,7 @@ import Modal from 'shared/ui/Modal'
 import { OldPittRules } from 'shared/ui/oldPittRules'
 import { TooltipArrow } from 'shared/ui/styled'
 import SubmitButton from 'shared/ui/SubmitButton'
-import { useForm } from './hooks/useForm'
-import { useMessages } from './hooks/useMessages'
+import { useMessages, useForm } from './lib'
 
 interface TasksModalProps {
   onClose: () => void

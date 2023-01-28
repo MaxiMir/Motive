@@ -1,25 +1,12 @@
 import { Stack } from '@mui/material'
 import { SignInOptions } from 'next-auth/react'
 import dynamic from 'next/dynamic'
-/* eslint-disable import/no-internal-modules */
-import appleSrc from 'public/images/svg/apple.svg'
-import githubSrc from 'public/images/svg/github.svg'
-import googleSrc from 'public/images/svg/google.svg'
-import metaSrc from 'public/images/svg/meta.svg'
-/* eslint-disable import/no-internal-modules */
 import Modal from 'shared/ui/Modal'
+import { SOURCE, SourceKey } from './consts'
+import { useMessages, useProviders } from './lib'
 
-const Loader = dynamic(() => import('./ui/Loader'))
-const Provider = dynamic(() => import('./ui/provider/Provider'))
-
-const SOURCE = {
-  Apple: appleSrc,
-  Meta: metaSrc,
-  GitHub: githubSrc,
-  Google: googleSrc,
-}
-
-type SourceKey = keyof typeof SOURCE
+const Loader = dynamic(() => import('./loader'))
+const Provider = dynamic(() => import('./provider'))
 
 interface SignInModalProps {
   options: SignInOptions
@@ -32,7 +19,7 @@ export function SignInModal({ options, onClose }: SignInModalProps) {
 
   return (
     <Modal title={messages.title} maxWidth="xs" onClose={onClose}>
-      <Stack alignSelf="stretch" spacing={2} minHeight={159}>
+      <Stack alignSelf="stretch" spacing={2} minHeight={160}>
         {!providers ? (
           <Loader count={4} />
         ) : (

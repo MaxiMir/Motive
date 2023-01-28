@@ -1,5 +1,5 @@
 import { IconButton } from '@mui/material'
-import { useOpenSignIn } from 'features/sign-in'
+import { useOpenSignIn } from 'entities/signin'
 import { Profile } from 'shared/ui/icons'
 
 function Unauthorized() {

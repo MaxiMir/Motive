@@ -1,6 +1,6 @@
 import { IconButton } from '@mui/material'
 import { useIntl } from 'react-intl'
-import { useOpenSignIn } from 'features/sign-in'
+import { useOpenSignIn } from 'entities/signin'
 import Icon from 'shared/ui/Icon'
 import { TooltipArrow } from 'shared/ui/styled'
 

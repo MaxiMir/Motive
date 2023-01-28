@@ -1,7 +1,7 @@
 import { Box, Button } from '@mui/material'
 import { signIn, SignInOptions } from 'next-auth/react'
 import Image, { ImageProps } from 'next/image'
-import { useMessages } from './lib/hooks/useMessages'
+import { useMessages } from './lib'
 
 interface ProviderProps {
   id: string

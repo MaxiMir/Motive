@@ -31,11 +31,11 @@ interface SidebarProps {
 
 function Sidebar({ breakpoints, children }: SidebarProps) {
   const { asPath } = useRouter()
-  const { formatMessage } = useIntl()
   const client = useClient()
+  const { formatMessage } = useIntl()
   const [expanded, toggleExpanded] = useToggle(true)
-  const ariaLabel = formatMessage({ id: expanded ? 'common.close' : 'common.open-menu' })
   const routes = useRoutes()
+  const ariaLabel = formatMessage({ id: expanded ? 'common.close' : 'common.open-menu' })
   const menuIcon = expanded ? 'arrow_left' : 'arrow_right'
 
   return (

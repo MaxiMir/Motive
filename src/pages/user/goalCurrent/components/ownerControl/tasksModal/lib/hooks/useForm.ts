@@ -16,8 +16,8 @@ const getNextState = (goals: GoalDto[], id: number, day: DayDto) =>
   })
 
 export const useForm = (onSuccess: () => void) => {
-  const { formatMessage } = useIntl()
   const { id } = useGoalContext()
+  const { formatMessage } = useIntl()
   const { enqueueSnackbar } = useSnackbar()
   const [goals, mutateGoals] = useMutateGoals()
   const changeDayUrl = useChangeDayUrl()

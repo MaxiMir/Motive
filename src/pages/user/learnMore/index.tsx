@@ -1,15 +1,16 @@
 import { Button } from '@mui/material'
 import { styled } from '@mui/system'
+import { useIntl } from 'react-intl'
 import dynamic from 'next/dynamic'
 import { useToggle } from 'shared/lib/hooks'
 import Icon from 'shared/ui/Icon'
-import { useMessages } from './hooks/useMessages'
 
-const InfoModal = dynamic(() => import('./components/InfoModal'))
+const InfoModal = dynamic(() => import('./InfoModal'))
 
 function LearnMore() {
-  const messages = useMessages()
   const [open, toggle] = useToggle()
+  const { formatMessage } = useIntl()
+  const infoText = formatMessage({ id: 'common.info' })
 
   return (
     <>
@@ -22,7 +23,7 @@ function LearnMore() {
         sx={{ mt: 1 }}
         onClick={toggle}
       >
-        {messages.info}
+        {infoText}
       </LearnMoreButton>
       {open && <InfoModal onClose={toggle} />}
     </>

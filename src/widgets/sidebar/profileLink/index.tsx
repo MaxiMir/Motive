@@ -1,7 +1,7 @@
 import { List } from '@mui/material'
+import { useIntl } from 'react-intl'
 import dynamic from 'next/dynamic'
 import { useClient } from 'entities/user'
-import { useMessage } from 'shared/lib/hooks'
 import { TooltipArrow } from 'shared/ui/styled'
 
 const SignIn = dynamic(() => import('./signIn'))
@@ -12,8 +12,9 @@ interface ProfileLinkProps {
 }
 
 export function ProfileLink({ expanded }: ProfileLinkProps) {
+  const { formatMessage } = useIntl()
   const client = useClient()
-  const primary = useMessage(`common.${client ? 'my-page' : 'sign-in'}`)
+  const primary = formatMessage({ id: client ? 'common.my-page' : 'common.sign-in' })
 
   return (
     <List>

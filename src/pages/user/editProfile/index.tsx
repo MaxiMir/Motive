@@ -1,14 +1,15 @@
+import { useIntl } from 'react-intl'
 import dynamic from 'next/dynamic'
 import { useToggle } from 'shared/lib/hooks'
 import Icon from 'shared/ui/Icon'
 import { GreyButton } from 'shared/ui/styled'
-import { useMessages } from './hooks/useMessages'
 
-const EditModal = dynamic(() => import('./components/EditModal'))
+const EditProfileModal = dynamic(() => import('features/user/edit-profile'))
 
 function EditProfile() {
-  const messages = useMessages()
+  const { formatMessage } = useIntl()
   const [open, toggle] = useToggle()
+  const buttonText = formatMessage({ id: 'common.edit' })
 
   return (
     <>
@@ -24,9 +25,9 @@ function EditProfile() {
         }}
         onClick={toggle}
       >
-        {messages.buttonText}
+        {buttonText}
       </GreyButton>
-      {open && <EditModal onClose={toggle} />}
+      {open && <EditProfileModal onClose={toggle} />}
     </>
   )
 }

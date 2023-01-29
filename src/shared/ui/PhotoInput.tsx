@@ -1,7 +1,7 @@
 import { Button } from '@mui/material'
 import { styled } from '@mui/system'
 import { ChangeEvent, useRef } from 'react'
-import { useMessage } from 'shared/lib/hooks'
+import { useIntl } from 'react-intl'
 import Emoji from 'shared/ui/Emoji'
 
 interface PhotoInputProps {
@@ -11,8 +11,9 @@ interface PhotoInputProps {
 }
 
 function PhotoInput({ multiple, disabled, onSelect }: PhotoInputProps) {
-  const title = useMessage('common.load-photo')
   const inputRef = useRef<HTMLInputElement>(null)
+  const { formatMessage } = useIntl()
+  const title = formatMessage({ id: 'common.load-photo' })
 
   const onChange = (e: ChangeEvent<HTMLInputElement>) => {
     if (!e.target.files) return

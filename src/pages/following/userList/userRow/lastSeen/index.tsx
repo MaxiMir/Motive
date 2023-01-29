@@ -1,13 +1,14 @@
 import { Typography } from '@mui/material'
+import { useIntl } from 'react-intl'
 import { useFormatDistance } from 'shared/lib/hooks'
-import { useMessages } from './lib'
 
 interface LastSeenProps {
   lastSeen: string
 }
 
 function LastSeen({ lastSeen }: LastSeenProps) {
-  const messages = useMessages()
+  const { formatMessage } = useIntl()
+  const seenText = formatMessage({ id: 'common.seen' })
   const formatDistance = useFormatDistance()
   const distance = formatDistance(lastSeen)
 
@@ -16,7 +17,7 @@ function LastSeen({ lastSeen }: LastSeenProps) {
       variant="caption"
       sx={({ palette }) => ({ textTransform: 'lowercase', color: palette.grey[500] })}
     >
-      {messages.seenText} {distance}
+      {seenText} {distance}
     </Typography>
   )
 }

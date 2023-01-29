@@ -1,8 +1,9 @@
 import { Box, IconButton, Stack, Typography } from '@mui/material'
+import { useIntl } from 'react-intl'
 import Link from 'next/link'
 import { UserBaseDto } from 'shared/api'
 import { joinToHref } from 'shared/lib/helpers'
-import { useFormatDistance, useMessage } from 'shared/lib/hooks'
+import { useFormatDistance } from 'shared/lib/hooks'
 import Avatar from 'shared/ui/avatar'
 import Icon from 'shared/ui/Icon'
 
@@ -15,8 +16,9 @@ interface TopProps {
 
 export function Top({ user, title, date, onClose }: TopProps): JSX.Element {
   const { nickname, name, avatar } = user
-  const closeText = useMessage('common.close')
   const formatDistance = useFormatDistance()
+  const { formatMessage } = useIntl()
+  const closeText = formatMessage({ id: 'common.close' })
   const distance = formatDistance(date)
   const href = joinToHref(nickname)
 

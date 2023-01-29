@@ -1,8 +1,9 @@
 import { Stack, Typography } from '@mui/material'
-import { useMessages } from './lib'
+import { useIntl } from 'react-intl'
 
 export function Slogan() {
-  const messages = useMessages()
+  const { formatMessage } = useIntl()
+  const subheader = formatMessage({ id: 'page.home.subheader' })
 
   return (
     <Stack
@@ -27,7 +28,7 @@ export function Slogan() {
           {process.env.NEXT_PUBLIC_APP_NAME}
         </Typography>
         <Typography variant="caption" align="center" sx={{ color: '#A1A1A6' }}>
-          {messages.subheader}
+          {subheader}
         </Typography>
       </Stack>
     </Stack>

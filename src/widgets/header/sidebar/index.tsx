@@ -1,7 +1,7 @@
 import { IconButton } from '@mui/material'
 import { useState } from 'react'
+import { useIntl } from 'react-intl'
 import dynamic from 'next/dynamic'
-import { useMessage } from 'shared/lib/hooks'
 import Icon from 'shared/ui/Icon'
 import { TooltipArrow } from 'shared/ui/styled'
 
@@ -9,9 +9,10 @@ const SidebarModal = dynamic(() => import('./sidebarModal'))
 const SettingsModal = dynamic(() => import('./settingsModal'))
 
 export function Sidebar() {
-  const title = useMessage('common.open-menu')
+  const { formatMessage } = useIntl()
   const [openMenu, setOpenMenu] = useState(false)
   const [openSettings, setOpenSettings] = useState(false)
+  const title = formatMessage({ id: 'common.open-menu' })
 
   const toggleMenu = () => setOpenMenu(!openMenu)
 

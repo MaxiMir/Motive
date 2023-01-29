@@ -1,13 +1,14 @@
 import { Typography } from '@mui/material'
+import { useIntl } from 'react-intl'
 import { MainCharacteristicName } from 'shared/api'
-import { useMessages } from './lib'
 
 interface TabNameProps {
   name: MainCharacteristicName
 }
 
 export function TabName({ name }: TabNameProps) {
-  const messages = useMessages(name)
+  const { formatMessage } = useIntl()
+  const tabText = formatMessage({ id: `common.${name}` })
 
   return (
     <Typography
@@ -17,7 +18,7 @@ export function TabName({ name }: TabNameProps) {
         },
       })}
     >
-      {messages.tabText}
+      {tabText}
     </Typography>
   )
 }

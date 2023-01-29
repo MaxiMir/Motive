@@ -1,5 +1,5 @@
 import { Box, IconButton } from '@mui/material'
-import { useMessage } from 'shared/lib/hooks'
+import { useIntl } from 'react-intl'
 import Icon from 'shared/ui/Icon'
 import Player from 'shared/ui/Player'
 import { TooltipArrow } from 'shared/ui/styled'
@@ -11,7 +11,8 @@ interface VideoPreviewProps {
 }
 
 function VideoPreview({ video, disabled, onRemove }: VideoPreviewProps) {
-  const removeText = useMessage('component.video-preview.label')
+  const { formatMessage } = useIntl()
+  const removeText = formatMessage({ id: 'component.video-preview.label' })
   const url = URL.createObjectURL(video)
 
   return (

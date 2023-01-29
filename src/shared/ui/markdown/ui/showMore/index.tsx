@@ -1,6 +1,6 @@
 import { Button } from '@mui/material'
 import { styled } from '@mui/system'
-import { useMessage } from 'shared/lib/hooks'
+import { useIntl } from 'react-intl'
 
 interface ShowMoreProps {
   open: boolean
@@ -8,7 +8,8 @@ interface ShowMoreProps {
 }
 
 export function ShowMore({ open, onClick }: ShowMoreProps) {
-  const buttonText = useMessage(`common.show-${open ? 'less' : 'more'}`)
+  const { formatMessage } = useIntl()
+  const buttonText = formatMessage({ id: open ? 'common.show-less' : 'common.show-more' })
 
   return (
     <TextButton size="small" color="inherit" onClick={onClick}>

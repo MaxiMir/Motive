@@ -43,8 +43,8 @@ export const useSetCompleted = (
   clientMember?: MemberDto,
 ) => {
   const timerRef = useRef<NodeJS.Timeout>()
-  const { formatMessage } = useIntl()
   const client = useClient()
+  const { formatMessage } = useIntl()
   const { enqueueSnackbar, closeSnackbar } = useSnackbar()
   const [page, mutatePage] = useMutateUserPage()
   const { mutate } = useMutation(updateCompleted, {

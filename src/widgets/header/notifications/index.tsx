@@ -1,7 +1,8 @@
 import { IconButton } from '@mui/material'
+import { useIntl } from 'react-intl'
 import dynamic from 'next/dynamic'
 import { useNotifications, NotificationBadge } from 'entities/notification'
-import { useMessage, useToggle } from 'shared/lib/hooks'
+import { useToggle } from 'shared/lib/hooks'
 import { TooltipArrow } from 'shared/ui/styled'
 
 const NotificationModal = dynamic(() =>
@@ -9,9 +10,10 @@ const NotificationModal = dynamic(() =>
 )
 
 export function Notifications() {
-  const title = useMessage('component.notification.title')
   const { isLoading, data = [] } = useNotifications()
+  const { formatMessage } = useIntl()
   const [open, toggle] = useToggle()
+  const title = formatMessage({ id: 'component.notification.title' })
 
   return (
     <>

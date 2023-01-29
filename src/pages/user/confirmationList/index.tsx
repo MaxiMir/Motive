@@ -3,7 +3,7 @@ import dynamic from 'next/dynamic'
 import { ConfirmationDto } from 'shared/api'
 
 const ConfirmationStory = dynamic(() => import('./confirmationStory'))
-const AddGoal = dynamic(() => import('./addGoal'))
+const CreateGoal = dynamic(() => import('./createGoal'))
 
 interface ConfirmationListProps {
   confirmations: ConfirmationDto[]
@@ -22,7 +22,7 @@ function ConfirmationList({ confirmations, clientPage }: ConfirmationListProps) 
         },
       }}
     >
-      {clientPage && <AddGoal />}
+      {clientPage && <CreateGoal />}
       {confirmations.map((confirmation) => (
         <ConfirmationStory confirmation={confirmation} key={confirmation.id} />
       ))}

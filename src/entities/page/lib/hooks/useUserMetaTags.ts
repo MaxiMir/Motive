@@ -9,18 +9,19 @@ export const useUserMetaTags = (user?: UserPageDto) => {
     return null
   }
 
-  const partTitle = formatMessage({ id: 'page.user.title-profile' })
-  const descriptionMessageTmpl = formatMessage({ id: 'page.user.description' })
-  const goalNames = user.goals.map(({ name }) => `«${name}»`).join(', ')
-  const image = !user.avatar ? undefined : getImageSrc(user.avatar)
   const userTag = `${user.name} (@${user.nickname})`
-  const descriptionStart = descriptionMessageTmpl.replace('$0', userTag)
+  const titleCenter = formatMessage({ id: 'page.user.title-profile' })
+  const descriptionStart = formatMessage(
+    { id: 'page.user.description', defaultMessage: '' },
+    { name: userTag },
+  )
+  const goalNames = user.goals.map(({ name }) => `«${name}»`).join(', ')
 
   return {
-    title: `${userTag} • ${partTitle} ${process.env.NEXT_PUBLIC_APP_NAME}`,
+    title: `${userTag} • ${titleCenter} ${process.env.NEXT_PUBLIC_APP_NAME}`,
     description: `${descriptionStart} ${goalNames}`,
     keywords: user.confirmations.map((c) => c.goal.name).join(', '),
-    image,
+    image: !user.avatar ? undefined : getImageSrc(user.avatar),
     type: OGType.Profile,
   }
 }

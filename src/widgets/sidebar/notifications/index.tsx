@@ -1,7 +1,8 @@
 import { List, ListItem, ListItemIcon, ListItemText } from '@mui/material'
+import { useIntl } from 'react-intl'
 import dynamic from 'next/dynamic'
 import { useNotifications, NotificationBadge } from 'entities/notification'
-import { useMessage, useToggle } from 'shared/lib/hooks'
+import { useToggle } from 'shared/lib/hooks'
 import { TooltipArrow } from 'shared/ui/styled'
 
 const NotificationModal = dynamic(() =>
@@ -13,9 +14,10 @@ interface NotificationsProps {
 }
 
 function Notifications({ expanded }: NotificationsProps) {
-  const primary = useMessage('common.notifications')
   const { isLoading, data = [] } = useNotifications()
+  const { formatMessage } = useIntl()
   const [open, toggle] = useToggle()
+  const primary = formatMessage({ id: 'common.notifications' })
 
   return (
     <>

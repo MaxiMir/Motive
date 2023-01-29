@@ -1,7 +1,7 @@
 import { Stack } from '@mui/material'
 import { SignInOptions } from 'next-auth/react'
+import { useIntl } from 'react-intl'
 import dynamic from 'next/dynamic'
-import { useMessage } from 'shared/lib/hooks'
 import Modal from 'shared/ui/Modal'
 import { SOURCE, SourceKey } from './consts'
 import { useProviders } from './lib'
@@ -15,8 +15,9 @@ interface SignInModalProps {
 }
 
 export function SignInModal({ options, onClose }: SignInModalProps) {
-  const title = useMessage('common.sign-in')
   const providers = useProviders()
+  const { formatMessage } = useIntl()
+  const title = formatMessage({ id: 'common.sign-in' })
 
   return (
     <Modal title={title} maxWidth="xs" onClose={onClose}>

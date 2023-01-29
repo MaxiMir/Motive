@@ -16,11 +16,11 @@ import { useCreateGoal, useMessages } from './lib'
 
 const IconButton = dynamic(() => import('@mui/material/IconButton'))
 
-interface CreateGoalProps {
+interface CreateGoalModalProps {
   onClose: () => void
 }
 
-function CreateGoal({ onClose }: CreateGoalProps) {
+function CreateGoalModal({ onClose }: CreateGoalModalProps) {
   const messages = useMessages()
   const [hashtagsRef, setHashtagsFocus] = useFocus()
   const form = useCreateGoal(onClose)
@@ -184,4 +184,4 @@ const ButtonCompact = styled(Button)({
   alignSelf: 'baseline',
 })
 
-export default CreateGoal
+export default CreateGoalModal

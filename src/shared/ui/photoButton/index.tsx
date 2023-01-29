@@ -1,6 +1,6 @@
 import { Button, IconButton, Stack } from '@mui/material'
+import { useIntl } from 'react-intl'
 import dynamic from 'next/dynamic'
-import { useMessage } from 'shared/lib/hooks'
 import Icon from 'shared/ui/Icon'
 import { TooltipArrow } from 'shared/ui/styled'
 
@@ -14,7 +14,8 @@ interface PhotoButtonProps {
 }
 
 function PhotoButton({ image, disabled, onClick }: PhotoButtonProps) {
-  const title = useMessage('component.photo-button.aria')
+  const { formatMessage } = useIntl()
+  const title = formatMessage({ id: 'component.photo-button.aria' })
 
   return (
     <Button

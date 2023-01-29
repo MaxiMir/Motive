@@ -1,11 +1,13 @@
 import { IconButton, Stack } from '@mui/material'
-import { useMessage, useToggle } from 'shared/lib/hooks'
+import { useIntl } from 'react-intl'
+import { useToggle } from 'shared/lib/hooks'
 import Icon from 'shared/ui/Icon'
 import { Description } from './description'
 
 export function Bottom() {
   const [open, toggle] = useToggle()
-  const ariaLabel = useMessage('common.open-menu')
+  const { formatMessage } = useIntl()
+  const ariaLabel = formatMessage({ id: 'common.open-menu' })
   // getDuration lib/helpers/duration
 
   return (

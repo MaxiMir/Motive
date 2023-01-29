@@ -11,9 +11,9 @@ import { NotificationDto } from 'shared/api'
 import { getImageSrc } from 'shared/lib/helpers'
 
 export const useSocket = () => {
-  const { formatMessage } = useIntl()
   const client = useClient()
   const { push } = useRouter()
+  const { formatMessage } = useIntl()
   const { enqueueSnackbar } = useSnackbar()
   const queryClient = useQueryClient()
   const device = useDeviceContext()

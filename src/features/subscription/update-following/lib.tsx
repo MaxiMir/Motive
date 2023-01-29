@@ -17,9 +17,9 @@ interface Options {
 }
 
 export const useUpdateFollowing = (userId: number, following: boolean): [boolean, () => void] => {
-  const { formatMessage } = useIntl()
   const client = useClient()
   const openSignIn = useOpenSignIn()
+  const { formatMessage } = useIntl()
   const [page, mutatePage] = useMutateUserPage()
   const { enqueueSnackbar } = useSnackbar()
   const { isLoading, mutate } = useMutation(

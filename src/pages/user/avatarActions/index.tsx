@@ -9,8 +9,8 @@ import ListItem from 'shared/ui/ListItem'
 import { useMessages } from './lib'
 
 const LightBox = dynamic(() => import('shared/ui/LightBox'))
-const UpdatingModal = dynamic(() => import('features/updating-avatar'))
-const DeletingModal = dynamic(() => import('features/deleting-avatar'))
+const UpdatingModal = dynamic(() => import('features/user/updating-avatar'))
+const DeletingModal = dynamic(() => import('features/user/deleting-avatar'))
 
 const SIZE = 175
 

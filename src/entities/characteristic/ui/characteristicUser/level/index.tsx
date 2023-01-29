@@ -1,8 +1,9 @@
 import { Box } from '@mui/material'
-import { useMessage } from 'shared/lib/hooks'
+import { useIntl } from 'react-intl'
 
 function Level() {
-  const lvlText = useMessage('common.lvl-short')
+  const { formatMessage } = useIntl()
+  const lvlText = formatMessage({ id: 'common.lvl-short' })
 
   return (
     <Box component="sup" marginLeft="2px" fontSize={10} color="text.disabled">

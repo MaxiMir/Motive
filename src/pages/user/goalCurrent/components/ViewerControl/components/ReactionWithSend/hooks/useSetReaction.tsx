@@ -51,10 +51,14 @@ export const useSetReaction = (
       return { previous }
     },
     onSuccess(_, { add }) {
+      if (!add) return
+
       const nameText = formatMessage({ id: `page.user.topic.${name}` })
-      const messageTmpl = formatMessage({ id: 'page.user.topic.message' })
-      const message = messageTmpl.replace('$0', nameText)
-      add && enqueueSnackbar({ message, severity: 'success', icon: 'magic' })
+      const message = formatMessage(
+        { id: 'page.user.topic.message', defaultMessage: '' },
+        { value: nameText },
+      )
+      enqueueSnackbar({ message, severity: 'success', icon: 'magic' })
     },
     onError(_, _1, context) {
       if (context?.previous) {

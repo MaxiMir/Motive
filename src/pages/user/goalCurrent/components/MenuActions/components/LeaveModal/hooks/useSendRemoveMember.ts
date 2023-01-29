@@ -20,8 +20,8 @@ const getNextState = (page: UserPageDto, goalId: number, memberId: number, clien
   })
 
 export const useSendRemoveMember = (goalId: number, clientPage: boolean) => {
-  const { formatMessage } = useIntl()
   const client = useClient()
+  const { formatMessage } = useIntl()
   const { nickname } = useUserContext()
   const queryClient = useQueryClient()
   const { enqueueSnackbar } = useSnackbar()

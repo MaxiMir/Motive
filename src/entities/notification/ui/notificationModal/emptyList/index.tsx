@@ -1,9 +1,10 @@
 import { Box, Stack, Typography } from '@mui/material'
-import { useMessage } from 'shared/lib/hooks'
+import { useIntl } from 'react-intl'
 import FadeEmoji from 'shared/ui/FadeEmoji'
 
 function EmptyList() {
-  const title = useMessage('common.nothing-so-far')
+  const { formatMessage } = useIntl()
+  const title = formatMessage({ id: 'common.nothing-so-far' })
 
   return (
     <Box display="flex" alignItems="center" height={490}>

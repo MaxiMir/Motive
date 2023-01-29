@@ -1,7 +1,7 @@
 import { Box } from '@mui/material'
+import { useIntl } from 'react-intl'
 import dynamic from 'next/dynamic'
 import { SecondCharacteristicName } from 'shared/api'
-import { useMessage } from 'shared/lib/hooks'
 import Modal from 'shared/ui/Modal'
 import { useSubscription } from './lib'
 
@@ -17,8 +17,9 @@ interface SubscriptionModalProps {
 }
 
 function SubscriptionModal({ userId, type, count, onClose }: SubscriptionModalProps) {
-  const title = useMessage(`common.${type}`)
   const { isLoading, users, checkOnLoadMore, fetchNextPage } = useSubscription(userId, count, type)
+  const { formatMessage } = useIntl()
+  const title = formatMessage({ id: `common.${type}` })
   const titleColor = type === SecondCharacteristicName.Followers ? 'zen.sand' : undefined
 
   return (

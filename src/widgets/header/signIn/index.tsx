@@ -5,8 +5,8 @@ import Icon from 'shared/ui/Icon'
 import { TooltipArrow } from 'shared/ui/styled'
 
 function SignIn() {
-  const { formatMessage } = useIntl()
   const openSignIn = useOpenSignIn()
+  const { formatMessage } = useIntl()
   const title = formatMessage({ id: 'common.sign-in' })
 
   const onClick = () => {

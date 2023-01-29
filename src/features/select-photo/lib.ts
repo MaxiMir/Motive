@@ -12,8 +12,10 @@ export const useSelectPhoto = <T>(formik: FormikProps<T & { photos: File[] }>) =
     const photos = [...formik.values.photos, ...files]
 
     if (photos.length > PHOTO_LIMIT) {
-      const messageTmpl = formatMessage({ id: 'hook.use-select-photo' })
-      const message = messageTmpl.replace('$0', PHOTO_LIMIT.toString())
+      const message = formatMessage(
+        { id: 'hook.use-select-photo', defaultMessage: '' },
+        { value: PHOTO_LIMIT },
+      )
       enqueueSnackbar({ message, severity: 'error', icon: 'error' })
     }
 

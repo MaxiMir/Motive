@@ -40,13 +40,13 @@ export const getGoalNextState = (goals: GoalDto[], goalId: number, add: boolean)
 
 export const useSetLike = (message: MessageDto, answerFor?: number): [boolean, () => void] => {
   const { id, like, dayId, goalId } = message
-  const key = ['discussion', dayId]
-  const { formatMessage } = useIntl()
   const client = useClient()
   const openSignIn = useOpenSignIn()
   const [goals, mutateGoals] = useMutateGoals()
   const queryClient = useQueryClient()
+  const { formatMessage } = useIntl()
   const { enqueueSnackbar } = useSnackbar()
+  const key = ['discussion', dayId]
   const { isLoading, mutate } = useMutation(({ add }: Options) => updateLike(id, add), {
     async onMutate(options: Options) {
       await queryClient.cancelQueries(key)
@@ -62,8 +62,10 @@ export const useSetLike = (message: MessageDto, answerFor?: number): [boolean, (
       return { previous }
     },
     onSuccess(_, { add }) {
-      const userMessageTmpl = formatMessage({ id: 'page.user.like-button.user-message' })
-      const userMessage = userMessageTmpl.replace('$0', message.user.name)
+      const userMessage = formatMessage(
+        { id: 'page.user.like-button.user-message', defaultMessage: '' },
+        { value: message.user.name },
+      )
 
       if (message.type === MessageType.Support) {
         enqueueSnackbar({ message: userMessage, severity: 'success', icon: 'magic' })

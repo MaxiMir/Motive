@@ -1,8 +1,9 @@
 import { Badge, Stack } from '@mui/material'
 import { ReactNode } from 'react'
+import { useIntl } from 'react-intl'
 import dynamic from 'next/dynamic'
 import { Device } from 'shared/api'
-import { useFormatDistance, useMessage } from 'shared/lib/hooks'
+import { useFormatDistance } from 'shared/lib/hooks'
 import { TooltipArrow } from 'shared/ui/styled'
 import { getShortDistance } from './lib'
 
@@ -15,7 +16,8 @@ interface OfflineProps {
 }
 
 function Offline({ lastSeen, device, children }: OfflineProps) {
-  const seenText = useMessage('common.seen')
+  const { formatMessage } = useIntl()
+  const seenText = formatMessage({ id: 'common.seen' })
   const formatDistance = useFormatDistance()
   const distance = formatDistance(lastSeen)
   const shortDistance = getShortDistance(distance)

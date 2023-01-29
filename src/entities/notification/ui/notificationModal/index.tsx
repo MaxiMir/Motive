@@ -1,7 +1,7 @@
 import { Stack } from '@mui/material'
+import { useIntl } from 'react-intl'
 import dynamic from 'next/dynamic'
 import { NotificationDto } from 'shared/api'
-import { useMessage } from 'shared/lib/hooks'
 import Modal from 'shared/ui/Modal'
 import { useNotificationHint } from './lib'
 
@@ -17,7 +17,8 @@ interface NotificationModalProps {
 }
 
 export function NotificationModal({ notifications, isLoading, onClose }: NotificationModalProps) {
-  const title = useMessage('common.notifications')
+  const { formatMessage } = useIntl()
+  const title = formatMessage({ id: 'common.notifications' })
   const [showHint, onHintClick] = useNotificationHint()
 
   return (

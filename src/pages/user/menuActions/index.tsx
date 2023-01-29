@@ -10,7 +10,7 @@ import ListItem from 'shared/ui/ListItem'
 import { GreyButton } from 'shared/ui/styled'
 import { useMessages } from './lib'
 
-const Report = dynamic(() => import('features/creating-report'))
+const CreateReport = dynamic(() => import('features/report/create-report'))
 const Share = dynamic(() => import('features/share'))
 
 function MenuActions() {
@@ -78,7 +78,9 @@ function MenuActions() {
           <ListItem icon="block" primary={messages.cancelText} color="grey" />
         </MenuItem>
       </Menu>
-      {reporting && <Report id={userId} type="user" anchorEl={anchorEl} onClose={onCloseReport} />}
+      {reporting && (
+        <CreateReport id={userId} type="user" anchorEl={anchorEl} onClose={onCloseReport} />
+      )}
       {sharing && <Share href={asPath} title={name} onClose={toggleSharing} />}
     </>
   )

@@ -7,7 +7,7 @@ import Circle from 'shared/ui/Circle'
 import { getOffset, RADIUS } from './helper'
 import { useMessages } from './hooks/useMessages'
 
-const CharacteristicModal = dynamic(() => import('./components/CharacteristicModal'))
+const CharacteristicModal = dynamic(() => import('./components/characteristicModal'))
 
 interface MainCharacteristicProps {
   name: MainCharacteristicName

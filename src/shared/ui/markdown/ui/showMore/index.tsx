@@ -1,6 +1,6 @@
 import { Button } from '@mui/material'
 import { styled } from '@mui/system'
-import { useMessages } from './lib'
+import { useMessage } from 'shared/lib/hooks'
 
 interface ShowMoreProps {
   open: boolean
@@ -8,11 +8,11 @@ interface ShowMoreProps {
 }
 
 export function ShowMore({ open, onClick }: ShowMoreProps) {
-  const messages = useMessages(open)
+  const buttonText = useMessage(`common.show-${open ? 'less' : 'more'}`)
 
   return (
     <TextButton size="small" color="inherit" onClick={onClick}>
-      {messages.buttonText}
+      {buttonText}
     </TextButton>
   )
 }

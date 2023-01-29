@@ -1,8 +1,7 @@
 import { Menu, MenuItem } from '@mui/material'
-import { useSendReport } from 'entities/report'
 import { ReportType } from 'shared/api'
 import ListItem from 'shared/ui/ListItem'
-import { useMessages } from './lib'
+import { useMessages, useSendReport } from './lib'
 
 interface ReportProps {
   id: number
@@ -11,7 +10,7 @@ interface ReportProps {
   onClose: () => void
 }
 
-function Report({ id, type, anchorEl, onClose }: ReportProps) {
+function CreateReport({ id, type, anchorEl, onClose }: ReportProps) {
   const messages = useMessages()
 
   const onClick = useSendReport(id, type, onClose)
@@ -31,4 +30,4 @@ function Report({ id, type, anchorEl, onClose }: ReportProps) {
   )
 }
 
-export default Report
+export default CreateReport

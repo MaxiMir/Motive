@@ -9,7 +9,7 @@ import ListItem from 'shared/ui/ListItem'
 import { TooltipArrow } from 'shared/ui/styled'
 import { useMessages } from './hooks/useMessages'
 
-const Report = dynamic(() => import('features/creating-report'))
+const CreateReport = dynamic(() => import('features/report/create-report'))
 const EditModal = dynamic(() => import('./components/EditModal'))
 
 interface MenuActionsProps {
@@ -81,7 +81,7 @@ function MenuActions({ message }: MenuActionsProps) {
         </MenuItem>
       </Menu>
       {reporting && (
-        <Report id={message.id} type="message" anchorEl={anchorEl} onClose={onCloseReport} />
+        <CreateReport id={message.id} type="message" anchorEl={anchorEl} onClose={onCloseReport} />
       )}
       {editing && <EditModal message={message} onClose={toggleEdit} />}
     </>

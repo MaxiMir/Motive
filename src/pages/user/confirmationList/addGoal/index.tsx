@@ -1,13 +1,12 @@
 import { Box, Button, Stack, Typography } from '@mui/material'
 import dynamic from 'next/dynamic'
-import { useToggle } from 'shared/lib/hooks'
+import { useMessage, useToggle } from 'shared/lib/hooks'
 import Icon from 'shared/ui/Icon'
-import { useMessages } from './lib'
 
 const CreateGoal = dynamic(() => import('features/goal/create-goal'))
 
 function AddGoal() {
-  const messages = useMessages()
+  const buttonText = useMessage('common.create')
   const [open, toggle] = useToggle()
 
   return (
@@ -23,7 +22,7 @@ function AddGoal() {
           size="small"
           variant="text"
           color="primary"
-          aria-label={messages.buttonText}
+          aria-label={buttonText}
           aria-haspopup="true"
           aria-expanded={open ? 'true' : undefined}
           sx={({ palette }) => ({
@@ -46,7 +45,7 @@ function AddGoal() {
         onClick={toggle}
       >
         <Typography variant="caption" sx={{ color: 'common.white' }}>
-          {messages.buttonText}
+          {buttonText}
         </Typography>
       </Button>
       {open && <CreateGoal onClose={toggle} />}

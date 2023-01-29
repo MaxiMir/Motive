@@ -1,8 +1,8 @@
 import { Button } from '@mui/material'
 import { styled } from '@mui/system'
 import { ChangeEvent, useRef } from 'react'
+import { useMessage } from 'shared/lib/hooks'
 import Emoji from 'shared/ui/Emoji'
-import { useMessages } from './lib'
 
 interface PhotoInputProps {
   multiple?: boolean
@@ -11,7 +11,7 @@ interface PhotoInputProps {
 }
 
 function PhotoInput({ multiple, disabled, onSelect }: PhotoInputProps) {
-  const messages = useMessages()
+  const title = useMessage('common.load-photo')
   const inputRef = useRef<HTMLInputElement>(null)
 
   const onChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -27,8 +27,8 @@ function PhotoInput({ multiple, disabled, onSelect }: PhotoInputProps) {
       <Button
         variant="outlined"
         color="warning"
-        title={messages.title}
-        aria-label={messages.title}
+        title={title}
+        aria-label={title}
         disabled={disabled}
         sx={{
           position: 'relative',

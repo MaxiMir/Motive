@@ -2,9 +2,9 @@ import { Badge, Stack } from '@mui/material'
 import { ReactNode } from 'react'
 import dynamic from 'next/dynamic'
 import { Device } from 'shared/api'
-import { useFormatDistance } from 'shared/lib/hooks'
+import { useFormatDistance, useMessage } from 'shared/lib/hooks'
 import { TooltipArrow } from 'shared/ui/styled'
-import { useMessages, getShortDistance } from './lib'
+import { getShortDistance } from './lib'
 
 const DeviceIcon = dynamic(() => import('shared/ui/deviceIcon'))
 
@@ -15,7 +15,7 @@ interface OfflineProps {
 }
 
 function Offline({ lastSeen, device, children }: OfflineProps) {
-  const messages = useMessages()
+  const seenText = useMessage('common.seen')
   const formatDistance = useFormatDistance()
   const distance = formatDistance(lastSeen)
   const shortDistance = getShortDistance(distance)
@@ -39,7 +39,7 @@ function Offline({ lastSeen, device, children }: OfflineProps) {
               }}
             >
               {device && <DeviceIcon device={device} />}
-              {messages.seenText} {distance}
+              {seenText} {distance}
             </Stack>
           }
         >

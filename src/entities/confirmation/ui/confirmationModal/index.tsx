@@ -8,11 +8,11 @@ import EmojiHeader from 'shared/ui/EmojiHeader'
 import Input from 'shared/ui/Input'
 import Modal from 'shared/ui/Modal'
 import PhotoButton from 'shared/ui/photoButton'
-import PhotoInput from 'shared/ui/photoInput'
+import PhotoInput from 'shared/ui/PhotoInput'
 import SpinEmoji from 'shared/ui/SpinEmoji'
 import SubmitButton from 'shared/ui/SubmitButton'
 import VideoInput from 'shared/ui/videoInput'
-import VideoPreview from 'shared/ui/videoPreview'
+import VideoPreview from 'shared/ui/VideoPreview'
 import { useForm, useMessages } from './lib'
 
 const Alert = dynamic(() => import('@mui/material/Alert'))

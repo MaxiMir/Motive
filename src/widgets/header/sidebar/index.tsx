@@ -1,15 +1,15 @@
 import { IconButton } from '@mui/material'
 import { useState } from 'react'
 import dynamic from 'next/dynamic'
+import { useMessage } from 'shared/lib/hooks'
 import Icon from 'shared/ui/Icon'
 import { TooltipArrow } from 'shared/ui/styled'
-import { useMessages } from './lib'
 
 const SidebarModal = dynamic(() => import('./sidebarModal'))
 const SettingsModal = dynamic(() => import('./settingsModal'))
 
 export function Sidebar() {
-  const messages = useMessages()
+  const title = useMessage('common.open-menu')
   const [openMenu, setOpenMenu] = useState(false)
   const [openSettings, setOpenSettings] = useState(false)
 
@@ -24,7 +24,7 @@ export function Sidebar() {
 
   return (
     <>
-      <TooltipArrow title={messages.title}>
+      <TooltipArrow title={title}>
         <IconButton
           aria-haspopup="true"
           aria-expanded={openMenu ? 'true' : undefined}

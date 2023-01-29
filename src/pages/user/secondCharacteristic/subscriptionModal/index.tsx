@@ -1,9 +1,9 @@
 import { Box } from '@mui/material'
 import dynamic from 'next/dynamic'
-import { useSubscription } from 'entities/subscription'
 import { SecondCharacteristicName } from 'shared/api'
+import { useMessage } from 'shared/lib/hooks'
 import Modal from 'shared/ui/Modal'
-import { useMessages } from './lib'
+import { useSubscription } from './lib'
 
 const Loader = dynamic(() => import('./loader'))
 const EmptyList = dynamic(() => import('./emptyList'))
@@ -17,7 +17,7 @@ interface SubscriptionModalProps {
 }
 
 function SubscriptionModal({ userId, type, count, onClose }: SubscriptionModalProps) {
-  const messages = useMessages(type)
+  const title = useMessage(`common.${type}`)
   const { isLoading, users, checkOnLoadMore, fetchNextPage } = useSubscription(userId, count, type)
   const titleColor = type === SecondCharacteristicName.Followers ? 'zen.sand' : undefined
 
@@ -25,7 +25,7 @@ function SubscriptionModal({ userId, type, count, onClose }: SubscriptionModalPr
     <Modal
       title={
         <Box component="span" color={titleColor}>
-          {messages.title}
+          {title}
         </Box>
       }
       maxWidth="xs"

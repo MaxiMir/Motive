@@ -1,2 +1,2 @@
-export * from './CharacteristicGoal'
-export * from './CharacteristicUser'
+export * from './characteristicGoal'
+export * from './characteristicUser'

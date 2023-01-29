@@ -2,10 +2,9 @@ import { Box, IconButton, Stack, Typography } from '@mui/material'
 import Link from 'next/link'
 import { UserBaseDto } from 'shared/api'
 import { joinToHref } from 'shared/lib/helpers'
-import { useFormatDistance } from 'shared/lib/hooks'
+import { useFormatDistance, useMessage } from 'shared/lib/hooks'
 import Avatar from 'shared/ui/avatar'
 import Icon from 'shared/ui/Icon'
-import { useMessages } from './lib'
 
 interface TopProps {
   user: UserBaseDto
@@ -16,7 +15,7 @@ interface TopProps {
 
 export function Top({ user, title, date, onClose }: TopProps): JSX.Element {
   const { nickname, name, avatar } = user
-  const messages = useMessages()
+  const closeText = useMessage('common.close')
   const formatDistance = useFormatDistance()
   const distance = formatDistance(date)
   const href = joinToHref(nickname)
@@ -60,7 +59,7 @@ export function Top({ user, title, date, onClose }: TopProps): JSX.Element {
             {title}
           </Typography>
         </Stack>
-        <IconButton aria-label={messages.close} sx={{ marginLeft: 'auto' }} onClick={onClose}>
+        <IconButton aria-label={closeText} sx={{ marginLeft: 'auto' }} onClick={onClose}>
           <Icon name="close" />
         </IconButton>
       </Box>

@@ -1,11 +1,11 @@
 import { useFormik } from 'formik'
 import produce from 'immer'
-import { useIntl } from 'react-intl'
 import { useMutation } from 'react-query'
 import { useSnackbar } from 'entities/snackbar'
 import { useMutateGoals } from 'entities/user'
 import { CreatedGoal, CreateGoalDto, GoalDto, createGoal, goalSchema } from 'shared/api'
 import { scrollToElem } from 'shared/lib/helpers'
+import { useMessage } from 'shared/lib/hooks'
 import { getMidnightISO } from 'shared/lib/utils'
 
 const getNextState = (goals: GoalDto[], goal: CreatedGoal) =>
@@ -14,12 +14,11 @@ const getNextState = (goals: GoalDto[], goal: CreatedGoal) =>
   })
 
 export const useCreateGoal = (onSuccess: () => void) => {
-  const { formatMessage } = useIntl()
+  const message = useMessage('page.user.modal-goal.message')
   const { enqueueSnackbar } = useSnackbar()
   const [goals, mutateGoal] = useMutateGoals()
   const { mutateAsync } = useMutation(createGoal, {
     onSuccess(goal) {
-      const message = formatMessage({ id: 'page.user.modal-goal.message' })
       mutateGoal(getNextState(goals, goal))
       onSuccess()
       enqueueSnackbar({ message, severity: 'success', icon: 'goal' })

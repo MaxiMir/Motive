@@ -1,9 +1,10 @@
 import { Stack } from '@mui/material'
 import { SignInOptions } from 'next-auth/react'
 import dynamic from 'next/dynamic'
+import { useMessage } from 'shared/lib/hooks'
 import Modal from 'shared/ui/Modal'
 import { SOURCE, SourceKey } from './consts'
-import { useMessages, useProviders } from './lib'
+import { useProviders } from './lib'
 
 const Loader = dynamic(() => import('./loader'))
 const Provider = dynamic(() => import('./provider'))
@@ -14,11 +15,11 @@ interface SignInModalProps {
 }
 
 export function SignInModal({ options, onClose }: SignInModalProps) {
-  const messages = useMessages()
+  const title = useMessage('common.sign-in')
   const providers = useProviders()
 
   return (
-    <Modal title={messages.title} maxWidth="xs" onClose={onClose}>
+    <Modal title={title} maxWidth="xs" onClose={onClose}>
       <Stack alignSelf="stretch" spacing={2} minHeight={160}>
         {!providers ? (
           <Loader count={4} />

@@ -10,7 +10,7 @@ import ListItem from 'shared/ui/ListItem'
 import { TooltipArrow } from 'shared/ui/styled'
 import { useMessages } from './hooks/useMessages'
 
-const Report = dynamic(() => import('features/creating-report'))
+const CreateReport = dynamic(() => import('features/report/create-report'))
 const Share = dynamic(() => import('features/share'))
 const LeaveModal = dynamic(() => import('./components/LeaveModal'))
 
@@ -92,7 +92,9 @@ function MenuActions({ href, title, clientOwnership }: MenuActionsProps) {
           <ListItem icon="block" primary={messages.cancelText} color="grey" />
         </MenuItem>
       </Menu>
-      {reporting && <Report id={goalId} type="goal" anchorEl={anchorEl} onClose={onCloseReport} />}
+      {reporting && (
+        <CreateReport id={goalId} type="goal" anchorEl={anchorEl} onClose={onCloseReport} />
+      )}
       {sharing && <Share href={href} title={title} onClose={toggleSharing} />}
       {leaving && <LeaveModal clientOwnership={clientOwnership} onClose={toggleLeaving} />}
     </>

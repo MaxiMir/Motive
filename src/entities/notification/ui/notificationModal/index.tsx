@@ -1,8 +1,9 @@
 import { Stack } from '@mui/material'
 import dynamic from 'next/dynamic'
 import { NotificationDto } from 'shared/api'
+import { useMessage } from 'shared/lib/hooks'
 import Modal from 'shared/ui/Modal'
-import { useMessages, useNotificationHint } from './lib'
+import { useNotificationHint } from './lib'
 
 const Loader = dynamic(() => import('./loader'))
 const Hint = dynamic(() => import('./hint'))
@@ -16,12 +17,12 @@ interface NotificationModalProps {
 }
 
 export function NotificationModal({ notifications, isLoading, onClose }: NotificationModalProps) {
-  const messages = useMessages()
+  const title = useMessage('common.notifications')
   const [showHint, onHintClick] = useNotificationHint()
 
   return (
     <Modal
-      title={messages.title}
+      title={title}
       maxWidth="xs"
       PaperProps={{
         sx: {

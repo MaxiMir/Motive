@@ -2,9 +2,9 @@ import { ListItemIcon, ListItemText, Menu, MenuItem } from '@mui/material'
 import { paperClasses } from '@mui/material/Paper'
 import { useIntl } from 'react-intl'
 import { Locale, useSetLocale } from 'entities/locale'
+import { useMessage } from 'shared/lib/hooks'
 import Emoji from 'shared/ui/Emoji'
 import ListItem from 'shared/ui/ListItem'
-import { useMessages } from './lib'
 
 const LANGUAGES = [
   { primary: 'EN', name: 'en', value: Locale.En },
@@ -21,7 +21,7 @@ interface LanguageMenuProps {
 function ChangeLanguage({ anchorEl, onClose }: LanguageMenuProps) {
   const { locale } = useIntl()
   const setLocale = useSetLocale()
-  const messages = useMessages()
+  const cancelText = useMessage('common.cancel')
 
   const onClick = (value: Locale) => {
     setLocale(value)
@@ -48,7 +48,7 @@ function ChangeLanguage({ anchorEl, onClose }: LanguageMenuProps) {
         </MenuItem>
       ))}
       <MenuItem onClick={onClose}>
-        <ListItem icon="block" primary={messages.cancelText} compact={false} color="grey" />
+        <ListItem icon="block" primary={cancelText} compact={false} color="grey" />
       </MenuItem>
     </Menu>
   )

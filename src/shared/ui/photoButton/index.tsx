@@ -1,8 +1,8 @@
 import { Button, IconButton, Stack } from '@mui/material'
 import dynamic from 'next/dynamic'
+import { useMessage } from 'shared/lib/hooks'
 import Icon from 'shared/ui/Icon'
 import { TooltipArrow } from 'shared/ui/styled'
-import { useMessages } from './lib'
 
 const Image = dynamic(() => import('shared/ui/Image'))
 const LocalImage = dynamic(() => import('./localImage'))
@@ -14,7 +14,7 @@ interface PhotoButtonProps {
 }
 
 function PhotoButton({ image, disabled, onClick }: PhotoButtonProps) {
-  const messages = useMessages()
+  const title = useMessage('component.photo-button.aria')
 
   return (
     <Button
@@ -43,7 +43,7 @@ function PhotoButton({ image, disabled, onClick }: PhotoButtonProps) {
         ) : (
           <Image src={image} alt="" layout="fill" objectFit="contain" />
         )}
-        <TooltipArrow title={messages.title}>
+        <TooltipArrow title={title}>
           <IconButton
             disabled={disabled}
             sx={{

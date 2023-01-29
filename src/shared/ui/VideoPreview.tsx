@@ -1,8 +1,8 @@
 import { Box, IconButton } from '@mui/material'
+import { useMessage } from 'shared/lib/hooks'
 import Icon from 'shared/ui/Icon'
 import Player from 'shared/ui/Player'
 import { TooltipArrow } from 'shared/ui/styled'
-import { useMessages } from './lib'
 
 interface VideoPreviewProps {
   video: Blob | MediaSource
@@ -11,7 +11,7 @@ interface VideoPreviewProps {
 }
 
 function VideoPreview({ video, disabled, onRemove }: VideoPreviewProps) {
-  const messages = useMessages()
+  const removeText = useMessage('component.video-preview.label')
   const url = URL.createObjectURL(video)
 
   return (
@@ -26,7 +26,7 @@ function VideoPreview({ video, disabled, onRemove }: VideoPreviewProps) {
           overflow: 'hidden',
         }}
       />
-      <TooltipArrow title={messages.removeText}>
+      <TooltipArrow title={removeText}>
         <IconButton
           disabled={disabled}
           sx={{

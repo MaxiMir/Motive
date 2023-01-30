@@ -1,5 +1,5 @@
 import { Typography } from '@mui/material'
-import { TooltipArrow } from 'shared/ui/styled'
+import TooltipArrow from 'shared/ui/TooltipArrow'
 
 interface NicknameProps {
   nickname: string

@@ -4,7 +4,7 @@ import { Field } from 'formik'
 import { ChangeEvent } from 'react'
 import Icon from 'shared/ui/Icon'
 import Input from 'shared/ui/Input'
-import { TooltipArrow } from 'shared/ui/styled'
+import TooltipArrow from 'shared/ui/TooltipArrow'
 import { useMessages } from './lib'
 
 interface TaskFieldProps {

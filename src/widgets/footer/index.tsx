@@ -1,8 +1,8 @@
 import { Container, Box, IconButton, Stack } from '@mui/material'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
-import OpeningProfile from 'features/user/opening-profile'
-import { TooltipArrow } from 'shared/ui/styled'
+import OpenProfile from 'features/user/open-profile'
+import TooltipArrow from 'shared/ui/TooltipArrow'
 import { useRoutes } from './lib'
 
 function Footer() {
@@ -33,7 +33,7 @@ function Footer() {
               </IconButton>
             </TooltipArrow>
           ))}
-          <OpeningProfile />
+          <OpenProfile />
         </Stack>
       </Container>
     </Box>

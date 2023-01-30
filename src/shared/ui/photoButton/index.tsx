@@ -2,7 +2,7 @@ import { Button, IconButton, Stack } from '@mui/material'
 import { useIntl } from 'react-intl'
 import dynamic from 'next/dynamic'
 import Icon from 'shared/ui/Icon'
-import { TooltipArrow } from 'shared/ui/styled'
+import TooltipArrow from 'shared/ui/TooltipArrow'
 
 const Image = dynamic(() => import('shared/ui/Image'))
 const LocalImage = dynamic(() => import('./localImage'))

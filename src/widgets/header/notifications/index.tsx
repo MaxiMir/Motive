@@ -3,7 +3,7 @@ import { useIntl } from 'react-intl'
 import dynamic from 'next/dynamic'
 import { useNotifications, NotificationBadge } from 'entities/notification'
 import { useToggle } from 'shared/lib/hooks'
-import { TooltipArrow } from 'shared/ui/styled'
+import TooltipArrow from 'shared/ui/TooltipArrow'
 
 const NotificationModal = dynamic(() =>
   import('entities/notification').then((m) => m.NotificationModal),

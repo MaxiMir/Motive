@@ -1,6 +1,6 @@
 import { Stack, Typography } from '@mui/material'
+import { useIntl } from 'react-intl'
 import FadeEmoji from 'shared/ui/FadeEmoji'
-import { useMessages } from './lib'
 import OwnerDescription from './ownerDescription'
 
 interface AddGoalProps {
@@ -8,12 +8,13 @@ interface AddGoalProps {
 }
 
 function EmptyGoals({ clientPage }: AddGoalProps) {
-  const messages = useMessages(clientPage)
+  const { formatMessage } = useIntl()
+  const title = formatMessage({ id: `page.user.empty-goals.${clientPage ? 'owner' : 'guest'}` })
 
   return (
     <Stack justifyContent="center" alignItems="center" spacing={1} flex={1}>
       <Typography variant="h6" component="p" color="primary" mb={2}>
-        {messages.title}
+        {title}
       </Typography>
       <FadeEmoji name="goal" />
       {clientPage && <OwnerDescription />}

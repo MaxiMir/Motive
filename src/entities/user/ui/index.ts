@@ -1,1 +1,2 @@
-export * from './user-rating'
+export * from './userRating'
+export * from './userInfoModal'

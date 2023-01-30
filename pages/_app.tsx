@@ -29,7 +29,9 @@ function App({
 }: AppProps) {
   const { locale = Locale.En } = useRouter()
   const folder = getLocaleFolder(locale)
-  const messages = use(messagesLoader(locale, () => import(`shared/config/lang/${locale}.json`)))
+  const messages = use(
+    messagesLoader(locale, () => import(`src/shared/config/lang/${locale}.json`)),
+  )
   const adapterLocale = use(
     adapterLocaleLoader(locale, () => import(`date-fns/locale/${folder}/index.js`)),
   )

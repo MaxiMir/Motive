@@ -6,7 +6,6 @@ import { MAIN_CHARACTERISTICS, SECOND_CHARACTERISTICS, UserPageDto } from 'share
 import Container from 'shared/ui/Container'
 import AvatarActions from './avatarActions'
 import EmptyGoals from './emptyGoals'
-import Following from './following'
 import LearnMore from './learnMore'
 import MainCharacteristic from './mainCharacteristic'
 import MenuActions from './menuActions'
@@ -14,6 +13,7 @@ import Nickname from './nickname'
 import SecondCharacteristic from './secondCharacteristic'
 
 const Link = dynamic(() => import('@mui/material/Link'))
+const UpdateFollowing = dynamic(() => import('features/subscription/update-following'))
 const EditProfile = dynamic(() => import('./editProfile'))
 const ConfirmationList = dynamic(() => import('./confirmationList'))
 const GoalCurrent = dynamic(() => import('./goalCurrent'))
@@ -34,13 +34,14 @@ export function UserPage({ user }: UserViewProps) {
     confirmations,
     motto,
     links,
+    following,
   } = user
   const clientPage = useCheckOnClientPage(id)
   const renderConfirmationsList = !!confirmations.length || clientPage
 
   return (
     <UserContext.Provider value={user}>
-      <UserContainer>
+      <Container sx={{ gap: 3 }}>
         <Stack spacing="12px">
           <Section
             display="flex"
@@ -82,16 +83,22 @@ export function UserPage({ user }: UserViewProps) {
               >
                 <Nickname nickname={nickname} />
                 <Stack direction="row" alignItems="center" spacing={1}>
-                  {clientPage ? <EditProfile /> : <Following />}
+                  {clientPage ? (
+                    <EditProfile user={user} />
+                  ) : (
+                    <UpdateFollowing userId={id} following={following} />
+                  )}
                   <MenuActions />
                 </Stack>
               </Stack>
               <Stack direction="row" justifyContent="space-between" spacing={2} mb={1}>
                 {SECOND_CHARACTERISTICS.map((characteristicName) => (
                   <SecondCharacteristic
-                    confirmations={confirmations}
                     name={characteristicName}
                     value={characteristic[characteristicName]}
+                    userId={id}
+                    characteristic={characteristic}
+                    confirmations={confirmations}
                     key={characteristicName}
                   />
                 ))}
@@ -101,17 +108,18 @@ export function UserPage({ user }: UserViewProps) {
               </Typography>
               {motto && <Typography sx={{ fontSize: 14 }}>{motto}</Typography>}
               {links?.map(({ href, title }) => (
-                <ExternalLink
+                <Link
                   href={href}
                   title={title}
                   rel="nofollow noopener noreferrer"
                   target="_blank"
                   key={href}
+                  sx={{ fontSize: 14 }}
                 >
                   {href}
-                </ExternalLink>
+                </Link>
               ))}
-              <LearnMore />
+              <LearnMore user={user} />
             </Stack>
           </Section>
           <Section display="flex" justifyContent="space-between" component="section">
@@ -135,6 +143,8 @@ export function UserPage({ user }: UserViewProps) {
               <GoalCurrent
                 goal={goal}
                 membership={membership}
+                userId={id}
+                nickname={nickname}
                 clientPage={clientPage}
                 clientMembership={clientMembership}
                 key={goal.id}
@@ -142,23 +152,13 @@ export function UserPage({ user }: UserViewProps) {
             ))}
           </Box>
         )}
-      </UserContainer>
+      </Container>
     </UserContext.Provider>
   )
 }
-
-const UserContainer = styled(Container)({
-  display: 'flex',
-  flexDirection: 'column',
-  gap: 24,
-})
 
 const Section = styled(Box)(({ theme }) => ({
   padding: 8,
   borderRadius: '12px',
   backgroundColor: theme.palette.grey[900],
 }))
-
-const ExternalLink = styled(Link)({
-  fontSize: 14,
-})

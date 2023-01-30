@@ -1,7 +1,7 @@
 import { Grid, Box, Typography, Stack } from '@mui/material'
 import { ErrorMessage, Field, FieldArray, Form, FormikProvider } from 'formik'
 import dynamic from 'next/dynamic'
-import { useSelectPhoto } from 'features/select-photo'
+import { usePhotoLimit } from 'features/select-photo'
 import Accordion from 'shared/ui/Accordion'
 import CancelButton from 'shared/ui/CancelButton'
 import EmojiHeader from 'shared/ui/EmojiHeader'
@@ -27,7 +27,7 @@ export function ConfirmationModal({ id, onClose }: ConfirmationModalProps) {
   const form = useForm(id, onClose)
   const { isSubmitting, values, setFieldValue, handleSubmit } = form
 
-  const onSelectPhoto = useSelectPhoto(form)
+  const onSelectPhoto = usePhotoLimit(form)
 
   const onSelectVideo = (file: File) => setFieldValue('video', file)
 

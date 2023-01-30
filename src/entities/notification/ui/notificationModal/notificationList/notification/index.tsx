@@ -9,7 +9,7 @@ import { useFormatDistance } from 'shared/lib/hooks'
 import Avatar from 'shared/ui/avatar'
 import Emoji from 'shared/ui/Emoji'
 import Icon from 'shared/ui/Icon'
-import { TooltipArrow } from 'shared/ui/styled'
+import TooltipArrow from 'shared/ui/TooltipArrow'
 import { getNotificationInfo, useMessages, useUpdateRead } from './lib'
 
 const InView = dynamic(() => import('shared/ui/InView'))

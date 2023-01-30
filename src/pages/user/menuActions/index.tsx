@@ -5,13 +5,13 @@ import { useRouter } from 'next/router'
 import { tryNativeShare } from 'features/share'
 import { useCheckOnClientPage, useUserContext } from 'entities/user'
 import { useToggle } from 'shared/lib/hooks'
+import GreyButton from 'shared/ui/GreyButton'
 import Icon from 'shared/ui/Icon'
 import ListItem from 'shared/ui/ListItem'
-import { GreyButton } from 'shared/ui/styled'
 import { useMessages } from './lib'
 
-const CreateReport = dynamic(() => import('features/report/create-report'))
 const Share = dynamic(() => import('features/share'))
+const CreateReport = dynamic(() => import('features/report/create-report'))
 
 function MenuActions() {
   const id = useId()
@@ -19,7 +19,7 @@ function MenuActions() {
   const { asPath } = useRouter()
   const { id: userId, name } = useUserContext()
   const clientPage = useCheckOnClientPage(userId)
-  const messages = useMessages(!clientPage)
+  const messages = useMessages()
   const [anchorEl, setAnchorEl] = useState<HTMLElement | null>(null)
   const [reporting, toggleReporting] = useToggle()
   const [sharing, toggleSharing] = useToggle()
@@ -78,10 +78,10 @@ function MenuActions() {
           <ListItem icon="block" primary={messages.cancelText} color="grey" />
         </MenuItem>
       </Menu>
+      {sharing && <Share href={asPath} title={name} onClose={toggleSharing} />}
       {reporting && (
         <CreateReport id={userId} type="user" anchorEl={anchorEl} onClose={onCloseReport} />
       )}
-      {sharing && <Share href={asPath} title={name} onClose={toggleSharing} />}
     </>
   )
 }

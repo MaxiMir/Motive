@@ -9,8 +9,8 @@ import ListItem from 'shared/ui/ListItem'
 import { useMessages } from './lib'
 
 const LightBox = dynamic(() => import('shared/ui/LightBox'))
-const UpdatingModal = dynamic(() => import('features/user/updating-avatar'))
-const DeletingModal = dynamic(() => import('features/user/deleting-avatar'))
+const UpdateModal = dynamic(() => import('features/user/update-avatar'))
+const DeleteModal = dynamic(() => import('features/user/delete-avatar'))
 
 const SIZE = 175
 
@@ -102,8 +102,8 @@ function AvatarActions({ user, clientPage }: AvatarActionsProps) {
         </MenuItem>
       </Menu>
       {openLightbox && <LightBox sources={sources} index={index} onClose={onCloseLightBox} />}
-      {editing && <UpdatingModal userId={userId} onClose={toggleEditing} />}
-      {deleting && <DeletingModal userId={userId} onClose={toggleDeleting} />}
+      {editing && <UpdateModal userId={userId} onClose={toggleEditing} />}
+      {deleting && <DeleteModal userId={userId} onClose={toggleDeleting} />}
     </>
   )
 }

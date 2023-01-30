@@ -3,7 +3,7 @@ import Image, { ImageProps } from 'next/image'
 import { useSnackbar } from 'entities/snackbar'
 import { copyText } from 'shared/lib/helpers'
 import Icon from 'shared/ui/Icon'
-import { TooltipArrow } from 'shared/ui/styled'
+import TooltipArrow from 'shared/ui/TooltipArrow'
 import { useMessages } from './lib'
 
 interface WalletProps {

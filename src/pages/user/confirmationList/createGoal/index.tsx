@@ -7,8 +7,8 @@ import Icon from 'shared/ui/Icon'
 const CreateGoalModal = dynamic(() => import('features/goal/create-goal'))
 
 function CreateGoal() {
-  const [open, toggle] = useToggle()
   const { formatMessage } = useIntl()
+  const [open, toggle] = useToggle()
   const buttonText = formatMessage({ id: 'common.create' })
 
   return (

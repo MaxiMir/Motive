@@ -4,7 +4,7 @@ import { useIntl } from 'react-intl'
 import dynamic from 'next/dynamic'
 import { Device } from 'shared/api'
 import { useFormatDistance } from 'shared/lib/hooks'
-import { TooltipArrow } from 'shared/ui/styled'
+import TooltipArrow from 'shared/ui/TooltipArrow'
 import { getShortDistance } from './lib'
 
 const DeviceIcon = dynamic(() => import('shared/ui/deviceIcon'))

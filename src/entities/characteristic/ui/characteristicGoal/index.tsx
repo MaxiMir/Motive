@@ -3,7 +3,7 @@ import { useIntl } from 'react-intl'
 import { GoalCharacteristicName } from 'shared/api'
 import { useFormatNumber } from 'shared/lib/hooks'
 import Emoji from 'shared/ui/Emoji'
-import { TooltipArrow } from 'shared/ui/styled'
+import TooltipArrow from 'shared/ui/TooltipArrow'
 
 interface CharacteristicGoalProps {
   name: GoalCharacteristicName | 'runningDays'

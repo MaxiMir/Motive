@@ -8,7 +8,7 @@ import { joinToHref } from 'shared/lib/helpers'
 import { useToggle } from 'shared/lib/hooks'
 import Icon from 'shared/ui/Icon'
 import ListItem from 'shared/ui/ListItem'
-import { TooltipArrow } from 'shared/ui/styled'
+import TooltipArrow from 'shared/ui/TooltipArrow'
 import { useMessages } from './lib'
 
 const Share = dynamic(() => import('features/share'))

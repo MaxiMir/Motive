@@ -1,6 +1,6 @@
 import { Container as MuiContainer, ContainerProps } from '@mui/material'
 
-function Container(props: ContainerProps) {
+function Container({ sx, ...props }: ContainerProps) {
   return (
     <MuiContainer
       fixed
@@ -11,6 +11,7 @@ function Container(props: ContainerProps) {
         alignItems: 'stretch',
         py: 3,
         mb: 2,
+        ...sx,
       }}
       {...props}
     />

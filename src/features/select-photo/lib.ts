@@ -4,7 +4,7 @@ import { useSnackbar } from 'entities/snackbar'
 
 const PHOTO_LIMIT = 10
 
-export const useSelectPhoto = <T>(formik: FormikProps<T & { photos: File[] }>) => {
+export const usePhotoLimit = <T>(formik: FormikProps<T & { photos: File[] }>) => {
   const { formatMessage } = useIntl()
   const { enqueueSnackbar } = useSnackbar()
 

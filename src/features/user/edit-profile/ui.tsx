@@ -1,5 +1,6 @@
 import { Box, InputAdornment, Stack } from '@mui/material'
 import { Field, Form, FormikProvider } from 'formik'
+import { UserPageDto } from 'shared/api'
 import CancelButton from 'shared/ui/CancelButton'
 import Input from 'shared/ui/Input'
 import Modal from 'shared/ui/Modal'
@@ -7,12 +8,13 @@ import SubmitButton from 'shared/ui/SubmitButton'
 import { useMessages, useUpdateUser } from './lib'
 
 interface EditProfileModalProps {
+  user: UserPageDto
   onClose: () => void
 }
 
-function EditProfileModal({ onClose }: EditProfileModalProps) {
+function EditProfileModal({ user, onClose }: EditProfileModalProps) {
   const messages = useMessages()
-  const form = useUpdateUser(onClose)
+  const form = useUpdateUser(user, onClose)
   const { isSubmitting, handleSubmit } = form
 
   return (

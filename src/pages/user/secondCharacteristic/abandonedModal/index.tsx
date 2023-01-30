@@ -2,19 +2,19 @@ import { Box, Stack, Typography } from '@mui/material'
 import Image from 'next/image'
 // eslint-disable-next-line import/no-internal-modules
 import webSrc from 'public/images/svg/web.svg'
-import { useUserContext } from 'entities/user'
+import { UserCharacteristicDto } from 'shared/api'
 import { useShowProgress } from 'shared/lib/hooks'
 import Modal from 'shared/ui/Modal'
 import { OldPittRules } from 'shared/ui/oldPittRules'
 import { useMessages } from './lib'
 
 interface AbandonedModalProps {
+  characteristic: UserCharacteristicDto
   onClose: () => void
 }
 
-function AbandonedModal({ onClose }: AbandonedModalProps) {
+function AbandonedModal({ characteristic, onClose }: AbandonedModalProps) {
   const messages = useMessages()
-  const { characteristic } = useUserContext()
   const progress = useShowProgress(characteristic.abandoned, { step: 1, ms: 300 })
   const roundedProgress = Math.round(progress)
 

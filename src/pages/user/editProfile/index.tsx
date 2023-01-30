@@ -1,12 +1,17 @@
 import { useIntl } from 'react-intl'
 import dynamic from 'next/dynamic'
+import { UserPageDto } from 'shared/api'
 import { useToggle } from 'shared/lib/hooks'
+import GreyButton from 'shared/ui/GreyButton'
 import Icon from 'shared/ui/Icon'
-import { GreyButton } from 'shared/ui/styled'
 
 const EditProfileModal = dynamic(() => import('features/user/edit-profile'))
 
-function EditProfile() {
+interface EditProfileProps {
+  user: UserPageDto
+}
+
+function EditProfile({ user }: EditProfileProps) {
   const { formatMessage } = useIntl()
   const [open, toggle] = useToggle()
   const buttonText = formatMessage({ id: 'common.edit' })
@@ -27,7 +32,7 @@ function EditProfile() {
       >
         {buttonText}
       </GreyButton>
-      {open && <EditProfileModal onClose={toggle} />}
+      {open && <EditProfileModal user={user} onClose={toggle} />}
     </>
   )
 }

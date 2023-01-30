@@ -3,7 +3,7 @@ import { useState } from 'react'
 import { useIntl } from 'react-intl'
 import dynamic from 'next/dynamic'
 import Icon from 'shared/ui/Icon'
-import { TooltipArrow } from 'shared/ui/styled'
+import TooltipArrow from 'shared/ui/TooltipArrow'
 
 const SidebarModal = dynamic(() => import('./sidebarModal'))
 const SettingsModal = dynamic(() => import('./settingsModal'))

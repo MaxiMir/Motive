@@ -4,51 +4,59 @@ import dynamic from 'next/dynamic'
 import { useRouter } from 'next/router'
 import { CharacteristicGoal } from 'entities/characteristic'
 import { GoalContext } from 'entities/goal'
-import { useUserContext, getDayHref, useClient } from 'entities/user'
+import { getDayHref, useClient } from 'entities/user'
 import { MAIN_CHARACTERISTICS, GoalCharacteristicName, GoalDto, MemberDto } from 'shared/api'
 import { HashMark } from 'shared/config'
 import Accordion from 'shared/ui/Accordion'
-import Calendar from './components/Calendar'
-import Date from './components/Date'
-import DayAgo from './components/DayAgo'
-import Discussion from './components/Discussion'
-import Feedback from './components/Feedback'
-import MenuActions from './components/MenuActions'
-import Task from './components/Task'
-import Views from './components/Views'
-import ViewTrigger from './components/ViewTrigger'
+import { Calendar } from './calendar'
+import { Date } from './date'
+import { DayAgo } from './dayAgo'
+import { Discussion } from './discussion'
+import { Feedback } from './feedback'
 import {
   getGoalInfo,
   getClientOwnership,
   checkOnOpenDiscussion,
   redefineTasks,
   findMember,
-} from './helper'
-import { useMessages } from './hooks/useMessages'
-import { useSwitchDay } from './hooks/useSwitchDay'
+  useMessages,
+  useSwitchDay,
+} from './lib'
+import { MenuActions } from './menuActions'
+import { Task } from './task'
+import { Views } from './views'
+import { ViewTrigger } from './viewTrigger'
 
-const Inheritance = dynamic(() => import('./components/Inheritance'))
-const Stages = dynamic(() => import('./components/Stages'))
-const Hashtags = dynamic(() => import('./components/Hashtags'))
-const Web = dynamic(() => import('./components/Web'))
-const ViewerControl = dynamic(() => import('./components/ViewerControl'))
-const OwnerControl = dynamic(() => import('./components/ownerControl'))
+const Inheritance = dynamic(() => import('./inheritance'))
+const Stages = dynamic(() => import('./stages'))
+const Hashtags = dynamic(() => import('./hashtags'))
+const Web = dynamic(() => import('./web'))
+const ViewerControl = dynamic(() => import('./viewerControl'))
+const OwnerControl = dynamic(() => import('./ownerControl'))
 
 const CHARACTERISTICS: GoalCharacteristicName[] = [...MAIN_CHARACTERISTICS, 'members']
 
 interface GoalCurrentProps {
   goal: GoalDto
   membership: MemberDto[]
+  userId: number
+  nickname: string
   clientPage: boolean
   clientMembership: MemberDto[]
 }
 
-function GoalCurrent({ goal, membership, clientPage, clientMembership }: GoalCurrentProps) {
+function GoalCurrent({
+  goal,
+  membership,
+  userId,
+  nickname,
+  clientPage,
+  clientMembership,
+}: GoalCurrentProps) {
   const { id, name, hashtags, characteristic, owner, stages, day, inherited } = goal
   const { query } = useRouter()
   const client = useClient()
   const messages = useMessages()
-  const { id: userId, nickname } = useUserContext()
   const clientOwnership = getClientOwnership(goal, client?.id, clientPage, clientMembership)
   const userMember = findMember(id, membership, userId)
   const goalInfo = getGoalInfo(goal, clientOwnership, userMember)
@@ -195,6 +203,8 @@ function GoalCurrent({ goal, membership, clientPage, clientMembership }: GoalCur
                       defaultExpanded={!showDiscussion}
                       details={
                         <Feedback
+                          goalId={id}
+                          day={day}
                           forTomorrow={goalInfo.forTomorrow}
                           clientOwnership={clientOwnership}
                         />

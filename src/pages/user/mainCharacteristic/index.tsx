@@ -1,13 +1,16 @@
 import { Button, Stack, Typography } from '@mui/material'
 import { useTheme } from '@mui/material/styles'
 import { useState } from 'react'
+import { useIntl } from 'react-intl'
 import dynamic from 'next/dynamic'
 import { MainCharacteristicName } from 'shared/api'
 import Circle from 'shared/ui/Circle'
-import { getOffset, RADIUS } from './helper'
-import { useMessages } from './hooks/useMessages'
+import { RADIUS } from './consts'
+import { getOffset } from './lib'
 
-const CharacteristicModal = dynamic(() => import('./components/characteristicModal'))
+const CharacteristicInfoModal = dynamic(() =>
+  import('entities/characteristic').then((m) => m.CharacteristicInfoModal),
+)
 
 interface MainCharacteristicProps {
   name: MainCharacteristicName
@@ -15,11 +18,13 @@ interface MainCharacteristicProps {
 }
 
 function MainCharacteristic({ name, value }: MainCharacteristicProps) {
-  const messages = useMessages(name)
+  const { formatMessage } = useIntl()
   const theme = useTheme()
   const [modal, setModal] = useState<MainCharacteristicName>()
   const offset = getOffset(value)
   const level = Math.floor(value)
+  const header = formatMessage({ id: `common.${name}` })
+  const lvlText = formatMessage({ id: 'common.lvl-short' })
 
   const onClick = () => setModal(name)
 
@@ -67,7 +72,7 @@ function MainCharacteristic({ name, value }: MainCharacteristicProps) {
                 color: 'common.white',
               }}
             >
-              {level} {messages.lvlText}
+              {level} {lvlText}
             </Typography>
             <Typography
               component="p"
@@ -76,12 +81,12 @@ function MainCharacteristic({ name, value }: MainCharacteristicProps) {
                 color: 'common.white',
               }}
             >
-              {messages.header}
+              {header}
             </Typography>
           </Stack>
         </Stack>
       </Button>
-      {modal && <CharacteristicModal name={modal} value={value} onClose={onClose} />}
+      {modal && <CharacteristicInfoModal name={modal} value={value} onClose={onClose} />}
     </>
   )
 }

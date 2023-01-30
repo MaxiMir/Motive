@@ -10,8 +10,8 @@ import EmojiHeader from 'shared/ui/EmojiHeader'
 import Icon from 'shared/ui/Icon'
 import Input from 'shared/ui/Input'
 import Modal from 'shared/ui/Modal'
-import { TooltipArrow } from 'shared/ui/styled'
 import SubmitButton from 'shared/ui/SubmitButton'
+import TooltipArrow from 'shared/ui/TooltipArrow'
 import { useCreateGoal, useMessages } from './lib'
 
 const IconButton = dynamic(() => import('@mui/material/IconButton'))

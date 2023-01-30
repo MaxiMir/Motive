@@ -2,7 +2,7 @@ import { Box, IconButton } from '@mui/material'
 import { useIntl } from 'react-intl'
 import Icon from 'shared/ui/Icon'
 import Player from 'shared/ui/Player'
-import { TooltipArrow } from 'shared/ui/styled'
+import TooltipArrow from 'shared/ui/TooltipArrow'
 
 interface VideoPreviewProps {
   video: Blob | MediaSource

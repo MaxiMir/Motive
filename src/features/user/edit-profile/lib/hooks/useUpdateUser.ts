@@ -3,7 +3,7 @@ import produce from 'immer'
 import { useIntl } from 'react-intl'
 import { useMutation } from 'react-query'
 import { useRouter } from 'next/router'
-import { useMutateUserPage, useUserContext } from 'entities/user'
+import { useMutateUserPage } from 'entities/user'
 import {
   UserPageDto,
   UpdateUserDto,
@@ -29,9 +29,8 @@ interface Options {
   data: UpdateUserDto
 }
 
-export const useUpdateUser = (onSuccess: () => void) => {
+export const useUpdateUser = (user: UserPageDto, onSuccess: () => void) => {
   const { push } = useRouter()
-  const user = useUserContext()
   const { formatMessage } = useIntl()
   const [page, mutatePage] = useMutateUserPage()
   const nicknameError = formatMessage({ id: 'page.user.modal-profile.nickname-error' })

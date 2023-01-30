@@ -17,8 +17,8 @@ interface Values {
 }
 
 export const useForm = (id: number, onSuccess: () => void) => {
-  const { refetch } = useUserPage()
   const { formatMessage } = useIntl()
+  const { refetch } = useUserPage()
   const { enqueueSnackbar } = useSnackbar()
   const { mutateAsync } = useMutation(createConfirmation, {
     onSuccess() {

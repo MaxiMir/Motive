@@ -14,7 +14,7 @@ interface AvatarProps {
   device?: Device | null
   size: number
   buttonProps?: {
-    component: ElementType
+    component?: ElementType
     onClick?: ButtonProps['onClick']
   }
 }

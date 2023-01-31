@@ -2,9 +2,9 @@ import { Button } from '@mui/material'
 import produce from 'immer'
 import { useIntl } from 'react-intl'
 import { useMutation, useQueryClient } from 'react-query'
-import { useSnackbar } from 'entities/snackbar'
 import { FollowingPageDto, UserDto, updateSubscription } from 'shared/api'
 import { Route } from 'shared/config'
+import { useSnackbar } from 'shared/ui/snackbar'
 
 interface Options {
   user: UserDto
@@ -52,7 +52,7 @@ export const useRemoveFollowing = () => {
           enqueueSnackbar({
             message,
             severity: 'success',
-            icon: 'delete',
+            icon: '🗑',
             action: (
               <Button variant="text" sx={{ color: 'error.dark' }} onClick={onClick}>
                 {undoText}

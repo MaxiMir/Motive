@@ -1,17 +1,20 @@
-import { Accordion as MuiAccordion, AccordionDetails, AccordionSummary } from '@mui/material'
-import { EmojiName } from './Emoji'
-import EmojiHeader from './EmojiHeader'
+import {
+  Accordion as MuiAccordion,
+  AccordionDetails,
+  AccordionSummary,
+  Typography,
+} from '@mui/material'
 import Icon from './Icon'
 
 interface AccordionProps {
   id: string
-  name: EmojiName
   header: string | JSX.Element
+  emoji: string
   details: JSX.Element
   defaultExpanded?: boolean
 }
 
-function Accordion({ name, header, id, details, defaultExpanded }: AccordionProps) {
+function Accordion({ header, id, details, defaultExpanded, emoji }: AccordionProps) {
   return (
     <MuiAccordion
       defaultExpanded={defaultExpanded}
@@ -25,9 +28,12 @@ function Accordion({ name, header, id, details, defaultExpanded }: AccordionProp
           <Icon name="expand_more" sx={({ palette }) => ({ color: palette.grey[700] })} />
         }
       >
-        <EmojiHeader name={name} variant="h6" component="h3" color="primary">
+        <Typography variant="h6" component="p">
+          <Typography component="span" sx={{ mr: 0.5 }}>
+            {emoji}
+          </Typography>{' '}
           {header}
-        </EmojiHeader>
+        </Typography>
       </AccordionSummary>
       <AccordionDetails sx={{ overflow: 'auto' }}>{details}</AccordionDetails>
     </MuiAccordion>

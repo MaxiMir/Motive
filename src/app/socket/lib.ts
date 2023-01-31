@@ -5,10 +5,10 @@ import { io } from 'socket.io-client'
 import { useRouter } from 'next/router'
 import { useDeviceContext } from 'entities/device'
 import { getNotificationHref } from 'entities/notification'
-import { useSnackbar } from 'entities/snackbar'
 import { useClient } from 'entities/user'
 import { NotificationDto } from 'shared/api'
 import { getImageSrc } from 'shared/lib/helpers'
+import { useSnackbar } from 'shared/ui/snackbar'
 
 export const useSocket = () => {
   const client = useClient()
@@ -35,7 +35,7 @@ export const useSocket = () => {
       const { id, type, details } = notification
       const message = formatMessage({ id: 'common.new-event' })
       const notificationSupport = 'Notification' in window
-      enqueueSnackbar({ message, severity: 'success', icon: 'notification' })
+      enqueueSnackbar({ message, severity: 'success', icon: '🛎' })
       queryClient.invalidateQueries('notifications')
 
       if (!notificationSupport || document.visibilityState === 'visible') return

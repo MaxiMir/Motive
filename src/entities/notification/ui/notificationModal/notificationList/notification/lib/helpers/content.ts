@@ -1,32 +1,31 @@
-import { MainCharacteristicName, NotificationType } from 'shared/api'
-import { EmojiName } from 'shared/ui/Emoji'
+import { NotificationType } from 'shared/api'
 
 interface NotificationInfo {
-  emoji: EmojiName
+  emoji: string
   color: string
 }
 
 export const getNotificationInfo = (type: NotificationType): NotificationInfo => {
   switch (type) {
     case NotificationType.NewFollower:
-      return { emoji: 'following', color: 'warning.main' }
+      return { emoji: '⭐', color: 'warning.main' }
     case NotificationType.NewGoal:
-      return { emoji: 'goal', color: 'primary.main' }
+      return { emoji: '💎', color: 'primary.main' }
     case NotificationType.AddMotivation:
-      return { emoji: MainCharacteristicName.Motivation, color: 'motivation.main' }
+      return { emoji: '💪', color: 'motivation.main' }
     case NotificationType.AddCreativity:
-      return { emoji: MainCharacteristicName.Creativity, color: 'creativity.main' }
+      return { emoji: '🧠', color: 'creativity.main' }
     case NotificationType.NewQuestion:
-      return { emoji: 'question', color: 'error.main' }
+      return { emoji: '❓', color: 'error.main' }
     case NotificationType.NewSupport:
-      return { emoji: MainCharacteristicName.Support, color: 'support.main' }
+      return { emoji: '🙏', color: 'support.main' }
     case NotificationType.NewAnswer:
-      return { emoji: MainCharacteristicName.Support, color: 'support.main' }
+      return { emoji: '🙏', color: 'support.main' }
     case NotificationType.NewFeedback:
-      return { emoji: 'feedback', color: '#cfd8dc' }
+      return { emoji: '💭', color: '#cfd8dc' }
     case NotificationType.WebCoverage:
-      return { emoji: 'web', color: 'abandoned.main' }
+      return { emoji: '🕸', color: 'abandoned.main' }
     default:
-      return { emoji: 'notification', color: 'common.white' }
+      return { emoji: '🛎', color: 'common.white' }
   }
 }

@@ -2,12 +2,11 @@ import { Grid, Typography, Stack } from '@mui/material'
 import { Field, FieldArray, Form, FormikProvider } from 'formik'
 import { usePhotoLimit } from 'features/select-photo'
 import CancelButton from 'shared/ui/CancelButton'
-import EmojiHeader from 'shared/ui/EmojiHeader'
 import Input from 'shared/ui/Input'
 import Modal from 'shared/ui/Modal'
 import PhotoButton from 'shared/ui/photoButton'
 import PhotoInput from 'shared/ui/PhotoInput'
-import ShakeEmoji from 'shared/ui/ShakeEmoji'
+import ShakeTypography from 'shared/ui/ShakeTypography'
 import SubmitButton from 'shared/ui/SubmitButton'
 import VideoInput from 'shared/ui/videoInput'
 import VideoPreview from 'shared/ui/VideoPreview'
@@ -38,7 +37,7 @@ function CreateFeedback({ goalId, dayId, onClose }: AddingModalProps) {
           disabled={isSubmitting}
           text={messages.buttonText}
           loadingText={messages.loadingText}
-          emoji="feedback"
+          emoji="💭"
           key="submit"
           onClick={submitForm}
         />,
@@ -49,7 +48,7 @@ function CreateFeedback({ goalId, dayId, onClose }: AddingModalProps) {
         <Form>
           <Stack alignItems="center" spacing={3}>
             <Stack alignItems="center" spacing={1}>
-              <ShakeEmoji name="congratulations" />
+              <ShakeTypography>🎉</ShakeTypography>
               <Typography variant="subtitle1" sx={{ color: 'support.main' }}>
                 {messages.subtitle}
               </Typography>
@@ -64,9 +63,9 @@ function CreateFeedback({ goalId, dayId, onClose }: AddingModalProps) {
             />
             {!!values.photos.length && (
               <Stack spacing={2} width="100%">
-                <EmojiHeader name="photo" variant="h6" component="h2" color="primary">
-                  {messages.photoTitle}
-                </EmojiHeader>
+                <Typography variant="h6" component="p" color="primary">
+                  📸 {messages.photoTitle}
+                </Typography>
                 <FieldArray name="photos">
                   {({ remove }) => (
                     <Grid container spacing={2}>
@@ -86,9 +85,9 @@ function CreateFeedback({ goalId, dayId, onClose }: AddingModalProps) {
             )}
             {values.video && (
               <Stack spacing={2} width="100%">
-                <EmojiHeader name="video" variant="h6" component="h2" color="primary">
-                  {messages.videoTitle}
-                </EmojiHeader>
+                <Typography variant="h6" component="p" color="primary">
+                  🎬 {messages.videoTitle}
+                </Typography>
                 <VideoPreview
                   video={values.video}
                   disabled={isSubmitting}

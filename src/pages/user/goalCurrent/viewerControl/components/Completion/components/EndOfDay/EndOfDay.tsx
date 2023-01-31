@@ -2,7 +2,6 @@ import dynamic from 'next/dynamic'
 import { MemberDto } from 'shared/api'
 import { getTomorrow } from 'shared/lib/utils'
 import BlueButton from 'shared/ui/BlueButton'
-import Emoji from 'shared/ui/Emoji'
 import TooltipArrow from 'shared/ui/TooltipArrow'
 import { useMessages } from './hooks/useMessages'
 import { useSendEndOfDay } from './hooks/useSendEndOfDay'
@@ -28,13 +27,7 @@ function EndOfDay({ nextDayId, forTomorrow, clientMember }: EndOfDayProps) {
       <BlueButton
         size="small"
         disabled={forTomorrow || isLoading}
-        startIcon={
-          isLoading ? (
-            <CircularProgress size={14.5} color="primary" />
-          ) : (
-            <Emoji name="moon" onlyEmoji />
-          )
-        }
+        startIcon={isLoading ? <CircularProgress size={14.5} color="primary" /> : '🌒'}
         onClick={onClick}
       >
         {messages.buttonText}

@@ -3,9 +3,8 @@ import { styled } from '@mui/system'
 import { MouseEvent } from 'react'
 import { useIntl } from 'react-intl'
 import { useSetLocale, Locale } from 'entities/locale'
-import { usePaletteModeContext } from 'entities/theme'
-import Emoji from 'shared/ui/Emoji'
 import Modal from 'shared/ui/Modal'
+import { usePaletteModeContext } from 'shared/ui/theme'
 import { useMessages } from './lib'
 
 interface SettingsModalProps {
@@ -43,16 +42,16 @@ function SettingsModal({ onClose }: SettingsModalProps) {
             onChange={onChangeLocale}
           >
             <GroupButton size="small" value={Locale.En}>
-              <Emoji name="en" /> EN
+              🇺🇸 EN
             </GroupButton>
             <GroupButton size="small" value={Locale.Ru}>
-              <Emoji name="ru" /> РУ
+              🇷🇺 РУ
             </GroupButton>
             <GroupButton size="small" value={Locale.Uk}>
-              <Emoji name="uk" /> УК
+              🇺🇦 УК
             </GroupButton>
             <GroupButton size="small" value={Locale.Zh}>
-              <Emoji name="zh" /> 中国
+              🇨🇳 中国
             </GroupButton>
           </ToggleButtonGroup>
         </Stack>
@@ -68,13 +67,13 @@ function SettingsModal({ onClose }: SettingsModalProps) {
             onChange={onChangeMode}
           >
             <GroupButton size="small" value="light" disabled>
-              <Emoji name="light" /> {messages.lightText}
+              🔆 {messages.lightText}
             </GroupButton>
             <GroupButton size="small" value="system" disabled>
-              <Emoji name="system" /> {messages.systemText}
+              ⚙️ {messages.systemText}
             </GroupButton>
             <GroupButton size="small" value="dark" disabled>
-              <Emoji name="dark" /> {messages.darkText}
+              🌑 {messages.darkText}
             </GroupButton>
           </ToggleButtonGroup>
         </Stack>

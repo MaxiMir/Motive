@@ -3,9 +3,9 @@ import { useRef } from 'react'
 import { useIntl } from 'react-intl'
 import { useMutation } from 'react-query'
 import dynamic from 'next/dynamic'
-import { useSnackbar } from 'entities/snackbar'
 import { useMutateUserPage, useClient } from 'entities/user'
 import { MemberDto, UserPageDto, updateCompleted } from 'shared/api'
+import { useSnackbar } from 'shared/ui/snackbar'
 
 const Button = dynamic(() => import('@mui/material/Button'))
 
@@ -78,7 +78,7 @@ export const useSetCompleted = (
     enqueueSnackbar({
       message,
       severity: 'success',
-      icon: !newRest ? 'motivation-tech' : 'energy',
+      icon: !newRest ? '🦾️' : '⚡️',
       action: (
         <Button variant="text" sx={{ color: 'error.dark' }} onClick={onUndo}>
           {undoText}

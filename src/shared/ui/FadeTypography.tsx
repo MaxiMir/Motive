@@ -1,14 +1,16 @@
-import Emoji, { EmojiName } from 'shared/ui/Emoji'
+import { Typography } from '@mui/material'
+import { ReactNode } from 'react'
 
-interface FadeEmojiProps {
-  name: EmojiName
+interface FadeTypographyProps {
+  children: ReactNode
 }
 
-function FadeEmoji({ name }: FadeEmojiProps) {
+function FadeTypography({ children }: FadeTypographyProps) {
   return (
-    <Emoji
-      name={name}
+    <Typography
       variant="h2"
+      paragraph
+      m={0}
       sx={{
         animation: 'fade 1.4s cubic-bezier(0.550, 0.085, 0.680, 0.530) both',
         '@keyframes fade': {
@@ -22,8 +24,10 @@ function FadeEmoji({ name }: FadeEmojiProps) {
           },
         },
       }}
-    />
+    >
+      {children}
+    </Typography>
   )
 }
 
-export default FadeEmoji
+export default FadeTypography

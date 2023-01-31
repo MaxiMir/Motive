@@ -1,11 +1,11 @@
 import { Box, Stack, Typography } from '@mui/material'
 import { useGoalContext } from 'entities/goal'
 import CancelButton from 'shared/ui/CancelButton'
-import FlyEmoji from 'shared/ui/FlyEmoji'
+import FlyTypography from 'shared/ui/FlyTypography'
 import Modal from 'shared/ui/Modal'
 import SubmitButton from 'shared/ui/SubmitButton'
 import { useMessages } from './hooks/useMessages'
-import { useSendStage } from './hooks/useSendStage'
+import { useUpdateStage } from './hooks/useUpdateStage'
 
 interface StageModalProps {
   onClose: () => void
@@ -14,7 +14,7 @@ interface StageModalProps {
 function StageModal({ onClose }: StageModalProps) {
   const { id, stages, day } = useGoalContext()
   const messages = useMessages(stages.length === day.stage)
-  const { isLoading, mutate } = useSendStage(onClose)
+  const { isLoading, mutate } = useUpdateStage(onClose)
   const nextStage = day.stage + 1
 
   const onClick = () => mutate({ id, stage: nextStage })
@@ -36,7 +36,7 @@ function StageModal({ onClose }: StageModalProps) {
           disabled={isLoading}
           text={messages.button}
           loadingText={messages.buttonLoading}
-          emoji="stage"
+          emoji="🚀"
           key="submit"
           onClick={onClick}
         />,
@@ -44,7 +44,7 @@ function StageModal({ onClose }: StageModalProps) {
       onClose={onClose}
     >
       <Stack alignItems="center" spacing={1}>
-        <FlyEmoji name="stage" />
+        <FlyTypography>🚀</FlyTypography>
         <Typography variant="subtitle1" sx={{ color: 'support.main' }}>
           <b>{messages.behind}</b>
         </Typography>

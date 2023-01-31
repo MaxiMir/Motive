@@ -1,16 +1,11 @@
 import { FeedbackDto } from '../feedback'
 import { CreateTaskDto, TaskDto } from '../task'
 
-interface DayCharacteristicDto {
-  readonly motivation: number
-  readonly creativity: number
-}
-
 export interface DayDto {
   readonly id: number
   readonly stage: number
   readonly date: string
-  readonly characteristic: DayCharacteristicDto | null
+  readonly characteristic: Readonly<{ motivation: number; creativity: number }> | null
   readonly tasks: TaskDto[]
   readonly topicCount: number
   readonly feedback: FeedbackDto | null

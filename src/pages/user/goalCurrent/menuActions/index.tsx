@@ -15,13 +15,12 @@ const DeleteMembershipModal = dynamic(() => import('features/membership/delete-m
 
 interface MenuActionsProps {
   goalId: number
-  goalName: number
+  goalName: string
   href: string
-  title: string
   clientOwnership: OwnershipDto
 }
 
-export function MenuActions({ goalId, goalName, href, title, clientOwnership }: MenuActionsProps) {
+export function MenuActions({ goalId, goalName, href, clientOwnership }: MenuActionsProps) {
   const id = useId()
   const menuId = useId()
   const messages = useMessages()
@@ -37,7 +36,7 @@ export function MenuActions({ goalId, goalName, href, title, clientOwnership }: 
 
   const onShare = async () => {
     onCloseMenu()
-    await tryNativeShare(href, title, toggleSharing)
+    await tryNativeShare(href, goalName, toggleSharing)
   }
 
   const onLeave = () => {
@@ -92,7 +91,7 @@ export function MenuActions({ goalId, goalName, href, title, clientOwnership }: 
           <ListItem icon="block" primary={messages.cancelText} color="grey" />
         </MenuItem>
       </Menu>
-      {sharing && <Share href={href} title={title} onClose={toggleSharing} />}
+      {sharing && <Share href={href} title={goalName} onClose={toggleSharing} />}
       {reporting && (
         <CreateReport id={goalId} type="goal" anchorEl={anchorEl} onClose={onCloseReport} />
       )}

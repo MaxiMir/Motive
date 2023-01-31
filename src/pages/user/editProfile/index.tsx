@@ -2,7 +2,7 @@ import { useIntl } from 'react-intl'
 import dynamic from 'next/dynamic'
 import { UserPageDto } from 'shared/api'
 import { useToggle } from 'shared/lib/hooks'
-import GreyButton from 'shared/ui/GreyButton'
+import { GreyButton } from 'shared/ui/GreyButton'
 import Icon from 'shared/ui/Icon'
 
 const EditProfileModal = dynamic(() => import('features/user/edit-profile'))

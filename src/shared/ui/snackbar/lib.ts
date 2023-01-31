@@ -1,5 +1,5 @@
 import { createContext, useContext } from 'react'
-import { SnackbarState } from 'entities/snackbar/types'
+import { SnackbarState } from './types'
 
 interface SnackbarContextType {
   state: SnackbarState | null

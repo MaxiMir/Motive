@@ -2,9 +2,9 @@ import { useFormik } from 'formik'
 import produce from 'immer'
 import { useIntl } from 'react-intl'
 import { useMutation } from 'react-query'
-import { useSnackbar } from 'entities/snackbar'
 import { useMutateGoals } from 'entities/user'
 import { GoalDto, FeedbackDto, createFeedback, feedbackSchema } from 'shared/api'
+import { useSnackbar } from 'shared/ui/snackbar'
 
 const getNextState = (goals: GoalDto[], goalId: number, feedback: FeedbackDto) =>
   produce(goals, (draft) => {
@@ -26,7 +26,7 @@ export const useCreateFeedback = (goalId: number, dayId: number, onSuccess: () =
     onSuccess: (feedback) => {
       const message = formatMessage({ id: 'page.user.modal-feedback.message' })
       mutateGoals(getNextState(goals, goalId, feedback))
-      enqueueSnackbar({ message, severity: 'success', icon: 'feedback' })
+      enqueueSnackbar({ message, severity: 'success', icon: '💭' })
       onSuccess()
     },
   })

@@ -39,7 +39,7 @@ function EditTopicModal({ message, onClose }: EditTopicModalProps) {
           disabled={isSubmitting}
           text={messages.buttonText}
           loadingText={messages.loadingText}
-          emoji="save"
+          emoji="💾"
           key="submit"
           onClick={handleSubmit}
         />,

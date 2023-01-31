@@ -1,5 +1,4 @@
 import { Typography } from '@mui/material'
-import DecorEmoji from 'shared/ui/DecorEmoji'
 import { useMessages } from './lib'
 
 export function OldPittRules() {
@@ -9,9 +8,9 @@ export function OldPittRules() {
     <Typography color="darkgray">
       &#9679; {messages.huntsText}.
       <br />
-      &#9679; {messages.coversText} <DecorEmoji name="web" />.
+      &#9679; {messages.coversText} 🕸.
       <br />
-      &#9679; {messages.eatsText} <DecorEmoji name="blood" />.
+      &#9679; {messages.eatsText} 🩸.
       <br />
       &#9679; {messages.burnText}.
     </Typography>

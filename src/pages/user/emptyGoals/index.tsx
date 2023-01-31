@@ -1,6 +1,6 @@
 import { Stack, Typography } from '@mui/material'
 import { useIntl } from 'react-intl'
-import FadeEmoji from 'shared/ui/FadeEmoji'
+import FadeTypography from 'shared/ui/FadeTypography'
 import OwnerDescription from './ownerDescription'
 
 interface AddGoalProps {
@@ -16,7 +16,7 @@ function EmptyGoals({ clientPage }: AddGoalProps) {
       <Typography variant="h6" component="p" color="primary" mb={2}>
         {title}
       </Typography>
-      <FadeEmoji name="goal" />
+      <FadeTypography>💎</FadeTypography>
       {clientPage && <OwnerDescription />}
     </Stack>
   )

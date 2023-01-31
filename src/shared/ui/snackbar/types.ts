@@ -1,3 +1,3 @@
-import { SnackbarProps } from 'shared/ui/Snackbar'
+import { SnackbarProps } from './ui'
 
 export type SnackbarState = Omit<SnackbarProps, 'onClose'>

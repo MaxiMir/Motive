@@ -4,8 +4,6 @@ import { ChangeEvent } from 'react'
 import { useGoalContext } from 'entities/goal'
 import Accordion from 'shared/ui/Accordion'
 import CancelButton from 'shared/ui/CancelButton'
-import DecorEmoji from 'shared/ui/DecorEmoji'
-import Emoji from 'shared/ui/Emoji'
 import Modal from 'shared/ui/Modal'
 import SubmitButton from 'shared/ui/SubmitButton'
 import { useForm, useMessages } from './lib'
@@ -45,7 +43,7 @@ function JoinModal({ onClose }: JoinModalProps) {
           disabled={isSubmitting}
           text={messages.buttonText}
           loadingText={messages.loadingText}
-          emoji="join"
+          emoji="📬"
           key="submit"
           onClick={handleSubmit}
         />,
@@ -60,7 +58,7 @@ function JoinModal({ onClose }: JoinModalProps) {
                 value={disableBeginning ? 'none' : beginningDay.toString()}
                 label={
                   <Stack direction="row" spacing={1}>
-                    {messages.beginLabel} <Emoji name="serenity" onlyEmoji />
+                    {messages.beginLabel} 🗻
                   </Stack>
                 }
                 disabled={isSubmitting || disableBeginning}
@@ -70,7 +68,7 @@ function JoinModal({ onClose }: JoinModalProps) {
                 value={thisDay.toString()}
                 label={
                   <Stack direction="row" spacing={1}>
-                    {messages.dayLabel} <Emoji name="blast" onlyEmoji />
+                    {messages.dayLabel} 🌋
                   </Stack>
                 }
                 disabled={isSubmitting}
@@ -80,7 +78,7 @@ function JoinModal({ onClose }: JoinModalProps) {
           </Form>
         </FormikProvider>
         <Accordion
-          name="knot"
+          emoji="🪢"
           header={messages.accordionHeader}
           id="tips"
           details={
@@ -95,9 +93,7 @@ function JoinModal({ onClose }: JoinModalProps) {
                 {', '}
                 {messages.accordingNeeded}.
               </Typography>
-              <Typography>
-                &#9679; {messages.accordingQuestions} <DecorEmoji name="discussion" />.
-              </Typography>
+              <Typography>&#9679; {messages.accordingQuestions} 💬.</Typography>
             </Box>
           }
         />

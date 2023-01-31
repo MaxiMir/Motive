@@ -1,16 +1,9 @@
-import { ListItemIcon, ListItemText, Menu, MenuItem } from '@mui/material'
+import { ListItemIcon, ListItemText, Menu, MenuItem, Typography } from '@mui/material'
 import { paperClasses } from '@mui/material/Paper'
 import { useIntl } from 'react-intl'
 import { Locale, useSetLocale } from 'entities/locale'
-import Emoji from 'shared/ui/Emoji'
 import ListItem from 'shared/ui/ListItem'
-
-const LANGUAGES = [
-  { primary: 'EN', name: 'en', value: Locale.En },
-  { primary: 'РУ', name: 'ru', value: Locale.Ru },
-  { primary: 'УК', name: 'uk', value: Locale.Uk },
-  { primary: '中国', name: 'zh', value: Locale.Zh },
-] as const
+import { LANGUAGES } from './consts'
 
 interface LanguageMenuProps {
   anchorEl: HTMLElement | null
@@ -38,10 +31,12 @@ function ChangeLanguage({ anchorEl, onClose }: LanguageMenuProps) {
       }}
       onClose={onClose}
     >
-      {LANGUAGES.map(({ name, primary, value }) => (
-        <MenuItem disabled={locale === value} key={name} onClick={() => onClick(value)}>
+      {LANGUAGES.map(({ primary, value, emoji }) => (
+        <MenuItem disabled={locale === value} key={primary} onClick={() => onClick(value)}>
           <ListItemIcon>
-            <Emoji name={name} sx={{ fontSize: 24 }} />
+            <Typography paragraph m={0} sx={{ fontSize: 24 }}>
+              {emoji}
+            </Typography>
           </ListItemIcon>
           <ListItemText primary={primary} />
         </MenuItem>

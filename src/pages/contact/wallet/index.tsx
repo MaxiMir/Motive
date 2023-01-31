@@ -1,8 +1,8 @@
 import { Box, IconButton, Stack, Typography } from '@mui/material'
 import Image, { ImageProps } from 'next/image'
-import { useSnackbar } from 'entities/snackbar'
 import { copyText } from 'shared/lib/helpers'
 import Icon from 'shared/ui/Icon'
+import { useSnackbar } from 'shared/ui/snackbar'
 import TooltipArrow from 'shared/ui/TooltipArrow'
 import { useMessages } from './lib'
 
@@ -17,11 +17,11 @@ export function Wallet({ name, wallet, src }: WalletProps) {
   const { enqueueSnackbar } = useSnackbar()
 
   const onSuccess = () => {
-    enqueueSnackbar({ message: messages.copiedText, severity: 'success', icon: 'keyboard' })
+    enqueueSnackbar({ message: messages.copiedText, severity: 'success', icon: '⌨️' })
   }
 
   const onError = () => {
-    enqueueSnackbar({ message: messages.errorText, severity: 'error', icon: 'error' })
+    enqueueSnackbar({ message: messages.errorText, severity: 'error', icon: '👺' })
   }
 
   const onClick = () => copyText(wallet).then(onSuccess).catch(onError)

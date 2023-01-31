@@ -1,9 +1,9 @@
 import produce from 'immer'
 import { useIntl } from 'react-intl'
 import { useMutation } from 'react-query'
-import { useSnackbar } from 'entities/snackbar'
 import { useMutateGoals } from 'entities/user'
 import { GoalDto, updateStage } from 'shared/api'
+import { useSnackbar } from 'shared/ui/snackbar'
 
 const getNextState = (goals: GoalDto[], goalId: number) =>
   produce(goals, (draft) => {
@@ -11,7 +11,7 @@ const getNextState = (goals: GoalDto[], goalId: number) =>
     draftGoal.stage += 1
   })
 
-export const useSendStage = (onSuccess: () => void) => {
+export const useUpdateStage = (onSuccess: () => void) => {
   const { formatMessage } = useIntl()
   const [goals, mutateGoals] = useMutateGoals()
   const { enqueueSnackbar } = useSnackbar()
@@ -21,7 +21,7 @@ export const useSendStage = (onSuccess: () => void) => {
       const message = formatMessage({ id: 'component.modal-completion.message' })
       mutateGoals(getNextState(goals, id))
       onSuccess()
-      enqueueSnackbar({ message, severity: 'success', icon: 'stage' })
+      enqueueSnackbar({ message, severity: 'success', icon: '🚀' })
     },
   })
 }

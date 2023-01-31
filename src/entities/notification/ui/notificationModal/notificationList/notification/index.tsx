@@ -7,7 +7,6 @@ import { NotificationDto } from 'shared/api'
 import { joinToHref, toShortString } from 'shared/lib/helpers'
 import { useFormatDistance } from 'shared/lib/hooks'
 import Avatar from 'shared/ui/avatar'
-import Emoji from 'shared/ui/Emoji'
 import Icon from 'shared/ui/Icon'
 import TooltipArrow from 'shared/ui/TooltipArrow'
 import { getNotificationInfo, useMessages, useUpdateRead } from './lib'
@@ -53,7 +52,7 @@ export function Notification({ notification, onClose }: NotificationProps) {
           fontSize={11}
           sx={{ backgroundColor: '#262626' }}
         >
-          <Emoji name={emoji} onlyEmoji />
+          {emoji}
         </Box>
       </Box>
       <Stack justifyContent="space-between">

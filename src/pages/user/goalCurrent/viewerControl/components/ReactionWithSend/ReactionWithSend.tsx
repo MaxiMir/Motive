@@ -1,3 +1,4 @@
+import { Emoji } from 'entities/characteristic'
 import { useGoalContext } from 'entities/goal'
 import { DayCharacteristicName } from 'shared/api'
 import EmojiButton from 'shared/ui/EmojiButton'
@@ -15,14 +16,15 @@ function ReactionWithSend({ name }: ReactionWithSendProps) {
   const messages = useMessages(name, active)
   const count = getCount(goal, name)
   const [isLoading, onClick] = useSetReaction(name, active)
+  const startIcon = Emoji[name]
 
   return (
     <EmojiButton
-      name={name}
       title={messages.title}
       count={count}
       isLoading={isLoading}
       active={active}
+      startIcon={startIcon}
       onClick={onClick}
     />
   )

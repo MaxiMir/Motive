@@ -29,7 +29,7 @@ function ReactionSupport({ owner }: ReactionSupportProps) {
 
   return (
     <>
-      <EmojiButton name="support" title={messages.title} active={false} onClick={onClick} />
+      <EmojiButton title={messages.title} active={false} startIcon="🙏" onClick={onClick} />
       {open && <SupportModal owner={owner} onClose={toggle} />}
     </>
   )

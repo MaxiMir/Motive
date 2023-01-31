@@ -3,10 +3,10 @@ import { useFormik } from 'formik'
 import { useIntl } from 'react-intl'
 import { useMutation } from 'react-query'
 import { useUserPage } from 'entities/page'
-import { useSnackbar } from 'entities/snackbar'
 import { createConfirmation, confirmationSchema } from 'shared/api'
 import { scrollToElem } from 'shared/lib/helpers'
 import { getMidnight } from 'shared/lib/utils'
+import { useSnackbar } from 'shared/ui/snackbar'
 
 interface Values {
   text: string
@@ -26,7 +26,7 @@ export const useForm = (id: number, onSuccess: () => void) => {
       onSuccess()
       setTimeout(() => scrollToElem('main'), 0)
       setTimeout(refetch, 300)
-      enqueueSnackbar({ message, severity: 'success', icon: 'bug' })
+      enqueueSnackbar({ message, severity: 'success', icon: '👾' })
     },
   })
 

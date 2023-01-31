@@ -2,9 +2,9 @@ import produce from 'immer'
 import { useIntl } from 'react-intl'
 import { useMutation } from 'react-query'
 import { useOpenSignIn } from 'entities/signin'
-import { useSnackbar } from 'entities/snackbar'
 import { useMutateUserPage, useClient } from 'entities/user'
 import { UserPageDto, updateSubscription } from 'shared/api'
+import { useSnackbar } from 'shared/ui/snackbar'
 
 const getNextState = (page: UserPageDto, following: boolean) =>
   produce(page, (draft) => {
@@ -29,7 +29,7 @@ export const useUpdateFollowing = (userId: number, following: boolean): [boolean
         const operation = insert ? 'add' : 'remove'
         const message = formatMessage({ id: `page.user.following.message-${operation}` })
         mutatePage(getNextState(page, insert))
-        enqueueSnackbar({ message, severity: 'success', icon: 'speaker' })
+        enqueueSnackbar({ message, severity: 'success', icon: '🧞‍♂️️‍' })
       },
     },
   )

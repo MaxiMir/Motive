@@ -6,14 +6,14 @@ export const enum MessageType {
   Support = 'support',
 }
 
-export interface CreateMessageDto {
+export interface CreateTopicDto {
   readonly dayId: number
   readonly topicId?: number
   readonly type: MessageType
   readonly text: string
 }
 
-export interface UpdateMessageDto {
+export interface UpdateTopicDto {
   readonly text: string
 }
 

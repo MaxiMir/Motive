@@ -1,4 +1,13 @@
-import { Box, Button, FormControl, Stack, FormControlLabel, RadioGroup, Radio } from '@mui/material'
+import {
+  Box,
+  Button,
+  FormControl,
+  Stack,
+  FormControlLabel,
+  RadioGroup,
+  Radio,
+  Typography,
+} from '@mui/material'
 import { styled } from '@mui/system'
 import { Field, FieldArray, Form, FormikProvider } from 'formik'
 import dynamic from 'next/dynamic'
@@ -6,7 +15,6 @@ import { TaskField } from 'entities/task'
 import { useFocus } from 'shared/lib/hooks'
 import { getMidnightISO, getTomorrowISO } from 'shared/lib/utils'
 import CancelButton from 'shared/ui/CancelButton'
-import EmojiHeader from 'shared/ui/EmojiHeader'
 import Icon from 'shared/ui/Icon'
 import Input from 'shared/ui/Input'
 import Modal from 'shared/ui/Modal'
@@ -44,7 +52,7 @@ function CreateGoalModal({ onClose }: CreateGoalModalProps) {
           disabled={isSubmitting}
           text={messages.buttonText}
           loadingText={messages.loadingText}
-          emoji="goal"
+          emoji="💎"
           key="submit"
           onClick={handleSubmit}
         />,
@@ -75,9 +83,9 @@ function CreateGoalModal({ onClose }: CreateGoalModalProps) {
             </Stack>
             <Stack spacing={1}>
               <Stack direction="row" spacing={1}>
-                <EmojiHeader name="stage" variant="h6" component="h4" color="primary">
-                  {messages.stagesHeader}
-                </EmojiHeader>
+                <Typography variant="h6" component="p" color="primary">
+                  🚀 {messages.stagesHeader}
+                </Typography>
                 <TooltipArrow title={messages.stageHint}>
                   <IconButton color="info">
                     <Icon name="help_outline" />
@@ -121,9 +129,9 @@ function CreateGoalModal({ onClose }: CreateGoalModalProps) {
               </FieldArray>
             </Stack>
             <FormControl variant="standard">
-              <EmojiHeader name="clock" variant="h6" component="label">
-                {messages.startHeader}
-              </EmojiHeader>
+              <Typography variant="h6" component="label" color="primary">
+                🕰 {messages.startHeader}
+              </Typography>
               <RadioGroup
                 name="started"
                 value={values.started}
@@ -144,9 +152,9 @@ function CreateGoalModal({ onClose }: CreateGoalModalProps) {
               </RadioGroup>
             </FormControl>
             <Stack spacing={2}>
-              <EmojiHeader name="task" variant="h6" component="h4" color="primary">
-                {messages.tasksHeader}
-              </EmojiHeader>
+              <Typography variant="h6" component="p" color="primary">
+                📌 {messages.tasksHeader}
+              </Typography>
               <FieldArray name="tasks">
                 {({ push, remove }) => (
                   <>

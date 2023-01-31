@@ -25,7 +25,7 @@ function DeleteAvatarModal({ userId, onClose }: DeleteAvatarModalProps) {
           disabled={isLoading}
           text={messages.deleteText}
           loadingText={messages.deletingText}
-          emoji="delete"
+          emoji="🗑"
           key="submit"
           onClick={onClick}
         />,

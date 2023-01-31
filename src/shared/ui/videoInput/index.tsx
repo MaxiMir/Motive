@@ -1,7 +1,6 @@
-import { Button, Chip } from '@mui/material'
+import { Button, Chip, Typography } from '@mui/material'
 import { styled } from '@mui/system'
 import { ChangeEvent, useRef } from 'react'
-import Emoji from 'shared/ui/Emoji'
 import { useMessages } from './lib'
 
 interface VideoInputProps {
@@ -34,7 +33,9 @@ function VideoInput({ disabled, onSelect }: VideoInputProps) {
         }}
         onClick={onClick}
       >
-        <Emoji name="cassette" variant="h1" />
+        <Typography variant="h1" paragraph m={0}>
+          📼
+        </Typography>
         <Chip
           size="small"
           label={messages.soonText}

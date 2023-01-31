@@ -1,6 +1,6 @@
 import { Box, Typography } from '@mui/material'
 import Container from 'shared/ui/Container'
-import FadeEmoji from 'shared/ui/FadeEmoji'
+import FadeTypography from 'shared/ui/FadeTypography'
 import { useMessages } from './lib'
 
 export function FeedPage() {
@@ -23,7 +23,7 @@ export function FeedPage() {
         <Typography variant="h5" component="p" color="primary">
           {messages.text}
         </Typography>
-        <FadeEmoji name="keyboard" />
+        <FadeTypography>⌨️</FadeTypography>
       </Box>
     </Container>
   )

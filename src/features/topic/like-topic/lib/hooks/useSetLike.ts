@@ -2,9 +2,9 @@ import produce from 'immer'
 import { useIntl } from 'react-intl'
 import { InfiniteData, useMutation, useQueryClient } from 'react-query'
 import { useOpenSignIn } from 'entities/signin'
-import { useSnackbar } from 'entities/snackbar'
 import { useMutateGoals, useClient } from 'entities/user'
 import { GoalDto, MessageDto, MessageType, TopicDto, updateLike } from 'shared/api'
+import { useSnackbar } from 'shared/ui/snackbar'
 
 export interface Options {
   message: MessageDto
@@ -68,14 +68,14 @@ export const useSetLike = (message: MessageDto, answerFor?: number): [boolean, (
       )
 
       if (message.type === MessageType.Support) {
-        enqueueSnackbar({ message: userMessage, severity: 'success', icon: 'magic' })
+        enqueueSnackbar({ message: userMessage, severity: 'success', icon: '✨' })
       }
 
       const goalMessage = formatMessage({ id: 'page.user.like-button.goal-message' })
 
       if (answerFor) {
         mutateGoals(getGoalNextState(goals, goalId, add))
-        enqueueSnackbar({ message: goalMessage, severity: 'success', icon: 'magic' })
+        enqueueSnackbar({ message: goalMessage, severity: 'success', icon: '✨' })
       }
     },
     onError(_, _1, context) {

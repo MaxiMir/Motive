@@ -3,9 +3,7 @@ import { Device } from '../device'
 
 export type UserCharacteristicName = MainCharacteristicName | SecondCharacteristicName
 
-export type UserCharacteristicDto = Readonly<{
-  [k in UserCharacteristicName]: number
-}>
+export type UserCharacteristicDto = Readonly<{ [k in UserCharacteristicName]: number }>
 
 export interface UserBaseDto {
   readonly id: number
@@ -25,7 +23,7 @@ export interface UserBaseDto {
   readonly links?: ExternalLink[]
 }
 
-export interface ExternalLink {
+interface ExternalLink {
   readonly href: string
   readonly title?: string
 }

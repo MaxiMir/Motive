@@ -3,7 +3,6 @@ import { useIntl } from 'react-intl'
 import { useMutation, useQueryClient } from 'react-query'
 import { useGoalContext } from 'entities/goal'
 import { useOpenSignIn } from 'entities/signin'
-import { useSnackbar } from 'entities/snackbar'
 import { useUserContext, useClient } from 'entities/user'
 import {
   DayCharacteristicName,
@@ -11,6 +10,7 @@ import {
   UserPageDto,
   updateCharacteristic,
 } from 'shared/api'
+import { useSnackbar } from 'shared/ui/snackbar'
 
 const getNextState = (page: UserPageDto, { id, dayId, add, name }: DayCharacteristicUpdateDto) =>
   produce(page, (draft) => {
@@ -58,7 +58,7 @@ export const useSetReaction = (
         { id: 'page.user.topic.message', defaultMessage: '' },
         { value: nameText },
       )
-      enqueueSnackbar({ message, severity: 'success', icon: 'magic' })
+      enqueueSnackbar({ message, severity: 'success', icon: '✨' })
     },
     onError(_, _1, context) {
       if (context?.previous) {

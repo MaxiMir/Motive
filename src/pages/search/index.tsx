@@ -2,7 +2,6 @@ import { Grid, Typography, Stack } from '@mui/material'
 import dynamic from 'next/dynamic'
 import { HashtagDto, GoalDto, UserDto } from 'shared/api'
 import Container from 'shared/ui/Container'
-import EmojiHeader from 'shared/ui/EmojiHeader'
 import { GRADIENTS } from './consts'
 import { useMessages } from './lib'
 import { SearchForm } from './searchForm'
@@ -32,9 +31,9 @@ export function SearchPage({ q, hashtags, goals, users }: SearchPageProps) {
         <SearchForm q={q} />
         {!!users.length && (
           <Stack spacing={2}>
-            <EmojiHeader variant="h4" component="h2" name="followers">
-              {messages.userText}
-            </EmojiHeader>
+            <Typography variant="h4" component="h2">
+              🥷 {messages.userText}
+            </Typography>
             <Grid container spacing={2}>
               {users.map((user) => (
                 <Grid item xs={12} sm={6} md={3} lg={3} key={user.id}>
@@ -46,9 +45,9 @@ export function SearchPage({ q, hashtags, goals, users }: SearchPageProps) {
         )}
         {noResult && <NoResult phrase={q} />}
         <Stack spacing={2}>
-          <EmojiHeader variant="h4" component="h2" name="trending">
-            {messages.trendText}
-          </EmojiHeader>
+          <Typography variant="h4" component="h2">
+            👑 {messages.trendText}
+          </Typography>
           <Grid container spacing={2}>
             {hashtags.map(({ name, views }, key) => (
               <Grid item xs={6} md={3} lg={2} key={name}>
@@ -59,9 +58,9 @@ export function SearchPage({ q, hashtags, goals, users }: SearchPageProps) {
         </Stack>
         {!!goals.length && false && (
           <Stack spacing={2}>
-            <EmojiHeader variant="h4" component="h2" name="goal">
-              {messages.goalText}
-            </EmojiHeader>
+            <Typography variant="h4" component="h2">
+              💎 {messages.goalText}
+            </Typography>
             <Grid container spacing={2}>
               {goals.map((goal) => (
                 <Grid item xs={12} sm={6} md={3} lg={2} key={goal.id}>

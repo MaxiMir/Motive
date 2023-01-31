@@ -1,14 +1,14 @@
 import { Box, Stack, Typography } from '@mui/material'
 import { OwnershipDto } from 'shared/api'
 import CancelButton from 'shared/ui/CancelButton'
-import FadeEmoji from 'shared/ui/FadeEmoji'
+import FadeTypography from 'shared/ui/FadeTypography'
 import Modal from 'shared/ui/Modal'
 import SubmitButton from 'shared/ui/SubmitButton'
 import { useMessages, useRemoveMember } from './lib'
 
 interface DeleteMembershipProps {
   goalId: number
-  goalName: number
+  goalName: string
   clientOwnership: OwnershipDto
   onClose: () => void
 }
@@ -38,7 +38,7 @@ function DeleteMembershipModal({
           disabled={isLoading}
           text={messages.buttonText}
           loadingText={messages.loadingText}
-          emoji="leave"
+          emoji="📪"
           key="submit"
           onClick={onClick}
         />,
@@ -52,7 +52,7 @@ function DeleteMembershipModal({
             {goalName}
           </Box>
         </Typography>
-        <FadeEmoji name="luggage" />
+        <FadeTypography>🧳</FadeTypography>
       </Stack>
     </Modal>
   )

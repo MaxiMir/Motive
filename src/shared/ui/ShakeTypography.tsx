@@ -1,14 +1,16 @@
-import Emoji, { EmojiName } from 'shared/ui/Emoji'
+import { Typography } from '@mui/material'
+import { ReactNode } from 'react'
 
-interface SpinIconProps {
-  name: EmojiName
+interface ShakeTypographyProps {
+  children: ReactNode
 }
 
-function ShakeEmoji({ name }: SpinIconProps) {
+function ShakeTypography({ children }: ShakeTypographyProps) {
   return (
-    <Emoji
-      name={name}
+    <Typography
       variant="h2"
+      paragraph
+      m={0}
       sx={{
         transform: 'translate3d(0, 0, 0)',
         backfaceVisibility: 'hidden',
@@ -29,8 +31,10 @@ function ShakeEmoji({ name }: SpinIconProps) {
           },
         },
       }}
-    />
+    >
+      {children}
+    </Typography>
   )
 }
 
-export default ShakeEmoji
+export default ShakeTypography

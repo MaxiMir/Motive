@@ -6,7 +6,7 @@ import TooltipArrow from 'shared/ui/TooltipArrow'
 const Unauthorized = dynamic(() => import('./unauthorized'))
 const User = dynamic(() => import('./user'))
 
-export function OpenProfile() {
+function OpenProfile() {
   const client = useClient()
   const { formatMessage } = useIntl()
   const title = formatMessage({ id: client ? 'common.my-page' : 'common.sign-in' })
@@ -17,3 +17,5 @@ export function OpenProfile() {
     </TooltipArrow>
   )
 }
+
+export default OpenProfile

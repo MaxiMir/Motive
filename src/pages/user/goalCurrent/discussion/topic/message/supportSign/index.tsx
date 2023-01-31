@@ -1,6 +1,5 @@
 import { Box } from '@mui/material'
 import { useIntl } from 'react-intl'
-import Emoji from 'shared/ui/Emoji'
 import TooltipArrow from 'shared/ui/TooltipArrow'
 
 interface SupportSignProps {
@@ -24,7 +23,7 @@ function SupportSign({ name }: SupportSignProps) {
         borderRadius="50%"
         sx={{ backgroundColor: 'support.main' }}
       >
-        <Emoji name="support" onlyEmoji />
+        🙏
       </Box>
     </TooltipArrow>
   )

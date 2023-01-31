@@ -1,14 +1,16 @@
-import Emoji, { EmojiName } from 'shared/ui/Emoji'
+import { Typography } from '@mui/material'
+import { ReactNode } from 'react'
 
-interface SpinIconProps {
-  name: EmojiName
+interface SpinTypographyProps {
+  children: ReactNode
 }
 
-function SpinEmoji({ name }: SpinIconProps) {
+function SpinTypography({ children }: SpinTypographyProps) {
   return (
-    <Emoji
-      name={name}
+    <Typography
       variant="h2"
+      paragraph
+      m={0}
       sx={{
         animation: 'spin 3.6s linear infinite',
         '@keyframes spin': {
@@ -29,8 +31,10 @@ function SpinEmoji({ name }: SpinIconProps) {
           },
         },
       }}
-    />
+    >
+      {children}
+    </Typography>
   )
 }
 
-export default SpinEmoji
+export default SpinTypography

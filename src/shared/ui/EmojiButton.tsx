@@ -1,23 +1,22 @@
-import { Button } from '@mui/material'
+import { Button, Typography } from '@mui/material'
 import { buttonClasses } from '@mui/material/Button'
 import { blue } from '@mui/material/colors'
 import dynamic from 'next/dynamic'
 import { useFormatNumber } from 'shared/lib/hooks'
-import Emoji, { EmojiName } from 'shared/ui/Emoji'
 import TooltipArrow from 'shared/ui/TooltipArrow'
 
 const CircularProgress = dynamic(() => import('@mui/material/CircularProgress'))
 
 interface EmojiButtonProps {
-  name: EmojiName
   title: string
   count?: number
   active: boolean
   isLoading?: boolean
+  startIcon: string
   onClick: () => void
 }
 
-function EmojiButton({ name, title, count, active, isLoading, onClick }: EmojiButtonProps) {
+function EmojiButton({ title, count, active, isLoading, startIcon, onClick }: EmojiButtonProps) {
   const formatNumber = useFormatNumber()
   const shownCount = typeof count !== 'number' ? null : formatNumber(count)
   const disabled = active || isLoading
@@ -29,7 +28,13 @@ function EmojiButton({ name, title, count, active, isLoading, onClick }: EmojiBu
         variant="outlined"
         disabled={disabled}
         startIcon={
-          isLoading ? <CircularProgress size={18} color="inherit" /> : <Emoji name={name} />
+          isLoading ? (
+            <CircularProgress size={18} color="inherit" />
+          ) : (
+            <Typography paragraph m={0}>
+              {startIcon}
+            </Typography>
+          )
         }
         sx={{
           minWidth: 'initial',

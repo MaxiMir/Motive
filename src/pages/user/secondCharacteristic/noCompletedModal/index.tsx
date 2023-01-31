@@ -1,6 +1,6 @@
 import { Box, Stack, Typography } from '@mui/material'
 import Modal from 'shared/ui/Modal'
-import SpinEmoji from 'shared/ui/SpinEmoji'
+import SpinTypography from 'shared/ui/SpinTypography'
 import { useMessages } from './lib'
 
 interface NoCompletedModalProps {
@@ -28,7 +28,7 @@ function NoCompletedModal({ onClose }: NoCompletedModalProps) {
           <Typography variant="h6" component="p">
             {messages.header}
           </Typography>
-          <SpinEmoji name="completed" />
+          <SpinTypography>🏆</SpinTypography>
         </Stack>
       </Stack>
     </Modal>

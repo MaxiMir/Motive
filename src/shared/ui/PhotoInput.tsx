@@ -1,8 +1,7 @@
-import { Button } from '@mui/material'
+import { Button, Typography } from '@mui/material'
 import { styled } from '@mui/system'
 import { ChangeEvent, useRef } from 'react'
 import { useIntl } from 'react-intl'
-import Emoji from 'shared/ui/Emoji'
 
 interface PhotoInputProps {
   multiple?: boolean
@@ -38,7 +37,9 @@ function PhotoInput({ multiple, disabled, onSelect }: PhotoInputProps) {
         }}
         onClick={onClick}
       >
-        <Emoji name="tape" variant="h1" />
+        <Typography variant="h1" paragraph m={0}>
+          🎞
+        </Typography>
       </Button>
       <Input ref={inputRef} type="file" accept="image/*" multiple={multiple} onChange={onChange} />
     </>

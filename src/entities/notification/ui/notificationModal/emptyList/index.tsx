@@ -1,6 +1,6 @@
 import { Box, Stack, Typography } from '@mui/material'
 import { useIntl } from 'react-intl'
-import FadeEmoji from 'shared/ui/FadeEmoji'
+import FadeTypography from 'shared/ui/FadeTypography'
 
 function EmptyList() {
   const { formatMessage } = useIntl()
@@ -12,7 +12,7 @@ function EmptyList() {
         <Typography variant="h6" color="primary" component="p" mb={2}>
           {title}
         </Typography>
-        <FadeEmoji name="notification" />
+        <FadeTypography>🛎</FadeTypography>
       </Stack>
     </Box>
   )

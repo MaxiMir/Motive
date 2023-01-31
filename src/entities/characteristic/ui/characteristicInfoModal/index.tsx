@@ -3,7 +3,6 @@ import { MainCharacteristicName } from 'shared/api'
 import Modal from 'shared/ui/Modal'
 import { useMessages } from './lib'
 import { Progress } from './progress'
-import { Row } from './row'
 
 interface CharacteristicInfoModalProps {
   name: MainCharacteristicName
@@ -30,7 +29,9 @@ export function CharacteristicInfoModal({ name, value, onClose }: Characteristic
         {messages.header}:
       </Typography>
       {texts.map((text) => (
-        <Row text={text} key={text} />
+        <Box paddingY="4px" key={text}>
+          <Typography>💈 {text}</Typography>
+        </Box>
       ))}
     </Modal>
   )

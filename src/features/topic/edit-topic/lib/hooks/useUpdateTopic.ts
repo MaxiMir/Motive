@@ -2,8 +2,8 @@ import { useFormik } from 'formik'
 import produce from 'immer'
 import { useIntl } from 'react-intl'
 import { InfiniteData, useMutation, useQueryClient } from 'react-query'
-import { useSnackbar } from 'entities/snackbar'
 import { MessageDto, TopicDto, topicSchema, updateTopic } from 'shared/api'
+import { useSnackbar } from 'shared/ui/snackbar'
 
 const getNextState = (discussion: InfiniteData<TopicDto[]>, message: MessageDto) => {
   const { id, parentId, text } = message
@@ -36,7 +36,7 @@ export const useUpdateTopic = (initialValues: MessageDto, onSuccess: () => void)
         ['discussion', updatedMessage.dayId],
         (prev) => prev && getNextState(prev, updatedMessage),
       )
-      enqueueSnackbar({ message, severity: 'success', icon: 'speaker' })
+      enqueueSnackbar({ message, severity: 'success', icon: '🧞‍♂️️‍' })
       onSuccess()
     },
   })

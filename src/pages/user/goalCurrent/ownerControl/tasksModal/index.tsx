@@ -17,7 +17,6 @@ import { useGoalContext } from 'entities/goal'
 import { TaskField } from 'entities/task'
 import { getMidnightISO, getTomorrowISO } from 'shared/lib/utils'
 import CancelButton from 'shared/ui/CancelButton'
-import EmojiHeader from 'shared/ui/EmojiHeader'
 import Icon from 'shared/ui/Icon'
 import { Paul } from 'shared/ui/icons'
 import Modal from 'shared/ui/Modal'
@@ -61,7 +60,7 @@ function TasksModal({ onClose }: TasksModalProps) {
           disabled={isSubmitting}
           text={messages.buttonText}
           loadingText={messages.loadingText}
-          emoji="task"
+          emoji="📌"
           key="submit"
           onClick={handleSubmit}
         />,
@@ -99,9 +98,9 @@ function TasksModal({ onClose }: TasksModalProps) {
                 )}
               </FieldArray>
               <FormControl variant="standard">
-                <EmojiHeader name="clock" variant="h6" component="label">
-                  {messages.doItText}
-                </EmojiHeader>
+                <Typography variant="h6" component="label">
+                  🕰 {messages.doItText}
+                </Typography>
                 <RadioGroup
                   name="date"
                   value={values.date}

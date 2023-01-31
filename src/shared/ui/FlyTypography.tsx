@@ -1,16 +1,17 @@
-import { Box } from '@mui/material'
-import Emoji, { EmojiName } from 'shared/ui/Emoji'
+import { Box, Typography } from '@mui/material'
+import { ReactNode } from 'react'
 
-interface SpinIconProps {
-  name: EmojiName
+interface FlyTypographyProps {
+  children: ReactNode
 }
 
-function FlyEmoji({ name }: SpinIconProps) {
+function FlyTypography({ children }: FlyTypographyProps) {
   return (
     <Box position="relative" width={150} height={180}>
-      <Emoji
-        name={name}
+      <Typography
         variant="h2"
+        paragraph
+        m={0}
         sx={{
           position: 'absolute',
           transform: 'rotate(-45deg)',
@@ -34,9 +35,11 @@ function FlyEmoji({ name }: SpinIconProps) {
             },
           },
         }}
-      />
+      >
+        {children}
+      </Typography>
     </Box>
   )
 }
 
-export default FlyEmoji
+export default FlyTypography

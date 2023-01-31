@@ -2,8 +2,6 @@ import { Button, Stack, Typography } from '@mui/material'
 import { lightBlue, red, yellow } from '@mui/material/colors'
 import { styled } from '@mui/system'
 import Container from 'shared/ui/Container'
-import Emoji from 'shared/ui/Emoji'
-import EmojiHeader from 'shared/ui/EmojiHeader'
 import { Email, LinkedIn, Telegram } from 'shared/ui/icons'
 import { MY_WALLETS } from './consts'
 import { useMessages } from './lib'
@@ -20,13 +18,11 @@ export function ContactPage() {
 
   return (
     <Container>
-      <EmojiHeader name="contact" mb={3}>
-        {messages.header}
-      </EmojiHeader>
+      <Typography variant="h1" component="h1" sx={{ mb: 3 }}>
+        📮 {messages.header}
+      </Typography>
       <Stack spacing={3} mb={6}>
-        <Typography>
-          {messages.subheader} <Emoji name="wink" onlyEmoji />.
-        </Typography>
+        <Typography>{messages.subheader} 😉.</Typography>
         <Stack direction="row" spacing={2} mb={4}>
           <ButtonLink
             variant="outlined"
@@ -76,9 +72,9 @@ export function ContactPage() {
         </Stack>
       </Stack>
       <Stack spacing={3}>
-        <EmojiHeader name="coin" variant="h1" component="h3">
-          {messages.support}
-        </EmojiHeader>
+        <Typography variant="h1" component="h2" sx={{ mb: 3 }}>
+          🪙 {messages.support}
+        </Typography>
         <Stack spacing={1}>
           {MY_WALLETS.map(({ name, wallet, src }) => (
             <Wallet name={name} wallet={wallet} src={src} key={name} />

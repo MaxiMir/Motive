@@ -1,7 +1,7 @@
 import { Box, Stack, Typography } from '@mui/material'
 import Link from 'next/link'
+import { Emoji } from 'entities/characteristic'
 import { MainCharacteristicName, SecondCharacteristicName } from 'shared/api'
-import Emoji from 'shared/ui/Emoji'
 import { useWidth, useMessages } from './lib'
 
 interface AdvantageProps {
@@ -12,6 +12,7 @@ interface AdvantageProps {
 export function Advantage({ name, href }: AdvantageProps) {
   const messages = useMessages(name)
   const width = useWidth()
+  const emoji = Emoji[name]
 
   return (
     <Box
@@ -24,7 +25,9 @@ export function Advantage({ name, href }: AdvantageProps) {
     >
       <Stack direction="row" alignItems="center" spacing={2} width={width}>
         <Link href={href}>
-          <Emoji name={name} variant="h2" />
+          <Typography variant="h2" paragraph m={0}>
+            {emoji}
+          </Typography>
         </Link>
         <Stack alignItems="space-between">
           <Typography

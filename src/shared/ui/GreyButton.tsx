@@ -9,5 +9,3 @@ export const GreyButton = styled(Button)(({ theme }) => ({
     backgroundColor: '#1a1a1a',
   },
 }))
-
-export default GreyButton

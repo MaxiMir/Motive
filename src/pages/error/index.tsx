@@ -2,7 +2,6 @@ import { Box, Button, Stack, Typography } from '@mui/material'
 import { styled } from '@mui/system'
 import { useRouter } from 'next/router'
 import Container from 'shared/ui/Container'
-import Emoji from 'shared/ui/Emoji'
 import { useMessages } from './lib'
 
 interface ErrorPageProps {
@@ -24,9 +23,7 @@ export function ErrorPage({ statusCode, header }: ErrorPageProps) {
             {messages.header}
           </Typography>
           <DescriptionText>{statusCode}</DescriptionText>
-          <DescriptionText>
-            <Emoji name="error" onlyEmoji />
-          </DescriptionText>
+          <DescriptionText>👺</DescriptionText>
           <Button sx={{ color: 'warning.light' }} onClick={onClick}>
             {messages.backText}
           </Button>

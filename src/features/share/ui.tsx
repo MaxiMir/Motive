@@ -1,7 +1,7 @@
 import { Box, Drawer, List, ListItem, ListItemIcon, ListItemText, Stack } from '@mui/material'
-import { useSnackbar } from 'entities/snackbar'
 import { copyText } from 'shared/lib/helpers'
 import { ContentCopy, Email, Facebook, SMS, Telegram, Twitter, VK } from 'shared/ui/icons'
+import { useSnackbar } from 'shared/ui/snackbar'
 import { clickHandler, useMessages } from './lib'
 
 interface ShareProps {
@@ -58,11 +58,11 @@ function Share({ href, title, onClose }: ShareProps) {
               enqueueSnackbar({
                 message: messages.copiedText,
                 severity: 'success',
-                icon: 'keyboard',
+                icon: '⌨️',
               }),
             )
             .catch(() =>
-              enqueueSnackbar({ message: messages.error, severity: 'error', icon: 'error' }),
+              enqueueSnackbar({ message: messages.error, severity: 'error', icon: '👺' }),
             ),
       },
     ]

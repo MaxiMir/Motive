@@ -1,9 +1,9 @@
 import { useIntl } from 'react-intl'
 import { useMutation } from 'react-query'
 import { useOpenSignIn } from 'entities/signin'
-import { useSnackbar } from 'entities/snackbar'
 import { useClient } from 'entities/user'
 import { ReportType, createReport } from 'shared/api'
+import { useSnackbar } from 'shared/ui/snackbar'
 
 export const useSendReport = (entityId: number, type: ReportType, onSettled: () => void) => {
   const { formatMessage } = useIntl()
@@ -13,7 +13,7 @@ export const useSendReport = (entityId: number, type: ReportType, onSettled: () 
   const { mutate } = useMutation(createReport, {
     onSuccess() {
       const message = formatMessage({ id: 'component.report.message' })
-      enqueueSnackbar({ message, severity: 'success', icon: 'speaker' })
+      enqueueSnackbar({ message, severity: 'success', icon: '🧞‍♂️️‍' })
     },
     onSettled,
   })

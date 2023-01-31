@@ -5,7 +5,6 @@ import Link from 'next/link'
 import { UserCharacteristicName, UserDto } from 'shared/api'
 import { joinToHref } from 'shared/lib/helpers'
 import Avatar from 'shared/ui/avatar'
-import Emoji from 'shared/ui/Emoji'
 
 interface UserRatingProps {
   user: UserDto
@@ -26,11 +25,11 @@ export function UserRating({ user, characteristicName, index }: UserRatingProps)
 
     switch (incrementedNumber) {
       case 1:
-        return <Emoji name="first" onlyEmoji />
+        return '🥇'
       case 2:
-        return <Emoji name="second" onlyEmoji />
+        return '🥈'
       case 3:
-        return <Emoji name="third" onlyEmoji />
+        return '🥉'
       default:
         return incrementedNumber
     }

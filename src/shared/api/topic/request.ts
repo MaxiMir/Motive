@@ -1,6 +1,6 @@
 import { fetcher } from '../fetcher'
 import { Filter, getFilterParams } from '../filter'
-import { CreateMessageDto, TopicDto, UpdateMessageDto } from './model'
+import { CreateTopicDto, TopicDto, UpdateTopicDto } from './model'
 
 export const getTopics = (filter: Filter): Promise<TopicDto[]> => {
   const params = getFilterParams(filter)
@@ -8,11 +8,11 @@ export const getTopics = (filter: Filter): Promise<TopicDto[]> => {
   return fetcher.get('/topics', { params })
 }
 
-export const createTopic = (data: CreateMessageDto): Promise<TopicDto> => {
+export const createTopic = (data: CreateTopicDto): Promise<TopicDto> => {
   return fetcher.post('/topics', data)
 }
 
-export const updateTopic = (id: number, data: UpdateMessageDto): Promise<void> => {
+export const updateTopic = (id: number, data: UpdateTopicDto): Promise<void> => {
   return fetcher.put(`/topics/${id}`, data)
 }
 

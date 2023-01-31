@@ -34,7 +34,7 @@ function EditProfileModal({ user, onClose }: EditProfileModalProps) {
           disabled={isSubmitting}
           text={messages.buttonText}
           loadingText={messages.buttonLoading}
-          emoji="followers"
+          emoji="🥷"
           key="submit"
           onClick={handleSubmit}
         />,

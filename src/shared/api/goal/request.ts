@@ -1,7 +1,7 @@
 import { CreateDayDto, DayCharacteristicUpdateDto } from '../day'
 import { fetcher } from '../fetcher'
 import { getFilterParams } from '../filter'
-import { CreatedGoal, CreateGoalDto } from './model'
+import { CreatedGoal, CreateGoalDto, UpdateStageDto } from './model'
 
 export const createDay = ({ id, ...data }: CreateDayDto): Promise<CreatedGoal> => {
   return fetcher.post(`/goals/${id}/days`, data)
@@ -18,6 +18,6 @@ export const updateCharacteristic = (dto: DayCharacteristicUpdateDto): Promise<v
   return fetcher.patch(`/goals/${id}/days/${dayId}/characteristic/${name}`, { id }, { params })
 }
 
-export const updateStage = ({ id, ...data }: DayCharacteristicUpdateDto): Promise<void> => {
+export const updateStage = ({ id, ...data }: UpdateStageDto): Promise<void> => {
   return fetcher.patch(`/goals/${id}/stage`, data)
 }

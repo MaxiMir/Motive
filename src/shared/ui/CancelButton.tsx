@@ -1,5 +1,4 @@
 import { useIntl } from 'react-intl'
-import Emoji from 'shared/ui/Emoji'
 import GradientButton from 'shared/ui/GradientButton'
 
 interface ActionCloseProps {
@@ -11,7 +10,7 @@ function CancelButton({ onClick }: ActionCloseProps) {
   const buttonText = formatMessage({ id: 'common.cancel' })
 
   return (
-    <GradientButton size="small" startIcon={<Emoji name="cancel" onlyEmoji />} onClick={onClick}>
+    <GradientButton size="small" startIcon="🚫" onClick={onClick}>
       {buttonText}
     </GradientButton>
   )

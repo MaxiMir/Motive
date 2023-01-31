@@ -2,8 +2,8 @@ import { useFormik } from 'formik'
 import { useIntl } from 'react-intl'
 import { useMutation } from 'react-query'
 import { useGoalContext } from 'entities/goal'
-import { useSnackbar } from 'entities/snackbar'
-import { CreateMessageDto, MessageType, TopicDto, createTopic } from 'shared/api'
+import { CreateTopicDto, MessageType, TopicDto, createTopic } from 'shared/api'
+import { useSnackbar } from 'shared/ui/snackbar'
 
 export const useCreateTopic = (
   topicId: number | undefined,
@@ -16,11 +16,11 @@ export const useCreateTopic = (
   const { mutateAsync } = useMutation(createTopic, {
     onSuccess() {
       const message = formatMessage({ id: `page.user.user-input.message-${type}` })
-      enqueueSnackbar({ message, severity: 'success', icon: 'speaker' })
+      enqueueSnackbar({ message, severity: 'success', icon: '🧞‍♂️️‍' })
     },
   })
 
-  return useFormik<CreateMessageDto>({
+  return useFormik<CreateTopicDto>({
     initialValues: {
       dayId: day.id,
       text: '',

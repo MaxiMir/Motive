@@ -108,7 +108,12 @@ function GoalCurrent({
                     <b>{name}</b>
                   </Typography>
                   {inherited && <Inheritance />}
-                  <MenuActions title={name} href={dayHref} clientOwnership={clientOwnership} />
+                  <MenuActions
+                    goalId={id}
+                    goalName={name}
+                    href={dayHref}
+                    clientOwnership={clientOwnership}
+                  />
                 </Box>
                 <Stack direction="row" justifyContent="space-between" alignItems="center">
                   {CHARACTERISTICS.map((characteristicName) => (
@@ -162,7 +167,7 @@ function GoalCurrent({
                     </Stack>
                     {!!stages.length && (
                       <Accordion
-                        name="stage"
+                        emoji="🚀"
                         header={messages.stagesHeader}
                         id={`stage-${day.id}`}
                         defaultExpanded
@@ -175,7 +180,7 @@ function GoalCurrent({
                       />
                     )}
                     <Accordion
-                      name="task"
+                      emoji="📌"
                       header={messages.tasksHeader}
                       id={`tasksContent-${day.id}`}
                       defaultExpanded
@@ -197,7 +202,7 @@ function GoalCurrent({
                       }
                     />
                     <Accordion
-                      name="feedback"
+                      emoji="💭"
                       header={messages.feedbackHeader}
                       id={`${HashMark.Feedback}-${id}`}
                       defaultExpanded={!showDiscussion}
@@ -211,7 +216,7 @@ function GoalCurrent({
                       }
                     />
                     <Accordion
-                      name="discussion"
+                      emoji="💬"
                       header={
                         <>
                           {messages.discussionHeader}{' '}

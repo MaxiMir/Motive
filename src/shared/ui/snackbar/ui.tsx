@@ -3,14 +3,10 @@ import Alert, { alertClasses } from '@mui/material/Alert'
 import { teal } from '@mui/material/colors'
 import { SnackbarCloseReason } from '@mui/material/Snackbar/Snackbar'
 import { SyntheticEvent } from 'react'
-import dynamic from 'next/dynamic'
-import { EmojiName } from './Emoji'
-
-const Emoji = dynamic(() => import('./Emoji'))
 
 export interface SnackbarProps {
   severity: 'success' | 'info' | 'warning' | 'error'
-  icon?: EmojiName
+  icon?: string
   action?: MuiSnackbarProps['action']
   message: string
   onClose: () => void
@@ -46,7 +42,7 @@ function Snackbar({ severity, icon, message, onClose, ...props }: SnackbarProps)
       TransitionComponent={Fade}
       onClose={handleClose}
     >
-      <Alert icon={icon && <Emoji name={icon} onlyEmoji />} severity={severity} {...props}>
+      <Alert icon={icon} severity={severity} {...props}>
         {message}
       </Alert>
     </MuiSnackbar>

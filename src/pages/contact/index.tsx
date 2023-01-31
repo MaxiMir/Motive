@@ -18,10 +18,10 @@ export function ContactPage() {
 
   return (
     <Container>
-      <Typography variant="h1" component="h1">
-        📮 {messages.header}
-      </Typography>
       <Stack gap={3} mb={6}>
+        <Typography variant="h1" component="h1">
+          📮 {messages.header}
+        </Typography>
         <Typography>{messages.subheader} 😉.</Typography>
         <Stack direction="row" gap={2}>
           <ButtonLink

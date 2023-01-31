@@ -6,8 +6,10 @@ import {
   ListItem,
   ListItemIcon,
   ListItemText,
+  GlobalStyles,
   Stack,
 } from '@mui/material'
+import { snackbarClasses } from '@mui/material/Snackbar'
 import { ReactNode } from 'react'
 import { useIntl } from 'react-intl'
 import dynamic from 'next/dynamic'
@@ -101,6 +103,13 @@ function Sidebar({ breakpoints, children }: SidebarProps) {
         </Stack>
       </Drawer>
       {children}
+      <GlobalStyles
+        styles={{
+          [`#__next .${snackbarClasses.root}`]: {
+            left: `calc(50% + ${!expanded ? 32 : 115}px)`,
+          },
+        }}
+      />
     </Box>
   )
 }

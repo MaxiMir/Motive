@@ -27,10 +27,12 @@ export type GoalCharacteristicName = MainCharacteristicName | 'members'
 export interface GoalDto extends GoalBaseDto {
   readonly day: DayDto
   readonly calendar: CalendarDto[]
-  readonly reactions: Readonly<{ [key in MainCharacteristicName]: number[] }>
+  readonly reactions: ReactionsDto
   readonly inherited: boolean
   readonly completed: boolean
 }
+
+export type ReactionsDto = Readonly<{ [key in MainCharacteristicName]: number[] }>
 
 export interface CreatedGoal extends Readonly<Omit<GoalDto, 'day'>> {
   readonly days: DayDto[]

@@ -2,7 +2,7 @@ import produce from 'immer'
 import { useIntl } from 'react-intl'
 import { InfiniteData, useMutation, useQueryClient } from 'react-query'
 import { useOpenSignIn } from 'entities/signin'
-import { useMutateGoals, useClient } from 'entities/user'
+import { useGoalsCache, useClient } from 'entities/user'
 import { GoalDto, MessageDto, MessageType, TopicDto, updateLike } from 'shared/api'
 import { useSnackbar } from 'shared/ui/snackbar'
 
@@ -42,7 +42,7 @@ export const useSetLike = (message: MessageDto, answerFor?: number): [boolean, (
   const { id, like, dayId, goalId } = message
   const client = useClient()
   const openSignIn = useOpenSignIn()
-  const [goals, mutateGoals] = useMutateGoals()
+  const [goals, mutateGoals] = useGoalsCache()
   const queryClient = useQueryClient()
   const { formatMessage } = useIntl()
   const { enqueueSnackbar } = useSnackbar()

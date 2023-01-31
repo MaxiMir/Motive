@@ -13,16 +13,17 @@ const CircularProgress = dynamic(() => import('@mui/material/CircularProgress'))
 const Icon = dynamic(() => import('shared/ui/Icon'))
 
 interface CreateTopicProps {
+  dayId: number
   user: ClientDto | UserBaseDto
   type: MessageType
   topicId?: number
   onAdd: (topic: TopicDto) => void
 }
 
-function CreateTopic({ user, type, topicId, onAdd }: CreateTopicProps) {
+function CreateTopic({ dayId, user, type, topicId, onAdd }: CreateTopicProps) {
   const { name, avatar } = user
   const messages = useMessages(type)
-  const form = useCreateTopic(topicId, type, onAdd)
+  const form = useCreateTopic(dayId, topicId, type, onAdd)
   const { isSubmitting, values, handleSubmit } = form
   const disabled = isSubmitting || !values.text
 

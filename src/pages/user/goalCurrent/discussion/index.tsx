@@ -6,20 +6,21 @@ import { ListProps } from 'shared/ui/List'
 import { useDiscussion } from './lib'
 
 const List = dynamic<ListProps<TopicDto>>(() => import('shared/ui/List'))
-const UserInput = dynamic(() => import('features/topic/create-topic'))
+const CreateTopic = dynamic(() => import('features/topic/create-topic'))
 const Nothing = dynamic(() => import('./nothing'))
 const Loader = dynamic(() => import('./loader'))
 const Topic = dynamic(() => import('./topic'))
 
 interface DiscussionProps {
-  owner: UserBaseDto
+  dayId: number
   count: number
+  owner: UserBaseDto
   clientGoal: boolean
 }
 
-export function Discussion({ owner, count, clientGoal }: DiscussionProps) {
+export function Discussion({ dayId, count, owner, clientGoal }: DiscussionProps) {
   const client = useClient()
-  const { isLoading, topics, checkOnLoadMore, fetchNextPage } = useDiscussion()
+  const { isLoading, topics, checkOnLoadMore, fetchNextPage } = useDiscussion(dayId, count)
   const onAdd = useAddMessage()
   const withInput = !!client && !clientGoal
   const minHeight = topics.length || withInput ? 130 : undefined
@@ -31,7 +32,9 @@ export function Discussion({ owner, count, clientGoal }: DiscussionProps) {
           <Loader count={count} withInput={withInput} />
         ) : (
           <>
-            {withInput && <UserInput user={client} type={MessageType.Question} onAdd={onAdd} />}
+            {withInput && (
+              <CreateTopic dayId={dayId} user={client} type={MessageType.Question} onAdd={onAdd} />
+            )}
             {!count ? (
               <Nothing />
             ) : (
@@ -41,6 +44,7 @@ export function Discussion({ owner, count, clientGoal }: DiscussionProps) {
                 spacing={3}
                 render={(topic, index) => (
                   <Topic
+                    dayId={dayId}
                     topic={topic}
                     owner={owner}
                     isOwner={clientGoal}

@@ -1,7 +1,7 @@
 import produce from 'immer'
 import { InfiniteData, useQueryClient } from 'react-query'
-import { useMutateGoals } from 'entities/user'
 import { GoalDto, TopicDto } from 'shared/api'
+import { useGoalsCache } from './useGoalsCache'
 
 const getNextState = (discussion: InfiniteData<TopicDto[]>, topic: TopicDto) =>
   produce(discussion, (draft) => {
@@ -25,7 +25,7 @@ const getGoalNextState = (goalId: number, goals: GoalDto[]) =>
 
 export const useAddMessage = () => {
   const queryClient = useQueryClient()
-  const [goals, mutateGoals] = useMutateGoals()
+  const [goals, mutateGoals] = useGoalsCache()
 
   return (topic: TopicDto) => {
     const { goalId, dayId } = topic

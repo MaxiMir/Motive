@@ -3,7 +3,7 @@ import { MouseEvent, useId, useState } from 'react'
 import dynamic from 'next/dynamic'
 import { useRouter } from 'next/router'
 import { tryNativeShare } from 'features/share'
-import { useCheckOnClientPage, useUserContext } from 'entities/user'
+import { useUserContext } from 'entities/user'
 import { useToggle } from 'shared/lib/hooks'
 import { GreyButton } from 'shared/ui/GreyButton'
 import Icon from 'shared/ui/Icon'
@@ -13,12 +13,15 @@ import { useMessages } from './lib'
 const Share = dynamic(() => import('features/share'))
 const CreateReport = dynamic(() => import('features/report/create-report'))
 
-function MenuActions() {
+interface MenuActionsProps {
+  clientPage: boolean
+}
+
+function MenuActions({ clientPage }: MenuActionsProps) {
   const id = useId()
   const menuId = useId()
   const { asPath } = useRouter()
   const { id: userId, name } = useUserContext()
-  const clientPage = useCheckOnClientPage(userId)
   const messages = useMessages()
   const [anchorEl, setAnchorEl] = useState<HTMLElement | null>(null)
   const [reporting, toggleReporting] = useToggle()

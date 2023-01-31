@@ -1,26 +1,25 @@
 import { Stack } from '@mui/material'
 import { useState } from 'react'
 import dynamic from 'next/dynamic'
-import { useGoalContext } from 'entities/goal'
 import BlueButton from 'shared/ui/BlueButton'
 import { useMessages } from './lib'
+import { ModalType } from './types'
 
 const Button = dynamic(() => import('@mui/material/Button'))
-const ConfirmationModal = dynamic(() =>
-  import('entities/confirmation').then((m) => m.ConfirmationModal),
-)
-const TasksModal = dynamic(() => import('./tasksModal'))
+const CreateConfirmationModal = dynamic(() => import('features/confirmation/create-confirmation'))
+const CreateDayModal = dynamic(() => import('features/day/create-day'))
 
-const enum ModalType {
-  Tasks,
-  Completion,
+interface OwnerControlProps {
+  goalId: number
+  stages: string[]
+  dayStage: number
+  dayDate: string
 }
 
-function OwnerControl() {
-  const { id, stages, day } = useGoalContext()
+function OwnerControl({ goalId, stages, dayStage, dayDate }: OwnerControlProps) {
   const messages = useMessages()
   const [modal, setModal] = useState<ModalType>()
-  const renderCompete = stages.length === day.stage
+  const renderCompete = stages.length === dayStage
   const justifyContent = renderCompete ? 'space-between' : 'flex-end'
 
   const onAddTasks = () => setModal(ModalType.Tasks)
@@ -41,8 +40,12 @@ function OwnerControl() {
           </Button>
         )}
       </Stack>
-      {modal === ModalType.Tasks && <TasksModal onClose={closeModal} />}
-      {modal === ModalType.Completion && <ConfirmationModal id={id} onClose={closeModal} />}
+      {modal === ModalType.Tasks && (
+        <CreateDayModal goalId={goalId} dayDate={dayDate} onClose={closeModal} />
+      )}
+      {modal === ModalType.Completion && (
+        <CreateConfirmationModal goalId={goalId} onClose={closeModal} />
+      )}
     </>
   )
 }

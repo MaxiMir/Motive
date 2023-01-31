@@ -2,22 +2,29 @@ import { Badge, Box } from '@mui/material'
 import { PickersDay } from '@mui/x-date-pickers'
 import { DatePicker } from '@mui/x-date-pickers/DatePicker'
 import { useIntl } from 'react-intl'
-import { useGoalContext } from 'entities/goal'
+import { CalendarDto } from 'shared/api'
 import { InputNotEditable } from './inputNotEditable'
 import { getBorders } from './lib'
 import { OpenPickerIcon } from './openPickerIcon'
 
 interface CalendarProps {
+  dayDate: string
+  calendar: CalendarDto[]
   isLoading: boolean
   onChangeDate: (value: Date | null) => void
   shouldDisableDate: (value: Date) => boolean
 }
 
-export function Calendar({ isLoading, onChangeDate, shouldDisableDate }: CalendarProps) {
+export function Calendar({
+  dayDate,
+  calendar,
+  isLoading,
+  onChangeDate,
+  shouldDisableDate,
+}: CalendarProps) {
   const { formatMessage } = useIntl()
-  const { day, calendar } = useGoalContext()
   const [min, max] = getBorders(calendar)
-  const date = new Date(day.date)
+  const date = new Date(dayDate)
   const inputFormat = formatMessage({ id: 'common.format' })
 
   return (

@@ -2,19 +2,19 @@ import { List, ListItem, ListItemIcon, ListItemText } from '@mui/material'
 import { useIntl } from 'react-intl'
 import dynamic from 'next/dynamic'
 import { useNotifications, NotificationBadge } from 'entities/notification'
+import { useClient } from 'entities/user'
 import { useToggle } from 'shared/lib/hooks'
 import TooltipArrow from 'shared/ui/TooltipArrow'
 
-const NotificationModal = dynamic(() =>
-  import('entities/notification').then((m) => m.NotificationModal),
-)
+const ReadNotificationsModal = dynamic(() => import('features/notification/read-notifications'))
 
 interface NotificationsProps {
   expanded: boolean
 }
 
 function Notifications({ expanded }: NotificationsProps) {
-  const { isLoading, data = [] } = useNotifications()
+  const client = useClient()
+  const { isLoading, data = [] } = useNotifications(client?.id)
   const { formatMessage } = useIntl()
   const [open, toggle] = useToggle()
   const primary = formatMessage({ id: 'common.notifications' })
@@ -39,7 +39,9 @@ function Notifications({ expanded }: NotificationsProps) {
           </ListItem>
         </TooltipArrow>
       </List>
-      {open && <NotificationModal notifications={data} isLoading={isLoading} onClose={toggle} />}
+      {open && (
+        <ReadNotificationsModal notifications={data} isLoading={isLoading} onClose={toggle} />
+      )}
     </>
   )
 }

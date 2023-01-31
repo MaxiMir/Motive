@@ -1,16 +1,18 @@
 import { Box, Button } from '@mui/material'
 import { useIntl } from 'react-intl'
-import { useGoalContext } from 'entities/goal'
 import { useFormatNumber } from 'shared/lib/hooks'
 import Icon from 'shared/ui/Icon'
 import TooltipArrow from 'shared/ui/TooltipArrow'
 
-export function Views() {
-  const { day } = useGoalContext()
+interface ViewsProps {
+  views: number
+}
+
+export function Views({ views }: ViewsProps) {
   const { formatMessage } = useIntl()
   const formatNumber = useFormatNumber()
   const title = formatMessage({ id: 'page.user.views.title' })
-  const formattedViews = formatNumber(day.views)
+  const formattedViews = formatNumber(views)
 
   return (
     <Box display="flex" justifyContent="flex-end">

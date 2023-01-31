@@ -1,13 +1,13 @@
 import { Stack } from '@mui/material'
 import { useIntl } from 'react-intl'
 import dynamic from 'next/dynamic'
+import { useSetCompleted } from 'features/task/set-completed'
+import { TaskLabel } from 'entities/task'
 import { MemberDto, TaskDto } from 'shared/api'
 import Checkbox from 'shared/ui/Checkbox'
 import TooltipArrow from 'shared/ui/TooltipArrow'
-import TaskLabel from './components/TaskLabel'
-import { useSetCompleted } from './hooks/useSetCompleted'
 
-const TaskDate = dynamic(() => import('./components/TaskDate'))
+const TaskDate = dynamic(() => import('entities/task').then((m) => m.TaskDate))
 
 interface TaskProps {
   goalId: number

@@ -1,6 +1,6 @@
 import { Grid, Typography, Stack } from '@mui/material'
 import { Field, FieldArray, Form, FormikProvider } from 'formik'
-import { usePhotoLimit } from 'features/select-photo'
+import { usePhotoLimit } from 'entities/confirmation'
 import CancelButton from 'shared/ui/CancelButton'
 import Input from 'shared/ui/Input'
 import Modal from 'shared/ui/Modal'

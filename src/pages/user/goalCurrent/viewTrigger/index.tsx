@@ -3,11 +3,13 @@ import InView from 'shared/ui/InView'
 import { useIncreaseViews } from './lib'
 
 interface ViewTriggerProps {
+  ownerId: number
+  dayId: number
   children: ReactNode
 }
 
-export function ViewTrigger({ children }: ViewTriggerProps) {
-  const { mutate } = useIncreaseViews()
+export function ViewTrigger({ ownerId, dayId, children }: ViewTriggerProps) {
+  const { mutate } = useIncreaseViews(ownerId, dayId)
 
   return (
     <InView triggerOnce onView={() => mutate()}>

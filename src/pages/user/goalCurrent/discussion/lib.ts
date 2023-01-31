@@ -1,6 +1,5 @@
 import { useMemo } from 'react'
 import { GetNextPageParamFunction, useInfiniteQuery } from 'react-query'
-import { useGoalContext } from 'entities/goal'
 import { TopicDto, getTopics } from 'shared/api'
 import { partialCheckOnLoadMore } from 'shared/lib/utils'
 
@@ -15,15 +14,14 @@ const partialGetNextPageParam = (count: number): GetNextPageParamFunction<TopicD
   }
 }
 
-export const useDiscussion = () => {
-  const { day } = useGoalContext()
-  const getNextPageParam = partialGetNextPageParam(day.topicCount)
+export const useDiscussion = (dayId: number, count: number) => {
+  const getNextPageParam = partialGetNextPageParam(count)
   const { isLoading, data, fetchNextPage, hasNextPage } = useInfiniteQuery(
-    ['discussion', day.id],
-    ({ pageParam = 0 }) => getTopics({ where: { day: day.id }, page: pageParam, take: TAKE }),
+    ['discussion', dayId],
+    ({ pageParam = 0 }) => getTopics({ where: { day: dayId }, page: pageParam, take: TAKE }),
     {
       getNextPageParam,
-      enabled: !!day.topicCount,
+      enabled: !!count,
     },
   )
   const topics = useMemo(() => data?.pages.flat() || [], [data?.pages])

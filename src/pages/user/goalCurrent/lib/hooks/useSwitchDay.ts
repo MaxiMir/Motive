@@ -1,7 +1,7 @@
 import { format } from 'date-fns'
 import produce from 'immer'
 import { useMutation } from 'react-query'
-import { useChangeDayUrl, useMutateGoals } from 'entities/user'
+import { useChangeDayUrl, useGoalsCache } from 'entities/user'
 import { GoalDto, CalendarDto, DayDto, getDay } from 'shared/api'
 
 const getDayKey = (date: Date | string) => {
@@ -24,7 +24,7 @@ const getGoalNextState = (goals: GoalDto[], goalId: number, day: DayDto): GoalDt
 
 export const useSwitchDay = (goal: GoalDto) => {
   const { id, day, calendar } = goal
-  const [goals, mutateGoals] = useMutateGoals()
+  const [goals, mutateGoals] = useGoalsCache()
   const changeDayUrl = useChangeDayUrl()
   const { isLoading, mutate } = useMutation(getDay, {
     onSuccess: (newDay) => {

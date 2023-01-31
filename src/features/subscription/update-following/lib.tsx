@@ -2,7 +2,7 @@ import produce from 'immer'
 import { useIntl } from 'react-intl'
 import { useMutation } from 'react-query'
 import { useOpenSignIn } from 'entities/signin'
-import { useMutateUserPage, useClient } from 'entities/user'
+import { useUserPageCache, useClient } from 'entities/user'
 import { UserPageDto, updateSubscription } from 'shared/api'
 import { useSnackbar } from 'shared/ui/snackbar'
 
@@ -20,7 +20,7 @@ export const useUpdateFollowing = (userId: number, following: boolean): [boolean
   const client = useClient()
   const openSignIn = useOpenSignIn()
   const { formatMessage } = useIntl()
-  const [page, mutatePage] = useMutateUserPage()
+  const [page, mutatePage] = useUserPageCache()
   const { enqueueSnackbar } = useSnackbar()
   const { isLoading, mutate } = useMutation(
     ({ insert }: Options) => updateSubscription(userId, insert),

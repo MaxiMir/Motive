@@ -1,6 +1,6 @@
 import produce from 'immer'
 import { useMutation } from 'react-query'
-import { useMutateUserPage } from 'entities/user'
+import { useUserPageCache } from 'entities/user'
 import { UserBaseDto, UserPageDto, updateAvatar } from 'shared/api'
 
 const getNextState = (page: UserPageDto, user: UserBaseDto) =>
@@ -9,7 +9,7 @@ const getNextState = (page: UserPageDto, user: UserBaseDto) =>
   })
 
 export const useUpdateAvatar = (userId: number) => {
-  const [page, mutatePage] = useMutateUserPage()
+  const [page, mutatePage] = useUserPageCache()
 
   return useMutation((formData: FormData) => updateAvatar(userId, formData), {
     onSuccess(dto) {

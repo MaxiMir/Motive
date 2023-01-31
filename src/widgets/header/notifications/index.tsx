@@ -2,15 +2,15 @@ import { IconButton } from '@mui/material'
 import { useIntl } from 'react-intl'
 import dynamic from 'next/dynamic'
 import { useNotifications, NotificationBadge } from 'entities/notification'
+import { useClient } from 'entities/user'
 import { useToggle } from 'shared/lib/hooks'
 import TooltipArrow from 'shared/ui/TooltipArrow'
 
-const NotificationModal = dynamic(() =>
-  import('entities/notification').then((m) => m.NotificationModal),
-)
+const ReadNotificationsModal = dynamic(() => import('features/notification/read-notifications'))
 
 export function Notifications() {
-  const { isLoading, data = [] } = useNotifications()
+  const client = useClient()
+  const { isLoading, data = [] } = useNotifications(client?.id)
   const { formatMessage } = useIntl()
   const [open, toggle] = useToggle()
   const title = formatMessage({ id: 'component.notification.title' })
@@ -22,7 +22,9 @@ export function Notifications() {
           <NotificationBadge notifications={data} />
         </IconButton>
       </TooltipArrow>
-      {open && <NotificationModal notifications={data} isLoading={isLoading} onClose={toggle} />}
+      {open && (
+        <ReadNotificationsModal notifications={data} isLoading={isLoading} onClose={toggle} />
+      )}
     </>
   )
 }

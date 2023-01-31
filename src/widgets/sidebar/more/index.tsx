@@ -9,7 +9,7 @@ import Icon from 'shared/ui/Icon'
 import { usePaletteModeContext } from 'shared/ui/theme'
 import { useMessages } from './lib'
 
-const ChangeLanguage = dynamic(() => import('features/change-language'))
+const ChangeLanguage = dynamic(() => import('features/locale/change-language'))
 
 export function More() {
   const id = useId()

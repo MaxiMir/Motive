@@ -1,7 +1,7 @@
 import { Box, Stack, Typography } from '@mui/material'
 import { styled } from '@mui/system'
 import dynamic from 'next/dynamic'
-import { useCheckOnClientPage, UserContext } from 'entities/user'
+import { useClient, UserContext } from 'entities/user'
 import { MAIN_CHARACTERISTICS, SECOND_CHARACTERISTICS, UserPageDto } from 'shared/api'
 import Container from 'shared/ui/Container'
 import AvatarActions from './avatarActions'
@@ -36,7 +36,8 @@ export function UserPage({ user }: UserViewProps) {
     links,
     following,
   } = user
-  const clientPage = useCheckOnClientPage(id)
+  const client = useClient()
+  const clientPage = id === client?.id
   const renderConfirmationsList = !!confirmations.length || clientPage
 
   return (
@@ -88,7 +89,7 @@ export function UserPage({ user }: UserViewProps) {
                   ) : (
                     <UpdateFollowing userId={id} following={following} />
                   )}
-                  <MenuActions />
+                  <MenuActions clientPage={clientPage} />
                 </Stack>
               </Stack>
               <Stack direction="row" justifyContent="space-between" spacing={2} mb={1}>

@@ -1,14 +1,17 @@
 import { Typography } from '@mui/material'
 import { useIntl } from 'react-intl'
 import Link from 'next/link'
-import { useGoalContext } from 'entities/goal'
+import { UserBaseDto } from 'shared/api'
 import { joinToHref } from 'shared/lib/helpers'
 import Avatar from 'shared/ui/avatar'
 
-function Inheritance() {
-  const { formatMessage } = useIntl()
-  const { owner } = useGoalContext()
+interface InheritanceProps {
+  owner: UserBaseDto
+}
+
+function Inheritance({ owner }: InheritanceProps) {
   const { name, nickname, avatar } = owner
+  const { formatMessage } = useIntl()
   const href = joinToHref(nickname)
   const title = formatMessage({ id: 'common.together' })
 

@@ -13,10 +13,7 @@ interface AvatarProps {
   lastSeen?: string | null
   device?: Device | null
   size: number
-  buttonProps?: {
-    component?: ElementType
-    onClick?: ButtonProps['onClick']
-  }
+  buttonProps?: Omit<ButtonProps, 'sx'> & { component?: ElementType }
 }
 
 function Avatar({ src, name, size, online, lastSeen, device, buttonProps }: AvatarProps) {

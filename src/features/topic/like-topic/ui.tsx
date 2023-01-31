@@ -17,7 +17,7 @@ export function Like({ message, answerFor }: LikeProps) {
   const messages = useMessages(message, disabled)
   const formatNumber = useFormatNumber()
   const formattedNumber = formatNumber(likeCount)
-  const startIcon = type === MessageType.Question ? '♥️' : '🙏'
+  const startIcon = type === MessageType.Question ? '❤️' : '🙏'
   const [isLoading, onClick] = useSetLike(message, answerFor)
 
   return (

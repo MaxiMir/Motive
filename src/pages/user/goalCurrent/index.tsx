@@ -3,7 +3,11 @@ import { styled } from '@mui/system'
 import dynamic from 'next/dynamic'
 import { useRouter } from 'next/router'
 import { CharacteristicGoal } from 'entities/characteristic'
+import { checkOnOpenDiscussion } from 'entities/discussion'
+import { getGoalInfo } from 'entities/goal'
+import { findMember } from 'entities/member'
 import { getDayHref } from 'entities/page'
+import { redefineTasks } from 'entities/task'
 import { useClient } from 'entities/user'
 import { MAIN_CHARACTERISTICS, GoalCharacteristicName, GoalDto, MemberDto } from 'shared/api'
 import { HashMark } from 'shared/config'
@@ -13,15 +17,7 @@ import { Date } from './date'
 import { DayAgo } from './dayAgo'
 import { Discussion } from './discussion'
 import { Feedback } from './feedback'
-import {
-  getGoalInfo,
-  getClientOwnership,
-  checkOnOpenDiscussion,
-  redefineTasks,
-  findMember,
-  useMessages,
-  useSwitchDay,
-} from './lib'
+import { getClientOwnership, useMessages, useSwitchDay } from './lib'
 import { MenuActions } from './menuActions'
 import { Task } from './task'
 import { Views } from './views'
@@ -58,8 +54,8 @@ function GoalCurrent({
   const { query } = useRouter()
   const client = useClient()
   const messages = useMessages()
-  const clientOwnership = getClientOwnership(goal, client?.id, clientPage, clientMembership)
   const userMember = findMember(id, membership, userId)
+  const clientOwnership = getClientOwnership(goal, client?.id, clientPage, clientMembership)
   const goalInfo = getGoalInfo(goal, clientOwnership, userMember)
   const dayHref = getDayHref(nickname, id, day.id)
   const showDiscussion = checkOnOpenDiscussion(query, id)

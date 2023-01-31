@@ -29,8 +29,8 @@ function SettingsModal({ onClose }: SettingsModalProps) {
 
   return (
     <Modal title={messages.title} maxWidth="xs" onClose={onClose}>
-      <Stack spacing={3}>
-        <Stack spacing={1}>
+      <Stack gap={3}>
+        <Stack gap={1}>
           <Header variant="body2" gutterBottom>
             {messages.languageHeader}:
           </Header>
@@ -55,7 +55,7 @@ function SettingsModal({ onClose }: SettingsModalProps) {
             </GroupButton>
           </ToggleButtonGroup>
         </Stack>
-        <Stack spacing={1}>
+        <Stack gap={1}>
           <Header variant="body2" gutterBottom>
             {messages.modeHeader}:
           </Header>

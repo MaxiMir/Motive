@@ -33,7 +33,7 @@ export function TaskField({
 
   return (
     <Stack>
-      <Stack direction="row" justifyContent="space-between" alignItems="flex-start" spacing={1}>
+      <Stack direction="row" justifyContent="space-between" alignItems="flex-start" gap={1}>
         <Field
           name={`tasks.${index}.name`}
           label={messages.label}
@@ -51,7 +51,7 @@ export function TaskField({
           <Icon name="close" />
         </IconButton>
       </Stack>
-      <Stack direction="row" alignItems="center" spacing={1} pl={1} height={48}>
+      <Stack direction="row" alignItems="center" gap={1} pl={1} height={48}>
         {/* TODO ADD  */}
         <TooltipArrow title={messages.soonText}>
           <FormControlLabel

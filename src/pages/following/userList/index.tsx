@@ -12,9 +12,9 @@ function UserList({ users }: UserListProps) {
   return (
     <List
       elements={users}
-      spacing={4}
       keyGetter={keyGetter}
       render={(user, index) => <UserRow user={user} index={index} />}
+      gap={4}
     />
   )
 }

@@ -20,8 +20,8 @@ export function UserInfoModal({ user, onClose }: UserInfoModalProps) {
 
   return (
     <Modal title={title} maxWidth="xs" onClose={onClose}>
-      <Stack spacing={1}>
-        <Stack alignItems="center" spacing={1} mb={2}>
+      <Stack gap={1}>
+        <Stack alignItems="center" gap={1} mb={2}>
           <Avatar src={user.avatar} name={user.name} size={80} />
           <Link href={userHref}>
             <Typography color="primary" component="span">

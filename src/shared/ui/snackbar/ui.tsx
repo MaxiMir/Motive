@@ -28,6 +28,9 @@ function Snackbar({ severity, icon, message, onClose, ...props }: SnackbarProps)
         [`& .${alertClasses.root}`]: {
           color: 'common.white',
         },
+        [`& .${alertClasses.message}`]: {
+          lineHeight: '1.625rem',
+        },
         [`& .${alertClasses.standardSuccess}`]: {
           backgroundColor: teal[900],
         },

@@ -24,14 +24,14 @@ function UserCard({ user }: UserCardProps) {
       }}
       component={Link}
     >
-      <Stack alignItems="center" direction={{ xs: 'row', md: 'column' }} spacing={2}>
-        <Avatar src={avatar} name={name} size={120} />
+      <Stack alignItems="center" direction={{ xs: 'row', md: 'column' }} gap={2}>
+        <Avatar src={avatar} name={name} size={120} buttonProps={{ component: 'span' }} />
         <Stack
           alignItems={{
             xs: 'flex-start',
             md: 'center',
           }}
-          spacing={2}
+          gap={2}
         >
           <Typography sx={{ color: 'common.white' }}>{name}</Typography>
           <Stack direction="row" justifyContent="space-between" alignItems="center">

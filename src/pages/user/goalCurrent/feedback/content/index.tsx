@@ -14,7 +14,7 @@ function Content({ feedback }: ContentProps) {
   const { text, photos, video } = feedback
 
   return (
-    <Stack spacing={2} flex={1}>
+    <Stack gap={2} flex={1}>
       {photos?.length && <Gallery photos={photos} />}
       {text && <Markdown text={text} />}
       {video && <Player url={video} width="100%" height="auto" />}

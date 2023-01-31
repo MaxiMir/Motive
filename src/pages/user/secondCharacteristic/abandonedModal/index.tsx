@@ -28,8 +28,8 @@ function AbandonedModal({ characteristic, onClose }: AbandonedModalProps) {
       maxWidth="xs"
       onClose={onClose}
     >
-      <Stack position="relative" spacing={2}>
-        <Stack direction="row" alignItems="center" spacing={2} alignSelf="center">
+      <Stack position="relative" gap={2}>
+        <Stack direction="row" alignItems="center" gap={2} alignSelf="center">
           <Typography variant="h2" component="p" sx={{ color: 'abandoned.main' }}>
             {roundedProgress}
           </Typography>

@@ -33,7 +33,7 @@ function Offline({ lastSeen, device, children }: OfflineProps) {
             <Stack
               direction="row"
               alignItems="center"
-              spacing={0.5}
+              gap={0.5}
               sx={{
                 '& span': {
                   fontSize: 12,

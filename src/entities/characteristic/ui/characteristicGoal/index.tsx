@@ -19,7 +19,7 @@ export function CharacteristicGoal({ name, value }: CharacteristicGoalProps) {
   const emoji = Emoji[name]
 
   return (
-    <Stack alignItems="center" spacing={0.5}>
+    <Stack alignItems="center" gap={0.5}>
       <TooltipArrow title={title}>
         <IconButton
           size="small"

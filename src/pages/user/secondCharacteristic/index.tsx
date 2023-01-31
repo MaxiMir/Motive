@@ -69,7 +69,7 @@ function SecondCharacteristic({
             xs: 'column',
             md: 'row',
           }}
-          spacing={{
+          gap={{
             md: 0.5,
           }}
           color="common.white"

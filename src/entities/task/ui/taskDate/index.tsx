@@ -10,7 +10,7 @@ export function TaskDate({ date }: TaskDateProps) {
   const formattedDate = format(new Date(date), 'hh:mm')
 
   return (
-    <Stack direction="row" alignItems="center" spacing={1} marginLeft={4} color="zen.silent">
+    <Stack direction="row" alignItems="center" gap={1} marginLeft={4} color="zen.silent">
       <Icon name="schedule" />
       <Typography>{formattedDate}</Typography>
     </Stack>

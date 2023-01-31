@@ -35,7 +35,7 @@ export function Task({
   const disabled = completed || forTomorrow || !canEdit
 
   return (
-    <Stack spacing={1}>
+    <Stack gap={1}>
       <form>
         <TooltipArrow title={title}>
           <Checkbox

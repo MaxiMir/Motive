@@ -14,14 +14,14 @@ function Loader({ count, withInput }: LoaderProps) {
   return (
     <>
       {withInput && (
-        <Stack direction="row" alignItems="flex-end" spacing={1} mb={2}>
+        <Stack direction="row" alignItems="flex-end" gap={1} mb={2}>
           <Skeleton variant="circular" animation="wave" width={38} height={38} />
           <Skeleton animation="wave" width="calc(100% - 84px)" height={3} />
           <Skeleton variant="circular" animation="wave" width={30} height={30} />
         </Stack>
       )}
       {list.map((_, key) => (
-        <Stack direction="row" alignItems="flex-end" spacing={1} height={120} key={key}>
+        <Stack direction="row" alignItems="flex-end" gap={1} height={120} key={key}>
           <Skeleton variant="circular" animation="wave" width={38} height={38} />
           <Skeleton
             variant="rounded"

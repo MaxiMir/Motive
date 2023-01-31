@@ -45,7 +45,7 @@ function SupportUserModal({ dayId, ownerName, onClose }: SupportUserModalProps) 
     >
       <FormikProvider value={form}>
         <Form>
-          <Stack alignItems="center" spacing={3}>
+          <Stack alignItems="center" gap={3}>
             <FadeTypography>🙏</FadeTypography>
             <Field
               name="text"

@@ -1,4 +1,4 @@
-import { Grid, Typography, Stack } from '@mui/material'
+import { Grid, Typography, Box } from '@mui/material'
 import dynamic from 'next/dynamic'
 import { HashtagDto, GoalDto, UserDto } from 'shared/api'
 import Container from 'shared/ui/Container'
@@ -27,10 +27,10 @@ export function SearchPage({ q, hashtags, goals, users }: SearchPageProps) {
       <Typography variant="h1" sx={{ mb: 3 }}>
         {messages.header}
       </Typography>
-      <Stack spacing={4}>
+      <Box display="flex" flexDirection="column" gap={4}>
         <SearchForm q={q} />
         {!!users.length && (
-          <Stack spacing={2}>
+          <Box display="flex" flexDirection="column" gap={2}>
             <Typography variant="h4" component="h2">
               🥷 {messages.userText}
             </Typography>
@@ -41,10 +41,10 @@ export function SearchPage({ q, hashtags, goals, users }: SearchPageProps) {
                 </Grid>
               ))}
             </Grid>
-          </Stack>
+          </Box>
         )}
         {noResult && <NoResult phrase={q} />}
-        <Stack spacing={2}>
+        <Box display="flex" flexDirection="column" gap={2}>
           <Typography variant="h4" component="h2">
             👑 {messages.trendText}
           </Typography>
@@ -55,9 +55,9 @@ export function SearchPage({ q, hashtags, goals, users }: SearchPageProps) {
               </Grid>
             ))}
           </Grid>
-        </Stack>
+        </Box>
         {!!goals.length && false && (
-          <Stack spacing={2}>
+          <Box display="flex" flexDirection="column" gap={2}>
             <Typography variant="h4" component="h2">
               💎 {messages.goalText}
             </Typography>
@@ -68,9 +68,9 @@ export function SearchPage({ q, hashtags, goals, users }: SearchPageProps) {
                 </Grid>
               ))}
             </Grid>
-          </Stack>
+          </Box>
         )}
-      </Stack>
+      </Box>
     </Container>
   )
 }

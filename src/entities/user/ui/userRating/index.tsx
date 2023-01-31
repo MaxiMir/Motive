@@ -53,7 +53,7 @@ export function UserRating({ user, characteristicName, index }: UserRatingProps)
           </Box>
         </Grid>
         <Grid item xs={9}>
-          <Stack direction="row" alignItems="center" spacing={1}>
+          <Stack direction="row" alignItems="center" gap={1}>
             <Link href={href} title={name}>
               <Avatar src={avatar} name={name} online={online} size={35} />
             </Link>

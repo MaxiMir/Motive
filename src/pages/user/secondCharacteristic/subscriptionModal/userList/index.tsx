@@ -13,11 +13,11 @@ function UserList({ users, checkOnLoadMore, onView, onClose }: UserListProps) {
   return (
     <List
       elements={users}
-      spacing={2}
       keyGetter={(user) => user.id}
       render={(user, index) => (
         <UserRow user={user} inView={checkOnLoadMore(index)} onView={onView} onClose={onClose} />
       )}
+      gap={2}
     />
   )
 }

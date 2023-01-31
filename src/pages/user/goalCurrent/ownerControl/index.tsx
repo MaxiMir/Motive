@@ -30,7 +30,7 @@ function OwnerControl({ goalId, stages, dayStage, dayDate }: OwnerControlProps) 
 
   return (
     <>
-      <Stack direction="row" justifyContent={justifyContent} spacing={1}>
+      <Stack direction="row" justifyContent={justifyContent} gap={1}>
         <BlueButton size="small" onClick={onAddTasks}>
           {messages.nextButtonText}
         </BlueButton>

@@ -71,7 +71,7 @@ function GoalCurrent({
     <Stack
       id={`goal-${id}`}
       component="article"
-      spacing={2}
+      gap={2}
       flex={{
         xs: '0 1 100%',
         md: '0 1 calc(50% - 12px)',
@@ -88,7 +88,7 @@ function GoalCurrent({
       >
         <Stack
           justifyContent="space-between"
-          spacing={2}
+          gap={2}
           position="relative"
           height="100%"
           sx={({ spacing }) => ({
@@ -98,7 +98,7 @@ function GoalCurrent({
           })}
         >
           <ViewTrigger ownerId={owner.id} dayId={day.id}>
-            <Stack spacing={2}>
+            <Stack gap={2}>
               <Box display="flex" alignItems="center" gap={0.5}>
                 <Typography variant="subtitle1" component="h2">
                   <b>{name}</b>

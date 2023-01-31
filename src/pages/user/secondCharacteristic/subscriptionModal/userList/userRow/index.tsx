@@ -23,7 +23,7 @@ function UserRow({ user, inView, onView, onClose }: UserRowProps) {
 
   return (
     <>
-      <Stack direction="row" alignItems="center" spacing={2}>
+      <Stack direction="row" alignItems="center" gap={2}>
         <Link href={href} title={name} onClick={onClose}>
           <Avatar src={avatar} name={name} online={online} size={55} />
         </Link>

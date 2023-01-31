@@ -18,12 +18,12 @@ export function ContactPage() {
 
   return (
     <Container>
-      <Typography variant="h1" component="h1" sx={{ mb: 3 }}>
+      <Typography variant="h1" component="h1">
         📮 {messages.header}
       </Typography>
-      <Stack spacing={3} mb={6}>
+      <Stack gap={3} mb={6}>
         <Typography>{messages.subheader} 😉.</Typography>
-        <Stack direction="row" spacing={2} mb={4}>
+        <Stack direction="row" gap={2}>
           <ButtonLink
             variant="outlined"
             sx={{
@@ -34,7 +34,7 @@ export function ContactPage() {
             }}
             onClick={onClickEmail}
           >
-            <Stack alignItems="center" spacing={1}>
+            <Stack alignItems="center" gap={1}>
               <Typography variant="caption">Email</Typography>
               <Email sx={{ color: yellow[500] }} />
             </Stack>
@@ -49,7 +49,7 @@ export function ContactPage() {
             }}
             onClick={onClickTelegram}
           >
-            <Stack alignItems="center" spacing={1}>
+            <Stack alignItems="center" gap={1}>
               <Typography variant="caption">Telegram</Typography>
               <Telegram sx={{ color: lightBlue[500] }} />
             </Stack>
@@ -64,18 +64,18 @@ export function ContactPage() {
             }}
             onClick={onClickLinkedIn}
           >
-            <Stack alignItems="center" spacing={1}>
+            <Stack alignItems="center" gap={1}>
               <Typography variant="caption">LinkedIn</Typography>
               <LinkedIn sx={{ color: red[300] }} />
             </Stack>
           </ButtonLink>
         </Stack>
       </Stack>
-      <Stack spacing={3}>
-        <Typography variant="h1" component="h2" sx={{ mb: 3 }}>
+      <Stack gap={3}>
+        <Typography variant="h1" component="h2">
           🪙 {messages.support}
         </Typography>
-        <Stack spacing={1}>
+        <Stack gap={1}>
           {MY_WALLETS.map(({ name, wallet, src }) => (
             <Wallet name={name} wallet={wallet} src={src} key={name} />
           ))}

@@ -12,7 +12,7 @@ function CreateGoal() {
   const buttonText = formatMessage({ id: 'common.create' })
 
   return (
-    <Stack alignItems="center" spacing={1} minWidth={100}>
+    <Stack alignItems="center" gap={1} minWidth={100}>
       <Box
         padding="2px"
         borderRadius="50%"

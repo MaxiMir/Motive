@@ -43,7 +43,7 @@ function UpdateStageModal({ goalId, stages, dayStage, onClose }: UpdateStageModa
       ]}
       onClose={onClose}
     >
-      <Stack alignItems="center" spacing={1}>
+      <Stack alignItems="center" gap={1}>
         <FlyTypography>🚀</FlyTypography>
         <Typography variant="subtitle1" sx={{ color: 'support.main' }}>
           <b>{messages.behind}</b>

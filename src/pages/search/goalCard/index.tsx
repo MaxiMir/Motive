@@ -25,12 +25,12 @@ function GoalCard({ goal }: GoalCardProps) {
         borderRadius: 12,
       }}
     >
-      <Stack alignItems="center" spacing={2}>
+      <Stack alignItems="center" gap={2}>
         <Typography>{name}</Typography>
         <Box display="flex" justifyContent="flex-start" flex={1}>
           <Typography variant="caption">Completed: +</Typography>
         </Box>
-        <Stack direction="row" alignItems="center" spacing={1}>
+        <Stack direction="row" alignItems="center" gap={1}>
           <Link href={href} title={ownerName}>
             <Avatar src={avatar} name={ownerName} size={26} />
           </Link>

@@ -25,7 +25,7 @@ export function NotificationInfo({ notification, href, onClick }: NotificationIn
   const userHref = joinToHref(nickname)
 
   return (
-    <Stack direction="row" spacing={2}>
+    <Stack direction="row" gap={2}>
       <Box height={55} position="relative">
         <Link href={userHref} title={name} onClick={onClick}>
           <Avatar src={avatar} name={name} size={55} />
@@ -56,7 +56,7 @@ export function NotificationInfo({ notification, href, onClick }: NotificationIn
           {messages.header}
           {detailsName && `: ${detailsName}`}
         </Typography>
-        <Stack direction="row" alignItems="center" spacing={2}>
+        <Stack direction="row" alignItems="center" gap={2}>
           <Box
             component="span"
             sx={{

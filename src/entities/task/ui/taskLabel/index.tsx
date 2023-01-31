@@ -15,7 +15,7 @@ export function TaskLabel({ task, daysGoneForOwner }: TaskLabelProps) {
   const completedByOthers = checkOnCompletedByOthers(task, daysGoneForOwner)
 
   return (
-    <Stack direction="row" alignItems="center" spacing={1}>
+    <Stack direction="row" alignItems="center" gap={1}>
       <Markdown text={task.name} />
       {completedByOthers && <CompletedByOthers />}
     </Stack>

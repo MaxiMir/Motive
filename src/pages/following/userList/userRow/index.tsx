@@ -21,7 +21,7 @@ export function UserRow({ user, index }: UserRowProps) {
   const href = joinToHref(nickname)
 
   return (
-    <Stack direction="row" alignItems="center" spacing={2}>
+    <Stack direction="row" alignItems="center" gap={2}>
       <Link href={href} title={name}>
         <Avatar src={avatar} name={name} online={online} size={55} />
       </Link>

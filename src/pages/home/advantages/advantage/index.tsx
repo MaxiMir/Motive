@@ -23,7 +23,7 @@ export function Advantage({ name, href }: AdvantageProps) {
         background: `linear-gradient(90deg, ${palette[name].light} 0%, ${palette[name].dark} 100%)`,
       })}
     >
-      <Stack direction="row" alignItems="center" spacing={2} width={width}>
+      <Stack direction="row" alignItems="center" gap={2} width={width}>
         <Link href={href}>
           <Typography variant="h2" paragraph m={0}>
             {emoji}

@@ -45,7 +45,7 @@ function DeleteMembershipModal({
       ]}
       onClose={onClose}
     >
-      <Stack justifyItems="center" alignItems="center" spacing={1}>
+      <Stack justifyItems="center" alignItems="center" gap={1}>
         <Typography>
           {messages.subtitle}{' '}
           <Box component="span" color="motivation.light">

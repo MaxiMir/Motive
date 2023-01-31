@@ -9,7 +9,7 @@ function NoResult({ phrase }: NoResultProps) {
   const messages = useMessages()
 
   return (
-    <Stack spacing={1}>
+    <Stack gap={1}>
       <Typography variant="h5" component="p">
         {messages.title} &#171;
         <Box component="span" color="zen.sand">

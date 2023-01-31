@@ -26,7 +26,7 @@ export function Discussion({ dayId, count, owner, clientGoal }: DiscussionProps)
   const minHeight = topics.length || withInput ? 130 : undefined
 
   return (
-    <Stack spacing={2} minHeight={minHeight} maxHeight={500} flex={1}>
+    <Stack gap={2} minHeight={minHeight} maxHeight={500} flex={1}>
       <>
         {isLoading ? (
           <Loader count={count} withInput={withInput} />
@@ -41,7 +41,7 @@ export function Discussion({ dayId, count, owner, clientGoal }: DiscussionProps)
               <List
                 elements={topics}
                 keyGetter={(topic) => topic.id}
-                spacing={3}
+                gap={3}
                 render={(topic, index) => (
                   <Topic
                     dayId={dayId}

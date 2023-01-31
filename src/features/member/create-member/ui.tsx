@@ -58,14 +58,14 @@ function CreateMemberModal({
       ]}
       onClose={onClose}
     >
-      <Stack spacing={1}>
+      <Stack gap={1}>
         <FormikProvider value={form}>
           <Form>
             <RadioGroup name="dayId" value={values.dayId?.toString()} onChange={onChange}>
               <FormControlLabel
                 value={disableBeginning ? 'none' : beginningDay.toString()}
                 label={
-                  <Stack direction="row" spacing={1}>
+                  <Stack direction="row" gap={1}>
                     {messages.beginLabel} 🗻
                   </Stack>
                 }
@@ -75,7 +75,7 @@ function CreateMemberModal({
               <FormControlLabel
                 value={dayId.toString()}
                 label={
-                  <Stack direction="row" spacing={1}>
+                  <Stack direction="row" gap={1}>
                     {messages.dayLabel} 🌋
                   </Stack>
                 }

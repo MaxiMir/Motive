@@ -49,8 +49,8 @@ function CreateConfirmationModal({ goalId, onClose }: CreateConfirmationModalPro
     >
       <FormikProvider value={form}>
         <Form>
-          <Stack alignItems="center" spacing={3}>
-            <Stack alignItems="center" spacing={1}>
+          <Stack alignItems="center" gap={3}>
+            <Stack alignItems="center" gap={1}>
               <SpinTypography>🏆</SpinTypography>
               <Typography variant="subtitle1" sx={{ color: '#ffa300' }}>
                 {messages.subtitle}
@@ -65,7 +65,7 @@ function CreateConfirmationModal({ goalId, onClose }: CreateConfirmationModalPro
               component={Input}
             />
             {!!values.photos.length && (
-              <Stack spacing={2} width="100%">
+              <Stack gap={2} width="100%">
                 <Typography variant="h6" color="primary" component="p">
                   📸 {messages.photoTitle}
                 </Typography>
@@ -87,7 +87,7 @@ function CreateConfirmationModal({ goalId, onClose }: CreateConfirmationModalPro
               </Stack>
             )}
             {values.video && (
-              <Stack spacing={2} width="100%">
+              <Stack gap={2} width="100%">
                 <Typography variant="h6" color="primary" component="p">
                   🎬 {messages.videoTitle}
                 </Typography>
@@ -98,7 +98,7 @@ function CreateConfirmationModal({ goalId, onClose }: CreateConfirmationModalPro
                 />
               </Stack>
             )}
-            <Stack direction="row" spacing={2} width="100%">
+            <Stack direction="row" gap={2} width="100%">
               <PhotoInput disabled={isSubmitting} multiple onSelect={onSelectPhoto} />
               <VideoInput disabled onSelect={onSelectVideo} />
             </Stack>

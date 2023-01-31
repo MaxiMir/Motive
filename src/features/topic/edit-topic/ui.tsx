@@ -48,7 +48,7 @@ function EditTopicModal({ message, onClose }: EditTopicModalProps) {
     >
       <FormikProvider value={form}>
         <Form>
-          <Stack alignItems="center" spacing={3}>
+          <Stack alignItems="center" gap={3}>
             <Field
               name="text"
               label={messages.label}

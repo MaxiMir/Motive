@@ -12,7 +12,7 @@ export function Date({ date }: DateProps) {
   const parts = formattedDate.split(' ')
 
   return (
-    <Stack direction="row" alignItems="baseline" spacing={1}>
+    <Stack direction="row" alignItems="baseline" gap={1}>
       {parts.map((datePart) => (
         <DatePart datePart={datePart} key={datePart} />
       ))}

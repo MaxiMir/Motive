@@ -15,7 +15,7 @@ export function Progress({ characteristic, value, mb }: ProgressProps) {
   const preparedProgress = Math.round(progress)
 
   return (
-    <Stack direction="row" alignItems="center" spacing={1} mb={mb}>
+    <Stack direction="row" alignItems="center" gap={1} mb={mb}>
       <LinearProgress
         variant="determinate"
         value={progress}

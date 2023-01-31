@@ -30,8 +30,8 @@ function UpdateAvatarModal({ userId, onClose }: UpdateAvatarModalProps) {
 
   return (
     <Modal title={messages.title} maxWidth="xs" onClose={onClose}>
-      <Stack alignItems="center" spacing={2}>
-        <Stack alignItems="center" spacing={1}>
+      <Stack alignItems="center" gap={2}>
+        <Stack alignItems="center" gap={1}>
           <Description>{messages.description}.</Description>
           <Description sx={{ color: 'zen.sand' }}>{messages.typesText}.</Description>
         </Stack>

@@ -88,7 +88,7 @@ export function Layout({
             component="main"
             id="main"
             flex={1}
-            minHeight="100vh"
+            minHeight="100dvh"
             sx={({ palette }) => ({ background: palette.mode === 'dark' ? '#121212' : undefined })}
           >
             {renderUpdating && <Updating />}

@@ -61,9 +61,9 @@ function CreateGoalModal({ onClose }: CreateGoalModalProps) {
     >
       <FormikProvider value={form}>
         <Form>
-          <Stack spacing={2}>
+          <Stack gap={2}>
             <Field name="name" label={messages.nameLabel} component={Input} />
-            <Stack spacing={1}>
+            <Stack gap={1}>
               <Field
                 name="hashtags"
                 color="secondary"
@@ -81,9 +81,9 @@ function CreateGoalModal({ onClose }: CreateGoalModalProps) {
                 # {messages.hashtagText}
               </ButtonCompact>
             </Stack>
-            <Stack spacing={1}>
-              <Stack direction="row" spacing={1}>
-                <Typography variant="h6" component="p" color="primary">
+            <Stack gap={1}>
+              <Stack direction="row" alignItems="center" gap={1}>
+                <Typography variant="h6" component="p">
                   🚀 {messages.stagesHeader}
                 </Typography>
                 <TooltipArrow title={messages.stageHint}>
@@ -96,7 +96,7 @@ function CreateGoalModal({ onClose }: CreateGoalModalProps) {
                 {({ push, remove }) => (
                   <>
                     {values.stages.map(({ id }, index) => (
-                      <Stack direction="row" spacing={1} key={id}>
+                      <Stack direction="row" gap={1} key={id}>
                         <Field
                           name={`stages.${index}.name`}
                           label={`${messages.stageLabel} ${index + 1}`}
@@ -129,7 +129,7 @@ function CreateGoalModal({ onClose }: CreateGoalModalProps) {
               </FieldArray>
             </Stack>
             <FormControl variant="standard">
-              <Typography variant="h6" component="label" color="primary">
+              <Typography variant="h6" component="label">
                 🕰 {messages.startHeader}
               </Typography>
               <RadioGroup
@@ -151,8 +151,8 @@ function CreateGoalModal({ onClose }: CreateGoalModalProps) {
                 />
               </RadioGroup>
             </FormControl>
-            <Stack spacing={2}>
-              <Typography variant="h6" component="p" color="primary">
+            <Stack gap={2}>
+              <Typography variant="h6" component="p">
                 📌 {messages.tasksHeader}
               </Typography>
               <FieldArray name="tasks">

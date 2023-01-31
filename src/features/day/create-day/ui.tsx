@@ -67,10 +67,10 @@ function CreateDayModal({ goalId, dayDate, onClose }: CreateDayModalProps) {
       ]}
       onClose={onClose}
     >
-      <Stack spacing={3}>
+      <Stack gap={3}>
         <FormikProvider value={form}>
           <Form>
-            <Stack spacing={3}>
+            <Stack gap={3}>
               <FieldArray name="tasks">
                 {({ push, remove }) => (
                   <>
@@ -128,7 +128,7 @@ function CreateDayModal({ goalId, dayDate, onClose }: CreateDayModalProps) {
         </FormikProvider>
         <Accordion>
           <AccordionSummary expandIcon={<Icon name="expand_more" />} id="old-pitt-note">
-            <Stack direction="row" alignItems="center" spacing={1}>
+            <Stack direction="row" alignItems="center" gap={1}>
               <Paul />
               <Typography variant="h6" component="h3">
                 {messages.pittText}

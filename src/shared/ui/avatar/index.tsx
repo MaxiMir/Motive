@@ -1,4 +1,5 @@
 import { Button, ButtonProps } from '@mui/material'
+import { ElementType } from 'react'
 import dynamic from 'next/dynamic'
 import { Device } from 'shared/api'
 
@@ -12,7 +13,10 @@ interface AvatarProps {
   lastSeen?: string | null
   device?: Device | null
   size: number
-  buttonProps?: Omit<ButtonProps, 'sx'>
+  buttonProps?: {
+    component: ElementType
+    onClick?: ButtonProps['onClick']
+  }
 }
 
 function Avatar({ src, name, size, online, lastSeen, device, buttonProps }: AvatarProps) {
@@ -23,6 +27,7 @@ function Avatar({ src, name, size, online, lastSeen, device, buttonProps }: Avat
         padding: '3px',
         borderRadius: '50%',
       }}
+      component="span"
       {...buttonProps}
     >
       {!src ? (

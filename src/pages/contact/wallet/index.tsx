@@ -27,7 +27,7 @@ export function Wallet({ name, wallet, src }: WalletProps) {
   const onClick = () => copyText(wallet).then(onSuccess).catch(onError)
 
   return (
-    <Stack direction="row" alignItems="center" spacing={1}>
+    <Stack direction="row" alignItems="center" gap={1}>
       <Image src={src} alt="" width={32} height={32} />
       <Typography>{name}:</Typography>
       <Box

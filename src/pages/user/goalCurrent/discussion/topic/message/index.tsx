@@ -30,12 +30,12 @@ function Message({ message, answerFor, supportFor, onReply }: MessageProps) {
   const direction = !answerFor ? 'row' : 'row-reverse'
 
   return (
-    <Stack direction={direction} alignItems="flex-end" spacing={1}>
+    <Stack direction={direction} alignItems="flex-end" gap={1}>
       <Link href={href} title={name}>
         <Avatar src={avatar} name={name} online={online} size={32} />
       </Link>
       <Stack
-        spacing={1}
+        gap={1}
         width="100%"
         px={2}
         py={1}

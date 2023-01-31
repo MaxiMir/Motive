@@ -12,7 +12,7 @@ function EmptyGoals({ clientPage }: AddGoalProps) {
   const title = formatMessage({ id: `page.user.empty-goals.${clientPage ? 'owner' : 'guest'}` })
 
   return (
-    <Stack justifyContent="center" alignItems="center" spacing={1} flex={1}>
+    <Stack justifyContent="center" alignItems="center" gap={1} flex={1}>
       <Typography variant="h6" component="p" color="primary" mb={2}>
         {title}
       </Typography>

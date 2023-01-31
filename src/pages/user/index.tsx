@@ -43,7 +43,7 @@ export function UserPage({ user }: UserViewProps) {
   return (
     <UserContext.Provider value={user}>
       <Container sx={{ gap: 3 }}>
-        <Stack spacing="12px">
+        <Stack gap="12px">
           <Section
             display="flex"
             flexWrap="wrap"
@@ -75,7 +75,7 @@ export function UserPage({ user }: UserViewProps) {
                   sm: 'row',
                 }}
                 alignItems="center"
-                spacing={{
+                gap={{
                   xs: 1,
                   sm: 3,
                 }}
@@ -83,7 +83,7 @@ export function UserPage({ user }: UserViewProps) {
                 mb={1}
               >
                 <Nickname nickname={nickname} />
-                <Stack direction="row" alignItems="center" spacing={1}>
+                <Stack direction="row" alignItems="center" gap={1}>
                   {clientPage ? (
                     <EditProfile user={user} />
                   ) : (
@@ -92,7 +92,7 @@ export function UserPage({ user }: UserViewProps) {
                   <MenuActions clientPage={clientPage} />
                 </Stack>
               </Stack>
-              <Stack direction="row" justifyContent="space-between" spacing={2} mb={1}>
+              <Stack direction="row" justifyContent="space-between" gap={2} mb={1}>
                 {SECOND_CHARACTERISTICS.map((characteristicName) => (
                   <SecondCharacteristic
                     name={characteristicName}

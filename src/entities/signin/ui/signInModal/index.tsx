@@ -21,7 +21,7 @@ export function SignInModal({ options, onClose }: SignInModalProps) {
 
   return (
     <Modal title={title} maxWidth="xs" onClose={onClose}>
-      <Stack alignSelf="stretch" spacing={2} minHeight={160}>
+      <Stack alignSelf="stretch" gap={2} minHeight={160}>
         {!providers ? (
           <Loader count={4} />
         ) : (

@@ -43,7 +43,7 @@ function EditProfileModal({ user, onClose }: EditProfileModalProps) {
     >
       <FormikProvider value={form}>
         <Form>
-          <Stack spacing={3}>
+          <Stack gap={3}>
             <Field name="name" label={messages.nameLabel} color="primary" component={Input} />
             <Field
               name="nickname"

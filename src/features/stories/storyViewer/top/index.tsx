@@ -38,7 +38,7 @@ export function Top({ user, title, date, onClose }: TopProps): JSX.Element {
           <Avatar src={avatar} name={name} size={42} />
         </Link>
         <Stack>
-          <Stack direction="row" alignItems="flex-end" spacing={0.5}>
+          <Stack direction="row" alignItems="flex-end" gap={0.5}>
             <Typography
               variant="caption"
               component="span"

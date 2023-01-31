@@ -46,8 +46,8 @@ function CreateFeedback({ goalId, dayId, onClose }: AddingModalProps) {
     >
       <FormikProvider value={form}>
         <Form>
-          <Stack alignItems="center" spacing={3}>
-            <Stack alignItems="center" spacing={1}>
+          <Stack alignItems="center" gap={3}>
+            <Stack alignItems="center" gap={1}>
               <ShakeTypography>🎉</ShakeTypography>
               <Typography variant="subtitle1" sx={{ color: 'support.main' }}>
                 {messages.subtitle}
@@ -62,7 +62,7 @@ function CreateFeedback({ goalId, dayId, onClose }: AddingModalProps) {
               component={Input}
             />
             {!!values.photos.length && (
-              <Stack spacing={2} width="100%">
+              <Stack gap={2} width="100%">
                 <Typography variant="h6" component="p" color="primary">
                   📸 {messages.photoTitle}
                 </Typography>
@@ -84,7 +84,7 @@ function CreateFeedback({ goalId, dayId, onClose }: AddingModalProps) {
               </Stack>
             )}
             {values.video && (
-              <Stack spacing={2} width="100%">
+              <Stack gap={2} width="100%">
                 <Typography variant="h6" component="p" color="primary">
                   🎬 {messages.videoTitle}
                 </Typography>
@@ -95,7 +95,7 @@ function CreateFeedback({ goalId, dayId, onClose }: AddingModalProps) {
                 />
               </Stack>
             )}
-            <Stack direction="row" spacing={2} width="100%">
+            <Stack direction="row" gap={2} width="100%">
               <PhotoInput multiple disabled={isSubmitting} onSelect={onSelectPhoto} />
               <VideoInput disabled onSelect={onSelectVideo} />
             </Stack>

@@ -32,7 +32,7 @@ function CreateTopic({ dayId, user, type, topicId, onAdd }: CreateTopicProps) {
   return (
     <FormikProvider value={form}>
       <Form>
-        <Stack direction="row" alignItems="center" flex={1} spacing={1}>
+        <Stack direction="row" alignItems="center" flex={1} gap={1}>
           <Avatar src={avatar} name={name} size={32} />
           <Field
             name="text"

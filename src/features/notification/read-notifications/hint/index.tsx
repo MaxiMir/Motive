@@ -11,7 +11,7 @@ function Hint({ onClick }: HintProps) {
 
   return (
     <Alert severity="warning" icon={false} sx={{ mb: 3 }}>
-      <Stack alignItems="flex-start" spacing={1}>
+      <Stack alignItems="flex-start" gap={1}>
         {messages.title}:
         <Button startIcon={<Icon name="notifications_active" />} onClick={onClick}>
           {messages.buttonText}

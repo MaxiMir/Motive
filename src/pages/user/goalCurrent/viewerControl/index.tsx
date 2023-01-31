@@ -31,7 +31,7 @@ function ViewerControl({
 
   return (
     <Stack direction="row" justifyContent="space-between">
-      <Stack direction="row" spacing={1}>
+      <Stack direction="row" gap={1}>
         {DAY_CHARACTERISTIC.map((name) => (
           <AddReaction
             name={name}

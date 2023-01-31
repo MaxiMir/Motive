@@ -23,8 +23,8 @@ function NoCompletedModal({ onClose }: NoCompletedModalProps) {
       maxWidth="xs"
       onClose={onClose}
     >
-      <Stack spacing={2} minHeight={400}>
-        <Stack alignItems="center" justifyContent="center" flex={1} spacing={2}>
+      <Stack gap={2} minHeight={400}>
+        <Stack alignItems="center" justifyContent="center" flex={1} gap={2}>
           <Typography variant="h6" component="p">
             {messages.header}
           </Typography>

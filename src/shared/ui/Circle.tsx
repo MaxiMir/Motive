@@ -1,5 +1,5 @@
-import { CSSProperties } from 'react'
 import { Box } from '@mui/material'
+import { CSSProperties } from 'react'
 
 interface CircleProps {
   offset: number

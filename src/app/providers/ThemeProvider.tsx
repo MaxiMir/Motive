@@ -1,8 +1,9 @@
-import { ReactNode, useMemo, useState } from 'react'
 import { PaletteMode } from '@mui/material'
 import { createTheme, ThemeProvider as MuiThemeProvider } from '@mui/material/styles'
 import { createGenerateClassName, StylesProvider } from '@mui/styles'
-import { getDesignTokens, useRemoveServerStyles, PaletteModeContext } from '@entities/theme'
+import { ReactNode, useInsertionEffect, useMemo, useState } from 'react'
+import { getDesignTokens } from 'shared/config'
+import { PaletteModeContext } from 'shared/ui/theme'
 
 const generateClassName = createGenerateClassName({ productionPrefix: 'bb' })
 
@@ -14,7 +15,15 @@ function ThemeProvider({ children }: ThemeProviderProps) {
   const [mode, setMode] = useState<PaletteMode>('dark')
   const theme = useMemo(() => createTheme(getDesignTokens(mode)), [mode])
   const paletteModeValue = useMemo(() => ({ mode, setMode }), [mode])
-  useRemoveServerStyles()
+
+  useInsertionEffect(() => {
+    // Remove the server-side injected CSS.
+    const jssStyles = document.querySelector('#jss-server-side')
+
+    if (jssStyles?.parentElement) {
+      jssStyles.parentElement.removeChild(jssStyles)
+    }
+  }, [])
 
   return (
     <PaletteModeContext.Provider value={paletteModeValue}>

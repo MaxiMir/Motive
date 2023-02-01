@@ -1,13 +1,13 @@
 import { GetServerSideProps } from 'next'
-import { dehydrate, QueryClient } from 'react-query'
 import { getSession } from 'next-auth/react'
 import DeviceDetector from 'node-device-detector'
-import { getSearchParams } from '@lib/helpers/url'
-import Layout from '@app/ui/Layout'
-import SearchPage from '@pages/search'
-import { getSearchPage, useSearchPage } from '@entities/pages'
-import useMetaTags from '@lib/hooks/useMetaTags'
-import { Route } from '@shared/config/routes'
+import { dehydrate, QueryClient } from 'react-query'
+import { Layout } from 'app/layout'
+import { SearchPage } from 'pages/search'
+import { useSearchPage, useMetaTags } from 'entities/page'
+import { getSearchPage } from 'shared/api'
+import { Route } from 'shared/config'
+import { getSearchParams } from 'shared/lib/helpers'
 
 function SearchRoute() {
   const { data } = useSearchPage()

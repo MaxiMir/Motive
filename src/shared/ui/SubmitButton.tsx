@@ -1,12 +1,10 @@
 import dynamic from 'next/dynamic'
-import GradientButton from '@ui/GradientButton'
-import { EmojiName } from '@ui/Emoji'
+import GradientButton from 'shared/ui/GradientButton'
 
 const CircularProgress = dynamic(() => import('@mui/material/CircularProgress'))
-const Emoji = dynamic(() => import('@ui/Emoji'))
 
 interface SubmitButtonProps {
-  emoji: EmojiName
+  emoji: string
   text: string
   loadingText: string
   disabled: boolean
@@ -19,13 +17,7 @@ function SubmitButton({ emoji, text, loadingText, disabled, onClick }: SubmitBut
       size="small"
       type="submit"
       disabled={disabled}
-      startIcon={
-        disabled ? (
-          <CircularProgress size={14.5} color="inherit" />
-        ) : (
-          <Emoji name={emoji} onlyEmoji />
-        )
-      }
+      startIcon={disabled ? <CircularProgress size={14.5} color="inherit" /> : emoji}
       onClick={onClick}
     >
       {!disabled ? text : loadingText}

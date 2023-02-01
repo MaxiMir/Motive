@@ -1,11 +1,12 @@
 import { GetServerSideProps } from 'next'
-import { dehydrate, QueryClient } from 'react-query'
 import { getSession } from 'next-auth/react'
 import DeviceDetector from 'node-device-detector'
-import Layout from '@app/ui/Layout'
-import { getSearchParams } from '@lib/helpers/url'
-import UserPage from '@pages/user'
-import { PossiblePageError, getUserPage, useUserMetaTags, useUserPage } from '@entities/pages'
+import { dehydrate, QueryClient } from 'react-query'
+import { Layout } from 'app/layout'
+import { UserPage } from 'pages/user'
+import { useUserMetaTags, useUserPage } from 'entities/page'
+import { PossiblePageError, getUserPage } from 'shared/api'
+import { getSearchParams } from 'shared/lib/helpers'
 
 function UserRoute() {
   const { data } = useUserPage()

@@ -1,6 +1,6 @@
 import { useIntl } from 'react-intl'
 
-const useFormatNumber = () => {
+export const useFormatNumber = () => {
   const { locale } = useIntl()
 
   return (value: number) => {
@@ -9,5 +9,3 @@ const useFormatNumber = () => {
     return formatter.format(value)
   }
 }
-
-export default useFormatNumber

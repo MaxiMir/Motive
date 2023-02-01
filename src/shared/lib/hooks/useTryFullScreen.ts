@@ -1,7 +1,7 @@
-import { useRef } from 'react'
 import fscreen from 'fscreen'
+import { useRef } from 'react'
 
-const useTryFullScreen = () => {
+export const useTryFullScreen = () => {
   const ref = useRef<HTMLDivElement | null>(null)
   const supported = fscreen.fullscreenEnabled
 
@@ -23,5 +23,3 @@ const useTryFullScreen = () => {
 
   return { ref, supported, enter, exit }
 }
-
-export default useTryFullScreen

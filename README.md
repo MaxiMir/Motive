@@ -1,5 +1,7 @@
 [//]: # (TODO)
 * Stack + user in notification
+* Индикатор подгрузки в Infinity Loading
+* Notifications Infinity подругзка
 * Scroll to up
 * Modal External Links
 * Show more in description

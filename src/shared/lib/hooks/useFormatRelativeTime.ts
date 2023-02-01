@@ -1,6 +1,6 @@
 import { useIntl } from 'react-intl'
 
-const useFormatRelativeTime = () => {
+export const useFormatRelativeTime = () => {
   const { locale } = useIntl()
 
   return (
@@ -13,5 +13,3 @@ const useFormatRelativeTime = () => {
     return intl.formatToParts(value, unit)
   }
 }
-
-export default useFormatRelativeTime

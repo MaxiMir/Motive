@@ -13,4 +13,4 @@ fetcher.interceptors.response.use(
   },
 )
 
-export default fetcher
+export { fetcher }

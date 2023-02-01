@@ -1,17 +1,17 @@
-import { Fragment } from 'react'
 import { Stack, StackProps } from '@mui/material'
+import { Fragment } from 'react'
 
 export interface ListProps<T> {
   elements: T[]
-  spacing?: StackProps['spacing']
+  gap?: StackProps['gap']
   pb?: StackProps['mb']
   keyGetter: (element: T) => string | number
   render: (element: T, index: number) => JSX.Element
 }
 
-function List<T>({ elements, spacing, pb, render, keyGetter }: ListProps<T>) {
+function List<T>({ elements, gap, pb, render, keyGetter }: ListProps<T>) {
   return (
-    <Stack flexWrap="wrap" flex={1} spacing={spacing} pb={pb}>
+    <Stack flexWrap="wrap" flex={1} gap={gap} pb={pb}>
       {elements.map((element, key) => (
         <Fragment key={keyGetter(element).toString()}>{render(element, key)}</Fragment>
       ))}

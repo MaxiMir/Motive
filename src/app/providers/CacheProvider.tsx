@@ -1,6 +1,6 @@
 import { ReactNode, useState } from 'react'
 import { QueryClientProvider, MutationCache, QueryCache, QueryClient } from 'react-query'
-import { useSnackbar } from '@entities/snackbar'
+import { useSnackbar } from 'shared/ui/snackbar'
 
 interface CacheProviderProps {
   message: string
@@ -19,12 +19,12 @@ function CacheProvider({ message, children }: CacheProviderProps) {
         },
         queryCache: new QueryCache({
           onError() {
-            enqueueSnackbar({ message, severity: 'error', icon: 'error' })
+            enqueueSnackbar({ message, severity: 'error', icon: '👺' })
           },
         }),
         mutationCache: new MutationCache({
           onError() {
-            enqueueSnackbar({ message, severity: 'error', icon: 'error' })
+            enqueueSnackbar({ message, severity: 'error', icon: '👺' })
           },
         }),
       }),

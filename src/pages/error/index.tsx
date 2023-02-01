@@ -1,0 +1,38 @@
+import { Box, Button, Stack, Typography } from '@mui/material'
+import { styled } from '@mui/system'
+import { useRouter } from 'next/router'
+import Container from 'shared/ui/Container'
+import { useMessages } from './lib'
+
+interface ErrorPageProps {
+  statusCode: number
+  header?: string
+}
+
+export function ErrorPage({ statusCode, header }: ErrorPageProps) {
+  const messages = useMessages(header)
+  const router = useRouter()
+
+  const onClick = () => router.back()
+
+  return (
+    <Container>
+      <Box display="flex" alignItems="center" justifyContent="center" flex={1}>
+        <Stack alignItems="center" justifyContent="space-between">
+          <Typography component="h1" variant="h5">
+            {messages.header}
+          </Typography>
+          <DescriptionText>{statusCode}</DescriptionText>
+          <DescriptionText>👺</DescriptionText>
+          <Button sx={{ color: 'warning.light' }} onClick={onClick}>
+            {messages.backText}
+          </Button>
+        </Stack>
+      </Box>
+    </Container>
+  )
+}
+
+const DescriptionText = styled(Typography)({
+  fontSize: '9em',
+})

@@ -1,5 +1,5 @@
 import { Checkbox as MuiCheckbox, FormControlLabel } from '@mui/material'
-import { FormControlLabelProps } from '@mui/material/FormControlLabel/FormControlLabel'
+import { FormControlLabelProps } from '@mui/material/FormControlLabel'
 
 interface CheckboxProps extends Omit<FormControlLabelProps, 'control' | 'label'> {
   label: JSX.Element | string

@@ -1,3 +1,2 @@
-export * from './model/types'
-export * from './ui/characteristicGoal/CharacteristicGoal'
-export * from './ui/characteristicUser/CharacteristicUser'
+export * from './ui'
+export * from './consts'

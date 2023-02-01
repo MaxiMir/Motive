@@ -1,9 +1,9 @@
 import { GetServerSideProps } from 'next'
 import { getSession } from 'next-auth/react'
 import DeviceDetector from 'node-device-detector'
-import Layout from '@app/ui/Layout'
-import FeedPage from '@pages/feed'
-import useMetaTags from '@lib/hooks/useMetaTags'
+import { Layout } from 'app/layout'
+import { FeedPage } from 'pages/feed'
+import { useMetaTags } from 'entities/page'
 
 function FeedRoute() {
   const metaTags = useMetaTags('feed')

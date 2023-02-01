@@ -15,14 +15,14 @@ interface DiscussionProps {
   dayId: number
   count: number
   owner: UserBaseDto
-  clientOwner: boolean
+  clientGoal: boolean
 }
 
-export function Discussion({ dayId, count, owner, clientOwner }: DiscussionProps) {
+export function Discussion({ dayId, count, owner, clientGoal }: DiscussionProps) {
   const client = useClient()
   const { isLoading, topics, checkOnLoadMore, fetchNextPage } = useDiscussion(dayId, count)
   const onAdd = useAddMessage()
-  const withInput = !!client && !clientOwner
+  const withInput = !!client && !clientGoal
   const minHeight = topics.length || withInput ? 130 : undefined
 
   return (
@@ -47,7 +47,7 @@ export function Discussion({ dayId, count, owner, clientOwner }: DiscussionProps
                     dayId={dayId}
                     topic={topic}
                     owner={owner}
-                    isOwner={clientOwner}
+                    isOwner={clientGoal}
                     inView={checkOnLoadMore(index)}
                     onView={fetchNextPage}
                     onAdd={onAdd}

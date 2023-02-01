@@ -81,12 +81,12 @@ function GoalCurrent({
     : differenceInCalendarDays(today, Date.parse(userMember.updated))
   const runningDays = differenceInCalendarDays(Date.parse(day.date), Date.parse(started)) + 1
   const restGoals = redefinedGoals.length - redefinedGoals.filter((t) => t.completed).length
-  const clientOwner = owner.id === client?.id
+  const clientGoal = owner.id === client?.id
   const clientMember = findMember(clientMembership, id, client?.id)
-  const viewerControls = !clientOwner
-  const ownerControls = clientOwner && clientPage && !completed
+  const viewerControls = !clientGoal
+  const ownerControls = clientGoal && clientPage && !completed
   const completeStage = ownerControls && goal.stage <= goal.day.stage
-  const canEdit = clientPage && (clientOwner || clientMember?.dayId === day.id)
+  const canEdit = clientPage && (clientGoal || clientMember?.dayId === day.id)
   const forTomorrow = !clientMember
     ? daysGone === -1
     : differenceInCalendarDays(Date.parse(clientMember.updated), today) > 0
@@ -139,7 +139,7 @@ function GoalCurrent({
                   goalName={name}
                   href={dayHref}
                   clientPage={clientPage}
-                  clientOwner={clientOwner}
+                  clientGoal={clientGoal}
                   clientMember={clientMember}
                 />
               </Box>
@@ -244,7 +244,7 @@ function GoalCurrent({
                         goalId={id}
                         day={day}
                         forTomorrow={forTomorrow}
-                        clientOwner={clientOwner}
+                        clientGoal={clientGoal}
                       />
                     }
                   />
@@ -265,7 +265,7 @@ function GoalCurrent({
                         dayId={day.id}
                         count={day.topicCount}
                         owner={owner}
-                        clientOwner={clientOwner}
+                        clientGoal={clientGoal}
                       />
                     }
                   />

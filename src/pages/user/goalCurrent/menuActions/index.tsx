@@ -18,7 +18,7 @@ interface MenuActionsProps {
   goalName: string
   href: string
   clientPage: boolean
-  clientOwner: boolean
+  clientGoal: boolean
   clientMember?: MemberDto
 }
 
@@ -27,7 +27,7 @@ export function MenuActions({
   goalName,
   href,
   clientPage,
-  clientOwner,
+  clientGoal,
   clientMember,
 }: MenuActionsProps) {
   const id = useId()
@@ -86,7 +86,7 @@ export function MenuActions({
         <MenuItem onClick={onShare}>
           <ListItem icon="share" primary={messages.shareText} />
         </MenuItem>
-        {!clientOwner && (
+        {!clientGoal && (
           <MenuItem onClick={toggleReporting}>
             <ListItem icon="outlined_flag" primary={messages.reportText} color="error.dark" />
           </MenuItem>

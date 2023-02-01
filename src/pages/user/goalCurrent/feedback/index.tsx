@@ -8,18 +8,18 @@ const Creating = dynamic(() => import('./creating'))
 interface FeedbackProps {
   goalId: number
   day: DayDto
-  clientOwner: boolean
+  clientGoal: boolean
   forTomorrow: boolean
 }
 
-export function Feedback({ goalId, day, forTomorrow, clientOwner }: FeedbackProps) {
+export function Feedback({ goalId, day, forTomorrow, clientGoal }: FeedbackProps) {
   return (
     <>
       {day.feedback ? (
         <Content feedback={day.feedback} />
       ) : (
         <>
-          {!clientOwner ? (
+          {!clientGoal ? (
             <Soon />
           ) : (
             <Creating goalId={goalId} dayId={day.id} forTomorrow={forTomorrow} />

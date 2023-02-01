@@ -46,7 +46,7 @@ export function NotificationInfo({ notification, href, onClick }: NotificationIn
           {emoji}
         </Box>
       </Box>
-      <Stack justifyContent="space-between">
+      <Stack>
         <Typography sx={{ fontSize: 14 }}>
           <Box component="b" sx={{ color }}>
             <Link href={userHref} onClick={onClick}>
@@ -61,7 +61,7 @@ export function NotificationInfo({ notification, href, onClick }: NotificationIn
             component="span"
             sx={{
               color: 'zen.silent',
-              fontSize: 14,
+              fontSize: 12,
             }}
           >
             {dateDistance}

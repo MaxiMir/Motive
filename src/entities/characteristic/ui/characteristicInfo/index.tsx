@@ -4,13 +4,13 @@ import Modal from 'shared/ui/Modal'
 import { useMessages } from './lib'
 import { Progress } from './progress'
 
-interface CharacteristicInfoModalProps {
+interface CharacteristicInfoProps {
   name: MainCharacteristicName
   value: number
   onClose: () => void
 }
 
-export function CharacteristicInfoModal({ name, value, onClose }: CharacteristicInfoModalProps) {
+export function CharacteristicInfo({ name, value, onClose }: CharacteristicInfoProps) {
   const messages = useMessages(name)
   const texts = [...(!messages.completion ? [] : [messages.completion]), messages.points]
 

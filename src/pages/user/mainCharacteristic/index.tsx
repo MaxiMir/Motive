@@ -8,8 +8,8 @@ import Circle from 'shared/ui/Circle'
 import { RADIUS } from './consts'
 import { getOffset } from './lib'
 
-const CharacteristicInfoModal = dynamic(() =>
-  import('entities/characteristic').then((m) => m.CharacteristicInfoModal),
+const CharacteristicInfo = dynamic(() =>
+  import('entities/characteristic').then((m) => m.CharacteristicInfo),
 )
 
 interface MainCharacteristicProps {
@@ -86,7 +86,7 @@ function MainCharacteristic({ name, value }: MainCharacteristicProps) {
           </Stack>
         </Stack>
       </Button>
-      {modal && <CharacteristicInfoModal name={modal} value={value} onClose={onClose} />}
+      {modal && <CharacteristicInfo name={modal} value={value} onClose={onClose} />}
     </>
   )
 }

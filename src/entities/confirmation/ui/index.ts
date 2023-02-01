@@ -1,1 +1,1 @@
-export * from './confirmationCard'
+export * from './confirmation'

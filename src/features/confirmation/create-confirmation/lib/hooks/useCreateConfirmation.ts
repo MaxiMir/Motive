@@ -24,7 +24,7 @@ export const useCreateConfirmation = (goalId: number, onSuccess: () => void) => 
     onSuccess() {
       const message = formatMessage({ id: 'component.modal-completion.message' })
       onSuccess()
-      setTimeout(() => scrollToElem('main'), 0)
+      setTimeout(() => scrollToElem('main'), 1)
       setTimeout(refetch, 300)
       enqueueSnackbar({ message, severity: 'success', icon: '👾' })
     },

@@ -1,5 +1,5 @@
 import dynamic from 'next/dynamic'
-import { ConfirmationCard } from 'entities/confirmation'
+import { Confirmation } from 'entities/confirmation'
 import { useUserContext } from 'entities/user'
 import { ConfirmationDto } from 'shared/api'
 import { useTryFullScreen, useToggle } from 'shared/lib/hooks'
@@ -29,7 +29,7 @@ function ConfirmationStory({ confirmation }: ConfirmationStoryProps) {
 
   return (
     <>
-      <ConfirmationCard
+      <Confirmation
         id={confirmation.id}
         name={confirmation.goal.name}
         src={mainPhoto.src}

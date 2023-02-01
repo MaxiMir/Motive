@@ -1,14 +1,14 @@
 import { Box, Button, Stack, Typography } from '@mui/material'
 import Avatar from 'shared/ui/avatar'
 
-interface ConfirmationCardProps {
+interface ConfirmationProps {
   id: number
   name: string
   src: string
   onClick: () => void
 }
 
-export function ConfirmationCard({ id, name, src, onClick }: ConfirmationCardProps) {
+export function Confirmation({ id, name, src, onClick }: ConfirmationProps) {
   return (
     <Stack alignItems="center" gap={1} minWidth={100}>
       <Box

@@ -15,14 +15,7 @@ export function TabContent({ name, users }: TabContentProps) {
 
   return (
     <>
-      <Box
-        px={3}
-        sx={{
-          clipPath: 'inset(0 -100vmax)',
-          background: blueGrey[900],
-          boxShadow: `0 0 0 100vmax ${blueGrey[900]}`,
-        }}
-      >
+      <Box px={3} sx={{ background: blueGrey[900] }}>
         <Grid container alignItems="center" sx={{ height: 55 }}>
           <Grid item xs={2}>
             <Box display="flex" justifyContent="center" width={22}>

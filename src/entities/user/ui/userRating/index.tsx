@@ -18,7 +18,6 @@ export function UserRating({ user, characteristicName, index }: UserRatingProps)
   const number = getNumber()
   const href = joinToHref(nickname)
   const ratingValue = Math.floor(characteristic[characteristicName])
-  const backgroundColor = index % 2 === 0 ? theme.palette.underlay : blueGrey[900]
 
   function getNumber() {
     const incrementedNumber = index + 1
@@ -36,14 +35,7 @@ export function UserRating({ user, characteristicName, index }: UserRatingProps)
   }
 
   return (
-    <Box
-      px={3}
-      sx={{
-        backgroundColor,
-        boxShadow: `0 0 0 100vmax ${backgroundColor}`,
-        clipPath: 'inset(0 -100vmax)',
-      }}
-    >
+    <Box px={3} sx={{ backgroundColor: index % 2 === 0 ? theme.palette.underlay : blueGrey[900] }}>
       <Grid container alignItems="center" sx={{ height: 55 }}>
         <Grid item xs={2}>
           <Box display="flex" justifyContent="center" width={22}>

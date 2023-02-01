@@ -71,10 +71,9 @@ function GoalCurrent({
   const messages = useMessages()
   const today = getMidnight()
   const dayHref = getDayHref(nickname, id, day.id)
-  const clientMember = findMember(id, clientMembership, client?.id)
   const expandedDiscussion = checkOnOpenDiscussion(query, id)
   const { isLoading, prev, next, onChangeDate, shouldDisableDate } = useSwitchDay(goal)
-  const userMember = findMember(id, membership, userId)
+  const userMember = findMember(membership, id, userId)
   const redefinedGoals = redefineTasks(day.tasks, userMember)
   const daysGoneForOwner = differenceInCalendarDays(new Date(), Date.parse(day.date))
   const daysGone = !userMember
@@ -83,13 +82,14 @@ function GoalCurrent({
   const runningDays = differenceInCalendarDays(Date.parse(day.date), Date.parse(started)) + 1
   const restGoals = redefinedGoals.length - redefinedGoals.filter((t) => t.completed).length
   const clientOwner = owner.id === client?.id
+  const clientMember = findMember(clientMembership, id, client?.id)
   const viewerControls = !clientOwner
   const ownerControls = clientOwner && clientPage && !completed
   const completeStage = ownerControls && goal.stage <= goal.day.stage
   const canEdit = clientPage && (clientOwner || clientMember?.dayId === day.id)
   const forTomorrow = !clientMember
     ? daysGone === -1
-    : !!differenceInCalendarDays(Date.parse(clientMember.updated), today)
+    : differenceInCalendarDays(Date.parse(clientMember.updated), today) > 0
   const lastDay = userMember?.dayId === day.id || calendar.at(-1)?.date === day.date
   const renderWeb = lastDay && daysGone >= SHOW_WEB_AFTER_DAYS
 

@@ -99,11 +99,11 @@ module.exports = {
         'no-restricted-exports': 'off',
         'no-bitwise': 'off',
 
-        // Already handled by TS
+        // Already handled by TS:
         'no-dupe-class-members': 'off',
         'no-undef': 'off',
 
-        // Add TypeScript specific rules (and turn off ESLint equivalents)
+        // Add TypeScript specific rules (and turn off ESLint equivalents):
         '@typescript-eslint/no-shadow': ['error'],
         '@typescript-eslint/consistent-type-assertions': 'warn',
         'no-array-constructor': 'off',

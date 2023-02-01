@@ -16,7 +16,7 @@ interface Options {
   insert: boolean
 }
 
-export const useUpdateFollowing = (userId: number, following: boolean): [boolean, () => void] => {
+export const useUpdateFollowing = (userId: number, following: boolean) => {
   const client = useClient()
   const openSignIn = useOpenSignIn()
   const { formatMessage } = useIntl()
@@ -43,5 +43,5 @@ export const useUpdateFollowing = (userId: number, following: boolean): [boolean
     mutate({ insert: !following })
   }
 
-  return [isLoading, onClick]
+  return [isLoading, onClick] as const
 }

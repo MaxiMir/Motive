@@ -2,19 +2,19 @@ import { ClientDto, NotificationDto, NotificationType } from 'shared/api'
 import { Route, HashMark, SearchParam } from 'shared/config'
 import { joinToHref, setSearchParams } from 'shared/lib/helpers'
 
-export const getGoalHref = (nickname: string, goalId: number): string => {
+export const getGoalHref = (nickname: string, goalId: number) => {
   const hashMark = `#${HashMark.Goal}-${goalId}`
 
   return joinToHref(nickname, hashMark)
 }
 
-export const getDayHref = (userHref: string, goalId: number, dayId: number): string => {
+export const getDayHref = (userHref: string, goalId: number, dayId: number) => {
   const url = setSearchParams(userHref, { [SearchParam.Dates]: `${goalId}:${dayId}` })
 
   return getGoalHref(url, goalId)
 }
 
-export const getDiscussionHref = (nickname: string, goalId: number, dayId: number): string => {
+export const getDiscussionHref = (nickname: string, goalId: number, dayId: number) => {
   const url = setSearchParams(nickname, {
     [SearchParam.ScrollTo]: HashMark.Discussion,
     [SearchParam.ScrollId]: goalId,
@@ -25,14 +25,14 @@ export const getDiscussionHref = (nickname: string, goalId: number, dayId: numbe
   return joinToHref(url, hash)
 }
 
-export const getFeedbackHref = (nickname: string, goalId: number, dayId: number): string => {
+export const getFeedbackHref = (nickname: string, goalId: number, dayId: number) => {
   const url = setSearchParams(nickname, { [SearchParam.Dates]: `${goalId}:${dayId}` })
   const hash = `#${HashMark.Feedback}-${goalId}`
 
   return joinToHref(url, hash)
 }
 
-export const getHashtagHref = (q: string): string => {
+export const getHashtagHref = (q: string) => {
   return setSearchParams(Route.Search, { q, type: 'tag' })
 }
 

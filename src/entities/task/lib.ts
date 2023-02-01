@@ -1,8 +1,7 @@
 import produce from 'immer'
 import { MemberDto, TaskDto } from 'shared/api'
 
-// TODO MOVE TO BACKEND
-export const redefineTasks = (tasks: TaskDto[], userMember?: MemberDto): TaskDto[] =>
+export const redefineTasks = (tasks: TaskDto[], userMember?: MemberDto) =>
   tasks.map((task) =>
     produce(task, (draft) => {
       if (!userMember) return

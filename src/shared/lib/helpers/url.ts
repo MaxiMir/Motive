@@ -1,6 +1,4 @@
-type SearchParamsEntries = Record<string, string | number>
-
-export const joinToHref = (...args: string[]): string => `/${args.join('')}`
+export const joinToHref = (...args: string[]) => `/${args.join('')}`
 
 export const parseUrl = (url: string) => {
   const [origin, params = ''] = url.split('?', 2)
@@ -9,17 +7,17 @@ export const parseUrl = (url: string) => {
   return { origin, searchParams }
 }
 
-export const getCurrentSearchParams = (): Record<string, string> => {
+export const getCurrentSearchParams = () => {
   return getSearchParams(window.location.search)
 }
 
-export const getSearchParams = (url: string): Record<string, string> => {
+export const getSearchParams = (url: string) => {
   const { searchParams } = parseUrl(url)
 
   return Object.fromEntries(searchParams)
 }
 
-export const setSearchParams = (url: string, params: SearchParamsEntries): string => {
+export const setSearchParams = (url: string, params: Record<string, string | number>) => {
   const { origin, searchParams } = parseUrl(url)
 
   Object.entries(params).forEach(([name, value]) => {
@@ -29,10 +27,10 @@ export const setSearchParams = (url: string, params: SearchParamsEntries): strin
   return toUrl(origin, searchParams)
 }
 
-const toUrl = (url: string, searchParams: URLSearchParams): string => {
+const toUrl = (url: string, searchParams: URLSearchParams) => {
   return [url, searchParams].join(!searchParams.toString() ? '' : '?')
 }
 
-export const getImageSrc = (src: string): string => {
+export const getImageSrc = (src: string) => {
   return src.includes('https://') ? src : process.env.NEXT_PUBLIC_APP_URL + src
 }

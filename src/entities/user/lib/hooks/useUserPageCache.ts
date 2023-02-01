@@ -2,7 +2,7 @@ import { useQueryClient } from 'react-query'
 import { UserPageDto } from 'shared/api'
 import { useUserContext } from './useUserContext'
 
-export const useUserPageCache = (): [UserPageDto, (page: UserPageDto) => void] => {
+export const useUserPageCache = () => {
   const queryClient = useQueryClient()
   const ctx = useUserContext()
 
@@ -10,5 +10,5 @@ export const useUserPageCache = (): [UserPageDto, (page: UserPageDto) => void] =
     queryClient.setQueryData(['page', ctx.nickname], page)
   }
 
-  return [ctx, mutate]
+  return [ctx, mutate] as const
 }

@@ -38,7 +38,7 @@ export const getGoalNextState = (goals: GoalDto[], goalId: number, add: boolean)
     draftGoal.characteristic.support += add ? 1 : -1
   })
 
-export const useSetLike = (message: MessageDto, answerFor?: number): [boolean, () => void] => {
+export const useSetLike = (message: MessageDto, answerFor?: number) => {
   const { id, like, dayId, goalId } = message
   const client = useClient()
   const openSignIn = useOpenSignIn()
@@ -94,5 +94,5 @@ export const useSetLike = (message: MessageDto, answerFor?: number): [boolean, (
     mutate({ message, answerFor, add: !like })
   }
 
-  return [isLoading, onClick]
+  return [isLoading, onClick] as const
 }

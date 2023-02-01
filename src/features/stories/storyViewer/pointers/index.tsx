@@ -6,7 +6,7 @@ interface PointersProps {
   onClose: () => void
 }
 
-export function Pointers({ count, onClose }: PointersProps): JSX.Element {
+export function Pointers({ count, onClose }: PointersProps) {
   const list = [...new Array(count)]
 
   return (

@@ -1,4 +1,4 @@
-export const toShortString = (value: string, count: number): string =>
+export const toShortString = (value: string, count: number) =>
   value.length < count ? value : `${value.slice(0, count - 3)}...`
 
 type Options = [single: string, double: string, doubleGenitive: string]
@@ -27,4 +27,4 @@ export const getWordDeclination = (
   return doubleGenitive
 }
 
-export const ucFirst = (value: string): string => value && value[0].toUpperCase() + value.slice(1)
+export const ucFirst = (value: string) => value && value[0].toUpperCase() + value.slice(1)

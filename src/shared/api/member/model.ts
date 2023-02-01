@@ -19,9 +19,3 @@ export interface MemberDto {
   readonly started: string
   readonly updated: string
 }
-
-export interface OwnershipDto {
-  readonly page: boolean
-  readonly goal: boolean
-  readonly member?: MemberDto
-}

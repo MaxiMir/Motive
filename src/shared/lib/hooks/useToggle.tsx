@@ -1,6 +1,6 @@
 import { useReducer } from 'react'
 
-export const useToggle = (initial = false): [open: boolean, toggle: () => void] => {
+export const useToggle = (initial = false) => {
   return useReducer((open) => !open, initial)
 }
 

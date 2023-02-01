@@ -4,7 +4,7 @@ export const getShortName = (name: string) =>
     .map((part) => part[0])
     .join('')
 
-const getHashOfString = (value: string): number => {
+const getHashOfString = (value: string) => {
   const hash = Array.from(value).reduce((acc, symbol) => {
     return symbol.charCodeAt(0) + ((acc << 5) - acc)
   }, 0)
@@ -12,7 +12,7 @@ const getHashOfString = (value: string): number => {
   return Math.abs(hash)
 }
 
-const normalizeHash = (hash: number, min: number, max: number): number => {
+const normalizeHash = (hash: number, min: number, max: number) => {
   return Math.floor((hash % (max - min)) + min)
 }
 
@@ -28,13 +28,9 @@ const generateHSL = (name: string, saturationRanges: Ranges, lightnessRanges: Ra
   return [h, s, l]
 }
 
-const HSLtoString = ([h, s, l]: HSL): string => `hsl(${h}, ${s}%, ${l}%)`
+const HSLtoString = ([h, s, l]: HSL) => `hsl(${h}, ${s}%, ${l}%)`
 
-const generateColorHsl = (
-  id: string,
-  saturationRanges: Ranges,
-  lightnessRanges: Ranges,
-): string => {
+const generateColorHsl = (id: string, saturationRanges: Ranges, lightnessRanges: Ranges) => {
   return HSLtoString(generateHSL(id, saturationRanges, lightnessRanges))
 }
 
@@ -48,7 +44,7 @@ interface GenerateOptions {
   range?: number
 }
 
-export const generateColorByName = (name: string, options: GenerateOptions = {}): string => {
+export const generateColorByName = (name: string, options: GenerateOptions = {}) => {
   const { saturation = 50, lightness = 60, range = 10 } = options
   const saturationRange = getRange(saturation, range)
   const lightnessRange = getRange(lightness, range)

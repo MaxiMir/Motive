@@ -1,23 +1,26 @@
 import { Box, Button, Card, Stack, Typography } from '@mui/material'
 import { styled } from '@mui/system'
+import { differenceInCalendarDays } from 'date-fns'
 import dynamic from 'next/dynamic'
 import { useRouter } from 'next/router'
+import { useSwitchDay } from 'features/day/switch-day'
 import { CharacteristicGoal } from 'entities/characteristic'
 import { checkOnOpenDiscussion } from 'entities/discussion'
-import { getGoalInfo } from 'entities/goal'
 import { findMember } from 'entities/member'
 import { getDayHref } from 'entities/page'
 import { redefineTasks } from 'entities/task'
 import { useClient } from 'entities/user'
 import { MAIN_CHARACTERISTICS, GoalCharacteristicName, GoalDto, MemberDto } from 'shared/api'
 import { HashMark } from 'shared/config'
+import { getMidnight } from 'shared/lib/utils'
 import Accordion from 'shared/ui/Accordion'
 import { Calendar } from './calendar'
-import { Date } from './date'
+import { SHOW_WEB_AFTER_DAYS } from './consts'
+import { Day } from './day'
 import { DayAgo } from './dayAgo'
 import { Discussion } from './discussion'
 import { Feedback } from './feedback'
-import { getClientOwnership, useMessages, useSwitchDay } from './lib'
+import { useMessages } from './lib'
 import { MenuActions } from './menuActions'
 import { Task } from './task'
 import { Views } from './views'
@@ -49,19 +52,46 @@ function GoalCurrent({
   clientPage,
   clientMembership,
 }: GoalCurrentProps) {
-  const { id, name, hashtags, characteristic, owner, stages, day, inherited, calendar, reactions } =
-    goal
+  const {
+    id,
+    name,
+    hashtags,
+    characteristic,
+    owner,
+    stages,
+    day,
+    inherited,
+    calendar,
+    reactions,
+    completed,
+    started,
+  } = goal
   const { query } = useRouter()
   const client = useClient()
   const messages = useMessages()
-  const userMember = findMember(id, membership, userId)
-  const clientOwnership = getClientOwnership(goal, client?.id, clientPage, clientMembership)
-  const goalInfo = getGoalInfo(goal, clientOwnership, userMember)
+  const today = getMidnight()
   const dayHref = getDayHref(nickname, id, day.id)
-  const showDiscussion = checkOnOpenDiscussion(query, id)
+  const clientMember = findMember(id, clientMembership, client?.id)
+  const expandedDiscussion = checkOnOpenDiscussion(query, id)
   const { isLoading, prev, next, onChangeDate, shouldDisableDate } = useSwitchDay(goal)
+  const userMember = findMember(id, membership, userId)
   const redefinedGoals = redefineTasks(day.tasks, userMember)
-  const restGoals = redefinedGoals.length - redefinedGoals.filter((t) => t.completed).length // TODO backend
+  const daysGoneForOwner = differenceInCalendarDays(new Date(), Date.parse(day.date))
+  const daysGone = !userMember
+    ? daysGoneForOwner
+    : differenceInCalendarDays(today, Date.parse(userMember.updated))
+  const runningDays = differenceInCalendarDays(Date.parse(day.date), Date.parse(started)) + 1
+  const restGoals = redefinedGoals.length - redefinedGoals.filter((t) => t.completed).length
+  const clientOwner = owner.id === client?.id
+  const viewerControls = !clientOwner
+  const ownerControls = clientOwner && clientPage && !completed
+  const completeStage = ownerControls && goal.stage <= goal.day.stage
+  const canEdit = clientPage && (clientOwner || clientMember?.dayId === day.id)
+  const forTomorrow = !clientMember
+    ? daysGone === -1
+    : !!differenceInCalendarDays(Date.parse(clientMember.updated), today)
+  const lastDay = userMember?.dayId === day.id || calendar.at(-1)?.date === day.date
+  const renderWeb = lastDay && daysGone >= SHOW_WEB_AFTER_DAYS
 
   const onClickPrevDay = () => onChangeDate(prev)
 
@@ -108,7 +138,9 @@ function GoalCurrent({
                   goalId={id}
                   goalName={name}
                   href={dayHref}
-                  clientOwnership={clientOwnership}
+                  clientPage={clientPage}
+                  clientOwner={clientOwner}
+                  clientMember={clientMember}
                 />
               </Box>
               <Stack direction="row" justifyContent="space-between" alignItems="center">
@@ -119,7 +151,7 @@ function GoalCurrent({
                     key={characteristicName}
                   />
                 ))}
-                <CharacteristicGoal name="runningDays" value={goalInfo.runningDays} />
+                <CharacteristicGoal name="runningDays" value={runningDays} />
               </Stack>
               {!!hashtags.length && <Hashtags hashtags={hashtags} />}
               <Stack alignItems="center">
@@ -135,7 +167,7 @@ function GoalCurrent({
                     onClick={onClickPrevDay}
                   >
                     <DayAgo day={prev} />
-                    <Date date={prev} />
+                    <Day date={prev} />
                   </DayCardButton>
                 )}
                 <Card
@@ -174,8 +206,8 @@ function GoalCurrent({
                           goalId={id}
                           stages={stages}
                           dayStage={day.stage}
-                          forTomorrow={goalInfo.forTomorrow}
-                          completeStage={goalInfo.completeStage}
+                          forTomorrow={forTomorrow}
+                          completeStage={completeStage}
                         />
                       }
                     />
@@ -192,10 +224,10 @@ function GoalCurrent({
                             goalId={id}
                             task={task}
                             rest={restGoals}
-                            clientMember={clientOwnership.member}
-                            forTomorrow={goalInfo.forTomorrow}
-                            daysGoneForOwner={goalInfo.daysGoneForOwner}
-                            canEdit={goalInfo.canEdit}
+                            clientMember={clientMember}
+                            forTomorrow={forTomorrow}
+                            daysGoneForOwner={daysGoneForOwner}
+                            canEdit={canEdit}
                             key={task.id}
                           />
                         ))}
@@ -206,13 +238,13 @@ function GoalCurrent({
                     emoji="💭"
                     header={messages.feedbackHeader}
                     id={`${HashMark.Feedback}-${id}`}
-                    defaultExpanded={!showDiscussion}
+                    defaultExpanded={!expandedDiscussion}
                     details={
                       <Feedback
                         goalId={id}
                         day={day}
-                        forTomorrow={goalInfo.forTomorrow}
-                        clientOwnership={clientOwnership}
+                        forTomorrow={forTomorrow}
+                        clientOwner={clientOwner}
                       />
                     }
                   />
@@ -227,13 +259,13 @@ function GoalCurrent({
                       </>
                     }
                     id={`${HashMark.Discussion}-${id}`}
-                    defaultExpanded={showDiscussion}
+                    defaultExpanded={expandedDiscussion}
                     details={
                       <Discussion
                         dayId={day.id}
                         count={day.topicCount}
                         owner={owner}
-                        clientGoal={clientOwnership.goal}
+                        clientOwner={clientOwner}
                       />
                     }
                   />
@@ -250,38 +282,31 @@ function GoalCurrent({
                     onClick={onClickNextDay}
                   >
                     <DayAgo day={next} />
-                    <Date date={next} />
+                    <Day date={next} />
                   </DayCardButton>
                 )}
               </Stack>
             </Stack>
           </ViewTrigger>
           <Stack spacing={2}>
-            {goalInfo.controls && (
-              <>
-                {clientOwnership.goal ? (
-                  <OwnerControl
-                    goalId={id}
-                    stages={stages}
-                    dayDate={day.date}
-                    dayStage={day.stage}
-                  />
-                ) : (
-                  <ViewerControl
-                    goalId={id}
-                    day={day}
-                    calendar={calendar}
-                    reactions={reactions}
-                    ownerName={owner.name}
-                    forTomorrow={goalInfo.forTomorrow}
-                    clientOwnership={clientOwnership}
-                  />
-                )}
-              </>
+            {ownerControls && (
+              <OwnerControl goalId={id} stages={stages} dayDate={day.date} dayStage={day.stage} />
+            )}
+            {viewerControls && (
+              <ViewerControl
+                goalId={id}
+                day={day}
+                calendar={calendar}
+                reactions={reactions}
+                ownerName={owner.name}
+                forTomorrow={forTomorrow}
+                clientPage={clientPage}
+                clientMember={clientMember}
+              />
             )}
             <Views views={day.views} />
           </Stack>
-          {goalInfo.web && <Web />}
+          {renderWeb && <Web />}
         </Stack>
       </Box>
     </Stack>

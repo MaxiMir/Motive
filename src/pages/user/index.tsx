@@ -29,7 +29,6 @@ export function UserPage({ user }: UserViewProps) {
     nickname,
     characteristic,
     goals,
-    membership,
     clientMembership,
     confirmations,
     motto,
@@ -143,8 +142,6 @@ export function UserPage({ user }: UserViewProps) {
             {goals.map((goal) => (
               <GoalCurrent
                 goal={goal}
-                membership={membership}
-                userId={id}
                 nickname={nickname}
                 clientPage={clientPage}
                 clientMembership={clientMembership}

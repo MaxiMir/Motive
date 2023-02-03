@@ -36,7 +36,6 @@ export interface FollowingPageDto {
 export interface UserPageDto extends UserDto {
   readonly following: boolean
   readonly goals: GoalDto[]
-  readonly membership: MemberDto[]
   readonly clientMembership: MemberDto[]
   readonly confirmations: ConfirmationDto[]
 }

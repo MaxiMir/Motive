@@ -1,5 +1,6 @@
 import { MainCharacteristicName } from '../characteristic'
 import { DayDto } from '../day'
+import { MemberDto } from '../member'
 import { CreateTaskDto } from '../task'
 import { UserBaseDto } from '../user'
 
@@ -28,8 +29,8 @@ export interface GoalDto extends GoalBaseDto {
   readonly day: DayDto
   readonly calendar: CalendarDto[]
   readonly reactions: ReactionsDto
-  readonly inherited: boolean
   readonly completed: boolean
+  readonly member?: MemberDto
 }
 
 export type ReactionsDto = Readonly<{ [key in MainCharacteristicName]: number[] }>

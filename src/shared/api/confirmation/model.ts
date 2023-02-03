@@ -6,6 +6,6 @@ export interface ConfirmationDto extends FeedbackDto {
   readonly started: string
   readonly end: string
   readonly goal: GoalBaseDto
-  readonly inherited: boolean
+  readonly member: boolean
   readonly photos: PhotoDto[]
 }

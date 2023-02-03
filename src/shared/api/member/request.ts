@@ -1,3 +1,4 @@
+import { DayDto } from '../day'
 import { fetcher } from '../fetcher'
 import { CreateMemberDto, MemberDto, UpdateMemberDto } from './model'
 
@@ -11,4 +12,8 @@ export const updateMember = ({ id, ...data }: UpdateMemberDto): Promise<MemberDt
 
 export const deleteMember = (id: number): Promise<void> => {
   return fetcher.delete(`/members/${id}`)
+}
+
+export const getMemberDay = (id: number, dayId: number): Promise<DayDto> => {
+  return fetcher.get(`/members/${id}/days/${dayId}`)
 }

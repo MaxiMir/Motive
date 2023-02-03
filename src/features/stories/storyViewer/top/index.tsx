@@ -14,7 +14,7 @@ interface TopProps {
   onClose: () => void
 }
 
-export function Top({ user, title, date, onClose }: TopProps): JSX.Element {
+export function Top({ user, title, date, onClose }: TopProps) {
   const { nickname, name, avatar } = user
   const formatDistance = useFormatDistance()
   const { formatMessage } = useIntl()

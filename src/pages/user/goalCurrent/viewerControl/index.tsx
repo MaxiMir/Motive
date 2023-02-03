@@ -1,8 +1,7 @@
 import { Stack } from '@mui/material'
 import dynamic from 'next/dynamic'
 import AddReaction from 'features/day/add-reaction'
-import { DAY_CHARACTERISTIC, CalendarDto, OwnershipDto, DayDto, ReactionsDto } from 'shared/api'
-import { checkOnCompletion } from './lib'
+import { DAY_CHARACTERISTIC, CalendarDto, DayDto, ReactionsDto, MemberDto } from 'shared/api'
 import ReactionSupport from './reactionSupport'
 
 const Join = dynamic(() => import('./join'))
@@ -15,7 +14,8 @@ interface ViewerControlProps {
   reactions: ReactionsDto
   ownerName: string
   forTomorrow: boolean
-  clientOwnership: OwnershipDto
+  clientPage: boolean
+  clientMember?: MemberDto
 }
 
 function ViewerControl({
@@ -25,9 +25,10 @@ function ViewerControl({
   reactions,
   ownerName,
   forTomorrow,
-  clientOwnership,
+  clientPage,
+  clientMember,
 }: ViewerControlProps) {
-  const completion = checkOnCompletion(clientOwnership, day.id)
+  const completion = clientPage && day.id === clientMember?.dayId
 
   return (
     <Stack direction="row" justifyContent="space-between">
@@ -44,7 +45,7 @@ function ViewerControl({
         ))}
         <ReactionSupport dayId={day.id} ownerName={ownerName} />
       </Stack>
-      {!clientOwnership.member ? (
+      {!clientMember ? (
         <Join goalId={goalId} dayId={day.id} calendar={calendar} ownerName={ownerName} />
       ) : (
         <>
@@ -54,7 +55,7 @@ function ViewerControl({
               dayId={day.id}
               calendar={calendar}
               forTomorrow={forTomorrow}
-              clientMember={clientOwnership.member}
+              clientMember={clientMember}
             />
           )}
         </>

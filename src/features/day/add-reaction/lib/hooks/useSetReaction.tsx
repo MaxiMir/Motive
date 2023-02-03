@@ -32,7 +32,7 @@ export const useSetReaction = (
   dayId: number,
   name: DayCharacteristicName,
   active: boolean,
-): [boolean, () => void] => {
+) => {
   const { formatMessage } = useIntl()
   const client = useClient()
   const openSignIn = useOpenSignIn()
@@ -76,5 +76,5 @@ export const useSetReaction = (
     mutate({ id: goalId, dayId, name, add: !active })
   }
 
-  return [isLoading, onClick]
+  return [isLoading, onClick] as const
 }

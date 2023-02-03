@@ -11,12 +11,10 @@ export const partialGetNextPageParam = <T>(
   }
 }
 
-type CheckOnLoadMore = (index: number) => boolean
-
 export const partialCheckOnLoadMore = (
   count: number,
   preloadDiff: number,
   hasNextPage?: boolean,
-): CheckOnLoadMore => {
-  return (index) => !!hasNextPage && count - index === preloadDiff
+) => {
+  return (index: number) => !!hasNextPage && count - index === preloadDiff
 }

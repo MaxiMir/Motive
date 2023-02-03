@@ -2,7 +2,7 @@ import { Box, IconButton, Menu, MenuItem } from '@mui/material'
 import { MouseEvent, useId, useState } from 'react'
 import dynamic from 'next/dynamic'
 import { tryNativeShare } from 'features/share'
-import { OwnershipDto } from 'shared/api'
+import { MemberDto } from 'shared/api'
 import { useToggle } from 'shared/lib/hooks'
 import Icon from 'shared/ui/Icon'
 import ListItem from 'shared/ui/ListItem'
@@ -17,10 +17,19 @@ interface MenuActionsProps {
   goalId: number
   goalName: string
   href: string
-  clientOwnership: OwnershipDto
+  clientPage: boolean
+  clientGoal: boolean
+  clientMember?: MemberDto
 }
 
-export function MenuActions({ goalId, goalName, href, clientOwnership }: MenuActionsProps) {
+export function MenuActions({
+  goalId,
+  goalName,
+  href,
+  clientPage,
+  clientGoal,
+  clientMember,
+}: MenuActionsProps) {
   const id = useId()
   const menuId = useId()
   const messages = useMessages()
@@ -77,12 +86,12 @@ export function MenuActions({ goalId, goalName, href, clientOwnership }: MenuAct
         <MenuItem onClick={onShare}>
           <ListItem icon="share" primary={messages.shareText} />
         </MenuItem>
-        {!clientOwnership.goal && (
+        {!clientGoal && (
           <MenuItem onClick={toggleReporting}>
             <ListItem icon="outlined_flag" primary={messages.reportText} color="error.dark" />
           </MenuItem>
         )}
-        {clientOwnership.member && (
+        {clientMember && (
           <MenuItem onClick={onLeave}>
             <ListItem icon="logout" primary={messages.leaveText} />
           </MenuItem>
@@ -99,7 +108,8 @@ export function MenuActions({ goalId, goalName, href, clientOwnership }: MenuAct
         <DeleteMembershipModal
           goalId={goalId}
           goalName={goalName}
-          clientOwnership={clientOwnership}
+          clientPage={clientPage}
+          clientMember={clientMember}
           onClose={toggleLeaving}
         />
       )}

@@ -1,7 +1,7 @@
 import { Button, Typography } from '@mui/material'
 import { useRouter } from 'next/router'
 
-function UserLink(): JSX.Element {
+function UserLink() {
   const { query, reload } = useRouter()
   const nickname = query.id
 

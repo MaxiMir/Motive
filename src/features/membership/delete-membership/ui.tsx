@@ -1,5 +1,5 @@
 import { Box, Stack, Typography } from '@mui/material'
-import { OwnershipDto } from 'shared/api'
+import { MemberDto } from 'shared/api'
 import CancelButton from 'shared/ui/CancelButton'
 import FadeTypography from 'shared/ui/FadeTypography'
 import Modal from 'shared/ui/Modal'
@@ -9,23 +9,25 @@ import { useMessages, useRemoveMember } from './lib'
 interface DeleteMembershipProps {
   goalId: number
   goalName: string
-  clientOwnership: OwnershipDto
+  clientPage: boolean
+  clientMember?: MemberDto
   onClose: () => void
 }
 
 function DeleteMembershipModal({
   goalId,
   goalName,
-  clientOwnership,
+  clientPage,
+  clientMember,
   onClose,
 }: DeleteMembershipProps) {
   const messages = useMessages()
-  const { isLoading, mutateAsync } = useRemoveMember(goalId, clientOwnership.page)
+  const { isLoading, mutateAsync } = useRemoveMember(goalId, clientPage)
 
   const onClick = () => {
-    if (!clientOwnership.member) return
+    if (!clientMember) return
 
-    mutateAsync(clientOwnership.member?.id).then(onClose)
+    mutateAsync(clientMember?.id).then(onClose)
   }
 
   return (

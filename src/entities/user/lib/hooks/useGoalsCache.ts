@@ -7,12 +7,12 @@ const getNextState = (page: UserPageDto, goals: GoalDto[]) =>
     draft.goals = goals
   })
 
-export const useGoalsCache = (): [GoalDto[], (goals: GoalDto[]) => void] => {
+export const useGoalsCache = () => {
   const [page, mutatePage] = useUserPageCache()
 
   const mutateGoals = (goals: GoalDto[]) => {
     mutatePage(getNextState(page, goals))
   }
 
-  return [page.goals, mutateGoals]
+  return [page.goals, mutateGoals] as const
 }

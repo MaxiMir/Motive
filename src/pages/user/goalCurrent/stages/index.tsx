@@ -14,8 +14,8 @@ interface StagesProps {
   goalId: number
   stages: string[]
   dayStage: number
-  forTomorrow: boolean
   completeStage: boolean
+  forTomorrow: boolean
 }
 
 function Stages({ goalId, stages, dayStage, forTomorrow, completeStage }: StagesProps) {

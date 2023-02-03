@@ -6,7 +6,7 @@ interface DeviceIconProps {
   device: Device
 }
 
-function DeviceIcon({ device }: DeviceIconProps): JSX.Element {
+function DeviceIcon({ device }: DeviceIconProps) {
   const iconName = getIconName(device)
 
   return <Icon name={iconName} />

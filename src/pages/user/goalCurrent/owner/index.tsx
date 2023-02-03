@@ -5,11 +5,11 @@ import { UserBaseDto } from 'shared/api'
 import { joinToHref } from 'shared/lib/helpers'
 import Avatar from 'shared/ui/avatar'
 
-interface InheritanceProps {
+interface OwnerProps {
   owner: UserBaseDto
 }
 
-function Inheritance({ owner }: InheritanceProps) {
+function Owner({ owner }: OwnerProps) {
   const { name, nickname, avatar } = owner
   const { formatMessage } = useIntl()
   const href = joinToHref(nickname)
@@ -27,4 +27,4 @@ function Inheritance({ owner }: InheritanceProps) {
   )
 }
 
-export default Inheritance
+export default Owner

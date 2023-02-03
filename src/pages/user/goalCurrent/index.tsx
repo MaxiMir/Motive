@@ -8,7 +8,6 @@ import { CharacteristicGoal } from 'entities/characteristic'
 import { checkOnOpenDiscussion } from 'entities/discussion'
 import { findMember } from 'entities/member'
 import { getDayHref } from 'entities/page'
-import { redefineTasks } from 'entities/task'
 import { useClient } from 'entities/user'
 import { MAIN_CHARACTERISTICS, GoalCharacteristicName, GoalDto, MemberDto } from 'shared/api'
 import { HashMark } from 'shared/config'
@@ -26,7 +25,7 @@ import { Task } from './task'
 import { Views } from './views'
 import { ViewTrigger } from './viewTrigger'
 
-const Inheritance = dynamic(() => import('./inheritance'))
+const Owner = dynamic(() => import('./owner'))
 const Stages = dynamic(() => import('./stages'))
 const Hashtags = dynamic(() => import('./hashtags'))
 const Web = dynamic(() => import('./web'))
@@ -37,21 +36,12 @@ const CHARACTERISTICS: GoalCharacteristicName[] = [...MAIN_CHARACTERISTICS, 'mem
 
 interface GoalCurrentProps {
   goal: GoalDto
-  membership: MemberDto[]
-  userId: number
   nickname: string
   clientPage: boolean
   clientMembership: MemberDto[]
 }
 
-function GoalCurrent({
-  goal,
-  membership,
-  userId,
-  nickname,
-  clientPage,
-  clientMembership,
-}: GoalCurrentProps) {
+function GoalCurrent({ goal, nickname, clientPage, clientMembership }: GoalCurrentProps) {
   const {
     id,
     name,
@@ -60,7 +50,7 @@ function GoalCurrent({
     owner,
     stages,
     day,
-    inherited,
+    member,
     calendar,
     reactions,
     completed,
@@ -73,29 +63,55 @@ function GoalCurrent({
   const dayHref = getDayHref(nickname, id, day.id)
   const expandedDiscussion = checkOnOpenDiscussion(query, id)
   const { isLoading, prev, next, onChangeDate, shouldDisableDate } = useSwitchDay(goal)
-  const userMember = findMember(membership, id, userId)
-  const redefinedGoals = redefineTasks(day.tasks, userMember)
-  const daysGoneForOwner = differenceInCalendarDays(new Date(), Date.parse(day.date))
-  const daysGone = !userMember
-    ? daysGoneForOwner
-    : differenceInCalendarDays(today, Date.parse(userMember.updated))
-  const runningDays = differenceInCalendarDays(Date.parse(day.date), Date.parse(started)) + 1
-  const restGoals = redefinedGoals.length - redefinedGoals.filter((t) => t.completed).length
   const clientGoal = owner.id === client?.id
   const clientMember = findMember(clientMembership, id, client?.id)
-  const viewerControls = !clientGoal
-  const ownerControls = clientGoal && clientPage && !completed
+  const daysGoneForOwner = differenceInCalendarDays(new Date(), Date.parse(day.date))
+  const runningDays = differenceInCalendarDays(Date.parse(day.date), Date.parse(started)) + 1
+  const { canEdit, ownerControls, viewerControls, daysGone, forTomorrow, lastDay } = getGoalInfo()
+  const restTasks = day.tasks.length - day.tasks.filter((t) => t.completed).length
   const completeStage = ownerControls && goal.stage <= goal.day.stage
-  const canEdit = clientPage && (clientGoal || clientMember?.dayId === day.id)
-  const forTomorrow = !clientMember
-    ? daysGone === -1
-    : differenceInCalendarDays(Date.parse(clientMember.updated), today) > 0
-  const lastDay = userMember?.dayId === day.id || calendar.at(-1)?.date === day.date
   const renderWeb = lastDay && daysGone >= SHOW_WEB_AFTER_DAYS
 
   const onClickPrevDay = () => onChangeDate(prev)
 
   const onClickNextDay = () => onChangeDate(next)
+
+  function getGoalInfo() {
+    const defaultInfo = {
+      canEdit: clientPage && clientGoal,
+      viewerControls: true,
+      ownerControls: false,
+      daysGone: daysGoneForOwner,
+      lastDay: calendar.at(-1)?.date === day.date,
+      forTomorrow: daysGoneForOwner === -1,
+    }
+
+    if (clientGoal) {
+      return {
+        ...defaultInfo,
+        viewerControls: false,
+        ownerControls: clientPage && !completed,
+      }
+    }
+
+    if (clientMember) {
+      return {
+        ...defaultInfo,
+        canEdit: clientPage && clientMember.dayId === day.id,
+        forTomorrow: !!differenceInCalendarDays(Date.parse(clientMember.updated), today),
+      }
+    }
+
+    if (member) {
+      return {
+        ...defaultInfo,
+        daysGone: differenceInCalendarDays(today, Date.parse(member.updated)),
+        lastDay: member.dayId === day.id,
+      }
+    }
+
+    return defaultInfo
+  }
 
   return (
     <Stack
@@ -133,7 +149,7 @@ function GoalCurrent({
                 <Typography variant="subtitle1" component="h2">
                   <b>{name}</b>
                 </Typography>
-                {inherited && <Inheritance owner={owner} />}
+                {member && <Owner owner={owner} />}
                 <MenuActions
                   goalId={id}
                   goalName={name}
@@ -219,12 +235,11 @@ function GoalCurrent({
                     defaultExpanded
                     details={
                       <Stack spacing={1}>
-                        {redefinedGoals.map((task) => (
+                        {day.tasks.map((task) => (
                           <Task
                             goalId={id}
                             task={task}
-                            rest={restGoals}
-                            clientMember={clientMember}
+                            rest={restTasks}
                             forTomorrow={forTomorrow}
                             daysGoneForOwner={daysGoneForOwner}
                             canEdit={canEdit}

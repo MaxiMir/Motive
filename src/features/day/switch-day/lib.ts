@@ -2,7 +2,7 @@ import { format } from 'date-fns'
 import produce from 'immer'
 import { useMutation } from 'react-query'
 import { useChangeDayUrl, useGoalsCache } from 'entities/user'
-import { GoalDto, CalendarDto, DayDto, getDay } from 'shared/api'
+import { GoalDto, CalendarDto, DayDto, getDay, getMemberDay } from 'shared/api'
 
 const getDayKey = (date: Date | string) => {
   return format(date instanceof Date ? date : new Date(date), 'yyyy-MM-dd')
@@ -26,12 +26,15 @@ export const useSwitchDay = (goal: GoalDto) => {
   const { id, day, calendar } = goal
   const [goals, mutateGoals] = useGoalsCache()
   const changeDayUrl = useChangeDayUrl()
-  const { isLoading, mutate } = useMutation(getDay, {
-    onSuccess: (newDay) => {
-      mutateGoals(getGoalNextState(goals, id, newDay))
-      changeDayUrl(goals, id, newDay.id)
+  const { isLoading, mutate } = useMutation(
+    (dayId: number) => (!goal.member ? getDay(dayId) : getMemberDay(goal.member.id, dayId)),
+    {
+      onSuccess: (newDay) => {
+        mutateGoals(getGoalNextState(goals, id, newDay))
+        changeDayUrl(goals, id, newDay.id)
+      },
     },
-  })
+  )
   const dateMap = getDateMap(calendar, day)
   const dates = Object.keys(dateMap)
   const dayKey = getDayKey(day.date)

@@ -4,7 +4,7 @@ import { useIntl } from 'react-intl'
 import { useMutation } from 'react-query'
 import dynamic from 'next/dynamic'
 import { useUserPageCache, useClient } from 'entities/user'
-import { MemberDto, UserPageDto, updateCompleted } from 'shared/api'
+import { UserPageDto, updateCompleted } from 'shared/api'
 import { useSnackbar } from 'shared/ui/snackbar'
 
 const Button = dynamic(() => import('@mui/material/Button'))
@@ -14,32 +14,15 @@ const getGoalNextState = (
   goalId: number,
   taskId: number,
   completed: boolean,
-  clientMember?: MemberDto,
 ): UserPageDto =>
   produce(page, (draft) => {
-    if (!clientMember) {
-      const draftGoals = draft.goals
-      const draftGoal = draftGoals[draftGoals.findIndex((g) => g.id === goalId)]
-      const draftTask = draftGoal.day.tasks[draftGoal.day.tasks.findIndex((t) => t.id === taskId)]
-      draftTask.completed = completed
-      return
-    }
-
-    const draftMember = draft.membership.find((m) => m.id === clientMember.id)
-
-    if (!draftMember) return
-
-    draftMember.completedTasks = completed
-      ? [...draftMember.completedTasks, taskId]
-      : draftMember.completedTasks.filter((id) => id === taskId)
+    const draftGoals = draft.goals
+    const draftGoal = draftGoals[draftGoals.findIndex((g) => g.id === goalId)]
+    const draftTask = draftGoal.day.tasks[draftGoal.day.tasks.findIndex((t) => t.id === taskId)]
+    draftTask.completed = completed
   })
 
-export const useSetCompleted = (
-  goalId: number,
-  id: number,
-  rest: number,
-  clientMember?: MemberDto,
-) => {
+export const useSetCompleted = (goalId: number, id: number, rest: number) => {
   const timerRef = useRef<NodeJS.Timeout>()
   const client = useClient()
   const { formatMessage } = useIntl()
@@ -61,7 +44,7 @@ export const useSetCompleted = (
   }
 
   const mutateCompleted = (value: boolean) => {
-    mutatePage(getGoalNextState(page, goalId, id, value, clientMember))
+    mutatePage(getGoalNextState(page, goalId, id, value))
   }
 
   return () => {

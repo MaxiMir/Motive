@@ -4,7 +4,8 @@ import CancelButton from 'shared/ui/CancelButton'
 import FadeTypography from 'shared/ui/FadeTypography'
 import Modal from 'shared/ui/Modal'
 import SubmitButton from 'shared/ui/SubmitButton'
-import { useMessages, useRemoveMember } from './lib'
+import { useMessages } from './lib'
+import { useRemoveMember } from './model'
 
 interface DeleteMembershipProps {
   goalId: number

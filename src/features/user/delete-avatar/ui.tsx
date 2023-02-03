@@ -2,7 +2,8 @@ import { Typography } from '@mui/material'
 import CancelButton from 'shared/ui/CancelButton'
 import Modal from 'shared/ui/Modal'
 import SubmitButton from 'shared/ui/SubmitButton'
-import { useMessages, useDeleteAvatar } from './lib'
+import { useMessages } from './lib'
+import { useDeleteAvatar } from './model'
 
 interface DeleteAvatarModalProps {
   userId: number

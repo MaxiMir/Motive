@@ -25,7 +25,7 @@ const getNextState = (discussion: InfiniteData<TopicDto[]>, message: MessageDto)
   })
 }
 
-export const useUpdateTopic = (initialValues: MessageDto, onSuccess: () => void) => {
+export const useUpdateTopicForm = (initialValues: MessageDto, onSuccess: () => void) => {
   const { formatMessage } = useIntl()
   const { enqueueSnackbar } = useSnackbar()
   const queryClient = useQueryClient()

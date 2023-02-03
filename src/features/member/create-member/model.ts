@@ -7,7 +7,7 @@ import { SearchParam } from 'shared/config'
 import { joinToHref, setSearchParams } from 'shared/lib/helpers'
 import { getMidnight } from 'shared/lib/utils'
 
-export const useCreateMember = (goalId: number, dayId: number) => {
+export const useCreateMemberForm = (goalId: number, dayId: number) => {
   const client = useClient()
   const { push } = useRouter()
   const { mutateAsync } = useMutation(createMember, {

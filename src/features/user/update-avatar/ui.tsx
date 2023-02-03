@@ -4,7 +4,8 @@ import { ChangeEvent, useRef } from 'react'
 import dynamic from 'next/dynamic'
 import Icon from 'shared/ui/Icon'
 import Modal from 'shared/ui/Modal'
-import { useUpdateAvatar, useMessages } from './lib'
+import { useMessages } from './lib'
+import { useUpdateAvatar } from './model'
 
 const CircularProgress = dynamic(() => import('@mui/material/CircularProgress'))
 

@@ -3,7 +3,8 @@ import CancelButton from 'shared/ui/CancelButton'
 import FlyTypography from 'shared/ui/FlyTypography'
 import Modal from 'shared/ui/Modal'
 import SubmitButton from 'shared/ui/SubmitButton'
-import { useMessages, useUpdateStage } from './lib'
+import { useMessages } from './lib'
+import { useUpdateStage } from './model'
 
 interface UpdateStageModalProps {
   goalId: number

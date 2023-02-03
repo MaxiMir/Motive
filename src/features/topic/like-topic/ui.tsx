@@ -3,7 +3,8 @@ import { useClient } from 'entities/user'
 import { MessageDto, MessageType } from 'shared/api'
 import { useFormatNumber } from 'shared/lib/hooks'
 import TooltipArrow from 'shared/ui/TooltipArrow'
-import { checkOnDisabled, useMessages, useSetLike } from './lib'
+import { checkOnDisabled, useMessages } from './lib'
+import { useSetLike } from './model'
 
 interface LikeProps {
   message: MessageDto

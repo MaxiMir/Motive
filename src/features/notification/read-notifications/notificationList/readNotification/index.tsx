@@ -3,7 +3,7 @@ import { NotificationInfo } from 'entities/notification'
 import { getNotificationHref } from 'entities/page'
 import { useClient } from 'entities/user'
 import { NotificationDto } from 'shared/api'
-import { useUpdateRead } from './lib'
+import { useUpdateRead } from './model'
 
 const InView = dynamic(() => import('shared/ui/InView'))
 

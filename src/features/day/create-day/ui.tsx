@@ -22,7 +22,8 @@ import Modal from 'shared/ui/Modal'
 import { OldPittRules } from 'shared/ui/oldPittRules'
 import SubmitButton from 'shared/ui/SubmitButton'
 import TooltipArrow from 'shared/ui/TooltipArrow'
-import { useMessages, useCreateDay } from './lib'
+import { useMessages } from './lib'
+import { useCreateDay } from './model'
 
 interface CreateDayModalProps {
   goalId: number

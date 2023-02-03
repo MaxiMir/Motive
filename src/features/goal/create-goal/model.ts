@@ -13,7 +13,7 @@ const getNextState = (goals: GoalDto[], goal: CreatedGoal) =>
     draft.push({ ...goal, day: goal.days[0] })
   })
 
-export const useCreateGoal = (onSuccess: () => void) => {
+export const useCreateGoalForm = (onSuccess: () => void) => {
   const { formatMessage } = useIntl()
   const { enqueueSnackbar } = useSnackbar()
   const [goals, mutateGoal] = useGoalsCache()

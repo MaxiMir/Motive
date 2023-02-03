@@ -18,7 +18,7 @@ interface Values {
   video: ''
 }
 
-export const useCreateFeedback = (goalId: number, dayId: number, onSuccess: () => void) => {
+export const useCreateFeedbackForm = (goalId: number, dayId: number, onSuccess: () => void) => {
   const { formatMessage } = useIntl()
   const { enqueueSnackbar } = useSnackbar()
   const [goals, mutateGoals] = useGoalsCache()

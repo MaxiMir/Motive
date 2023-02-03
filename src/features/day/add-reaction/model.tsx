@@ -76,5 +76,5 @@ export const useSetReaction = (
     mutate({ id: goalId, dayId, name, add: !active })
   }
 
-  return [isLoading, onClick] as const
+  return { isLoading, onClick }
 }

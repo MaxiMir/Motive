@@ -20,7 +20,8 @@ import Input from 'shared/ui/Input'
 import Modal from 'shared/ui/Modal'
 import SubmitButton from 'shared/ui/SubmitButton'
 import TooltipArrow from 'shared/ui/TooltipArrow'
-import { useCreateGoal, useMessages } from './lib'
+import { useMessages } from './lib'
+import { useCreateGoalForm } from './model'
 
 const IconButton = dynamic(() => import('@mui/material/IconButton'))
 
@@ -31,7 +32,7 @@ interface CreateGoalModalProps {
 function CreateGoalModal({ onClose }: CreateGoalModalProps) {
   const messages = useMessages()
   const [hashtagsRef, setHashtagsFocus] = useFocus()
-  const form = useCreateGoal(onClose)
+  const form = useCreateGoalForm(onClose)
   const { isSubmitting, values, setFieldValue, handleSubmit } = form
   const todayValue = getMidnightISO()
   const tomorrowValue = getTomorrowISO()

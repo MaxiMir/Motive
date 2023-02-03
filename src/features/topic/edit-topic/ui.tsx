@@ -6,7 +6,8 @@ import CancelButton from 'shared/ui/CancelButton'
 import Input from 'shared/ui/Input'
 import Modal from 'shared/ui/Modal'
 import SubmitButton from 'shared/ui/SubmitButton'
-import { useMessages, useUpdateTopic } from './lib'
+import { useMessages } from './lib'
+import { useUpdateTopicForm } from './model'
 
 interface EditTopicModalProps {
   message: MessageDto
@@ -15,7 +16,7 @@ interface EditTopicModalProps {
 
 function EditTopicModal({ message, onClose }: EditTopicModalProps) {
   const messages = useMessages()
-  const form = useUpdateTopic(message, onClose)
+  const form = useUpdateTopicForm(message, onClose)
   const { isSubmitting, handleSubmit } = form
 
   const onFocus = (e: FocusEvent<HTMLInputElement>) => {

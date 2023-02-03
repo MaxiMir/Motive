@@ -3,7 +3,7 @@ import { useMutation } from 'react-query'
 import { useAddMessage } from 'entities/user'
 import { MessageType, topicSchema, createTopic } from 'shared/api'
 
-export const useCreateTopic = (dayId: number, onSuccess: () => void) => {
+export const useCreateTopicForm = (dayId: number, onSuccess: () => void) => {
   const addTopic = useAddMessage()
   const { mutateAsync } = useMutation(createTopic, {
     onSuccess(topic) {

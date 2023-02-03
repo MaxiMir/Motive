@@ -6,7 +6,8 @@ import FadeTypography from 'shared/ui/FadeTypography'
 import Input from 'shared/ui/Input'
 import Modal from 'shared/ui/Modal'
 import SubmitButton from 'shared/ui/SubmitButton'
-import { useMessages, useCreateTopic } from './lib'
+import { useMessages } from './lib'
+import { useCreateTopicForm } from './model'
 
 interface SupportUserModalProps {
   dayId: number
@@ -16,7 +17,7 @@ interface SupportUserModalProps {
 
 function SupportUserModal({ dayId, ownerName, onClose }: SupportUserModalProps) {
   const messages = useMessages()
-  const form = useCreateTopic(dayId, onClose)
+  const form = useCreateTopicForm(dayId, onClose)
   const { isSubmitting, handleSubmit } = form
 
   return (

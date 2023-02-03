@@ -6,7 +6,8 @@ import Accordion from 'shared/ui/Accordion'
 import CancelButton from 'shared/ui/CancelButton'
 import Modal from 'shared/ui/Modal'
 import SubmitButton from 'shared/ui/SubmitButton'
-import { useCreateMember, useMessages } from './lib'
+import { useMessages } from './lib'
+import { useCreateMemberForm } from './model'
 
 interface CreateMemberModalProps {
   goalId: number
@@ -26,7 +27,7 @@ function CreateMemberModal({
   const messages = useMessages()
   const beginningDay = calendar[0].id
   const disableBeginning = beginningDay === dayId
-  const form = useCreateMember(goalId, beginningDay)
+  const form = useCreateMemberForm(goalId, beginningDay)
   const { isSubmitting, values, setFieldValue, handleSubmit } = form
 
   const onChange = (e: ChangeEvent<HTMLInputElement>) => {

@@ -29,7 +29,7 @@ interface Options {
   data: UpdateUserDto
 }
 
-export const useUpdateUser = (user: UserPageDto, onSuccess: () => void) => {
+export const useUpdateUserForm = (user: UserPageDto, onSuccess: () => void) => {
   const { push } = useRouter()
   const { formatMessage } = useIntl()
   const [page, mutatePage] = useUserPageCache()

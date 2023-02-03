@@ -1,6 +1,7 @@
 import { CharacteristicReaction, Emoji } from 'entities/characteristic'
 import { DayCharacteristicName } from 'shared/api'
-import { checkOnActive, useMessages, useSetReaction } from './lib'
+import { useMessages } from './lib'
+import { useSetReaction } from './model'
 
 interface AddReactionProps {
   name: DayCharacteristicName
@@ -11,9 +12,9 @@ interface AddReactionProps {
 }
 
 function AddReaction({ name, goalId, dayId, reactions, count = 0 }: AddReactionProps) {
-  const active = checkOnActive(dayId, reactions)
+  const active = !!reactions?.some((d) => d === dayId)
   const messages = useMessages(name, active)
-  const [isLoading, onClick] = useSetReaction(goalId, dayId, name, active)
+  const { isLoading, onClick } = useSetReaction(goalId, dayId, name, active)
   const startIcon = Emoji[name]
 
   return (

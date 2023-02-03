@@ -1,6 +1,6 @@
 import { ReactNode } from 'react'
 import InView from 'shared/ui/InView'
-import { useIncreaseViews } from './lib'
+import { useIncreaseViews } from './model'
 
 interface ViewTriggerProps {
   ownerId: number

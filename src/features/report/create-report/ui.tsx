@@ -1,7 +1,8 @@
 import { Menu, MenuItem } from '@mui/material'
 import { ReportType } from 'shared/api'
 import ListItem from 'shared/ui/ListItem'
-import { useMessages, useSendReport } from './lib'
+import { useMessages } from './lib'
+import { useSendReport } from './model'
 
 interface ReportProps {
   id: number

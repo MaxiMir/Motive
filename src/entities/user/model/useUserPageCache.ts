@@ -1,6 +1,6 @@
 import { useQueryClient } from 'react-query'
 import { UserPageDto } from 'shared/api'
-import { useUserContext } from './useUserContext'
+import { useUserContext } from '../context'
 
 export const useUserPageCache = () => {
   const queryClient = useQueryClient()

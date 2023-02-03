@@ -10,7 +10,8 @@ import ShakeTypography from 'shared/ui/ShakeTypography'
 import SubmitButton from 'shared/ui/SubmitButton'
 import VideoInput from 'shared/ui/videoInput'
 import VideoPreview from 'shared/ui/VideoPreview'
-import { useCreateFeedback, useMessages } from './lib'
+import { useMessages } from './lib'
+import { useCreateFeedbackForm } from './model'
 
 interface AddingModalProps {
   goalId: number
@@ -20,7 +21,7 @@ interface AddingModalProps {
 
 function CreateFeedback({ goalId, dayId, onClose }: AddingModalProps) {
   const messages = useMessages()
-  const form = useCreateFeedback(goalId, dayId, onClose)
+  const form = useCreateFeedbackForm(goalId, dayId, onClose)
   const { isSubmitting, values, setFieldValue, submitForm } = form
 
   const onSelectPhoto = usePhotoLimit(form)

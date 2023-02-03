@@ -12,7 +12,8 @@ import SpinTypography from 'shared/ui/SpinTypography'
 import SubmitButton from 'shared/ui/SubmitButton'
 import VideoInput from 'shared/ui/videoInput'
 import VideoPreview from 'shared/ui/VideoPreview'
-import { useCreateConfirmation, useMessages } from './lib'
+import { useMessages } from './lib'
+import { useCreateConfirmationForm } from './model'
 
 const Alert = dynamic(() => import('@mui/material/Alert'))
 
@@ -23,7 +24,7 @@ interface CreateConfirmationModalProps {
 
 function CreateConfirmationModal({ goalId, onClose }: CreateConfirmationModalProps) {
   const messages = useMessages()
-  const form = useCreateConfirmation(goalId, onClose)
+  const form = useCreateConfirmationForm(goalId, onClose)
   const { isSubmitting, values, setFieldValue, handleSubmit } = form
 
   const onSelectPhoto = usePhotoLimit(form)

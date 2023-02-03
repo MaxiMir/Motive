@@ -5,7 +5,8 @@ import CancelButton from 'shared/ui/CancelButton'
 import Input from 'shared/ui/Input'
 import Modal from 'shared/ui/Modal'
 import SubmitButton from 'shared/ui/SubmitButton'
-import { useMessages, useUpdateUser } from './lib'
+import { useMessages } from './lib'
+import { useUpdateUserForm } from './model'
 
 interface EditProfileModalProps {
   user: UserPageDto
@@ -14,7 +15,7 @@ interface EditProfileModalProps {
 
 function EditProfileModal({ user, onClose }: EditProfileModalProps) {
   const messages = useMessages()
-  const form = useUpdateUser(user, onClose)
+  const form = useUpdateUserForm(user, onClose)
   const { isSubmitting, handleSubmit } = form
 
   return (

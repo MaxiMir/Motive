@@ -7,7 +7,8 @@ import { TopicDto, MessageType, UserBaseDto, ClientDto } from 'shared/api'
 import Avatar from 'shared/ui/avatar'
 import Input from 'shared/ui/Input'
 import TooltipArrow from 'shared/ui/TooltipArrow'
-import { useCreateTopic, useMessages } from './lib'
+import { useMessages } from './lib'
+import { useCreateTopicForm } from './model'
 
 const CircularProgress = dynamic(() => import('@mui/material/CircularProgress'))
 const Icon = dynamic(() => import('shared/ui/Icon'))
@@ -23,7 +24,7 @@ interface CreateTopicProps {
 function CreateTopic({ dayId, user, type, topicId, onAdd }: CreateTopicProps) {
   const { name, avatar } = user
   const messages = useMessages(type)
-  const form = useCreateTopic(dayId, topicId, type, onAdd)
+  const form = useCreateTopicForm(dayId, topicId, type, onAdd)
   const { isSubmitting, values, handleSubmit } = form
   const disabled = isSubmitting || !values.text
 

@@ -4,7 +4,7 @@ import { useMutation } from 'react-query'
 import { CreateTopicDto, MessageType, TopicDto, createTopic } from 'shared/api'
 import { useSnackbar } from 'shared/ui/snackbar'
 
-export const useCreateTopic = (
+export const useCreateTopicForm = (
   dayId: number,
   topicId: number | undefined,
   type: MessageType,

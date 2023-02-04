@@ -2,10 +2,10 @@ import { Box, Stack, Typography } from '@mui/material'
 import Image from 'next/image'
 // eslint-disable-next-line import/no-internal-modules
 import webSrc from 'public/images/svg/web.svg'
+import { CharacteristicRules } from 'entities/characteristic'
 import { UserCharacteristicDto } from 'shared/api'
 import { useShowProgress } from 'shared/lib/hooks'
 import Modal from 'shared/ui/Modal'
-import { OldPittRules } from 'shared/ui/oldPittRules'
 import { useMessages } from './lib'
 
 interface AbandonedModalProps {
@@ -38,7 +38,7 @@ function AbandonedModal({ characteristic, onClose }: AbandonedModalProps) {
         <Typography component="h3" textAlign="center">
           {messages.header}.
         </Typography>
-        <OldPittRules />
+        <CharacteristicRules />
       </Stack>
     </Modal>
   )

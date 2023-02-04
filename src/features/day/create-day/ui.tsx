@@ -13,13 +13,13 @@ import {
 } from '@mui/material'
 import { FieldArray, Form, FormikProvider } from 'formik'
 import { ChangeEvent } from 'react'
+import { CharacteristicRules } from 'entities/characteristic'
 import { TaskField } from 'entities/task'
 import { getMidnightISO, getTomorrowISO } from 'shared/lib/utils'
 import CancelButton from 'shared/ui/CancelButton'
 import Icon from 'shared/ui/Icon'
 import { Paul } from 'shared/ui/icons'
 import Modal from 'shared/ui/Modal'
-import { OldPittRules } from 'shared/ui/oldPittRules'
 import SubmitButton from 'shared/ui/SubmitButton'
 import TooltipArrow from 'shared/ui/TooltipArrow'
 import { useMessages } from './lib'
@@ -137,7 +137,7 @@ function CreateDayModal({ goalId, dayDate, onClose }: CreateDayModalProps) {
             </Stack>
           </AccordionSummary>
           <AccordionDetails>
-            <OldPittRules />
+            <CharacteristicRules />
           </AccordionDetails>
         </Accordion>
       </Stack>

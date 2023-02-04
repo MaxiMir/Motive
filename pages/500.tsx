@@ -7,7 +7,7 @@ function Page500() {
 
   return (
     <Layout {...metaTags}>
-      <ErrorPage statusCode={500} header={metaTags.title} />
+      <ErrorPage header={metaTags.title} />
     </Layout>
   )
 }

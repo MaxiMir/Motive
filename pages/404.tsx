@@ -7,7 +7,7 @@ function Page404() {
 
   return (
     <Layout {...metaTags}>
-      <ErrorPage statusCode={404} header={metaTags.title} />
+      <ErrorPage header={metaTags.title} />
     </Layout>
   )
 }

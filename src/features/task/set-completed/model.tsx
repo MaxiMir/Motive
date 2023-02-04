@@ -9,7 +9,7 @@ import { useSnackbar } from 'shared/ui/snackbar'
 
 const Button = dynamic(() => import('@mui/material/Button'))
 
-const getGoalNextState = (
+const getNextState = (
   page: UserPageDto,
   goalId: number,
   taskId: number,
@@ -44,7 +44,7 @@ export const useSetCompleted = (goalId: number, id: number, rest: number) => {
   }
 
   const mutateCompleted = (value: boolean) => {
-    mutatePage(getGoalNextState(page, goalId, id, value))
+    mutatePage(getNextState(page, goalId, id, value))
   }
 
   return () => {

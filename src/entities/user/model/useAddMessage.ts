@@ -3,7 +3,7 @@ import { InfiniteData, useQueryClient } from 'react-query'
 import { GoalDto, TopicDto } from 'shared/api'
 import { useGoalsCache } from './useGoalsCache'
 
-const getNextState = (discussion: InfiniteData<TopicDto[]>, topic: TopicDto) =>
+const getTopicNextState = (discussion: InfiniteData<TopicDto[]>, topic: TopicDto) =>
   produce(discussion, (draft) => {
     if (!topic.answer) {
       draft.pages = [[topic], ...draft.pages]
@@ -32,7 +32,7 @@ export const useAddMessage = () => {
     mutateGoals(getGoalNextState(goalId, goals))
     queryClient.setQueryData<InfiniteData<TopicDto[]> | undefined>(
       ['discussion', dayId],
-      (prev) => prev && getNextState(prev, topic),
+      (prev) => prev && getTopicNextState(prev, topic),
     )
   }
 }

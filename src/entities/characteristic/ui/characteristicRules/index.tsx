@@ -1,7 +1,7 @@
 import { Typography } from '@mui/material'
 import { useMessages } from './lib'
 
-export function OldPittRules() {
+export function CharacteristicRules() {
   const messages = useMessages()
 
   return (

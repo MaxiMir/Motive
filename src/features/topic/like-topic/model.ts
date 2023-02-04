@@ -12,7 +12,7 @@ export interface Options {
   add: boolean
 }
 
-const getNextState = (discussion: InfiniteData<TopicDto[]>, options: Options) => {
+const getTopicNextState = (discussion: InfiniteData<TopicDto[]>, options: Options) => {
   const { message, answerFor, add } = options
   const searchId = answerFor || message.id
 
@@ -55,7 +55,7 @@ export const useSetLike = (message: MessageDto, answerFor?: number) => {
       if (previous) {
         queryClient.setQueryData<InfiniteData<TopicDto[]> | undefined>(
           key,
-          (prev) => prev && getNextState(prev, options),
+          (prev) => prev && getTopicNextState(prev, options),
         )
       }
 

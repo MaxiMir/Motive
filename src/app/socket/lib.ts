@@ -3,11 +3,11 @@ import { useIntl } from 'react-intl'
 import { useQueryClient } from 'react-query'
 import { io } from 'socket.io-client'
 import { useRouter } from 'next/router'
-import { useDeviceContext } from 'entities/device'
 import { getNotificationHref } from 'entities/page'
 import { useClient } from 'entities/user'
 import { NotificationDto } from 'shared/api'
 import { getImageSrc } from 'shared/lib/helpers'
+import { useDeviceContext } from 'shared/ui/device'
 import { useSnackbar } from 'shared/ui/snackbar'
 
 export const useSocket = () => {

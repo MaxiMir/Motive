@@ -1,15 +1,17 @@
 import { Typography } from '@mui/material'
+import { TypographyProps } from '@mui/system'
 import { ReactNode } from 'react'
 
 interface SpinTypographyProps {
+  fontSize?: TypographyProps['fontSize']
   children: ReactNode
 }
 
-function SpinTypography({ children }: SpinTypographyProps) {
+function SpinTypography({ fontSize = 60, children }: SpinTypographyProps) {
   return (
     <Typography
-      variant="h2"
       paragraph
+      fontSize={fontSize}
       m={0}
       sx={{
         animation: 'spin 3.6s linear infinite',

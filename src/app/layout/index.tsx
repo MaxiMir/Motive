@@ -6,6 +6,7 @@ import { useIsFetching } from 'react-query'
 import dynamic from 'next/dynamic'
 import Head from 'next/head'
 import { useRouter } from 'next/router'
+import { useDetectOnline } from 'features/offline'
 import { getLocaleHrefList } from 'entities/locale'
 import { OGType } from 'shared/api'
 import { useDeviceContext } from 'shared/ui/device'
@@ -13,6 +14,7 @@ import { useDeviceContext } from 'shared/ui/device'
 const Header = dynamic(() => import('widgets/header'))
 const Footer = dynamic(() => import('widgets/footer'))
 const Sidebar = dynamic(() => import('widgets/sidebar'))
+const Offline = dynamic(() => import('features/offline'))
 const Updating = dynamic(() => import('./updating'))
 
 interface LayoutProps {
@@ -36,6 +38,7 @@ export function Layout({
 }: LayoutProps) {
   const { locale } = useIntl()
   const { asPath } = useRouter()
+  const online = useDetectOnline()
   const device = useDeviceContext()
   const localeHrefList = getLocaleHrefList(asPath)
   const fetchingNumber = useIsFetching({ queryKey: ['page'] })
@@ -88,11 +91,14 @@ export function Layout({
             component="main"
             id="main"
             flex={1}
-            minHeight="100dvh"
+            minHeight={{
+              xs: 'calc(100dvh - 109px)',
+              xl: '100dvh',
+            }}
             sx={({ palette }) => ({ background: palette.mode === 'dark' ? '#121212' : undefined })}
           >
             {renderUpdating && <Updating />}
-            {children}
+            {online ? children : <Offline />}
           </Stack>
         </MainWrap>
       </PerfectScrollbar>

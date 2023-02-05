@@ -318,5 +318,8 @@
   "common.reactions": "反应",
   "common.show-more": "阅读更多",
   "common.show-less": "显示更少",
-  "common.dev": "开发中"
+  "common.dev": "开发中",
+  "common.offline": "你是离线的",
+  "common-check-connection": "检查你的连接",
+  "common.reload": "重新加载"
 }

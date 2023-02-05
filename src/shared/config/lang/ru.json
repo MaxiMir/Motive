@@ -318,5 +318,8 @@
   "common.reactions": "Реакции",
   "common.show-more": "Читать далее",
   "common.show-less": "Скрыть",
-  "common.dev": "В разработке"
+  "common.dev": "В разработке",
+  "common.offline": "Вы находитесь вне сети",
+  "common-check-connection": "Проверьте подключение",
+  "common.reload": "Перезагрузить"
 }

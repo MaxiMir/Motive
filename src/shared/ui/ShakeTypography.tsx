@@ -1,15 +1,17 @@
 import { Typography } from '@mui/material'
+import { TypographyProps } from '@mui/system'
 import { ReactNode } from 'react'
 
 interface ShakeTypographyProps {
+  fontSize?: TypographyProps['fontSize']
   children: ReactNode
 }
 
-function ShakeTypography({ children }: ShakeTypographyProps) {
+function ShakeTypography({ fontSize = 60, children }: ShakeTypographyProps) {
   return (
     <Typography
-      variant="h2"
       paragraph
+      fontSize={fontSize}
       m={0}
       sx={{
         transform: 'translate3d(0, 0, 0)',

@@ -1,16 +1,18 @@
 import { Box, Typography } from '@mui/material'
+import { TypographyProps } from '@mui/system'
 import { ReactNode } from 'react'
 
 interface FlyTypographyProps {
+  fontSize?: TypographyProps['fontSize']
   children: ReactNode
 }
 
-function FlyTypography({ children }: FlyTypographyProps) {
+function FlyTypography({ fontSize = 60, children }: FlyTypographyProps) {
   return (
     <Box position="relative" width={150} height={180}>
       <Typography
-        variant="h2"
         paragraph
+        fontSize={fontSize}
         m={0}
         sx={{
           position: 'absolute',

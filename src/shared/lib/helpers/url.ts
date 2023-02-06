@@ -7,14 +7,16 @@ export const parseUrl = (url: string) => {
   return { origin, searchParams }
 }
 
-export const getCurrentSearchParams = () => {
-  return getSearchParams(window.location.search)
-}
-
 export const getSearchParams = (url: string) => {
   const { searchParams } = parseUrl(url)
 
   return Object.fromEntries(searchParams)
+}
+
+export const getCurrentSearchParams = () => getSearchParams(window.location.search)
+
+const toUrl = (url: string, searchParams: URLSearchParams) => {
+  return [url, searchParams].join(!searchParams.toString() ? '' : '?')
 }
 
 export const setSearchParams = (url: string, params: Record<string, string | number>) => {
@@ -25,10 +27,6 @@ export const setSearchParams = (url: string, params: Record<string, string | num
   })
 
   return toUrl(origin, searchParams)
-}
-
-const toUrl = (url: string, searchParams: URLSearchParams) => {
-  return [url, searchParams].join(!searchParams.toString() ? '' : '?')
 }
 
 export const getImageSrc = (src: string) => {

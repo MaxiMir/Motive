@@ -128,6 +128,17 @@ nginx -t
 nginx -s reload
 dehydrated -c
 ```
+*nginx.config:*
+```shell
+```
+user www-data;
+worker_processes auto;
+pid /run/nginx.pid;
+load_module modules/ngx_http_brotli_filter_module.so;
+load_module modules/ngx_http_brotli_static_module.so;
+include /etc/nginx/modules-enabled/*.conf;
+
+# ...
 ```shell
 server {
     listen 443 ssl http2;
@@ -135,7 +146,6 @@ server {
 
     server_name 2bebetter.pro www.2bebetter.pro;
 
-    ssl on;
     ssl_certificate /var/lib/dehydrated/certs/2bebetter.pro/fullchain.pem;
     ssl_certificate_key /var/lib/dehydrated/certs/2bebetter.pro/privkey.pem;
 
@@ -146,6 +156,14 @@ server {
     ssl_protocols TLSv1 TLSv1.1 TLSv1.2;
     ssl_ciphers ALL:EECDH+aRSA+AESGCM:EDH+aRSA+AESGCM:EECDH+aRSA+AES:EDH+aRSA+AES;
     ssl_prefer_server_ciphers on;
+
+    brotli on;
+    brotli_types
+        application/javascript
+        application/json
+        image/svg+xml
+        text/css
+        text/plain;
 
     location / {
        proxy_pass          http://localhost:3000;
@@ -196,5 +214,4 @@ server {
     server_name 2bebetter.pro www.2bebetter.pro;
     return 301 https://$host$request_uri;
 }
-
 ```

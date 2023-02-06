@@ -31,7 +31,7 @@ function Markdown({ text }: MarkdownProps) {
     <Box
       ref={ref}
       sx={{
-        '> *': {
+        '& div > *': {
           ':first-of-type': {
             display: '-webkit-box',
             WebkitLineClamp: !open ? '3' : 'unset',

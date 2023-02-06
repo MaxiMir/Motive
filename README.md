@@ -130,15 +130,14 @@ dehydrated -c
 ```
 *nginx.config:*
 ```shell
-```
 user www-data;
 worker_processes auto;
 pid /run/nginx.pid;
 load_module modules/ngx_http_brotli_filter_module.so;
 load_module modules/ngx_http_brotli_static_module.so;
 include /etc/nginx/modules-enabled/*.conf;
-
 # ...
+```
 ```shell
 server {
     listen 443 ssl http2;

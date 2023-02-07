@@ -1,6 +1,6 @@
 import { object, string } from 'yup'
 
-export const feedbackSchema = object().shape({
+export const FeedbackSchema = object().shape({
   text: string()
     .max(1000)
     .when('photos', {

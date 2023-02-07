@@ -6,7 +6,7 @@ import { useIsFetching } from 'react-query'
 import dynamic from 'next/dynamic'
 import Head from 'next/head'
 import { useRouter } from 'next/router'
-import { useDetectOnline } from 'features/offline'
+import { useDetectOnline } from 'features/page/offline'
 import { getLocaleHrefList } from 'entities/locale'
 import { OGType } from 'shared/api'
 import { useDeviceContext } from 'shared/ui/device'
@@ -14,7 +14,7 @@ import { useDeviceContext } from 'shared/ui/device'
 const Header = dynamic(() => import('widgets/header'))
 const Footer = dynamic(() => import('widgets/footer'))
 const Sidebar = dynamic(() => import('widgets/sidebar'))
-const Offline = dynamic(() => import('features/offline'))
+const Offline = dynamic(() => import('features/page/offline'))
 const Updating = dynamic(() => import('./updating'))
 
 interface LayoutProps {

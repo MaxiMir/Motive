@@ -3,8 +3,9 @@ import produce from 'immer'
 import { useIntl } from 'react-intl'
 import { useMutation } from 'react-query'
 import { useGoalsCache } from 'entities/user'
-import { GoalDto, FeedbackDto, createFeedback, feedbackSchema } from 'shared/api'
+import { GoalDto, FeedbackDto, createFeedback } from 'shared/api'
 import { useSnackbar } from 'shared/ui/snackbar'
+import { FeedbackSchema } from './schema'
 
 const getNextState = (goals: GoalDto[], goalId: number, feedback: FeedbackDto) =>
   produce(goals, (draft) => {
@@ -37,7 +38,7 @@ export const useCreateFeedbackForm = (goalId: number, dayId: number, onSuccess: 
       photos: [],
       video: '',
     },
-    validationSchema: feedbackSchema,
+    validationSchema: FeedbackSchema,
     async onSubmit(data) {
       const formData = new FormData()
       formData.append('dayId', dayId.toString())

@@ -1,7 +1,7 @@
 import { IconButton } from '@mui/material'
 import { styled } from '@mui/system'
 import { Field, Form, FormikProvider } from 'formik'
-import { useSearchPageAsync } from 'entities/page'
+import { useSearchForm } from 'features/page/search'
 import Icon from 'shared/ui/Icon'
 import Input from 'shared/ui/Input'
 import { AutoSend } from './autoSend'
@@ -13,7 +13,7 @@ interface SearchFormProps {
 
 export function SearchForm({ q = '' }: SearchFormProps) {
   const messages = useMessages()
-  const form = useSearchPageAsync(q)
+  const form = useSearchForm(q)
   const { values, setFieldValue } = form
 
   const onClickClose = () => setFieldValue('q', '')

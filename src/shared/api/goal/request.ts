@@ -1,7 +1,7 @@
 import { CreateDayDto, DayCharacteristicUpdateDto } from '../day'
 import { fetcher } from '../fetcher'
 import { getFilterParams } from '../filter'
-import { CreatedGoal, CreateGoalDto, UpdateStageDto } from './model'
+import { CreatedGoal, CreateGoalDto, UpdateStageDto } from './dto'
 
 export const createDay = ({ id, ...data }: CreateDayDto): Promise<CreatedGoal> => {
   return fetcher.post(`/goals/${id}/days`, data)

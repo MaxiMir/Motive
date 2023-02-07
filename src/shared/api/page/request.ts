@@ -1,6 +1,6 @@
 import { AxiosRequestConfig } from 'axios'
 import { fetcher } from '../fetcher'
-import { FollowingPageDto, RatingPageDto, SearchPageDto, UserPageDto } from './model'
+import { FollowingPageDto, RatingPageDto, SearchPageDto, UserPageDto } from './dto'
 
 export const getFollowingPage = (options?: AxiosRequestConfig): Promise<FollowingPageDto> => {
   return fetcher.get('/pages/following', options)

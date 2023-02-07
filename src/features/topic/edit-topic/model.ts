@@ -2,8 +2,9 @@ import { useFormik } from 'formik'
 import produce from 'immer'
 import { useIntl } from 'react-intl'
 import { InfiniteData, useMutation, useQueryClient } from 'react-query'
-import { MessageDto, TopicDto, topicSchema, updateTopic } from 'shared/api'
+import { MessageDto, TopicDto, updateTopic } from 'shared/api'
 import { useSnackbar } from 'shared/ui/snackbar'
+import { TopicSchema } from './schema'
 
 const getNextState = (discussion: InfiniteData<TopicDto[]>, message: MessageDto) => {
   const { id, parentId, text } = message
@@ -43,7 +44,7 @@ export const useUpdateTopicForm = (initialValues: MessageDto, onSuccess: () => v
 
   return useFormik<MessageDto>({
     initialValues,
-    validationSchema: topicSchema,
+    validationSchema: TopicSchema,
     async onSubmit(data) {
       await mutateAsync(data)
     },

@@ -3,10 +3,11 @@ import produce from 'immer'
 import { useIntl } from 'react-intl'
 import { useMutation } from 'react-query'
 import { useGoalsCache } from 'entities/user'
-import { CreatedGoal, CreateGoalDto, GoalDto, createGoal, goalSchema } from 'shared/api'
+import { CreatedGoal, CreateGoalDto, GoalDto, createGoal } from 'shared/api'
 import { scrollToElem } from 'shared/lib/helpers'
 import { getMidnightISO } from 'shared/lib/utils'
 import { useSnackbar } from 'shared/ui/snackbar'
+import { GoalSchema } from './schema'
 
 const getNextState = (goals: GoalDto[], goal: CreatedGoal) =>
   produce(goals, (draft) => {
@@ -35,7 +36,7 @@ export const useCreateGoalForm = (onSuccess: () => void) => {
       stages: [],
       tasks: [{ id: crypto.randomUUID(), name: '', date: undefined }],
     },
-    validationSchema: goalSchema,
+    validationSchema: GoalSchema,
     async onSubmit(data) {
       await mutateAsync(data)
     },

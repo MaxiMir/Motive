@@ -1,6 +1,6 @@
 import { fetcher } from '../fetcher'
 import { Filter, getFilterParams } from '../filter'
-import { CreateTopicDto, TopicDto, UpdateTopicDto } from './model'
+import { CreateTopicDto, TopicDto, UpdateTopicDto } from './dto'
 
 export const getTopics = (filter: Filter): Promise<TopicDto[]> => {
   const params = getFilterParams(filter)

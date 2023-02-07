@@ -1,6 +1,6 @@
 import { fetcher } from '../fetcher'
 import { Filter, getFilterParams } from '../filter'
-import { NotificationDto } from './model'
+import { NotificationDto } from './dto'
 
 export const getNotifications = (where: Filter['where']): Promise<NotificationDto[]> => {
   const params = getFilterParams({ where })

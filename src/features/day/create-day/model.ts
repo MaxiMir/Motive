@@ -3,9 +3,10 @@ import produce from 'immer'
 import { useIntl } from 'react-intl'
 import { useMutation } from 'react-query'
 import { useChangeDayUrl, useGoalsCache } from 'entities/user'
-import { GoalDto, CreateDayDto, DayDto, createDay, tasksSchema } from 'shared/api'
+import { GoalDto, CreateDayDto, DayDto, createDay } from 'shared/api'
 import { getTomorrowISO } from 'shared/lib/utils'
 import { useSnackbar } from 'shared/ui/snackbar'
+import { DaySchema } from './schema'
 
 const getNextState = (goals: GoalDto[], id: number, day: DayDto) =>
   produce(goals, (draft) => {
@@ -36,7 +37,7 @@ export const useCreateDay = (goalId: number, onSuccess: () => void) => {
       date: getTomorrowISO(),
       tasks: [{ id: crypto.randomUUID(), name: '', date: undefined }],
     },
-    validationSchema: tasksSchema,
+    validationSchema: DaySchema,
     async onSubmit(data) {
       await mutateAsync(data)
     },

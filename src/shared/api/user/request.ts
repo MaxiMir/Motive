@@ -1,6 +1,6 @@
 import { fetcher } from '../fetcher'
 import { Filter, getFilterParams } from '../filter'
-import { CreateUserDto, UpdateUserDto, UserBaseDto } from './model'
+import { CreateUserDto, UpdateUserDto, UserBaseDto } from './dto'
 
 export const getUsers = (filter: Filter): Promise<UserBaseDto[]> => {
   const params = getFilterParams(filter)

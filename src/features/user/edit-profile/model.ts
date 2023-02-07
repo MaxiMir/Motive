@@ -4,15 +4,9 @@ import { useIntl } from 'react-intl'
 import { useMutation } from 'react-query'
 import { useRouter } from 'next/router'
 import { useUserPageCache } from 'entities/user'
-import {
-  UserPageDto,
-  UpdateUserDto,
-  UserBaseDto,
-  getUsers,
-  updateUser,
-  userSchema,
-} from 'shared/api'
+import { UserPageDto, UpdateUserDto, UserBaseDto, getUsers, updateUser } from 'shared/api'
 import { getCurrentSearchParams, joinToHref, setSearchParams } from 'shared/lib/helpers'
+import { UserSchema } from './schema'
 
 const getNextState = (page: UserPageDto, user: UserBaseDto) =>
   produce(page, (draft) => {
@@ -53,7 +47,7 @@ export const useUpdateUserForm = (user: UserPageDto, onSuccess: () => void) => {
       bio: user.bio,
       links: user.links,
     },
-    validationSchema: userSchema,
+    validationSchema: UserSchema,
     async onSubmit(data, { setFieldError }) {
       const { id } = user
       const { nickname } = data

@@ -3,10 +3,11 @@ import { useFormik } from 'formik'
 import { useIntl } from 'react-intl'
 import { useMutation } from 'react-query'
 import { useUserPage } from 'entities/page'
-import { createConfirmation, confirmationSchema } from 'shared/api'
+import { createConfirmation } from 'shared/api'
 import { scrollToElem } from 'shared/lib/helpers'
 import { getMidnight } from 'shared/lib/utils'
 import { useSnackbar } from 'shared/ui/snackbar'
+import { ConfirmationSchema } from './schema'
 
 interface Values {
   text: string
@@ -38,7 +39,7 @@ export const useCreateConfirmationForm = (goalId: number, onSuccess: () => void)
       goalId,
       end: getMidnight(),
     },
-    validationSchema: confirmationSchema,
+    validationSchema: ConfirmationSchema,
     async onSubmit(data) {
       const formData = new FormData()
       formData.append('text', data.text.trim())

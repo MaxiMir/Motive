@@ -1,6 +1,6 @@
 import { mixed, object, string } from 'yup'
 
-export const userSchema = object({
+export const UserSchema = object({
   name: string()
     .trim()
     .required('The name is needed')

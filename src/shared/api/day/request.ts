@@ -1,5 +1,5 @@
 import { fetcher } from '../fetcher'
-import { DayDto } from './model'
+import { DayDto } from './dto'
 
 export const getDay = (id: number): Promise<DayDto> => {
   return fetcher.get(`/days/${id}`)

@@ -30,48 +30,56 @@ function Message({ message, answerFor, supportFor, onReply }: MessageProps) {
   const direction = !answerFor ? 'row' : 'row-reverse'
 
   return (
-    <Stack direction={direction} alignItems="flex-end" gap={1}>
-      <Link href={href} title={name}>
-        <Avatar src={avatar} name={name} online={online} size={32} />
-      </Link>
+    <Stack gap={1}>
+      <Stack direction={direction} alignItems="flex-end" gap={1}>
+        <Link href={href} title={name}>
+          <Avatar src={avatar} name={name} online={online} size={32} />
+        </Link>
+        <Stack
+          gap={1}
+          width="100%"
+          px={2}
+          py={1}
+          sx={(theme) => ({
+            backgroundColor: !answerFor ? theme.palette.grey[900] : '#000000',
+            borderRadius: `20px 20px ${!answerFor ? 16 : 4}px ${!answerFor ? 4 : 16}px`,
+          })}
+        >
+          <Box display="flex" alignItems="center" gap={1}>
+            <Box component="b" fontSize={14}>
+              <Link href={href} title={user.name}>
+                {user.name}
+              </Link>
+            </Box>
+            {supportFor && <SupportSign name={supportFor} />}
+            {edited && (
+              <Box component="span" fontSize={11} color="zen.silent">
+                {messages.editedText}
+              </Box>
+            )}
+            <MenuActions message={message} />
+          </Box>
+          <Markdown text={text} />
+        </Stack>
+      </Stack>
       <Stack
-        gap={1}
-        width="100%"
-        px={2}
-        py={1}
-        sx={(theme) => ({
-          backgroundColor: !answerFor ? theme.palette.grey[900] : '#111a47',
-          borderRadius: `20px 20px ${!answerFor ? 16 : 4}px ${!answerFor ? 4 : 16}px`,
-        })}
+        direction="row"
+        justifyContent="space-between"
+        alignItems="center"
+        pl={!answerFor ? '54px' : 1}
+        pr={!answerFor ? undefined : '54px'}
       >
         <Box display="flex" alignItems="center" gap={1}>
-          <Box component="b">
-            <Link href={href} title={user.name}>
-              {user.name}
-            </Link>
-          </Box>
-          {supportFor && <SupportSign name={supportFor} />}
-          {edited && (
-            <Box component="span" fontSize={11} color="zen.silent">
-              {messages.editedText}
-            </Box>
+          <Typography variant="caption" sx={{ color: 'zen.silent' }}>
+            {dateDistance}
+          </Typography>
+          {onReply && (
+            <Button size="small" sx={{ color: 'support.main' }} onClick={onReply}>
+              {messages.replyText}
+            </Button>
           )}
-          <MenuActions message={message} />
         </Box>
-        <Markdown text={text} />
-        <Stack direction="row" justifyContent="space-between" alignItems="center">
-          <Box display="flex" alignItems="center" gap={1}>
-            <Typography variant="caption" sx={({ palette }) => ({ color: palette.grey[300] })}>
-              {dateDistance}
-            </Typography>
-            {onReply && (
-              <Button size="small" sx={{ color: 'support.main' }} onClick={onReply}>
-                {messages.replyText}
-              </Button>
-            )}
-          </Box>
-          <Like message={message} answerFor={answerFor} />
-        </Stack>
+        <Like message={message} answerFor={answerFor} />
       </Stack>
     </Stack>
   )

@@ -41,7 +41,7 @@ export function Discussion({ dayId, count, owner, clientGoal }: DiscussionProps)
               <List
                 elements={topics}
                 keyGetter={(topic) => topic.id}
-                gap={3}
+                gap={2}
                 render={(topic, index) => (
                   <Topic
                     dayId={dayId}

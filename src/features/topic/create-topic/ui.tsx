@@ -38,11 +38,15 @@ function CreateTopic({ dayId, user, type, topicId, onAdd }: CreateTopicProps) {
           <Field
             name="text"
             placeholder={messages.placeholder}
-            variant="standard"
+            variant="outlined"
             InputLabelProps={{ shrink: false }}
             disabled={isSubmitting}
-            autoComplete={false}
-            sx={{ flex: 1 }}
+            autoComplete="off"
+            InputProps={{
+              sx: {
+                borderRadius: 24,
+              },
+            }}
             component={Input}
           />
           <TooltipArrow title={messages.sendText}>

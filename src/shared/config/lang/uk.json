@@ -95,7 +95,6 @@
   "page.user.goal-current.stages-header": "Етапи",
   "page.user.goal-current.tasks-header": "Завдання",
   "page.user.goal-current.feedback-header": "Відгук",
-  "page.user.goal-current.discussion-header": "Обговорення",
   "page.user.message-menu.title": "Відкрити меню повідомлень",
   "page.user.competed-by-other.title": "Один із учасників вже завершив",
   "page.user.goal-current.open-menu": "Відкрити меню цілі",
@@ -246,7 +245,7 @@
   "common.seen": "Заходив(-ла)",
   "common.new-event": "Нова подія",
   "common.duration": "Тривалість",
-  "common.creator": "Создатель",
+  "common.creator": "Створювач",
   "common.repeat": "Повторити",
   "common.repeating": "Повторення",
   "common.sign-in": "Увійти",
@@ -321,5 +320,6 @@
   "common.dev": "У розробці",
   "common.offline": "Ви перебуваєте поза мережею",
   "common-check-connection": "Перевірте своє з'єднання",
-  "common.reload": "Перезавантажити"
+  "common.reload": "Перезавантажити",
+  "common.discussion": "Обговорення"
 }

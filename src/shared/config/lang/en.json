@@ -95,7 +95,6 @@
   "page.user.goal-current.stages-header": "Stages",
   "page.user.goal-current.tasks-header": "Tasks",
   "page.user.goal-current.feedback-header": "Feedback",
-  "page.user.goal-current.discussion-header": "Discussion",
   "page.user.message-menu.title": "Open message menu",
   "page.user.modal-join.according-motivation": "Click 💪 for days that are motivating",
   "page.user.modal-join.according-creative": "Click 🧠 for days with creative tasks",
@@ -321,5 +320,6 @@
   "common.dev": "In development",
   "common.offline": "You are offline",
   "common-check-connection": "Check your connection",
-  "common.reload": "Reload"
+  "common.reload": "Reload",
+  "common.discussion": "Discussion"
 }

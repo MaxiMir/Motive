@@ -95,7 +95,6 @@
   "page.user.goal-current.stages-header": "阶段",
   "page.user.goal-current.tasks-header": "任务",
   "page.user.goal-current.feedback-header": "反馈",
-  "page.user.goal-current.discussion-header": "讨论",
   "page.user.message-menu.title": "打开消息菜单",
   "page.user.modal-join.according-motivation": "点击💪，选择有激励作用的日子",
   "page.user.modal-join.according-creative": "点击🧠，查看有创意任务的日子",
@@ -321,5 +320,6 @@
   "common.dev": "开发中",
   "common.offline": "你是离线的",
   "common-check-connection": "检查你的连接",
-  "common.reload": "重新加载"
+  "common.reload": "重新加载",
+  "common.discussion": "讨论"
 }

@@ -1,4 +1,5 @@
 import { Stack } from '@mui/material'
+import { useIntl } from 'react-intl'
 import dynamic from 'next/dynamic'
 import { useAddMessage, useClient } from 'entities/user'
 import { TopicDto, MessageType, UserBaseDto } from 'shared/api'
@@ -22,14 +23,15 @@ interface DiscussionModalProps {
 
 function DiscussionModal({ dayId, count, owner, clientGoal, onClose }: DiscussionModalProps) {
   const client = useClient()
+  const { formatMessage } = useIntl()
   const { isLoading, topics, checkOnLoadMore, fetchNextPage } = useDiscussion(dayId, count)
   const onAdd = useAddMessage()
+  const title = formatMessage({ id: 'common.discussion' })
   const withInput = !!client && !clientGoal
-  const minHeight = topics.length || withInput ? 130 : undefined
 
   return (
-    <Modal title="Discussion" maxWidth="md" staticHeight onClose={onClose}>
-      <Stack gap={2} minHeight={minHeight} flex={1}>
+    <Modal title={title} maxWidth="md" staticHeight onClose={onClose}>
+      <Stack gap={2} flex={1} height="100%">
         <>
           {isLoading ? (
             <Loader count={count} withInput={withInput} />

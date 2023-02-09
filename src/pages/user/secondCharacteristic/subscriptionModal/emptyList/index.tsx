@@ -7,7 +7,7 @@ function EmptyList() {
   const title = formatMessage({ id: 'common.empty' })
 
   return (
-    <Box display="flex" alignItems="center" width="100%" height={490}>
+    <Box display="flex" alignItems="center" width="100%" height="100%">
       <Stack alignItems="center" gap={2} width="100%">
         <Typography variant="h6" component="p">
           {title}

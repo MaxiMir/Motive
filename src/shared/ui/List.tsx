@@ -9,7 +9,7 @@ export interface ListProps<T> extends StackProps {
 
 function List<T>({ elements, render, keyGetter, ...stackProps }: ListProps<T>) {
   return (
-    <Stack flexWrap="wrap" flex={1} {...stackProps}>
+    <Stack flex={1} {...stackProps}>
       {elements.map((element, key) => (
         <Fragment key={keyGetter(element).toString()}>{render(element, key)}</Fragment>
       ))}

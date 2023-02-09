@@ -1,11 +1,11 @@
 import { Box, Button, Stack, Typography } from '@mui/material'
+import { useIntl } from 'react-intl'
 import dynamic from 'next/dynamic'
 import { useRouter } from 'next/router'
 import { checkOnOpenDiscussion } from 'entities/discussion'
 import { UserBaseDto } from 'shared/api'
 import { useToggle } from 'shared/lib/hooks'
 import Icon from 'shared/ui/Icon'
-import { useMessages } from './lib'
 
 const DiscussionModal = dynamic(() => import('./discussionModal'))
 
@@ -19,8 +19,9 @@ interface DiscussionProps {
 
 export function Discussion({ goalId, dayId, count, owner, clientGoal }: DiscussionProps) {
   const { query } = useRouter()
+  const { formatMessage } = useIntl()
   const [open, toggle] = useToggle(checkOnOpenDiscussion(query, goalId))
-  const messages = useMessages()
+  const header = formatMessage({ id: 'common.discussion' })
 
   return (
     <>
@@ -30,7 +31,7 @@ export function Discussion({ goalId, dayId, count, owner, clientGoal }: Discussi
             💬
           </Typography>
           <Typography variant="h6" component="p" sx={{ color: 'common.white' }}>
-            {messages.header}{' '}
+            {header}{' '}
             <Box component="span" sx={{ color: 'zen.silent' }}>
               • {count}
             </Box>

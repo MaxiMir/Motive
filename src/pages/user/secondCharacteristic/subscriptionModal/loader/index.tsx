@@ -11,7 +11,7 @@ function Loader({ count }: LoaderProps) {
   const list = [...new Array(shownCount)]
 
   return (
-    <Stack gap={2} flex={1}>
+    <Stack gap={2} flex={1} height="100%">
       {list.map((_, key) => (
         <Box display="flex" gap={1} height={60} key={key}>
           <Skeleton animation="wave" variant="circular" width={55} height={55} />

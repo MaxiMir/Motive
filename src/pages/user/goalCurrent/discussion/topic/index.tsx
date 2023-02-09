@@ -1,6 +1,6 @@
-import { useState } from 'react'
 import dynamic from 'next/dynamic'
 import { TopicDto, MessageType, UserBaseDto } from 'shared/api'
+import { useToggle } from 'shared/lib/hooks'
 import { checkOnReply } from './lib'
 import Message from './message'
 
@@ -19,13 +19,12 @@ interface TopicProps {
 
 function Topic({ dayId, owner, topic, isOwner, inView, onView, onAdd }: TopicProps) {
   const { answer, ...message } = topic
-  const [showInput, setShowInput] = useState(false)
-  const showReply = checkOnReply(isOwner, topic)
-
-  const onClick = () => setShowInput(true)
+  const [creating, toggleCreating] = useToggle()
+  const canReply = checkOnReply(isOwner, topic)
+  const replyProps = !canReply ? undefined : { disabled: creating, onClick: toggleCreating }
 
   const onAddCombine = (question: TopicDto) => {
-    setShowInput(false)
+    toggleCreating()
     onAdd(question)
   }
 
@@ -34,19 +33,20 @@ function Topic({ dayId, owner, topic, isOwner, inView, onView, onAdd }: TopicPro
       <Message
         message={message}
         supportFor={message.type !== MessageType.Support ? undefined : owner.name}
-        onReply={!showReply ? undefined : onClick}
+        replyProps={replyProps}
       />
-      {showInput && (
+      {answer && <Message message={answer} answerFor={message.id} />}
+      {inView && <InView onView={onView} />}
+      {creating && (
         <CreateTopic
           dayId={dayId}
           user={owner}
           topicId={message.id}
           type={MessageType.Answer}
+          autoFocus
           onAdd={onAddCombine}
         />
       )}
-      {answer && <Message message={answer} answerFor={message.id} />}
-      {inView && <InView onView={onView} />}
     </>
   )
 }

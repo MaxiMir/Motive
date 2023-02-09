@@ -7,7 +7,7 @@ import { useDiscussion } from './lib'
 
 const List = dynamic<ListProps<TopicDto>>(() => import('shared/ui/List'))
 const CreateTopic = dynamic(() => import('features/topic/create-topic'))
-const Nothing = dynamic(() => import('./nothing'))
+const Nothing = dynamic(() => import('./emptyList'))
 const Loader = dynamic(() => import('./loader'))
 const Topic = dynamic(() => import('./topic'))
 
@@ -42,6 +42,7 @@ export function Discussion({ dayId, count, owner, clientGoal }: DiscussionProps)
                 elements={topics}
                 keyGetter={(topic) => topic.id}
                 gap={2}
+                pb={3}
                 render={(topic, index) => (
                   <Topic
                     dayId={dayId}

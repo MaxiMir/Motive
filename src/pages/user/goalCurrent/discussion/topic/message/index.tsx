@@ -17,10 +17,13 @@ interface MessageProps {
   message: MessageDto
   answerFor?: number
   supportFor?: string
-  onReply?: () => void
+  replyProps?: {
+    disabled: boolean
+    onClick: () => void
+  }
 }
 
-function Message({ message, answerFor, supportFor, onReply }: MessageProps) {
+function Message({ message, answerFor, supportFor, replyProps }: MessageProps) {
   const { date, user, text, edited } = message
   const { name, nickname, avatar, online } = user
   const messages = useMessages()
@@ -36,7 +39,6 @@ function Message({ message, answerFor, supportFor, onReply }: MessageProps) {
           <Avatar src={avatar} name={name} online={online} size={32} />
         </Link>
         <Stack
-          gap={1}
           width="100%"
           px={2}
           py={1}
@@ -64,22 +66,20 @@ function Message({ message, answerFor, supportFor, onReply }: MessageProps) {
       </Stack>
       <Stack
         direction="row"
-        justifyContent="space-between"
         alignItems="center"
-        pl={!answerFor ? '54px' : 1}
-        pr={!answerFor ? undefined : '54px'}
+        gap={1}
+        pl={!answerFor ? 6 : 1}
+        pr={!answerFor ? 1 : 6}
       >
-        <Box display="flex" alignItems="center" gap={1}>
-          <Typography variant="caption" sx={{ color: 'zen.silent' }}>
-            {dateDistance}
-          </Typography>
-          {onReply && (
-            <Button size="small" sx={{ color: 'support.main' }} onClick={onReply}>
-              {messages.replyText}
-            </Button>
-          )}
-        </Box>
         <Like message={message} answerFor={answerFor} />
+        {replyProps && (
+          <Button size="small" sx={{ color: 'support.main' }} {...replyProps}>
+            {messages.replyText}
+          </Button>
+        )}
+        <Typography variant="caption" sx={{ color: 'zen.silent', marginLeft: 'auto' }}>
+          {dateDistance}
+        </Typography>
       </Stack>
     </Stack>
   )

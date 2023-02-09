@@ -18,10 +18,11 @@ interface CreateTopicProps {
   user: ClientDto | UserBaseDto
   type: MessageType
   topicId?: number
+  autoFocus?: boolean
   onAdd: (topic: TopicDto) => void
 }
 
-function CreateTopic({ dayId, user, type, topicId, onAdd }: CreateTopicProps) {
+function CreateTopic({ dayId, user, type, topicId, autoFocus, onAdd }: CreateTopicProps) {
   const { name, avatar } = user
   const messages = useMessages(type)
   const form = useCreateTopicForm(dayId, topicId, type, onAdd)
@@ -42,18 +43,21 @@ function CreateTopic({ dayId, user, type, topicId, onAdd }: CreateTopicProps) {
             InputLabelProps={{ shrink: false }}
             disabled={isSubmitting}
             autoComplete="off"
+            autoFocus={autoFocus}
             InputProps={{
+              endAdornment: (
+                <TooltipArrow title={messages.sendText}>
+                  <SendButton size="small" disabled={disabled} onClick={onClick}>
+                    {isSubmitting ? <CircularProgress size={14.5} /> : <Icon name="arrow_upward" />}
+                  </SendButton>
+                </TooltipArrow>
+              ),
               sx: {
                 borderRadius: 24,
               },
             }}
             component={Input}
           />
-          <TooltipArrow title={messages.sendText}>
-            <SendButton size="small" disabled={disabled} onClick={onClick}>
-              {isSubmitting ? <CircularProgress size={14.5} /> : <Icon name="arrow_upward" />}
-            </SendButton>
-          </TooltipArrow>
         </Stack>
       </Form>
     </FormikProvider>

@@ -28,7 +28,13 @@ function Loader({ count, withInput }: LoaderProps) {
       {list.map((_, key) => (
         <Stack direction={key % 2 ? 'row-reverse' : 'row'} alignItems="flex-end" gap={2} key={key}>
           <Skeleton variant="circular" animation="wave" width={38} height={38} sx={{ mb: 3 }} />
-          <Stack gap={0.5} width="40%">
+          <Stack
+            gap={0.5}
+            width={{
+              xs: '100%',
+              md: '40%',
+            }}
+          >
             <Skeleton
               variant="rounded"
               animation="wave"

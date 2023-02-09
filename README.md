@@ -1,4 +1,5 @@
 [//]: # (TODO)
+* Удаление комментария (1 час)
 * https://github.com/jquense/yup/issues/159
 * Stack + user in notification
 * Индикатор подгрузки в Infinity Loading

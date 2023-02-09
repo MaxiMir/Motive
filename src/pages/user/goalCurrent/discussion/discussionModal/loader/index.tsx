@@ -26,25 +26,24 @@ function Loader({ count, withInput }: LoaderProps) {
         </Stack>
       )}
       {list.map((_, key) => (
-        <Stack gap={1} key={key}>
-          <Stack direction="row" alignItems="flex-end" gap={2} height={120}>
-            <Skeleton variant="circular" animation="wave" width={38} height={38} />
+        <Stack direction={key % 2 ? 'row-reverse' : 'row'} alignItems="flex-end" gap={2} key={key}>
+          <Skeleton variant="circular" animation="wave" width={38} height={38} sx={{ mb: 3 }} />
+          <Stack gap={0.5} width="40%">
             <Skeleton
               variant="rounded"
               animation="wave"
               height={120}
               sx={{
-                flexGrow: 1,
                 borderBottomLeftRadius: 4,
                 borderTopLeftRadius: 20,
                 borderTopRightRadius: 20,
                 borderBottomRightRadius: 16,
               }}
             />
-          </Stack>
-          <Stack direction="row" justifyContent="space-between" alignItems="center" pl="54px">
-            <Skeleton variant="rounded" animation="wave" width={105} height={20} />
-            <Skeleton variant="rounded" animation="wave" width={43} height={20} />
+            <Stack direction="row" justifyContent="space-between" alignItems="center">
+              <Skeleton variant="rounded" animation="wave" width={105} height={20} />
+              <Skeleton variant="rounded" animation="wave" width={43} height={20} />
+            </Stack>
           </Stack>
         </Stack>
       ))}

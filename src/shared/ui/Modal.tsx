@@ -16,14 +16,15 @@ import Icon from 'shared/ui/Icon'
 const DialogActions = dynamic(() => import('@mui/material/DialogActions'))
 const Stack = dynamic(() => import('@mui/material/Stack'))
 
-interface ModalProps extends Pick<DialogProps, 'maxWidth' | 'PaperProps'> {
+interface ModalProps extends Pick<DialogProps, 'maxWidth'> {
   title: JSX.Element | string
   actions?: JSX.Element[]
   children: ReactNode
+  staticHeight?: boolean
   onClose: () => void
 }
 
-function Modal({ title, actions, children, maxWidth, PaperProps, onClose }: ModalProps) {
+function Modal({ title, actions, children, maxWidth, staticHeight, onClose }: ModalProps) {
   const { formatMessage } = useIntl()
   const closeText = formatMessage({ id: 'common.close' })
 
@@ -32,7 +33,6 @@ function Modal({ title, actions, children, maxWidth, PaperProps, onClose }: Moda
       open
       disableScrollLock
       maxWidth={maxWidth}
-      PaperProps={PaperProps}
       sx={{
         [`& .${backdropClasses.root}`]: {
           background: 'rgba(34, 34, 34, 0.75)',
@@ -65,7 +65,16 @@ function Modal({ title, actions, children, maxWidth, PaperProps, onClose }: Moda
         <Icon name="close" />
       </IconButton>
       <PerfectScrollbar>
-        <DialogContent>{children}</DialogContent>
+        <DialogContent
+          sx={{
+            height: {
+              xs: !staticHeight ? undefined : 600,
+              md: !staticHeight ? undefined : 800,
+            },
+          }}
+        >
+          {children}
+        </DialogContent>
       </PerfectScrollbar>
       {actions && (
         <DialogActions>
@@ -78,7 +87,7 @@ function Modal({ title, actions, children, maxWidth, PaperProps, onClose }: Moda
       )}
       <GlobalStyles
         styles={{
-          '#__next': {
+          html: {
             overflow: 'hidden',
           },
         }}

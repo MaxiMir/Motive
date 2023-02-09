@@ -33,13 +33,20 @@ function Message({ message, answerFor, supportFor, replyProps }: MessageProps) {
   const direction = !answerFor ? 'row' : 'row-reverse'
 
   return (
-    <Stack gap={1}>
-      <Stack direction={direction} alignItems="flex-end" gap={1}>
+    <Stack direction={direction} alignItems="flex-end" gap={1}>
+      <Box pb={4}>
         <Link href={href} title={name}>
           <Avatar src={avatar} name={name} online={online} size={32} />
         </Link>
+      </Box>
+      <Stack
+        gap={0.5}
+        minWidth={{
+          md: 300,
+        }}
+        maxWidth={500}
+      >
         <Stack
-          width="100%"
           px={2}
           py={1}
           sx={(theme) => ({
@@ -63,23 +70,17 @@ function Message({ message, answerFor, supportFor, replyProps }: MessageProps) {
           </Box>
           <Markdown text={text} />
         </Stack>
-      </Stack>
-      <Stack
-        direction="row"
-        alignItems="center"
-        gap={1}
-        pl={!answerFor ? 6 : 1}
-        pr={!answerFor ? 1 : 6}
-      >
-        <Like message={message} answerFor={answerFor} />
-        {replyProps && (
-          <Button size="small" sx={{ color: 'support.main' }} {...replyProps}>
-            {messages.replyText}
-          </Button>
-        )}
-        <Typography variant="caption" sx={{ color: 'zen.silent', marginLeft: 'auto' }}>
-          {dateDistance}
-        </Typography>
+        <Stack direction="row" alignItems="center" gap={1} height={32}>
+          <Like message={message} answerFor={answerFor} />
+          {replyProps && (
+            <Button size="small" sx={{ color: 'support.main' }} {...replyProps}>
+              {messages.replyText}
+            </Button>
+          )}
+          <Typography variant="caption" sx={{ color: 'zen.silent', marginLeft: 'auto' }}>
+            {dateDistance}
+          </Typography>
+        </Stack>
       </Stack>
     </Stack>
   )

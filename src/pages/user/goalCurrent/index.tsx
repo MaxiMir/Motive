@@ -2,10 +2,8 @@ import { Box, Button, Card, Stack, Typography } from '@mui/material'
 import { styled } from '@mui/system'
 import { differenceInCalendarDays } from 'date-fns'
 import dynamic from 'next/dynamic'
-import { useRouter } from 'next/router'
 import { useSwitchDay } from 'features/day/switch-day'
 import { CharacteristicGoal } from 'entities/characteristic'
-import { checkOnOpenDiscussion } from 'entities/discussion'
 import { findMember } from 'entities/member'
 import { getDayHref } from 'entities/page'
 import { useClient } from 'entities/user'
@@ -56,12 +54,10 @@ function GoalCurrent({ goal, nickname, clientPage, clientMembership }: GoalCurre
     completed,
     started,
   } = goal
-  const { query } = useRouter()
   const client = useClient()
   const messages = useMessages()
   const today = getMidnight()
   const dayHref = getDayHref(nickname, id, day.id)
-  const expandedDiscussion = checkOnOpenDiscussion(query, id)
   const { isLoading, prev, next, onChangeDate, shouldDisableDate } = useSwitchDay(goal)
   const clientGoal = owner.id === client?.id
   const clientMember = findMember(clientMembership, id, client?.id)
@@ -253,7 +249,7 @@ function GoalCurrent({ goal, nickname, clientPage, clientMembership }: GoalCurre
                     emoji="💭"
                     header={messages.feedbackHeader}
                     id={`${HashMark.Feedback}-${id}`}
-                    defaultExpanded={!expandedDiscussion}
+                    defaultExpanded
                     details={
                       <Feedback
                         goalId={id}
@@ -263,26 +259,12 @@ function GoalCurrent({ goal, nickname, clientPage, clientMembership }: GoalCurre
                       />
                     }
                   />
-                  <Accordion
-                    emoji="💬"
-                    header={
-                      <>
-                        {messages.discussionHeader}{' '}
-                        <Box component="span" color="zen.silent">
-                          {day.topicCount}
-                        </Box>
-                      </>
-                    }
-                    id={`${HashMark.Discussion}-${id}`}
-                    defaultExpanded={expandedDiscussion}
-                    details={
-                      <Discussion
-                        dayId={day.id}
-                        count={day.topicCount}
-                        owner={owner}
-                        clientGoal={clientGoal}
-                      />
-                    }
+                  <Discussion
+                    goalId={id}
+                    dayId={day.id}
+                    count={day.topicCount}
+                    owner={owner}
+                    clientGoal={clientGoal}
                   />
                 </Card>
                 {next && (

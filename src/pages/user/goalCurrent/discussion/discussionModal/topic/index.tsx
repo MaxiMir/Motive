@@ -5,7 +5,7 @@ import { checkOnReply } from './lib'
 import Message from './message'
 
 const InView = dynamic(() => import('shared/ui/InView'))
-const CreateTopic = dynamic(() => import('features/topic/create-topic'))
+const Answer = dynamic(() => import('./answer'))
 
 interface TopicProps {
   dayId: number
@@ -23,11 +23,6 @@ function Topic({ dayId, owner, topic, isOwner, inView, onView, onAdd }: TopicPro
   const canReply = checkOnReply(isOwner, topic)
   const replyProps = !canReply ? undefined : { disabled: creating, onClick: toggleCreating }
 
-  const onAddCombine = (question: TopicDto) => {
-    toggleCreating()
-    onAdd(question)
-  }
-
   return (
     <>
       <Message
@@ -38,13 +33,12 @@ function Topic({ dayId, owner, topic, isOwner, inView, onView, onAdd }: TopicPro
       {answer && <Message message={answer} answerFor={message.id} />}
       {inView && <InView onView={onView} />}
       {creating && (
-        <CreateTopic
+        <Answer
           dayId={dayId}
-          user={owner}
+          owner={owner}
           topicId={message.id}
-          type={MessageType.Answer}
-          autoFocus
-          onAdd={onAddCombine}
+          onAdd={onAdd}
+          onClose={toggleCreating}
         />
       )}
     </>

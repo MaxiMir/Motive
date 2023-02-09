@@ -1,64 +1,55 @@
-import { Stack } from '@mui/material'
+import { Box, Button, Stack, Typography } from '@mui/material'
 import dynamic from 'next/dynamic'
-import { useAddMessage, useClient } from 'entities/user'
-import { TopicDto, MessageType, UserBaseDto } from 'shared/api'
-import { ListProps } from 'shared/ui/List'
-import { useDiscussion } from './lib'
+import { useRouter } from 'next/router'
+import { checkOnOpenDiscussion } from 'entities/discussion'
+import { UserBaseDto } from 'shared/api'
+import { useToggle } from 'shared/lib/hooks'
+import Icon from 'shared/ui/Icon'
+import { useMessages } from './lib'
 
-const List = dynamic<ListProps<TopicDto>>(() => import('shared/ui/List'))
-const CreateTopic = dynamic(() => import('features/topic/create-topic'))
-const Nothing = dynamic(() => import('./emptyList'))
-const Loader = dynamic(() => import('./loader'))
-const Topic = dynamic(() => import('./topic'))
+const DiscussionModal = dynamic(() => import('./discussionModal'))
 
 interface DiscussionProps {
+  goalId: number
   dayId: number
   count: number
   owner: UserBaseDto
   clientGoal: boolean
 }
 
-export function Discussion({ dayId, count, owner, clientGoal }: DiscussionProps) {
-  const client = useClient()
-  const { isLoading, topics, checkOnLoadMore, fetchNextPage } = useDiscussion(dayId, count)
-  const onAdd = useAddMessage()
-  const withInput = !!client && !clientGoal
-  const minHeight = topics.length || withInput ? 130 : undefined
+export function Discussion({ goalId, dayId, count, owner, clientGoal }: DiscussionProps) {
+  const { query } = useRouter()
+  const [open, toggle] = useToggle(checkOnOpenDiscussion(query, goalId))
+  const messages = useMessages()
 
   return (
-    <Stack gap={2} minHeight={minHeight} maxHeight={500} flex={1}>
-      <>
-        {isLoading ? (
-          <Loader count={count} withInput={withInput} />
-        ) : (
-          <>
-            {withInput && (
-              <CreateTopic dayId={dayId} user={client} type={MessageType.Question} onAdd={onAdd} />
-            )}
-            {!count ? (
-              <Nothing />
-            ) : (
-              <List
-                elements={topics}
-                keyGetter={(topic) => topic.id}
-                gap={2}
-                pb={3}
-                render={(topic, index) => (
-                  <Topic
-                    dayId={dayId}
-                    topic={topic}
-                    owner={owner}
-                    isOwner={clientGoal}
-                    inView={checkOnLoadMore(index)}
-                    onView={fetchNextPage}
-                    onAdd={onAdd}
-                  />
-                )}
-              />
-            )}
-          </>
-        )}
-      </>
-    </Stack>
+    <>
+      <Button sx={{ width: '100%', paddingX: 2, paddingY: '12px' }} onClick={toggle}>
+        <Stack direction="row" alignItems="center" gap={1} width="100%">
+          <Typography variant="h6" component="p">
+            💬
+          </Typography>
+          <Typography variant="h6" component="p" sx={{ color: 'common.white' }}>
+            {messages.header}{' '}
+            <Box component="span" sx={{ color: 'zen.silent' }}>
+              • {count}
+            </Box>
+          </Typography>
+          <Icon
+            name="unfold_more"
+            sx={({ palette }) => ({ marginLeft: 'auto', color: palette.grey[700] })}
+          />
+        </Stack>
+      </Button>
+      {open && (
+        <DiscussionModal
+          dayId={dayId}
+          count={count}
+          owner={owner}
+          clientGoal={clientGoal}
+          onClose={toggle}
+        />
+      )}
+    </>
   )
 }

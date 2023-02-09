@@ -30,11 +30,7 @@ function SubscriptionModal({ userId, type, count, onClose }: SubscriptionModalPr
         </Box>
       }
       maxWidth="xs"
-      PaperProps={{
-        sx: {
-          height: 600,
-        },
-      }}
+      staticHeight
       onClose={onClose}
     >
       <Box

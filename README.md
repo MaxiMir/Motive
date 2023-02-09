@@ -1,4 +1,5 @@
 [//]: # (TODO)
+* https://github.com/jquense/yup/issues/159
 * Stack + user in notification
 * Индикатор подгрузки в Infinity Loading
 * Notifications Infinity подругзка
@@ -65,11 +66,11 @@ sudo apt-get install nginx docker docker-compose mc
 cd /etc/nginx 
 ls # sites-available
 nano 2bebetter.pro.conf
-onf
 
 # виртуальный симлинк
 sudo ln -s /etc/nginx/sites-available/2bebetter.pro.conf /etc/nginx/sites-enabled/
 ```
+### DOCKER COMPOSE:
 ```yaml
 version: '3.3'
 
@@ -109,35 +110,7 @@ services:
     ports:
       - "127.0.0.1:6379:6379"
 ```
-
-**SSL**: https://cdnnow.ru/blog/dehydrated/
-
-```shell
-server {
-    server_name xx.ru www.2bebetter.pro;
-    location ^~ /.well-known/acme-challenge {
-        alias /var/lib/dehydrated/acme-challenges;
-    }
-    location / {
-        return 301 https://$host$request_uri;
-    }
-}
-
-
-nginx -t
-nginx -s reload
-dehydrated -c
-```
-*nginx.config:*
-```shell
-user www-data;
-worker_processes auto;
-pid /run/nginx.pid;
-load_module modules/ngx_http_brotli_filter_module.so;
-load_module modules/ngx_http_brotli_static_module.so;
-include /etc/nginx/modules-enabled/*.conf;
-# ...
-```
+### NGINX config:
 ```shell
 server {
     listen 443 ssl http2;
@@ -213,4 +186,34 @@ server {
     server_name 2bebetter.pro www.2bebetter.pro;
     return 301 https://$host$request_uri;
 }
+```
+
+### [SSL](https://cdnnow.ru/blog/dehydrated/)
+
+```shell
+server {
+    server_name xx.ru www.2bebetter.pro;
+    location ^~ /.well-known/acme-challenge {
+        alias /var/lib/dehydrated/acme-challenges;
+    }
+    location / {
+        return 301 https://$host$request_uri;
+    }
+}
+
+
+nginx -t
+nginx -s reload
+dehydrated -c
+```
+
+### nginx.config brotli:
+```shell
+user www-data;
+worker_processes auto;
+pid /run/nginx.pid;
+load_module modules/ngx_http_brotli_filter_module.so;
+load_module modules/ngx_http_brotli_static_module.so;
+include /etc/nginx/modules-enabled/*.conf;
+# ...
 ```

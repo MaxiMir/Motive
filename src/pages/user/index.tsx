@@ -50,13 +50,12 @@ export function UserPage({ user }: UserViewProps) {
             sx={{
               gap: {
                 xs: 2,
-                sm: 4,
                 md: 6,
               },
               alignItems: 'flex-end',
               justifyContent: {
                 xs: 'center',
-                sm: 'flex-start',
+                md: 'flex-start',
               },
             }}
           >
@@ -64,19 +63,19 @@ export function UserPage({ user }: UserViewProps) {
             <Stack
               alignItems={{
                 xs: 'center',
-                sm: 'flex-start',
+                md: 'flex-start',
               }}
               flex={1}
             >
               <Stack
                 direction={{
                   xs: 'column',
-                  sm: 'row',
+                  md: 'row',
                 }}
                 alignItems="center"
                 gap={{
                   xs: 1,
-                  sm: 3,
+                  md: 3,
                 }}
                 width="100%"
                 mb={1}
@@ -91,7 +90,14 @@ export function UserPage({ user }: UserViewProps) {
                   <MenuActions clientPage={clientPage} />
                 </Stack>
               </Stack>
-              <Stack direction="row" justifyContent="space-between" gap={2} mb={1}>
+              <Stack
+                direction="row"
+                justifyContent="space-between"
+                gap={{
+                  sm: 2,
+                }}
+                mb={1}
+              >
                 {SECOND_CHARACTERISTICS.map((characteristicName) => (
                   <SecondCharacteristic
                     name={characteristicName}

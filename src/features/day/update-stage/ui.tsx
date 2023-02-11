@@ -14,7 +14,7 @@ interface UpdateStageModalProps {
 }
 
 function UpdateStageModal({ goalId, stages, dayStage, onClose }: UpdateStageModalProps) {
-  const messages = useMessages(stages.length === dayStage)
+  const messages = useMessages(stages, dayStage)
   const { isLoading, mutate } = useUpdateStage(onClose)
   const nextStage = dayStage + 1
 
@@ -22,14 +22,7 @@ function UpdateStageModal({ goalId, stages, dayStage, onClose }: UpdateStageModa
 
   return (
     <Modal
-      title={
-        <>
-          {messages.title} <br />
-          <Box component="span" color="zen.sand">
-            {stages[dayStage]}
-          </Box>
-        </>
-      }
+      title={messages.title}
       maxWidth="xs"
       actions={[
         <CancelButton key="cancel" onClick={onClose} />,

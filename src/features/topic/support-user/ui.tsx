@@ -19,17 +19,11 @@ function SupportUserModal({ dayId, ownerName, onClose }: SupportUserModalProps) 
   const messages = useMessages()
   const form = useCreateTopicForm(dayId, onClose)
   const { isSubmitting, handleSubmit } = form
+  const title = `${messages.title} ${ownerName}`
 
   return (
     <Modal
-      title={
-        <>
-          {messages.title} <br />
-          <Box component="span" color="zen.sand">
-            {ownerName}
-          </Box>
-        </>
-      }
+      title={title}
       maxWidth="xs"
       actions={[
         <CancelButton key="cancel" onClick={onClose} />,

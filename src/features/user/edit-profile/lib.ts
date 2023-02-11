@@ -5,7 +5,6 @@ export const useMessages = () => {
 
   return {
     title: formatMessage({ id: 'page.user.modal-profile.title' }),
-    profile: formatMessage({ id: 'page.user.modal-profile.profile' }),
     nameLabel: formatMessage({ id: 'page.user.modal-profile.name' }),
     nicknameLabel: formatMessage({ id: 'common.nickname' }),
     mottoLabel: formatMessage({ id: 'common.motto' }),

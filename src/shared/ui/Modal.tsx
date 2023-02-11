@@ -2,9 +2,11 @@ import {
   Dialog,
   DialogContent,
   GlobalStyles,
-  DialogTitle,
-  IconButton,
   DialogProps,
+  IconButton,
+  Toolbar,
+  Typography,
+  AppBar,
 } from '@mui/material'
 import { backdropClasses } from '@mui/material/Backdrop'
 import { Fragment, ReactNode } from 'react'
@@ -31,7 +33,6 @@ function Modal({ title, actions, children, maxWidth, staticHeight, onClose }: Mo
   return (
     <Dialog
       open
-      disableScrollLock
       maxWidth={maxWidth}
       sx={{
         [`& .${backdropClasses.root}`]: {
@@ -41,36 +42,21 @@ function Modal({ title, actions, children, maxWidth, staticHeight, onClose }: Mo
       }}
       onClose={onClose}
     >
-      <DialogTitle
-        sx={({ spacing }) => ({
-          padding: spacing(2, 3, 1),
-          marginX: 6,
-          textAlign: 'center',
-          textTransform: 'uppercase',
-        })}
-      >
-        {title}
-      </DialogTitle>
-      <IconButton
-        aria-label={closeText}
-        edge="start"
-        sx={{
-          position: 'absolute',
-          top: 10,
-          right: 13,
-          color: 'zen.silent',
-        }}
-        onClick={onClose}
-      >
-        <Icon name="close" />
-      </IconButton>
+      <AppBar sx={{ position: 'relative' }}>
+        <Toolbar>
+          <Typography sx={{ ml: 2, flex: 1 }} variant="h6" component="div">
+            {title}
+          </Typography>
+          <IconButton edge="start" color="inherit" aria-label={closeText} onClick={onClose}>
+            <Icon name="close" />
+          </IconButton>
+        </Toolbar>
+      </AppBar>
       <PerfectScrollbar>
         <DialogContent
+          dividers
           sx={{
-            height: {
-              xs: !staticHeight ? undefined : 600,
-              md: !staticHeight ? undefined : 800,
-            },
+            height: !staticHeight ? undefined : 600,
           }}
         >
           {children}

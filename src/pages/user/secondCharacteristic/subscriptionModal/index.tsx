@@ -1,4 +1,3 @@
-import { Box } from '@mui/material'
 import { useIntl } from 'react-intl'
 import dynamic from 'next/dynamic'
 import { SecondCharacteristicName } from 'shared/api'
@@ -20,19 +19,9 @@ function SubscriptionModal({ userId, type, count, onClose }: SubscriptionModalPr
   const { isLoading, users, checkOnLoadMore, fetchNextPage } = useSubscription(userId, count, type)
   const { formatMessage } = useIntl()
   const title = formatMessage({ id: `common.${type}` })
-  const titleColor = type === SecondCharacteristicName.Followers ? 'zen.sand' : undefined
 
   return (
-    <Modal
-      title={
-        <Box component="span" color={titleColor}>
-          {title}
-        </Box>
-      }
-      maxWidth="xs"
-      staticHeight
-      onClose={onClose}
-    >
+    <Modal title={title} maxWidth="xs" staticHeight onClose={onClose}>
       {isLoading ? (
         <Loader count={count} />
       ) : (

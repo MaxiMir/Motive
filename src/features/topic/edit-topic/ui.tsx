@@ -1,4 +1,4 @@
-import { Box, Stack } from '@mui/material'
+import { Stack } from '@mui/material'
 import { Field, Form, FormikProvider } from 'formik'
 import { FocusEvent } from 'react'
 import { MessageDto } from 'shared/api'
@@ -25,14 +25,7 @@ function EditTopicModal({ message, onClose }: EditTopicModalProps) {
 
   return (
     <Modal
-      title={
-        <>
-          {messages.title}{' '}
-          <Box component="span" color="zen.sand">
-            {messages.subtitle}
-          </Box>
-        </>
-      }
+      title={messages.title}
       maxWidth="xs"
       actions={[
         <CancelButton key="cancel" onClick={onClose} />,

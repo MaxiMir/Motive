@@ -5,7 +5,6 @@ import {
   Radio,
   RadioGroup,
   AccordionSummary,
-  Box,
   Stack,
   Button,
   FormControl,
@@ -46,14 +45,7 @@ function CreateDayModal({ goalId, dayDate, onClose }: CreateDayModalProps) {
 
   return (
     <Modal
-      title={
-        <>
-          {messages.titleText}{' '}
-          <Box component="span" color="zen.sand">
-            {messages.subtitleText}
-          </Box>
-        </>
-      }
+      title={messages.title}
       maxWidth="xs"
       actions={[
         <CancelButton key="cancel" onClick={onClose} />,

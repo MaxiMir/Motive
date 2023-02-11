@@ -5,7 +5,6 @@ export const useMessages = () => {
 
   return {
     title: formatMessage({ id: 'page.user.modal-join.title' }),
-    subtitle: formatMessage({ id: 'page.user.modal-join.subtitle' }),
     buttonText: formatMessage({ id: 'common.join' }),
     loadingText: formatMessage({ id: 'common.joining' }),
     beginLabel: formatMessage({ id: 'page.user.modal-join.begin-label' }),

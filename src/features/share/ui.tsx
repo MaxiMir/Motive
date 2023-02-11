@@ -107,9 +107,9 @@ function Share({ href, title, onClose }: ShareProps) {
       <Box role="presentation" onClick={onClose}>
         <List>
           {shareItems.map(({ text, ItemIcon, onClick }) => (
-            <ListItem button sx={{ height: 65 }} key={text} onClick={onClick}>
-              <Stack direction="row" alignItems="center" width={180} sx={{ marginInline: 'auto' }}>
-                <ListItemIcon>
+            <ListItem button sx={{ height: 64 }} key={text} onClick={onClick}>
+              <Stack direction="row" alignItems="center" sx={{ marginInline: 'auto' }}>
+                <ListItemIcon sx={{ minWidth: 40 }}>
                   <ItemIcon sx={{ color: 'primary.dark' }} />
                 </ListItemIcon>
                 <ListItemText primary={text} />

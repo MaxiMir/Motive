@@ -1,16 +1,5 @@
-import {
-  Box,
-  DialogTitle,
-  IconButton,
-  List,
-  ListItem,
-  Stack,
-  Drawer,
-  ListItemIcon,
-  ListItemText,
-} from '@mui/material'
+import { Box, List, ListItem, Stack, Drawer, ListItemIcon, ListItemText } from '@mui/material'
 import { copyText } from 'shared/lib/helpers'
-import Icon from 'shared/ui/Icon'
 import { ContentCopy, Email, Facebook, SMS, Telegram, Twitter, VK } from 'shared/ui/icons'
 import { useSnackbar } from 'shared/ui/snackbar'
 import { clickHandler, useMessages } from './lib'
@@ -81,29 +70,6 @@ function Share({ href, title, onClose }: ShareProps) {
 
   return (
     <Drawer open anchor="bottom" onClose={onClose}>
-      <DialogTitle
-        sx={({ spacing }) => ({
-          padding: spacing(2, 3, 1),
-          marginX: 6,
-          textAlign: 'center',
-          textTransform: 'uppercase',
-        })}
-      >
-        {messages.shareTitle}
-      </DialogTitle>
-      <IconButton
-        aria-label={messages.closeText}
-        edge="start"
-        sx={{
-          position: 'absolute',
-          top: 10,
-          right: 13,
-          color: 'zen.silent',
-        }}
-        onClick={onClose}
-      >
-        <Icon name="close" />
-      </IconButton>
       <Box role="presentation" onClick={onClose}>
         <List>
           {shareItems.map(({ text, ItemIcon, onClick }) => (
@@ -112,7 +78,7 @@ function Share({ href, title, onClose }: ShareProps) {
                 <ListItemIcon sx={{ minWidth: 40 }}>
                   <ItemIcon sx={{ color: 'primary.dark' }} />
                 </ListItemIcon>
-                <ListItemText primary={text} />
+                <ListItemText sx={{ minWidth: 180 }} primary={text} />
               </Stack>
             </ListItem>
           ))}

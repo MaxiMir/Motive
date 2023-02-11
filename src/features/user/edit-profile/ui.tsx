@@ -1,4 +1,4 @@
-import { Box, InputAdornment, Stack } from '@mui/material'
+import { InputAdornment, Stack } from '@mui/material'
 import { Field, Form, FormikProvider } from 'formik'
 import { UserPageDto } from 'shared/api'
 import CancelButton from 'shared/ui/CancelButton'
@@ -20,14 +20,7 @@ function EditProfileModal({ user, onClose }: EditProfileModalProps) {
 
   return (
     <Modal
-      title={
-        <>
-          {messages.title}{' '}
-          <Box component="span" color="zen.sand">
-            {messages.profile}
-          </Box>
-        </>
-      }
+      title={messages.title}
       maxWidth="xs"
       actions={[
         <CancelButton key="cancel" onClick={onClose} />,

@@ -15,15 +15,7 @@ export function CharacteristicInfo({ name, value, onClose }: CharacteristicInfoP
   const texts = [...(!messages.completion ? [] : [messages.completion]), messages.points]
 
   return (
-    <Modal
-      title={
-        <Box component="span" color={`${name}.main`}>
-          {messages.title}
-        </Box>
-      }
-      maxWidth="xs"
-      onClose={onClose}
-    >
+    <Modal title={messages.title} maxWidth="xs" onClose={onClose}>
       <Progress characteristic={name} value={value} mb={2} />
       <Typography variant="h6" component="h3" sx={{ color: `${name}.light` }}>
         {messages.header}:

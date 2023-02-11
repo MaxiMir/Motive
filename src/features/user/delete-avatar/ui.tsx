@@ -18,7 +18,7 @@ function DeleteAvatarModal({ userId, onClose }: DeleteAvatarModalProps) {
 
   return (
     <Modal
-      title={<Typography sx={{ color: 'error.dark' }}>{messages.title}</Typography>}
+      title={messages.title}
       maxWidth="xs"
       actions={[
         <CancelButton key="cancel" onClick={onClose} />,

@@ -1,4 +1,4 @@
-import { Box, Stack, Typography } from '@mui/material'
+import { Stack, Typography } from '@mui/material'
 import Image from 'next/image'
 // eslint-disable-next-line import/no-internal-modules
 import webSrc from 'public/images/svg/web.svg'
@@ -19,15 +19,7 @@ function AbandonedModal({ characteristic, onClose }: AbandonedModalProps) {
   const roundedProgress = Math.round(progress)
 
   return (
-    <Modal
-      title={
-        <Box component="span" color="abandoned.main">
-          {messages.title}
-        </Box>
-      }
-      maxWidth="xs"
-      onClose={onClose}
-    >
+    <Modal title={messages.title} maxWidth="xs" onClose={onClose}>
       <Stack position="relative" gap={2}>
         <Stack direction="row" alignItems="center" gap={2} alignSelf="center">
           <Typography variant="h2" component="p" sx={{ color: 'abandoned.main' }}>

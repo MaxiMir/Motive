@@ -4,8 +4,7 @@ export const useMessages = () => {
   const { formatMessage } = useIntl()
 
   return {
-    titleText: formatMessage({ id: 'page.user.modal-tasks.title' }),
-    subtitleText: formatMessage({ id: 'page.user.modal-tasks.subtitle' }),
+    title: formatMessage({ id: 'page.user.modal-tasks.title' }),
     addTaskText: formatMessage({ id: 'common.task-add' }),
     buttonText: formatMessage({ id: 'common.create' }),
     loadingText: formatMessage({ id: 'common.creating' }),

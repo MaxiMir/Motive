@@ -17,26 +17,12 @@ interface SubscriptionModalProps {
 }
 
 function SubscriptionModal({ userId, type, count, onClose }: SubscriptionModalProps) {
-  const { isLoading, users, checkOnLoadMore, fetchNextPage } = useSubscription(userId, count, type)
   const { formatMessage } = useIntl()
+  const { isLoading, users, checkOnLoadMore, fetchNextPage } = useSubscription(userId, count, type)
   const title = formatMessage({ id: `common.${type}` })
-  const titleColor = type === SecondCharacteristicName.Followers ? 'zen.sand' : undefined
 
   return (
-    <Modal
-      title={
-        <Box component="span" color={titleColor}>
-          {title}
-        </Box>
-      }
-      maxWidth="xs"
-      PaperProps={{
-        sx: {
-          height: 600,
-        },
-      }}
-      onClose={onClose}
-    >
+    <Modal title={title} maxWidth="xs" staticHeight onClose={onClose}>
       <Box
         display="flex"
         flex={1}

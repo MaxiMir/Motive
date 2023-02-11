@@ -1,5 +1,16 @@
-import { Box, Drawer, List, ListItem, ListItemIcon, ListItemText, Stack } from '@mui/material'
+import {
+  Box,
+  DialogTitle,
+  IconButton,
+  List,
+  ListItem,
+  Stack,
+  Drawer,
+  ListItemIcon,
+  ListItemText,
+} from '@mui/material'
 import { copyText } from 'shared/lib/helpers'
+import Icon from 'shared/ui/Icon'
 import { ContentCopy, Email, Facebook, SMS, Telegram, Twitter, VK } from 'shared/ui/icons'
 import { useSnackbar } from 'shared/ui/snackbar'
 import { clickHandler, useMessages } from './lib'
@@ -21,37 +32,37 @@ function Share({ href, title, onClose }: ShareProps) {
     return [
       {
         text: `${messages.shareText} Facebook`,
-        Icon: Facebook,
+        ItemIcon: Facebook,
         onClick: () => clickHandler('facebook', title, url),
       },
       {
         text: `${messages.shareText} Twitter`,
-        Icon: Twitter,
+        ItemIcon: Twitter,
         onClick: () => clickHandler('twitter', title, url),
       },
       {
         text: `${messages.shareText} VK`,
-        Icon: VK,
+        ItemIcon: VK,
         onClick: () => clickHandler('vk', title, url),
       },
       {
         text: `${messages.shareText} Telegram`,
-        Icon: Telegram,
+        ItemIcon: Telegram,
         onClick: () => clickHandler('telegram', title, url),
       },
       {
         text: `${messages.sendText} Email`,
-        Icon: Email,
+        ItemIcon: Email,
         onClick: () => clickHandler('email', title, url),
       },
       {
         text: `${messages.sendText} SMS`,
-        Icon: SMS,
+        ItemIcon: SMS,
         onClick: () => clickHandler('sms', title, url),
       },
       {
         text: messages.copyText,
-        Icon: ContentCopy,
+        ItemIcon: ContentCopy,
         onClick: () =>
           copyText(url)
             .then(() =>
@@ -69,16 +80,39 @@ function Share({ href, title, onClose }: ShareProps) {
   }
 
   return (
-    <Drawer open anchor="bottom" sx={{ zIndex: 1450 }} onClose={onClose}>
+    <Drawer open anchor="bottom" onClose={onClose}>
+      <DialogTitle
+        sx={({ spacing }) => ({
+          padding: spacing(2, 3, 1),
+          marginX: 6,
+          textAlign: 'center',
+          textTransform: 'uppercase',
+        })}
+      >
+        {messages.shareTitle}
+      </DialogTitle>
+      <IconButton
+        aria-label={messages.closeText}
+        edge="start"
+        sx={{
+          position: 'absolute',
+          top: 10,
+          right: 13,
+          color: 'zen.silent',
+        }}
+        onClick={onClose}
+      >
+        <Icon name="close" />
+      </IconButton>
       <Box role="presentation" onClick={onClose}>
         <List>
-          {shareItems.map(({ text, Icon, onClick }) => (
+          {shareItems.map(({ text, ItemIcon, onClick }) => (
             <ListItem button sx={{ height: 65 }} key={text} onClick={onClick}>
-              <Stack direction="row" alignItems="center" width={240} sx={{ marginInline: 'auto' }}>
+              <Stack direction="row" alignItems="center" width={180} sx={{ marginInline: 'auto' }}>
                 <ListItemIcon>
-                  <Icon sx={{ color: 'primary.dark' }} />
+                  <ItemIcon sx={{ color: 'primary.dark' }} />
                 </ListItemIcon>
-                <ListItemText primary={text} sx={{ color: 'creativity.light' }} />
+                <ListItemText primary={text} />
               </Stack>
             </ListItem>
           ))}

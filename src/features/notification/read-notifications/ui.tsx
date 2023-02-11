@@ -26,16 +26,7 @@ function ReadNotificationsModal({
   const [showHint, onHintClick] = useNotificationHint()
 
   return (
-    <Modal
-      title={title}
-      maxWidth="xs"
-      PaperProps={{
-        sx: {
-          height: 600,
-        },
-      }}
-      onClose={onClose}
-    >
+    <Modal title={title} maxWidth="xs" staticHeight onClose={onClose}>
       <Stack flex={1}>
         {isLoading ? (
           <Loader />

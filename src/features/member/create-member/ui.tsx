@@ -36,15 +36,7 @@ function CreateMemberModal({
 
   return (
     <Modal
-      title={
-        <>
-          {messages.title}{' '}
-          <Box component="span" color="zen.sand">
-            {messages.subtitle}
-          </Box>
-          ?
-        </>
-      }
+      title={messages.title}
       maxWidth="xs"
       actions={[
         <CancelButton key="cancel" onClick={onClose} />,

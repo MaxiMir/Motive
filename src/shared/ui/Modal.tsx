@@ -2,9 +2,11 @@ import {
   Dialog,
   DialogContent,
   GlobalStyles,
-  DialogTitle,
-  IconButton,
   DialogProps,
+  IconButton,
+  Toolbar,
+  Typography,
+  AppBar,
 } from '@mui/material'
 import { backdropClasses } from '@mui/material/Backdrop'
 import { Fragment, ReactNode } from 'react'
@@ -16,23 +18,22 @@ import Icon from 'shared/ui/Icon'
 const DialogActions = dynamic(() => import('@mui/material/DialogActions'))
 const Stack = dynamic(() => import('@mui/material/Stack'))
 
-interface ModalProps extends Pick<DialogProps, 'maxWidth' | 'PaperProps'> {
+interface ModalProps extends Pick<DialogProps, 'maxWidth'> {
   title: JSX.Element | string
   actions?: JSX.Element[]
   children: ReactNode
+  staticHeight?: boolean
   onClose: () => void
 }
 
-function Modal({ title, actions, children, maxWidth, PaperProps, onClose }: ModalProps) {
+function Modal({ title, actions, children, maxWidth, staticHeight, onClose }: ModalProps) {
   const { formatMessage } = useIntl()
   const closeText = formatMessage({ id: 'common.close' })
 
   return (
     <Dialog
       open
-      disableScrollLock
       maxWidth={maxWidth}
-      PaperProps={PaperProps}
       sx={{
         [`& .${backdropClasses.root}`]: {
           background: 'rgba(34, 34, 34, 0.75)',
@@ -41,31 +42,25 @@ function Modal({ title, actions, children, maxWidth, PaperProps, onClose }: Moda
       }}
       onClose={onClose}
     >
-      <DialogTitle
-        sx={({ spacing }) => ({
-          padding: spacing(2, 3, 1),
-          marginX: 6,
-          textAlign: 'center',
-          textTransform: 'uppercase',
-        })}
-      >
-        {title}
-      </DialogTitle>
-      <IconButton
-        aria-label={closeText}
-        edge="start"
-        sx={{
-          position: 'absolute',
-          top: 10,
-          right: 13,
-          color: 'zen.silent',
-        }}
-        onClick={onClose}
-      >
-        <Icon name="close" />
-      </IconButton>
+      <AppBar sx={{ position: 'relative' }}>
+        <Toolbar>
+          <Typography sx={{ ml: 2, flex: 1 }} variant="h6" component="div">
+            {title}
+          </Typography>
+          <IconButton edge="start" color="inherit" aria-label={closeText} onClick={onClose}>
+            <Icon name="close" />
+          </IconButton>
+        </Toolbar>
+      </AppBar>
       <PerfectScrollbar>
-        <DialogContent>{children}</DialogContent>
+        <DialogContent
+          dividers
+          sx={{
+            height: !staticHeight ? undefined : 600,
+          }}
+        >
+          {children}
+        </DialogContent>
       </PerfectScrollbar>
       {actions && (
         <DialogActions>
@@ -78,7 +73,7 @@ function Modal({ title, actions, children, maxWidth, PaperProps, onClose }: Moda
       )}
       <GlobalStyles
         styles={{
-          '#__next': {
+          html: {
             overflow: 'hidden',
           },
         }}

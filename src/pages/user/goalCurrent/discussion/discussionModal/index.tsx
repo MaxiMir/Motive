@@ -3,6 +3,7 @@ import { useIntl } from 'react-intl'
 import dynamic from 'next/dynamic'
 import { useAddMessage, useClient } from 'entities/user'
 import { TopicDto, MessageType, UserBaseDto } from 'shared/api'
+import { useDeviceContext } from 'shared/ui/device'
 import { ListProps } from 'shared/ui/List'
 import Modal from 'shared/ui/Modal'
 import { useDiscussion } from './lib'
@@ -24,13 +25,15 @@ interface DiscussionModalProps {
 function DiscussionModal({ dayId, count, owner, clientGoal, onClose }: DiscussionModalProps) {
   const client = useClient()
   const { formatMessage } = useIntl()
+  const device = useDeviceContext()
   const { isLoading, topics, checkOnLoadMore, fetchNextPage } = useDiscussion(dayId, count)
   const onAdd = useAddMessage()
   const title = formatMessage({ id: 'common.discussion' })
   const withInput = !!client && !clientGoal
+  const fullScreen = ['feature phone', 'smartphone', 'phablet'].includes(device || '')
 
   return (
-    <Modal title={title} maxWidth="md" staticHeight onClose={onClose}>
+    <Modal title={title} maxWidth="md" staticHeight fullScreen={fullScreen} onClose={onClose}>
       <Stack gap={2} flex={1} height="100%">
         <>
           {isLoading ? (

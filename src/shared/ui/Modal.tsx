@@ -7,6 +7,7 @@ import {
   Toolbar,
   Typography,
   AppBar,
+  Divider,
 } from '@mui/material'
 import { backdropClasses } from '@mui/material/Backdrop'
 import { Fragment, ReactNode } from 'react'
@@ -23,10 +24,19 @@ interface ModalProps extends Pick<DialogProps, 'maxWidth'> {
   actions?: JSX.Element[]
   children: ReactNode
   staticHeight?: boolean
+  fullScreen?: boolean
   onClose: () => void
 }
 
-function Modal({ title, actions, children, maxWidth, staticHeight, onClose }: ModalProps) {
+function Modal({
+  title,
+  actions,
+  children,
+  maxWidth,
+  staticHeight,
+  fullScreen,
+  onClose,
+}: ModalProps) {
   const { formatMessage } = useIntl()
   const closeText = formatMessage({ id: 'common.close' })
 
@@ -34,10 +44,16 @@ function Modal({ title, actions, children, maxWidth, staticHeight, onClose }: Mo
     <Dialog
       open
       maxWidth={maxWidth}
+      fullScreen={fullScreen}
       sx={{
         [`& .${backdropClasses.root}`]: {
           background: 'rgba(34, 34, 34, 0.75)',
           backdropFilter: 'blur(5px)',
+        },
+      }}
+      PaperProps={{
+        sx: {
+          margin: fullScreen ? 0 : 2,
         },
       }}
       onClose={onClose}
@@ -53,8 +69,8 @@ function Modal({ title, actions, children, maxWidth, staticHeight, onClose }: Mo
         </Toolbar>
       </AppBar>
       <PerfectScrollbar>
+        <Divider />
         <DialogContent
-          dividers
           sx={{
             height: !staticHeight ? undefined : 600,
           }}

@@ -216,10 +216,7 @@ export const getDesignTokens = (mode: PaletteMode): ThemeOptions => {
       MuiDialog: {
         styleOverrides: {
           paper: {
-            backgroundImage: 'none',
-            borderRadius: '12px',
-            width: 'calc(100% - 16px)',
-            margin: '16px',
+            width: '100%',
           },
         },
       },

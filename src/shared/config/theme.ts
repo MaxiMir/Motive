@@ -230,9 +230,6 @@ export const getDesignTokens = (mode: PaletteMode): ThemeOptions => {
             display: 'flex',
             flexDirection: 'column',
           },
-          '.ps .ps__rail-y:hover, .ps .ps--clicking': {
-            background: 'transparent!important',
-          },
           a: {
             color: 'inherit',
             textDecoration: 'none',

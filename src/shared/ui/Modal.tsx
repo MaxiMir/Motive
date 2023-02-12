@@ -12,7 +12,6 @@ import {
 import { backdropClasses } from '@mui/material/Backdrop'
 import { Fragment, ReactNode } from 'react'
 import { useIntl } from 'react-intl'
-import PerfectScrollbar from 'react-perfect-scrollbar'
 import dynamic from 'next/dynamic'
 import Icon from 'shared/ui/Icon'
 
@@ -68,16 +67,8 @@ function Modal({
           </IconButton>
         </Toolbar>
       </AppBar>
-      <PerfectScrollbar>
-        <Divider />
-        <DialogContent
-          sx={{
-            height: !staticHeight ? undefined : 600,
-          }}
-        >
-          {children}
-        </DialogContent>
-      </PerfectScrollbar>
+      <Divider />
+      <DialogContent sx={{ height: !staticHeight ? undefined : 600 }}>{children}</DialogContent>
       {actions && (
         <DialogActions>
           <Stack direction="row" justifyContent="space-between" flex={1} pb={2} px={2}>

@@ -1,7 +1,6 @@
 import { Stack } from '@mui/material'
 import { Fragment, ReactNode } from 'react'
 import { useIntl } from 'react-intl'
-import PerfectScrollbar from 'react-perfect-scrollbar'
 import { useIsFetching } from 'react-query'
 import dynamic from 'next/dynamic'
 import Head from 'next/head'
@@ -85,23 +84,21 @@ export function Layout({
         <link rel="alternate" href={localeHrefList.en} hrefLang="x-default" />
       </Head>
       {renderCompact && <Header type={type} />}
-      <PerfectScrollbar>
-        <MainWrap {...mainWrapProps}>
-          <Stack
-            component="main"
-            id="main"
-            flex={1}
-            minHeight={{
-              xs: 'calc(100dvh - 109px)',
-              xl: '100dvh',
-            }}
-            sx={({ palette }) => ({ background: palette.mode === 'dark' ? '#121212' : undefined })}
-          >
-            {renderUpdating && <Updating />}
-            {online ? children : <Offline />}
-          </Stack>
-        </MainWrap>
-      </PerfectScrollbar>
+      <MainWrap {...mainWrapProps}>
+        <Stack
+          component="main"
+          id="main"
+          flex={1}
+          minHeight={{
+            xs: 'calc(100dvh - 109px)',
+            xl: '100dvh',
+          }}
+          sx={({ palette }) => ({ background: palette.mode === 'dark' ? '#121212' : undefined })}
+        >
+          {renderUpdating && <Updating />}
+          {online ? children : <Offline />}
+        </Stack>
+      </MainWrap>
       {renderCompact && <Footer />}
     </>
   )

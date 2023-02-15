@@ -2,7 +2,7 @@ import { Stack } from '@mui/material'
 import { useIntl } from 'react-intl'
 import dynamic from 'next/dynamic'
 import { useAddMessage, useClient } from 'entities/user'
-import { TopicDto, MessageType, UserBaseDto } from 'shared/api'
+import { checkOnMobile, TopicDto, TopicType, UserBaseDto } from 'shared/api'
 import { useDeviceContext } from 'shared/ui/device'
 import { ListProps } from 'shared/ui/List'
 import Modal from 'shared/ui/Modal'
@@ -28,9 +28,9 @@ function DiscussionModal({ dayId, count, owner, clientGoal, onClose }: Discussio
   const device = useDeviceContext()
   const { isLoading, topics, checkOnLoadMore, fetchNextPage } = useDiscussion(dayId, count)
   const onAdd = useAddMessage()
+  const fullScreen = checkOnMobile(device)
   const title = formatMessage({ id: 'common.discussion' })
-  const withInput = !!client && !clientGoal
-  const fullScreen = ['feature phone', 'smartphone', 'phablet'].includes(device || '')
+  const withInput = !!client
 
   return (
     <Modal title={title} maxWidth="md" staticHeight fullScreen={fullScreen} onClose={onClose}>
@@ -44,7 +44,7 @@ function DiscussionModal({ dayId, count, owner, clientGoal, onClose }: Discussio
                 <CreateTopic
                   dayId={dayId}
                   user={client}
-                  type={MessageType.Question}
+                  type={!clientGoal ? TopicType.Question : TopicType.Support}
                   onAdd={onAdd}
                 />
               )}

@@ -1,6 +1,6 @@
 import { Button } from '@mui/material'
 import { useClient } from 'entities/user'
-import { MessageDto, MessageType } from 'shared/api'
+import { MessageDto, TopicType } from 'shared/api'
 import { useFormatNumber } from 'shared/lib/hooks'
 import TooltipArrow from 'shared/ui/TooltipArrow'
 import { checkOnDisabled, useMessages } from './lib'
@@ -18,7 +18,7 @@ export function Like({ message, answerFor }: LikeProps) {
   const messages = useMessages(message, disabled)
   const formatNumber = useFormatNumber()
   const formattedNumber = formatNumber(likeCount)
-  const startIcon = type === MessageType.Question ? '❤️' : '🙏'
+  const startIcon = type === TopicType.Question ? '❤️' : '🙏'
   const [isLoading, onClick] = useSetLike(message, answerFor)
 
   return (

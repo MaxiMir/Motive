@@ -1,5 +1,5 @@
 import dynamic from 'next/dynamic'
-import { TopicDto, MessageType, UserBaseDto } from 'shared/api'
+import { TopicDto, TopicType, UserBaseDto } from 'shared/api'
 import { useToggle } from 'shared/lib/hooks'
 import { checkOnReply } from './lib'
 import Message from './message'
@@ -27,7 +27,7 @@ function Topic({ dayId, owner, topic, isOwner, inView, onView, onAdd }: TopicPro
     <>
       <Message
         message={message}
-        supportFor={message.type !== MessageType.Support ? undefined : owner.name}
+        supportFor={message.type !== TopicType.Support ? undefined : owner.name}
         replyProps={replyProps}
       />
       {answer && <Message message={answer} answerFor={message.id} />}
@@ -36,6 +36,7 @@ function Topic({ dayId, owner, topic, isOwner, inView, onView, onAdd }: TopicPro
         <Answer
           dayId={dayId}
           owner={owner}
+          user={message.user}
           topicId={message.id}
           onAdd={onAdd}
           onClose={toggleCreating}

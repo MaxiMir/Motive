@@ -1,17 +1,18 @@
 import { Button, Stack } from '@mui/material'
 import CreateTopic from 'features/topic/create-topic'
-import { MessageType, TopicDto, UserBaseDto } from 'shared/api'
+import { TopicType, TopicDto, UserBaseDto } from 'shared/api'
 import { useMessages } from './lib'
 
 interface AnswerProps {
   dayId: number
   owner: UserBaseDto
+  user: UserBaseDto
   topicId: number
   onClose: () => void
   onAdd: (topic: TopicDto) => void
 }
 
-function Answer({ dayId, owner, topicId, onAdd, onClose }: AnswerProps) {
+function Answer({ dayId, owner, user, topicId, onAdd, onClose }: AnswerProps) {
   const messages = useMessages()
 
   const onAddCombine = (question: TopicDto) => {
@@ -25,13 +26,16 @@ function Answer({ dayId, owner, topicId, onAdd, onClose }: AnswerProps) {
         dayId={dayId}
         user={owner}
         topicId={topicId}
-        type={MessageType.Answer}
+        type={TopicType.Answer}
         autoFocus
+        replyTo={user.name}
         onAdd={onAddCombine}
       />
-      <Button size="small" sx={{ alignSelf: 'flex-end', color: 'zen.silent' }} onClick={onClose}>
-        {messages.cancelText}
-      </Button>
+      <Stack direction="row-reverse">
+        <Button size="small" sx={{ color: 'zen.silent' }} onClick={onClose}>
+          {messages.cancelText}
+        </Button>
+      </Stack>
     </Stack>
   )
 }

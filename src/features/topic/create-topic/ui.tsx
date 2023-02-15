@@ -3,7 +3,7 @@ import { blue } from '@mui/material/colors'
 import { styled } from '@mui/system'
 import { Field, Form, FormikProvider } from 'formik'
 import dynamic from 'next/dynamic'
-import { TopicDto, MessageType, UserBaseDto, ClientDto } from 'shared/api'
+import { TopicDto, TopicType, UserBaseDto, ClientDto } from 'shared/api'
 import Avatar from 'shared/ui/avatar'
 import Input from 'shared/ui/Input'
 import TooltipArrow from 'shared/ui/TooltipArrow'
@@ -11,18 +11,21 @@ import { useMessages } from './lib'
 import { useCreateTopicForm } from './model'
 
 const CircularProgress = dynamic(() => import('@mui/material/CircularProgress'))
+const InputAdornment = dynamic(() => import('@mui/material/InputAdornment'))
+const Typography = dynamic(() => import('@mui/material/Typography'))
 const Icon = dynamic(() => import('shared/ui/Icon'))
 
 interface CreateTopicProps {
   dayId: number
   user: ClientDto | UserBaseDto
-  type: MessageType
+  type: TopicType
   topicId?: number
   autoFocus?: boolean
+  replyTo?: string
   onAdd: (topic: TopicDto) => void
 }
 
-function CreateTopic({ dayId, user, type, topicId, autoFocus, onAdd }: CreateTopicProps) {
+function CreateTopic({ dayId, user, type, topicId, autoFocus, replyTo, onAdd }: CreateTopicProps) {
   const { name, avatar } = user
   const messages = useMessages(type)
   const form = useCreateTopicForm(dayId, topicId, type, onAdd)
@@ -45,6 +48,11 @@ function CreateTopic({ dayId, user, type, topicId, autoFocus, onAdd }: CreateTop
             autoComplete="off"
             autoFocus={autoFocus}
             InputProps={{
+              startAdornment: replyTo && (
+                <InputAdornment position="start">
+                  <Typography color="primary">{replyTo}</Typography>
+                </InputAdornment>
+              ),
               endAdornment: (
                 <TooltipArrow title={messages.sendText}>
                   <SendButton size="small" disabled={disabled} onClick={onClick}>

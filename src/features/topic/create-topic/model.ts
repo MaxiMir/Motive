@@ -1,13 +1,13 @@
 import { useFormik } from 'formik'
 import { useIntl } from 'react-intl'
 import { useMutation } from 'react-query'
-import { CreateTopicDto, MessageType, TopicDto, createTopic } from 'shared/api'
+import { CreateTopicDto, TopicType, TopicDto, createTopic } from 'shared/api'
 import { useSnackbar } from 'shared/ui/snackbar'
 
 export const useCreateTopicForm = (
   dayId: number,
   topicId: number | undefined,
-  type: MessageType,
+  type: TopicType,
   onAdd: (topic: TopicDto) => void,
 ) => {
   const { formatMessage } = useIntl()

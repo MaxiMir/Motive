@@ -1,4 +1,4 @@
-import { TopicDto, MessageType } from 'shared/api'
+import { TopicDto, TopicType } from 'shared/api'
 
 export const checkOnReply = (isOwner: boolean, topic: TopicDto): boolean =>
-  isOwner && !topic.answer && topic.type === MessageType.Question
+  isOwner && !topic.answer && topic.type === TopicType.Question

@@ -112,10 +112,6 @@
   "page.user.modal-stage.title-next": "下一个阶段是",
   "page.user.like-button.goal-message": "你已经增加了目标的支持点",
   "page.user.like-button.user-message": "你已经增加了{value}支持点",
-  "page.user.user-input.question": "你的问题",
-  "page.user.user-input.answer": "你的答案",
-  "page.user.user-input.message-question": "问题添加",
-  "page.user.user-input.message-answer": "答案添加",
   "page.user.topic.motivation": "动机",
   "page.user.topic.creativity": "创造力",
   "page.user.topic.title-increase": "增加{value}点",
@@ -317,5 +313,8 @@
   "common.offline": "你是离线的",
   "common-check-connection": "检查你的连接",
   "common.reload": "重新加载",
-  "common.discussion": "讨论"
+  "common.discussion": "讨论",
+  "common.message": "您的留言",
+  "common.message-added": "您的信息已被添加",
+  "common.enter-to-send": "按回车键发送"
 }

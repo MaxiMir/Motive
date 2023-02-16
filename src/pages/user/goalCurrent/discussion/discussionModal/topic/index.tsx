@@ -14,10 +14,9 @@ interface TopicProps {
   inView: boolean
   onView: () => void
   isOwner: boolean
-  onAdd: (topic: TopicDto) => void
 }
 
-function Topic({ dayId, owner, topic, isOwner, inView, onView, onAdd }: TopicProps) {
+function Topic({ dayId, owner, topic, isOwner, inView, onView }: TopicProps) {
   const { answer, ...message } = topic
   const [creating, toggleCreating] = useToggle()
   const canReply = checkOnReply(isOwner, topic)
@@ -38,7 +37,6 @@ function Topic({ dayId, owner, topic, isOwner, inView, onView, onAdd }: TopicPro
           owner={owner}
           user={message.user}
           topicId={message.id}
-          onAdd={onAdd}
           onClose={toggleCreating}
         />
       )}

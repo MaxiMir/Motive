@@ -1,18 +1,18 @@
 import { Stack } from '@mui/material'
 import { useIntl } from 'react-intl'
 import dynamic from 'next/dynamic'
-import { useAddMessage, useClient } from 'entities/user'
-import { checkOnMobile, TopicDto, TopicType, UserBaseDto } from 'shared/api'
+import { useClient } from 'entities/user'
+import { checkOnMobile, TopicDto, UserBaseDto } from 'shared/api'
 import { useDeviceContext } from 'shared/ui/device'
 import { ListProps } from 'shared/ui/List'
 import Modal from 'shared/ui/Modal'
 import { useDiscussion } from './lib'
 
 const List = dynamic<ListProps<TopicDto>>(() => import('shared/ui/List'))
-const CreateTopic = dynamic(() => import('features/topic/create-topic'))
 const EmptyList = dynamic(() => import('./emptyList'))
 const Loader = dynamic(() => import('./loader'))
 const Topic = dynamic(() => import('./topic'))
+const TopicPanel = dynamic(() => import('./topicPanel'))
 
 interface DiscussionModalProps {
   dayId: number
@@ -27,27 +27,37 @@ function DiscussionModal({ dayId, count, owner, clientGoal, onClose }: Discussio
   const { formatMessage } = useIntl()
   const device = useDeviceContext()
   const { isLoading, topics, checkOnLoadMore, fetchNextPage } = useDiscussion(dayId, count)
-  const onAdd = useAddMessage()
   const fullScreen = checkOnMobile(device)
   const title = formatMessage({ id: 'common.discussion' })
-  const withInput = !!client
 
   return (
-    <Modal title={title} maxWidth="md" staticHeight fullScreen={fullScreen} onClose={onClose}>
-      <Stack gap={2} flex={1} height="100%">
+    <Modal
+      title={title}
+      maxWidth="md"
+      staticHeight
+      fullScreen={fullScreen}
+      dividers
+      actions={
+        !client || isLoading
+          ? undefined
+          : [
+              <TopicPanel
+                dayId={dayId}
+                user={client}
+                owner={owner}
+                clientGoal={clientGoal}
+                key="panel"
+              />,
+            ]
+      }
+      onClose={onClose}
+    >
+      <Stack gap={2} flex={1} height="100%" position="relative">
         <>
           {isLoading ? (
-            <Loader count={count} withInput={withInput} />
+            <Loader count={count} />
           ) : (
             <>
-              {withInput && (
-                <CreateTopic
-                  dayId={dayId}
-                  user={client}
-                  type={!clientGoal ? TopicType.Question : TopicType.Support}
-                  onAdd={onAdd}
-                />
-              )}
               {!count ? (
                 <EmptyList />
               ) : (
@@ -65,7 +75,6 @@ function DiscussionModal({ dayId, count, owner, clientGoal, onClose }: Discussio
                       isOwner={clientGoal}
                       inView={checkOnLoadMore(index)}
                       onView={fetchNextPage}
-                      onAdd={onAdd}
                     />
                   )}
                 />

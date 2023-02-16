@@ -112,10 +112,6 @@
   "page.user.modal-stage.title-next": "Next stage is",
   "page.user.like-button.goal-message": "You have increased goal's support points",
   "page.user.like-button.user-message": "You have increased {value} support points",
-  "page.user.user-input.question": "Your question",
-  "page.user.user-input.answer": "Your answer",
-  "page.user.user-input.message-question": "Question add",
-  "page.user.user-input.message-answer": "Answer add",
   "page.user.topic.motivation": "motivation",
   "page.user.topic.creativity": "creativity",
   "page.user.topic.title-increase": "Increase {value} points",
@@ -317,5 +313,8 @@
   "common.offline": "You are offline",
   "common-check-connection": "Check your connection",
   "common.reload": "Reload",
-  "common.discussion": "Discussion"
+  "common.discussion": "Discussion",
+  "common.message": "Your message",
+  "common.message-added": "Your message added",
+  "common.enter-to-send": "Press ENTER to send"
 }

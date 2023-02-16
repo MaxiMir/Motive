@@ -112,10 +112,6 @@
   "page.user.modal-stage.title-next": "Следующий этап",
   "page.user.like-button.goal-message": "Вы увеличили очки поддержки для цели",
   "page.user.like-button.user-message": "Вы увеличили очки поддержки {value}",
-  "page.user.user-input.question": "Ваш вопрос",
-  "page.user.user-input.answer": "Ваш ответ",
-  "page.user.user-input.message-question": "Вопрос добавлен",
-  "page.user.user-input.message-answer": "Ответ добавлен",
   "page.user.topic.motivation": "мотивации",
   "page.user.topic.creativity": "креативности",
   "page.user.topic.title-increase": "Увеличить очки {value}",
@@ -317,5 +313,8 @@
   "common.offline": "Вы находитесь вне сети",
   "common-check-connection": "Проверьте подключение",
   "common.reload": "Перезагрузить",
-  "common.discussion": "Обсуждение"
+  "common.discussion": "Обсуждение",
+  "common.message": "Ваше сообщение",
+  "common.message-added": "Ваше сообщение добавлено",
+  "common.enter-to-send": "Нажмите ENTER, чтобы отправить"
 }

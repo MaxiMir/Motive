@@ -1,6 +1,6 @@
-import { Button, Stack } from '@mui/material'
+import { Button, Stack, Typography } from '@mui/material'
 import CreateTopic from 'features/topic/create-topic'
-import { TopicType, TopicDto, UserBaseDto } from 'shared/api'
+import { TopicType, UserBaseDto } from 'shared/api'
 import { useMessages } from './lib'
 
 interface AnswerProps {
@@ -9,16 +9,10 @@ interface AnswerProps {
   user: UserBaseDto
   topicId: number
   onClose: () => void
-  onAdd: (topic: TopicDto) => void
 }
 
-function Answer({ dayId, owner, user, topicId, onAdd, onClose }: AnswerProps) {
+function Answer({ dayId, owner, user, topicId, onClose }: AnswerProps) {
   const messages = useMessages()
-
-  const onAddCombine = (question: TopicDto) => {
-    onClose()
-    onAdd(question)
-  }
 
   return (
     <Stack gap={1}>
@@ -27,11 +21,14 @@ function Answer({ dayId, owner, user, topicId, onAdd, onClose }: AnswerProps) {
         user={owner}
         topicId={topicId}
         type={TopicType.Answer}
+        startAdornment={<Typography color="primary">{user.name}</Typography>}
         autoFocus
-        replyTo={user.name}
-        onAdd={onAddCombine}
+        onSuccess={onClose}
       />
-      <Stack direction="row-reverse">
+      <Stack direction="row" alignItems="center" gap={1} pl={8}>
+        <Typography variant="caption" sx={{ color: 'zen.silent' }}>
+          {messages.enterText}
+        </Typography>
         <Button size="small" sx={{ color: 'zen.silent' }} onClick={onClose}>
           {messages.cancelText}
         </Button>

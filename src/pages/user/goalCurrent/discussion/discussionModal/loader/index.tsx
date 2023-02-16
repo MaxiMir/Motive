@@ -1,30 +1,20 @@
 import { Skeleton, Stack } from '@mui/material'
+import { useClient } from 'entities/user'
 
 const VISIBLE_COUNT = 4
 
 interface LoaderProps {
   count: number
-  withInput: boolean
 }
 
-function Loader({ count, withInput }: LoaderProps) {
+function Loader({ count }: LoaderProps) {
+  const client = useClient()
   const shownCount = count >= VISIBLE_COUNT ? VISIBLE_COUNT : count
   const list = [...new Array(shownCount)]
+  const renderInput = client && count <= 2
 
   return (
     <>
-      {withInput && (
-        <Stack direction="row" alignItems="center" gap={2} mb={2}>
-          <Skeleton variant="circular" animation="wave" width={38} height={38} />
-          <Skeleton
-            variant="rounded"
-            animation="wave"
-            width="100%"
-            height={40}
-            sx={{ borderRadius: '96px' }}
-          />
-        </Stack>
-      )}
       {list.map((_, key) => (
         <Stack direction={key % 2 ? 'row-reverse' : 'row'} alignItems="flex-end" gap={2} key={key}>
           <Skeleton variant="circular" animation="wave" width={38} height={38} sx={{ mb: 3 }} />
@@ -53,6 +43,25 @@ function Loader({ count, withInput }: LoaderProps) {
           </Stack>
         </Stack>
       ))}
+      {renderInput && (
+        <Stack
+          direction="row"
+          alignItems="center"
+          gap={2}
+          position="absolute"
+          bottom={0}
+          width="100%"
+        >
+          <Skeleton variant="circular" animation="wave" width={38} height={38} />
+          <Skeleton
+            variant="rounded"
+            animation="wave"
+            width="100%"
+            height={40}
+            sx={{ borderRadius: '96px' }}
+          />
+        </Stack>
+      )}
     </>
   )
 }

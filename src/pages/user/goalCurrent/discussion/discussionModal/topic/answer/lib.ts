@@ -5,5 +5,6 @@ export const useMessages = () => {
 
   return {
     cancelText: formatMessage({ id: 'common.cancel' }),
+    enterText: formatMessage({ id: 'common.enter-to-send' }),
   }
 }

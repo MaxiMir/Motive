@@ -3,7 +3,7 @@ import { blue } from '@mui/material/colors'
 import { styled } from '@mui/system'
 import { Field, Form, FormikProvider } from 'formik'
 import dynamic from 'next/dynamic'
-import { TopicDto, TopicType, UserBaseDto, ClientDto } from 'shared/api'
+import { TopicType, UserBaseDto, ClientDto } from 'shared/api'
 import Avatar from 'shared/ui/avatar'
 import Input from 'shared/ui/Input'
 import TooltipArrow from 'shared/ui/TooltipArrow'
@@ -12,7 +12,6 @@ import { useCreateTopicForm } from './model'
 
 const CircularProgress = dynamic(() => import('@mui/material/CircularProgress'))
 const InputAdornment = dynamic(() => import('@mui/material/InputAdornment'))
-const Typography = dynamic(() => import('@mui/material/Typography'))
 const Icon = dynamic(() => import('shared/ui/Icon'))
 
 interface CreateTopicProps {
@@ -21,14 +20,22 @@ interface CreateTopicProps {
   type: TopicType
   topicId?: number
   autoFocus?: boolean
-  replyTo?: string
-  onAdd: (topic: TopicDto) => void
+  startAdornment?: JSX.Element
+  onSuccess?: () => void
 }
 
-function CreateTopic({ dayId, user, type, topicId, autoFocus, replyTo, onAdd }: CreateTopicProps) {
+function CreateTopic({
+  dayId,
+  user,
+  type,
+  topicId,
+  autoFocus,
+  startAdornment,
+  onSuccess,
+}: CreateTopicProps) {
   const { name, avatar } = user
-  const messages = useMessages(type)
-  const form = useCreateTopicForm(dayId, topicId, type, onAdd)
+  const messages = useMessages()
+  const form = useCreateTopicForm(dayId, topicId, type, onSuccess)
   const { isSubmitting, values, handleSubmit } = form
   const disabled = isSubmitting || !values.text
 
@@ -48,10 +55,8 @@ function CreateTopic({ dayId, user, type, topicId, autoFocus, replyTo, onAdd }: 
             autoComplete="off"
             autoFocus={autoFocus}
             InputProps={{
-              startAdornment: replyTo && (
-                <InputAdornment position="start">
-                  <Typography color="primary">{replyTo}</Typography>
-                </InputAdornment>
+              startAdornment: startAdornment && (
+                <InputAdornment position="start">{startAdornment}</InputAdornment>
               ),
               endAdornment: (
                 <TooltipArrow title={messages.sendText}>

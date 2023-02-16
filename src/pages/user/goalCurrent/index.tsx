@@ -78,7 +78,7 @@ function GoalCurrent({ goal, nickname, clientPage, clientMembership }: GoalCurre
       viewerControls: true,
       ownerControls: false,
       daysGone: daysGoneForOwner,
-      lastDay: calendar.at(-1)?.date === day.date,
+      lastDay: calendar?.at(-1)?.date === day.date,
       forTomorrow: daysGoneForOwner === -1,
     }
 

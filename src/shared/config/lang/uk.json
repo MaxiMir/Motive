@@ -112,10 +112,6 @@
   "page.user.modal-stage.title-next": "Наступний етап",
   "page.user.like-button.goal-message": "Ви збільшили очки підтримки для цілі",
   "page.user.like-button.user-message": "Ви збільшили очки підтримки {value}",
-  "page.user.user-input.question": "Ваш питання",
-  "page.user.user-input.answer": "Ваш відповідь",
-  "page.user.user-input.message-question": "Питання додано",
-  "page.user.user-input.message-answer": "Відповідь додано",
   "page.user.topic.motivation": "мотивації",
   "page.user.topic.creativity": "креативності",
   "page.user.topic.title-increase": "Збільшити окуляри {value}",
@@ -317,5 +313,8 @@
   "common.offline": "Ви перебуваєте поза мережею",
   "common-check-connection": "Перевірте своє з'єднання",
   "common.reload": "Перезавантажити",
-  "common.discussion": "Обговорення"
+  "common.discussion": "Обговорення",
+  "common.message": "Ваше повідомлення",
+  "common.message-added": "Ваше повідомлення додано",
+  "common.enter-to-send": "Натисніть ENTER, щоб відправити"
 }

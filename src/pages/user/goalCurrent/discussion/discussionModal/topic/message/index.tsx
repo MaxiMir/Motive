@@ -11,7 +11,7 @@ import MenuActions from './menuActions'
 
 const Button = dynamic(() => import('@mui/material/Button'))
 const Markdown = dynamic(() => import('shared/ui/markdown'))
-const SupportSign = dynamic(() => import('./supportSign'))
+const SupportSign = dynamic(() => import('entities/characteristic').then((m) => m.SupportSign))
 
 interface MessageProps {
   message: MessageDto

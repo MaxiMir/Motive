@@ -316,5 +316,7 @@
   "common.discussion": "讨论",
   "common.message": "您的留言",
   "common.message-added": "您的信息已被添加",
-  "common.enter-to-send": "按回车键发送"
+  "common.enter-to-send": "按回车键发送",
+  "common.question": "问题",
+  "common.select-message-type": "选择一个信息类型"
 }

@@ -316,5 +316,7 @@
   "common.discussion": "Обсуждение",
   "common.message": "Ваше сообщение",
   "common.message-added": "Ваше сообщение добавлено",
-  "common.enter-to-send": "Нажмите ENTER, чтобы отправить"
+  "common.enter-to-send": "Нажмите ENTER, чтобы отправить",
+  "common.question": "вопрос",
+  "common.select-message-type": "Выбор типа сообщения"
 }

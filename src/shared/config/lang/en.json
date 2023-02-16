@@ -316,5 +316,7 @@
   "common.discussion": "Discussion",
   "common.message": "Your message",
   "common.message-added": "Your message added",
-  "common.enter-to-send": "Press ENTER to send"
+  "common.enter-to-send": "Press ENTER to send",
+  "common.question": "question",
+  "common.select-message-type": "Selecting a message type"
 }

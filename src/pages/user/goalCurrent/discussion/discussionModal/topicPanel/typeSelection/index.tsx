@@ -1,6 +1,9 @@
-import { FormControl, FormControlLabel, Radio, RadioGroup } from '@mui/material'
+import { FormControl, FormControlLabel, IconButton, Radio, RadioGroup, Stack } from '@mui/material'
 import { ChangeEvent } from 'react'
+import { SupportRules } from 'entities/characteristic'
 import { TopicType } from 'shared/api'
+import Icon from 'shared/ui/Icon'
+import TooltipArrow from 'shared/ui/TooltipArrow'
 import { useMessages } from './lib'
 
 interface TypeSelectionProps {
@@ -23,11 +26,18 @@ function TypeSelection({ type, setType }: TypeSelectionProps) {
           label={messages.questionLabel}
           control={<Radio size="small" />}
         />
-        <FormControlLabel
-          value={TopicType.Support}
-          label={messages.supportingLabel.toLowerCase()}
-          control={<Radio size="small" />}
-        />
+        <Stack direction="row">
+          <FormControlLabel
+            value={TopicType.Support}
+            label={messages.supportingLabel.toLowerCase()}
+            control={<Radio size="small" />}
+          />
+          <TooltipArrow title={<SupportRules />}>
+            <IconButton color="info">
+              <Icon name="help_outline" />
+            </IconButton>
+          </TooltipArrow>
+        </Stack>
       </RadioGroup>
     </FormControl>
   )

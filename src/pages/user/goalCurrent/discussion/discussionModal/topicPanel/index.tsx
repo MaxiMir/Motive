@@ -30,7 +30,7 @@ function TopicPanel({ dayId, user, owner, clientGoal }: TopicPanelProps) {
         dayId={dayId}
         user={user}
         type={type}
-        startAdornment={!withSupportSign ? undefined : <SupportSign name={owner.name} />}
+        startIcon={!withSupportSign ? undefined : <SupportSign name={owner.name} />}
       />
       {!clientGoal && <TypeSelection type={type} setType={setType} />}
     </Stack>

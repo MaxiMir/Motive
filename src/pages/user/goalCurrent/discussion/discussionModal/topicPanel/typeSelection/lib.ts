@@ -6,6 +6,6 @@ export const useMessages = () => {
   return {
     labelledby: formatMessage({ id: 'common.select-message-type' }),
     questionLabel: formatMessage({ id: 'common.question' }),
-    supportingLabel: formatMessage({ id: 'common.supporting' }),
+    supportingLabel: formatMessage({ id: 'common.support' }),
   }
 }

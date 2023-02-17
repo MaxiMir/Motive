@@ -21,7 +21,7 @@ function Answer({ dayId, owner, user, topicId, onClose }: AnswerProps) {
         user={owner}
         topicId={topicId}
         type={TopicType.Answer}
-        startAdornment={<Typography color="primary">{user.name}</Typography>}
+        startIcon={<Typography color="primary">{user.name}</Typography>}
         autoFocus
         onSuccess={onClose}
       />

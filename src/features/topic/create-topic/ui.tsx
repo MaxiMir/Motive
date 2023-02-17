@@ -20,7 +20,7 @@ interface CreateTopicProps {
   type: TopicType
   topicId?: number
   autoFocus?: boolean
-  startAdornment?: JSX.Element
+  startIcon?: JSX.Element
   onSuccess?: () => void
 }
 
@@ -30,7 +30,7 @@ function CreateTopic({
   type,
   topicId,
   autoFocus,
-  startAdornment,
+  startIcon,
   onSuccess,
 }: CreateTopicProps) {
   const { name, avatar } = user
@@ -55,15 +55,8 @@ function CreateTopic({
             autoComplete="off"
             autoFocus={autoFocus}
             InputProps={{
-              startAdornment: startAdornment && (
-                <InputAdornment position="start">{startAdornment}</InputAdornment>
-              ),
-              endAdornment: (
-                <TooltipArrow title={messages.sendText}>
-                  <SendButton size="small" disabled={disabled} onClick={onClick}>
-                    {isSubmitting ? <CircularProgress size={14.5} /> : <Icon name="arrow_upward" />}
-                  </SendButton>
-                </TooltipArrow>
+              startAdornment: startIcon && (
+                <InputAdornment position="start">{startIcon}</InputAdornment>
               ),
               sx: {
                 borderRadius: 24,
@@ -71,6 +64,11 @@ function CreateTopic({
             }}
             component={Input}
           />
+          <TooltipArrow title={messages.sendText}>
+            <SendButton size="small" disabled={disabled} onClick={onClick}>
+              {isSubmitting ? <CircularProgress size={14.5} /> : <Icon name="arrow_upward" />}
+            </SendButton>
+          </TooltipArrow>
         </Stack>
       </Form>
     </FormikProvider>

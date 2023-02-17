@@ -1,5 +1,4 @@
 import { Skeleton, Stack } from '@mui/material'
-import { useClient } from 'entities/user'
 
 const VISIBLE_COUNT = 4
 
@@ -8,10 +7,8 @@ interface LoaderProps {
 }
 
 function Loader({ count }: LoaderProps) {
-  const client = useClient()
   const shownCount = count >= VISIBLE_COUNT ? VISIBLE_COUNT : count
   const list = [...new Array(shownCount)]
-  const renderInput = client && count <= 2
 
   return (
     <>
@@ -43,25 +40,6 @@ function Loader({ count }: LoaderProps) {
           </Stack>
         </Stack>
       ))}
-      {renderInput && (
-        <Stack
-          direction="row"
-          alignItems="center"
-          gap={2}
-          position="absolute"
-          bottom={0}
-          width="100%"
-        >
-          <Skeleton variant="circular" animation="wave" width={38} height={38} />
-          <Skeleton
-            variant="rounded"
-            animation="wave"
-            width="100%"
-            height={40}
-            sx={{ borderRadius: '96px' }}
-          />
-        </Stack>
-      )}
     </>
   )
 }

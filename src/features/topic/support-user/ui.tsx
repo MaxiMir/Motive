@@ -1,5 +1,6 @@
-import { Box, Stack, Typography } from '@mui/material'
+import { Box, Stack } from '@mui/material'
 import { Field, Form, FormikProvider } from 'formik'
+import { SupportRules } from 'entities/characteristic'
 import Accordion from 'shared/ui/Accordion'
 import CancelButton from 'shared/ui/CancelButton'
 import FadeTypography from 'shared/ui/FadeTypography'
@@ -55,15 +56,7 @@ function SupportUserModal({ dayId, ownerName, onClose }: SupportUserModalProps) 
                 emoji="⛑️"
                 header={messages.header}
                 id="support"
-                details={
-                  <Box color="zen.silent">
-                    <Typography>{messages.accordionGoal} 💎.</Typography>
-                    <Typography>{messages.accordionTired} 😮‍💨.</Typography>
-                    <Typography>{messages.accordionTherefore}:</Typography>
-                    <Typography>&#9679; {messages.accordionAdvice};</Typography>
-                    <Typography>&#9679; {messages.accordionEncouragement}.</Typography>
-                  </Box>
-                }
+                details={<SupportRules />}
               />
             </Box>
           </Stack>

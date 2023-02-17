@@ -1,8 +1,8 @@
-import { MessageDto, MessageType, ClientDto } from 'shared/api'
+import { MessageDto, TopicType, ClientDto } from 'shared/api'
 
 export const checkOnDisabled = (message: MessageDto, client?: ClientDto): boolean => {
   return (
     message.user.id === client?.id ||
-    (!!message.like && [MessageType.Support, MessageType.Answer].includes(message.type))
+    (!!message.like && [TopicType.Support, TopicType.Answer].includes(message.type))
   )
 }

@@ -7,11 +7,11 @@ import {
   Toolbar,
   Typography,
   AppBar,
+  Divider,
 } from '@mui/material'
 import { backdropClasses } from '@mui/material/Backdrop'
 import { Fragment, ReactNode } from 'react'
 import { useIntl } from 'react-intl'
-import PerfectScrollbar from 'react-perfect-scrollbar'
 import dynamic from 'next/dynamic'
 import Icon from 'shared/ui/Icon'
 
@@ -23,10 +23,21 @@ interface ModalProps extends Pick<DialogProps, 'maxWidth'> {
   actions?: JSX.Element[]
   children: ReactNode
   staticHeight?: boolean
+  dividers?: boolean
+  fullScreen?: boolean
   onClose: () => void
 }
 
-function Modal({ title, actions, children, maxWidth, staticHeight, onClose }: ModalProps) {
+function Modal({
+  title,
+  actions,
+  children,
+  maxWidth,
+  staticHeight,
+  dividers,
+  fullScreen,
+  onClose,
+}: ModalProps) {
   const { formatMessage } = useIntl()
   const closeText = formatMessage({ id: 'common.close' })
 
@@ -34,15 +45,21 @@ function Modal({ title, actions, children, maxWidth, staticHeight, onClose }: Mo
     <Dialog
       open
       maxWidth={maxWidth}
+      fullScreen={fullScreen}
       sx={{
         [`& .${backdropClasses.root}`]: {
           background: 'rgba(34, 34, 34, 0.75)',
           backdropFilter: 'blur(5px)',
         },
       }}
+      PaperProps={{
+        sx: {
+          margin: fullScreen ? 0 : 2,
+        },
+      }}
       onClose={onClose}
     >
-      <AppBar sx={{ position: 'relative' }}>
+      <AppBar sx={{ position: 'relative' }} component="div">
         <Toolbar>
           <Typography sx={{ ml: 2, flex: 1 }} variant="h6" component="div">
             {title}
@@ -52,16 +69,10 @@ function Modal({ title, actions, children, maxWidth, staticHeight, onClose }: Mo
           </IconButton>
         </Toolbar>
       </AppBar>
-      <PerfectScrollbar>
-        <DialogContent
-          dividers
-          sx={{
-            height: !staticHeight ? undefined : 600,
-          }}
-        >
-          {children}
-        </DialogContent>
-      </PerfectScrollbar>
+      <Divider />
+      <DialogContent sx={{ height: !staticHeight ? undefined : 600 }} dividers={dividers}>
+        {children}
+      </DialogContent>
       {actions && (
         <DialogActions>
           <Stack direction="row" justifyContent="space-between" flex={1} pb={2} px={2}>

@@ -2,6 +2,7 @@ import {
   Accordion as MuiAccordion,
   AccordionDetails,
   AccordionSummary,
+  Stack,
   Typography,
 } from '@mui/material'
 import Icon from './Icon'
@@ -28,12 +29,14 @@ function Accordion({ header, id, details, defaultExpanded, emoji }: AccordionPro
           <Icon name="expand_more" sx={({ palette }) => ({ color: palette.grey[700] })} />
         }
       >
-        <Typography variant="h6" component="p">
-          <Typography component="span" sx={{ mr: 0.5 }}>
+        <Stack direction="row" gap={1}>
+          <Typography variant="h6" component="p">
             {emoji}
-          </Typography>{' '}
-          {header}
-        </Typography>
+          </Typography>
+          <Typography variant="h6" component="p">
+            {header}
+          </Typography>
+        </Stack>
       </AccordionSummary>
       <AccordionDetails sx={{ overflow: 'auto' }}>{details}</AccordionDetails>
     </MuiAccordion>

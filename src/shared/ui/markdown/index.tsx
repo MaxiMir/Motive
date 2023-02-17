@@ -30,8 +30,9 @@ function Markdown({ text }: MarkdownProps) {
   return (
     <Box
       ref={ref}
+      className="asdasdasd"
       sx={{
-        '& div > *': {
+        '& > *': {
           ':first-of-type': {
             display: '-webkit-box',
             WebkitLineClamp: !open ? '3' : 'unset',

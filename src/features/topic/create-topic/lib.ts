@@ -1,10 +1,10 @@
 import { useIntl } from 'react-intl'
 
-export const useMessages = (type: string) => {
+export const useMessages = () => {
   const { formatMessage } = useIntl()
 
   return {
     sendText: formatMessage({ id: 'common.send' }),
-    placeholder: formatMessage({ id: `page.user.user-input.${type}` }),
+    placeholder: formatMessage({ id: 'common.message' }),
   }
 }

@@ -9,6 +9,7 @@ import {
   GlobalStyles,
   Stack,
 } from '@mui/material'
+import { dialogClasses } from '@mui/material/Dialog'
 import { snackbarClasses } from '@mui/material/Snackbar'
 import { ReactNode } from 'react'
 import { useIntl } from 'react-intl'
@@ -107,6 +108,9 @@ function Sidebar({ breakpoints, children }: SidebarProps) {
         styles={{
           [`#__next .${snackbarClasses.root}`]: {
             left: `calc(50% + ${!expanded ? 32 : 115}px)`,
+          },
+          [`& .${dialogClasses.root}`]: {
+            marginLeft: !expanded ? 64 : 230,
           },
         }}
       />

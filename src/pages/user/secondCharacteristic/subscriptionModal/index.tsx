@@ -1,4 +1,3 @@
-import { Box } from '@mui/material'
 import { useIntl } from 'react-intl'
 import dynamic from 'next/dynamic'
 import { SecondCharacteristicName } from 'shared/api'
@@ -17,41 +16,28 @@ interface SubscriptionModalProps {
 }
 
 function SubscriptionModal({ userId, type, count, onClose }: SubscriptionModalProps) {
-  const { formatMessage } = useIntl()
   const { isLoading, users, checkOnLoadMore, fetchNextPage } = useSubscription(userId, count, type)
+  const { formatMessage } = useIntl()
   const title = formatMessage({ id: `common.${type}` })
 
   return (
     <Modal title={title} maxWidth="xs" staticHeight onClose={onClose}>
-      <Box
-        display="flex"
-        flex={1}
-        sx={{
-          '& sup': {
-            display: {
-              xs: 'none',
-              sm: 'inline-block',
-            },
-          },
-        }}
-      >
-        {isLoading ? (
-          <Loader count={count} />
-        ) : (
-          <>
-            {!users?.length ? (
-              <EmptyList />
-            ) : (
-              <UserList
-                users={users}
-                checkOnLoadMore={checkOnLoadMore}
-                onView={fetchNextPage}
-                onClose={onClose}
-              />
-            )}
-          </>
-        )}
-      </Box>
+      {isLoading ? (
+        <Loader count={count} />
+      ) : (
+        <>
+          {!users?.length ? (
+            <EmptyList />
+          ) : (
+            <UserList
+              users={users}
+              checkOnLoadMore={checkOnLoadMore}
+              onView={fetchNextPage}
+              onClose={onClose}
+            />
+          )}
+        </>
+      )}
     </Modal>
   )
 }

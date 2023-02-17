@@ -3,7 +3,7 @@ import { useIntl } from 'react-intl'
 import { InfiniteData, useMutation, useQueryClient } from 'react-query'
 import { useOpenSignIn } from 'entities/signin'
 import { useGoalsCache, useClient } from 'entities/user'
-import { GoalDto, MessageDto, MessageType, TopicDto, updateLike } from 'shared/api'
+import { GoalDto, MessageDto, TopicType, TopicDto, updateLike } from 'shared/api'
 import { useSnackbar } from 'shared/ui/snackbar'
 
 export interface Options {
@@ -67,7 +67,7 @@ export const useSetLike = (message: MessageDto, answerFor?: number) => {
         { value: message.user.name },
       )
 
-      if (message.type === MessageType.Support) {
+      if (message.type === TopicType.Support) {
         enqueueSnackbar({ message: userMessage, severity: 'success', icon: '✨' })
       }
 

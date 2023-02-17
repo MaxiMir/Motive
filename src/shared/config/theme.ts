@@ -216,10 +216,7 @@ export const getDesignTokens = (mode: PaletteMode): ThemeOptions => {
       MuiDialog: {
         styleOverrides: {
           paper: {
-            backgroundImage: 'none',
-            borderRadius: '12px',
-            width: 'calc(100% - 16px)',
-            margin: '16px',
+            width: '100%',
           },
         },
       },
@@ -232,9 +229,6 @@ export const getDesignTokens = (mode: PaletteMode): ThemeOptions => {
           '#__next': {
             display: 'flex',
             flexDirection: 'column',
-          },
-          '.ps .ps__rail-y:hover, .ps .ps--clicking': {
-            background: 'transparent!important',
           },
           a: {
             color: 'inherit',

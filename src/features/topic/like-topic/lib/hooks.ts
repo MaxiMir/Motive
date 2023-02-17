@@ -1,5 +1,5 @@
 import { useIntl } from 'react-intl'
-import { MessageDto, MessageType } from 'shared/api'
+import { MessageDto, TopicType } from 'shared/api'
 
 export const useMessages = (message: MessageDto, disabled: boolean) => {
   const { like, type } = message
@@ -11,7 +11,7 @@ export const useMessages = (message: MessageDto, disabled: boolean) => {
       return !like ? false : formatMessage({ id: 'common.helpful' })
     }
 
-    if (type === MessageType.Question) {
+    if (type === TopicType.Question) {
       return formatMessage({ id: !like ? 'common.like' : 'common.unlike' })
     }
 

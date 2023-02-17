@@ -1,6 +1,6 @@
 import { UserBaseDto } from '../user'
 
-export const enum MessageType {
+export const enum TopicType {
   Question = 'question',
   Answer = 'answer',
   Support = 'support',
@@ -9,7 +9,7 @@ export const enum MessageType {
 export interface CreateTopicDto {
   readonly dayId: number
   readonly topicId?: number
-  readonly type: MessageType
+  readonly type: TopicType
   readonly text: string
 }
 
@@ -27,11 +27,11 @@ export interface MessageDto {
   readonly goalId: number
   readonly dayId: number
   readonly parentId: number | null
-  readonly type: MessageType
+  readonly type: TopicType
   readonly edited: boolean
 }
 
 export interface TopicDto extends MessageDto {
-  readonly type: MessageType
+  readonly type: TopicType
   readonly answer: MessageDto | null
 }

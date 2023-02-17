@@ -3,9 +3,11 @@ import { MouseEvent, useId, useState } from 'react'
 import dynamic from 'next/dynamic'
 import { useClient } from 'entities/user'
 import { MessageDto } from 'shared/api'
+import { copyText } from 'shared/lib/helpers'
 import { useToggle } from 'shared/lib/hooks'
 import Icon from 'shared/ui/Icon'
 import ListItem from 'shared/ui/ListItem'
+import { useSnackbar } from 'shared/ui/snackbar'
 import TooltipArrow from 'shared/ui/TooltipArrow'
 import { useMessages } from './lib'
 
@@ -24,12 +26,23 @@ function MenuActions({ message }: MenuActionsProps) {
   const [anchorEl, setAnchorEl] = useState<HTMLElement | null>(null)
   const [editing, toggleEditing] = useToggle()
   const [reporting, toggleReporting] = useToggle()
+  const { enqueueSnackbar } = useSnackbar()
   const canEdit = message.user.id === client?.id
   const open = Boolean(anchorEl)
 
   const onOpenMenu = (e: MouseEvent<HTMLButtonElement>) => setAnchorEl(e.currentTarget)
 
   const onCloseMenu = () => setAnchorEl(null)
+
+  const onSuccess = () => {
+    enqueueSnackbar({ message: messages.copiedText, severity: 'success', icon: '⌨️' })
+  }
+
+  const onError = () => {
+    enqueueSnackbar({ message: messages.errorText, severity: 'error', icon: '👺' })
+  }
+
+  const onCopy = () => copyText(message.text).then(onSuccess).catch(onError).finally(onCloseMenu)
 
   const toggleEdit = () => {
     toggleEditing()
@@ -76,6 +89,9 @@ function MenuActions({ message }: MenuActionsProps) {
             <ListItem icon="outlined_flag" primary={messages.reportText} color="error.dark" />
           </MenuItem>
         )}
+        <MenuItem onClick={onCopy}>
+          <ListItem icon="content_copy" primary={messages.copyText} />
+        </MenuItem>
         <MenuItem onClick={onCloseMenu}>
           <ListItem icon="block" primary={messages.cancelText} color="grey" />
         </MenuItem>

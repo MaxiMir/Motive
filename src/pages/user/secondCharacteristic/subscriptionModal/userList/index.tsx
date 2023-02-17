@@ -18,6 +18,15 @@ function UserList({ users, checkOnLoadMore, onView, onClose }: UserListProps) {
         <UserRow user={user} inView={checkOnLoadMore(index)} onView={onView} onClose={onClose} />
       )}
       gap={2}
+      height="100%"
+      sx={{
+        '& sup': {
+          display: {
+            xs: 'none',
+            sm: 'inline-block',
+          },
+        },
+      }}
     />
   )
 }

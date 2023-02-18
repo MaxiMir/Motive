@@ -30,7 +30,6 @@ function Markdown({ text }: MarkdownProps) {
   return (
     <Box
       ref={ref}
-      className="asdasdasd"
       sx={{
         '& div > *': {
           ':first-of-type': {

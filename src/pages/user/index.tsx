@@ -96,6 +96,7 @@ export function UserPage({ user }: UserViewProps) {
                 gap={{
                   sm: 2,
                 }}
+                width="100%"
                 mb={1}
               >
                 {SECOND_CHARACTERISTICS.map((characteristicName) => (

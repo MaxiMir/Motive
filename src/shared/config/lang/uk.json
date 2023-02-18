@@ -14,7 +14,6 @@
   "page.contact.description": "Зв'язатися з нами. Підтримати нас",
   "page.contact.header": "Контакти",
   "page.contact.subheader": "Пишіть нам з приводу та без. Вітаються будь-які відгуки та пропозиції",
-  "page.contact.support": "Підтримати",
   "page.following.title": "Підписки",
   "page.following.description": "Список цікавих користувачів",
   "page.following.header": "Підписки",
@@ -317,6 +316,6 @@
   "common.message": "Ваше повідомлення",
   "common.message-added": "Ваше повідомлення додано",
   "common.enter-to-send": "Натисніть ENTER, щоб відправити",
-  "common.question": "питання",
-  "common.select-message-type": "Вибір типу повідомлення"
+  "common.question": "Поставити запитання",
+  "common.message-type": "Тип повідомлення"
 }

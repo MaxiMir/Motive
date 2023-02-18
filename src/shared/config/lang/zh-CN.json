@@ -14,7 +14,6 @@
   "page.contact.description": "联系我们, 支持我们",
   "page.contact.header": "联系我们",
   "page.contact.subheader": "无论有无原因，请给我们写信,欢迎你的任何反馈",
-  "page.contact.support": "支持",
   "page.following.title": "跟随",
   "page.following.description": "您感兴趣的用户名单",
   "page.following.header": "关注",
@@ -317,6 +316,6 @@
   "common.message": "您的留言",
   "common.message-added": "您的信息已被添加",
   "common.enter-to-send": "按回车键发送",
-  "common.question": "问题",
-  "common.select-message-type": "选择一个信息类型"
+  "common.question": "提出问题",
+  "common.message-type": "信息类型"
 }

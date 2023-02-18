@@ -5,8 +5,8 @@ import dynamic from 'next/dynamic'
 import CreateTopic from 'features/topic/create-topic'
 import { TopicType, UserBaseDto } from 'shared/api'
 
-const TypeSelection = dynamic(() => import('./typeSelection'))
 const SupportSign = dynamic(() => import('entities/characteristic').then((m) => m.SupportSign))
+const TypeSelection = dynamic(() => import('./typeSelection'))
 
 interface TopicPanelProps {
   dayId: number
@@ -32,7 +32,7 @@ function TopicPanel({ dayId, user, owner, clientGoal }: TopicPanelProps) {
         type={type}
         startIcon={!withSupportSign ? undefined : <SupportSign name={owner.name} />}
       />
-      {!clientGoal && <TypeSelection type={type} setType={setType} />}
+      {!clientGoal && <TypeSelection owner={owner} type={type} setType={setType} />}
     </Stack>
   )
 }

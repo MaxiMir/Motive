@@ -4,8 +4,8 @@ export const useMessages = () => {
   const { formatMessage } = useIntl()
 
   return {
-    labelledby: formatMessage({ id: 'common.select-message-type' }),
-    questionLabel: formatMessage({ id: 'common.question' }),
-    supportingLabel: formatMessage({ id: 'common.support' }),
+    label: formatMessage({ id: 'common.message-type' }),
+    questionText: formatMessage({ id: 'common.question' }),
+    supportingText: formatMessage({ id: 'common.support' }),
   }
 }

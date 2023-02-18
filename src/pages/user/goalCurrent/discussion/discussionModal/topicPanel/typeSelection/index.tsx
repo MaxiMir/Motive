@@ -1,45 +1,41 @@
-import { FormControl, FormControlLabel, IconButton, Radio, RadioGroup, Stack } from '@mui/material'
-import { ChangeEvent } from 'react'
-import { SupportRules } from 'entities/characteristic'
-import { TopicType } from 'shared/api'
-import Icon from 'shared/ui/Icon'
-import TooltipArrow from 'shared/ui/TooltipArrow'
+import { FormControl, MenuItem, Select, Stack, SelectChangeEvent } from '@mui/material'
+import dynamic from 'next/dynamic'
+import { TopicType, UserBaseDto } from 'shared/api'
 import { useMessages } from './lib'
 
+const SupportInfo = dynamic(() => import('./supportInfo'))
+
 interface TypeSelectionProps {
+  owner: UserBaseDto
   type: TopicType
   setType: (type: TopicType) => void
 }
 
-function TypeSelection({ type, setType }: TypeSelectionProps) {
+function TypeSelection({ owner, type, setType }: TypeSelectionProps) {
   const messages = useMessages()
 
-  const onChange = (event: ChangeEvent<HTMLInputElement>) => {
+  const onChange = (event: SelectChangeEvent<TopicType>) => {
     setType(event.target.value as TopicType)
   }
 
   return (
-    <FormControl sx={{ pl: 8 }}>
-      <RadioGroup row aria-labelledby={messages.labelledby} value={type} onChange={onChange}>
-        <FormControlLabel
-          value={TopicType.Question}
-          label={messages.questionLabel}
-          control={<Radio size="small" />}
-        />
-        <Stack direction="row">
-          <FormControlLabel
-            value={TopicType.Support}
-            label={messages.supportingLabel.toLowerCase()}
-            control={<Radio size="small" />}
-          />
-          <TooltipArrow title={<SupportRules />}>
-            <IconButton color="info">
-              <Icon name="help_outline" />
-            </IconButton>
-          </TooltipArrow>
-        </Stack>
-      </RadioGroup>
-    </FormControl>
+    <Stack direction="row" alignItems="center" gap={1} pl={8}>
+      <FormControl variant="standard">
+        <Select
+          value={type}
+          label={messages.label}
+          size="small"
+          sx={{ minWidth: 160 }}
+          onChange={onChange}
+        >
+          <MenuItem value={TopicType.Question}>{messages.questionText}</MenuItem>
+          <MenuItem value={TopicType.Support}>
+            {messages.supportingText} {owner.name}
+          </MenuItem>
+        </Select>
+      </FormControl>
+      {type === TopicType.Support && <SupportInfo />}
+    </Stack>
   )
 }
 

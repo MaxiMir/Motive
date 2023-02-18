@@ -14,7 +14,6 @@
   "page.contact.description": "Связаться с нами. Поддержать нас",
   "page.contact.header": "Контакты",
   "page.contact.subheader": "Пишите нам по поводу и без. Приветствуются любые отзывы и предложения",
-  "page.contact.support": "Поддержать",
   "page.following.title": "Подписки",
   "page.following.description": "Список интересных Вам пользователей",
   "page.following.header": "Подписки",
@@ -317,6 +316,6 @@
   "common.message": "Ваше сообщение",
   "common.message-added": "Ваше сообщение добавлено",
   "common.enter-to-send": "Нажмите ENTER, чтобы отправить",
-  "common.question": "вопрос",
-  "common.select-message-type": "Выбор типа сообщения"
+  "common.question": "Задать вопрос",
+  "common.message-type": "Тип сообщения"
 }

@@ -6,6 +6,6 @@ export const useMessages = () => {
   return {
     header: formatMessage({ id: 'page.contact.header' }),
     subheader: formatMessage({ id: 'page.contact.subheader' }),
-    support: formatMessage({ id: 'page.contact.support' }),
+    support: formatMessage({ id: 'common.support' }),
   }
 }

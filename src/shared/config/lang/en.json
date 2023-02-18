@@ -14,7 +14,6 @@
   "page.contact.description": "Contact us. Support us",
   "page.contact.header": "Contact Us",
   "page.contact.subheader": "Write to us with or without cause. Any feedback from you is welcome",
-  "page.contact.support": "Support",
   "page.following.title": "Following",
   "page.following.description": "List of users you are interested in",
   "page.following.header": "Following",
@@ -153,8 +152,7 @@
   "component.modal-completion.details-start": "In addition to the points you receive 💪 🧠 🙏 , you get an extra",
   "component.modal-completion.details-end": "💪 for completing the goal",
   "component.modal-completion.message": "Your characteristics have been increased",
-  "component.support-rules-goal": "Support is very important for achieving goals",
-  "component.support-rules-tired": "Especially at times when you want to give up",
+  "component.support-rules-goal": "Support is very important for achieving goals. Especially at times when you want to give up",
   "component.support-rules-therefore": "Therefore support others",
   "component.support-rules-advice": "with advice",
   "component.support-rules-words": "with words of encouragement",
@@ -317,6 +315,7 @@
   "common.message": "Your message",
   "common.message-added": "Your message added",
   "common.enter-to-send": "Press ENTER to send",
-  "common.question": "question",
-  "common.select-message-type": "Selecting a message type"
+  "common.question": "Pop a question",
+  "common.message-type": "Message type",
+  "common.about-support": "About support"
 }

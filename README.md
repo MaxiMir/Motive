@@ -1,4 +1,5 @@
 [//]: # (TODO)
+* required field form
 * Удаление комментария (1 час)
 * https://github.com/jquense/yup/issues/159
 * Stack + user in notification

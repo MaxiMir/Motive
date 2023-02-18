@@ -1,16 +1,17 @@
-import { IconButton } from '@mui/material'
+import { Alert, Collapse } from '@mui/material'
 import { SupportRules } from 'entities/characteristic'
-import Icon from 'shared/ui/Icon'
-import TooltipArrow from 'shared/ui/TooltipArrow'
 
-function SupportInfo() {
-  return (
-    <TooltipArrow title={<SupportRules />}>
-      <IconButton color="info">
-        <Icon name="help_outline" />
-      </IconButton>
-    </TooltipArrow>
-  )
+interface SupportInfoProps {
+  open: boolean
+  onClose: () => void
 }
 
-export default SupportInfo
+export function SupportInfo({ open, onClose }: SupportInfoProps) {
+  return (
+    <Collapse in={open}>
+      <Alert severity="info" onClose={onClose}>
+        <SupportRules />
+      </Alert>
+    </Collapse>
+  )
+}

@@ -6,8 +6,7 @@ export function SupportRules() {
 
   return (
     <Stack color="zen.silent">
-      <Typography>{messages.goalText} 💎.</Typography>
-      <Typography>{messages.tiredText} 😮‍💨.</Typography>
+      <Typography>{messages.goalText} 😮‍💨.</Typography>
       <Typography>{messages.thereforeText}:</Typography>
       <Typography>&#9679; {messages.adviceText};</Typography>
       <Typography>&#9679; {messages.wordsText}.</Typography>

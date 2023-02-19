@@ -25,12 +25,16 @@ export function Discussion({ goalId, dayId, count, owner, clientGoal }: Discussi
 
   return (
     <>
-      <Button sx={{ width: '100%', paddingX: 2, paddingY: '12px' }} onClick={toggle}>
+      <Button
+        color="inherit"
+        sx={{ width: '100%', paddingX: 2, paddingY: '12px' }}
+        onClick={toggle}
+      >
         <Stack direction="row" alignItems="center" gap={1} width="100%">
           <Typography variant="h6" component="p">
             💬
           </Typography>
-          <Typography variant="h6" component="p" sx={{ color: 'common.white' }}>
+          <Typography variant="h6" component="p">
             {header}{' '}
             <Box component="span" sx={{ color: 'zen.silent' }}>
               • {count}

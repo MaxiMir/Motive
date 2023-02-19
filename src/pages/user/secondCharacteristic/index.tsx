@@ -55,6 +55,7 @@ function SecondCharacteristic({
     <>
       <Button
         size="small"
+        color="inherit"
         aria-haspopup="true"
         aria-expanded={modal ? 'true' : undefined}
         sx={{ padding: '4px' }}
@@ -72,7 +73,6 @@ function SecondCharacteristic({
           gap={{
             md: 0.5,
           }}
-          color="common.white"
         >
           <Typography variant="h5" component="b">
             {formattedValue}

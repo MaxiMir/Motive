@@ -170,6 +170,7 @@ function GoalCurrent({ goal, nickname, clientPage, clientMembership }: GoalCurre
                 {prev && (
                   <DayCardButton
                     variant="text"
+                    color="inherit"
                     disabled={isLoading}
                     aria-label={messages.prevDayText}
                     sx={{
@@ -270,6 +271,7 @@ function GoalCurrent({ goal, nickname, clientPage, clientMembership }: GoalCurre
                 {next && (
                   <DayCardButton
                     variant="text"
+                    color="inherit"
                     disabled={isLoading}
                     aria-label={messages.nextDayText}
                     sx={{
@@ -318,7 +320,6 @@ const DayCardButton = styled(Button)(({ theme }) => ({
   alignItems: 'center',
   justifyContent: 'space-between',
   backgroundColor: theme.palette.grey[900],
-  color: theme.palette.common.white,
   border: '1px solid rgba(255, 255, 255, 0.12)',
 }))
 

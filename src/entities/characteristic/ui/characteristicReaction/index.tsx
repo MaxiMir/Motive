@@ -33,6 +33,7 @@ export function CharacteristicReaction({
       <Button
         size="small"
         variant="outlined"
+        color="inherit"
         disabled={disabled}
         startIcon={
           isLoading ? (
@@ -46,7 +47,6 @@ export function CharacteristicReaction({
         sx={{
           minWidth: 'initial',
           height: 35,
-          color: 'common.white',
           borderColor: blue[500],
           ':hover': {
             borderColor: blue[300],

@@ -37,7 +37,6 @@ export const getHashtagHref = (q: string) => {
 }
 
 export const getNotificationHref = (notification: NotificationDto, client?: ClientDto): string => {
-  const { user } = notification.details
   const userPage = [
     NotificationType.NewFollower,
     NotificationType.NewGoal,
@@ -45,7 +44,7 @@ export const getNotificationHref = (notification: NotificationDto, client?: Clie
     NotificationType.NewFeedback,
     NotificationType.WebCoverage,
   ].includes(notification.type)
-  const nickname = userPage ? user.nickname : client?.nickname || ''
+  const nickname = userPage ? notification.initiator.nickname : client?.nickname || ''
 
   switch (notification.type) {
     case NotificationType.NewFollower:

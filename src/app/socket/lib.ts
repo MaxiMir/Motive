@@ -32,7 +32,7 @@ export const useSocket = () => {
     })
 
     socket.on('notification', (notification: NotificationDto) => {
-      const { id, type, details } = notification
+      const { id, type, initiator } = notification
       const message = formatMessage({ id: 'common.new-event' })
       const notificationSupport = 'Notification' in window
       enqueueSnackbar({ message, severity: 'success', icon: '🛎' })
@@ -42,7 +42,7 @@ export const useSocket = () => {
 
       Notification.requestPermission().then((permission) => {
         if (permission !== 'granted') return
-        const { name, avatar } = details.user
+        const { name, avatar } = initiator
         const icon = !avatar ? undefined : getImageSrc(avatar)
         const notificationHref = getNotificationHref(notification, client)
         const tag = id.toString()

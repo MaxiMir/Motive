@@ -6,6 +6,5 @@ export const useMessages = (type: NotificationType) => {
 
   return {
     header: formatMessage({ id: `component.notification.${type}` }),
-    viewTitle: formatMessage({ id: 'common.view' }),
   }
 }

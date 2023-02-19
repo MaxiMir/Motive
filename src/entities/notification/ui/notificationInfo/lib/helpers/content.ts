@@ -1,31 +1,26 @@
 import { NotificationType } from 'shared/api'
 
-interface NotificationInfo {
-  emoji: string
-  color: string
-}
-
-export const getNotificationInfo = (type: NotificationType): NotificationInfo => {
+export const getNotificationEmoji = (type: NotificationType): string => {
   switch (type) {
     case NotificationType.NewFollower:
-      return { emoji: '⭐', color: 'warning.main' }
+      return '⭐'
     case NotificationType.NewGoal:
-      return { emoji: '💎', color: 'primary.main' }
+      return '💎'
     case NotificationType.AddMotivation:
-      return { emoji: '💪', color: 'motivation.main' }
+      return '💪'
     case NotificationType.AddCreativity:
-      return { emoji: '🧠', color: 'creativity.main' }
+      return '🧠'
     case NotificationType.NewQuestion:
-      return { emoji: '❓', color: 'error.main' }
+      return '❓'
     case NotificationType.NewSupport:
-      return { emoji: '🙏', color: 'support.main' }
+      return '🙏'
     case NotificationType.NewAnswer:
-      return { emoji: '🙏', color: 'support.main' }
+      return '📮'
     case NotificationType.NewFeedback:
-      return { emoji: '💭', color: '#cfd8dc' }
+      return '💭'
     case NotificationType.WebCoverage:
-      return { emoji: '🕸', color: 'abandoned.main' }
+      return '🕸'
     default:
-      return { emoji: '🛎', color: 'common.white' }
+      return '🛎'
   }
 }

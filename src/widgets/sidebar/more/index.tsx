@@ -4,9 +4,8 @@ import { signOut } from 'next-auth/react'
 import { MouseEvent, useId, useState } from 'react'
 import dynamic from 'next/dynamic'
 import { useClient } from 'entities/user'
-import { useToggle } from 'shared/lib/hooks'
+import { useToggle, usePaletteMode } from 'shared/lib/hooks'
 import Icon from 'shared/ui/Icon'
-import { usePaletteModeContext } from 'shared/ui/theme'
 import { useMessages } from './lib'
 
 const ChangeLanguage = dynamic(() => import('features/locale/change-language'))
@@ -16,7 +15,7 @@ export function More() {
   const menuId = useId()
   const messages = useMessages()
   const client = useClient()
-  const { mode, setMode } = usePaletteModeContext()
+  const { mode, setMode } = usePaletteMode()
   const [anchorEl, setAnchorEl] = useState<HTMLElement | null>(null)
   const [showLanguage, toggleShowLanguage] = useToggle()
   const open = Boolean(anchorEl)

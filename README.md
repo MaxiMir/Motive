@@ -1,5 +1,4 @@
 [//]: # (TODO)
-* required field form
 * Удаление комментария (1 час)
 * https://github.com/jquense/yup/issues/159
 * Stack + user in notification
@@ -11,7 +10,6 @@
 * hover in user sections
 * lock icon for disabled
 * Loader in stories
-* No internet connection
 * Обратная связь
 * Add external links
 * Добавить удаление цели без очков

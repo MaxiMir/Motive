@@ -3,7 +3,7 @@ import { createTheme, ThemeProvider as MuiThemeProvider } from '@mui/material/st
 import { createGenerateClassName, StylesProvider } from '@mui/styles'
 import { ReactNode, useInsertionEffect, useMemo, useState } from 'react'
 import { getDesignTokens } from 'shared/config'
-import { PaletteModeContext } from 'shared/ui/theme'
+import { PaletteModeContext } from 'shared/lib/hooks'
 
 const generateClassName = createGenerateClassName({ productionPrefix: 'bb' })
 

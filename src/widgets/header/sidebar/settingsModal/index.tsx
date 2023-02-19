@@ -3,8 +3,8 @@ import { styled } from '@mui/system'
 import { MouseEvent } from 'react'
 import { useIntl } from 'react-intl'
 import { useSetLocale, Locale } from 'entities/locale'
+import { usePaletteMode } from 'shared/lib/hooks'
 import Modal from 'shared/ui/Modal'
-import { usePaletteModeContext } from 'shared/ui/theme'
 import { useMessages } from './lib'
 
 interface SettingsModalProps {
@@ -15,7 +15,7 @@ function SettingsModal({ onClose }: SettingsModalProps) {
   const { locale } = useIntl()
   const setLocale = useSetLocale()
   const messages = useMessages()
-  const { mode, setMode } = usePaletteModeContext()
+  const { mode, setMode } = usePaletteMode()
 
   const onChangeLocale = (_: MouseEvent<HTMLElement>, newLocale: Locale) => {
     setLocale(newLocale)

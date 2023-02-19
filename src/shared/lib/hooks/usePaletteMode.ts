@@ -11,4 +11,4 @@ export const PaletteModeContext = createContext<PaletteModeContextType>({
   setMode: (_: PaletteMode) => false,
 })
 
-export const usePaletteModeContext = () => useContext(PaletteModeContext)
+export const usePaletteMode = () => useContext(PaletteModeContext)

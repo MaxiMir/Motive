@@ -63,7 +63,7 @@ function CreateGoalModal({ onClose }: CreateGoalModalProps) {
       <FormikProvider value={form}>
         <Form>
           <Stack gap={2}>
-            <Field name="name" label={messages.nameLabel} component={Input} />
+            <Field name="name" label={messages.nameLabel} required component={Input} />
             <Stack gap={1}>
               <Field
                 name="hashtags"

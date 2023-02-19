@@ -39,6 +39,7 @@ export function TaskField({
           label={messages.label}
           placeholder={messages.placeholder}
           autoFocus={autoFocus}
+          required
           component={Input}
         />
         <IconButton

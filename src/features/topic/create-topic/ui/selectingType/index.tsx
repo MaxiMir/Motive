@@ -1,29 +1,32 @@
 import { FormControl, MenuItem, Select, Stack, SelectChangeEvent } from '@mui/material'
+import { useState } from 'react'
 import dynamic from 'next/dynamic'
 import { TopicType, UserBaseDto } from 'shared/api'
-import { useToggle } from 'shared/lib/hooks'
 import { useMessages } from './lib'
 import { SupportInfo } from './supportInfo'
 
 const SupportHelp = dynamic(() => import('./supportHelp'))
 
-interface TypeSelectionProps {
+interface SelectingTypeProps {
   owner: UserBaseDto
   type: TopicType
   setType: (type: TopicType) => void
 }
 
-function TypeSelection({ owner, type, setType }: TypeSelectionProps) {
-  const [open, toggleOpen] = useToggle()
+function SelectingType({ owner, type, setType }: SelectingTypeProps) {
+  const [open, setOpen] = useState(false)
   const messages = useMessages()
+
+  const toggleOpen = () => setOpen(!open)
 
   const onChange = (event: SelectChangeEvent<TopicType>) => {
     setType(event.target.value as TopicType)
+    setOpen(false)
   }
 
   return (
     <Stack gap={1} pl={8}>
-      <Stack direction="row" alignItems="center" gap={1}>
+      <Stack direction="row" alignItems="center" gap={1} height={40}>
         <FormControl variant="standard">
           <Select
             value={type}
@@ -45,4 +48,4 @@ function TypeSelection({ owner, type, setType }: TypeSelectionProps) {
   )
 }
 
-export default TypeSelection
+export default SelectingType

@@ -19,6 +19,7 @@ function Answer({ dayId, owner, user, topicId, onClose }: AnswerProps) {
       <CreateTopic
         dayId={dayId}
         user={owner}
+        owner={owner}
         topicId={topicId}
         type={TopicType.Answer}
         startIcon={<Typography color="primary">{user.name}</Typography>}

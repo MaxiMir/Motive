@@ -1,12 +1,10 @@
 import { Stack, Typography } from '@mui/material'
-import { useState } from 'react'
 import { useIntl } from 'react-intl'
 import dynamic from 'next/dynamic'
 import CreateTopic from 'features/topic/create-topic'
 import { TopicType, UserBaseDto } from 'shared/api'
 
 const SupportSign = dynamic(() => import('entities/characteristic').then((m) => m.SupportSign))
-const TypeSelection = dynamic(() => import('./typeSelection'))
 
 interface TopicPanelProps {
   dayId: number
@@ -17,8 +15,8 @@ interface TopicPanelProps {
 
 function TopicPanel({ dayId, user, owner, clientGoal }: TopicPanelProps) {
   const { formatMessage } = useIntl()
-  const [type, setType] = useState(!clientGoal ? TopicType.Question : TopicType.Support)
   const enterText = formatMessage({ id: 'common.enter-to-send' })
+  const type = !clientGoal ? TopicType.Question : TopicType.Support
   const withSupportSign = type === TopicType.Support && !clientGoal
 
   return (
@@ -29,10 +27,11 @@ function TopicPanel({ dayId, user, owner, clientGoal }: TopicPanelProps) {
       <CreateTopic
         dayId={dayId}
         user={user}
+        owner={owner}
         type={type}
+        selectingType={!clientGoal}
         startIcon={!withSupportSign ? undefined : <SupportSign name={owner.name} />}
       />
-      {!clientGoal && <TypeSelection owner={owner} type={type} setType={setType} />}
     </Stack>
   )
 }

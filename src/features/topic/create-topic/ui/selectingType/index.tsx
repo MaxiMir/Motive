@@ -25,8 +25,8 @@ function SelectingType({ owner, type, setType }: SelectingTypeProps) {
   }
 
   return (
-    <Stack gap={1} pl={8}>
-      <Stack direction="row" alignItems="center" gap={1} height={40}>
+    <Stack gap={1}>
+      <Stack direction="row" alignItems="center" gap={1} height={40} pl={8}>
         <FormControl variant="standard">
           <Select
             value={type}

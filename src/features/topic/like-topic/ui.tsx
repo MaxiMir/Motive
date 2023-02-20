@@ -27,7 +27,6 @@ export function Like({ message, answerFor }: LikeProps) {
         size="small"
         disabled={disabled || isLoading}
         startIcon={startIcon}
-        color="inherit"
         sx={({ palette }) => ({
           paddingX: 1,
           color: palette.grey[400],

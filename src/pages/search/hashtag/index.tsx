@@ -21,6 +21,7 @@ function Hashtag({ name, gradient, views }: HashtagProps) {
 
   return (
     <Button
+      color="inherit"
       sx={{
         width: '100%',
         aspectRatio: '1',
@@ -37,7 +38,7 @@ function Hashtag({ name, gradient, views }: HashtagProps) {
         height="100%"
         overflow="hidden"
       >
-        <Typography variant="subtitle1" component="p" sx={{ color: 'common.white' }}>
+        <Typography variant="subtitle1" component="p">
           <b>#{name}</b>
         </Typography>
         <Typography

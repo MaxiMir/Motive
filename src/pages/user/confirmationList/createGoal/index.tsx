@@ -41,14 +41,13 @@ function CreateGoal() {
         </Button>
       </Box>
       <Button
+        color="inherit"
         aria-haspopup="true"
         aria-expanded={open ? 'true' : undefined}
         sx={{ padding: '4px' }}
         onClick={toggle}
       >
-        <Typography variant="caption" sx={{ color: 'common.white' }}>
-          {buttonText}
-        </Typography>
+        <Typography variant="caption">{buttonText}</Typography>
       </Button>
       {open && <CreateGoalModal onClose={toggle} />}
     </Stack>

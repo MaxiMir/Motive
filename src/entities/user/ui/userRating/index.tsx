@@ -49,7 +49,7 @@ export function UserRating({ user, characteristicName, index }: UserRatingProps)
             <Link href={href} title={name}>
               <Avatar src={avatar} name={name} online={online} size={35} />
             </Link>
-            <Button href={href} sx={{ color: 'inherit' }} component={Link}>
+            <Button href={href} color="inherit" component={Link}>
               {name}
             </Button>
           </Stack>

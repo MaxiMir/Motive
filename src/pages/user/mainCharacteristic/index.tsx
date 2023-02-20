@@ -33,6 +33,7 @@ function MainCharacteristic({ name, value }: MainCharacteristicProps) {
   return (
     <>
       <Button
+        color="inherit"
         aria-haspopup="true"
         aria-expanded={modal ? 'true' : undefined}
         sx={{
@@ -69,7 +70,6 @@ function MainCharacteristic({ name, value }: MainCharacteristicProps) {
               sx={{
                 fontSize: 14,
                 fontWeight: 'bold',
-                color: 'common.white',
               }}
             >
               {level} {lvlText}
@@ -78,7 +78,6 @@ function MainCharacteristic({ name, value }: MainCharacteristicProps) {
               component="p"
               sx={{
                 fontSize: 9,
-                color: 'common.white',
               }}
             >
               {header}

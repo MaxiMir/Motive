@@ -22,7 +22,7 @@ export function ReadNotification({ notification, onClose }: ReadNotificationProp
 
   return (
     <>
-      <NotificationInfo notification={notification} href={notificationHref} onClick={onClose} />
+      <NotificationInfo notification={notification} href={notificationHref} onClose={onClose} />
       {!read && <InView onView={onView} />}
     </>
   )

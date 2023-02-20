@@ -16,6 +16,7 @@ interface NotificationBase {
   readonly id: number
   readonly created: string
   readonly read: boolean
+  readonly initiator: UserBaseDto
 }
 
 interface NotificationGoalDto extends NotificationBase {
@@ -32,7 +33,6 @@ interface NotificationGoalDto extends NotificationBase {
     id: number
     day: number
     name?: string
-    user: UserBaseDto
   }
 }
 
@@ -40,7 +40,6 @@ interface NotificationUserDto extends NotificationBase {
   readonly type: NotificationType.NewFollower
   readonly details: {
     name?: string
-    user: UserBaseDto
   }
 }
 

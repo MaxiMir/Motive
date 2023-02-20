@@ -26,6 +26,7 @@ export function ContactPage() {
         <Stack direction="row" gap={2}>
           <ButtonLink
             variant="outlined"
+            color="inherit"
             sx={{
               borderColor: yellow[500],
               ':hover': {
@@ -41,6 +42,7 @@ export function ContactPage() {
           </ButtonLink>
           <ButtonLink
             variant="outlined"
+            color="inherit"
             sx={{
               borderColor: lightBlue[500],
               ':hover': {
@@ -56,6 +58,7 @@ export function ContactPage() {
           </ButtonLink>
           <ButtonLink
             variant="outlined"
+            color="inherit"
             sx={{
               borderColor: red[300],
               ':hover': {
@@ -85,9 +88,8 @@ export function ContactPage() {
   )
 }
 
-const ButtonLink = styled(Button)(({ theme }) => ({
+const ButtonLink = styled(Button)({
   width: 80,
   height: 80,
-  color: theme.palette.common.white,
   borderRadius: 12,
-}))
+})

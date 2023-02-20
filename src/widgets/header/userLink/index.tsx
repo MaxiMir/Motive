@@ -6,10 +6,9 @@ function UserLink() {
   const nickname = query.id
 
   return (
-    <Button onClick={reload}>
+    <Button color="inherit" onClick={reload}>
       <Typography
         sx={{
-          color: 'common.white',
           textOverflow: 'ellipsis',
           fontWeight: 'bold',
         }}

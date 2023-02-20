@@ -73,7 +73,7 @@ function CreateTopic({
               component={Input}
             />
             <TooltipArrow title={messages.sendText}>
-              <SendButton size="small" disabled={disabled} onClick={onClick}>
+              <SendButton size="small" color="inherit" disabled={disabled} onClick={onClick}>
                 {isSubmitting ? <CircularProgress size={14.5} /> : <Icon name="arrow_upward" />}
               </SendButton>
             </TooltipArrow>
@@ -85,8 +85,7 @@ function CreateTopic({
   )
 }
 
-const SendButton = styled(IconButton)(({ theme }) => ({
-  color: theme.palette.common.white,
+const SendButton = styled(IconButton)({
   borderColor: blue[800],
   backgroundColor: blue[800],
   '& span': {
@@ -95,6 +94,6 @@ const SendButton = styled(IconButton)(({ theme }) => ({
   ':hover': {
     backgroundColor: blue[400],
   },
-}))
+})
 
 export default CreateTopic

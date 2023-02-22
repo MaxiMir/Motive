@@ -25,6 +25,7 @@ interface CreateTopicProps {
   user: ClientDto | UserBaseDto
   clientGoal?: boolean
   replyTo?: string
+  autoFocus?: boolean
   onSuccess?: () => void
 }
 
@@ -36,6 +37,7 @@ function CreateTopic({
   user,
   clientGoal,
   replyTo,
+  autoFocus,
   onSuccess,
 }: CreateTopicProps) {
   const { name, avatar } = user
@@ -62,7 +64,7 @@ function CreateTopic({
               InputLabelProps={{ shrink: false }}
               disabled={isSubmitting}
               autoComplete="off"
-              autoFocus
+              autoFocus={autoFocus}
               multiline
               InputProps={{
                 startAdornment: (

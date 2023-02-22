@@ -24,6 +24,7 @@ function Answer({ dayId, owner, user, topicId, onClose }: AnswerProps) {
         owner={owner}
         user={owner}
         replyTo={user.name}
+        autoFocus
         onSuccess={onClose}
       />
       <Box display="flex" justifyContent="flex-end" pr={5}>

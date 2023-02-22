@@ -48,13 +48,14 @@ function Offline({ lastSeen, device, children }: OfflineProps) {
           <>{shortDistance}</>
         </TooltipArrow>
       }
-      sx={{
+      sx={(theme) => ({
         '& .MuiBadge-badge': {
-          backgroundColor: 'gray',
+          right: '18%',
+          backgroundColor: theme.palette.grey[600],
           color: 'common.white',
           fontSize: 10,
         },
-      }}
+      })}
     >
       {children}
     </Badge>

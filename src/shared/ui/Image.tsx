@@ -1,14 +1,14 @@
 import NextImage, { ImageProps as MuiImageProps } from 'next/image'
-import { getImageSrc } from 'shared/lib/helpers'
+import { getStaticSrc } from 'shared/lib/helpers'
 
 interface ImageProps extends Omit<MuiImageProps, 'src'> {
   src: string
 }
 
 function Image({ src, alt, ...props }: ImageProps) {
-  const absoluteSrc = getImageSrc(src)
+  const staticSrc = getStaticSrc(src)
 
-  return <NextImage src={absoluteSrc} alt={alt} draggable={false} {...props} />
+  return <NextImage src={staticSrc} alt={alt} draggable={false} {...props} />
 }
 
 export default Image

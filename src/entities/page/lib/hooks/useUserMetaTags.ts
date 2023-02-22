@@ -1,6 +1,6 @@
 import { useIntl } from 'react-intl'
 import { OGType, UserPageDto } from 'shared/api'
-import { getImageSrc } from 'shared/lib/helpers'
+import { getStaticSrc } from 'shared/lib/helpers'
 
 export const useUserMetaTags = (user?: UserPageDto) => {
   const { formatMessage } = useIntl()
@@ -21,7 +21,7 @@ export const useUserMetaTags = (user?: UserPageDto) => {
     title: `${userTag} • ${titleCenter} ${process.env.NEXT_PUBLIC_APP_NAME}`,
     description: `${descriptionStart} ${goalNames}`,
     keywords: user.confirmations.map((c) => c.goal.name).join(', '),
-    image: !user.avatar ? undefined : getImageSrc(user.avatar),
+    image: !user.avatar ? undefined : getStaticSrc(user.avatar),
     type: OGType.Profile,
   }
 }

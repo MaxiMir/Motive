@@ -6,7 +6,7 @@ import { useRouter } from 'next/router'
 import { getNotificationHref } from 'entities/page'
 import { useClient } from 'entities/user'
 import { NotificationDto } from 'shared/api'
-import { getImageSrc } from 'shared/lib/helpers'
+import { getStaticSrc } from 'shared/lib/helpers'
 import { useDeviceContext } from 'shared/ui/device'
 import { useSnackbar } from 'shared/ui/snackbar'
 
@@ -43,7 +43,7 @@ export const useSocket = () => {
       Notification.requestPermission().then((permission) => {
         if (permission !== 'granted') return
         const { name, avatar } = initiator
-        const icon = !avatar ? undefined : getImageSrc(avatar)
+        const icon = !avatar ? undefined : getStaticSrc(avatar)
         const notificationHref = getNotificationHref(notification, client)
         const tag = id.toString()
         const body = formatMessage({ id: `component.notification.${type}` })

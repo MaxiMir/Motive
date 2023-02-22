@@ -1,36 +1,29 @@
+import { ReactNode } from 'react'
 import dynamic from 'next/dynamic'
 import { Device } from 'shared/api'
-import { TunedAvatar } from './tunedAvatar'
 
 const Online = dynamic(() => import('./online'))
 const Offline = dynamic(() => import('./offline'))
 
 interface StatusHubProps {
-  src: string
   online?: boolean | null
   lastSeen?: string | null
   device?: Device | null
-  size: number
+  children: ReactNode
 }
 
-function StatusHub({ src, size, online, lastSeen, device }: StatusHubProps) {
+export function StatusHub({ online, lastSeen, device, children }: StatusHubProps) {
   if (online) {
-    return (
-      <Online>
-        <TunedAvatar src={src} size={size} />
-      </Online>
-    )
+    return <Online>{children}</Online>
   }
 
   if (lastSeen) {
     return (
       <Offline lastSeen={lastSeen} device={device}>
-        <TunedAvatar src={src} size={size} />
+        {children}
       </Offline>
     )
   }
 
-  return <TunedAvatar src={src} size={size} />
+  return <>{children}</>
 }
-
-export default StatusHub

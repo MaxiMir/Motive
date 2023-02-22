@@ -29,6 +29,6 @@ export const setSearchParams = (url: string, params: Record<string, string | num
   return toUrl(origin, searchParams)
 }
 
-export const getImageSrc = (src: string) => {
+export const getStaticSrc = (src: string) => {
   return src.includes('https://') ? src : process.env.NEXT_PUBLIC_APP_URL + src
 }

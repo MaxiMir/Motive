@@ -2,9 +2,10 @@ import { Button, ButtonProps } from '@mui/material'
 import { ElementType } from 'react'
 import dynamic from 'next/dynamic'
 import { Device } from 'shared/api'
+import { StatusHub } from './statusHub'
 
-const StatusHub = dynamic(() => import('./statusHub'))
 const Plug = dynamic(() => import('./plug'))
+const TunedAvatar = dynamic(() => import('./tunedAvatar'))
 
 interface AvatarProps {
   name: string
@@ -18,21 +19,19 @@ interface AvatarProps {
 
 function Avatar({ src, name, size, online, lastSeen, device, buttonProps }: AvatarProps) {
   return (
-    <Button
-      sx={{
-        minWidth: size,
-        padding: '3px',
-        borderRadius: '50%',
-      }}
-      component="span"
-      {...buttonProps}
-    >
-      {!src ? (
-        <Plug name={name} size={size} />
-      ) : (
-        <StatusHub src={src} size={size} online={online} lastSeen={lastSeen} device={device} />
-      )}
-    </Button>
+    <StatusHub online={online} lastSeen={lastSeen} device={device}>
+      <Button
+        sx={{
+          minWidth: size,
+          padding: '3px',
+          borderRadius: '50%',
+        }}
+        component="span"
+        {...buttonProps}
+      >
+        {!src ? <Plug name={name} size={size} /> : <TunedAvatar src={src} size={size} />}
+      </Button>
+    </StatusHub>
   )
 }
 

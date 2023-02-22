@@ -1,11 +1,9 @@
-import { FormControl, MenuItem, Select, Stack, SelectChangeEvent } from '@mui/material'
-import { useState } from 'react'
-import dynamic from 'next/dynamic'
+import { FormControl, Stack, Radio, FormControlLabel, RadioGroup } from '@mui/material'
+import { ChangeEvent, useState } from 'react'
 import { TopicType, UserBaseDto } from 'shared/api'
 import { useMessages } from './lib'
+import { SupportHelp } from './supportHelp'
 import { SupportInfo } from './supportInfo'
-
-const SupportHelp = dynamic(() => import('./supportHelp'))
 
 interface SelectingTypeProps {
   owner: UserBaseDto
@@ -19,7 +17,7 @@ function SelectingType({ owner, type, setType }: SelectingTypeProps) {
 
   const toggleOpen = () => setOpen(!open)
 
-  const onChange = (event: SelectChangeEvent<TopicType>) => {
+  const onChange = (event: ChangeEvent<HTMLInputElement>) => {
     setType(event.target.value as TopicType)
     setOpen(false)
   }
@@ -28,20 +26,29 @@ function SelectingType({ owner, type, setType }: SelectingTypeProps) {
     <Stack gap={1}>
       <Stack direction="row" alignItems="center" gap={1} height={40} pl={8}>
         <FormControl variant="standard">
-          <Select
+          <RadioGroup
+            row
+            aria-labelledby={messages.labelledby}
+            name="type"
             value={type}
-            label={messages.label}
-            size="small"
-            sx={{ minWidth: 160, maxWidth: 240 }}
             onChange={onChange}
           >
-            <MenuItem value={TopicType.Question}>{messages.questionText}</MenuItem>
-            <MenuItem value={TopicType.Support}>
-              {messages.supportingText} {owner.name}
-            </MenuItem>
-          </Select>
+            <FormControlLabel
+              value={TopicType.Question}
+              control={<Radio size="small" />}
+              label={messages.questionText}
+            />
+            <FormControlLabel
+              value={TopicType.Support}
+              control={<Radio size="small" />}
+              label={
+                <Stack direction="row" alignItems="center" gap={1}>
+                  {messages.supportingText} {owner.name} <SupportHelp onClick={toggleOpen} />
+                </Stack>
+              }
+            />
+          </RadioGroup>
         </FormControl>
-        {type === TopicType.Support && <SupportHelp onClick={toggleOpen} />}
       </Stack>
       <SupportInfo open={open} onClose={toggleOpen} />
     </Stack>

@@ -7,7 +7,7 @@ interface SupportHelpProps {
   onClick: () => void
 }
 
-function SupportHelp({ onClick }: SupportHelpProps) {
+export function SupportHelp({ onClick }: SupportHelpProps) {
   const { formatMessage } = useIntl()
   const title = formatMessage({ id: 'common.about-support' })
 
@@ -19,5 +19,3 @@ function SupportHelp({ onClick }: SupportHelpProps) {
     </TooltipArrow>
   )
 }
-
-export default SupportHelp

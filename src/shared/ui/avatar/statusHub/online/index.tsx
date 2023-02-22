@@ -11,11 +11,11 @@ function Online({ children }: OnlineProps) {
       overlap="circular"
       variant="dot"
       anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
-      sx={({ palette }) => ({
+      sx={(theme) => ({
         '& .MuiBadge-badge': {
           backgroundColor: '#44b700',
           color: '#44b700',
-          boxShadow: `0 0 0 2px ${palette.background.paper}`,
+          boxShadow: `0 0 0 2px ${theme.palette.background.paper}`,
           borderRadius: '50%',
           '&::after': {
             position: 'absolute',

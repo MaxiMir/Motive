@@ -27,9 +27,9 @@ export function Like({ message, parentId }: LikeProps) {
         size="small"
         disabled={disabled || isLoading}
         startIcon={startIcon}
-        sx={({ palette }) => ({
+        sx={(theme) => ({
           paddingX: 1,
-          color: palette.grey[400],
+          color: theme.palette.grey[400],
           minWidth: 'initial',
           filter: !message.like ? 'grayscale(1)' : undefined,
         })}

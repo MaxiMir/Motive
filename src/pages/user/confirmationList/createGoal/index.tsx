@@ -27,11 +27,11 @@ function CreateGoal() {
           aria-label={buttonText}
           aria-haspopup="true"
           aria-expanded={open ? 'true' : undefined}
-          sx={({ palette }) => ({
+          sx={(theme) => ({
             minWidth: 'initial',
             padding: 0,
             borderRadius: '50%',
-            background: palette.background.default,
+            background: theme.palette.background.default,
           })}
           onClick={toggle}
         >

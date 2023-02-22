@@ -15,7 +15,7 @@ const SupportSign = dynamic(() => import('entities/characteristic').then((m) => 
 
 interface MessageProps {
   message: MessageDto
-  answerFor?: number
+  answerFor?: MessageDto
   supportFor?: string
   replyProps?: {
     disabled: boolean
@@ -30,27 +30,39 @@ function Message({ message, answerFor, supportFor, replyProps }: MessageProps) {
   const formatDistance = useFormatDistance()
   const dateDistance = formatDistance(date)
   const href = joinToHref(nickname)
-  const direction = !answerFor ? 'row' : 'row-reverse'
+  const avatarSize = !answerFor ? 32 : 24
+  const textWithUser = !answerFor ? text : [`**${answerFor.user.name}**`, text].join(' ')
 
   return (
-    <Stack direction={direction} alignItems="flex-end" gap={1}>
-      <Box pb={4}>
+    <Stack direction="row" gap={1} width="100%">
+      {answerFor && (
+        <Box
+          sx={(theme) => ({
+            position: 'relative',
+            top: -47,
+            right: -16,
+            width: 24,
+            mb: 5,
+            mr: 2,
+            height: 'calc(100% - 8px)',
+            borderBottom: '2px solid',
+            borderLeft: '2px solid',
+            borderColor: theme.palette.grey[900],
+            borderBottomLeftRadius: 12,
+          })}
+        />
+      )}
+      <Box display="flex" alignItems="flex-end" pb={5}>
         <Link href={href} title={name}>
-          <Avatar src={avatar} name={name} online={online} size={32} />
+          <Avatar src={avatar} name={name} online={online} size={avatarSize} />
         </Link>
       </Box>
-      <Stack
-        gap={0.5}
-        minWidth={{
-          md: 300,
-        }}
-        maxWidth={500}
-      >
+      <Stack gap={0.5}>
         <Stack
           px={2}
           py={1}
           sx={(theme) => ({
-            backgroundColor: !answerFor ? theme.palette.grey[900] : '#000000',
+            backgroundColor: theme.palette.grey[900],
             borderRadius: `20px 20px ${!answerFor ? 16 : 4}px ${!answerFor ? 4 : 16}px`,
           })}
         >
@@ -68,18 +80,20 @@ function Message({ message, answerFor, supportFor, replyProps }: MessageProps) {
             )}
             <MenuActions message={message} />
           </Box>
-          <Markdown text={text} />
+          <Markdown text={textWithUser} />
         </Stack>
-        <Stack direction="row" alignItems="center" gap={1} height={32}>
-          <Like message={message} answerFor={answerFor} />
+        <Stack direction="row" alignItems="center" gap={1} px={2} height={32}>
+          <Typography variant="caption" sx={{ color: 'zen.silent' }}>
+            {dateDistance}
+          </Typography>
           {replyProps && (
             <Button size="small" sx={{ color: 'support.main' }} {...replyProps}>
               {messages.replyText}
             </Button>
           )}
-          <Typography variant="caption" sx={{ color: 'zen.silent', marginLeft: 'auto' }}>
-            {dateDistance}
-          </Typography>
+          <Box marginLeft="auto">
+            <Like message={message} parentId={answerFor?.id} />
+          </Box>
         </Stack>
       </Stack>
     </Stack>

@@ -1,4 +1,4 @@
-import { Box, IconButton, MenuItem, Menu } from '@mui/material'
+import { IconButton, MenuItem, Box, Menu } from '@mui/material'
 import { MouseEvent, useId, useState } from 'react'
 import dynamic from 'next/dynamic'
 import { useClient } from 'entities/user'
@@ -56,7 +56,7 @@ function MenuActions({ message }: MenuActionsProps) {
 
   return (
     <>
-      <Box marginLeft="auto">
+      <Box display="flex" alignItems="center" marginLeft="auto">
         <TooltipArrow title={messages.title}>
           <IconButton
             id={id}

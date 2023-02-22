@@ -1,4 +1,5 @@
 [//]: # (TODO)
+* Сортировка комментариев
 * Удаление комментария (1 час)
 * https://github.com/jquense/yup/issues/159
 * Stack + user in notification
@@ -84,7 +85,7 @@ services:
       - "127.0.0.1:3000:3000"
 
   backend:
-    image: maximir.jfrog.io/default-docker-virtual/backend:1.0.39
+    image: maximir.jfrog.io/default-docker-virtual/backend:1.0.54
     environment:
       - PORT=4000
       - CLIENT=https://2bebetter.pro
@@ -97,6 +98,7 @@ services:
       - POSTGRES_DB=default_db
       - POSTGRES_PORT=5432
       - EAT_AFTER_DAYS=28
+      - CLEAN_NOTIFICATIONS_AFTER_DAYS=60
     volumes:
       - /home/client:/home/node/client
     restart: unless-stopped

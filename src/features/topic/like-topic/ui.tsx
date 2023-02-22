@@ -8,10 +8,10 @@ import { useSetLike } from './model'
 
 interface LikeProps {
   message: MessageDto
-  answerFor?: number
+  parentId?: number
 }
 
-export function Like({ message, answerFor }: LikeProps) {
+export function Like({ message, parentId }: LikeProps) {
   const { likeCount, type } = message
   const client = useClient()
   const disabled = checkOnDisabled(message, client)
@@ -19,7 +19,7 @@ export function Like({ message, answerFor }: LikeProps) {
   const formatNumber = useFormatNumber()
   const formattedNumber = formatNumber(likeCount)
   const startIcon = type === TopicType.Question ? '❤️' : '🙏'
-  const [isLoading, onClick] = useSetLike(message, answerFor)
+  const [isLoading, onClick] = useSetLike(message, parentId)
 
   return (
     <TooltipArrow title={messages.title}>

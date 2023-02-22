@@ -12,30 +12,30 @@ import { useMessages } from './lib'
 
 const CircularProgress = dynamic(() => import('@mui/material/CircularProgress'))
 const InputAdornment = dynamic(() => import('@mui/material/InputAdornment'))
+const Typography = dynamic(() => import('@mui/material/Typography'))
+const SupportSign = dynamic(() => import('entities/characteristic').then((m) => m.SupportSign))
 const Icon = dynamic(() => import('shared/ui/Icon'))
 const SelectingType = dynamic(() => import('./selectingType'))
 
 interface CreateTopicProps {
-  dayId: number
-  user: ClientDto | UserBaseDto
-  owner: UserBaseDto
   type: TopicType
   topicId?: number
-  autoFocus?: boolean
-  startIcon?: JSX.Element
-  selectingType?: boolean
+  dayId: number
+  owner: UserBaseDto
+  user: ClientDto | UserBaseDto
+  clientGoal?: boolean
+  replyTo?: string
   onSuccess?: () => void
 }
 
 function CreateTopic({
-  dayId,
-  user,
-  owner,
   type,
   topicId,
-  autoFocus,
-  startIcon,
-  selectingType,
+  dayId,
+  owner,
+  user,
+  clientGoal,
+  replyTo,
   onSuccess,
 }: CreateTopicProps) {
   const { name, avatar } = user
@@ -43,6 +43,8 @@ function CreateTopic({
   const form = useCreateTopicForm(dayId, topicId, type, onSuccess)
   const { isSubmitting, values, setFieldValue, handleSubmit } = form
   const disabled = isSubmitting || !values.text
+  const supportSign = values.type === TopicType.Support && !clientGoal
+  const selectingType = !clientGoal && values.text
 
   const setType = (value: TopicType) => setFieldValue('type', value)
 
@@ -57,17 +59,21 @@ function CreateTopic({
             <Field
               name="text"
               placeholder={messages.placeholder}
-              variant="outlined"
               InputLabelProps={{ shrink: false }}
               disabled={isSubmitting}
               autoComplete="off"
-              autoFocus={autoFocus}
+              autoFocus
+              multiline
               InputProps={{
-                startAdornment: startIcon && (
-                  <InputAdornment position="start">{startIcon}</InputAdornment>
+                startAdornment: (
+                  <InputAdornment position="start">
+                    {replyTo && <Typography color="primary">{replyTo}</Typography>}
+                    {supportSign && <SupportSign name={owner.name} />}
+                  </InputAdornment>
                 ),
                 sx: {
-                  borderRadius: 24,
+                  borderRadius: 2,
+                  flex: 1,
                 },
               }}
               component={Input}

@@ -47,7 +47,7 @@ function Message({ message, answerFor, supportFor, replyProps }: MessageProps) {
             height: 'calc(100% - 8px)',
             borderBottom: '2px solid',
             borderLeft: '2px solid',
-            borderColor: theme.palette.grey[900],
+            borderColor: theme.palette.grey[800],
             borderBottomLeftRadius: 12,
           })}
         />
@@ -57,7 +57,7 @@ function Message({ message, answerFor, supportFor, replyProps }: MessageProps) {
           <Avatar src={avatar} name={name} online={online} size={avatarSize} />
         </Link>
       </Box>
-      <Stack gap={0.5}>
+      <Stack gap={0.5} flex={1} alignItems="flex-start">
         <Stack
           px={2}
           py={1}
@@ -82,7 +82,7 @@ function Message({ message, answerFor, supportFor, replyProps }: MessageProps) {
           </Box>
           <Markdown text={textWithUser} />
         </Stack>
-        <Stack direction="row" alignItems="center" gap={1} px={2} height={32}>
+        <Stack direction="row" alignItems="center" gap={1} width="100%" height={32} pl={2}>
           <Typography variant="caption" sx={{ color: 'zen.silent' }}>
             {dateDistance}
           </Typography>

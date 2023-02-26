@@ -80,6 +80,9 @@ function MenuActions({ message }: MenuActionsProps) {
         }}
         onClose={onCloseMenu}
       >
+        <MenuItem onClick={onCopy}>
+          <ListItem icon="content_copy" primary={messages.copyText} />
+        </MenuItem>
         {canEdit ? (
           <MenuItem onClick={toggleEdit}>
             <ListItem icon="edit" primary={messages.editText} />
@@ -89,9 +92,6 @@ function MenuActions({ message }: MenuActionsProps) {
             <ListItem icon="outlined_flag" primary={messages.reportText} color="error.dark" />
           </MenuItem>
         )}
-        <MenuItem onClick={onCopy}>
-          <ListItem icon="content_copy" primary={messages.copyText} />
-        </MenuItem>
         <MenuItem onClick={onCloseMenu}>
           <ListItem icon="block" primary={messages.cancelText} color="grey" />
         </MenuItem>

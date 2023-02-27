@@ -93,7 +93,7 @@ export function Layout({
             xs: 'calc(100dvh - 109px)',
             xl: '100dvh',
           }}
-          sx={({ palette }) => ({ background: palette.mode === 'dark' ? '#121212' : undefined })}
+          sx={(theme) => ({ background: theme.palette.mode === 'dark' ? '#121212' : undefined })}
         >
           {renderUpdating && <Updating />}
           {online ? children : <Offline />}

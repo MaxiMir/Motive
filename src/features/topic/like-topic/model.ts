@@ -8,20 +8,20 @@ import { useSnackbar } from 'shared/ui/snackbar'
 
 export interface Options {
   message: MessageDto
-  answerFor?: number
+  parentId?: number
   add: boolean
 }
 
 const getTopicNextState = (discussion: InfiniteData<TopicDto[]>, options: Options) => {
-  const { message, answerFor, add } = options
-  const searchId = answerFor || message.id
+  const { message, parentId, add } = options
+  const searchId = parentId || message.id
 
   return produce(discussion, (draft) => {
     const draftTopic = draft.pages.flat().find((t) => t.id === searchId)
 
     if (!draftTopic) return
 
-    if (answerFor && draftTopic.answer) {
+    if (parentId && draftTopic.answer) {
       draftTopic.answer.like = add
       draftTopic.answer.likeCount += add ? 1 : -1
       return
@@ -38,7 +38,7 @@ export const getGoalNextState = (goals: GoalDto[], goalId: number, add: boolean)
     draftGoal.characteristic.support += add ? 1 : -1
   })
 
-export const useSetLike = (message: MessageDto, answerFor?: number) => {
+export const useSetLike = (message: MessageDto, parentId?: number) => {
   const { id, like, dayId, goalId } = message
   const client = useClient()
   const openSignIn = useOpenSignIn()
@@ -73,7 +73,7 @@ export const useSetLike = (message: MessageDto, answerFor?: number) => {
 
       const goalMessage = formatMessage({ id: 'page.user.like-button.goal-message' })
 
-      if (answerFor) {
+      if (parentId) {
         mutateGoals(getGoalNextState(goals, goalId, add))
         enqueueSnackbar({ message: goalMessage, severity: 'success', icon: '✨' })
       }
@@ -91,7 +91,7 @@ export const useSetLike = (message: MessageDto, answerFor?: number) => {
       return
     }
 
-    mutate({ message, answerFor, add: !like })
+    mutate({ message, parentId, add: !like })
   }
 
   return [isLoading, onClick] as const

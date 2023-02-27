@@ -20,8 +20,8 @@ export function Confirmation({ id, name, src, onClick }: ConfirmationProps) {
       >
         <Box
           borderRadius="50%"
-          sx={({ palette }) => ({
-            background: palette.background.default,
+          sx={(theme) => ({
+            background: theme.palette.background.default,
             ':hover': {
               background: 'rgba(144, 202, 249, 0.08)',
             },

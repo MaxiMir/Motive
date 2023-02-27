@@ -1,4 +1,4 @@
-import { Box, IconButton, MenuItem, Menu } from '@mui/material'
+import { IconButton, MenuItem, Box, Menu } from '@mui/material'
 import { MouseEvent, useId, useState } from 'react'
 import dynamic from 'next/dynamic'
 import { useClient } from 'entities/user'
@@ -56,7 +56,7 @@ function MenuActions({ message }: MenuActionsProps) {
 
   return (
     <>
-      <Box marginLeft="auto">
+      <Box display="flex" alignItems="center" marginLeft="auto">
         <TooltipArrow title={messages.title}>
           <IconButton
             id={id}
@@ -80,6 +80,9 @@ function MenuActions({ message }: MenuActionsProps) {
         }}
         onClose={onCloseMenu}
       >
+        <MenuItem onClick={onCopy}>
+          <ListItem icon="content_copy" primary={messages.copyText} />
+        </MenuItem>
         {canEdit ? (
           <MenuItem onClick={toggleEdit}>
             <ListItem icon="edit" primary={messages.editText} />
@@ -89,9 +92,6 @@ function MenuActions({ message }: MenuActionsProps) {
             <ListItem icon="outlined_flag" primary={messages.reportText} color="error.dark" />
           </MenuItem>
         )}
-        <MenuItem onClick={onCopy}>
-          <ListItem icon="content_copy" primary={messages.copyText} />
-        </MenuItem>
         <MenuItem onClick={onCloseMenu}>
           <ListItem icon="block" primary={messages.cancelText} color="grey" />
         </MenuItem>

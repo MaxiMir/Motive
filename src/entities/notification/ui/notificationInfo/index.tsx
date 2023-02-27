@@ -1,5 +1,4 @@
-import { Box, Button, Stack, Typography } from '@mui/material'
-import { teal } from '@mui/material/colors'
+import { Box, Button, Stack, Typography, Avatar as MuiAvatar } from '@mui/material'
 import Link from 'next/link'
 import { NotificationDto } from 'shared/api'
 import { useFormatDistance } from 'shared/lib/hooks'
@@ -26,20 +25,18 @@ export function NotificationInfo({ notification, href, onClose }: NotificationIn
       <Stack direction="row" alignItems="center" gap={2} width="100%">
         <Box position="relative" height={55}>
           <Avatar src={avatar} name={name} size={55} />
-          <Box
-            display="flex"
-            justifyContent="center"
-            alignItems="center"
-            position="absolute"
-            bottom="-3px"
-            right="2px"
-            width={21}
-            height={21}
-            borderRadius="50%"
-            sx={{ backgroundColor: teal[900] }}
+          <MuiAvatar
+            sx={(theme) => ({
+              position: 'absolute',
+              bottom: '-3px',
+              right: '2px',
+              width: 21,
+              height: 21,
+              backgroundColor: theme.palette.grey[800],
+            })}
           >
             {emoji}
-          </Box>
+          </MuiAvatar>
         </Box>
         <Stack>
           <Typography sx={{ fontSize: 14 }}>

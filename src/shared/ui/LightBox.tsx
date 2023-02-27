@@ -6,7 +6,7 @@ import Zoom from 'yet-another-react-lightbox/plugins/zoom'
 import dynamic from 'next/dynamic'
 import 'yet-another-react-lightbox/styles.css'
 import 'yet-another-react-lightbox/plugins/thumbnails.css'
-import { getImageSrc } from 'shared/lib/helpers'
+import { getStaticSrc } from 'shared/lib/helpers'
 
 const ReactLightbox = dynamic(() => import('yet-another-react-lightbox'))
 
@@ -18,7 +18,7 @@ interface LightBoxProps {
 
 function LightBox({ sources, index, onClose }: LightBoxProps) {
   const { formatMessage } = useIntl()
-  const slides = sources.map((source) => ({ src: getImageSrc(source) }))
+  const slides = sources.map((source) => ({ src: getStaticSrc(source) }))
   const single = sources.length === 1
   const plugins = [Fullscreen, Slideshow, Zoom, ...(single ? [] : [Thumbnails])]
 

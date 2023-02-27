@@ -1,17 +1,17 @@
 import { Avatar } from '@mui/material'
-import { getImageSrc } from 'shared/lib/helpers'
+import { getStaticSrc } from 'shared/lib/helpers'
 
 interface TunedAvatarProps {
   src: string
   size: number
 }
 
-export function TunedAvatar({ src, size }: TunedAvatarProps) {
-  const imageSrc = getImageSrc(src)
+function TunedAvatar({ src, size }: TunedAvatarProps) {
+  const staticSrc = getStaticSrc(src)
 
   return (
     <Avatar
-      src={imageSrc}
+      src={staticSrc}
       alt=""
       draggable={false}
       sx={{
@@ -22,3 +22,5 @@ export function TunedAvatar({ src, size }: TunedAvatarProps) {
     />
   )
 }
+
+export default TunedAvatar

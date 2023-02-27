@@ -15,7 +15,7 @@ function LastSeen({ lastSeen }: LastSeenProps) {
   return (
     <Typography
       variant="caption"
-      sx={({ palette }) => ({ textTransform: 'lowercase', color: palette.grey[500] })}
+      sx={(theme) => ({ textTransform: 'lowercase', color: theme.palette.grey[500] })}
     >
       {seenText} {distance}
     </Typography>

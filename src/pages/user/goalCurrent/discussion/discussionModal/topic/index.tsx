@@ -29,7 +29,7 @@ function Topic({ dayId, owner, topic, isOwner, inView, onView }: TopicProps) {
         supportFor={message.type !== TopicType.Support ? undefined : owner.name}
         replyProps={replyProps}
       />
-      {answer && <Message message={answer} answerFor={message.id} />}
+      {answer && <Message message={answer} answerFor={message} />}
       {inView && <InView onView={onView} />}
       {creating && (
         <Answer

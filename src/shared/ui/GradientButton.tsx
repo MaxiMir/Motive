@@ -16,9 +16,9 @@ function GradientButton({ disabled, ...props }: GradientButtonProps) {
         variant="text"
         color="primary"
         disabled={disabled}
-        sx={({ palette }) => ({
+        sx={(theme) => ({
           minWidth: '120px',
-          background: palette.background.default,
+          background: theme.palette.background.default,
         })}
         {...props}
       />

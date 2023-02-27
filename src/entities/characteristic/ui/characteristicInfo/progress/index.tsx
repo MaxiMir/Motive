@@ -19,11 +19,11 @@ export function Progress({ characteristic, value, mb }: ProgressProps) {
       <LinearProgress
         variant="determinate"
         value={progress}
-        sx={({ palette }) => ({
+        sx={(theme) => ({
           width: '100%',
           height: 10,
           borderRadius: 5,
-          backgroundColor: palette.grey[800],
+          backgroundColor: theme.palette.grey[800],
           [`& .${linearProgressClasses.bar}`]: {
             borderRadius: 5,
             backgroundColor: `${characteristic}.dark`,

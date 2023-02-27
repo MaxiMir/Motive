@@ -1,7 +1,7 @@
-import { Button, Stack, Typography } from '@mui/material'
+import { Box, Button, Stack } from '@mui/material'
+import { useIntl } from 'react-intl'
 import CreateTopic from 'features/topic/create-topic'
 import { TopicType, UserBaseDto } from 'shared/api'
-import { useMessages } from './lib'
 
 interface AnswerProps {
   dayId: number
@@ -12,28 +12,26 @@ interface AnswerProps {
 }
 
 function Answer({ dayId, owner, user, topicId, onClose }: AnswerProps) {
-  const messages = useMessages()
+  const { formatMessage } = useIntl()
+  const cancelText = formatMessage({ id: 'common.cancel' })
 
   return (
     <Stack gap={1}>
       <CreateTopic
-        dayId={dayId}
-        user={owner}
-        owner={owner}
-        topicId={topicId}
         type={TopicType.Answer}
-        startIcon={<Typography color="primary">{user.name}</Typography>}
+        topicId={topicId}
+        dayId={dayId}
+        owner={owner}
+        user={owner}
+        replyTo={user.name}
         autoFocus
         onSuccess={onClose}
       />
-      <Stack direction="row" alignItems="center" gap={1} pl={8}>
-        <Typography variant="caption" sx={{ color: 'zen.silent' }}>
-          {messages.enterText}
-        </Typography>
+      <Box display="flex" justifyContent="flex-end" pr={5}>
         <Button size="small" sx={{ color: 'zen.silent' }} onClick={onClose}>
-          {messages.cancelText}
+          {cancelText}
         </Button>
-      </Stack>
+      </Box>
     </Stack>
   )
 }

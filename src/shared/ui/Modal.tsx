@@ -10,6 +10,7 @@ import {
   Divider,
 } from '@mui/material'
 import { backdropClasses } from '@mui/material/Backdrop'
+import { styled } from '@mui/system'
 import { Fragment, ReactNode } from 'react'
 import { useIntl } from 'react-intl'
 import dynamic from 'next/dynamic'
@@ -61,12 +62,12 @@ function Modal({
     >
       <AppBar sx={{ position: 'relative' }} component="div">
         <Toolbar>
-          <Typography sx={{ ml: 2, flex: 1 }} variant="h6" component="div">
+          <Typography variant="h6" component="div" textAlign="center" sx={{ ml: 2, flex: 1 }}>
             {title}
           </Typography>
-          <IconButton edge="start" color="inherit" aria-label={closeText} onClick={onClose}>
+          <CloseButton edge="start" color="inherit" aria-label={closeText} onClick={onClose}>
             <Icon name="close" />
-          </IconButton>
+          </CloseButton>
         </Toolbar>
       </AppBar>
       <Divider />
@@ -92,5 +93,12 @@ function Modal({
     </Dialog>
   )
 }
+
+const CloseButton = styled(IconButton)(({ theme }) => ({
+  background: theme.palette.grey[900],
+  ':hover': {
+    background: theme.palette.grey[800],
+  },
+}))
 
 export default Modal

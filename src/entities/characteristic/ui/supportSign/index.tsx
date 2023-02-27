@@ -1,4 +1,4 @@
-import { Box } from '@mui/material'
+import { Avatar } from '@mui/material'
 import { useIntl } from 'react-intl'
 import TooltipArrow from 'shared/ui/TooltipArrow'
 
@@ -13,18 +13,9 @@ export function SupportSign({ name }: SupportSignProps) {
 
   return (
     <TooltipArrow title={title}>
-      <Box
-        display="flex"
-        justifyContent="center"
-        alignItems="center"
-        width={21}
-        height={21}
-        fontSize={10}
-        borderRadius="50%"
-        sx={{ backgroundColor: 'support.main' }}
-      >
+      <Avatar sx={{ width: 21, height: 21, fontSize: 12, backgroundColor: 'support.main' }}>
         🙏
-      </Box>
+      </Avatar>
     </TooltipArrow>
   )
 }

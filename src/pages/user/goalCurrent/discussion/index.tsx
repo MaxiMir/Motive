@@ -42,7 +42,7 @@ export function Discussion({ goalId, dayId, count, owner, clientGoal }: Discussi
           </Typography>
           <Icon
             name="unfold_more"
-            sx={({ palette }) => ({ marginLeft: 'auto', color: palette.grey[700] })}
+            sx={(theme) => ({ marginLeft: 'auto', color: theme.palette.grey[700] })}
           />
         </Stack>
       </Button>

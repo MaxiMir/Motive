@@ -26,7 +26,7 @@ function Accordion({ header, id, details, defaultExpanded, emoji }: AccordionPro
       <AccordionSummary
         id={id}
         expandIcon={
-          <Icon name="expand_more" sx={({ palette }) => ({ color: palette.grey[700] })} />
+          <Icon name="expand_more" sx={(theme) => ({ color: theme.palette.grey[700] })} />
         }
       >
         <Stack direction="row" gap={1}>

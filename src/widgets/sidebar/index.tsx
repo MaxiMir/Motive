@@ -75,7 +75,6 @@ function Sidebar({ breakpoints, children }: SidebarProps) {
                   <ListItem
                     button
                     href={href}
-                    disabled={!href}
                     component={Link}
                     sx={{
                       '& span': {

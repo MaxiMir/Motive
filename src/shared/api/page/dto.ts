@@ -7,6 +7,7 @@ import { UserDto } from '../user'
 export const enum OGType {
   Website = 'website',
   Profile = 'profile',
+  Article = 'article',
 }
 
 export interface PossiblePageError {

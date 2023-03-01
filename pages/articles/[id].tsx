@@ -9,10 +9,16 @@ import { ArticlePage } from 'pages/article'
 /* eslint-disable boundaries/element-types */
 import { Article as ArticleProps } from 'entities/article'
 import { getArticleHref } from 'entities/page'
+import { OGType } from 'shared/api'
 
 function Article({ meta, href, content }: ArticleProps) {
   return (
-    <Layout title={meta.title} description={meta.description}>
+    <Layout
+      title={meta.title}
+      description={meta.description}
+      image={meta.image}
+      type={OGType.Article}
+    >
       <ArticlePage meta={meta} href={href} content={content} />
     </Layout>
   )

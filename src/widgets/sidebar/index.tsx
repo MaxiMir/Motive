@@ -4,10 +4,10 @@ import {
   Divider,
   IconButton,
   ListItem,
+  Stack,
   ListItemIcon,
   ListItemText,
   GlobalStyles,
-  Stack,
 } from '@mui/material'
 import { dialogClasses } from '@mui/material/Dialog'
 import { snackbarClasses } from '@mui/material/Snackbar'

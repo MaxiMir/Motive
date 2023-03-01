@@ -1,0 +1,28 @@
+import { Grid, Typography } from '@mui/material'
+import { useIntl } from 'react-intl'
+import { Article, ArticlePreview } from 'entities/article'
+import Container from 'shared/ui/Container'
+
+interface ArticlesPageProps {
+  articles: Article[]
+}
+
+export function ArticlesPage({ articles }: ArticlesPageProps) {
+  const { formatMessage } = useIntl()
+  const header = formatMessage({ id: `page.article.header` })
+
+  return (
+    <Container>
+      <Typography variant="h1" mb={3}>
+        {header}
+      </Typography>
+      <Grid container spacing={2}>
+        {articles.map(({ meta, href }) => (
+          <Grid item xs={6} key={href}>
+            <ArticlePreview meta={meta} href={href} />
+          </Grid>
+        ))}
+      </Grid>
+    </Container>
+  )
+}

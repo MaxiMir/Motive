@@ -1,45 +1,19 @@
 import fs from 'fs'
 import path from 'path'
-import { Typography } from '@mui/material'
 import matter from 'gray-matter'
-import Markdown from 'markdown-to-jsx'
 import { GetStaticPaths, GetStaticProps } from 'next'
 import { GetStaticPathsResult } from 'next/types'
-// eslint-disable-next-line boundaries/element-types
+/* eslint-disable boundaries/element-types */
 import { Layout } from 'app/layout'
+import { ArticlePage } from 'pages/article'
+/* eslint-disable boundaries/element-types */
 import { Article as ArticleProps } from 'entities/article'
-import { useFormatDate } from 'shared/lib/hooks'
-import Container from 'shared/ui/Container'
+import { getArticleHref } from 'entities/page'
 
-function Article({ meta, content }: ArticleProps) {
-  const formatDate = useFormatDate()
-  const date = formatDate(meta.date, { day: 'numeric', month: 'long', year: 'numeric' })
-
+function Article({ meta, href, content }: ArticleProps) {
   return (
     <Layout title={meta.title} description={meta.description}>
-      <Container
-        sx={{
-          '& img': {
-            maxWidth: '100%',
-            borderRadius: 3,
-            mb: 2,
-          },
-        }}
-      >
-        <Typography
-          variant="caption"
-          component="time"
-          dateTime={meta.date}
-          mb={1}
-          sx={{ color: 'zen.silent' }}
-        >
-          {date}
-        </Typography>
-        <Typography variant="h1" mb={2}>
-          {meta.header}
-        </Typography>
-        <Markdown options={{ overrides: { p: Typography } }}>{content}</Markdown>
-      </Container>
+      <ArticlePage meta={meta} href={href} content={content} />
     </Layout>
   )
 }
@@ -59,6 +33,7 @@ export const getStaticPaths: GetStaticPaths = async ({ locales = [] }) => {
 }
 
 export const getStaticProps: GetStaticProps = async ({ locale, params }) => {
+  const href = getArticleHref(params?.id as string)
   const markdownPath = path.join(`articles/${params?.id}/${locale}.md`)
   const markdownWithMeta = fs.readFileSync(markdownPath, 'utf-8')
   const { data, content } = matter(markdownWithMeta)
@@ -66,6 +41,7 @@ export const getStaticProps: GetStaticProps = async ({ locale, params }) => {
   return {
     props: {
       meta: JSON.parse(JSON.stringify(data)),
+      href,
       content,
     },
   }

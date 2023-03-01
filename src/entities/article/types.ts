@@ -1,9 +1,14 @@
+export interface Meta {
+  readonly title: string
+  readonly description: string
+  readonly header: string
+  readonly image: string
+  readonly motto: string
+  readonly date: string
+}
+
 export interface Article {
-  meta: {
-    title: string
-    description: string
-    header: string
-    date: string
-  }
-  content: string
+  readonly meta: Meta
+  readonly href: string
+  readonly content: string
 }

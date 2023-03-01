@@ -104,14 +104,16 @@ function Sidebar({ breakpoints, children }: SidebarProps) {
       </Drawer>
       {children}
       <GlobalStyles
-        styles={{
-          [`#__next .${snackbarClasses.root}`]: {
-            left: `calc(50% + ${!expanded ? 32 : 115}px)`,
+        styles={(theme) => ({
+          [theme.breakpoints.up('lg')]: {
+            [`#__next .${snackbarClasses.root}`]: {
+              left: `calc(50% + ${!expanded ? 32 : 115}px)`,
+            },
+            [`& .${dialogClasses.root}`]: {
+              marginLeft: !expanded ? 64 : 230,
+            },
           },
-          [`& .${dialogClasses.root}`]: {
-            marginLeft: !expanded ? 64 : 230,
-          },
-        }}
+        })}
       />
     </Box>
   )

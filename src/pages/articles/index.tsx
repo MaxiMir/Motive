@@ -9,7 +9,7 @@ interface ArticlesPageProps {
 
 export function ArticlesPage({ articles }: ArticlesPageProps) {
   const { formatMessage } = useIntl()
-  const header = formatMessage({ id: `page.article.header` })
+  const header = formatMessage({ id: 'page.articles.header' })
 
   return (
     <Container>

@@ -120,6 +120,9 @@
   "page.404.title": "404: Page Not Found",
   "page.404.header": "Page Not Found",
   "page.500.title": "500: Sorry, something went wrong",
+  "page.articles.title": "Articles",
+  "page.articles.description": "Useful materials to help you achieve your goals and improve the quality of your life. We publish articles on various aspects of goal achievement, including motivation, planning, time management, personal development, and many others. In our articles, we share practical tips and strategies to help you improve your productivity, increase your motivation and succeed in life.",
+  "page.articles.header": "Articles",
 
   "component.share.share": "Share to",
   "component.share.send": "Send to",

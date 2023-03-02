@@ -49,7 +49,7 @@ function SidebarModal({ onOpenSettings, onClose }: SidebarModalProps) {
       <Box role="presentation" component="nav" sx={{ height: '100%' }}>
         <List>
           {routes.map(({ primary, icon, href }) => (
-            <ListItem button href={href} disabled={!href} component={Link} key={href}>
+            <ListItem button href={href} component={Link} key={href}>
               <ListItemIcon>
                 <Icon name={icon} />
               </ListItemIcon>

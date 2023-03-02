@@ -61,3 +61,5 @@ export const getNotificationHref = (notification: NotificationDto, client?: Clie
       return getDayHref(nickname, notification.details.id, notification.details.day)
   }
 }
+
+export const getArticleHref = (id: string): string => `${Route.Articles}/${id}`

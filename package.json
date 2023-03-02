@@ -1,6 +1,6 @@
 {
   "name": "bebetter",
-  "version": "1.0.91",
+  "version": "1.0.92",
   "private": true,
   "scripts": {
     "dev": "next dev --show-all",
@@ -39,6 +39,7 @@
     "formik": "^2.2.9",
     "formik-mui": "^5.0.0-alpha.0",
     "fscreen": "^1.2.0",
+    "gray-matter": "^4.0.3",
     "immer": "^9.0.17",
     "markdown-to-jsx": "^7.1.8",
     "next": "^13.1.6",

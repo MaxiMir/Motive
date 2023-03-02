@@ -9,8 +9,8 @@ export function DayAgo({ day }: DateNameProps) {
   const dayAgo = useDayAgo(day)
 
   return (
-    <Typography variant="body2" component="p">
-      <b>{dayAgo}</b>
+    <Typography variant="body2" component="time" dateTime={day} sx={{ fontWeight: 'bold' }}>
+      {dayAgo}
     </Typography>
   )
 }

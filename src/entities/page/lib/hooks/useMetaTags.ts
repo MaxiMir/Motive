@@ -1,6 +1,6 @@
 import { useIntl } from 'react-intl'
 
-type Page = 'feed' | 'home' | 'contact' | 'search' | 'following' | '404' | '500'
+type Page = 'feed' | 'home' | 'contact' | 'search' | 'following' | 'articles' | '404' | '500'
 
 export const useMetaTags = (page: Page) => {
   const { formatMessage } = useIntl()

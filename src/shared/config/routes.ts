@@ -4,5 +4,5 @@ export const enum Route {
   Rating = '/rating',
   Following = '/following',
   Contact = '/contact',
-  Articles = '',
+  Articles = '/articles',
 }

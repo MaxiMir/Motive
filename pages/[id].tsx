@@ -10,9 +10,9 @@ import { getSearchParams } from 'shared/lib/helpers'
 
 function UserRoute() {
   const { data } = useUserPage()
-  const metaTags = useUserMetaTags(data)
+  const meta = useUserMetaTags(data)
 
-  return <Layout {...metaTags}>{data && <UserPage user={data} />}</Layout>
+  return <Layout {...meta}>{data && <UserPage user={data} />}</Layout>
 }
 
 export const getServerSideProps: GetServerSideProps = async (ctx) => {

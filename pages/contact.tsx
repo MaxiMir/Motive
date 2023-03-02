@@ -3,13 +3,13 @@ import { getSession } from 'next-auth/react'
 import DeviceDetector from 'node-device-detector'
 import { Layout } from 'app/layout'
 import { ContactPage } from 'pages/contact'
-import { useMetaTags } from 'entities/page'
+import { useMeta } from 'entities/page'
 
 function ContactRoute() {
-  const metaTags = useMetaTags('contact')
+  const meta = useMeta('contact')
 
   return (
-    <Layout title={metaTags.title} description={metaTags.description}>
+    <Layout title={meta.title} description={meta.description}>
       <ContactPage />
     </Layout>
   )

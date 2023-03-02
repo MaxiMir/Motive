@@ -1,13 +1,13 @@
 import { Layout } from 'app/layout'
 import { ErrorPage } from 'pages/error'
-import { useMetaTags } from 'entities/page'
+import { useMeta } from 'entities/page'
 
 function Page500() {
-  const metaTags = useMetaTags('500')
+  const meta = useMeta('500')
 
   return (
-    <Layout {...metaTags}>
-      <ErrorPage header={metaTags.title} />
+    <Layout {...meta}>
+      <ErrorPage header={meta.title} />
     </Layout>
   )
 }

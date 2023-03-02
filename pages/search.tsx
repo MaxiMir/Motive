@@ -4,17 +4,17 @@ import DeviceDetector from 'node-device-detector'
 import { dehydrate, QueryClient } from 'react-query'
 import { Layout } from 'app/layout'
 import { SearchPage } from 'pages/search'
-import { useSearchPage, useMetaTags } from 'entities/page'
+import { useSearchPage, useMeta } from 'entities/page'
 import { getSearchPage } from 'shared/api'
 import { Route } from 'shared/config'
 import { getSearchParams } from 'shared/lib/helpers'
 
 function SearchRoute() {
   const { data } = useSearchPage()
-  const metaTags = useMetaTags('search')
+  const meta = useMeta('search')
 
   return (
-    <Layout title={metaTags.title} description={metaTags.description}>
+    <Layout title={meta.title} description={meta.description}>
       {data && <SearchPage {...data} />}
     </Layout>
   )

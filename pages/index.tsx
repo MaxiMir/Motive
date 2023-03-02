@@ -3,14 +3,14 @@ import { getSession } from 'next-auth/react'
 import DeviceDetector from 'node-device-detector'
 import { Layout } from 'app/layout'
 import { HomePage } from 'pages/home'
-import { useMetaTags } from 'entities/page'
+import { useMeta } from 'entities/page'
 import { ClientDto } from 'shared/api'
 
 function HomeRoute() {
-  const metaTags = useMetaTags('home')
+  const meta = useMeta('home')
 
   return (
-    <Layout title={metaTags.title} description={metaTags.description}>
+    <Layout title={meta.title} description={meta.description}>
       <HomePage />
     </Layout>
   )

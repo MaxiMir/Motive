@@ -5,17 +5,17 @@ import { GetStaticProps } from 'next'
 import { Layout } from 'app/layout'
 import { ArticlesPage } from 'pages/articles'
 import { Article } from 'entities/article'
-import { getArticleHref, useMetaTags } from 'entities/page'
+import { getArticleHref, useMeta } from 'entities/page'
 
 interface ArticlesProps {
   articles: Article[]
 }
 
 function Articles({ articles }: ArticlesProps) {
-  const metaTags = useMetaTags('articles')
+  const meta = useMeta('articles')
 
   return (
-    <Layout title={metaTags.title} description={metaTags.description}>
+    <Layout title={meta.title} description={meta.description}>
       <ArticlesPage articles={articles} />
     </Layout>
   )

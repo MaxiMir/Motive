@@ -4,16 +4,16 @@ import DeviceDetector from 'node-device-detector'
 import { dehydrate, QueryClient } from 'react-query'
 import { Layout } from 'app/layout'
 import { FollowingPage } from 'pages/following'
-import { useFollowingPage, useMetaTags } from 'entities/page'
+import { useFollowingPage, useMeta } from 'entities/page'
 import { getFollowingPage } from 'shared/api'
 import { Route } from 'shared/config'
 
 function FollowingRoute() {
   const { data } = useFollowingPage()
-  const metaTags = useMetaTags('following')
+  const meta = useMeta('following')
 
   return (
-    <Layout title={metaTags.title} description={metaTags.description}>
+    <Layout title={meta.title} description={meta.description}>
       {data && <FollowingPage following={data.following} />}
     </Layout>
   )

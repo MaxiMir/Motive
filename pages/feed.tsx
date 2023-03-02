@@ -3,13 +3,13 @@ import { getSession } from 'next-auth/react'
 import DeviceDetector from 'node-device-detector'
 import { Layout } from 'app/layout'
 import { FeedPage } from 'pages/feed'
-import { useMetaTags } from 'entities/page'
+import { useMeta } from 'entities/page'
 
 function FeedRoute() {
-  const metaTags = useMetaTags('feed')
+  const meta = useMeta('feed')
 
   return (
-    <Layout title={metaTags.title}>
+    <Layout title={meta.title}>
       <FeedPage />
     </Layout>
   )

@@ -1,4 +1,5 @@
-[//]: # (TODO)
+### TODO
+* просмотры и комментарии к статьям
 * Сортировка комментариев
 * Удаление комментария (1 час)
 * https://github.com/jquense/yup/issues/159
@@ -16,8 +17,7 @@
 * Добавить удаление цели без очков
 * useTryFullScreen
 * тип сообщений в обсуждении
-* модалки как в инсте
-* (2) в title meta
+* (2) в title meta с обновлениями
 * https://mui.com/material-ui/react-menu/#basic-menu aria
 * TODO disabled control
 * Loader для photo (+ для историй)
@@ -43,6 +43,7 @@
 * Подсказки
 * Push notification
 
+### Tips
 ```shell
 docker build -t maximir/frontend:1.0.92 .
 # artifactory:
@@ -54,14 +55,14 @@ docker pull maximir.jfrog.io/default-docker-virtual/frontend:1.0.92
 docker cp <IMAGE_ID>:/home/node/client /home # <-
 docker cp /home/client <IMAGE_ID>:/home/node # ->
 
-# connect
-ssh root@217.25.93.198
-docker logs -f --until=200s home_backend_1 # docker logs
+# docker logs
+docker logs -f --until=200s home_backend_1 
 
-sudo lsof -i tcp:3000 # что запущено на порту 3000
-nginx -t # чекнуть конфиг
+sudo lsof -i tcp:3000 # what is running on the port 3000
+nginx -t # configuration check
 /etc/init.d/nginx restart
 
+# init:
 sudo apt-get update
 sudo apt-get install nginx docker docker-compose mc 
 cd /etc/nginx 
@@ -71,7 +72,7 @@ nano 2bebetter.pro.conf
 # виртуальный симлинк
 sudo ln -s /etc/nginx/sites-available/2bebetter.pro.conf /etc/nginx/sites-enabled/
 ```
-### DOCKER COMPOSE:
+### Docker compose config:
 ```yaml
 version: '3.3'
 
@@ -209,7 +210,7 @@ nginx -s reload
 dehydrated -c
 ```
 
-### nginx.config brotli:
+### nginx.config for brotli:
 ```shell
 user www-data;
 worker_processes auto;

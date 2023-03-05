@@ -33,7 +33,7 @@ export function NotificationInfo({ notification, href, onClose }: NotificationIn
               width: 21,
               height: 21,
               backgroundColor: theme.palette.grey[800],
-              fontSize: '0.875rem',
+              fontSize: 12,
             })}
           >
             {emoji}

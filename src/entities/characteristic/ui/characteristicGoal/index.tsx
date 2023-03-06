@@ -1,4 +1,4 @@
-import { Typography, IconButton, Stack } from '@mui/material'
+import { Typography, Button } from '@mui/material'
 import { useIntl } from 'react-intl'
 import { Emoji } from 'src/entities/characteristic/consts'
 import { GoalCharacteristicName } from 'shared/api'
@@ -15,27 +15,27 @@ export function CharacteristicGoal({ name, value }: CharacteristicGoalProps) {
   const formatNumber = useFormatNumber()
   const formattedValue = formatNumber(value)
   const title = formatMessage({ id: `component.characteristic-goal.${name}` })
-  const color = name === 'runningDays' ? '#c07d35' : `${name}.main`
   const emoji = Emoji[name]
 
   return (
-    <Stack alignItems="center" gap={0.5}>
-      <TooltipArrow title={title}>
-        <IconButton
-          size="small"
-          sx={{
-            width: 40,
-            height: 40,
-          }}
-        >
-          <Typography variant="h5" paragraph m={0}>
+    <TooltipArrow title={title}>
+      <Button
+        size="small"
+        variant="outlined"
+        color="inherit"
+        startIcon={
+          <Typography paragraph m={0}>
             {emoji}
           </Typography>
-        </IconButton>
-      </TooltipArrow>
-      <Typography component="p" sx={{ color }}>
+        }
+        sx={(theme) => ({
+          minWidth: 'initial',
+          borderColor: 'transparent',
+          backgroundColor: theme.palette.grey[900],
+        })}
+      >
         {formattedValue}
-      </Typography>
-    </Stack>
+      </Button>
+    </TooltipArrow>
   )
 }

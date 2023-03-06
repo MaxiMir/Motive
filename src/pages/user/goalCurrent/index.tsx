@@ -141,20 +141,23 @@ function GoalCurrent({ goal, nickname, clientPage, clientMembership }: GoalCurre
         >
           <ViewTrigger ownerId={owner.id} dayId={day.id}>
             <Stack gap={2}>
-              <Box display="flex" alignItems="center" gap={0.5}>
-                <Typography variant="subtitle1" component="h2">
-                  <b>{name}</b>
-                </Typography>
-                {member && <Owner owner={owner} />}
-                <MenuActions
-                  goalId={id}
-                  goalName={name}
-                  href={dayHref}
-                  clientPage={clientPage}
-                  clientGoal={clientGoal}
-                  clientMember={clientMember}
-                />
-              </Box>
+              <Stack gap={1}>
+                <Box display="flex" alignItems="center" gap={0.5}>
+                  <Typography variant="subtitle1" component="h2">
+                    <b>{name}</b>
+                  </Typography>
+                  {member && <Owner owner={owner} />}
+                  <MenuActions
+                    goalId={id}
+                    goalName={name}
+                    href={dayHref}
+                    clientPage={clientPage}
+                    clientGoal={clientGoal}
+                    clientMember={clientMember}
+                  />
+                </Box>
+                {!!hashtags.length && <Hashtags hashtags={hashtags} />}
+              </Stack>
               <Stack direction="row" justifyContent="space-between" alignItems="center">
                 {CHARACTERISTICS.map((characteristicName) => (
                   <CharacteristicGoal
@@ -165,7 +168,6 @@ function GoalCurrent({ goal, nickname, clientPage, clientMembership }: GoalCurre
                 ))}
                 <CharacteristicGoal name="runningDays" value={runningDays} />
               </Stack>
-              {!!hashtags.length && <Hashtags hashtags={hashtags} />}
               <Stack alignItems="center">
                 {prev && (
                   <DayCardButton

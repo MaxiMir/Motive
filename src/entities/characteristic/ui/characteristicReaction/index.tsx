@@ -1,6 +1,5 @@
 import { Button, Typography } from '@mui/material'
 import { buttonClasses } from '@mui/material/Button'
-import { blue } from '@mui/material/colors'
 import dynamic from 'next/dynamic'
 import { useFormatNumber } from 'shared/lib/hooks'
 import TooltipArrow from 'shared/ui/TooltipArrow'
@@ -44,17 +43,20 @@ export function CharacteristicReaction({
             </Typography>
           )
         }
-        sx={{
+        sx={(theme) => ({
           minWidth: 'initial',
-          height: 35,
-          borderColor: blue[500],
-          ':hover': {
-            borderColor: blue[300],
+          height: 32,
+          borderColor: 'transparent',
+          backgroundColor: '#2b2d31',
+          color: '#a5a6ac',
+          ':hover, :disabled': {
+            borderColor: theme.palette.grey[700],
           },
           [`& .${buttonClasses.startIcon}`]: {
+            width: !shownCount ? undefined : 18,
             margin: !shownCount ? 0 : undefined,
           },
-        }}
+        })}
         onClick={onClick}
       >
         {shownCount}

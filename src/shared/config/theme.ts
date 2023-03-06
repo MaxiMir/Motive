@@ -222,6 +222,9 @@ export const getDesignTokens = (mode: PaletteMode): ThemeOptions => {
       },
       MuiCssBaseline: {
         styleOverrides: {
+          html: {
+            scrollBehavior: 'smooth',
+          },
           body: {
             margin: 0,
             padding: 0,

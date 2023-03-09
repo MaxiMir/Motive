@@ -48,11 +48,12 @@ export function Layout({
   const renderCompact = !device || !possibleDesktop
   const MainWrap = renderDesktop ? Sidebar : Fragment
   const mainWrapProps = renderDesktop ? { breakpoints: !device } : null
+  const fullTitle = `${title} - ${process.env.NEXT_PUBLIC_APP_NAME}`
 
   return (
     <>
       <Head>
-        <title>{title || process.env.NEXT_PUBLIC_APP_NAME}</title>
+        <title>{fullTitle}</title>
         {description && (
           <>
             <meta name="description" content={description} />

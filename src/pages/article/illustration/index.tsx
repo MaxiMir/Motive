@@ -42,12 +42,12 @@ export function Illustration({ meta }: IllustrationProps) {
       >
         &#171;{meta.motto}&#187;
       </Typography>
-      <Img src={meta.image} alt="" />
+      <ImgNative src={meta.image} alt="" />
     </Box>
   )
 }
 
-const Img = styled('img')({
+const ImgNative = styled('img')({
   maxWidth: '100%',
   borderRadius: 3,
 })

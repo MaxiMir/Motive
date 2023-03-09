@@ -11,6 +11,11 @@ export const useRoutes = () => {
       href: Route.Articles,
     },
     {
+      primary: formatMessage({ id: 'common.donate' }),
+      icon: 'toll',
+      href: Route.Donate,
+    },
+    {
       primary: formatMessage({ id: 'common.contact' }),
       icon: 'mark_as_unread',
       href: Route.Contact,

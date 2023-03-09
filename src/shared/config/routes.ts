@@ -3,6 +3,7 @@ export const enum Route {
   Search = '/search',
   Rating = '/rating',
   Following = '/following',
+  Donate = '/donate',
   Contact = '/contact',
   Articles = '/articles',
 }

@@ -4,18 +4,17 @@ import DeviceDetector from 'node-device-detector'
 import { dehydrate, QueryClient } from 'react-query'
 import { Layout } from 'app/layout'
 import { RatingPage } from 'pages/rating'
-import { useRatingTab, useRatingMeta, useRatingPage } from 'entities/page'
+import { useRatingPage, useMeta } from 'entities/page'
 import { getRatingPage } from 'shared/api'
 import { Route } from 'shared/config'
 
 function RatingRoute() {
-  const tab = useRatingTab()
-  const meta = useRatingMeta(tab)
+  const meta = useMeta('rating')
   const { data } = useRatingPage()
 
   return (
     <Layout title={meta.title} description={meta.description}>
-      {data && <RatingPage {...data} tab={tab} />}
+      {data && <RatingPage {...data} />}
     </Layout>
   )
 }

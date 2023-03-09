@@ -1,7 +1,5 @@
 export * from './useFollowingPage'
-export * from './useRatingMeta'
 export * from './useRatingPage'
-export * from './useRatingTab'
 export * from './useSearchPage'
 export * from './useMeta'
 export * from './useUserMetaTags'

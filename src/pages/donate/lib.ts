@@ -4,7 +4,7 @@ export const useMessages = () => {
   const { formatMessage } = useIntl()
 
   return {
-    header: formatMessage({ id: 'page.contact.header' }),
-    content: formatMessage({ id: 'page.contact.content' }),
+    header: formatMessage({ id: 'common.donate' }),
+    content: formatMessage({ id: 'page.donate.content' }),
   }
 }

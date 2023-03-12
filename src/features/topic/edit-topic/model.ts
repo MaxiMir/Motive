@@ -37,7 +37,7 @@ export const useUpdateTopicForm = (initialValues: MessageDto, onSuccess: () => v
         ['discussion', updatedMessage.dayId],
         (prev) => prev && getNextState(prev, updatedMessage),
       )
-      enqueueSnackbar({ message, severity: 'success', icon: '🧞‍♂️️‍' })
+      enqueueSnackbar(message, { severity: 'success', icon: '🧞‍♂️️‍' })
       onSuccess()
     },
   })

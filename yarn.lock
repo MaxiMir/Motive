@@ -6983,13 +6983,13 @@ randombytes@^2.1.0:
   dependencies:
     safe-buffer "^5.1.0"
 
-react-dom@^18.2.0:
-  version "18.2.0"
-  resolved "https://registry.yarnpkg.com/react-dom/-/react-dom-18.2.0.tgz#22aaf38708db2674ed9ada224ca4aa708d821e3d"
-  integrity sha512-6IMTriUmvsjHUjNtEDudZfuDQUoWXVxKHhlEGSk81n4YFS+r/Kl99wXiwlVXtPBtJenozv2P+hxDsw9eA7Xo6g==
+react-dom@^0.0.0-experimental-a8875eab7-20230310:
+  version "0.0.0-experimental-a8875eab7-20230310"
+  resolved "https://registry.yarnpkg.com/react-dom/-/react-dom-0.0.0-experimental-a8875eab7-20230310.tgz#51a09f7c74cfd7d0c249662840fc2846b6004ebd"
+  integrity sha512-Eh6M5NNxvFHoDVd6p5rIRRAMjpY0yyFaW/wh1bJnGNduAsgDQLgXZt5fwnuY0RfQEpRi6M5s6dxKsnHFulsfGg==
   dependencies:
     loose-envify "^1.1.0"
-    scheduler "^0.23.0"
+    scheduler "0.0.0-experimental-a8875eab7-20230310"
 
 react-fast-compare@^2.0.1:
   version "2.0.4"
@@ -7067,10 +7067,10 @@ react-transition-group@^4.4.5:
     loose-envify "^1.4.0"
     prop-types "^15.6.2"
 
-react@^18.2.0:
-  version "18.2.0"
-  resolved "https://registry.yarnpkg.com/react/-/react-18.2.0.tgz#555bd98592883255fa00de14f1151a917b5d77d5"
-  integrity sha512-/3IjMdb2L9QbBdWiW5e3P2/npwMBaU9mHCSCUzNln0ZCYbcfTsGbTJrU/kGemdH2IWmB2ioZ+zkxtmq6g09fGQ==
+react@^0.0.0-experimental-a8875eab7-20230310:
+  version "0.0.0-experimental-a8875eab7-20230310"
+  resolved "https://registry.yarnpkg.com/react/-/react-0.0.0-experimental-a8875eab7-20230310.tgz#e57dbf52aa823bc5a97cf0dc8c711b667ff76253"
+  integrity sha512-gT3Ag0to4AZSE7A4dR2ReJ01/Es1BCx/4ePWeYya7x/orOEqAPxzmhvpf8Lbj6ztDZ7PYJVbtw97zsQKAOtV4g==
   dependencies:
     loose-envify "^1.1.0"
 
@@ -7363,10 +7363,10 @@ safe-regex-test@^1.0.0:
   resolved "https://registry.yarnpkg.com/safer-buffer/-/safer-buffer-2.1.2.tgz#44fa161b0187b9549dd84bb91802f9bd8385cd6a"
   integrity sha512-YZo3K82SD7Riyi0E1EQPojLz7kpepnSQI9IyPbHHg1XXXevb5dJI7tpyN2ADxGcQbHG7vcyRHk0cbwqcQriUtg==
 
-scheduler@^0.23.0:
-  version "0.23.0"
-  resolved "https://registry.yarnpkg.com/scheduler/-/scheduler-0.23.0.tgz#ba8041afc3d30eb206a487b6b384002e4e61fdfe"
-  integrity sha512-CtuThmgHNg7zIZWAXi3AsyIzA3n4xx7aNyjwC2VJldO2LMVDhFK+63xGqq6CsJH4rTAt6/M+N4GhZiDYPx9eUw==
+scheduler@0.0.0-experimental-a8875eab7-20230310:
+  version "0.0.0-experimental-a8875eab7-20230310"
+  resolved "https://registry.yarnpkg.com/scheduler/-/scheduler-0.0.0-experimental-a8875eab7-20230310.tgz#18b77810ae964b7fb534692e37e771e5ee378477"
+  integrity sha512-YtA7JRcolqriKgEdT7pPkRd7lhVreakS102TX5UJ1dJl88gnW/Otwvsp2/6+KZ6nn7Mn+OyuKInPcvpoEE+1PA==
   dependencies:
     loose-envify "^1.1.0"
 

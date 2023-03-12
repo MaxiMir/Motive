@@ -1,6 +1,7 @@
+const nextPWA = require('next-pwa')
 const runtimeCaching = require('next-pwa/cache')
 
-const withPWA = require('next-pwa')({
+const withPWA = nextPWA({
   dest: 'public',
   register: true,
   skipWaiting: true,
@@ -23,9 +24,6 @@ module.exports = withPWA({
   i18n: {
     locales: ['en', 'ru', 'uk', 'zh-CN'],
     defaultLocale: 'en',
-  },
-  experimental: {
-    appDir: true,
   },
   modularizeImports: {
     '@mui/material': {

@@ -91,7 +91,7 @@ export function ContactPage() {
             </ButtonLink>
           </Stack>
           <Box display="flex" justifyContent="center" flex={1}>
-            <Image src={ContactsSrc} alt="" width={300} height={186} />
+            <Image src={ContactsSrc} alt="Binance" width={300} height={186} />
           </Box>
         </Stack>
       </Stack>

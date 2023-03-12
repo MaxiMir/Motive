@@ -1,7 +1,7 @@
 import dynamic from 'next/dynamic'
 import { NotificationInfo } from 'entities/notification'
 import { getNotificationHref } from 'entities/page'
-import { useClient } from 'entities/user'
+import { useClient } from 'entities/viewer'
 import { NotificationDto } from 'shared/api'
 import { useUpdateRead } from './model'
 

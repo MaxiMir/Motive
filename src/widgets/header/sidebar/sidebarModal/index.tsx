@@ -11,7 +11,7 @@ import {
 import { drawerClasses } from '@mui/material/Drawer'
 import { signOut } from 'next-auth/react'
 import Link from 'next/link'
-import { useClient } from 'entities/user'
+import { useClient } from 'entities/viewer'
 import Icon from 'shared/ui/Icon'
 import { useRoutes, useMessages } from './lib'
 

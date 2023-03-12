@@ -7,7 +7,7 @@ import { useFormatDistance } from 'shared/lib/hooks'
 import TooltipArrow from 'shared/ui/TooltipArrow'
 import { getShortDistance } from './lib'
 
-const DeviceIcon = dynamic(() => import('shared/ui/deviceIcon'))
+const DeviceIcon = dynamic(() => import('./deviceIcon'))
 
 interface OfflineProps {
   lastSeen: string

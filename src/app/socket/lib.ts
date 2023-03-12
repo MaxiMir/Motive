@@ -3,11 +3,11 @@ import { useIntl } from 'react-intl'
 import { useQueryClient } from 'react-query'
 import { io } from 'socket.io-client'
 import { useRouter } from 'next/router'
+import { useDeviceContext } from 'entities/device'
 import { getNotificationHref } from 'entities/page'
-import { useClient } from 'entities/user'
+import { useClient } from 'entities/viewer'
 import { NotificationDto } from 'shared/api'
 import { getStaticSrc } from 'shared/lib/helpers'
-import { useDeviceContext } from 'shared/ui/device'
 import { useSnackbar } from 'shared/ui/snackbar'
 
 export const useSocket = () => {
@@ -35,7 +35,7 @@ export const useSocket = () => {
       const { id, type, initiator } = notification
       const message = formatMessage({ id: 'common.new-event' })
       const notificationSupport = 'Notification' in window
-      enqueueSnackbar({ message, severity: 'success', icon: '🛎' })
+      enqueueSnackbar(message, { severity: 'success', icon: '🛎' })
       queryClient.invalidateQueries('notifications')
 
       if (!notificationSupport || document.visibilityState === 'visible') return

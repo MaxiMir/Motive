@@ -1,8 +1,8 @@
 import produce from 'immer'
 import { useIntl } from 'react-intl'
 import { InfiniteData, useMutation, useQueryClient } from 'react-query'
-import { useOpenSignIn } from 'entities/signin'
-import { useGoalsCache, useClient } from 'entities/user'
+import { useGoalsCache } from 'entities/user'
+import { useClient, useSignIn } from 'entities/viewer'
 import { GoalDto, MessageDto, TopicType, TopicDto, updateLike } from 'shared/api'
 import { useSnackbar } from 'shared/ui/snackbar'
 
@@ -41,7 +41,7 @@ export const getGoalNextState = (goals: GoalDto[], goalId: number, add: boolean)
 export const useSetLike = (message: MessageDto, parentId?: number) => {
   const { id, like, dayId, goalId } = message
   const client = useClient()
-  const openSignIn = useOpenSignIn()
+  const { openSignIn } = useSignIn()
   const [goals, mutateGoals] = useGoalsCache()
   const queryClient = useQueryClient()
   const { formatMessage } = useIntl()
@@ -62,20 +62,20 @@ export const useSetLike = (message: MessageDto, parentId?: number) => {
       return { previous }
     },
     onSuccess(_, { add }) {
-      const userMessage = formatMessage(
-        { id: 'page.user.like-button.user-message', defaultMessage: '' },
-        { value: message.user.name },
-      )
-
       if (message.type === TopicType.Support) {
-        enqueueSnackbar({ message: userMessage, severity: 'success', icon: '✨' })
+        const userMessage = formatMessage(
+          { id: 'page.user.like-button.user-message', defaultMessage: '' },
+          { value: message.user.name },
+        )
+
+        enqueueSnackbar(userMessage, { severity: 'success', icon: '✨' })
       }
 
-      const goalMessage = formatMessage({ id: 'page.user.like-button.goal-message' })
-
       if (parentId) {
+        const goalMessage = formatMessage({ id: 'page.user.like-button.goal-message' })
+
         mutateGoals(getGoalNextState(goals, goalId, add))
-        enqueueSnackbar({ message: goalMessage, severity: 'success', icon: '✨' })
+        enqueueSnackbar(goalMessage, { severity: 'success', icon: '✨' })
       }
     },
     onError(_, _1, context) {

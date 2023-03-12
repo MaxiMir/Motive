@@ -27,7 +27,7 @@ export const useCreateFeedbackForm = (goalId: number, dayId: number, onSuccess: 
     onSuccess: (feedback) => {
       const message = formatMessage({ id: 'page.user.modal-feedback.message' })
       mutateGoals(getNextState(goals, goalId, feedback))
-      enqueueSnackbar({ message, severity: 'success', icon: '💭' })
+      enqueueSnackbar(message, { severity: 'success', icon: '💭' })
       onSuccess()
     },
   })

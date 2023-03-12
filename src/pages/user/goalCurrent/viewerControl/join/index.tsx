@@ -1,7 +1,6 @@
 import { useIntl } from 'react-intl'
 import dynamic from 'next/dynamic'
-import { useOpenSignIn } from 'entities/signin'
-import { useClient } from 'entities/user'
+import { useClient, useSignIn } from 'entities/viewer'
 import { CalendarDto } from 'shared/api'
 import { useToggle } from 'shared/lib/hooks'
 import BlueButton from 'shared/ui/BlueButton'
@@ -17,7 +16,7 @@ interface JoinProps {
 
 function Join({ goalId, dayId, calendar, ownerName }: JoinProps) {
   const client = useClient()
-  const openSignIn = useOpenSignIn()
+  const { openSignIn } = useSignIn()
   const { formatMessage } = useIntl()
   const [open, toggle] = useToggle()
   const buttonText = formatMessage({ id: 'common.join' })

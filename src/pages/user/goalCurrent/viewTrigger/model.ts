@@ -1,5 +1,5 @@
 import { useMutation } from 'react-query'
-import { useClient } from 'entities/user'
+import { useClient } from 'entities/viewer'
 import { incrementDayViews } from 'shared/api'
 
 export const useIncreaseViews = (ownerId: number, dayId: number) => {

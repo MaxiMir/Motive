@@ -3,8 +3,8 @@ import { styled } from '@mui/system'
 import { MouseEvent } from 'react'
 import { useIntl } from 'react-intl'
 import { useSetLocale, Locale } from 'entities/locale'
-import { usePaletteMode } from 'shared/lib/hooks'
 import Modal from 'shared/ui/Modal'
+import { usePaletteMode } from 'shared/ui/palette'
 import { useMessages } from './lib'
 
 interface SettingsModalProps {

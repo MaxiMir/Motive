@@ -49,8 +49,7 @@ export const useRemoveFollowing = () => {
         const onClick = () => onUndo(user, index)
 
         !insert &&
-          enqueueSnackbar({
-            message,
+          enqueueSnackbar(message, {
             severity: 'success',
             icon: '🗑',
             action: (

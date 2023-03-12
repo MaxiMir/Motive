@@ -1,6 +1,6 @@
 import { ListItem, ListItemIcon, ListItemText } from '@mui/material'
 import { useRouter } from 'next/router'
-import { useOpenSignIn } from 'entities/signin'
+import { useSignIn } from 'entities/viewer'
 import Icon from 'shared/ui/Icon'
 
 interface SignInProps {
@@ -9,7 +9,7 @@ interface SignInProps {
 
 function SignIn({ primary }: SignInProps) {
   const { asPath } = useRouter()
-  const openSignIn = useOpenSignIn()
+  const { openSignIn } = useSignIn()
 
   const onClick = () => openSignIn({ callbackUrl: asPath })
 

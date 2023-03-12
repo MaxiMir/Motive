@@ -1,7 +1,7 @@
 import { useFormik } from 'formik'
 import { useMutation } from 'react-query'
 import { useRouter } from 'next/router'
-import { useClient } from 'entities/user'
+import { useClient } from 'entities/viewer'
 import { CreateMemberDto, createMember } from 'shared/api'
 import { SearchParam } from 'shared/config'
 import { joinToHref, setSearchParams } from 'shared/lib/helpers'

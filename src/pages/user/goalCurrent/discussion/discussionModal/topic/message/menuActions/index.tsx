@@ -1,7 +1,7 @@
 import { IconButton, MenuItem, Box, Menu } from '@mui/material'
 import { MouseEvent, useId, useState } from 'react'
 import dynamic from 'next/dynamic'
-import { useClient } from 'entities/user'
+import { useClient } from 'entities/viewer'
 import { MessageDto } from 'shared/api'
 import { copyText } from 'shared/lib/helpers'
 import { useToggle } from 'shared/lib/hooks'
@@ -35,11 +35,11 @@ function MenuActions({ message }: MenuActionsProps) {
   const onCloseMenu = () => setAnchorEl(null)
 
   const onSuccess = () => {
-    enqueueSnackbar({ message: messages.copiedText, severity: 'success', icon: '⌨️' })
+    enqueueSnackbar(messages.copiedText, { severity: 'success', icon: '⌨️' })
   }
 
   const onError = () => {
-    enqueueSnackbar({ message: messages.errorText, severity: 'error', icon: '☠️' })
+    enqueueSnackbar(messages.errorText, { severity: 'error', icon: '☠️' })
   }
 
   const onCopy = () => copyText(message.text).then(onSuccess).catch(onError).finally(onCloseMenu)

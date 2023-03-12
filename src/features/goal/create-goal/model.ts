@@ -23,7 +23,7 @@ export const useCreateGoalForm = (onSuccess: () => void) => {
       const message = formatMessage({ id: 'page.user.modal-goal.message' })
       mutateGoal(getNextState(goals, goal))
       onSuccess()
-      enqueueSnackbar({ message, severity: 'success', icon: '💎' })
+      enqueueSnackbar(message, { severity: 'success', icon: '💎' })
       setTimeout(() => scrollToElem(`goal-${goal.id}`), 500)
     },
   })

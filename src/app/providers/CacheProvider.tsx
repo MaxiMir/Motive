@@ -19,12 +19,12 @@ function CacheProvider({ message, children }: CacheProviderProps) {
         },
         queryCache: new QueryCache({
           onError() {
-            enqueueSnackbar({ message, severity: 'error', icon: '☠️' })
+            enqueueSnackbar(message, { severity: 'error', icon: '☠️' })
           },
         }),
         mutationCache: new MutationCache({
           onError() {
-            enqueueSnackbar({ message, severity: 'error', icon: '☠️' })
+            enqueueSnackbar(message, { severity: 'error', icon: '☠️' })
           },
         }),
       }),

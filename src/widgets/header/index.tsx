@@ -1,6 +1,6 @@
 import { AppBar, Container, Stack } from '@mui/material'
 import dynamic from 'next/dynamic'
-import { useClient } from 'entities/user'
+import { useClient } from 'entities/viewer'
 import { OGType } from 'shared/api'
 import { Sidebar } from './sidebar'
 

@@ -1,27 +1,22 @@
-import { Fade, Snackbar as MuiSnackbar, SnackbarProps as MuiSnackbarProps } from '@mui/material'
+import { Fade, Snackbar as MuiSnackbar } from '@mui/material'
 import Alert, { alertClasses } from '@mui/material/Alert'
 import { red, teal } from '@mui/material/colors'
 import { SnackbarCloseReason } from '@mui/material/Snackbar/Snackbar'
 import { SyntheticEvent } from 'react'
+import { useSnackbarStore } from './model'
 
-export interface SnackbarProps {
-  severity: 'success' | 'info' | 'warning' | 'error'
-  icon?: string
-  action?: MuiSnackbarProps['action']
-  message: string
-  onClose: () => void
-}
+function Snackbar() {
+  const { open, alertProps, closeSnackbar } = useSnackbarStore()
 
-function Snackbar({ severity, icon, message, onClose, ...props }: SnackbarProps) {
   const handleClose = (_event: SyntheticEvent | Event, reason: SnackbarCloseReason) => {
     if (reason === 'clickaway') return
 
-    onClose()
+    closeSnackbar()
   }
 
   return (
     <MuiSnackbar
-      open
+      open={open}
       autoHideDuration={3000}
       anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }}
       sx={{
@@ -48,9 +43,7 @@ function Snackbar({ severity, icon, message, onClose, ...props }: SnackbarProps)
       TransitionComponent={Fade}
       onClose={handleClose}
     >
-      <Alert icon={icon} severity={severity} {...props}>
-        {message}
-      </Alert>
+      <Alert {...alertProps} />
     </MuiSnackbar>
   )
 }

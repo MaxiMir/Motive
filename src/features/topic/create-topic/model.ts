@@ -17,7 +17,7 @@ export const useCreateTopicForm = (
   const { mutateAsync } = useMutation(createTopic, {
     onSuccess() {
       const message = formatMessage({ id: 'common.message-added' })
-      enqueueSnackbar({ message, severity: 'success', icon: '🧞‍♂️️‍' })
+      enqueueSnackbar(message, { severity: 'success', icon: '🧞‍♂️️‍' })
     },
   })
 

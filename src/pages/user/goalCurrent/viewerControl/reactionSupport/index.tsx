@@ -1,7 +1,6 @@
 import dynamic from 'next/dynamic'
 import { CharacteristicReaction } from 'entities/characteristic'
-import { useOpenSignIn } from 'entities/signin'
-import { useClient } from 'entities/user'
+import { useSignIn, useClient } from 'entities/viewer'
 import { useToggle } from 'shared/lib/hooks'
 import { useMessages } from './lib'
 
@@ -15,7 +14,7 @@ interface ReactionSupportProps {
 function ReactionSupport({ dayId, ownerName }: ReactionSupportProps) {
   const messages = useMessages(ownerName)
   const client = useClient()
-  const openSignIn = useOpenSignIn()
+  const { openSignIn } = useSignIn()
   const [open, toggle] = useToggle()
 
   const onClick = () => {

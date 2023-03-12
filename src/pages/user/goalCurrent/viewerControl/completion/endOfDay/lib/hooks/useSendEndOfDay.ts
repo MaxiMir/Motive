@@ -26,7 +26,7 @@ export const useSendEndOfDay = (goalId: number) => {
       const message = formatMessage({ id: 'common.next-day-loading' })
       mutatePage(getNextState(page, member))
       setTimeout(() => clickOnElem(`next-${goalId}`), 1)
-      enqueueSnackbar({ message, severity: 'success', icon: '🧞‍♂️️‍' })
+      enqueueSnackbar(message, { severity: 'success', icon: '🧞‍♂️️‍' })
     },
   })
 }

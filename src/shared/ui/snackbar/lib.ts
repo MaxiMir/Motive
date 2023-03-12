@@ -1,25 +1,13 @@
-import { createContext, useContext } from 'react'
-import { SnackbarState } from './types'
-
-interface SnackbarContextType {
-  state: SnackbarState | null
-  setState: (props: SnackbarState | null) => void
-}
-
-export const SnackbarContext = createContext<SnackbarContextType>({
-  state: null,
-  setState: (_: SnackbarState | null) => undefined,
-})
+import { useSnackbarStore } from './model'
+import { AlertProps } from './types'
 
 export const useSnackbar = () => {
-  const { state, setState } = useContext(SnackbarContext)
+  const { open, openSnackbar, closeSnackbar } = useSnackbarStore()
 
-  function enqueueSnackbar(values: SnackbarState) {
-    state && setState(null)
-    setTimeout(() => setState(values), 300)
+  function enqueueSnackbar(message: string, options: Omit<AlertProps, 'children'>) {
+    open && closeSnackbar()
+    setTimeout(() => openSnackbar({ ...options, children: message }), 300)
   }
 
-  const closeSnackbar = () => setState(null)
-
-  return { enqueueSnackbar, closeSnackbar } as const
+  return { enqueueSnackbar, closeSnackbar }
 }

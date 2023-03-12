@@ -1,8 +1,8 @@
 import produce from 'immer'
 import { useIntl } from 'react-intl'
 import { useMutation, useQueryClient } from 'react-query'
-import { useOpenSignIn } from 'entities/signin'
-import { useUserContext, useClient } from 'entities/user'
+import { useUserContext } from 'entities/user'
+import { useClient, useSignIn } from 'entities/viewer'
 import {
   DayCharacteristicName,
   DayCharacteristicUpdateDto,
@@ -35,7 +35,7 @@ export const useSetReaction = (
 ) => {
   const { formatMessage } = useIntl()
   const client = useClient()
-  const openSignIn = useOpenSignIn()
+  const { openSignIn } = useSignIn()
   const queryClient = useQueryClient()
   const { nickname } = useUserContext()
   const { enqueueSnackbar } = useSnackbar()
@@ -58,7 +58,7 @@ export const useSetReaction = (
         { id: 'page.user.topic.message', defaultMessage: '' },
         { value: nameText },
       )
-      enqueueSnackbar({ message, severity: 'success', icon: '✨' })
+      enqueueSnackbar(message, { severity: 'success', icon: '✨' })
     },
     onError(_, _1, context) {
       if (context?.previous) {

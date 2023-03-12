@@ -1,3 +1,6 @@
-import { SnackbarProps } from './ui'
-
-export type SnackbarState = Omit<SnackbarProps, 'onClose'>
+export interface AlertProps {
+  severity: 'success' | 'info' | 'warning' | 'error'
+  icon?: string
+  action?: JSX.Element
+  children: string
+}

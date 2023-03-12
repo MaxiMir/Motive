@@ -2,7 +2,7 @@ import { IconButton } from '@mui/material'
 import { useIntl } from 'react-intl'
 import dynamic from 'next/dynamic'
 import { useNotifications, NotificationBadge } from 'entities/notification'
-import { useClient } from 'entities/user'
+import { useClient } from 'entities/viewer'
 import { useToggle } from 'shared/lib/hooks'
 import TooltipArrow from 'shared/ui/TooltipArrow'
 

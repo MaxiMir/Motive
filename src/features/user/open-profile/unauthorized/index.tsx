@@ -1,9 +1,9 @@
 import { IconButton } from '@mui/material'
-import { useOpenSignIn } from 'entities/signin'
+import { useSignIn } from 'entities/viewer'
 import { Profile } from 'shared/ui/icons'
 
 function Unauthorized() {
-  const openSignIn = useOpenSignIn()
+  const { openSignIn } = useSignIn()
 
   const onClick = () => openSignIn({ callbackUrl: '/' })
 

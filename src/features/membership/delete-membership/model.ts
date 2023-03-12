@@ -1,7 +1,8 @@
 import produce, { Draft } from 'immer'
 import { useIntl } from 'react-intl'
 import { useMutation, useQueryClient } from 'react-query'
-import { useUserContext, useClient } from 'entities/user'
+import { useUserContext } from 'entities/user'
+import { useClient } from 'entities/viewer'
 import { UserPageDto, deleteMember } from 'shared/api'
 import { useSnackbar } from 'shared/ui/snackbar'
 
@@ -35,7 +36,7 @@ export const useRemoveMember = (goalId: number, clientPage: boolean) => {
         ['page', nickname],
         (page) => page && getNextState(page, goalId, id, clientPage),
       )
-      enqueueSnackbar({ message, severity: 'success', icon: '🧞‍♂️️‍' })
+      enqueueSnackbar(message, { severity: 'success', icon: '🧞‍♂️️‍' })
     },
   })
 }

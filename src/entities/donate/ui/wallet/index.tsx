@@ -17,11 +17,11 @@ export function Wallet({ name, wallet, src }: WalletProps) {
   const { enqueueSnackbar } = useSnackbar()
 
   const onSuccess = () => {
-    enqueueSnackbar({ message: messages.copiedText, severity: 'success', icon: '⌨️' })
+    enqueueSnackbar(messages.copiedText, { severity: 'success', icon: '⌨️' })
   }
 
   const onError = () => {
-    enqueueSnackbar({ message: messages.errorText, severity: 'error', icon: '☠️' })
+    enqueueSnackbar(messages.errorText, { severity: 'error', icon: '☠️' })
   }
 
   const onClick = () => copyText(wallet).then(onSuccess).catch(onError)

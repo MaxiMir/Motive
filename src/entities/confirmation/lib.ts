@@ -16,7 +16,7 @@ export const usePhotoLimit = <T>(formik: FormikProps<T & { photos: File[] }>) =>
         { id: 'hook.use-select-photo', defaultMessage: '' },
         { value: PHOTO_LIMIT },
       )
-      enqueueSnackbar({ message, severity: 'error', icon: '☠️' })
+      enqueueSnackbar(message, { severity: 'error', icon: '☠️' })
     }
 
     formik.setFieldValue('photos', photos.slice(0, PHOTO_LIMIT))

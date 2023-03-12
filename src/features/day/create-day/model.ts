@@ -26,7 +26,7 @@ export const useCreateDay = (goalId: number, onSuccess: () => void) => {
       const message = formatMessage({ id: 'common.next-day-loading' })
       mutateGoals(getNextState(goals, goalId, day))
       changeDayUrl(goals, goalId, day.id)
-      enqueueSnackbar({ message, severity: 'success', icon: '🧞‍♂️️‍' })
+      enqueueSnackbar(message, { severity: 'success', icon: '🧞‍♂️️‍' })
       onSuccess()
     },
   })

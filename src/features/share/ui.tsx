@@ -54,16 +54,8 @@ function Share({ href, title, onClose }: ShareProps) {
         ItemIcon: ContentCopy,
         onClick: () =>
           copyText(url)
-            .then(() =>
-              enqueueSnackbar({
-                message: messages.copiedText,
-                severity: 'success',
-                icon: '⌨️',
-              }),
-            )
-            .catch(() =>
-              enqueueSnackbar({ message: messages.error, severity: 'error', icon: '☠️' }),
-            ),
+            .then(() => enqueueSnackbar(messages.copiedText, { severity: 'success', icon: '⌨️' }))
+            .catch(() => enqueueSnackbar(messages.error, { severity: 'error', icon: '☠️' })),
       },
     ]
   }

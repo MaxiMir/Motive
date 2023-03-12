@@ -27,7 +27,7 @@ export const useCreateConfirmationForm = (goalId: number, onSuccess: () => void)
       onSuccess()
       setTimeout(() => scrollToElem('main'), 1)
       setTimeout(refetch, 300)
-      enqueueSnackbar({ message, severity: 'success', icon: '👾' })
+      enqueueSnackbar(message, { severity: 'success', icon: '👾' })
     },
   })
 

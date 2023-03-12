@@ -14,7 +14,7 @@ interface SignInModalProps {
   onClose: () => void
 }
 
-export function SignInModal({ options, onClose }: SignInModalProps) {
+function SignInModal({ options, onClose }: SignInModalProps) {
   const providers = useProviders()
   const { formatMessage } = useIntl()
   const title = formatMessage({ id: 'common.sign-in' })
@@ -42,3 +42,5 @@ export function SignInModal({ options, onClose }: SignInModalProps) {
     </Modal>
   )
 }
+
+export default SignInModal

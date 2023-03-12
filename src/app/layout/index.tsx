@@ -6,9 +6,9 @@ import dynamic from 'next/dynamic'
 import Head from 'next/head'
 import { useRouter } from 'next/router'
 import { useDetectOnline } from 'features/page/offline'
+import { useDeviceContext } from 'entities/device'
 import { getLocaleHrefList } from 'entities/locale'
 import { OGType } from 'shared/api'
-import { useDeviceContext } from 'shared/ui/device'
 
 const Header = dynamic(() => import('widgets/header'))
 const Footer = dynamic(() => import('widgets/footer'))

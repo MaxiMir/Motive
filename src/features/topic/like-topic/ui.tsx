@@ -1,5 +1,5 @@
 import { Button } from '@mui/material'
-import { useClient } from 'entities/user'
+import { useClient } from 'entities/viewer'
 import { MessageDto, TopicType } from 'shared/api'
 import { useFormatNumber } from 'shared/lib/hooks'
 import TooltipArrow from 'shared/ui/TooltipArrow'

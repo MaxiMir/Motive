@@ -3,7 +3,8 @@ import { useRef } from 'react'
 import { useIntl } from 'react-intl'
 import { useMutation } from 'react-query'
 import dynamic from 'next/dynamic'
-import { useUserPageCache, useClient } from 'entities/user'
+import { useUserPageCache } from 'entities/user'
+import { useClient } from 'entities/viewer'
 import { UserPageDto, updateCompleted } from 'shared/api'
 import { useSnackbar } from 'shared/ui/snackbar'
 
@@ -56,8 +57,7 @@ export const useSetCompleted = (goalId: number, id: number, rest: number) => {
       : `${messagePart}: ${newRest}`
     mutateCompleted(true)
     timerRef.current = setTimeout(() => mutate(id), 4000)
-    enqueueSnackbar({
-      message,
+    enqueueSnackbar(message, {
       severity: 'success',
       icon: !newRest ? '🦾️' : '⚡️',
       action: (

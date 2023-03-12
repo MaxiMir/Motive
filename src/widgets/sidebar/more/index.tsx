@@ -3,9 +3,10 @@ import { paperClasses } from '@mui/material/Paper'
 import { signOut } from 'next-auth/react'
 import { MouseEvent, useId, useState } from 'react'
 import dynamic from 'next/dynamic'
-import { useClient } from 'entities/user'
-import { useToggle, usePaletteMode } from 'shared/lib/hooks'
+import { useClient } from 'entities/viewer'
+import { useToggle } from 'shared/lib/hooks'
 import Icon from 'shared/ui/Icon'
+import { usePaletteMode } from 'shared/ui/palette'
 import { useMessages } from './lib'
 
 const ChangeLanguage = dynamic(() => import('features/locale/change-language'))

@@ -21,7 +21,7 @@ export function Wallet({ name, wallet, src }: WalletProps) {
   }
 
   const onError = () => {
-    enqueueSnackbar({ message: messages.errorText, severity: 'error', icon: '👺' })
+    enqueueSnackbar({ message: messages.errorText, severity: 'error', icon: '☠️' })
   }
 
   const onClick = () => copyText(wallet).then(onSuccess).catch(onError)

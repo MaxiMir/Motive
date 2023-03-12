@@ -25,6 +25,7 @@ export interface UserBaseDto {
 
 interface ExternalLink {
   readonly href: string
+  readonly host: string
   readonly title?: string
 }
 

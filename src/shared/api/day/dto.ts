@@ -20,7 +20,7 @@ export interface CreateDayDto {
 
 export const DAY_CHARACTERISTIC = ['motivation', 'creativity'] as const
 
-export type DayCharacteristicName = typeof DAY_CHARACTERISTIC[number]
+export type DayCharacteristicName = (typeof DAY_CHARACTERISTIC)[number]
 
 export interface DayCharacteristicUpdateDto {
   readonly id: number

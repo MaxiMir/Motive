@@ -1,4 +1,4 @@
-export interface Meta {
+export interface Data {
   readonly title: string
   readonly description: string
   readonly header: string
@@ -7,8 +7,12 @@ export interface Meta {
   readonly date: string
 }
 
-export interface Article {
-  readonly meta: Meta
+export interface ArticleBase {
+  readonly data: Data
   readonly href: string
+}
+
+export interface Article extends ArticleBase {
   readonly content: string
+  readonly more: ArticleBase[]
 }

@@ -20,19 +20,18 @@ function Articles({ articles }: ArticlesProps) {
     </Layout>
   )
 }
+
 export const getStaticProps: GetStaticProps = async ({ locale }) => {
   const folders = fs.readdirSync(path.join('articles'))
-  const data = folders.map((id) => {
+  const articlesInfo = folders.map((id) => {
     const href = getArticleHref(id)
-    const markdownWithMeta = fs.readFileSync(path.join(`articles/${id}/${locale}.md`), 'utf-8')
-    const { data: meta, content } = matter(markdownWithMeta)
+    const input = fs.readFileSync(path.join(`articles/${id}/${locale}.md`), 'utf-8')
+    const { data } = matter(input)
 
-    return { meta, href, content }
+    return { data, href }
   })
-  const parsed: Article[] = JSON.parse(JSON.stringify(data))
-  const articles = parsed.sort(
-    (a, b) => Number(new Date(b.meta.date)) - Number(new Date(a.meta.date)),
-  )
+  const parsed: Article[] = JSON.parse(JSON.stringify(articlesInfo))
+  const articles = parsed.sort((a, b) => +new Date(b.data.date) - +new Date(a.data.date))
 
   return {
     props: {

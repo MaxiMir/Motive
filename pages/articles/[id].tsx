@@ -11,15 +11,15 @@ import { Article as ArticleProps } from 'entities/article'
 import { getArticleHref } from 'entities/page'
 import { OGType } from 'shared/api'
 
-function Article({ meta, href, content }: ArticleProps) {
+function Article({ data, href, content, more }: ArticleProps) {
   return (
     <Layout
-      title={meta.title}
-      description={meta.description}
-      image={meta.image}
+      title={data.title}
+      description={data.description}
+      image={data.image}
       type={OGType.Article}
     >
-      <ArticlePage meta={meta} href={href} content={content} />
+      <ArticlePage data={data} href={href} content={content} more={more} />
     </Layout>
   )
 }
@@ -41,14 +41,22 @@ export const getStaticPaths: GetStaticPaths = async ({ locales = [] }) => {
 export const getStaticProps: GetStaticProps = async ({ locale, params }) => {
   const href = getArticleHref(params?.id as string)
   const markdownPath = path.join(`articles/${params?.id}/${locale}.md`)
-  const markdownWithMeta = fs.readFileSync(markdownPath, 'utf-8')
-  const { data, content } = matter(markdownWithMeta)
+  const input = fs.readFileSync(markdownPath, 'utf-8')
+  const { data: articleData, content } = matter(input)
+  const more = articleData.more.map((id: string) => {
+    const articleHref = getArticleHref(params?.id as string)
+    const articleInput = fs.readFileSync(path.join(`articles/${id}/${locale}.md`), 'utf-8')
+    const { data } = matter(articleInput)
+
+    return { data, href: articleHref }
+  })
 
   return {
     props: {
-      meta: JSON.parse(JSON.stringify(data)),
-      href,
+      data: JSON.parse(JSON.stringify(articleData)),
       content,
+      href,
+      more: JSON.parse(JSON.stringify(more)),
     },
   }
 }

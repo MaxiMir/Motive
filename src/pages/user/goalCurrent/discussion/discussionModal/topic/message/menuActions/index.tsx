@@ -39,7 +39,7 @@ function MenuActions({ message }: MenuActionsProps) {
   }
 
   const onError = () => {
-    enqueueSnackbar({ message: messages.errorText, severity: 'error', icon: '👺' })
+    enqueueSnackbar({ message: messages.errorText, severity: 'error', icon: '☠️' })
   }
 
   const onCopy = () => copyText(message.text).then(onSuccess).catch(onError).finally(onCloseMenu)

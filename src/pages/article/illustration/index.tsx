@@ -1,12 +1,12 @@
 import { Box, Typography } from '@mui/material'
 import { styled } from '@mui/system'
-import { Meta } from 'entities/article'
 
 interface IllustrationProps {
-  meta: Meta
+  image: string
+  motto: string
 }
 
-export function Illustration({ meta }: IllustrationProps) {
+export function Illustration({ image, motto }: IllustrationProps) {
   return (
     <Box position="relative" mb={3}>
       <Typography
@@ -40,9 +40,9 @@ export function Illustration({ meta }: IllustrationProps) {
           },
         })}
       >
-        &#171;{meta.motto}&#187;
+        &#171;{motto}&#187;
       </Typography>
-      <ImgNative src={meta.image} alt="" />
+      <ImgNative src={image} alt="" />
     </Box>
   )
 }

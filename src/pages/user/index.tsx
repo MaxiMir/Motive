@@ -117,7 +117,7 @@ export function UserPage({ user }: UserViewProps) {
                 {name}
               </Typography>
               {motto && <Typography sx={{ fontSize: 14 }}>{motto}</Typography>}
-              {links?.map(({ href, title }) => (
+              {links?.map(({ href, host, title }) => (
                 <Link
                   href={href}
                   title={title}
@@ -126,7 +126,7 @@ export function UserPage({ user }: UserViewProps) {
                   key={href}
                   sx={{ fontSize: 14 }}
                 >
-                  {href}
+                  {host}
                 </Link>
               ))}
               <LearnMore user={user} />

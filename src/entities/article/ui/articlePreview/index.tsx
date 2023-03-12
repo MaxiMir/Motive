@@ -1,20 +1,24 @@
 import { Card, CardActionArea, CardContent, CardMedia, Typography } from '@mui/material'
 import Link from 'next/link'
-import { Article } from 'entities/article/types'
+import { ArticleBase } from 'entities/article/types'
 
-type ArticlePreviewProps = Omit<Article, 'content'>
+interface ArticlePreviewProps {
+  article: ArticleBase
+}
 
-export function ArticlePreview({ meta, href }: ArticlePreviewProps) {
+export function ArticlePreview({ article }: ArticlePreviewProps) {
+  const { data, href } = article
+
   return (
     <Card href={href} component={Link}>
       <CardActionArea>
-        <CardMedia component="img" height="250" image={meta.image} alt="" />
+        <CardMedia component="img" height="250" image={data.image} alt="" />
         <CardContent>
           <Typography gutterBottom variant="h5" component="div">
-            {meta.title}
+            {data.title}
           </Typography>
           <Typography variant="body2" color="text.secondary">
-            {meta.description}
+            {data.description}
           </Typography>
         </CardContent>
       </CardActionArea>

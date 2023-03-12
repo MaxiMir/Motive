@@ -17,9 +17,9 @@ export function ArticlesPage({ articles }: ArticlesPageProps) {
         {header}
       </Typography>
       <Grid container spacing={2}>
-        {articles.map(({ meta, href }) => (
-          <Grid item xs={12} md={6} key={href}>
-            <ArticlePreview meta={meta} href={href} />
+        {articles.map((article) => (
+          <Grid item xs={12} md={6} key={article.href}>
+            <ArticlePreview article={article} />
           </Grid>
         ))}
       </Grid>

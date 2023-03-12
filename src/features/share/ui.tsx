@@ -62,7 +62,7 @@ function Share({ href, title, onClose }: ShareProps) {
               }),
             )
             .catch(() =>
-              enqueueSnackbar({ message: messages.error, severity: 'error', icon: '👺' }),
+              enqueueSnackbar({ message: messages.error, severity: 'error', icon: '☠️' }),
             ),
       },
     ]

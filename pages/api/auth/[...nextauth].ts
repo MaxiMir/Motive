@@ -43,8 +43,7 @@ export default NextAuth({
         return token
       }
 
-      const fetchParams = { where: { email: token.email }, page: 0, take: 1 }
-      const [candidate] = await getUsers(fetchParams)
+      const [candidate] = await getUsers({ where: { email: token.email }, page: 0, take: 1 })
       const { id, name, nickname, avatar } =
         candidate ||
         (await createUser({

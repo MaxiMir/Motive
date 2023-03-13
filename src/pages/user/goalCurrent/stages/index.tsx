@@ -1,5 +1,6 @@
 import { Step, StepContent, Stepper } from '@mui/material'
-import { teal } from '@mui/material/colors'
+import { indigo } from '@mui/material/colors'
+import { stepConnectorClasses } from '@mui/material/StepConnector'
 import dynamic from 'next/dynamic'
 import { useToggle } from 'shared/lib/hooks'
 import Icon from 'shared/ui/Icon'
@@ -29,9 +30,9 @@ function Stages({ goalId, stages, dayStage, forTomorrow, completeStage }: Stages
         orientation="vertical"
         sx={{
           padding: 0,
-          '& .Mui-completed': {
-            '& .MuiStepConnector-line': {
-              borderColor: 'zen.wave',
+          [`& .${stepConnectorClasses.active}`]: {
+            [`& .${stepConnectorClasses.line}`]: {
+              borderColor: indigo[400],
             },
           },
         }}
@@ -52,10 +53,10 @@ function Stages({ goalId, stages, dayStage, forTomorrow, completeStage }: Stages
                     aria-expanded={open ? 'true' : undefined}
                     startIcon={<Icon name="done_outline" />}
                     sx={{
-                      color: teal[600],
-                      borderColor: teal[600],
+                      color: indigo[200],
+                      borderColor: indigo[200],
                       ':hover': {
-                        borderColor: teal[400],
+                        borderColor: indigo[100],
                       },
                     }}
                     onClick={toggle}

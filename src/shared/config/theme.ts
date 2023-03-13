@@ -13,7 +13,6 @@ declare module '@mui/material/styles' {
   interface ZenColor {
     silent: CSSProperties['color']
     sand: CSSProperties['color']
-    wave: CSSProperties['color']
     tender: CSSProperties['color']
   }
 
@@ -64,7 +63,6 @@ export const getDesignTokens = (mode: PaletteMode): ThemeOptions => {
         silent: '#8e8e8e',
         sand: '#ad998b',
         tender: '#C8B1BB',
-        wave: '#80cbc4',
       },
       motivation: {
         light: '#FFE0B2',

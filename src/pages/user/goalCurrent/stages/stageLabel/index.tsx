@@ -1,4 +1,5 @@
 import { StepLabel, Typography } from '@mui/material'
+import { indigo } from '@mui/material/colors'
 import Icon from 'shared/ui/Icon'
 
 interface StageLabelProps {
@@ -9,7 +10,7 @@ interface StageLabelProps {
 
 export function StageLabel({ index, activeStep, stage }: StageLabelProps) {
   const icon = activeStep > index ? 'task_alt' : 'radio_button_unchecked'
-  const color = activeStep >= index ? 'zen.wave' : 'zen.silent'
+  const color = activeStep >= index ? indigo[400] : 'zen.silent'
 
   const stepIconComponent = () => <Icon name={icon} />
 

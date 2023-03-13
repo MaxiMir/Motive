@@ -2,12 +2,12 @@ import { ReactNode, useState } from 'react'
 import { QueryClientProvider, MutationCache, QueryCache, QueryClient } from 'react-query'
 import { useSnackbar } from 'shared/ui/snackbar'
 
-interface CacheProviderProps {
+interface QueryProviderProps {
   message: string
   children: ReactNode
 }
 
-function CacheProvider({ message, children }: CacheProviderProps) {
+function QueryProvider({ message, children }: QueryProviderProps) {
   const { enqueueSnackbar } = useSnackbar()
   const [queryClient] = useState(
     () =>
@@ -33,4 +33,4 @@ function CacheProvider({ message, children }: CacheProviderProps) {
   return <QueryClientProvider client={queryClient}>{children}</QueryClientProvider>
 }
 
-export default CacheProvider
+export default QueryProvider

@@ -10,7 +10,7 @@ import { Hydrate } from 'react-query'
 import dynamic from 'next/dynamic'
 import { useRouter } from 'next/router'
 import Script from 'next/script'
-import CacheProvider from 'app/providers/CacheProvider'
+import QueryProvider from 'app/providers/QueryProvider'
 import ThemeProvider from 'app/providers/ThemeProvider'
 import { Socket } from 'app/socket'
 import { AppProps } from 'next/app'
@@ -43,7 +43,7 @@ function App({
   return (
     <IntlProvider locale={locale} messages={messages}>
       <SessionProvider session={session} refetchOnWindowFocus>
-        <CacheProvider message={messages['common.error']}>
+        <QueryProvider message={messages['common.error']}>
           <Hydrate state={dehydratedState}>
             <DeviceContext.Provider value={device?.type}>
               <LocalizationProvider dateAdapter={AdapterDateFns} adapterLocale={adapterLocale}>
@@ -70,7 +70,7 @@ function App({
               </LocalizationProvider>
             </DeviceContext.Provider>
           </Hydrate>
-        </CacheProvider>
+        </QueryProvider>
       </SessionProvider>
     </IntlProvider>
   )

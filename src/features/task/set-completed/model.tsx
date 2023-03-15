@@ -49,17 +49,17 @@ export const useSetCompleted = (goalId: number, id: number, rest: number) => {
   }
 
   return () => {
-    const newRest = rest - 1
+    const nextRest = rest - 1
     const undoText = formatMessage({ id: 'common.undo' })
-    const messagePart = formatMessage({ id: !newRest ? 'common.well-done' : 'common.do-it' })
-    const message = !newRest
+    const messagePart = formatMessage({ id: !nextRest ? 'common.well-done' : 'common.do-it' })
+    const message = !nextRest
       ? `${messagePart}, ${client?.name.split(' ')[0] || 'Master'}!`
-      : `${messagePart}: ${newRest}`
+      : `${messagePart}: ${nextRest}`
     mutateCompleted(true)
     timerRef.current = setTimeout(() => mutate(id), 4000)
     enqueueSnackbar(message, {
       severity: 'success',
-      icon: !newRest ? '🦾️' : '⚡️',
+      icon: !nextRest ? '🦾️' : '⚡️',
       action: (
         <Button variant="text" sx={{ color: 'error.dark' }} onClick={onUndo}>
           {undoText}

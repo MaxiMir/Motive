@@ -44,7 +44,7 @@ export const getStaticProps: GetStaticProps = async ({ locale, params }) => {
   const input = fs.readFileSync(markdownPath, 'utf-8')
   const { data: articleData, content } = matter(input)
   const more = articleData.more.map((id: string) => {
-    const articleHref = getArticleHref(params?.id as string)
+    const articleHref = getArticleHref(id)
     const articleInput = fs.readFileSync(path.join(`articles/${id}/${locale}.md`), 'utf-8')
     const { data } = matter(articleInput)
 

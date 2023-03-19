@@ -63,7 +63,7 @@ export function MenuActions({ user, index }: MenuActionsProps) {
         onClose={onCloseMenu}
       >
         <MenuItem onClick={onShare}>
-          <ListItem icon="share" primary={messages.shareText} />
+          <ListItem icon="ios_share" primary={messages.shareText} />
         </MenuItem>
         <MenuItem disabled={isLoading} onClick={onRemove}>
           <ListItem icon="delete" primary={messages.removeText} color="error.dark" />

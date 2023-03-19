@@ -70,7 +70,7 @@ function MenuActions({ clientPage }: MenuActionsProps) {
         onClose={onCloseMenu}
       >
         <MenuItem onClick={onShare}>
-          <ListItem icon="share" primary={messages.shareText} />
+          <ListItem icon="ios_share" primary={messages.shareText} />
         </MenuItem>
         {!clientPage && (
           <MenuItem onClick={toggleReporting}>

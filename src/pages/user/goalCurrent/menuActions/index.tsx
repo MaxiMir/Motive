@@ -84,7 +84,7 @@ export function MenuActions({
         onClose={onCloseMenu}
       >
         <MenuItem onClick={onShare}>
-          <ListItem icon="share" primary={messages.shareText} />
+          <ListItem icon="ios_share" primary={messages.shareText} />
         </MenuItem>
         {!clientGoal && (
           <MenuItem onClick={toggleReporting}>

@@ -326,5 +326,6 @@
   "common.enter-to-send": "按回车键发送",
   "common.question": "提出问题",
   "common.message-type": "信息类型",
-  "common.about-support": "关于支持"
+  "common.about-support": "关于支持",
+  "common.read-time": "分钟阅读"
 }

@@ -325,5 +325,6 @@
   "common.enter-to-send": "Натисніть ENTER, щоб відправити",
   "common.question": "Поставити запитання",
   "common.message-type": "Тип повідомлення",
-  "common.about-support": "Про підтримку"
+  "common.about-support": "Про підтримку",
+  "common.read-time": "хв читання"
 }

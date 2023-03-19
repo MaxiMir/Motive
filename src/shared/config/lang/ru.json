@@ -326,5 +326,6 @@
   "common.enter-to-send": "Нажмите ENTER, чтобы отправить",
   "common.question": "Задать вопрос",
   "common.message-type": "Тип сообщения",
-  "common.about-support": "О поддержке"
+  "common.about-support": "О поддержке",
+  "common.read-time": "мин. чтения"
 }

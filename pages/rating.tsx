@@ -9,8 +9,8 @@ import { getRatingPage } from 'shared/api'
 import { Route } from 'shared/config'
 
 function RatingRoute() {
-  const meta = useMeta('rating')
   const { data } = useRatingPage()
+  const meta = useMeta('rating')
 
   return (
     <Layout title={meta.title} description={meta.description}>

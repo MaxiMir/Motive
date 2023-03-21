@@ -5,7 +5,7 @@ header: Meditation - the path to harmony and balance
 image: /images/articles/meditation-the-way-to-harmony.webp
 motto: Open the door to your world and there you will find the secrets of meditation-the key to harmony and balance that will transform your life
 date: 2023-03-11T12:55:03Z
-more: ['how-to-accomplish-your-goals']
+more: ['how-to-accomplish-your-goals', 'five-steps-to-successful-goal-achievement']
 ---
 _Meditation_ is a practice that allows us to calm the mind and find inner harmony. It can help us cope with stress, anxiety, sleep quality, concentration and awareness.
 

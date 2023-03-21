@@ -2,15 +2,15 @@ import { GetServerSideProps } from 'next'
 import { getSession } from 'next-auth/react'
 import DeviceDetector from 'node-device-detector'
 import { Layout } from 'app/layout'
-import { FeedPage } from 'pages/feed'
+import { PrivacyPolicyPage } from 'pages/privacy-policy'
 import { useMeta } from 'entities/page'
 
-function FeedRoute() {
-  const meta = useMeta('feed')
+function PrivacyPolicy() {
+  const meta = useMeta('privacy-policy')
 
   return (
     <Layout title={meta.title} description={meta.description}>
-      <FeedPage />
+      <PrivacyPolicyPage />
     </Layout>
   )
 }
@@ -29,4 +29,4 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
   }
 }
 
-export default FeedRoute
+export default PrivacyPolicy

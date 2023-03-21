@@ -1,6 +1,7 @@
 import {
   Box,
   Breadcrumbs,
+  Chip,
   Grid,
   IconButton,
   Link as MuiLink,
@@ -39,9 +40,7 @@ export function ArticlePage({ data, href, content, more }: Article) {
           <MuiLink underline="hover" color="inherit" href={Route.Articles} component={Link}>
             {messages.articlesText}
           </MuiLink>
-          <Typography component="time" dateTime={data.date} sx={{ color: 'zen.silent' }}>
-            {date}
-          </Typography>
+          <Chip size="small" component="time" dateTime={data.date} label={date} />
         </Breadcrumbs>
         <TooltipArrow title={messages.shareText}>
           <IconButton
@@ -68,7 +67,7 @@ export function ArticlePage({ data, href, content, more }: Article) {
       {sharing && <Share href={href} title={data.title} onClose={toggleSharing} />}
       <Grid container spacing={2} mt={4}>
         {more.map((article) => (
-          <Grid item xs={12} md={4} key={article.href}>
+          <Grid item xs={12} key={article.href}>
             <ArticlePreview article={article} />
           </Grid>
         ))}

@@ -9,6 +9,7 @@ type Page =
   | 'rating'
   | 'following'
   | 'articles'
+  | 'privacy-policy'
   | '404'
   | '500'
 

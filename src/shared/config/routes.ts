@@ -6,4 +6,5 @@ export const enum Route {
   Donate = '/donate',
   Contact = '/contact',
   Articles = '/articles',
+  PrivacyPolicy = '/privacy-policy',
 }

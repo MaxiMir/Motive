@@ -22,6 +22,12 @@ export function Illustration({ image, motto }: IllustrationProps) {
           top: {
             md: 32,
           },
+          left: {
+            md: 0,
+          },
+          right: {
+            md: 0,
+          },
           margin: {
             xs: '0 0 16px',
             md: '0 24px',

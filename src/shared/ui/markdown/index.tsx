@@ -1,10 +1,9 @@
-import { Box, Link, Typography } from '@mui/material'
+import { Box, Link, Typography, LinkProps, TypographyProps } from '@mui/material'
 import MarkdownToJSX from 'markdown-to-jsx'
 import { useMemo } from 'react'
 import dynamic from 'next/dynamic'
 import { useToggle } from 'shared/lib/hooks'
 import { useDetectTruncated, getBreakCount, toMarkdown } from './lib'
-import { MarkdownLinkProps, MarkdownTypographyProps } from './types'
 
 const ShowMore = dynamic(() => import('./ui').then((m) => m.ShowMore))
 
@@ -19,11 +18,11 @@ function Markdown({ text }: MarkdownProps) {
   const { ref, truncated } = useDetectTruncated()
   const renderButton = truncated || breakCount > 1
 
-  const renderLink = (props: MarkdownLinkProps) => (
+  const renderLink = (props: LinkProps) => (
     <Link {...props} target="_blank" rel="nofollow noopener noreferrer" />
   )
 
-  const renderParagraph = (props: MarkdownTypographyProps) => (
+  const renderParagraph = (props: TypographyProps) => (
     <Typography {...props} sx={({ spacing }) => ({ margin: spacing(0, 0, 1) })} />
   )
 

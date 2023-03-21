@@ -12,6 +12,7 @@ import { useMessages } from './lib'
 export function ContactPage() {
   const messages = useMessages()
   const content = compiler(messages.content, { wrapper: null, overrides: { p: Typography } })
+  const email = `mailto:${process.env.NEXT_PUBLIC_APP_EMAIL}`
 
   return (
     <Container>
@@ -38,7 +39,7 @@ export function ContactPage() {
             <ButtonLink
               variant="outlined"
               color="inherit"
-              href="mailto:mmirrev@gmail.com"
+              href={email}
               target="_blank"
               rel="noopener"
               sx={{

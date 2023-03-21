@@ -36,7 +36,7 @@ function Sidebar({ breakpoints, children }: SidebarProps) {
   const { asPath } = useRouter()
   const client = useClient()
   const { formatMessage } = useIntl()
-  const [expanded, toggleExpanded] = useToggle(true)
+  const [expanded, toggleExpanded] = useToggle(false)
   const routes = useRoutes()
   const ariaLabel = formatMessage({ id: expanded ? 'common.close' : 'common.open-menu' })
   const menuIcon = expanded ? 'arrow_left' : 'arrow_right'

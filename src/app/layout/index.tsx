@@ -1,5 +1,5 @@
 import { Stack } from '@mui/material'
-import { Fragment, ReactNode } from 'react'
+import { ReactNode } from 'react'
 import { useIntl } from 'react-intl'
 import { useIsFetching } from 'react-query'
 import dynamic from 'next/dynamic'
@@ -10,9 +10,10 @@ import { useDeviceContext } from 'entities/device'
 import { getLocaleHrefList } from 'entities/locale'
 import { OGType } from 'shared/api'
 
-const Header = dynamic(() => import('widgets/header'))
-const Footer = dynamic(() => import('widgets/footer'))
+const HeaderMobile = dynamic(() => import('widgets/headerMobile'))
+const FooterMobile = dynamic(() => import('widgets/footerMobile'))
 const Sidebar = dynamic(() => import('widgets/sidebar'))
+const Footer = dynamic(() => import('widgets/footer'))
 const Offline = dynamic(() => import('features/page/offline'))
 const Updating = dynamic(() => import('./updating'))
 
@@ -45,9 +46,7 @@ export function Layout({
   const url = localeHrefList[locale]
   const possibleDesktop = device === 'desktop'
   const renderDesktop = !device || possibleDesktop
-  const renderCompact = !device || !possibleDesktop
-  const MainWrap = renderDesktop ? Sidebar : Fragment
-  const mainWrapProps = renderDesktop ? { breakpoints: !device } : null
+  const renderMobile = !device || !possibleDesktop
   const fullTitle = `${title} - ${process.env.NEXT_PUBLIC_APP_NAME}`
 
   return (
@@ -84,23 +83,19 @@ export function Layout({
         <link rel="alternate" href={localeHrefList.uk} hrefLang="uk" />
         <link rel="alternate" href={localeHrefList.en} hrefLang="x-default" />
       </Head>
-      {renderCompact && <Header type={type} />}
-      <MainWrap {...mainWrapProps}>
-        <Stack
-          component="main"
-          id="main"
-          flex={1}
-          minHeight={{
-            xs: 'calc(100dvh - 109px)',
-            xl: '100dvh',
-          }}
-          sx={(theme) => ({ background: theme.palette.mode === 'dark' ? '#121212' : undefined })}
-        >
-          {renderUpdating && <Updating />}
-          {online ? children : <Offline />}
-        </Stack>
-      </MainWrap>
-      {renderCompact && <Footer />}
+      {renderMobile && <HeaderMobile type={type} />}
+      {renderDesktop && <Sidebar breakpoints={!device} />}
+      <Stack
+        component="main"
+        id="main"
+        flex={1}
+        sx={(theme) => ({ background: theme.palette.mode === 'dark' ? '#121212' : undefined })}
+      >
+        {renderUpdating && <Updating />}
+        {online ? children : <Offline />}
+      </Stack>
+      {renderMobile && <FooterMobile />}
+      {renderDesktop && <Footer breakpoints={!device} />}
     </>
   )
 }

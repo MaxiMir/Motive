@@ -228,6 +228,7 @@ export const getDesignTokens = (mode: PaletteMode): ThemeOptions => {
             padding: 0,
           },
           '#__next': {
+            minHeight: '100dvh',
             display: 'flex',
             flexDirection: 'column',
           },

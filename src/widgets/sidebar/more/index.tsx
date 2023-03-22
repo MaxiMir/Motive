@@ -1,15 +1,10 @@
 import { List, ListItem, ListItemIcon, ListItemText, Menu } from '@mui/material'
-import { paperClasses } from '@mui/material/Paper'
 import { signOut } from 'next-auth/react'
 import { MouseEvent, useId, useState } from 'react'
-import dynamic from 'next/dynamic'
 import { useClient } from 'entities/viewer'
-import { useToggle } from 'shared/lib/hooks'
 import Icon from 'shared/ui/Icon'
 import { usePaletteMode } from 'shared/ui/palette'
 import { useMessages } from './lib'
-
-const ChangeLanguage = dynamic(() => import('features/locale/change-language'))
 
 export function More() {
   const id = useId()
@@ -18,7 +13,6 @@ export function More() {
   const client = useClient()
   const { mode, setMode } = usePaletteMode()
   const [anchorEl, setAnchorEl] = useState<HTMLElement | null>(null)
-  const [showLanguage, toggleShowLanguage] = useToggle()
   const open = Boolean(anchorEl)
   const modeIcon = `${mode}_mode`
 
@@ -29,11 +23,6 @@ export function More() {
   const onClickMode = () => setMode(mode === 'dark' ? 'light' : 'dark')
 
   const onClose = () => setAnchorEl(null)
-
-  const onCloseLanguage = () => {
-    onClose()
-    toggleShowLanguage()
-  }
 
   return (
     <>
@@ -63,19 +52,8 @@ export function More() {
         MenuListProps={{
           'aria-labelledby': id,
         }}
-        sx={{
-          [`& .${paperClasses.root}`]: {
-            width: 210,
-          },
-        }}
         onClose={onClose}
       >
-        <ListItem button onClick={toggleShowLanguage}>
-          <ListItemIcon>
-            <Icon name="translate" />
-          </ListItemIcon>
-          <ListItemText primary={messages.languageText} />
-        </ListItem>
         <ListItem button disabled onClick={onClickMode}>
           <ListItemIcon>
             <Icon name={modeIcon} />
@@ -97,7 +75,6 @@ export function More() {
           <ListItemText primary={messages.cancelText} />
         </ListItem>
       </Menu>
-      {showLanguage && <ChangeLanguage anchorEl={anchorEl} onClose={onCloseLanguage} />}
     </>
   )
 }

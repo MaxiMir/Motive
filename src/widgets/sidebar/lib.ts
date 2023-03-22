@@ -35,10 +35,5 @@ export const useRoutes = () => {
       icon: 'toll',
       href: Route.Donate,
     },
-    {
-      primary: formatMessage({ id: 'common.contact' }),
-      icon: 'mark_as_unread',
-      href: Route.Contact,
-    },
   ]
 }

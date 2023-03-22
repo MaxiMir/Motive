@@ -1,23 +1,13 @@
-import {
-  Box,
-  Breadcrumbs,
-  Chip,
-  Grid,
-  IconButton,
-  Link as MuiLink,
-  Stack,
-  Typography,
-} from '@mui/material'
+import { Box, Breadcrumbs, Chip, Grid, IconButton, Stack, Typography } from '@mui/material'
 import { compiler } from 'markdown-to-jsx'
 import dynamic from 'next/dynamic'
-import Link from 'next/link'
 import { Illustration } from 'pages/article/illustration'
 import { tryNativeShare } from 'features/share'
 import { Article, ArticlePreview, getReadTime } from 'entities/article'
-import { Route } from 'shared/config'
 import { useFormatDate, useToggle } from 'shared/lib/hooks'
 import Container from 'shared/ui/Container'
 import Icon from 'shared/ui/Icon'
+import { generateColorByName } from 'shared/ui/palette'
 import TooltipArrow from 'shared/ui/TooltipArrow'
 import { useMessages } from './lib'
 
@@ -30,17 +20,22 @@ export function ArticlePage({ data, href, content, more }: Article) {
   const date = formatDate(data.date, { day: 'numeric', month: 'long', year: 'numeric' })
   const markdown = compiler(content, { wrapper: null, overrides: { p: Typography } })
   const readTime = getReadTime(content)
+  const backgroundColor = generateColorByName(data.tag, {
+    saturation: 60,
+    lightness: 10,
+    range: 30,
+  })
 
   const onShare = () => tryNativeShare(href, data.title, toggleSharing)
 
   return (
     <Container>
-      <Box display="flex" justifyContent="space-between">
+      <Box display="flex" justifyContent="space-between" alignItems="center" mb={1}>
         <Breadcrumbs separator="•" aria-label="breadcrumb">
-          <MuiLink underline="hover" color="inherit" href={Route.Articles} component={Link}>
-            {messages.articlesText}
-          </MuiLink>
-          <Chip size="small" component="time" dateTime={data.date} label={date} />
+          <Chip size="small" label={data.tag} sx={{ backgroundColor }} />
+          <Typography component="time" dateTime={data.date} sx={{ color: 'zen.silent' }}>
+            {date}
+          </Typography>
         </Breadcrumbs>
         <TooltipArrow title={messages.shareText}>
           <IconButton

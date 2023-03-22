@@ -5,6 +5,7 @@ header: "实现成功目标的5个步骤：把雄心壮志变成现实"
 image: /images/articles/five-steps-to-successful-goal-achievement.webp
 motto: "共同迈向成功的高度：通过阅读每一个提示将梦想变成现实！"
 date: 2023-03-21T16:40:00Z
+tag: 心理学
 more: ['meditation-the-way-to-harmony', 'how-to-accomplish-your-goals']
 ---
 实现你的目标是一个重要的过程，可以使你在生活的各个领域获得成功。在这篇文章中，我们看一下五个步骤，以帮助你利用经过验证的策略和方法成功实现你的目标。这些提示是根据著名心理学家和个人成长专家的经验总结出来的。

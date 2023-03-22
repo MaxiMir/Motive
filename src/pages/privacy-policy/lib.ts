@@ -4,7 +4,7 @@ export const useMessages = () => {
   const { formatMessage } = useIntl()
 
   return {
-    header: formatMessage({ id: 'page.privacy-policy.header' }),
+    header: formatMessage({ id: 'common.privacy-policy' }),
     content: formatMessage(
       {
         id: 'page.privacy-policy.content',

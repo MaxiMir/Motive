@@ -1,8 +1,8 @@
-import { ToggleButtonGroup, ToggleButton, Typography, Stack, PaletteMode } from '@mui/material'
+import { ToggleButtonGroup, ToggleButton, Typography, Stack, PaletteMode, Box } from '@mui/material'
 import { styled } from '@mui/system'
 import { MouseEvent } from 'react'
 import { useIntl } from 'react-intl'
-import { useSetLocale, Locale } from 'entities/locale'
+import { useSetLocale, Locale, LANGUAGES } from 'entities/locale'
 import Modal from 'shared/ui/Modal'
 import { usePaletteMode } from 'shared/ui/palette'
 import { useMessages } from './lib'
@@ -41,18 +41,14 @@ function SettingsModal({ onClose }: SettingsModalProps) {
             aria-label={messages.languageHeader}
             onChange={onChangeLocale}
           >
-            <GroupButton size="small" value={Locale.En}>
-              🇺🇸 EN
-            </GroupButton>
-            <GroupButton size="small" value={Locale.Ru}>
-              🇷🇺 РУ
-            </GroupButton>
-            <GroupButton size="small" value={Locale.Uk}>
-              🇺🇦 УК
-            </GroupButton>
-            <GroupButton size="small" value={Locale.Zh}>
-              🇨🇳 中国
-            </GroupButton>
+            {LANGUAGES.map(({ primary, emoji, value }) => (
+              <GroupButton size="small" value={value} key={value}>
+                <Box display="inline-flex" width={12}>
+                  {emoji}
+                </Box>
+                {primary}
+              </GroupButton>
+            ))}
           </ToggleButtonGroup>
         </Stack>
         <Stack gap={1}>
@@ -67,13 +63,22 @@ function SettingsModal({ onClose }: SettingsModalProps) {
             onChange={onChangeMode}
           >
             <GroupButton size="small" value="light" disabled>
-              🔆 {messages.lightText}
+              <Box display="inline-flex" width={12}>
+                🔆
+              </Box>
+              {messages.lightText}
             </GroupButton>
             <GroupButton size="small" value="system" disabled>
-              ⚙️ {messages.systemText}
+              <Box display="inline-flex" width={12}>
+                ⚙️
+              </Box>
+              {messages.systemText}
             </GroupButton>
             <GroupButton size="small" value="dark" disabled>
-              🌑 {messages.darkText}
+              <Box display="inline-flex" width={12}>
+                🌑
+              </Box>
+              {messages.darkText}
             </GroupButton>
           </ToggleButtonGroup>
         </Stack>

@@ -8,11 +8,11 @@ const SignIn = dynamic(() => import('./signIn'))
 const Notifications = dynamic(() => import('./notifications'))
 const UserLink = dynamic(() => import('./userLink'))
 
-interface HeaderProps {
+interface HeaderMobileProps {
   type: OGType
 }
 
-function Header({ type }: HeaderProps) {
+function HeaderMobile({ type }: HeaderMobileProps) {
   const client = useClient()
   const renderNickname = type === 'profile'
 
@@ -40,4 +40,4 @@ function Header({ type }: HeaderProps) {
   )
 }
 
-export default Header
+export default HeaderMobile

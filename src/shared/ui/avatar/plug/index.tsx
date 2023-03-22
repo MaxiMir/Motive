@@ -1,6 +1,6 @@
 import { Avatar } from '@mui/material'
 import { useMemo } from 'react'
-import { generateColorByName, getShortName } from './lib'
+import { generateColorByName, getShortName } from 'shared/ui/palette'
 
 interface PlugProps {
   name: string

@@ -1,43 +1,57 @@
-import { Container, Box, IconButton, Stack } from '@mui/material'
+import { Box, Typography, Link as MuiLink, LinkProps } from '@mui/material'
+import { styled } from '@mui/system'
+import { useIntl } from 'react-intl'
 import Link from 'next/link'
-import { useRouter } from 'next/router'
-import OpenProfile from 'features/user/open-profile'
-import TooltipArrow from 'shared/ui/TooltipArrow'
-import { useRoutes } from './lib'
+import { ChangeLanguage } from 'features/locale/change-language'
+import { Route } from 'shared/config'
 
-function Footer() {
-  const { asPath } = useRouter()
-  const routes = useRoutes()
+interface FooterProps {
+  breakpoints?: boolean
+}
+
+function Footer({ breakpoints }: FooterProps) {
+  const { formatMessage } = useIntl()
+  const year = new Date().getFullYear()
+  const privacyPolicyText = formatMessage({ id: 'common.privacy-policy' })
+  const contactText = formatMessage({ id: 'common.contact' })
 
   return (
     <Box
-      position="sticky"
       component="footer"
-      bottom={0}
-      zIndex={30}
-      display={{
-        xs: 'block',
-        xl: 'none',
+      py={2}
+      sx={{
+        display: !breakpoints
+          ? undefined
+          : {
+              xs: 'none',
+              xl: 'block',
+            },
       }}
-      width="100%"
-      sx={{ backgroundColor: 'underlay' }}
     >
-      <Container fixed>
-        <Stack direction="row" justifyContent="space-between" alignItems="center" py={1}>
-          {routes.map(({ title, href, Component }) => (
-            <TooltipArrow title={title} key={href}>
-              <IconButton href={href} component={Link}>
-                <Component
-                  sx={{ fontSize: 21, color: asPath.includes(href) ? 'inherit' : 'grey' }}
-                />
-              </IconButton>
-            </TooltipArrow>
-          ))}
-          <OpenProfile />
-        </Stack>
-      </Container>
+      <Box display="flex" flexDirection="column" alignItems="center">
+        <Box display="flex" alignItems="center" gap={1}>
+          <ChangeLanguage />
+          <Box sx={{ color: 'zen.silent' }}>•</Box>
+          <FooterLink href={Route.PrivacyPolicy}>{privacyPolicyText}</FooterLink>
+          <Box sx={{ color: 'zen.silent' }}>•</Box>
+          <FooterLink href={Route.Contact}>{contactText}</FooterLink>
+        </Box>
+        <Typography variant="caption" sx={{ color: 'zen.silent' }}>
+          © {year} {process.env.NEXT_PUBLIC_APP_NAME}
+        </Typography>
+      </Box>
     </Box>
   )
 }
+
+const FooterLink = styled(({ children, ...props }: LinkProps) => (
+  <MuiLink {...props} component={Link}>
+    {children}
+  </MuiLink>
+))(({ theme }) => ({
+  color: theme.palette.zen.silent,
+  lineHeight: 2.1,
+  fontSize: 12,
+}))
 
 export default Footer

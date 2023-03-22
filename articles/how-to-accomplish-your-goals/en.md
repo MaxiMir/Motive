@@ -5,6 +5,7 @@ header: How to meet your goals
 image: /images/articles/how-to-accomplish-your-goals.webp
 motto: Stronger than magic, stronger than the sword, our perseverance overcomes all obstacles! Lift up your heads and keep going forward, achieving your goals until you become true heroes!
 date:	2023-02-28T13:02:03Z
+tag: psychology
 more: ['meditation-the-way-to-harmony', 'five-steps-to-successful-goal-achievement']
 ---
 Young Wayfarer, in a world of magic and fantasy, achieving goals requires magic and skill.

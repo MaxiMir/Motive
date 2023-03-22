@@ -5,6 +5,7 @@ export interface Data {
   readonly image: string
   readonly motto: string
   readonly date: string
+  readonly tag: string
 }
 
 export interface ArticleBase {

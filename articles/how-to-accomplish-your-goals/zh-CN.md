@@ -5,6 +5,7 @@ header: 如何实现你的目标
 image: /images/articles/how-to-accomplish-your-goals.webp
 motto: 比魔法更强大，比剑更有力，我们的毅力克服了所有障碍！"。抬起你的头，继续前进，实现你的目标，直到你成为真正的英雄！
 date:	2023-02-28T13:02:03Z
+tag: 心理学
 more: ['meditation-the-way-to-harmony', 'five-steps-to-successful-goal-achievement']
 ---
 年轻的旅行者，在魔法和幻想的世界里，实现目标需要魔法和技巧。

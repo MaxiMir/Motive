@@ -5,6 +5,7 @@ header: 冥想--通往和谐与平衡之路
 image: /images/articles/meditation-the-way-to-harmony.webp
 motto: 打开你内心世界的大门，在那里你会发现冥想的秘密--通往和谐与平衡的钥匙，这将改变你的生活
 date:	2023-03-11T12:55:03Z
+tag: 冥想
 more: ['how-to-accomplish-your-goals', 'five-steps-to-successful-goal-achievement']
 ---
 _冥想_是_一种让我们平静心灵并找到内在和谐的练习。它可以帮助我们应对压力、焦虑，提高睡眠质量、注意力和意识。

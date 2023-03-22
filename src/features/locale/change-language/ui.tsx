@@ -1,51 +1,44 @@
-import { ListItemIcon, ListItemText, Menu, MenuItem, Typography } from '@mui/material'
-import { paperClasses } from '@mui/material/Paper'
+import { Box, MenuItem, Select, SelectChangeEvent } from '@mui/material'
+import { selectClasses } from '@mui/material/Select'
 import { useIntl } from 'react-intl'
-import { Locale, useSetLocale } from 'entities/locale'
-import ListItem from 'shared/ui/ListItem'
-import { LANGUAGES } from './consts'
+import { LANGUAGES, Locale, useSetLocale } from 'entities/locale'
 
-interface LanguageMenuProps {
-  anchorEl: HTMLElement | null
-  onClose: () => void
-}
-
-function ChangeLanguage({ anchorEl, onClose }: LanguageMenuProps) {
+export function ChangeLanguage() {
   const { locale, formatMessage } = useIntl()
   const setLocale = useSetLocale()
-  const cancelText = formatMessage({ id: 'common.cancel' })
+  const ariaLabel = formatMessage({ id: 'common.switch-language' })
 
-  const onClick = (value: Locale) => {
-    setLocale(value)
-    onClose()
-  }
+  const onChange = (e: SelectChangeEvent) => setLocale(e.target.value as Locale)
 
   return (
-    <Menu
-      open
-      anchorEl={anchorEl}
+    <Select
+      defaultValue={locale}
+      aria-label={ariaLabel}
+      IconComponent={() => null}
+      size="small"
       sx={{
-        [`& .${paperClasses.root}`]: {
-          width: 210,
+        fontSize: 12,
+        color: 'zen.silent',
+        [`& .${selectClasses.select}`]: {
+          paddingRight: '0 !important',
+        },
+        '& fieldset': {
+          border: 'none',
+        },
+        '& svg': {
+          color: 'zen.silent',
         },
       }}
-      onClose={onClose}
+      onChange={onChange}
     >
-      {LANGUAGES.map(({ primary, value, emoji }) => (
-        <MenuItem disabled={locale === value} key={primary} onClick={() => onClick(value)}>
-          <ListItemIcon>
-            <Typography paragraph m={0} sx={{ fontSize: 24 }}>
-              {emoji}
-            </Typography>
-          </ListItemIcon>
-          <ListItemText primary={primary} />
+      {LANGUAGES.map(({ name, emoji, value }) => (
+        <MenuItem value={value} key={value}>
+          <Box display="inline-flex" mr={1}>
+            {emoji}
+          </Box>
+          {name}
         </MenuItem>
       ))}
-      <MenuItem onClick={onClose}>
-        <ListItem icon="block" primary={cancelText} compact={false} color="grey" />
-      </MenuItem>
-    </Menu>
+    </Select>
   )
 }
-
-export default ChangeLanguage

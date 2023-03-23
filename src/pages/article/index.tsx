@@ -29,7 +29,15 @@ export function ArticlePage({ data, href, content, more }: Article) {
   const onShare = () => tryNativeShare(href, data.title, toggleSharing)
 
   return (
-    <Container>
+    <Container
+      sx={{
+        '& img': {
+          maxWidth: '100%',
+          marginBottom: 2,
+          borderRadius: 2,
+        },
+      }}
+    >
       <Box display="flex" justifyContent="space-between" alignItems="center" mb={1}>
         <Breadcrumbs separator="•" aria-label="breadcrumb">
           <Chip size="small" label={data.tag} sx={{ backgroundColor }} />

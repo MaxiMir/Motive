@@ -41,7 +41,7 @@ export function ArticlePreview({ article }: ArticlePreviewProps) {
         </Box>
         <Stack justifyContent="space-between" flex={1}>
           <CardContent>
-            <Typography gutterBottom variant="h5" component="h2">
+            <Typography gutterBottom variant="h5" component="p">
               {data.header}
             </Typography>
             <Chip

@@ -1,4 +1,4 @@
-import { Box, Breadcrumbs, Chip, Grid, IconButton, Stack, Typography } from '@mui/material'
+import { Box, Breadcrumbs, Chip, Grid, IconButton, Link, Stack, Typography } from '@mui/material'
 import { compiler } from 'markdown-to-jsx'
 import dynamic from 'next/dynamic'
 import { Illustration } from 'pages/article/illustration'
@@ -18,7 +18,7 @@ export function ArticlePage({ data, href, content, more }: Article) {
   const formatDate = useFormatDate()
   const [sharing, toggleSharing] = useToggle()
   const date = formatDate(data.date, { day: 'numeric', month: 'long', year: 'numeric' })
-  const markdown = compiler(content, { wrapper: null, overrides: { p: Typography } })
+  const markdown = compiler(content, { wrapper: null, overrides: { p: Typography, a: Link } })
   const readTime = getReadTime(content)
   const backgroundColor = generateColorByName(data.tag, {
     saturation: 60,

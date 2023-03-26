@@ -2,7 +2,7 @@
 title: How to meet your goals
 description: Helpful tips and strategies for achieving your goals. Whether your goal is career advancement, better health or personal development, this page will help you develop an effective plan of action and keep you motivated throughout the process
 header: How to meet your goals
-image: /images/articles/how-to-accomplish-your-goals.webp
+image: /images/blog/how-to-accomplish-your-goals.webp
 motto: Stronger than magic, stronger than the sword, our perseverance overcomes all obstacles! Lift up your heads and keep going forward, achieving your goals until you become true heroes!
 date:	2023-02-28T13:02:03Z
 tag: psychology

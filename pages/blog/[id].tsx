@@ -8,7 +8,7 @@ import { Layout } from 'app/layout'
 import { ArticlePage } from 'pages/article'
 /* eslint-disable boundaries/element-types */
 import { Article as ArticleProps } from 'entities/article'
-import { getArticleHref } from 'entities/page'
+import { getBlogHref } from 'entities/page'
 import { OGType } from 'shared/api'
 
 function Article({ data, href, content, more }: ArticleProps) {
@@ -25,7 +25,7 @@ function Article({ data, href, content, more }: ArticleProps) {
 }
 
 export const getStaticPaths: GetStaticPaths = async ({ locales = [] }) => {
-  const folders = fs.readdirSync(path.join('articles'))
+  const folders = fs.readdirSync(path.join('blog'))
   const paths = folders.reduce<GetStaticPathsResult['paths']>((acc, id) => {
     const localePaths = locales.map((locale) => ({ params: { id }, locale }))
 
@@ -39,13 +39,13 @@ export const getStaticPaths: GetStaticPaths = async ({ locales = [] }) => {
 }
 
 export const getStaticProps: GetStaticProps = async ({ locale, params }) => {
-  const href = getArticleHref(params?.id as string)
-  const markdownPath = path.join(`articles/${params?.id}/${locale}.md`)
+  const href = getBlogHref(params?.id as string)
+  const markdownPath = path.join(`blog/${params?.id}/${locale}.md`)
   const input = fs.readFileSync(markdownPath, 'utf-8')
   const { data: articleData, content } = matter(input)
   const more = articleData.more.map((id: string) => {
-    const articleHref = getArticleHref(id)
-    const articleInput = fs.readFileSync(path.join(`articles/${id}/${locale}.md`), 'utf-8')
+    const articleHref = getBlogHref(id)
+    const articleInput = fs.readFileSync(path.join(`blog/${id}/${locale}.md`), 'utf-8')
     const { data } = matter(articleInput)
 
     return { data, href: articleHref }

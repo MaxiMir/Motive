@@ -62,4 +62,4 @@ export const getNotificationHref = (notification: NotificationDto, client?: Clie
   }
 }
 
-export const getArticleHref = (id: string): string => `${Route.Articles}/${id}`
+export const getBlogHref = (id: string): string => `${Route.Blog}/${id}`

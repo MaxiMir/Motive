@@ -8,7 +8,7 @@ type Page =
   | 'search'
   | 'rating'
   | 'following'
-  | 'articles'
+  | 'blog'
   | 'privacy-policy'
   | '404'
   | '500'

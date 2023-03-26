@@ -2,7 +2,7 @@
 title: "实现成功目标的5个步骤：把雄心壮志变成现实"
 description: 发现成功实现目标的行之有效的战略和方法，在成功的道路上得到启发，并在我们的专家建议下改变你的生活!
 header: "实现成功目标的5个步骤：把雄心壮志变成现实"
-image: /images/articles/five-steps-to-successful-goal-achievement.webp
+image: /images/blog/five-steps-to-successful-goal-achievement.webp
 motto: "共同迈向成功的高度：通过阅读每一个提示将梦想变成现实！"
 date: 2023-03-21T16:40:00Z
 tag: 心理学

@@ -3,13 +3,13 @@ import { useIntl } from 'react-intl'
 import { Article, ArticlePreview } from 'entities/article'
 import Container from 'shared/ui/Container'
 
-interface ArticlesPageProps {
+interface BlogPageProps {
   articles: Article[]
 }
 
-export function ArticlesPage({ articles }: ArticlesPageProps) {
+export function BlogPage({ articles }: BlogPageProps) {
   const { formatMessage } = useIntl()
-  const header = formatMessage({ id: 'page.articles.header' })
+  const header = formatMessage({ id: 'page.blog.header' })
 
   return (
     <Container>

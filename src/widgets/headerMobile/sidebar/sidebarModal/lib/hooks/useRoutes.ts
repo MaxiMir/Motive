@@ -6,9 +6,9 @@ export const useRoutes = () => {
 
   return [
     {
-      primary: formatMessage({ id: 'common.articles' }),
+      primary: formatMessage({ id: 'common.blog' }),
       icon: 'subtitles',
-      href: Route.Articles,
+      href: Route.Blog,
     },
     {
       primary: formatMessage({ id: 'common.donate' }),

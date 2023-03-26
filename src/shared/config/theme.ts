@@ -191,8 +191,8 @@ export const getDesignTokens = (mode: PaletteMode): ThemeOptions => {
           icon: {
             display: 'flex',
             alignItems: 'center',
-            animation: 'fadeWithBlur 0.7s cubic-bezier(0.55, 0.085, 0.68, 0.53) both',
-            '@keyframes fadeWithBlur': {
+            animation: 'fade-with-blur 0.7s cubic-bezier(0.55, 0.085, 0.68, 0.53) both',
+            '@keyframes fade-with-blur': {
               from: {
                 filter: 'blur(12px)',
                 opacity: 0,

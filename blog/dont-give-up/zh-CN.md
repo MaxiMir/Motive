@@ -2,7 +2,7 @@
 title: "不要放弃：克服成功路上的挑战"
 description: 你想知道如何在通往成功的道路上克服困难并保持动力吗？在这篇文章中，我们看看人们放弃的主要原因，并提供一些提示，帮助你应对这些挑战，实现你的目标。
 header: "不要放弃：克服成功路上的挑战"
-image: /images/articles/dont-give-up.webp
+image: /images/blog/dont-give-up.webp
 motto: 相信自己的力量，克服障碍，向着自己的梦想前进。我们一起将使成功成为必然!
 date: 2023-03-23T07:09:00Z
 tag: 心理学
@@ -55,7 +55,7 @@ _技巧_：努力提高你的自尊心和信心。写下你的成就、成功和
   
 ## 例子：
 
-!["男孩在泰迪熊面前表演"](/images/articles/dont-give-up-example.webp)
+!["男孩在泰迪熊面前表演"](/images/blog/dont-give-up-example.webp)
 
 
 让我们想象一下，你的目标是克服你对在听众面前讲话的恐惧，在工作中成功发表演讲：

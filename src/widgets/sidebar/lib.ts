@@ -26,9 +26,9 @@ export const useRoutes = () => {
       href: Route.Following,
     },
     {
-      primary: formatMessage({ id: 'common.articles' }),
+      primary: formatMessage({ id: 'common.blog' }),
       icon: 'subtitles',
-      href: Route.Articles,
+      href: Route.Blog,
     },
     {
       primary: formatMessage({ id: 'common.donate' }),

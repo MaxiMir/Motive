@@ -5,7 +5,7 @@ export const useMessages = () => {
 
   return {
     shareText: formatMessage({ id: 'common.share' }),
-    articlesText: formatMessage({ id: 'page.articles.header' }),
+    articlesText: formatMessage({ id: 'page.blog.header' }),
     readTimeText: formatMessage({ id: 'common.read-time' }),
   }
 }

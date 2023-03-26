@@ -127,9 +127,9 @@
   "page.404.header": "页面未找到",
   "page.500.title": "错误500 - 系统过载",
   "page.500.description": "哎呀！我们的系统过载，导致了500号错误。这可能是由于意外涌入的访客或其他技术问题。我们正在努力解决这个问题",
-  "page.articles.title": "帮助你实现梦想的文章",
-  "page.articles.description": "帮助你实现你的目标和提高你的生活质量的有用材料。我们发表关于实现目标的各个方面的文章，包括动机、计划、时间管理、个人发展和其他许多方面。在我们的文章中，我们分享实用的技巧和策略，以帮助你提高你的生产力，增加你的动力，在生活中取得成功。",
-  "page.articles.header": "文章",
+  "page.blog.title": "帮助你实现梦想的文章",
+  "page.blog.description": "帮助你实现你的目标和提高你的生活质量的有用材料。我们发表关于实现目标的各个方面的文章，包括动机、计划、时间管理、个人发展和其他许多方面。在我们的文章中，我们分享实用的技巧和策略，以帮助你提高你的生产力，增加你的动力，在生活中取得成功。",
+  "page.blog.header": "博客",
 
 
   "component.share.share": "分享到",
@@ -269,7 +269,7 @@
   "common.do-it": "完成了! 剩余的工作",
   "common.supporting": "支持",
   "common.load-photo": "加载照片",
-  "common.articles": "文章",
+  "common.blog": "博客",
   "common.features": "新功能",
   "common.contact": "联系我们",
   "common.donate": "捐赠",

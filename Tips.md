@@ -33,7 +33,7 @@ Add helpful tips and clear examples. If there are interesting statistics, add th
 You should use markdown, including bold, UL/OL, write with a degree of creativity, burstiness, and human-like.
 The article is "5 Steps to Successful Goals: Turn Ambition into Reality".
 
-Generate a motivational slogan for the article "How to Manage Your Time: Methods and Techniques
+
 
 
 
@@ -41,7 +41,10 @@ Let's write a blog post that will rank on Google.
 Add helpful tips and clear examples. If there are interesting statistics, add them.
 You should use markdown, including bold, UL/OL, write with a degree of creativity, burstiness, and human-like.
 The article is "How to Manage Your Time: Methods and Technique".
-# 
-Old Salvador Dali style clock, phantasy, 4K
 
-The way to harmony, phantasy, 4K
+> Generate a motivational slogan for this article**
+
+> Generate title and description that will rank on Google**
+
+
+`Visualization of space, phantasy, 4K`

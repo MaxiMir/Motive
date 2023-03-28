@@ -8,21 +8,17 @@ date:	2023-03-24T21:39:03Z
 tag: 时间管理
 more: ['meditation-the-way-to-harmony', 'five-steps-to-successful-goal-achievement']
 ---
-**简介**
----------
-
 时间是我们最宝贵的资源，学会有效地管理时间对于在生活中取得成功至关重要。在本博客文章中，我们将探讨各种方法和技巧，以帮助您充分利用时间。
 
-## 目录
+### 目录
 
 1.  [时间管理的重要性](#importance)
 2.  [时间管理技巧](#techniques)
-*   [艾森豪威尔矩阵](#eisenhower)
-*   [番茄工作法](#pomodoro)
-*   [时间块管理法](#timeblocking)
-*   [SMART目标法](#smartgoals)
-*   [80/20法则](#eightytwenty)
-
+  - [艾森豪威尔矩阵](#eisenhower)
+  - [番茄工作法](#pomodoro)
+  - [时间块管理法](#timeblocking)
+  - [SMART目标法](#smartgoals)
+  - [80/20法则](#eightytwenty)
 3.  [结论](#conclusion)
 
 <a name="importance"></a>

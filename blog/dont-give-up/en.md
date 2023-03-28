@@ -1,7 +1,7 @@
 ---
-title: "Don't Give Up: Overcoming Challenges on the Way to Success"
+title: "Don't Give Up: overcoming Challenges on the Way to Success"
 description: Want to know how to overcome challenges and stay motivated on the road to success? In this article, we look at the main reasons why people give up and offer tips to help you cope with these challenges and achieve your goals.
-header: "Don't Give Up: Overcoming Challenges on the Way to Success"
+header: "Don't Give Up: overcoming Challenges on the Way to Success"
 image: /images/blog/dont-give-up.webp
 motto: Believe in your strength, overcome obstacles and move towards your dreams, together we will make success inevitable!
 date: 2023-03-23T07:09:00Z

@@ -1,7 +1,7 @@
 ---
 title: "Harnessing the power of visualization: how to use mental imagery to achieve your goals"
 description: Discover the science-backed benefits of visualization and learn practical techniques to harness the power of your mind for goal achievement. Get inspired by successful individuals who've used mental imagery to conquer their dreams.
-header: "harnessing the power of visualization: how to use mental imagery to achieve your goals"
+header: "Harnessing the power of visualization: how to use mental imagery to achieve your goals"
 image: /images/blog/harnessing-the-power-of-visualization.webp
 motto: "Visualize Your Victory: Unlock the Power of Your Mind to Conquer Your Goals"
 date:	2023-03-28T13:47:03Z

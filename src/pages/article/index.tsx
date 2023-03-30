@@ -21,9 +21,9 @@ export function ArticlePage({ data, href, content, more }: Article) {
   const markdown = compiler(content, { wrapper: null, overrides: { p: Typography, a: Link } })
   const readTime = getReadTime(content)
   const backgroundColor = generateColorByName(data.tag, {
-    saturation: 60,
-    lightness: 10,
-    range: 30,
+    saturation: 50,
+    lightness: 20,
+    range: 10,
   })
 
   const onShare = () => tryNativeShare(href, data.title, toggleSharing)

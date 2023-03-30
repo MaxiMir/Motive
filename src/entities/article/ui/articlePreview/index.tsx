@@ -22,9 +22,9 @@ export function ArticlePreview({ article }: ArticlePreviewProps) {
   const formatDate = useFormatDate()
   const date = formatDate(data.date, { day: '2-digit', month: '2-digit' })
   const backgroundColor = generateColorByName(data.tag, {
-    saturation: 60,
-    lightness: 10,
-    range: 30,
+    saturation: 50,
+    lightness: 20,
+    range: 10,
   })
 
   return (

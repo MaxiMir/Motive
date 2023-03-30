@@ -16,7 +16,7 @@ interface JoinProps {
 
 function Join({ goalId, dayId, calendar, ownerName }: JoinProps) {
   const client = useClient()
-  const { openSignIn } = useSignIn()
+  const openSignIn = useSignIn((state) => state.openSignIn)
   const { formatMessage } = useIntl()
   const [open, toggle] = useToggle()
   const buttonText = formatMessage({ id: 'common.join' })

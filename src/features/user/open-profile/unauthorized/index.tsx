@@ -3,7 +3,7 @@ import { useSignIn } from 'entities/viewer'
 import { Profile } from 'shared/ui/icons'
 
 function Unauthorized() {
-  const { openSignIn } = useSignIn()
+  const openSignIn = useSignIn((state) => state.openSignIn)
 
   const onClick = () => openSignIn({ callbackUrl: '/' })
 

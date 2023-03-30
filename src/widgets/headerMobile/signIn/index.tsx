@@ -7,7 +7,7 @@ import TooltipArrow from 'shared/ui/TooltipArrow'
 
 function SignIn() {
   const { asPath } = useRouter()
-  const { openSignIn } = useSignIn()
+  const openSignIn = useSignIn((state) => state.openSignIn)
   const { formatMessage } = useIntl()
   const title = formatMessage({ id: 'common.sign-in' })
 

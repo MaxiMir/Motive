@@ -14,7 +14,7 @@ interface ReactionSupportProps {
 function ReactionSupport({ dayId, ownerName }: ReactionSupportProps) {
   const messages = useMessages(ownerName)
   const client = useClient()
-  const { openSignIn } = useSignIn()
+  const openSignIn = useSignIn((state) => state.openSignIn)
   const [open, toggle] = useToggle()
 
   const onClick = () => {

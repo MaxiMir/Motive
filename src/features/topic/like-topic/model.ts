@@ -41,7 +41,7 @@ export const getGoalNextState = (goals: GoalDto[], goalId: number, add: boolean)
 export const useSetLike = (message: MessageDto, parentId?: number) => {
   const { id, like, dayId, goalId } = message
   const client = useClient()
-  const { openSignIn } = useSignIn()
+  const openSignIn = useSignIn((state) => state.openSignIn)
   const [goals, mutateGoals] = useGoalsCache()
   const queryClient = useQueryClient()
   const { formatMessage } = useIntl()

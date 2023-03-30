@@ -35,7 +35,7 @@ export const useSetReaction = (
 ) => {
   const { formatMessage } = useIntl()
   const client = useClient()
-  const { openSignIn } = useSignIn()
+  const openSignIn = useSignIn((state) => state.openSignIn)
   const queryClient = useQueryClient()
   const { nickname } = useUserContext()
   const { enqueueSnackbar } = useSnackbar()

@@ -9,7 +9,7 @@ interface SignInProps {
 
 function SignIn({ primary }: SignInProps) {
   const { asPath } = useRouter()
-  const { openSignIn } = useSignIn()
+  const openSignIn = useSignIn((state) => state.openSignIn)
 
   const onClick = () => openSignIn({ callbackUrl: asPath })
 

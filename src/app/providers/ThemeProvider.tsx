@@ -11,8 +11,8 @@ interface ThemeProviderProps {
 }
 
 function ThemeProvider({ children }: ThemeProviderProps) {
-  const value = usePaletteMode()
-  const theme = useMemo(() => createTheme(getDesignTokens(value.mode)), [value.mode])
+  const mode = usePaletteMode((state) => state.mode)
+  const theme = useMemo(() => createTheme(getDesignTokens(mode)), [mode])
 
   useInsertionEffect(() => {
     // Remove the server-side injected CSS.

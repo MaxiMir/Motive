@@ -7,7 +7,7 @@ import { useSnackbar } from 'shared/ui/snackbar'
 export const useSendReport = (entityId: number, type: ReportType, onSettled: () => void) => {
   const { formatMessage } = useIntl()
   const client = useClient()
-  const { openSignIn } = useSignIn()
+  const openSignIn = useSignIn((state) => state.openSignIn)
   const { enqueueSnackbar } = useSnackbar()
   const { mutate } = useMutation(createReport, {
     onSuccess() {

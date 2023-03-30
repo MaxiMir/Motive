@@ -1,7 +1,7 @@
 ---
-title: "How to Manage Your Time: methods and Techniques"
+title: "How to manage your time: methods and techniques"
 description: Learn the most effective time management techniques and strategies to optimize your productivity and reduce stress in your personal and professional life.
-header: "How to Manage Your Time: methods and Techniques"
+header: "How to manage your time: methods and techniques"
 image: /images/blog/how-to-manage-your-time.webp
 motto: "Unlock Your Potential: Master Time Management Today!"
 date:	2023-03-24T21:39:03Z

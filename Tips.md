@@ -28,23 +28,15 @@
 
 15. Создание брендовых элементов: Разработайте уникальные брендовые элементы, такие как логотип, дизайн сайта и приложений, чтобы сделать вашу социальную сеть запоминающейся и привлекательной для пользователей.
 
-Let's write a blog post that will rank on Google.
-Add helpful tips and clear examples. If there are interesting statistics, add them.
-You should use markdown, including bold, UL/OL, write with a degree of creativity, burstiness, and human-like.
-The article is "5 Steps to Successful Goals: Turn Ambition into Reality".
-
-
-
 
 
 Let's write a blog post that will rank on Google.
 Add helpful tips and clear examples. If there are interesting statistics, add them.
-You should use markdown, including bold, UL/OL, write with a degree of creativity, burstiness, and human-like.
-The article is "How to Manage Your Time: Methods and Technique".
+You should use markdown, including bold, UL/OL, write with a degree of creativity, burstiness, and human-like. Add a table of contents.
+The article is "Developing Emotional Intelligence: how to cultivate empathy and improve your interpersonal relationships".
 
-> Generate a motivational slogan for this article**
+> Generate a motivational slogan for this article in 4 languages: English, Russian, Ukrainian and Chinese
 
-> Generate title and description that will rank on Google**
+> Generate description that will rank on Google in 4 languages: English, Russian, Ukrainian and Chinese
 
-
-`Visualization of space, phantasy, 4K`
+`Science of Procrastination, fantasy, 4K`

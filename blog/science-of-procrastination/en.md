@@ -10,7 +10,7 @@ more: ['how-to-manage-your-time', 'harnessing-the-power-of-visualization']
 ---
 Procrastination is a universal problem that affects people from all walks of life. It can hinder productivity, derail goals, and lead to feelings of guilt and anxiety. Understanding the science behind procrastination can help you recognize the barriers to productivity and implement strategies to overcome them. In this article, we will explore the science of procrastination, why we procrastinate, and provide practical tips for overcoming this common productivity barrier.
 
-### Table of Contents
+### Table of contents
 
 1. [The Science Behind Procrastination](#science)
 2. [Why Do We Procrastinate?](#why)
@@ -20,13 +20,13 @@ Procrastination is a universal problem that affects people from all walks of lif
 
 <a name="science"></a>
 
-## 1. The Science Behind Procrastination
+## 1. The science behind procrastination
 
 Procrastination is often considered a bad habit, but it is actually rooted in human psychology. Researchers have found that procrastination is linked to the brain's prefrontal cortex, which is responsible for executive functions such as decision-making, impulse control, and attention. When the prefrontal cortex is not functioning optimally, we may struggle with tasks that require planning, prioritization, and self-discipline, leading to procrastination.
 
 <a name="why"></a>
 
-## 2. Why Do We Procrastinate?
+## 2. Why do we procrastinate?
 
 There are several reasons why people procrastinate, including:
 
@@ -37,7 +37,7 @@ There are several reasons why people procrastinate, including:
 
 <a name="strategies"></a>
 
-## 3. Strategies for Overcoming Procrastination
+## 3. Strategies for overcoming procrastination
 
 Here are some practical tips for overcoming procrastination:
 
@@ -49,7 +49,7 @@ Here are some practical tips for overcoming procrastination:
 
 <a name="habits"></a>
 
-## 4. Building Long-Term Habits to Prevent Procrastination
+## 4. Building long-term habits to prevent procrastination
 
 To prevent procrastination in the long term, consider implementing these habits:
 

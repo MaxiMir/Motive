@@ -33,10 +33,10 @@
 Let's write a blog post that will rank on Google.
 Add helpful tips and clear examples. If there are interesting statistics, add them.
 You should use markdown, including bold, UL/OL, write with a degree of creativity, burstiness, and human-like. Add a table of contents.
-The article is "Developing Emotional Intelligence: how to cultivate empathy and improve your interpersonal relationships".
+The article is "Developing emotional intelligence: how to cultivate empathy and improve your interpersonal relationships".
 
 > Generate a motivational slogan for this article in 4 languages: English, Russian, Ukrainian and Chinese
 
 > Generate description that will rank on Google in 4 languages: English, Russian, Ukrainian and Chinese
 
-`Science of Procrastination, fantasy, 4K`
+`Neural connections in the brain, fantasy, 4K`

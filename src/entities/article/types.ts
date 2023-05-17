@@ -1,4 +1,4 @@
-export interface Data {
+interface Content {
   readonly title: string
   readonly description: string
   readonly header: string
@@ -9,7 +9,7 @@ export interface Data {
 }
 
 export interface ArticleBase {
-  readonly data: Data
+  readonly data: Content
   readonly href: string
 }
 

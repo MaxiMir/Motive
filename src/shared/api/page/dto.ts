@@ -40,3 +40,23 @@ export interface UserPageDto extends UserDto {
   readonly clientMembership: MemberDto[]
   readonly confirmations: ConfirmationDto[]
 }
+
+export interface ArticleDto {
+  readonly id: number
+  readonly pathname: string
+  readonly date: string
+  readonly image: string
+  readonly views: number
+  readonly sharesCount: number
+  readonly likeCount: number
+  readonly bookmarkedCount: number
+  readonly content: string
+}
+
+export interface BlogPageDto {
+  articles: ArticleDto[]
+}
+
+export interface ArticlePageDto extends ArticleDto {
+  readonly more: ArticleDto[]
+}

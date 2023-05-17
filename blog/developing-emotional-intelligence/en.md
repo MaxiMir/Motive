@@ -1,6 +1,6 @@
 ---
 title: "Developing emotional intelligence: how to cultivate empathy and improve your interpersonal relationships"
-description: Unlock the power of empathy and emotional intelligence to transform your personal and professional relationships. Discover practical strategies and insights to cultivate empathy, improve communication, and foster deeper connections. Dive into this comprehensive guide to enhance your interpersonal skills and elevate your emotional well-being!
+description: Unleash the power of empathy and emotional intelligence to transform your personal and professional relationships. Improve your interpersonal skills and increase your emotional well-being.
 header: "Developing emotional intelligence: how to cultivate empathy and improve your interpersonal relationships"
 image: /images/blog/developing-emotional-intelligence.webp
 motto: "Empathy empowers: enhance relationships, transform lives!"

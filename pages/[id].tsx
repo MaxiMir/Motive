@@ -19,7 +19,7 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
   const { url = '', headers } = ctx.req
   const queryClient = new QueryClient()
   const { id, ...params } = getSearchParams(url)
-  const nickname = (ctx.params?.id || '') as string
+  const nickname = String(ctx.params?.id)
   await queryClient.prefetchQuery(['page', nickname], () =>
     getUserPage(nickname, { headers, params }),
   )

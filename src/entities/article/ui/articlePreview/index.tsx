@@ -1,31 +1,35 @@
 import {
   Box,
   Card,
-  CardActionArea,
   CardContent,
   CardMedia,
   Chip,
-  Stack,
   Typography,
+  CardActionArea,
+  Button,
 } from '@mui/material'
+import matter from 'gray-matter'
 import Link from 'next/link'
-import { ArticleBase } from 'entities/article/types'
-import { useFormatDate } from 'shared/lib/hooks'
+import { ArticleDto } from 'shared/api'
+import { Route } from 'shared/config'
+import { getStaticSrc } from 'shared/lib/helpers'
+import Icon from 'shared/ui/Icon'
 import { generateColorByName } from 'shared/ui/palette'
 
 interface ArticlePreviewProps {
-  article: ArticleBase
+  article: ArticleDto
 }
 
 export function ArticlePreview({ article }: ArticlePreviewProps) {
-  const { data, href } = article
-  const formatDate = useFormatDate()
-  const date = formatDate(data.date, { day: '2-digit', month: '2-digit' })
+  const { pathname, image, views, sharesCount, bookmarkedCount, likeCount, content } = article
+  const { data } = matter(content)
+  const href = `${Route.Blog}/${pathname}`
   const backgroundColor = generateColorByName(data.tag, {
     saturation: 50,
     lightness: 20,
     range: 10,
   })
+  const staticSrc = getStaticSrc(image)
 
   return (
     <Card href={href} component={Link}>
@@ -37,26 +41,31 @@ export function ArticlePreview({ article }: ArticlePreviewProps) {
             },
           }}
         >
-          <CardMedia component="img" image={data.image} alt="" />
+          <CardMedia component="img" image={staticSrc} alt="" />
         </Box>
-        <Stack justifyContent="space-between" flex={1}>
-          <CardContent>
-            <Typography gutterBottom variant="h5" component="p">
-              {data.header}
-            </Typography>
-            <Chip
-              size="small"
-              variant="outlined"
-              component="time"
-              dateTime={data.date}
-              label={date}
-            />
-            <Typography variant="body2" color="text.secondary" my={1}>
-              {data.description}
-            </Typography>
-            <Chip label={data.tag} size="small" sx={{ backgroundColor }} />
-          </CardContent>
-        </Stack>
+        <CardContent sx={{ display: 'flex', flexDirection: 'column', gap: 1, flex: 1 }}>
+          <Chip label={data.tag} size="small" sx={{ alignSelf: 'flex-start', backgroundColor }} />
+          <Typography gutterBottom variant="h5" component="p">
+            {data.header}
+          </Typography>
+          <Typography variant="body2" color="text.secondary">
+            {data.description}
+          </Typography>
+          <Box display="flex" gap={1}>
+            <Button startIcon={<Icon name="ios_share" />} size="small" disabled component="span">
+              {sharesCount}
+            </Button>
+            <Button startIcon={<Icon name="favorite" />} size="small" disabled component="span">
+              {likeCount}
+            </Button>
+            <Button startIcon={<Icon name="bookmark" />} size="small" disabled component="span">
+              {bookmarkedCount}
+            </Button>
+            <Button startIcon={<Icon name="visibility" />} size="small" disabled component="span">
+              {views}
+            </Button>
+          </Box>
+        </CardContent>
       </CardActionArea>
     </Card>
   )

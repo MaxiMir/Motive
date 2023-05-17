@@ -1,6 +1,6 @@
 ---
 title: "发展情商：如何发展同理心和改善人际关系"
-description: 释放同理心和情商的力量，改变你的个人和职业关系。潜心研究这本全面的指南，以改善你的人际关系技能，提高你的情感幸福感!
+description: 释放同理心和情商的力量，改变你的个人和职业关系。提高你的人际交往能力，增加你的情绪健康。
 header: "发展情商：如何发展同理心和改善人际关系"
 image: /images/blog/developing-emotional-intelligence.webp
 motto: "同理心是有力量的：它可以改善关系，改变生活!"

@@ -1,4 +1,13 @@
-import { Box, Breadcrumbs, Chip, Grid, IconButton, Link, Stack, Typography } from '@mui/material'
+import {
+  Box,
+  Breadcrumbs,
+  Chip,
+  Grid,
+  IconButton,
+  Link,
+  Stack,
+  Typography,
+} from '@mui/material'
 import { compiler } from 'markdown-to-jsx'
 import dynamic from 'next/dynamic'
 import { Illustration } from 'pages/article/illustration'
@@ -53,6 +62,30 @@ export function ArticlePage({ data, href, content, more }: Article) {
           >
             <Icon name="ios_share" />
           </IconButton>
+          {/*<Button*/}
+          {/*  size="small"*/}
+          {/*  color="inherit"*/}
+          {/*  aria-label="🚨🚨🚨🚨🚨🚨🚨🚨"*/}
+          {/*  startIcon={<Icon name="favorite" />}*/}
+          {/*>*/}
+          {/*  {likeCount}*/}
+          {/*</Button>*/}
+          {/*<Button*/}
+          {/*  size="small"*/}
+          {/*  color="inherit"*/}
+          {/*  aria-label="🚨🚨🚨🚨🚨🚨🚨🚨"*/}
+          {/*  startIcon={<Icon name="bookmark" />}*/}
+          {/*>*/}
+          {/*  {bookmarkedCount}*/}
+          {/*</Button>*/}
+          {/*<Button*/}
+          {/*  size="small"*/}
+          {/*  color="inherit"*/}
+          {/*  aria-label="🚨🚨🚨🚨🚨🚨🚨🚨"*/}
+          {/*  startIcon={<Icon name="ios_share" />}*/}
+          {/*>*/}
+          {/*  {shares}*/}
+          {/*</Button>*/}
         </TooltipArrow>
       </Box>
       <article>
@@ -69,11 +102,11 @@ export function ArticlePage({ data, href, content, more }: Article) {
       </article>
       {sharing && <Share href={href} title={data.title} onClose={toggleSharing} />}
       <Grid container spacing={2} mt={4}>
-        {more.map((article) => (
-          <Grid item xs={12} key={article.href}>
-            <ArticlePreview article={article} />
-          </Grid>
-        ))}
+        {/*{more.map((article) => (*/}
+        {/*  <Grid item xs={12} key={article.href}>*/}
+        {/*    <ArticlePreview article={article} />*/}
+        {/*  </Grid>*/}
+        {/*))}*/}
       </Grid>
     </Container>
   )

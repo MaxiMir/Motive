@@ -1,43 +1,41 @@
-import fs from 'fs'
-import path from 'path'
-import matter from 'gray-matter'
-import { GetStaticProps } from 'next'
+import { GetServerSideProps } from 'next'
+import { getSession } from 'next-auth/react'
+import DeviceDetector from 'node-device-detector'
+import { dehydrate, QueryClient } from 'react-query'
 import { Layout } from 'app/layout'
 import { BlogPage } from 'pages/blog'
-import { Article } from 'entities/article'
-import { getBlogHref, useMeta } from 'entities/page'
+import { useMeta, useBlogPage } from 'entities/page'
+import { getBlogPage } from 'shared/api'
+import { Route } from 'shared/config'
 
-interface ArticlesProps {
-  articles: Article[]
-}
-
-function Blog({ articles }: ArticlesProps) {
+function BlogRoute() {
   const meta = useMeta('blog')
+  const { data } = useBlogPage()
 
   return (
     <Layout title={meta.title} description={meta.description}>
-      <BlogPage articles={articles} />
+      {data && <BlogPage articles={data.articles} />}
     </Layout>
   )
 }
 
-export const getStaticProps: GetStaticProps = async ({ locale }) => {
-  const folders = fs.readdirSync(path.join('blog'))
-  const articlesInfo = folders.map((id) => {
-    const href = getBlogHref(id)
-    const input = fs.readFileSync(path.join(`blog/${id}/${locale}.md`), 'utf-8')
-    const { data } = matter(input)
+export const getServerSideProps: GetServerSideProps = async (ctx) => {
+  const { headers } = ctx.req
+  const queryClient = new QueryClient()
+  const detector = new DeviceDetector()
+  const { device } = detector.detect(headers['user-agent'] || '')
+  const session = await getSession(ctx)
+  const params = { locale: ctx.locale }
 
-    return { data, href }
-  })
-  const parsed: Article[] = JSON.parse(JSON.stringify(articlesInfo))
-  const articles = parsed.sort((a, b) => +new Date(b.data.date) - +new Date(a.data.date))
+  await queryClient.prefetchQuery(['page', Route.Blog], () => getBlogPage({ headers, params }))
 
   return {
     props: {
-      articles,
+      session,
+      device,
+      dehydratedState: dehydrate(queryClient),
     },
   }
 }
 
-export default Blog
+export default BlogRoute

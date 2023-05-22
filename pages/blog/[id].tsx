@@ -1,28 +1,28 @@
-import matter from 'gray-matter'
 import { GetServerSideProps } from 'next'
 import { getSession } from 'next-auth/react'
 import DeviceDetector from 'node-device-detector'
 import { dehydrate, QueryClient } from 'react-query'
+import { useRouter } from 'next/router'
 /* eslint-disable boundaries/element-types */
 import { Layout } from 'app/layout'
+import { ArticlePage } from 'pages/article'
 /* eslint-disable boundaries/element-types */
 import { useArticlePage } from 'entities/page'
 import { getArticlePage, OGType, PossiblePageError } from 'shared/api'
 
 function ArticleRoute() {
-  const { data } = useArticlePage()
-  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-  // @ts-ignore
-  const { data: meta } = data && matter(data?.content)
+  const { query } = useRouter()
+  const pathname = String(query.id)
+  const { data } = useArticlePage(pathname)
 
   return (
     <Layout
-      title={meta.title}
-      description={meta.description}
+      title={data?.title}
+      description={data?.description}
       image={data?.image}
       type={OGType.Article}
     >
-      {/* <ArticlePage data={data} href={href} content={content} more={more} /> */}
+      {data && <ArticlePage article={data} />}
     </Layout>
   )
 }
@@ -30,7 +30,7 @@ function ArticleRoute() {
 export const getServerSideProps: GetServerSideProps = async (ctx) => {
   const { headers } = ctx.req
   const queryClient = new QueryClient()
-  const pathname = String(ctx.params)
+  const pathname = String(ctx.params?.id)
   const params = { locale: ctx.locale }
   await queryClient.prefetchQuery(['page', pathname], () =>
     getArticlePage(pathname, { headers, params }),
@@ -60,4 +60,5 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
     },
   }
 }
+
 export default ArticleRoute

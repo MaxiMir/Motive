@@ -38,7 +38,6 @@
     "formik": "^2.2.9",
     "formik-mui": "^5.0.0-alpha.0",
     "fscreen": "^1.2.0",
-    "gray-matter": "^4.0.3",
     "immer": "^9.0.19",
     "markdown-to-jsx": "^7.1.9",
     "next": "^13.2.4",

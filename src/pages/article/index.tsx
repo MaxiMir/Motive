@@ -38,24 +38,25 @@ export function ArticlePage({ article }: ArticlePageProps) {
   const onShare = () => tryNativeShare(href, title, toggleSharing)
 
   return (
-    <Container
-      sx={{
-        '& img': {
-          maxWidth: '100%',
-          marginBottom: 2,
-          borderRadius: 2,
-        },
-      }}
-    >
-      <Box display="flex" justifyContent="space-between" alignItems="center" mb={1}>
-        <Breadcrumbs separator="•" aria-label="breadcrumb">
-          <Chip size="small" label={tag} sx={{ backgroundColor }} />
-          <Typography component="time" dateTime={date} sx={{ color: 'zen.silent' }}>
-            {formattedDate}
-          </Typography>
-        </Breadcrumbs>
-        <Box display="flex" gap={1}>
-          {/*
+    <>
+      <Container
+        sx={{
+          '& img': {
+            maxWidth: '100%',
+            marginBottom: 2,
+            borderRadius: 2,
+          },
+        }}
+      >
+        <Box display="flex" justifyContent="space-between" alignItems="center" mb={1}>
+          <Breadcrumbs separator="•" aria-label="breadcrumb">
+            <Chip size="small" label={tag} sx={{ backgroundColor }} />
+            <Typography component="time" dateTime={date} sx={{ color: 'zen.silent' }}>
+              {formattedDate}
+            </Typography>
+          </Breadcrumbs>
+          <Box display="flex" gap={1}>
+            {/*
           <Button
             size="small"
             color="inherit"
@@ -67,48 +68,49 @@ export function ArticlePage({ article }: ArticlePageProps) {
             {bookmarkedCount}
           </Button>
           */}
-          <Button
-            size="small"
-            color="inherit"
-            aria-label={messages.shareText}
-            startIcon={<Icon name="ios_share" />}
-            sx={(theme) => ({ color: theme.palette.grey[600] })}
-            onClick={onShare}
-          >
-            {sharesCount}
-          </Button>
+            <Button
+              size="small"
+              color="inherit"
+              aria-label={messages.shareText}
+              startIcon={<Icon name="ios_share" />}
+              sx={(theme) => ({ color: theme.palette.grey[600] })}
+              onClick={onShare}
+            >
+              {sharesCount}
+            </Button>
+          </Box>
         </Box>
-      </Box>
-      <article>
-        <Stack gap={1} component="header" mb={2}>
-          <Typography variant="h4" component="h1">
-            {header}
-          </Typography>
-          <Typography variant="caption" sx={{ color: 'zen.silent' }}>
-            {readTime} {messages.readTimeText}
-          </Typography>
-        </Stack>
-        <Illustration motto={motto} image={image} />
-        {markdown}
-      </article>
-      <Box mt={3}>
-        {/*
+        <article>
+          <Stack gap={1} component="header" mb={2}>
+            <Typography variant="h4" component="h1">
+              {header}
+            </Typography>
+            <Typography variant="caption" sx={{ color: 'zen.silent' }}>
+              {readTime} {messages.readTimeText}
+            </Typography>
+          </Stack>
+          <Illustration motto={motto} image={image} />
+          {markdown}
+        </article>
+        <Box mt={3}>
+          {/*
         <Button color="inherit" aria-label="" disabled startIcon={<Icon name="favorite" />}>
           {likeCount}
         </Button>
         */}
-        <Button startIcon={<Icon name="visibility" />} size="small" disabled component="span">
-          {views}
-        </Button>
-      </Box>
+          <Button startIcon={<Icon name="visibility" />} size="small" disabled component="span">
+            {views}
+          </Button>
+        </Box>
+        <Grid container spacing={2} mt={4}>
+          {more.map((preview) => (
+            <Grid item xs={12} key={preview.id}>
+              <ArticlePreview article={preview} />
+            </Grid>
+          ))}
+        </Grid>
+      </Container>
       {sharing && <Share href={href} title={title} onClose={toggleSharing} />}
-      <Grid container spacing={2} mt={4}>
-        {more.map((preview) => (
-          <Grid item xs={12} key={preview.id}>
-            <ArticlePreview article={preview} />
-          </Grid>
-        ))}
-      </Grid>
-    </Container>
+    </>
   )
 }

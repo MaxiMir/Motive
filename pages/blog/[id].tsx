@@ -31,7 +31,7 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
   const { headers } = ctx.req
   const queryClient = new QueryClient()
   const pathname = String(ctx.params?.id)
-  const params = { locale: ctx.locale }
+  const params = { locale: ctx.locale, share: ctx.query.share }
   await queryClient.prefetchQuery(['page', pathname], () =>
     getArticlePage(pathname, { headers, params }),
   )

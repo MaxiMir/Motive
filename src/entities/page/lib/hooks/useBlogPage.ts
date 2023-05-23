@@ -9,5 +9,6 @@ export const useBlogPage = () => {
 
   return useQuery(['page', Route.Blog], () => getBlogPage({ params }), {
     staleTime: 5_000,
+    refetchOnWindowFocus: false,
   })
 }

@@ -6,6 +6,7 @@ import { tryNativeShare } from 'features/share'
 import { ArticlePreview, getReadTime } from 'entities/article'
 import { ArticlePageDto } from 'shared/api'
 import { Route } from 'shared/config'
+import { setSearchParams } from 'shared/lib/helpers'
 import { useFormatDate, useToggle } from 'shared/lib/hooks'
 import Container from 'shared/ui/Container'
 import Icon from 'shared/ui/Icon'
@@ -32,7 +33,7 @@ export function ArticlePage({ article }: ArticlePageProps) {
     lightness: 20,
     range: 10,
   })
-  const href = [Route.Blog, pathname].join('/')
+  const href = setSearchParams([Route.Blog, pathname].join('/'), { share: 'web' })
 
   const onShare = () => tryNativeShare(href, title, toggleSharing)
 

@@ -31,7 +31,7 @@ export function ArticlePreview({ article }: ArticlePreviewProps) {
 
   return (
     <Card href={href} component={Link}>
-      <CardActionArea sx={{ display: 'flex', flexWrap: 'wrap' }}>
+      <CardActionArea sx={{ display: 'flex', flexWrap: 'wrap', alignItems: 'flex-start' }}>
         <Box
           sx={{
             width: {

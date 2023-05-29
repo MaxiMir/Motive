@@ -5,7 +5,7 @@ import { Layout } from 'app/layout'
 import { PrivacyPolicyPage } from 'pages/privacy-policy'
 import { useMeta } from 'entities/page'
 
-function PrivacyPolicy() {
+function PrivacyPolicyRoute() {
   const meta = useMeta('privacy-policy')
 
   return (
@@ -29,4 +29,4 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
   }
 }
 
-export default PrivacyPolicy
+export default PrivacyPolicyRoute

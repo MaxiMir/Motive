@@ -27,7 +27,6 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
   const { device } = detector.detect(headers['user-agent'] || '')
   const params = getSearchParams(url)
   const session = await getSession(ctx)
-
   await queryClient.prefetchQuery(['page', Route.Search], () => getSearchPage({ headers, params }))
 
   return {

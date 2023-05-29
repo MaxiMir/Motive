@@ -13,7 +13,7 @@ export const UserSchema = object({
     .max(255, "It's so long.")
     .matches(/^[a-z0-9\-_]+$/, 'Only lowercase letters, numbers and "-" and "_"'),
   avatar: mixed().required('An avatar is needed'),
-  motto: string().trim().max(140, "It's so long."),
-  location: string().trim().min(3, "It's too short.").max(64, "It's so long."),
-  bio: string().trim().max(320, "It's so long."),
+  motto: string().trim().max(140, "It's so long.").nullable(),
+  location: string().trim().min(3, "It's too short.").max(64, "It's so long.").nullable(),
+  bio: string().trim().max(320, "It's so long.").nullable(),
 })

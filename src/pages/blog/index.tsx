@@ -1,10 +1,11 @@
 import { Grid, Typography } from '@mui/material'
 import { useIntl } from 'react-intl'
-import { Article, ArticlePreview } from 'entities/article'
+import { ArticlePreview } from 'entities/article'
+import { ArticleDto } from 'shared/api'
 import Container from 'shared/ui/Container'
 
 interface BlogPageProps {
-  articles: Article[]
+  articles: ArticleDto[]
 }
 
 export function BlogPage({ articles }: BlogPageProps) {
@@ -18,7 +19,7 @@ export function BlogPage({ articles }: BlogPageProps) {
       </Typography>
       <Grid container spacing={2}>
         {articles.map((article) => (
-          <Grid item xs={12} key={article.href}>
+          <Grid item xs={12} key={article.id}>
             <ArticlePreview article={article} />
           </Grid>
         ))}

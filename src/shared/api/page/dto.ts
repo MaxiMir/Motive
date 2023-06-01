@@ -1,3 +1,4 @@
+import { ArticleDto } from '../article'
 import { MainCharacteristicName } from '../characteristic'
 import { ConfirmationDto } from '../confirmation'
 import { GoalDto } from '../goal'
@@ -39,4 +40,12 @@ export interface UserPageDto extends UserDto {
   readonly goals: GoalDto[]
   readonly clientMembership: MemberDto[]
   readonly confirmations: ConfirmationDto[]
+}
+
+export interface BlogPageDto {
+  articles: ArticleDto[]
+}
+
+export interface ArticlePageDto extends ArticleDto {
+  readonly more: ArticleDto[]
 }

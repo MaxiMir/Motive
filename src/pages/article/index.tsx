@@ -1,80 +1,116 @@
-import { Box, Breadcrumbs, Chip, Grid, IconButton, Link, Stack, Typography } from '@mui/material'
+import { Box, Breadcrumbs, Button, Chip, Grid, Link, Stack, Typography } from '@mui/material'
 import { compiler } from 'markdown-to-jsx'
 import dynamic from 'next/dynamic'
 import { Illustration } from 'pages/article/illustration'
 import { tryNativeShare } from 'features/share'
-import { Article, ArticlePreview, getReadTime } from 'entities/article'
+import { ArticlePreview, getReadTime } from 'entities/article'
+import { ArticlePageDto } from 'shared/api'
+import { Route } from 'shared/config'
+import { setSearchParams } from 'shared/lib/helpers'
 import { useFormatDate, useToggle } from 'shared/lib/hooks'
 import Container from 'shared/ui/Container'
 import Icon from 'shared/ui/Icon'
 import { generateColorByName } from 'shared/ui/palette'
-import TooltipArrow from 'shared/ui/TooltipArrow'
 import { useMessages } from './lib'
 
 const Share = dynamic(() => import('features/share'))
 
-export function ArticlePage({ data, href, content, more }: Article) {
+interface ArticlePageProps {
+  article: ArticlePageDto
+}
+
+export function ArticlePage({ article }: ArticlePageProps) {
+  const { title, header, date, tag, pathname, motto, content, image, more, sharesCount, views } =
+    article
   const messages = useMessages()
   const formatDate = useFormatDate()
   const [sharing, toggleSharing] = useToggle()
-  const date = formatDate(data.date, { day: 'numeric', month: 'long', year: 'numeric' })
+  const formattedDate = formatDate(date, { day: 'numeric', month: 'long', year: 'numeric' })
   const markdown = compiler(content, { wrapper: null, overrides: { p: Typography, a: Link } })
   const readTime = getReadTime(content)
-  const backgroundColor = generateColorByName(data.tag, {
+  const backgroundColor = generateColorByName(tag, {
     saturation: 50,
     lightness: 20,
     range: 10,
   })
+  const href = setSearchParams([Route.Blog, pathname].join('/'), { share: 'web' })
 
-  const onShare = () => tryNativeShare(href, data.title, toggleSharing)
+  const onShare = () => tryNativeShare(href, title, toggleSharing)
 
   return (
-    <Container
-      sx={{
-        '& img': {
-          maxWidth: '100%',
-          marginBottom: 2,
-          borderRadius: 2,
-        },
-      }}
-    >
-      <Box display="flex" justifyContent="space-between" alignItems="center" mb={1}>
-        <Breadcrumbs separator="•" aria-label="breadcrumb">
-          <Chip size="small" label={data.tag} sx={{ backgroundColor }} />
-          <Typography component="time" dateTime={data.date} sx={{ color: 'zen.silent' }}>
-            {date}
-          </Typography>
-        </Breadcrumbs>
-        <TooltipArrow title={messages.shareText}>
-          <IconButton
+    <>
+      <Container
+        sx={{
+          '& img': {
+            maxWidth: '100%',
+            marginBottom: 2,
+            borderRadius: 2,
+          },
+        }}
+      >
+        <Box display="flex" justifyContent="space-between" alignItems="center" mb={1}>
+          <Breadcrumbs separator="•" aria-label="breadcrumb">
+            <Chip size="small" label={tag} sx={{ backgroundColor }} />
+            <Typography component="time" dateTime={date} sx={{ color: 'zen.silent' }}>
+              {formattedDate}
+            </Typography>
+          </Breadcrumbs>
+          <Box display="flex" gap={1}>
+            {/*
+          <Button
             size="small"
+            color="inherit"
+            aria-label=""
+            disabled
+            startIcon={<Icon name="bookmark" />}
             sx={(theme) => ({ color: theme.palette.grey[600] })}
-            onClick={onShare}
           >
-            <Icon name="ios_share" />
-          </IconButton>
-        </TooltipArrow>
-      </Box>
-      <article>
-        <Stack gap={1} component="header" mb={2}>
-          <Typography variant="h4" component="h1">
-            {data.header}
-          </Typography>
-          <Typography variant="caption" sx={{ color: 'zen.silent' }}>
-            {readTime} {messages.readTimeText}
-          </Typography>
-        </Stack>
-        <Illustration motto={data.motto} image={data.image} />
-        {markdown}
-      </article>
-      {sharing && <Share href={href} title={data.title} onClose={toggleSharing} />}
-      <Grid container spacing={2} mt={4}>
-        {more.map((article) => (
-          <Grid item xs={12} key={article.href}>
-            <ArticlePreview article={article} />
-          </Grid>
-        ))}
-      </Grid>
-    </Container>
+            {bookmarkedCount}
+          </Button>
+          */}
+            <Button
+              size="small"
+              color="inherit"
+              aria-label={messages.shareText}
+              startIcon={<Icon name="ios_share" />}
+              sx={(theme) => ({ color: theme.palette.grey[600] })}
+              onClick={onShare}
+            >
+              {sharesCount}
+            </Button>
+          </Box>
+        </Box>
+        <article>
+          <Stack gap={1} component="header" mb={2}>
+            <Typography variant="h4" component="h1">
+              {header}
+            </Typography>
+            <Typography variant="caption" sx={{ color: 'zen.silent' }}>
+              {readTime} {messages.readTimeText}
+            </Typography>
+          </Stack>
+          <Illustration motto={motto} image={image} />
+          {markdown}
+        </article>
+        <Box mt={3}>
+          {/*
+        <Button color="inherit" aria-label="" disabled startIcon={<Icon name="favorite" />}>
+          {likeCount}
+        </Button>
+        */}
+          <Button startIcon={<Icon name="visibility" />} size="small" disabled component="span">
+            {views}
+          </Button>
+        </Box>
+        <Grid container spacing={2} mt={4}>
+          {more.map((preview) => (
+            <Grid item xs={12} key={preview.id}>
+              <ArticlePreview article={preview} />
+            </Grid>
+          ))}
+        </Grid>
+      </Container>
+      {sharing && <Share href={href} title={title} onClose={toggleSharing} />}
+    </>
   )
 }

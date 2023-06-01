@@ -1,5 +1,6 @@
 import { Box, Typography } from '@mui/material'
 import { styled } from '@mui/system'
+import { getStaticSrc } from 'shared/lib/helpers'
 
 interface IllustrationProps {
   image: string
@@ -7,6 +8,8 @@ interface IllustrationProps {
 }
 
 export function Illustration({ image, motto }: IllustrationProps) {
+  const staticSrc = getStaticSrc(image)
+
   return (
     <Box position="relative" mb={3}>
       <Typography
@@ -48,7 +51,7 @@ export function Illustration({ image, motto }: IllustrationProps) {
       >
         &#171;{motto}&#187;
       </Typography>
-      <ImgNative src={image} alt="" />
+      <ImgNative src={staticSrc} alt="" />
     </Box>
   )
 }

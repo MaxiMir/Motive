@@ -1,5 +1,6 @@
 import { Box, IconButton, Menu, MenuItem } from '@mui/material'
 import { MouseEvent, useId, useState } from 'react'
+import { useIntl } from 'react-intl'
 import dynamic from 'next/dynamic'
 import { tryNativeShare } from 'features/share'
 import { MemberDto } from 'shared/api'
@@ -7,7 +8,6 @@ import { useToggle } from 'shared/lib/hooks'
 import Icon from 'shared/ui/Icon'
 import ListItem from 'shared/ui/ListItem'
 import TooltipArrow from 'shared/ui/TooltipArrow'
-import { useMessages } from './lib'
 
 const Share = dynamic(() => import('features/share'))
 const CreateReport = dynamic(() => import('features/report/create-report'))
@@ -32,12 +32,17 @@ export function MenuActions({
 }: MenuActionsProps) {
   const id = useId()
   const menuId = useId()
-  const messages = useMessages()
+  const { formatMessage } = useIntl()
   const [anchorEl, setAnchorEl] = useState<HTMLElement | null>(null)
   const [sharing, toggleSharing] = useToggle()
   const [leaving, toggleLeaving] = useToggle()
   const [reporting, toggleReporting] = useToggle()
   const open = Boolean(anchorEl)
+  const buttonTitle = formatMessage({ id: 'page.user.goal-current.open-menu' })
+  const shareText = formatMessage({ id: 'common.share' })
+  const reportText = formatMessage({ id: 'common.report' })
+  const leaveText = formatMessage({ id: 'common.leave' })
+  const cancelText = formatMessage({ id: 'common.cancel' })
 
   const onOpenMenu = (e: MouseEvent<HTMLButtonElement>) => setAnchorEl(e.currentTarget)
 
@@ -61,7 +66,7 @@ export function MenuActions({
   return (
     <>
       <Box marginLeft="auto">
-        <TooltipArrow title={messages.buttonTitle}>
+        <TooltipArrow title={buttonTitle}>
           <IconButton
             id={id}
             size="small"
@@ -84,20 +89,20 @@ export function MenuActions({
         onClose={onCloseMenu}
       >
         <MenuItem onClick={onShare}>
-          <ListItem icon="ios_share" primary={messages.shareText} />
+          <ListItem icon="ios_share" primary={shareText} />
         </MenuItem>
         {!clientGoal && (
           <MenuItem onClick={toggleReporting}>
-            <ListItem icon="outlined_flag" primary={messages.reportText} color="error.dark" />
+            <ListItem icon="outlined_flag" primary={reportText} color="error.dark" />
           </MenuItem>
         )}
         {clientMember && (
           <MenuItem onClick={onLeave}>
-            <ListItem icon="logout" primary={messages.leaveText} />
+            <ListItem icon="logout" primary={leaveText} />
           </MenuItem>
         )}
         <MenuItem onClick={onCloseMenu}>
-          <ListItem icon="block" primary={messages.cancelText} color="grey" />
+          <ListItem icon="block" primary={cancelText} color="grey" />
         </MenuItem>
       </Menu>
       {sharing && <Share href={href} title={goalName} onClose={toggleSharing} />}

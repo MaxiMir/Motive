@@ -3,7 +3,7 @@ import { useClient } from 'entities/viewer'
 import { MessageDto, TopicType } from 'shared/api'
 import { useFormatNumber } from 'shared/lib/hooks'
 import TooltipArrow from 'shared/ui/TooltipArrow'
-import { checkOnDisabled, useMessages } from './lib'
+import { checkOnDisabled, useTitle } from './lib'
 import { useSetLike } from './model'
 
 interface LikeProps {
@@ -15,14 +15,14 @@ export function Like({ message, parentId }: LikeProps) {
   const { likeCount, type } = message
   const client = useClient()
   const disabled = checkOnDisabled(message, client)
-  const messages = useMessages(message, disabled)
+  const title = useTitle(message, disabled)
   const formatNumber = useFormatNumber()
   const formattedNumber = formatNumber(likeCount)
   const startIcon = type === TopicType.Question ? '❤️' : '🙏'
   const [isLoading, onClick] = useSetLike(message, parentId)
 
   return (
-    <TooltipArrow title={messages.title}>
+    <TooltipArrow title={title}>
       <Button
         size="small"
         disabled={disabled || isLoading}

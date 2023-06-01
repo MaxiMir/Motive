@@ -1,12 +1,12 @@
 import { Box, Stack, Typography, FormControlLabel, Radio, RadioGroup } from '@mui/material'
 import { Form, FormikProvider } from 'formik'
 import { ChangeEvent } from 'react'
+import { useIntl } from 'react-intl'
 import { CalendarDto } from 'shared/api'
 import Accordion from 'shared/ui/Accordion'
 import CancelButton from 'shared/ui/CancelButton'
 import Modal from 'shared/ui/Modal'
 import SubmitButton from 'shared/ui/SubmitButton'
-import { useMessages } from './lib'
 import { useCreateMemberForm } from './model'
 
 interface CreateMemberModalProps {
@@ -24,11 +24,22 @@ function CreateMemberModal({
   ownerName,
   onClose,
 }: CreateMemberModalProps) {
-  const messages = useMessages()
+  const { formatMessage } = useIntl()
   const beginningDay = calendar[0].id
   const disableBeginning = beginningDay === dayId
   const form = useCreateMemberForm(goalId, beginningDay)
   const { isSubmitting, values, setFieldValue, handleSubmit } = form
+  const title = formatMessage({ id: 'page.user.modal-join.title' })
+  const buttonText = formatMessage({ id: 'common.join' })
+  const loadingText = formatMessage({ id: 'common.joining' })
+  const beginLabel = formatMessage({ id: 'page.user.modal-join.begin-label' })
+  const dayLabel = formatMessage({ id: 'page.user.modal-join.day-label' })
+  const accordionHeader = formatMessage({ id: 'page.user.modal-join.accordion-header' })
+  const accordingMotivation = formatMessage({ id: 'page.user.modal-join.according-motivation' })
+  const accordingCreative = formatMessage({ id: 'page.user.modal-join.according-creative' })
+  const accordingSupport = formatMessage({ id: 'page.user.modal-join.according-support' })
+  const accordingNeeded = formatMessage({ id: 'page.user.modal-join.according-needed' })
+  const accordingQuestions = formatMessage({ id: 'page.user.modal-join.according-questions' })
 
   const onChange = (e: ChangeEvent<HTMLInputElement>) => {
     setFieldValue('dayId', e.currentTarget.value)
@@ -36,14 +47,14 @@ function CreateMemberModal({
 
   return (
     <Modal
-      title={messages.title}
+      title={title}
       maxWidth="xs"
       actions={[
         <CancelButton key="cancel" onClick={onClose} />,
         <SubmitButton
           disabled={isSubmitting}
-          text={messages.buttonText}
-          loadingText={messages.loadingText}
+          text={buttonText}
+          loadingText={loadingText}
           emoji="📬"
           key="submit"
           onClick={handleSubmit}
@@ -59,7 +70,7 @@ function CreateMemberModal({
                 value={disableBeginning ? 'none' : beginningDay.toString()}
                 label={
                   <Stack direction="row" gap={1}>
-                    {messages.beginLabel} 🗻
+                    {beginLabel} 🗻
                   </Stack>
                 }
                 disabled={isSubmitting || disableBeginning}
@@ -69,7 +80,7 @@ function CreateMemberModal({
                 value={dayId.toString()}
                 label={
                   <Stack direction="row" gap={1}>
-                    {messages.dayLabel} 🌋
+                    {dayLabel} 🌋
                   </Stack>
                 }
                 disabled={isSubmitting}
@@ -80,21 +91,21 @@ function CreateMemberModal({
         </FormikProvider>
         <Accordion
           emoji="🪢"
-          header={messages.accordionHeader}
+          header={accordionHeader}
           id="tips"
           details={
             <Box color="zen.silent">
-              <Typography>&#9679; {messages.accordingMotivation}.</Typography>
-              <Typography>&#9679; {messages.accordingCreative}.</Typography>
+              <Typography>&#9679; {accordingMotivation}.</Typography>
+              <Typography>&#9679; {accordingCreative}.</Typography>
               <Typography>
-                &#9679; {messages.accordingSupport}{' '}
+                &#9679; {accordingSupport}{' '}
                 <Box component="span" color="support.main">
                   {ownerName}
                 </Box>
                 {', '}
-                {messages.accordingNeeded}.
+                {accordingNeeded}.
               </Typography>
-              <Typography>&#9679; {messages.accordingQuestions} 💬.</Typography>
+              <Typography>&#9679; {accordingQuestions} 💬.</Typography>
             </Box>
           }
         />

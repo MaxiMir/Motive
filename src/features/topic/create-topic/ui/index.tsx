@@ -2,13 +2,13 @@ import { IconButton, Stack } from '@mui/material'
 import { blue } from '@mui/material/colors'
 import { styled } from '@mui/system'
 import { Field, Form, FormikProvider } from 'formik'
+import { useIntl } from 'react-intl'
 import dynamic from 'next/dynamic'
 import { TopicType, UserBaseDto, ClientDto } from 'shared/api'
 import Avatar from 'shared/ui/avatar'
 import Input from 'shared/ui/Input'
 import TooltipArrow from 'shared/ui/TooltipArrow'
 import { useCreateTopicForm } from '../model'
-import { useMessages } from './lib'
 
 const CircularProgress = dynamic(() => import('@mui/material/CircularProgress'))
 const InputAdornment = dynamic(() => import('@mui/material/InputAdornment'))
@@ -41,12 +41,14 @@ function CreateTopic({
   onSuccess,
 }: CreateTopicProps) {
   const { name, avatar } = user
-  const messages = useMessages()
+  const { formatMessage } = useIntl()
   const form = useCreateTopicForm(dayId, topicId, type, onSuccess)
   const { isSubmitting, values, setFieldValue, handleSubmit } = form
   const disabled = isSubmitting || !values.text
   const supportSign = values.type === TopicType.Support && !clientGoal
   const selectingType = !clientGoal && values.text
+  const sendText = formatMessage({ id: 'common.send' })
+  const placeholder = formatMessage({ id: 'common.message' })
 
   const setType = (value: TopicType) => setFieldValue('type', value)
 
@@ -60,7 +62,7 @@ function CreateTopic({
             <Avatar src={avatar} name={name} size={32} />
             <Field
               name="text"
-              placeholder={messages.placeholder}
+              placeholder={placeholder}
               InputLabelProps={{ shrink: false }}
               disabled={isSubmitting}
               autoComplete="off"
@@ -80,7 +82,7 @@ function CreateTopic({
               }}
               component={Input}
             />
-            <TooltipArrow title={messages.sendText}>
+            <TooltipArrow title={sendText}>
               <SendButton size="small" color="inherit" disabled={disabled} onClick={onClick}>
                 {isSubmitting ? <CircularProgress size={14.5} /> : <Icon name="arrow_upward" />}
               </SendButton>

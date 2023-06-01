@@ -2,10 +2,10 @@ import { IconButton, Switch, FormControlLabel, Stack } from '@mui/material'
 import { TimePicker } from '@mui/x-date-pickers'
 import { Field } from 'formik'
 import { ChangeEvent } from 'react'
+import { useIntl } from 'react-intl'
 import Icon from 'shared/ui/Icon'
 import Input from 'shared/ui/Input'
 import TooltipArrow from 'shared/ui/TooltipArrow'
-import { useMessages } from './lib'
 
 interface TaskFieldProps {
   index: number
@@ -24,7 +24,12 @@ export function TaskField({
   setFieldValue,
   onRemove,
 }: TaskFieldProps) {
-  const messages = useMessages()
+  const { formatMessage } = useIntl()
+  const label = formatMessage({ id: 'component.task-field.label' })
+  const placeholder = formatMessage({ id: 'component.task-field.placeholder' })
+  const closeText = formatMessage({ id: 'component.task-field.close' })
+  const remindText = formatMessage({ id: 'component.task-field.remind' })
+  const soonText = formatMessage({ id: 'common.soon' })
   const autoFocus = !!index && index === taskCount - 1
 
   const onSwitchClick = (_: ChangeEvent<HTMLInputElement>, isChecked: boolean) => {
@@ -36,14 +41,14 @@ export function TaskField({
       <Stack direction="row" justifyContent="space-between" alignItems="flex-start" gap={1}>
         <Field
           name={`tasks.${index}.name`}
-          label={messages.label}
-          placeholder={messages.placeholder}
+          label={label}
+          placeholder={placeholder}
           autoFocus={autoFocus}
           required
           component={Input}
         />
         <IconButton
-          aria-label={messages.closeText}
+          aria-label={closeText}
           disableFocusRipple
           disabled={taskCount === 1}
           sx={{ color: 'zen.silent' }}
@@ -54,9 +59,9 @@ export function TaskField({
       </Stack>
       <Stack direction="row" alignItems="center" gap={1} pl={1} height={48}>
         {/* TODO ADD  */}
-        <TooltipArrow title={messages.soonText}>
+        <TooltipArrow title={soonText}>
           <FormControlLabel
-            label={messages.remindText}
+            label={remindText}
             disabled
             control={<Switch size="small" onChange={onSwitchClick} />}
           />

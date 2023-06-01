@@ -1,8 +1,8 @@
 import { Typography } from '@mui/material'
+import { useIntl } from 'react-intl'
 import CancelButton from 'shared/ui/CancelButton'
 import Modal from 'shared/ui/Modal'
 import SubmitButton from 'shared/ui/SubmitButton'
-import { useMessages } from './lib'
 import { useDeleteAvatar } from './model'
 
 interface DeleteAvatarModalProps {
@@ -11,21 +11,25 @@ interface DeleteAvatarModalProps {
 }
 
 function DeleteAvatarModal({ userId, onClose }: DeleteAvatarModalProps) {
-  const messages = useMessages()
+  const { formatMessage } = useIntl()
   const { isLoading, mutateAsync } = useDeleteAvatar(userId)
+  const title = formatMessage({ id: 'common.warning' })
+  const description = formatMessage({ id: 'common.delete-warning' })
+  const deleteText = formatMessage({ id: 'common.delete' })
+  const deletingText = formatMessage({ id: 'common.deleting' })
 
   const onClick = () => mutateAsync().then(onClose)
 
   return (
     <Modal
-      title={messages.title}
+      title={title}
       maxWidth="xs"
       actions={[
         <CancelButton key="cancel" onClick={onClose} />,
         <SubmitButton
           disabled={isLoading}
-          text={messages.deleteText}
-          loadingText={messages.deletingText}
+          text={deleteText}
+          loadingText={deletingText}
           emoji="🗑"
           key="submit"
           onClick={onClick}
@@ -34,7 +38,7 @@ function DeleteAvatarModal({ userId, onClose }: DeleteAvatarModalProps) {
       onClose={onClose}
     >
       <Typography textAlign="center" sx={{ fontSize: 14 }}>
-        {messages.description}
+        {description}
       </Typography>
     </Modal>
   )

@@ -1,15 +1,15 @@
 import { IconButton, MenuItem, Box, Menu } from '@mui/material'
 import { MouseEvent, useId, useState } from 'react'
+import { useIntl } from 'react-intl'
 import dynamic from 'next/dynamic'
 import { useClient } from 'entities/viewer'
 import { MessageDto } from 'shared/api'
-import { copyText } from 'shared/lib/helpers'
+import { copy } from 'shared/lib/helpers'
 import { useToggle } from 'shared/lib/hooks'
 import Icon from 'shared/ui/Icon'
 import ListItem from 'shared/ui/ListItem'
 import { useSnackbar } from 'shared/ui/snackbar'
 import TooltipArrow from 'shared/ui/TooltipArrow'
-import { useMessages } from './lib'
 
 const CreateReport = dynamic(() => import('features/report/create-report'))
 const EditTopicModal = dynamic(() => import('features/topic/edit-topic'))
@@ -22,27 +22,34 @@ function MenuActions({ message }: MenuActionsProps) {
   const id = useId()
   const menuId = useId()
   const client = useClient()
-  const messages = useMessages()
+  const { formatMessage } = useIntl()
   const [anchorEl, setAnchorEl] = useState<HTMLElement | null>(null)
   const [editing, toggleEditing] = useToggle()
   const [reporting, toggleReporting] = useToggle()
   const { enqueueSnackbar } = useSnackbar()
   const canEdit = message.user.id === client?.id
   const open = Boolean(anchorEl)
+  const title = formatMessage({ id: 'page.user.message-menu.title' })
+  const copyText = formatMessage({ id: 'common.copy' })
+  const copiedText = formatMessage({ id: 'common.copied' })
+  const editText = formatMessage({ id: 'common.edit' })
+  const reportText = formatMessage({ id: 'common.report' })
+  const errorText = formatMessage({ id: 'common.error' })
+  const cancelText = formatMessage({ id: 'common.cancel' })
 
   const onOpenMenu = (e: MouseEvent<HTMLButtonElement>) => setAnchorEl(e.currentTarget)
 
   const onCloseMenu = () => setAnchorEl(null)
 
   const onSuccess = () => {
-    enqueueSnackbar(messages.copiedText, { severity: 'success', icon: '⌨️' })
+    enqueueSnackbar(copiedText, { severity: 'success', icon: '⌨️' })
   }
 
   const onError = () => {
-    enqueueSnackbar(messages.errorText, { severity: 'error', icon: '☠️' })
+    enqueueSnackbar(errorText, { severity: 'error', icon: '☠️' })
   }
 
-  const onCopy = () => copyText(message.text).then(onSuccess).catch(onError).finally(onCloseMenu)
+  const onCopy = () => copy(message.text).then(onSuccess).catch(onError).finally(onCloseMenu)
 
   const toggleEdit = () => {
     toggleEditing()
@@ -57,7 +64,7 @@ function MenuActions({ message }: MenuActionsProps) {
   return (
     <>
       <Box display="flex" alignItems="center" marginLeft="auto">
-        <TooltipArrow title={messages.title}>
+        <TooltipArrow title={title}>
           <IconButton
             id={id}
             size="small"
@@ -81,19 +88,19 @@ function MenuActions({ message }: MenuActionsProps) {
         onClose={onCloseMenu}
       >
         <MenuItem onClick={onCopy}>
-          <ListItem icon="content_copy" primary={messages.copyText} />
+          <ListItem icon="content_copy" primary={copyText} />
         </MenuItem>
         {canEdit ? (
           <MenuItem onClick={toggleEdit}>
-            <ListItem icon="edit" primary={messages.editText} />
+            <ListItem icon="edit" primary={editText} />
           </MenuItem>
         ) : (
           <MenuItem onClick={toggleReporting}>
-            <ListItem icon="outlined_flag" primary={messages.reportText} color="error.dark" />
+            <ListItem icon="outlined_flag" primary={reportText} color="error.dark" />
           </MenuItem>
         )}
         <MenuItem onClick={onCloseMenu}>
-          <ListItem icon="block" primary={messages.cancelText} color="grey" />
+          <ListItem icon="block" primary={cancelText} color="grey" />
         </MenuItem>
       </Menu>
       {reporting && (

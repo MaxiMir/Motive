@@ -1,7 +1,7 @@
 import { Box, Button } from '@mui/material'
 import { signIn, SignInOptions } from 'next-auth/react'
+import { useIntl } from 'react-intl'
 import Image, { ImageProps } from 'next/image'
-import { useMessages } from './lib'
 
 interface ProviderProps {
   id: string
@@ -12,7 +12,9 @@ interface ProviderProps {
 }
 
 function Provider({ id, name, options, src, disabled }: ProviderProps) {
-  const messages = useMessages()
+  const { formatMessage } = useIntl()
+  const signInText = formatMessage({ id: 'common.sign-in' })
+  const withText = formatMessage({ id: 'common.with' })
 
   return (
     <Button
@@ -23,7 +25,7 @@ function Provider({ id, name, options, src, disabled }: ProviderProps) {
       onClick={() => signIn(id, options)}
     >
       <Box display="flex" justifyContent="flex-start" width={150}>
-        {messages.signInText} {messages.withText} {name}
+        {signInText} {withText} {name}
       </Box>
     </Button>
   )

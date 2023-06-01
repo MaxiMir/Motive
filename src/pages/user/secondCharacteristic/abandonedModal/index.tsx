@@ -1,4 +1,5 @@
 import { Stack, Typography } from '@mui/material'
+import { useIntl } from 'react-intl'
 import Image from 'next/image'
 // eslint-disable-next-line import/no-internal-modules
 import webSrc from 'public/images/svg/web.svg'
@@ -6,7 +7,6 @@ import { CharacteristicRules } from 'entities/characteristic'
 import { UserCharacteristicDto } from 'shared/api'
 import { useShowProgress } from 'shared/lib/hooks'
 import Modal from 'shared/ui/Modal'
-import { useMessages } from './lib'
 
 interface AbandonedModalProps {
   characteristic: UserCharacteristicDto
@@ -14,12 +14,14 @@ interface AbandonedModalProps {
 }
 
 function AbandonedModal({ characteristic, onClose }: AbandonedModalProps) {
-  const messages = useMessages()
+  const { formatMessage } = useIntl()
   const progress = useShowProgress(characteristic.abandoned, { step: 1, ms: 300 })
   const roundedProgress = Math.round(progress)
+  const title = formatMessage({ id: 'common.abandoned' })
+  const header = formatMessage({ id: 'page.user.modal-abandoned.header' })
 
   return (
-    <Modal title={messages.title} maxWidth="xs" onClose={onClose}>
+    <Modal title={title} maxWidth="xs" onClose={onClose}>
       <Stack position="relative" gap={2}>
         <Stack direction="row" alignItems="center" gap={2} alignSelf="center">
           <Typography variant="h2" component="p" sx={{ color: 'abandoned.main' }}>
@@ -28,7 +30,7 @@ function AbandonedModal({ characteristic, onClose }: AbandonedModalProps) {
           <Image src={webSrc} alt="" width={60} height={60} />
         </Stack>
         <Typography component="h3" textAlign="center">
-          {messages.header}.
+          {header}.
         </Typography>
         <CharacteristicRules />
       </Stack>

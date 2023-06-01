@@ -1,5 +1,6 @@
 import { Grid, Typography, Stack } from '@mui/material'
 import { Field, FieldArray, Form, FormikProvider } from 'formik'
+import { useIntl } from 'react-intl'
 import { usePhotoLimit } from 'entities/confirmation'
 import CancelButton from 'shared/ui/CancelButton'
 import Input from 'shared/ui/Input'
@@ -10,7 +11,6 @@ import ShakeTypography from 'shared/ui/ShakeTypography'
 import SubmitButton from 'shared/ui/SubmitButton'
 import VideoInput from 'shared/ui/videoInput'
 import VideoPreview from 'shared/ui/VideoPreview'
-import { useMessages } from './lib'
 import { useCreateFeedbackForm } from './model'
 
 interface AddingModalProps {
@@ -20,9 +20,16 @@ interface AddingModalProps {
 }
 
 function CreateFeedback({ goalId, dayId, onClose }: AddingModalProps) {
-  const messages = useMessages()
+  const { formatMessage } = useIntl()
   const form = useCreateFeedbackForm(goalId, dayId, onClose)
   const { isSubmitting, values, setFieldValue, submitForm } = form
+  const title = formatMessage({ id: 'page.user.modal-feedback.title' })
+  const label = formatMessage({ id: 'page.user.modal-feedback.label' })
+  const subtitle = formatMessage({ id: 'page.user.modal-feedback.subtitle' })
+  const photoTitle = formatMessage({ id: 'page.user.modal-feedback.photo-title' })
+  const videoTitle = formatMessage({ id: 'page.user.modal-feedback.video-title' })
+  const buttonText = formatMessage({ id: 'page.user.modal-feedback.button' })
+  const loadingText = formatMessage({ id: 'page.user.modal-feedback.loading' })
 
   const onSelectPhoto = usePhotoLimit(form)
 
@@ -30,14 +37,14 @@ function CreateFeedback({ goalId, dayId, onClose }: AddingModalProps) {
 
   return (
     <Modal
-      title={messages.title}
+      title={title}
       maxWidth="xs"
       actions={[
         <CancelButton key="cancel" onClick={onClose} />,
         <SubmitButton
           disabled={isSubmitting}
-          text={messages.buttonText}
-          loadingText={messages.loadingText}
+          text={buttonText}
+          loadingText={loadingText}
           emoji="💭"
           key="submit"
           onClick={submitForm}
@@ -51,21 +58,14 @@ function CreateFeedback({ goalId, dayId, onClose }: AddingModalProps) {
             <Stack alignItems="center" gap={1}>
               <ShakeTypography>🎉</ShakeTypography>
               <Typography variant="subtitle1" sx={{ color: 'support.main' }}>
-                {messages.subtitle}
+                {subtitle}
               </Typography>
             </Stack>
-            <Field
-              name="text"
-              label={messages.label}
-              color="warning"
-              multiline
-              rows={3}
-              component={Input}
-            />
+            <Field name="text" label={label} color="warning" multiline rows={3} component={Input} />
             {!!values.photos.length && (
               <Stack gap={2} width="100%">
                 <Typography variant="h6" component="p" color="primary">
-                  📸 {messages.photoTitle}
+                  📸 {photoTitle}
                 </Typography>
                 <FieldArray name="photos">
                   {({ remove }) => (
@@ -87,7 +87,7 @@ function CreateFeedback({ goalId, dayId, onClose }: AddingModalProps) {
             {values.video && (
               <Stack gap={2} width="100%">
                 <Typography variant="h6" component="p" color="primary">
-                  🎬 {messages.videoTitle}
+                  🎬 {videoTitle}
                 </Typography>
                 <VideoPreview
                   video={values.video}

@@ -1,5 +1,6 @@
 import { Grid, Box, Typography, Stack } from '@mui/material'
 import { ErrorMessage, Field, FieldArray, Form, FormikProvider } from 'formik'
+import { useIntl } from 'react-intl'
 import dynamic from 'next/dynamic'
 import { usePhotoLimit } from 'entities/confirmation'
 import Accordion from 'shared/ui/Accordion'
@@ -12,7 +13,6 @@ import SpinTypography from 'shared/ui/SpinTypography'
 import SubmitButton from 'shared/ui/SubmitButton'
 import VideoInput from 'shared/ui/videoInput'
 import VideoPreview from 'shared/ui/VideoPreview'
-import { useMessages } from './lib'
 import { useCreateConfirmationForm } from './model'
 
 const Alert = dynamic(() => import('@mui/material/Alert'))
@@ -23,9 +23,19 @@ interface CreateConfirmationModalProps {
 }
 
 function CreateConfirmationModal({ goalId, onClose }: CreateConfirmationModalProps) {
-  const messages = useMessages()
+  const { formatMessage } = useIntl()
   const form = useCreateConfirmationForm(goalId, onClose)
   const { isSubmitting, values, setFieldValue, handleSubmit } = form
+  const title = formatMessage({ id: 'component.modal-completion.title' })
+  const buttonText = formatMessage({ id: 'common.complete' })
+  const loadingText = formatMessage({ id: 'common.completing' })
+  const subtitle = formatMessage({ id: 'component.modal-completion.subtitle' })
+  const label = formatMessage({ id: 'component.modal-completion.label' })
+  const photoTitle = formatMessage({ id: 'component.modal-completion.photoTitle' })
+  const videoTitle = formatMessage({ id: 'component.modal-completion.videoTitle' })
+  const accordionHeader = formatMessage({ id: 'component.modal-completion.accordionHeader' })
+  const detailsStart = formatMessage({ id: 'component.modal-completion.details-start' })
+  const detailsEnd = formatMessage({ id: 'component.modal-completion.details-end' })
 
   const onSelectPhoto = usePhotoLimit(form)
 
@@ -33,14 +43,14 @@ function CreateConfirmationModal({ goalId, onClose }: CreateConfirmationModalPro
 
   return (
     <Modal
-      title={messages.title}
+      title={title}
       maxWidth="xs"
       actions={[
         <CancelButton key="cancel" onClick={onClose} />,
         <SubmitButton
           disabled={isSubmitting}
-          text={messages.buttonText}
-          loadingText={messages.loadingText}
+          text={buttonText}
+          loadingText={loadingText}
           emoji="🏆"
           key="submit"
           onClick={handleSubmit}
@@ -54,21 +64,14 @@ function CreateConfirmationModal({ goalId, onClose }: CreateConfirmationModalPro
             <Stack alignItems="center" gap={1}>
               <SpinTypography>🏆</SpinTypography>
               <Typography variant="subtitle1" sx={{ color: '#ffa300' }}>
-                {messages.subtitle}
+                {subtitle}
               </Typography>
             </Stack>
-            <Field
-              name="text"
-              label={messages.label}
-              color="warning"
-              multiline
-              rows={3}
-              component={Input}
-            />
+            <Field name="text" label={label} color="warning" multiline rows={3} component={Input} />
             {!!values.photos.length && (
               <Stack gap={2} width="100%">
                 <Typography variant="h6" color="primary" component="p">
-                  📸 {messages.photoTitle}
+                  📸 {photoTitle}
                 </Typography>
                 <FieldArray name="photos">
                   {({ remove }) => (
@@ -90,7 +93,7 @@ function CreateConfirmationModal({ goalId, onClose }: CreateConfirmationModalPro
             {values.video && (
               <Stack gap={2} width="100%">
                 <Typography variant="h6" color="primary" component="p">
-                  🎬 {messages.videoTitle}
+                  🎬 {videoTitle}
                 </Typography>
                 <VideoPreview
                   video={values.video}
@@ -113,16 +116,16 @@ function CreateConfirmationModal({ goalId, onClose }: CreateConfirmationModalPro
             <Box width="100%">
               <Accordion
                 emoji="🕹"
-                header={messages.accordionHeader}
+                header={accordionHeader}
                 id="goal"
                 details={
                   <Box color="zen.silent">
                     <Typography>
-                      {messages.detailsStart}{' '}
+                      {detailsStart}{' '}
                       <Box component="b" color="text.primary">
                         5
                       </Box>{' '}
-                      {messages.detailsEnd}.
+                      {detailsEnd}.
                     </Typography>
                   </Box>
                 }

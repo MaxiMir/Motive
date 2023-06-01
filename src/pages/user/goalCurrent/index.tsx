@@ -17,11 +17,11 @@ import { Day } from './day'
 import { DayAgo } from './dayAgo'
 import { Discussion } from './discussion'
 import { Feedback } from './feedback'
-import { useMessages } from './lib'
 import { MenuActions } from './menuActions'
 import { Task } from './task'
 import { Views } from './views'
 import { ViewTrigger } from './viewTrigger'
+import { useIntl } from 'react-intl'
 
 const Owner = dynamic(() => import('./owner'))
 const Stages = dynamic(() => import('./stages'))
@@ -55,7 +55,7 @@ function GoalCurrent({ goal, nickname, clientPage, clientMembership }: GoalCurre
     started,
   } = goal
   const client = useClient()
-  const messages = useMessages()
+  const { formatMessage } = useIntl()
   const today = getMidnight()
   const dayHref = getDayHref(nickname, id, day.id)
   const { isLoading, prev, next, onChangeDate, shouldDisableDate } = useSwitchDay(goal)
@@ -67,6 +67,11 @@ function GoalCurrent({ goal, nickname, clientPage, clientMembership }: GoalCurre
   const restTasks = day.tasks.length - day.tasks.filter((t) => t.completed).length
   const completeStage = ownerControls && goal.stage <= goal.day.stage
   const renderWeb = lastDay && daysGone >= SHOW_WEB_AFTER_DAYS
+  const stagesHeader = formatMessage({ id: 'page.user.goal-current.stages-header' })
+  const tasksHeader = formatMessage({ id: 'page.user.goal-current.tasks-header' })
+  const feedbackHeader = formatMessage({ id: 'page.user.goal-current.feedback-header' })
+  const nextDayText = formatMessage({ id: 'common.next-day' })
+  const prevDayText = formatMessage({ id: 'common.prev-day' })
 
   const onClickPrevDay = () => onChangeDate(prev)
 
@@ -174,7 +179,7 @@ function GoalCurrent({ goal, nickname, clientPage, clientMembership }: GoalCurre
                     variant="text"
                     color="inherit"
                     disabled={isLoading}
-                    aria-label={messages.prevDayText}
+                    aria-label={prevDayText}
                     sx={{
                       borderRadius: '12px 12px 0 0',
                       borderBottom: 'none',
@@ -213,7 +218,7 @@ function GoalCurrent({ goal, nickname, clientPage, clientMembership }: GoalCurre
                   {!!stages.length && (
                     <Accordion
                       emoji="🚀"
-                      header={messages.stagesHeader}
+                      header={stagesHeader}
                       id={`stage-${day.id}`}
                       defaultExpanded
                       details={
@@ -229,7 +234,7 @@ function GoalCurrent({ goal, nickname, clientPage, clientMembership }: GoalCurre
                   )}
                   <Accordion
                     emoji="📌"
-                    header={messages.tasksHeader}
+                    header={tasksHeader}
                     id={`tasksContent-${day.id}`}
                     defaultExpanded
                     details={
@@ -250,7 +255,7 @@ function GoalCurrent({ goal, nickname, clientPage, clientMembership }: GoalCurre
                   />
                   <Accordion
                     emoji="💭"
-                    header={messages.feedbackHeader}
+                    header={feedbackHeader}
                     id={`${HashMark.Feedback}-${id}`}
                     defaultExpanded
                     details={
@@ -275,7 +280,7 @@ function GoalCurrent({ goal, nickname, clientPage, clientMembership }: GoalCurre
                     variant="text"
                     color="inherit"
                     disabled={isLoading}
-                    aria-label={messages.nextDayText}
+                    aria-label={nextDayText}
                     sx={{
                       borderRadius: '0 0 12px 12px',
                       borderTop: 'none',

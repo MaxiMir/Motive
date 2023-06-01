@@ -1,12 +1,12 @@
 import { Stack } from '@mui/material'
 import { Field, Form, FormikProvider } from 'formik'
 import { FocusEvent } from 'react'
+import { useIntl } from 'react-intl'
 import { MessageDto } from 'shared/api'
 import CancelButton from 'shared/ui/CancelButton'
 import Input from 'shared/ui/Input'
 import Modal from 'shared/ui/Modal'
 import SubmitButton from 'shared/ui/SubmitButton'
-import { useMessages } from './lib'
 import { useUpdateTopicForm } from './model'
 
 interface EditTopicModalProps {
@@ -15,9 +15,13 @@ interface EditTopicModalProps {
 }
 
 function EditTopicModal({ message, onClose }: EditTopicModalProps) {
-  const messages = useMessages()
+  const { formatMessage } = useIntl()
   const form = useUpdateTopicForm(message, onClose)
   const { isSubmitting, handleSubmit } = form
+  const title = formatMessage({ id: 'common.editing-message' })
+  const buttonText = formatMessage({ id: 'common.save' })
+  const loadingText = formatMessage({ id: 'common.saving' })
+  const label = formatMessage({ id: 'common.your-message' })
 
   const onFocus = (e: FocusEvent<HTMLInputElement>) => {
     e.currentTarget.setSelectionRange(e.currentTarget.value.length, e.currentTarget.value.length)
@@ -25,14 +29,14 @@ function EditTopicModal({ message, onClose }: EditTopicModalProps) {
 
   return (
     <Modal
-      title={messages.title}
+      title={title}
       maxWidth="xs"
       actions={[
         <CancelButton key="cancel" onClick={onClose} />,
         <SubmitButton
           disabled={isSubmitting}
-          text={messages.buttonText}
-          loadingText={messages.loadingText}
+          text={buttonText}
+          loadingText={loadingText}
           emoji="💾"
           key="submit"
           onClick={handleSubmit}
@@ -45,7 +49,7 @@ function EditTopicModal({ message, onClose }: EditTopicModalProps) {
           <Stack alignItems="center" gap={3}>
             <Field
               name="text"
-              label={messages.label}
+              label={label}
               multiline
               rows={3}
               inputRef={(input: HTMLInputElement | null) => input?.focus()}

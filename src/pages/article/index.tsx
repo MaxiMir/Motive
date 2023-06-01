@@ -11,7 +11,7 @@ import { useFormatDate, useToggle } from 'shared/lib/hooks'
 import Container from 'shared/ui/Container'
 import Icon from 'shared/ui/Icon'
 import { generateColorByName } from 'shared/ui/palette'
-import { useMessages } from './lib'
+import { useIntl } from 'react-intl'
 
 const Share = dynamic(() => import('features/share'))
 
@@ -22,7 +22,7 @@ interface ArticlePageProps {
 export function ArticlePage({ article }: ArticlePageProps) {
   const { title, header, date, tag, pathname, motto, content, image, more, sharesCount, views } =
     article
-  const messages = useMessages()
+  const { formatMessage } = useIntl()
   const formatDate = useFormatDate()
   const [sharing, toggleSharing] = useToggle()
   const formattedDate = formatDate(date, { day: 'numeric', month: 'long', year: 'numeric' })
@@ -34,6 +34,8 @@ export function ArticlePage({ article }: ArticlePageProps) {
     range: 10,
   })
   const href = setSearchParams([Route.Blog, pathname].join('/'), { share: 'web' })
+  const shareText = formatMessage({ id: 'common.share' })
+  const readTimeText = formatMessage({ id: 'common.read-time' })
 
   const onShare = () => tryNativeShare(href, title, toggleSharing)
 
@@ -71,7 +73,7 @@ export function ArticlePage({ article }: ArticlePageProps) {
             <Button
               size="small"
               color="inherit"
-              aria-label={messages.shareText}
+              aria-label={shareText}
               startIcon={<Icon name="ios_share" />}
               sx={(theme) => ({ color: theme.palette.grey[600] })}
               onClick={onShare}
@@ -86,7 +88,7 @@ export function ArticlePage({ article }: ArticlePageProps) {
               {header}
             </Typography>
             <Typography variant="caption" sx={{ color: 'zen.silent' }}>
-              {readTime} {messages.readTimeText}
+              {readTime} {readTimeText}
             </Typography>
           </Stack>
           <Illustration motto={motto} image={image} />

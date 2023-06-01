@@ -1,10 +1,10 @@
 import { Box, Stack, Typography } from '@mui/material'
+import { useIntl } from 'react-intl'
 import { MemberDto } from 'shared/api'
 import CancelButton from 'shared/ui/CancelButton'
 import FadeTypography from 'shared/ui/FadeTypography'
 import Modal from 'shared/ui/Modal'
 import SubmitButton from 'shared/ui/SubmitButton'
-import { useMessages } from './lib'
 import { useRemoveMember } from './model'
 
 interface DeleteMembershipProps {
@@ -22,8 +22,12 @@ function DeleteMembershipModal({
   clientMember,
   onClose,
 }: DeleteMembershipProps) {
-  const messages = useMessages()
+  const { formatMessage } = useIntl()
   const { isLoading, mutateAsync } = useRemoveMember(goalId, clientPage)
+  const title = formatMessage({ id: 'page.user.modal-leave.title' })
+  const buttonText = formatMessage({ id: 'page.user.modal-leave.button' })
+  const loadingText = formatMessage({ id: 'page.user.modal-leave.loading' })
+  const subtitle = formatMessage({ id: 'page.user.modal-leave.subtitle' })
 
   const onClick = () => {
     if (!clientMember) return
@@ -33,14 +37,14 @@ function DeleteMembershipModal({
 
   return (
     <Modal
-      title={messages.title}
+      title={title}
       maxWidth="xs"
       actions={[
         <CancelButton key="cancel" onClick={onClose} />,
         <SubmitButton
           disabled={isLoading}
-          text={messages.buttonText}
-          loadingText={messages.loadingText}
+          text={buttonText}
+          loadingText={loadingText}
           emoji="📪"
           key="submit"
           onClick={onClick}
@@ -50,7 +54,7 @@ function DeleteMembershipModal({
     >
       <Stack justifyItems="center" alignItems="center" gap={1}>
         <Typography>
-          {messages.subtitle}{' '}
+          {subtitle}{' '}
           <Box component="span" color="motivation.light">
             {goalName}
           </Box>

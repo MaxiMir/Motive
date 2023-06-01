@@ -95,10 +95,10 @@ services:
       - CLIENT=https://2bebetter.pro
       - REDIS=redis://redis:6379
       - NEXTAUTH_COOKIE=__Secure-next-auth.session-token
-      - NEXTAUTH_SECRET=LlEderlgdhSaJS6yeP2JtPiz5h60ZyanzvAmYyOjG0w=
+      - NEXTAUTH_SECRET=******
       - POSTGRES_HOST=188.225.37.43
       - POSTGRES_USER=gen_user
-      - POSTGRES_PASSWORD=28cmie5gy10
+      - POSTGRES_PASSWORD=******
       - POSTGRES_DB=default_db
       - POSTGRES_PORT=5432
       - EAT_AFTER_DAYS=28

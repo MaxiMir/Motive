@@ -1,8 +1,8 @@
 import { Button } from '@mui/material'
+import { useIntl } from 'react-intl'
 import dynamic from 'next/dynamic'
 import { useToggle } from 'shared/lib/hooks'
 import TooltipArrow from 'shared/ui/TooltipArrow'
-import { useMessages } from './lib'
 
 const CreateConfirmationModal = dynamic(() => import('features/confirmation/create-confirmation'))
 
@@ -12,12 +12,14 @@ interface DoneProps {
 }
 
 function Done({ goalId, forTomorrow }: DoneProps) {
-  const messages = useMessages(forTomorrow)
   const [open, toggle] = useToggle()
+  const { formatMessage } = useIntl()
+  const title = !forTomorrow ? '' : formatMessage({ id: 'component.tooltip.tomorrow' })
+  const buttonText = formatMessage({ id: 'common.done' })
 
   return (
     <>
-      <TooltipArrow title={messages.title}>
+      <TooltipArrow title={title}>
         <Button
           size="small"
           variant="contained"
@@ -26,7 +28,7 @@ function Done({ goalId, forTomorrow }: DoneProps) {
           aria-expanded={open ? 'true' : undefined}
           onClick={toggle}
         >
-          {messages.buttonText}
+          {buttonText}
         </Button>
       </TooltipArrow>
       {open && <CreateConfirmationModal goalId={goalId} onClose={toggle} />}

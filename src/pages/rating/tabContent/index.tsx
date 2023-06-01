@@ -1,9 +1,9 @@
 import { Grid, Box, Typography } from '@mui/material'
 import { blueGrey } from '@mui/material/colors'
+import { useIntl } from 'react-intl'
 import { UserRating } from 'entities/user'
 import { MainCharacteristicName, UserDto } from 'shared/api'
 import List from 'shared/ui/List'
-import { useMessages } from './lib'
 
 interface TabContentProps {
   name: MainCharacteristicName
@@ -11,7 +11,9 @@ interface TabContentProps {
 }
 
 export function TabContent({ name, users }: TabContentProps) {
-  const messages = useMessages()
+  const { formatMessage } = useIntl()
+  const userText = formatMessage({ id: 'common.user' })
+  const lvlText = formatMessage({ id: 'common.lvl' })
 
   return (
     <>
@@ -26,12 +28,12 @@ export function TabContent({ name, users }: TabContentProps) {
           </Grid>
           <Grid item xs={7}>
             <Typography variant="subtitle1" component="p">
-              <b>{messages.userText}</b>
+              <b>{userText}</b>
             </Typography>
           </Grid>
           <Grid item xs>
             <Typography variant="subtitle1" component="p" align="right">
-              <b>{messages.lvlText}</b>
+              <b>{lvlText}</b>
             </Typography>
           </Grid>
         </Grid>

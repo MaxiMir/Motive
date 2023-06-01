@@ -1,8 +1,9 @@
 import { Box, List, ListItem, Stack, Drawer, ListItemIcon, ListItemText } from '@mui/material'
-import { copyText } from 'shared/lib/helpers'
+import { useIntl } from 'react-intl'
+import { copy } from 'shared/lib/helpers'
 import { ContentCopy, Email, Facebook, SMS, Telegram, Twitter, VK } from 'shared/ui/icons'
 import { useSnackbar } from 'shared/ui/snackbar'
-import { clickHandler, useMessages } from './lib'
+import { clickHandler } from './lib'
 
 interface ShareProps {
   href: string
@@ -11,51 +12,56 @@ interface ShareProps {
 }
 
 function Share({ href, title, onClose }: ShareProps) {
-  const messages = useMessages()
+  const { formatMessage } = useIntl()
   const { enqueueSnackbar } = useSnackbar()
   const shareItems = getShareItems()
+  const copiedText = formatMessage({ id: 'common.copied' })
+  const error = formatMessage({ id: 'common.error' })
+  const shareText = formatMessage({ id: 'component.share.share' })
+  const sendText = formatMessage({ id: 'component.share.send' })
+  const copyText = formatMessage({ id: 'component.share.copy' })
 
   function getShareItems() {
     const url = process.env.NEXT_PUBLIC_APP_URL + href
 
     return [
       {
-        text: `${messages.shareText} Facebook`,
+        text: `${shareText} Facebook`,
         ItemIcon: Facebook,
         onClick: () => clickHandler('facebook', title, url),
       },
       {
-        text: `${messages.shareText} Twitter`,
+        text: `${shareText} Twitter`,
         ItemIcon: Twitter,
         onClick: () => clickHandler('twitter', title, url),
       },
       {
-        text: `${messages.shareText} VK`,
+        text: `${shareText} VK`,
         ItemIcon: VK,
         onClick: () => clickHandler('vk', title, url),
       },
       {
-        text: `${messages.shareText} Telegram`,
+        text: `${shareText} Telegram`,
         ItemIcon: Telegram,
         onClick: () => clickHandler('telegram', title, url),
       },
       {
-        text: `${messages.sendText} Email`,
+        text: `${sendText} Email`,
         ItemIcon: Email,
         onClick: () => clickHandler('email', title, url),
       },
       {
-        text: `${messages.sendText} SMS`,
+        text: `${sendText} SMS`,
         ItemIcon: SMS,
         onClick: () => clickHandler('sms', title, url),
       },
       {
-        text: messages.copyText,
+        text: copyText,
         ItemIcon: ContentCopy,
         onClick: () =>
-          copyText(url)
-            .then(() => enqueueSnackbar(messages.copiedText, { severity: 'success', icon: '⌨️' }))
-            .catch(() => enqueueSnackbar(messages.error, { severity: 'error', icon: '☠️' })),
+          copy(url)
+            .then(() => enqueueSnackbar(copiedText, { severity: 'success', icon: '⌨️' }))
+            .catch(() => enqueueSnackbar(error, { severity: 'error', icon: '☠️' })),
       },
     ]
   }

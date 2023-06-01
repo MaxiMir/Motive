@@ -1,12 +1,15 @@
 import { Box, Button, Stack, Typography } from '@mui/material'
+import { useIntl } from 'react-intl'
 import { useRouter } from 'next/router'
 import Container from 'shared/ui/Container'
 import FadeTypography from 'shared/ui/FadeTypography'
-import { useMessages } from './lib'
 
 function Offline() {
   const { reload } = useRouter()
-  const messages = useMessages()
+  const { formatMessage } = useIntl()
+  const header = formatMessage({ id: 'common.offline' })
+  const description = formatMessage({ id: 'common-check-connection' })
+  const reloadText = formatMessage({ id: 'common.reload' })
 
   return (
     <Container>
@@ -14,11 +17,11 @@ function Offline() {
         <Stack alignItems="center" gap={1}>
           <FadeTypography fontSize="9em">📡</FadeTypography>
           <Typography component="h1" variant="h5">
-            {messages.header}
+            {header}
           </Typography>
-          <Typography>{messages.description}</Typography>
+          <Typography>{description}</Typography>
           <Button sx={{ color: 'warning.light' }} onClick={reload}>
-            {messages.reloadText}
+            {reloadText}
           </Button>
         </Stack>
       </Box>

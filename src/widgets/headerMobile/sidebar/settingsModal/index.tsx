@@ -5,7 +5,6 @@ import { useIntl } from 'react-intl'
 import { useSetLocale, Locale, LANGUAGES } from 'entities/locale'
 import Modal from 'shared/ui/Modal'
 import { usePaletteMode } from 'shared/ui/palette'
-import { useMessages } from './lib'
 
 interface SettingsModalProps {
   onClose: () => void
@@ -14,8 +13,14 @@ interface SettingsModalProps {
 function SettingsModal({ onClose }: SettingsModalProps) {
   const { locale } = useIntl()
   const setLocale = useSetLocale()
-  const messages = useMessages()
   const { mode, setMode } = usePaletteMode()
+  const { formatMessage } = useIntl()
+  const title = formatMessage({ id: 'common.settings' })
+  const modeHeader = formatMessage({ id: 'common.mode' })
+  const languageHeader = formatMessage({ id: 'common.language' })
+  const lightText = formatMessage({ id: 'common.light' })
+  const systemText = formatMessage({ id: 'common.system' })
+  const darkText = formatMessage({ id: 'common.dark' })
 
   const onChangeLocale = (_: MouseEvent<HTMLElement>, newLocale: Locale) => {
     setLocale(newLocale)
@@ -28,17 +33,17 @@ function SettingsModal({ onClose }: SettingsModalProps) {
   }
 
   return (
-    <Modal title={messages.title} maxWidth="xs" onClose={onClose}>
+    <Modal title={title} maxWidth="xs" onClose={onClose}>
       <Stack gap={3}>
         <Stack gap={1}>
           <Header variant="body2" gutterBottom>
-            {messages.languageHeader}:
+            {languageHeader}:
           </Header>
           <ToggleButtonGroup
             color="warning"
             value={locale}
             exclusive
-            aria-label={messages.languageHeader}
+            aria-label={languageHeader}
             onChange={onChangeLocale}
           >
             {LANGUAGES.map(({ primary, emoji, value }) => (
@@ -53,32 +58,32 @@ function SettingsModal({ onClose }: SettingsModalProps) {
         </Stack>
         <Stack gap={1}>
           <Header variant="body2" gutterBottom>
-            {messages.modeHeader}:
+            {modeHeader}:
           </Header>
           <ToggleButtonGroup
             color="warning"
             value={mode}
             exclusive
-            aria-label={messages.modeHeader}
+            aria-label={modeHeader}
             onChange={onChangeMode}
           >
             <GroupButton size="small" value="light" disabled>
               <Box display="inline-flex" width={12}>
                 🔆
               </Box>
-              {messages.lightText}
+              {lightText}
             </GroupButton>
             <GroupButton size="small" value="system" disabled>
               <Box display="inline-flex" width={12}>
                 ⚙️
               </Box>
-              {messages.systemText}
+              {systemText}
             </GroupButton>
             <GroupButton size="small" value="dark" disabled>
               <Box display="inline-flex" width={12}>
                 🌑
               </Box>
-              {messages.darkText}
+              {darkText}
             </GroupButton>
           </ToggleButtonGroup>
         </Stack>

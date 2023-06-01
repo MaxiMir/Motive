@@ -1,10 +1,10 @@
 import { Step, StepContent, Stepper } from '@mui/material'
 import { indigo } from '@mui/material/colors'
 import { stepConnectorClasses } from '@mui/material/StepConnector'
+import { useIntl } from 'react-intl'
 import dynamic from 'next/dynamic'
 import { useToggle } from 'shared/lib/hooks'
 import Icon from 'shared/ui/Icon'
-import { useMessages } from './lib'
 import { StageLabel } from './stageLabel'
 
 const Button = dynamic(() => import('@mui/material/Button'))
@@ -20,8 +20,10 @@ interface StagesProps {
 }
 
 function Stages({ goalId, stages, dayStage, forTomorrow, completeStage }: StagesProps) {
-  const messages = useMessages(forTomorrow)
   const [open, toggle] = useToggle()
+  const { formatMessage } = useIntl()
+  const title = !forTomorrow ? '' : formatMessage({ id: 'component.tooltip.tomorrow' })
+  const buttonText = formatMessage({ id: 'common.done' })
 
   return (
     <>
@@ -44,7 +46,7 @@ function Stages({ goalId, stages, dayStage, forTomorrow, completeStage }: Stages
               <StepContent />
             ) : (
               <StepContent>
-                <TooltipArrow title={messages.title}>
+                <TooltipArrow title={title}>
                   <Button
                     size="small"
                     variant="outlined"
@@ -61,7 +63,7 @@ function Stages({ goalId, stages, dayStage, forTomorrow, completeStage }: Stages
                     }}
                     onClick={toggle}
                   >
-                    {messages.buttonText}
+                    {buttonText}
                   </Button>
                 </TooltipArrow>
               </StepContent>

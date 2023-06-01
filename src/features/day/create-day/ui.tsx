@@ -12,6 +12,7 @@ import {
 } from '@mui/material'
 import { FieldArray, Form, FormikProvider } from 'formik'
 import { ChangeEvent } from 'react'
+import { useIntl } from 'react-intl'
 import { CharacteristicRules } from 'entities/characteristic'
 import { TaskField } from 'entities/task'
 import { getMidnightISO, getTomorrowISO } from 'shared/lib/utils'
@@ -21,7 +22,6 @@ import { Paul } from 'shared/ui/icons'
 import Modal from 'shared/ui/Modal'
 import SubmitButton from 'shared/ui/SubmitButton'
 import TooltipArrow from 'shared/ui/TooltipArrow'
-import { useMessages } from './lib'
 import { useCreateDay } from './model'
 
 interface CreateDayModalProps {
@@ -31,13 +31,22 @@ interface CreateDayModalProps {
 }
 
 function CreateDayModal({ goalId, dayDate, onClose }: CreateDayModalProps) {
-  const messages = useMessages()
+  const { formatMessage } = useIntl()
   const form = useCreateDay(goalId, onClose)
   const { isSubmitting, values, setFieldValue, handleSubmit } = form
   const todayValue = getMidnightISO()
   const tomorrowValue = getTomorrowISO()
   const todayDisabled = todayValue === dayDate
-  const tooltipTitle = todayDisabled && messages.tooltipText
+  const title = formatMessage({ id: 'page.user.modal-tasks.title' })
+  const addTaskText = formatMessage({ id: 'common.task-add' })
+  const buttonText = formatMessage({ id: 'common.create' })
+  const loadingText = formatMessage({ id: 'common.creating' })
+  const doItText = formatMessage({ id: 'page.user.modal-tasks.do-it' })
+  const doItLabelledby = formatMessage({ id: 'page.user.modal-tasks.do-it-labelledby' })
+  const todayText = formatMessage({ id: 'common.today' })
+  const tomorrowText = formatMessage({ id: 'common.tomorrow' })
+  const pittText = formatMessage({ id: 'page.user.modal-tasks.pitt' })
+  const tooltipTitle = todayDisabled && formatMessage({ id: 'page.user.modal-tasks.tooltip' })
 
   const onChangeDate = (e: ChangeEvent<HTMLInputElement>) => {
     setFieldValue('date', e.target.value)
@@ -45,14 +54,14 @@ function CreateDayModal({ goalId, dayDate, onClose }: CreateDayModalProps) {
 
   return (
     <Modal
-      title={messages.title}
+      title={title}
       maxWidth="xs"
       actions={[
         <CancelButton key="cancel" onClick={onClose} />,
         <SubmitButton
           disabled={isSubmitting}
-          text={messages.buttonText}
-          loadingText={messages.loadingText}
+          text={buttonText}
+          loadingText={loadingText}
           emoji="📌"
           key="submit"
           onClick={handleSubmit}
@@ -85,32 +94,32 @@ function CreateDayModal({ goalId, dayDate, onClose }: CreateDayModalProps) {
                       startIcon={<Icon name="add" />}
                       onClick={() => push({ id: crypto.randomUUID(), name: '', date: undefined })}
                     >
-                      {messages.addTaskText}
+                      {addTaskText}
                     </Button>
                   </>
                 )}
               </FieldArray>
               <FormControl variant="standard">
                 <Typography variant="h6" component="label">
-                  🕰 {messages.doItText}
+                  🕰 {doItText}
                 </Typography>
                 <RadioGroup
                   name="date"
                   value={values.date}
-                  aria-labelledby={messages.doItLabelledby}
+                  aria-labelledby={doItLabelledby}
                   row
                   onChange={onChangeDate}
                 >
                   <TooltipArrow title={tooltipTitle}>
                     <FormControlLabel
-                      label={messages.todayText}
+                      label={todayText}
                       value={todayValue}
                       disabled={todayDisabled}
                       control={<Radio />}
                     />
                   </TooltipArrow>
                   <FormControlLabel
-                    label={messages.tomorrowText}
+                    label={tomorrowText}
                     value={tomorrowValue}
                     control={<Radio />}
                   />
@@ -124,7 +133,7 @@ function CreateDayModal({ goalId, dayDate, onClose }: CreateDayModalProps) {
             <Stack direction="row" alignItems="center" gap={1}>
               <Paul />
               <Typography variant="h6" component="h3">
-                {messages.pittText}
+                {pittText}
               </Typography>
             </Stack>
           </AccordionSummary>

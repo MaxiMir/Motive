@@ -2,23 +2,27 @@ import { Box, Button, Stack, Typography } from '@mui/material'
 import { lightBlue, red, yellow } from '@mui/material/colors'
 import { styled } from '@mui/system'
 import { compiler } from 'markdown-to-jsx'
+import { useIntl } from 'react-intl'
 import Image from 'next/image'
 // eslint-disable-next-line import/no-internal-modules
 import ContactsSrc from 'public/images/contacts.webp'
 import Container from 'shared/ui/Container'
 import { Email, LinkedIn, Telegram } from 'shared/ui/icons'
-import { useMessages } from './lib'
 
 export function ContactPage() {
-  const messages = useMessages()
-  const content = compiler(messages.content, { wrapper: null, overrides: { p: Typography } })
+  const { formatMessage } = useIntl()
+  const header = formatMessage({ id: 'page.contact.header' })
+  const content = compiler(formatMessage({ id: 'page.contact.content' }), {
+    wrapper: null,
+    overrides: { p: Typography },
+  })
   const email = `mailto:${process.env.NEXT_PUBLIC_APP_EMAIL}`
 
   return (
     <Container>
       <Stack gap={3} mb={6}>
         <Typography variant="h1" component="h1">
-          📮 {messages.header}
+          📮 {header}
         </Typography>
         {content}
         <Stack

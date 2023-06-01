@@ -1,7 +1,7 @@
 import { Button, Chip, Typography } from '@mui/material'
 import { styled } from '@mui/system'
 import { ChangeEvent, useRef } from 'react'
-import { useMessages } from './lib'
+import { useIntl } from 'react-intl'
 
 interface VideoInputProps {
   disabled: boolean
@@ -9,8 +9,10 @@ interface VideoInputProps {
 }
 
 function VideoInput({ disabled, onSelect }: VideoInputProps) {
-  const messages = useMessages()
   const videoInputRef = useRef<HTMLInputElement>(null)
+  const { formatMessage } = useIntl()
+  const title = formatMessage({ id: 'component.video-input.title' })
+  const soonText = formatMessage({ id: 'common.soon' })
 
   const onAddVideo = (e: ChangeEvent<HTMLInputElement>) => {
     e.target.files?.[0] && onSelect(e.target.files?.[0])
@@ -23,8 +25,8 @@ function VideoInput({ disabled, onSelect }: VideoInputProps) {
       <Button
         variant="outlined"
         color="warning"
-        title={messages.title}
-        aria-label={messages.title}
+        title={title}
+        aria-label={title}
         disabled={disabled}
         sx={{
           position: 'relative',
@@ -38,7 +40,7 @@ function VideoInput({ disabled, onSelect }: VideoInputProps) {
         </Typography>
         <Chip
           size="small"
-          label={messages.soonText}
+          label={soonText}
           sx={{
             position: 'absolute',
             top: -12,

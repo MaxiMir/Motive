@@ -1,5 +1,6 @@
 import { IconButton, Menu, MenuItem } from '@mui/material'
 import { useState, MouseEvent, useId } from 'react'
+import { useIntl } from 'react-intl'
 import dynamic from 'next/dynamic'
 import { tryNativeShare } from 'features/share'
 import { useRemoveFollowing } from 'features/subscription/remove-following'
@@ -9,7 +10,6 @@ import { useToggle } from 'shared/lib/hooks'
 import Icon from 'shared/ui/Icon'
 import ListItem from 'shared/ui/ListItem'
 import TooltipArrow from 'shared/ui/TooltipArrow'
-import { useMessages } from './lib'
 
 const Share = dynamic(() => import('features/share'))
 
@@ -22,12 +22,16 @@ export function MenuActions({ user, index }: MenuActionsProps) {
   const { name, nickname } = user
   const id = useId()
   const menuId = useId()
-  const messages = useMessages()
+  const { formatMessage } = useIntl()
   const [anchorEl, setAnchorEl] = useState<HTMLElement | null>(null)
   const [sharing, toggleSharing] = useToggle()
   const { isLoading, remove } = useRemoveFollowing()
   const href = joinToHref(nickname)
   const open = Boolean(anchorEl)
+  const title = formatMessage({ id: 'page.following.menu.title' })
+  const shareText = formatMessage({ id: 'common.share' })
+  const removeText = formatMessage({ id: 'common.remove' })
+  const cancelText = formatMessage({ id: 'common.cancel' })
 
   const onOpenMenu = (e: MouseEvent<HTMLButtonElement>) => setAnchorEl(e.currentTarget)
 
@@ -39,7 +43,7 @@ export function MenuActions({ user, index }: MenuActionsProps) {
 
   return (
     <>
-      <TooltipArrow title={messages.title}>
+      <TooltipArrow title={title}>
         <IconButton
           id={id}
           size="small"
@@ -63,13 +67,13 @@ export function MenuActions({ user, index }: MenuActionsProps) {
         onClose={onCloseMenu}
       >
         <MenuItem onClick={onShare}>
-          <ListItem icon="ios_share" primary={messages.shareText} />
+          <ListItem icon="ios_share" primary={shareText} />
         </MenuItem>
         <MenuItem disabled={isLoading} onClick={onRemove}>
-          <ListItem icon="delete" primary={messages.removeText} color="error.dark" />
+          <ListItem icon="delete" primary={removeText} color="error.dark" />
         </MenuItem>
         <MenuItem onClick={onCloseMenu}>
-          <ListItem icon="block" primary={messages.cancelText} color="grey" />
+          <ListItem icon="block" primary={cancelText} color="grey" />
         </MenuItem>
       </Menu>
       {sharing && <Share href={href} title={name} onClose={toggleSharing} />}

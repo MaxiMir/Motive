@@ -1,1 +1,1 @@
-export const copyText = (text: string) => navigator.clipboard.writeText(text)
+export const copy = (text: string) => navigator.clipboard.writeText(text)

@@ -1,8 +1,9 @@
 import { Box, Stack, Typography } from '@mui/material'
+import { useIntl } from 'react-intl'
 import Link from 'next/link'
 import { Emoji } from 'entities/characteristic'
 import { MainCharacteristicName, SecondCharacteristicName } from 'shared/api'
-import { useWidth, useMessages } from './lib'
+import { useWidth } from './lib'
 
 interface AdvantageProps {
   name: MainCharacteristicName | SecondCharacteristicName.Completed
@@ -10,9 +11,11 @@ interface AdvantageProps {
 }
 
 export function Advantage({ name, href }: AdvantageProps) {
-  const messages = useMessages(name)
+  const { formatMessage } = useIntl()
   const width = useWidth()
   const emoji = Emoji[name]
+  const title = formatMessage({ id: `page.home.advantage.${name}.title` })
+  const subtitle = formatMessage({ id: `page.home.advantage.${name}.subtitle` })
 
   return (
     <Box
@@ -38,9 +41,9 @@ export function Advantage({ name, href }: AdvantageProps) {
               textTransform: 'uppercase',
             }}
           >
-            <Link href={href}>{messages.title}</Link>
+            <Link href={href}>{title}</Link>
           </Typography>
-          <Typography sx={{ color: '#f5f5f799' }}>{messages.subtitle}</Typography>
+          <Typography sx={{ color: '#f5f5f799' }}>{subtitle}</Typography>
         </Stack>
       </Stack>
     </Box>

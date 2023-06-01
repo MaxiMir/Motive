@@ -1,7 +1,7 @@
 import { Box, Typography } from '@mui/material'
+import { useIntl } from 'react-intl'
 import { MainCharacteristicName } from 'shared/api'
 import Modal from 'shared/ui/Modal'
-import { useMessages } from './lib'
 import { Progress } from './progress'
 
 interface CharacteristicInfoProps {
@@ -11,14 +11,19 @@ interface CharacteristicInfoProps {
 }
 
 export function CharacteristicInfo({ name, value, onClose }: CharacteristicInfoProps) {
-  const messages = useMessages(name)
-  const texts = [...(!messages.completion ? [] : [messages.completion]), messages.points]
+  const { formatMessage } = useIntl()
+  const isMotivation = name === MainCharacteristicName.Motivation
+  const title = formatMessage({ id: `common.${name}` })
+  const header = formatMessage({ id: `page.user.modal-characteristic.${name}.header` })
+  const points = formatMessage({ id: `page.user.modal-characteristic.${name}.points` })
+  const completion = isMotivation && formatMessage({ id: 'common.goal-completion' })
+  const texts = [...(!completion ? [] : [completion]), points]
 
   return (
-    <Modal title={messages.title} maxWidth="xs" onClose={onClose}>
+    <Modal title={title} maxWidth="xs" onClose={onClose}>
       <Progress characteristic={name} value={value} mb={2} />
       <Typography variant="h6" component="h3" sx={{ color: `${name}.light` }}>
-        {messages.header}:
+        {header}:
       </Typography>
       {texts.map((text) => (
         <Box paddingY="4px" key={text}>

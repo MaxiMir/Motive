@@ -1,10 +1,10 @@
 import { Box, IconButton, Stack, Typography } from '@mui/material'
+import { useIntl } from 'react-intl'
 import Image, { ImageProps } from 'next/image'
-import { copyText } from 'shared/lib/helpers'
+import { copy } from 'shared/lib/helpers'
 import Icon from 'shared/ui/Icon'
 import { useSnackbar } from 'shared/ui/snackbar'
 import TooltipArrow from 'shared/ui/TooltipArrow'
-import { useMessages } from './lib'
 
 interface WalletProps {
   name: string
@@ -13,18 +13,21 @@ interface WalletProps {
 }
 
 export function Wallet({ name, wallet, src }: WalletProps) {
-  const messages = useMessages()
   const { enqueueSnackbar } = useSnackbar()
+  const { formatMessage } = useIntl()
+  const copyText = formatMessage({ id: 'common.copy' })
+  const copiedText = formatMessage({ id: 'common.copied' })
+  const errorText = formatMessage({ id: 'common.error' })
 
   const onSuccess = () => {
-    enqueueSnackbar(messages.copiedText, { severity: 'success', icon: '⌨️' })
+    enqueueSnackbar(copiedText, { severity: 'success', icon: '⌨️' })
   }
 
   const onError = () => {
-    enqueueSnackbar(messages.errorText, { severity: 'error', icon: '☠️' })
+    enqueueSnackbar(errorText, { severity: 'error', icon: '☠️' })
   }
 
-  const onClick = () => copyText(wallet).then(onSuccess).catch(onError)
+  const onClick = () => copy(wallet).then(onSuccess).catch(onError)
 
   return (
     <Stack direction="row" alignItems="center" gap={1}>
@@ -42,7 +45,7 @@ export function Wallet({ name, wallet, src }: WalletProps) {
           {wallet}
         </Typography>
       </Box>
-      <TooltipArrow title={messages.copyText}>
+      <TooltipArrow title={copyText}>
         <IconButton disableFocusRipple onClick={onClick}>
           <Icon name="content_copy" />
         </IconButton>

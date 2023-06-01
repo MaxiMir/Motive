@@ -1,9 +1,9 @@
 import { Grid, Typography, Box } from '@mui/material'
+import { useIntl } from 'react-intl'
 import dynamic from 'next/dynamic'
 import { HashtagDto, GoalDto, UserDto } from 'shared/api'
 import Container from 'shared/ui/Container'
 import { GRADIENTS } from './consts'
-import { useMessages } from './lib'
 import { SearchForm } from './searchForm'
 
 const GoalCard = dynamic(() => import('./goalCard'))
@@ -19,20 +19,24 @@ interface SearchPageProps {
 }
 
 export function SearchPage({ q, hashtags, goals, users }: SearchPageProps) {
-  const messages = useMessages()
+  const { formatMessage } = useIntl()
+  const header = formatMessage({ id: 'page.search.header' })
+  const trendText = formatMessage({ id: 'page.search.trend' })
+  const userText = formatMessage({ id: 'page.search.user' })
+  const goalText = formatMessage({ id: 'page.search.goal' })
   const noResult = !users.length && !goals.length
 
   return (
     <Container>
       <Typography variant="h1" sx={{ mb: 3 }}>
-        {messages.header}
+        {header}
       </Typography>
       <Box display="flex" flexDirection="column" gap={4}>
         <SearchForm q={q} />
         {!!users.length && (
           <Box display="flex" flexDirection="column" gap={2}>
             <Typography variant="h4" component="h2">
-              🥷 {messages.userText}
+              🥷 {userText}
             </Typography>
             <Grid container spacing={2}>
               {users.map((user) => (
@@ -46,7 +50,7 @@ export function SearchPage({ q, hashtags, goals, users }: SearchPageProps) {
         {noResult && <NoResult phrase={q} />}
         <Box display="flex" flexDirection="column" gap={2}>
           <Typography variant="h4" component="h2">
-            👑 {messages.trendText}
+            👑 {trendText}
           </Typography>
           <Grid container spacing={2}>
             {hashtags.map(({ name, views }, key) => (
@@ -59,7 +63,7 @@ export function SearchPage({ q, hashtags, goals, users }: SearchPageProps) {
         {!!goals.length && false && (
           <Box display="flex" flexDirection="column" gap={2}>
             <Typography variant="h4" component="h2">
-              💎 {messages.goalText}
+              💎 {goalText}
             </Typography>
             <Grid container spacing={2}>
               {goals.map((goal) => (

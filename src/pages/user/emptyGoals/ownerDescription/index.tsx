@@ -1,23 +1,27 @@
 import { Box, Typography } from '@mui/material'
+import { useIntl } from 'react-intl'
 import Link from 'next/link'
 import { Route } from 'shared/config'
-import { useMessages } from './lib'
 
 function OwnerDescription() {
-  const messages = useMessages()
+  const { formatMessage } = useIntl()
+  const title = formatMessage({ id: 'page.user.owner-description.title' })
+  const subtitle = formatMessage({ id: 'page.user.owner-description.subtitle' })
+  const description = formatMessage({ id: 'page.user.owner-description.description' })
+  const link = formatMessage({ id: 'page.user.owner-description.link' })
 
   return (
     <>
       <Typography>
-        {messages.title}{' '}
+        {title}{' '}
         <Box component="span" color="primary">
-          {messages.subtitle}
+          {subtitle}
         </Box>
       </Typography>
       <Typography>
-        {messages.description}{' '}
+        {description}{' '}
         <Box component="span" color="warning.light">
-          <Link href={Route.Search}>{messages.link}</Link>
+          <Link href={Route.Search}>{link}</Link>
         </Box>
       </Typography>
     </>

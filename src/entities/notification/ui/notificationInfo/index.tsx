@@ -1,9 +1,10 @@
 import { Box, Button, Stack, Typography, Avatar as MuiAvatar } from '@mui/material'
+import { useIntl } from 'react-intl'
 import Link from 'next/link'
 import { NotificationDto } from 'shared/api'
 import { useFormatDistance } from 'shared/lib/hooks'
 import Avatar from 'shared/ui/avatar'
-import { getNotificationEmoji, useMessages } from './lib'
+import { getNotificationEmoji } from './lib'
 
 interface NotificationInfoProps {
   notification: NotificationDto
@@ -14,10 +15,11 @@ interface NotificationInfoProps {
 export function NotificationInfo({ notification, href, onClose }: NotificationInfoProps) {
   const { type, details, initiator, created } = notification
   const { name, avatar } = initiator
-  const messages = useMessages(type)
+  const { formatMessage } = useIntl()
   const formatDistance = useFormatDistance()
   const dateDistance = formatDistance(created)
   const emoji = getNotificationEmoji(type)
+  const header = formatMessage({ id: `component.notification.${type}` })
   const detailsName = !details.name ? '' : `: ${details.name}`
 
   return (
@@ -41,7 +43,7 @@ export function NotificationInfo({ notification, href, onClose }: NotificationIn
         </Box>
         <Stack>
           <Typography sx={{ fontSize: 14 }}>
-            <Box component="b">{name}</Box> {messages.header}
+            <Box component="b">{name}</Box> {header}
             {detailsName}
           </Typography>
           <Stack direction="row" alignItems="center" gap={2}>

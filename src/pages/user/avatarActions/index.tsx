@@ -1,12 +1,12 @@
 import { Menu, MenuItem } from '@mui/material'
 import { paperClasses } from '@mui/material/Paper'
 import { MouseEvent, useId, useState } from 'react'
+import { useIntl } from 'react-intl'
 import dynamic from 'next/dynamic'
 import { UserPageDto } from 'shared/api'
 import { useToggle } from 'shared/lib/hooks'
 import Avatar from 'shared/ui/avatar'
 import ListItem from 'shared/ui/ListItem'
-import { useMessages } from './lib'
 
 const LightBox = dynamic(() => import('shared/ui/LightBox'))
 const UpdateModal = dynamic(() => import('features/user/update-avatar'))
@@ -23,15 +23,19 @@ function AvatarActions({ user, clientPage }: AvatarActionsProps) {
   const { id: userId, name, avatar, online, lastSeen, device } = user
   const id = useId()
   const menuId = useId()
+  const { formatMessage } = useIntl()
   const [index, setIndex] = useState<number>()
   const [editing, toggleEditing] = useToggle()
   const [deleting, toggleDeleting] = useToggle()
   const [anchorEl, setAnchorEl] = useState<HTMLElement | null>(null)
-  const messages = useMessages()
   const sources = !avatar ? [] : [avatar]
   const disabled = !sources.length && !clientPage
   const open = Boolean(anchorEl)
   const openLightbox = typeof index === 'number'
+  const openText = formatMessage({ id: 'common.open-photo' })
+  const editText = formatMessage({ id: 'common.edit' })
+  const deleteText = formatMessage({ id: 'common.delete' })
+  const cancelText = formatMessage({ id: 'common.cancel' })
 
   const openPhoto = () => setIndex(0)
 
@@ -86,19 +90,19 @@ function AvatarActions({ user, clientPage }: AvatarActionsProps) {
       >
         {avatar && (
           <MenuItem onClick={openPhoto}>
-            <ListItem icon="photo" primary={messages.openText} />
+            <ListItem icon="photo" primary={openText} />
           </MenuItem>
         )}
         <MenuItem onClick={toggleEditing}>
-          <ListItem icon="edit" primary={messages.editText} />
+          <ListItem icon="edit" primary={editText} />
         </MenuItem>
         {avatar && (
           <MenuItem onClick={toggleDeleting}>
-            <ListItem icon="delete" primary={messages.deleteText} color="error.dark" />
+            <ListItem icon="delete" primary={deleteText} color="error.dark" />
           </MenuItem>
         )}
         <MenuItem onClick={onClose}>
-          <ListItem icon="block" primary={messages.cancelText} color="grey" />
+          <ListItem icon="block" primary={cancelText} color="grey" />
         </MenuItem>
       </Menu>
       {openLightbox && <LightBox sources={sources} index={index} onClose={onCloseLightBox} />}

@@ -1,20 +1,22 @@
 import { IconButton } from '@mui/material'
 import { styled } from '@mui/system'
 import { Field, Form, FormikProvider } from 'formik'
+import { useIntl } from 'react-intl'
 import { useSearchForm } from 'features/page/search'
 import Icon from 'shared/ui/Icon'
 import Input from 'shared/ui/Input'
 import { AutoSend } from './autoSend'
-import { useMessages } from './lib'
 
 interface SearchFormProps {
   q?: string
 }
 
 export function SearchForm({ q = '' }: SearchFormProps) {
-  const messages = useMessages()
   const form = useSearchForm(q)
   const { values, setFieldValue } = form
+  const { formatMessage } = useIntl()
+  const label = formatMessage({ id: 'page.search.form' })
+  const deleteText = formatMessage({ id: 'common.delete' })
 
   const onClickClose = () => setFieldValue('q', '')
 
@@ -23,7 +25,7 @@ export function SearchForm({ q = '' }: SearchFormProps) {
       <Form>
         <Field
           name="q"
-          label={messages.label}
+          label={label}
           color="secondary"
           InputProps={{
             disabled: true,
@@ -33,11 +35,7 @@ export function SearchForm({ q = '' }: SearchFormProps) {
               </InputAdornment>
             ),
             endAdornment: values.q && (
-              <InputAdornment
-                aria-label={messages.deleteText}
-                disableFocusRipple
-                onClick={onClickClose}
-              >
+              <InputAdornment aria-label={deleteText} disableFocusRipple onClick={onClickClose}>
                 <Icon name="close" />
               </InputAdornment>
             ),

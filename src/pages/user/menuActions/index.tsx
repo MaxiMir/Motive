@@ -1,5 +1,6 @@
 import { Menu, MenuItem } from '@mui/material'
 import { MouseEvent, useId, useState } from 'react'
+import { useIntl } from 'react-intl'
 import dynamic from 'next/dynamic'
 import { useRouter } from 'next/router'
 import { tryNativeShare } from 'features/share'
@@ -8,7 +9,6 @@ import { useToggle } from 'shared/lib/hooks'
 import { GreyButton } from 'shared/ui/GreyButton'
 import Icon from 'shared/ui/Icon'
 import ListItem from 'shared/ui/ListItem'
-import { useMessages } from './lib'
 
 const Share = dynamic(() => import('features/share'))
 const CreateReport = dynamic(() => import('features/report/create-report'))
@@ -22,11 +22,15 @@ function MenuActions({ clientPage }: MenuActionsProps) {
   const menuId = useId()
   const { asPath } = useRouter()
   const { id: userId, name } = useUserContext()
-  const messages = useMessages()
+  const { formatMessage } = useIntl()
   const [anchorEl, setAnchorEl] = useState<HTMLElement | null>(null)
   const [reporting, toggleReporting] = useToggle()
   const [sharing, toggleSharing] = useToggle()
   const open = Boolean(anchorEl)
+  const title = formatMessage({ id: 'common.more' })
+  const shareText = formatMessage({ id: 'common.share' })
+  const reportText = formatMessage({ id: 'common.report' })
+  const cancelText = formatMessage({ id: 'common.cancel' })
 
   const onOpenMenu = (e: MouseEvent<HTMLButtonElement>) => setAnchorEl(e.currentTarget)
 
@@ -58,7 +62,7 @@ function MenuActions({ clientPage }: MenuActionsProps) {
         }}
         onClick={onOpenMenu}
       >
-        {messages.title}
+        {title}
       </GreyButton>
       <Menu
         id={menuId}
@@ -70,15 +74,15 @@ function MenuActions({ clientPage }: MenuActionsProps) {
         onClose={onCloseMenu}
       >
         <MenuItem onClick={onShare}>
-          <ListItem icon="ios_share" primary={messages.shareText} />
+          <ListItem icon="ios_share" primary={shareText} />
         </MenuItem>
         {!clientPage && (
           <MenuItem onClick={toggleReporting}>
-            <ListItem icon="outlined_flag" primary={messages.reportText} color="error.dark" />
+            <ListItem icon="outlined_flag" primary={reportText} color="error.dark" />
           </MenuItem>
         )}
         <MenuItem onClick={onCloseMenu}>
-          <ListItem icon="block" primary={messages.cancelText} color="grey" />
+          <ListItem icon="block" primary={cancelText} color="grey" />
         </MenuItem>
       </Menu>
       {sharing && <Share href={asPath} title={name} onClose={toggleSharing} />}

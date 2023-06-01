@@ -1,8 +1,8 @@
+import { useIntl } from 'react-intl'
 import dynamic from 'next/dynamic'
 import { CharacteristicReaction } from 'entities/characteristic'
 import { useSignIn, useClient } from 'entities/viewer'
 import { useToggle } from 'shared/lib/hooks'
-import { useMessages } from './lib'
 
 const SupportModal = dynamic(() => import('features/topic/support-user'))
 
@@ -12,10 +12,12 @@ interface ReactionSupportProps {
 }
 
 function ReactionSupport({ dayId, ownerName }: ReactionSupportProps) {
-  const messages = useMessages(ownerName)
   const client = useClient()
+  const { formatMessage } = useIntl()
   const openSignIn = useSignIn((state) => state.openSignIn)
+  const supportingText = formatMessage({ id: 'common.supporting' })
   const [open, toggle] = useToggle()
+  const title = `${supportingText} ${ownerName}`
 
   const onClick = () => {
     if (!client) {
@@ -28,12 +30,7 @@ function ReactionSupport({ dayId, ownerName }: ReactionSupportProps) {
 
   return (
     <>
-      <CharacteristicReaction
-        title={messages.title}
-        active={false}
-        startIcon="🙏"
-        onClick={onClick}
-      />
+      <CharacteristicReaction title={title} active={false} startIcon="🙏" onClick={onClick} />
       {open && <SupportModal dayId={dayId} ownerName={ownerName} onClose={toggle} />}
     </>
   )

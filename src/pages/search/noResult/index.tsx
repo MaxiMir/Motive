@@ -1,23 +1,25 @@
 import { Box, Stack, Typography } from '@mui/material'
-import { useMessages } from './lib'
+import { useIntl } from 'react-intl'
 
 interface NoResultProps {
   phrase: string
 }
 
 function NoResult({ phrase }: NoResultProps) {
-  const messages = useMessages()
+  const { formatMessage } = useIntl()
+  const title = formatMessage({ id: 'common.no-results' })
+  const description = formatMessage({ id: 'common.no-results-description' })
 
   return (
     <Stack gap={1}>
       <Typography variant="h5" component="p">
-        {messages.title} &#171;
+        {title} &#171;
         <Box component="span" color="zen.sand">
           {phrase}
         </Box>
         &#187;.
       </Typography>
-      <Typography sx={{ color: 'zen.silent' }}>{messages.description}</Typography>
+      <Typography sx={{ color: 'zen.silent' }}>{description}</Typography>
     </Stack>
   )
 }

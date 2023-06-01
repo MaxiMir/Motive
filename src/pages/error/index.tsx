@@ -1,16 +1,18 @@
 import { Box, Button, Stack, Typography } from '@mui/material'
+import { useIntl } from 'react-intl'
 import { useRouter } from 'next/router'
 import Container from 'shared/ui/Container'
 import FadeTypography from 'shared/ui/FadeTypography'
-import { useMessages } from './lib'
 
 interface ErrorPageProps {
   header?: string
 }
 
 export function ErrorPage({ header }: ErrorPageProps) {
-  const messages = useMessages(header)
   const router = useRouter()
+  const { formatMessage } = useIntl()
+  const headerFinal = header || formatMessage({ id: 'common.error' })
+  const backText = formatMessage({ id: 'common.back' })
 
   const onClick = () => router.back()
 
@@ -20,10 +22,10 @@ export function ErrorPage({ header }: ErrorPageProps) {
         <Stack alignItems="center" gap={1}>
           <FadeTypography fontSize="9em">👺</FadeTypography>
           <Typography component="h1" variant="h5">
-            {messages.header}
+            {headerFinal}
           </Typography>
           <Button sx={{ color: 'warning.light' }} onClick={onClick}>
-            {messages.backText}
+            {backText}
           </Button>
         </Stack>
       </Box>

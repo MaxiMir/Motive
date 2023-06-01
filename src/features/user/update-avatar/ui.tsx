@@ -1,10 +1,10 @@
 import { Button, Divider, Stack, Typography } from '@mui/material'
 import { styled } from '@mui/system'
 import { ChangeEvent, useRef } from 'react'
+import { useIntl } from 'react-intl'
 import dynamic from 'next/dynamic'
 import Icon from 'shared/ui/Icon'
 import Modal from 'shared/ui/Modal'
-import { useMessages } from './lib'
 import { useUpdateAvatar } from './model'
 
 const CircularProgress = dynamic(() => import('@mui/material/CircularProgress'))
@@ -15,9 +15,14 @@ interface UpdateAvatarModalProps {
 }
 
 function UpdateAvatarModal({ userId, onClose }: UpdateAvatarModalProps) {
-  const messages = useMessages()
+  const { formatMessage } = useIntl()
   const inputRef = useRef<HTMLInputElement>(null)
   const { isLoading, mutateAsync } = useUpdateAvatar(userId)
+  const title = formatMessage({ id: 'common.upload-photo' })
+  const description = formatMessage({ id: 'common.photo-description' })
+  const typesText = formatMessage({ id: 'common.photo-types' })
+  const selectText = formatMessage({ id: 'common.select-file' })
+  const hintText = formatMessage({ id: 'common.photo-hint' })
 
   const onClick = () => inputRef.current?.click()
 
@@ -30,11 +35,11 @@ function UpdateAvatarModal({ userId, onClose }: UpdateAvatarModalProps) {
   }
 
   return (
-    <Modal title={messages.title} maxWidth="xs" onClose={onClose}>
+    <Modal title={title} maxWidth="xs" onClose={onClose}>
       <Stack alignItems="center" gap={2}>
         <Stack alignItems="center" gap={1}>
-          <Description>{messages.description}.</Description>
-          <Description sx={{ color: 'zen.sand' }}>{messages.typesText}.</Description>
+          <Description>{description}.</Description>
+          <Description sx={{ color: 'zen.sand' }}>{typesText}.</Description>
         </Stack>
         <Button
           size="small"
@@ -49,12 +54,12 @@ function UpdateAvatarModal({ userId, onClose }: UpdateAvatarModalProps) {
           }
           onClick={onClick}
         >
-          {messages.selectText}
+          {selectText}
         </Button>
         <Input ref={inputRef} type="file" accept="image/*" onChange={onChange} />
         <Divider sx={{ width: '100%', mt: 2 }} light />
         <Typography variant="caption" textAlign="center" sx={{ color: 'zen.silent' }}>
-          {messages.hintText}
+          {hintText}
         </Typography>
       </Stack>
     </Modal>

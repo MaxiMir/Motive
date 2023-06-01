@@ -1,10 +1,11 @@
 import { Typography } from '@mui/material'
-import { useMessages } from './lib'
+import { useIntl } from 'react-intl'
 
 function Soon() {
-  const messages = useMessages()
+  const { formatMessage } = useIntl()
+  const soonText = formatMessage({ id: 'common.soon' })
 
-  return <Typography>{messages.soonText}...</Typography>
+  return <Typography>{soonText}...</Typography>
 }
 
 export default Soon

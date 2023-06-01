@@ -1,20 +1,22 @@
 import { Alert, Button, Stack } from '@mui/material'
+import { useIntl } from 'react-intl'
 import Icon from 'shared/ui/Icon'
-import { useMessages } from './lib'
 
 interface HintProps {
   onClick: () => void
 }
 
 function Hint({ onClick }: HintProps) {
-  const messages = useMessages()
+  const { formatMessage } = useIntl()
+  const title = formatMessage({ id: 'page.user.modal-notification.hint' })
+  const buttonText = formatMessage({ id: 'common.turn-on' })
 
   return (
     <Alert severity="warning" icon={false} sx={{ mb: 3 }}>
       <Stack alignItems="flex-start" gap={1}>
-        {messages.title}:
+        {title}:
         <Button startIcon={<Icon name="notifications_active" />} onClick={onClick}>
-          {messages.buttonText}
+          {buttonText}
         </Button>
       </Stack>
     </Alert>

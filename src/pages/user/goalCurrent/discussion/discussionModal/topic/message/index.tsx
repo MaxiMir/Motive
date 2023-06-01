@@ -1,4 +1,5 @@
 import { Box, Stack, Typography } from '@mui/material'
+import { useIntl } from 'react-intl'
 import dynamic from 'next/dynamic'
 import Link from 'next/link'
 import { Like } from 'features/topic/like-topic'
@@ -6,7 +7,6 @@ import { MessageDto } from 'shared/api'
 import { joinToHref } from 'shared/lib/helpers'
 import { useFormatDistance } from 'shared/lib/hooks'
 import Avatar from 'shared/ui/avatar'
-import { useMessages } from './lib'
 import MenuActions from './menuActions'
 
 const Button = dynamic(() => import('@mui/material/Button'))
@@ -26,12 +26,14 @@ interface MessageProps {
 function Message({ message, answerFor, supportFor, replyProps }: MessageProps) {
   const { date, user, text, edited } = message
   const { name, nickname, avatar, online } = user
-  const messages = useMessages()
+  const { formatMessage } = useIntl()
   const formatDistance = useFormatDistance()
   const dateDistance = formatDistance(date)
   const href = joinToHref(nickname)
   const avatarSize = !answerFor ? 32 : 24
   const textWithUser = !answerFor ? text : [`**${answerFor.user.name}**`, text].join(' ')
+  const editedText = formatMessage({ id: 'common.edited' })
+  const replyText = formatMessage({ id: 'common.reply' })
 
   return (
     <Stack direction="row" gap={1} width="100%">
@@ -75,7 +77,7 @@ function Message({ message, answerFor, supportFor, replyProps }: MessageProps) {
             {supportFor && <SupportSign name={supportFor} />}
             {edited && (
               <Box component="span" fontSize={11} color="zen.silent">
-                {messages.editedText}
+                {editedText}
               </Box>
             )}
             <MenuActions message={message} />
@@ -88,7 +90,7 @@ function Message({ message, answerFor, supportFor, replyProps }: MessageProps) {
           </Typography>
           {replyProps && (
             <Button size="small" sx={{ color: 'support.main' }} {...replyProps}>
-              {messages.replyText}
+              {replyText}
             </Button>
           )}
           <Box marginLeft="auto">

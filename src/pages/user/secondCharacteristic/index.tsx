@@ -2,9 +2,8 @@ import { Button, Stack, Typography } from '@mui/material'
 import { useState } from 'react'
 import dynamic from 'next/dynamic'
 import { SecondCharacteristicName, ConfirmationDto, UserCharacteristicDto } from 'shared/api'
-import { getWordDeclination } from 'shared/lib/helpers'
 import { useFormatNumber } from 'shared/lib/hooks'
-import { useMessages } from './lib'
+import { useWordDeclination } from './lib'
 
 const SubscriptionModal = dynamic(() => import('./subscriptionModal'))
 const NoCompletedModal = dynamic(() => import('./noCompletedModal'))
@@ -25,15 +24,10 @@ function SecondCharacteristic({
   characteristic,
   confirmations,
 }: CharacteristicProps) {
-  const messages = useMessages(name)
+  const wordDeclination = useWordDeclination(name, value)
   const formatNumber = useFormatNumber()
   const [modal, setModal] = useState<SecondCharacteristicName>()
   const formattedValue = formatNumber(value)
-  const wordDeclination = getWordDeclination(value, [
-    messages.singleText,
-    messages.doubleText,
-    messages.multipleGenitiveText,
-  ])
   const buttonText = wordDeclination.toLowerCase()
 
   const onClick = async () => {

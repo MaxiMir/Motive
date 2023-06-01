@@ -1,15 +1,19 @@
 import { Stack, Typography } from '@mui/material'
-import { useMessages } from './lib'
+import { useIntl } from 'react-intl'
 
 export function SupportRules() {
-  const messages = useMessages()
+  const { formatMessage } = useIntl()
+  const goalText = formatMessage({ id: 'component.support-rules-goal' })
+  const thereforeText = formatMessage({ id: 'component.support-rules-therefore' })
+  const adviceText = formatMessage({ id: 'component.support-rules-advice' })
+  const wordsText = formatMessage({ id: 'component.support-rules-words' })
 
   return (
     <Stack color="zen.silent">
-      <Typography>{messages.goalText} 😮‍💨.</Typography>
-      <Typography>{messages.thereforeText}:</Typography>
-      <Typography>&#9679; {messages.adviceText};</Typography>
-      <Typography>&#9679; {messages.wordsText}.</Typography>
+      <Typography>{goalText} 😮‍💨.</Typography>
+      <Typography>{thereforeText}:</Typography>
+      <Typography>&#9679; {adviceText};</Typography>
+      <Typography>&#9679; {wordsText}.</Typography>
     </Stack>
   )
 }

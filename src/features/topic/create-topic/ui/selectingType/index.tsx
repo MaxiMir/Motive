@@ -1,7 +1,7 @@
 import { FormControl, Stack, Radio, FormControlLabel, RadioGroup } from '@mui/material'
 import { ChangeEvent, useState } from 'react'
+import { useIntl } from 'react-intl'
 import { TopicType, UserBaseDto } from 'shared/api'
-import { useMessages } from './lib'
 import { SupportHelp } from './supportHelp'
 import { SupportInfo } from './supportInfo'
 
@@ -13,7 +13,10 @@ interface SelectingTypeProps {
 
 function SelectingType({ owner, type, setType }: SelectingTypeProps) {
   const [open, setOpen] = useState(false)
-  const messages = useMessages()
+  const { formatMessage } = useIntl()
+  const labelledby = formatMessage({ id: 'common.message-type' })
+  const questionText = formatMessage({ id: 'common.question' })
+  const supportingText = formatMessage({ id: 'common.supporting' })
 
   const toggleOpen = () => setOpen(!open)
 
@@ -26,24 +29,18 @@ function SelectingType({ owner, type, setType }: SelectingTypeProps) {
     <Stack gap={1}>
       <Stack direction="row" alignItems="center" gap={1} height={40} pl={8}>
         <FormControl variant="standard">
-          <RadioGroup
-            row
-            aria-labelledby={messages.labelledby}
-            name="type"
-            value={type}
-            onChange={onChange}
-          >
+          <RadioGroup row aria-labelledby={labelledby} name="type" value={type} onChange={onChange}>
             <FormControlLabel
               value={TopicType.Question}
               control={<Radio size="small" />}
-              label={messages.questionText}
+              label={questionText}
             />
             <FormControlLabel
               value={TopicType.Support}
               control={<Radio size="small" />}
               label={
                 <Stack direction="row" alignItems="center" gap={1}>
-                  {messages.supportingText} {owner.name} <SupportHelp onClick={toggleOpen} />
+                  {supportingText} {owner.name} <SupportHelp onClick={toggleOpen} />
                 </Stack>
               }
             />

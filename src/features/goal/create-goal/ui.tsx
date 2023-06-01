@@ -10,6 +10,7 @@ import {
 } from '@mui/material'
 import { styled } from '@mui/system'
 import { Field, FieldArray, Form, FormikProvider } from 'formik'
+import { useIntl } from 'react-intl'
 import dynamic from 'next/dynamic'
 import { TaskField } from 'entities/task'
 import { useFocus } from 'shared/lib/hooks'
@@ -20,7 +21,6 @@ import Input from 'shared/ui/Input'
 import Modal from 'shared/ui/Modal'
 import SubmitButton from 'shared/ui/SubmitButton'
 import TooltipArrow from 'shared/ui/TooltipArrow'
-import { useMessages } from './lib'
 import { useCreateGoalForm } from './model'
 
 const IconButton = dynamic(() => import('@mui/material/IconButton'))
@@ -30,13 +30,30 @@ interface CreateGoalModalProps {
 }
 
 function CreateGoalModal({ onClose }: CreateGoalModalProps) {
-  const messages = useMessages()
+  const { formatMessage } = useIntl()
   const [hashtagsRef, setHashtagsFocus] = useFocus()
   const form = useCreateGoalForm(onClose)
   const { isSubmitting, values, setFieldValue, handleSubmit } = form
   const todayValue = getMidnightISO()
   const tomorrowValue = getTomorrowISO()
   const disabledHashtag = values.hashtags.endsWith('#')
+  const title = formatMessage({ id: 'page.user.modal-goal.title' })
+  const nameLabel = formatMessage({ id: 'page.user.modal-goal.name' })
+  const hashtagText = formatMessage({ id: 'page.user.modal-goal.hashtag' })
+  const hashtagsLabel = formatMessage({ id: 'page.user.modal-goal.hashtags' })
+  const buttonText = formatMessage({ id: 'common.create' })
+  const loadingText = formatMessage({ id: 'common.creating' })
+  const stagesHeader = formatMessage({ id: 'page.user.modal-goal.stages' })
+  const stageLabel = formatMessage({ id: 'page.user.modal-goal.stage' })
+  const stageButtonText = formatMessage({ id: 'page.user.modal-goal.stage-button' })
+  const stageHint = formatMessage({ id: 'page.user.modal-goal.stage-hint' })
+  const startHeader = formatMessage({ id: 'page.user.modal-goal.start' })
+  const startLabelledby = formatMessage({ id: 'page.user.modal-goal.start-labelledby' })
+  const todayLabel = formatMessage({ id: 'common.today' })
+  const tomorrowLabel = formatMessage({ id: 'common.tomorrow' })
+  const tasksHeader = formatMessage({ id: 'page.user.modal-goal.tasks-header' })
+  const addTaskText = formatMessage({ id: 'common.task-add' })
+  const deleteText = formatMessage({ id: 'common.delete' })
 
   const onAddHashtag = () => {
     setFieldValue('hashtags', !values.hashtags ? '#' : `${values.hashtags} #`)
@@ -45,14 +62,14 @@ function CreateGoalModal({ onClose }: CreateGoalModalProps) {
 
   return (
     <Modal
-      title={messages.title}
+      title={title}
       maxWidth="xs"
       actions={[
         <CancelButton key="cancel" onClick={onClose} />,
         <SubmitButton
           disabled={isSubmitting}
-          text={messages.buttonText}
-          loadingText={messages.loadingText}
+          text={buttonText}
+          loadingText={loadingText}
           emoji="💎"
           key="submit"
           onClick={handleSubmit}
@@ -63,12 +80,12 @@ function CreateGoalModal({ onClose }: CreateGoalModalProps) {
       <FormikProvider value={form}>
         <Form>
           <Stack gap={2}>
-            <Field name="name" label={messages.nameLabel} required component={Input} />
+            <Field name="name" label={nameLabel} required component={Input} />
             <Stack gap={1}>
               <Field
                 name="hashtags"
                 color="secondary"
-                label={messages.hashtagsLabel}
+                label={hashtagsLabel}
                 inputRef={hashtagsRef}
                 component={Input}
               />
@@ -79,15 +96,15 @@ function CreateGoalModal({ onClose }: CreateGoalModalProps) {
                 disabled={disabledHashtag}
                 onClick={onAddHashtag}
               >
-                # {messages.hashtagText}
+                # {hashtagText}
               </ButtonCompact>
             </Stack>
             <Stack gap={1}>
               <Stack direction="row" alignItems="center" gap={1}>
                 <Typography variant="h6" component="p">
-                  🚀 {messages.stagesHeader}
+                  🚀 {stagesHeader}
                 </Typography>
-                <TooltipArrow title={messages.stageHint}>
+                <TooltipArrow title={stageHint}>
                   <IconButton color="info">
                     <Icon name="help_outline" />
                   </IconButton>
@@ -100,14 +117,14 @@ function CreateGoalModal({ onClose }: CreateGoalModalProps) {
                       <Stack direction="row" gap={1} key={id}>
                         <Field
                           name={`stages.${index}.name`}
-                          label={`${messages.stageLabel} ${index + 1}`}
+                          label={`${stageLabel} ${index + 1}`}
                           autoFocus={index === values.stages.length - 1}
                           color="warning"
                           component={Input}
                         />
                         <Box display="flex" alignSelf="flex-start">
                           <IconButton
-                            aria-label={messages.deleteText}
+                            aria-label={deleteText}
                             disableFocusRipple
                             sx={{ color: 'zen.silent' }}
                             onClick={() => remove(index)}
@@ -123,7 +140,7 @@ function CreateGoalModal({ onClose }: CreateGoalModalProps) {
                       color="warning"
                       onClick={() => push({ id: crypto.randomUUID(), name: '' })}
                     >
-                      + {messages.stageButtonText}
+                      + {stageButtonText}
                     </ButtonCompact>
                   </>
                 )}
@@ -131,30 +148,22 @@ function CreateGoalModal({ onClose }: CreateGoalModalProps) {
             </Stack>
             <FormControl variant="standard">
               <Typography variant="h6" component="label">
-                🕰 {messages.startHeader}
+                🕰 {startHeader}
               </Typography>
               <RadioGroup
                 name="started"
                 value={values.started}
-                aria-labelledby={messages.startLabelledby}
+                aria-labelledby={startLabelledby}
                 row
                 onChange={(e) => setFieldValue('started', e.target.value)}
               >
-                <FormControlLabel
-                  label={messages.todayLabel}
-                  value={todayValue}
-                  control={<Radio />}
-                />
-                <FormControlLabel
-                  label={messages.tomorrowLabel}
-                  value={tomorrowValue}
-                  control={<Radio />}
-                />
+                <FormControlLabel label={todayLabel} value={todayValue} control={<Radio />} />
+                <FormControlLabel label={tomorrowLabel} value={tomorrowValue} control={<Radio />} />
               </RadioGroup>
             </FormControl>
             <Stack gap={2}>
               <Typography variant="h6" component="p">
-                📌 {messages.tasksHeader}
+                📌 {tasksHeader}
               </Typography>
               <FieldArray name="tasks">
                 {({ push, remove }) => (
@@ -176,7 +185,7 @@ function CreateGoalModal({ onClose }: CreateGoalModalProps) {
                       startIcon={<Icon name="add" />}
                       onClick={() => push({ id: crypto.randomUUID(), name: '', date: undefined })}
                     >
-                      {messages.addTaskText}
+                      {addTaskText}
                     </ButtonCompact>
                   </>
                 )}

@@ -10,10 +10,11 @@ import {
 } from '@mui/material'
 import { drawerClasses } from '@mui/material/Drawer'
 import { signOut } from 'next-auth/react'
+import { useIntl } from 'react-intl'
 import Link from 'next/link'
 import { useClient } from 'entities/viewer'
 import Icon from 'shared/ui/Icon'
-import { useRoutes, useMessages } from './lib'
+import { useRoutes } from './lib'
 
 interface SidebarModalProps {
   onClose: () => void
@@ -22,8 +23,11 @@ interface SidebarModalProps {
 
 function SidebarModal({ onOpenSettings, onClose }: SidebarModalProps) {
   const client = useClient()
-  const messages = useMessages()
   const routes = useRoutes()
+  const { formatMessage } = useIntl()
+  const logOut = formatMessage({ id: 'common.log-out' })
+  const settings = formatMessage({ id: 'common.settings' })
+  const closeText = formatMessage({ id: 'common.close' })
 
   const onSignOut = () => signOut()
 
@@ -41,7 +45,7 @@ function SidebarModal({ onOpenSettings, onClose }: SidebarModalProps) {
       onClose={onClose}
     >
       <Box display="flex" justifyContent="flex-end" alignItems="center" pr={1} height={56}>
-        <IconButton aria-label={messages.closeText} onClick={onClose}>
+        <IconButton aria-label={closeText} onClick={onClose}>
           <Icon name="close" />
         </IconButton>
       </Box>
@@ -63,7 +67,7 @@ function SidebarModal({ onOpenSettings, onClose }: SidebarModalProps) {
             <ListItemIcon>
               <Icon name="settings" />
             </ListItemIcon>
-            <ListItemText primary={messages.settings} />
+            <ListItemText primary={settings} />
           </ListItem>
         </List>
         {client && (
@@ -74,7 +78,7 @@ function SidebarModal({ onOpenSettings, onClose }: SidebarModalProps) {
                 <ListItemIcon>
                   <Icon name="logout" />
                 </ListItemIcon>
-                <ListItemText primary={messages.logOut} />
+                <ListItemText primary={logOut} />
               </ListItem>
             </List>
           </>

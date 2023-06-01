@@ -1,17 +1,19 @@
 import { Box, Stack, Typography } from '@mui/material'
+import { useIntl } from 'react-intl'
 import FadeTypography from 'shared/ui/FadeTypography'
-import { useMessages } from './lib'
 
 function EmptyList() {
-  const messages = useMessages()
+  const { formatMessage } = useIntl()
+  const title = formatMessage({ id: 'common.empty' })
+  const hint = formatMessage({ id: 'page.following.list.hint' })
 
   return (
     <Box display="flex" alignItems="center" justifyContent="center" flex={1}>
       <Stack alignItems="center" width="100%">
         <Typography variant="h5" component="p" color="primary">
-          {messages.title}
+          {title}
         </Typography>
-        <Typography mb={2}>{messages.hint}</Typography>
+        <Typography mb={2}>{hint}</Typography>
         <FadeTypography>🥷</FadeTypography>
       </Stack>
     </Box>

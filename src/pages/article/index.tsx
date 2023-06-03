@@ -1,5 +1,6 @@
 import { Box, Breadcrumbs, Button, Chip, Grid, Link, Stack, Typography } from '@mui/material'
 import { compiler } from 'markdown-to-jsx'
+import { useIntl } from 'react-intl'
 import dynamic from 'next/dynamic'
 import { Illustration } from 'pages/article/illustration'
 import { tryNativeShare } from 'features/share'
@@ -11,7 +12,6 @@ import { useFormatDate, useToggle } from 'shared/lib/hooks'
 import Container from 'shared/ui/Container'
 import Icon from 'shared/ui/Icon'
 import { generateColorByName } from 'shared/ui/palette'
-import { useIntl } from 'react-intl'
 
 const Share = dynamic(() => import('features/share'))
 
@@ -50,6 +50,7 @@ export function ArticlePage({ article }: ArticlePageProps) {
           },
         }}
       >
+        <div className="reading-progress" />
         <Box display="flex" justifyContent="space-between" alignItems="center" mb={1}>
           <Breadcrumbs separator="•" aria-label="breadcrumb">
             <Chip size="small" label={tag} sx={{ backgroundColor }} />

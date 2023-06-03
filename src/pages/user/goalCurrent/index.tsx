@@ -1,6 +1,7 @@
 import { Box, Button, Card, Stack, Typography } from '@mui/material'
 import { styled } from '@mui/system'
 import { differenceInCalendarDays } from 'date-fns'
+import { useIntl } from 'react-intl'
 import dynamic from 'next/dynamic'
 import { useSwitchDay } from 'features/day/switch-day'
 import { CharacteristicGoal } from 'entities/characteristic'
@@ -21,7 +22,6 @@ import { MenuActions } from './menuActions'
 import { Task } from './task'
 import { Views } from './views'
 import { ViewTrigger } from './viewTrigger'
-import { useIntl } from 'react-intl'
 
 const Owner = dynamic(() => import('./owner'))
 const Stages = dynamic(() => import('./stages'))

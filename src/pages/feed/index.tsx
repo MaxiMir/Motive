@@ -1,32 +1,29 @@
-import { Box, Typography } from '@mui/material'
+import { Grid, Typography } from '@mui/material'
 import { useIntl } from 'react-intl'
+import { ArticlePreview } from 'entities/article'
+import { ArticleDto } from 'shared/api'
 import Container from 'shared/ui/Container'
-import FadeTypography from 'shared/ui/FadeTypography'
 
-export function FeedPage() {
+interface FeedPageProps {
+  articles: ArticleDto[]
+}
+
+export function FeedPage({ articles }: FeedPageProps) {
   const { formatMessage } = useIntl()
   const header = formatMessage({ id: 'page.feed.header' })
-  const text = formatMessage({ id: 'common.dev' })
 
   return (
     <Container>
       <Typography variant="h1" sx={{ mb: 3 }}>
         {header}
       </Typography>
-      <Box
-        display="flex"
-        flexDirection="column"
-        alignItems="center"
-        justifyContent="center"
-        flex={1}
-        gap={1}
-        height="80dvh"
-      >
-        <Typography variant="h5" component="p" color="primary">
-          {text}
-        </Typography>
-        <FadeTypography>⌨️</FadeTypography>
-      </Box>
+      <Grid container spacing={2} mb={4}>
+        {articles.map((article) => (
+          <Grid item xs={12} key={article.id}>
+            <ArticlePreview article={article} />
+          </Grid>
+        ))}
+      </Grid>
     </Container>
   )
 }

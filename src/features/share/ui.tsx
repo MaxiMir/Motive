@@ -16,13 +16,13 @@ function Share({ href, title, onClose }: ShareProps) {
   const { enqueueSnackbar } = useSnackbar()
   const shareItems = getShareItems()
   const copiedText = formatMessage({ id: 'common.copied' })
-  const error = formatMessage({ id: 'common.error' })
-  const shareText = formatMessage({ id: 'component.share.share' })
-  const sendText = formatMessage({ id: 'component.share.send' })
-  const copyText = formatMessage({ id: 'component.share.copy' })
 
   function getShareItems() {
     const url = process.env.NEXT_PUBLIC_APP_URL + href
+    const shareText = formatMessage({ id: 'component.share.share' })
+    const sendText = formatMessage({ id: 'component.share.send' })
+    const copyText = formatMessage({ id: 'component.share.copy' })
+    const error = formatMessage({ id: 'common.error' })
 
     return [
       {

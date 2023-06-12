@@ -36,7 +36,7 @@ function CreateGoal() {
           onClick={toggle}
         >
           <Box display="flex" justifyContent="center" alignItems="center" width={65} height={65}>
-            <Icon name="data_saver_on" />
+            <Icon name="science" />
           </Box>
         </Button>
       </Box>

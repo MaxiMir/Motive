@@ -8,7 +8,7 @@ import { ArticlePreview, getReadTime } from 'entities/article'
 import { ArticlePageDto } from 'shared/api'
 import { Route } from 'shared/config'
 import { setSearchParams } from 'shared/lib/helpers'
-import { useFormatDate, useToggle } from 'shared/lib/hooks'
+import { useFormatDate, useFormatNumber, useToggle } from 'shared/lib/hooks'
 import Container from 'shared/ui/Container'
 import Icon from 'shared/ui/Icon'
 import { generateColorByName } from 'shared/ui/palette'
@@ -33,9 +33,12 @@ export function ArticlePage({ article }: ArticlePageProps) {
     lightness: 20,
     range: 10,
   })
+  const formatNumber = useFormatNumber()
   const href = setSearchParams([Route.Blog, pathname].join('/'), { share: 'web' })
   const shareText = formatMessage({ id: 'common.share' })
   const readTimeText = formatMessage({ id: 'common.read-time' })
+  const sharesCountFormatted = formatNumber(sharesCount)
+  const viewsFormatted = formatNumber(views)
 
   const onShare = () => tryNativeShare(href, title, toggleSharing)
 
@@ -79,7 +82,7 @@ export function ArticlePage({ article }: ArticlePageProps) {
               sx={(theme) => ({ color: theme.palette.grey[600] })}
               onClick={onShare}
             >
-              {sharesCount}
+              {sharesCountFormatted}
             </Button>
           </Box>
         </Box>
@@ -102,7 +105,7 @@ export function ArticlePage({ article }: ArticlePageProps) {
         </Button>
         */}
           <Button startIcon={<Icon name="visibility" />} size="small" disabled component="span">
-            {views}
+            {viewsFormatted}
           </Button>
         </Box>
         <Grid container spacing={2} mt={4}>

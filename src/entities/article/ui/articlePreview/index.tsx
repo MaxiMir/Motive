@@ -12,6 +12,7 @@ import Link from 'next/link'
 import { ArticleDto } from 'shared/api'
 import { Route } from 'shared/config'
 import { getStaticSrc } from 'shared/lib/helpers'
+import { useFormatNumber } from 'shared/lib/hooks'
 import Icon from 'shared/ui/Icon'
 import { generateColorByName } from 'shared/ui/palette'
 
@@ -27,7 +28,10 @@ export function ArticlePreview({ article }: ArticlePreviewProps) {
     range: 10,
   })
   const staticSrc = getStaticSrc(image)
+  const formatNumber = useFormatNumber()
   const href = `${Route.Blog}/${pathname}`
+  const sharesCountFormatted = formatNumber(sharesCount)
+  const viewsFormatted = formatNumber(views)
 
   return (
     <Card href={href} component={Link}>
@@ -51,7 +55,7 @@ export function ArticlePreview({ article }: ArticlePreviewProps) {
           </Typography>
           <Box display="flex" gap={1}>
             <Button startIcon={<Icon name="ios_share" />} size="small" disabled component="span">
-              {sharesCount}
+              {sharesCountFormatted}
             </Button>
             {/*
             <Button startIcon={<Icon name="favorite" />} size="small" disabled component="span">
@@ -62,7 +66,7 @@ export function ArticlePreview({ article }: ArticlePreviewProps) {
             </Button>
             */}
             <Button startIcon={<Icon name="visibility" />} size="small" disabled component="span">
-              {views}
+              {viewsFormatted}
             </Button>
           </Box>
         </CardContent>

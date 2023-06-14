@@ -46,7 +46,7 @@ function CreateTopic({
   const { isSubmitting, values, setFieldValue, handleSubmit } = form
   const disabled = isSubmitting || !values.text
   const supportSign = values.type === TopicType.Support && !clientGoal
-  const selectingType = !clientGoal && values.text
+  const selectingType = !clientGoal && values.text && !replyTo
   const sendText = formatMessage({ id: 'common.send' })
   const placeholder = formatMessage({ id: 'common.message' })
 

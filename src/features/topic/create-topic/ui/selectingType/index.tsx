@@ -27,7 +27,7 @@ function SelectingType({ owner, type, setType }: SelectingTypeProps) {
 
   return (
     <Stack gap={1}>
-      <Stack direction="row" alignItems="center" gap={1} height={40} pl={8}>
+      <Stack direction="row" alignItems="center" gap={1} pl={8}>
         <FormControl variant="standard">
           <RadioGroup row aria-labelledby={labelledby} name="type" value={type} onChange={onChange}>
             <FormControlLabel

@@ -10,7 +10,7 @@ interface StageLabelProps {
 
 export function StageLabel({ index, activeStep, stage }: StageLabelProps) {
   const icon = activeStep > index ? 'task_alt' : 'radio_button_unchecked'
-  const color = activeStep >= index ? indigo[400] : 'zen.silent'
+  const color = activeStep >= index ? indigo.A100 : 'zen.silent'
 
   const stepIconComponent = () => <Icon name={icon} />
 

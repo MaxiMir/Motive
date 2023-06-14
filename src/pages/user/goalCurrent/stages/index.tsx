@@ -4,7 +4,6 @@ import { stepConnectorClasses } from '@mui/material/StepConnector'
 import { useIntl } from 'react-intl'
 import dynamic from 'next/dynamic'
 import { useToggle } from 'shared/lib/hooks'
-import Icon from 'shared/ui/Icon'
 import { StageLabel } from './stageLabel'
 
 const Button = dynamic(() => import('@mui/material/Button'))
@@ -34,7 +33,7 @@ function Stages({ goalId, stages, dayStage, forTomorrow, completeStage }: Stages
           padding: 0,
           [`& .${stepConnectorClasses.active}`]: {
             [`& .${stepConnectorClasses.line}`]: {
-              borderColor: indigo[400],
+              borderColor: indigo.A100,
             },
           },
         }}
@@ -53,12 +52,11 @@ function Stages({ goalId, stages, dayStage, forTomorrow, completeStage }: Stages
                     disabled={forTomorrow}
                     aria-haspopup="true"
                     aria-expanded={open ? 'true' : undefined}
-                    startIcon={<Icon name="done_outline" />}
                     sx={{
-                      color: indigo[200],
-                      borderColor: indigo[200],
+                      color: indigo['100'],
+                      borderColor: indigo['100'],
                       ':hover': {
-                        borderColor: indigo[100],
+                        borderColor: indigo['50'],
                       },
                     }}
                     onClick={toggle}

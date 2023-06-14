@@ -126,9 +126,9 @@ function GoalCurrent({ goal, nickname, clientPage, clientMembership }: GoalCurre
       maxWidth="100%"
     >
       <Box
-        padding="3px"
+        padding="1px"
         height="100%"
-        borderRadius="16px"
+        borderRadius="12px"
         sx={({ palette }) => ({
           background: `linear-gradient(to top left, ${palette.motivation.main}, ${palette.creativity.dark}, ${palette.support.dark})`,
         })}

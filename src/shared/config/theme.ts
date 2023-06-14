@@ -127,6 +127,7 @@ export const getDesignTokens = (mode: PaletteMode): ThemeOptions => {
           h1: {
             fontSize: 48,
             lineHeight: '56px',
+            textWrap: 'balance',
             maxWidthSm: {
               fontSize: 40,
               lineHeight: '48px',
@@ -135,6 +136,7 @@ export const getDesignTokens = (mode: PaletteMode): ThemeOptions => {
           h2: {
             fontSize: 60,
             lineHeight: 1.2,
+            textWrap: 'balance',
           },
           subtitle1: {
             fontSize: 16,
@@ -143,15 +145,18 @@ export const getDesignTokens = (mode: PaletteMode): ThemeOptions => {
           h4: {
             fontSize: 34,
             lineHeight: 1.235,
+            textWrap: 'balance',
           },
           h5: {
             fontSize: 24,
             lineHeight: 1.334,
             fontWeight: 'bold',
+            textWrap: 'balance',
           },
           h6: {
             fontSize: 18,
             lineHeight: 1.6,
+            textWrap: 'balance',
           },
           caption: {
             fontSize: 12,

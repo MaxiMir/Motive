@@ -1,5 +1,6 @@
 import { InputAdornment, Stack } from '@mui/material'
 import { Field, Form, FormikProvider } from 'formik'
+import { ChangeEvent } from 'react'
 import { useIntl } from 'react-intl'
 import { UserPageDto } from 'shared/api'
 import CancelButton from 'shared/ui/CancelButton'
@@ -16,7 +17,7 @@ interface EditProfileModalProps {
 function EditProfileModal({ user, onClose }: EditProfileModalProps) {
   const { formatMessage } = useIntl()
   const form = useUpdateUserForm(user, onClose)
-  const { isSubmitting, handleSubmit } = form
+  const { setFieldValue, isSubmitting, handleSubmit } = form
   const title = formatMessage({ id: 'page.user.modal-profile.title' })
   const nameLabel = formatMessage({ id: 'page.user.modal-profile.name' })
   const nicknameLabel = formatMessage({ id: 'common.nickname' })
@@ -25,6 +26,10 @@ function EditProfileModal({ user, onClose }: EditProfileModalProps) {
   const bioLabel = formatMessage({ id: 'common.bio' })
   const buttonText = formatMessage({ id: 'common.save' })
   const buttonLoading = formatMessage({ id: 'common.saving' })
+
+  const onChangeNickname = (e: ChangeEvent<HTMLInputElement>) => {
+    setFieldValue('nickname', e.target.value.toLowerCase())
+  }
 
   return (
     <Modal
@@ -57,6 +62,7 @@ function EditProfileModal({ user, onClose }: EditProfileModalProps) {
                 ),
               }}
               component={Input}
+              onChange={onChangeNickname}
             />
             <Field name="motto" label={mottoLabel} color="primary" component={Input} />
             <Field name="location" label={locationLabel} color="primary" component={Input} />

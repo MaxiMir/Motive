@@ -1,4 +1,4 @@
-import produce, { Draft } from 'immer'
+import { produce, Draft } from 'immer'
 import { useIntl } from 'react-intl'
 import { useMutation } from 'react-query'
 import { useUserPageCache } from 'entities/user'

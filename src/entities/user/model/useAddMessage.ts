@@ -1,4 +1,4 @@
-import produce from 'immer'
+import { produce } from 'immer'
 import { InfiniteData, useQueryClient } from 'react-query'
 import { GoalDto, TopicDto } from 'shared/api'
 import { useGoalsCache } from './useGoalsCache'

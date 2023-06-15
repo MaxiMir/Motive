@@ -1,4 +1,4 @@
-import produce from 'immer'
+import { produce } from 'immer'
 import { GoalDto, UserPageDto } from 'shared/api'
 import { useUserPageCache } from './useUserPageCache'
 

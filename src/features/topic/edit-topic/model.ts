@@ -1,5 +1,5 @@
 import { useFormik } from 'formik'
-import produce from 'immer'
+import { produce } from 'immer'
 import { useIntl } from 'react-intl'
 import { InfiniteData, useMutation, useQueryClient } from 'react-query'
 import { MessageDto, TopicDto, updateTopic } from 'shared/api'

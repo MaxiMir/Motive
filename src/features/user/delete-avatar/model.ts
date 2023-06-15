@@ -1,4 +1,4 @@
-import produce from 'immer'
+import { produce } from 'immer'
 import { useMutation } from 'react-query'
 import { useUserPageCache } from 'entities/user'
 import { UserBaseDto, UserPageDto, deleteAvatar } from 'shared/api'

@@ -1,4 +1,4 @@
-import produce from 'immer'
+import { produce } from 'immer'
 import { useMutation, useQueryClient } from 'react-query'
 import { useClient } from 'entities/viewer'
 import { NotificationDto, updateRead } from 'shared/api'

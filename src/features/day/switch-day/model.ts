@@ -1,4 +1,4 @@
-import produce from 'immer'
+import { produce } from 'immer'
 import { useMutation } from 'react-query'
 import { useChangeDayUrl, useGoalsCache } from 'entities/user'
 import { GoalDto, DayDto, getDay, getMemberDay } from 'shared/api'

@@ -1,5 +1,5 @@
 import { useFormik } from 'formik'
-import produce from 'immer'
+import { produce } from 'immer'
 import { useIntl } from 'react-intl'
 import { useMutation } from 'react-query'
 import { useRouter } from 'next/router'

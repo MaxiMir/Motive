@@ -149,7 +149,7 @@ export function UserPage({ user }: UserViewProps) {
         {!goals.length ? (
           <EmptyGoals clientPage={clientPage} />
         ) : (
-          <Box display="flex" flexWrap="wrap" alignItems="stretch" gap={3}>
+          <Box sx={{ columnCount: 2, columnGap: 3 }}>
             {goals.map((goal) => (
               <GoalCurrent
                 goal={goal}

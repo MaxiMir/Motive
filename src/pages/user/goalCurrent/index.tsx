@@ -115,15 +115,15 @@ function GoalCurrent({ goal, nickname, clientPage, clientMembership }: GoalCurre
   }
 
   return (
-    <Stack
+    <Box
       id={`goal-${id}`}
       component="article"
-      gap={2}
-      flex={{
-        xs: '0 1 100%',
-        md: '0 1 calc(50% - 12px)',
+      sx={{
+        display: 'grid',
+        gridTemplateRows: '1fr auto',
+        marginBottom: '10px',
+        breakInside: 'avoid',
       }}
-      maxWidth="100%"
     >
       <Box
         padding="1px"
@@ -315,7 +315,7 @@ function GoalCurrent({ goal, nickname, clientPage, clientMembership }: GoalCurre
           {renderWeb && <Web />}
         </Stack>
       </Box>
-    </Stack>
+    </Box>
   )
 }
 

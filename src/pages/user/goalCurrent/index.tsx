@@ -99,7 +99,7 @@ function GoalCurrent({ goal, nickname, clientPage, clientMembership }: GoalCurre
       return {
         ...defaultInfo,
         canEdit: clientPage && clientMember.dayId === day.id,
-        forTomorrow: !!differenceInCalendarDays(Date.parse(clientMember.updated), today),
+        forTomorrow: !differenceInCalendarDays(Date.parse(clientMember.updated), today),
       }
     }
 

@@ -9,7 +9,7 @@ interface ShowMoreProps {
 
 export function ShowMore({ open, onClick }: ShowMoreProps) {
   const { formatMessage } = useIntl()
-  const buttonText = formatMessage({ id: open ? 'common.show-less' : 'common.show-more' })
+  const buttonText = formatMessage({ id: open ? 'common.show-less' : 'common.read-more' })
 
   return (
     <TextButton size="small" color="inherit" onClick={onClick}>

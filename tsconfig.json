@@ -34,7 +34,7 @@
     ],
     "paths": {
       "app/*": [
-        "src/app/*"
+        "src/application/*"
       ],
       "entities/*": [
         "src/entities/*"

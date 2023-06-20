@@ -11,11 +11,11 @@ const getNextState = (goals: GoalDto[], goalId: number, day: DayDto): GoalDto[] 
   })
 
 export const useSwitchDay = (goal: GoalDto) => {
-  const { id, day, calendar } = goal
+  const { id, day, calendar, member } = goal
   const [goals, mutateGoals] = useGoalsCache()
   const changeDayUrl = useChangeDayUrl()
   const { isLoading, mutate } = useMutation(
-    (dayId: number) => (!goal.member ? getDay(dayId) : getMemberDay(goal.member.id, dayId)),
+    (dayId: number) => (!member ? getDay(dayId) : getMemberDay(member.id, dayId)),
     {
       onSuccess: (newDay) => {
         mutateGoals(getNextState(goals, id, newDay))

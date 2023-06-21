@@ -1,4 +1,4 @@
-import { Typography, Button } from '@mui/material'
+import { Button } from '@mui/material'
 import { useIntl } from 'react-intl'
 import { Emoji } from 'src/entities/characteristic/consts'
 import { GoalCharacteristicName } from 'shared/api'
@@ -23,16 +23,13 @@ export function CharacteristicGoal({ name, value }: CharacteristicGoalProps) {
         size="small"
         variant="outlined"
         color="inherit"
-        startIcon={
-          <Typography paragraph m={0}>
-            {emoji}
-          </Typography>
-        }
+        startIcon={emoji}
         sx={(theme) => ({
           minWidth: 'initial',
           borderColor: 'transparent',
           backgroundColor: theme.palette.grey[900],
         })}
+        component="span"
       >
         {formattedValue}
       </Button>

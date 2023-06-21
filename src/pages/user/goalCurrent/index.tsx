@@ -99,7 +99,7 @@ function GoalCurrent({ goal, nickname, clientPage, clientMembership }: GoalCurre
       return {
         ...defaultInfo,
         canEdit: clientPage && clientMember.dayId === day.id,
-        forTomorrow: !differenceInCalendarDays(Date.parse(clientMember.updated), today),
+        forTomorrow: differenceInCalendarDays(Date.parse(clientMember.updated), today) > 0,
       }
     }
 
@@ -164,6 +164,7 @@ function GoalCurrent({ goal, nickname, clientPage, clientMembership }: GoalCurre
                 {!!hashtags.length && <Hashtags hashtags={hashtags} />}
               </Stack>
               <Stack direction="row" justifyContent="space-between" alignItems="center">
+                <CharacteristicGoal name="runningDays" value={runningDays} />
                 {CHARACTERISTICS.map((characteristicName) => (
                   <CharacteristicGoal
                     name={characteristicName}
@@ -171,7 +172,6 @@ function GoalCurrent({ goal, nickname, clientPage, clientMembership }: GoalCurre
                     key={characteristicName}
                   />
                 ))}
-                <CharacteristicGoal name="runningDays" value={runningDays} />
               </Stack>
               <Stack alignItems="center">
                 {prev && (
@@ -277,6 +277,7 @@ function GoalCurrent({ goal, nickname, clientPage, clientMembership }: GoalCurre
                 </Card>
                 {next && (
                   <DayCardButton
+                    id={`next-${id}`}
                     variant="text"
                     color="inherit"
                     disabled={isLoading}
@@ -303,8 +304,8 @@ function GoalCurrent({ goal, nickname, clientPage, clientMembership }: GoalCurre
                 goalId={id}
                 day={day}
                 calendar={calendar}
-                reactions={reactions}
                 ownerName={owner.name}
+                reactions={reactions}
                 forTomorrow={forTomorrow}
                 clientPage={clientPage}
                 clientMember={clientMember}

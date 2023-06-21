@@ -1,6 +1,6 @@
 import dynamic from 'next/dynamic'
 import { CalendarDto, MemberDto } from 'shared/api'
-import { useNextDayId } from './lib'
+import { getNextDayId } from './lib'
 
 const EndOfDay = dynamic(() => import('./endOfDay'))
 const Done = dynamic(() => import('./done'))
@@ -14,7 +14,7 @@ interface CompletionProps {
 }
 
 function Completion({ goalId, dayId, calendar, forTomorrow, clientMember }: CompletionProps) {
-  const nextDayId = useNextDayId(dayId, calendar)
+  const nextDayId = getNextDayId(dayId, calendar)
 
   return (
     <>

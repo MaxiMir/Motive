@@ -44,3 +44,6 @@ yarn-error.log*
 **/public/worker-*.js.map
 
 .vscode
+
+# Sentry Auth Token
+.sentryclirc

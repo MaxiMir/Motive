@@ -32,6 +32,7 @@
     "@mui/styles": "^5.13.2",
     "@mui/system": "^5.13.5",
     "@mui/x-date-pickers": "^5.0.13",
+    "@sentry/nextjs": "^7.56.0",
     "axios": "^1.4.0",
     "current-git-branch": "^1.1.0",
     "date-fns": "^2.30.0",

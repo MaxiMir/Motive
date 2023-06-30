@@ -178,4 +178,5 @@ const Section = styled(Box)(({ theme }) => ({
   padding: 8,
   borderRadius: '12px',
   backgroundColor: theme.palette.grey[900],
+  border: `0.5px solid ${theme.palette.grey[800]}`,
 }))

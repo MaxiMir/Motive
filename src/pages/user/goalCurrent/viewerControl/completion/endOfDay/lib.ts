@@ -24,8 +24,9 @@ export const useSendEndOfDay = (goalId: number) => {
   return useMutation(updateMember, {
     onSuccess(member) {
       const message = formatMessage({ id: 'common.next-day-loading' })
+
       mutatePage(getNextState(page, member))
-      setTimeout(() => clickOnElem(`next-${goalId}`), 1)
+      clickOnElem(`next-${goalId}`)
       enqueueSnackbar(message, { severity: 'success', icon: '🧞‍♂️️‍' })
     },
   })

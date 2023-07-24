@@ -1,5 +1,6 @@
 import { formatISO } from 'date-fns'
 import { useFormik } from 'formik'
+import { flushSync } from 'react-dom'
 import { useIntl } from 'react-intl'
 import { useMutation } from 'react-query'
 import { useUserPage } from 'entities/page'
@@ -24,10 +25,14 @@ export const useCreateConfirmationForm = (goalId: number, onSuccess: () => void)
   const { mutateAsync } = useMutation(createConfirmation, {
     onSuccess() {
       const message = formatMessage({ id: 'component.modal-completion.message' })
-      onSuccess()
-      setTimeout(() => scrollToElem('main'), 1)
-      setTimeout(refetch, 300)
-      enqueueSnackbar(message, { severity: 'success', icon: '👾' })
+
+      flushSync(() => {
+        onSuccess()
+        enqueueSnackbar(message, { severity: 'success', icon: '👾' })
+        refetch()
+      })
+
+      scrollToElem('main')
     },
   })
 

@@ -1,5 +1,6 @@
 import { useFormik } from 'formik'
 import { produce } from 'immer'
+import { flushSync } from 'react-dom'
 import { useIntl } from 'react-intl'
 import { useMutation } from 'react-query'
 import { useGoalsCache } from 'entities/user'
@@ -21,10 +22,14 @@ export const useCreateGoalForm = (onSuccess: () => void) => {
   const { mutateAsync } = useMutation(createGoal, {
     onSuccess(goal) {
       const message = formatMessage({ id: 'page.user.modal-goal.message' })
-      mutateGoal(getNextState(goals, goal))
-      onSuccess()
-      enqueueSnackbar(message, { severity: 'success', icon: '💎' })
-      setTimeout(() => scrollToElem(`goal-${goal.id}`), 500)
+
+      flushSync(() => {
+        mutateGoal(getNextState(goals, goal))
+        onSuccess()
+        enqueueSnackbar(message, { severity: 'success', icon: '💎' })
+      })
+
+      setTimeout(() => scrollToElem(`goal-${goal.id}`), 250)
     },
   })
 

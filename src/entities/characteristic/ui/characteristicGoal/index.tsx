@@ -20,15 +20,10 @@ export function CharacteristicGoal({ name, value }: CharacteristicGoalProps) {
   return (
     <TooltipArrow title={title}>
       <Button
-        size="small"
         variant="outlined"
         color="inherit"
         startIcon={emoji}
-        sx={(theme) => ({
-          minWidth: 'initial',
-          borderColor: 'transparent',
-          backgroundColor: theme.palette.grey[900],
-        })}
+        sx={{ minWidth: 'initial', borderColor: 'transparent' }}
         component="span"
       >
         {formattedValue}

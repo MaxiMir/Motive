@@ -1,6 +1,7 @@
-import { Box, Button, Card, Stack, Typography } from '@mui/material'
+import { Box, Button, Card, Divider, Stack, Typography } from '@mui/material'
 import { styled } from '@mui/system'
 import { differenceInCalendarDays } from 'date-fns'
+import { Fragment } from 'react'
 import { useIntl } from 'react-intl'
 import dynamic from 'next/dynamic'
 import { useSwitchDay } from 'features/day/switch-day'
@@ -163,14 +164,27 @@ function GoalCurrent({ goal, nickname, clientPage, clientMembership }: GoalCurre
                 </Box>
                 {!!hashtags.length && <Hashtags hashtags={hashtags} />}
               </Stack>
-              <Stack direction="row" justifyContent="space-between" alignItems="center">
+              <Stack
+                direction="row"
+                justifyContent="space-between"
+                alignItems="center"
+                sx={(theme) => ({
+                  borderRadius: 1,
+                  backgroundColor: theme.palette.grey[900],
+                })}
+              >
                 <CharacteristicGoal name="runningDays" value={runningDays} />
+                <Divider orientation="vertical" flexItem light />
                 {CHARACTERISTICS.map((characteristicName) => (
-                  <CharacteristicGoal
-                    name={characteristicName}
-                    value={characteristic[characteristicName]}
-                    key={characteristicName}
-                  />
+                  <Fragment key={characteristicName}>
+                    <CharacteristicGoal
+                      name={characteristicName}
+                      value={characteristic[characteristicName]}
+                    />
+                    {CHARACTERISTICS.at(-1) !== characteristicName && (
+                      <Divider orientation="vertical" flexItem light />
+                    )}
+                  </Fragment>
                 ))}
               </Stack>
               <Stack alignItems="center">
@@ -186,15 +200,14 @@ function GoalCurrent({ goal, nickname, clientPage, clientMembership }: GoalCurre
                     }}
                     onClick={onClickPrevDay}
                   >
-                    <DayAgo day={prev} />
-                    <Day date={prev} />
+                    <Day date={prev} icon="arrow_upward" />
                   </DayCardButton>
                 )}
                 <Card
                   variant="outlined"
                   sx={{
                     width: '100%',
-                    pb: 4,
+                    pb: 2,
                     borderRadius: '10px',
                     backgroundColor: '#121212',
                   }}
@@ -274,6 +287,29 @@ function GoalCurrent({ goal, nickname, clientPage, clientMembership }: GoalCurre
                     owner={owner}
                     clientGoal={clientGoal}
                   />
+                  <Stack spacing={2} px={2} mt={4}>
+                    {viewerControls && (
+                      <ViewerControl
+                        goalId={id}
+                        day={day}
+                        calendar={calendar}
+                        ownerName={owner.name}
+                        reactions={reactions}
+                        forTomorrow={forTomorrow}
+                        clientPage={clientPage}
+                        clientMember={clientMember}
+                      />
+                    )}
+                    {ownerControls && (
+                      <OwnerControl
+                        goalId={id}
+                        stages={stages}
+                        dayDate={day.date}
+                        dayStage={day.stage}
+                      />
+                    )}
+                    <Views views={day.views} />
+                  </Stack>
                 </Card>
                 {next && (
                   <DayCardButton
@@ -288,31 +324,12 @@ function GoalCurrent({ goal, nickname, clientPage, clientMembership }: GoalCurre
                     }}
                     onClick={onClickNextDay}
                   >
-                    <DayAgo day={next} />
-                    <Day date={next} />
+                    <Day date={next} icon="arrow_downward" />
                   </DayCardButton>
                 )}
               </Stack>
             </Stack>
           </ViewTrigger>
-          <Stack spacing={2}>
-            {ownerControls && (
-              <OwnerControl goalId={id} stages={stages} dayDate={day.date} dayStage={day.stage} />
-            )}
-            {viewerControls && (
-              <ViewerControl
-                goalId={id}
-                day={day}
-                calendar={calendar}
-                ownerName={owner.name}
-                reactions={reactions}
-                forTomorrow={forTomorrow}
-                clientPage={clientPage}
-                clientMember={clientMember}
-              />
-            )}
-            <Views views={day.views} />
-          </Stack>
           {renderWeb && <Web />}
         </Stack>
       </Box>
@@ -326,7 +343,7 @@ const DayCardButton = styled(Button)(({ theme }) => ({
   padding: 16,
   display: 'flex',
   alignItems: 'center',
-  justifyContent: 'space-between',
+  justifyContent: 'center',
   backgroundColor: theme.palette.grey[900],
   border: '1px solid rgba(255, 255, 255, 0.12)',
 }))

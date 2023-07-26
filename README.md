@@ -52,11 +52,11 @@
 
 ### Tips
 ```shell
-docker build -t maximir/frontend:1.0.93 .
+docker build -t mmirrev/frontend:1.0.93 .
 # artifactory:
-docker tag <IMAGE_ID> maximir.jfrog.io/default-docker-virtual/frontend:1.0.93
-docker push maximir.jfrog.io/default-docker-virtual/frontend:1.0.93
-docker pull maximir.jfrog.io/default-docker-virtual/frontend:1.0.93
+docker tag <IMAGE_ID> mmirrev.jfrog.io/default-docker-virtual/frontend:1.0.93
+docker push mmirrev/frontend:1.0.93
+docker pull mmirrev.jfrog.io/default-docker-virtual/frontend:1.0.93
 
 # copy:
 docker cp <IMAGE_ID>:/home/node/client /home # <-
@@ -93,7 +93,7 @@ services:
       - "127.0.0.1:3000:3000"
 
   backend:
-    image: maximir.jfrog.io/default-docker-virtual/backend:1.0.54
+    image: mmirrev.jfrog.io/default-docker-virtual/backend:1.0.54
     environment:
       - PORT=4000
       - CLIENT=https://2bebetter.pro

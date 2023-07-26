@@ -1,4 +1,4 @@
-import { Box, Button, Card, Divider, Stack, Typography } from '@mui/material'
+import { Box, Card, Divider, IconButton, Stack, Typography } from '@mui/material'
 import { styled } from '@mui/system'
 import { differenceInCalendarDays } from 'date-fns'
 import { Fragment } from 'react'
@@ -13,10 +13,9 @@ import { MAIN_CHARACTERISTICS, GoalCharacteristicName, GoalDto, MemberDto } from
 import { HashMark } from 'shared/config'
 import { getMidnight } from 'shared/lib/utils'
 import Accordion from 'shared/ui/Accordion'
+import Icon from 'shared/ui/Icon'
 import { Calendar } from './calendar'
 import { SHOW_WEB_AFTER_DAYS } from './consts'
-import { Day } from './day'
-import { DayAgo } from './dayAgo'
 import { Discussion } from './discussion'
 import { Feedback } from './feedback'
 import { MenuActions } from './menuActions'
@@ -188,21 +187,32 @@ function GoalCurrent({ goal, nickname, clientPage, clientMembership }: GoalCurre
                 ))}
               </Stack>
               <Stack alignItems="center">
-                {prev && (
-                  <DayCardButton
-                    variant="text"
-                    color="inherit"
-                    disabled={isLoading}
+                <DayControls>
+                  <IconButton
+                    disabled={isLoading || !prev}
                     aria-label={prevDayText}
-                    sx={{
-                      borderRadius: '12px 12px 0 0',
-                      borderBottom: 'none',
-                    }}
+                    sx={{ color: 'zen.silent' }}
                     onClick={onClickPrevDay}
                   >
-                    <Day date={prev} icon="arrow_upward" />
-                  </DayCardButton>
-                )}
+                    <Icon name="arrow_back" />
+                  </IconButton>
+                  <Calendar
+                    dayDate={day.date}
+                    calendar={calendar}
+                    isLoading={isLoading}
+                    onChangeDate={onChangeDate}
+                    shouldDisableDate={shouldDisableDate}
+                  />
+                  <IconButton
+                    id={`next-${id}`}
+                    disabled={isLoading || !next}
+                    aria-label={nextDayText}
+                    sx={{ color: 'zen.silent' }}
+                    onClick={onClickNextDay}
+                  >
+                    <Icon name="arrow_forward" />
+                  </IconButton>
+                </DayControls>
                 <Card
                   variant="outlined"
                   sx={{
@@ -212,22 +222,6 @@ function GoalCurrent({ goal, nickname, clientPage, clientMembership }: GoalCurre
                     backgroundColor: '#121212',
                   }}
                 >
-                  <Stack
-                    direction="row"
-                    justifyContent="space-between"
-                    alignItems="center"
-                    flex={1}
-                    p={2}
-                  >
-                    <DayAgo day={day.date} />
-                    <Calendar
-                      dayDate={day.date}
-                      calendar={calendar}
-                      isLoading={isLoading}
-                      onChangeDate={onChangeDate}
-                      shouldDisableDate={shouldDisableDate}
-                    />
-                  </Stack>
                   {!!stages.length && (
                     <Accordion
                       emoji="🚀"
@@ -311,22 +305,6 @@ function GoalCurrent({ goal, nickname, clientPage, clientMembership }: GoalCurre
                     <Views views={day.views} />
                   </Stack>
                 </Card>
-                {next && (
-                  <DayCardButton
-                    id={`next-${id}`}
-                    variant="text"
-                    color="inherit"
-                    disabled={isLoading}
-                    aria-label={nextDayText}
-                    sx={{
-                      borderRadius: '0 0 12px 12px',
-                      borderTop: 'none',
-                    }}
-                    onClick={onClickNextDay}
-                  >
-                    <Day date={next} icon="arrow_downward" />
-                  </DayCardButton>
-                )}
               </Stack>
             </Stack>
           </ViewTrigger>
@@ -337,15 +315,17 @@ function GoalCurrent({ goal, nickname, clientPage, clientMembership }: GoalCurre
   )
 }
 
-const DayCardButton = styled(Button)(({ theme }) => ({
+const DayControls = styled(Box)(({ theme }) => ({
   width: '90%',
   height: 50,
-  padding: 16,
+  paddingInline: 8,
   display: 'flex',
   alignItems: 'center',
-  justifyContent: 'center',
+  justifyContent: 'space-between',
   backgroundColor: theme.palette.grey[900],
   border: '1px solid rgba(255, 255, 255, 0.12)',
+  borderRadius: '12px 12px 0 0',
+  borderBottom: 'none',
 }))
 
 export default GoalCurrent

@@ -8,6 +8,7 @@ import Container from 'shared/ui/Container'
 import AvatarActions from './avatarActions'
 import EmptyGoals from './emptyGoals'
 import LearnMore from './learnMore'
+import LevelProgress from './levelProgress'
 import MainCharacteristic from './mainCharacteristic'
 import MenuActions from './menuActions'
 import Nickname from './nickname'
@@ -133,6 +134,9 @@ export function UserPage({ user }: UserViewProps) {
               <LearnMore user={user} />
             </Stack>
           </Section>
+          <Section component="section">
+            <LevelProgress level={characteristic.level} />
+          </Section>
           <Section display="flex" justifyContent="space-between" component="section">
             {MAIN_CHARACTERISTICS.map((characteristicName) => (
               <MainCharacteristic
@@ -176,7 +180,7 @@ export function UserPage({ user }: UserViewProps) {
 
 const Section = styled(Box)(({ theme }) => ({
   padding: 8,
-  borderRadius: '12px',
+  borderRadius: 8,
   backgroundColor: theme.palette.grey[900],
   border: `0.5px solid ${theme.palette.grey[800]}`,
 }))

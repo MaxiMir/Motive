@@ -20,7 +20,7 @@ export function Row({ icon, name, value = '-' }: RowProps) {
   return (
     <Box display="flex" gap={1}>
       <Icon name={icon} />
-      <Typography sx={{ whiteSpace: 'nowrap' }}>{title}:</Typography>
+      <Typography whiteSpace="nowrap">{title}:</Typography>
       <Typography textAlign="right" sx={{ color: 'zen.silent', marginLeft: 'auto' }}>
         {shownText}
       </Typography>

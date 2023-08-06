@@ -1,17 +1,14 @@
 import { Stack } from '@mui/material'
 import dynamic from 'next/dynamic'
-import AddReaction from 'features/day/add-reaction'
-import { DAY_CHARACTERISTIC, CalendarDto, DayDto, ReactionsDto, MemberDto } from 'shared/api'
-import ReactionSupport from './reactionSupport'
+import AddPoints from 'features/day/add-points'
+import { GoalDto, MemberDto } from 'shared/api'
+import Support from './support'
 
 const Join = dynamic(() => import('./join'))
 const Completion = dynamic(() => import('./completion'))
 
-interface ViewerControlProps {
+interface ViewerControlProps extends Pick<GoalDto, 'day' | 'calendar' | 'clientPoints'> {
   goalId: number
-  day: DayDto
-  calendar: CalendarDto[]
-  reactions: ReactionsDto
   ownerName: string
   forTomorrow: boolean
   clientPage: boolean
@@ -22,7 +19,7 @@ function ViewerControl({
   goalId,
   day,
   calendar,
-  reactions,
+  clientPoints,
   ownerName,
   forTomorrow,
   clientPage,
@@ -33,17 +30,8 @@ function ViewerControl({
   return (
     <Stack direction="row" justifyContent="space-between">
       <Stack direction="row" gap={1}>
-        {DAY_CHARACTERISTIC.map((name) => (
-          <AddReaction
-            name={name}
-            goalId={goalId}
-            dayId={day.id}
-            reactions={reactions[name]}
-            count={day.characteristic?.[name]}
-            key={name}
-          />
-        ))}
-        <ReactionSupport dayId={day.id} ownerName={ownerName} />
+        <AddPoints goalId={goalId} day={day} clientPoints={clientPoints} />
+        <Support dayId={day.id} ownerName={ownerName} />
       </Stack>
       {!clientMember ? (
         <Join goalId={goalId} dayId={day.id} calendar={calendar} ownerName={ownerName} />

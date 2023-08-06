@@ -1,4 +1,4 @@
-import { ClientDto, NotificationDto, NotificationType } from 'shared/api'
+import { ClientDto, NotificationDto } from 'shared/api'
 import { Route, HashMark, SearchParam } from 'shared/config'
 import { joinToHref, setSearchParams } from 'shared/lib/helpers'
 
@@ -38,24 +38,24 @@ export const getHashtagHref = (q: string) => {
 
 export const getNotificationHref = (notification: NotificationDto, client?: ClientDto): string => {
   const userPage = [
-    NotificationType.NewFollower,
-    NotificationType.NewGoal,
-    NotificationType.NewAnswer,
-    NotificationType.NewFeedback,
-    NotificationType.WebCoverage,
+    'new-follower',
+    'new-goal',
+    'new-answer',
+    'new-feedback',
+    'web-coverage',
   ].includes(notification.type)
   const nickname = userPage ? notification.initiator.nickname : client?.nickname || ''
 
   switch (notification.type) {
-    case NotificationType.NewFollower:
+    case 'new-follower':
       return joinToHref(nickname)
-    case NotificationType.WebCoverage:
+    case 'web-coverage':
       return getGoalHref(nickname, notification.details.id)
-    case NotificationType.NewFeedback:
+    case 'new-feedback':
       return getFeedbackHref(nickname, notification.details.id, notification.details.day)
-    case NotificationType.NewQuestion:
-    case NotificationType.NewAnswer:
-    case NotificationType.NewSupport:
+    case 'new-question':
+    case 'new-answer':
+    case 'new-support':
       return getDiscussionHref(nickname, notification.details.id, notification.details.day)
     default:
       return getDayHref(nickname, notification.details.id, notification.details.day)

@@ -14,7 +14,7 @@ export function SupportSign({ name }: SupportSignProps) {
   return (
     <TooltipArrow title={title}>
       <Avatar sx={{ width: 21, height: 21, fontSize: 12, backgroundColor: 'support.main' }}>
-        🙏
+        ⚡️
       </Avatar>
     </TooltipArrow>
   )

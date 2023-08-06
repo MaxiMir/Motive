@@ -20,6 +20,7 @@ const getNextState = (
     const draftGoals = draft.goals
     const draftGoal = draftGoals[draftGoals.findIndex((g) => g.id === goalId)]
     const draftTask = draftGoal.day.tasks[draftGoal.day.tasks.findIndex((t) => t.id === taskId)]
+    draftGoal.points += completed ? 1 : 0
     draftTask.completed = completed
   })
 
@@ -59,7 +60,7 @@ export const useSetCompleted = (goalId: number, id: number, rest: number) => {
     timerRef.current = setTimeout(() => mutate(id), 4000)
     enqueueSnackbar(message, {
       severity: 'success',
-      icon: !nextRest ? '🦾️' : '⚡️',
+      icon: !nextRest ? '🦾️' : '🔥',
       action: (
         <Button variant="text" sx={{ color: 'error.dark' }} onClick={onUndo}>
           {undoText}

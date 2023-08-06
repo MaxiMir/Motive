@@ -2,22 +2,21 @@ import { Typography, Grid, Box, Button, Stack } from '@mui/material'
 import { blueGrey } from '@mui/material/colors'
 import { useTheme } from '@mui/material/styles'
 import Link from 'next/link'
-import { UserCharacteristicName, UserDto } from 'shared/api'
+import { UserDto } from 'shared/api'
 import { joinToHref } from 'shared/lib/helpers'
 import Avatar from 'shared/ui/avatar'
 
 interface UserRatingProps {
   user: UserDto
-  characteristicName: UserCharacteristicName
   index: number
 }
 
-export function UserRating({ user, characteristicName, index }: UserRatingProps) {
+export function UserRating({ user, index }: UserRatingProps) {
   const { nickname, name, avatar, characteristic, online } = user
   const theme = useTheme()
   const number = getNumber()
   const href = joinToHref(nickname)
-  const ratingValue = Math.floor(characteristic[characteristicName])
+  const level = Math.floor(characteristic.progress)
 
   function getNumber() {
     const incrementedNumber = index + 1
@@ -55,13 +54,8 @@ export function UserRating({ user, characteristicName, index }: UserRatingProps)
           </Stack>
         </Grid>
         <Grid item xs>
-          <Typography
-            variant="subtitle1"
-            component="p"
-            align="right"
-            sx={{ color: `${characteristicName}.main` }}
-          >
-            <b>{ratingValue}</b>
+          <Typography variant="subtitle1" component="p" align="right">
+            <b>{level}</b>
           </Typography>
         </Grid>
       </Grid>

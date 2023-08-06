@@ -1,4 +1,4 @@
-export * from './characteristic'
+export * from './skills'
 export * from './confirmation'
 export * from './day'
 export * from './device'

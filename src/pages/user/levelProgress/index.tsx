@@ -1,15 +1,32 @@
-import { LinearProgress } from '@mui/material'
+import { Box, LinearProgress, Stack, Typography } from '@mui/material'
 import { linearProgressClasses } from '@mui/material/LinearProgress'
 import { styled } from '@mui/system'
+import { UserCharacteristicDto } from 'shared/api'
+import { useFormatNumber } from 'shared/lib/hooks'
 
 interface LevelProgressProps {
-  level: number
+  characteristic: UserCharacteristicDto
 }
 
-function LevelProgress({ level }: LevelProgressProps): JSX.Element {
-  const value = (level % 1) * 100
+function LevelProgress({ characteristic }: LevelProgressProps): JSX.Element {
+  const formatNumber = useFormatNumber()
+  const value = (characteristic.progress % 1) * 100
+  const formattedPoints = formatNumber(characteristic.points)
+  const formattedNextLevelPoints = formatNumber(characteristic.nextLevelPoints)
 
-  return <Progress value={value} variant="determinate" />
+  return (
+    <Stack spacing={1}>
+      <Box display="flex" justifyContent="space-between">
+        <Typography variant="caption" sx={{ color: 'zen.silent' }}>
+          {formattedPoints}
+        </Typography>
+        <Typography variant="caption" sx={{ color: 'zen.silent' }}>
+          {formattedNextLevelPoints}
+        </Typography>
+      </Box>
+      <Progress value={value} variant="determinate" />
+    </Stack>
+  )
 }
 
 const Progress = styled(LinearProgress)(({ theme }) => ({

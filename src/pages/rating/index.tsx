@@ -1,38 +1,51 @@
-import { Typography } from '@mui/material'
+import { Box, Grid, Typography } from '@mui/material'
+import { blueGrey } from '@mui/material/colors'
 import { useIntl } from 'react-intl'
-import { useRouter } from 'next/router'
-import { MAIN_CHARACTERISTICS, MainCharacteristicName, UserDto } from 'shared/api'
+import { UserRating } from 'entities/user'
+import { UserDto } from 'shared/api'
 import Container from 'shared/ui/Container'
-import Tabs from 'shared/ui/Tabs'
-import { TabContent } from './tabContent'
-import { TabName } from './tabName'
+import List from 'shared/ui/List'
 
-type RatingPageProps = Record<MainCharacteristicName, UserDto[]>
+interface RatingPageProps {
+  users: UserDto[]
+}
 
-export function RatingPage(props: RatingPageProps) {
+export function RatingPage({ users }: RatingPageProps) {
   const { formatMessage } = useIntl()
-  const { query } = useRouter()
-  const parsedTab = Math.abs(Number(query?.tab))
-  const tab = !parsedTab || parsedTab > 2 ? 0 : parsedTab
   const header = formatMessage({ id: 'page.rating.header' })
-  const ariaLabel = formatMessage({ id: 'page.rating.aria-label' })
+  const userText = formatMessage({ id: 'common.user' })
+  const lvlText = formatMessage({ id: 'common.lvl' })
 
   return (
     <Container>
       <Typography variant="h1" sx={{ mb: 3 }}>
         {header}
       </Typography>
-      <Tabs
-        initial={tab}
-        aria-label={ariaLabel}
-        tabs={MAIN_CHARACTERISTICS.map((name) => (
-          <TabName name={name} key={name} />
-        ))}
-        content={MAIN_CHARACTERISTICS.map((name) => {
-          const { [name]: users } = props
-
-          return <TabContent name={name} users={users} key={name} />
-        })}
+      <Box px={3} sx={{ background: blueGrey[900] }}>
+        <Grid container alignItems="center" sx={{ height: 55 }}>
+          <Grid item xs={2}>
+            <Box display="flex" justifyContent="center" width={22}>
+              <Typography variant="subtitle1" component="p">
+                <b>№</b>
+              </Typography>
+            </Box>
+          </Grid>
+          <Grid item xs={7}>
+            <Typography variant="subtitle1" component="p">
+              <b>{userText}</b>
+            </Typography>
+          </Grid>
+          <Grid item xs>
+            <Typography variant="subtitle1" component="p" align="right">
+              <b>{lvlText}</b>
+            </Typography>
+          </Grid>
+        </Grid>
+      </Box>
+      <List<UserDto>
+        elements={users}
+        keyGetter={(el) => el.id}
+        render={(user, index) => <UserRating user={user} index={index} />}
       />
     </Container>
   )

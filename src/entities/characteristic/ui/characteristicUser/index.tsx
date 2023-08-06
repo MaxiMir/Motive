@@ -1,21 +1,20 @@
 import { Box, Stack, Typography } from '@mui/material'
 import dynamic from 'next/dynamic'
-import { Emoji } from 'src/entities/characteristic/consts'
-import { MAIN_CHARACTERISTICS, SecondCharacteristicName, UserCharacteristicName } from 'shared/api'
+import { OnlineSkillName } from 'shared/api'
 import { useFormatNumber } from 'shared/lib/hooks'
+import { Emoji } from 'src/shared/config'
 
 const Level = dynamic(() => import('./level'))
 
 interface CharacteristicUserProps {
-  name: UserCharacteristicName
+  name: OnlineSkillName
   value: number
 }
 
 export function CharacteristicUser({ name, value }: CharacteristicUserProps) {
   const formatNumber = useFormatNumber()
-  const formattedValue =
-    name !== SecondCharacteristicName.Followers ? Math.floor(value) : formatNumber(value)
-  const showLevel = (MAIN_CHARACTERISTICS as ReadonlyArray<string>).includes(name)
+  const formattedValue = name !== 'followers' ? Math.floor(value) : formatNumber(value)
+  const showLevel = name === 'progress'
   const emoji = Emoji[name]
 
   return (
@@ -24,7 +23,7 @@ export function CharacteristicUser({ name, value }: CharacteristicUserProps) {
         {emoji}
       </Typography>
       <Box display="flex" minWidth={35}>
-        <Typography component="p" color={`${name}.main`}>
+        <Typography component="p" sx={{ color: 'white' }}>
           {formattedValue}
           {showLevel && <Level />}
         </Typography>

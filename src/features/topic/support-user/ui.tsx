@@ -1,7 +1,7 @@
 import { Box, Stack } from '@mui/material'
 import { Field, Form, FormikProvider } from 'formik'
 import { useIntl } from 'react-intl'
-import { SupportRules } from 'entities/characteristic'
+import { Emoji, SupportRules } from 'entities/characteristic'
 import Accordion from 'shared/ui/Accordion'
 import CancelButton from 'shared/ui/CancelButton'
 import FadeTypography from 'shared/ui/FadeTypography'
@@ -37,7 +37,7 @@ function SupportUserModal({ dayId, ownerName, onClose }: SupportUserModalProps) 
           disabled={isSubmitting}
           text={buttonText}
           loadingText={loadingText}
-          emoji="🙏"
+          emoji={Emoji.support}
           key="submit"
           onClick={handleSubmit}
         />,
@@ -47,7 +47,7 @@ function SupportUserModal({ dayId, ownerName, onClose }: SupportUserModalProps) 
       <FormikProvider value={form}>
         <Form>
           <Stack alignItems="center" gap={3}>
-            <FadeTypography>🙏</FadeTypography>
+            <FadeTypography>{Emoji.support}</FadeTypography>
             <Field name="text" label={label} color="primary" multiline rows={3} component={Input} />
             <Box width="100%">
               <Accordion emoji="⛑️" header={header} id="support" details={<SupportRules />} />

@@ -1,7 +1,7 @@
 import { Typography, Button, Stack } from '@mui/material'
 import Link from 'next/link'
 import { CharacteristicUser } from 'entities/characteristic'
-import { MAIN_CHARACTERISTICS, UserDto } from 'shared/api'
+import { ONLINE_SKILLS_MAIN, UserDto } from 'shared/api'
 import { joinToHref } from 'shared/lib/helpers'
 import Avatar from 'shared/ui/avatar'
 
@@ -35,7 +35,7 @@ function UserCard({ user }: UserCardProps) {
         >
           <Typography sx={{ color: 'common.white' }}>{name}</Typography>
           <Stack direction="row" justifyContent="space-between" alignItems="center">
-            {MAIN_CHARACTERISTICS.map((characteristicName) => (
+            {ONLINE_SKILLS_MAIN.map((characteristicName) => (
               <CharacteristicUser
                 name={characteristicName}
                 value={characteristic[characteristicName]}

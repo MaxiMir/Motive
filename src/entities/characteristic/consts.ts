@@ -1,11 +1,14 @@
 export enum Emoji {
-  'motivation' = '💪',
+  'motivation' = '🦾',
   'creativity' = '🧠',
-  'support' = '🙏',
+  'support' = '⚡️',
   'members' = '📬',
   'completed' = '🏆',
   'abandoned' = '🕸',
   'followers' = '🥷',
   'following' = '⭐',
   'runningDays' = '⏳',
+  'points' = '🦾',
+  'nextLevelPoints' = '',
+  'progress' = '',
 }

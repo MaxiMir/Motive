@@ -1,7 +1,5 @@
-export * from './characteristicGoal'
 export * from './characteristicUser'
 export * from './characteristicInfo'
-export * from './characteristicReaction'
 export * from './characteristicRules'
 export * from './supportRules'
 export * from './supportSign'

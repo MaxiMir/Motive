@@ -22,13 +22,13 @@ interface ArticlePreviewProps {
 
 export function ArticlePreview({ article }: ArticlePreviewProps) {
   const { header, description, pathname, image, views, sharesCount, tag } = article
+  const formatNumber = useFormatNumber()
   const backgroundColor = generateColorByName(tag, {
     saturation: 50,
     lightness: 20,
     range: 10,
   })
   const staticSrc = getStaticSrc(image)
-  const formatNumber = useFormatNumber()
   const href = `${Route.Blog}/${pathname}`
   const sharesCountFormatted = formatNumber(sharesCount)
   const viewsFormatted = formatNumber(views)

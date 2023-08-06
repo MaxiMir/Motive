@@ -1,7 +1,7 @@
 import { Box, Button, Stack, Typography } from '@mui/material'
 import Link from 'next/link'
-import { CharacteristicGoal } from 'entities/characteristic'
-import { MAIN_CHARACTERISTICS, GoalDto } from 'shared/api'
+import { GoalIndex } from 'entities/goal'
+import { GoalDto } from 'shared/api'
 import { joinToHref } from 'shared/lib/helpers'
 import Avatar from 'shared/ui/avatar'
 
@@ -10,7 +10,7 @@ interface GoalCardProps {
 }
 
 function GoalCard({ goal }: GoalCardProps) {
-  const { name, characteristic, owner } = goal
+  const { name, owner, points, members } = goal
   const { name: ownerName, nickname, avatar } = owner
   const href = joinToHref(nickname)
 
@@ -37,14 +37,9 @@ function GoalCard({ goal }: GoalCardProps) {
           <Typography variant="caption">{owner.name}</Typography>
         </Stack>
         <Stack direction="row" justifyContent="space-between" alignItems="center">
-          {MAIN_CHARACTERISTICS.map((characteristicName) => (
-            <CharacteristicGoal
-              name={characteristicName}
-              value={characteristic[characteristicName]}
-              key={characteristicName}
-            />
-          ))}
-          <CharacteristicGoal name="runningDays" value={231} />
+          <GoalIndex name="runningDays" value={231} />
+          <GoalIndex name="points" value={points} />
+          <GoalIndex name="members" value={members} />
         </Stack>
       </Stack>
     </Button>

@@ -1,11 +1,13 @@
-import { Advantages } from './advantages'
+import { ADVANTAGES, Advantage } from 'pages/home/advantages'
 import { Slogan } from './slogan'
 
 export function HomePage() {
   return (
     <>
       <Slogan />
-      <Advantages />
+      {ADVANTAGES.map((name) => (
+        <Advantage name={name} key={name} />
+      ))}
     </>
   )
 }

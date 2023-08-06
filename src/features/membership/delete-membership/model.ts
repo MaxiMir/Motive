@@ -15,9 +15,8 @@ const getNextState = (page: UserPageDto, goalId: number, memberId: number, clien
       return
     }
 
-    const draftGoals = draft.goals
-    const draftGoal = draftGoals[draftGoals.findIndex((g) => g.id === goalId)]
-    draftGoal.characteristic.members -= 1
+    const draftGoal = draft.goals[draft.goals.findIndex((g) => g.id === goalId)]
+    draftGoal.members -= 1
   })
 
 export const useRemoveMember = (goalId: number, clientPage: boolean) => {

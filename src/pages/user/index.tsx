@@ -3,16 +3,15 @@ import { styled } from '@mui/system'
 import dynamic from 'next/dynamic'
 import { UserContext } from 'entities/user'
 import { useClient } from 'entities/viewer'
-import { MAIN_CHARACTERISTICS, SECOND_CHARACTERISTICS, UserPageDto } from 'shared/api'
+import { ONLINE_SKILLS_MAIN, UserPageDto } from 'shared/api'
 import Container from 'shared/ui/Container'
 import AvatarActions from './avatarActions'
 import EmptyGoals from './emptyGoals'
 import LearnMore from './learnMore'
 import LevelProgress from './levelProgress'
-import MainCharacteristic from './mainCharacteristic'
 import MenuActions from './menuActions'
 import Nickname from './nickname'
-import SecondCharacteristic from './secondCharacteristic'
+import OnlineSkill from './onlineSkill'
 
 const Link = dynamic(() => import('@mui/material/Link'))
 const UpdateFollowing = dynamic(() => import('features/subscription/update-following'))
@@ -104,8 +103,8 @@ export function UserPage({ user }: UserViewProps) {
                 }}
                 mb={1}
               >
-                {SECOND_CHARACTERISTICS.map((characteristicName) => (
-                  <SecondCharacteristic
+                {ONLINE_SKILLS_MAIN.map((characteristicName) => (
+                  <OnlineSkill
                     name={characteristicName}
                     value={characteristic[characteristicName]}
                     userId={id}
@@ -135,16 +134,7 @@ export function UserPage({ user }: UserViewProps) {
             </Stack>
           </Section>
           <Section component="section">
-            <LevelProgress level={characteristic.level} />
-          </Section>
-          <Section display="flex" justifyContent="space-between" component="section">
-            {MAIN_CHARACTERISTICS.map((characteristicName) => (
-              <MainCharacteristic
-                name={characteristicName}
-                value={characteristic[characteristicName]}
-                key={characteristicName}
-              />
-            ))}
+            <LevelProgress characteristic={characteristic} />
           </Section>
         </Stack>
         {renderConfirmationsList && (

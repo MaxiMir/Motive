@@ -1,5 +1,4 @@
 import { ArticleDto } from '../article'
-import { MainCharacteristicName } from '../characteristic'
 import { ConfirmationDto } from '../confirmation'
 import { GoalDto } from '../goal'
 import { MemberDto } from '../member'
@@ -29,7 +28,7 @@ export interface SearchPageDto {
   readonly users: UserDto[]
 }
 
-export type RatingPageDto = Readonly<{ [k in MainCharacteristicName]: UserDto[] }>
+export type RatingPageDto = UserDto[]
 
 export interface FollowingPageDto {
   readonly following: UserDto[]

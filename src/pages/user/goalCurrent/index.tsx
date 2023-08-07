@@ -116,12 +116,10 @@ function GoalCurrent({ goal, nickname, clientPage, clientMembership }: GoalCurre
     <Box
       id={`goal-${id}`}
       component="article"
-      sx={{
-        display: 'grid',
-        gridTemplateRows: '1fr auto',
-        marginBottom: '10px',
-        breakInside: 'avoid',
-      }}
+      display="grid"
+      gridTemplateRows="1fr auto"
+      marginBottom="10px"
+      sx={{ breakInside: 'avoid' }}
     >
       <Box
         padding="1px"

@@ -3,14 +3,14 @@ import { styled } from '@mui/system'
 import dynamic from 'next/dynamic'
 import { UserContext, UserStatus } from 'entities/user'
 import { useClient } from 'entities/viewer'
-import { ONLINE_SKILLS_MAIN, UserPageDto } from 'shared/api'
+import { ONLINE_INDEXES_MAIN, UserPageDto } from 'shared/api'
 import Container from 'shared/ui/Container'
 import AvatarActs from './avatarActs'
 import EmptyGoals from './emptyGoals'
 import LearnMore from './learnMore'
 import MenuActions from './menuActions'
 import Nickname from './nickname'
-import OnlineSkill from './onlineSkill'
+import OnlineIndex from './onlineIndex'
 
 const Link = dynamic(() => import('@mui/material/Link'))
 const UpdateFollowing = dynamic(() => import('features/subscription/update-following'))
@@ -93,36 +93,27 @@ export function UserPage({ user }: UserViewProps) {
                   <MenuActions clientPage={clientPage} />
                 </Stack>
               </Stack>
-              <Stack
-                direction="row"
-                justifyContent="space-between"
-                gap={{
-                  sm: 2,
-                }}
-                width={{
-                  xs: '100%',
-                  sm: 'initial',
-                }}
-                mb={1}
-              >
-                <OnlineSkill
+              <Box display="flex" flexWrap="wrap" width="100%" gap={2} mb={2}>
+                <OnlineIndex
                   name="level"
                   value={Math.ceil(characteristic.progress)}
                   userId={id}
                   characteristic={characteristic}
                   confirmations={confirmations}
+                  order={1}
                 />
-                {ONLINE_SKILLS_MAIN.map((characteristicName) => (
-                  <OnlineSkill
+                {ONLINE_INDEXES_MAIN.map((characteristicName, index) => (
+                  <OnlineIndex
                     name={characteristicName}
                     value={characteristic[characteristicName]}
                     userId={id}
                     characteristic={characteristic}
                     confirmations={confirmations}
+                    order={index + 2}
                     key={characteristicName}
                   />
                 ))}
-              </Stack>
+              </Box>
               <UserStatus online={online} lastSeen={lastSeen} device={device} mb={1}>
                 <Typography component="h1" fontWeight="bold">
                   {name}

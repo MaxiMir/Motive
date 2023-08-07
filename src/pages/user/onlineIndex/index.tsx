@@ -1,7 +1,7 @@
-import { Button, Stack, Typography } from '@mui/material'
+import { Box, Button, Typography } from '@mui/material'
 import { useState } from 'react'
 import dynamic from 'next/dynamic'
-import { OnlineSkillName, ConfirmationDto, UserCharacteristicDto } from 'shared/api'
+import { OnlineIndexName, ConfirmationDto, UserCharacteristicDto } from 'shared/api'
 import { useFormatNumber } from 'shared/lib/hooks'
 import { useWordDeclination } from './lib'
 
@@ -9,23 +9,33 @@ const SubscriptionModal = dynamic(() => import('./subscriptionModal'))
 const NoCompletedModal = dynamic(() => import('./noCompletedModal'))
 const AbandonedModal = dynamic(() => import('./abandonedModal'))
 
-interface OnlineSkillProps {
-  userId: number
-  name: OnlineSkillName | 'level'
+interface OnlineIndexProps {
+  name: OnlineIndexName | 'level'
   value: number
+  userId: number
   characteristic: UserCharacteristicDto
   confirmations: ConfirmationDto[]
+  order: number
 }
 
-function OnlineSkill({ name, value, userId, characteristic, confirmations }: OnlineSkillProps) {
+function OnlineIndex({
+  name,
+  value,
+  userId,
+  characteristic,
+  confirmations,
+  order,
+}: OnlineIndexProps) {
   const wordDeclination = useWordDeclination(name, value)
   const formatNumber = useFormatNumber()
-  const [modal, setModal] = useState<OnlineSkillName | 'level'>()
+  const [modal, setModal] = useState<OnlineIndexName>()
   const formattedValue = formatNumber(value)
   const buttonText = wordDeclination.toLowerCase()
 
   const onClick = async () => {
     const openStories = name === 'completed' && confirmations.length
+
+    if (name === 'level') return
 
     if (!openStories) {
       setModal(name)
@@ -46,27 +56,25 @@ function OnlineSkill({ name, value, userId, characteristic, confirmations }: Onl
         color="inherit"
         aria-haspopup="true"
         aria-expanded={modal ? 'true' : undefined}
-        sx={{ padding: '4px' }}
+        sx={{
+          padding: '4px',
+          justifyContent: {
+            xs: 'center',
+            md: 'flex-start',
+          },
+          flex: {
+            xs: order > 3 ? '45%' : 1,
+            md: 'initial',
+          },
+        }}
         onClick={onClick}
       >
-        <Stack
-          alignItems={{
-            xs: 'center',
-            md: 'baseline',
-          }}
-          direction={{
-            xs: 'column',
-            md: 'row',
-          }}
-          gap={{
-            md: 0.5,
-          }}
-        >
+        <Box display="flex" alignItems="baseline" gap={1}>
           <Typography variant="h5" component="b">
             {formattedValue}
           </Typography>
           <Typography fontSize={13}>{buttonText}</Typography>
-        </Stack>
+        </Box>
       </Button>
       {modal === 'completed' && <NoCompletedModal onClose={onClose} />}
       {modal === 'abandoned' && (
@@ -84,4 +92,4 @@ function OnlineSkill({ name, value, userId, characteristic, confirmations }: Onl
   )
 }
 
-export default OnlineSkill
+export default OnlineIndex

@@ -13,7 +13,7 @@ interface UserCardProps {
 }
 
 export function UserCard({ user, index }: UserCardProps) {
-  const { nickname, name, avatar, characteristic, online, lastSeen, device } = user
+  const { nickname, name, avatar, characteristic, online } = user
   const theme = useTheme()
   const number = getNumber()
   const href = joinToHref(nickname)
@@ -49,7 +49,7 @@ export function UserCard({ user, index }: UserCardProps) {
             <Link href={href} title={name}>
               <Avatar src={avatar} name={name} size={35} />
             </Link>
-            <UserStatus online={online} lastSeen={lastSeen} device={device}>
+            <UserStatus online={online}>
               <Button href={href} color="inherit" component={Link}>
                 {name}
               </Button>

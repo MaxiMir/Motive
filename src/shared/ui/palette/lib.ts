@@ -1,10 +1,11 @@
-export const getShortName = (name: string) =>
-  name
+export function getShortName(name: string) {
+  return name
     .split(' ')
     .map((part) => part[0])
     .join('')
+}
 
-const getHashOfString = (value: string) => {
+function getHashOfString(value: string) {
   const hash = Array.from(value).reduce((acc, symbol) => {
     return symbol.charCodeAt(0) + ((acc << 5) - acc)
   }, 0)
@@ -12,14 +13,14 @@ const getHashOfString = (value: string) => {
   return Math.abs(hash)
 }
 
-const normalizeHash = (hash: number, min: number, max: number) => {
+function normalizeHash(hash: number, min: number, max: number) {
   return Math.floor((hash % (max - min)) + min)
 }
 
 type Ranges = [number, number]
 type HSL = [number, number, number]
 
-const generateHSL = (name: string, saturationRanges: Ranges, lightnessRanges: Ranges): HSL => {
+function generateHSL(name: string, saturationRanges: Ranges, lightnessRanges: Ranges): HSL {
   const hash = getHashOfString(name)
   const h = normalizeHash(hash, 0, 360)
   const s = normalizeHash(hash, ...saturationRanges)
@@ -28,13 +29,15 @@ const generateHSL = (name: string, saturationRanges: Ranges, lightnessRanges: Ra
   return [h, s, l]
 }
 
-const HSLtoString = ([h, s, l]: HSL) => `hsl(${h}, ${s}%, ${l}%)`
+function HSLtoString([h, s, l]: HSL) {
+  return `hsl(${h}, ${s}%, ${l}%)`
+}
 
-const generateColorHsl = (id: string, saturationRanges: Ranges, lightnessRanges: Ranges) => {
+function generateColorHsl(id: string, saturationRanges: Ranges, lightnessRanges: Ranges) {
   return HSLtoString(generateHSL(id, saturationRanges, lightnessRanges))
 }
 
-const getRange = (value: number, range: number): Ranges => {
+function getRange(value: number, range: number): Ranges {
   return [Math.max(0, value - range), Math.min(value + range, 100)]
 }
 
@@ -44,7 +47,7 @@ interface GenerateOptions {
   range?: number
 }
 
-export const generateColorByName = (name: string, options: GenerateOptions = {}) => {
+export function generateColorByName(name: string, options: GenerateOptions = {}) {
   const { saturation = 50, lightness = 60, range = 10 } = options
   const saturationRange = getRange(saturation, range)
   const lightnessRange = getRange(lightness, range)

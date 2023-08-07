@@ -13,7 +13,7 @@ type Page =
   | '404'
   | '500'
 
-export const useMeta = (page: Page) => {
+export function useMeta(page: Page) {
   const { formatMessage } = useIntl()
 
   return {

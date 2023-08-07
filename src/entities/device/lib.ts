@@ -3,4 +3,6 @@ import { Device } from 'shared/api'
 
 export const DeviceContext = createContext<Device | undefined>(undefined)
 
-export const useDeviceContext = () => useContext(DeviceContext)
+export function useDeviceContext() {
+  return useContext(DeviceContext)
+}

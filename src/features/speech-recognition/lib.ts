@@ -1,4 +1,5 @@
 import { useCallback, useEffect, useRef, useState } from 'react'
+import { useIntl } from 'react-intl'
 
 interface UseSpeechRecognition {
   running: boolean
@@ -8,8 +9,9 @@ interface UseSpeechRecognition {
   onStop: () => void
 }
 
-export const useSpeechRecognition = (): UseSpeechRecognition => {
+export function useSpeechRecognition(): UseSpeechRecognition {
   const recognitionRef = useRef<SpeechRecognition>()
+  const { locale } = useIntl()
   const [interim, setInterim] = useState('')
   const [final, setFinal] = useState('')
   const [running, setRunning] = useState(false)
@@ -17,7 +19,7 @@ export const useSpeechRecognition = (): UseSpeechRecognition => {
   useEffect(() => {
     const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition
     recognitionRef.current = new SpeechRecognition()
-    recognitionRef.current.lang = 'ru-RU'
+    recognitionRef.current.lang = locale
     recognitionRef.current.continuous = true
     recognitionRef.current.interimResults = true
     recognitionRef.current.onend = () => setRunning(false)
@@ -31,7 +33,7 @@ export const useSpeechRecognition = (): UseSpeechRecognition => {
       setInterim(interimResult)
       setFinal(finalResult)
     }
-  }, [])
+  }, [locale])
 
   const onStart = () => {
     recognitionRef.current?.start()

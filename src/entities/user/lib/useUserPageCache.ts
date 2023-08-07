@@ -2,7 +2,7 @@ import { useQueryClient } from 'react-query'
 import { UserPageDto } from 'shared/api'
 import { useUserContext } from '../context'
 
-export const useUserPageCache = () => {
+export function useUserPageCache() {
   const queryClient = useQueryClient()
   const ctx = useUserContext()
 

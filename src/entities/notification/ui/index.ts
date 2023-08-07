@@ -1,2 +1,2 @@
 export * from './notificationBadge'
-export * from './notificationInfo'
+export * from './notificationCard'

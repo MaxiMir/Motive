@@ -6,17 +6,11 @@ import { useClient, useSignIn } from 'entities/viewer'
 import { UserPageDto, updateSubscription } from 'shared/api'
 import { useSnackbar } from 'shared/ui/snackbar'
 
-const getNextState = (page: UserPageDto, following: boolean) =>
-  produce(page, (draft) => {
-    draft.following = following
-    draft.characteristic.followers += following ? 1 : -1
-  })
-
 interface Options {
   insert: boolean
 }
 
-export const useUpdateFollowing = (userId: number, following: boolean) => {
+export function useUpdateFollowing(userId: number, following: boolean) {
   const client = useClient()
   const openSignIn = useSignIn((state) => state.openSignIn)
   const { formatMessage } = useIntl()
@@ -44,4 +38,11 @@ export const useUpdateFollowing = (userId: number, following: boolean) => {
   }
 
   return [isLoading, onClick] as const
+}
+
+function getNextState(page: UserPageDto, following: boolean) {
+  return produce(page, (draft) => {
+    draft.following = following
+    draft.characteristic.followers += following ? 1 : -1
+  })
 }

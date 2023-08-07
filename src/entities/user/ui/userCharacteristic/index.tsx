@@ -1,17 +1,17 @@
 import { Box, Stack, Typography } from '@mui/material'
 import dynamic from 'next/dynamic'
 import { OnlineSkillName } from 'shared/api'
+import { Emoji } from 'shared/config'
 import { useFormatNumber } from 'shared/lib/hooks'
-import { Emoji } from 'src/shared/config'
 
 const Level = dynamic(() => import('./level'))
 
-interface CharacteristicUserProps {
+interface UserCharacteristicProps {
   name: OnlineSkillName
   value: number
 }
 
-export function CharacteristicUser({ name, value }: CharacteristicUserProps) {
+export function UserCharacteristic({ name, value }: UserCharacteristicProps) {
   const formatNumber = useFormatNumber()
   const formattedValue = name !== 'followers' ? Math.floor(value) : formatNumber(value)
   const showLevel = name === 'progress'

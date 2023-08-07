@@ -13,7 +13,7 @@ import {
 import { FieldArray, Form, FormikProvider } from 'formik'
 import { ChangeEvent } from 'react'
 import { useIntl } from 'react-intl'
-import { CharacteristicRules } from 'entities/characteristic'
+import { PittRules } from 'entities/characteristic'
 import { TaskField } from 'entities/task'
 import { getMidnightISO, getTomorrowISO } from 'shared/lib/utils'
 import CancelButton from 'shared/ui/CancelButton'
@@ -138,7 +138,7 @@ function CreateDayModal({ goalId, dayDate, onClose }: CreateDayModalProps) {
             </Stack>
           </AccordionSummary>
           <AccordionDetails>
-            <CharacteristicRules />
+            <PittRules />
           </AccordionDetails>
         </Accordion>
       </Stack>

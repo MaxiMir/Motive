@@ -1,5 +1,5 @@
 import dynamic from 'next/dynamic'
-import { NotificationInfo } from 'entities/notification'
+import { NotificationCard } from 'entities/notification'
 import { getNotificationHref } from 'entities/page'
 import { useClient } from 'entities/viewer'
 import { NotificationDto } from 'shared/api'
@@ -22,7 +22,7 @@ export function ReadNotification({ notification, onClose }: ReadNotificationProp
 
   return (
     <>
-      <NotificationInfo notification={notification} href={notificationHref} onClose={onClose} />
+      <NotificationCard notification={notification} href={notificationHref} onClose={onClose} />
       {!read && <InView onView={onView} />}
     </>
   )

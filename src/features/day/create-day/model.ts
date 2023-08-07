@@ -8,14 +8,7 @@ import { getTomorrowISO } from 'shared/lib/utils'
 import { useSnackbar } from 'shared/ui/snackbar'
 import { DaySchema } from './schema'
 
-const getNextState = (goals: GoalDto[], id: number, day: DayDto) =>
-  produce(goals, (draft) => {
-    const draftGoal = draft[draft.findIndex((g) => g.id === id)]
-    draftGoal.calendar.push({ id: day.id, date: day.date })
-    draftGoal.day = day
-  })
-
-export const useCreateDay = (goalId: number, onSuccess: () => void) => {
+export function useCreateDay(goalId: number, onSuccess: () => void) {
   const { formatMessage } = useIntl()
   const { enqueueSnackbar } = useSnackbar()
   const [goals, mutateGoals] = useGoalsCache()
@@ -41,5 +34,13 @@ export const useCreateDay = (goalId: number, onSuccess: () => void) => {
     async onSubmit(data) {
       await mutateAsync(data)
     },
+  })
+}
+
+function getNextState(goals: GoalDto[], id: number, day: DayDto) {
+  return produce(goals, (draft) => {
+    const draftGoal = draft[draft.findIndex((g) => g.id === id)]
+    draftGoal.calendar.push({ id: day.id, date: day.date })
+    draftGoal.day = day
   })
 }

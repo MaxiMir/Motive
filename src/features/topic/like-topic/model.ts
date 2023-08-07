@@ -12,33 +12,7 @@ export interface Options {
   add: boolean
 }
 
-const getTopicNextState = (discussion: InfiniteData<TopicDto[]>, options: Options) => {
-  const { message, parentId, add } = options
-  const searchId = parentId || message.id
-
-  return produce(discussion, (draft) => {
-    const draftTopic = draft.pages.flat().find((t) => t.id === searchId)
-
-    if (!draftTopic) return
-
-    if (parentId && draftTopic.answer) {
-      draftTopic.answer.like = add
-      draftTopic.answer.likeCount += add ? 1 : -1
-      return
-    }
-
-    draftTopic.like = add
-    draftTopic.likeCount += add ? 1 : -1
-  })
-}
-
-export const getGoalNextState = (goals: GoalDto[], goalId: number, add: boolean): GoalDto[] =>
-  produce(goals, (draft) => {
-    const draftGoal = draft[draft.findIndex((g) => g.id === goalId)]
-    draftGoal.points += add ? 1 : -1
-  })
-
-export const useSetLike = (message: MessageDto, parentId?: number) => {
+export function useSetLike(message: MessageDto, parentId?: number) {
   const { id, like, dayId, goalId } = message
   const client = useClient()
   const openSignIn = useSignIn((state) => state.openSignIn)
@@ -95,4 +69,31 @@ export const useSetLike = (message: MessageDto, parentId?: number) => {
   }
 
   return [isLoading, onClick] as const
+}
+
+function getTopicNextState(discussion: InfiniteData<TopicDto[]>, options: Options) {
+  const { message, parentId, add } = options
+  const searchId = parentId || message.id
+
+  return produce(discussion, (draft) => {
+    const draftTopic = draft.pages.flat().find((t) => t.id === searchId)
+
+    if (!draftTopic) return
+
+    if (parentId && draftTopic.answer) {
+      draftTopic.answer.like = add
+      draftTopic.answer.likeCount += add ? 1 : -1
+      return
+    }
+
+    draftTopic.like = add
+    draftTopic.likeCount += add ? 1 : -1
+  })
+}
+
+export function getGoalNextState(goals: GoalDto[], goalId: number, add: boolean): GoalDto[] {
+  return produce(goals, (draft) => {
+    const draftGoal = draft[draft.findIndex((g) => g.id === goalId)]
+    draftGoal.points += add ? 1 : -1
+  })
 }

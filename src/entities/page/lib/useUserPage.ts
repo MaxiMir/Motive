@@ -3,7 +3,7 @@ import { useRouter } from 'next/router'
 import { getUserPage } from 'shared/api'
 import { parseUrl } from 'shared/lib/helpers'
 
-export const useUserPage = () => {
+export function useUserPage() {
   const { asPath } = useRouter()
   const { origin, searchParams } = parseUrl(asPath)
   const nickname = origin.replace('/', '')

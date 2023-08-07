@@ -1,6 +1,6 @@
 import { Device } from 'shared/api'
 
-export const getIconName = (device: Device): string => {
+export function getIconName(device: Device): string {
   switch (device) {
     case 'feature phone':
     case 'smartphone':

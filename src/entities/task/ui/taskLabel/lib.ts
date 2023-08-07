@@ -1,4 +1,5 @@
 import { TaskDto } from 'shared/api'
 
-export const checkOnCompletedByOthers = (task: TaskDto, daysGoneForOwner: number): boolean =>
-  !daysGoneForOwner && task.completedByOthers && !task.completed
+export function checkOnCompletedByOthers(task: TaskDto, daysGoneForOwner: number): boolean {
+  return !daysGoneForOwner && task.completedByOthers && !task.completed
+}

@@ -6,19 +6,7 @@ import { useClient, useSignIn } from 'entities/viewer'
 import { DayPointsUpdateDto, UserPageDto, updatePoints } from 'shared/api'
 import { useSnackbar } from 'shared/ui/snackbar'
 
-const getNextState = (page: UserPageDto, { id, dayId, add }: DayPointsUpdateDto) =>
-  produce(page, (draft) => {
-    const draftGoals = draft.goals
-    const draftGoal = draftGoals[draftGoals.findIndex((g) => g.id === id)]
-    draftGoal.points += add ? 1 : -1
-    draftGoal.day.points += add ? 1 : -1
-    draftGoal.day.pointsRated += add ? 1 : -1
-    draftGoal.clientPoints = add
-      ? [...draftGoal.clientPoints, dayId]
-      : draftGoal.clientPoints.filter((r) => r !== dayId)
-  })
-
-export const useUpdatePoints = (goalId: number, dayId: number, active: boolean) => {
+export function useUpdatePoints(goalId: number, dayId: number, active: boolean) {
   const { formatMessage } = useIntl()
   const client = useClient()
   const openSignIn = useSignIn((state) => state.openSignIn)
@@ -59,4 +47,17 @@ export const useUpdatePoints = (goalId: number, dayId: number, active: boolean) 
   }
 
   return { isLoading, onClick }
+}
+
+function getNextState(page: UserPageDto, { id, dayId, add }: DayPointsUpdateDto) {
+  return produce(page, (draft) => {
+    const draftGoals = draft.goals
+    const draftGoal = draftGoals[draftGoals.findIndex((g) => g.id === id)]
+    draftGoal.points += add ? 1 : -1
+    draftGoal.day.points += add ? 1 : -1
+    draftGoal.day.pointsRated += add ? 1 : -1
+    draftGoal.clientPoints = add
+      ? [...draftGoal.clientPoints, dayId]
+      : draftGoal.clientPoints.filter((r) => r !== dayId)
+  })
 }

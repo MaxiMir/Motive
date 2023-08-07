@@ -1,5 +1,7 @@
-export const scrollToElem = (id: string) => {
+export function scrollToElem(id: string) {
   return document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' })
 }
 
-export const clickOnElem = (id: string) => document.getElementById(id)?.click()
+export function clickOnElem(id: string) {
+  return document.getElementById(id)?.click()
+}

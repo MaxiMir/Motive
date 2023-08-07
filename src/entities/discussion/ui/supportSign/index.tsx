@@ -1,5 +1,6 @@
 import { Avatar } from '@mui/material'
 import { useIntl } from 'react-intl'
+import { Emoji } from 'shared/config'
 import TooltipArrow from 'shared/ui/TooltipArrow'
 
 interface SupportSignProps {
@@ -14,7 +15,7 @@ export function SupportSign({ name }: SupportSignProps) {
   return (
     <TooltipArrow title={title}>
       <Avatar sx={{ width: 21, height: 21, fontSize: 12, backgroundColor: 'support.main' }}>
-        ⚡️
+        {Emoji.support}
       </Avatar>
     </TooltipArrow>
   )

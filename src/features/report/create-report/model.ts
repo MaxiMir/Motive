@@ -4,7 +4,7 @@ import { useClient, useSignIn } from 'entities/viewer'
 import { ReportType, createReport } from 'shared/api'
 import { useSnackbar } from 'shared/ui/snackbar'
 
-export const useSendReport = (entityId: number, type: ReportType, onSettled: () => void) => {
+export function useSendReport(entityId: number, type: ReportType, onSettled: () => void) {
   const { formatMessage } = useIntl()
   const client = useClient()
   const openSignIn = useSignIn((state) => state.openSignIn)

@@ -7,6 +7,7 @@ import { UserPageDto } from 'shared/api'
 import { useToggle } from 'shared/lib/hooks'
 import Avatar from 'shared/ui/avatar'
 import ListItem from 'shared/ui/ListItem'
+import { Progress } from './progress'
 
 const LightBox = dynamic(() => import('shared/ui/LightBox'))
 const UpdateModal = dynamic(() => import('features/user/update-avatar'))
@@ -14,13 +15,13 @@ const DeleteModal = dynamic(() => import('features/user/delete-avatar'))
 
 const SIZE = 175
 
-interface AvatarActionsProps {
+interface AvatarActsProps {
   user: UserPageDto
   clientPage: boolean
 }
 
-function AvatarActions({ user, clientPage }: AvatarActionsProps) {
-  const { id: userId, name, avatar, online, lastSeen, device } = user
+function AvatarActs({ user, clientPage }: AvatarActsProps) {
+  const { id: userId, name, avatar, online, lastSeen, device, characteristic } = user
   const id = useId()
   const menuId = useId()
   const { formatMessage } = useIntl()
@@ -56,22 +57,24 @@ function AvatarActions({ user, clientPage }: AvatarActionsProps) {
 
   return (
     <>
-      <Avatar
-        src={avatar}
-        name={name}
-        size={SIZE}
-        online={online}
-        lastSeen={lastSeen}
-        device={device}
-        buttonProps={{
-          disabled,
-          id,
-          'aria-controls': open ? menuId : undefined,
-          'aria-haspopup': 'true',
-          'aria-expanded': open ? 'true' : undefined,
-          onClick,
-        }}
-      />
+      <Progress progress={characteristic.progress} radius={SIZE}>
+        <Avatar
+          src={avatar}
+          name={name}
+          size={130}
+          online={online}
+          lastSeen={lastSeen}
+          device={device}
+          buttonProps={{
+            disabled,
+            id,
+            'aria-controls': open ? menuId : undefined,
+            'aria-haspopup': 'true',
+            'aria-expanded': open ? 'true' : undefined,
+            onClick,
+          }}
+        />
+      </Progress>
       <Menu
         id={menuId}
         anchorEl={anchorEl}
@@ -112,4 +115,4 @@ function AvatarActions({ user, clientPage }: AvatarActionsProps) {
   )
 }
 
-export default AvatarActions
+export default AvatarActs

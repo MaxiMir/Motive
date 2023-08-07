@@ -10,7 +10,7 @@ import { NotificationDto } from 'shared/api'
 import { getStaticSrc } from 'shared/lib/helpers'
 import { useSnackbar } from 'shared/ui/snackbar'
 
-export const useSocket = () => {
+export function useSocket() {
   const client = useClient()
   const { push } = useRouter()
   const { formatMessage } = useIntl()

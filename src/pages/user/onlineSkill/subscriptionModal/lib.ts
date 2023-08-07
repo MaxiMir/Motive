@@ -8,13 +8,13 @@ type Type = 'following' | 'followers'
 const TAKE = 20
 const PRELOAD_DIFF = 5
 
-const partialQueryFn = (userId: number, type: 'following' | 'followers') => {
+function partialQueryFn(userId: number, type: 'following' | 'followers') {
   return ({ pageParam = 0 }: QueryFunctionContext) => {
     return getSubscription(userId, { page: pageParam, take: TAKE }, type)
   }
 }
 
-export const useSubscription = (userId: number, count: number, type: Type) => {
+export function useSubscription(userId: number, count: number, type: Type) {
   const queryFn = partialQueryFn(userId, type)
   const getNextPageParam = partialGetNextPageParam(count, TAKE)
   const { isLoading, data, fetchNextPage, hasNextPage } = useInfiniteQuery(

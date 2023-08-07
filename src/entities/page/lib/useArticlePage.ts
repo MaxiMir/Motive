@@ -2,7 +2,7 @@ import { useIntl } from 'react-intl'
 import { useQuery } from 'react-query'
 import { getArticlePage } from 'shared/api'
 
-export const useArticlePage = (pathname: string) => {
+export function useArticlePage(pathname: string) {
   const { locale } = useIntl()
   const params = { locale }
 

@@ -2,12 +2,7 @@ import { produce } from 'immer'
 import { GoalDto, UserPageDto } from 'shared/api'
 import { useUserPageCache } from './useUserPageCache'
 
-const getNextState = (page: UserPageDto, goals: GoalDto[]) =>
-  produce(page, (draft) => {
-    draft.goals = goals
-  })
-
-export const useGoalsCache = () => {
+export function useGoalsCache() {
   const [page, mutatePage] = useUserPageCache()
 
   const mutateGoals = (goals: GoalDto[]) => {
@@ -15,4 +10,10 @@ export const useGoalsCache = () => {
   }
 
   return [page.goals, mutateGoals] as const
+}
+
+function getNextState(page: UserPageDto, goals: GoalDto[]) {
+  return produce(page, (draft) => {
+    draft.goals = goals
+  })
 }

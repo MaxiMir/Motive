@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 
-export const useReadImage = (file: File) => {
+export function useReadImage(file: File) {
   const [source, setSource] = useState<string>()
 
   useEffect(() => {

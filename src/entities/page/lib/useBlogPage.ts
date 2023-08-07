@@ -3,7 +3,7 @@ import { useQuery } from 'react-query'
 import { getBlogPage } from 'shared/api'
 import { Route } from 'shared/config'
 
-export const useBlogPage = () => {
+export function useBlogPage() {
   const { locale } = useIntl()
   const params = { locale }
 

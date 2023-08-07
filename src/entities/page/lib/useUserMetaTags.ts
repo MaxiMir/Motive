@@ -2,7 +2,7 @@ import { useIntl } from 'react-intl'
 import { OGType, UserPageDto } from 'shared/api'
 import { getStaticSrc } from 'shared/lib/helpers'
 
-export const useUserMetaTags = (user?: UserPageDto) => {
+export function useUserMetaTags(user?: UserPageDto) {
   const { formatMessage } = useIntl()
 
   if (!user) {

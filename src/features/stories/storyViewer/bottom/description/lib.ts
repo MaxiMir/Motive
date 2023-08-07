@@ -1,6 +1,6 @@
 import { differenceInCalendarDays } from 'date-fns'
 
-export const getDuration = (started: string, end: string) => {
+export function getDuration(started: string, end: string) {
   const startDate = Date.parse(started)
   const endDate = Date.parse(end)
 

@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react'
 
 type Providers = Awaited<ReturnType<typeof getProviders>>
 
-export const useProviders = () => {
+export function useProviders() {
   const [providers, setProviders] = useState<Providers>()
 
   useEffect(() => {

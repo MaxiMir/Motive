@@ -7,7 +7,7 @@ interface SearchDto {
   q: string
 }
 
-export const useSearchForm = (initial: string) => {
+export function useSearchForm(initial: string) {
   const { mutateAsync } = useMutation(({ q }: SearchDto) => getSearchPage({ params: { q } }), {
     onSuccess(data) {
       console.log('data', data)

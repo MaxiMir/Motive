@@ -1,6 +1,6 @@
 import { useIntl } from 'react-intl'
 
-export const useMessages = (stages: string[], dayStage: number) => {
+export function useMessages(stages: string[], dayStage: number) {
   const { formatMessage } = useIntl()
   const isFinal = stages.length === dayStage
 

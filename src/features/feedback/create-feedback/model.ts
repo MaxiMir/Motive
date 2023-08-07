@@ -7,19 +7,13 @@ import { GoalDto, FeedbackDto, createFeedback } from 'shared/api'
 import { useSnackbar } from 'shared/ui/snackbar'
 import { FeedbackSchema } from './schema'
 
-const getNextState = (goals: GoalDto[], goalId: number, feedback: FeedbackDto) =>
-  produce(goals, (draft) => {
-    const draftGoal = draft[draft.findIndex((g) => g.id === goalId)]
-    draftGoal.day.feedback = feedback
-  })
-
 interface Values {
   text: string
   photos: File[]
   video: ''
 }
 
-export const useCreateFeedbackForm = (goalId: number, dayId: number, onSuccess: () => void) => {
+export function useCreateFeedbackForm(goalId: number, dayId: number, onSuccess: () => void) {
   const { formatMessage } = useIntl()
   const { enqueueSnackbar } = useSnackbar()
   const [goals, mutateGoals] = useGoalsCache()
@@ -46,5 +40,12 @@ export const useCreateFeedbackForm = (goalId: number, dayId: number, onSuccess: 
       data.photos.forEach((photo) => formData.append('photos', photo))
       await mutateAsync(formData).catch(() => false)
     },
+  })
+}
+
+function getNextState(goals: GoalDto[], goalId: number, feedback: FeedbackDto) {
+  return produce(goals, (draft) => {
+    const draftGoal = draft[draft.findIndex((g) => g.id === goalId)]
+    draftGoal.day.feedback = feedback
   })
 }

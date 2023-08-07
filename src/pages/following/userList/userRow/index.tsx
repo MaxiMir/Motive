@@ -1,7 +1,7 @@
 import { Stack, Typography } from '@mui/material'
 import dynamic from 'next/dynamic'
 import Link from 'next/link'
-import { CharacteristicUser } from 'entities/characteristic'
+import { UserCharacteristic } from 'entities/user'
 import { ONLINE_SKILLS_MAIN, UserDto } from 'shared/api'
 import { joinToHref } from 'shared/lib/helpers'
 import Avatar from 'shared/ui/avatar'
@@ -30,7 +30,7 @@ export function UserRow({ user, index }: UserRowProps) {
         {lastSeen && <LastSeen lastSeen={lastSeen} />}
         <Stack direction="row" justifyContent="space-between" alignItems="center">
           {ONLINE_SKILLS_MAIN.map((characteristicName) => (
-            <CharacteristicUser
+            <UserCharacteristic
               name={characteristicName}
               value={characteristic[characteristicName]}
               key={characteristicName}

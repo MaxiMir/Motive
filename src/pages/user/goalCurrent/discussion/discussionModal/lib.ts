@@ -6,7 +6,7 @@ import { partialCheckOnLoadMore } from 'shared/lib/utils'
 const TAKE = 20
 const PRELOAD_DIFF = 5
 
-const partialGetNextPageParam = (count: number): GetNextPageParamFunction<TopicDto[]> => {
+function partialGetNextPageParam(count: number): GetNextPageParamFunction<TopicDto[]> {
   return (_, allPages) => {
     const allCount = allPages.flat().reduce((acc, t) => acc + (!t.answer ? 1 : 2), 0)
 
@@ -14,7 +14,7 @@ const partialGetNextPageParam = (count: number): GetNextPageParamFunction<TopicD
   }
 }
 
-export const useDiscussion = (dayId: number, count: number) => {
+export function useDiscussion(dayId: number, count: number) {
   const getNextPageParam = partialGetNextPageParam(count)
   const { isLoading, data, fetchNextPage, hasNextPage } = useInfiniteQuery(
     ['discussion', dayId],

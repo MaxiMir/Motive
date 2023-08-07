@@ -1,6 +1,6 @@
 import { CalendarDto } from 'shared/api'
 
-export const getBorders = (calendar?: CalendarDto[]) => {
+export function getBorders(calendar?: CalendarDto[]) {
   if (!calendar) {
     return [undefined, undefined]
   }

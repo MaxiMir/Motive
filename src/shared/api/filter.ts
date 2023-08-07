@@ -5,7 +5,7 @@ export interface Filter {
   insert?: boolean
 }
 
-export const getFilterParams = (filter: Filter) => {
+export function getFilterParams(filter: Filter) {
   const { where, page, take, insert } = filter
   const wherePrepared = !where
     ? null

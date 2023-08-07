@@ -1,6 +1,6 @@
 import { useIntl } from 'react-intl'
 
-export const useFormatNumber = () => {
+export function useFormatNumber() {
   const { locale } = useIntl()
 
   return (value: number) => {

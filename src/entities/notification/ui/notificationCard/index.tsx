@@ -6,13 +6,13 @@ import { Emoji } from 'shared/config'
 import { useFormatDistance } from 'shared/lib/hooks'
 import Avatar from 'shared/ui/avatar'
 
-interface NotificationInfoProps {
+interface NotificationCardProps {
   notification: NotificationDto
   href: string
   onClose?: () => void
 }
 
-export function NotificationInfo({ notification, href, onClose }: NotificationInfoProps) {
+export function NotificationCard({ notification, href, onClose }: NotificationCardProps) {
   const { type, details, initiator, created } = notification
   const { name, avatar } = initiator
   const { formatMessage } = useIntl()

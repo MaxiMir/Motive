@@ -26,7 +26,6 @@ declare module '@mui/material/styles' {
   interface Palette {
     underlay: CSSProperties['color']
     content: CSSProperties['color']
-    circle: CSSProperties['color']
     zen: ZenColor
     motivation: CustomCharacteristicValue
     support: CustomCharacteristicValue
@@ -40,7 +39,6 @@ declare module '@mui/material/styles' {
   interface PaletteOptions {
     underlay: CSSProperties['color']
     content: CSSProperties['color']
-    circle: CSSProperties['color']
     zen: ZenColor
     motivation: CustomCharacteristicValue
     support: CustomCharacteristicValue
@@ -52,13 +50,12 @@ declare module '@mui/material/styles' {
   }
 }
 
-export const getDesignTokens = (mode: PaletteMode): ThemeOptions => {
+export function getDesignTokens(mode: PaletteMode): ThemeOptions {
   return {
     palette: {
       mode,
       underlay: mode === 'dark' ? '#000000' : '#d7d7d7',
       content: mode === 'dark' ? '#19191a' : '#d7d7d7',
-      circle: '#2d313e',
       zen: {
         silent: '#8e8e8e',
         sand: '#ad998b',

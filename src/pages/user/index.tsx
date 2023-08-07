@@ -5,10 +5,9 @@ import { UserContext } from 'entities/user'
 import { useClient } from 'entities/viewer'
 import { ONLINE_SKILLS_MAIN, UserPageDto } from 'shared/api'
 import Container from 'shared/ui/Container'
-import AvatarActions from './avatarActions'
+import AvatarActs from './avatarActions'
 import EmptyGoals from './emptyGoals'
 import LearnMore from './learnMore'
-import LevelProgress from './levelProgress'
 import MenuActions from './menuActions'
 import Nickname from './nickname'
 import OnlineSkill from './onlineSkill'
@@ -60,7 +59,7 @@ export function UserPage({ user }: UserViewProps) {
               },
             }}
           >
-            <AvatarActions user={user} clientPage={clientPage} />
+            <AvatarActs user={user} clientPage={clientPage} />
             <Stack
               alignItems={{
                 xs: 'center',
@@ -132,9 +131,6 @@ export function UserPage({ user }: UserViewProps) {
               ))}
               <LearnMore user={user} />
             </Stack>
-          </Section>
-          <Section component="section">
-            <LevelProgress characteristic={characteristic} />
           </Section>
         </Stack>
         {renderConfirmationsList && (

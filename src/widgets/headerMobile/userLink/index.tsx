@@ -7,14 +7,7 @@ function UserLink() {
 
   return (
     <Button color="inherit" onClick={reload}>
-      <Typography
-        sx={{
-          textOverflow: 'ellipsis',
-          fontWeight: 'bold',
-        }}
-        component="span"
-        noWrap
-      >
+      <Typography textOverflow="ellipsis" fontWeight="bold" component="span" noWrap>
         {nickname}
       </Typography>
     </Button>

@@ -1,11 +1,11 @@
 import { Box, Stack, Typography } from '@mui/material'
 import { styled } from '@mui/system'
 import dynamic from 'next/dynamic'
-import { UserContext } from 'entities/user'
+import { UserContext, UserStatus } from 'entities/user'
 import { useClient } from 'entities/viewer'
 import { ONLINE_SKILLS_MAIN, UserPageDto } from 'shared/api'
 import Container from 'shared/ui/Container'
-import AvatarActs from './avatarActions'
+import AvatarActs from './avatarActs'
 import EmptyGoals from './emptyGoals'
 import LearnMore from './learnMore'
 import MenuActions from './menuActions'
@@ -34,6 +34,9 @@ export function UserPage({ user }: UserViewProps) {
     motto,
     links,
     following,
+    online,
+    lastSeen,
+    device,
   } = user
   const client = useClient()
   const clientPage = id === client?.id
@@ -102,6 +105,13 @@ export function UserPage({ user }: UserViewProps) {
                 }}
                 mb={1}
               >
+                <OnlineSkill
+                  name="level"
+                  value={Math.ceil(characteristic.progress)}
+                  userId={id}
+                  characteristic={characteristic}
+                  confirmations={confirmations}
+                />
                 {ONLINE_SKILLS_MAIN.map((characteristicName) => (
                   <OnlineSkill
                     name={characteristicName}
@@ -113,10 +123,12 @@ export function UserPage({ user }: UserViewProps) {
                   />
                 ))}
               </Stack>
-              <Typography component="h1" sx={{ fontWeight: 'bold' }}>
-                {name}
-              </Typography>
-              {motto && <Typography sx={{ fontSize: 14 }}>{motto}</Typography>}
+              <UserStatus online={online} lastSeen={lastSeen} device={device} mb={1}>
+                <Typography component="h1" fontWeight="bold">
+                  {name}
+                </Typography>
+              </UserStatus>
+              {motto && <Typography fontSize={14}>{motto}</Typography>}
               {links?.map(({ href, host, title }) => (
                 <Link
                   href={href}
@@ -124,7 +136,7 @@ export function UserPage({ user }: UserViewProps) {
                   rel="nofollow noopener noreferrer"
                   target="_blank"
                   key={href}
-                  sx={{ fontSize: 14 }}
+                  fontSize={14}
                 >
                   {host}
                 </Link>

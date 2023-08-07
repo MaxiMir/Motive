@@ -11,16 +11,16 @@ const AbandonedModal = dynamic(() => import('./abandonedModal'))
 
 interface OnlineSkillProps {
   userId: number
+  name: OnlineSkillName | 'level'
+  value: number
   characteristic: UserCharacteristicDto
   confirmations: ConfirmationDto[]
-  name: OnlineSkillName
-  value: number
 }
 
 function OnlineSkill({ name, value, userId, characteristic, confirmations }: OnlineSkillProps) {
   const wordDeclination = useWordDeclination(name, value)
   const formatNumber = useFormatNumber()
-  const [modal, setModal] = useState<OnlineSkillName>()
+  const [modal, setModal] = useState<OnlineSkillName | 'level'>()
   const formattedValue = formatNumber(value)
   const buttonText = wordDeclination.toLowerCase()
 

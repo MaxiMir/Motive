@@ -56,7 +56,8 @@ export function Top({ user, title, date, onClose }: TopProps) {
           </Stack>
           <Typography
             component="span"
-            sx={{ fontSize: 14, textShadow: '0 1px 1px 0 rgba(0, 0, 0, 0.1)' }}
+            fontSize={14}
+            sx={{ textShadow: '0 1px 1px 0 rgba(0, 0, 0, 0.1)' }}
           >
             {title}
           </Typography>

@@ -1,10 +1,10 @@
 import { Box, Grid, Typography } from '@mui/material'
 import { blueGrey } from '@mui/material/colors'
 import { useIntl } from 'react-intl'
-import { UserRating } from 'entities/user'
 import { UserDto } from 'shared/api'
 import Container from 'shared/ui/Container'
 import List from 'shared/ui/List'
+import { UserCard } from './userCard'
 
 interface RatingPageProps {
   users: UserDto[]
@@ -45,7 +45,7 @@ export function RatingPage({ users }: RatingPageProps) {
       <List<UserDto>
         elements={users}
         keyGetter={(el) => el.id}
-        render={(user, index) => <UserRating user={user} index={index} />}
+        render={(user, index) => <UserCard user={user} index={index} />}
       />
     </Container>
   )

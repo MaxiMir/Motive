@@ -13,7 +13,7 @@ export function Progress({ progress, radius, children }: ProgressProps) {
   const offset = getOffset(progress, radius)
 
   return (
-    <Box position="relative" width={radius} height={radius}>
+    <Box position="relative">
       <Circle
         offset={offset}
         radius={radius}

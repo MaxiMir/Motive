@@ -1,7 +1,7 @@
 import { Stack, Typography } from '@mui/material'
 import dynamic from 'next/dynamic'
 import Link from 'next/link'
-import { UserCharacteristic } from 'entities/user'
+import { UserCharacteristic, UserStatus } from 'entities/user'
 import { ONLINE_SKILLS_MAIN, UserDto } from 'shared/api'
 import { joinToHref } from 'shared/lib/helpers'
 import Avatar from 'shared/ui/avatar'
@@ -15,18 +15,20 @@ interface UserRowProps {
 }
 
 export function UserRow({ user, index }: UserRowProps) {
-  const { nickname, name, avatar, characteristic, online, lastSeen } = user
+  const { nickname, name, avatar, characteristic, online, lastSeen, device } = user
   const href = joinToHref(nickname)
 
   return (
     <Stack direction="row" alignItems="center" gap={2}>
       <Link href={href} title={name}>
-        <Avatar src={avatar} name={name} online={online} size={55} />
+        <Avatar src={avatar} name={name} size={55} />
       </Link>
       <Stack justifyContent="space-between" flex={1}>
-        <Typography variant="subtitle1" component="span">
-          <Link href={href}>{name}</Link>
-        </Typography>
+        <UserStatus online={online} lastSeen={lastSeen} device={device}>
+          <Typography variant="subtitle1" component="span">
+            <Link href={href}>{name}</Link>
+          </Typography>
+        </UserStatus>
         {lastSeen && <LastSeen lastSeen={lastSeen} />}
         <Stack direction="row" justifyContent="space-between" alignItems="center">
           {ONLINE_SKILLS_MAIN.map((characteristicName) => (

@@ -23,7 +23,7 @@ function Circle({
   strokeWidthBg,
 }: CircleProps) {
   return (
-    <svg width={size} height={size} viewBox="-25 -25 400 400">
+    <svg width={size} height={size} viewBox="-20 -36 400 400">
       <circle
         stroke={light}
         cx={radius}

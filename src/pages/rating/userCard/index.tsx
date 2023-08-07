@@ -2,17 +2,18 @@ import { Typography, Grid, Box, Button, Stack } from '@mui/material'
 import { blueGrey } from '@mui/material/colors'
 import { useTheme } from '@mui/material/styles'
 import Link from 'next/link'
+import { UserStatus } from 'entities/user'
 import { UserDto } from 'shared/api'
 import { joinToHref } from 'shared/lib/helpers'
 import Avatar from 'shared/ui/avatar'
 
-interface UserRatingProps {
+interface UserCardProps {
   user: UserDto
   index: number
 }
 
-export function UserRating({ user, index }: UserRatingProps) {
-  const { nickname, name, avatar, characteristic, online } = user
+export function UserCard({ user, index }: UserCardProps) {
+  const { nickname, name, avatar, characteristic, online, lastSeen, device } = user
   const theme = useTheme()
   const number = getNumber()
   const href = joinToHref(nickname)
@@ -46,11 +47,13 @@ export function UserRating({ user, index }: UserRatingProps) {
         <Grid item xs={9}>
           <Stack direction="row" alignItems="center" gap={1}>
             <Link href={href} title={name}>
-              <Avatar src={avatar} name={name} online={online} size={35} />
+              <Avatar src={avatar} name={name} size={35} />
             </Link>
-            <Button href={href} color="inherit" component={Link}>
-              {name}
-            </Button>
+            <UserStatus online={online} lastSeen={lastSeen} device={device}>
+              <Button href={href} color="inherit" component={Link}>
+                {name}
+              </Button>
+            </UserStatus>
           </Stack>
         </Grid>
         <Grid item xs>

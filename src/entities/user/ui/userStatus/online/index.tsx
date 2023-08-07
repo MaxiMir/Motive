@@ -1,19 +1,13 @@
 import { Badge } from '@mui/material'
-import { ReactNode } from 'react'
 
-interface OnlineProps {
-  children: ReactNode
-}
-
-function Online({ children }: OnlineProps) {
+function Online() {
   return (
     <Badge
       overlap="circular"
       variant="dot"
-      anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
       sx={(theme) => ({
+        width: 16,
         '& .MuiBadge-badge': {
-          right: '18%',
           backgroundColor: '#44b700',
           color: '#44b700',
           boxShadow: `0 0 0 2px ${theme.palette.background.paper}`,
@@ -41,9 +35,7 @@ function Online({ children }: OnlineProps) {
           },
         },
       })}
-    >
-      {children}
-    </Badge>
+    />
   )
 }
 

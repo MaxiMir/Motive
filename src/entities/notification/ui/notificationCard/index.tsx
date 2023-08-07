@@ -42,18 +42,12 @@ export function NotificationCard({ notification, href, onClose }: NotificationCa
           </MuiAvatar>
         </Box>
         <Stack>
-          <Typography sx={{ fontSize: 14 }}>
+          <Typography fontSize={14}>
             <Box component="b">{name}</Box> {header}
             {detailsName}
           </Typography>
           <Stack direction="row" alignItems="center" gap={2}>
-            <Box
-              component="span"
-              sx={{
-                color: 'zen.silent',
-                fontSize: 12,
-              }}
-            >
+            <Box component="span" fontSize={12} color="zen.silent">
               {dateDistance}
             </Box>
           </Stack>

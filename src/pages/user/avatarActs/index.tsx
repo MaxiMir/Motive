@@ -13,7 +13,7 @@ const LightBox = dynamic(() => import('shared/ui/LightBox'))
 const UpdateModal = dynamic(() => import('features/user/update-avatar'))
 const DeleteModal = dynamic(() => import('features/user/delete-avatar'))
 
-const SIZE = 175
+const SIZE = 180
 
 interface AvatarActsProps {
   user: UserPageDto
@@ -21,7 +21,7 @@ interface AvatarActsProps {
 }
 
 function AvatarActs({ user, clientPage }: AvatarActsProps) {
-  const { id: userId, name, avatar, online, lastSeen, device, characteristic } = user
+  const { id: userId, name, avatar, characteristic } = user
   const id = useId()
   const menuId = useId()
   const { formatMessage } = useIntl()
@@ -62,9 +62,6 @@ function AvatarActs({ user, clientPage }: AvatarActsProps) {
           src={avatar}
           name={name}
           size={130}
-          online={online}
-          lastSeen={lastSeen}
-          device={device}
           buttonProps={{
             disabled,
             id,

@@ -12,7 +12,7 @@ interface SphereOfLifeProps {
 
 function SphereOfLife({ sphere, value }: SphereOfLifeProps): JSX.Element {
   const { formatMessage } = useIntl()
-  const percentage = (value / 10) * 100
+  const percentage = 100 - (value / 10) * 100
   const backgroundColor = generateColorByName(sphere)
   const message = formatMessage({ id: `common.${sphere}` })
 

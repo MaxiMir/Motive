@@ -27,9 +27,6 @@ function OnlineScore({ name, value, userId, characteristic, confirmations }: Onl
   const onClick = async () => {
     const openStories = name === 'completed' && confirmations.length
 
-    // TODO ADD MODAL
-    if (name === 'level') return
-
     if (!openStories) {
       setModal(name)
       return
@@ -49,13 +46,23 @@ function OnlineScore({ name, value, userId, characteristic, confirmations }: Onl
         color="inherit"
         aria-haspopup="true"
         aria-expanded={modal ? 'true' : undefined}
-        sx={{
-          padding: '4px',
-          justifyContent: 'flex-start',
-        }}
+        sx={{ padding: '4px' }}
         onClick={onClick}
       >
-        <Box display="flex" alignItems="baseline" gap={0.5}>
+        <Box
+          display="flex"
+          alignItems={{
+            xs: 'center',
+            md: 'baseline',
+          }}
+          flexDirection={{
+            xs: 'column',
+            md: 'row',
+          }}
+          gap={{
+            md: 0.5,
+          }}
+        >
           <Typography variant="h5" component="b">
             {formattedValue}
           </Typography>

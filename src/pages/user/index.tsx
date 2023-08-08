@@ -1,9 +1,7 @@
-import { Box, Stack, TableBody, TableCell, TableRow, Typography } from '@mui/material'
-import Table from '@mui/material/Table'
+import { Box, Stack, Typography } from '@mui/material'
 import { styled } from '@mui/system'
 import dynamic from 'next/dynamic'
 import SphereOfLife from 'pages/user/sphereOfLife'
-import { useCheckOnMobile } from 'entities/device'
 import { UserContext, UserStatus } from 'entities/user'
 import { useClient } from 'entities/viewer'
 import { ONLINE_SCORE_MAIN, SPHERES_OF_LIFE, UserPageDto } from 'shared/api'
@@ -41,7 +39,6 @@ export function UserPage({ user }: UserViewProps) {
     lastSeen,
     device,
   } = user
-  const mobile = useCheckOnMobile()
   const client = useClient()
   const clientPage = id === client?.id
   const renderConfirmationsList = !!confirmations.length || clientPage
@@ -60,7 +57,6 @@ export function UserPage({ user }: UserViewProps) {
               md: 'flex-start',
             }}
             gap={{
-              xs: 2,
               md: 6,
             }}
             padding={2}
@@ -96,54 +92,18 @@ export function UserPage({ user }: UserViewProps) {
                   <MenuActions clientPage={clientPage} />
                 </Stack>
               </Stack>
-
-              {!mobile ? (
-                <Box display="flex" width="100%" gap={2} mb={2}>
-                  {(['level', ...ONLINE_SCORE_MAIN] as const).map((score) => (
-                    <OnlineScore
-                      name={score}
-                      value={characteristic[score]}
-                      userId={id}
-                      characteristic={characteristic}
-                      confirmations={confirmations}
-                      key={score}
-                    />
-                  ))}
-                </Box>
-              ) : (
-                <Table size="small" sx={{ width: 'initial', marginInline: 4, mb: 2 }}>
-                  <TableBody>
-                    <TableRow sx={{ '& td': { border: 0 } }}>
-                      {(['level', 'completed', 'abandoned'] as const).map((score) => (
-                        <TableCell align="left" key={score}>
-                          <OnlineScore
-                            name={score}
-                            value={characteristic[score]}
-                            userId={id}
-                            characteristic={characteristic}
-                            confirmations={confirmations}
-                          />
-                        </TableCell>
-                      ))}
-                    </TableRow>
-                    <TableRow sx={{ '& td': { border: 0 } }}>
-                      {(['followers', 'empty', 'following'] as const).map((score) => (
-                        <TableCell align="left" key={score}>
-                          {score !== 'empty' && (
-                            <OnlineScore
-                              name={score}
-                              value={characteristic[score]}
-                              userId={id}
-                              characteristic={characteristic}
-                              confirmations={confirmations}
-                            />
-                          )}
-                        </TableCell>
-                      ))}
-                    </TableRow>
-                  </TableBody>
-                </Table>
-              )}
+              <Box display="flex" width="100%" gap={2} mb={2}>
+                {ONLINE_SCORE_MAIN.map((score) => (
+                  <OnlineScore
+                    name={score}
+                    value={characteristic[score]}
+                    userId={id}
+                    characteristic={characteristic}
+                    confirmations={confirmations}
+                    key={score}
+                  />
+                ))}
+              </Box>
               <UserStatus online={online} lastSeen={lastSeen} device={device} mb={1}>
                 <Typography component="h1" fontWeight="bold">
                   {name}
@@ -166,7 +126,7 @@ export function UserPage({ user }: UserViewProps) {
             </Stack>
           </Section>
         </Stack>
-        <Section display="flex" justifyContent="space-between" padding="16px 24px">
+        <Section display="flex" justifyContent="space-between" padding={{ xs: 2, md: '16px 24px' }}>
           {SPHERES_OF_LIFE.map((sphere) => (
             <SphereOfLife sphere={sphere} value={characteristic[sphere]} key={sphere} />
           ))}

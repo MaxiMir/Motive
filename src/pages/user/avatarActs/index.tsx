@@ -57,7 +57,7 @@ function AvatarActs({ user, clientPage }: AvatarActsProps) {
 
   return (
     <>
-      <Progress progress={characteristic.progress} radius={SIZE}>
+      <Progress characteristic={characteristic} radius={SIZE}>
         <Avatar
           src={avatar}
           name={name}

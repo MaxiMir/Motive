@@ -1,16 +1,18 @@
-import { Box, Stack, Typography } from '@mui/material'
+import { Box, Stack, TableBody, TableCell, TableRow, Typography } from '@mui/material'
+import Table from '@mui/material/Table'
 import { styled } from '@mui/system'
 import dynamic from 'next/dynamic'
+import { useCheckOnMobile } from 'entities/device'
 import { UserContext, UserStatus } from 'entities/user'
 import { useClient } from 'entities/viewer'
-import { ONLINE_INDEXES_MAIN, UserPageDto } from 'shared/api'
+import { ONLINE_SCORE_MAIN, UserPageDto } from 'shared/api'
 import Container from 'shared/ui/Container'
 import AvatarActs from './avatarActs'
 import EmptyGoals from './emptyGoals'
 import LearnMore from './learnMore'
 import MenuActions from './menuActions'
 import Nickname from './nickname'
-import OnlineIndex from './onlineIndex'
+import OnlineScore from './onlineScore'
 
 const Link = dynamic(() => import('@mui/material/Link'))
 const UpdateFollowing = dynamic(() => import('features/subscription/update-following'))
@@ -38,6 +40,7 @@ export function UserPage({ user }: UserViewProps) {
     lastSeen,
     device,
   } = user
+  const mobile = useCheckOnMobile()
   const client = useClient()
   const clientPage = id === client?.id
   const renderConfirmationsList = !!confirmations.length || clientPage
@@ -55,7 +58,7 @@ export function UserPage({ user }: UserViewProps) {
                 xs: 2,
                 md: 6,
               },
-              alignItems: 'flex-end',
+              alignItems: 'center',
               justifyContent: {
                 xs: 'center',
                 md: 'flex-start',
@@ -93,27 +96,54 @@ export function UserPage({ user }: UserViewProps) {
                   <MenuActions clientPage={clientPage} />
                 </Stack>
               </Stack>
-              <Box display="flex" flexWrap="wrap" width="100%" gap={2} mb={2}>
-                <OnlineIndex
-                  name="level"
-                  value={Math.ceil(characteristic.progress)}
-                  userId={id}
-                  characteristic={characteristic}
-                  confirmations={confirmations}
-                  order={1}
-                />
-                {ONLINE_INDEXES_MAIN.map((characteristicName, index) => (
-                  <OnlineIndex
-                    name={characteristicName}
-                    value={characteristic[characteristicName]}
-                    userId={id}
-                    characteristic={characteristic}
-                    confirmations={confirmations}
-                    order={index + 2}
-                    key={characteristicName}
-                  />
-                ))}
-              </Box>
+
+              {!mobile ? (
+                <Box display="flex" width="100%" gap={2} mb={2}>
+                  {(['level', ...ONLINE_SCORE_MAIN] as const).map((score) => (
+                    <OnlineScore
+                      name={score}
+                      value={characteristic[score]}
+                      userId={id}
+                      characteristic={characteristic}
+                      confirmations={confirmations}
+                      key={score}
+                    />
+                  ))}
+                </Box>
+              ) : (
+                <Table size="small" sx={{ width: 'initial', marginInline: 4, mb: 2 }}>
+                  <TableBody>
+                    <TableRow sx={{ '& td': { border: 0 } }}>
+                      {(['level', 'completed', 'abandoned'] as const).map((score) => (
+                        <TableCell align="left" key={score}>
+                          <OnlineScore
+                            name={score}
+                            value={characteristic[score]}
+                            userId={id}
+                            characteristic={characteristic}
+                            confirmations={confirmations}
+                          />
+                        </TableCell>
+                      ))}
+                    </TableRow>
+                    <TableRow sx={{ '& td': { border: 0 } }}>
+                      {(['followers', 'empty', 'following'] as const).map((score) => (
+                        <TableCell align="left" key={score}>
+                          {score !== 'empty' && (
+                            <OnlineScore
+                              name={score}
+                              value={characteristic[score]}
+                              userId={id}
+                              characteristic={characteristic}
+                              confirmations={confirmations}
+                            />
+                          )}
+                        </TableCell>
+                      ))}
+                    </TableRow>
+                  </TableBody>
+                </Table>
+              )}
               <UserStatus online={online} lastSeen={lastSeen} device={device} mb={1}>
                 <Typography component="h1" fontWeight="bold">
                   {name}

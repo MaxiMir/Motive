@@ -11,6 +11,7 @@ export enum Emoji {
   'points' = '🦾',
   'nextLevelPoints' = '',
   'progress' = '',
+  'level' = '',
   // notifications:
   'new-goal' = '💎',
   'new-follower' = '⭐',

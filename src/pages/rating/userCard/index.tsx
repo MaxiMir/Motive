@@ -17,7 +17,6 @@ export function UserCard({ user, index }: UserCardProps) {
   const theme = useTheme()
   const number = getNumber()
   const href = joinToHref(nickname)
-  const level = Math.floor(characteristic.progress)
 
   function getNumber() {
     const incrementedNumber = index + 1
@@ -58,7 +57,7 @@ export function UserCard({ user, index }: UserCardProps) {
         </Grid>
         <Grid item xs>
           <Typography variant="subtitle1" component="p" align="right">
-            <b>{level}</b>
+            <b>{characteristic.level}</b>
           </Typography>
         </Grid>
       </Grid>

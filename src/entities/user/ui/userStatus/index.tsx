@@ -15,10 +15,17 @@ interface UserStatusProps extends BoxProps {
 
 export function UserStatus({ online, lastSeen, device, children, ...props }: UserStatusProps) {
   const flexDirection = online ? 'row' : 'column'
-  const alignItems = online ? 'center' : 'flex-start'
 
   return (
-    <Box display="flex" flexDirection={flexDirection} alignItems={alignItems} {...props}>
+    <Box
+      display="flex"
+      flexDirection={flexDirection}
+      alignItems={{
+        xs: 'center',
+        xl: online ? 'center' : 'flex-start',
+      }}
+      {...props}
+    >
       {children}
       {online ? <Online /> : <>{lastSeen && <Offline lastSeen={lastSeen} device={device} />}</>}
     </Box>

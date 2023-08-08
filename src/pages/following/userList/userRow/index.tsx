@@ -1,7 +1,7 @@
 import { Stack, Typography } from '@mui/material'
 import Link from 'next/link'
 import { UserCharacteristic, UserStatus } from 'entities/user'
-import { ONLINE_INDEXES_MAIN, UserDto } from 'shared/api'
+import { ONLINE_SCORE_MAIN, UserDto } from 'shared/api'
 import { joinToHref } from 'shared/lib/helpers'
 import Avatar from 'shared/ui/avatar'
 import { MenuActions } from './menuActions'
@@ -27,7 +27,7 @@ export function UserRow({ user, index }: UserRowProps) {
           </Typography>
         </UserStatus>
         <Stack direction="row" justifyContent="space-between" alignItems="center">
-          {ONLINE_INDEXES_MAIN.map((characteristicName) => (
+          {ONLINE_SCORE_MAIN.map((characteristicName) => (
             <UserCharacteristic
               name={characteristicName}
               value={characteristic[characteristicName]}

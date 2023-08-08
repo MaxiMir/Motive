@@ -1,7 +1,7 @@
 import { Device } from '../device'
-import { OnlineIndexName } from '../skills'
+import { OnlineScoreName } from '../skills'
 
-export type UserCharacteristicDto = Readonly<{ [k in OnlineIndexName]: number }>
+export type UserCharacteristicDto = Readonly<{ [k in OnlineScoreName]: number }>
 
 export interface UserBaseDto {
   readonly id: number

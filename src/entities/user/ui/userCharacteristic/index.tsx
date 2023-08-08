@@ -1,19 +1,19 @@
 import { Box, Stack, Typography } from '@mui/material'
 import dynamic from 'next/dynamic'
-import { OnlineIndexName } from 'shared/api'
+import { OnlineScoreName } from 'shared/api'
 import { Emoji } from 'shared/config'
 import { useFormatNumber } from 'shared/lib/hooks'
 
 const Level = dynamic(() => import('./level'))
 
 interface UserCharacteristicProps {
-  name: OnlineIndexName
+  name: OnlineScoreName
   value: number
 }
 
 export function UserCharacteristic({ name, value }: UserCharacteristicProps) {
   const formatNumber = useFormatNumber()
-  const formattedValue = name !== 'followers' ? Math.floor(value) : formatNumber(value)
+  const formattedValue = formatNumber(value)
   const showLevel = name === 'progress'
   const emoji = Emoji[name]
 

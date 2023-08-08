@@ -1,9 +1,9 @@
 import { Stack } from '@mui/material'
 import { useIntl } from 'react-intl'
 import dynamic from 'next/dynamic'
-import { useDeviceContext } from 'entities/device'
+import { useCheckOnMobile } from 'entities/device'
 import { useClient } from 'entities/viewer'
-import { checkOnMobile, TopicDto, UserBaseDto } from 'shared/api'
+import { TopicDto, UserBaseDto } from 'shared/api'
 import { ListProps } from 'shared/ui/List'
 import Modal from 'shared/ui/Modal'
 import { useDiscussion } from './lib'
@@ -25,9 +25,8 @@ interface DiscussionModalProps {
 function DiscussionModal({ dayId, count, owner, clientGoal, onClose }: DiscussionModalProps) {
   const client = useClient()
   const { formatMessage } = useIntl()
-  const device = useDeviceContext()
   const { isLoading, topics, checkOnLoadMore, fetchNextPage } = useDiscussion(dayId, count)
-  const fullScreen = checkOnMobile(device)
+  const mobile = useCheckOnMobile()
   const title = formatMessage({ id: 'common.discussion' })
 
   return (
@@ -35,7 +34,7 @@ function DiscussionModal({ dayId, count, owner, clientGoal, onClose }: Discussio
       title={title}
       maxWidth="md"
       staticHeight
-      fullScreen={fullScreen}
+      fullScreen={mobile}
       dividers
       actions={
         !client || isLoading

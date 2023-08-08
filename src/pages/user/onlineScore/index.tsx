@@ -1,7 +1,7 @@
 import { Box, Button, Typography } from '@mui/material'
 import { useState } from 'react'
 import dynamic from 'next/dynamic'
-import { OnlineIndexName, ConfirmationDto, UserCharacteristicDto } from 'shared/api'
+import { OnlineScoreName, ConfirmationDto, UserCharacteristicDto } from 'shared/api'
 import { useFormatNumber } from 'shared/lib/hooks'
 import { useWordDeclination } from './lib'
 
@@ -9,32 +9,25 @@ const SubscriptionModal = dynamic(() => import('./subscriptionModal'))
 const NoCompletedModal = dynamic(() => import('./noCompletedModal'))
 const AbandonedModal = dynamic(() => import('./abandonedModal'))
 
-interface OnlineIndexProps {
-  name: OnlineIndexName | 'level'
+interface OnlineScoreProps {
+  name: OnlineScoreName
   value: number
   userId: number
   characteristic: UserCharacteristicDto
   confirmations: ConfirmationDto[]
-  order: number
 }
 
-function OnlineIndex({
-  name,
-  value,
-  userId,
-  characteristic,
-  confirmations,
-  order,
-}: OnlineIndexProps) {
+function OnlineScore({ name, value, userId, characteristic, confirmations }: OnlineScoreProps) {
   const wordDeclination = useWordDeclination(name, value)
   const formatNumber = useFormatNumber()
-  const [modal, setModal] = useState<OnlineIndexName>()
+  const [modal, setModal] = useState<OnlineScoreName>()
   const formattedValue = formatNumber(value)
   const buttonText = wordDeclination.toLowerCase()
 
   const onClick = async () => {
     const openStories = name === 'completed' && confirmations.length
 
+    // TODO ADD MODAL
     if (name === 'level') return
 
     if (!openStories) {
@@ -58,18 +51,11 @@ function OnlineIndex({
         aria-expanded={modal ? 'true' : undefined}
         sx={{
           padding: '4px',
-          justifyContent: {
-            xs: 'center',
-            md: 'flex-start',
-          },
-          flex: {
-            xs: order > 3 ? '45%' : 1,
-            md: 'initial',
-          },
+          justifyContent: 'flex-start',
         }}
         onClick={onClick}
       >
-        <Box display="flex" alignItems="baseline" gap={1}>
+        <Box display="flex" alignItems="baseline" gap={0.5}>
           <Typography variant="h5" component="b">
             {formattedValue}
           </Typography>
@@ -92,4 +78,4 @@ function OnlineIndex({
   )
 }
 
-export default OnlineIndex
+export default OnlineScore

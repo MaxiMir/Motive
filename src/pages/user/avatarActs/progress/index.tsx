@@ -1,19 +1,19 @@
-import { Box, BoxProps } from '@mui/material'
+import { Box } from '@mui/material'
 import { ReactNode } from 'react'
 import Circle from 'shared/ui/Circle'
 import { getOffset } from './lib'
 
-interface ProgressProps extends BoxProps {
+interface ProgressProps {
   progress: number
   radius: number
   children: ReactNode
 }
 
-export function Progress({ progress, radius, children, ...props }: ProgressProps) {
+export function Progress({ progress, radius, children }: ProgressProps) {
   const offset = getOffset(progress, radius)
 
   return (
-    <Box position="relative" {...props}>
+    <Box position="relative">
       <Circle
         offset={offset}
         radius={radius}

@@ -74,7 +74,7 @@ export function More() {
         )}
         <ListItem button onClick={onClose}>
           <ListItemIcon>
-            <Icon name="block" sx={{ color: 'grey' }} />
+            <Icon name="block" color="grey" />
           </ListItemIcon>
           <ListItemText primary={cancelText} />
         </ListItem>

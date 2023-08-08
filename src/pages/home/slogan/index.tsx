@@ -27,7 +27,7 @@ export function Slogan() {
         >
           {process.env.NEXT_PUBLIC_APP_NAME}
         </Typography>
-        <Typography variant="caption" align="center" sx={{ color: '#A1A1A6' }}>
+        <Typography variant="caption" align="center" color="#A1A1A6">
           {subheader}
         </Typography>
       </Stack>

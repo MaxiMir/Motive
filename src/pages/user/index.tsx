@@ -2,10 +2,11 @@ import { Box, Stack, TableBody, TableCell, TableRow, Typography } from '@mui/mat
 import Table from '@mui/material/Table'
 import { styled } from '@mui/system'
 import dynamic from 'next/dynamic'
+import SphereOfLife from 'pages/user/sphereOfLife'
 import { useCheckOnMobile } from 'entities/device'
 import { UserContext, UserStatus } from 'entities/user'
 import { useClient } from 'entities/viewer'
-import { ONLINE_SCORE_MAIN, UserPageDto } from 'shared/api'
+import { ONLINE_SCORE_MAIN, SPHERES_OF_LIFE, UserPageDto } from 'shared/api'
 import Container from 'shared/ui/Container'
 import AvatarActs from './avatarActs'
 import EmptyGoals from './emptyGoals'
@@ -53,17 +54,16 @@ export function UserPage({ user }: UserViewProps) {
             display="flex"
             flexWrap="wrap"
             component="section"
-            sx={{
-              gap: {
-                xs: 2,
-                md: 6,
-              },
-              alignItems: 'center',
-              justifyContent: {
-                xs: 'center',
-                md: 'flex-start',
-              },
+            alignItems="center"
+            justifyContent={{
+              xs: 'center',
+              md: 'flex-start',
             }}
+            gap={{
+              xs: 2,
+              md: 6,
+            }}
+            padding={2}
           >
             <AvatarActs user={user} clientPage={clientPage} />
             <Stack
@@ -166,6 +166,11 @@ export function UserPage({ user }: UserViewProps) {
             </Stack>
           </Section>
         </Stack>
+        <Section display="flex" justifyContent="space-between" padding="16px 24px">
+          {SPHERES_OF_LIFE.map((sphere) => (
+            <SphereOfLife sphere={sphere} value={characteristic[sphere]} key={sphere} />
+          ))}
+        </Section>
         {renderConfirmationsList && (
           <ConfirmationList confirmations={confirmations} clientPage={clientPage} />
         )}
@@ -178,7 +183,6 @@ export function UserPage({ user }: UserViewProps) {
                 xs: 1,
                 md: 2,
               },
-              columnGap: 3,
             }}
           >
             {goals.map((goal) => (
@@ -198,7 +202,6 @@ export function UserPage({ user }: UserViewProps) {
 }
 
 const Section = styled(Box)(({ theme }) => ({
-  padding: 8,
   borderRadius: 8,
   backgroundColor: theme.palette.grey[900],
   border: `0.5px solid ${theme.palette.grey[800]}`,

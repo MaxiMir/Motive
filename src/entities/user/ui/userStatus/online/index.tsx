@@ -6,7 +6,7 @@ function Online() {
       overlap="circular"
       variant="dot"
       sx={(theme) => ({
-        width: 16,
+        width: 8,
         '& .MuiBadge-badge': {
           backgroundColor: '#44b700',
           color: '#44b700',

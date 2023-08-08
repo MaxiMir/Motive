@@ -9,3 +9,16 @@ export const ONLINE_SCORE = [
 ] as const
 
 export type OnlineScoreName = (typeof ONLINE_SCORE)[number]
+
+export const SPHERES_OF_LIFE = [
+  'family',
+  'friends',
+  'health',
+  'hobbies',
+  'money',
+  'vacation',
+  'development',
+  'work',
+] as const
+
+export type SphereOfLifeName = (typeof SPHERES_OF_LIFE)[number]

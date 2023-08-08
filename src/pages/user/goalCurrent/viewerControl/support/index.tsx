@@ -2,6 +2,7 @@ import { useIntl } from 'react-intl'
 import dynamic from 'next/dynamic'
 import { DayAct } from 'entities/day'
 import { useSignIn, useClient } from 'entities/viewer'
+import { Emoji } from 'shared/config'
 import { useToggle } from 'shared/lib/hooks'
 
 const SupportModal = dynamic(() => import('features/topic/support-user'))
@@ -30,7 +31,7 @@ function Support({ dayId, ownerName }: SupportProps) {
 
   return (
     <>
-      <DayAct title={title} startIcon="⚡️" onClick={onClick} />
+      <DayAct title={title} startIcon={Emoji.support} onClick={onClick} />
       {open && <SupportModal dayId={dayId} ownerName={ownerName} onClose={toggle} />}
     </>
   )

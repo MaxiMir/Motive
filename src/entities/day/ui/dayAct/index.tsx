@@ -39,8 +39,8 @@ export function DayAct({ title, count, active, isLoading, startIcon, onClick }: 
           minWidth: 'initial',
           height: 32,
           backgroundColor: '#2b2d31',
-          borderColor: active ? theme.palette.grey[700] : 'transparent',
           color: '#a5a6ac',
+          borderColor: active ? theme.palette.grey[700] : 'transparent',
           ':hover': {
             borderColor: theme.palette.grey[700],
           },

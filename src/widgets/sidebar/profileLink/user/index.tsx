@@ -20,7 +20,7 @@ function User({ client, primary }: UserProps) {
       <ListItemIcon sx={{ opacity: selected ? 1 : 0.6 }}>
         <Avatar name={client.name} src={client.avatar} size={24} />
       </ListItemIcon>
-      <ListItemText primary={primary} sx={{ color: selected ? 'inherit' : 'grey' }} />
+      <ListItemText primary={primary} color={selected ? 'inherit' : 'grey'} />
     </ListItem>
   )
 }

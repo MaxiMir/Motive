@@ -1,6 +1,7 @@
 import { useIntl } from 'react-intl'
 import { DayAct } from 'entities/day'
 import { GoalDto } from 'shared/api'
+import { Emoji } from 'shared/config'
 import { useUpdatePoints } from './model'
 
 interface AddPointsProps extends Pick<GoalDto, 'clientPoints' | 'day'> {
@@ -19,7 +20,7 @@ function AddPoints({ goalId, day, clientPoints }: AddPointsProps) {
       count={day.pointsRated}
       active={active}
       isLoading={isLoading}
-      startIcon="🦾"
+      startIcon={Emoji.points}
       onClick={onClick}
     />
   )

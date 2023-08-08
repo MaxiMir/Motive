@@ -1,28 +1,60 @@
-import { LinearProgress } from '@mui/material'
+import { Box, LinearProgress, Typography } from '@mui/material'
 import { linearProgressClasses } from '@mui/material/LinearProgress'
-import { styled } from '@mui/system'
-import { UserCharacteristicDto } from 'shared/api'
+import { withStyles } from '@mui/styles'
+import { useIntl } from 'react-intl'
+import { SphereOfLifeName } from 'shared/api'
+import { generateColorByName } from 'shared/ui/palette'
 
-interface LevelProgressProps {
-  characteristic: UserCharacteristicDto
+interface SphereOfLifeProps {
+  sphere: SphereOfLifeName
+  value: number
 }
 
-function LevelProgress({ characteristic }: LevelProgressProps): JSX.Element {
-  const value = (characteristic.progress % 1) * 100
+function SphereOfLife({ sphere, value }: SphereOfLifeProps): JSX.Element {
+  const { formatMessage } = useIntl()
+  const percentage = (value / 10) * 100
+  const backgroundColor = generateColorByName(sphere)
+  const message = formatMessage({ id: `common.${sphere}` })
 
-  return <Progress value={value} variant="determinate" />
+  return (
+    <Box display="flex" position="relative">
+      <Typography
+        sx={{
+          position: 'absolute',
+          top: '50%',
+          left: '50%',
+          transform: 'translate(-50%, -50%)',
+          writingMode: 'tb',
+          zIndex: 1,
+        }}
+      >
+        {message}
+      </Typography>
+      <Progress
+        value={percentage}
+        variant="determinate"
+        sx={{
+          [`& .${linearProgressClasses.bar}`]: {
+            backgroundColor,
+          },
+        }}
+      />
+    </Box>
+  )
 }
 
-const Progress = styled(LinearProgress)(({ theme }) => ({
-  height: 10,
-  borderRadius: 5,
-  [`&.${linearProgressClasses.colorPrimary}`]: {
+const Progress = withStyles((theme) => ({
+  root: {
+    width: 30,
+    height: 200,
+    borderRadius: 20,
+  },
+  colorPrimary: {
     backgroundColor: theme.palette.grey[theme.palette.mode === 'light' ? 200 : 800],
   },
-  [`& .${linearProgressClasses.bar}`]: {
-    borderRadius: 5,
-    backgroundColor: theme.palette.mode === 'light' ? '#1a90ff' : '#308fe8',
+  bar: {
+    transform: ({ value }) => `translateY(${value}%) !important`,
   },
-}))
+}))(LinearProgress)
 
-export default LevelProgress
+export default SphereOfLife

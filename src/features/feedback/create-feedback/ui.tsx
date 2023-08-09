@@ -57,7 +57,7 @@ function CreateFeedback({ goalId, dayId, onClose }: AddingModalProps) {
           <Stack alignItems="center" gap={3}>
             <Stack alignItems="center" gap={1}>
               <ShakeTypography>🎉</ShakeTypography>
-              <Typography variant="subtitle1" sx={{ color: 'support.main' }}>
+              <Typography variant="subtitle1" color="support.main">
                 {subtitle}
               </Typography>
             </Stack>

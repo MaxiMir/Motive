@@ -95,7 +95,16 @@ export function UserPage({ user }: UserViewProps) {
                   <MenuActions clientPage={clientPage} />
                 </Stack>
               </Stack>
-              <Box display="flex" width="100%" gap={2} mb={2}>
+              <Box
+                display="flex"
+                justifyContent={{
+                  xs: 'space-between',
+                  md: 'initial',
+                }}
+                width="100%"
+                gap={2}
+                mb={2}
+              >
                 {ONLINE_SCORE_MAIN.map((score) => (
                   <OnlineScore
                     name={score}

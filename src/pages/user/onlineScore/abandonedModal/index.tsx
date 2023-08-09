@@ -24,7 +24,7 @@ function AbandonedModal({ characteristic, onClose }: AbandonedModalProps) {
     <Modal title={title} maxWidth="xs" onClose={onClose}>
       <Stack position="relative" gap={2}>
         <Stack direction="row" alignItems="center" gap={2} alignSelf="center">
-          <Typography variant="h2" component="p" sx={{ color: 'abandoned.main' }}>
+          <Typography variant="h2" component="p" color="abandoned.main">
             {roundedProgress}
           </Typography>
           <Image src={webSrc} alt="" width={60} height={60} />

@@ -18,9 +18,9 @@ export function UserCard({ user, index }: UserCardProps) {
   return (
     <Stack direction="row" alignItems="center" gap={2}>
       <Link href={href} title={name}>
-        <Avatar src={avatar} name={name} size={55} />
+        <Avatar src={avatar} name={name} size={70} />
       </Link>
-      <Stack justifyContent="space-between" flex={1}>
+      <Stack justifyContent="space-between" flex={1} minHeight={70}>
         <UserStatus online={online}>
           <Box display="flex" alignItems="center" gap={2}>
             <Typography variant="subtitle1" component="span">

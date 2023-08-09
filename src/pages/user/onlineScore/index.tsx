@@ -51,13 +51,13 @@ function OnlineScore({ name, value, userId, characteristic, confirmations }: Onl
       >
         <Box
           display="flex"
-          alignItems={{
-            xs: 'center',
-            md: 'baseline',
-          }}
           flexDirection={{
             xs: 'column',
             md: 'row',
+          }}
+          alignItems={{
+            xs: 'center',
+            md: 'baseline',
           }}
           gap={{
             md: 0.5,

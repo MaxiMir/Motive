@@ -21,7 +21,7 @@ function SphereOfLife({ sphere, value }: SphereOfLifeProps): JSX.Element {
     <Vessel
       sx={{
         '--width': '30px',
-        '--height': '200px',
+        '--height': `${HEIGHT}px`,
         '--fill': fill,
         '--progress': `${HEIGHT - (value / 10) * HEIGHT}px`,
       }}

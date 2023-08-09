@@ -1,4 +1,5 @@
-import { Box, Alert, CircularProgress, Snackbar } from '@mui/material'
+import { Alert, CircularProgress, Snackbar } from '@mui/material'
+import { withStyles } from '@mui/styles'
 import { styled } from '@mui/system'
 import { useIntl } from 'react-intl'
 
@@ -8,25 +9,33 @@ function Updating() {
 
   return (
     <StyledSnackbar open>
-      <StyledAlert variant="standard" icon={false}>
-        <Box display="flex" alignItems="center" gap={1} color="zen.silent">
-          <CircularProgress size={14.5} color="inherit" />
-          {message}...
-        </Box>
+      <StyledAlert variant="standard" icon={<Icon size={14.5} />}>
+        {message}...
       </StyledAlert>
     </StyledSnackbar>
   )
 }
 
-const StyledSnackbar = styled(Snackbar)({
-  top: '50%',
-  left: '50%',
-  right: 'initial',
-  transform: 'translate(-50%, -50%)',
+const StyledSnackbar = withStyles({
+  root: {
+    top: '50%',
+    left: '50%',
+    right: 'initial',
+    transform: 'translate(-50%, -50%)',
+  },
+})(Snackbar)
+
+const Icon = styled(CircularProgress)({
+  color: 'white',
 })
 
-const StyledAlert = styled(Alert)({
-  backgroundColor: 'rgba(0, 0, 0, .7)',
-})
+const StyledAlert = withStyles({
+  root: {
+    background: 'black',
+  },
+  message: {
+    color: 'white',
+  },
+})(Alert)
 
 export default Updating

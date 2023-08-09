@@ -39,7 +39,7 @@ function UpdateAvatarModal({ userId, onClose }: UpdateAvatarModalProps) {
       <Stack alignItems="center" gap={2}>
         <Stack alignItems="center" gap={1}>
           <Description>{description}.</Description>
-          <Description sx={{ color: 'zen.sand' }}>{typesText}.</Description>
+          <Description color="zen.sand">{typesText}.</Description>
         </Stack>
         <Button
           size="small"

@@ -1,16 +1,24 @@
-export enum MainCharacteristicName {
-  Motivation = 'motivation',
-  Creativity = 'creativity',
-  Support = 'support',
-}
+export const ONLINE_SCORE_MAIN = ['completed', 'abandoned', 'followers', 'following'] as const
 
-export const MAIN_CHARACTERISTICS = Object.values(MainCharacteristicName)
+export const ONLINE_SCORE = [
+  ...ONLINE_SCORE_MAIN,
+  'progress',
+  'level',
+  'points',
+  'nextLevelPoints',
+] as const
 
-export enum SecondCharacteristicName {
-  Completed = 'completed',
-  Abandoned = 'abandoned',
-  Followers = 'followers',
-  Following = 'following',
-}
+export type OnlineScoreName = (typeof ONLINE_SCORE)[number]
 
-export const SECOND_CHARACTERISTICS = Object.values(SecondCharacteristicName)
+export const SPHERES_OF_LIFE = [
+  'family',
+  'friends',
+  'health',
+  'hobbies',
+  'money',
+  'vacation',
+  'development',
+  'work',
+] as const
+
+export type SphereOfLifeName = (typeof SPHERES_OF_LIFE)[number]

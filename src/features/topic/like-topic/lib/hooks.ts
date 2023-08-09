@@ -1,7 +1,7 @@
 import { useIntl } from 'react-intl'
 import { MessageDto, TopicType } from 'shared/api'
 
-export const useTitle = (message: MessageDto, disabled: boolean) => {
+export function useTitle(message: MessageDto, disabled: boolean) {
   const { like, type } = message
   const { formatMessage } = useIntl()
 

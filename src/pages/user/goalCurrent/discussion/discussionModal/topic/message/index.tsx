@@ -3,6 +3,7 @@ import { useIntl } from 'react-intl'
 import dynamic from 'next/dynamic'
 import Link from 'next/link'
 import { Like } from 'features/topic/like-topic'
+import { UserStatus } from 'entities/user'
 import { MessageDto } from 'shared/api'
 import { joinToHref } from 'shared/lib/helpers'
 import { useFormatDistance } from 'shared/lib/hooks'
@@ -11,7 +12,7 @@ import MenuActions from './menuActions'
 
 const Button = dynamic(() => import('@mui/material/Button'))
 const Markdown = dynamic(() => import('shared/ui/markdown'))
-const SupportSign = dynamic(() => import('entities/characteristic').then((m) => m.SupportSign))
+const SupportSign = dynamic(() => import('entities/discussion').then((m) => m.SupportSign))
 
 interface MessageProps {
   message: MessageDto
@@ -56,7 +57,7 @@ function Message({ message, answerFor, supportFor, replyProps }: MessageProps) {
       )}
       <Box display="flex" alignItems="flex-end" pb={5}>
         <Link href={href} title={name}>
-          <Avatar src={avatar} name={name} online={online} size={avatarSize} />
+          <Avatar src={avatar} name={name} size={avatarSize} />
         </Link>
       </Box>
       <Stack gap={0.5} flex={1} alignItems="flex-start">
@@ -69,11 +70,13 @@ function Message({ message, answerFor, supportFor, replyProps }: MessageProps) {
           })}
         >
           <Box display="flex" alignItems="center" gap={1}>
-            <Box component="b" fontSize={14}>
-              <Link href={href} title={user.name}>
-                {user.name}
-              </Link>
-            </Box>
+            <UserStatus online={online}>
+              <Box component="b" fontSize={14}>
+                <Link href={href} title={user.name}>
+                  {user.name}
+                </Link>
+              </Box>
+            </UserStatus>
             {supportFor && <SupportSign name={supportFor} />}
             {edited && (
               <Box component="span" fontSize={11} color="zen.silent">

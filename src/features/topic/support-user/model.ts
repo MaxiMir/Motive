@@ -4,7 +4,7 @@ import { useAddMessage } from 'entities/user'
 import { TopicType, createTopic } from 'shared/api'
 import { TopicSchema } from './schema'
 
-export const useCreateTopicForm = (dayId: number, onSuccess: () => void) => {
+export function useCreateTopicForm(dayId: number, onSuccess: () => void) {
   const addTopic = useAddMessage()
   const { mutateAsync } = useMutation(createTopic, {
     onSuccess(topic) {

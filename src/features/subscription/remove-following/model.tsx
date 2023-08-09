@@ -12,17 +12,7 @@ interface Options {
   insert: boolean
 }
 
-const getNextState = (page: FollowingPageDto, user: UserDto, index: number, add: boolean) =>
-  produce(page, (draft) => {
-    if (add) {
-      draft.following.splice(index, 0, user)
-      return
-    }
-
-    draft.following.splice(index, 1)
-  })
-
-export const useRemoveFollowing = () => {
+export function useRemoveFollowing() {
   const { formatMessage } = useIntl()
   const queryClient = useQueryClient()
   const { enqueueSnackbar, closeSnackbar } = useSnackbar()
@@ -77,4 +67,15 @@ export const useRemoveFollowing = () => {
   }
 
   return { isLoading, remove }
+}
+
+function getNextState(page: FollowingPageDto, user: UserDto, index: number, add: boolean) {
+  return produce(page, (draft) => {
+    if (add) {
+      draft.following.splice(index, 0, user)
+      return
+    }
+
+    draft.following.splice(index, 1)
+  })
 }

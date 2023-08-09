@@ -1,5 +1,4 @@
 import { Button } from '@mui/material'
-import { styled } from '@mui/system'
 import { useIntl } from 'react-intl'
 import dynamic from 'next/dynamic'
 import { UserPageDto } from 'shared/api'
@@ -19,25 +18,20 @@ function LearnMore({ user }: LearnMoreProps) {
 
   return (
     <>
-      <LearnMoreButton
+      <Button
         size="small"
         variant="text"
         aria-haspopup="true"
         aria-expanded={open ? 'true' : undefined}
         startIcon={<Icon name="info" />}
-        sx={{ mt: 1 }}
+        sx={(theme) => ({ minWidth: 'initial', mt: 1, color: theme.palette.grey[500] })}
         onClick={toggle}
       >
         {infoText}
-      </LearnMoreButton>
+      </Button>
       {open && <UserInfoModal user={user} onClose={toggle} />}
     </>
   )
 }
-
-const LearnMoreButton = styled(Button)(({ theme }) => ({
-  minWidth: 'initial',
-  color: theme.palette.grey[500],
-}))
 
 export default LearnMore

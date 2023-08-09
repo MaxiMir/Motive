@@ -57,9 +57,9 @@ function Sidebar({ breakpoints }: SidebarProps) {
         height="100%"
       >
         <Box>
-          <Box display="flex" alignItems="center" paddingLeft={1} sx={{ height: 56 }}>
+          <Box display="flex" alignItems="center" paddingLeft={1} height={56}>
             <IconButton aria-label={ariaLabel} onClick={toggleExpanded}>
-              <Icon name={menuIcon} sx={{ color: 'grey' }} />
+              <Icon name={menuIcon} color="grey" />
             </IconButton>
           </Box>
           <Divider light />

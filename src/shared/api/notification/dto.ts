@@ -1,16 +1,17 @@
 import { UserBaseDto } from '../user'
 
-export const enum NotificationType {
-  NewGoal = 'new-goal',
-  NewFollower = 'new-follower',
-  AddMotivation = 'add-motivation',
-  AddCreativity = 'add-creativity',
-  NewQuestion = 'new-question',
-  NewSupport = 'new-support',
-  NewAnswer = 'new-answer',
-  NewFeedback = 'new-feedback',
-  WebCoverage = 'web-coverage',
-}
+const NOTIFICATIONS = [
+  'new-goal',
+  'new-follower',
+  'added-points',
+  'new-question',
+  'new-support',
+  'new-answer',
+  'new-feedback',
+  'web-coverage',
+] as const
+
+type NotificationType = (typeof NOTIFICATIONS)[number]
 
 interface NotificationBase {
   readonly id: number
@@ -20,15 +21,7 @@ interface NotificationBase {
 }
 
 interface NotificationGoalDto extends NotificationBase {
-  readonly type:
-    | NotificationType.NewGoal
-    | NotificationType.AddMotivation
-    | NotificationType.AddCreativity
-    | NotificationType.NewQuestion
-    | NotificationType.NewSupport
-    | NotificationType.NewAnswer
-    | NotificationType.NewFeedback
-    | NotificationType.WebCoverage
+  readonly type: NotificationType
   readonly details: {
     id: number
     day: number
@@ -37,7 +30,7 @@ interface NotificationGoalDto extends NotificationBase {
 }
 
 interface NotificationUserDto extends NotificationBase {
-  readonly type: NotificationType.NewFollower
+  readonly type: 'new-follower'
   readonly details: {
     name?: string
   }

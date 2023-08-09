@@ -1,9 +1,7 @@
-import { MainCharacteristicName, SecondCharacteristicName } from '../characteristic'
+import { OnlineScoreName, SphereOfLifeName } from '../characteristic'
 import { Device } from '../device'
 
-export type UserCharacteristicName = MainCharacteristicName | SecondCharacteristicName
-
-export type UserCharacteristicDto = Readonly<{ [k in UserCharacteristicName]: number }>
+export type UserCharacteristicDto = Readonly<{ [k in OnlineScoreName | SphereOfLifeName]: number }>
 
 export interface UserBaseDto {
   readonly id: number

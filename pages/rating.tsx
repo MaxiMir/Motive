@@ -14,7 +14,7 @@ function RatingRoute() {
 
   return (
     <Layout title={meta.title} description={meta.description}>
-      {data && <RatingPage {...data} />}
+      {data && <RatingPage users={data} />}
     </Layout>
   )
 }

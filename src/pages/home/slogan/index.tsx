@@ -17,17 +17,17 @@ export function Slogan() {
           variant="h4"
           align="center"
           component="h1"
+          fontWeight={500}
+          color="support.dark"
           sx={({ palette }) => ({
             background: `linear-gradient(90deg, ${palette.motivation.main}, ${palette.creativity.dark}, ${palette.support.dark})`,
             WebkitBackgroundClip: 'text',
             WebkitTextFillColor: 'transparent',
-            color: palette.support.dark,
-            fontWeight: 500,
           })}
         >
           {process.env.NEXT_PUBLIC_APP_NAME}
         </Typography>
-        <Typography variant="caption" align="center" sx={{ color: '#A1A1A6' }}>
+        <Typography variant="caption" align="center" color="#A1A1A6">
           {subheader}
         </Typography>
       </Stack>

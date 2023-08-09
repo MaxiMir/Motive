@@ -6,27 +6,7 @@ import { MessageDto, TopicDto, updateTopic } from 'shared/api'
 import { useSnackbar } from 'shared/ui/snackbar'
 import { TopicSchema } from './schema'
 
-const getNextState = (discussion: InfiniteData<TopicDto[]>, message: MessageDto) => {
-  const { id, parentId, text } = message
-  const searchId = parentId || id
-
-  return produce(discussion, (draft) => {
-    const draftTopic = draft.pages.flat().find((t) => t.id === searchId)
-
-    if (!draftTopic) return
-
-    if (parentId && draftTopic.answer) {
-      draftTopic.answer.text = text
-      draftTopic.answer.edited = true
-      return
-    }
-
-    draftTopic.text = text
-    draftTopic.edited = true
-  })
-}
-
-export const useUpdateTopicForm = (initialValues: MessageDto, onSuccess: () => void) => {
+export function useUpdateTopicForm(initialValues: MessageDto, onSuccess: () => void) {
   const { formatMessage } = useIntl()
   const { enqueueSnackbar } = useSnackbar()
   const queryClient = useQueryClient()
@@ -48,5 +28,25 @@ export const useUpdateTopicForm = (initialValues: MessageDto, onSuccess: () => v
     async onSubmit(data) {
       await mutateAsync(data)
     },
+  })
+}
+
+function getNextState(discussion: InfiniteData<TopicDto[]>, message: MessageDto) {
+  const { id, parentId, text } = message
+  const searchId = parentId || id
+
+  return produce(discussion, (draft) => {
+    const draftTopic = draft.pages.flat().find((t) => t.id === searchId)
+
+    if (!draftTopic) return
+
+    if (parentId && draftTopic.answer) {
+      draftTopic.answer.text = text
+      draftTopic.answer.edited = true
+      return
+    }
+
+    draftTopic.text = text
+    draftTopic.edited = true
   })
 }

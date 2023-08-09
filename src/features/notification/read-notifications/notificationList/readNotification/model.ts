@@ -3,16 +3,7 @@ import { useMutation, useQueryClient } from 'react-query'
 import { useClient } from 'entities/viewer'
 import { NotificationDto, updateRead } from 'shared/api'
 
-const getNextState = (notifications: NotificationDto[], id: number) =>
-  produce(notifications, (draft) => {
-    const draftNotification = draft.find((d) => d.id === id)
-
-    if (!draftNotification) return
-
-    draftNotification.read = true
-  })
-
-export const useUpdateRead = () => {
+export function useUpdateRead() {
   const queryClient = useQueryClient()
   const client = useClient()
 
@@ -23,5 +14,15 @@ export const useUpdateRead = () => {
         (prev) => prev && getNextState(prev, id),
       )
     },
+  })
+}
+
+function getNextState(notifications: NotificationDto[], id: number) {
+  return produce(notifications, (draft) => {
+    const draftNotification = draft.find((d) => d.id === id)
+
+    if (!draftNotification) return
+
+    draftNotification.read = true
   })
 }

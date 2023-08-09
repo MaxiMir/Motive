@@ -1,14 +1,22 @@
 import { addDays, formatISO, startOfDay } from 'date-fns'
 
-export const getMidnight = () => startOfDay(new Date())
+export function getMidnight() {
+  return startOfDay(new Date())
+}
 
-export const getMidnightISO = () => formatISO(getMidnight())
+export function getMidnightISO() {
+  return formatISO(getMidnight())
+}
 
-export const getTomorrow = () => startOfDay(addDays(new Date(), 1))
+export function getTomorrow() {
+  return startOfDay(addDays(new Date(), 1))
+}
 
-export const getTomorrowISO = () => formatISO(getTomorrow())
+export function getTomorrowISO() {
+  return formatISO(getTomorrow())
+}
 
-export const getLocaleFolder = (locale: string): string => {
+export function getLocaleFolder(locale: string): string {
   switch (locale) {
     case 'en':
       return 'en-US'

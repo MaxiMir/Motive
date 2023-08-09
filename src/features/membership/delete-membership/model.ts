@@ -6,21 +6,7 @@ import { useClient } from 'entities/viewer'
 import { UserPageDto, deleteMember } from 'shared/api'
 import { useSnackbar } from 'shared/ui/snackbar'
 
-const getNextState = (page: UserPageDto, goalId: number, memberId: number, clientPage: boolean) =>
-  produce(page, (draft: Draft<UserPageDto>) => {
-    draft.clientMembership = draft.clientMembership.filter((o) => o.id !== memberId)
-
-    if (clientPage) {
-      draft.goals = draft.goals.filter((g) => g.id !== goalId)
-      return
-    }
-
-    const draftGoals = draft.goals
-    const draftGoal = draftGoals[draftGoals.findIndex((g) => g.id === goalId)]
-    draftGoal.characteristic.members -= 1
-  })
-
-export const useRemoveMember = (goalId: number, clientPage: boolean) => {
+export function useRemoveMember(goalId: number, clientPage: boolean) {
   const client = useClient()
   const { formatMessage } = useIntl()
   const { nickname } = useUserContext()
@@ -38,5 +24,19 @@ export const useRemoveMember = (goalId: number, clientPage: boolean) => {
       )
       enqueueSnackbar(message, { severity: 'success', icon: '🧞‍♂️️‍' })
     },
+  })
+}
+
+function getNextState(page: UserPageDto, goalId: number, memberId: number, clientPage: boolean) {
+  return produce(page, (draft: Draft<UserPageDto>) => {
+    draft.clientMembership = draft.clientMembership.filter((o) => o.id !== memberId)
+
+    if (clientPage) {
+      draft.goals = draft.goals.filter((g) => g.id !== goalId)
+      return
+    }
+
+    const draftGoal = draft.goals[draft.goals.findIndex((g) => g.id === goalId)]
+    draftGoal.members -= 1
   })
 }

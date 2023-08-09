@@ -1,6 +1,7 @@
 import { Button } from '@mui/material'
 import { useClient } from 'entities/viewer'
 import { MessageDto, TopicType } from 'shared/api'
+import { Emoji } from 'shared/config'
 import { useFormatNumber } from 'shared/lib/hooks'
 import TooltipArrow from 'shared/ui/TooltipArrow'
 import { checkOnDisabled, useTitle } from './lib'
@@ -18,7 +19,7 @@ export function Like({ message, parentId }: LikeProps) {
   const title = useTitle(message, disabled)
   const formatNumber = useFormatNumber()
   const formattedNumber = formatNumber(likeCount)
-  const startIcon = type === TopicType.Question ? '❤️' : '🙏'
+  const startIcon = type === TopicType.Question ? '❤️' : Emoji.points
   const [isLoading, onClick] = useSetLike(message, parentId)
 
   return (

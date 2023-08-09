@@ -1,7 +1,7 @@
 import { useIntl } from 'react-intl'
 import { Route } from 'shared/config'
 
-export const useRoutes = () => {
+export function useRoutes() {
   const { formatMessage } = useIntl()
 
   return [

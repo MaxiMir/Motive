@@ -1,10 +1,10 @@
 import { setSearchParams } from 'shared/lib/helpers'
 
-export const tryNativeShare = (
+export function tryNativeShare(
   href: string,
   title: string,
   onNotSupported: () => void,
-): Promise<void> => {
+): Promise<void> {
   if (!navigator.canShare) {
     return Promise.resolve().then(onNotSupported)
   }
@@ -64,7 +64,7 @@ const SHARERS = {
 
 type ShareType = keyof typeof SHARERS
 
-export const clickHandler = (type: ShareType, title: string, url: string): void => {
+export function clickHandler(type: ShareType, title: string, url: string): void {
   const { shareUrl, isLink } = SHARERS[type](url, title)
 
   if (isLink) {

@@ -1,8 +1,10 @@
 import { toShortString } from 'shared/lib/helpers'
 
-export const getBreakCount = (text: string) => text.split('\r\n').length
+export function getBreakCount(text: string): number {
+  return text.split('\r\n').length
+}
 
-export const toMarkdown = (value: string) => {
+export function toMarkdown(value: string) {
   const replacer = (found: string) => {
     const short = toShortString(found, 40)
     const full = /http.?:\/\//.test(found) ? found : `https://${found}`

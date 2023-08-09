@@ -1,12 +1,13 @@
-export const toShortString = (value: string, count: number) =>
-  value.length < count ? value : `${value.slice(0, count - 3)}...`
+export function toShortString(value: string, count: number) {
+  return value.length < count ? value : `${value.slice(0, count - 3)}...`
+}
 
 type Options = [single: string, double: string, doubleGenitive: string]
 
-export const getWordDeclination = (
+export function getWordDeclination(
   number: number,
   [single, double, doubleGenitive]: Options,
-): string => {
+): string {
   const numberAbs = Math.abs(number)
   const rest = numberAbs % 100
 
@@ -26,5 +27,3 @@ export const getWordDeclination = (
 
   return doubleGenitive
 }
-
-export const ucFirst = (value: string) => value && value[0].toUpperCase() + value.slice(1)

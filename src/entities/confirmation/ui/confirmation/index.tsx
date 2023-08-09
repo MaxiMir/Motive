@@ -33,12 +33,10 @@ export function Confirmation({ id, name, src, onClick }: ConfirmationProps) {
       <Button id={`confirmation-${id}`} size="small" color="inherit" onClick={onClick}>
         <Typography
           variant="caption"
-          sx={{
-            maxWidth: 95,
-            overflow: 'hidden',
-            whiteSpace: 'nowrap',
-            textOverflow: 'ellipsis',
-          }}
+          maxWidth={95}
+          whiteSpace="nowrap"
+          textOverflow="ellipsis"
+          overflow="hidden"
         >
           {name}
         </Typography>

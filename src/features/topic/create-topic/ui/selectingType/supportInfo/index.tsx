@@ -1,5 +1,5 @@
 import { Alert, Collapse } from '@mui/material'
-import { SupportRules } from 'entities/characteristic'
+import { SupportRules } from 'entities/discussion'
 
 interface SupportInfoProps {
   open: boolean

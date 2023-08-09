@@ -24,27 +24,28 @@ function PhotoInput({ multiple, disabled, onSelect }: PhotoInputProps) {
 
   return (
     <>
-      <Button
+      <StyledButton
         variant="outlined"
         color="warning"
         title={title}
         aria-label={title}
         disabled={disabled}
-        sx={{
-          position: 'relative',
-          width: 80,
-          height: 80,
-        }}
         onClick={onClick}
       >
         <Typography variant="h1" paragraph m={0}>
           🎞
         </Typography>
-      </Button>
+      </StyledButton>
       <Input ref={inputRef} type="file" accept="image/*" multiple={multiple} onChange={onChange} />
     </>
   )
 }
+
+const StyledButton = styled(Button)({
+  position: 'relative',
+  width: 80,
+  height: 80,
+})
 
 const Input = styled('input')({
   display: 'none',

@@ -4,12 +4,13 @@ import { useSnackbar } from 'shared/ui/snackbar'
 
 const PHOTO_LIMIT = 10
 
-export const usePhotoLimit = <T>(formik: FormikProps<T & { photos: File[] }>) => {
+export function usePhotoLimit<T>(formik: FormikProps<T & { photos: File[] }>) {
+  const { values, setFieldValue } = formik
   const { formatMessage } = useIntl()
   const { enqueueSnackbar } = useSnackbar()
 
   return (files: File[]) => {
-    const photos = [...formik.values.photos, ...files]
+    const photos = [...values.photos, ...files]
 
     if (photos.length > PHOTO_LIMIT) {
       const message = formatMessage(
@@ -19,6 +20,6 @@ export const usePhotoLimit = <T>(formik: FormikProps<T & { photos: File[] }>) =>
       enqueueSnackbar(message, { severity: 'error', icon: '☠️' })
     }
 
-    formik.setFieldValue('photos', photos.slice(0, PHOTO_LIMIT))
+    setFieldValue('photos', photos.slice(0, PHOTO_LIMIT))
   }
 }

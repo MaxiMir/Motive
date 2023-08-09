@@ -1,4 +1,3 @@
-import { MainCharacteristicName } from '../characteristic'
 import { DayDto } from '../day'
 import { MemberDto } from '../member'
 import { CreateTaskDto } from '../task'
@@ -19,21 +18,20 @@ export interface GoalBaseDto {
   readonly hashtags: string[]
   readonly stages: string[]
   readonly stage: number
-  readonly characteristic: Readonly<{ [k in GoalCharacteristicName]: number }>
   readonly owner: UserBaseDto
+  readonly points: number
+  readonly members: number
 }
 
-export type GoalCharacteristicName = MainCharacteristicName | 'members'
+export type GoalCharacteristicName = 'runningDays' | 'members' | 'points'
 
 export interface GoalDto extends GoalBaseDto {
   readonly day: DayDto
   readonly calendar: CalendarDto[]
-  readonly reactions: ReactionsDto
   readonly completed: boolean
   readonly member?: MemberDto
+  readonly clientPoints: number[]
 }
-
-export type ReactionsDto = Readonly<{ [key in MainCharacteristicName]: number[] }>
 
 export interface CreatedGoal extends Readonly<Omit<GoalDto, 'day'>> {
   readonly days: DayDto[]

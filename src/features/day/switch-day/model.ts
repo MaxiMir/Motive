@@ -4,13 +4,7 @@ import { useChangeDayUrl, useGoalsCache } from 'entities/user'
 import { GoalDto, DayDto, getDay, getMemberDay } from 'shared/api'
 import { getDateMap, getDayKey } from './lib'
 
-const getNextState = (goals: GoalDto[], goalId: number, day: DayDto): GoalDto[] =>
-  produce(goals, (draft) => {
-    const draftGoal = draft[draft.findIndex((g) => g.id === goalId)]
-    draftGoal.day = day
-  })
-
-export const useSwitchDay = (goal: GoalDto) => {
+export function useSwitchDay(goal: GoalDto) {
   const { id, day, calendar, member } = goal
   const [goals, mutateGoals] = useGoalsCache()
   const changeDayUrl = useChangeDayUrl()
@@ -51,4 +45,11 @@ export const useSwitchDay = (goal: GoalDto) => {
     onChangeDate,
     shouldDisableDate,
   }
+}
+
+function getNextState(goals: GoalDto[], goalId: number, day: DayDto): GoalDto[] {
+  return produce(goals, (draft) => {
+    const draftGoal = draft[draft.findIndex((g) => g.id === goalId)]
+    draftGoal.day = day
+  })
 }

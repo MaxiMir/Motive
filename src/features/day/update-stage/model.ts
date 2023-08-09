@@ -5,13 +5,7 @@ import { useGoalsCache } from 'entities/user'
 import { GoalDto, updateStage } from 'shared/api'
 import { useSnackbar } from 'shared/ui/snackbar'
 
-const getNextState = (goals: GoalDto[], goalId: number) =>
-  produce(goals, (draft) => {
-    const draftGoal = draft[draft.findIndex((g) => g.id === goalId)]
-    draftGoal.stage += 1
-  })
-
-export const useUpdateStage = (onSuccess: () => void) => {
+export function useUpdateStage(onSuccess: () => void) {
   const { formatMessage } = useIntl()
   const [goals, mutateGoals] = useGoalsCache()
   const { enqueueSnackbar } = useSnackbar()
@@ -23,5 +17,12 @@ export const useUpdateStage = (onSuccess: () => void) => {
       onSuccess()
       enqueueSnackbar(message, { severity: 'success', icon: '🚀' })
     },
+  })
+}
+
+function getNextState(goals: GoalDto[], goalId: number) {
+  return produce(goals, (draft) => {
+    const draftGoal = draft[draft.findIndex((g) => g.id === goalId)]
+    draftGoal.stage += 1
   })
 }

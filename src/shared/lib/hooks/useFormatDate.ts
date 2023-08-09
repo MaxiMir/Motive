@@ -1,6 +1,6 @@
 import { useIntl } from 'react-intl'
 
-export const useFormatDate = () => {
+export function useFormatDate() {
   const { locale } = useIntl()
 
   return (value: string, options?: Intl.DateTimeFormatOptions) => {

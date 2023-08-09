@@ -1,15 +1,14 @@
 import { Box, Card, Divider, IconButton, Stack, Typography } from '@mui/material'
 import { styled } from '@mui/system'
 import { differenceInCalendarDays } from 'date-fns'
-import { Fragment } from 'react'
 import { useIntl } from 'react-intl'
 import dynamic from 'next/dynamic'
 import { useSwitchDay } from 'features/day/switch-day'
-import { CharacteristicGoal } from 'entities/characteristic'
+import { GoalScore } from 'entities/goal'
 import { findMember } from 'entities/member'
 import { getDayHref } from 'entities/page'
 import { useClient } from 'entities/viewer'
-import { MAIN_CHARACTERISTICS, GoalCharacteristicName, GoalDto, MemberDto } from 'shared/api'
+import { GoalDto, MemberDto } from 'shared/api'
 import { HashMark } from 'shared/config'
 import { getMidnight } from 'shared/lib/utils'
 import Accordion from 'shared/ui/Accordion'
@@ -30,8 +29,6 @@ const Web = dynamic(() => import('./web'))
 const ViewerControl = dynamic(() => import('./viewerControl'))
 const OwnerControl = dynamic(() => import('./ownerControl'))
 
-const CHARACTERISTICS: GoalCharacteristicName[] = [...MAIN_CHARACTERISTICS, 'members']
-
 interface GoalCurrentProps {
   goal: GoalDto
   nickname: string
@@ -44,13 +41,14 @@ function GoalCurrent({ goal, nickname, clientPage, clientMembership }: GoalCurre
     id,
     name,
     hashtags,
-    characteristic,
     owner,
     stages,
     day,
+    points,
+    clientPoints,
     member,
+    members,
     calendar,
-    reactions,
     completed,
     started,
   } = goal
@@ -118,12 +116,10 @@ function GoalCurrent({ goal, nickname, clientPage, clientMembership }: GoalCurre
     <Box
       id={`goal-${id}`}
       component="article"
-      sx={{
-        display: 'grid',
-        gridTemplateRows: '1fr auto',
-        marginBottom: '10px',
-        breakInside: 'avoid',
-      }}
+      display="grid"
+      gridTemplateRows="1fr auto"
+      marginBottom="10px"
+      sx={{ breakInside: 'avoid' }}
     >
       <Box
         padding="1px"
@@ -172,19 +168,13 @@ function GoalCurrent({ goal, nickname, clientPage, clientMembership }: GoalCurre
                   backgroundColor: theme.palette.grey[900],
                 })}
               >
-                <CharacteristicGoal name="runningDays" value={runningDays} />
+                <div />
+                <GoalScore name="runningDays" value={runningDays} />
                 <Divider orientation="vertical" flexItem light />
-                {CHARACTERISTICS.map((characteristicName) => (
-                  <Fragment key={characteristicName}>
-                    <CharacteristicGoal
-                      name={characteristicName}
-                      value={characteristic[characteristicName]}
-                    />
-                    {CHARACTERISTICS.at(-1) !== characteristicName && (
-                      <Divider orientation="vertical" flexItem light />
-                    )}
-                  </Fragment>
-                ))}
+                <GoalScore name="points" value={points} />
+                <Divider orientation="vertical" flexItem light />
+                <GoalScore name="members" value={members} />
+                <div />
               </Stack>
               <Stack alignItems="center">
                 <DayControls>
@@ -288,7 +278,7 @@ function GoalCurrent({ goal, nickname, clientPage, clientMembership }: GoalCurre
                         day={day}
                         calendar={calendar}
                         ownerName={owner.name}
-                        reactions={reactions}
+                        clientPoints={clientPoints}
                         forTomorrow={forTomorrow}
                         clientPage={clientPage}
                         clientMember={clientMember}

@@ -1,4 +1,6 @@
 ### TODO
+* Добавить модалку об опыте
+* Добавить прогресс загрузки в фоне
 * Goal передать для клика
 * Добавить модалку о закрытии и сохранении данных
 * Распознание текста в модалке обратной связи.
@@ -52,11 +54,11 @@
 
 ### Tips
 ```shell
-docker build -t mmirrev/frontend:1.0.93 .
+docker build -t mmirrev/frontend:1.0.95 .
 # artifactory:
-docker tag <IMAGE_ID> mmirrev.jfrog.io/default-docker-virtual/frontend:1.0.93
-docker push mmirrev/frontend:1.0.93
-docker pull mmirrev.jfrog.io/default-docker-virtual/frontend:1.0.93
+docker tag <IMAGE_ID> mmirrev/frontend:1.0.95
+docker push mmirrev/frontend:1.0.95
+docker pull mmirrev/frontend:1.0.95
 
 # copy:
 docker cp <IMAGE_ID>:/home/node/client /home # <-
@@ -85,7 +87,7 @@ version: '3.3'
 
 services:
   frontend:
-    image: maximir.jfrog.io/default-docker-virtual/frontend:1.0.93
+    image: mmirrev/frontend:1.0.95
     depends_on:
       - backend
     restart: unless-stopped
@@ -93,7 +95,7 @@ services:
       - "127.0.0.1:3000:3000"
 
   backend:
-    image: mmirrev.jfrog.io/default-docker-virtual/backend:1.0.54
+    image: mmirrev/backend:1.0.54
     environment:
       - PORT=4000
       - CLIENT=https://2bebetter.pro

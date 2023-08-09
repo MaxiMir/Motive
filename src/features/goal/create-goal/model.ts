@@ -10,12 +10,7 @@ import { getMidnightISO } from 'shared/lib/utils'
 import { useSnackbar } from 'shared/ui/snackbar'
 import { GoalSchema } from './schema'
 
-const getNextState = (goals: GoalDto[], goal: CreatedGoal) =>
-  produce(goals, (draft) => {
-    draft.push({ ...goal, day: goal.days[0] })
-  })
-
-export const useCreateGoalForm = (onSuccess: () => void) => {
+export function useCreateGoalForm(onSuccess: () => void) {
   const { formatMessage } = useIntl()
   const { enqueueSnackbar } = useSnackbar()
   const [goals, mutateGoal] = useGoalsCache()
@@ -45,5 +40,11 @@ export const useCreateGoalForm = (onSuccess: () => void) => {
     async onSubmit(data) {
       await mutateAsync(data)
     },
+  })
+}
+
+function getNextState(goals: GoalDto[], goal: CreatedGoal) {
+  return produce(goals, (draft) => {
+    draft.push({ ...goal, day: goal.days[0] })
   })
 }

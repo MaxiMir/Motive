@@ -13,7 +13,7 @@ import { useCreateTopicForm } from '../model'
 const CircularProgress = dynamic(() => import('@mui/material/CircularProgress'))
 const InputAdornment = dynamic(() => import('@mui/material/InputAdornment'))
 const Typography = dynamic(() => import('@mui/material/Typography'))
-const SupportSign = dynamic(() => import('entities/characteristic').then((m) => m.SupportSign))
+const SupportSign = dynamic(() => import('entities/discussion').then((m) => m.SupportSign))
 const Icon = dynamic(() => import('shared/ui/Icon'))
 const SelectingType = dynamic(() => import('./selectingType'))
 

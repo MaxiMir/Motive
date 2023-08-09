@@ -8,7 +8,7 @@ import {
   ListItemText,
   ListItemIcon,
 } from '@mui/material'
-import { drawerClasses } from '@mui/material/Drawer'
+import { withStyles } from '@mui/styles'
 import { signOut } from 'next-auth/react'
 import { useIntl } from 'react-intl'
 import Link from 'next/link'
@@ -32,25 +32,14 @@ function SidebarModal({ onOpenSettings, onClose }: SidebarModalProps) {
   const onSignOut = () => signOut()
 
   return (
-    <Drawer
-      open
-      anchor="left"
-      sx={{
-        [`& .${drawerClasses.paper}`]: {
-          width: 230,
-          backgroundColor: 'underlay',
-          borderRight: '1px solid rgb(38, 38, 38)',
-        },
-      }}
-      onClose={onClose}
-    >
+    <StyledDrawer open anchor="left" onClose={onClose}>
       <Box display="flex" justifyContent="flex-end" alignItems="center" pr={1} height={56}>
         <IconButton aria-label={closeText} onClick={onClose}>
           <Icon name="close" />
         </IconButton>
       </Box>
       <Divider />
-      <Box role="presentation" component="nav" sx={{ height: '100%' }}>
+      <Box role="presentation" component="nav" height="100%">
         <List>
           {routes.map(({ primary, icon, href }) => (
             <ListItem button href={href} component={Link} key={href}>
@@ -84,8 +73,16 @@ function SidebarModal({ onOpenSettings, onClose }: SidebarModalProps) {
           </>
         )}
       </Box>
-    </Drawer>
+    </StyledDrawer>
   )
 }
+
+const StyledDrawer = withStyles({
+  paper: {
+    width: 230,
+    backgroundColor: 'underlay',
+    borderRight: '1px solid rgb(38, 38, 38)',
+  },
+})(Drawer)
 
 export default SidebarModal

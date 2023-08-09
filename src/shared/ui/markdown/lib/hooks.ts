@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
 
-export const useDetectTruncated = () => {
+export function useDetectTruncated() {
   const ref = useRef<HTMLDivElement>(null)
   const [truncated, setTruncated] = useState(false)
 

@@ -5,12 +5,12 @@ import { useAddMessage } from 'entities/user'
 import { CreateTopicDto, TopicType, createTopic } from 'shared/api'
 import { useSnackbar } from 'shared/ui/snackbar'
 
-export const useCreateTopicForm = (
+export function useCreateTopicForm(
   dayId: number,
   topicId: number | undefined,
   type: TopicType,
   onSuccess?: () => void,
-) => {
+) {
   const { formatMessage } = useIntl()
   const onAdd = useAddMessage()
   const { enqueueSnackbar } = useSnackbar()

@@ -8,22 +8,12 @@ import { UserPageDto, UpdateUserDto, UserBaseDto, getUsers, updateUser } from 's
 import { getCurrentSearchParams, joinToHref, setSearchParams } from 'shared/lib/helpers'
 import { UserSchema } from './schema'
 
-const getNextState = (page: UserPageDto, user: UserBaseDto) =>
-  produce(page, (draft) => {
-    draft.name = user.name
-    draft.nickname = user.nickname
-    draft.avatar = user.avatar
-    draft.motto = user.motto
-    draft.location = user.location
-    draft.bio = user.bio
-  })
-
 interface Options {
   id: number
   data: UpdateUserDto
 }
 
-export const useUpdateUserForm = (user: UserPageDto, onSuccess: () => void) => {
+export function useUpdateUserForm(user: UserPageDto, onSuccess: () => void) {
   const { push } = useRouter()
   const { formatMessage } = useIntl()
   const [page, mutatePage] = useUserPageCache()
@@ -61,5 +51,16 @@ export const useUpdateUserForm = (user: UserPageDto, onSuccess: () => void) => {
 
       await mutateAsync({ id, data })
     },
+  })
+}
+
+function getNextState(page: UserPageDto, user: UserBaseDto) {
+  return produce(page, (draft) => {
+    draft.name = user.name
+    draft.nickname = user.nickname
+    draft.avatar = user.avatar
+    draft.motto = user.motto
+    draft.location = user.location
+    draft.bio = user.bio
   })
 }

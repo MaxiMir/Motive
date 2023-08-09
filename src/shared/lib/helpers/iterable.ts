@@ -1,6 +1,6 @@
 type MapLoader<T> = (locale: string, query: () => Promise<T>) => Promise<T>
 
-export const makeMapLoader = <T>(): MapLoader<T> => {
+export function makeMapLoader<T>(): MapLoader<T> {
   const langMap = new Map()
 
   return (locale, query) => {

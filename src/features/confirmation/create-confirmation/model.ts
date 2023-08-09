@@ -18,7 +18,7 @@ interface Values {
   end: Date
 }
 
-export const useCreateConfirmationForm = (goalId: number, onSuccess: () => void) => {
+export function useCreateConfirmationForm(goalId: number, onSuccess: () => void) {
   const { formatMessage } = useIntl()
   const { refetch } = useUserPage()
   const { enqueueSnackbar } = useSnackbar()

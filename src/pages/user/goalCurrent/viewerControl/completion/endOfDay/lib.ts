@@ -6,17 +6,7 @@ import { MemberDto, UserPageDto, updateMember } from 'shared/api'
 import { clickOnElem } from 'shared/lib/helpers'
 import { useSnackbar } from 'shared/ui/snackbar'
 
-const getNextState = (page: UserPageDto, member: MemberDto) =>
-  produce(page, (draft: Draft<UserPageDto>) => {
-    const draftMember = draft.clientMembership.find((m) => m.id === member.id)
-
-    if (!draftMember) return
-
-    draftMember.dayId = member.dayId
-    draftMember.updated = member.updated
-  })
-
-export const useSendEndOfDay = (goalId: number) => {
+export function useSendEndOfDay(goalId: number) {
   const { formatMessage } = useIntl()
   const { enqueueSnackbar } = useSnackbar()
   const [page, mutatePage] = useUserPageCache()
@@ -29,5 +19,16 @@ export const useSendEndOfDay = (goalId: number) => {
       clickOnElem(`next-${goalId}`)
       enqueueSnackbar(message, { severity: 'success', icon: '🧞‍♂️️‍' })
     },
+  })
+}
+
+function getNextState(page: UserPageDto, member: MemberDto) {
+  return produce(page, (draft: Draft<UserPageDto>) => {
+    const draftMember = draft.clientMembership.find((m) => m.id === member.id)
+
+    if (!draftMember) return
+
+    draftMember.dayId = member.dayId
+    draftMember.updated = member.updated
   })
 }

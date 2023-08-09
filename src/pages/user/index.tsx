@@ -1,17 +1,17 @@
 import { Box, Stack, Typography } from '@mui/material'
 import { styled } from '@mui/system'
 import dynamic from 'next/dynamic'
-import { UserContext } from 'entities/user'
+import SphereOfLife from 'pages/user/sphereOfLife'
+import { UserContext, UserStatus, UserLevel } from 'entities/user'
 import { useClient } from 'entities/viewer'
-import { MAIN_CHARACTERISTICS, SECOND_CHARACTERISTICS, UserPageDto } from 'shared/api'
+import { ONLINE_SCORE_MAIN, SPHERES_OF_LIFE, UserPageDto } from 'shared/api'
 import Container from 'shared/ui/Container'
-import AvatarActions from './avatarActions'
+import AvatarActs from './avatarActs'
 import EmptyGoals from './emptyGoals'
 import LearnMore from './learnMore'
-import MainCharacteristic from './mainCharacteristic'
 import MenuActions from './menuActions'
 import Nickname from './nickname'
-import SecondCharacteristic from './secondCharacteristic'
+import OnlineScore from './onlineScore'
 
 const Link = dynamic(() => import('@mui/material/Link'))
 const UpdateFollowing = dynamic(() => import('features/subscription/update-following'))
@@ -35,6 +35,9 @@ export function UserPage({ user }: UserViewProps) {
     motto,
     links,
     following,
+    online,
+    lastSeen,
+    device,
   } = user
   const client = useClient()
   const clientPage = id === client?.id
@@ -48,19 +51,17 @@ export function UserPage({ user }: UserViewProps) {
             display="flex"
             flexWrap="wrap"
             component="section"
-            sx={{
-              gap: {
-                xs: 2,
-                md: 6,
-              },
-              alignItems: 'flex-end',
-              justifyContent: {
-                xs: 'center',
-                md: 'flex-start',
-              },
+            alignItems="center"
+            justifyContent={{
+              xs: 'center',
+              md: 'flex-start',
             }}
+            gap={{
+              md: 6,
+            }}
+            padding={2}
           >
-            <AvatarActions user={user} clientPage={clientPage} />
+            <AvatarActs user={user} clientPage={clientPage} />
             <Stack
               alignItems={{
                 xs: 'center',
@@ -81,7 +82,10 @@ export function UserPage({ user }: UserViewProps) {
                 width="100%"
                 mb={1}
               >
-                <Nickname nickname={nickname} />
+                <Box display="flex" alignItems="center" gap={1}>
+                  <Nickname nickname={nickname} />
+                  <UserLevel level={characteristic.level} />
+                </Box>
                 <Stack direction="row" alignItems="center" gap={1}>
                   {clientPage ? (
                     <EditProfile user={user} />
@@ -91,33 +95,24 @@ export function UserPage({ user }: UserViewProps) {
                   <MenuActions clientPage={clientPage} />
                 </Stack>
               </Stack>
-              <Stack
-                direction="row"
-                justifyContent="space-between"
-                gap={{
-                  sm: 2,
-                }}
-                width={{
-                  xs: '100%',
-                  sm: 'initial',
-                }}
-                mb={1}
-              >
-                {SECOND_CHARACTERISTICS.map((characteristicName) => (
-                  <SecondCharacteristic
-                    name={characteristicName}
-                    value={characteristic[characteristicName]}
+              <Box display="flex" width="100%" gap={2} mb={2}>
+                {ONLINE_SCORE_MAIN.map((score) => (
+                  <OnlineScore
+                    name={score}
+                    value={characteristic[score]}
                     userId={id}
                     characteristic={characteristic}
                     confirmations={confirmations}
-                    key={characteristicName}
+                    key={score}
                   />
                 ))}
-              </Stack>
-              <Typography component="h1" sx={{ fontWeight: 'bold' }}>
-                {name}
-              </Typography>
-              {motto && <Typography sx={{ fontSize: 14 }}>{motto}</Typography>}
+              </Box>
+              <UserStatus online={online} lastSeen={lastSeen} device={device} mb={1}>
+                <Typography component="h1" fontWeight="bold">
+                  {name}
+                </Typography>
+              </UserStatus>
+              {motto && <Typography fontSize={14}>{motto}</Typography>}
               {links?.map(({ href, host, title }) => (
                 <Link
                   href={href}
@@ -125,7 +120,7 @@ export function UserPage({ user }: UserViewProps) {
                   rel="nofollow noopener noreferrer"
                   target="_blank"
                   key={href}
-                  sx={{ fontSize: 14 }}
+                  fontSize={14}
                 >
                   {host}
                 </Link>
@@ -133,16 +128,12 @@ export function UserPage({ user }: UserViewProps) {
               <LearnMore user={user} />
             </Stack>
           </Section>
-          <Section display="flex" justifyContent="space-between" component="section">
-            {MAIN_CHARACTERISTICS.map((characteristicName) => (
-              <MainCharacteristic
-                name={characteristicName}
-                value={characteristic[characteristicName]}
-                key={characteristicName}
-              />
-            ))}
-          </Section>
         </Stack>
+        <Section display="flex" justifyContent="space-between" padding={{ xs: 2, md: '16px 24px' }}>
+          {SPHERES_OF_LIFE.map((sphere) => (
+            <SphereOfLife sphere={sphere} value={characteristic[sphere]} key={sphere} />
+          ))}
+        </Section>
         {renderConfirmationsList && (
           <ConfirmationList confirmations={confirmations} clientPage={clientPage} />
         )}
@@ -155,7 +146,6 @@ export function UserPage({ user }: UserViewProps) {
                 xs: 1,
                 md: 2,
               },
-              columnGap: 3,
             }}
           >
             {goals.map((goal) => (
@@ -175,8 +165,7 @@ export function UserPage({ user }: UserViewProps) {
 }
 
 const Section = styled(Box)(({ theme }) => ({
-  padding: 8,
-  borderRadius: '12px',
+  borderRadius: 8,
   backgroundColor: theme.palette.grey[900],
   border: `0.5px solid ${theme.palette.grey[800]}`,
 }))

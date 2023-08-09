@@ -37,7 +37,7 @@ function DeleteAvatarModal({ userId, onClose }: DeleteAvatarModalProps) {
       ]}
       onClose={onClose}
     >
-      <Typography textAlign="center" sx={{ fontSize: 14 }}>
+      <Typography textAlign="center" fontSize={14}>
         {description}
       </Typography>
     </Modal>

@@ -7,7 +7,7 @@ import { useEffect, useState } from 'react'
  * As a workaround, it's online on the first load, and change
  * the status upon `online` or `offline` events.
  */
-export const useDetectOnline = () => {
+export function useDetectOnline() {
   const [online, setOnline] = useState(true)
 
   useEffect(() => {

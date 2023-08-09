@@ -1,20 +1,20 @@
-import { ClientDto, NotificationDto, NotificationType } from 'shared/api'
+import { ClientDto, NotificationDto } from 'shared/api'
 import { Route, HashMark, SearchParam } from 'shared/config'
 import { joinToHref, setSearchParams } from 'shared/lib/helpers'
 
-export const getGoalHref = (nickname: string, goalId: number) => {
+export function getGoalHref(nickname: string, goalId: number) {
   const hashMark = `#${HashMark.Goal}-${goalId}`
 
   return joinToHref(nickname, hashMark)
 }
 
-export const getDayHref = (userHref: string, goalId: number, dayId: number) => {
+export function getDayHref(userHref: string, goalId: number, dayId: number) {
   const url = setSearchParams(userHref, { [SearchParam.Dates]: `${goalId}:${dayId}` })
 
   return getGoalHref(url, goalId)
 }
 
-export const getDiscussionHref = (nickname: string, goalId: number, dayId: number) => {
+export function getDiscussionHref(nickname: string, goalId: number, dayId: number) {
   const url = setSearchParams(nickname, {
     [SearchParam.ScrollTo]: HashMark.Discussion,
     [SearchParam.ScrollId]: goalId,
@@ -25,41 +25,43 @@ export const getDiscussionHref = (nickname: string, goalId: number, dayId: numbe
   return joinToHref(url, hash)
 }
 
-export const getFeedbackHref = (nickname: string, goalId: number, dayId: number) => {
+export function getFeedbackHref(nickname: string, goalId: number, dayId: number) {
   const url = setSearchParams(nickname, { [SearchParam.Dates]: `${goalId}:${dayId}` })
   const hash = `#${HashMark.Feedback}-${goalId}`
 
   return joinToHref(url, hash)
 }
 
-export const getHashtagHref = (q: string) => {
+export function getHashtagHref(q: string) {
   return setSearchParams(Route.Search, { q, type: 'tag' })
 }
 
-export const getNotificationHref = (notification: NotificationDto, client?: ClientDto): string => {
+export function getNotificationHref(notification: NotificationDto, client?: ClientDto): string {
   const userPage = [
-    NotificationType.NewFollower,
-    NotificationType.NewGoal,
-    NotificationType.NewAnswer,
-    NotificationType.NewFeedback,
-    NotificationType.WebCoverage,
+    'new-follower',
+    'new-goal',
+    'new-answer',
+    'new-feedback',
+    'web-coverage',
   ].includes(notification.type)
   const nickname = userPage ? notification.initiator.nickname : client?.nickname || ''
 
   switch (notification.type) {
-    case NotificationType.NewFollower:
+    case 'new-follower':
       return joinToHref(nickname)
-    case NotificationType.WebCoverage:
+    case 'web-coverage':
       return getGoalHref(nickname, notification.details.id)
-    case NotificationType.NewFeedback:
+    case 'new-feedback':
       return getFeedbackHref(nickname, notification.details.id, notification.details.day)
-    case NotificationType.NewQuestion:
-    case NotificationType.NewAnswer:
-    case NotificationType.NewSupport:
+    case 'new-question':
+    case 'new-answer':
+    case 'new-support':
       return getDiscussionHref(nickname, notification.details.id, notification.details.day)
     default:
       return getDayHref(nickname, notification.details.id, notification.details.day)
   }
 }
 
-export const getArticleHref = (pathname: string): string => `${Route.Blog}/${pathname}`
+export function getArticleHref(pathname: string): string {
+  return `${Route.Blog}/${pathname}`
+}

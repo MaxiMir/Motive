@@ -11,12 +11,10 @@ function Nickname({ nickname }: NicknameProps) {
       <Typography
         variant="h5"
         component="p"
-        sx={{
-          maxWidth: 300,
-          textOverflow: 'ellipsis',
-          fontWeight: 300,
-        }}
+        fontWeight={300}
+        maxWidth={300}
         noWrap
+        textOverflow="ellipsis"
       >
         {nickname}
       </Typography>

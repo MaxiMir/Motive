@@ -63,7 +63,7 @@ function CreateConfirmationModal({ goalId, onClose }: CreateConfirmationModalPro
           <Stack alignItems="center" gap={3}>
             <Stack alignItems="center" gap={1}>
               <SpinTypography>🏆</SpinTypography>
-              <Typography variant="subtitle1" sx={{ color: '#ffa300' }}>
+              <Typography variant="subtitle1" color="#ffa300">
                 {subtitle}
               </Typography>
             </Stack>

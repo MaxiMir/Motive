@@ -36,7 +36,7 @@ export function Discussion({ goalId, dayId, count, owner, clientGoal }: Discussi
           </Typography>
           <Typography variant="h6" component="p">
             {header}{' '}
-            <Box component="span" sx={{ color: 'zen.silent' }}>
+            <Box component="span" color="zen.silent">
               • {count}
             </Box>
           </Typography>

@@ -1,5 +1,4 @@
-import { Box, Card, Divider, IconButton, Stack, Typography } from '@mui/material'
-import { styled } from '@mui/system'
+import { Box, Card, IconButton, Stack, Typography } from '@mui/material'
 import { differenceInCalendarDays } from 'date-fns'
 import { useIntl } from 'react-intl'
 import dynamic from 'next/dynamic'
@@ -159,50 +158,11 @@ function GoalCurrent({ goal, nickname, clientPage, clientMembership }: GoalCurre
                 </Box>
                 {!!hashtags.length && <Hashtags hashtags={hashtags} />}
               </Stack>
-              <Stack
-                direction="row"
-                justifyContent="space-between"
-                alignItems="center"
-                sx={(theme) => ({
-                  borderRadius: 1,
-                  backgroundColor: theme.palette.grey[900],
-                })}
-              >
-                <div />
-                <GoalScore name="runningDays" value={runningDays} />
-                <Divider orientation="vertical" flexItem light />
+              <Box display="flex" justifyContent="space-between" alignItems="center">
                 <GoalScore name="points" value={points} />
-                <Divider orientation="vertical" flexItem light />
                 <GoalScore name="members" value={members} />
-                <div />
-              </Stack>
+              </Box>
               <Stack alignItems="center">
-                <DayControls>
-                  <IconButton
-                    disabled={isLoading || !prev}
-                    aria-label={prevDayText}
-                    sx={{ color: 'zen.silent' }}
-                    onClick={onClickPrevDay}
-                  >
-                    <Icon name="arrow_back" />
-                  </IconButton>
-                  <Calendar
-                    dayDate={day.date}
-                    calendar={calendar}
-                    isLoading={isLoading}
-                    onChangeDate={onChangeDate}
-                    shouldDisableDate={shouldDisableDate}
-                  />
-                  <IconButton
-                    id={`next-${id}`}
-                    disabled={isLoading || !next}
-                    aria-label={nextDayText}
-                    sx={{ color: 'zen.silent' }}
-                    onClick={onClickNextDay}
-                  >
-                    <Icon name="arrow_forward" />
-                  </IconButton>
-                </DayControls>
                 <Card
                   variant="outlined"
                   sx={{
@@ -212,6 +172,33 @@ function GoalCurrent({ goal, nickname, clientPage, clientMembership }: GoalCurre
                     backgroundColor: '#121212',
                   }}
                 >
+                  <Box display="flex" alignItems="center" justifyContent="space-between" p={2}>
+                    <IconButton
+                      disabled={isLoading || !prev}
+                      aria-label={prevDayText}
+                      sx={{ color: 'zen.silent' }}
+                      onClick={onClickPrevDay}
+                    >
+                      <Icon name="arrow_back" />
+                    </IconButton>
+                    <Calendar
+                      dayDate={day.date}
+                      calendar={calendar}
+                      runningDays={runningDays}
+                      isLoading={isLoading}
+                      onChangeDate={onChangeDate}
+                      shouldDisableDate={shouldDisableDate}
+                    />
+                    <IconButton
+                      id={`next-${id}`}
+                      disabled={isLoading || !next}
+                      aria-label={nextDayText}
+                      sx={{ color: 'zen.silent' }}
+                      onClick={onClickNextDay}
+                    >
+                      <Icon name="arrow_forward" />
+                    </IconButton>
+                  </Box>
                   {!!stages.length && (
                     <Accordion
                       emoji="🚀"
@@ -304,18 +291,5 @@ function GoalCurrent({ goal, nickname, clientPage, clientMembership }: GoalCurre
     </Box>
   )
 }
-
-const DayControls = styled(Box)(({ theme }) => ({
-  width: '90%',
-  height: 50,
-  paddingInline: 8,
-  display: 'flex',
-  alignItems: 'center',
-  justifyContent: 'space-between',
-  backgroundColor: theme.palette.grey[900],
-  border: '1px solid rgba(255, 255, 255, 0.12)',
-  borderRadius: '12px 12px 0 0',
-  borderBottom: 'none',
-}))
 
 export default GoalCurrent

@@ -49,7 +49,18 @@ function SphereOfLife({ sphere, value }: SphereOfLifeProps): JSX.Element {
         </Fill>
       </Cont>
       <Value size="small" label={label} />
-      <Caption>{message}</Caption>
+      <Typography
+        sx={{
+          position: 'absolute',
+          top: '50%',
+          left: '50%',
+          transform: 'translate(-50%, -50%)',
+          writingMode: 'tb',
+          zIndex: 1,
+        }}
+      >
+        {message}
+      </Typography>
     </Vessel>
   )
 }
@@ -104,14 +115,5 @@ const Value = styled(Chip)(({ theme }) => ({
   fontWeight: 'bold',
   backgroundColor: theme.palette.grey[theme.palette.mode === 'light' ? 200 : 800],
 }))
-
-const Caption = styled(Typography)({
-  position: 'absolute',
-  top: '50%',
-  left: '50%',
-  transform: 'translate(-50%, -50%)',
-  writingMode: 'tb',
-  zIndex: 1,
-})
 
 export default SphereOfLife

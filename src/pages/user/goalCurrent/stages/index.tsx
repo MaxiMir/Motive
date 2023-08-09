@@ -1,10 +1,8 @@
-import { Step, StepContent, Stepper } from '@mui/material'
-import { indigo } from '@mui/material/colors'
-import { stepConnectorClasses } from '@mui/material/StepConnector'
+import { FormControlLabel, Radio, Box, Stack } from '@mui/material'
 import { useIntl } from 'react-intl'
 import dynamic from 'next/dynamic'
 import { useToggle } from 'shared/lib/hooks'
-import { StageLabel } from './stageLabel'
+import Icon from 'shared/ui/Icon'
 
 const Button = dynamic(() => import('@mui/material/Button'))
 const TooltipArrow = dynamic(() => import('shared/ui/TooltipArrow'))
@@ -26,49 +24,37 @@ function Stages({ goalId, stages, dayStage, forTomorrow, completeStage }: Stages
 
   return (
     <>
-      <Stepper
-        activeStep={dayStage}
-        orientation="vertical"
-        sx={{
-          padding: 0,
-          [`& .${stepConnectorClasses.active}`]: {
-            [`& .${stepConnectorClasses.line}`]: {
-              borderColor: indigo.A100,
-            },
-          },
-        }}
-      >
+      <Stack gap={2}>
         {stages.map((stage, index) => (
-          <Step key={stage}>
-            <StageLabel index={index} activeStep={dayStage} stage={stage} />
-            {!completeStage ? (
-              <StepContent />
-            ) : (
-              <StepContent>
-                <TooltipArrow title={title}>
-                  <Button
-                    size="small"
-                    variant="outlined"
-                    disabled={forTomorrow}
-                    aria-haspopup="true"
-                    aria-expanded={open ? 'true' : undefined}
-                    sx={{
-                      color: indigo['100'],
-                      borderColor: indigo['100'],
-                      ':hover': {
-                        borderColor: indigo['50'],
-                      },
-                    }}
-                    onClick={toggle}
-                  >
-                    {buttonText}
-                  </Button>
-                </TooltipArrow>
-              </StepContent>
+          <Box display="flex" justifyContent="space-between" key={stage}>
+            <FormControlLabel
+              value="female"
+              control={<Radio readOnly />}
+              label={stage}
+              checked={dayStage > index}
+              sx={{
+                color: dayStage > index ? '#308fe8' : 'zen.silent',
+              }}
+            />
+            {completeStage && dayStage === index && (
+              <TooltipArrow title={title}>
+                <Button
+                  size="small"
+                  variant="outlined"
+                  disabled={forTomorrow}
+                  aria-haspopup="true"
+                  aria-expanded={open ? 'true' : undefined}
+                  title={buttonText}
+                  sx={{ minWidth: 'initial' }}
+                  onClick={toggle}
+                >
+                  <Icon name="done" />
+                </Button>
+              </TooltipArrow>
             )}
-          </Step>
+          </Box>
         ))}
-      </Stepper>
+      </Stack>
       {open && (
         <UpdateStageModal goalId={goalId} stages={stages} dayStage={dayStage} onClose={toggle} />
       )}

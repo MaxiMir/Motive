@@ -57,7 +57,7 @@ export function ArticlePage({ article }: ArticlePageProps) {
         <Box display="flex" justifyContent="space-between" alignItems="center" mb={1}>
           <Breadcrumbs separator="•" aria-label="breadcrumb">
             <Chip size="small" label={tag} sx={{ backgroundColor }} />
-            <Typography component="time" dateTime={date} sx={{ color: 'zen.silent' }}>
+            <Typography component="time" dateTime={date} color="zen.silent">
               {formattedDate}
             </Typography>
           </Breadcrumbs>
@@ -91,7 +91,7 @@ export function ArticlePage({ article }: ArticlePageProps) {
             <Typography variant="h4" component="h1">
               {header}
             </Typography>
-            <Typography variant="caption" sx={{ color: 'zen.silent' }}>
+            <Typography variant="caption" color="zen.silent">
               {readTime} {readTimeText}
             </Typography>
           </Stack>

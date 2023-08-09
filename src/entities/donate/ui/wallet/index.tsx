@@ -41,7 +41,7 @@ export function Wallet({ name, wallet, src }: WalletProps) {
           md: 'block',
         }}
       >
-        <Typography variant="caption" sx={{ color: 'zen.silent' }}>
+        <Typography variant="caption" color="zen.silent">
           {wallet}
         </Typography>
       </Box>

@@ -88,7 +88,7 @@ function Message({ message, answerFor, supportFor, replyProps }: MessageProps) {
           <Markdown text={textWithUser} />
         </Stack>
         <Stack direction="row" alignItems="center" gap={1} width="100%" height={32} pl={2}>
-          <Typography variant="caption" sx={{ color: 'zen.silent' }}>
+          <Typography variant="caption" color="zen.silent">
             {dateDistance}
           </Typography>
           {replyProps && (

@@ -42,7 +42,7 @@ export function Advantage({ name }: AdvantageProps) {
           >
             <Link href={Route.Rating}>{title}</Link>
           </Typography>
-          <Typography sx={{ color: '#f5f5f799' }}>{subtitle}</Typography>
+          <Typography color="#f5f5f799">{subtitle}</Typography>
         </Stack>
       </Stack>
     </Box>

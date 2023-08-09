@@ -10,6 +10,7 @@ import { getBorders } from './lib'
 interface CalendarProps {
   dayDate: string
   calendar: CalendarDto[]
+  runningDays: number
   isLoading: boolean
   shouldDisableDate: (value: Date) => boolean
   onChangeDate: (value: Date | null) => void
@@ -18,6 +19,7 @@ interface CalendarProps {
 export function Calendar({
   dayDate,
   calendar,
+  runningDays,
   isLoading,
   shouldDisableDate,
   onChangeDate,
@@ -28,6 +30,7 @@ export function Calendar({
   const [min, max] = getBorders(calendar)
   const date = new Date(dayDate)
   const inputFormat = formatMessage({ id: 'common.format' })
+  const day = formatMessage({ id: 'common.day' })
   const formattedDate = formatDate(dayDate, { day: 'numeric', month: 'long' })
 
   return (
@@ -47,11 +50,11 @@ export function Calendar({
         <Button
           ref={inputRef}
           disabled={isLoading || open}
-          color="inherit"
-          endIcon={<Icon name="calendar_month" color="yellow" />}
+          endIcon={<Icon name="calendar_month" color="zen.silent" />}
+          sx={{ color: 'zen.silent' }}
           onClick={toggle}
         >
-          {formattedDate}
+          {formattedDate} ({runningDays} {day})
         </Button>
       )}
       renderDay={(_, _value, { key, disabled, ...pickerProps }) => (

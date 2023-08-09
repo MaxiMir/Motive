@@ -1,4 +1,4 @@
-import { Button } from '@mui/material'
+import { Chip } from '@mui/material'
 import { useIntl } from 'react-intl'
 import { GoalCharacteristicName } from 'shared/api'
 import { useFormatNumber } from 'shared/lib/hooks'
@@ -19,14 +19,7 @@ export function GoalScore({ name, value }: GoalScoreProps) {
 
   return (
     <TooltipArrow title={title}>
-      <Button
-        variant="outlined"
-        color="inherit"
-        startIcon={emoji}
-        sx={{ borderColor: 'transparent' }}
-      >
-        {formattedValue}
-      </Button>
+      <Chip avatar={<>{emoji}</>} label={formattedValue} sx={{ paddingLeft: 1 }} />
     </TooltipArrow>
   )
 }

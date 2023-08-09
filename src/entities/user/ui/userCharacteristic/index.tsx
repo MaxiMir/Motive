@@ -23,7 +23,7 @@ export function UserCharacteristic({ name, value }: UserCharacteristicProps) {
         {emoji}
       </Typography>
       <Box display="flex" minWidth={35}>
-        <Typography component="p" sx={{ color: 'white' }}>
+        <Typography component="p" color="white">
           {formattedValue}
           {showLevel && <Level />}
         </Typography>

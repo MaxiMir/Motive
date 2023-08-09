@@ -58,7 +58,7 @@ function UpdateAvatarModal({ userId, onClose }: UpdateAvatarModalProps) {
         </Button>
         <Input ref={inputRef} type="file" accept="image/*" onChange={onChange} />
         <Divider sx={{ width: '100%', mt: 2 }} light />
-        <Typography variant="caption" textAlign="center" sx={{ color: 'zen.silent' }}>
+        <Typography variant="caption" textAlign="center" color="zen.silent">
           {hintText}
         </Typography>
       </Stack>

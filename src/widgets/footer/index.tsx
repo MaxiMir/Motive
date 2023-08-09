@@ -36,7 +36,7 @@ function Footer({ breakpoints }: FooterProps) {
           <Box sx={{ color: 'zen.silent' }}>•</Box>
           <FooterLink href={Route.Contact}>{contactText}</FooterLink>
         </Box>
-        <Typography variant="caption" sx={{ color: 'zen.silent' }}>
+        <Typography variant="caption" color="zen.silent">
           © {year} {process.env.NEXT_PUBLIC_APP_NAME}
         </Typography>
       </Box>

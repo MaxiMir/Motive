@@ -19,7 +19,7 @@ function NoResult({ phrase }: NoResultProps) {
         </Box>
         &#187;.
       </Typography>
-      <Typography sx={{ color: 'zen.silent' }}>{description}</Typography>
+      <Typography color="zen.silent">{description}</Typography>
     </Stack>
   )
 }

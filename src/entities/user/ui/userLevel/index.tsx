@@ -1,19 +1,26 @@
 import { styled } from '@mui/system'
+import { useIntl } from 'react-intl'
+import TooltipArrow from 'shared/ui/TooltipArrow'
 
-interface LevelProps {
+interface UserLevelProps {
   level: number
 }
 
-function Level({ level }: LevelProps) {
+export function UserLevel({ level }: UserLevelProps) {
+  const { formatMessage } = useIntl()
+  const title = formatMessage({ id: 'common.level' })
+
   return (
-    <Hexagon>
-      <Value>{level}</Value>
-    </Hexagon>
+    <TooltipArrow title={title}>
+      <Hexagon>
+        <Level>{level}</Level>
+      </Hexagon>
+    </TooltipArrow>
   )
 }
 
 const Hexagon = styled('div')({
-  '--hex-side': '15px',
+  '--hex-side': '12px',
   position: 'relative',
   width: 'calc(var(--hex-side) * 1.732)',
   height: 'var(--hex-side)',
@@ -35,7 +42,7 @@ const Hexagon = styled('div')({
   },
 })
 
-const Value = styled('div')({
+const Level = styled('div')({
   position: 'absolute',
   top: '50%',
   left: '50%',
@@ -43,6 +50,5 @@ const Value = styled('div')({
   color: 'black',
   fontWeight: 'bold',
   zIndex: 1,
+  fontSize: 14,
 })
-
-export default Level

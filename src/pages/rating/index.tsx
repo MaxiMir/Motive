@@ -36,7 +36,7 @@ export function RatingPage({ users }: RatingPageProps) {
             </Typography>
           </Grid>
           <Grid item xs>
-            <Typography variant="subtitle1" component="p" align="right">
+            <Typography variant="subtitle1" component="p" align="right" color="gold">
               <b>{lvlText}</b>
             </Typography>
           </Grid>

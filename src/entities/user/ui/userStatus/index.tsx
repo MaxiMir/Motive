@@ -14,7 +14,7 @@ interface UserStatusProps extends BoxProps {
 }
 
 export function UserStatus({ online, lastSeen, device, children, ...props }: UserStatusProps) {
-  const flexDirection = online ? 'row' : 'column'
+  const flexDirection = online || !lastSeen ? 'row' : 'column'
 
   return (
     <Box

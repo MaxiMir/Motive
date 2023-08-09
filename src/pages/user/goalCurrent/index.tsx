@@ -4,7 +4,7 @@ import { differenceInCalendarDays } from 'date-fns'
 import { useIntl } from 'react-intl'
 import dynamic from 'next/dynamic'
 import { useSwitchDay } from 'features/day/switch-day'
-import { GoalIndex } from 'entities/goal'
+import { GoalScore } from 'entities/goal'
 import { findMember } from 'entities/member'
 import { getDayHref } from 'entities/page'
 import { useClient } from 'entities/viewer'
@@ -169,11 +169,11 @@ function GoalCurrent({ goal, nickname, clientPage, clientMembership }: GoalCurre
                 })}
               >
                 <div />
-                <GoalIndex name="runningDays" value={runningDays} />
+                <GoalScore name="runningDays" value={runningDays} />
                 <Divider orientation="vertical" flexItem light />
-                <GoalIndex name="points" value={points} />
+                <GoalScore name="points" value={points} />
                 <Divider orientation="vertical" flexItem light />
-                <GoalIndex name="members" value={members} />
+                <GoalScore name="members" value={members} />
                 <div />
               </Stack>
               <Stack alignItems="center">

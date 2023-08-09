@@ -1,17 +1,17 @@
-import { Stack, Typography } from '@mui/material'
+import { Box, Stack, Typography } from '@mui/material'
 import Link from 'next/link'
-import { UserCharacteristic, UserStatus } from 'entities/user'
+import { UserCharacteristic, UserLevel, UserStatus } from 'entities/user'
 import { ONLINE_SCORE_MAIN, UserDto } from 'shared/api'
 import { joinToHref } from 'shared/lib/helpers'
 import Avatar from 'shared/ui/avatar'
 import { MenuActions } from './menuActions'
 
-interface UserRowProps {
+interface UserCardProps {
   user: UserDto
   index: number
 }
 
-export function UserRow({ user, index }: UserRowProps) {
+export function UserCard({ user, index }: UserCardProps) {
   const { nickname, name, avatar, characteristic, online } = user
   const href = joinToHref(nickname)
 
@@ -22,9 +22,12 @@ export function UserRow({ user, index }: UserRowProps) {
       </Link>
       <Stack justifyContent="space-between" flex={1}>
         <UserStatus online={online}>
-          <Typography variant="subtitle1" component="span">
-            <Link href={href}>{name}</Link>
-          </Typography>
+          <Box display="flex" alignItems="center" gap={2}>
+            <Typography variant="subtitle1" component="span">
+              <Link href={href}>{name}</Link>
+            </Typography>
+            <UserLevel level={characteristic.level} />
+          </Box>
         </UserStatus>
         <Stack direction="row" justifyContent="space-between" alignItems="center">
           {ONLINE_SCORE_MAIN.map((characteristicName) => (

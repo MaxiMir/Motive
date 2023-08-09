@@ -56,7 +56,7 @@ export function UserCard({ user, index }: UserCardProps) {
           </Stack>
         </Grid>
         <Grid item xs>
-          <Typography variant="subtitle1" component="p" align="right">
+          <Typography variant="subtitle1" component="p" align="right" color="gold">
             <b>{characteristic.level}</b>
           </Typography>
         </Grid>

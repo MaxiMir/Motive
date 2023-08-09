@@ -5,12 +5,12 @@ import { useFormatNumber } from 'shared/lib/hooks'
 import TooltipArrow from 'shared/ui/TooltipArrow'
 import { Emoji } from 'src/shared/config'
 
-interface GoalIndexProps {
+interface GoalScoreProps {
   name: GoalCharacteristicName
   value: number
 }
 
-export function GoalIndex({ name, value }: GoalIndexProps) {
+export function GoalScore({ name, value }: GoalScoreProps) {
   const { formatMessage } = useIntl()
   const formatNumber = useFormatNumber()
   const formattedValue = formatNumber(value)

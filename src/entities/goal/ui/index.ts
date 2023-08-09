@@ -1,1 +1,1 @@
-export * from './goalIndex'
+export * from './goalScore'

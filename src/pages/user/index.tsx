@@ -2,14 +2,13 @@ import { Box, Stack, Typography } from '@mui/material'
 import { styled } from '@mui/system'
 import dynamic from 'next/dynamic'
 import SphereOfLife from 'pages/user/sphereOfLife'
-import { UserContext, UserStatus } from 'entities/user'
+import { UserContext, UserStatus, UserLevel } from 'entities/user'
 import { useClient } from 'entities/viewer'
 import { ONLINE_SCORE_MAIN, SPHERES_OF_LIFE, UserPageDto } from 'shared/api'
 import Container from 'shared/ui/Container'
 import AvatarActs from './avatarActs'
 import EmptyGoals from './emptyGoals'
 import LearnMore from './learnMore'
-import Level from './level'
 import MenuActions from './menuActions'
 import Nickname from './nickname'
 import OnlineScore from './onlineScore'
@@ -85,7 +84,7 @@ export function UserPage({ user }: UserViewProps) {
               >
                 <Box display="flex" alignItems="center" gap={1}>
                   <Nickname nickname={nickname} />
-                  <Level level={characteristic.level} />
+                  <UserLevel level={characteristic.level} />
                 </Box>
                 <Stack direction="row" alignItems="center" gap={1}>
                   {clientPage ? (

@@ -8,7 +8,7 @@ interface ProgressProps {
   children: ReactNode
 }
 
-export function Progress({ progress, radius, children }: ProgressProps) {
+function Progress({ progress, radius, children }: ProgressProps) {
   const offset = getOffset(progress, radius)
 
   return (
@@ -43,3 +43,5 @@ export function Progress({ progress, radius, children }: ProgressProps) {
     </Box>
   )
 }
+
+export default Progress

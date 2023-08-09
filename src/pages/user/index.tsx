@@ -9,6 +9,7 @@ import Container from 'shared/ui/Container'
 import AvatarActs from './avatarActs'
 import EmptyGoals from './emptyGoals'
 import LearnMore from './learnMore'
+import Level from './level'
 import MenuActions from './menuActions'
 import Nickname from './nickname'
 import OnlineScore from './onlineScore'
@@ -82,7 +83,10 @@ export function UserPage({ user }: UserViewProps) {
                 width="100%"
                 mb={1}
               >
-                <Nickname nickname={nickname} />
+                <Box display="flex" alignItems="center" gap={1}>
+                  <Nickname nickname={nickname} />
+                  <Level level={characteristic.level} />
+                </Box>
                 <Stack direction="row" alignItems="center" gap={1}>
                   {clientPage ? (
                     <EditProfile user={user} />

@@ -7,7 +7,7 @@ import { UserPageDto } from 'shared/api'
 import { useToggle } from 'shared/lib/hooks'
 import Avatar from 'shared/ui/avatar'
 import ListItem from 'shared/ui/ListItem'
-import { Progress } from './progress'
+import Progress from './progress'
 
 const LightBox = dynamic(() => import('shared/ui/LightBox'))
 const UpdateModal = dynamic(() => import('features/user/update-avatar'))

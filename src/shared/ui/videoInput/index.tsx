@@ -22,35 +22,19 @@ function VideoInput({ disabled, onSelect }: VideoInputProps) {
 
   return (
     <>
-      <Button
+      <StyledButton
         variant="outlined"
         color="warning"
         title={title}
         aria-label={title}
         disabled={disabled}
-        sx={{
-          position: 'relative',
-          width: 80,
-          height: 80,
-        }}
         onClick={onClick}
       >
         <Typography variant="h1" paragraph m={0}>
           📼
         </Typography>
-        <Chip
-          size="small"
-          label={soonText}
-          sx={{
-            position: 'absolute',
-            top: -12,
-            left: '50%',
-            transform: 'translateX(-50%)',
-            borderColor: 'rgba(255, 167, 38, 0.7)',
-            color: 'rgb(255, 167, 38)',
-          }}
-        />
-      </Button>
+        <StyledChip size="small" label={soonText} />
+      </StyledButton>
       <Input ref={videoInputRef} type="file" accept=".mov,.mp4" onChange={onAddVideo} />
     </>
   )
@@ -58,6 +42,21 @@ function VideoInput({ disabled, onSelect }: VideoInputProps) {
 
 const Input = styled('input')({
   display: 'none',
+})
+
+const StyledButton = styled(Button)({
+  position: 'relative',
+  width: 80,
+  height: 80,
+})
+
+const StyledChip = styled(Chip)({
+  position: 'absolute',
+  top: -12,
+  left: '50%',
+  transform: 'translateX(-50%)',
+  borderColor: 'rgba(255, 167, 38, 0.7)',
+  color: 'rgb(255, 167, 38)',
 })
 
 export default VideoInput

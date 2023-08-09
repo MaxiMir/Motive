@@ -1,4 +1,5 @@
 import { Button, IconButton, Stack } from '@mui/material'
+import { styled } from '@mui/system'
 import { useIntl } from 'react-intl'
 import dynamic from 'next/dynamic'
 import Icon from 'shared/ui/Icon'
@@ -45,21 +46,19 @@ function PhotoButton({ image, disabled, onClick }: PhotoButtonProps) {
           <Image src={image} alt="" layout="fill" objectFit="contain" />
         )}
         <TooltipArrow title={title}>
-          <IconButton
-            disabled={disabled}
-            sx={{
-              position: 'absolute',
-              top: -8,
-              right: -8,
-            }}
-            onClick={onClick}
-          >
+          <StyledIconButton disabled={disabled} onClick={onClick}>
             <Icon name="cancel" />
-          </IconButton>
+          </StyledIconButton>
         </TooltipArrow>
       </Stack>
     </Button>
   )
 }
+
+const StyledIconButton = styled(IconButton)({
+  position: 'absolute',
+  top: -8,
+  right: -8,
+})
 
 export default PhotoButton

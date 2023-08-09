@@ -1,46 +1,42 @@
-import { Box, Chip } from '@mui/material'
+import { Box } from '@mui/material'
 import { ReactNode } from 'react'
-import { useIntl } from 'react-intl'
-import { UserCharacteristicDto } from 'shared/api'
-import Circle from 'shared/ui/Circle'
 import { getOffset } from './lib'
 
 interface ProgressProps {
-  characteristic: UserCharacteristicDto
+  progress: number
   radius: number
   children: ReactNode
 }
 
-export function Progress({ characteristic, radius, children }: ProgressProps) {
-  const { formatMessage } = useIntl()
-  const offset = getOffset(characteristic.progress, radius)
-  const title = formatMessage({ id: 'common.level' })
+export function Progress({ progress, radius, children }: ProgressProps) {
+  const offset = getOffset(progress, radius)
 
   return (
     <Box position="relative">
-      <Circle
-        offset={offset}
-        radius={radius}
-        dasharray={1100}
-        light="transparent"
-        dark="#308fe8"
-        size={radius}
-        strokeWidth={15}
-        strokeWidthBg={15}
-      />
-      <Chip
-        size="small"
-        label={characteristic.level}
-        title={title}
-        sx={{
-          position: 'absolute',
-          top: 0,
-          left: '50%',
-          background: '#308fe8',
-          transform: 'translateX(-50%)',
-          fontWeight: 'bold',
-        }}
-      />
+      <svg width={radius} height={radius} viewBox="-20 -36 400 400">
+        <Box
+          component="circle"
+          stroke="#308fe8"
+          transform="rotate(-90 175 175)"
+          cx={radius}
+          cy={radius}
+          r={radius}
+          strokeDasharray={1100}
+          strokeWidth={15}
+          strokeDashoffset={offset}
+          strokeLinecap="round"
+          fill="none"
+          sx={{
+            transition: 'stroke-dashoffset 1s ease-out',
+            animation: 'progress 1s ease-out',
+            '@keyframes progress': {
+              '0%': {
+                strokeDasharray: `${offset} 1100`,
+              },
+            },
+          }}
+        />
+      </svg>
       <Box position="absolute" top="50%" left="50%" sx={{ transform: 'translate(-50%, -50%)' }}>
         {children}
       </Box>

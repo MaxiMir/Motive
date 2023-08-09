@@ -1,4 +1,5 @@
 import { Box, IconButton } from '@mui/material'
+import { styled } from '@mui/system'
 import { useIntl } from 'react-intl'
 import Icon from 'shared/ui/Icon'
 import Player from 'shared/ui/Player'
@@ -28,20 +29,18 @@ function VideoPreview({ video, disabled, onRemove }: VideoPreviewProps) {
         }}
       />
       <TooltipArrow title={removeText}>
-        <IconButton
-          disabled={disabled}
-          sx={{
-            position: 'absolute',
-            top: -8,
-            right: -8,
-          }}
-          onClick={onRemove}
-        >
+        <StyledIconButton disabled={disabled} onClick={onRemove}>
           <Icon name="cancel" />
-        </IconButton>
+        </StyledIconButton>
       </TooltipArrow>
     </Box>
   )
 }
+
+const StyledIconButton = styled(IconButton)({
+  position: 'absolute',
+  top: -8,
+  right: -8,
+})
 
 export default VideoPreview

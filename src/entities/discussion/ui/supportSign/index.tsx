@@ -1,6 +1,8 @@
 import { Avatar } from '@mui/material'
+import { blue } from '@mui/material/colors'
+import { styled } from '@mui/system'
 import { useIntl } from 'react-intl'
-import { Emoji } from 'shared/config'
+import Icon from 'shared/ui/Icon'
 import TooltipArrow from 'shared/ui/TooltipArrow'
 
 interface SupportSignProps {
@@ -14,9 +16,18 @@ export function SupportSign({ name }: SupportSignProps) {
 
   return (
     <TooltipArrow title={title}>
-      <Avatar sx={{ width: 21, height: 21, fontSize: 12, backgroundColor: 'support.main' }}>
-        {Emoji.support}
-      </Avatar>
+      <StyledAvatar>
+        <Icon name="bolt" color="common.white" />
+      </StyledAvatar>
     </TooltipArrow>
   )
 }
+
+const StyledAvatar = styled(Avatar)({
+  width: 21,
+  height: 21,
+  backgroundColor: blue[800],
+  '& span': {
+    fontSize: 14,
+  },
+})

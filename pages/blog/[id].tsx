@@ -8,7 +8,7 @@ import { Layout } from 'app/layout'
 import { ArticlePage } from 'pages/article'
 /* eslint-disable boundaries/element-types */
 import { useArticlePage } from 'entities/page'
-import { getArticlePage, OGType, PossiblePageError } from 'shared/api'
+import { getArticlePage, PossiblePageError } from 'shared/api'
 
 function ArticleRoute() {
   const { query } = useRouter()
@@ -16,12 +16,7 @@ function ArticleRoute() {
   const { data } = useArticlePage(pathname)
 
   return (
-    <Layout
-      title={data?.title}
-      description={data?.description}
-      image={data?.image}
-      type={OGType.Article}
-    >
+    <Layout title={data?.title} description={data?.description} image={data?.image} type="article">
       {data && <ArticlePage article={data} />}
     </Layout>
   )

@@ -1,5 +1,5 @@
 import { useIntl } from 'react-intl'
-import { MessageDto, TopicType } from 'shared/api'
+import { MessageDto } from 'shared/api'
 
 export function useTitle(message: MessageDto, disabled: boolean) {
   const { like, type } = message
@@ -9,7 +9,7 @@ export function useTitle(message: MessageDto, disabled: boolean) {
     return !like ? false : formatMessage({ id: 'common.helpful' })
   }
 
-  if (type === TopicType.Question) {
+  if (type === 'question') {
     return formatMessage({ id: !like ? 'common.like' : 'common.unlike' })
   }
 

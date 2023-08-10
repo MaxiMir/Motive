@@ -42,10 +42,3 @@ export interface UpdateUserDto {
 export interface UserDto extends UserBaseDto {
   readonly characteristic: UserCharacteristicDto
 }
-
-export interface ClientDto {
-  readonly id: number
-  readonly nickname: string
-  readonly name: string
-  readonly avatar: string | null
-}

@@ -12,7 +12,7 @@ import { useIntl } from 'react-intl'
 import dynamic from 'next/dynamic'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
-import { useClient } from 'entities/viewer'
+import { useViewer } from 'entities/viewer'
 import { useToggle } from 'shared/lib/hooks'
 import Icon from 'shared/ui/Icon'
 import TooltipArrow from 'shared/ui/TooltipArrow'
@@ -29,7 +29,7 @@ interface SidebarProps {
 
 function Sidebar({ breakpoints }: SidebarProps) {
   const { asPath } = useRouter()
-  const client = useClient()
+  const viewer = useViewer()
   const { formatMessage } = useIntl()
   const [expanded, toggleExpanded] = useToggle(false)
   const routes = useRoutes()
@@ -85,7 +85,7 @@ function Sidebar({ breakpoints }: SidebarProps) {
             ))}
           </List>
           <Divider light />
-          {client && (
+          {viewer && (
             <>
               <Notifications expanded={expanded} />
               <Divider light />

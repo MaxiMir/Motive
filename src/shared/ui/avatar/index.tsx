@@ -1,31 +1,28 @@
 import { Button, ButtonProps } from '@mui/material'
-import { ElementType } from 'react'
+import { styled } from '@mui/system'
 import dynamic from 'next/dynamic'
 
 const Plug = dynamic(() => import('./plug'))
 const TunedAvatar = dynamic(() => import('./tunedAvatar'))
 
-interface AvatarProps {
+interface AvatarProps extends Omit<ButtonProps, 'size'> {
   name: string
   src?: string | null
   size: number
-  buttonProps?: Omit<ButtonProps, 'sx'> & { component?: ElementType }
 }
 
-function Avatar({ src, name, size, buttonProps }: AvatarProps) {
+function Avatar({ src, name, size, ...buttonProps }: AvatarProps) {
   return (
-    <Button
-      sx={{
-        minWidth: size,
-        padding: '3px',
-        borderRadius: '50%',
-      }}
-      component="span"
-      {...buttonProps}
-    >
+    <StyledButton component="span" {...buttonProps}>
       {!src ? <Plug name={name} size={size} /> : <TunedAvatar src={src} size={size} />}
-    </Button>
+    </StyledButton>
   )
 }
+
+const StyledButton = styled(Button)({
+  minWidth: 'initial',
+  padding: '3px',
+  borderRadius: '50%',
+}) as typeof Button
 
 export default Avatar

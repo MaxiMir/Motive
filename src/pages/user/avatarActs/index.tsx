@@ -17,10 +17,10 @@ const SIZE = 180
 
 interface AvatarActsProps {
   user: UserPageDto
-  clientPage: boolean
+  viewerPage: boolean
 }
 
-function AvatarActs({ user, clientPage }: AvatarActsProps) {
+function AvatarActs({ user, viewerPage }: AvatarActsProps) {
   const { id: userId, name, avatar, characteristic } = user
   const id = useId()
   const menuId = useId()
@@ -30,7 +30,7 @@ function AvatarActs({ user, clientPage }: AvatarActsProps) {
   const [deleting, toggleDeleting] = useToggle()
   const [anchorEl, setAnchorEl] = useState<HTMLElement | null>(null)
   const sources = !avatar ? [] : [avatar]
-  const disabled = !sources.length && !clientPage
+  const disabled = !sources.length && !viewerPage
   const open = Boolean(anchorEl)
   const openLightbox = typeof index === 'number'
   const openText = formatMessage({ id: 'common.open-photo' })
@@ -41,9 +41,9 @@ function AvatarActs({ user, clientPage }: AvatarActsProps) {
   const openPhoto = () => setIndex(0)
 
   const onClick = (e: MouseEvent<HTMLElement>) => {
-    if (!sources && !clientPage) return
+    if (!sources && !viewerPage) return
 
-    if (!clientPage) {
+    if (!viewerPage) {
       openPhoto()
       return
     }
@@ -62,14 +62,12 @@ function AvatarActs({ user, clientPage }: AvatarActsProps) {
           src={avatar}
           name={name}
           size={130}
-          buttonProps={{
-            disabled,
-            id,
-            'aria-controls': open ? menuId : undefined,
-            'aria-haspopup': 'true',
-            'aria-expanded': open ? 'true' : undefined,
-            onClick,
-          }}
+          disabled={disabled}
+          id={id}
+          aria-controls={open ? menuId : undefined}
+          aria-haspopup
+          aria-expanded={open ? 'true' : undefined}
+          onClick={onClick}
         />
       </Progress>
       <Menu

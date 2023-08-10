@@ -136,9 +136,6 @@
   "component.task-field.placeholder": "What should be done",
   "component.task-field.close": "Remove task",
   "component.task-field.remind": "remind me",
-  "component.characteristic-goal.points": "Total points",
-  "component.characteristic-goal.runningDays": "Running days",
-  "component.characteristic-goal.members": "Members",
   "component.notification.new-goal": "has a new goal",
   "component.notification.new-follower": "following you",
   "component.notification.add-motivation": "appreciated your goal",
@@ -341,5 +338,11 @@
   "common.about-support": "About support",
   "common.read-time": "min read",
   "common.privacy-policy": "Privacy Policy",
-  "common.switch-language": "Switch Display Language"
+  "common.switch-language": "Switch Display Language",
+  "common.points-single": "point",
+  "common.points-double": "points",
+  "common.points-genitive": "points",
+  "common.members-single": "member",
+  "common.members-double": "members",
+  "common.members-genitive": "members"
 }

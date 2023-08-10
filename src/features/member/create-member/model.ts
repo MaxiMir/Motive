@@ -1,23 +1,23 @@
 import { useFormik } from 'formik'
 import { useMutation } from 'react-query'
 import { useRouter } from 'next/router'
-import { useClient } from 'entities/viewer'
+import { useViewer } from 'entities/viewer'
 import { CreateMemberDto, createMember } from 'shared/api'
 import { SearchParam } from 'shared/config'
 import { joinToHref, setSearchParams } from 'shared/lib/helpers'
 import { getMidnight } from 'shared/lib/utils'
 import { memberSchema } from './schema'
 
-export const useCreateMemberForm = (goalId: number, dayId: number) => {
-  const client = useClient()
+export const useCreateMemberForm = (goalId: number, dayId: number, onSuccess: () => void) => {
+  const viewer = useViewer()
   const { push } = useRouter()
   const { mutateAsync } = useMutation(createMember, {
     onSuccess({ dayId: selectedDay }) {
-      if (!client) return
+      if (!viewer) return
 
-      const href = joinToHref(client.nickname)
+      const href = joinToHref(viewer.nickname)
       const params = { [SearchParam.Dates]: `${goalId}:${selectedDay}` }
-      push(setSearchParams(href, params))
+      push(setSearchParams(href, params)).then(onSuccess)
     },
   })
 

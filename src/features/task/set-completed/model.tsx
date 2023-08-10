@@ -4,7 +4,7 @@ import { useIntl } from 'react-intl'
 import { useMutation } from 'react-query'
 import dynamic from 'next/dynamic'
 import { useUserPageCache } from 'entities/user'
-import { useClient } from 'entities/viewer'
+import { useViewer } from 'entities/viewer'
 import { UserPageDto, updateCompleted } from 'shared/api'
 import { useSnackbar } from 'shared/ui/snackbar'
 
@@ -12,7 +12,7 @@ const Button = dynamic(() => import('@mui/material/Button'))
 
 export function useSetCompleted(goalId: number, id: number, rest: number) {
   const timerRef = useRef<NodeJS.Timeout>()
-  const client = useClient()
+  const viewer = useViewer()
   const { formatMessage } = useIntl()
   const { enqueueSnackbar, closeSnackbar } = useSnackbar()
   const [page, mutatePage] = useUserPageCache()
@@ -40,7 +40,7 @@ export function useSetCompleted(goalId: number, id: number, rest: number) {
     const undoText = formatMessage({ id: 'common.undo' })
     const messagePart = formatMessage({ id: !nextRest ? 'common.well-done' : 'common.do-it' })
     const message = !nextRest
-      ? `${messagePart}, ${client?.name.split(' ')[0] || 'Master'}!`
+      ? `${messagePart}, ${viewer?.name.split(' ')[0] || 'Master'}!`
       : `${messagePart}: ${nextRest}`
     mutateCompleted(true)
     timerRef.current = setTimeout(() => mutate(id), 4000)

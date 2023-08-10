@@ -2,8 +2,8 @@ import { produce } from 'immer'
 import { useIntl } from 'react-intl'
 import { InfiniteData, useMutation, useQueryClient } from 'react-query'
 import { useGoalsCache } from 'entities/user'
-import { useClient, useSignIn } from 'entities/viewer'
-import { GoalDto, MessageDto, TopicType, TopicDto, updateLike } from 'shared/api'
+import { useViewer, useSignIn } from 'entities/viewer'
+import { GoalDto, MessageDto, TopicDto, updateLike } from 'shared/api'
 import { useSnackbar } from 'shared/ui/snackbar'
 
 export interface Options {
@@ -14,7 +14,7 @@ export interface Options {
 
 export function useSetLike(message: MessageDto, parentId?: number) {
   const { id, like, dayId, goalId } = message
-  const client = useClient()
+  const viewer = useViewer()
   const openSignIn = useSignIn((state) => state.openSignIn)
   const [goals, mutateGoals] = useGoalsCache()
   const queryClient = useQueryClient()
@@ -36,7 +36,7 @@ export function useSetLike(message: MessageDto, parentId?: number) {
       return { previous }
     },
     onSuccess(_, { add }) {
-      if (message.type === TopicType.Support) {
+      if (message.type === 'support') {
         const userMessage = formatMessage(
           { id: 'page.user.like-button.user-message', defaultMessage: '' },
           { value: message.user.name },
@@ -60,7 +60,7 @@ export function useSetLike(message: MessageDto, parentId?: number) {
   })
 
   const onClick = () => {
-    if (!client) {
+    if (!viewer) {
       openSignIn({ callbackUrl: window.location.href })
       return
     }

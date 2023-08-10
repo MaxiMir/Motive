@@ -12,7 +12,7 @@ import { withStyles } from '@mui/styles'
 import { signOut } from 'next-auth/react'
 import { useIntl } from 'react-intl'
 import Link from 'next/link'
-import { useClient } from 'entities/viewer'
+import { useViewer } from 'entities/viewer'
 import Icon from 'shared/ui/Icon'
 import { useRoutes } from './lib'
 
@@ -22,7 +22,7 @@ interface SidebarModalProps {
 }
 
 function SidebarModal({ onOpenSettings, onClose }: SidebarModalProps) {
-  const client = useClient()
+  const viewer = useViewer()
   const routes = useRoutes()
   const { formatMessage } = useIntl()
   const logOut = formatMessage({ id: 'common.log-out' })
@@ -59,7 +59,7 @@ function SidebarModal({ onOpenSettings, onClose }: SidebarModalProps) {
             <ListItemText primary={settings} />
           </ListItem>
         </List>
-        {client && (
+        {viewer && (
           <>
             <Divider light />
             <List>

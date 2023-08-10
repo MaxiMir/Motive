@@ -1,5 +1,5 @@
-import { TopicDto, TopicType } from 'shared/api'
+import { TopicDto } from 'shared/api'
 
 export function checkOnReply(isOwner: boolean, topic: TopicDto): boolean {
-  return isOwner && !topic.answer && topic.type === TopicType.Question
+  return isOwner && !topic.answer && topic.type === 'question'
 }

@@ -2,7 +2,7 @@ import { Stack } from '@mui/material'
 import { useIntl } from 'react-intl'
 import dynamic from 'next/dynamic'
 import { useCheckOnMobile } from 'entities/device'
-import { useClient } from 'entities/viewer'
+import { useViewer } from 'entities/viewer'
 import { TopicDto, UserBaseDto } from 'shared/api'
 import { ListProps } from 'shared/ui/List'
 import Modal from 'shared/ui/Modal'
@@ -18,12 +18,12 @@ interface DiscussionModalProps {
   dayId: number
   count: number
   owner: UserBaseDto
-  clientGoal: boolean
+  viewerGoal: boolean
   onClose: () => void
 }
 
-function DiscussionModal({ dayId, count, owner, clientGoal, onClose }: DiscussionModalProps) {
-  const client = useClient()
+function DiscussionModal({ dayId, count, owner, viewerGoal, onClose }: DiscussionModalProps) {
+  const viewer = useViewer()
   const { formatMessage } = useIntl()
   const { isLoading, topics, checkOnLoadMore, fetchNextPage } = useDiscussion(dayId, count)
   const mobile = useCheckOnMobile()
@@ -37,14 +37,14 @@ function DiscussionModal({ dayId, count, owner, clientGoal, onClose }: Discussio
       fullScreen={mobile}
       dividers
       actions={
-        !client || isLoading
+        !viewer || isLoading
           ? undefined
           : [
               <TopicPanel
                 dayId={dayId}
-                user={client}
+                user={viewer}
                 owner={owner}
-                clientGoal={clientGoal}
+                viewerGoal={viewerGoal}
                 key="panel"
               />,
             ]
@@ -71,7 +71,7 @@ function DiscussionModal({ dayId, count, owner, clientGoal, onClose }: Discussio
                       dayId={dayId}
                       topic={topic}
                       owner={owner}
-                      isOwner={clientGoal}
+                      isOwner={viewerGoal}
                       inView={checkOnLoadMore(index)}
                       onView={fetchNextPage}
                     />

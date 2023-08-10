@@ -1,20 +1,20 @@
 import { Box } from '@mui/material'
 import CreateTopic from 'features/topic/create-topic'
-import { TopicType, UserBaseDto } from 'shared/api'
+import { UserBaseDto } from 'shared/api'
 
 interface TopicPanelProps {
   dayId: number
   user: UserBaseDto
   owner: UserBaseDto
-  clientGoal: boolean
+  viewerGoal: boolean
 }
 
-function TopicPanel({ dayId, user, owner, clientGoal }: TopicPanelProps) {
-  const type = !clientGoal ? TopicType.Question : TopicType.Support
+function TopicPanel({ dayId, user, owner, viewerGoal }: TopicPanelProps) {
+  const type = !viewerGoal ? 'question' : 'support'
 
   return (
     <Box pt={1} flex={1}>
-      <CreateTopic type={type} dayId={dayId} owner={owner} user={user} clientGoal={clientGoal} />
+      <CreateTopic type={type} dayId={dayId} owner={owner} user={user} viewerGoal={viewerGoal} />
     </Box>
   )
 }

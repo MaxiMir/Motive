@@ -1,7 +1,7 @@
 import { useFormik } from 'formik'
 import { useMutation } from 'react-query'
 import { useAddMessage } from 'entities/user'
-import { TopicType, createTopic } from 'shared/api'
+import { createTopic } from 'shared/api'
 import { TopicSchema } from './schema'
 
 export function useCreateTopicForm(dayId: number, onSuccess: () => void) {
@@ -17,7 +17,7 @@ export function useCreateTopicForm(dayId: number, onSuccess: () => void) {
     initialValues: {
       dayId,
       text: '',
-      type: TopicType.Support,
+      type: 'support',
     },
     validationSchema: TopicSchema,
     async onSubmit(data) {

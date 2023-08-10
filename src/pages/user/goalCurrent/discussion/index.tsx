@@ -14,10 +14,10 @@ interface DiscussionProps {
   dayId: number
   count: number
   owner: UserBaseDto
-  clientGoal: boolean
+  viewerGoal: boolean
 }
 
-export function Discussion({ goalId, dayId, count, owner, clientGoal }: DiscussionProps) {
+export function Discussion({ goalId, dayId, count, owner, viewerGoal }: DiscussionProps) {
   const { query } = useRouter()
   const { formatMessage } = useIntl()
   const [open, toggle] = useToggle(checkOnOpenDiscussion(query, goalId))
@@ -51,7 +51,7 @@ export function Discussion({ goalId, dayId, count, owner, clientGoal }: Discussi
           dayId={dayId}
           count={count}
           owner={owner}
-          clientGoal={clientGoal}
+          viewerGoal={viewerGoal}
           onClose={toggle}
         />
       )}

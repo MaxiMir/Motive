@@ -136,9 +136,6 @@
   "component.task-field.placeholder": "Что следует сделать",
   "component.task-field.close": "Удалить задачу",
   "component.task-field.remind": "напомни мне",
-  "component.characteristic-goal.points": "Всего очков",
-  "component.characteristic-goal.runningDays": "Выполняется дней",
-  "component.characteristic-goal.members": "Участники",
   "component.notification.new-goal": "поставил(-а) цель",
   "component.notification.new-follower": "подписался(-ась) на Вac",
   "component.notification.add-motivation": "оценил(-а) Вашу цель",
@@ -341,5 +338,11 @@
   "common.about-support": "О поддержке",
   "common.read-time": "мин. чтения",
   "common.privacy-policy": "Политика конфиденциальности",
-  "common.switch-language": "Переключить язык"
+  "common.switch-language": "Переключить язык",
+  "common.points-single": "очко",
+  "common.points-double": "очка",
+  "common.points-genitive": "очков",
+  "common.members-single": "участник",
+  "common.members-double": "участника",
+  "common.members-genitive": "участников"
 }

@@ -1,16 +1,16 @@
 import { produce } from 'immer'
 import { useMutation, useQueryClient } from 'react-query'
-import { useClient } from 'entities/viewer'
+import { useViewer } from 'entities/viewer'
 import { NotificationDto, updateRead } from 'shared/api'
 
 export function useUpdateRead() {
   const queryClient = useQueryClient()
-  const client = useClient()
+  const viewer = useViewer()
 
   return useMutation(updateRead, {
     onSuccess(_, id) {
       queryClient.setQueryData<NotificationDto[] | undefined>(
-        ['notifications', client?.id],
+        ['notifications', viewer?.id],
         (prev) => prev && getNextState(prev, id),
       )
     },

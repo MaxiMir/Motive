@@ -136,9 +136,6 @@
   "component.task-field.placeholder": "应该做什么",
   "component.task-field.close": "删除任务",
   "component.task-field.remind": "提醒我",
-  "component.characteristic-goal.points": "总分",
-  "component.characteristic-goal.runningDays": "运行天数",
-  "component.characteristic-goal.members": "成员",
   "component.notification.new-goal": "有一个新的目标",
   "component.notification.new-follower": "跟随你",
   "component.notification.add-motivation": "赞赏你的目标",
@@ -341,5 +338,11 @@
   "common.about-support": "关于支持",
   "common.read-time": "分钟阅读",
   "common.privacy-policy": "隐私政策",
-  "common.switch-language": "切换语言"
+  "common.switch-language": "切换语言",
+  "common.points-single": "分",
+  "common.points-double": "分",
+  "common.points-genitive": "分",
+  "common.members-single": "与会者",
+  "common.members-double": "与会者",
+  "common.members-genitive": "与会者"
 }

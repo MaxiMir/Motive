@@ -31,7 +31,7 @@ export function Layout({
   title,
   description,
   keywords,
-  type = OGType.Website,
+  type = 'website',
   image,
   canonical,
   children,

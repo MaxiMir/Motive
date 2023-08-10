@@ -2,7 +2,7 @@ import { Box, Stack, Typography, FormControlLabel, Radio, RadioGroup } from '@mu
 import { Form, FormikProvider } from 'formik'
 import { ChangeEvent } from 'react'
 import { useIntl } from 'react-intl'
-import { CalendarDto } from 'shared/api'
+import { GoalDto } from 'shared/api'
 import Accordion from 'shared/ui/Accordion'
 import CancelButton from 'shared/ui/CancelButton'
 import Modal from 'shared/ui/Modal'
@@ -10,24 +10,16 @@ import SubmitButton from 'shared/ui/SubmitButton'
 import { useCreateMemberForm } from './model'
 
 interface CreateMemberModalProps {
-  goalId: number
-  dayId: number
-  calendar: CalendarDto[]
-  ownerName: string
+  goal: GoalDto
   onClose: () => void
 }
 
-function CreateMemberModal({
-  goalId,
-  dayId,
-  calendar,
-  ownerName,
-  onClose,
-}: CreateMemberModalProps) {
+function CreateMemberModal({ goal, onClose }: CreateMemberModalProps) {
+  const { id, day, calendar, owner } = goal
   const { formatMessage } = useIntl()
   const beginningDay = calendar[0].id
-  const disableBeginning = beginningDay === dayId
-  const form = useCreateMemberForm(goalId, beginningDay)
+  const disableBeginning = beginningDay === day.id
+  const form = useCreateMemberForm(id, beginningDay, onClose)
   const { isSubmitting, values, setFieldValue, handleSubmit } = form
   const title = formatMessage({ id: 'page.user.modal-join.title' })
   const buttonText = formatMessage({ id: 'common.join' })
@@ -77,7 +69,7 @@ function CreateMemberModal({
                 control={<Radio />}
               />
               <FormControlLabel
-                value={dayId.toString()}
+                value={day.id.toString()}
                 label={
                   <Stack direction="row" gap={1}>
                     {dayLabel} 🌋
@@ -100,7 +92,7 @@ function CreateMemberModal({
               <Typography>
                 &#9679; {accordingSupport}{' '}
                 <Box component="span" color="support.main">
-                  {ownerName}
+                  {owner.name}
                 </Box>
                 {', '}
                 {accordingNeeded}.

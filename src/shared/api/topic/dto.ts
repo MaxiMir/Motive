@@ -1,10 +1,7 @@
 import { UserBaseDto } from '../user'
 
-export const enum TopicType {
-  Question = 'question',
-  Answer = 'answer',
-  Support = 'support',
-}
+const TOPIC_TYPES = ['question', 'answer', 'support'] as const
+export type TopicType = (typeof TOPIC_TYPES)[number]
 
 export interface CreateTopicDto {
   readonly dayId: number

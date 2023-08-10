@@ -8,7 +8,7 @@ export enum Emoji {
   'followers' = '🥷',
   'following' = '⭐',
   'runningDays' = '⏳',
-  'points' = '🔥',
+  'points' = '❤️',
   'nextLevelPoints' = '',
   'progress' = '',
   'level' = '',

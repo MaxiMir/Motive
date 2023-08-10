@@ -1,9 +1,10 @@
 import { Box, Stack, Typography } from '@mui/material'
 import { styled } from '@mui/system'
 import dynamic from 'next/dynamic'
+import CreateGoal from 'pages/user/createGoal'
 import SphereOfLife from 'pages/user/sphereOfLife'
 import { UserContext, UserStatus, UserLevel } from 'entities/user'
-import { useClient } from 'entities/viewer'
+import { useViewer } from 'entities/viewer'
 import { ONLINE_SCORE_MAIN, SPHERES_OF_LIFE, UserPageDto } from 'shared/api'
 import Container from 'shared/ui/Container'
 import AvatarActs from './avatarActs'
@@ -30,7 +31,6 @@ export function UserPage({ user }: UserViewProps) {
     nickname,
     characteristic,
     goals,
-    clientMembership,
     confirmations,
     motto,
     links,
@@ -39,9 +39,8 @@ export function UserPage({ user }: UserViewProps) {
     lastSeen,
     device,
   } = user
-  const client = useClient()
-  const clientPage = id === client?.id
-  const renderConfirmationsList = !!confirmations.length || clientPage
+  const viewer = useViewer()
+  const viewerPage = id === viewer?.id
 
   return (
     <UserContext.Provider value={user}>
@@ -61,7 +60,7 @@ export function UserPage({ user }: UserViewProps) {
             }}
             padding={2}
           >
-            <AvatarActs user={user} clientPage={clientPage} />
+            <AvatarActs user={user} viewerPage={viewerPage} />
             <Stack
               alignItems={{
                 xs: 'center',
@@ -87,12 +86,12 @@ export function UserPage({ user }: UserViewProps) {
                   <UserLevel level={characteristic.level} />
                 </Box>
                 <Stack direction="row" alignItems="center" gap={1}>
-                  {clientPage ? (
+                  {viewerPage ? (
                     <EditProfile user={user} />
                   ) : (
                     <UpdateFollowing userId={id} following={following} />
                   )}
-                  <MenuActions clientPage={clientPage} />
+                  <MenuActions viewerPage={viewerPage} />
                 </Stack>
               </Stack>
               <Box
@@ -143,11 +142,9 @@ export function UserPage({ user }: UserViewProps) {
             <SphereOfLife sphere={sphere} value={characteristic[sphere]} key={sphere} />
           ))}
         </Section>
-        {renderConfirmationsList && (
-          <ConfirmationList confirmations={confirmations} clientPage={clientPage} />
-        )}
+        {!!confirmations.length && <ConfirmationList confirmations={confirmations} />}
         {!goals.length ? (
-          <EmptyGoals clientPage={clientPage} />
+          <EmptyGoals viewerPage={viewerPage} />
         ) : (
           <Box
             sx={{
@@ -158,16 +155,11 @@ export function UserPage({ user }: UserViewProps) {
             }}
           >
             {goals.map((goal) => (
-              <GoalCurrent
-                goal={goal}
-                nickname={nickname}
-                clientPage={clientPage}
-                clientMembership={clientMembership}
-                key={goal.id}
-              />
+              <GoalCurrent goal={goal} viewerPage={viewerPage} key={goal.id} />
             ))}
           </Box>
         )}
+        <CreateGoal />
       </Container>
     </UserContext.Provider>
   )

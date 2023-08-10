@@ -1,8 +1,9 @@
-import { MessageDto, TopicType, ClientDto } from 'shared/api'
+import { Viewer } from 'entities/viewer'
+import { MessageDto } from 'shared/api'
 
-export function checkOnDisabled(message: MessageDto, client?: ClientDto): boolean {
+export function checkOnDisabled(message: MessageDto, viewer?: Viewer): boolean {
   return (
-    message.user.id === client?.id ||
-    (!!message.like && [TopicType.Support, TopicType.Answer].includes(message.type))
+    message.user.id === viewer?.id ||
+    (!!message.like && ['support', 'answer'].includes(message.type))
   )
 }

@@ -1,4 +1,4 @@
-import { ClientDto, NotificationDto } from 'shared/api'
+import { NotificationDto } from 'shared/api'
 import { Route, HashMark, SearchParam } from 'shared/config'
 import { joinToHref, setSearchParams } from 'shared/lib/helpers'
 
@@ -36,7 +36,7 @@ export function getHashtagHref(q: string) {
   return setSearchParams(Route.Search, { q, type: 'tag' })
 }
 
-export function getNotificationHref(notification: NotificationDto, client?: ClientDto): string {
+export function getNotificationHref(notification: NotificationDto, viewerNickname = ''): string {
   const userPage = [
     'new-follower',
     'new-goal',
@@ -44,7 +44,7 @@ export function getNotificationHref(notification: NotificationDto, client?: Clie
     'new-feedback',
     'web-coverage',
   ].includes(notification.type)
-  const nickname = userPage ? notification.initiator.nickname : client?.nickname || ''
+  const nickname = userPage ? notification.initiator.nickname : viewerNickname
 
   switch (notification.type) {
     case 'new-follower':

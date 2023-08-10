@@ -4,7 +4,7 @@ import DeviceDetector from 'node-device-detector'
 import { Layout } from 'app/layout'
 import { HomePage } from 'pages/home'
 import { useMeta } from 'entities/page'
-import { ClientDto } from 'shared/api'
+import { Viewer } from 'entities/viewer'
 
 function HomeRoute() {
   const meta = useMeta('home')
@@ -21,9 +21,9 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
   const detector = new DeviceDetector()
   const { device } = detector.detect(headers['user-agent'] || '')
   const session = await getSession(ctx)
-  const client = session?.user as ClientDto | undefined
+  const viewer = session?.user as Viewer | undefined
 
-  if (!client) {
+  if (!viewer) {
     return {
       props: {
         session,
@@ -35,7 +35,7 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
   return {
     redirect: {
       permanent: false,
-      destination: client?.nickname,
+      destination: viewer?.nickname,
       basePath: false,
     },
   }

@@ -1,13 +1,11 @@
 import { Box, Card, IconButton, Stack, Typography } from '@mui/material'
+import { styled } from '@mui/system'
 import { differenceInCalendarDays } from 'date-fns'
 import { useIntl } from 'react-intl'
 import dynamic from 'next/dynamic'
 import { useSwitchDay } from 'features/day/switch-day'
-import { GoalScore } from 'entities/goal'
-import { findMember } from 'entities/member'
-import { getDayHref } from 'entities/page'
-import { useClient } from 'entities/viewer'
-import { GoalDto, MemberDto } from 'shared/api'
+import { useViewerPart } from 'entities/viewer'
+import { GoalDto } from 'shared/api'
 import { HashMark } from 'shared/config'
 import { getMidnight } from 'shared/lib/utils'
 import Accordion from 'shared/ui/Accordion'
@@ -16,26 +14,27 @@ import { Calendar } from './calendar'
 import { SHOW_WEB_AFTER_DAYS } from './consts'
 import { Discussion } from './discussion'
 import { Feedback } from './feedback'
-import { MenuActions } from './menuActions'
+import { Members } from './members'
+import { Points } from './points'
+import { ShareDay } from './shareDay'
 import { Task } from './task'
 import { Views } from './views'
 import { ViewTrigger } from './viewTrigger'
 
 const Owner = dynamic(() => import('./owner'))
+const Membership = dynamic(() => import('./membership'))
 const Stages = dynamic(() => import('./stages'))
-const Hashtags = dynamic(() => import('./hashtags'))
+const Hashtag = dynamic(() => import('./hashtag'))
 const Web = dynamic(() => import('./web'))
-const ViewerControl = dynamic(() => import('./viewerControl'))
-const OwnerControl = dynamic(() => import('./ownerControl'))
+const ViewerActs = dynamic(() => import('./viewerActs'))
+const OwnerActs = dynamic(() => import('./ownerActs'))
 
 interface GoalCurrentProps {
   goal: GoalDto
-  nickname: string
-  clientPage: boolean
-  clientMembership: MemberDto[]
+  viewerPage: boolean
 }
 
-function GoalCurrent({ goal, nickname, clientPage, clientMembership }: GoalCurrentProps) {
+function GoalCurrent({ goal, viewerPage }: GoalCurrentProps) {
   const {
     id,
     name,
@@ -44,20 +43,16 @@ function GoalCurrent({ goal, nickname, clientPage, clientMembership }: GoalCurre
     stages,
     day,
     points,
-    clientPoints,
     member,
     members,
+    lastMembers,
     calendar,
     completed,
     started,
   } = goal
-  const client = useClient()
   const { formatMessage } = useIntl()
-  const today = getMidnight()
-  const dayHref = getDayHref(nickname, id, day.id)
+  const viewerPart = useViewerPart(goal, viewerPage)
   const { isLoading, prev, next, onChangeDate, shouldDisableDate } = useSwitchDay(goal)
-  const clientGoal = owner.id === client?.id
-  const clientMember = findMember(clientMembership, id, client?.id)
   const daysGoneForOwner = differenceInCalendarDays(new Date(), Date.parse(day.date))
   const runningDays = differenceInCalendarDays(Date.parse(day.date), Date.parse(started)) + 1
   const { canEdit, ownerControls, viewerControls, daysGone, forTomorrow, lastDay } = getGoalInfo()
@@ -75,8 +70,9 @@ function GoalCurrent({ goal, nickname, clientPage, clientMembership }: GoalCurre
   const onClickNextDay = () => onChangeDate(next)
 
   function getGoalInfo() {
+    const today = getMidnight()
     const defaultInfo = {
-      canEdit: clientPage && clientGoal,
+      canEdit: viewerPart.page && viewerPart.goal,
       viewerControls: true,
       ownerControls: false,
       daysGone: daysGoneForOwner,
@@ -84,19 +80,19 @@ function GoalCurrent({ goal, nickname, clientPage, clientMembership }: GoalCurre
       forTomorrow: daysGoneForOwner === -1,
     }
 
-    if (clientGoal) {
+    if (viewerPart.goal) {
       return {
         ...defaultInfo,
         viewerControls: false,
-        ownerControls: clientPage && !completed,
+        ownerControls: viewerPart.page && !completed,
       }
     }
 
-    if (clientMember) {
+    if (viewerPart.member) {
       return {
         ...defaultInfo,
-        canEdit: clientPage && clientMember.dayId === day.id,
-        forTomorrow: differenceInCalendarDays(Date.parse(clientMember.updated), today) > 0,
+        canEdit: viewerPart.page && viewerPart.member.dayId === day.id,
+        forTomorrow: differenceInCalendarDays(Date.parse(viewerPart.member.updated), today) > 0,
       }
     }
 
@@ -147,31 +143,27 @@ function GoalCurrent({ goal, nickname, clientPage, clientMembership }: GoalCurre
                     <b>{name}</b>
                   </Typography>
                   {member && <Owner owner={owner} />}
-                  <MenuActions
-                    goalId={id}
-                    goalName={name}
-                    href={dayHref}
-                    clientPage={clientPage}
-                    clientGoal={clientGoal}
-                    clientMember={clientMember}
-                  />
+                  {!viewerPart.goal && (
+                    <Box display="flex" alignItems="center" gap={1} marginLeft="auto">
+                      <ShareDay goalId={id} dayId={day.id} title={name} />
+                      <Membership goal={goal} viewerPart={viewerPart} />
+                    </Box>
+                  )}
                 </Box>
-                {!!hashtags.length && <Hashtags hashtags={hashtags} />}
+                {!!hashtags.length && (
+                  <Box display="flex" flexWrap="wrap" gap={1}>
+                    {hashtags.map((hashtag) => (
+                      <Hashtag hashtag={hashtag} key={hashtag} />
+                    ))}
+                  </Box>
+                )}
               </Stack>
-              <Box display="flex" justifyContent="space-between" alignItems="center">
-                <GoalScore name="points" value={points} />
-                <GoalScore name="members" value={members} />
+              <Box display="flex" justifyContent="space-between">
+                <Points points={points} />
+                <Members members={members} lastMembers={lastMembers} />
               </Box>
               <Stack alignItems="center">
-                <Card
-                  variant="outlined"
-                  sx={{
-                    width: '100%',
-                    pb: 2,
-                    borderRadius: '10px',
-                    backgroundColor: '#121212',
-                  }}
-                >
+                <StyledCard variant="outlined">
                   <Box display="flex" alignItems="center" justifyContent="space-between" p={2}>
                     <IconButton
                       disabled={isLoading || !prev}
@@ -247,7 +239,7 @@ function GoalCurrent({ goal, nickname, clientPage, clientMembership }: GoalCurre
                         goalId={id}
                         day={day}
                         forTomorrow={forTomorrow}
-                        clientGoal={clientGoal}
+                        viewerGoal={viewerPart.goal}
                       />
                     }
                   />
@@ -256,23 +248,14 @@ function GoalCurrent({ goal, nickname, clientPage, clientMembership }: GoalCurre
                     dayId={day.id}
                     count={day.topicCount}
                     owner={owner}
-                    clientGoal={clientGoal}
+                    viewerGoal={viewerPart.goal}
                   />
-                  <Stack spacing={2} px={2} mt={4}>
+                  <Stack spacing={2} px={2} my={2}>
                     {viewerControls && (
-                      <ViewerControl
-                        goalId={id}
-                        day={day}
-                        calendar={calendar}
-                        ownerName={owner.name}
-                        clientPoints={clientPoints}
-                        forTomorrow={forTomorrow}
-                        clientPage={clientPage}
-                        clientMember={clientMember}
-                      />
+                      <ViewerActs goal={goal} forTomorrow={forTomorrow} viewerPart={viewerPart} />
                     )}
                     {ownerControls && (
-                      <OwnerControl
+                      <OwnerActs
                         goalId={id}
                         stages={stages}
                         dayDate={day.date}
@@ -281,7 +264,7 @@ function GoalCurrent({ goal, nickname, clientPage, clientMembership }: GoalCurre
                     )}
                     <Views views={day.views} />
                   </Stack>
-                </Card>
+                </StyledCard>
               </Stack>
             </Stack>
           </ViewTrigger>
@@ -291,5 +274,12 @@ function GoalCurrent({ goal, nickname, clientPage, clientMembership }: GoalCurre
     </Box>
   )
 }
+
+const StyledCard = styled(Card)({
+  width: '100%',
+  pb: 2,
+  borderRadius: '10px',
+  backgroundColor: '#121212',
+})
 
 export default GoalCurrent

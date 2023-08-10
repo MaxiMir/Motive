@@ -31,12 +31,12 @@ function SelectingType({ owner, type, setType }: SelectingTypeProps) {
         <FormControl variant="standard">
           <RadioGroup row aria-labelledby={labelledby} name="type" value={type} onChange={onChange}>
             <FormControlLabel
-              value={TopicType.Question}
+              value="question"
               control={<Radio size="small" />}
               label={questionText}
             />
             <FormControlLabel
-              value={TopicType.Support}
+              value="support"
               control={<Radio size="small" />}
               label={
                 <Stack direction="row" alignItems="center" gap={1}>

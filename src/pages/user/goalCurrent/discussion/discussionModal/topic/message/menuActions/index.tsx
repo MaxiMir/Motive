@@ -2,7 +2,7 @@ import { IconButton, MenuItem, Box, Menu } from '@mui/material'
 import { MouseEvent, useId, useState } from 'react'
 import { useIntl } from 'react-intl'
 import dynamic from 'next/dynamic'
-import { useClient } from 'entities/viewer'
+import { useViewer } from 'entities/viewer'
 import { MessageDto } from 'shared/api'
 import { copy } from 'shared/lib/helpers'
 import { useToggle } from 'shared/lib/hooks'
@@ -21,13 +21,13 @@ interface MenuActionsProps {
 function MenuActions({ message }: MenuActionsProps) {
   const id = useId()
   const menuId = useId()
-  const client = useClient()
+  const viewer = useViewer()
   const { formatMessage } = useIntl()
   const [anchorEl, setAnchorEl] = useState<HTMLElement | null>(null)
   const [editing, toggleEditing] = useToggle()
   const [reporting, toggleReporting] = useToggle()
   const { enqueueSnackbar } = useSnackbar()
-  const canEdit = message.user.id === client?.id
+  const canEdit = message.user.id === viewer?.id
   const open = Boolean(anchorEl)
   const title = formatMessage({ id: 'page.user.message-menu.title' })
   const copyText = formatMessage({ id: 'common.copy' })

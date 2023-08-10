@@ -3,7 +3,6 @@ import dynamic from 'next/dynamic'
 import { TaskDto } from 'shared/api'
 import { checkOnCompletedByOthers } from './lib'
 
-const Markdown = dynamic(() => import('shared/ui/markdown'))
 const CompletedByOthers = dynamic(() => import('./completedByOthers'))
 
 interface TaskLabelProps {
@@ -16,7 +15,7 @@ export function TaskLabel({ task, daysGoneForOwner }: TaskLabelProps) {
 
   return (
     <Stack direction="row" alignItems="center" gap={1}>
-      <Markdown text={task.name} />
+      {task.name}
       {completedByOthers && <CompletedByOthers />}
     </Stack>
   )

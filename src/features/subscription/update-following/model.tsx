@@ -2,7 +2,7 @@ import { produce } from 'immer'
 import { useIntl } from 'react-intl'
 import { useMutation } from 'react-query'
 import { useUserPageCache } from 'entities/user'
-import { useClient, useSignIn } from 'entities/viewer'
+import { useViewer, useSignIn } from 'entities/viewer'
 import { UserPageDto, updateSubscription } from 'shared/api'
 import { useSnackbar } from 'shared/ui/snackbar'
 
@@ -11,7 +11,7 @@ interface Options {
 }
 
 export function useUpdateFollowing(userId: number, following: boolean) {
-  const client = useClient()
+  const viewer = useViewer()
   const openSignIn = useSignIn((state) => state.openSignIn)
   const { formatMessage } = useIntl()
   const [page, mutatePage] = useUserPageCache()
@@ -29,7 +29,7 @@ export function useUpdateFollowing(userId: number, following: boolean) {
   )
 
   const onClick = () => {
-    if (!client) {
+    if (!viewer) {
       openSignIn({ callbackUrl: window.location.href })
       return
     }

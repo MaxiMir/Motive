@@ -1,12 +1,12 @@
 import { useIntl } from 'react-intl'
 import { useMutation } from 'react-query'
-import { useClient, useSignIn } from 'entities/viewer'
+import { useViewer, useSignIn } from 'entities/viewer'
 import { ReportType, createReport } from 'shared/api'
 import { useSnackbar } from 'shared/ui/snackbar'
 
 export function useSendReport(entityId: number, type: ReportType, onSettled: () => void) {
   const { formatMessage } = useIntl()
-  const client = useClient()
+  const viewer = useViewer()
   const openSignIn = useSignIn((state) => state.openSignIn)
   const { enqueueSnackbar } = useSnackbar()
   const { mutate } = useMutation(createReport, {
@@ -18,7 +18,7 @@ export function useSendReport(entityId: number, type: ReportType, onSettled: () 
   })
 
   return (reason: string) => {
-    if (!client) {
+    if (!viewer) {
       openSignIn({ callbackUrl: window.location.href })
       return
     }

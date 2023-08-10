@@ -27,7 +27,7 @@ export function Confirmation({ id, name, src, onClick }: ConfirmationProps) {
             },
           })}
         >
-          <Avatar src={src} name={name} size={60} buttonProps={{ onClick }} />
+          <Avatar src={src} name={name} size={60} onClick={onClick} />
         </Box>
       </Box>
       <Button id={`confirmation-${id}`} size="small" color="inherit" onClick={onClick}>

@@ -14,10 +14,10 @@ const Share = dynamic(() => import('features/share'))
 const CreateReport = dynamic(() => import('features/report/create-report'))
 
 interface MenuActionsProps {
-  clientPage: boolean
+  viewerPage: boolean
 }
 
-function MenuActions({ clientPage }: MenuActionsProps) {
+function MenuActions({ viewerPage }: MenuActionsProps) {
   const id = useId()
   const menuId = useId()
   const { asPath } = useRouter()
@@ -76,7 +76,7 @@ function MenuActions({ clientPage }: MenuActionsProps) {
         <MenuItem onClick={onShare}>
           <ListItem icon="ios_share" primary={shareText} />
         </MenuItem>
-        {!clientPage && (
+        {!viewerPage && (
           <MenuItem onClick={toggleReporting}>
             <ListItem icon="outlined_flag" primary={reportText} color="error.dark" />
           </MenuItem>

@@ -1,7 +1,7 @@
 import { List } from '@mui/material'
 import { useIntl } from 'react-intl'
 import dynamic from 'next/dynamic'
-import { useClient } from 'entities/viewer'
+import { useViewer } from 'entities/viewer'
 import TooltipArrow from 'shared/ui/TooltipArrow'
 
 const SignIn = dynamic(() => import('./signIn'))
@@ -13,13 +13,13 @@ interface ProfileLinkProps {
 
 export function ProfileLink({ expanded }: ProfileLinkProps) {
   const { formatMessage } = useIntl()
-  const client = useClient()
-  const primary = formatMessage({ id: client ? 'common.my-page' : 'common.sign-in' })
+  const viewer = useViewer()
+  const primary = formatMessage({ id: viewer ? 'common.my-page' : 'common.sign-in' })
 
   return (
     <List>
       <TooltipArrow title={!expanded && primary} placement="right">
-        {!client ? <SignIn primary={primary} /> : <User client={client} primary={primary} />}
+        {!viewer ? <SignIn primary={primary} /> : <User user={viewer} primary={primary} />}
       </TooltipArrow>
     </List>
   )

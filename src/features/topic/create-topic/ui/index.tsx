@@ -4,7 +4,8 @@ import { styled } from '@mui/system'
 import { Field, Form, FormikProvider } from 'formik'
 import { useIntl } from 'react-intl'
 import dynamic from 'next/dynamic'
-import { TopicType, UserBaseDto, ClientDto } from 'shared/api'
+import { Viewer } from 'entities/viewer'
+import { TopicType, UserBaseDto } from 'shared/api'
 import Avatar from 'shared/ui/avatar'
 import Input from 'shared/ui/Input'
 import TooltipArrow from 'shared/ui/TooltipArrow'
@@ -22,8 +23,8 @@ interface CreateTopicProps {
   topicId?: number
   dayId: number
   owner: UserBaseDto
-  user: ClientDto | UserBaseDto
-  clientGoal?: boolean
+  user: Viewer | UserBaseDto
+  viewerGoal?: boolean
   replyTo?: string
   autoFocus?: boolean
   onSuccess?: () => void
@@ -35,7 +36,7 @@ function CreateTopic({
   dayId,
   owner,
   user,
-  clientGoal,
+  viewerGoal,
   replyTo,
   autoFocus,
   onSuccess,
@@ -45,8 +46,8 @@ function CreateTopic({
   const form = useCreateTopicForm(dayId, topicId, type, onSuccess)
   const { isSubmitting, values, setFieldValue, handleSubmit } = form
   const disabled = isSubmitting || !values.text
-  const supportSign = values.type === TopicType.Support && !clientGoal
-  const selectingType = !clientGoal && values.text && !replyTo
+  const supportSign = values.type === 'support' && !viewerGoal
+  const selectingType = !viewerGoal && values.text && !replyTo
   const sendText = formatMessage({ id: 'common.send' })
   const placeholder = formatMessage({ id: 'common.message' })
 

@@ -1,7 +1,7 @@
 import { Box, Button, Stack } from '@mui/material'
 import { useIntl } from 'react-intl'
 import CreateTopic from 'features/topic/create-topic'
-import { TopicType, UserBaseDto } from 'shared/api'
+import { UserBaseDto } from 'shared/api'
 
 interface AnswerProps {
   dayId: number
@@ -18,7 +18,7 @@ function Answer({ dayId, owner, user, topicId, onClose }: AnswerProps) {
   return (
     <Stack gap={1}>
       <CreateTopic
-        type={TopicType.Answer}
+        type="answer"
         topicId={topicId}
         dayId={dayId}
         owner={owner}

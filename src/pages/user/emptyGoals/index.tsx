@@ -4,12 +4,12 @@ import FadeTypography from 'shared/ui/FadeTypography'
 import OwnerDescription from './ownerDescription'
 
 interface AddGoalProps {
-  clientPage: boolean
+  viewerPage: boolean
 }
 
-function EmptyGoals({ clientPage }: AddGoalProps) {
+function EmptyGoals({ viewerPage }: AddGoalProps) {
   const { formatMessage } = useIntl()
-  const title = formatMessage({ id: `page.user.empty-goals.${clientPage ? 'owner' : 'guest'}` })
+  const title = formatMessage({ id: `page.user.empty-goals.${viewerPage ? 'owner' : 'guest'}` })
 
   return (
     <Stack justifyContent="center" alignItems="center" gap={1} flex={1}>
@@ -17,7 +17,7 @@ function EmptyGoals({ clientPage }: AddGoalProps) {
         {title}
       </Typography>
       <FadeTypography>💎</FadeTypography>
-      {clientPage && <OwnerDescription />}
+      {viewerPage && <OwnerDescription />}
     </Stack>
   )
 }

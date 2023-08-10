@@ -2,7 +2,7 @@ import { List, ListItem, ListItemIcon, ListItemText, Menu } from '@mui/material'
 import { signOut } from 'next-auth/react'
 import { MouseEvent, useId, useState } from 'react'
 import { useIntl } from 'react-intl'
-import { useClient } from 'entities/viewer'
+import { useViewer } from 'entities/viewer'
 import Icon from 'shared/ui/Icon'
 import { usePaletteMode } from 'shared/ui/palette'
 
@@ -10,7 +10,7 @@ export function More() {
   const id = useId()
   const menuId = useId()
   const { formatMessage } = useIntl()
-  const client = useClient()
+  const viewer = useViewer()
   const { mode, setMode } = usePaletteMode()
   const [anchorEl, setAnchorEl] = useState<HTMLElement | null>(null)
   const open = Boolean(anchorEl)
@@ -64,7 +64,7 @@ export function More() {
           </ListItemIcon>
           <ListItemText primary={switchMode} />
         </ListItem>
-        {client && (
+        {viewer && (
           <ListItem button onClick={onSignOut}>
             <ListItemIcon>
               <Icon name="logout" />

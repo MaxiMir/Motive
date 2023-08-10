@@ -1,14 +1,11 @@
 import { ArticleDto } from '../article'
 import { ConfirmationDto } from '../confirmation'
 import { GoalDto } from '../goal'
-import { MemberDto } from '../member'
 import { UserDto } from '../user'
 
-export const enum OGType {
-  Website = 'website',
-  Profile = 'profile',
-  Article = 'article',
-}
+const OG_TYPES = ['website', 'profile', 'article'] as const
+
+export type OGType = (typeof OG_TYPES)[number]
 
 export interface PossiblePageError {
   readonly message?: {
@@ -37,7 +34,6 @@ export interface FollowingPageDto {
 export interface UserPageDto extends UserDto {
   readonly following: boolean
   readonly goals: GoalDto[]
-  readonly clientMembership: MemberDto[]
   readonly confirmations: ConfirmationDto[]
 }
 

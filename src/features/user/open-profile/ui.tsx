@@ -1,20 +1,18 @@
 import { useIntl } from 'react-intl'
 import dynamic from 'next/dynamic'
-import { useClient } from 'entities/viewer'
+import { useViewer } from 'entities/viewer'
 import TooltipArrow from 'shared/ui/TooltipArrow'
 
 const Unauthorized = dynamic(() => import('./unauthorized'))
 const User = dynamic(() => import('./user'))
 
 function OpenProfile() {
-  const client = useClient()
+  const viewer = useViewer()
   const { formatMessage } = useIntl()
-  const title = formatMessage({ id: client ? 'common.my-page' : 'common.sign-in' })
+  const title = formatMessage({ id: viewer ? 'common.my-page' : 'common.sign-in' })
 
   return (
-    <TooltipArrow title={title}>
-      {!client ? <Unauthorized /> : <User client={client} />}
-    </TooltipArrow>
+    <TooltipArrow title={title}>{!viewer ? <Unauthorized /> : <User user={viewer} />}</TooltipArrow>
   )
 }
 

@@ -25,7 +25,7 @@ function UserCard({ user }: UserCardProps) {
       component={Link}
     >
       <Stack alignItems="center" direction={{ xs: 'column', md: 'column' }} gap={2}>
-        <Avatar src={avatar} name={name} size={120} buttonProps={{ component: 'span' }} />
+        <Avatar src={avatar} name={name} size={120} />
         <Typography color="common.white" textOverflow="ellipsis" whiteSpace="nowrap">
           {name}
         </Typography>

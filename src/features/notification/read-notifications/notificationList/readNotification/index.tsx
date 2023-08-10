@@ -1,7 +1,7 @@
 import dynamic from 'next/dynamic'
 import { NotificationCard } from 'entities/notification'
 import { getNotificationHref } from 'entities/page'
-import { useClient } from 'entities/viewer'
+import { useViewer } from 'entities/viewer'
 import { NotificationDto } from 'shared/api'
 import { useUpdateRead } from './model'
 
@@ -14,8 +14,8 @@ interface ReadNotificationProps {
 
 export function ReadNotification({ notification, onClose }: ReadNotificationProps) {
   const { id, read } = notification
-  const client = useClient()
-  const notificationHref = getNotificationHref(notification, client)
+  const viewer = useViewer()
+  const notificationHref = getNotificationHref(notification, viewer?.nickname)
   const { mutate } = useUpdateRead()
 
   const onView = () => mutate(id)

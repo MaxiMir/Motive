@@ -1,6 +1,6 @@
 import { AppBar, Container, Stack } from '@mui/material'
 import dynamic from 'next/dynamic'
-import { useClient } from 'entities/viewer'
+import { useViewer } from 'entities/viewer'
 import { OGType } from 'shared/api'
 import { Sidebar } from './sidebar'
 
@@ -13,7 +13,7 @@ interface HeaderMobileProps {
 }
 
 function HeaderMobile({ type }: HeaderMobileProps) {
-  const client = useClient()
+  const viewer = useViewer()
   const renderNickname = type === 'profile'
 
   return (
@@ -33,7 +33,7 @@ function HeaderMobile({ type }: HeaderMobileProps) {
         <Stack direction="row" justifyContent="space-between" alignItems="center">
           <Sidebar />
           {renderNickname && <UserLink />}
-          {client ? <Notifications /> : <SignIn />}
+          {viewer ? <Notifications /> : <SignIn />}
         </Stack>
       </Container>
     </AppBar>

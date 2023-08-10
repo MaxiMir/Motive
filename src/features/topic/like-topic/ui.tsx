@@ -1,8 +1,9 @@
 import { Button } from '@mui/material'
-import { useClient } from 'entities/viewer'
-import { MessageDto, TopicType } from 'shared/api'
-import { Emoji } from 'shared/config'
+import { red } from '@mui/material/colors'
+import { useViewer } from 'entities/viewer'
+import { MessageDto } from 'shared/api'
 import { useFormatNumber } from 'shared/lib/hooks'
+import Icon from 'shared/ui/Icon'
 import TooltipArrow from 'shared/ui/TooltipArrow'
 import { checkOnDisabled, useTitle } from './lib'
 import { useSetLike } from './model'
@@ -13,13 +14,11 @@ interface LikeProps {
 }
 
 export function Like({ message, parentId }: LikeProps) {
-  const { likeCount, type } = message
-  const client = useClient()
-  const disabled = checkOnDisabled(message, client)
+  const viewer = useViewer()
+  const disabled = checkOnDisabled(message, viewer)
   const title = useTitle(message, disabled)
   const formatNumber = useFormatNumber()
-  const formattedNumber = formatNumber(likeCount)
-  const startIcon = type === TopicType.Question ? '❤️' : Emoji.points
+  const formattedNumber = formatNumber(message.likeCount)
   const [isLoading, onClick] = useSetLike(message, parentId)
 
   return (
@@ -27,12 +26,16 @@ export function Like({ message, parentId }: LikeProps) {
       <Button
         size="small"
         disabled={disabled || isLoading}
-        startIcon={startIcon}
+        startIcon={
+          <Icon
+            name="favorite"
+            sx={(theme) => ({ color: message.like ? red[800] : theme.palette.grey[400] })}
+          />
+        }
         sx={(theme) => ({
-          paddingX: 1,
-          color: theme.palette.grey[400],
           minWidth: 'initial',
-          filter: !message.like ? 'grayscale(1)' : undefined,
+          paddingX: 1,
+          color: message.like ? red[400] : theme.palette.grey[400],
         })}
         onClick={onClick}
       >

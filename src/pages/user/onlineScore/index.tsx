@@ -2,8 +2,7 @@ import { Box, Button, Typography } from '@mui/material'
 import { useState } from 'react'
 import dynamic from 'next/dynamic'
 import { OnlineScoreName, ConfirmationDto, UserCharacteristicDto } from 'shared/api'
-import { useFormatNumber } from 'shared/lib/hooks'
-import { useWordDeclination } from './lib'
+import { useFormatNumber, useWordDeclination } from 'shared/lib/hooks'
 
 const SubscriptionModal = dynamic(() => import('./subscriptionModal'))
 const NoCompletedModal = dynamic(() => import('./noCompletedModal'))

@@ -23,14 +23,13 @@ export interface GoalBaseDto {
   readonly members: number
 }
 
-export type GoalCharacteristicName = 'runningDays' | 'members' | 'points'
-
 export interface GoalDto extends GoalBaseDto {
   readonly day: DayDto
   readonly calendar: CalendarDto[]
   readonly completed: boolean
   readonly member?: MemberDto
-  readonly clientPoints: number[]
+  readonly viewerPoints: number[]
+  readonly lastMembers: UserBaseDto[]
 }
 
 export interface CreatedGoal extends Readonly<Omit<GoalDto, 'day'>> {

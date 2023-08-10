@@ -22,6 +22,6 @@ export function useUserMetaTags(user?: UserPageDto) {
     description: `${descriptionStart} ${goalNames}`,
     keywords: user.confirmations.map((c) => c.goal.name).join(', '),
     image: !user.avatar ? undefined : getStaticSrc(user.avatar),
-    type: 'profile',
+    type: 'profile' as const,
   }
 }

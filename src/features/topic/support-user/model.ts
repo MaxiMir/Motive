@@ -17,7 +17,7 @@ export function useCreateTopicForm(dayId: number, onSuccess: () => void) {
     initialValues: {
       dayId,
       text: '',
-      type: 'support',
+      type: 'support' as const,
     },
     validationSchema: TopicSchema,
     async onSubmit(data) {

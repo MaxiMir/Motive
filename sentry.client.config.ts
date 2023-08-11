@@ -5,7 +5,7 @@
 import * as Sentry from '@sentry/nextjs'
 
 Sentry.init({
-  dsn: 'https://7adb0e13179242abbbe6fb9927a2c9c3@o1230832.ingest.sentry.io/4505396197654528',
+  dsn: process.env.GITHUB_ID || '',
 
   // Adjust this value in production, or use tracesSampler for greater control
   tracesSampleRate: 1,

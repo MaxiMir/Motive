@@ -1,7 +1,7 @@
 import { Box, Button, Typography } from '@mui/material'
 import { useState } from 'react'
 import dynamic from 'next/dynamic'
-import { OnlineScoreName, ConfirmationDto, UserCharacteristicDto } from 'shared/api'
+import { OnlineScoreDto, ConfirmationDto, UserCharacteristicDto } from 'shared/api'
 import { useFormatNumber, useWordDeclination } from 'shared/lib/hooks'
 
 const SubscriptionModal = dynamic(() => import('./subscriptionModal'))
@@ -9,7 +9,7 @@ const NoCompletedModal = dynamic(() => import('./noCompletedModal'))
 const AbandonedModal = dynamic(() => import('./abandonedModal'))
 
 interface OnlineScoreProps {
-  name: OnlineScoreName
+  name: OnlineScoreDto
   value: number
   userId: number
   characteristic: UserCharacteristicDto
@@ -19,7 +19,7 @@ interface OnlineScoreProps {
 function OnlineScore({ name, value, userId, characteristic, confirmations }: OnlineScoreProps) {
   const wordDeclination = useWordDeclination(name, value)
   const formatNumber = useFormatNumber()
-  const [modal, setModal] = useState<OnlineScoreName>()
+  const [modal, setModal] = useState<OnlineScoreDto>()
   const formattedValue = formatNumber(value)
   const buttonText = wordDeclination.toLowerCase()
 

@@ -37,8 +37,9 @@ export function ShareDay({ goalId, dayId, title }: ShareDayProps) {
 
 const StyledButton = styled(Button)({
   minWidth: 'initial',
-  width: 34,
-  height: 34,
+  width: 36,
+  height: 36,
+  border: '2px solid black',
   '& span': {
     fontSize: 18,
   },

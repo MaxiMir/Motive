@@ -8,9 +8,9 @@ export const ONLINE_SCORE = [
   'nextLevelPoints',
 ] as const
 
-export type OnlineScoreName = (typeof ONLINE_SCORE)[number]
+export type OnlineScoreDto = (typeof ONLINE_SCORE)[number]
 
-export const SPHERES_OF_LIFE = [
+export const SPHERES = [
   'family',
   'friends',
   'health',
@@ -21,4 +21,4 @@ export const SPHERES_OF_LIFE = [
   'work',
 ] as const
 
-export type SphereOfLifeName = (typeof SPHERES_OF_LIFE)[number]
+export type SphereDto = (typeof SPHERES)[number]

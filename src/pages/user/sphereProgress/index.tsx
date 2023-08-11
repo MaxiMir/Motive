@@ -1,17 +1,17 @@
 import { Box, Chip, Typography } from '@mui/material'
 import { styled } from '@mui/system'
 import { useIntl } from 'react-intl'
-import { SphereOfLifeName } from 'shared/api'
+import { SphereDto } from 'shared/api'
 import { generateColorByName } from 'shared/ui/palette'
 
 const HEIGHT = 200
 
-interface SphereOfLifeProps {
-  sphere: SphereOfLifeName
+interface SphereProgressProps {
+  sphere: SphereDto
   value: number
 }
 
-function SphereOfLife({ sphere, value }: SphereOfLifeProps): JSX.Element {
+function SphereProgress({ sphere, value }: SphereProgressProps): JSX.Element {
   const { formatMessage } = useIntl()
   const fill = generateColorByName(sphere)
   const message = formatMessage({ id: `common.${sphere}` })
@@ -116,4 +116,4 @@ const Value = styled(Chip)(({ theme }) => ({
   backgroundColor: theme.palette.grey[theme.palette.mode === 'light' ? 200 : 800],
 }))
 
-export default SphereOfLife
+export default SphereProgress

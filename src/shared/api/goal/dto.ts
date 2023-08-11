@@ -1,3 +1,4 @@
+import { SphereDto } from '../characteristic'
 import { DayDto } from '../day'
 import { MemberDto } from '../member'
 import { CreateTaskDto } from '../task'
@@ -21,6 +22,8 @@ export interface GoalBaseDto {
   readonly owner: UserBaseDto
   readonly points: number
   readonly members: number
+  readonly cover?: string
+  readonly sphere: SphereDto
 }
 
 export interface GoalDto extends GoalBaseDto {

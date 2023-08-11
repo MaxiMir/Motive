@@ -16,7 +16,7 @@ export function useCreateGoalForm(onSuccess: () => void) {
   const [goals, mutateGoal] = useGoalsCache()
   const { mutateAsync } = useMutation(createGoal, {
     onSuccess(goal) {
-      const message = formatMessage({ id: 'page.user.modal-goal.message' })
+      const message = formatMessage({ id: 'page.user.modal-goal.message-created' })
 
       flushSync(() => {
         mutateGoal(getNextState(goals, goal))

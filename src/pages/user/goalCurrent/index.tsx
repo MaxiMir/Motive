@@ -12,11 +12,15 @@ import Accordion from 'shared/ui/Accordion'
 import Icon from 'shared/ui/Icon'
 import { Calendar } from './calendar'
 import { SHOW_WEB_AFTER_DAYS } from './consts'
+import { Cover } from './cover'
 import { Discussion } from './discussion'
 import { Feedback } from './feedback'
 import { Members } from './members'
+import { MenuActions } from './menuActions'
 import { Points } from './points'
 import { ShareDay } from './shareDay'
+import { SphereAvatar } from './sphereAvatar'
+import { SphereType } from './sphereType'
 import { Task } from './task'
 import { Views } from './views'
 import { ViewTrigger } from './viewTrigger'
@@ -38,6 +42,8 @@ function GoalCurrent({ goal, viewerPage }: GoalCurrentProps) {
   const {
     id,
     name,
+    cover,
+    sphere,
     hashtags,
     owner,
     stages,
@@ -108,48 +114,39 @@ function GoalCurrent({ goal, viewerPage }: GoalCurrentProps) {
   }
 
   return (
-    <Box
-      id={`goal-${id}`}
-      component="article"
-      display="grid"
-      gridTemplateRows="1fr auto"
-      marginBottom="10px"
-      sx={{ breakInside: 'avoid' }}
-    >
+    <ViewTrigger ownerId={owner.id} dayId={day.id}>
       <Box
-        padding="1px"
-        height="100%"
-        borderRadius="12px"
-        sx={({ palette }) => ({
-          background: `linear-gradient(to top left, ${palette.motivation.main}, ${palette.creativity.dark}, ${palette.support.dark})`,
-        })}
+        id={`goal-${id}`}
+        component="article"
+        display="grid"
+        gridTemplateRows="1fr auto"
+        marginBottom="10px"
+        sx={{ breakInside: 'avoid' }}
       >
-        <Stack
-          justifyContent="space-between"
-          gap={2}
-          position="relative"
-          height="100%"
-          sx={({ spacing }) => ({
-            padding: spacing(3, 2, 2),
-            backgroundColor: 'underlay',
-            borderRadius: '12px',
-          })}
-        >
-          <ViewTrigger ownerId={owner.id} dayId={day.id}>
-            <Stack gap={2}>
+        <Gradient padding="1px" height="100%" borderRadius="12px">
+          <Underlay justifyContent="space-between" position="relative" height="100%">
+            <Cover
+              cover={cover}
+              avatar={<SphereAvatar sphere={sphere} />}
+              top={<MenuActions goalId={id} viewerGoal={viewerPart.goal} />}
+              bottom={[
+                <ShareDay goalId={id} dayId={day.id} title={name} key="share" />,
+                viewerPart.goal ? null : (
+                  <Membership goal={goal} viewerPart={viewerPart} key="member" />
+                ),
+              ]}
+            />
+            <Cont gap={2}>
               <Stack gap={1}>
-                <Box display="flex" alignItems="center" gap={0.5}>
-                  <Typography variant="subtitle1" component="h2">
-                    <b>{name}</b>
-                  </Typography>
-                  {member && <Owner owner={owner} />}
-                  {!viewerPart.goal && (
-                    <Box display="flex" alignItems="center" gap={1} marginLeft="auto">
-                      <ShareDay goalId={id} dayId={day.id} title={name} />
-                      <Membership goal={goal} viewerPart={viewerPart} />
-                    </Box>
-                  )}
-                </Box>
+                <Stack>
+                  <Box display="flex" alignItems="center" gap={0.5}>
+                    <Typography variant="subtitle1" component="h2">
+                      <b>{name}</b>
+                    </Typography>
+                    {member && <Owner owner={owner} />}
+                  </Box>
+                  <SphereType sphere={sphere} />
+                </Stack>
                 {!!hashtags.length && (
                   <Box display="flex" flexWrap="wrap" gap={1}>
                     {hashtags.map((hashtag) => (
@@ -266,14 +263,28 @@ function GoalCurrent({ goal, viewerPage }: GoalCurrentProps) {
                   </Stack>
                 </StyledCard>
               </Stack>
-            </Stack>
-          </ViewTrigger>
-          {renderWeb && <Web />}
-        </Stack>
+            </Cont>
+            {renderWeb && <Web />}
+          </Underlay>
+        </Gradient>
       </Box>
-    </Box>
+    </ViewTrigger>
   )
 }
+
+const Gradient = styled(Box)(({ theme }) => ({
+  background: `linear-gradient(to top left, ${theme.palette.motivation.main}, ${theme.palette.creativity.dark}, ${theme.palette.support.dark})`,
+}))
+
+const Underlay = styled(Stack)(({ theme }) => ({
+  backgroundColor: theme.palette.underlay,
+  borderRadius: '12px',
+  overflow: 'hidden',
+}))
+
+const Cont = styled(Stack)(({ theme }) => ({
+  padding: theme.spacing(2),
+}))
 
 const StyledCard = styled(Card)({
   width: '100%',

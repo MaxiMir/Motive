@@ -52,8 +52,9 @@ function Membership({ goal, viewerPart }: MembershipProps) {
 
 const StyledButton = styled(BlueButton)({
   minWidth: 'initial',
-  width: 34,
-  height: 34,
+  width: 36,
+  height: 36,
+  border: '2px solid black',
 })
 
 export default Membership

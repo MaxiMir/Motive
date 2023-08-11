@@ -1,13 +1,13 @@
 import { Box, Stack, Typography } from '@mui/material'
 import dynamic from 'next/dynamic'
-import { OnlineScoreName } from 'shared/api'
+import { OnlineScoreDto } from 'shared/api'
 import { Emoji } from 'shared/config'
 import { useFormatNumber } from 'shared/lib/hooks'
 
 const Level = dynamic(() => import('./level'))
 
 interface UserCharacteristicProps {
-  name: OnlineScoreName
+  name: OnlineScoreDto
   value: number
 }
 

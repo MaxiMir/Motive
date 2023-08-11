@@ -12,7 +12,7 @@ function Progress({ progress, radius, children }: ProgressProps) {
   const offset = getOffset(progress, radius)
 
   return (
-    <Box position="relative">
+    <Box position="relative" top={6}>
       <svg width={radius} height={radius} viewBox="-20 -36 400 400">
         {offset && (
           <Box

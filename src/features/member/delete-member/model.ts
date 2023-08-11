@@ -17,7 +17,7 @@ export function useDeleteMember(goalId: number, viewerPage: boolean) {
     onSuccess() {
       if (!viewer) return
 
-      const message = formatMessage({ id: 'page.user.modal-goal.message' })
+      const message = formatMessage({ id: 'page.user.modal-goal.message-deleted' })
       queryClient.setQueriesData<UserPageDto | undefined>(
         ['page', nickname],
         (page) => page && getNextState(page, goalId, viewerPage),

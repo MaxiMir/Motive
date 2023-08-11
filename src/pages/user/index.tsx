@@ -1,18 +1,18 @@
 import { Box, Stack, Typography } from '@mui/material'
 import { styled } from '@mui/system'
 import dynamic from 'next/dynamic'
-import CreateGoal from 'pages/user/createGoal'
-import SphereOfLife from 'pages/user/sphereOfLife'
 import { UserContext, UserStatus, UserLevel } from 'entities/user'
 import { useViewer } from 'entities/viewer'
-import { ONLINE_SCORE_MAIN, SPHERES_OF_LIFE, UserPageDto } from 'shared/api'
+import { ONLINE_SCORE_MAIN, SPHERES, UserPageDto } from 'shared/api'
 import Container from 'shared/ui/Container'
 import AvatarActs from './avatarActs'
+import CreateGoal from './createGoal'
 import EmptyGoals from './emptyGoals'
 import LearnMore from './learnMore'
 import MenuActions from './menuActions'
 import Nickname from './nickname'
 import OnlineScore from './onlineScore'
+import SphereProgress from './sphereProgress'
 
 const Link = dynamic(() => import('@mui/material/Link'))
 const UpdateFollowing = dynamic(() => import('features/subscription/update-following'))
@@ -138,8 +138,8 @@ export function UserPage({ user }: UserViewProps) {
           </Section>
         </Stack>
         <Section display="flex" justifyContent="space-between" padding={{ xs: 2, md: '16px 24px' }}>
-          {SPHERES_OF_LIFE.map((sphere) => (
-            <SphereOfLife sphere={sphere} value={characteristic[sphere]} key={sphere} />
+          {SPHERES.map((sphere) => (
+            <SphereProgress sphere={sphere} value={characteristic[sphere]} key={sphere} />
           ))}
         </Section>
         {!!confirmations.length && <ConfirmationList confirmations={confirmations} />}

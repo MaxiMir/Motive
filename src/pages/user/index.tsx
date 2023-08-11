@@ -159,7 +159,7 @@ export function UserPage({ user }: UserViewProps) {
             ))}
           </Box>
         )}
-        <CreateGoal />
+        {viewerPage && <CreateGoal />}
       </Container>
     </UserContext.Provider>
   )

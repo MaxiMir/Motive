@@ -61,7 +61,3 @@ export function getNotificationHref(notification: NotificationDto, viewerNicknam
       return getDayHref(nickname, notification.details.id, notification.details.day)
   }
 }
-
-export function getArticleHref(pathname: string): string {
-  return `${Route.Blog}/${pathname}`
-}

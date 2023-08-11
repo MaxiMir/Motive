@@ -24,7 +24,7 @@ function Stages({ goalId, stages, dayStage, forTomorrow, completeStage }: Stages
 
   return (
     <>
-      <Stack gap={2}>
+      <Stack gap={1}>
         {stages.map((stage, index) => (
           <Box display="flex" justifyContent="space-between" key={stage}>
             <FormControlLabel

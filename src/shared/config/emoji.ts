@@ -15,7 +15,7 @@ export enum Emoji {
   // notifications:
   'new-goal' = '💎',
   'new-follower' = '⭐',
-  'added-points' = '🦾',
+  'added-points' = '❤️',
   'new-question' = '❓',
   'new-support' = '⚡️',
   'new-answer' = '📮',

@@ -45,6 +45,7 @@ const StyledButton = styled(Button)(({ theme }) => ({
   padding: 0,
   borderRadius: '50%',
   background: `linear-gradient(to top left, ${theme.palette.creativity.dark}, ${theme.palette.support.dark})`,
+  zIndex: 100,
 }))
 
 export default CreateGoal

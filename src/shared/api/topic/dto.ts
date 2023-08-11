@@ -3,17 +3,6 @@ import { UserBaseDto } from '../user'
 const TOPIC_TYPES = ['question', 'answer', 'support'] as const
 export type TopicType = (typeof TOPIC_TYPES)[number]
 
-export interface CreateTopicDto {
-  readonly dayId: number
-  readonly topicId?: number
-  readonly type: TopicType
-  readonly text: string
-}
-
-export interface UpdateTopicDto {
-  readonly text: string
-}
-
 export interface MessageDto {
   readonly id: number
   readonly date: string
@@ -28,7 +17,10 @@ export interface MessageDto {
   readonly edited: boolean
 }
 
+export type CreateTopicDto = Pick<MessageDto, 'dayId' | 'type' | 'text'>
+
+export type UpdateTopicDto = Pick<MessageDto, 'text'>
+
 export interface TopicDto extends MessageDto {
-  readonly type: TopicType
   readonly answer: MessageDto | null
 }

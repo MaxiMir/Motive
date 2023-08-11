@@ -29,15 +29,10 @@ interface ExternalLink {
 
 export type CreateUserDto = Omit<UserBaseDto, 'id' | 'nickname'>
 
-export interface UpdateUserDto {
-  readonly name: UserBaseDto['name']
-  readonly nickname: UserBaseDto['nickname']
-  readonly avatar?: File | string | null
-  readonly motto?: string
-  readonly location?: string
-  readonly bio?: string
-  readonly links?: ExternalLink[]
-}
+export type UpdateUserDto = Pick<
+  UserBaseDto,
+  'name' | 'nickname' | 'motto' | 'location' | 'bio' | 'links'
+>
 
 export interface UserDto extends UserBaseDto {
   readonly characteristic: UserCharacteristicDto

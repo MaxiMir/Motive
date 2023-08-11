@@ -7,8 +7,8 @@ interface EmptyProps {
 }
 
 function Empty({ sphere }: EmptyProps) {
-  const fillLight = generateColorByName(sphere, { saturation: 50, lightness: 30, range: 10 })
-  const fillDark = generateColorByName(sphere)
+  const fillLight = generateColorByName(sphere)
+  const fillDark = generateColorByName(sphere, { saturation: 50, lightness: 30, range: 10 })
 
   return <Box height="100%" sx={{ background: `linear-gradient(${fillLight}, ${fillDark})` }} />
 }

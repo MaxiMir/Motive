@@ -1,7 +1,9 @@
-import { Box, Chip, Typography } from '@mui/material'
+import { Avatar, Box, Chip, Stack, Typography } from '@mui/material'
 import { styled } from '@mui/system'
 import { useIntl } from 'react-intl'
+import { SPHERE_ICONS } from 'entities/characteristic'
 import { SphereDto } from 'shared/api'
+import Icon from 'shared/ui/Icon'
 import { generateColorByName } from 'shared/ui/palette'
 
 const HEIGHT = 200
@@ -14,54 +16,60 @@ interface SphereProgressProps {
 function SphereProgress({ sphere, value }: SphereProgressProps): JSX.Element {
   const { formatMessage } = useIntl()
   const fill = generateColorByName(sphere)
-  const message = formatMessage({ id: `common.${sphere}` })
+  const sphereText = formatMessage({ id: `common.${sphere}` })
   const label = Math.trunc(value)
+  const icon = SPHERE_ICONS[sphere]
 
   return (
-    <Vessel
-      sx={{
-        '--width': '30px',
-        '--height': `${HEIGHT}px`,
-        '--fill': fill,
-        '--progress': `${HEIGHT - (value / 10) * HEIGHT}px`,
-      }}
-    >
-      <Cont>
-        <Fill>
-          <svg
-            version="1.1"
-            xmlns="http://www.w3.org/2000/svg"
-            xmlnsXlink="http://www.w3.org/1999/xlink"
-            x="0px"
-            y="0px"
-            width="300px"
-            height="300px"
-            viewBox="0 0 300 300"
-            enableBackground="new 0 0 300 300"
-            xmlSpace="preserve"
-          >
-            <Wave
-              d="M300,300V2.5c0,0-0.6-0.1-1.1-0.1c0,0-25.5-2.3-40.5-2.4c-15,0-40.6,2.4-40.6,2.4
-	c-12.3,1.1-30.3,1.8-31.9,1.9c-2-0.1-19.7-0.8-32-1.9c0,0-25.8-2.3-40.8-2.4c-15,0-40.8,2.4-40.8,2.4c-12.3,1.1-30.4,1.8-32,1.9
-	c-2-0.1-20-0.8-32.2-1.9c0,0-3.1-0.3-8.1-0.7V300H300z"
-            />
-          </svg>
-        </Fill>
-      </Cont>
-      <Value size="small" label={label} />
-      <Typography
+    <Stack gap={1}>
+      <Vessel
         sx={{
-          position: 'absolute',
-          top: '50%',
-          left: '50%',
-          transform: 'translate(-50%, -50%)',
-          writingMode: 'tb',
-          zIndex: 1,
+          '--width': '30px',
+          '--height': `${HEIGHT}px`,
+          '--fill': fill,
+          '--progress': `${HEIGHT - (value / 10) * HEIGHT}px`,
         }}
       >
-        {message}
-      </Typography>
-    </Vessel>
+        <Cont>
+          <Fill>
+            <svg
+              version="1.1"
+              xmlns="http://www.w3.org/2000/svg"
+              xmlnsXlink="http://www.w3.org/1999/xlink"
+              x="0px"
+              y="0px"
+              width="300px"
+              height="300px"
+              viewBox="0 0 300 300"
+              enableBackground="new 0 0 300 300"
+              xmlSpace="preserve"
+            >
+              <Wave
+                d="M300,300V2.5c0,0-0.6-0.1-1.1-0.1c0,0-25.5-2.3-40.5-2.4c-15,0-40.6,2.4-40.6,2.4
+	c-12.3,1.1-30.3,1.8-31.9,1.9c-2-0.1-19.7-0.8-32-1.9c0,0-25.8-2.3-40.8-2.4c-15,0-40.8,2.4-40.8,2.4c-12.3,1.1-30.4,1.8-32,1.9
+	c-2-0.1-20-0.8-32.2-1.9c0,0-3.1-0.3-8.1-0.7V300H300z"
+              />
+            </svg>
+          </Fill>
+        </Cont>
+        <Value size="small" label={label} />
+        <Title>
+          <Typography>{sphereText}</Typography>
+        </Title>
+      </Vessel>
+      <Avatar
+        sx={{
+          width: 30,
+          height: 30,
+          background: fill,
+          '& span': {
+            fontSize: 12,
+          },
+        }}
+      >
+        <Icon name={icon} color="common.white" />
+      </Avatar>
+    </Stack>
   )
 }
 
@@ -115,5 +123,16 @@ const Value = styled(Chip)(({ theme }) => ({
   fontWeight: 'bold',
   backgroundColor: theme.palette.grey[theme.palette.mode === 'light' ? 200 : 800],
 }))
+
+const Title = styled('div')({
+  position: 'absolute',
+  top: '50%',
+  left: '50%',
+  transform: 'translate(-50%, -50%)',
+  zIndex: 1,
+  '& p': {
+    rotate: '-90deg',
+  },
+})
 
 export default SphereProgress

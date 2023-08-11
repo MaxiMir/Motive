@@ -14,10 +14,8 @@ interface CoverProps {
 }
 
 export function Cover({ cover, avatar, top, bottom }: CoverProps) {
-  const height = cover ? 250 : 150
-
   return (
-    <Box position="relative" height={height} mb={3}>
+    <Box position="relative" height={220} mb={3}>
       <AvatarBox>{avatar}</AvatarBox>
       {cover ? (
         <Image src={cover} alt="" fill style={{ objectFit: 'cover' }} />

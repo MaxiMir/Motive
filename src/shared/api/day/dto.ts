@@ -13,14 +13,11 @@ export interface DayDto {
   readonly pointsRated: number
 }
 
-export interface CreateDayDto {
-  readonly id: number
-  readonly date: string
+export interface CreateDayDto extends Pick<DayDto, 'id' | 'date'> {
   readonly tasks: CreateTaskDto[]
 }
 
-export interface DayPointsUpdateDto {
-  readonly id: number
+export interface DayPointsUpdateDto extends Pick<DayDto, 'id'> {
   readonly dayId: number
   readonly add: boolean
 }

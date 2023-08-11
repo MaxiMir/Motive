@@ -1,4 +1,4 @@
-export const ICONS = {
+export const SPHERE_ICONS = {
   family: 'family_restroom',
   friends: 'group',
   health: 'health_and_safety',

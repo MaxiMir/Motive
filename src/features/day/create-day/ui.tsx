@@ -1,9 +1,9 @@
 import {
-  Accordion,
   AccordionDetails,
   FormControlLabel,
   Radio,
   RadioGroup,
+  Accordion,
   AccordionSummary,
   Stack,
   Button,
@@ -76,13 +76,13 @@ function CreateDayModal({ goalId, dayDate, onClose }: CreateDayModalProps) {
               <FieldArray name="tasks">
                 {({ push, remove }) => (
                   <>
-                    {values.tasks.map(({ id, date }, index) => (
+                    {values.tasks.map(({ key, date }, index) => (
                       <TaskField
                         taskCount={values.tasks.length}
                         date={values.date}
                         remind={date}
                         index={index}
-                        key={id}
+                        key={key}
                         setFieldValue={setFieldValue}
                         onRemove={() => remove(index)}
                       />

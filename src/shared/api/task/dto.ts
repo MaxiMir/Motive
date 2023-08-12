@@ -6,6 +6,7 @@ export interface TaskDto {
   readonly completedByOthers: boolean
 }
 
-export interface CreateTaskDto extends Pick<TaskDto, 'id' | 'name'> {
+export interface CreateTaskDto extends Pick<TaskDto, 'name'> {
+  readonly key: string
   readonly date?: Date
 }

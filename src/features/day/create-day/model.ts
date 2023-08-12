@@ -28,7 +28,7 @@ export function useCreateDay(goalId: number, onSuccess: () => void) {
     initialValues: {
       id: goalId,
       date: getTomorrowISO(),
-      tasks: [{ id: crypto.randomUUID(), name: '', date: undefined }],
+      tasks: [{ key: crypto.randomUUID(), name: '', date: undefined }],
     },
     validationSchema: DaySchema,
     async onSubmit(data) {

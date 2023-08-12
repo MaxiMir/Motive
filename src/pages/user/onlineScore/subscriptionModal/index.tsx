@@ -1,3 +1,4 @@
+import { Stack } from '@mui/material'
 import { useIntl } from 'react-intl'
 import dynamic from 'next/dynamic'
 import Modal from 'shared/ui/Modal'
@@ -5,7 +6,7 @@ import { useSubscription } from './lib'
 
 const Loader = dynamic(() => import('./loader'))
 const EmptyList = dynamic(() => import('./emptyList'))
-const UserList = dynamic(() => import('./userList'))
+const UserCard = dynamic(() => import('./userCard'))
 
 interface SubscriptionModalProps {
   userId: number
@@ -28,12 +29,17 @@ function SubscriptionModal({ userId, type, count, onClose }: SubscriptionModalPr
           {!users?.length ? (
             <EmptyList />
           ) : (
-            <UserList
-              users={users}
-              checkOnLoadMore={checkOnLoadMore}
-              onView={fetchNextPage}
-              onClose={onClose}
-            />
+            <Stack flex={1} gap={2} height="100%">
+              {users.map((user, index) => (
+                <UserCard
+                  user={user}
+                  key={user.id}
+                  inView={checkOnLoadMore(index)}
+                  onView={fetchNextPage}
+                  onClose={onClose}
+                />
+              ))}
+            </Stack>
           )}
         </>
       )}

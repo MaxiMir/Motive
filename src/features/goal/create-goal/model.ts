@@ -34,7 +34,7 @@ export function useCreateGoalForm(onSuccess: () => void) {
       name: '',
       hashtags: '',
       stages: [],
-      tasks: [{ id: crypto.randomUUID(), name: '', date: undefined }],
+      tasks: [{ key: crypto.randomUUID(), name: '', date: undefined }],
     },
     validationSchema: GoalSchema,
     async onSubmit(data) {

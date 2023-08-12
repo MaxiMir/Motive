@@ -5,7 +5,9 @@ import { SPHERE_ICONS } from 'entities/characteristic'
 import { SphereDto } from 'shared/api'
 import Icon from 'shared/ui/Icon'
 import { generateColorByName } from 'shared/ui/palette'
+import { getBubblesSetup } from './lib'
 
+const WIDTH = 30
 const HEIGHT = 200
 
 interface SphereProgressProps {
@@ -15,8 +17,9 @@ interface SphereProgressProps {
 
 function SphereProgress({ sphere, value }: SphereProgressProps): JSX.Element {
   const { formatMessage } = useIntl()
-  const fill = generateColorByName(sphere)
+  const background = generateColorByName(sphere)
   const sphereText = formatMessage({ id: `common.${sphere}` })
+  const bubbles = getBubblesSetup(10)
   const label = Math.trunc(value)
   const icon = SPHERE_ICONS[sphere]
 
@@ -24,32 +27,19 @@ function SphereProgress({ sphere, value }: SphereProgressProps): JSX.Element {
     <Stack gap={1}>
       <Vessel
         sx={{
-          '--width': '30px',
+          '--width': `${WIDTH}px`,
           '--height': `${HEIGHT}px`,
-          '--fill': fill,
+          '--background': background,
           '--progress': `${HEIGHT - (value / 10) * HEIGHT}px`,
         }}
       >
         <Cont>
           <Fill>
-            <svg
-              version="1.1"
-              xmlns="http://www.w3.org/2000/svg"
-              xmlnsXlink="http://www.w3.org/1999/xlink"
-              x="0px"
-              y="0px"
-              width="300px"
-              height="300px"
-              viewBox="0 0 300 300"
-              enableBackground="new 0 0 300 300"
-              xmlSpace="preserve"
-            >
-              <Wave
-                d="M300,300V2.5c0,0-0.6-0.1-1.1-0.1c0,0-25.5-2.3-40.5-2.4c-15,0-40.6,2.4-40.6,2.4
-	c-12.3,1.1-30.3,1.8-31.9,1.9c-2-0.1-19.7-0.8-32-1.9c0,0-25.8-2.3-40.8-2.4c-15,0-40.8,2.4-40.8,2.4c-12.3,1.1-30.4,1.8-32,1.9
-	c-2-0.1-20-0.8-32.2-1.9c0,0-3.1-0.3-8.1-0.7V300H300z"
-              />
-            </svg>
+            <Wave>
+              {bubbles.map(({ key, sx }) => (
+                <Bubble sx={sx} key={key} />
+              ))}
+            </Wave>
           </Fill>
         </Cont>
         <Value size="small" label={label} />
@@ -61,7 +51,7 @@ function SphereProgress({ sphere, value }: SphereProgressProps): JSX.Element {
         sx={{
           width: 30,
           height: 30,
-          background: fill,
+          background,
           '& span': {
             fontSize: 12,
           },
@@ -100,17 +90,26 @@ const Fill = styled('div')({
   },
 })
 
-const Wave = styled('path')({
-  width: 'calc(var(--width) * 2)',
+const Wave = styled('div')({
+  position: 'relative',
+  overflow: 'hidden',
+  width: 'var(--width)',
   height: 'var(--height)',
-  fill: 'var(--fill)',
-  animation: 'wave 5s linear infinite',
-  '@keyframes wave': {
-    '0%': {
-      transform: 'translate(calc(var(--height) * -1), var(--progress))',
-    },
+  backgroundColor: 'var(--background)',
+  transform: 'translate(0, var(--progress))',
+})
+
+const Bubble = styled('div')({
+  position: 'absolute',
+  zIndex: 1,
+  backgroundColor: 'white',
+  borderRadius: '50%',
+  width: 7,
+  height: 7,
+  animation: 'up 14s ease-out infinite',
+  '@keyframes up': {
     '100%': {
-      transform: 'translate(0, var(--progress))',
+      top: -10,
     },
   },
 })
@@ -125,10 +124,11 @@ const Value = styled(Chip)(({ theme }) => ({
 }))
 
 const Title = styled('div')({
+  minWidth: 100,
   position: 'absolute',
-  top: '50%',
   left: '50%',
-  transform: 'translate(-50%, -50%)',
+  bottom: 75,
+  transform: 'translate(-50%)',
   zIndex: 1,
   '& p': {
     rotate: '-90deg',

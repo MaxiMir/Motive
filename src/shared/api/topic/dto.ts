@@ -17,7 +17,9 @@ export interface MessageDto {
   readonly edited: boolean
 }
 
-export type CreateTopicDto = Pick<MessageDto, 'dayId' | 'type' | 'text'>
+export interface CreateTopicDto extends Pick<MessageDto, 'dayId' | 'type' | 'text'> {
+  readonly topicId?: number
+}
 
 export type UpdateTopicDto = Pick<MessageDto, 'text'>
 

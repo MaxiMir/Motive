@@ -27,8 +27,7 @@ function CreateMemberModal({ goal, onClose }: CreateMemberModalProps) {
   const beginLabel = formatMessage({ id: 'page.user.modal-join.begin-label' })
   const dayLabel = formatMessage({ id: 'page.user.modal-join.day-label' })
   const accordionHeader = formatMessage({ id: 'page.user.modal-join.accordion-header' })
-  const accordingMotivation = formatMessage({ id: 'page.user.modal-join.according-motivation' })
-  const accordingCreative = formatMessage({ id: 'page.user.modal-join.according-creative' })
+  const accordingRate = formatMessage({ id: 'page.user.modal-join.according-rate' })
   const accordingSupport = formatMessage({ id: 'page.user.modal-join.according-support' })
   const accordingNeeded = formatMessage({ id: 'page.user.modal-join.according-needed' })
   const accordingQuestions = formatMessage({ id: 'page.user.modal-join.according-questions' })
@@ -87,8 +86,7 @@ function CreateMemberModal({ goal, onClose }: CreateMemberModalProps) {
           id="tips"
           details={
             <Box color="zen.silent">
-              <Typography>&#9679; {accordingMotivation}.</Typography>
-              <Typography>&#9679; {accordingCreative}.</Typography>
+              <Typography>&#9679; {accordingRate}.</Typography>
               <Typography>
                 &#9679; {accordingSupport}{' '}
                 <Box component="span" color="support.main">

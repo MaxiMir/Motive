@@ -106,7 +106,7 @@ export function UserPage({ user }: UserViewProps) {
               >
                 {ONLINE_SCORE_MAIN.map((score) => (
                   <OnlineScore
-                    name={score}
+                    score={score}
                     value={characteristic[score]}
                     userId={id}
                     characteristic={characteristic}

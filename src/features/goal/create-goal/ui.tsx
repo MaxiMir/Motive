@@ -102,7 +102,7 @@ function CreateGoalModal({ onClose }: CreateGoalModalProps) {
             <Stack gap={1}>
               <Stack direction="row" alignItems="center" gap={1}>
                 <Typography variant="h6" component="p">
-                  🚀 {stagesHeader}
+                  <Icon name="rocket_launch" color="primary.dark" /> {stagesHeader}
                 </Typography>
                 <TooltipArrow title={stageHint}>
                   <IconButton color="info">
@@ -148,7 +148,7 @@ function CreateGoalModal({ onClose }: CreateGoalModalProps) {
             </Stack>
             <FormControl variant="standard">
               <Typography variant="h6" component="label">
-                🕰 {startHeader}
+                {startHeader}
               </Typography>
               <RadioGroup
                 name="started"
@@ -163,18 +163,18 @@ function CreateGoalModal({ onClose }: CreateGoalModalProps) {
             </FormControl>
             <Stack gap={2}>
               <Typography variant="h6" component="p">
-                📌 {tasksHeader}
+                <Icon name="keep_public" color="error.dark" /> {tasksHeader}
               </Typography>
               <FieldArray name="tasks">
                 {({ push, remove }) => (
                   <>
-                    {values.tasks.map(({ id, date }, index) => (
+                    {values.tasks.map(({ key, date }, index) => (
                       <TaskField
                         taskCount={values.tasks.length}
                         date={values.started}
                         remind={date}
                         index={index}
-                        key={id}
+                        key={key}
                         setFieldValue={setFieldValue}
                         onRemove={() => remove(index)}
                       />

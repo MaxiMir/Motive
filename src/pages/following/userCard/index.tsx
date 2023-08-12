@@ -1,7 +1,7 @@
 import { Box, Stack, Typography } from '@mui/material'
 import Link from 'next/link'
-import { UserCharacteristic, UserLevel, UserStatus } from 'entities/user'
-import { ONLINE_SCORE_MAIN, UserDto } from 'shared/api'
+import { UserLevel, UserStatus } from 'entities/user'
+import { UserDto } from 'shared/api'
 import { joinToHref } from 'shared/lib/helpers'
 import Avatar from 'shared/ui/avatar'
 import { MenuActions } from './menuActions'
@@ -11,7 +11,7 @@ interface UserCardProps {
   index: number
 }
 
-export function UserCard({ user, index }: UserCardProps) {
+function UserCard({ user, index }: UserCardProps) {
   const { nickname, name, avatar, characteristic, online } = user
   const href = joinToHref(nickname)
 
@@ -29,17 +29,10 @@ export function UserCard({ user, index }: UserCardProps) {
             <UserLevel level={characteristic.level} />
           </Box>
         </UserStatus>
-        <Stack direction="row" justifyContent="space-between" alignItems="center">
-          {ONLINE_SCORE_MAIN.map((characteristicName) => (
-            <UserCharacteristic
-              name={characteristicName}
-              value={characteristic[characteristicName]}
-              key={characteristicName}
-            />
-          ))}
-        </Stack>
       </Stack>
       <MenuActions user={user} index={index} />
     </Stack>
   )
 }
+
+export default UserCard

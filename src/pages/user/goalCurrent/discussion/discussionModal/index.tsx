@@ -3,12 +3,10 @@ import { useIntl } from 'react-intl'
 import dynamic from 'next/dynamic'
 import { useCheckOnMobile } from 'entities/device'
 import { useViewer } from 'entities/viewer'
-import { TopicDto, UserBaseDto } from 'shared/api'
-import { ListProps } from 'shared/ui/List'
+import { UserBaseDto } from 'shared/api'
 import Modal from 'shared/ui/Modal'
 import { useDiscussion } from './lib'
 
-const List = dynamic<ListProps<TopicDto>>(() => import('shared/ui/List'))
 const EmptyList = dynamic(() => import('./emptyList'))
 const Loader = dynamic(() => import('./loader'))
 const Topic = dynamic(() => import('./topic'))
@@ -60,23 +58,19 @@ function DiscussionModal({ dayId, count, owner, viewerGoal, onClose }: Discussio
               {!count ? (
                 <EmptyList />
               ) : (
-                <List
-                  elements={topics}
-                  keyGetter={(topic) => topic.id}
-                  gap={2}
-                  mt={1}
-                  pb={3}
-                  render={(topic, index) => (
+                <Stack flex={1} gap={2} mt={1} pb={3}>
+                  {topics.map((topic, index) => (
                     <Topic
                       dayId={dayId}
                       topic={topic}
                       owner={owner}
+                      key={topic.id}
                       isOwner={viewerGoal}
                       inView={checkOnLoadMore(index)}
                       onView={fetchNextPage}
                     />
-                  )}
-                />
+                  ))}
+                </Stack>
               )}
             </>
           )}

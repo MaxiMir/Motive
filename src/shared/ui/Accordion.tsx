@@ -10,12 +10,13 @@ import Icon from './Icon'
 interface AccordionProps {
   id: string
   header: string | JSX.Element
-  emoji: string
+  emoji?: string
+  icon?: JSX.Element
   details: JSX.Element
   defaultExpanded?: boolean
 }
 
-function Accordion({ header, id, details, defaultExpanded, emoji }: AccordionProps) {
+function Accordion({ id, header, emoji, icon, details, defaultExpanded }: AccordionProps) {
   return (
     <MuiAccordion
       defaultExpanded={defaultExpanded}
@@ -30,9 +31,12 @@ function Accordion({ header, id, details, defaultExpanded, emoji }: AccordionPro
         }
       >
         <Stack direction="row" gap={1}>
-          <Typography variant="h6" component="p">
-            {emoji}
-          </Typography>
+          {emoji && (
+            <Typography variant="h6" component="p">
+              {emoji}
+            </Typography>
+          )}
+          {icon}
           <Typography variant="h6" component="p">
             {header}
           </Typography>

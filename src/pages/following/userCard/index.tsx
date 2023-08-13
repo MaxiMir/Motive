@@ -12,16 +12,16 @@ interface UserCardProps {
 }
 
 function UserCard({ user, index }: UserCardProps) {
-  const { nickname, name, avatar, characteristic, online } = user
+  const { nickname, name, avatar, characteristic, online, lastSeen, device } = user
   const href = joinToHref(nickname)
 
   return (
     <Stack direction="row" alignItems="center" gap={2}>
       <Link href={href} title={name}>
-        <Avatar src={avatar} name={name} size={70} />
+        <Avatar src={avatar} name={name} size={60} />
       </Link>
-      <Stack justifyContent="space-between" flex={1} minHeight={70}>
-        <UserStatus online={online}>
+      <Stack justifyContent="center" flex={1} minHeight={70}>
+        <UserStatus online={online} lastSeen={lastSeen} device={device}>
           <Box display="flex" alignItems="center" gap={2}>
             <Typography variant="subtitle1" component="span">
               <Link href={href}>{name}</Link>

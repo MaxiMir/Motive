@@ -2,7 +2,7 @@ import { produce } from 'immer'
 import { useIntl } from 'react-intl'
 import { InfiniteData, useMutation, useQueryClient } from 'react-query'
 import { useGoalsCache } from 'entities/user'
-import { useViewer, useSignIn } from 'entities/viewer'
+import { useViewerAct } from 'entities/viewer'
 import { GoalDto, MessageDto, TopicDto, updateLike } from 'shared/api'
 import { useSnackbar } from 'shared/ui/snackbar'
 
@@ -14,8 +14,6 @@ export interface Options {
 
 export function useSetLike(message: MessageDto, parentId?: number) {
   const { id, like, dayId, goalId } = message
-  const viewer = useViewer()
-  const openSignIn = useSignIn((state) => state.openSignIn)
   const [goals, mutateGoals] = useGoalsCache()
   const queryClient = useQueryClient()
   const { formatMessage } = useIntl()
@@ -59,14 +57,7 @@ export function useSetLike(message: MessageDto, parentId?: number) {
     },
   })
 
-  const onClick = () => {
-    if (!viewer) {
-      openSignIn({ callbackUrl: window.location.href })
-      return
-    }
-
-    mutate({ message, parentId, add: !like })
-  }
+  const onClick = useViewerAct(() => mutate({ message, parentId, add: !like }))
 
   return [isLoading, onClick] as const
 }

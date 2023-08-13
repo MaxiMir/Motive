@@ -5,7 +5,7 @@ import { getOffset } from './lib'
 interface ProgressProps {
   progress: number
   radius: number
-  children: ReactNode
+  children: ReactNode | ReactNode[]
 }
 
 function Progress({ progress, radius, children }: ProgressProps) {

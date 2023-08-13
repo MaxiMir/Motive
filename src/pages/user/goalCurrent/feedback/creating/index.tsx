@@ -26,7 +26,7 @@ function Creating({ goalId, dayId, forTomorrow }: CreatingProps) {
           size="small"
           variant="outlined"
           color="secondary"
-          startIcon={<Icon name="psychology" />}
+          startIcon={<Icon name="add" />}
           disabled={forTomorrow}
           aria-haspopup="true"
           aria-expanded={open ? 'true' : undefined}

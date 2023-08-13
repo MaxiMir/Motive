@@ -10,7 +10,7 @@ interface UserStatusProps extends BoxProps {
   online?: boolean | null
   lastSeen?: string | null
   device?: Device | null
-  children: ReactNode
+  children: ReactNode | ReactNode[]
 }
 
 export function UserStatus({ online, lastSeen, device, children, ...props }: UserStatusProps) {

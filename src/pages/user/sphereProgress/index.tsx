@@ -15,7 +15,7 @@ interface SphereProgressProps {
   value: number
 }
 
-function SphereProgress({ sphere, value }: SphereProgressProps): JSX.Element {
+function SphereProgress({ sphere, value }: SphereProgressProps) {
   const { formatMessage } = useIntl()
   const background = generateColorByName(sphere)
   const sphereText = formatMessage({ id: `common.${sphere}` })
@@ -106,6 +106,7 @@ const Bubble = styled('div')({
   borderRadius: '50%',
   width: 7,
   height: 7,
+  border: '1px solid #000000c9',
   animation: 'up 14s ease-out infinite',
   '@keyframes up': {
     '100%': {

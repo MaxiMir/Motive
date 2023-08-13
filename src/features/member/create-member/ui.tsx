@@ -5,6 +5,7 @@ import { useIntl } from 'react-intl'
 import { GoalDto } from 'shared/api'
 import Accordion from 'shared/ui/Accordion'
 import CancelButton from 'shared/ui/CancelButton'
+import Icon from 'shared/ui/Icon'
 import Modal from 'shared/ui/Modal'
 import SubmitButton from 'shared/ui/SubmitButton'
 import { useCreateMemberForm } from './model'
@@ -81,9 +82,9 @@ function CreateMemberModal({ goal, onClose }: CreateMemberModalProps) {
           </Form>
         </FormikProvider>
         <Accordion
-          emoji="🪢"
-          header={accordionHeader}
           id="tips"
+          header={accordionHeader}
+          icon={<Icon name="diversity_2" color="primary.dark" />}
           details={
             <Box color="zen.silent">
               <Typography>&#9679; {accordingRate}.</Typography>
@@ -92,7 +93,6 @@ function CreateMemberModal({ goal, onClose }: CreateMemberModalProps) {
                 <Box component="span" color="support.main">
                   {owner.name}
                 </Box>
-                {', '}
                 {accordingNeeded}.
               </Typography>
               <Typography>&#9679; {accordingQuestions} 💬.</Typography>

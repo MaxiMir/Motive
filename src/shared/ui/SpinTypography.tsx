@@ -4,7 +4,7 @@ import { ReactNode } from 'react'
 
 interface SpinTypographyProps {
   fontSize?: TypographyProps['fontSize']
-  children: ReactNode
+  children: ReactNode | ReactNode[]
 }
 
 function SpinTypography({ fontSize = 60, children }: SpinTypographyProps) {

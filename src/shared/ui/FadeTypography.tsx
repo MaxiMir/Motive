@@ -4,7 +4,7 @@ import { ReactNode } from 'react'
 
 interface FadeTypographyProps {
   fontSize?: TypographyProps['fontSize']
-  children: ReactNode
+  children: ReactNode | ReactNode[]
 }
 
 function FadeTypography({ fontSize = 60, children }: FadeTypographyProps) {

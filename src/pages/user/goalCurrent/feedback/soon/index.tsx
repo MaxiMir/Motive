@@ -5,7 +5,7 @@ function Soon() {
   const { formatMessage } = useIntl()
   const soonText = formatMessage({ id: 'common.soon' })
 
-  return <Typography>{soonText}...</Typography>
+  return <Typography color="zen.silent">{soonText}...</Typography>
 }
 
 export default Soon

@@ -5,7 +5,7 @@ import { useIncreaseViews } from './model'
 interface ViewTriggerProps {
   ownerId: number
   dayId: number
-  children: ReactNode
+  children: ReactNode | ReactNode[]
 }
 
 export function ViewTrigger({ ownerId, dayId, children }: ViewTriggerProps) {

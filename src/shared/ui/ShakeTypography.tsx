@@ -4,7 +4,7 @@ import { ReactNode } from 'react'
 
 interface ShakeTypographyProps {
   fontSize?: TypographyProps['fontSize']
-  children: ReactNode
+  children: ReactNode | ReactNode[]
 }
 
 function ShakeTypography({ fontSize = 60, children }: ShakeTypographyProps) {

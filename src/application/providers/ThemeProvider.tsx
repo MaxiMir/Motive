@@ -7,7 +7,7 @@ import { usePaletteMode } from 'shared/ui/palette'
 const generateClassName = createGenerateClassName({ productionPrefix: 'bb' })
 
 interface ThemeProviderProps {
-  children: ReactNode
+  children: ReactNode | ReactNode[]
 }
 
 function ThemeProvider({ children }: ThemeProviderProps) {

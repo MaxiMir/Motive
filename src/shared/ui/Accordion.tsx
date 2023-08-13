@@ -1,22 +1,22 @@
 import {
-  Accordion as MuiAccordion,
   AccordionDetails,
+  Accordion as MuiAccordion,
   AccordionSummary,
   Stack,
   Typography,
 } from '@mui/material'
+import { ReactNode } from 'react'
 import Icon from './Icon'
 
 interface AccordionProps {
   id: string
-  header: string | JSX.Element
-  emoji?: string
-  icon?: JSX.Element
-  details: JSX.Element
+  header: string | ReactNode
+  icon: ReactNode
+  details: ReactNode
   defaultExpanded?: boolean
 }
 
-function Accordion({ id, header, emoji, icon, details, defaultExpanded }: AccordionProps) {
+function Accordion({ id, header, icon, details, defaultExpanded }: AccordionProps) {
   return (
     <MuiAccordion
       defaultExpanded={defaultExpanded}
@@ -31,11 +31,6 @@ function Accordion({ id, header, emoji, icon, details, defaultExpanded }: Accord
         }
       >
         <Stack direction="row" gap={1}>
-          {emoji && (
-            <Typography variant="h6" component="p">
-              {emoji}
-            </Typography>
-          )}
           {icon}
           <Typography variant="h6" component="p">
             {header}

@@ -1,6 +1,6 @@
 import { Box } from '@mui/material'
 import { styled } from '@mui/system'
-import { Fragment } from 'react'
+import { Fragment, ReactNode } from 'react'
 import dynamic from 'next/dynamic'
 import { SphereDto } from 'shared/api'
 import { SphereAvatar } from './sphereAvatar'
@@ -13,8 +13,8 @@ interface CoverProps {
   cover?: string
   sphere: SphereDto
   web: boolean
-  top: JSX.Element
-  bottom: Array<JSX.Element | null>
+  top: ReactNode
+  bottom: Array<ReactNode | null>
 }
 
 export function Cover({ cover, sphere, web, top, bottom }: CoverProps) {

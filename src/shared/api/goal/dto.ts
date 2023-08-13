@@ -1,3 +1,4 @@
+import { FRONTEND_ID } from 'shared/config'
 import { SphereDto } from '../characteristic'
 import { DayDto } from '../day'
 import { MemberDto } from '../member'
@@ -20,7 +21,7 @@ export interface GoalBaseDto {
 
 export interface CreateGoalDto extends Pick<GoalBaseDto, 'name' | 'started'> {
   readonly hashtags: string
-  readonly stages: ReadonlyArray<{ id: string; name: string }>
+  readonly stages: ReadonlyArray<{ [FRONTEND_ID]: string; name: string }>
   readonly tasks: CreateTaskDto[]
 }
 

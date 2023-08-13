@@ -10,15 +10,17 @@ const UserLink = dynamic(() => import('./userLink'))
 
 interface HeaderMobileProps {
   type: OGType
+  scrolledDown: boolean
 }
 
-function HeaderMobile({ type }: HeaderMobileProps) {
+function HeaderMobile({ type, scrolledDown }: HeaderMobileProps) {
   const viewer = useViewer()
   const renderNickname = type === 'profile'
+  const position = scrolledDown ? 'static' : 'fixed'
 
   return (
     <AppBar
-      position="static"
+      position={position}
       sx={{
         display: {
           xs: 'block',
@@ -26,7 +28,7 @@ function HeaderMobile({ type }: HeaderMobileProps) {
         },
         paddingY: 1,
         boxShadow: 'none',
-        backgroundColor: 'underlay',
+        backgroundColor: '#121212',
       }}
     >
       <Container fixed>

@@ -38,10 +38,9 @@ function EditProfileModal({ user, onClose }: EditProfileModalProps) {
       actions={[
         <CancelButton key="cancel" onClick={onClose} />,
         <SubmitButton
-          disabled={isSubmitting}
           text={buttonText}
           loadingText={buttonLoading}
-          emoji="🥷"
+          isLoading={isSubmitting}
           key="submit"
           onClick={handleSubmit}
         />,

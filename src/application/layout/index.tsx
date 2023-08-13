@@ -9,6 +9,7 @@ import { useDetectOnline } from 'features/page/offline'
 import { useDeviceContext } from 'entities/device'
 import { getLocaleHrefList } from 'entities/locale'
 import { OGType } from 'shared/api'
+import { useLayout } from './lib'
 
 const HeaderMobile = dynamic(() => import('widgets/headerMobile'))
 const FooterMobile = dynamic(() => import('widgets/footerMobile'))
@@ -41,12 +42,10 @@ export function Layout({
   const online = useDetectOnline()
   const device = useDeviceContext()
   const localeHrefList = getLocaleHrefList(asPath)
+  const { desktop, mobile, scrolledDown } = useLayout(device)
   const fetchingNumber = useIsFetching({ queryKey: ['page'] })
   const renderUpdating = fetchingNumber > 0
   const url = localeHrefList[locale]
-  const possibleDesktop = device === 'desktop'
-  const renderDesktop = !device || possibleDesktop
-  const renderMobile = !device || !possibleDesktop
   const fullTitle = `${title} - ${process.env.NEXT_PUBLIC_APP_NAME}`
 
   return (
@@ -83,19 +82,14 @@ export function Layout({
         <link rel="alternate" href={localeHrefList.uk} hrefLang="uk" />
         <link rel="alternate" href={localeHrefList.en} hrefLang="x-default" />
       </Head>
-      {renderMobile && <HeaderMobile type={type} />}
-      {renderDesktop && <Sidebar breakpoints={!device} />}
-      <Stack
-        component="main"
-        id="main"
-        flex={1}
-        sx={(theme) => ({ background: theme.palette.mode === 'dark' ? '#121212' : undefined })}
-      >
+      {mobile && <HeaderMobile type={type} scrolledDown={scrolledDown} />}
+      {desktop && <Sidebar breakpoints={!device} />}
+      <Stack component="main" id="main" flex={1} sx={{ backgroundColor: '#121212' }}>
         {renderUpdating && <Updating />}
         {online ? children : <Offline />}
       </Stack>
-      {renderMobile && <FooterMobile />}
-      {renderDesktop && <Footer breakpoints={!device} />}
+      {desktop && <Footer breakpoints={!device} />}
+      {mobile && <FooterMobile scrolledDown={scrolledDown} />}
     </>
   )
 }

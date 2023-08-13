@@ -5,6 +5,7 @@ import { useIntl } from 'react-intl'
 import { useMutation } from 'react-query'
 import { useGoalsCache } from 'entities/user'
 import { CreatedGoal, CreateGoalDto, GoalDto, createGoal } from 'shared/api'
+import { FRONTEND_ID } from 'shared/config'
 import { scrollToElem } from 'shared/lib/helpers'
 import { getMidnightISO } from 'shared/lib/utils'
 import { useSnackbar } from 'shared/ui/snackbar'
@@ -34,7 +35,7 @@ export function useCreateGoalForm(onSuccess: () => void) {
       name: '',
       hashtags: '',
       stages: [],
-      tasks: [{ key: crypto.randomUUID(), name: '', date: undefined }],
+      tasks: [{ [FRONTEND_ID]: crypto.randomUUID(), name: '', date: undefined }],
     },
     validationSchema: GoalSchema,
     async onSubmit(data) {

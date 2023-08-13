@@ -2,7 +2,7 @@ import { Box, Stack, Typography } from '@mui/material'
 import { useIntl } from 'react-intl'
 import dynamic from 'next/dynamic'
 import Link from 'next/link'
-import { Like } from 'features/topic/like-topic'
+import { TopicLike } from 'features/topic/like-topic'
 import { UserStatus } from 'entities/user'
 import { MessageDto } from 'shared/api'
 import { joinToHref } from 'shared/lib/helpers'
@@ -64,6 +64,7 @@ function Message({ message, answerFor, supportFor, replyProps }: MessageProps) {
         <Stack
           px={2}
           py={1}
+          mb={1}
           sx={(theme) => ({
             backgroundColor: theme.palette.grey[900],
             borderRadius: `20px 20px ${!answerFor ? 16 : 4}px ${!answerFor ? 4 : 16}px`,
@@ -97,7 +98,7 @@ function Message({ message, answerFor, supportFor, replyProps }: MessageProps) {
             </Button>
           )}
           <Box marginLeft="auto">
-            <Like message={message} parentId={answerFor?.id} />
+            <TopicLike message={message} parentId={answerFor?.id} />
           </Box>
         </Stack>
       </Stack>

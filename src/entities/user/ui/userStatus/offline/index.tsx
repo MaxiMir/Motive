@@ -24,7 +24,7 @@ function Offline({ lastSeen, device }: OfflineProps) {
       gap={0.5}
       fontSize={12}
       sx={(theme) => ({
-        color: theme.palette.grey[200],
+        color: theme.palette.grey[400],
         '& span': {
           fontSize: 12,
         },

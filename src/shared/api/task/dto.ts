@@ -1,3 +1,5 @@
+import { FRONTEND_ID } from 'shared/config'
+
 export interface TaskDto {
   readonly id: number
   readonly name: string
@@ -7,6 +9,6 @@ export interface TaskDto {
 }
 
 export interface CreateTaskDto extends Pick<TaskDto, 'name'> {
-  readonly key: string
+  readonly [FRONTEND_ID]: string
   readonly date?: Date
 }

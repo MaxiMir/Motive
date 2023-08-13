@@ -4,6 +4,7 @@ import { useIntl } from 'react-intl'
 import { useMutation } from 'react-query'
 import { useChangeDayUrl, useGoalsCache } from 'entities/user'
 import { GoalDto, CreateDayDto, DayDto, createDay } from 'shared/api'
+import { FRONTEND_ID } from 'shared/config'
 import { getTomorrowISO } from 'shared/lib/utils'
 import { useSnackbar } from 'shared/ui/snackbar'
 import { DaySchema } from './schema'
@@ -28,7 +29,7 @@ export function useCreateDay(goalId: number, onSuccess: () => void) {
     initialValues: {
       id: goalId,
       date: getTomorrowISO(),
-      tasks: [{ key: crypto.randomUUID(), name: '', date: undefined }],
+      tasks: [{ [FRONTEND_ID]: crypto.randomUUID(), name: '', date: undefined }],
     },
     validationSchema: DaySchema,
     async onSubmit(data) {

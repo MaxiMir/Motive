@@ -5,14 +5,19 @@ import OpenProfile from 'features/user/open-profile'
 import TooltipArrow from 'shared/ui/TooltipArrow'
 import { useRoutes } from './lib'
 
-function FooterMobile() {
+interface FooterMobileProps {
+  scrolledDown: boolean
+}
+
+function FooterMobile({ scrolledDown }: FooterMobileProps) {
   const { asPath } = useRouter()
   const routes = useRoutes()
+  const position = scrolledDown ? 'static' : 'fixed'
 
   return (
     <Box
-      position="sticky"
       component="footer"
+      position={position}
       bottom={0}
       zIndex={30}
       display={{
@@ -20,7 +25,7 @@ function FooterMobile() {
         xl: 'none',
       }}
       width="100%"
-      sx={{ backgroundColor: 'underlay' }}
+      sx={{ backgroundColor: '#121212', transition: 'all .3s' }}
     >
       <Container fixed>
         <Stack direction="row" justifyContent="space-between" alignItems="center" py={1}>

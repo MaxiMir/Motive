@@ -27,10 +27,9 @@ function UpdateStageModal({ goalId, stages, dayStage, onClose }: UpdateStageModa
       actions={[
         <CancelButton key="cancel" onClick={onClose} />,
         <SubmitButton
-          disabled={isLoading}
           text={messages.button}
           loadingText={messages.buttonLoading}
-          emoji="🚀"
+          isLoading={isLoading}
           key="submit"
           onClick={onClick}
         />,

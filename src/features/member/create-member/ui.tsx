@@ -44,10 +44,9 @@ function CreateMemberModal({ goal, onClose }: CreateMemberModalProps) {
       actions={[
         <CancelButton key="cancel" onClick={onClose} />,
         <SubmitButton
-          disabled={isSubmitting}
           text={buttonText}
           loadingText={loadingText}
-          emoji="📬"
+          isLoading={isSubmitting}
           key="submit"
           onClick={handleSubmit}
         />,

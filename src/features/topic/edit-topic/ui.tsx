@@ -34,10 +34,9 @@ function EditTopicModal({ message, onClose }: EditTopicModalProps) {
       actions={[
         <CancelButton key="cancel" onClick={onClose} />,
         <SubmitButton
-          disabled={isSubmitting}
           text={buttonText}
           loadingText={loadingText}
-          emoji="💾"
+          isLoading={isSubmitting}
           key="submit"
           onClick={handleSubmit}
         />,

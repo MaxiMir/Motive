@@ -42,10 +42,9 @@ function CreateFeedback({ goalId, dayId, onClose }: AddingModalProps) {
       actions={[
         <CancelButton key="cancel" onClick={onClose} />,
         <SubmitButton
-          disabled={isSubmitting}
           text={buttonText}
           loadingText={loadingText}
-          emoji="💭"
+          isLoading={isSubmitting}
           key="submit"
           onClick={submitForm}
         />,

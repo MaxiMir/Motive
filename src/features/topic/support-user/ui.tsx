@@ -36,10 +36,9 @@ function SupportUserModal({ dayId, ownerName, onClose }: SupportUserModalProps) 
       actions={[
         <CancelButton key="cancel" onClick={onClose} />,
         <SubmitButton
-          disabled={isSubmitting}
           text={buttonText}
           loadingText={loadingText}
-          emoji={Emoji.support}
+          isLoading={isSubmitting}
           key="submit"
           onClick={handleSubmit}
         />,

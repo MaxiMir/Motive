@@ -13,6 +13,7 @@ import { Field, FieldArray, Form, FormikProvider } from 'formik'
 import { useIntl } from 'react-intl'
 import dynamic from 'next/dynamic'
 import { TaskField } from 'entities/task'
+import { FRONTEND_ID } from 'shared/config'
 import { useFocus } from 'shared/lib/hooks'
 import { getMidnightISO, getTomorrowISO } from 'shared/lib/utils'
 import CancelButton from 'shared/ui/CancelButton'
@@ -67,10 +68,9 @@ function CreateGoalModal({ onClose }: CreateGoalModalProps) {
       actions={[
         <CancelButton key="cancel" onClick={onClose} />,
         <SubmitButton
-          disabled={isSubmitting}
           text={buttonText}
           loadingText={loadingText}
-          emoji="💎"
+          isLoading={isSubmitting}
           key="submit"
           onClick={handleSubmit}
         />,
@@ -113,8 +113,8 @@ function CreateGoalModal({ onClose }: CreateGoalModalProps) {
               <FieldArray name="stages">
                 {({ push, remove }) => (
                   <>
-                    {values.stages.map(({ id }, index) => (
-                      <Stack direction="row" gap={1} key={id}>
+                    {values.stages.map((stage, index) => (
+                      <Stack direction="row" gap={1} key={stage[FRONTEND_ID]}>
                         <Field
                           name={`stages.${index}.name`}
                           label={`${stageLabel} ${index + 1}`}
@@ -138,7 +138,7 @@ function CreateGoalModal({ onClose }: CreateGoalModalProps) {
                       size="small"
                       variant="outlined"
                       color="warning"
-                      onClick={() => push({ id: crypto.randomUUID(), name: '' })}
+                      onClick={() => push({ [FRONTEND_ID]: crypto.randomUUID(), name: '' })}
                     >
                       + {stageButtonText}
                     </ButtonCompact>
@@ -168,13 +168,13 @@ function CreateGoalModal({ onClose }: CreateGoalModalProps) {
               <FieldArray name="tasks">
                 {({ push, remove }) => (
                   <>
-                    {values.tasks.map(({ key, date }, index) => (
+                    {values.tasks.map((task, index) => (
                       <TaskField
                         taskCount={values.tasks.length}
                         date={values.started}
-                        remind={date}
+                        remind={task.date}
                         index={index}
-                        key={key}
+                        key={task[FRONTEND_ID]}
                         setFieldValue={setFieldValue}
                         onRemove={() => remove(index)}
                       />
@@ -183,7 +183,9 @@ function CreateGoalModal({ onClose }: CreateGoalModalProps) {
                       size="small"
                       variant="outlined"
                       startIcon={<Icon name="add" />}
-                      onClick={() => push({ id: crypto.randomUUID(), name: '', date: undefined })}
+                      onClick={() => {
+                        push({ [FRONTEND_ID]: crypto.randomUUID(), name: '', date: undefined })
+                      }}
                     >
                       {addTaskText}
                     </ButtonCompact>

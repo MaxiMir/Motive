@@ -1,5 +1,5 @@
 import { Box, Button, Stack, Typography } from '@mui/material'
-import { teal } from '@mui/material/colors'
+import { brown } from '@mui/material/colors'
 import { useIntl } from 'react-intl'
 import dynamic from 'next/dynamic'
 import { useRouter } from 'next/router'
@@ -32,7 +32,7 @@ export function Discussion({ goalId, dayId, count, owner, viewerGoal }: Discussi
         onClick={toggle}
       >
         <Stack direction="row" alignItems="center" gap={1} width="100%">
-          <Icon name="forum" color={teal[200]} />
+          <Icon name="forum" color={brown[400]} />
           <Typography variant="h6" component="p">
             {header}{' '}
             <Box component="span" color="zen.silent">

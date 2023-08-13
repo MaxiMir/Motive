@@ -6,11 +6,11 @@ const Markdown = dynamic(() => import('shared/ui/markdown'))
 const Gallery = dynamic(() => import('shared/ui/gallery'))
 const Player = dynamic(() => import('shared/ui/Player'))
 
-interface ContentProps {
+interface ContProps {
   feedback: FeedbackDto
 }
 
-function Content({ feedback }: ContentProps) {
+function Cont({ feedback }: ContProps) {
   const { text, photos, video } = feedback
 
   return (
@@ -22,4 +22,4 @@ function Content({ feedback }: ContentProps) {
   )
 }
 
-export default Content
+export default Cont

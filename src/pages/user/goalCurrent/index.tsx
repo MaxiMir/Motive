@@ -1,5 +1,5 @@
 import { Box, Card, IconButton, Stack, Typography } from '@mui/material'
-import { styled } from '@mui/system'
+import { styled } from '@mui/styles'
 import { differenceInCalendarDays } from 'date-fns'
 import { useIntl } from 'react-intl'
 import dynamic from 'next/dynamic'

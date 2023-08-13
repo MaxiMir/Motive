@@ -1,7 +1,7 @@
 import dynamic from 'next/dynamic'
 import { DayDto } from 'shared/api'
 
-const Content = dynamic(() => import('./content'))
+const Cont = dynamic(() => import('./cont'))
 const Soon = dynamic(() => import('./soon'))
 const Creating = dynamic(() => import('./creating'))
 
@@ -16,7 +16,7 @@ export function Feedback({ goalId, day, forTomorrow, viewerGoal }: FeedbackProps
   return (
     <>
       {day.feedback ? (
-        <Content feedback={day.feedback} />
+        <Cont feedback={day.feedback} />
       ) : (
         <>
           {!viewerGoal ? (

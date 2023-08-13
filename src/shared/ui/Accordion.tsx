@@ -30,7 +30,7 @@ function Accordion({ id, header, icon, details, defaultExpanded }: AccordionProp
           <Icon name="expand_more" sx={(theme) => ({ color: theme.palette.grey[700] })} />
         }
       >
-        <Stack direction="row" gap={1}>
+        <Stack direction="row" alignItems="center" gap={1}>
           {icon}
           <Typography variant="h6" component="p">
             {header}

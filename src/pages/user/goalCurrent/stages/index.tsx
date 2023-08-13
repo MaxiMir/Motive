@@ -26,7 +26,7 @@ function Stages({ goalId, stages, dayStage, forTomorrow, completeStage }: Stages
     <>
       <Stack gap={1}>
         {stages.map((stage, index) => (
-          <Box display="flex" justifyContent="space-between" key={stage}>
+          <Box display="flex" justifyContent="space-between" alignItems="center" key={stage}>
             <FormControlLabel
               value="female"
               control={<Radio readOnly />}
@@ -45,7 +45,7 @@ function Stages({ goalId, stages, dayStage, forTomorrow, completeStage }: Stages
                   aria-haspopup="true"
                   aria-expanded={open ? 'true' : undefined}
                   title={buttonText}
-                  sx={{ minWidth: 'initial' }}
+                  sx={{ width: 32, minWidth: 'initial' }}
                   onClick={toggle}
                 >
                   <Icon name="done" />

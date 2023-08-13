@@ -1,4 +1,4 @@
-import { Container, Box, IconButton, Stack } from '@mui/material'
+import { Container, Box, IconButton, Stack, GlobalStyles } from '@mui/material'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import OpenProfile from 'features/user/open-profile'
@@ -6,26 +6,29 @@ import TooltipArrow from 'shared/ui/TooltipArrow'
 import { useRoutes } from './lib'
 
 interface FooterMobileProps {
-  scrolledDown: boolean
+  scrollUp: boolean
 }
 
-function FooterMobile({ scrolledDown }: FooterMobileProps) {
+function FooterMobile({ scrollUp }: FooterMobileProps) {
   const { asPath } = useRouter()
   const routes = useRoutes()
-  const position = scrolledDown ? 'static' : 'fixed'
+  const position = !scrollUp ? 'static' : 'fixed'
+  const bottom = !scrollUp ? undefined : 0
 
   return (
     <Box
       component="footer"
       position={position}
-      bottom={0}
+      bottom={bottom}
+      height={56}
       zIndex={30}
       display={{
         xs: 'block',
         xl: 'none',
       }}
       width="100%"
-      sx={{ backgroundColor: '#121212', transition: 'all .3s' }}
+      maxWidth="100vw"
+      sx={{ backgroundColor: '#121212' }}
     >
       <Container fixed>
         <Stack direction="row" justifyContent="space-between" alignItems="center" py={1}>
@@ -41,6 +44,13 @@ function FooterMobile({ scrolledDown }: FooterMobileProps) {
           <OpenProfile />
         </Stack>
       </Container>
+      <GlobalStyles
+        styles={{
+          main: {
+            paddingBottom: scrollUp ? 56 : undefined,
+          },
+        }}
+      />
     </Box>
   )
 }

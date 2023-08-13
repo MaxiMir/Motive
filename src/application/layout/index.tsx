@@ -11,10 +11,10 @@ import { getLocaleHrefList } from 'entities/locale'
 import { OGType } from 'shared/api'
 import { useLayout } from './lib'
 
-const HeaderMobile = dynamic(() => import('widgets/headerMobile'))
-const FooterMobile = dynamic(() => import('widgets/footerMobile'))
 const Sidebar = dynamic(() => import('widgets/sidebar'))
 const Footer = dynamic(() => import('widgets/footer'))
+const HeaderMobile = dynamic(() => import('widgets/headerMobile'))
+const FooterMobile = dynamic(() => import('widgets/footerMobile'))
 const Offline = dynamic(() => import('features/page/offline'))
 const Updating = dynamic(() => import('./updating'))
 
@@ -42,7 +42,7 @@ export function Layout({
   const online = useDetectOnline()
   const device = useDeviceContext()
   const localeHrefList = getLocaleHrefList(asPath)
-  const { desktop, mobile, scrolledDown } = useLayout(device)
+  const { desktop, mobile, scrollUp } = useLayout(device)
   const fetchingNumber = useIsFetching({ queryKey: ['page'] })
   const renderUpdating = fetchingNumber > 0
   const url = localeHrefList[locale]
@@ -82,14 +82,14 @@ export function Layout({
         <link rel="alternate" href={localeHrefList.uk} hrefLang="uk" />
         <link rel="alternate" href={localeHrefList.en} hrefLang="x-default" />
       </Head>
-      {mobile && <HeaderMobile type={type} scrolledDown={scrolledDown} />}
+      {mobile && <HeaderMobile type={type} scrollUp={scrollUp} />}
       {desktop && <Sidebar breakpoints={!device} />}
       <Stack component="main" id="main" flex={1} sx={{ backgroundColor: '#121212' }}>
         {renderUpdating && <Updating />}
         {online ? children : <Offline />}
       </Stack>
       {desktop && <Footer breakpoints={!device} />}
-      {mobile && <FooterMobile scrolledDown={scrolledDown} />}
+      {mobile && <FooterMobile scrollUp={scrollUp} />}
     </>
   )
 }

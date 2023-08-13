@@ -2,17 +2,17 @@ import { useDeferredValue, useEffect, useRef, useState } from 'react'
 import { Device } from 'shared/api'
 
 export function useLayout(device?: Device) {
-  const scrollYRef = useRef(0)
-  const [scrolledState, setScrolledState] = useState(0)
+  const prevScrollYRef = useRef(0)
+  const [scrollUpState, setScrollUpState] = useState(true)
   const possibleDesktop = device === 'desktop'
   const desktop = !device || possibleDesktop
   const mobile = !device || !possibleDesktop
-  const scrolledDown = useDeferredValue(scrolledState <= 0)
+  const scrollUp = useDeferredValue(scrollUpState)
 
   useEffect(() => {
     const scrollListener = () => {
-      setScrolledState(!window.scrollY ? 0 : scrollYRef.current - window.scrollY)
-      scrollYRef.current = window.scrollY
+      setScrollUpState(prevScrollYRef.current - window.scrollY > 0)
+      prevScrollYRef.current = window.scrollY
     }
 
     document.addEventListener('scroll', scrollListener, { passive: true })
@@ -22,5 +22,5 @@ export function useLayout(device?: Device) {
     }
   }, [mobile])
 
-  return { desktop, mobile, scrolledDown }
+  return { desktop, mobile, scrollUp }
 }

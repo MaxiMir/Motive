@@ -77,8 +77,8 @@ function Modal({
       {actions && (
         <DialogActions>
           <Stack direction="row" justifyContent="space-between" flex={1} pb={2} px={2}>
-            {actions.map((action) => (
-              <Fragment key={action.key}>{action}</Fragment>
+            {actions.map((action, index) => (
+              <Fragment key={index}>{action}</Fragment>
             ))}
           </Stack>
         </DialogActions>

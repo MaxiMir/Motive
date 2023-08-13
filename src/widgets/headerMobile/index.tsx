@@ -1,4 +1,4 @@
-import { AppBar, Container, Stack } from '@mui/material'
+import { AppBar, Container, GlobalStyles, Stack } from '@mui/material'
 import dynamic from 'next/dynamic'
 import { useViewer } from 'entities/viewer'
 import { OGType } from 'shared/api'
@@ -10,20 +10,19 @@ const UserLink = dynamic(() => import('./userLink'))
 
 interface HeaderMobileProps {
   type: OGType
-  scrolledDown: boolean
+  scrollUp: boolean
 }
 
-function HeaderMobile({ type, scrolledDown }: HeaderMobileProps) {
+function HeaderMobile({ type, scrollUp }: HeaderMobileProps) {
   const viewer = useViewer()
   const renderNickname = type === 'profile'
-  const position = scrolledDown ? 'static' : 'fixed'
 
   return (
     <AppBar
-      position={position}
+      position="fixed"
       sx={{
         display: {
-          xs: 'block',
+          xs: scrollUp ? 'block' : 'none',
           xl: 'none',
         },
         paddingY: 1,
@@ -38,6 +37,13 @@ function HeaderMobile({ type, scrolledDown }: HeaderMobileProps) {
           {viewer ? <Notifications /> : <SignIn />}
         </Stack>
       </Container>
+      <GlobalStyles
+        styles={{
+          main: {
+            paddingTop: 56,
+          },
+        }}
+      />
     </AppBar>
   )
 }

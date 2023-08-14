@@ -5,22 +5,22 @@ import OpenProfile from 'features/user/open-profile'
 import TooltipArrow from 'shared/ui/TooltipArrow'
 import { useRoutes } from './lib'
 
+const HEIGHT = 56
+
 interface FooterMobileProps {
-  scrollUp: boolean
+  scrolledUp: boolean
 }
 
-function FooterMobile({ scrollUp }: FooterMobileProps) {
+function FooterMobile({ scrolledUp }: FooterMobileProps) {
   const { asPath } = useRouter()
   const routes = useRoutes()
-  const position = !scrollUp ? 'static' : 'fixed'
-  const bottom = !scrollUp ? undefined : 0
 
   return (
     <Box
       component="footer"
-      position={position}
-      bottom={bottom}
-      height={56}
+      position={scrolledUp ? 'fixed' : 'static'}
+      bottom={scrolledUp ? 0 : undefined}
+      height={HEIGHT}
       zIndex={30}
       display={{
         xs: 'block',
@@ -28,7 +28,7 @@ function FooterMobile({ scrollUp }: FooterMobileProps) {
       }}
       width="100%"
       maxWidth="100vw"
-      sx={{ backgroundColor: '#121212' }}
+      sx={{ backgroundColor: '#121212', transition: 'bottom 0.2s ease-in-out' }}
     >
       <Container fixed>
         <Stack direction="row" justifyContent="space-between" alignItems="center" py={1}>
@@ -47,7 +47,7 @@ function FooterMobile({ scrollUp }: FooterMobileProps) {
       <GlobalStyles
         styles={{
           main: {
-            paddingBottom: scrollUp ? 56 : undefined,
+            paddingBottom: scrolledUp ? HEIGHT : 0,
           },
         }}
       />

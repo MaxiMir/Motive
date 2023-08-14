@@ -42,7 +42,7 @@ export function Layout({
   const online = useDetectOnline()
   const device = useDeviceContext()
   const localeHrefList = getLocaleHrefList(asPath)
-  const { desktop, mobile, scrollUp } = useLayout(device)
+  const { desktop, mobile, scrolledUp } = useLayout(device)
   const fetchingNumber = useIsFetching({ queryKey: ['page'] })
   const renderUpdating = fetchingNumber > 0
   const url = localeHrefList[locale]
@@ -82,14 +82,14 @@ export function Layout({
         <link rel="alternate" href={localeHrefList.uk} hrefLang="uk" />
         <link rel="alternate" href={localeHrefList.en} hrefLang="x-default" />
       </Head>
-      {mobile && <HeaderMobile type={type} scrollUp={scrollUp} />}
+      {mobile && <HeaderMobile type={type} scrolledUp={scrolledUp} />}
       {desktop && <Sidebar breakpoints={!device} />}
       <Stack component="main" id="main" flex={1} sx={{ backgroundColor: '#121212' }}>
         {renderUpdating && <Updating />}
         {online ? children : <Offline />}
       </Stack>
       {desktop && <Footer breakpoints={!device} />}
-      {mobile && <FooterMobile scrollUp={scrollUp} />}
+      {mobile && <FooterMobile scrolledUp={scrolledUp} />}
     </>
   )
 }

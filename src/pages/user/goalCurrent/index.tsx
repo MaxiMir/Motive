@@ -138,12 +138,10 @@ function GoalCurrent({ goal, viewerPage }: GoalCurrentProps) {
             <Cont gap={2}>
               <Stack gap={1}>
                 <Stack>
-                  <Box display="flex" alignItems="center" gap={0.5}>
-                    <Typography variant="subtitle1" component="h2">
-                      <b>{name}</b>
-                    </Typography>
-                    {member && <Owner owner={owner} />}
-                  </Box>
+                  <Typography variant="subtitle1" component="h2">
+                    <b>{name}</b>
+                  </Typography>
+                  {member && <Owner owner={owner} />}
                   <SphereType sphere={sphere} />
                 </Stack>
                 {!!hashtags.length && (

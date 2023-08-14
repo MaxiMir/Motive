@@ -1,4 +1,4 @@
-import { AppBar, Container, GlobalStyles, Stack } from '@mui/material'
+import { AppBar, Container, Stack, GlobalStyles } from '@mui/material'
 import dynamic from 'next/dynamic'
 import { useViewer } from 'entities/viewer'
 import { OGType } from 'shared/api'
@@ -12,10 +12,10 @@ const HEIGHT = 56
 
 interface HeaderMobileProps {
   type: OGType
-  scrolledUp: boolean
+  fixed: boolean
 }
 
-function HeaderMobile({ type, scrolledUp }: HeaderMobileProps) {
+function HeaderMobile({ type, fixed }: HeaderMobileProps) {
   const viewer = useViewer()
   const renderNickname = type === 'profile'
 
@@ -27,12 +27,12 @@ function HeaderMobile({ type, scrolledUp }: HeaderMobileProps) {
           xs: 'block',
           xl: 'none',
         },
-        top: scrolledUp ? 0 : -HEIGHT,
+        top: fixed ? 0 : -HEIGHT,
         height: HEIGHT,
         paddingY: 1,
         boxShadow: 'none',
         backgroundColor: '#121212',
-        transition: 'top 0.2s ease-in-out',
+        transition: 'top 0.3s ease-in-out',
       }}
     >
       <Container fixed>

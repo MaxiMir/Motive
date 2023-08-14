@@ -10,7 +10,6 @@ function Container({ sx, ...props }: ContainerProps) {
         flexDirection: 'column',
         alignItems: 'stretch',
         py: 2,
-        mb: 2,
         ...sx,
       }}
       {...props}

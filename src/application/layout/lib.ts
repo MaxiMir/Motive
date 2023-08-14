@@ -1,19 +1,21 @@
-import { useDeferredValue, useEffect, useRef, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { Device } from 'shared/api'
 
 export function useLayout(device?: Device) {
   const prevScrollTopRef = useRef(0)
-  const [scrolled, setScrolled] = useState(0)
+  const [fixed, setFixed] = useState(true)
   const possibleDesktop = device === 'desktop'
   const desktop = !device || possibleDesktop
   const mobile = !device || !possibleDesktop
-  const scrolledUp = useDeferredValue(scrolled >= 0)
 
   useEffect(() => {
+    const maxHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight
+
     const scrollListener = () => {
       const { scrollTop } = document.documentElement
-
-      setScrolled(prevScrollTopRef.current - scrollTop)
+      const headerShow = scrollTop <= 60
+      const footerStatic = maxHeight - scrollTop > 60
+      setFixed((footerStatic && prevScrollTopRef.current - scrollTop >= 0) || headerShow)
       prevScrollTopRef.current = scrollTop
     }
 
@@ -24,5 +26,5 @@ export function useLayout(device?: Device) {
     }
   }, [mobile])
 
-  return { desktop, mobile, scrolledUp }
+  return { desktop, mobile, fixed }
 }

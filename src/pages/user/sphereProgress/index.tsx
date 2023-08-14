@@ -69,6 +69,7 @@ const Vessel = styled(Box)(({ theme }) => ({
   height: 'var(--height)',
   borderRadius: 20,
   backgroundColor: theme.palette.grey[theme.palette.mode === 'light' ? 200 : 800],
+  overflow: 'hidden',
 }))
 
 const Cont = styled('div')({

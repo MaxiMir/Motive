@@ -2,7 +2,6 @@ import { Button } from '@mui/material'
 import { styled } from '@mui/system'
 import { useIntl } from 'react-intl'
 import dynamic from 'next/dynamic'
-import { useCheckOnMobile } from 'entities/device'
 import { useToggle } from 'shared/lib/hooks'
 import Icon from 'shared/ui/Icon'
 
@@ -10,7 +9,6 @@ const CreateGoalModal = dynamic(() => import('features/goal/create-goal'))
 
 function CreateGoal() {
   const { formatMessage } = useIntl()
-  const mobile = useCheckOnMobile()
   const [open, toggle] = useToggle()
   const buttonText = formatMessage({ id: 'common.create' })
 
@@ -24,7 +22,10 @@ function CreateGoal() {
         aria-haspopup="true"
         aria-expanded={open ? 'true' : undefined}
         sx={{
-          bottom: mobile ? 72 : 24,
+          bottom: {
+            xs: 72,
+            xl: 24,
+          },
         }}
         onClick={toggle}
       >

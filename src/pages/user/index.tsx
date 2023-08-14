@@ -115,7 +115,13 @@ export function UserPage({ user }: UserViewProps) {
                   />
                 ))}
               </Box>
-              <UserStatus online={online} lastSeen={lastSeen} device={device} mb={1}>
+              <UserStatus
+                online={online}
+                lastSeen={lastSeen}
+                device={device}
+                alignItems="center"
+                mb={1}
+              >
                 <Typography component="h1" fontWeight="bold">
                   {name}
                 </Typography>
@@ -137,11 +143,7 @@ export function UserPage({ user }: UserViewProps) {
             </Stack>
           </Section>
         </Stack>
-        <Section
-          display="flex"
-          justifyContent="space-between"
-          padding={{ xs: 2, md: '16px 24px', overflow: 'hidden' }}
-        >
+        <Section display="flex" justifyContent="space-between" padding={{ xs: 2, md: '16px 24px' }}>
           {SPHERES.map((sphere) => (
             <SphereProgress sphere={sphere} value={characteristic[sphere]} key={sphere} />
           ))}

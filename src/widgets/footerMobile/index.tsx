@@ -8,18 +8,18 @@ import { useRoutes } from './lib'
 const HEIGHT = 56
 
 interface FooterMobileProps {
-  scrolledUp: boolean
+  fixed: boolean
 }
 
-function FooterMobile({ scrolledUp }: FooterMobileProps) {
+function FooterMobile({ fixed }: FooterMobileProps) {
   const { asPath } = useRouter()
   const routes = useRoutes()
 
   return (
     <Box
       component="footer"
-      position={scrolledUp ? 'fixed' : 'static'}
-      bottom={scrolledUp ? 0 : undefined}
+      position={fixed ? 'fixed' : 'static'}
+      bottom={fixed ? 0 : -HEIGHT}
       height={HEIGHT}
       zIndex={30}
       display={{
@@ -27,7 +27,7 @@ function FooterMobile({ scrolledUp }: FooterMobileProps) {
         xl: 'none',
       }}
       width="100%"
-      sx={{ backgroundColor: '#121212', transition: 'bottom 0.2s ease-in-out' }}
+      sx={{ backgroundColor: '#121212', transition: 'bottom 0.3s ease-in-out' }}
     >
       <Container fixed>
         <Stack direction="row" justifyContent="space-between" alignItems="center" py={1}>
@@ -46,7 +46,7 @@ function FooterMobile({ scrolledUp }: FooterMobileProps) {
       <GlobalStyles
         styles={{
           main: {
-            paddingBottom: scrolledUp ? HEIGHT : 0,
+            paddingBottom: fixed ? HEIGHT : 0,
           },
         }}
       />

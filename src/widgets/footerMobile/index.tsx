@@ -27,7 +27,6 @@ function FooterMobile({ scrolledUp }: FooterMobileProps) {
         xl: 'none',
       }}
       width="100%"
-      maxWidth="100vw"
       sx={{ backgroundColor: '#121212', transition: 'bottom 0.2s ease-in-out' }}
     >
       <Container fixed>

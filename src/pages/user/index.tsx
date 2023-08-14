@@ -137,7 +137,11 @@ export function UserPage({ user }: UserViewProps) {
             </Stack>
           </Section>
         </Stack>
-        <Section display="flex" justifyContent="space-between" padding={{ xs: 2, md: '16px 24px' }}>
+        <Section
+          display="flex"
+          justifyContent="space-between"
+          padding={{ xs: 2, md: '16px 24px', overflow: 'hidden' }}
+        >
           {SPHERES.map((sphere) => (
             <SphereProgress sphere={sphere} value={characteristic[sphere]} key={sphere} />
           ))}

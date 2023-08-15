@@ -20,7 +20,7 @@ function Membership({ goal, viewerPart }: MembershipProps) {
   const { formatMessage } = useIntl()
   const [modal, setModal] = useState<'create' | 'delete'>()
   const title = formatMessage({ id: viewerPart.member ? 'common.leave' : 'common.join' })
-  const iconName = viewerPart.member ? 'done' : 'add'
+  const iconName = viewerPart.member && viewerPart.page ? 'done' : 'add'
 
   const onClick = useViewerAct(() => setModal(viewerPart.member ? 'delete' : 'create'))
 

@@ -1,7 +1,7 @@
 import { Stack } from '@mui/material'
 import { useIntl } from 'react-intl'
 import dynamic from 'next/dynamic'
-import { useCheckOnMobile } from 'entities/device'
+import { useDetectMobile } from 'entities/device'
 import { useViewer } from 'entities/viewer'
 import { UserBaseDto } from 'shared/api'
 import Modal from 'shared/ui/Modal'
@@ -24,7 +24,7 @@ function DiscussionModal({ dayId, count, owner, viewerGoal, onClose }: Discussio
   const viewer = useViewer()
   const { formatMessage } = useIntl()
   const { isLoading, topics, checkOnLoadMore, fetchNextPage } = useDiscussion(dayId, count)
-  const mobile = useCheckOnMobile()
+  const mobile = useDetectMobile()
   const title = formatMessage({ id: 'common.discussion' })
 
   return (

@@ -3,7 +3,6 @@ import Link from 'next/link'
 import { UserBaseDto } from 'shared/api'
 import { joinToHref } from 'shared/lib/helpers'
 import Avatar from 'shared/ui/avatar'
-import Icon from 'shared/ui/Icon'
 
 interface OwnerProps {
   owner: UserBaseDto
@@ -23,12 +22,8 @@ function Owner({ owner }: OwnerProps) {
       sx={(theme) => ({
         fontSize: 14,
         color: theme.palette.grey[300],
-        '& span': {
-          fontSize: 16,
-        },
       })}
     >
-      <Icon name="redo" />
       <Link href={href} title={name}>
         <Avatar src={avatar} name={name} size={20} />
       </Link>

@@ -9,11 +9,13 @@ export function useLayout(device?: Device) {
   const mobile = !device || !possibleDesktop
 
   useEffect(() => {
+    const maxHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight
+
     const scrollListener = () => {
       const { scrollTop } = document.documentElement
-      const headerShow = scrollTop <= 60
-
-      setFixed(headerShow || prevScrollTopRef.current - scrollTop >= 0)
+      const headerShow = scrollTop <= 64
+      const footerStatic = maxHeight - scrollTop > 24
+      setFixed(headerShow || (footerStatic && prevScrollTopRef.current - scrollTop >= 0))
       prevScrollTopRef.current = scrollTop
     }
 

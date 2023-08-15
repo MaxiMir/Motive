@@ -1,4 +1,5 @@
 ### TODO
+* Read more M2 chip
 * GROUP BY members + modal members
 * Редактирование цели / задач / обратной связи
 * В подписках на пользователя добавить +/-

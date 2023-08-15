@@ -20,14 +20,15 @@ function Owner({ owner }: OwnerProps) {
       gap={0.5}
       ml={1}
       mb={1}
-      sx={{
+      sx={(theme) => ({
         fontSize: 14,
+        color: theme.palette.grey[300],
         '& span': {
           fontSize: 16,
         },
-      }}
+      })}
     >
-      <Icon name="redo" color="zen.silent" />
+      <Icon name="redo" />
       <Link href={href} title={name}>
         <Avatar src={avatar} name={name} size={20} />
       </Link>

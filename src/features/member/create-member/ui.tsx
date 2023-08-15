@@ -5,6 +5,7 @@ import { useIntl } from 'react-intl'
 import { GoalDto } from 'shared/api'
 import Accordion from 'shared/ui/Accordion'
 import CancelButton from 'shared/ui/CancelButton'
+import Icon from 'shared/ui/Icon'
 import Modal from 'shared/ui/Modal'
 import SubmitButton from 'shared/ui/SubmitButton'
 import { useCreateMemberForm } from './model'
@@ -27,8 +28,7 @@ function CreateMemberModal({ goal, onClose }: CreateMemberModalProps) {
   const beginLabel = formatMessage({ id: 'page.user.modal-join.begin-label' })
   const dayLabel = formatMessage({ id: 'page.user.modal-join.day-label' })
   const accordionHeader = formatMessage({ id: 'page.user.modal-join.accordion-header' })
-  const accordingMotivation = formatMessage({ id: 'page.user.modal-join.according-motivation' })
-  const accordingCreative = formatMessage({ id: 'page.user.modal-join.according-creative' })
+  const accordingRate = formatMessage({ id: 'page.user.modal-join.according-rate' })
   const accordingSupport = formatMessage({ id: 'page.user.modal-join.according-support' })
   const accordingNeeded = formatMessage({ id: 'page.user.modal-join.according-needed' })
   const accordingQuestions = formatMessage({ id: 'page.user.modal-join.according-questions' })
@@ -44,10 +44,9 @@ function CreateMemberModal({ goal, onClose }: CreateMemberModalProps) {
       actions={[
         <CancelButton key="cancel" onClick={onClose} />,
         <SubmitButton
-          disabled={isSubmitting}
           text={buttonText}
           loadingText={loadingText}
-          emoji="📬"
+          isLoading={isSubmitting}
           key="submit"
           onClick={handleSubmit}
         />,
@@ -82,19 +81,17 @@ function CreateMemberModal({ goal, onClose }: CreateMemberModalProps) {
           </Form>
         </FormikProvider>
         <Accordion
-          emoji="🪢"
-          header={accordionHeader}
           id="tips"
+          header={accordionHeader}
+          icon={<Icon name="diversity_2" color="primary.dark" />}
           details={
             <Box color="zen.silent">
-              <Typography>&#9679; {accordingMotivation}.</Typography>
-              <Typography>&#9679; {accordingCreative}.</Typography>
+              <Typography>&#9679; {accordingRate}.</Typography>
               <Typography>
                 &#9679; {accordingSupport}{' '}
                 <Box component="span" color="support.main">
                   {owner.name}
                 </Box>
-                {', '}
                 {accordingNeeded}.
               </Typography>
               <Typography>&#9679; {accordingQuestions} 💬.</Typography>

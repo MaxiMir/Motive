@@ -2,7 +2,7 @@ import { styled } from '@mui/system'
 import { useState } from 'react'
 import { useIntl } from 'react-intl'
 import dynamic from 'next/dynamic'
-import { useViewer, useSignIn, ViewerPart } from 'entities/viewer'
+import { ViewerPart, useViewerAct } from 'entities/viewer'
 import { GoalDto } from 'shared/api'
 import BlueButton from 'shared/ui/BlueButton'
 import Icon from 'shared/ui/Icon'
@@ -17,21 +17,12 @@ interface MembershipProps {
 }
 
 function Membership({ goal, viewerPart }: MembershipProps) {
-  const viewer = useViewer()
-  const openSignIn = useSignIn((state) => state.openSignIn)
   const { formatMessage } = useIntl()
   const [modal, setModal] = useState<'create' | 'delete'>()
   const title = formatMessage({ id: viewerPart.member ? 'common.leave' : 'common.join' })
-  const iconName = viewerPart.member ? 'done' : 'add'
+  const iconName = viewerPart.member && viewerPart.page ? 'done' : 'add'
 
-  const onClick = () => {
-    if (!viewer) {
-      openSignIn({ callbackUrl: window.location.href })
-      return
-    }
-
-    setModal(viewerPart.member ? 'delete' : 'create')
-  }
+  const onClick = useViewerAct(() => setModal(viewerPart.member ? 'delete' : 'create'))
 
   const onClose = () => setModal(undefined)
 

@@ -1,9 +1,8 @@
-import { Box, Grid, Typography } from '@mui/material'
+import { Box, Grid, Stack, Typography } from '@mui/material'
 import { blueGrey } from '@mui/material/colors'
 import { useIntl } from 'react-intl'
 import { UserDto } from 'shared/api'
 import Container from 'shared/ui/Container'
-import List from 'shared/ui/List'
 import { UserCard } from './userCard'
 
 interface RatingPageProps {
@@ -42,11 +41,11 @@ export function RatingPage({ users }: RatingPageProps) {
           </Grid>
         </Grid>
       </Box>
-      <List<UserDto>
-        elements={users}
-        keyGetter={(el) => el.id}
-        render={(user, index) => <UserCard user={user} index={index} />}
-      />
+      <Stack flex={1}>
+        {users.map((user, index) => (
+          <UserCard user={user} index={index} key={user.id} />
+        ))}
+      </Stack>
     </Container>
   )
 }

@@ -12,7 +12,7 @@ interface ReadNotificationProps {
   onClose: () => void
 }
 
-export function ReadNotification({ notification, onClose }: ReadNotificationProps) {
+function ReadNotification({ notification, onClose }: ReadNotificationProps) {
   const { id, read } = notification
   const viewer = useViewer()
   const notificationHref = getNotificationHref(notification, viewer?.nickname)
@@ -27,3 +27,5 @@ export function ReadNotification({ notification, onClose }: ReadNotificationProp
     </>
   )
 }
+
+export default ReadNotification

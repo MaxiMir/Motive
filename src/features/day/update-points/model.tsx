@@ -2,14 +2,12 @@ import { produce } from 'immer'
 import { useIntl } from 'react-intl'
 import { useMutation, useQueryClient } from 'react-query'
 import { useUserContext } from 'entities/user'
-import { useViewer, useSignIn } from 'entities/viewer'
+import { useViewerAct } from 'entities/viewer'
 import { DayPointsUpdateDto, UserPageDto, updatePoints } from 'shared/api'
 import { useSnackbar } from 'shared/ui/snackbar'
 
 export function useUpdatePoints(goalId: number, dayId: number, active: boolean) {
   const { formatMessage } = useIntl()
-  const viewer = useViewer()
-  const openSignIn = useSignIn((state) => state.openSignIn)
   const queryClient = useQueryClient()
   const { nickname } = useUserContext()
   const { enqueueSnackbar } = useSnackbar()
@@ -37,14 +35,7 @@ export function useUpdatePoints(goalId: number, dayId: number, active: boolean) 
     },
   })
 
-  const onClick = () => {
-    if (!viewer) {
-      openSignIn({ callbackUrl: window.location.href })
-      return
-    }
-
-    mutate({ id: goalId, dayId, add: !active })
-  }
+  const onClick = useViewerAct(() => mutate({ id: goalId, dayId, add: !active }))
 
   return { isLoading, onClick }
 }

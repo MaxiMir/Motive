@@ -4,7 +4,7 @@ import { useSnackbar } from 'shared/ui/snackbar'
 
 interface QueryProviderProps {
   message: string
-  children: ReactNode
+  children: ReactNode | ReactNode[]
 }
 
 function QueryProvider({ message, children }: QueryProviderProps) {

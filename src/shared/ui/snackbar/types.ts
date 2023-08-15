@@ -1,6 +1,8 @@
+import { ReactNode } from 'react'
+
 export interface AlertProps {
   severity: 'success' | 'info' | 'warning' | 'error'
   icon?: string
-  action?: JSX.Element
+  action?: ReactNode
   children: string
 }

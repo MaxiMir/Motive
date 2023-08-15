@@ -7,7 +7,7 @@ export function useDeviceContext() {
   return useContext(DeviceContext)
 }
 
-export function useCheckOnMobile(): boolean {
+export function useDetectMobile(): boolean {
   const device = useDeviceContext()
 
   return ['feature phone', 'smartphone', 'phablet'].includes(device || '')

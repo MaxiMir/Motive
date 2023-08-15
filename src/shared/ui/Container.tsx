@@ -9,8 +9,7 @@ function Container({ sx, ...props }: ContainerProps) {
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'stretch',
-        py: 3,
-        mb: 2,
+        py: 2,
         ...sx,
       }}
       {...props}

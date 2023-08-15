@@ -27,10 +27,9 @@ function DeleteAvatarModal({ userId, onClose }: DeleteAvatarModalProps) {
       actions={[
         <CancelButton key="cancel" onClick={onClose} />,
         <SubmitButton
-          disabled={isLoading}
           text={deleteText}
           loadingText={deletingText}
-          emoji="🗑"
+          isLoading={isLoading}
           key="submit"
           onClick={onClick}
         />,

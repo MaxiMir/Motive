@@ -31,7 +31,7 @@ export type CreateUserDto = Omit<UserBaseDto, 'id' | 'nickname'>
 
 export type UpdateUserDto = Pick<
   UserBaseDto,
-  'name' | 'nickname' | 'motto' | 'location' | 'bio' | 'links'
+  'name' | 'nickname' | 'motto' | 'location' | 'bio' | 'links' | 'avatar'
 >
 
 export interface UserDto extends UserBaseDto {

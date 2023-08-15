@@ -36,10 +36,9 @@ function DeleteMemberModal({ goal, viewerPart, onClose }: DeleteMemberProps) {
       actions={[
         <CancelButton key="cancel" onClick={onClose} />,
         <SubmitButton
-          disabled={isLoading}
           text={buttonText}
           loadingText={loadingText}
-          emoji="📪"
+          isLoading={isLoading}
           key="submit"
           onClick={onClick}
         />,

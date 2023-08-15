@@ -10,7 +10,7 @@ interface ConfirmationProps {
 
 export function Confirmation({ id, name, src, onClick }: ConfirmationProps) {
   return (
-    <Stack alignItems="center" gap={1} minWidth={100}>
+    <Stack alignItems="center" gap={0.5} minWidth={100}>
       <Box
         padding="2px"
         borderRadius="50%"

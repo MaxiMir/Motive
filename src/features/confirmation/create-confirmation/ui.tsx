@@ -1,9 +1,8 @@
-import { Grid, Box, Typography, Stack } from '@mui/material'
+import { Grid, Typography, Stack } from '@mui/material'
 import { ErrorMessage, Field, FieldArray, Form, FormikProvider } from 'formik'
 import { useIntl } from 'react-intl'
 import dynamic from 'next/dynamic'
 import { usePhotoLimit } from 'entities/confirmation'
-import Accordion from 'shared/ui/Accordion'
 import CancelButton from 'shared/ui/CancelButton'
 import Input from 'shared/ui/Input'
 import Modal from 'shared/ui/Modal'
@@ -33,9 +32,6 @@ function CreateConfirmationModal({ goalId, onClose }: CreateConfirmationModalPro
   const label = formatMessage({ id: 'component.modal-completion.label' })
   const photoTitle = formatMessage({ id: 'component.modal-completion.photoTitle' })
   const videoTitle = formatMessage({ id: 'component.modal-completion.videoTitle' })
-  const accordionHeader = formatMessage({ id: 'component.modal-completion.accordionHeader' })
-  const detailsStart = formatMessage({ id: 'component.modal-completion.details-start' })
-  const detailsEnd = formatMessage({ id: 'component.modal-completion.details-end' })
 
   const onSelectPhoto = usePhotoLimit(form)
 
@@ -48,10 +44,9 @@ function CreateConfirmationModal({ goalId, onClose }: CreateConfirmationModalPro
       actions={[
         <CancelButton key="cancel" onClick={onClose} />,
         <SubmitButton
-          disabled={isSubmitting}
           text={buttonText}
           loadingText={loadingText}
-          emoji="🏆"
+          isLoading={isSubmitting}
           key="submit"
           onClick={handleSubmit}
         />,
@@ -113,24 +108,6 @@ function CreateConfirmationModal({ goalId, onClose }: CreateConfirmationModalPro
                 </Alert>
               )}
             </ErrorMessage>
-            <Box width="100%">
-              <Accordion
-                emoji="🕹"
-                header={accordionHeader}
-                id="goal"
-                details={
-                  <Box color="zen.silent">
-                    <Typography>
-                      {detailsStart}{' '}
-                      <Box component="b" color="text.primary">
-                        5
-                      </Box>{' '}
-                      {detailsEnd}.
-                    </Typography>
-                  </Box>
-                }
-              />
-            </Box>
           </Stack>
         </Form>
       </FormikProvider>

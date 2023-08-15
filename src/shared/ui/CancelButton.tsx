@@ -1,18 +1,24 @@
+import { Button } from '@mui/material'
 import { useIntl } from 'react-intl'
-import GradientButton from 'shared/ui/GradientButton'
+import Icon from 'shared/ui/Icon'
 
-interface ActionCloseProps {
+interface CancelButtonProps {
   onClick: () => void
 }
 
-function CancelButton({ onClick }: ActionCloseProps) {
+function CancelButton({ onClick }: CancelButtonProps) {
   const { formatMessage } = useIntl()
   const buttonText = formatMessage({ id: 'common.cancel' })
 
   return (
-    <GradientButton size="small" startIcon="🚫" onClick={onClick}>
+    <Button
+      size="small"
+      variant="outlined"
+      startIcon={<Icon name="block" color="error.light" />}
+      onClick={onClick}
+    >
       {buttonText}
-    </GradientButton>
+    </Button>
   )
 }
 

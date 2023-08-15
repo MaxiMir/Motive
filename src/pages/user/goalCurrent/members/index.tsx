@@ -12,7 +12,7 @@ export function Members({ members, lastMembers }: MembersProps) {
   const name = useWordDeclination('members', members)
   const formatNumber = useFormatNumber()
   const countAll = formatNumber(members)
-  const shownCount = lastMembers.length
+  const shownCount = lastMembers?.length || 0
   const width = AVATAR_SIZE * shownCount - (shownCount - 1) * AVATAR_OFFSET_PX
   const offset = -(AVATAR_OFFSET_PX / 8)
 
@@ -24,7 +24,7 @@ export function Members({ members, lastMembers }: MembersProps) {
             {lastMembers?.map((member, index) => (
               <Member
                 member={member}
-                count={lastMembers.length}
+                count={shownCount}
                 offset={offset}
                 index={index}
                 key={member.id}

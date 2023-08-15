@@ -19,7 +19,6 @@ import { Members } from './members'
 import { MenuActions } from './menuActions'
 import { Points } from './points'
 import { ShareDay } from './shareDay'
-import { SphereAvatar } from './sphereAvatar'
 import { SphereType } from './sphereType'
 import { Task } from './task'
 import { Views } from './views'
@@ -29,7 +28,6 @@ const Owner = dynamic(() => import('./owner'))
 const Membership = dynamic(() => import('./membership'))
 const Stages = dynamic(() => import('./stages'))
 const Hashtag = dynamic(() => import('./hashtag'))
-const Web = dynamic(() => import('./web'))
 const ViewerActs = dynamic(() => import('./viewerActs'))
 const OwnerActs = dynamic(() => import('./ownerActs'))
 
@@ -64,7 +62,7 @@ function GoalCurrent({ goal, viewerPage }: GoalCurrentProps) {
   const { canEdit, ownerControls, viewerControls, daysGone, forTomorrow, lastDay } = getGoalInfo()
   const restTasks = day.tasks.length - day.tasks.filter((t) => t.completed).length
   const completeStage = ownerControls && goal.stage <= goal.day.stage
-  const renderWeb = lastDay && daysGone >= SHOW_WEB_AFTER_DAYS
+  const web = lastDay && daysGone >= SHOW_WEB_AFTER_DAYS
   const stagesHeader = formatMessage({ id: 'page.user.goal-current.stages-header' })
   const tasksHeader = formatMessage({ id: 'page.user.goal-current.tasks-header' })
   const feedbackHeader = formatMessage({ id: 'page.user.goal-current.feedback-header' })
@@ -127,7 +125,8 @@ function GoalCurrent({ goal, viewerPage }: GoalCurrentProps) {
           <Underlay justifyContent="space-between" position="relative" height="100%">
             <Cover
               cover={cover}
-              avatar={<SphereAvatar sphere={sphere} />}
+              sphere={sphere}
+              web={web}
               top={<MenuActions goalId={id} viewerGoal={viewerPart.goal} />}
               bottom={[
                 <ShareDay goalId={id} dayId={day.id} title={name} key="share" />,
@@ -139,12 +138,10 @@ function GoalCurrent({ goal, viewerPage }: GoalCurrentProps) {
             <Cont gap={2}>
               <Stack gap={1}>
                 <Stack>
-                  <Box display="flex" alignItems="center" gap={0.5}>
-                    <Typography variant="subtitle1" component="h2">
-                      <b>{name}</b>
-                    </Typography>
-                    {member && <Owner owner={owner} />}
-                  </Box>
+                  <Typography variant="subtitle1" component="h2">
+                    <b>{name}</b>
+                  </Typography>
+                  {member && <Owner owner={owner} />}
                   <SphereType sphere={sphere} />
                 </Stack>
                 {!!hashtags.length && (
@@ -190,9 +187,9 @@ function GoalCurrent({ goal, viewerPage }: GoalCurrentProps) {
                   </Box>
                   {!!stages.length && (
                     <Accordion
-                      emoji="🚀"
-                      header={stagesHeader}
                       id={`stage-${day.id}`}
+                      header={stagesHeader}
+                      icon={<Icon name="rocket_launch" color="primary.main" />}
                       defaultExpanded
                       details={
                         <Stages
@@ -206,9 +203,9 @@ function GoalCurrent({ goal, viewerPage }: GoalCurrentProps) {
                     />
                   )}
                   <Accordion
-                    emoji="📌"
-                    header={tasksHeader}
                     id={`tasksContent-${day.id}`}
+                    header={tasksHeader}
+                    icon={<Icon name="keep_public" color="error.light" />}
                     defaultExpanded
                     details={
                       <Stack spacing={1}>
@@ -227,9 +224,9 @@ function GoalCurrent({ goal, viewerPage }: GoalCurrentProps) {
                     }
                   />
                   <Accordion
-                    emoji="💭"
-                    header={feedbackHeader}
                     id={`${HashMark.Feedback}-${id}`}
+                    header={feedbackHeader}
+                    icon={<Icon name="quick_phrases" color="warning.light" />}
                     defaultExpanded
                     details={
                       <Feedback
@@ -264,7 +261,6 @@ function GoalCurrent({ goal, viewerPage }: GoalCurrentProps) {
                 </StyledCard>
               </Stack>
             </Cont>
-            {renderWeb && <Web />}
           </Underlay>
         </Gradient>
       </Box>

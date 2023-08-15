@@ -1,26 +1,33 @@
-import { Container, Box, IconButton, Stack } from '@mui/material'
+import { Container, Box, IconButton, Stack, GlobalStyles } from '@mui/material'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import OpenProfile from 'features/user/open-profile'
 import TooltipArrow from 'shared/ui/TooltipArrow'
 import { useRoutes } from './lib'
 
-function FooterMobile() {
+const HEIGHT = 56
+
+interface FooterMobileProps {
+  fixed: boolean
+}
+
+function FooterMobile({ fixed }: FooterMobileProps) {
   const { asPath } = useRouter()
   const routes = useRoutes()
 
   return (
     <Box
-      position="sticky"
       component="footer"
-      bottom={0}
+      position={fixed ? 'fixed' : 'static'}
+      bottom={fixed ? 0 : -HEIGHT}
+      height={HEIGHT}
       zIndex={30}
       display={{
         xs: 'block',
         xl: 'none',
       }}
       width="100%"
-      sx={{ backgroundColor: 'underlay' }}
+      sx={{ backgroundColor: '#121212', transition: 'bottom 0.3s ease-in-out' }}
     >
       <Container fixed>
         <Stack direction="row" justifyContent="space-between" alignItems="center" py={1}>
@@ -36,6 +43,13 @@ function FooterMobile() {
           <OpenProfile />
         </Stack>
       </Container>
+      <GlobalStyles
+        styles={{
+          main: {
+            paddingBottom: fixed ? HEIGHT : 0,
+          },
+        }}
+      />
     </Box>
   )
 }

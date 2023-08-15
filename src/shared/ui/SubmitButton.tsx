@@ -1,27 +1,34 @@
+import { Button } from '@mui/material'
 import dynamic from 'next/dynamic'
-import GradientButton from 'shared/ui/GradientButton'
+import Icon from 'shared/ui/Icon'
 
 const CircularProgress = dynamic(() => import('@mui/material/CircularProgress'))
 
 interface SubmitButtonProps {
-  emoji: string
   text: string
   loadingText: string
-  disabled: boolean
+  isLoading: boolean
   onClick: () => void
 }
 
-function SubmitButton({ emoji, text, loadingText, disabled, onClick }: SubmitButtonProps) {
+function SubmitButton({ text, loadingText, isLoading, onClick }: SubmitButtonProps) {
   return (
-    <GradientButton
+    <Button
       size="small"
+      variant="outlined"
       type="submit"
-      disabled={disabled}
-      startIcon={disabled ? <CircularProgress size={14.5} color="inherit" /> : emoji}
+      disabled={isLoading}
+      startIcon={
+        isLoading ? (
+          <CircularProgress size={14.5} color="inherit" />
+        ) : (
+          <Icon name="done" color="primary.dark" />
+        )
+      }
       onClick={onClick}
     >
-      {!disabled ? text : loadingText}
-    </GradientButton>
+      {!isLoading ? text : loadingText}
+    </Button>
   )
 }
 

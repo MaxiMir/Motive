@@ -1,21 +1,22 @@
 import {
-  Accordion as MuiAccordion,
   AccordionDetails,
+  Accordion as MuiAccordion,
   AccordionSummary,
   Stack,
   Typography,
 } from '@mui/material'
+import { ReactNode } from 'react'
 import Icon from './Icon'
 
 interface AccordionProps {
   id: string
-  header: string | JSX.Element
-  emoji: string
-  details: JSX.Element
+  header: string | ReactNode
+  icon: ReactNode
+  details: ReactNode
   defaultExpanded?: boolean
 }
 
-function Accordion({ header, id, details, defaultExpanded, emoji }: AccordionProps) {
+function Accordion({ id, header, icon, details, defaultExpanded }: AccordionProps) {
   return (
     <MuiAccordion
       defaultExpanded={defaultExpanded}
@@ -29,10 +30,8 @@ function Accordion({ header, id, details, defaultExpanded, emoji }: AccordionPro
           <Icon name="expand_more" sx={(theme) => ({ color: theme.palette.grey[700] })} />
         }
       >
-        <Stack direction="row" gap={1}>
-          <Typography variant="h6" component="p">
-            {emoji}
-          </Typography>
+        <Stack direction="row" alignItems="center" gap={1}>
+          {icon}
           <Typography variant="h6" component="p">
             {header}
           </Typography>

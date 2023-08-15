@@ -1,9 +1,9 @@
 import {
-  Accordion,
   AccordionDetails,
   FormControlLabel,
   Radio,
   RadioGroup,
+  Accordion,
   AccordionSummary,
   Stack,
   Button,
@@ -15,6 +15,7 @@ import { ChangeEvent } from 'react'
 import { useIntl } from 'react-intl'
 import { PittRules } from 'entities/characteristic'
 import { TaskField } from 'entities/task'
+import { FRONTEND_ID } from 'shared/config'
 import { getMidnightISO, getTomorrowISO } from 'shared/lib/utils'
 import CancelButton from 'shared/ui/CancelButton'
 import Icon from 'shared/ui/Icon'
@@ -59,10 +60,9 @@ function CreateDayModal({ goalId, dayDate, onClose }: CreateDayModalProps) {
       actions={[
         <CancelButton key="cancel" onClick={onClose} />,
         <SubmitButton
-          disabled={isSubmitting}
           text={buttonText}
           loadingText={loadingText}
-          emoji="📌"
+          isLoading={isSubmitting}
           key="submit"
           onClick={handleSubmit}
         />,
@@ -76,13 +76,13 @@ function CreateDayModal({ goalId, dayDate, onClose }: CreateDayModalProps) {
               <FieldArray name="tasks">
                 {({ push, remove }) => (
                   <>
-                    {values.tasks.map(({ id, date }, index) => (
+                    {values.tasks.map((task, index) => (
                       <TaskField
                         taskCount={values.tasks.length}
                         date={values.date}
-                        remind={date}
+                        remind={task.date}
                         index={index}
-                        key={id}
+                        key={task[FRONTEND_ID]}
                         setFieldValue={setFieldValue}
                         onRemove={() => remove(index)}
                       />
@@ -92,7 +92,9 @@ function CreateDayModal({ goalId, dayDate, onClose }: CreateDayModalProps) {
                       variant="outlined"
                       sx={{ alignSelf: 'baseline' }}
                       startIcon={<Icon name="add" />}
-                      onClick={() => push({ id: crypto.randomUUID(), name: '', date: undefined })}
+                      onClick={() => {
+                        push({ [FRONTEND_ID]: crypto.randomUUID(), name: '', date: undefined })
+                      }}
                     >
                       {addTaskText}
                     </Button>
@@ -101,7 +103,7 @@ function CreateDayModal({ goalId, dayDate, onClose }: CreateDayModalProps) {
               </FieldArray>
               <FormControl variant="standard">
                 <Typography variant="h6" component="label">
-                  🕰 {doItText}
+                  {doItText}
                 </Typography>
                 <RadioGroup
                   name="date"

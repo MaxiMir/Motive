@@ -1,6 +1,7 @@
 import { Box, Stack, Typography } from '@mui/material'
 import { styled } from '@mui/system'
 import dynamic from 'next/dynamic'
+import { useDetectMobile } from 'entities/device'
 import { UserContext, UserStatus, UserLevel } from 'entities/user'
 import { useViewer } from 'entities/viewer'
 import { ONLINE_SCORE_MAIN, SPHERES, UserPageDto } from 'shared/api'
@@ -40,7 +41,10 @@ export function UserPage({ user }: UserViewProps) {
     device,
   } = user
   const viewer = useViewer()
+  const mobile = useDetectMobile()
   const viewerPage = id === viewer?.id
+  const renderCreate = !mobile && viewerPage
+  const renderCreateMobile = mobile && viewerPage
 
   return (
     <UserContext.Provider value={user}>
@@ -106,7 +110,7 @@ export function UserPage({ user }: UserViewProps) {
               >
                 {ONLINE_SCORE_MAIN.map((score) => (
                   <OnlineScore
-                    name={score}
+                    score={score}
                     value={characteristic[score]}
                     userId={id}
                     characteristic={characteristic}
@@ -115,7 +119,13 @@ export function UserPage({ user }: UserViewProps) {
                   />
                 ))}
               </Box>
-              <UserStatus online={online} lastSeen={lastSeen} device={device} mb={1}>
+              <UserStatus
+                online={online}
+                lastSeen={lastSeen}
+                device={device}
+                alignItems="center"
+                mb={1}
+              >
                 <Typography component="h1" fontWeight="bold">
                   {name}
                 </Typography>
@@ -142,6 +152,7 @@ export function UserPage({ user }: UserViewProps) {
             <SphereProgress sphere={sphere} value={characteristic[sphere]} key={sphere} />
           ))}
         </Section>
+        {renderCreateMobile && <CreateGoal />}
         {!!confirmations.length && <ConfirmationList confirmations={confirmations} />}
         {!goals.length ? (
           <EmptyGoals viewerPage={viewerPage} />
@@ -159,7 +170,7 @@ export function UserPage({ user }: UserViewProps) {
             ))}
           </Box>
         )}
-        {viewerPage && <CreateGoal />}
+        {renderCreate && <CreateGoal fixed />}
       </Container>
     </UserContext.Provider>
   )

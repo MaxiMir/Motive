@@ -9,25 +9,25 @@ const NoCompletedModal = dynamic(() => import('./noCompletedModal'))
 const AbandonedModal = dynamic(() => import('./abandonedModal'))
 
 interface OnlineScoreProps {
-  name: OnlineScoreDto
+  score: OnlineScoreDto
   value: number
   userId: number
   characteristic: UserCharacteristicDto
   confirmations: ConfirmationDto[]
 }
 
-function OnlineScore({ name, value, userId, characteristic, confirmations }: OnlineScoreProps) {
-  const wordDeclination = useWordDeclination(name, value)
+function OnlineScore({ score, value, userId, characteristic, confirmations }: OnlineScoreProps) {
+  const wordDeclination = useWordDeclination(score, value)
   const formatNumber = useFormatNumber()
   const [modal, setModal] = useState<OnlineScoreDto>()
   const formattedValue = formatNumber(value)
   const buttonText = wordDeclination.toLowerCase()
 
   const onClick = async () => {
-    const openStories = name === 'completed' && confirmations.length
+    const openStories = score === 'completed' && confirmations.length
 
     if (!openStories) {
-      setModal(name)
+      setModal(score)
       return
     }
 

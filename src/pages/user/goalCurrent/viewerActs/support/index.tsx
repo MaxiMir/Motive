@@ -2,7 +2,7 @@ import { Button } from '@mui/material'
 import { withStyles } from '@mui/styles'
 import { useIntl } from 'react-intl'
 import dynamic from 'next/dynamic'
-import { useSignIn, useViewer } from 'entities/viewer'
+import { useViewerAct } from 'entities/viewer'
 import { useToggle } from 'shared/lib/hooks'
 import Icon from 'shared/ui/Icon'
 import TooltipArrow from 'shared/ui/TooltipArrow'
@@ -15,21 +15,12 @@ interface SupportProps {
 }
 
 function Support({ dayId, ownerName }: SupportProps) {
-  const viewer = useViewer()
   const { formatMessage } = useIntl()
-  const openSignIn = useSignIn((state) => state.openSignIn)
-  const supportingText = formatMessage({ id: 'common.supporting' })
   const [open, toggle] = useToggle()
+  const supportingText = formatMessage({ id: 'common.supporting' })
   const title = `${supportingText} ${ownerName}`
 
-  const onClick = () => {
-    if (!viewer) {
-      openSignIn({ callbackUrl: window.location.href })
-      return
-    }
-
-    toggle()
-  }
+  const onClick = useViewerAct(toggle)
 
   return (
     <>

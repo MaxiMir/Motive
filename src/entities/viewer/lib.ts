@@ -1,6 +1,7 @@
 import { useSession } from 'next-auth/react'
-import { GoalDto, MemberDto } from 'shared/api'
-import { Viewer } from './types'
+import { GoalDto } from 'shared/api'
+import { useSignIn } from './model'
+import { Viewer, ViewerPart } from './types'
 
 export function useViewer(): Viewer | undefined {
   const { data, status } = useSession()
@@ -16,12 +17,6 @@ export function useViewer(): Viewer | undefined {
       }
 }
 
-export interface ViewerPart {
-  page: boolean
-  goal: boolean
-  member?: MemberDto
-}
-
 export function useViewerPart(goal: GoalDto, viewerPage: boolean): ViewerPart {
   const viewer = useViewer()
 
@@ -29,5 +24,22 @@ export function useViewerPart(goal: GoalDto, viewerPage: boolean): ViewerPart {
     page: viewerPage,
     goal: goal.owner.id === viewer?.id,
     member: goal.member,
+  }
+}
+
+export function useViewerAct<T extends unknown[]>(
+  act?: (...args: T) => void,
+  callbackUrl?: string,
+) {
+  const viewer = useViewer()
+  const openSignIn = useSignIn((state) => state.openSignIn)
+
+  return (...args: T) => {
+    if (!viewer) {
+      openSignIn({ callbackUrl: callbackUrl || window?.location.href })
+      return
+    }
+
+    act?.(...args)
   }
 }

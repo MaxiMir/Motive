@@ -8,7 +8,7 @@ import { useNotificationHint } from './lib'
 const Loader = dynamic(() => import('./loader'))
 const Hint = dynamic(() => import('./hint'))
 const EmptyList = dynamic(() => import('./emptyList'))
-const NotificationList = dynamic(() => import('./notificationList'))
+const ReadNotification = dynamic(() => import('./readNotification'))
 
 interface ReadNotificationsModalProps {
   notifications: NotificationDto[]
@@ -36,7 +36,15 @@ function ReadNotificationsModal({
             {!notifications.length ? (
               <EmptyList />
             ) : (
-              <NotificationList notifications={notifications} onClose={onClose} />
+              <Stack flex={1} gap={2}>
+                {notifications.map((notification) => (
+                  <ReadNotification
+                    notification={notification}
+                    key={notification.id}
+                    onClose={onClose}
+                  />
+                ))}
+              </Stack>
             )}
           </>
         )}

@@ -1,6 +1,6 @@
 import { Typography, Button, Stack } from '@mui/material'
 import Link from 'next/link'
-import { UserCharacteristic, UserLevel } from 'entities/user'
+import { UserLevel } from 'entities/user'
 import { UserDto } from 'shared/api'
 import { joinToHref } from 'shared/lib/helpers'
 import Avatar from 'shared/ui/avatar'
@@ -30,11 +30,6 @@ function UserCard({ user }: UserCardProps) {
           {name}
         </Typography>
         <UserLevel level={characteristic.level} />
-        <Stack direction="row" justifyContent="space-between" alignItems="center">
-          <UserCharacteristic name="completed" value={characteristic.completed} />
-          <UserCharacteristic name="abandoned" value={characteristic.abandoned} />
-          <UserCharacteristic name="followers" value={characteristic.followers} />
-        </Stack>
       </Stack>
     </Button>
   )

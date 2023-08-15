@@ -6,6 +6,7 @@ import { Emoji } from 'shared/config'
 import Accordion from 'shared/ui/Accordion'
 import CancelButton from 'shared/ui/CancelButton'
 import FadeTypography from 'shared/ui/FadeTypography'
+import Icon from 'shared/ui/Icon'
 import Input from 'shared/ui/Input'
 import Modal from 'shared/ui/Modal'
 import SubmitButton from 'shared/ui/SubmitButton'
@@ -35,10 +36,9 @@ function SupportUserModal({ dayId, ownerName, onClose }: SupportUserModalProps) 
       actions={[
         <CancelButton key="cancel" onClick={onClose} />,
         <SubmitButton
-          disabled={isSubmitting}
           text={buttonText}
           loadingText={loadingText}
-          emoji={Emoji.support}
+          isLoading={isSubmitting}
           key="submit"
           onClick={handleSubmit}
         />,
@@ -51,7 +51,12 @@ function SupportUserModal({ dayId, ownerName, onClose }: SupportUserModalProps) 
             <FadeTypography>{Emoji.support}</FadeTypography>
             <Field name="text" label={label} color="primary" multiline rows={3} component={Input} />
             <Box width="100%">
-              <Accordion emoji="⛑️" header={header} id="support" details={<SupportRules />} />
+              <Accordion
+                id="support"
+                header={header}
+                icon={<Icon name="support" color="primary.dark" />}
+                details={<SupportRules />}
+              />
             </Box>
           </Stack>
         </Form>

@@ -4,7 +4,7 @@ import { ReactNode } from 'react'
 
 interface FlyTypographyProps {
   fontSize?: TypographyProps['fontSize']
-  children: ReactNode
+  children: ReactNode | ReactNode[]
 }
 
 function FlyTypography({ fontSize = 60, children }: FlyTypographyProps) {

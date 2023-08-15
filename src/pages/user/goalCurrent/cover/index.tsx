@@ -1,26 +1,32 @@
 import { Box } from '@mui/material'
 import { styled } from '@mui/system'
-import { Fragment } from 'react'
+import { Fragment, ReactNode } from 'react'
 import dynamic from 'next/dynamic'
+import { SphereDto } from 'shared/api'
+import { SphereAvatar } from './sphereAvatar'
 
 const Image = dynamic(() => import('shared/ui/Image'))
-const Empty = dynamic(() => import('./empty'))
+const Gradient = dynamic(() => import('./gradient'))
+const Web = dynamic(() => import('./web'))
 
 interface CoverProps {
   cover?: string
-  avatar: JSX.Element
-  top: JSX.Element
-  bottom: Array<JSX.Element | null>
+  sphere: SphereDto
+  web: boolean
+  top: ReactNode
+  bottom: Array<ReactNode | null>
 }
 
-export function Cover({ cover, avatar, top, bottom }: CoverProps) {
+export function Cover({ cover, sphere, web, top, bottom }: CoverProps) {
   return (
-    <Box position="relative" height={220} mb={3}>
-      <AvatarBox>{avatar}</AvatarBox>
+    <Box position="relative" height={210} mb={3}>
+      <AvatarBox>
+        <SphereAvatar sphere={sphere} />
+      </AvatarBox>
       {cover ? (
         <Image src={cover} alt="" fill style={{ objectFit: 'cover' }} />
       ) : (
-        <Empty sphere="development" />
+        <Gradient sphere={sphere} />
       )}
       <TopBox>{top}</TopBox>
       <BottomBox display="flex" gap={1}>
@@ -28,6 +34,7 @@ export function Cover({ cover, avatar, top, bottom }: CoverProps) {
           <Fragment key={index}>{element}</Fragment>
         ))}
       </BottomBox>
+      {web && <Web />}
     </Box>
   )
 }

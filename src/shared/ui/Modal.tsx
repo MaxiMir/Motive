@@ -20,9 +20,9 @@ const DialogActions = dynamic(() => import('@mui/material/DialogActions'))
 const Stack = dynamic(() => import('@mui/material/Stack'))
 
 interface ModalProps extends Pick<DialogProps, 'maxWidth'> {
-  title: JSX.Element | string
-  actions?: JSX.Element[]
-  children: ReactNode
+  title: ReactNode | string
+  actions?: ReactNode[]
+  children: ReactNode | ReactNode[]
   staticHeight?: boolean
   dividers?: boolean
   fullScreen?: boolean

@@ -2,7 +2,7 @@ import { Box } from '@mui/material'
 import { ReactNode } from 'react'
 
 interface ImageZoomProps {
-  children: ReactNode
+  children: ReactNode | ReactNode[]
 }
 
 function ImageZoom({ children }: ImageZoomProps) {

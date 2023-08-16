@@ -52,7 +52,7 @@ function FooterMobile({ fixed }: FooterMobileProps) {
             paddingBottom: fixed ? HEIGHT : 0,
             '#create-goal': {
               bottom: visible ? 72 : 24,
-              transition: 'bottom 0.1s ease-in',
+              transition: 'bottom 0.2s ease-in',
             },
           },
         }}

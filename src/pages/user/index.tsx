@@ -48,35 +48,32 @@ export function UserPage({ user }: UserViewProps) {
         <Stack gap="12px">
           <Section
             display="flex"
-            flexWrap="wrap"
             component="section"
             alignItems="center"
-            justifyContent={{
-              xs: 'center',
-              md: 'flex-start',
+            flexDirection={{
+              xs: 'column',
+              lg: 'row',
             }}
-            gap={{
-              md: 6,
-            }}
+            gap={{ lg: 4 }}
             padding={2}
           >
             <AvatarActs user={user} viewerPage={viewerPage} />
             <Stack
               alignItems={{
                 xs: 'center',
-                md: 'flex-start',
+                lg: 'flex-start',
               }}
               flex={1}
             >
               <Stack
                 direction={{
                   xs: 'column',
-                  md: 'row',
+                  lg: 'row',
                 }}
                 alignItems="center"
                 gap={{
                   xs: 1,
-                  md: 3,
+                  lg: 3,
                 }}
                 width="100%"
                 mb={1}
@@ -98,7 +95,7 @@ export function UserPage({ user }: UserViewProps) {
                 display="flex"
                 justifyContent={{
                   xs: 'space-between',
-                  md: 'initial',
+                  sm: 'initial',
                 }}
                 width="100%"
                 gap={2}
@@ -115,7 +112,13 @@ export function UserPage({ user }: UserViewProps) {
                   />
                 ))}
               </Box>
-              <UserStatus online={online} lastSeen={lastSeen} device={device} mb={1}>
+              <UserStatus
+                online={online}
+                lastSeen={lastSeen}
+                device={device}
+                mb={1}
+                alignItems={{ xs: 'center', lg: online ? 'center' : 'flex-start' }}
+              >
                 <Typography component="h1" fontWeight="bold">
                   {name}
                 </Typography>

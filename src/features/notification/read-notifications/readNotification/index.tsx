@@ -5,7 +5,7 @@ import { useViewer } from 'entities/viewer'
 import { NotificationDto } from 'shared/api'
 import { useUpdateRead } from './model'
 
-const InView = dynamic(() => import('shared/ui/InView'))
+const InView = dynamic(() => import('react-intersection-observer').then((m) => m.InView))
 
 interface ReadNotificationProps {
   notification: NotificationDto
@@ -18,12 +18,16 @@ function ReadNotification({ notification, onClose }: ReadNotificationProps) {
   const notificationHref = getNotificationHref(notification, viewer?.nickname)
   const { mutate } = useUpdateRead()
 
-  const onView = () => mutate(id)
+  const onChange = (visible: boolean) => {
+    if (!visible) return
+
+    mutate(id)
+  }
 
   return (
     <>
       <NotificationCard notification={notification} href={notificationHref} onClose={onClose} />
-      {!read && <InView onView={onView} />}
+      {!read && <InView onChange={onChange} />}
     </>
   )
 }

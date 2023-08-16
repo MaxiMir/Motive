@@ -17,6 +17,7 @@ function CreateGoal() {
     <>
       <TooltipArrow title={buttonText}>
         <StyledButton
+          id="create-goal"
           size="small"
           variant="text"
           aria-haspopup="true"

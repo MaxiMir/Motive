@@ -1,5 +1,5 @@
 import { ReactNode } from 'react'
-import InView from 'shared/ui/InView'
+import { InView } from 'react-intersection-observer'
 import { useIncreaseViews } from './model'
 
 interface ViewTriggerProps {
@@ -11,8 +11,14 @@ interface ViewTriggerProps {
 export function ViewTrigger({ ownerId, dayId, children }: ViewTriggerProps) {
   const { mutate } = useIncreaseViews(ownerId, dayId)
 
+  const onChange = (visible: boolean) => {
+    if (!visible) return
+
+    mutate()
+  }
+
   return (
-    <InView triggerOnce onView={() => mutate()}>
+    <InView triggerOnce onChange={onChange}>
       {children}
     </InView>
   )

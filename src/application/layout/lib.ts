@@ -19,7 +19,7 @@ export function useLayout(device?: Device) {
       prevScrollTopRef.current = scrollTop
     }
 
-    document.addEventListener('scroll', scrollListener, { passive: true })
+    document.addEventListener('scroll', scrollListener)
 
     return () => {
       document.removeEventListener('scroll', scrollListener)

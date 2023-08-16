@@ -6,12 +6,18 @@ import { MemberDto, UserPageDto, updateMember } from 'shared/api'
 import { clickOnElem } from 'shared/lib/helpers'
 import { useSnackbar } from 'shared/ui/snackbar'
 
+interface Options {
+  id: number
+  dayId: number
+  updated: Date
+}
+
 export function useSendEndOfDay(goalId: number) {
   const { formatMessage } = useIntl()
   const { enqueueSnackbar } = useSnackbar()
   const [page, mutatePage] = useUserPageCache()
 
-  return useMutation(updateMember, {
+  return useMutation(({ id, dayId, updated }: Options) => updateMember(id, { dayId, updated }), {
     onSuccess(member) {
       const message = formatMessage({ id: 'common.next-day-loading' })
 

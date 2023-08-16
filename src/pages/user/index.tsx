@@ -1,16 +1,14 @@
 import { Box, Stack, Typography } from '@mui/material'
 import { styled } from '@mui/system'
 import dynamic from 'next/dynamic'
-import { useDetectMobile } from 'entities/device'
 import { UserContext, UserStatus, UserLevel } from 'entities/user'
 import { useViewer } from 'entities/viewer'
 import { ONLINE_SCORE_MAIN, SPHERES, UserPageDto } from 'shared/api'
 import Container from 'shared/ui/Container'
 import AvatarActs from './avatarActs'
-import CreateGoal from './createGoal'
 import EmptyGoals from './emptyGoals'
 import LearnMore from './learnMore'
-import MenuActions from './menuActions'
+import MenuActs from './menuActs'
 import Nickname from './nickname'
 import OnlineScore from './onlineScore'
 import SphereProgress from './sphereProgress'
@@ -20,6 +18,7 @@ const UpdateFollowing = dynamic(() => import('features/subscription/update-follo
 const EditProfile = dynamic(() => import('./editProfile'))
 const ConfirmationList = dynamic(() => import('./confirmationList'))
 const GoalCurrent = dynamic(() => import('./goalCurrent'))
+const CreateGoal = dynamic(() => import('./createGoal'))
 
 interface UserViewProps {
   user: UserPageDto
@@ -41,10 +40,7 @@ export function UserPage({ user }: UserViewProps) {
     device,
   } = user
   const viewer = useViewer()
-  const mobile = useDetectMobile()
   const viewerPage = id === viewer?.id
-  const renderCreate = !mobile && viewerPage
-  const renderCreateMobile = mobile && viewerPage
 
   return (
     <UserContext.Provider value={user}>
@@ -95,7 +91,7 @@ export function UserPage({ user }: UserViewProps) {
                   ) : (
                     <UpdateFollowing userId={id} following={following} />
                   )}
-                  <MenuActions viewerPage={viewerPage} />
+                  <MenuActs viewerPage={viewerPage} />
                 </Stack>
               </Stack>
               <Box
@@ -119,13 +115,7 @@ export function UserPage({ user }: UserViewProps) {
                   />
                 ))}
               </Box>
-              <UserStatus
-                online={online}
-                lastSeen={lastSeen}
-                device={device}
-                alignItems="center"
-                mb={1}
-              >
+              <UserStatus online={online} lastSeen={lastSeen} device={device} mb={1}>
                 <Typography component="h1" fontWeight="bold">
                   {name}
                 </Typography>
@@ -152,7 +142,6 @@ export function UserPage({ user }: UserViewProps) {
             <SphereProgress sphere={sphere} value={characteristic[sphere]} key={sphere} />
           ))}
         </Section>
-        {renderCreateMobile && <CreateGoal />}
         {!!confirmations.length && <ConfirmationList confirmations={confirmations} />}
         {!goals.length ? (
           <EmptyGoals viewerPage={viewerPage} />
@@ -170,7 +159,7 @@ export function UserPage({ user }: UserViewProps) {
             ))}
           </Box>
         )}
-        {renderCreate && <CreateGoal fixed />}
+        {viewerPage && <CreateGoal />}
       </Container>
     </UserContext.Provider>
   )

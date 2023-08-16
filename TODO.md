@@ -1,4 +1,5 @@
 ### TODO
+* Delete cover goal with PITT
 * Read more M2 chip
 * GROUP BY members + modal members
 * Редактирование цели / задач / обратной связи

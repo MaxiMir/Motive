@@ -4,7 +4,7 @@ import { UserLevel, UserStatus } from 'entities/user'
 import { UserDto } from 'shared/api'
 import { joinToHref } from 'shared/lib/helpers'
 import Avatar from 'shared/ui/avatar'
-import { MenuActions } from './menuActions'
+import MenuActs from './menuActs'
 
 interface UserCardProps {
   user: UserDto
@@ -30,7 +30,7 @@ function UserCard({ user, index }: UserCardProps) {
           </Box>
         </UserStatus>
       </Stack>
-      <MenuActions user={user} index={index} />
+      <MenuActs user={user} index={index} />
     </Stack>
   )
 }

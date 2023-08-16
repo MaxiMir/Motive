@@ -19,7 +19,7 @@ function FooterMobile({ fixed }: FooterMobileProps) {
     <Box
       component="footer"
       position={fixed ? 'fixed' : 'static'}
-      bottom={fixed ? 0 : -HEIGHT}
+      bottom={fixed ? 0 : undefined}
       height={HEIGHT}
       zIndex={30}
       display={{
@@ -27,7 +27,7 @@ function FooterMobile({ fixed }: FooterMobileProps) {
         xl: 'none',
       }}
       width="100%"
-      sx={{ backgroundColor: '#121212', transition: 'bottom 0.3s ease-in-out' }}
+      sx={{ backgroundColor: '#121212' }}
     >
       <Container fixed>
         <Stack direction="row" justifyContent="space-between" alignItems="center" py={1}>

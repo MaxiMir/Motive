@@ -14,7 +14,7 @@ export function useCreateDay(goalId: number, onSuccess: () => void) {
   const { enqueueSnackbar } = useSnackbar()
   const [goals, mutateGoals] = useGoalsCache()
   const changeDayUrl = useChangeDayUrl()
-  const { mutateAsync } = useMutation(createDay, {
+  const { mutateAsync } = useMutation((dto: CreateDayDto) => createDay(goalId, dto), {
     onSuccess({ days }) {
       const day = days[days.length - 1]
       const message = formatMessage({ id: 'common.next-day-loading' })
@@ -27,7 +27,6 @@ export function useCreateDay(goalId: number, onSuccess: () => void) {
 
   return useFormik<CreateDayDto>({
     initialValues: {
-      id: goalId,
       date: getTomorrowISO(),
       tasks: [{ [FRONTEND_ID]: crypto.randomUUID(), name: '', date: undefined }],
     },

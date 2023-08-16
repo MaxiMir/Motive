@@ -14,7 +14,7 @@ export function useLayout(device?: Device) {
     const scrollListener = () => {
       const { scrollTop } = document.documentElement
       const headerShow = scrollTop <= 64
-      const footerStatic = maxHeight - scrollTop > 24
+      const footerStatic = maxHeight - scrollTop > 30
       setFixed(headerShow || (footerStatic && prevScrollTopRef.current - scrollTop >= 0))
       prevScrollTopRef.current = scrollTop
     }

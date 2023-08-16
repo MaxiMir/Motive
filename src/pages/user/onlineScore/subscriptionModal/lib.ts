@@ -10,7 +10,7 @@ const PRELOAD_DIFF = 5
 
 function partialQueryFn(userId: number, type: 'following' | 'followers') {
   return ({ pageParam = 0 }: QueryFunctionContext) => {
-    return getSubscription(userId, { page: pageParam, take: TAKE }, type)
+    return getSubscription(userId, type, { page: pageParam, take: TAKE })
   }
 }
 

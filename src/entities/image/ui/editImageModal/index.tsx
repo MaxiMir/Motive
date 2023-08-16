@@ -5,22 +5,21 @@ import { useIntl } from 'react-intl'
 import dynamic from 'next/dynamic'
 import Icon from 'shared/ui/Icon'
 import Modal from 'shared/ui/Modal'
-import { useUpdateAvatar } from './model'
 
 const CircularProgress = dynamic(() => import('@mui/material/CircularProgress'))
 
-interface UpdateAvatarModalProps {
-  userId: number
+interface EditImageModalProps {
+  description?: string
+  isLoading: boolean
+  onSubmit: (formData: FormData) => void
   onClose: () => void
 }
 
-function UpdateAvatarModal({ userId, onClose }: UpdateAvatarModalProps) {
+export function EditImageModal({ description, isLoading, onSubmit, onClose }: EditImageModalProps) {
   const { formatMessage } = useIntl()
   const inputRef = useRef<HTMLInputElement>(null)
-  const { isLoading, mutateAsync } = useUpdateAvatar(userId)
-  const title = formatMessage({ id: 'common.upload-photo' })
-  const description = formatMessage({ id: 'common.photo-description' })
-  const typesText = formatMessage({ id: 'common.photo-types' })
+  const title = formatMessage({ id: 'common.upload-image' })
+  const typesText = formatMessage({ id: 'common.image-types' })
   const selectText = formatMessage({ id: 'common.select-file' })
   const hintText = formatMessage({ id: 'common.photo-hint' })
 
@@ -30,16 +29,16 @@ function UpdateAvatarModal({ userId, onClose }: UpdateAvatarModalProps) {
     if (!e.target.files) return
 
     const formData = new FormData()
-    formData.append('avatar', e.target.files[0])
-    mutateAsync(formData).then(onClose)
+    formData.append('image', e.target.files[0])
+    onSubmit(formData)
   }
 
   return (
     <Modal title={title} maxWidth="xs" onClose={onClose}>
       <Stack alignItems="center" gap={2}>
         <Stack alignItems="center" gap={1}>
-          <Description>{description}.</Description>
-          <Description color="zen.sand">{typesText}.</Description>
+          <Description>{description}</Description>
+          <Description color="zen.sand">{typesText}</Description>
         </Stack>
         <Button
           size="small"
@@ -74,5 +73,3 @@ const Description = styled(Typography)({
 const Input = styled('input')({
   display: 'none',
 })
-
-export default UpdateAvatarModal

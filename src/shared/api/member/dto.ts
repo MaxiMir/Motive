@@ -13,6 +13,6 @@ export interface CreateMemberDto extends Pick<MemberDto, 'goalId'> {
   readonly dayId?: string
 }
 
-export interface UpdateMemberDto extends Pick<MemberDto, 'id' | 'dayId'> {
+export interface UpdateMemberDto extends Pick<MemberDto, 'dayId'> {
   readonly updated: Date
 }

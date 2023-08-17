@@ -1,4 +1,7 @@
 import { Container, Box, IconButton, Stack, GlobalStyles } from '@mui/material'
+import { styled } from '@mui/system'
+import { useState } from 'react'
+import { InView } from 'react-intersection-observer'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import OpenProfile from 'features/user/open-profile'
@@ -14,44 +17,54 @@ interface FooterMobileProps {
 function FooterMobile({ fixed }: FooterMobileProps) {
   const { asPath } = useRouter()
   const routes = useRoutes()
+  const [visible, setVisible] = useState(true)
 
   return (
-    <Box
+    <Footer
       component="footer"
       position={fixed ? 'fixed' : 'static'}
-      bottom={fixed ? 0 : -HEIGHT}
-      height={HEIGHT}
-      zIndex={30}
+      bottom={fixed ? 0 : undefined}
       display={{
         xs: 'block',
         xl: 'none',
       }}
-      width="100%"
-      sx={{ backgroundColor: '#121212', transition: 'bottom 0.3s ease-in-out' }}
+      height={HEIGHT}
     >
-      <Container fixed>
-        <Stack direction="row" justifyContent="space-between" alignItems="center" py={1}>
-          {routes.map(({ title, href, Component }) => (
-            <TooltipArrow title={title} key={href}>
-              <IconButton href={href} component={Link}>
-                <Component
-                  sx={{ fontSize: 21, color: asPath.includes(href) ? 'inherit' : 'grey' }}
-                />
-              </IconButton>
-            </TooltipArrow>
-          ))}
-          <OpenProfile />
-        </Stack>
-      </Container>
+      <InView threshold={0.1} onChange={setVisible}>
+        <Container fixed>
+          <Stack direction="row" justifyContent="space-between" alignItems="center" py={1}>
+            {routes.map(({ title, href, Component }) => (
+              <TooltipArrow title={title} key={href}>
+                <IconButton href={href} component={Link}>
+                  <Component
+                    sx={{ fontSize: 21, color: asPath.includes(href) ? 'inherit' : 'grey' }}
+                  />
+                </IconButton>
+              </TooltipArrow>
+            ))}
+            <OpenProfile />
+          </Stack>
+        </Container>
+      </InView>
       <GlobalStyles
         styles={{
           main: {
             paddingBottom: fixed ? HEIGHT : 0,
+            '#create-goal': {
+              bottom: visible ? 72 : 24,
+              transition: 'bottom 0.2s ease-in',
+            },
           },
         }}
       />
-    </Box>
+    </Footer>
   )
 }
+
+const Footer = styled(Box)({
+  width: '100%',
+  zIndex: 30,
+  backgroundColor: '#121212',
+})
 
 export default FooterMobile

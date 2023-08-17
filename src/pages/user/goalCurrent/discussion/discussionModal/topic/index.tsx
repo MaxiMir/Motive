@@ -4,7 +4,7 @@ import { useToggle } from 'shared/lib/hooks'
 import { checkOnReply } from './lib'
 import Message from './message'
 
-const InView = dynamic(() => import('shared/ui/InView'))
+const InView = dynamic(() => import('react-intersection-observer').then((m) => m.InView))
 const Answer = dynamic(() => import('./answer'))
 
 interface TopicProps {
@@ -22,6 +22,12 @@ function Topic({ dayId, owner, topic, isOwner, inView, onView }: TopicProps) {
   const canReply = checkOnReply(isOwner, topic)
   const replyProps = !canReply ? undefined : { disabled: creating, onClick: toggleCreating }
 
+  const onChange = (visible: boolean) => {
+    if (!visible) return
+
+    onView()
+  }
+
   return (
     <>
       <Message
@@ -30,7 +36,7 @@ function Topic({ dayId, owner, topic, isOwner, inView, onView }: TopicProps) {
         replyProps={replyProps}
       />
       {answer && <Message message={answer} answerFor={message} />}
-      {inView && <InView onView={onView} />}
+      {inView && <InView onChange={onChange} />}
       {creating && (
         <Answer
           dayId={dayId}

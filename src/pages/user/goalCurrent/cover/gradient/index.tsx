@@ -10,7 +10,7 @@ function Gradient({ sphere }: GradientProps) {
   const fillLight = generateColorByName(sphere)
   const fillDark = generateColorByName(sphere, { saturation: 50, lightness: 30, range: 10 })
 
-  return <Box height="100%" sx={{ background: `linear-gradient(${fillLight}, ${fillDark})` }} />
+  return <Box height="100%" sx={{ background: `linear-gradient(${fillDark}, ${fillLight})` }} />
 }
 
 export default Gradient

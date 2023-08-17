@@ -10,14 +10,13 @@ const Gradient = dynamic(() => import('./gradient'))
 const Web = dynamic(() => import('./web'))
 
 interface CoverProps {
-  cover?: string
+  cover: string | null
   sphere: SphereDto
   web: boolean
-  top: ReactNode
   bottom: Array<ReactNode | null>
 }
 
-export function Cover({ cover, sphere, web, top, bottom }: CoverProps) {
+export function Cover({ cover, sphere, web, bottom }: CoverProps) {
   return (
     <Box position="relative" height={210} mb={3}>
       <AvatarBox>
@@ -28,7 +27,6 @@ export function Cover({ cover, sphere, web, top, bottom }: CoverProps) {
       ) : (
         <Gradient sphere={sphere} />
       )}
-      <TopBox>{top}</TopBox>
       <BottomBox display="flex" gap={1}>
         {bottom.map((element, index) => (
           <Fragment key={index}>{element}</Fragment>
@@ -43,13 +41,6 @@ const AvatarBox = styled(Box)({
   position: 'absolute',
   left: 8,
   bottom: -30,
-  zIndex: 1,
-})
-
-const TopBox = styled(Box)({
-  position: 'absolute',
-  top: 8,
-  right: 8,
   zIndex: 1,
 })
 

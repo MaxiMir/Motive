@@ -2,12 +2,12 @@ import { DayDto } from '../day'
 import { fetcher } from '../fetcher'
 import { CreateMemberDto, MemberDto, UpdateMemberDto } from './dto'
 
-export function createMember(data: CreateMemberDto): Promise<MemberDto> {
-  return fetcher.post('/members', data)
+export function createMember(dto: CreateMemberDto): Promise<MemberDto> {
+  return fetcher.post('/members', dto)
 }
 
-export function updateMember({ id, ...data }: UpdateMemberDto): Promise<MemberDto> {
-  return fetcher.patch(`/members/${id}`, data)
+export function updateMember(id: number, dto: UpdateMemberDto): Promise<MemberDto> {
+  return fetcher.patch(`/members/${id}`, dto)
 }
 
 export function deleteMember(id: number): Promise<void> {

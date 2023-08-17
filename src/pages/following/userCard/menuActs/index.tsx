@@ -13,12 +13,12 @@ import TooltipArrow from 'shared/ui/TooltipArrow'
 
 const Share = dynamic(() => import('features/share'))
 
-interface MenuActionsProps {
+interface MenuActsProps {
   user: UserDto
   index: number
 }
 
-export function MenuActions({ user, index }: MenuActionsProps) {
+export default function MenuActs({ user, index }: MenuActsProps) {
   const { name, nickname } = user
   const id = useId()
   const menuId = useId()

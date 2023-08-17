@@ -1,5 +1,5 @@
 import { fetcher } from '../fetcher'
 
-export function createConfirmation(data: FormData): Promise<void> {
-  return fetcher.post('/confirmations', data)
+export function createConfirmation(formData: FormData): Promise<void> {
+  return fetcher.post('/confirmations', formData)
 }

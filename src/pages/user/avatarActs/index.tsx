@@ -4,13 +4,13 @@ import { MouseEvent, useId, useState } from 'react'
 import { useIntl } from 'react-intl'
 import dynamic from 'next/dynamic'
 import { UserPageDto } from 'shared/api'
-import { useToggle } from 'shared/lib/hooks'
 import Avatar from 'shared/ui/avatar'
 import ListItem from 'shared/ui/ListItem'
 import Progress from './progress'
+import { ModalType } from './types'
 
 const LightBox = dynamic(() => import('shared/ui/LightBox'))
-const UpdateModal = dynamic(() => import('features/user/update-avatar'))
+const EditModal = dynamic(() => import('features/user/edit-avatar'))
 const DeleteModal = dynamic(() => import('features/user/delete-avatar'))
 
 const SIZE = 180
@@ -26,21 +26,20 @@ function AvatarActs({ user, viewerPage }: AvatarActsProps) {
   const menuId = useId()
   const { formatMessage } = useIntl()
   const [index, setIndex] = useState<number>()
-  const [editing, toggleEditing] = useToggle()
-  const [deleting, toggleDeleting] = useToggle()
+  const [modal, setModal] = useState<ModalType>()
   const [anchorEl, setAnchorEl] = useState<HTMLElement | null>(null)
   const sources = !avatar ? [] : [avatar]
   const disabled = !sources.length && !viewerPage
   const open = Boolean(anchorEl)
   const openLightbox = typeof index === 'number'
-  const openText = formatMessage({ id: 'common.open-photo' })
+  const openText = formatMessage({ id: 'common.open' })
   const editText = formatMessage({ id: 'common.edit' })
   const deleteText = formatMessage({ id: 'common.delete' })
   const cancelText = formatMessage({ id: 'common.cancel' })
 
   const openPhoto = () => setIndex(0)
 
-  const onClick = (e: MouseEvent<HTMLElement>) => {
+  const onClickAvatar = (e: MouseEvent<HTMLElement>) => {
     if (!sources && !viewerPage) return
 
     if (!viewerPage) {
@@ -51,7 +50,13 @@ function AvatarActs({ user, viewerPage }: AvatarActsProps) {
     setAnchorEl(e.currentTarget)
   }
 
-  const onClose = () => setAnchorEl(null)
+  const toOnClick = (type: ModalType) => {
+    return () => setModal(type)
+  }
+
+  const onCloseModal = () => setModal(undefined)
+
+  const onCloseMenu = () => setAnchorEl(null)
 
   const onCloseLightBox = () => setIndex(undefined)
 
@@ -67,7 +72,7 @@ function AvatarActs({ user, viewerPage }: AvatarActsProps) {
           aria-controls={open ? menuId : undefined}
           aria-haspopup
           aria-expanded={open ? 'true' : undefined}
-          onClick={onClick}
+          onClick={onClickAvatar}
         />
       </Progress>
       <Menu
@@ -83,29 +88,29 @@ function AvatarActs({ user, viewerPage }: AvatarActsProps) {
             backgroundColor: 'underlay',
           },
         }}
-        onClick={onClose}
-        onClose={onClose}
+        onClick={onCloseMenu}
+        onClose={onCloseMenu}
       >
         {avatar && (
           <MenuItem onClick={openPhoto}>
-            <ListItem icon="photo" primary={openText} />
+            <ListItem icon="zoom_out_map" primary={openText} />
           </MenuItem>
         )}
-        <MenuItem onClick={toggleEditing}>
-          <ListItem icon="edit" primary={editText} />
+        <MenuItem onClick={toOnClick('edit')}>
+          <ListItem icon="photo" primary={editText} />
         </MenuItem>
         {avatar && (
-          <MenuItem onClick={toggleDeleting}>
+          <MenuItem onClick={toOnClick('delete')}>
             <ListItem icon="delete" primary={deleteText} color="error.dark" />
           </MenuItem>
         )}
-        <MenuItem onClick={onClose}>
+        <MenuItem onClick={onCloseMenu}>
           <ListItem icon="block" primary={cancelText} color="grey" />
         </MenuItem>
       </Menu>
       {openLightbox && <LightBox sources={sources} index={index} onClose={onCloseLightBox} />}
-      {editing && <UpdateModal userId={userId} onClose={toggleEditing} />}
-      {deleting && <DeleteModal userId={userId} onClose={toggleDeleting} />}
+      {modal === 'edit' && <EditModal userId={userId} onClose={onCloseModal} />}
+      {modal === 'delete' && <DeleteModal userId={userId} onClose={onCloseModal} />}
     </>
   )
 }

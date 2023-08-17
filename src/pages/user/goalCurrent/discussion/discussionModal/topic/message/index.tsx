@@ -8,7 +8,7 @@ import { MessageDto } from 'shared/api'
 import { joinToHref } from 'shared/lib/helpers'
 import { useFormatDistance } from 'shared/lib/hooks'
 import Avatar from 'shared/ui/avatar'
-import MenuActions from './menuActions'
+import MenuActs from './menuActs'
 
 const Button = dynamic(() => import('@mui/material/Button'))
 const Markdown = dynamic(() => import('shared/ui/markdown'))
@@ -84,7 +84,7 @@ function Message({ message, answerFor, supportFor, replyProps }: MessageProps) {
                 {editedText}
               </Box>
             )}
-            <MenuActions message={message} />
+            <MenuActs message={message} />
           </Box>
           <Markdown text={textWithUser} />
         </Stack>

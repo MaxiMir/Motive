@@ -14,11 +14,11 @@ import TooltipArrow from 'shared/ui/TooltipArrow'
 const CreateReport = dynamic(() => import('features/report/create-report'))
 const EditTopicModal = dynamic(() => import('features/topic/edit-topic'))
 
-interface MenuActionsProps {
+interface MenuActsProps {
   message: MessageDto
 }
 
-function MenuActions({ message }: MenuActionsProps) {
+function MenuActs({ message }: MenuActsProps) {
   const id = useId()
   const menuId = useId()
   const viewer = useViewer()
@@ -111,4 +111,4 @@ function MenuActions({ message }: MenuActionsProps) {
   )
 }
 
-export default MenuActions
+export default MenuActs

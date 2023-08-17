@@ -14,12 +14,12 @@ export function useLayout(device?: Device) {
     const scrollListener = () => {
       const { scrollTop } = document.documentElement
       const headerShow = scrollTop <= 64
-      const footerStatic = maxHeight - scrollTop > 24
+      const footerStatic = maxHeight - scrollTop > 30
       setFixed(headerShow || (footerStatic && prevScrollTopRef.current - scrollTop >= 0))
       prevScrollTopRef.current = scrollTop
     }
 
-    document.addEventListener('scroll', scrollListener, { passive: true })
+    document.addEventListener('scroll', scrollListener)
 
     return () => {
       document.removeEventListener('scroll', scrollListener)

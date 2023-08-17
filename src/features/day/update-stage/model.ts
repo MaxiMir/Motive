@@ -5,12 +5,17 @@ import { useGoalsCache } from 'entities/user'
 import { GoalDto, updateStage } from 'shared/api'
 import { useSnackbar } from 'shared/ui/snackbar'
 
+interface Options {
+  id: number
+  stage: number
+}
+
 export function useUpdateStage(onSuccess: () => void) {
   const { formatMessage } = useIntl()
   const [goals, mutateGoals] = useGoalsCache()
   const { enqueueSnackbar } = useSnackbar()
 
-  return useMutation(updateStage, {
+  return useMutation(({ id, stage }: Options) => updateStage(id, { stage }), {
     onSuccess(_, { id }) {
       const message = formatMessage({ id: 'component.modal-completion.message' })
       mutateGoals(getNextState(goals, id))

@@ -1,16 +1,14 @@
 import { Box, Stack, Typography } from '@mui/material'
 import { styled } from '@mui/system'
 import dynamic from 'next/dynamic'
-import { useDetectMobile } from 'entities/device'
 import { UserContext, UserStatus, UserLevel } from 'entities/user'
 import { useViewer } from 'entities/viewer'
 import { ONLINE_SCORE_MAIN, SPHERES, UserPageDto } from 'shared/api'
 import Container from 'shared/ui/Container'
 import AvatarActs from './avatarActs'
-import CreateGoal from './createGoal'
 import EmptyGoals from './emptyGoals'
 import LearnMore from './learnMore'
-import MenuActions from './menuActions'
+import MenuActs from './menuActs'
 import Nickname from './nickname'
 import OnlineScore from './onlineScore'
 import SphereProgress from './sphereProgress'
@@ -20,6 +18,7 @@ const UpdateFollowing = dynamic(() => import('features/subscription/update-follo
 const EditProfile = dynamic(() => import('./editProfile'))
 const ConfirmationList = dynamic(() => import('./confirmationList'))
 const GoalCurrent = dynamic(() => import('./goalCurrent'))
+const CreateGoal = dynamic(() => import('./createGoal'))
 
 interface UserViewProps {
   user: UserPageDto
@@ -41,10 +40,7 @@ export function UserPage({ user }: UserViewProps) {
     device,
   } = user
   const viewer = useViewer()
-  const mobile = useDetectMobile()
   const viewerPage = id === viewer?.id
-  const renderCreate = !mobile && viewerPage
-  const renderCreateMobile = mobile && viewerPage
 
   return (
     <UserContext.Provider value={user}>
@@ -52,35 +48,32 @@ export function UserPage({ user }: UserViewProps) {
         <Stack gap="12px">
           <Section
             display="flex"
-            flexWrap="wrap"
             component="section"
             alignItems="center"
-            justifyContent={{
-              xs: 'center',
-              md: 'flex-start',
+            flexDirection={{
+              xs: 'column',
+              lg: 'row',
             }}
-            gap={{
-              md: 6,
-            }}
+            gap={{ lg: 4 }}
             padding={2}
           >
             <AvatarActs user={user} viewerPage={viewerPage} />
             <Stack
               alignItems={{
                 xs: 'center',
-                md: 'flex-start',
+                lg: 'flex-start',
               }}
               flex={1}
             >
               <Stack
                 direction={{
                   xs: 'column',
-                  md: 'row',
+                  lg: 'row',
                 }}
                 alignItems="center"
                 gap={{
                   xs: 1,
-                  md: 3,
+                  lg: 3,
                 }}
                 width="100%"
                 mb={1}
@@ -95,14 +88,14 @@ export function UserPage({ user }: UserViewProps) {
                   ) : (
                     <UpdateFollowing userId={id} following={following} />
                   )}
-                  <MenuActions viewerPage={viewerPage} />
+                  <MenuActs viewerPage={viewerPage} />
                 </Stack>
               </Stack>
               <Box
                 display="flex"
                 justifyContent={{
                   xs: 'space-between',
-                  md: 'initial',
+                  sm: 'initial',
                 }}
                 width="100%"
                 gap={2}
@@ -123,8 +116,8 @@ export function UserPage({ user }: UserViewProps) {
                 online={online}
                 lastSeen={lastSeen}
                 device={device}
-                alignItems="center"
                 mb={1}
+                alignItems={{ xs: 'center', lg: online ? 'center' : 'flex-start' }}
               >
                 <Typography component="h1" fontWeight="bold">
                   {name}
@@ -152,7 +145,6 @@ export function UserPage({ user }: UserViewProps) {
             <SphereProgress sphere={sphere} value={characteristic[sphere]} key={sphere} />
           ))}
         </Section>
-        {renderCreateMobile && <CreateGoal />}
         {!!confirmations.length && <ConfirmationList confirmations={confirmations} />}
         {!goals.length ? (
           <EmptyGoals viewerPage={viewerPage} />
@@ -170,7 +162,7 @@ export function UserPage({ user }: UserViewProps) {
             ))}
           </Box>
         )}
-        {renderCreate && <CreateGoal fixed />}
+        {viewerPage && <CreateGoal />}
       </Container>
     </UserContext.Provider>
   )

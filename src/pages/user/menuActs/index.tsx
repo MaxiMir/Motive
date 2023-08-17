@@ -13,11 +13,11 @@ import ListItem from 'shared/ui/ListItem'
 const Share = dynamic(() => import('features/share'))
 const CreateReport = dynamic(() => import('features/report/create-report'))
 
-interface MenuActionsProps {
+interface MenuActsProps {
   viewerPage: boolean
 }
 
-function MenuActions({ viewerPage }: MenuActionsProps) {
+function MenuActs({ viewerPage }: MenuActsProps) {
   const id = useId()
   const menuId = useId()
   const { asPath } = useRouter()
@@ -93,4 +93,4 @@ function MenuActions({ viewerPage }: MenuActionsProps) {
   )
 }
 
-export default MenuActions
+export default MenuActs

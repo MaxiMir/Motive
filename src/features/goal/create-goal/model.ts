@@ -14,13 +14,13 @@ import { GoalSchema } from './schema'
 export function useCreateGoalForm(onSuccess: () => void) {
   const { formatMessage } = useIntl()
   const { enqueueSnackbar } = useSnackbar()
-  const [goals, mutateGoal] = useGoalsCache()
+  const [goals, mutateGoals] = useGoalsCache()
   const { mutateAsync } = useMutation(createGoal, {
     onSuccess(goal) {
       const message = formatMessage({ id: 'page.user.modal-goal.message-created' })
 
       flushSync(() => {
-        mutateGoal(getNextState(goals, goal))
+        mutateGoals(getNextState(goals, goal))
         onSuccess()
         enqueueSnackbar(message, { severity: 'success', icon: '💎' })
       })

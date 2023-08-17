@@ -4,8 +4,8 @@ import { UserDto } from '../user'
 
 export function getSubscription(
   id: number,
-  filter: Filter,
   type: 'following' | 'followers',
+  filter: Filter,
 ): Promise<UserDto[]> {
   const params = getFilterParams(filter)
 

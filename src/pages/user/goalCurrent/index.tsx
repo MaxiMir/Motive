@@ -16,7 +16,6 @@ import { Cover } from './cover'
 import { Discussion } from './discussion'
 import { Feedback } from './feedback'
 import { Members } from './members'
-import { MenuActions } from './menuActions'
 import { Points } from './points'
 import { ShareDay } from './shareDay'
 import { SphereType } from './sphereType'
@@ -25,6 +24,7 @@ import { Views } from './views'
 import { ViewTrigger } from './viewTrigger'
 
 const Owner = dynamic(() => import('./owner'))
+const CoverMenu = dynamic(() => import('./coverMenu'))
 const Membership = dynamic(() => import('./membership'))
 const Stages = dynamic(() => import('./stages'))
 const Hashtag = dynamic(() => import('./hashtag'))
@@ -127,8 +127,8 @@ function GoalCurrent({ goal, viewerPage }: GoalCurrentProps) {
               cover={cover}
               sphere={sphere}
               web={web}
-              top={<MenuActions goalId={id} viewerGoal={viewerPart.goal} />}
               bottom={[
+                !viewerPart.goal ? null : <CoverMenu goalId={id} cover={cover} key="menu" />,
                 <ShareDay goalId={id} dayId={day.id} title={name} key="share" />,
                 viewerPart.goal ? null : (
                   <Membership goal={goal} viewerPart={viewerPart} key="member" />

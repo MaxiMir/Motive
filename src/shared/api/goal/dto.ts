@@ -15,7 +15,7 @@ export interface GoalBaseDto {
   readonly owner: UserBaseDto
   readonly points: number
   readonly members: number
-  readonly cover?: string
+  readonly cover: string | null
   readonly sphere: SphereDto
 }
 
@@ -43,4 +43,4 @@ export interface CalendarDto {
   readonly date: string
 }
 
-export type UpdateStageDto = Pick<GoalBaseDto, 'id' | 'stage'>
+export type UpdateStageDto = Pick<GoalBaseDto, 'stage'>

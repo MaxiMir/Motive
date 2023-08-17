@@ -6,7 +6,7 @@ import { UserDto } from 'shared/api'
 import { joinToHref } from 'shared/lib/helpers'
 import Avatar from 'shared/ui/avatar'
 
-const InView = dynamic(() => import('shared/ui/InView'))
+const InView = dynamic(() => import('react-intersection-observer').then((m) => m.InView))
 
 interface UserCardProps {
   user: UserDto
@@ -18,6 +18,12 @@ interface UserCardProps {
 function UserCard({ user, inView, onView, onClose }: UserCardProps) {
   const { nickname, name, avatar, characteristic, online } = user
   const href = joinToHref(nickname)
+
+  const onChange = (visible: boolean) => {
+    if (!visible) return
+
+    onView()
+  }
 
   return (
     <>
@@ -41,7 +47,7 @@ function UserCard({ user, inView, onView, onClose }: UserCardProps) {
           </Typography>
         </Stack>
       </Stack>
-      {onView && <>{inView && <InView onView={onView} />}</>}
+      {inView && <InView onChange={onChange} />}
     </>
   )
 }

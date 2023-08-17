@@ -24,7 +24,7 @@ function EditProfile({ user }: EditProfileProps) {
         aria-expanded={open ? 'true' : undefined}
         startIcon={<Icon name="edit_note" />}
         sx={{
-          minWidth: '96px',
+          minWidth: 96,
           height: 30,
           paddingX: 1,
         }}

@@ -8,61 +8,48 @@ import TooltipArrow from 'shared/ui/TooltipArrow'
 
 const CreateGoalModal = dynamic(() => import('features/goal/create-goal'))
 
-interface CreateGoalProps {
-  fixed?: boolean
-}
-
-function CreateGoal({ fixed }: CreateGoalProps) {
+function CreateGoal() {
   const { formatMessage } = useIntl()
   const [open, toggle] = useToggle()
   const buttonText = formatMessage({ id: 'common.create' })
 
   return (
     <>
-      {!fixed ? (
+      <TooltipArrow title={buttonText}>
         <StyledButton
-          variant="contained"
+          id="create-goal"
+          size="small"
+          variant="text"
           aria-haspopup="true"
           aria-expanded={open ? 'true' : undefined}
-          startIcon={<Icon name="target" />}
           sx={{
-            width: '100%',
-            color: 'common.white',
+            right: {
+              xs: 24,
+              lg: 24,
+            },
+            bottom: {
+              xs: 72,
+              lg: 24,
+            },
           }}
           onClick={toggle}
         >
-          {buttonText}
+          <Icon name="target" />
         </StyledButton>
-      ) : (
-        <TooltipArrow title={buttonText}>
-          <StyledButton
-            size="small"
-            variant="text"
-            aria-haspopup="true"
-            aria-expanded={open ? 'true' : undefined}
-            sx={{
-              position: 'fixed',
-              right: 24,
-              bottom: 24,
-              minWidth: 'initial',
-              width: 64,
-              height: 64,
-              padding: 0,
-              borderRadius: '50%',
-              zIndex: 100,
-            }}
-            onClick={toggle}
-          >
-            <Icon name="target" />
-          </StyledButton>
-        </TooltipArrow>
-      )}
+      </TooltipArrow>
       {open && <CreateGoalModal onClose={toggle} />}
     </>
   )
 }
 
 const StyledButton = styled(Button)(({ theme }) => ({
+  position: 'fixed',
+  minWidth: 'initial',
+  width: 56,
+  height: 56,
+  padding: 0,
+  borderRadius: '50%',
+  zIndex: 100,
   background: `linear-gradient(to top left, ${theme.palette.creativity.dark}, ${theme.palette.support.dark})`,
 }))
 

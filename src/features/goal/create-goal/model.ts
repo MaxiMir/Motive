@@ -34,6 +34,7 @@ export function useCreateGoalForm(onSuccess: () => void) {
       started: getMidnightISO(),
       name: '',
       hashtags: '',
+      sphere: undefined as never,
       stages: [],
       tasks: [{ [FRONTEND_ID]: crypto.randomUUID(), name: '', date: undefined }],
     },

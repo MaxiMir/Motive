@@ -8,7 +8,8 @@ import {
   ListItemText,
   ListItemIcon,
 } from '@mui/material'
-import { withStyles } from '@mui/styles'
+import { paperClasses } from '@mui/material/Paper'
+import { styled } from '@mui/system'
 import { signOut } from 'next-auth/react'
 import { useIntl } from 'react-intl'
 import Link from 'next/link'
@@ -77,12 +78,12 @@ function SidebarModal({ onOpenSettings, onClose }: SidebarModalProps) {
   )
 }
 
-const StyledDrawer = withStyles({
-  paper: {
+const StyledDrawer = styled(Drawer)({
+  [`& .${paperClasses.root}`]: {
     width: 230,
     backgroundColor: 'underlay',
     borderRight: '1px solid rgb(38, 38, 38)',
   },
-})(Drawer)
+})
 
 export default SidebarModal

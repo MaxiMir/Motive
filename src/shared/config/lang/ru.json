@@ -298,7 +298,7 @@
   "common.zoom-in": "Увеличить",
   "common.zoom-out": "Уменьшить",
   "common.update": "Обновить",
-  "common.updating": "Оновлення",
+  "common.updating": "Обновление",
   "common.upload-image": "Загрузить изображение",
   "common.photo-description": "Пожалуйста, загрузите свою настоящую фотографию, чтобы вас можно было узнать.",
   "common.image-types": "Мы поддерживаем файлы JPG, GIF или PNG.",
@@ -333,5 +333,6 @@
   "common.points-genitive": "очков",
   "common.members-single": "участник",
   "common.members-double": "участника",
-  "common.members-genitive": "участников"
+  "common.members-genitive": "участников",
+  "common.sphere-of-life": "Сфера жизни"
 }

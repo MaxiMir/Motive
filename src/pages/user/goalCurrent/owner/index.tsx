@@ -2,15 +2,19 @@ import { Box } from '@mui/material'
 import Link from 'next/link'
 import { UserBaseDto } from 'shared/api'
 import { joinToHref } from 'shared/lib/helpers'
+import { useFormatDate } from 'shared/lib/hooks'
 import Avatar from 'shared/ui/avatar'
 
 interface OwnerProps {
   owner: UserBaseDto
+  started: string
 }
 
-function Owner({ owner }: OwnerProps) {
+function Owner({ owner, started }: OwnerProps) {
   const { name, nickname, avatar } = owner
+  const formatDate = useFormatDate()
   const href = joinToHref(nickname)
+  const date = formatDate(started, { day: 'numeric', month: 'short' })
 
   return (
     <Box
@@ -30,6 +34,9 @@ function Owner({ owner }: OwnerProps) {
       <Link href={href} title={name}>
         {owner.name}
       </Link>
+      <Box component="span" color="zen.silent">
+        • {date}
+      </Box>
     </Box>
   )
 }

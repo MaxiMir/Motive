@@ -75,40 +75,21 @@ function GoalCurrent({ goal, viewerPage }: GoalCurrentProps) {
 
   function getGoalInfo() {
     const today = getMidnight()
-    const defaultInfo = {
-      canEdit: viewerPart.page && viewerPart.goal,
-      viewerControls: true,
-      ownerControls: false,
-      daysGone: daysGoneForOwner,
-      lastDay: calendar?.at(-1)?.date === day.date,
-      forTomorrow: daysGoneForOwner === -1,
-    }
 
-    if (viewerPart.goal) {
-      return {
-        ...defaultInfo,
-        viewerControls: false,
-        ownerControls: viewerPart.page && !completed,
-      }
+    return {
+      canEdit: !viewerPart.member
+        ? viewerPart.page && viewerPart.goal
+        : viewerPart.page && viewerPart.member.dayId === day.id,
+      forTomorrow: !viewerPart.member
+        ? daysGoneForOwner === -1
+        : differenceInCalendarDays(Date.parse(viewerPart.member.updated), today) > 0,
+      viewerControls: !viewerPart.goal,
+      ownerControls: !viewerPart.goal ? false : viewerPart.page && !completed,
+      daysGone: !member
+        ? daysGoneForOwner
+        : differenceInCalendarDays(today, Date.parse(member.updated)),
+      lastDay: !member ? calendar?.at(-1)?.date === day.date : member.dayId === day.id,
     }
-
-    if (viewerPart.member) {
-      return {
-        ...defaultInfo,
-        canEdit: viewerPart.page && viewerPart.member.dayId === day.id,
-        forTomorrow: differenceInCalendarDays(Date.parse(viewerPart.member.updated), today) > 0,
-      }
-    }
-
-    if (member) {
-      return {
-        ...defaultInfo,
-        daysGone: differenceInCalendarDays(today, Date.parse(member.updated)),
-        lastDay: member.dayId === day.id,
-      }
-    }
-
-    return defaultInfo
   }
 
   return (
@@ -141,7 +122,7 @@ function GoalCurrent({ goal, viewerPage }: GoalCurrentProps) {
                   <Typography variant="subtitle1" component="h2">
                     <b>{name}</b>
                   </Typography>
-                  {member && <Owner owner={owner} />}
+                  {member && <Owner owner={owner} started={member.started} />}
                   <SphereType sphere={sphere} />
                 </Stack>
                 {!!hashtags.length && (

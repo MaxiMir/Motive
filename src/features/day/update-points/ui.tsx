@@ -1,6 +1,6 @@
 import { Button } from '@mui/material'
 import { red } from '@mui/material/colors'
-import { withStyles } from '@mui/styles'
+import { styled } from '@mui/system'
 import { useIntl } from 'react-intl'
 import dynamic from 'next/dynamic'
 import { GoalDto } from 'shared/api'
@@ -50,17 +50,12 @@ function UpdatePoints({ goalId, day, viewerPoints }: UpdatePointsProps) {
   )
 }
 
-const StyledButton = withStyles({
-  root: {
-    minWidth: 55,
-    height: 30,
-    borderRadius: 20,
-    border: 'none',
-    transition: 'all .3s',
-  },
-  startIcon: {
-    width: 18,
-  },
-})(Button)
+const StyledButton = styled(Button)({
+  minWidth: 55,
+  height: 30,
+  borderRadius: 20,
+  border: 'none',
+  transition: 'all .3s',
+}) as typeof Button
 
 export default UpdatePoints

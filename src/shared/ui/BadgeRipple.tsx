@@ -1,13 +1,9 @@
-import { Badge } from '@mui/material'
-import { badgeClasses } from '@mui/material/Badge'
+import Badge, { badgeClasses, BadgeProps } from '@mui/material/Badge'
 import { styled } from '@mui/system'
 
-function Online() {
-  return <StyledBadge overlap="circular" variant="dot" />
-}
-
-const StyledBadge = styled(Badge)(({ theme }) => ({
-  width: 16,
+const BadgeRipple = styled((props: BadgeProps) => (
+  <Badge overlap="circular" variant="dot" {...props} />
+))(({ theme }) => ({
   [`& .${badgeClasses.badge}`]: {
     backgroundColor: '#44b700',
     color: '#44b700',
@@ -37,4 +33,4 @@ const StyledBadge = styled(Badge)(({ theme }) => ({
   },
 }))
 
-export default Online
+export default BadgeRipple

@@ -19,7 +19,7 @@ export interface GoalBaseDto {
   readonly sphere: SphereDto
 }
 
-export interface CreateGoalDto extends Pick<GoalBaseDto, 'name' | 'started'> {
+export interface CreateGoalDto extends Pick<GoalBaseDto, 'name' | 'started' | 'sphere'> {
   readonly hashtags: string
   readonly stages: ReadonlyArray<{ [FRONTEND_ID]: string; name: string }>
   readonly tasks: CreateTaskDto[]

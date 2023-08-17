@@ -4,6 +4,7 @@ import { useViewer } from 'entities/viewer'
 import { OGType } from 'shared/api'
 import { Sidebar } from './sidebar'
 
+const Updating = dynamic(() => import('./updating'))
 const SignIn = dynamic(() => import('./signIn'))
 const Notifications = dynamic(() => import('./notifications'))
 const UserLink = dynamic(() => import('./userLink'))
@@ -13,11 +14,12 @@ const HEIGHT = 56
 interface HeaderMobileProps {
   type: OGType
   fixed: boolean
+  updating: boolean
 }
 
-function HeaderMobile({ type, fixed }: HeaderMobileProps) {
+function HeaderMobile({ type, fixed, updating }: HeaderMobileProps) {
   const viewer = useViewer()
-  const renderNickname = type === 'profile'
+  const renderUserLink = type === 'profile' && !updating
 
   return (
     <AppBar
@@ -38,7 +40,7 @@ function HeaderMobile({ type, fixed }: HeaderMobileProps) {
       <Container fixed>
         <Stack direction="row" justifyContent="space-between" alignItems="center">
           <Sidebar />
-          {renderNickname && <UserLink />}
+          {updating ? <Updating /> : <>{renderUserLink && <UserLink />}</>}
           {viewer ? <Notifications /> : <SignIn />}
         </Stack>
       </Container>

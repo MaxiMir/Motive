@@ -1,5 +1,5 @@
-import { Box, MenuItem, Select, SelectChangeEvent } from '@mui/material'
-import { selectClasses } from '@mui/material/Select'
+import { Box, MenuItem, SelectChangeEvent } from '@mui/material'
+import Select, { selectClasses } from '@mui/material/Select'
 import { useIntl } from 'react-intl'
 import { LANGUAGES, Locale, useSetLocale } from 'entities/locale'
 

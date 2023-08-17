@@ -38,7 +38,6 @@ export function TopicLike({ message, parentId }: TopicLikeProps) {
           minWidth: 'initial',
           paddingX: 1,
           color: message.like ? red[400] : theme.palette.grey[400],
-          backgroundColor: message.like ? '#3E2526' : undefined,
         })}
         onClick={onClick}
       >

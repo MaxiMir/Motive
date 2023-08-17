@@ -1,5 +1,5 @@
-import { Tooltip, TooltipProps } from '@mui/material'
-import { tooltipClasses } from '@mui/material/Tooltip'
+import { TooltipProps } from '@mui/material'
+import Tooltip, { tooltipClasses } from '@mui/material/Tooltip'
 import { styled } from '@mui/system'
 
 const TooltipArrow = styled(({ children, className, ...props }: TooltipProps) => (

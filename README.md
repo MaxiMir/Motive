@@ -1,10 +1,10 @@
 ### Tips
 ```shell
-docker build -t mmirrev/frontend:1.0.95 .
+docker build -t mmirrev/frontend:1.0.96 .
 # artifactory:
-docker tag <IMAGE_ID> mmirrev/frontend:1.0.95
-docker push mmirrev/frontend:1.0.95
-docker pull mmirrev/frontend:1.0.95
+docker tag @ mmirrev/frontend:1.0.96
+docker push mmirrev/frontend:1.0.96
+docker pull mmirrev/frontend:1.0.96
 
 # copy:
 docker cp <IMAGE_ID>:/home/node/client /home # <-
@@ -33,7 +33,7 @@ version: '3.3'
 
 services:
   frontend:
-    image: mmirrev/frontend:1.0.95
+    image: mmirrev/frontend:1.0.96
     depends_on:
       - backend
     restart: unless-stopped

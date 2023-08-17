@@ -3,7 +3,6 @@ import { useIntl } from 'react-intl'
 import dynamic from 'next/dynamic'
 import Link from 'next/link'
 import { TopicLike } from 'features/topic/like-topic'
-import { UserStatus } from 'entities/user'
 import { MessageDto } from 'shared/api'
 import { joinToHref } from 'shared/lib/helpers'
 import { useFormatDistance } from 'shared/lib/hooks'
@@ -57,7 +56,7 @@ function Message({ message, answerFor, supportFor, replyProps }: MessageProps) {
       )}
       <Box display="flex" alignItems="flex-end" pb={5}>
         <Link href={href} title={name}>
-          <Avatar src={avatar} name={name} size={avatarSize} />
+          <Avatar src={avatar} name={name} size={avatarSize} badge={online} />
         </Link>
       </Box>
       <Stack gap={0.5} flex={1} alignItems="flex-start">
@@ -71,13 +70,11 @@ function Message({ message, answerFor, supportFor, replyProps }: MessageProps) {
           })}
         >
           <Box display="flex" alignItems="center" gap={1}>
-            <UserStatus online={online}>
-              <Box component="b" fontSize={14}>
-                <Link href={href} title={user.name}>
-                  {user.name}
-                </Link>
-              </Box>
-            </UserStatus>
+            <Box component="b" fontSize={14}>
+              <Link href={href} title={user.name}>
+                {user.name}
+              </Link>
+            </Box>
             {supportFor && <SupportSign name={supportFor} />}
             {edited && (
               <Box component="span" fontSize={11} color="zen.silent">

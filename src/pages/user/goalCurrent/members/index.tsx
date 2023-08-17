@@ -1,6 +1,6 @@
-import { Chip, Typography } from '@mui/material'
-import { withStyles } from '@mui/styles'
-import { Box } from '@mui/system'
+import { Typography } from '@mui/material'
+import Chip, { chipClasses } from '@mui/material/Chip'
+import { Box, styled } from '@mui/system'
 import { GoalDto } from 'shared/api'
 import { useFormatNumber, useWordDeclination } from 'shared/lib/hooks'
 import { AVATAR_SIZE, AVATAR_OFFSET_PX } from './const'
@@ -40,8 +40,8 @@ export function Members({ members, lastMembers }: MembersProps) {
   )
 }
 
-const StyledChip = withStyles({
-  label: {
+const StyledChip = styled(Chip)({
+  [`& .${chipClasses.label}`]: {
     paddingLeft: 3,
   },
-})(Chip)
+})

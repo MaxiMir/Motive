@@ -44,9 +44,10 @@ export function Layout({
   const localeHrefList = getLocaleHrefList(asPath)
   const { desktop, mobile, fixed } = useLayout(device)
   const fetchingNumber = useIsFetching({ queryKey: ['page'] })
-  const renderUpdating = fetchingNumber > 0
+  const updating = fetchingNumber > 0
   const url = localeHrefList[locale]
   const fullTitle = `${title} - ${process.env.NEXT_PUBLIC_APP_NAME}`
+  const desktopUpdating = desktop && updating
 
   return (
     <>
@@ -82,12 +83,12 @@ export function Layout({
         <link rel="alternate" href={localeHrefList.uk} hrefLang="uk" />
         <link rel="alternate" href={localeHrefList.en} hrefLang="x-default" />
       </Head>
-      {mobile && <HeaderMobile type={type} fixed={fixed} />}
+      {mobile && <HeaderMobile type={type} fixed={fixed} updating={updating} />}
       {desktop && <Sidebar breakpoints={!device} />}
       <Stack component="main" id="main" flex={1} sx={{ backgroundColor: '#121212' }}>
-        {renderUpdating && <Updating />}
         {online ? children : <Offline />}
       </Stack>
+      {desktopUpdating && <Updating />}
       {desktop && <Footer breakpoints={!device} />}
       {mobile && <FooterMobile fixed={fixed} />}
     </>

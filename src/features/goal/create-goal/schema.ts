@@ -8,6 +8,7 @@ export const GoalSchema = object({
     .min(5, "It's too short.")
     .max(32, "It's so long."),
   hashtags: string().trim().max(255, "It's so long."),
+  sphere: string().required(),
   stages: array().of(
     object({
       name: string()

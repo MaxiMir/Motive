@@ -4,12 +4,18 @@ import {
   FormControl,
   Stack,
   Typography,
+  InputLabel,
+  MenuItem,
+  FormHelperText,
   FormControlLabel,
   RadioGroup,
   Radio,
+  Select,
+  SelectChangeEvent,
 } from '@mui/material'
 import { styled } from '@mui/system'
 import { Field, FieldArray, Form, FormikProvider } from 'formik'
+import { useId } from 'react'
 import { useIntl } from 'react-intl'
 import dynamic from 'next/dynamic'
 import { TaskField } from 'entities/task'
@@ -22,6 +28,7 @@ import Input from 'shared/ui/Input'
 import Modal from 'shared/ui/Modal'
 import SubmitButton from 'shared/ui/SubmitButton'
 import TooltipArrow from 'shared/ui/TooltipArrow'
+import { useSpheresList } from './lib'
 import { useCreateGoalForm } from './model'
 
 const IconButton = dynamic(() => import('@mui/material/IconButton'))
@@ -31,10 +38,12 @@ interface CreateGoalModalProps {
 }
 
 function CreateGoalModal({ onClose }: CreateGoalModalProps) {
+  const sphereLabelId = useId()
   const { formatMessage } = useIntl()
   const [hashtagsRef, setHashtagsFocus] = useFocus()
   const form = useCreateGoalForm(onClose)
-  const { isSubmitting, values, setFieldValue, handleSubmit } = form
+  const spheres = useSpheresList()
+  const { isSubmitting, values, errors, setFieldValue, handleSubmit } = form
   const todayValue = getMidnightISO()
   const tomorrowValue = getTomorrowISO()
   const disabledHashtag = values.hashtags.endsWith('#')
@@ -55,6 +64,7 @@ function CreateGoalModal({ onClose }: CreateGoalModalProps) {
   const tasksHeader = formatMessage({ id: 'page.user.modal-goal.tasks-header' })
   const addTaskText = formatMessage({ id: 'common.task-add' })
   const deleteText = formatMessage({ id: 'common.delete' })
+  const sphereError = Boolean(errors.sphere)
 
   const onAddHashtag = () => {
     setFieldValue('hashtags', !values.hashtags ? '#' : `${values.hashtags} #`)
@@ -92,13 +102,38 @@ function CreateGoalModal({ onClose }: CreateGoalModalProps) {
               <ButtonCompact
                 size="small"
                 variant="outlined"
-                color="secondary"
                 disabled={disabledHashtag}
                 onClick={onAddHashtag}
               >
                 # {hashtagText}
               </ButtonCompact>
             </Stack>
+            <StyledFormControl fullWidth error={sphereError}>
+              <InputLabel id={sphereLabelId}>{spheres.label}</InputLabel>
+              <Select
+                name="sphere"
+                value={values.sphere}
+                label={spheres.label}
+                size="small"
+                labelId={sphereLabelId}
+                onChange={(e: SelectChangeEvent) => setFieldValue('sphere', e.target.value)}
+              >
+                {spheres.list.map(({ name, icon, value }) => (
+                  <MenuItem value={value} key={name}>
+                    <Box
+                      display="flex"
+                      alignItems="center"
+                      gap={1}
+                      sx={{ '& span': { fontSize: 16 } }}
+                    >
+                      <Icon name={icon} />
+                      {name}
+                    </Box>
+                  </MenuItem>
+                ))}
+              </Select>
+              <FormHelperText>{errors.sphere}</FormHelperText>
+            </StyledFormControl>
             <Stack gap={1}>
               <Stack direction="row" alignItems="center" gap={1}>
                 <Typography variant="h6" component="p">
@@ -137,7 +172,6 @@ function CreateGoalModal({ onClose }: CreateGoalModalProps) {
                     <ButtonCompact
                       size="small"
                       variant="outlined"
-                      color="warning"
                       onClick={() => push({ [FRONTEND_ID]: crypto.randomUUID(), name: '' })}
                     >
                       + {stageButtonText}
@@ -202,6 +236,13 @@ function CreateGoalModal({ onClose }: CreateGoalModalProps) {
 
 const ButtonCompact = styled(Button)({
   alignSelf: 'baseline',
+})
+
+const StyledFormControl = styled(FormControl)({
+  marginTop: 8,
+  '& label': {
+    top: -7,
+  },
 })
 
 export default CreateGoalModal

@@ -19,6 +19,10 @@ export function useLayout(device?: Device) {
       prevScrollTopRef.current = scrollTop
     }
 
+    if (!mobile) {
+      return () => undefined
+    }
+
     document.addEventListener('scroll', scrollListener)
 
     return () => {

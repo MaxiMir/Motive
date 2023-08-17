@@ -27,9 +27,12 @@ function UserCard({ user }: UserCardProps) {
       <Stack alignItems="center" direction={{ xs: 'column', md: 'column' }} gap={2}>
         <Avatar src={avatar} name={name} size={120} />
         <Typography color="common.white" textOverflow="ellipsis" whiteSpace="nowrap">
-          {name}
+          {nickname}
         </Typography>
         <UserLevel level={characteristic.level} />
+        <Typography fontSize={14} color="zen.silent">
+          {name}
+        </Typography>
       </Stack>
     </Button>
   )

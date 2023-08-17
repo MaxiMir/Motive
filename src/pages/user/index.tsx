@@ -1,7 +1,7 @@
 import { Box, Stack, Typography } from '@mui/material'
 import { styled } from '@mui/system'
 import dynamic from 'next/dynamic'
-import { UserContext, UserStatus, UserLevel } from 'entities/user'
+import { UserContext, UserLevel } from 'entities/user'
 import { useViewer } from 'entities/viewer'
 import { ONLINE_SCORE_MAIN, SPHERES, UserPageDto } from 'shared/api'
 import Container from 'shared/ui/Container'
@@ -12,6 +12,7 @@ import MenuActs from './menuActs'
 import Nickname from './nickname'
 import OnlineScore from './onlineScore'
 import SphereProgress from './sphereProgress'
+import UserStatus from './userStatus'
 
 const Link = dynamic(() => import('@mui/material/Link'))
 const UpdateFollowing = dynamic(() => import('features/subscription/update-following'))
@@ -112,13 +113,7 @@ export function UserPage({ user }: UserViewProps) {
                   />
                 ))}
               </Box>
-              <UserStatus
-                online={online}
-                lastSeen={lastSeen}
-                device={device}
-                mb={1}
-                alignItems={{ xs: 'center', lg: online ? 'center' : 'flex-start' }}
-              >
+              <UserStatus online={online} lastSeen={lastSeen} device={device} mb={1}>
                 <Typography component="h1" fontWeight="bold">
                   {name}
                 </Typography>

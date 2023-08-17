@@ -1,5 +1,5 @@
 import { Button } from '@mui/material'
-import { withStyles } from '@mui/styles'
+import { styled } from '@mui/system'
 import { useIntl } from 'react-intl'
 import dynamic from 'next/dynamic'
 import { useViewerAct } from 'entities/viewer'
@@ -38,18 +38,14 @@ function Support({ dayId, ownerName }: SupportProps) {
   )
 }
 
-const StyledButton = withStyles((theme) => ({
-  root: {
-    minWidth: 50,
-    height: 30,
-    color: theme.palette.grey[400],
-    borderRadius: 20,
-    backgroundColor: '#2b2d31',
-    border: 'none',
-  },
-  startIcon: {
-    margin: 0,
-  },
-}))(Button)
+const StyledButton = styled(Button)(({ theme }) => ({
+  minWidth: 50,
+  height: 30,
+  paddingRight: 0,
+  color: theme.palette.grey[400],
+  borderRadius: 20,
+  backgroundColor: '#2b2d31',
+  border: 'none',
+}))
 
 export default Support

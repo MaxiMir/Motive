@@ -298,7 +298,7 @@
   "common.zoom-in": "Збільшити",
   "common.zoom-out": "Зменшити",
   "common.update": "Оновити",
-  "common.updating": "Updating",
+  "common.updating": "Оновлення",
   "common.upload-image": "Завантажити зображення",
   "common.photo-description": "Будь ласка, завантажте свою реальну фотографію, щоб вас могли впізнати.",
   "common.image-types": "Ми підтримуємо файли JPG, GIF або PNG.",
@@ -333,5 +333,6 @@
   "common.points-genitive": "очок",
   "common.members-single": "учасник",
   "common.members-double": "учасника",
-  "common.members-genitive": "учасників"
+  "common.members-genitive": "учасників",
+  "common.sphere-of-life": "Сфера життя"
 }

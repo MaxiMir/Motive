@@ -30,14 +30,21 @@ function Markdown({ text }: MarkdownProps) {
     <Box
       ref={ref}
       sx={{
-        '& *:first-of-type': {
+        '& > *:first-of-type': {
           display: '-webkit-box',
           WebkitLineClamp: !open ? '3' : 'unset',
           WebkitBoxOrient: 'vertical',
           overflow: 'hidden',
         },
-        '& *:not(:first-of-type)': {
+        '& > *:not(:first-of-type)': {
           display: truncated || !open ? 'none' : '-webkit-box',
+        },
+        '& ol': {
+          paddingLeft: 0,
+          '& li': {
+            display: 'list-item',
+            listStylePosition: 'inside',
+          },
         },
       }}
     >

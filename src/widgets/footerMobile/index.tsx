@@ -50,7 +50,7 @@ function FooterMobile({ fixed }: FooterMobileProps) {
         styles={{
           main: {
             paddingBottom: fixed ? HEIGHT : 0,
-            '#create-goal': {
+            '[data-act="create-goal"]': {
               bottom: visible ? 72 : 24,
               transition: 'bottom 0.2s ease-in',
             },

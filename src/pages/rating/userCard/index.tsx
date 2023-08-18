@@ -2,7 +2,7 @@ import { Typography, Grid, Box, Button, Stack } from '@mui/material'
 import { blueGrey } from '@mui/material/colors'
 import { useTheme } from '@mui/material/styles'
 import Link from 'next/link'
-import { UserLevel } from 'entities/user'
+import { UserLevel, UserNickname } from 'entities/user'
 import { UserDto } from 'shared/api'
 import { joinToHref } from 'shared/lib/helpers'
 import Avatar from 'shared/ui/avatar'
@@ -50,7 +50,7 @@ export function UserCard({ user, index }: UserCardProps) {
             </Link>
             <Button href={href} color="inherit" component={Link}>
               <Stack>
-                {nickname}
+                <UserNickname nickname={nickname} />
                 <Typography fontSize={14} color="zen.silent">
                   {name}
                 </Typography>

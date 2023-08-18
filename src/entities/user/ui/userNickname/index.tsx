@@ -1,18 +1,21 @@
-import { Typography } from '@mui/material'
+import { Typography, TypographyProps } from '@mui/material'
 import TooltipArrow from 'shared/ui/TooltipArrow'
 
-interface NicknameProps {
+interface UserNicknameProps extends Pick<TypographyProps, 'variant'> {
   nickname: string
 }
 
-function Nickname({ nickname }: NicknameProps) {
+export function UserNickname({ nickname, variant }: UserNicknameProps) {
   return (
     <TooltipArrow title={nickname}>
       <Typography
-        variant="h5"
+        variant={variant}
         component="p"
         fontWeight={300}
-        maxWidth={300}
+        maxWidth={{
+          xs: 180,
+          md: 300,
+        }}
         noWrap
         textOverflow="ellipsis"
       >
@@ -21,5 +24,3 @@ function Nickname({ nickname }: NicknameProps) {
     </TooltipArrow>
   )
 }
-
-export default Nickname

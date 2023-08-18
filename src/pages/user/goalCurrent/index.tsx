@@ -68,6 +68,7 @@ function GoalCurrent({ goal, viewerPage }: GoalCurrentProps) {
   const feedbackHeader = formatMessage({ id: 'page.user.goal-current.feedback-header' })
   const nextDayText = formatMessage({ id: 'common.next-day' })
   const prevDayText = formatMessage({ id: 'common.prev-day' })
+  const renderCoverMenu = viewerPart.page && viewerPart.goal
 
   const onClickPrevDay = () => onChangeDate(prev)
 
@@ -109,7 +110,7 @@ function GoalCurrent({ goal, viewerPage }: GoalCurrentProps) {
               sphere={sphere}
               web={web}
               bottom={[
-                !viewerPart.goal ? null : <CoverMenu goalId={id} cover={cover} key="menu" />,
+                !renderCoverMenu ? null : <CoverMenu goalId={id} cover={cover} key="menu" />,
                 <ShareDay goalId={id} dayId={day.id} title={name} key="share" />,
                 viewerPart.goal ? null : (
                   <Membership goal={goal} viewerPart={viewerPart} key="member" />

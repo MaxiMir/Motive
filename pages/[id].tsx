@@ -25,7 +25,7 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
   )
   const state = queryClient.getQueryState<PossiblePageError>(['page', nickname])
   const detector = new DeviceDetector()
-  const { device } = detector.detect(headers['user-agent'] || '')
+  const device = detector.detect(headers['user-agent'] || '')
   const session = await getSession(ctx)
   const statusCode = state?.data?.message?.statusCode || 200
 

@@ -4,7 +4,7 @@ import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider'
 import { Locale as FnsLocale } from 'date-fns'
 import { SessionProvider } from 'next-auth/react'
 import NextNprogress from 'nextjs-progressbar'
-import { use } from 'react'
+import { use, useMemo } from 'react'
 import { IntlProvider } from 'react-intl'
 import { Hydrate } from 'react-query'
 import dynamic from 'next/dynamic'
@@ -31,6 +31,7 @@ function App({
   pageProps: { session, dehydratedState, device, ...pageProps },
 }: AppProps) {
   const { locale = Locale.En } = useRouter()
+  const { options, closeSignIn } = useSignIn()
   const folder = getLocaleFolder(locale)
   const messages = use(
     messagesLoader(locale, () => import(`src/shared/config/lang/${locale}.json`)),
@@ -38,14 +39,17 @@ function App({
   const adapterLocale = use(
     adapterLocaleLoader(locale, () => import(`date-fns/locale/${folder}/index.js`)),
   )
-  const { options, closeSignIn } = useSignIn()
+  const deviceValue = useMemo(
+    () => ({ type: device?.device.type, browser: device?.client.name }),
+    [device],
+  )
 
   return (
     <IntlProvider locale={locale} messages={messages}>
       <SessionProvider session={session} refetchOnWindowFocus>
         <QueryProvider message={messages['common.error']}>
           <Hydrate state={dehydratedState}>
-            <DeviceContext.Provider value={device?.type}>
+            <DeviceContext.Provider value={deviceValue}>
               <LocalizationProvider dateAdapter={AdapterDateFns} adapterLocale={adapterLocale}>
                 <ThemeProvider>
                   <Script

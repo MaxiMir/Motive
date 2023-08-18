@@ -88,7 +88,7 @@ export function Layout({
       <Stack component="main" id="main" flex={1} sx={{ backgroundColor: '#121212' }}>
         {online ? children : <Offline />}
       </Stack>
-      {desktopUpdating && <Updating />}
+      {desktopUpdating && <Updating breakpoints={!device} />}
       {desktop && <Footer breakpoints={!device} />}
       {mobile && <FooterMobile fixed={fixed} />}
     </>

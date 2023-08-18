@@ -23,7 +23,7 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
   const { headers } = ctx.req
   const queryClient = new QueryClient()
   const detector = new DeviceDetector()
-  const { device } = detector.detect(headers['user-agent'] || '')
+  const device = detector.detect(headers['user-agent'] || '')
   const session = await getSession(ctx)
   const params = { locale: ctx.locale }
   await queryClient.prefetchQuery(['page', Route.Blog], () => getBlogPage({ headers, params }))

@@ -41,7 +41,7 @@ export function UserPage({ user }: UserViewProps) {
   } = user
   const viewer = useViewer()
   const viewerPage = id === viewer?.id
-
+  console.log(device)
   return (
     <UserContext.Provider value={user}>
       <Container sx={{ gap: 3 }}>

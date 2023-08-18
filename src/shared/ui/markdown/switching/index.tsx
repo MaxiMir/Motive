@@ -2,23 +2,23 @@ import { Button } from '@mui/material'
 import { styled } from '@mui/system'
 import { useIntl } from 'react-intl'
 
-interface ShowMoreProps {
+interface SwitchingProps {
   open: boolean
   onClick: () => void
 }
 
-export function ShowMore({ open, onClick }: ShowMoreProps) {
+export function Switching({ open, onClick }: SwitchingProps) {
   const { formatMessage } = useIntl()
   const buttonText = formatMessage({ id: open ? 'common.show-less' : 'common.read-more' })
 
   return (
-    <TextButton size="small" color="inherit" onClick={onClick}>
+    <StyledButton size="small" color="inherit" onClick={onClick}>
       {buttonText}
-    </TextButton>
+    </StyledButton>
   )
 }
 
-const TextButton = styled(Button)(({ theme }) => ({
+const StyledButton = styled(Button)(({ theme }) => ({
   padding: 0,
   color: theme.palette.grey[600],
   ':hover': {
@@ -26,3 +26,5 @@ const TextButton = styled(Button)(({ theme }) => ({
     textDecoration: 'underline',
   },
 }))
+
+export default Switching

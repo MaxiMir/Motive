@@ -18,7 +18,7 @@ function PrivacyPolicyRoute() {
 export const getServerSideProps: GetServerSideProps = async (ctx) => {
   const { headers } = ctx.req
   const detector = new DeviceDetector()
-  const { device } = detector.detect(headers['user-agent'] || '')
+  const device = detector.detect(headers['user-agent'] || '')
   const session = await getSession(ctx)
 
   return {

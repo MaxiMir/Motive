@@ -1,66 +1,59 @@
-import { Box, Link, Typography, LinkProps, TypographyProps } from '@mui/material'
-import MarkdownToJSX from 'markdown-to-jsx'
+import { Box, Stack } from '@mui/material'
+import { styled } from '@mui/system'
 import { useMemo } from 'react'
 import dynamic from 'next/dynamic'
 import { useToggle } from 'shared/lib/hooks'
-import { useDetectTruncated, getBreakCount, toMarkdown } from './lib'
+import { useDetectTruncated, toMarkdown } from './lib'
 
-const ShowMore = dynamic(() => import('./ui').then((m) => m.ShowMore))
+const Switching = dynamic(() => import('./switching'))
 
 interface MarkdownProps {
   text: string
+  switching?: boolean
 }
 
-function Markdown({ text }: MarkdownProps) {
+function Markdown({ text, switching }: MarkdownProps) {
   const [open, toggle] = useToggle()
   const markdown = useMemo(() => toMarkdown(text), [text])
-  const breakCount = getBreakCount(text)
   const { ref, truncated } = useDetectTruncated()
-  const renderButton = truncated || breakCount > 1
-
-  const renderLink = (props: LinkProps) => (
-    <Link {...props} target="_blank" rel="nofollow noopener noreferrer" />
-  )
-
-  const renderParagraph = (props: TypographyProps) => (
-    <Typography {...props} sx={({ spacing }) => ({ margin: spacing(0, 0, 1) })} />
-  )
+  const breakCount = text.split('\r\n').length
+  const renderSwitching = switching && (truncated || breakCount > 1)
 
   return (
-    <Box
-      ref={ref}
-      sx={{
-        '& > *:first-of-type': {
-          display: '-webkit-box',
-          WebkitLineClamp: !open ? '3' : 'unset',
-          WebkitBoxOrient: 'vertical',
-          overflow: 'hidden',
-        },
-        '& > *:not(:first-of-type)': {
-          display: truncated || !open ? 'none' : '-webkit-box',
-        },
-        '& ol': {
-          paddingLeft: 0,
-          '& li': {
-            display: 'list-item',
-            listStylePosition: 'inside',
-          },
-        },
-      }}
-    >
-      <MarkdownToJSX
-        options={{
-          overrides: {
-            a: renderLink,
-            p: renderParagraph,
-          },
-        }}
+    <Stack alignItems="flex-start" gap={1}>
+      <StyledBox
+        ref={ref}
+        sx={
+          !switching
+            ? undefined
+            : {
+                '& > *:first-child': {
+                  display: '-webkit-box',
+                  WebkitLineClamp: !open ? '3' : 'unset',
+                  WebkitBoxOrient: 'vertical',
+                  overflow: 'hidden',
+                },
+                '& > *:not(:first-child)': {
+                  display: truncated || !open ? 'none' : '-webkit-box',
+                },
+              }
+        }
       >
         {markdown}
-      </MarkdownToJSX>
-      {renderButton && <ShowMore open={open} onClick={toggle} />}
-    </Box>
+      </StyledBox>
+      {renderSwitching && <Switching open={open} onClick={toggle} />}
+    </Stack>
   )
 }
+
+const StyledBox = styled(Box)({
+  '& ol': {
+    paddingLeft: 0,
+    '& li': {
+      display: 'list-item',
+      listStylePosition: 'inside',
+    },
+  },
+})
 
 export default Markdown

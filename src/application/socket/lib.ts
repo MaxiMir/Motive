@@ -26,7 +26,7 @@ export function useSocket() {
     const socket = io(process.env.NEXT_PUBLIC_APP_URL || '', {
       auth: {
         id: viewer.id,
-        device,
+        device: device.type,
       },
       secure: true,
     })

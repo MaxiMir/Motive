@@ -1,5 +1,6 @@
 ### TODO
-* Delete cover goal with PITT
+* LEVEL TOOLTIP 
+* Modal Members + Points
 * Read more M2 chip
 * GROUP BY members + modal members
 * Редактирование цели / задач / обратной связи

@@ -24,7 +24,7 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
   const queryClient = new QueryClient()
   const detector = new DeviceDetector()
   const session = await getSession(ctx)
-  const { device } = detector.detect(headers['user-agent'] || '')
+  const device = detector.detect(headers['user-agent'] || '')
   await queryClient.prefetchQuery(['page', Route.Rating], () => getRatingPage({ headers }))
 
   return {

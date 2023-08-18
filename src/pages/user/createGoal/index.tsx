@@ -27,10 +27,7 @@ function CreateGoal() {
               xs: 24,
               lg: 24,
             },
-            bottom: {
-              xs: 72,
-              lg: 24,
-            },
+            bottom: 24,
           }}
           onClick={toggle}
         >

@@ -1,10 +1,10 @@
 import { useDeferredValue, useEffect, useRef, useState } from 'react'
 import { Device } from 'shared/api'
 
-export function useLayout(device?: Device) {
+export function useLayout(device: Device) {
   const prevScrollTopRef = useRef(0)
   const [fixedState, setFixedState] = useState(true)
-  const possibleDesktop = device === 'desktop'
+  const possibleDesktop = device.type === 'desktop'
   const desktop = !device || possibleDesktop
   const mobile = !device || !possibleDesktop
   const fixed = useDeferredValue(fixedState)

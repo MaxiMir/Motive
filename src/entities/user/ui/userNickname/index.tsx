@@ -16,8 +16,9 @@ export function UserNickname({ nickname, variant }: UserNicknameProps) {
           xs: 180,
           md: 300,
         }}
-        noWrap
+        whiteSpace="nowrap"
         textOverflow="ellipsis"
+        overflow="hidden"
       >
         {nickname}
       </Typography>

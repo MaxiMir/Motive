@@ -1,10 +1,8 @@
 import { createTheme, ThemeProvider as MuiThemeProvider } from '@mui/material/styles'
-import { createGenerateClassName, StylesProvider } from '@mui/styles'
+import { StylesProvider } from '@mui/styles'
 import { ReactNode, useInsertionEffect, useMemo } from 'react'
 import { getDesignTokens } from 'shared/config'
 import { usePaletteMode } from 'shared/ui/palette'
-
-const generateClassName = createGenerateClassName({ productionPrefix: 'bb' })
 
 interface ThemeProviderProps {
   children: ReactNode | ReactNode[]
@@ -24,7 +22,7 @@ function ThemeProvider({ children }: ThemeProviderProps) {
   }, [])
 
   return (
-    <StylesProvider generateClassName={generateClassName}>
+    <StylesProvider>
       <MuiThemeProvider theme={theme}>{children}</MuiThemeProvider>
     </StylesProvider>
   )

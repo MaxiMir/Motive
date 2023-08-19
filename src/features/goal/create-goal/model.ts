@@ -16,16 +16,15 @@ export function useCreateGoalForm(onSuccess: () => void) {
   const { enqueueSnackbar } = useSnackbar()
   const [goals, mutateGoals] = useGoalsCache()
   const { mutateAsync } = useMutation(createGoal, {
-    onSuccess(goal) {
+    onSuccess(dto) {
       const message = formatMessage({ id: 'page.user.modal-goal.message-created' })
 
       flushSync(() => {
-        mutateGoals(getNextState(goals, goal))
+        mutateGoals(getNextState(goals, dto))
         onSuccess()
         enqueueSnackbar(message, { severity: 'success', icon: '💎' })
       })
-
-      setTimeout(() => scrollToElem(`goal-${goal.id}`), 250)
+      setTimeout(() => scrollToElem(`goal-${dto.id}`), 250)
     },
   })
 

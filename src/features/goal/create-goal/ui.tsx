@@ -43,7 +43,7 @@ function CreateGoalModal({ onClose }: CreateGoalModalProps) {
   const [hashtagsRef, setHashtagsFocus] = useFocus()
   const form = useCreateGoalForm(onClose)
   const spheres = useSpheresList()
-  const { isSubmitting, values, errors, setFieldValue, handleSubmit } = form
+  const { isSubmitting, values, touched, errors, setFieldValue, handleSubmit } = form
   const todayValue = getMidnightISO()
   const tomorrowValue = getTomorrowISO()
   const disabledHashtag = values.hashtags.endsWith('#')
@@ -64,7 +64,7 @@ function CreateGoalModal({ onClose }: CreateGoalModalProps) {
   const tasksHeader = formatMessage({ id: 'page.user.modal-goal.tasks-header' })
   const addTaskText = formatMessage({ id: 'common.task-add' })
   const deleteText = formatMessage({ id: 'common.delete' })
-  const sphereError = Boolean(errors.sphere)
+  const sphereError = Boolean(errors.sphere && touched.sphere)
 
   const onAddHashtag = () => {
     setFieldValue('hashtags', !values.hashtags ? '#' : `${values.hashtags} #`)
@@ -94,7 +94,6 @@ function CreateGoalModal({ onClose }: CreateGoalModalProps) {
             <Stack gap={1}>
               <Field
                 name="hashtags"
-                color="secondary"
                 label={hashtagsLabel}
                 inputRef={hashtagsRef}
                 component={Input}

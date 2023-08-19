@@ -6,6 +6,7 @@ import { TaskLabel } from 'entities/task'
 import { TaskDto } from 'shared/api'
 import Checkbox from 'shared/ui/Checkbox'
 import TooltipArrow from 'shared/ui/TooltipArrow'
+import { Interaction } from '../lib'
 
 const TaskDate = dynamic(() => import('entities/task').then((m) => m.TaskDate))
 
@@ -13,17 +14,15 @@ interface TaskProps {
   goalId: number
   task: TaskDto
   rest: number
-  forTomorrow: boolean
-  daysGoneForOwner: number
-  canEdit: boolean
+  interaction: Interaction
 }
 
-export function Task({ goalId, task, rest, forTomorrow, daysGoneForOwner, canEdit }: TaskProps) {
+export function Task({ goalId, task, rest, interaction }: TaskProps) {
   const { id, date, completed } = task
   const { formatMessage } = useIntl()
   const setCompleted = useSetCompleted(goalId, id, rest)
-  const title = forTomorrow && formatMessage({ id: 'component.tooltip.tomorrow' })
-  const disabled = completed || forTomorrow || !canEdit
+  const title = interaction.forTomorrow && formatMessage({ id: 'component.tooltip.tomorrow' })
+  const disabled = completed || interaction.forTomorrow || !interaction.canEdit
 
   return (
     <Stack gap={1}>
@@ -31,7 +30,7 @@ export function Task({ goalId, task, rest, forTomorrow, daysGoneForOwner, canEdi
         <TooltipArrow title={title}>
           <Checkbox
             name={id.toString()}
-            label={<TaskLabel task={task} daysGoneForOwner={daysGoneForOwner} />}
+            label={<TaskLabel task={task} daysGoneForOwner={interaction.daysGoneForOwner} />}
             checked={completed}
             disabled={disabled}
             onChange={setCompleted}

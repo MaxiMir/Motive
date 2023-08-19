@@ -9,8 +9,8 @@ interface SearchDto {
 
 export function useSearchForm(initial: string) {
   const { mutateAsync } = useMutation(({ q }: SearchDto) => getSearchPage({ params: { q } }), {
-    onSuccess(data) {
-      console.log('data', data)
+    onSuccess(dto) {
+      console.log('data', dto)
     },
   })
 

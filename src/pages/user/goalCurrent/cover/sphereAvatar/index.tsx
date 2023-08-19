@@ -1,4 +1,5 @@
-import { Avatar } from '@mui/material'
+import { Avatar, Box } from '@mui/material'
+import { styled } from '@mui/system'
 import { SPHERE_ICONS } from 'entities/characteristic'
 import { SphereDto } from 'shared/api'
 import Icon from 'shared/ui/Icon'
@@ -13,8 +14,17 @@ export function SphereAvatar({ sphere }: SphereAvatarProps) {
   const name = SPHERE_ICONS[sphere]
 
   return (
-    <Avatar sx={{ width: 60, height: 60, background, border: '2px solid black' }}>
-      <Icon name={name} color="common.white" />
-    </Avatar>
+    <StyledBox>
+      <Avatar sx={{ width: 60, height: 60, background, border: '2px solid black' }}>
+        <Icon name={name} color="common.white" />
+      </Avatar>
+    </StyledBox>
   )
 }
+
+const StyledBox = styled(Box)({
+  position: 'absolute',
+  left: 8,
+  bottom: -30,
+  zIndex: 1,
+})

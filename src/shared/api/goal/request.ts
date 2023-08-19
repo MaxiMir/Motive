@@ -11,6 +11,10 @@ export function createGoal(dto: CreateGoalDto): Promise<CreatedGoal> {
   return fetcher.post('/goals', dto)
 }
 
+export function deleteGoal(id: number): Promise<GoalBaseDto> {
+  return fetcher.delete(`/goals/${id}`)
+}
+
 export function updatePoints(id: number, dayId: number, insert: boolean): Promise<void> {
   const params = getFilterParams({ insert })
 

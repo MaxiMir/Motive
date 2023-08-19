@@ -41,7 +41,7 @@ export function UserPage({ user }: UserViewProps) {
   } = user
   const viewer = useViewer()
   const viewerPage = id === viewer?.id
-  console.log(device)
+
   return (
     <UserContext.Provider value={user}>
       <Container sx={{ gap: 3 }}>
@@ -82,7 +82,7 @@ export function UserPage({ user }: UserViewProps) {
                   <UserNickname nickname={nickname} variant="h5" />
                   <UserLevel level={characteristic.level} />
                 </Box>
-                <Stack direction="row" alignItems="center" gap={1}>
+                <Stack direction="row" alignItems="center" gap={1} width="100%">
                   {viewerPage ? (
                     <EditProfile user={user} />
                   ) : (

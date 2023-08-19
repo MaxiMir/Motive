@@ -18,10 +18,10 @@ export function useSendEndOfDay(goalId: number) {
   const [page, mutatePage] = useUserPageCache()
 
   return useMutation(({ id, dayId, updated }: Options) => updateMember(id, { dayId, updated }), {
-    onSuccess(member) {
+    onSuccess(dto) {
       const message = formatMessage({ id: 'common.next-day-loading' })
 
-      mutatePage(getNextState(page, member, goalId))
+      mutatePage(getNextState(page, dto, goalId))
       clickOnElem(`next-${goalId}`)
       enqueueSnackbar(message, { severity: 'success', icon: '🧞‍♂️️‍' })
     },

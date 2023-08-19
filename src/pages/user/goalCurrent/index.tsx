@@ -7,25 +7,21 @@ import { useSwitchDay } from 'features/day/switch-day'
 import { useViewerPart } from 'entities/viewer'
 import { GoalDto } from 'shared/api'
 import { HashMark } from 'shared/config'
-import { getMidnight } from 'shared/lib/utils'
 import Accordion from 'shared/ui/Accordion'
 import Icon from 'shared/ui/Icon'
 import { Calendar } from './calendar'
-import { SHOW_WEB_AFTER_DAYS } from './consts'
 import { Cover } from './cover'
 import { Discussion } from './discussion'
 import { Feedback } from './feedback'
+import { getInteraction } from './lib'
 import { Members } from './members'
 import { Points } from './points'
-import { ShareDay } from './shareDay'
 import { SphereType } from './sphereType'
 import { Task } from './task'
 import { Views } from './views'
 import { ViewTrigger } from './viewTrigger'
 
 const Owner = dynamic(() => import('./owner'))
-const CoverMenu = dynamic(() => import('./coverMenu'))
-const Membership = dynamic(() => import('./membership'))
 const Stages = dynamic(() => import('./stages'))
 const Hashtag = dynamic(() => import('./hashtag'))
 const ViewerActs = dynamic(() => import('./viewerActs'))
@@ -40,7 +36,6 @@ function GoalCurrent({ goal, viewerPage }: GoalCurrentProps) {
   const {
     id,
     name,
-    cover,
     sphere,
     hashtags,
     owner,
@@ -51,47 +46,23 @@ function GoalCurrent({ goal, viewerPage }: GoalCurrentProps) {
     members,
     lastMembers,
     calendar,
-    completed,
     started,
   } = goal
   const { formatMessage } = useIntl()
   const viewerPart = useViewerPart(goal, viewerPage)
   const { isLoading, prev, next, onChangeDate, shouldDisableDate } = useSwitchDay(goal)
-  const daysGoneForOwner = differenceInCalendarDays(new Date(), Date.parse(day.date))
   const runningDays = differenceInCalendarDays(Date.parse(day.date), Date.parse(started)) + 1
-  const { canEdit, ownerControls, viewerControls, daysGone, forTomorrow, lastDay } = getGoalInfo()
+  const interaction = getInteraction(goal, viewerPart)
   const restTasks = day.tasks.length - day.tasks.filter((t) => t.completed).length
-  const completeStage = ownerControls && goal.stage <= goal.day.stage
-  const web = lastDay && daysGone >= SHOW_WEB_AFTER_DAYS
   const stagesHeader = formatMessage({ id: 'page.user.goal-current.stages-header' })
   const tasksHeader = formatMessage({ id: 'page.user.goal-current.tasks-header' })
   const feedbackHeader = formatMessage({ id: 'page.user.goal-current.feedback-header' })
   const nextDayText = formatMessage({ id: 'common.next-day' })
   const prevDayText = formatMessage({ id: 'common.prev-day' })
-  const renderCoverMenu = viewerPart.page && viewerPart.goal
 
   const onClickPrevDay = () => onChangeDate(prev)
 
   const onClickNextDay = () => onChangeDate(next)
-
-  function getGoalInfo() {
-    const today = getMidnight()
-
-    return {
-      canEdit: !viewerPart.member
-        ? viewerPart.page && viewerPart.goal
-        : viewerPart.page && viewerPart.member.dayId === day.id,
-      forTomorrow: !viewerPart.member
-        ? daysGoneForOwner === -1
-        : differenceInCalendarDays(Date.parse(viewerPart.member.updated), today) > 0,
-      viewerControls: !viewerPart.goal,
-      ownerControls: !viewerPart.goal ? false : viewerPart.page && !completed,
-      daysGone: !member
-        ? daysGoneForOwner
-        : differenceInCalendarDays(today, Date.parse(member.updated)),
-      lastDay: !member ? calendar?.at(-1)?.date === day.date : member.dayId === day.id,
-    }
-  }
 
   return (
     <ViewTrigger ownerId={owner.id} dayId={day.id}>
@@ -105,18 +76,7 @@ function GoalCurrent({ goal, viewerPage }: GoalCurrentProps) {
       >
         <Gradient padding="1px" height="100%" borderRadius="12px">
           <Underlay justifyContent="space-between" position="relative" height="100%">
-            <Cover
-              cover={cover}
-              sphere={sphere}
-              web={web}
-              bottom={[
-                !renderCoverMenu ? null : <CoverMenu goalId={id} cover={cover} key="menu" />,
-                <ShareDay goalId={id} dayId={day.id} title={name} key="share" />,
-                viewerPart.goal ? null : (
-                  <Membership goal={goal} viewerPart={viewerPart} key="member" />
-                ),
-              ]}
-            />
+            <Cover goal={goal} interaction={interaction} viewerPart={viewerPart} />
             <Cont gap={2}>
               <Stack gap={1}>
                 <Stack>
@@ -173,15 +133,7 @@ function GoalCurrent({ goal, viewerPage }: GoalCurrentProps) {
                       header={stagesHeader}
                       icon={<Icon name="rocket_launch" color="primary.main" />}
                       defaultExpanded
-                      details={
-                        <Stages
-                          goalId={id}
-                          stages={stages}
-                          dayStage={day.stage}
-                          forTomorrow={forTomorrow}
-                          completeStage={completeStage}
-                        />
-                      }
+                      details={<Stages goal={goal} interaction={interaction} />}
                     />
                   )}
                   <Accordion
@@ -196,9 +148,7 @@ function GoalCurrent({ goal, viewerPage }: GoalCurrentProps) {
                             goalId={id}
                             task={task}
                             rest={restTasks}
-                            forTomorrow={forTomorrow}
-                            daysGoneForOwner={daysGoneForOwner}
-                            canEdit={canEdit}
+                            interaction={interaction}
                             key={task.id}
                           />
                         ))}
@@ -214,7 +164,7 @@ function GoalCurrent({ goal, viewerPage }: GoalCurrentProps) {
                       <Feedback
                         goalId={id}
                         day={day}
-                        forTomorrow={forTomorrow}
+                        forTomorrow={interaction.forTomorrow}
                         viewerGoal={viewerPart.goal}
                       />
                     }
@@ -227,10 +177,14 @@ function GoalCurrent({ goal, viewerPage }: GoalCurrentProps) {
                     viewerGoal={viewerPart.goal}
                   />
                   <Stack spacing={2} px={2} my={2}>
-                    {viewerControls && (
-                      <ViewerActs goal={goal} forTomorrow={forTomorrow} viewerPart={viewerPart} />
+                    {interaction.viewerControls && (
+                      <ViewerActs
+                        goal={goal}
+                        forTomorrow={interaction.forTomorrow}
+                        viewerPart={viewerPart}
+                      />
                     )}
-                    {ownerControls && (
+                    {interaction.ownerControls && (
                       <OwnerActs
                         goalId={id}
                         stages={stages}

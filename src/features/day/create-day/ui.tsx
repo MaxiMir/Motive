@@ -19,7 +19,7 @@ import { FRONTEND_ID } from 'shared/config'
 import { getMidnightISO, getTomorrowISO } from 'shared/lib/utils'
 import CancelButton from 'shared/ui/CancelButton'
 import Icon from 'shared/ui/Icon'
-import { Paul } from 'shared/ui/icons'
+import { Pitt } from 'shared/ui/icons'
 import Modal from 'shared/ui/Modal'
 import SubmitButton from 'shared/ui/SubmitButton'
 import TooltipArrow from 'shared/ui/TooltipArrow'
@@ -133,10 +133,11 @@ function CreateDayModal({ goalId, dayDate, onClose }: CreateDayModalProps) {
         <Accordion>
           <AccordionSummary expandIcon={<Icon name="expand_more" />} id="old-pitt-note">
             <Stack direction="row" alignItems="center" gap={1}>
-              <Paul />
+              <Icon name="crisis_alert" color="error.main" />
               <Typography variant="h6" component="h3">
                 {pittText}
               </Typography>
+              <Pitt />
             </Stack>
           </AccordionSummary>
           <AccordionDetails>

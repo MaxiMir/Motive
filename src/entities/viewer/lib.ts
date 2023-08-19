@@ -1,7 +1,7 @@
 import { useSession } from 'next-auth/react'
 import { GoalDto } from 'shared/api'
 import { useSignIn } from './model'
-import { Viewer, ViewerPart } from './types'
+import { Viewer } from './types'
 
 export function useViewer(): Viewer | undefined {
   const { data, status } = useSession()
@@ -17,12 +17,16 @@ export function useViewer(): Viewer | undefined {
       }
 }
 
-export function useViewerPart(goal: GoalDto, viewerPage: boolean): ViewerPart {
+export type ViewerPart = ReturnType<typeof useViewerPart>
+
+export function useViewerPart(goal: GoalDto, pageOwning: boolean) {
   const viewer = useViewer()
+  const goalOwning = goal.owner.id === viewer?.id
 
   return {
-    page: viewerPage,
-    goal: goal.owner.id === viewer?.id,
+    all: pageOwning && goalOwning,
+    page: pageOwning,
+    goal: goalOwning,
     member: goal.member,
   }
 }

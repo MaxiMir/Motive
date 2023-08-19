@@ -1,6 +1,6 @@
 import { SvgIcon, SvgIconProps } from '@mui/material'
 
-export function Paul(props: SvgIconProps) {
+export function Pitt(props: SvgIconProps) {
   return (
     <SvgIcon {...props}>
       <path

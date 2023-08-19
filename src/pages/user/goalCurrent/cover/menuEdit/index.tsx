@@ -16,7 +16,7 @@ interface CoverMenuProps {
   cover: string | null
 }
 
-function CoverMenu({ goalId, cover }: CoverMenuProps) {
+function MenuEdit({ goalId, cover }: CoverMenuProps) {
   const buttonId = useId()
   const menuId = useId()
   const { formatMessage } = useIntl()
@@ -88,4 +88,4 @@ const StyledButton = styled(Button)({
   },
 })
 
-export default CoverMenu
+export default MenuEdit

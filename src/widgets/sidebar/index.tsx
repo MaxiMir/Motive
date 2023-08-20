@@ -66,18 +66,9 @@ function Sidebar({ breakpoints }: SidebarProps) {
           <List>
             {routes.map(({ primary, href, icon }) => (
               <TooltipArrow title={!expanded && primary} placement="right" key={href}>
-                <ListItem
-                  button
-                  href={href}
-                  component={Link}
-                  sx={{
-                    '& span': {
-                      color: asPath.includes(href) ? 'inherit' : 'grey',
-                    },
-                  }}
-                >
+                <ListItem button href={href} component={Link}>
                   <ListItemIcon>
-                    <Icon name={icon} />
+                    <Icon name={icon} color={asPath.includes(href) ? 'inherit' : 'grey'} />
                   </ListItemIcon>
                   <ListItemText primary={primary} />
                 </ListItem>

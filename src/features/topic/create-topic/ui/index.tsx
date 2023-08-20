@@ -85,7 +85,11 @@ function CreateTopic({
             />
             <TooltipArrow title={sendText}>
               <SendButton size="small" color="inherit" disabled={disabled} onClick={onClick}>
-                {isSubmitting ? <CircularProgress size={14.5} /> : <Icon name="arrow_upward" />}
+                {isSubmitting ? (
+                  <CircularProgress size={14.5} />
+                ) : (
+                  <Icon name="arrow_upward" fontSize={19} />
+                )}
               </SendButton>
             </TooltipArrow>
           </Stack>
@@ -99,9 +103,6 @@ function CreateTopic({
 const SendButton = styled(IconButton)({
   borderColor: blue[800],
   backgroundColor: blue[800],
-  '& span': {
-    fontSize: 19,
-  },
   ':hover': {
     backgroundColor: blue[400],
   },

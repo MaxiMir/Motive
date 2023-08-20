@@ -17,7 +17,7 @@ export function SupportSign({ name }: SupportSignProps) {
   return (
     <TooltipArrow title={title}>
       <StyledAvatar>
-        <Icon name="bolt" color="common.white" />
+        <Icon name="bolt" color="common.white" fontSize={14} />
       </StyledAvatar>
     </TooltipArrow>
   )
@@ -27,7 +27,4 @@ const StyledAvatar = styled(Avatar)({
   width: 21,
   height: 21,
   backgroundColor: blue[800],
-  '& span': {
-    fontSize: 14,
-  },
 })

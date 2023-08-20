@@ -60,7 +60,7 @@ function MenuActs({ viewerPage }: MenuActsProps) {
             xs: 1,
             lg: 'initial',
           },
-          minWidth: '96px',
+          minWidth: '100px',
           height: 30,
           paddingX: 1,
         }}

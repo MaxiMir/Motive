@@ -37,15 +37,10 @@ export function More() {
           aria-controls={open ? menuId : undefined}
           aria-haspopup="true"
           aria-expanded={open ? 'true' : undefined}
-          sx={{
-            '& span': {
-              color: 'grey',
-            },
-          }}
           onClick={onClick}
         >
           <ListItemIcon>
-            <Icon name="menu" />
+            <Icon name="menu" color="grey" />
           </ListItemIcon>
           <ListItemText primary={moreText} />
         </ListItem>

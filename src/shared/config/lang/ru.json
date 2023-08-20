@@ -43,7 +43,6 @@
   "page.user.description": "Посмотрите как {name} достигает целей",
   "page.user.modal-tasks.title": "Добавление задач на день",
   "page.user.modal-tasks.do-it": "Выполняем",
-  "page.user.modal-tasks.do-it-labelledby": "выполняем",
   "page.user.modal-tasks.pitt": "Помни о Старине Питте!",
   "page.user.modal-tasks.tooltip": "Вы уже добавили цели на сегодня",
   "page.user.modal-characteristic.creativity.header": "Очки креативности даются за",
@@ -73,7 +72,6 @@
   "page.user.modal-goal.stage-button": "Добавить этап",
   "page.user.modal-goal.stage-hint": "Мы рекомендуем разделять большие цели на этапы. Добавьте каждый этап в поле ниже.",
   "page.user.modal-goal.start": "Начинаем с",
-  "page.user.modal-goal.start-labelledby": "начинаем-с",
   "page.user.modal-goal.tasks-header": "Задачи на день",
   "page.user.modal-goal.message-created": "Цель успешно создана",
   "page.user.modal-goal.message-deleted": "Цель удалена",
@@ -336,5 +334,10 @@
   "common.members-single": "участник",
   "common.members-double": "участника",
   "common.members-genitive": "участников",
-  "common.sphere-of-life": "Сфера жизни"
+  "common.sphere-of-life": "Сфера жизни",
+  "common.sphere-estimation": "Оцените как много времени/сил Вы тратите на эту сферу",
+  "common.sphere-high": "Оценки от 8 до 10 означают, что вы очень довольны данной сферой. Ваша задача теперь –\nсохранить такие показатели. При этом, помните, что «небо не предел» (как говорил автор\n«Теории ограничений» Э.Голдратт) и улучшение всегда возможно.",
+  "common.sphere-middle": "Оценки от 5 до 7 означают, что вы достаточно удовлетворены данной сферой вашей жизни, но,\nбезусловно, вам необходимо что-то предпринять, чтобы ее улучшить.",
+  "common.sphere-low": "Оценки от 0 до 4 означают, что вы не довольны этой сферой жизни. Если других сфер с такими\nнизкими показателями больше нет, Вы в первую очередь должны найти способы улучшить\nситуацию в этой сфере.",
+  "common.sphere-scales": "Не уделяю;Критично мало;Ужасно мало;Очень мало;Мало;Средне;Недостаточно;Достаточно;Более чем достаточно;Близко к идеалу;Идеально"
 }

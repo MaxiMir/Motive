@@ -27,7 +27,7 @@ export function ShareDay({ goalId, dayId, title }: ShareDayProps) {
     <>
       <TooltipArrow title={shareTitle}>
         <StyledButton size="small" variant="contained" color="inherit" onClick={toggleSharing}>
-          <Icon name="ios_share" />
+          <Icon name="ios_share" fontSize={18} />
         </StyledButton>
       </TooltipArrow>
       {sharing && <Share href={href} title={title} onClose={toggleSharing} />}
@@ -40,7 +40,4 @@ const StyledButton = styled(Button)({
   width: 36,
   height: 36,
   border: '2px solid black',
-  '& span': {
-    fontSize: 18,
-  },
 })

@@ -1,38 +1,29 @@
 import { Avatar, Box, Chip, Stack, Typography } from '@mui/material'
 import { styled } from '@mui/system'
 import { useIntl } from 'react-intl'
-import { SPHERE_ICONS } from 'entities/characteristic'
 import { SphereDto } from 'shared/api'
 import Icon from 'shared/ui/Icon'
 import { generateColorByName } from 'shared/ui/palette'
-import { getBubblesSetup } from './lib'
-
-const WIDTH = 30
-const HEIGHT = 200
+import { getBubblesSetup, toVariables } from './lib'
 
 interface SphereProgressProps {
   sphere: SphereDto
+  icon: string
   value: number
+  compact?: boolean
 }
 
-function SphereProgress({ sphere, value }: SphereProgressProps) {
+export function SphereProgress({ sphere, icon, value, compact }: SphereProgressProps) {
   const { formatMessage } = useIntl()
-  const background = generateColorByName(sphere)
-  const sphereText = formatMessage({ id: `common.${sphere}` })
   const bubbles = getBubblesSetup(10)
-  const label = Math.trunc(value)
-  const icon = SPHERE_ICONS[sphere]
+  const background = generateColorByName(sphere)
+  const variables = toVariables(background, value, compact)
+  const sphereText = formatMessage({ id: `common.${sphere}` })
+  const fontSize = compact ? 12 : 18
 
   return (
-    <Stack gap={1}>
-      <Vessel
-        sx={{
-          '--width': `${WIDTH}px`,
-          '--height': `${HEIGHT}px`,
-          '--background': background,
-          '--progress': `${HEIGHT - (value / 10) * HEIGHT}px`,
-        }}
-      >
+    <Stack gap={1} sx={{ ...variables }}>
+      <Vessel>
         <Cont>
           <Fill>
             <Wave>
@@ -42,23 +33,14 @@ function SphereProgress({ sphere, value }: SphereProgressProps) {
             </Wave>
           </Fill>
         </Cont>
-        <Value size="small" label={label} />
+        <Digit size="small" label={value} />
         <Title>
           <Typography>{sphereText}</Typography>
         </Title>
       </Vessel>
-      <Avatar
-        sx={{
-          width: 30,
-          height: 30,
-          background,
-          '& span': {
-            fontSize: 12,
-          },
-        }}
-      >
-        <Icon name={icon} color="common.white" />
-      </Avatar>
+      <IconAvatar>
+        <Icon name={icon} color="common.white" fontSize={fontSize} />
+      </IconAvatar>
     </Stack>
   )
 }
@@ -67,7 +49,7 @@ const Vessel = styled(Box)(({ theme }) => ({
   position: 'relative',
   width: 'var(--width)',
   height: 'var(--height)',
-  borderRadius: 20,
+  borderRadius: 'calc(var(--height) / 10)',
   backgroundColor: theme.palette.grey[theme.palette.mode === 'light' ? 200 : 800],
   overflow: 'hidden',
 }))
@@ -75,7 +57,7 @@ const Vessel = styled(Box)(({ theme }) => ({
 const Cont = styled('div')({
   width: 'var(--width)',
   height: 'var(--height)',
-  borderRadius: 20,
+  borderRadius: 'calc(var(--height) / 10)',
   overflow: 'hidden',
 })
 
@@ -98,6 +80,7 @@ const Wave = styled('div')({
   height: 'var(--height)',
   backgroundColor: 'var(--background)',
   transform: 'translate(0, var(--progress))',
+  transition: 'transform 0.3s ease-in',
 })
 
 const Bubble = styled('div')({
@@ -105,8 +88,8 @@ const Bubble = styled('div')({
   zIndex: 1,
   backgroundColor: 'white',
   borderRadius: '50%',
-  width: 7,
-  height: 7,
+  width: 'var(--bubble)',
+  height: 'var(--bubble)',
   border: '1px solid #000000c9',
   animation: 'up 14s ease-out infinite',
   '@keyframes up': {
@@ -116,7 +99,9 @@ const Bubble = styled('div')({
   },
 })
 
-const Value = styled(Chip)(({ theme }) => ({
+const Digit = styled(Chip)(({ theme }) => ({
+  width: 'var(--digit)',
+  height: 'var(--digit)',
   position: 'absolute',
   left: '50%',
   transform: 'translate(-50%)',
@@ -129,7 +114,7 @@ const Title = styled('div')({
   minWidth: 100,
   position: 'absolute',
   left: '50%',
-  bottom: 75,
+  bottom: 'var(--title-bottom)',
   transform: 'translate(-50%)',
   zIndex: 1,
   '& p': {
@@ -137,4 +122,8 @@ const Title = styled('div')({
   },
 })
 
-export default SphereProgress
+const IconAvatar = styled(Avatar)({
+  width: 'var(--width)',
+  height: 'var(--width)',
+  backgroundColor: 'var(--background)',
+})

@@ -10,7 +10,7 @@ import EmptyGoals from './emptyGoals'
 import LearnMore from './learnMore'
 import MenuActs from './menuActs'
 import OnlineScore from './onlineScore'
-import SphereProgress from './sphereProgress'
+import Sphere from './sphere'
 import UserStatus from './userStatus'
 
 const Link = dynamic(() => import('@mui/material/Link'))
@@ -136,7 +136,13 @@ export function UserPage({ user }: UserViewProps) {
         </Stack>
         <Section display="flex" justifyContent="space-between" padding={{ xs: 2, md: '16px 24px' }}>
           {SPHERES.map((sphere) => (
-            <SphereProgress sphere={sphere} value={characteristic[sphere]} key={sphere} />
+            <Sphere
+              userId={id}
+              sphere={sphere}
+              value={characteristic[sphere]}
+              viewerPage={viewerPage}
+              key={sphere}
+            />
           ))}
         </Section>
         {!!confirmations.length && <ConfirmationList confirmations={confirmations} />}

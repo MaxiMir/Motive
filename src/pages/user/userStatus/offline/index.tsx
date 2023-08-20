@@ -1,4 +1,5 @@
 import { Stack } from '@mui/material'
+import { styled } from '@mui/system'
 import { useIntl } from 'react-intl'
 import dynamic from 'next/dynamic'
 import { Device } from 'shared/api'
@@ -18,22 +19,16 @@ function Offline({ lastSeen, device }: OfflineProps) {
   const distance = formatDistance(lastSeen)
 
   return (
-    <Stack
-      direction="row"
-      alignItems="center"
-      gap={0.5}
-      fontSize={12}
-      sx={(theme) => ({
-        color: theme.palette.grey[400],
-        '& span': {
-          fontSize: 12,
-        },
-      })}
-    >
+    <StyledStack direction="row" alignItems="center" gap={0.5}>
       {device && <DeviceIcon device={device} />}
       {seenText} {distance}
-    </Stack>
+    </StyledStack>
   )
 }
+
+const StyledStack = styled(Stack)(({ theme }) => ({
+  fontSize: 12,
+  color: theme.palette.grey[400],
+}))
 
 export default Offline

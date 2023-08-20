@@ -7,7 +7,7 @@ import CancelButton from 'shared/ui/CancelButton'
 import Input from 'shared/ui/Input'
 import Modal from 'shared/ui/Modal'
 import SubmitButton from 'shared/ui/SubmitButton'
-import { useUpdateUserForm } from './model'
+import { useEditProfileForm } from './model'
 
 interface EditProfileModalProps {
   user: UserPageDto
@@ -16,7 +16,7 @@ interface EditProfileModalProps {
 
 function EditProfileModal({ user, onClose }: EditProfileModalProps) {
   const { formatMessage } = useIntl()
-  const form = useUpdateUserForm(user, onClose)
+  const form = useEditProfileForm(user, onClose)
   const { setFieldValue, isSubmitting, handleSubmit } = form
   const title = formatMessage({ id: 'page.user.modal-profile.title' })
   const nameLabel = formatMessage({ id: 'page.user.modal-profile.name' })
@@ -25,7 +25,7 @@ function EditProfileModal({ user, onClose }: EditProfileModalProps) {
   const locationLabel = formatMessage({ id: 'common.location' })
   const bioLabel = formatMessage({ id: 'common.bio' })
   const buttonText = formatMessage({ id: 'common.save' })
-  const buttonLoading = formatMessage({ id: 'common.saving' })
+  const loadingText = formatMessage({ id: 'common.saving' })
 
   const onChangeNickname = (e: ChangeEvent<HTMLInputElement>) => {
     setFieldValue('nickname', e.target.value.toLowerCase())
@@ -39,7 +39,7 @@ function EditProfileModal({ user, onClose }: EditProfileModalProps) {
         <CancelButton key="cancel" onClick={onClose} />,
         <SubmitButton
           text={buttonText}
-          loadingText={buttonLoading}
+          loadingText={loadingText}
           isLoading={isSubmitting}
           key="submit"
           onClick={handleSubmit}

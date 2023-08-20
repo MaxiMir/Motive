@@ -7,10 +7,11 @@ import {
   InputLabel,
   MenuItem,
   FormHelperText,
+  FormLabel,
+  Select,
   FormControlLabel,
   RadioGroup,
   Radio,
-  Select,
   SelectChangeEvent,
 } from '@mui/material'
 import { styled } from '@mui/system'
@@ -40,6 +41,7 @@ interface CreateGoalModalProps {
 function CreateGoalModal({ onClose }: CreateGoalModalProps) {
   const sphereLabelId = useId()
   const { formatMessage } = useIntl()
+  const labelId = useId()
   const [hashtagsRef, setHashtagsFocus] = useFocus()
   const form = useCreateGoalForm(onClose)
   const spheres = useSpheresList()
@@ -58,7 +60,6 @@ function CreateGoalModal({ onClose }: CreateGoalModalProps) {
   const stageButtonText = formatMessage({ id: 'page.user.modal-goal.stage-button' })
   const stageHint = formatMessage({ id: 'page.user.modal-goal.stage-hint' })
   const startHeader = formatMessage({ id: 'page.user.modal-goal.start' })
-  const startLabelledby = formatMessage({ id: 'page.user.modal-goal.start-labelledby' })
   const todayLabel = formatMessage({ id: 'common.today' })
   const tomorrowLabel = formatMessage({ id: 'common.tomorrow' })
   const tasksHeader = formatMessage({ id: 'page.user.modal-goal.tasks-header' })
@@ -119,13 +120,8 @@ function CreateGoalModal({ onClose }: CreateGoalModalProps) {
               >
                 {spheres.list.map(({ name, icon, value }) => (
                   <MenuItem value={value} key={name}>
-                    <Box
-                      display="flex"
-                      alignItems="center"
-                      gap={1}
-                      sx={{ '& span': { fontSize: 16 } }}
-                    >
-                      <Icon name={icon} />
+                    <Box display="flex" alignItems="center" gap={1}>
+                      <Icon name={icon} fontSize={16} />
                       {name}
                     </Box>
                   </MenuItem>
@@ -180,13 +176,11 @@ function CreateGoalModal({ onClose }: CreateGoalModalProps) {
               </FieldArray>
             </Stack>
             <FormControl variant="standard">
-              <Typography variant="h6" component="label">
-                {startHeader}
-              </Typography>
+              <FormLabel id={labelId}>{startHeader}</FormLabel>
               <RadioGroup
                 name="started"
                 value={values.started}
-                aria-labelledby={startLabelledby}
+                aria-labelledby={labelId}
                 row
                 onChange={(e) => setFieldValue('started', e.target.value)}
               >

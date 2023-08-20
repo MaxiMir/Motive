@@ -23,15 +23,7 @@ function Notifications({ expanded }: NotificationsProps) {
     <>
       <List>
         <TooltipArrow title={!expanded && primary} placement="right">
-          <ListItem
-            button
-            sx={{
-              '& span': {
-                color: 'grey',
-              },
-            }}
-            onClick={toggle}
-          >
+          <ListItem button onClick={toggle}>
             <ListItemIcon>
               <NotificationBadge notifications={data} />
             </ListItemIcon>

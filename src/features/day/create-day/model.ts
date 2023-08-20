@@ -9,7 +9,7 @@ import { getTomorrowISO } from 'shared/lib/utils'
 import { useSnackbar } from 'shared/ui/snackbar'
 import { DaySchema } from './schema'
 
-export function useCreateDay(goalId: number, onSuccess: () => void) {
+export function useCreateDayForm(goalId: number, onSuccess: () => void) {
   const { formatMessage } = useIntl()
   const { enqueueSnackbar } = useSnackbar()
   const [goals, mutateGoals] = useGoalsCache()

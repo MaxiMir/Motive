@@ -2,7 +2,7 @@
 ```shell
 docker build -t mmirrev/frontend:1.0.96 .
 # artifactory:
-docker tag @ mmirrev/frontend:1.0.96
+docker tag $ mmirrev/frontend:1.0.96
 docker push mmirrev/frontend:1.0.96
 docker pull mmirrev/frontend:1.0.96
 

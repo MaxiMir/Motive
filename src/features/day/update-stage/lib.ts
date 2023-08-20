@@ -10,8 +10,8 @@ export function useMessages(stages: string[], dayStage: number) {
       { value: stages[dayStage] },
     ),
     behind: formatMessage({ id: 'page.user.modal-stage.behind' }),
-    button: formatMessage({ id: 'common.complete' }),
-    buttonLoading: formatMessage({ id: 'common.completing' }),
+    buttonText: formatMessage({ id: 'common.complete' }),
+    loadingText: formatMessage({ id: 'common.completing' }),
     nextTitle: formatMessage({ id: `page.user.modal-stage.title-${isFinal ? 'final' : 'next'}` }),
   }
 }

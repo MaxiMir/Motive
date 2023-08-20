@@ -13,17 +13,9 @@ function SignIn({ primary }: SignInProps) {
   const onClick = useViewerAct(undefined, asPath)
 
   return (
-    <ListItem
-      button
-      sx={{
-        '& span': {
-          color: 'grey',
-        },
-      }}
-      onClick={onClick}
-    >
+    <ListItem button onClick={onClick}>
       <ListItemIcon>
-        <Icon name="login" />
+        <Icon name="login" color="grey" />
       </ListItemIcon>
       <ListItemText primary={primary} />
     </ListItem>

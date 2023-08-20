@@ -9,17 +9,12 @@ interface ListItemProps {
 }
 
 function ListItem({ icon, primary, color = 'primary.dark', compact = true }: ListItemProps) {
+  const fontSize = compact ? 18 : 24
+
   return (
     <>
-      <ListItemIcon
-        sx={{
-          '& span': {
-            color,
-            fontSize: compact ? 18 : 24,
-          },
-        }}
-      >
-        <Icon name={icon} />
+      <ListItemIcon>
+        <Icon name={icon} color={color} fontSize={fontSize} />
       </ListItemIcon>
       <ListItemText primary={primary} />
     </>

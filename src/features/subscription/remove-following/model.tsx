@@ -7,7 +7,7 @@ import { Route } from 'shared/config'
 import { useSnackbar } from 'shared/ui/snackbar'
 
 interface Options {
-  user: UserDto
+  dto: UserDto
   index: number
   insert: boolean
 }
@@ -17,26 +17,26 @@ export function useRemoveFollowing() {
   const queryClient = useQueryClient()
   const { enqueueSnackbar, closeSnackbar } = useSnackbar()
   const { isLoading, mutate } = useMutation(
-    ({ user, insert }: Options) => updateSubscription(user.id, insert),
+    ({ dto, insert }: Options) => updateSubscription(dto.id, insert),
     {
-      async onMutate({ user, index, insert }) {
+      async onMutate({ dto, index, insert }) {
         await queryClient.cancelQueries(['page', Route.Following])
         const previous = queryClient.getQueryData<FollowingPageDto>(['page', Route.Following])
 
         if (previous) {
           queryClient.setQueryData(
             ['page', Route.Following],
-            getNextState(previous, user, index, insert),
+            getNextState(previous, dto, index, insert),
           )
         }
 
         return { previous }
       },
-      onSuccess(_, { user, index, insert }) {
+      onSuccess(_, { dto, index, insert }) {
         const undoText = formatMessage({ id: 'page.following.menu.undo' })
         const message = formatMessage({ id: 'page.following.menu.remove' })
 
-        const onClick = () => onUndo(user, index)
+        const onClick = () => onUndo(dto, index)
 
         !insert &&
           enqueueSnackbar(message, {
@@ -57,13 +57,13 @@ export function useRemoveFollowing() {
     },
   )
 
-  function onUndo(user: UserDto, index: number) {
+  function onUndo(dto: UserDto, index: number) {
     closeSnackbar()
-    mutate({ user, index, insert: true })
+    mutate({ dto, index, insert: true })
   }
 
-  const remove = (user: UserDto, index: number) => {
-    mutate({ user, index, insert: false })
+  const remove = (dto: UserDto, index: number) => {
+    mutate({ dto, index, insert: false })
   }
 
   return { isLoading, remove }

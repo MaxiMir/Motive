@@ -1,4 +1,5 @@
 import { Avatar } from '@mui/material'
+import { styled } from '@mui/system'
 import { useMemo } from 'react'
 import { generateColorByName, getShortName } from 'shared/ui/palette'
 
@@ -8,23 +9,24 @@ interface PlugProps {
 }
 
 function Plug({ name, size }: PlugProps) {
-  const bgcolor = useMemo(() => generateColorByName(name), [name])
+  const background = useMemo(() => generateColorByName(name), [name])
   const shortName = getShortName(name)
-  const fontSize = size / 2.5
 
   return (
-    <Avatar
-      sx={{
-        bgcolor,
-        width: size,
-        height: size,
-        color: 'common.white',
-        fontSize,
-      }}
-    >
+    <StyledAvatar size={size} background={background}>
       {shortName}
-    </Avatar>
+    </StyledAvatar>
   )
 }
+
+const StyledAvatar = styled(Avatar, {
+  shouldForwardProp: (prop) => prop !== 'size' && prop !== 'background',
+})<{ size: number; background: string }>(({ theme: _, size, background }) => ({
+  background,
+  width: size,
+  height: size,
+  color: 'common.white',
+  fontSize: size / 2.5,
+}))
 
 export default Plug

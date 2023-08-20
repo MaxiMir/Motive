@@ -9,9 +9,10 @@ import {
   Button,
   FormControl,
   Typography,
+  FormLabel,
 } from '@mui/material'
 import { FieldArray, Form, FormikProvider } from 'formik'
-import { ChangeEvent } from 'react'
+import { ChangeEvent, useId } from 'react'
 import { useIntl } from 'react-intl'
 import { PittRules } from 'entities/characteristic'
 import { TaskField } from 'entities/task'
@@ -23,7 +24,7 @@ import { Pitt } from 'shared/ui/icons'
 import Modal from 'shared/ui/Modal'
 import SubmitButton from 'shared/ui/SubmitButton'
 import TooltipArrow from 'shared/ui/TooltipArrow'
-import { useCreateDay } from './model'
+import { useCreateDayForm } from './model'
 
 interface CreateDayModalProps {
   goalId: number
@@ -33,7 +34,8 @@ interface CreateDayModalProps {
 
 function CreateDayModal({ goalId, dayDate, onClose }: CreateDayModalProps) {
   const { formatMessage } = useIntl()
-  const form = useCreateDay(goalId, onClose)
+  const labelId = useId()
+  const form = useCreateDayForm(goalId, onClose)
   const { isSubmitting, values, setFieldValue, handleSubmit } = form
   const todayValue = getMidnightISO()
   const tomorrowValue = getTomorrowISO()
@@ -43,7 +45,6 @@ function CreateDayModal({ goalId, dayDate, onClose }: CreateDayModalProps) {
   const buttonText = formatMessage({ id: 'common.create' })
   const loadingText = formatMessage({ id: 'common.creating' })
   const doItText = formatMessage({ id: 'page.user.modal-tasks.do-it' })
-  const doItLabelledby = formatMessage({ id: 'page.user.modal-tasks.do-it-labelledby' })
   const todayText = formatMessage({ id: 'common.today' })
   const tomorrowText = formatMessage({ id: 'common.tomorrow' })
   const pittText = formatMessage({ id: 'page.user.modal-tasks.pitt' })
@@ -102,13 +103,11 @@ function CreateDayModal({ goalId, dayDate, onClose }: CreateDayModalProps) {
                 )}
               </FieldArray>
               <FormControl variant="standard">
-                <Typography variant="h6" component="label">
-                  {doItText}
-                </Typography>
+                <FormLabel id={labelId}>{doItText}</FormLabel>
                 <RadioGroup
                   name="date"
                   value={values.date}
-                  aria-labelledby={doItLabelledby}
+                  aria-labelledby={labelId}
                   row
                   onChange={onChangeDate}
                 >

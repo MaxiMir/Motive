@@ -43,7 +43,6 @@
   "page.user.description": "See how {name} accomplishes goals",
   "page.user.modal-tasks.title": "Adding the day's tasks",
   "page.user.modal-tasks.do-it": "Do it",
-  "page.user.modal-tasks.do-it-labelledby": "do-it",
   "page.user.modal-tasks.pitt": "Remember Old Pitt!",
   "page.user.modal-tasks.tooltip": "You have already added goals for today",
   "page.user.modal-characteristic.creativity.header": "Creativity points are given for",
@@ -73,7 +72,6 @@
   "page.user.modal-goal.stage-button": "Add stage",
   "page.user.modal-goal.stage-hint": "We recommend to divide large goals into stages. Add each stage in the field below.",
   "page.user.modal-goal.start": "Started from",
-  "page.user.modal-goal.start-labelledby": "started-from",
   "page.user.modal-goal.tasks-header": "Tasks for the day",
   "page.user.modal-goal.message-created": "The goal is successfully created",
   "page.user.modal-goal.message-deleted": "The goal deleted",
@@ -336,5 +334,10 @@
   "common.members-single": "member",
   "common.members-double": "members",
   "common.members-genitive": "members",
-  "common.sphere-of-life": "Sphere of life"
+  "common.sphere-of-life": "Sphere of life",
+  "common.sphere-estimation": "Assess how much time/effort you spend in this area",
+  "common.sphere-high": "A score between 8 and 10 means that you are very satisfied with this area. Your challenge now\nis to maintain those scores. At the same time, remember that \"the sky is not the limit\" (as E. Goldratt, the author of\n\"E. Goldratt) and improvement is always possible.",
+  "common.sphere-middle": "A score between 5 and 7 means that you are reasonably satisfied with this area of your life, but,\nyou definitely need to do something to improve it.",
+  "common.sphere-low": "Scores from 0 to 4 mean that you are not satisfied with this area of your life. If there are no other areas with such\nlow scores, your first priority should be to find ways to improve the situation in this area.\nin this area.",
+  "common.sphere-scales": "None;Critically low;Terribly low;Very low;Low; Medium;Not enough;Sufficient;More than enough;Close to ideal;Ideal"
 }

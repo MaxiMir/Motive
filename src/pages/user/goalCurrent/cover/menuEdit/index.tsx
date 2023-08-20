@@ -52,7 +52,7 @@ function MenuEdit({ goalId, cover }: CoverMenuProps) {
           aria-expanded={open ? 'true' : undefined}
           onClick={onOpenMenu}
         >
-          <Icon name="edit_note" />
+          <Icon name="edit_note" fontSize={18} />
         </StyledButton>
       </TooltipArrow>
       <Menu
@@ -83,9 +83,6 @@ const StyledButton = styled(Button)({
   width: 36,
   height: 36,
   border: '2px solid black',
-  '& span': {
-    fontSize: 18,
-  },
 })
 
 export default MenuEdit

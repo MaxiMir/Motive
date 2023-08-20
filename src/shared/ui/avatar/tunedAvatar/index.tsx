@@ -1,4 +1,5 @@
 import { Avatar } from '@mui/material'
+import { styled } from '@mui/system'
 import { getStaticSrc } from 'shared/lib/helpers'
 
 interface TunedAvatarProps {
@@ -9,18 +10,15 @@ interface TunedAvatarProps {
 function TunedAvatar({ src, size }: TunedAvatarProps) {
   const staticSrc = getStaticSrc(src)
 
-  return (
-    <Avatar
-      src={staticSrc}
-      alt=""
-      draggable={false}
-      sx={{
-        width: size,
-        height: size,
-        pointerEvents: 'none',
-      }}
-    />
-  )
+  return <StyledAvatar src={staticSrc} alt="" draggable={false} size={size} />
 }
+
+const StyledAvatar = styled(Avatar, {
+  shouldForwardProp: (prop) => prop !== 'size',
+})<{ size: number }>(({ theme: _, size }) => ({
+  width: size,
+  height: size,
+  pointerEvents: 'none',
+}))
 
 export default TunedAvatar

@@ -10,15 +10,15 @@ import { UserSchema } from './schema'
 
 interface Options {
   id: number
-  data: UpdateUserDto
+  dto: UpdateUserDto
 }
 
-export function useUpdateUserForm(user: UserPageDto, onSuccess: () => void) {
+export function useEditProfileForm(user: UserPageDto, onSuccess: () => void) {
   const { push } = useRouter()
   const { formatMessage } = useIntl()
   const [page, mutatePage] = useUserPageCache()
   const nicknameError = formatMessage({ id: 'page.user.modal-profile.nickname-error' })
-  const { mutateAsync } = useMutation(({ id, data }: Options) => updateUser(id, data), {
+  const { mutateAsync } = useMutation(({ id, dto }: Options) => updateUser(id, dto), {
     onSuccess(dto) {
       const href = joinToHref(dto.nickname)
       const as = setSearchParams(href, getCurrentSearchParams())
@@ -38,9 +38,9 @@ export function useUpdateUserForm(user: UserPageDto, onSuccess: () => void) {
       links: user.links,
     },
     validationSchema: UserSchema,
-    async onSubmit(data, { setFieldError }) {
+    async onSubmit(dto, { setFieldError }) {
       const { id } = user
-      const { nickname } = data
+      const { nickname } = dto
       const fetchParams = { where: { nickname }, page: 0, take: 1 }
       const usersDB = user.nickname === nickname ? null : await getUsers(fetchParams)
 
@@ -49,7 +49,7 @@ export function useUpdateUserForm(user: UserPageDto, onSuccess: () => void) {
         return
       }
 
-      await mutateAsync({ id, data })
+      await mutateAsync({ id, dto })
     },
   })
 }

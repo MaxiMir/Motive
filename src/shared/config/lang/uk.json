@@ -43,7 +43,6 @@
   "page.user.description": "Погляньте як {name} досягає цілей",
   "page.user.modal-tasks.title": "Додавання задач на день",
   "page.user.modal-tasks.do-it": "Виконуємо",
-  "page.user.modal-tasks.do-it-labelledby": "виконуємо",
   "page.user.modal-tasks.pitt": "Пам\"ятай про Старина Пітта!",
   "page.user.modal-tasks.tooltip": "Ви вже додали цілі на сьогодні",
   "page.user.modal-characteristic.creativity.header": "Окуляри креативності даються за",
@@ -73,7 +72,6 @@
   "page.user.modal-goal.stage-button": "Додати етап",
   "page.user.modal-goal.stage-hint": "Ми рекомендуємо розділяти великі цілі на етапи. Додайте кожен етап у полі нижче.",
   "page.user.modal-goal.start": "Починаємо з",
-  "page.user.modal-goal.start-labelledby": "починаємо-с",
   "page.user.modal-goal.tasks-header": "Завдання на день",
   "page.user.modal-goal.message-created": "Мета успішно створена",
   "page.user.modal-goal.message-deleted": "Ціль видалена",
@@ -336,5 +334,10 @@
   "common.members-single": "учасник",
   "common.members-double": "учасника",
   "common.members-genitive": "учасників",
-  "common.sphere-of-life": "Сфера життя"
+  "common.sphere-of-life": "Сфера життя",
+  "common.sphere-estimation": "Оцініть як багато часу/сил Ви витрачаєте на цю сферу",
+  "common.sphere-high": "Оцінки від 8 до 10 означають, що ви дуже задоволені цією сферою. Ваше завдання тепер -\nзберегти такі показники. При цьому, пам'ятайте, що \"небо не межа\" (як казав автор\n\"Теорії обмежень\" Е.Голдратт) і поліпшення завжди можливе.",
+  "common.sphere-middle": "Оцінки від 5 до 7 означають, що ви досить задоволені цією сферою вашого життя, але,\nбезумовно, вам необхідно щось зробити, щоб її поліпшити.",
+  "common.sphere-low": "Оцінки від 0 до 4 означають, що ви не задоволені цією сферою життя. Якщо інших сфер із такими\nнизькими показниками більше немає, Ви насамперед маєте знайти способи поліпшити\nситуацію в цій сфері.",
+  "common.sphere-scales": "Не приділяю;Критично мало;Жахливо мало;Дуже мало;Мало;Середньо;Недостатньо;Достатньо;Більш ніж достатньо;Близько до ідеалу;Ідеально"
 }

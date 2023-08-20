@@ -43,16 +43,10 @@ function Modal({
   const closeText = formatMessage({ id: 'common.close' })
 
   return (
-    <Dialog
+    <StyledDialog
       open
       maxWidth={maxWidth}
       fullScreen={fullScreen}
-      sx={{
-        [`& .${backdropClasses.root}`]: {
-          background: 'rgba(34, 34, 34, 0.75)',
-          backdropFilter: 'blur(5px)',
-        },
-      }}
       PaperProps={{
         sx: {
           margin: fullScreen ? 0 : 2,
@@ -90,9 +84,16 @@ function Modal({
           },
         }}
       />
-    </Dialog>
+    </StyledDialog>
   )
 }
+
+const StyledDialog = styled(Dialog)({
+  [`& .${backdropClasses.root}`]: {
+    background: 'rgba(34, 34, 34, 0.75)',
+    backdropFilter: 'blur(5px)',
+  },
+})
 
 const CloseButton = styled(IconButton)(({ theme }) => ({
   background: theme.palette.grey[900],

@@ -9,7 +9,7 @@ interface DeviceIconProps {
 function DeviceIcon({ device }: DeviceIconProps) {
   const iconName = getIconName(device)
 
-  return <Icon name={iconName} />
+  return <Icon name={iconName} fontSize={12} />
 }
 
 export default DeviceIcon

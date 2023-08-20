@@ -34,6 +34,11 @@ export type UpdateUserDto = Pick<
   'name' | 'nickname' | 'motto' | 'location' | 'bio' | 'links' | 'avatar'
 >
 
+export interface UpdateUserCharacteristicDto {
+  sphere: SphereDto
+  value: number
+}
+
 export interface UserDto extends UserBaseDto {
   readonly characteristic: UserCharacteristicDto
 }

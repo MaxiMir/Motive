@@ -17,7 +17,7 @@ export function Points({ points }: PointsProps) {
     <StyledChip
       icon={
         <StyledAvatar>
-          <Icon name="favorite" />
+          <Icon name="favorite" fontSize={14} />
         </StyledAvatar>
       }
       label={`${count} ${name}`}
@@ -33,7 +33,4 @@ const StyledAvatar = styled(Avatar)({
   width: 20,
   height: 20,
   background: red[800],
-  '& span': {
-    fontSize: 14,
-  },
 })

@@ -22,7 +22,7 @@ function Deletion({ goalId }: DeletionProps) {
     <>
       <TooltipArrow title={title}>
         <StyledButton size="small" onClick={toggle}>
-          <Icon name="delete" />
+          <Icon name="delete" fontSize={18} />
         </StyledButton>
       </TooltipArrow>
       {open && <DeleteGoalModal goalId={goalId} onClose={toggle} />}
@@ -40,9 +40,6 @@ const StyledButton = styled(Button)(({ theme }) => ({
   backgroundColor: red[800],
   ':hover': {
     backgroundColor: red[400],
-  },
-  '& span': {
-    fontSize: 18,
   },
 }))
 

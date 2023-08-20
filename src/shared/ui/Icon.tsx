@@ -1,12 +1,18 @@
 import { Box, BoxProps } from '@mui/material'
 
-interface IconProps extends BoxProps {
+interface IconProps extends Omit<BoxProps, 'fontSize'> {
   name: string
+  fontSize?: number
 }
 
-function Icon({ name, ...props }: IconProps) {
+function Icon({ name, fontSize, ...props }: IconProps) {
   return (
-    <Box component="span" className="material-symbols-sharp" {...props}>
+    <Box
+      component="span"
+      className="material-symbols-sharp"
+      fontSize={fontSize && `${fontSize}px !important`}
+      {...props}
+    >
       {name}
     </Box>
   )

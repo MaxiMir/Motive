@@ -8,6 +8,7 @@ import {
   CardActionArea,
   Button,
 } from '@mui/material'
+import { styled } from '@mui/system'
 import Link from 'next/link'
 import { ArticleDto } from 'shared/api'
 import { Route } from 'shared/config'
@@ -35,7 +36,7 @@ export function ArticlePreview({ article }: ArticlePreviewProps) {
 
   return (
     <Card href={href} component={Link}>
-      <CardActionArea sx={{ display: 'flex', flexWrap: 'wrap', alignItems: 'flex-start' }}>
+      <StyledCardActionArea>
         <Box
           sx={{
             width: {
@@ -45,8 +46,8 @@ export function ArticlePreview({ article }: ArticlePreviewProps) {
         >
           <CardMedia component="img" image={staticSrc} alt="" />
         </Box>
-        <CardContent sx={{ display: 'flex', flexDirection: 'column', gap: 1, flex: 1 }}>
-          <Chip label={tag} size="small" sx={{ alignSelf: 'flex-start', backgroundColor }} />
+        <StyledCardContent>
+          <StyledChip label={tag} size="small" backgroundColor={backgroundColor} />
           <Typography gutterBottom variant="h5" component="p">
             {header}
           </Typography>
@@ -69,8 +70,28 @@ export function ArticlePreview({ article }: ArticlePreviewProps) {
               {viewsFormatted}
             </Button>
           </Box>
-        </CardContent>
-      </CardActionArea>
+        </StyledCardContent>
+      </StyledCardActionArea>
     </Card>
   )
 }
+
+const StyledChip = styled(Chip, {
+  shouldForwardProp: (prop) => prop !== 'backgroundColor',
+})<{ backgroundColor: string }>(({ theme: _, backgroundColor }) => ({
+  alignSelf: 'flex-start',
+  backgroundColor,
+}))
+
+const StyledCardActionArea = styled(CardActionArea)({
+  display: 'flex',
+  flexWrap: 'wrap',
+  alignItems: 'flex-start',
+})
+
+const StyledCardContent = styled(CardContent)({
+  display: 'flex',
+  flexDirection: 'column',
+  gap: 1,
+  flex: 1,
+})

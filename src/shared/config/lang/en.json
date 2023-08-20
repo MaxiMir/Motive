@@ -339,5 +339,6 @@
   "common.sphere-high": "A score between 8 and 10 means that you are very satisfied with this area. Your challenge now\nis to maintain those scores. At the same time, remember that \"the sky is not the limit\" (as E. Goldratt, the author of\n\"E. Goldratt) and improvement is always possible.",
   "common.sphere-middle": "A score between 5 and 7 means that you are reasonably satisfied with this area of your life, but,\nyou definitely need to do something to improve it.",
   "common.sphere-low": "Scores from 0 to 4 mean that you are not satisfied with this area of your life. If there are no other areas with such\nlow scores, your first priority should be to find ways to improve the situation in this area.\nin this area.",
-  "common.sphere-scales": "None;Critically low;Terribly low;Very low;Low; Medium;Not enough;Sufficient;More than enough;Close to ideal;Ideal"
+  "common.sphere-scales": "None;Critically low;Terribly low;Very low;Low; Medium;Not enough;Sufficient;More than enough;Close to ideal;Ideal",
+  "common.sphere-updated": "Scope of life updated"
 }

@@ -28,8 +28,8 @@ export const useCreateMemberForm = (goalId: number, dayId: number, onSuccess: ()
       started: getMidnight(),
     },
     validationSchema: memberSchema,
-    async onSubmit(data) {
-      await mutateAsync(data)
+    onSubmit(data) {
+      return mutateAsync(data)
     },
   })
 }

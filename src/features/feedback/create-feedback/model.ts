@@ -33,12 +33,12 @@ export function useCreateFeedbackForm(goalId: number, dayId: number, onSuccess: 
       video: '',
     },
     validationSchema: FeedbackSchema,
-    async onSubmit(data) {
+    onSubmit(data) {
       const formData = new FormData()
       formData.append('dayId', dayId.toString())
       formData.append('text', data.text.trim())
       data.photos.forEach((photo) => formData.append('photos', photo))
-      await mutateAsync(formData).catch(() => false)
+      return mutateAsync(formData).catch(() => false)
     },
   })
 }

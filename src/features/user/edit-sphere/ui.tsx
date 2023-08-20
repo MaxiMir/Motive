@@ -77,7 +77,7 @@ function EditSphereModal({ userId, sphere, icon, value, onClose }: EditSpherePro
                 <SphereProgress sphere={sphere} icon={icon} value={deferredValue} />
               </Box>
             </Box>
-            {deferredValue && <Hint value={deferredValue} />}
+            {!!deferredValue && <Hint value={deferredValue} />}
           </FormControl>
         </Form>
       </FormikProvider>

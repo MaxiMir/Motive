@@ -19,8 +19,8 @@ export function useSearchForm(initial: string) {
       q: initial,
     },
     validationSchema: searchSchema,
-    async onSubmit(data) {
-      await mutateAsync(data)
+    onSubmit(data) {
+      return mutateAsync(data)
     },
   })
 }

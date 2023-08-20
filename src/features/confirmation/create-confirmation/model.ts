@@ -44,13 +44,13 @@ export function useCreateConfirmationForm(goalId: number, onSuccess: () => void)
       end: getMidnight(),
     },
     validationSchema: ConfirmationSchema,
-    async onSubmit(data) {
+    onSubmit(data) {
       const formData = new FormData()
       formData.append('text', data.text.trim())
       formData.append('end', formatISO(data.end))
       formData.append('goalId', data.goalId.toString())
       data.photos.forEach((photo) => formData.append('photos', photo))
-      await mutateAsync(formData)
+      return mutateAsync(formData)
     },
   })
 }

@@ -20,8 +20,8 @@ export function useCreateTopicForm(dayId: number, onSuccess: () => void) {
       type: 'support' as const,
     },
     validationSchema: TopicSchema,
-    async onSubmit(data) {
-      await mutateAsync(data)
+    onSubmit(data) {
+      return mutateAsync(data)
     },
   })
 }

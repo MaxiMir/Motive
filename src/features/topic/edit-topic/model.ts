@@ -25,8 +25,8 @@ export function useUpdateTopicForm(initialValues: MessageDto, onSuccess: () => v
   return useFormik<MessageDto>({
     initialValues,
     validationSchema: TopicSchema,
-    async onSubmit(data) {
-      await mutateAsync(data)
+    onSubmit(data) {
+      return mutateAsync(data)
     },
   })
 }

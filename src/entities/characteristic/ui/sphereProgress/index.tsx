@@ -80,7 +80,6 @@ const Wave = styled('div')({
   height: 'var(--height)',
   backgroundColor: 'var(--background)',
   transform: 'translate(0, var(--progress))',
-  transition: 'transform 0.3s ease-in',
 })
 
 const Bubble = styled('div')({

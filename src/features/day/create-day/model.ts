@@ -31,8 +31,8 @@ export function useCreateDayForm(goalId: number, onSuccess: () => void) {
       tasks: [{ [FRONTEND_ID]: crypto.randomUUID(), name: '', date: undefined }],
     },
     validationSchema: DaySchema,
-    async onSubmit(data) {
-      await mutateAsync(data)
+    onSubmit(data) {
+      return mutateAsync(data)
     },
   })
 }

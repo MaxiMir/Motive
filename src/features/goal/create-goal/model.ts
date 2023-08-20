@@ -38,8 +38,8 @@ export function useCreateGoalForm(onSuccess: () => void) {
       tasks: [{ [FRONTEND_ID]: crypto.randomUUID(), name: '', date: undefined }],
     },
     validationSchema: GoalSchema,
-    async onSubmit(data) {
-      await mutateAsync(data)
+    onSubmit(data) {
+      return mutateAsync(data)
     },
   })
 }

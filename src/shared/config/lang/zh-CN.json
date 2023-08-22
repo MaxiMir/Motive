@@ -189,6 +189,7 @@
   "common.development": "发展",
   "common.work": "工作",
   "common.level": "级别",
+  "common.level-summary": "当前等级 - {值}。\n\n在其他用户的支持下，每完成一个 ❤️ 目标或发送一条信息，就会获得一次经验。",
   "common.level-single": "级别",
   "common.level-double": "级别",
   "common.level-genitive": "级别",

@@ -189,6 +189,7 @@
   "common.development": "Development",
   "common.work": "Work",
   "common.level": "Level",
+  "common.level-summary": "Current Level - {value}.\n\nExperience is given for each ❤️ in a completed goal or in a message with the support of other users.",
   "common.level-single": "Level",
   "common.level-double": "Level",
   "common.level-genitive": "Level",

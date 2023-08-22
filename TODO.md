@@ -1,5 +1,4 @@
 ### TODO
-* LEVEL TOOLTIP 
 * Modal Members + Points
 * Read more M2 chip
 * GROUP BY members + modal members
@@ -30,7 +29,6 @@
 * Loader in stories
 * Обратная связь
 * Add external links
-* Добавить удаление цели без очков
 * useTryFullScreen
 * тип сообщений в обсуждении
 * (2) в title meta с обновлениями

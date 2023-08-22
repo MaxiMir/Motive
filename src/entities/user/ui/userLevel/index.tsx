@@ -1,4 +1,5 @@
 import { styled } from '@mui/system'
+import { compiler } from 'markdown-to-jsx'
 import { useIntl } from 'react-intl'
 import TooltipArrow from 'shared/ui/TooltipArrow'
 
@@ -8,7 +9,11 @@ interface UserLevelProps {
 
 export function UserLevel({ level }: UserLevelProps) {
   const { formatMessage } = useIntl()
-  const title = formatMessage({ id: 'common.level' })
+  const message = formatMessage(
+    { id: 'common.level-summary', defaultMessage: '' },
+    { value: level },
+  )
+  const title = compiler(message)
 
   return (
     <TooltipArrow title={title}>

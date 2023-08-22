@@ -65,7 +65,7 @@ function Modal({
         </Toolbar>
       </AppBar>
       <Divider />
-      <DialogContent sx={{ height: contentHeight }} dividers={dividers}>
+      <DialogContent sx={{ height: contentHeight, mb: 3 }} dividers={dividers}>
         {children}
       </DialogContent>
       {actions && (

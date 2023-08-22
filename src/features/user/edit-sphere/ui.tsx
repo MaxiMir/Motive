@@ -21,7 +21,7 @@ import CancelButton from 'shared/ui/CancelButton'
 import Icon from 'shared/ui/Icon'
 import Modal from 'shared/ui/Modal'
 import SubmitButton from 'shared/ui/SubmitButton'
-import { getRateMessageId } from './lib'
+import { getRateMessageId, parseScales } from './lib'
 import { useEditSphereForm } from './model'
 
 const Alert = dynamic(() => import('@mui/material/Alert'))
@@ -43,7 +43,7 @@ function EditSphereModal({ userId, sphere, icon, value, onClose }: EditSpherePro
   const deferredValue = useDeferredValue(values.value)
   const rateMessageId = getRateMessageId(deferredValue)
   const title = formatMessage({ id: `common.${sphere}` })
-  const scales = formatMessage({ id: 'common.sphere-scales' }).split(';')
+  const scales = parseScales(formatMessage({ id: 'common.sphere-scales' }))
   const estimationText = formatMessage({ id: 'common.sphere-estimation' })
   const buttonText = formatMessage({ id: 'common.save' })
   const loadingText = formatMessage({ id: 'common.saving' })
@@ -76,7 +76,7 @@ function EditSphereModal({ userId, sphere, icon, value, onClose }: EditSpherePro
         <Form>
           <FormControl>
             <FormLabel id={labelId}>{estimationText}</FormLabel>
-            <Stack gap={2}>
+            <Stack gap={2} mt={1}>
               <Box display="flex" gap={3}>
                 <RadioGroup
                   name="value"
@@ -84,11 +84,11 @@ function EditSphereModal({ userId, sphere, icon, value, onClose }: EditSpherePro
                   aria-labelledby={labelId}
                   onChange={onChange}
                 >
-                  {scales.map((scale, index) => (
+                  {scales.map(({ scale, number }) => (
                     <FormControlLabel
-                      label={scale}
-                      value={index + 1}
-                      checked={values.value === index + 1}
+                      label={`${scale} - ${number}`}
+                      value={number}
+                      checked={values.value === number}
                       control={<Radio size="small" />}
                       key={scale}
                     />

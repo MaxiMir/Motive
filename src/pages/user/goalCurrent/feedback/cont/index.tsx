@@ -1,4 +1,4 @@
-import { Box, Stack } from '@mui/material'
+import { Stack } from '@mui/material'
 import dynamic from 'next/dynamic'
 import { useDetectSafari } from 'entities/device'
 import { FeedbackDto } from 'shared/api'
@@ -18,17 +18,7 @@ function Cont({ feedback }: ContProps) {
   return (
     <Stack gap={2} flex={1}>
       {photos?.length && <Gallery photos={photos} />}
-      {text && (
-        <Box
-          sx={{
-            background: '#35353573',
-            padding: 1,
-            borderRadius: '4px',
-          }}
-        >
-          <Markdown text={text} switching={!safari} />
-        </Box>
-      )}
+      {text && <Markdown text={text} switching={!safari} />}
       {video && <Player url={video} width="100%" height="auto" />}
     </Stack>
   )

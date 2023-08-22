@@ -9,3 +9,7 @@ export function getRateMessageId(value: number) {
 
   return !value ? null : 'common.sphere-low'
 }
+
+export function parseScales(scales: string) {
+  return scales.split(';').map((scale, index) => ({ scale, number: index + 1 }))
+}

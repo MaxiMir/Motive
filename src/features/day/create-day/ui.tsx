@@ -1,23 +1,21 @@
 import {
-  AccordionDetails,
   FormControlLabel,
   Radio,
   RadioGroup,
-  Accordion,
-  AccordionSummary,
   Stack,
   Button,
   FormControl,
-  Typography,
   FormLabel,
 } from '@mui/material'
 import { FieldArray, Form, FormikProvider } from 'formik'
 import { ChangeEvent, useId } from 'react'
 import { useIntl } from 'react-intl'
 import { PittRules } from 'entities/characteristic'
+import { useDetectMobile } from 'entities/device'
 import { TaskField } from 'entities/task'
 import { FRONTEND_ID } from 'shared/config'
 import { getMidnightISO, getTomorrowISO } from 'shared/lib/utils'
+import Accordion from 'shared/ui/Accordion'
 import CancelButton from 'shared/ui/CancelButton'
 import Icon from 'shared/ui/Icon'
 import { Pitt } from 'shared/ui/icons'
@@ -35,6 +33,7 @@ interface CreateDayModalProps {
 function CreateDayModal({ goalId, dayDate, onClose }: CreateDayModalProps) {
   const { formatMessage } = useIntl()
   const labelId = useId()
+  const mobile = useDetectMobile()
   const form = useCreateDayForm(goalId, onClose)
   const { isSubmitting, values, setFieldValue, handleSubmit } = form
   const todayValue = getMidnightISO()
@@ -58,6 +57,7 @@ function CreateDayModal({ goalId, dayDate, onClose }: CreateDayModalProps) {
     <Modal
       title={title}
       maxWidth="xs"
+      fullScreen={mobile}
       actions={[
         <CancelButton key="cancel" onClick={onClose} />,
         <SubmitButton
@@ -70,7 +70,7 @@ function CreateDayModal({ goalId, dayDate, onClose }: CreateDayModalProps) {
       ]}
       onClose={onClose}
     >
-      <Stack gap={3}>
+      <Stack height="100%" justifyContent="space-between" gap={3}>
         <FormikProvider value={form}>
           <Form>
             <Stack gap={3}>
@@ -129,20 +129,12 @@ function CreateDayModal({ goalId, dayDate, onClose }: CreateDayModalProps) {
             </Stack>
           </Form>
         </FormikProvider>
-        <Accordion>
-          <AccordionSummary expandIcon={<Icon name="expand_more" />} id="old-pitt-note">
-            <Stack direction="row" alignItems="center" gap={1}>
-              <Icon name="crisis_alert" color="error.main" />
-              <Typography variant="h6" component="h3">
-                {pittText}
-              </Typography>
-              <Pitt />
-            </Stack>
-          </AccordionSummary>
-          <AccordionDetails>
-            <PittRules />
-          </AccordionDetails>
-        </Accordion>
+        <Accordion
+          iconStart={<Icon name="crisis_alert" color="error.main" />}
+          summary={pittText}
+          iconEnd={<Pitt />}
+          details={<PittRules />}
+        />
       </Stack>
     </Modal>
   )

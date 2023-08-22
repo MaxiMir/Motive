@@ -8,7 +8,7 @@ function getLocaleHref(asPath: string, locale?: Locale) {
 
 export function getLocaleHrefList(asPath: string): Record<string, string> {
   return {
-    [Locale.En]: getLocaleHref(asPath),
+    [Locale.En]: getLocaleHref(asPath, Locale.En),
     [Locale.Ru]: getLocaleHref(asPath, Locale.Ru),
     [Locale.Uk]: getLocaleHref(asPath, Locale.Uk),
     [Locale.Zh]: getLocaleHref(asPath, Locale.Zh),

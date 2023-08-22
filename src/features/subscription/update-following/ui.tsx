@@ -24,10 +24,6 @@ function UpdateFollowing({ userId, following }: UpdateFollowingProps) {
       disabled={isLoading}
       startIcon={isLoading ? undefined : <Icon name={`person_${operation}`} />}
       sx={({ palette }) => ({
-        flex: {
-          xs: 1,
-          lg: 'initial',
-        },
         minWidth: '100px',
         height: 30,
         paddingX: 1,

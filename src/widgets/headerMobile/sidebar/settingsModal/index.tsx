@@ -2,7 +2,8 @@ import { ToggleButtonGroup, ToggleButton, Typography, Stack, PaletteMode, Box } 
 import { styled } from '@mui/system'
 import { MouseEvent } from 'react'
 import { useIntl } from 'react-intl'
-import { useSetLocale, Locale, LANGUAGES } from 'entities/locale'
+import { useSetLocale } from 'features/user/set-locale'
+import { Locale, LANGUAGES } from 'entities/locale'
 import Modal from 'shared/ui/Modal'
 import { usePaletteMode } from 'shared/ui/palette'
 
@@ -23,8 +24,7 @@ function SettingsModal({ onClose }: SettingsModalProps) {
   const darkText = formatMessage({ id: 'common.dark' })
 
   const onChangeLocale = (_: MouseEvent<HTMLElement>, newLocale: Locale) => {
-    setLocale(newLocale)
-    onClose()
+    setLocale(newLocale).then(onClose)
   }
 
   const onChangeMode = (_: MouseEvent<HTMLElement>, newMode: PaletteMode) => {

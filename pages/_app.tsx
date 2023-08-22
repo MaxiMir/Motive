@@ -30,7 +30,8 @@ function App({
   Component,
   pageProps: { session, dehydratedState, device, ...pageProps },
 }: AppProps) {
-  const { locale = Locale.En } = useRouter()
+  const router = useRouter()
+  const locale = router.locale === 'default' ? Locale.En : router.locale || Locale.En
   const { options, closeSignIn } = useSignIn()
   const folder = getLocaleFolder(locale)
   const messages = use(

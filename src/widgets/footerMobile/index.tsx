@@ -48,9 +48,15 @@ function FooterMobile({ fixed }: FooterMobileProps) {
       </InView>
       <GlobalStyles
         styles={{
-          main: {
-            paddingBottom: fixed ? HEIGHT : 0,
-            '[data-act="create-goal"]': {
+          '#__next': {
+            main: {
+              paddingBottom: fixed ? HEIGHT : 0,
+              '[data-act=create-goal]': {
+                bottom: visible ? 72 : 24,
+                transition: 'bottom 0.2s ease-in',
+              },
+            },
+            '[data-act=snackbar]': {
               bottom: visible ? 72 : 24,
               transition: 'bottom 0.2s ease-in',
             },

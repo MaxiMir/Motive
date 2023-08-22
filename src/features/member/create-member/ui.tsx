@@ -81,9 +81,8 @@ function CreateMemberModal({ goal, onClose }: CreateMemberModalProps) {
           </Form>
         </FormikProvider>
         <Accordion
-          id="tips"
-          header={accordionHeader}
-          icon={<Icon name="diversity_2" color="primary.dark" />}
+          iconStart={<Icon name="diversity_2" color="primary.dark" />}
+          summary={accordionHeader}
           details={
             <Box color="zen.silent">
               <Typography>&#9679; {accordingRate}.</Typography>

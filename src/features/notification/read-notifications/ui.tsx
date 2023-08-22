@@ -1,6 +1,7 @@
 import { Stack } from '@mui/material'
 import { useIntl } from 'react-intl'
 import dynamic from 'next/dynamic'
+import { useDetectMobile } from 'entities/device'
 import { NotificationDto } from 'shared/api'
 import Modal from 'shared/ui/Modal'
 import { useNotificationHint } from './lib'
@@ -22,11 +23,12 @@ function ReadNotificationsModal({
   onClose,
 }: ReadNotificationsModalProps) {
   const { formatMessage } = useIntl()
+  const mobile = useDetectMobile()
   const title = formatMessage({ id: 'common.notifications' })
   const [showHint, onHintClick] = useNotificationHint()
 
   return (
-    <Modal title={title} maxWidth="xs" staticHeight onClose={onClose}>
+    <Modal title={title} maxWidth="xs" contentHeight={600} fullScreen={mobile} onClose={onClose}>
       <Stack flex={1}>
         {isLoading ? (
           <Loader />

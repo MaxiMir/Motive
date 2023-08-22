@@ -129,17 +129,15 @@ function GoalCurrent({ goal, viewerPage }: GoalCurrentProps) {
                   </Box>
                   {!!stages.length && (
                     <Accordion
-                      id={`stage-${day.id}`}
-                      header={stagesHeader}
-                      icon={<Icon name="rocket_launch" color="primary.main" />}
+                      iconStart={<Icon name="rocket_launch" color="primary.main" />}
+                      summary={stagesHeader}
                       defaultExpanded
                       details={<Stages goal={goal} interaction={interaction} />}
                     />
                   )}
                   <Accordion
-                    id={`tasksContent-${day.id}`}
-                    header={tasksHeader}
-                    icon={<Icon name="keep_public" color="error.light" />}
+                    iconStart={<Icon name="keep_public" color="error.light" />}
+                    summary={tasksHeader}
                     defaultExpanded
                     details={
                       <Stack spacing={1}>
@@ -157,8 +155,8 @@ function GoalCurrent({ goal, viewerPage }: GoalCurrentProps) {
                   />
                   <Accordion
                     id={`${HashMark.Feedback}-${id}`}
-                    header={feedbackHeader}
-                    icon={<Icon name="quick_phrases" color="warning.light" />}
+                    iconStart={<Icon name="quick_phrases" color="warning.light" />}
+                    summary={feedbackHeader}
                     defaultExpanded
                     details={
                       <Feedback

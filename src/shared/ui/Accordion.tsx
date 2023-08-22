@@ -9,14 +9,15 @@ import { ReactNode } from 'react'
 import Icon from './Icon'
 
 interface AccordionProps {
-  id: string
-  header: string | ReactNode
-  icon: ReactNode
+  id?: string
+  iconStart: ReactNode
+  summary: string | ReactNode
+  iconEnd?: ReactNode
   details: ReactNode
   defaultExpanded?: boolean
 }
 
-function Accordion({ id, header, icon, details, defaultExpanded }: AccordionProps) {
+function Accordion({ id, iconStart, summary, iconEnd, details, defaultExpanded }: AccordionProps) {
   return (
     <MuiAccordion
       defaultExpanded={defaultExpanded}
@@ -31,10 +32,11 @@ function Accordion({ id, header, icon, details, defaultExpanded }: AccordionProp
         }
       >
         <Stack direction="row" alignItems="center" gap={1}>
-          {icon}
+          {iconStart}
           <Typography variant="h6" component="p">
-            {header}
+            {summary}
           </Typography>
+          {iconEnd}
         </Stack>
       </AccordionSummary>
       <AccordionDetails sx={{ overflow: 'auto' }}>{details}</AccordionDetails>

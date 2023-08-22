@@ -2,6 +2,7 @@ import { Grid, Typography, Stack } from '@mui/material'
 import { Field, FieldArray, Form, FormikProvider } from 'formik'
 import { useIntl } from 'react-intl'
 import { usePhotoLimit } from 'entities/confirmation'
+import { useDetectMobile } from 'entities/device'
 import CancelButton from 'shared/ui/CancelButton'
 import Input from 'shared/ui/Input'
 import Modal from 'shared/ui/Modal'
@@ -21,6 +22,7 @@ interface AddingModalProps {
 
 function CreateFeedback({ goalId, dayId, onClose }: AddingModalProps) {
   const { formatMessage } = useIntl()
+  const mobile = useDetectMobile()
   const form = useCreateFeedbackForm(goalId, dayId, onClose)
   const { isSubmitting, values, setFieldValue, submitForm } = form
   const title = formatMessage({ id: 'page.user.modal-feedback.title' })
@@ -39,6 +41,7 @@ function CreateFeedback({ goalId, dayId, onClose }: AddingModalProps) {
     <Modal
       title={title}
       maxWidth="xs"
+      fullScreen={mobile}
       actions={[
         <CancelButton key="cancel" onClick={onClose} />,
         <SubmitButton

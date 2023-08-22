@@ -82,7 +82,7 @@ export function UserPage({ user }: UserViewProps) {
                   <UserNickname nickname={nickname} variant="h5" />
                   <UserLevel level={characteristic.level} />
                 </Box>
-                <Stack direction="row" alignItems="center" gap={1} width="100%">
+                <Stack direction="row" alignItems="center" gap={1}>
                   {viewerPage ? (
                     <EditProfile user={user} />
                   ) : (
@@ -92,11 +92,8 @@ export function UserPage({ user }: UserViewProps) {
                 </Stack>
               </Stack>
               <Box
-                display="flex"
-                justifyContent={{
-                  xs: 'space-between',
-                  sm: 'initial',
-                }}
+                display="grid"
+                gridTemplateColumns="repeat(4, min-content)"
                 width="100%"
                 gap={2}
                 mb={2}

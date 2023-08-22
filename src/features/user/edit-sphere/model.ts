@@ -4,17 +4,12 @@ import { flushSync } from 'react-dom'
 import { useIntl } from 'react-intl'
 import { useMutation } from 'react-query'
 import { useUserPageCache } from 'entities/user'
-import {
-  UserPageDto,
-  SphereDto,
-  UpdateUserCharacteristicDto,
-  updateCharacteristic,
-} from 'shared/api'
+import { UserPageDto, SphereDto, UpdateCharacteristicDto, updateCharacteristic } from 'shared/api'
 import { useSnackbar } from 'shared/ui/snackbar'
 
 export function useEditSphereForm(
   userId: number,
-  sphere: SphereDto,
+  name: SphereDto,
   value: number,
   onSuccess: () => void,
 ) {
@@ -22,7 +17,7 @@ export function useEditSphereForm(
   const [page, mutatePage] = useUserPageCache()
   const { enqueueSnackbar } = useSnackbar()
   const { mutateAsync } = useMutation(
-    (dto: UpdateUserCharacteristicDto) => updateCharacteristic(userId, dto),
+    (dto: UpdateCharacteristicDto) => updateCharacteristic(userId, dto),
     {
       onSuccess(_, request) {
         const message = formatMessage({ id: 'common.sphere-updated' })
@@ -35,9 +30,9 @@ export function useEditSphereForm(
     },
   )
 
-  return useFormik<UpdateUserCharacteristicDto>({
+  return useFormik<UpdateCharacteristicDto>({
     initialValues: {
-      sphere,
+      name,
       value,
     },
     onSubmit(dto) {
@@ -46,8 +41,8 @@ export function useEditSphereForm(
   })
 }
 
-function getNextState(page: UserPageDto, { sphere, value }: UpdateUserCharacteristicDto) {
+function getNextState(page: UserPageDto, { name, value }: UpdateCharacteristicDto) {
   return produce(page, (draft) => {
-    draft.characteristic[sphere] = value
+    draft.characteristic[name] = value
   })
 }

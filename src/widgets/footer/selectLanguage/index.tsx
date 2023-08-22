@@ -2,14 +2,15 @@ import { Box, MenuItem, SelectChangeEvent } from '@mui/material'
 import Select, { selectClasses } from '@mui/material/Select'
 import { styled } from '@mui/system'
 import { useIntl } from 'react-intl'
-import { LANGUAGES, Locale, useSetLocale } from 'entities/locale'
+import { useSetLocale } from 'features/user/set-locale'
+import { LANGUAGES } from 'entities/locale'
 
-export function ChangeLanguage() {
+export function SelectLanguage() {
   const { locale, formatMessage } = useIntl()
   const setLocale = useSetLocale()
   const ariaLabel = formatMessage({ id: 'common.switch-language' })
 
-  const onChange = (e: SelectChangeEvent<unknown>) => setLocale(e.target.value as Locale)
+  const onChange = (e: SelectChangeEvent<unknown>) => setLocale(e.target.value as string)
 
   return (
     <StyledSelect

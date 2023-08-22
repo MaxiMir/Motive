@@ -11,3 +11,7 @@ export function makeMapLoader<T>(): MapLoader<T> {
     return langMap.get(locale)
   }
 }
+
+export function range(count: number) {
+  return Array.from(Array(count).keys()).map((k) => k + 1)
+}

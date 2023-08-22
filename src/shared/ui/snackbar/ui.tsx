@@ -24,13 +24,8 @@ function Snackbar() {
           open
           autoHideDuration={3000}
           anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }}
+          data-act="snackbar"
           onClose={handleClose}
-          sx={{
-            bottom: {
-              xs: 80,
-              lg: 24,
-            },
-          }}
         >
           <Alert {...alertProps} />
         </StyledSnackbar>
@@ -40,7 +35,8 @@ function Snackbar() {
 }
 
 const StyledSnackbar = styled(MuiSnackbar)({
-  color: 'common.white',
+  color: 'white',
+  bottom: 24,
   [`& .${alertClasses.message}`]: {
     lineHeight: '1.625rem',
   },

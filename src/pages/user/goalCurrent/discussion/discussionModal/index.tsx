@@ -31,7 +31,7 @@ function DiscussionModal({ dayId, count, owner, viewerGoal, onClose }: Discussio
     <Modal
       title={title}
       maxWidth="md"
-      staticHeight
+      contentHeight={600}
       fullScreen={mobile}
       dividers
       actions={

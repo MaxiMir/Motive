@@ -1,5 +1,6 @@
 import { Box, Button, Typography } from '@mui/material'
 import { useState } from 'react'
+import { useIntl } from 'react-intl'
 import dynamic from 'next/dynamic'
 import { OnlineScoreDto, ConfirmationDto, UserCharacteristicDto } from 'shared/api'
 import { useFormatNumber, useWordDeclination } from 'shared/lib/hooks'
@@ -17,6 +18,7 @@ interface OnlineScoreProps {
 }
 
 function OnlineScore({ score, value, userId, characteristic, confirmations }: OnlineScoreProps) {
+  const { locale } = useIntl()
   const wordDeclination = useWordDeclination(score, value)
   const formatNumber = useFormatNumber()
   const [modal, setModal] = useState<OnlineScoreDto>()
@@ -65,7 +67,14 @@ function OnlineScore({ score, value, userId, characteristic, confirmations }: On
           <Typography variant="h5" component="b">
             {formattedValue}
           </Typography>
-          <Typography fontSize={13}>{buttonText}</Typography>
+          <Typography
+            fontSize={{
+              xs: locale === 'ru' ? 10.5 : 13,
+              sm: 13,
+            }}
+          >
+            {buttonText}
+          </Typography>
         </Box>
       </Button>
       {modal === 'completed' && <NoCompletedModal onClose={onClose} />}

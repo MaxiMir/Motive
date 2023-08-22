@@ -1,6 +1,7 @@
 import { Stack } from '@mui/material'
 import { useIntl } from 'react-intl'
 import dynamic from 'next/dynamic'
+import { useDetectMobile } from 'entities/device'
 import Modal from 'shared/ui/Modal'
 import { useSubscription } from './lib'
 
@@ -16,12 +17,13 @@ interface SubscriptionModalProps {
 }
 
 function SubscriptionModal({ userId, type, count, onClose }: SubscriptionModalProps) {
-  const { isLoading, users, checkOnLoadMore, fetchNextPage } = useSubscription(userId, count, type)
   const { formatMessage } = useIntl()
+  const mobile = useDetectMobile()
+  const { isLoading, users, checkOnLoadMore, fetchNextPage } = useSubscription(userId, count, type)
   const title = formatMessage({ id: `common.${type}` })
 
   return (
-    <Modal title={title} maxWidth="xs" staticHeight onClose={onClose}>
+    <Modal title={title} maxWidth="xs" contentHeight={600} fullScreen={mobile} onClose={onClose}>
       {isLoading ? (
         <Loader count={count} />
       ) : (

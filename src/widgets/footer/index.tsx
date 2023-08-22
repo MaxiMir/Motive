@@ -2,8 +2,8 @@ import { Box, Typography, Link as MuiLink, LinkProps } from '@mui/material'
 import { styled } from '@mui/system'
 import { useIntl } from 'react-intl'
 import Link from 'next/link'
-import { ChangeLanguage } from 'features/locale/change-language'
 import { Route } from 'shared/config'
+import { SelectLanguage } from './selectLanguage'
 
 interface FooterProps {
   breakpoints?: boolean
@@ -30,7 +30,7 @@ function Footer({ breakpoints }: FooterProps) {
     >
       <Box display="flex" flexDirection="column" alignItems="center">
         <Box display="flex" alignItems="center" gap={1}>
-          <ChangeLanguage />
+          <SelectLanguage />
           <Box sx={{ color: 'zen.silent' }}>•</Box>
           <FooterLink href={Route.PrivacyPolicy}>{privacyPolicyText}</FooterLink>
           <Box sx={{ color: 'zen.silent' }}>•</Box>

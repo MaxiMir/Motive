@@ -23,7 +23,7 @@ interface ModalProps extends Pick<DialogProps, 'maxWidth'> {
   title: ReactNode | string
   actions?: ReactNode[]
   children: ReactNode | ReactNode[]
-  staticHeight?: boolean
+  contentHeight?: number
   dividers?: boolean
   fullScreen?: boolean
   onClose: () => void
@@ -34,7 +34,7 @@ function Modal({
   actions,
   children,
   maxWidth,
-  staticHeight,
+  contentHeight,
   dividers,
   fullScreen,
   onClose,
@@ -65,7 +65,7 @@ function Modal({
         </Toolbar>
       </AppBar>
       <Divider />
-      <DialogContent sx={{ height: !staticHeight ? undefined : 600, mb: 3 }} dividers={dividers}>
+      <DialogContent sx={{ height: contentHeight }} dividers={dividers}>
         {children}
       </DialogContent>
       {actions && (

@@ -23,8 +23,9 @@ const withPWAModule = withPWA({
     ],
   },
   i18n: {
-    locales: ['en', 'ru', 'uk', 'zh-CN'],
-    defaultLocale: 'en',
+    locales: ['default', 'en', 'ru', 'uk', 'zh-CN'],
+    defaultLocale: 'default',
+    localeDetection: true,
   },
   modularizeImports: {
     '@mui/material': {

@@ -1,11 +1,10 @@
 import { useRouter } from 'next/router'
-import { Locale } from 'entities/locale/types'
 
 export function useSetLocale() {
   const { asPath, push } = useRouter()
 
-  return (locale: Locale) => {
-    document.cookie = `NEXT_LOCALE=${locale}`
+  return async (locale: string) => {
+    document.cookie = `NEXT_LOCALE=${locale};maxage=${1000 * 60 * 60 * 24 * 7};path=/`
     push(asPath, asPath, { locale })
   }
 }

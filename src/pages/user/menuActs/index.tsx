@@ -56,10 +56,6 @@ function MenuActs({ viewerPage }: MenuActsProps) {
         aria-haspopup="true"
         aria-expanded={open ? 'true' : undefined}
         sx={{
-          flex: {
-            xs: 1,
-            lg: 'initial',
-          },
           minWidth: '100px',
           height: 30,
           paddingX: 1,

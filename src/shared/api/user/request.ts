@@ -1,6 +1,6 @@
 import { fetcher } from '../fetcher'
 import { Filter, getFilterParams } from '../filter'
-import { CreateUserDto, UpdateUserCharacteristicDto, UpdateUserDto, UserBaseDto } from './dto'
+import { CreateUserDto, UpdateCharacteristicDto, UpdateUserDto, UserBaseDto } from './dto'
 
 export function getUsers(filter: Filter): Promise<UserBaseDto[]> {
   const params = getFilterParams(filter)
@@ -20,10 +20,7 @@ export function updateAvatar(id: number, formData: FormData): Promise<UserBaseDt
   return fetcher.patch(`/users/${id}/avatar`, formData)
 }
 
-export function updateCharacteristic(
-  id: number,
-  dto: UpdateUserCharacteristicDto,
-): Promise<UserBaseDto> {
+export function updateCharacteristic(id: number, dto: UpdateCharacteristicDto): Promise<void> {
   return fetcher.patch(`/users/${id}/characteristic`, dto)
 }
 

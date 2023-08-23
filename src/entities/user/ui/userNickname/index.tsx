@@ -13,7 +13,7 @@ export function UserNickname({ nickname, variant }: UserNicknameProps) {
         component="p"
         fontWeight={300}
         maxWidth={{
-          xs: 180,
+          xs: 150,
           md: 300,
         }}
         whiteSpace="nowrap"

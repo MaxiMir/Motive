@@ -53,7 +53,7 @@ export default function MenuActs({ user, index }: MenuActsProps) {
           sx={(theme) => ({ color: theme.palette.grey[500] })}
           onClick={onOpenMenu}
         >
-          <Icon name="more_horiz" />
+          <Icon name="more_vert" />
         </IconButton>
       </TooltipArrow>
       <Menu

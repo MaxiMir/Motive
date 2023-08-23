@@ -5,6 +5,7 @@ import { UserLevel } from 'entities/user'
 import { UserDto } from 'shared/api'
 import { joinToHref } from 'shared/lib/helpers'
 import Avatar from 'shared/ui/avatar'
+import MenuActs from './menuActs'
 
 const InView = dynamic(() => import('react-intersection-observer').then((m) => m.InView))
 
@@ -44,6 +45,9 @@ function UserCard({ user, inView, onView, onClose }: UserCardProps) {
             {name}
           </Typography>
         </Stack>
+        <Box marginLeft="auto">
+          <MenuActs user={user} />
+        </Box>
       </Stack>
       {inView && <InView onChange={onChange} />}
     </>

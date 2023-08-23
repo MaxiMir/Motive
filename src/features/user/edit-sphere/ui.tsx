@@ -86,7 +86,7 @@ function EditSphereModal({ userId, sphere, icon, value, onClose }: EditSpherePro
                 >
                   {scales.map(({ scale, number }) => (
                     <FormControlLabel
-                      label={`${scale} - ${number}`}
+                      label={`${number} - ${scale}`}
                       value={number}
                       checked={values.value === number}
                       control={<Radio size="small" />}

@@ -26,7 +26,7 @@
   "page.following.list.hint": "Add people you are interested in",
   "page.following.menu.remove": "Removed from following",
   "page.following.menu.undo": "Undo",
-  "page.following.menu.title": "Open user menu",
+  "common.user-menu": "Open user menu",
   "page.feed.title": "Feed",
   "page.feed.description": "Use the feed to achieve your goals. Get inspiration from friends and experts in your field, follow their successes, and support each other on the road to success",
   "page.feed.header": "Feed",

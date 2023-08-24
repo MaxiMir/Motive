@@ -129,7 +129,6 @@
   "component.share.send": "Send to",
   "component.share.copy": "Copy Link",
   "component.tooltip.tomorrow": "Will be available tomorrow",
-  "component.task-field.label": "Task",
   "component.task-field.placeholder": "What should be done",
   "component.task-field.close": "Remove task",
   "component.task-field.remind": "remind me",
@@ -346,5 +345,16 @@
   "common.sphere-details1": "The balance of the spheres of each person's life is different. Even for the same person, it will differ over time.",
   "common.sphere-details2": "Be objective and honest with yourself: don't rely on isolated situations that may one-time bring out negative emotions or euphoria.",
   "common.sphere-details3": "Don't consider the chosen value as a report of successes and failures: don't devalue your merits, just highlight areas that need your attention, get busy making goals and implementing changes in your life.",
-  "common.sphere-details4": "Periodically revise your estimates: life is constantly changing, so adapt your goals according to the situation."
+  "common.sphere-details4": "Periodically revise your estimates: life is constantly changing, so adapt your goals according to the situation.",
+  "common.task": "Task",
+  "common.task-description": "Task description",
+  "common.detailed-description": "Detailed description",
+  "common.priority": "Priority",
+  "common.priority-low": "Low priority",
+  "common.priority-medium": "Medium priority",
+  "common.priority-high": "High priority",
+  "common.low": "Low",
+  "common.medium": "Medium",
+  "common.high": "High",
+  "common.nope": "Nope"
 }

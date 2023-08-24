@@ -22,5 +22,5 @@ export function useDetectTruncated() {
     }
   }, [])
 
-  return { ref, truncated }
+  return [ref, truncated] as const
 }

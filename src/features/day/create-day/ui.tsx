@@ -79,10 +79,10 @@ function CreateDayModal({ goalId, dayDate, onClose }: CreateDayModalProps) {
                   <>
                     {values.tasks.map((task, index) => (
                       <TaskField
-                        taskCount={values.tasks.length}
+                        task={task}
                         date={values.date}
-                        remind={task.date}
                         index={index}
+                        taskCount={values.tasks.length}
                         key={task[FRONTEND_ID]}
                         setFieldValue={setFieldValue}
                         onRemove={() => remove(index)}

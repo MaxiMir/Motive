@@ -74,6 +74,10 @@ function CreateGoalModal({ onClose }: CreateGoalModalProps) {
     setHashtagsFocus()
   }
 
+  const onChangeSphere = (e: SelectChangeEvent) => {
+    setFieldValue('sphere', e.target.value)
+  }
+
   return (
     <Modal
       title={title}
@@ -119,7 +123,7 @@ function CreateGoalModal({ onClose }: CreateGoalModalProps) {
                 label={spheres.label}
                 size="small"
                 labelId={sphereLabelId}
-                onChange={(e: SelectChangeEvent) => setFieldValue('sphere', e.target.value)}
+                onChange={onChangeSphere}
               >
                 {spheres.list.map(({ name, icon, value }) => (
                   <MenuItem value={value} key={name}>
@@ -200,10 +204,10 @@ function CreateGoalModal({ onClose }: CreateGoalModalProps) {
                   <>
                     {values.tasks.map((task, index) => (
                       <TaskField
-                        taskCount={values.tasks.length}
+                        task={task}
                         date={values.started}
-                        remind={task.date}
                         index={index}
+                        taskCount={values.tasks.length}
                         key={task[FRONTEND_ID]}
                         setFieldValue={setFieldValue}
                         onRemove={() => remove(index)}
@@ -235,8 +239,7 @@ const ButtonCompact = styled(Button)({
 })
 
 const StyledFormControl = styled(FormControl)({
-  marginTop: 8,
-  '& label': {
+  '& [data-shrink=false]': {
     top: -7,
   },
 })

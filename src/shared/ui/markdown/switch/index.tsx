@@ -2,12 +2,12 @@ import { Button } from '@mui/material'
 import { styled } from '@mui/system'
 import { useIntl } from 'react-intl'
 
-interface SwitchingProps {
+interface SwitchProps {
   open: boolean
   onClick: () => void
 }
 
-export function Switching({ open, onClick }: SwitchingProps) {
+export function Switch({ open, onClick }: SwitchProps) {
   const { formatMessage } = useIntl()
   const buttonText = formatMessage({ id: open ? 'common.show-less' : 'common.read-more' })
 
@@ -27,4 +27,4 @@ const StyledButton = styled(Button)(({ theme }) => ({
   },
 }))
 
-export default Switching
+export default Switch

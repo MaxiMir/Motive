@@ -1,59 +1,56 @@
 import { Box, Stack } from '@mui/material'
-import { styled } from '@mui/system'
 import { useMemo } from 'react'
 import dynamic from 'next/dynamic'
 import { useToggle } from 'shared/lib/hooks'
 import { useDetectTruncated, toMarkdown } from './lib'
 
-const Switching = dynamic(() => import('./switching'))
+const Switch = dynamic(() => import('./switch'))
 
 interface MarkdownProps {
   text: string
-  switching?: boolean
+  truncate?: boolean
+  compact?: boolean
 }
 
-function Markdown({ text, switching }: MarkdownProps) {
+function Markdown({ text, truncate, compact }: MarkdownProps) {
   const [open, toggle] = useToggle()
   const markdown = useMemo(() => toMarkdown(text), [text])
-  const { ref, truncated } = useDetectTruncated()
+  const [ref, truncated] = useDetectTruncated()
   const breakCount = text.split('\r\n').length
-  const renderSwitching = switching && (truncated || breakCount > 1)
+  const renderSwitching = open ? true : truncate && (truncated || breakCount > 1)
 
   return (
     <Stack alignItems="flex-start" gap={1}>
-      <StyledBox
+      <Box
         ref={ref}
-        sx={
-          !switching
-            ? undefined
-            : {
-                '& > *:first-child': {
-                  display: '-webkit-box',
-                  WebkitLineClamp: !open ? '3' : 'unset',
-                  WebkitBoxOrient: 'vertical',
-                  overflow: 'hidden',
-                },
-                '& > *:not(:first-child)': {
-                  display: truncated || !open ? 'none' : '-webkit-box',
-                },
-              }
-        }
+        sx={{
+          fontSize: compact ? 12 : 'initial',
+          '& > *:first-of-type': {
+            display: '-webkit-box',
+            WebkitLineClamp: truncate && !open ? '3' : 'unset',
+            WebkitBoxOrient: 'vertical',
+            overflow: 'hidden',
+          },
+          '& > *:not(:first-of-type)': {
+            display: truncated || !open ? 'none' : '-webkit-box',
+          },
+          '& ul': {
+            paddingLeft: 2,
+          },
+          '& ol': {
+            paddingLeft: 0,
+            '& li': {
+              display: 'list-item',
+              listStylePosition: 'inside',
+            },
+          },
+        }}
       >
         {markdown}
-      </StyledBox>
-      {renderSwitching && <Switching open={open} onClick={toggle} />}
+      </Box>
+      {renderSwitching && <Switch open={open} onClick={toggle} />}
     </Stack>
   )
 }
-
-const StyledBox = styled(Box)({
-  '& ol': {
-    paddingLeft: 0,
-    '& li': {
-      display: 'list-item',
-      listStylePosition: 'inside',
-    },
-  },
-})
 
 export default Markdown

@@ -85,7 +85,7 @@ function Message({ message, answerFor, supportFor, replyProps }: MessageProps) {
             )}
             <MenuActs message={message} />
           </Box>
-          <Markdown text={textWithUser} switching={!safari} />
+          <Markdown text={textWithUser} truncate={!safari} />
         </Stack>
         <Stack direction="row" alignItems="center" gap={1} width="100%" height={32} pl={2}>
           <Typography variant="caption" color="zen.silent">

@@ -28,7 +28,15 @@ export function useCreateDayForm(goalId: number, onSuccess: () => void) {
   return useFormik<CreateDayDto>({
     initialValues: {
       date: getTomorrowISO(),
-      tasks: [{ [FRONTEND_ID]: crypto.randomUUID(), name: '', date: undefined }],
+      tasks: [
+        {
+          [FRONTEND_ID]: crypto.randomUUID(),
+          name: '',
+          date: null,
+          description: null,
+          priority: null,
+        },
+      ],
     },
     validationSchema: DaySchema,
     onSubmit(data) {

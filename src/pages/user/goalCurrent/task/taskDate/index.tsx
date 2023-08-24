@@ -6,7 +6,7 @@ interface TaskDateProps {
   date: string
 }
 
-export function TaskDate({ date }: TaskDateProps) {
+function TaskDate({ date }: TaskDateProps) {
   const formattedDate = format(new Date(date), 'hh:mm')
 
   return (
@@ -16,3 +16,5 @@ export function TaskDate({ date }: TaskDateProps) {
     </Stack>
   )
 }
+
+export default TaskDate

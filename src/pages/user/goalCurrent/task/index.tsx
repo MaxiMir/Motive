@@ -1,14 +1,15 @@
 import { Stack } from '@mui/material'
-import { useIntl } from 'react-intl'
 import dynamic from 'next/dynamic'
 import { useSetCompleted } from 'features/task/set-completed'
-import { TaskLabel } from 'entities/task'
 import { TaskDto } from 'shared/api'
 import Checkbox from 'shared/ui/Checkbox'
-import TooltipArrow from 'shared/ui/TooltipArrow'
 import { Interaction } from '../lib'
 
-const TaskDate = dynamic(() => import('entities/task').then((m) => m.TaskDate))
+const Markdown = dynamic(() => import('shared/ui/markdown'))
+const Priority = dynamic(() => import('./priority'))
+const ForTomorrow = dynamic(() => import('./forTomorrow'))
+const CompletedByOthers = dynamic(() => import('./completedByOthers'))
+const TaskDate = dynamic(() => import('./taskDate'))
 
 interface TaskProps {
   goalId: number
@@ -19,23 +20,32 @@ interface TaskProps {
 
 export function Task({ goalId, task, rest, interaction }: TaskProps) {
   const { id, date, completed } = task
-  const { formatMessage } = useIntl()
+  const { forTomorrow, canEdit, daysGoneForOwner } = interaction
   const setCompleted = useSetCompleted(goalId, id, rest)
-  const title = interaction.forTomorrow && formatMessage({ id: 'component.tooltip.tomorrow' })
-  const disabled = completed || interaction.forTomorrow || !interaction.canEdit
+  const disabled = completed || forTomorrow || !canEdit
+  const { name, description, priority } = task
+  const completedByOthers = !daysGoneForOwner && task.completedByOthers && !task.completed
 
   return (
     <Stack gap={1}>
       <form>
-        <TooltipArrow title={title}>
-          <Checkbox
-            name={id.toString()}
-            label={<TaskLabel task={task} daysGoneForOwner={interaction.daysGoneForOwner} />}
-            checked={completed}
-            disabled={disabled}
-            onChange={setCompleted}
-          />
-        </TooltipArrow>
+        <Checkbox
+          name={id.toString()}
+          label={
+            <Stack>
+              <Stack direction="row" alignItems="center" gap={1}>
+                {name}
+                {priority && <Priority priority={priority} />}
+                {forTomorrow && <ForTomorrow />}
+                {completedByOthers && <CompletedByOthers />}
+              </Stack>
+              {description && <Markdown text={description} compact />}
+            </Stack>
+          }
+          checked={completed}
+          disabled={disabled}
+          onChange={setCompleted}
+        />
       </form>
       {date && <TaskDate date={date} />}
     </Stack>

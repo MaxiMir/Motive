@@ -18,7 +18,7 @@ function Cont({ feedback }: ContProps) {
   return (
     <Stack gap={2} flex={1}>
       {photos?.length && <Gallery photos={photos} />}
-      {text && <Markdown text={text} switching={!safari} />}
+      {text && <Markdown text={text} truncate={!safari} />}
       {video && <Player url={video} width="100%" height="auto" />}
     </Stack>
   )

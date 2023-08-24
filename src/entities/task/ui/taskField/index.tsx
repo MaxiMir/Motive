@@ -1,34 +1,54 @@
-import { IconButton, Stack, Switch, FormControlLabel } from '@mui/material'
+import {
+  SelectChangeEvent,
+  Switch,
+  FormControlLabel,
+  IconButton,
+  Stack,
+  MenuItem,
+  Box,
+  Select,
+  InputLabel,
+  FormControl,
+} from '@mui/material'
+import { styled } from '@mui/system'
 import { TimePicker } from '@mui/x-date-pickers'
 import { Field } from 'formik'
-import { ChangeEvent } from 'react'
+import { ChangeEvent, useId } from 'react'
 import { useIntl } from 'react-intl'
+import { CreateTaskDto } from 'shared/api'
 import Icon from 'shared/ui/Icon'
 import Input from 'shared/ui/Input'
+import PriorityIcon from 'shared/ui/PriorityIcon'
 import TooltipArrow from 'shared/ui/TooltipArrow'
+import { usePriorityList } from './lib'
 
 interface TaskFieldProps {
-  index: number
+  task: CreateTaskDto
   date: string
-  remind?: Date
+  index: number
   taskCount: number
   setFieldValue: (field: string, value?: string) => void
   onRemove: () => void
 }
 
 export function TaskField({
-  index,
+  task,
   date,
-  remind,
+  index,
   taskCount,
   setFieldValue,
   onRemove,
 }: TaskFieldProps) {
   const { formatMessage } = useIntl()
-  const label = formatMessage({ id: 'component.task-field.label' })
+  const priorityLabelId = useId()
+  const priorityList = usePriorityList()
+  const label = formatMessage({ id: 'common.task' })
+  const labelDescription = formatMessage({ id: 'common.task-description' })
   const placeholder = formatMessage({ id: 'component.task-field.placeholder' })
+  const placeholderDescription = formatMessage({ id: 'common.detailed-description' })
   const closeText = formatMessage({ id: 'component.task-field.close' })
   const remindText = formatMessage({ id: 'component.task-field.remind' })
+  const nopeText = formatMessage({ id: 'common.nope' })
   const soonText = formatMessage({ id: 'common.soon' })
   const autoFocus = !!index && index === taskCount - 1
 
@@ -36,17 +56,50 @@ export function TaskField({
     setFieldValue(`tasks.${index}.date`, isChecked ? date : undefined)
   }
 
+  const onChangePriority = (e: SelectChangeEvent) => {
+    setFieldValue(`tasks.${index}.priority`, e.target.value)
+  }
+
   return (
-    <Stack>
-      <Stack direction="row" justifyContent="space-between" alignItems="flex-start" gap={1}>
-        <Field
-          name={`tasks.${index}.name`}
-          label={label}
-          placeholder={placeholder}
-          autoFocus={autoFocus}
-          required
-          component={Input}
-        />
+    <Stack gap={1}>
+      <Stack direction="row" justifyContent="space-between" alignItems="center" gap={1}>
+        <Stack gap={1} flex={1}>
+          <Field
+            name={`tasks.${index}.name`}
+            label={label}
+            placeholder={placeholder}
+            autoFocus={autoFocus}
+            required
+            component={Input}
+          />
+          <Field
+            name={`tasks.${index}.description`}
+            label={labelDescription}
+            placeholder={placeholderDescription}
+            component={Input}
+          />
+          <StyledFormControl fullWidth>
+            <InputLabel id={priorityLabelId}>{priorityList.label}</InputLabel>
+            <Select
+              name="priority"
+              value={task.priority || undefined}
+              label={priorityList.label}
+              size="small"
+              labelId={priorityLabelId}
+              onChange={onChangePriority}
+            >
+              <MenuItem>{nopeText}</MenuItem>
+              {priorityList.list.map(({ name, value }) => (
+                <MenuItem value={value} key={name}>
+                  <Box display="flex" alignItems="center" gap={1}>
+                    <PriorityIcon priority={value} />
+                    {name}
+                  </Box>
+                </MenuItem>
+              ))}
+            </Select>
+          </StyledFormControl>
+        </Stack>
         <IconButton
           aria-label={closeText}
           disableFocusRipple
@@ -66,7 +119,7 @@ export function TaskField({
             control={<Switch size="small" onChange={onSwitchClick} />}
           />
         </TooltipArrow>
-        {remind && (
+        {task.date && (
           <Field
             name={`tasks.${index}.date`}
             ampm={false}
@@ -79,3 +132,9 @@ export function TaskField({
     </Stack>
   )
 }
+
+const StyledFormControl = styled(FormControl)({
+  '& [data-shrink=false]': {
+    top: -7,
+  },
+})

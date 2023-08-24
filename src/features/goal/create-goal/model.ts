@@ -35,7 +35,15 @@ export function useCreateGoalForm(onSuccess: () => void) {
       hashtags: '',
       sphere: undefined as never,
       stages: [],
-      tasks: [{ [FRONTEND_ID]: crypto.randomUUID(), name: '', date: undefined }],
+      tasks: [
+        {
+          [FRONTEND_ID]: crypto.randomUUID(),
+          name: '',
+          date: null,
+          description: null,
+          priority: null,
+        },
+      ],
     },
     validationSchema: GoalSchema,
     onSubmit(data) {

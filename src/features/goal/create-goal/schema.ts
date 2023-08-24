@@ -1,5 +1,5 @@
-import { array, date, object, string } from 'yup'
-import { NAME_MAX_LENGTH, NAME_MIN_LENGTH } from 'entities/task'
+import { array, object, string } from 'yup'
+import { TaskSchema } from 'entities/task'
 
 export const GoalSchema = object({
   name: string()
@@ -18,14 +18,5 @@ export const GoalSchema = object({
         .max(32, "It's so long."),
     }),
   ),
-  tasks: array().of(
-    object({
-      name: string()
-        .trim()
-        .required('The task is needed')
-        .min(NAME_MIN_LENGTH, "It's too short.")
-        .max(NAME_MAX_LENGTH, "It's too long."),
-      date: date(),
-    }),
-  ),
+  tasks: array().of(TaskSchema),
 })

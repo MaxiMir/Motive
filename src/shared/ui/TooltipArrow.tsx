@@ -5,7 +5,7 @@ import { styled } from '@mui/system'
 
 const TooltipArrow = styled(({ children, className, ...props }: TooltipProps) => (
   <Tooltip arrow disableFocusListener classes={{ popper: className }} {...props}>
-    <Box display="inline-flex" alignItems="center">
+    <Box display="flex" alignItems="center" component="div">
       {children}
     </Box>
   </Tooltip>

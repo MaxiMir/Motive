@@ -8,6 +8,7 @@ import { UserBaseDto } from '../user'
 export interface GoalBaseDto {
   readonly id: number
   readonly name: string
+  readonly created: string
   readonly started: string
   readonly hashtags: string[]
   readonly stages: string[]

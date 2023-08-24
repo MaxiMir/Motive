@@ -10,13 +10,13 @@ const CreateFeedbackModal = dynamic(() => import('features/feedback/create-feedb
 interface CreatingProps {
   goalId: number
   dayId: number
-  forTomorrow: boolean
+  forFuture: boolean
 }
 
-function Creating({ goalId, dayId, forTomorrow }: CreatingProps) {
+function Creating({ goalId, dayId, forFuture }: CreatingProps) {
   const { formatMessage } = useIntl()
   const [open, toggle] = useToggle()
-  const title = !forTomorrow ? '' : formatMessage({ id: 'component.tooltip.tomorrow' })
+  const title = !forFuture ? '' : formatMessage({ id: 'component.available-later' })
   const buttonText = formatMessage({ id: 'common.add' })
 
   return (
@@ -26,7 +26,7 @@ function Creating({ goalId, dayId, forTomorrow }: CreatingProps) {
           size="small"
           variant="outlined"
           startIcon={<Icon name="add" />}
-          disabled={forTomorrow}
+          disabled={forFuture}
           aria-haspopup="true"
           aria-expanded={open ? 'true' : undefined}
           onClick={toggle}

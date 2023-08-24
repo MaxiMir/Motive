@@ -2,9 +2,9 @@ import { useIntl } from 'react-intl'
 import Icon from 'shared/ui/Icon'
 import TooltipArrow from 'shared/ui/TooltipArrow'
 
-function ForTomorrow() {
+function ForFuture() {
   const { formatMessage } = useIntl()
-  const title = formatMessage({ id: 'component.tooltip.tomorrow' })
+  const title = formatMessage({ id: 'component.available-later' })
 
   return (
     <TooltipArrow title={title}>
@@ -12,4 +12,4 @@ function ForTomorrow() {
     </TooltipArrow>
   )
 }
-export default ForTomorrow
+export default ForFuture

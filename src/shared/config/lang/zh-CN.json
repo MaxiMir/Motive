@@ -42,7 +42,6 @@
   "page.user.title-profile": "简介上",
   "page.user.description": "看看{name}如何完成目标",
   "page.user.modal-tasks.title": "添加当天的任务",
-  "page.user.modal-tasks.do-it": "做吧",
   "page.user.modal-tasks.pitt": "记住老皮特！",
   "page.user.modal-tasks.tooltip": "你已经为今天增加了目标",
   "page.user.modal-characteristic.creativity.header": "创意点被赋予",
@@ -128,7 +127,7 @@
   "component.share.share": "分享到",
   "component.share.send": "发送至",
   "component.share.copy": "复制链接",
-  "component.tooltip.tomorrow": "将于明天提供",
+  "component.available-later": "稍后提供",
   "common.task": "任务",
   "component.task-field.placeholder": "应该做什么",
   "component.task-field.close": "删除任务",
@@ -223,8 +222,6 @@
   "common.cancel": "取消",
   "common.soon": "即将到来",
   "common.ago": "前",
-  "common.tomorrow": "明天",
-  "common.today": "今天",
   "common.yesterday": "昨天",
   "common.format": "MM/dd/yyyy",
   "common.next-day": "第二天",
@@ -356,5 +353,7 @@
   "common.low": "低",
   "common.medium": "中型",
   "common.high": "高",
-  "common.nope": "缺席"
+  "common.nope": "缺席",
+  "common.date": "日期",
+  "common.date-selection": "选择日期"
 }

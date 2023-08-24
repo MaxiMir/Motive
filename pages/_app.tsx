@@ -18,7 +18,6 @@ import { DeviceContext } from 'entities/device'
 import { Locale } from 'entities/locale'
 import { useSignIn } from 'entities/viewer'
 import { makeMapLoader } from 'shared/lib/helpers'
-import { getLocaleFolder } from 'shared/lib/utils'
 import Snackbar from 'shared/ui/snackbar'
 
 const SignInModal = dynamic(() => import('features/viewer/sign-in'))
@@ -33,7 +32,7 @@ function App({
   const router = useRouter()
   const locale = router.locale === 'default' ? Locale.En : router.locale || Locale.En
   const { options, closeSignIn } = useSignIn()
-  const folder = getLocaleFolder(locale)
+  const folder = locale === 'en' ? 'en-US' : locale
   const messages = use(
     messagesLoader(locale, () => import(`src/shared/config/lang/${locale}.json`)),
   )
@@ -51,7 +50,15 @@ function App({
         <QueryProvider message={messages['common.error']}>
           <Hydrate state={dehydratedState}>
             <DeviceContext.Provider value={deviceValue}>
-              <LocalizationProvider dateAdapter={AdapterDateFns} adapterLocale={adapterLocale}>
+              <LocalizationProvider
+                dateAdapter={AdapterDateFns}
+                adapterLocale={adapterLocale}
+                localeText={{
+                  datePickerDefaultToolbarTitle: messages['common.date-selection'],
+                  okButtonLabel: messages['common.save'],
+                  cancelButtonLabel: messages['common.cancel'],
+                }}
+              >
                 <ThemeProvider>
                   <Script
                     src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS}`}

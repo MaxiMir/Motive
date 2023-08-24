@@ -7,7 +7,7 @@ import { Interaction } from '../lib'
 
 const Markdown = dynamic(() => import('shared/ui/markdown'))
 const Priority = dynamic(() => import('./priority'))
-const ForTomorrow = dynamic(() => import('./forTomorrow'))
+const ForFuture = dynamic(() => import('./forFuture'))
 const CompletedByOthers = dynamic(() => import('./completedByOthers'))
 const TaskDate = dynamic(() => import('./taskDate'))
 
@@ -20,9 +20,9 @@ interface TaskProps {
 
 export function Task({ goalId, task, rest, interaction }: TaskProps) {
   const { id, date, completed } = task
-  const { forTomorrow, canEdit, daysGoneForOwner } = interaction
+  const { forFuture, canEdit, daysGoneForOwner } = interaction
   const setCompleted = useSetCompleted(goalId, id, rest)
-  const disabled = completed || forTomorrow || !canEdit
+  const disabled = completed || forFuture || !canEdit
   const { name, description, priority } = task
   const completedByOthers = !daysGoneForOwner && task.completedByOthers && !task.completed
 
@@ -36,7 +36,7 @@ export function Task({ goalId, task, rest, interaction }: TaskProps) {
               <Stack direction="row" alignItems="center" gap={1}>
                 {name}
                 {priority && <Priority priority={priority} />}
-                {forTomorrow && <ForTomorrow />}
+                {forFuture && <ForFuture />}
                 {completedByOthers && <CompletedByOthers />}
               </Stack>
               {description && <Markdown text={description} compact />}

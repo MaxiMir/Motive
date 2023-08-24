@@ -107,7 +107,7 @@ export function TaskField({
           sx={{ color: 'zen.silent' }}
           onClick={onRemove}
         >
-          <Icon name="close" />
+          <Icon name="delete" />
         </IconButton>
       </Stack>
       <Stack direction="row" alignItems="center" gap={1} pl={1} height={48}>

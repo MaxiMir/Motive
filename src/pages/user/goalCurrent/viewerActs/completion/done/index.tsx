@@ -10,13 +10,13 @@ const CreateConfirmationModal = dynamic(() => import('features/confirmation/crea
 
 interface DoneProps {
   goalId: number
-  forTomorrow: boolean
+  forFuture: boolean
 }
 
-function Done({ goalId, forTomorrow }: DoneProps) {
+function Done({ goalId, forFuture }: DoneProps) {
   const [open, toggle] = useToggle()
   const { formatMessage } = useIntl()
-  const title = formatMessage({ id: !forTomorrow ? 'common.done' : 'component.tooltip.tomorrow' })
+  const title = formatMessage({ id: !forFuture ? 'common.done' : 'component.available-later' })
 
   return (
     <>
@@ -25,7 +25,7 @@ function Done({ goalId, forTomorrow }: DoneProps) {
           size="small"
           variant="contained"
           color="warning"
-          disabled={forTomorrow}
+          disabled={forFuture}
           aria-haspopup="true"
           aria-expanded={open ? 'true' : undefined}
           onClick={toggle}

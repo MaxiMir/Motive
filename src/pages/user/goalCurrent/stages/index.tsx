@@ -19,7 +19,7 @@ function Stages({ goal, interaction }: StagesProps) {
   const { id, day, stages } = goal
   const [open, toggle] = useToggle()
   const { formatMessage } = useIntl()
-  const title = !interaction.forTomorrow ? '' : formatMessage({ id: 'component.tooltip.tomorrow' })
+  const title = !interaction.forFuture ? '' : formatMessage({ id: 'component.available-later' })
   const buttonText = formatMessage({ id: 'common.done' })
   const completeStage = interaction.ownerControls && goal.stage <= day.stage
 
@@ -42,7 +42,7 @@ function Stages({ goal, interaction }: StagesProps) {
                 <Button
                   size="small"
                   variant="outlined"
-                  disabled={interaction.forTomorrow}
+                  disabled={interaction.forFuture}
                   aria-haspopup="true"
                   aria-expanded={open ? 'true' : undefined}
                   title={buttonText}

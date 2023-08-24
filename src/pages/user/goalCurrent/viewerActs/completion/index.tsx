@@ -9,22 +9,22 @@ interface CompletionProps {
   goalId: number
   dayId: number
   calendar: CalendarDto[]
-  forTomorrow: boolean
+  forFuture: boolean
   viewerMemberId: number
 }
 
-function Completion({ goalId, dayId, calendar, forTomorrow, viewerMemberId }: CompletionProps) {
+function Completion({ goalId, dayId, calendar, forFuture, viewerMemberId }: CompletionProps) {
   const nextDayId = getNextDayId(dayId, calendar)
 
   return (
     <>
       {!nextDayId ? (
-        <Done goalId={goalId} forTomorrow={forTomorrow} />
+        <Done goalId={goalId} forFuture={forFuture} />
       ) : (
         <EndOfDay
           goalId={goalId}
           nextDayId={nextDayId}
-          forTomorrow={forTomorrow}
+          forFuture={forFuture}
           viewerMemberId={viewerMemberId}
         />
       )}

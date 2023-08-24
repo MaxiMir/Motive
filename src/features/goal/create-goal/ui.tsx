@@ -7,14 +7,12 @@ import {
   InputLabel,
   MenuItem,
   FormHelperText,
-  FormLabel,
   Select,
-  FormControlLabel,
-  RadioGroup,
-  Radio,
   SelectChangeEvent,
+  TextField,
 } from '@mui/material'
 import { styled } from '@mui/system'
+import { DatePicker } from '@mui/x-date-pickers/DatePicker'
 import { Field, FieldArray, Form, FormikProvider } from 'formik'
 import { useId } from 'react'
 import { useIntl } from 'react-intl'
@@ -23,7 +21,6 @@ import { useDetectMobile } from 'entities/device'
 import { TaskField } from 'entities/task'
 import { FRONTEND_ID } from 'shared/config'
 import { useFocus } from 'shared/lib/hooks'
-import { getMidnightISO, getTomorrowISO } from 'shared/lib/utils'
 import CancelButton from 'shared/ui/CancelButton'
 import Icon from 'shared/ui/Icon'
 import Input from 'shared/ui/Input'
@@ -42,14 +39,11 @@ interface CreateGoalModalProps {
 function CreateGoalModal({ onClose }: CreateGoalModalProps) {
   const sphereLabelId = useId()
   const { formatMessage } = useIntl()
-  const labelId = useId()
   const mobile = useDetectMobile()
   const [hashtagsRef, setHashtagsFocus] = useFocus()
   const form = useCreateGoalForm(onClose)
   const spheres = useSpheresList()
   const { isSubmitting, values, touched, errors, setFieldValue, handleSubmit } = form
-  const todayValue = getMidnightISO()
-  const tomorrowValue = getTomorrowISO()
   const disabledHashtag = values.hashtags.endsWith('#')
   const title = formatMessage({ id: 'page.user.modal-goal.title' })
   const nameLabel = formatMessage({ id: 'page.user.modal-goal.name' })
@@ -62,8 +56,6 @@ function CreateGoalModal({ onClose }: CreateGoalModalProps) {
   const stageButtonText = formatMessage({ id: 'page.user.modal-goal.stage-button' })
   const stageHint = formatMessage({ id: 'page.user.modal-goal.stage-hint' })
   const startHeader = formatMessage({ id: 'page.user.modal-goal.start' })
-  const todayLabel = formatMessage({ id: 'common.today' })
-  const tomorrowLabel = formatMessage({ id: 'common.tomorrow' })
   const tasksHeader = formatMessage({ id: 'page.user.modal-goal.tasks-header' })
   const addTaskText = formatMessage({ id: 'common.task-add' })
   const deleteText = formatMessage({ id: 'common.delete' })
@@ -76,6 +68,12 @@ function CreateGoalModal({ onClose }: CreateGoalModalProps) {
 
   const onChangeSphere = (e: SelectChangeEvent) => {
     setFieldValue('sphere', e.target.value)
+  }
+
+  const onChangeDate = (date: Date | null) => {
+    if (!date) return
+
+    setFieldValue('started', date)
   }
 
   return (
@@ -115,7 +113,7 @@ function CreateGoalModal({ onClose }: CreateGoalModalProps) {
                 # {hashtagText}
               </ButtonCompact>
             </Stack>
-            <StyledFormControl fullWidth error={sphereError}>
+            <StyledFormControl fullWidth>
               <InputLabel id={sphereLabelId}>{spheres.label}</InputLabel>
               <Select
                 name="sphere"
@@ -134,8 +132,18 @@ function CreateGoalModal({ onClose }: CreateGoalModalProps) {
                   </MenuItem>
                 ))}
               </Select>
-              <FormHelperText>{errors.sphere}</FormHelperText>
+              <FormHelperText error={sphereError}>{errors.sphere}</FormHelperText>
             </StyledFormControl>
+            <DatePicker
+              label={startHeader}
+              value={values.started}
+              disablePast
+              views={['day']}
+              renderInput={(inputProps) => (
+                <TextField size="small" {...inputProps} variant="outlined" />
+              )}
+              onChange={onChangeDate}
+            />
             <Stack gap={1}>
               <Stack direction="row" alignItems="center" gap={1}>
                 <Typography variant="h6" component="p">
@@ -166,7 +174,7 @@ function CreateGoalModal({ onClose }: CreateGoalModalProps) {
                             sx={{ color: 'zen.silent' }}
                             onClick={() => remove(index)}
                           >
-                            <Icon name="close" />
+                            <Icon name="delete" />
                           </IconButton>
                         </Box>
                       </Stack>
@@ -182,22 +190,9 @@ function CreateGoalModal({ onClose }: CreateGoalModalProps) {
                 )}
               </FieldArray>
             </Stack>
-            <FormControl variant="standard">
-              <FormLabel id={labelId}>{startHeader}</FormLabel>
-              <RadioGroup
-                name="started"
-                value={values.started}
-                aria-labelledby={labelId}
-                row
-                onChange={(e) => setFieldValue('started', e.target.value)}
-              >
-                <FormControlLabel label={todayLabel} value={todayValue} control={<Radio />} />
-                <FormControlLabel label={tomorrowLabel} value={tomorrowValue} control={<Radio />} />
-              </RadioGroup>
-            </FormControl>
             <Stack gap={2}>
               <Typography variant="h6" component="p">
-                <Icon name="keep_public" color="error.dark" /> {tasksHeader}
+                <Icon name="keep_public" color="error.light" /> {tasksHeader}
               </Typography>
               <FieldArray name="tasks">
                 {({ push, remove }) => (

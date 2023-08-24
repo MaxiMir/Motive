@@ -1,3 +1,4 @@
+import { formatISO, startOfDay } from 'date-fns'
 import { useFormik } from 'formik'
 import { produce } from 'immer'
 import { flushSync } from 'react-dom'
@@ -7,7 +8,6 @@ import { useGoalsCache } from 'entities/user'
 import { CreatedGoal, CreateGoalDto, GoalDto, createGoal } from 'shared/api'
 import { FRONTEND_ID } from 'shared/config'
 import { scrollToElem } from 'shared/lib/helpers'
-import { getMidnightISO } from 'shared/lib/utils'
 import { useSnackbar } from 'shared/ui/snackbar'
 import { GoalSchema } from './schema'
 
@@ -30,7 +30,7 @@ export function useCreateGoalForm(onSuccess: () => void) {
 
   return useFormik<CreateGoalDto>({
     initialValues: {
-      started: getMidnightISO(),
+      started: formatISO(startOfDay(new Date())),
       name: '',
       hashtags: '',
       sphere: undefined as never,

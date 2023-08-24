@@ -9,11 +9,11 @@ const Completion = dynamic(() => import('./completion'))
 
 interface ViewerActsProps {
   goal: GoalDto
-  forTomorrow: boolean
+  forFuture: boolean
   viewerPart: ViewerPart
 }
 
-function ViewerActs({ goal, forTomorrow, viewerPart }: ViewerActsProps) {
+function ViewerActs({ goal, forFuture, viewerPart }: ViewerActsProps) {
   const { id, day, viewerPoints, owner, calendar } = goal
   const completion = viewerPart.page && day.id === viewerPart.member?.dayId
 
@@ -28,7 +28,7 @@ function ViewerActs({ goal, forTomorrow, viewerPart }: ViewerActsProps) {
           goalId={id}
           dayId={day.id}
           calendar={calendar}
-          forTomorrow={forTomorrow}
+          forFuture={forFuture}
           viewerMemberId={viewerPart.member.id}
         />
       )}

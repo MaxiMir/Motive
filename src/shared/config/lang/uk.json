@@ -42,7 +42,6 @@
   "page.user.title-profile": "профіль на",
   "page.user.description": "Погляньте як {name} досягає цілей",
   "page.user.modal-tasks.title": "Додавання задач на день",
-  "page.user.modal-tasks.do-it": "Виконуємо",
   "page.user.modal-tasks.pitt": "Пам\"ятай про Старина Пітта!",
   "page.user.modal-tasks.tooltip": "Ви вже додали цілі на сьогодні",
   "page.user.modal-characteristic.creativity.header": "Окуляри креативності даються за",
@@ -128,7 +127,7 @@
   "component.share.share": "Поділитися у",
   "component.share.send": "Надіслати",
   "component.share.copy": "Копіювати посилання",
-  "component.tooltip.tomorrow": "Буде доступно завтра",
+  "component.available-later": "Буде доступно пізніше",
   "common.task": "Завдання",
   "component.task-field.placeholder": "Що слід зробити",
   "component.task-field.close": "Видалити завдання",
@@ -223,8 +222,6 @@
   "common.cancel": "Скасування",
   "common.soon": "Скоро",
   "common.ago": "назад",
-  "common.tomorrow": "Завтра",
-  "common.today": "Сьогодні",
   "common.yesterday": "Вчера",
   "common.format": "dd/MM/yyyy",
   "common.next-day": "Наступний день",
@@ -356,5 +353,7 @@
   "common.low": "Низький",
   "common.medium": "Середній",
   "common.high": "Високий",
-  "common.nope": "Відсутня"
+  "common.nope": "Відсутня",
+  "common.date": "Дата",
+  "common.date-selection": "Виберіть дату"
 }

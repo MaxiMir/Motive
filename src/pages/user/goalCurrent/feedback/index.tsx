@@ -9,10 +9,10 @@ interface FeedbackProps {
   goalId: number
   day: DayDto
   viewerGoal: boolean
-  forTomorrow: boolean
+  forFuture: boolean
 }
 
-export function Feedback({ goalId, day, forTomorrow, viewerGoal }: FeedbackProps) {
+export function Feedback({ goalId, day, forFuture, viewerGoal }: FeedbackProps) {
   return (
     <>
       {day.feedback ? (
@@ -22,7 +22,7 @@ export function Feedback({ goalId, day, forTomorrow, viewerGoal }: FeedbackProps
           {!viewerGoal ? (
             <Soon />
           ) : (
-            <Creating goalId={goalId} dayId={day.id} forTomorrow={forTomorrow} />
+            <Creating goalId={goalId} dayId={day.id} forFuture={forFuture} />
           )}
         </>
       )}

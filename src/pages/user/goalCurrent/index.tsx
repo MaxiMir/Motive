@@ -162,7 +162,7 @@ function GoalCurrent({ goal, viewerPage }: GoalCurrentProps) {
                       <Feedback
                         goalId={id}
                         day={day}
-                        forTomorrow={interaction.forTomorrow}
+                        forFuture={interaction.forFuture}
                         viewerGoal={viewerPart.goal}
                       />
                     }
@@ -178,7 +178,7 @@ function GoalCurrent({ goal, viewerPage }: GoalCurrentProps) {
                     {interaction.viewerControls && (
                       <ViewerActs
                         goal={goal}
-                        forTomorrow={interaction.forTomorrow}
+                        forFuture={interaction.forFuture}
                         viewerPart={viewerPart}
                       />
                     )}

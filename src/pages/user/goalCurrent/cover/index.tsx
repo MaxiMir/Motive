@@ -23,8 +23,8 @@ interface CoverProps {
 }
 
 export function Cover({ goal, interaction, viewerPart }: CoverProps) {
-  const { id, name, day, cover, sphere, started } = goal
-  const deletion = viewerPart.all && !differenceInCalendarDays(new Date(), Date.parse(started))
+  const { id, name, day, cover, sphere, created } = goal
+  const deletion = viewerPart.all && !differenceInCalendarDays(new Date(), Date.parse(created))
   const web = interaction.lastDay && interaction.daysGone >= SHOW_WEB_AFTER_DAYS
 
   return (

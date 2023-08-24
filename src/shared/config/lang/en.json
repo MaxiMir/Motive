@@ -42,7 +42,6 @@
   "page.user.title-profile": "profile on",
   "page.user.description": "See how {name} accomplishes goals",
   "page.user.modal-tasks.title": "Adding the day's tasks",
-  "page.user.modal-tasks.do-it": "Do it",
   "page.user.modal-tasks.pitt": "Remember Old Pitt!",
   "page.user.modal-tasks.tooltip": "You have already added goals for today",
   "page.user.modal-characteristic.creativity.header": "Creativity points are given for",
@@ -128,7 +127,7 @@
   "component.share.share": "Share to",
   "component.share.send": "Send to",
   "component.share.copy": "Copy Link",
-  "component.tooltip.tomorrow": "Will be available tomorrow",
+  "component.available-later": "Will be available later",
   "component.task-field.placeholder": "What should be done",
   "component.task-field.close": "Remove task",
   "component.task-field.remind": "remind me",
@@ -222,8 +221,6 @@
   "common.cancel": "Cancel",
   "common.soon": "Coming soon",
   "common.ago": "ago",
-  "common.tomorrow": "Tomorrow",
-  "common.today": "Today",
   "common.yesterday": "Yesterday",
   "common.format": "MM/dd/yyyy",
   "common.next-day": "Next Day",
@@ -356,5 +353,7 @@
   "common.low": "Low",
   "common.medium": "Medium",
   "common.high": "High",
-  "common.nope": "Nope"
+  "common.nope": "Nope",
+  "common.date": "Date",
+  "common.date-selection": "Select a date"
 }

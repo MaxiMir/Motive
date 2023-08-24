@@ -1,4 +1,4 @@
-import { formatISO } from 'date-fns'
+import { formatISO, startOfDay } from 'date-fns'
 import { useFormik } from 'formik'
 import { flushSync } from 'react-dom'
 import { useIntl } from 'react-intl'
@@ -6,7 +6,6 @@ import { useMutation } from 'react-query'
 import { useUserPage } from 'entities/page'
 import { createConfirmation } from 'shared/api'
 import { scrollToElem } from 'shared/lib/helpers'
-import { getMidnight } from 'shared/lib/utils'
 import { useSnackbar } from 'shared/ui/snackbar'
 import { ConfirmationSchema } from './schema'
 
@@ -41,7 +40,7 @@ export function useCreateConfirmationForm(goalId: number, onSuccess: () => void)
       photos: [],
       video: '',
       goalId,
-      end: getMidnight(),
+      end: startOfDay(new Date()),
     },
     validationSchema: ConfirmationSchema,
     onSubmit(data) {

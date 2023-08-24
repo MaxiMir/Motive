@@ -1,3 +1,4 @@
+import { startOfDay } from 'date-fns'
 import { useFormik } from 'formik'
 import { useMutation } from 'react-query'
 import { useRouter } from 'next/router'
@@ -5,7 +6,6 @@ import { useViewer } from 'entities/viewer'
 import { CreateMemberDto, createMember } from 'shared/api'
 import { SearchParam } from 'shared/config'
 import { joinToHref, setSearchParams } from 'shared/lib/helpers'
-import { getMidnight } from 'shared/lib/utils'
 import { memberSchema } from './schema'
 
 export const useCreateMemberForm = (goalId: number, dayId: number, onSuccess: () => void) => {
@@ -25,7 +25,7 @@ export const useCreateMemberForm = (goalId: number, dayId: number, onSuccess: ()
     initialValues: {
       goalId,
       dayId: dayId.toString(),
-      started: getMidnight(),
+      started: startOfDay(new Date()),
     },
     validationSchema: memberSchema,
     onSubmit(data) {

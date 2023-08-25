@@ -20,11 +20,11 @@ interface TaskProps {
 
 export function Task({ goalId, task, rest, interaction }: TaskProps) {
   const { id, date, completed } = task
-  const { forFuture, canEdit, daysGoneForOwner } = interaction
+  const { forFuture, canEdit, daysGone } = interaction
   const setCompleted = useSetCompleted(goalId, id, rest)
   const disabled = completed || forFuture || !canEdit
   const { name, description, priority } = task
-  const completedByOthers = !daysGoneForOwner && task.completedByOthers && !task.completed
+  const completedByOthers = !daysGone && task.completedByOthers && !task.completed
 
   return (
     <Stack gap={1}>

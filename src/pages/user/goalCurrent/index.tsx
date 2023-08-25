@@ -76,7 +76,7 @@ function GoalCurrent({ goal, viewerPage }: GoalCurrentProps) {
       >
         <Gradient padding="1px" height="100%" borderRadius="12px">
           <Underlay justifyContent="space-between" position="relative" height="100%">
-            <Cover goal={goal} interaction={interaction} viewerPart={viewerPart} />
+            <Cover goal={goal} viewerPart={viewerPart} />
             <Cont gap={2}>
               <Stack gap={1}>
                 <Stack>

@@ -10,6 +10,7 @@ export interface GoalBaseDto {
   readonly name: string
   readonly created: string
   readonly started: string
+  readonly updated: string
   readonly hashtags: string[]
   readonly stages: string[]
   readonly stage: number

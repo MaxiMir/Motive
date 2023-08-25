@@ -4,7 +4,6 @@ import { differenceInCalendarDays } from 'date-fns'
 import dynamic from 'next/dynamic'
 import { ViewerPart } from 'entities/viewer'
 import { GoalDto } from 'shared/api'
-import { Interaction } from '../lib'
 import { SHOW_WEB_AFTER_DAYS } from './consts'
 import { ShareDay } from './shareDay'
 import { SphereAvatar } from './sphereAvatar'
@@ -18,14 +17,14 @@ const Web = dynamic(() => import('./web'))
 
 interface CoverProps {
   goal: GoalDto
-  interaction: Interaction
   viewerPart: ViewerPart
 }
 
-export function Cover({ goal, interaction, viewerPart }: CoverProps) {
-  const { id, name, day, cover, sphere, created } = goal
-  const deletion = viewerPart.all && !differenceInCalendarDays(new Date(), Date.parse(created))
-  const web = interaction.daysGone >= SHOW_WEB_AFTER_DAYS
+export function Cover({ goal, viewerPart }: CoverProps) {
+  const { id, name, day, cover, sphere, created, updated } = goal
+  const today = new Date()
+  const deletion = viewerPart.all && !differenceInCalendarDays(today, Date.parse(created))
+  const web = differenceInCalendarDays(today, Date.parse(updated)) >= SHOW_WEB_AFTER_DAYS
 
   return (
     <Box position="relative" height={210} mb={3}>

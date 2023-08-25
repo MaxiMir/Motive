@@ -1,7 +1,7 @@
 import { Box, Stack, Typography } from '@mui/material'
 import { styled } from '@mui/system'
 import dynamic from 'next/dynamic'
-import { UserContext, UserLevel, UserNickname } from 'entities/user'
+import { UserContext, UserLevel } from 'entities/user'
 import { useViewer } from 'entities/viewer'
 import { ONLINE_SCORE_MAIN, SPHERES, UserPageDto } from 'shared/api'
 import Container from 'shared/ui/Container'
@@ -79,7 +79,9 @@ export function UserPage({ user }: UserViewProps) {
                 mb={1}
               >
                 <Box display="flex" alignItems="center" gap={1}>
-                  <UserNickname nickname={nickname} variant="h5" />
+                  <Typography variant="h5" component="p">
+                    {nickname}
+                  </Typography>
                   <UserLevel level={characteristic.level} />
                 </Box>
                 <Stack direction="row" alignItems="center" gap={1}>

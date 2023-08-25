@@ -1,6 +1,6 @@
 import { Box, Button, Stack, Typography } from '@mui/material'
 import Link from 'next/link'
-import { UserLevel, UserNickname } from 'entities/user'
+import { UserLevel } from 'entities/user'
 import { UserDto } from 'shared/api'
 import { joinToHref } from 'shared/lib/helpers'
 import Avatar from 'shared/ui/avatar'
@@ -23,7 +23,7 @@ function UserCard({ user, index }: UserCardProps) {
       <Button href={href} color="inherit" component={Link}>
         <Stack gap={0.5}>
           <Box display="flex" alignItems="center" gap={1}>
-            <UserNickname nickname={nickname} />
+            <Typography fontWeight={300}>{nickname}</Typography>
             <UserLevel level={characteristic.level} />
           </Box>
           <Typography fontSize={14} color="zen.silent">

@@ -39,7 +39,7 @@ export function Task({ goalId, task, rest, interaction }: TaskProps) {
                 {forFuture && <ForFuture />}
                 {completedByOthers && <CompletedByOthers />}
               </Stack>
-              {description && <Markdown text={description} compact />}
+              {description && <Markdown text={description} footnote />}
             </Stack>
           }
           checked={completed}

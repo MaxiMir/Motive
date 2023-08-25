@@ -21,7 +21,7 @@ function Stages({ goal, interaction }: StagesProps) {
   const { formatMessage } = useIntl()
   const title = !interaction.forFuture ? '' : formatMessage({ id: 'component.available-later' })
   const buttonText = formatMessage({ id: 'common.done' })
-  const completeStage = interaction.ownerControls && goal.stage <= day.stage
+  const completeStage = interaction.ownerControls && goal.stage <= day.stage && interaction.lastDay
 
   return (
     <>

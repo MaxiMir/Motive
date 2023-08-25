@@ -1,4 +1,4 @@
-import { Stack, Button, TextField } from '@mui/material'
+import { Stack, Button, TextField, Typography } from '@mui/material'
 import { DatePicker } from '@mui/x-date-pickers/DatePicker'
 import { FieldArray, Form, FormikProvider } from 'formik'
 import { useIntl } from 'react-intl'
@@ -31,6 +31,7 @@ function CreateDayModal({ goalId, lastDate, onClose }: CreateDayModalProps) {
   const loadingText = formatMessage({ id: 'common.creating' })
   const dateLabel = formatMessage({ id: 'common.date' })
   const pittText = formatMessage({ id: 'page.user.modal-tasks.pitt' })
+  const tasksHeader = formatMessage({ id: 'common.days-tasks' })
 
   const onChangeDate = (date: Date | null) => {
     if (!date) return
@@ -70,6 +71,9 @@ function CreateDayModal({ goalId, lastDate, onClose }: CreateDayModalProps) {
                 shouldDisableDate={(value) => lastDate === value.toISOString()}
                 onChange={onChangeDate}
               />
+              <Typography variant="h6" component="p">
+                <Icon name="keep_public" color="error.light" /> {tasksHeader}
+              </Typography>
               <FieldArray name="tasks">
                 {({ push, remove }) => (
                   <>

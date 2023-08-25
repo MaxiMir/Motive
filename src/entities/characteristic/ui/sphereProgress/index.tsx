@@ -1,4 +1,5 @@
 import { Avatar, Box, Chip, Stack, Typography } from '@mui/material'
+import { chipClasses } from '@mui/material/Chip'
 import { styled } from '@mui/system'
 import { useIntl } from 'react-intl'
 import { SphereDto } from 'shared/api'
@@ -108,6 +109,9 @@ const Digit = styled(Chip)(({ theme }) => ({
   bottom: 5,
   fontWeight: 'bold',
   backgroundColor: theme.palette.grey[theme.palette.mode === 'light' ? 200 : 800],
+  [`& .${chipClasses.label}`]: {
+    overflow: 'initial',
+  },
 }))
 
 const Title = styled('div')({

@@ -9,22 +9,24 @@ const Switch = dynamic(() => import('./switch'))
 interface MarkdownProps {
   text: string
   truncate?: boolean
-  compact?: boolean
+  footnote?: boolean
 }
 
-function Markdown({ text, truncate, compact }: MarkdownProps) {
+function Markdown({ text, truncate, footnote }: MarkdownProps) {
   const [open, toggle] = useToggle()
   const markdown = useMemo(() => toMarkdown(text), [text])
   const [ref, truncated] = useDetectTruncated()
   const breakCount = text.split('\r\n').length
   const renderSwitching = open ? true : truncate && (truncated || breakCount > 1)
+  const fontSize = footnote ? 12 : 'initial'
 
   return (
     <Stack alignItems="flex-start" gap={1}>
       <Box
         ref={ref}
-        sx={{
-          fontSize: compact ? 12 : 'initial',
+        sx={(theme) => ({
+          fontSize,
+          color: footnote ? theme.palette.text.disabled : 'common.white',
           '& > *:first-of-type': {
             display: '-webkit-box',
             WebkitLineClamp: truncate && !open ? '3' : 'unset',
@@ -33,6 +35,9 @@ function Markdown({ text, truncate, compact }: MarkdownProps) {
           },
           '& > *:not(:first-of-type)': {
             display: truncated || !open ? 'none' : '-webkit-box',
+          },
+          '& p': {
+            fontSize,
           },
           '& ul': {
             paddingLeft: 2,
@@ -44,7 +49,7 @@ function Markdown({ text, truncate, compact }: MarkdownProps) {
               listStylePosition: 'inside',
             },
           },
-        }}
+        })}
       >
         {markdown}
       </Box>

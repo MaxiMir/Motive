@@ -2,7 +2,7 @@ import { Typography, Grid, Box, Button, Stack } from '@mui/material'
 import { blueGrey } from '@mui/material/colors'
 import { useTheme } from '@mui/material/styles'
 import Link from 'next/link'
-import { UserLevel, UserNickname } from 'entities/user'
+import { UserLevel } from 'entities/user'
 import { UserDto } from 'shared/api'
 import { joinToHref } from 'shared/lib/helpers'
 import Avatar from 'shared/ui/avatar'
@@ -35,7 +35,7 @@ export function UserCard({ user, index }: UserCardProps) {
 
   return (
     <Box px={3} sx={{ backgroundColor: index % 2 === 0 ? theme.palette.underlay : blueGrey[900] }}>
-      <Grid container alignItems="center" sx={{ height: 75 }}>
+      <Grid container alignItems="center" sx={{ minHeight: 75 }}>
         <Grid item xs={2}>
           <Box display="flex" justifyContent="center" width={22}>
             <Typography variant={index <= 2 ? 'h5' : undefined} component="p">
@@ -50,7 +50,7 @@ export function UserCard({ user, index }: UserCardProps) {
             </Link>
             <Button href={href} color="inherit" component={Link}>
               <Stack>
-                <UserNickname nickname={nickname} />
+                <Typography fontWeight={300}>{nickname}</Typography>
                 <Typography fontSize={14} color="zen.silent">
                   {name}
                 </Typography>

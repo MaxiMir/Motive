@@ -56,7 +56,7 @@ function CreateGoalModal({ onClose }: CreateGoalModalProps) {
   const stageButtonText = formatMessage({ id: 'page.user.modal-goal.stage-button' })
   const stageHint = formatMessage({ id: 'page.user.modal-goal.stage-hint' })
   const startHeader = formatMessage({ id: 'page.user.modal-goal.start' })
-  const tasksHeader = formatMessage({ id: 'page.user.modal-goal.tasks-header' })
+  const tasksHeader = formatMessage({ id: 'common.days-tasks' })
   const addTaskText = formatMessage({ id: 'common.task-add' })
   const deleteText = formatMessage({ id: 'common.delete' })
   const sphereError = Boolean(errors.sphere && touched.sphere)

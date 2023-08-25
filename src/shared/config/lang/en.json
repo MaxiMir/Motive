@@ -72,7 +72,7 @@
   "page.user.modal-goal.stage-hint": "We recommend to divide large goals into stages. Add each stage in the field below.",
   "page.user.modal-goal.start": "Started from",
   "page.user.modal-goal.tasks-header": "Tasks for the day",
-  "page.user.modal-goal.message-created": "The goal is successfully created",
+  "page.user.modal-goal.message-created": "The goal is created",
   "page.user.modal-goal.message-deleted": "The goal deleted",
   "page.user.modal-leave.title": "Leave?",
   "page.user.modal-leave.button": "Leave",

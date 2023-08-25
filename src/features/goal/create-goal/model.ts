@@ -5,7 +5,7 @@ import { flushSync } from 'react-dom'
 import { useIntl } from 'react-intl'
 import { useMutation } from 'react-query'
 import { useGoalsCache } from 'entities/user'
-import { CreatedGoal, CreateGoalDto, GoalDto, createGoal } from 'shared/api'
+import { CreateGoalDto, GoalDto, createGoal } from 'shared/api'
 import { FRONTEND_ID } from 'shared/config'
 import { scrollToElem } from 'shared/lib/helpers'
 import { useSnackbar } from 'shared/ui/snackbar'
@@ -52,8 +52,8 @@ export function useCreateGoalForm(onSuccess: () => void) {
   })
 }
 
-function getNextState(goals: GoalDto[], goal: CreatedGoal) {
+function getNextState(goals: GoalDto[], goal: GoalDto) {
   return produce(goals, (draft) => {
-    draft.push({ ...goal, day: goal.days[0] })
+    draft.push(goal)
   })
 }

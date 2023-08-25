@@ -1,13 +1,13 @@
 import { CreateDayDto } from '../day'
 import { fetcher } from '../fetcher'
 import { getFilterParams } from '../filter'
-import { CreatedGoal, CreateGoalDto, GoalBaseDto, UpdateStageDto } from './dto'
+import { CreateGoalDto, GoalBaseDto, GoalDto, UpdateStageDto } from './dto'
 
-export function createDay(id: number, dto: CreateDayDto): Promise<CreatedGoal> {
+export function createDay(id: number, dto: CreateDayDto): Promise<GoalDto> {
   return fetcher.post(`/goals/${id}/days`, dto)
 }
 
-export function createGoal(dto: CreateGoalDto): Promise<CreatedGoal> {
+export function createGoal(dto: CreateGoalDto): Promise<GoalDto> {
   return fetcher.post('/goals', dto)
 }
 

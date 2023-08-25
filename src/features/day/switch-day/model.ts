@@ -17,7 +17,7 @@ export function useSwitchDay(goal: GoalDto) {
       },
     },
   )
-  const dateMap = getDateMap(calendar, day)
+  const dateMap = getDateMap(calendar)
   const dates = Object.keys(dateMap)
   const dayKey = getDayKey(day.date)
   const dayIndex = dates.findIndex((d) => d === dayKey)

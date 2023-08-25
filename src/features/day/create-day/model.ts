@@ -9,14 +9,13 @@ import { FRONTEND_ID } from 'shared/config'
 import { useSnackbar } from 'shared/ui/snackbar'
 import { DaySchema } from './schema'
 
-export function useCreateDayForm(goalId: number, dayDate: string, onSuccess: () => void) {
+export function useCreateDayForm(goalId: number, lastDate: string, onSuccess: () => void) {
   const { formatMessage } = useIntl()
   const { enqueueSnackbar } = useSnackbar()
   const [goals, mutateGoals] = useGoalsCache()
   const changeDayUrl = useChangeDayUrl()
   const { mutateAsync } = useMutation((dto: CreateDayDto) => createDay(goalId, dto), {
-    onSuccess({ days }) {
-      const day = days[days.length - 1]
+    onSuccess({ day }) {
       const message = formatMessage({ id: 'common.next-day-loading' })
       mutateGoals(getNextState(goals, goalId, day))
       changeDayUrl(goals, goalId, day.id)
@@ -27,7 +26,7 @@ export function useCreateDayForm(goalId: number, dayDate: string, onSuccess: () 
 
   return useFormik<CreateDayDto>({
     initialValues: {
-      date: formatISO(startOfDay(addDays(new Date(dayDate), 1))),
+      date: formatISO(startOfDay(addDays(new Date(lastDate), 1))),
       tasks: [
         {
           [FRONTEND_ID]: crypto.randomUUID(),

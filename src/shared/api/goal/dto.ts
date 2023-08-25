@@ -28,20 +28,13 @@ export interface CreateGoalDto extends Pick<GoalBaseDto, 'name' | 'started' | 's
 
 export interface GoalDto extends GoalBaseDto {
   readonly day: DayDto
-  readonly calendar: CalendarDto[]
+  readonly calendar: CalendarDto
   readonly completed: boolean
   readonly viewerPoints: number[]
   readonly member?: MemberDto
   readonly lastMembers: UserBaseDto[]
 }
 
-export interface CreatedGoal extends Omit<GoalDto, 'day'> {
-  readonly days: DayDto[]
-}
-
-export interface CalendarDto {
-  readonly id: number
-  readonly date: string
-}
+export type CalendarDto = Array<{ readonly id: number; readonly date: string }>
 
 export type UpdateStageDto = Pick<GoalBaseDto, 'stage'>

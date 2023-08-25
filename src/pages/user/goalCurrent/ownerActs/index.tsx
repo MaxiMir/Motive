@@ -1,8 +1,10 @@
 import { Stack } from '@mui/material'
 import { styled } from '@mui/system'
+import { formatISO } from 'date-fns'
 import { useState } from 'react'
 import { useIntl } from 'react-intl'
 import dynamic from 'next/dynamic'
+import { CalendarDto } from 'shared/api'
 import BlueButton from 'shared/ui/BlueButton'
 import Icon from 'shared/ui/Icon'
 import TooltipArrow from 'shared/ui/TooltipArrow'
@@ -15,16 +17,17 @@ interface OwnerActsProps {
   goalId: number
   stages: string[]
   dayStage: number
-  dayDate: string
+  calendar: CalendarDto
 }
 
-function OwnerActs({ goalId, stages, dayStage, dayDate }: OwnerActsProps) {
+function OwnerActs({ goalId, stages, dayStage, calendar }: OwnerActsProps) {
   const { formatMessage } = useIntl()
   const [modal, setModal] = useState<'tasks' | 'completion'>()
   const renderCompete = stages.length === dayStage
   const justifyContent = renderCompete ? 'space-between' : 'flex-end'
   const doneText = formatMessage({ id: 'common.done' })
   const nextText = formatMessage({ id: 'common.next' })
+  const lastDate = calendar.at(-1)?.date || formatISO(new Date())
 
   const onAddTasks = () => setModal('tasks')
 
@@ -49,7 +52,7 @@ function OwnerActs({ goalId, stages, dayStage, dayDate }: OwnerActsProps) {
         )}
       </Stack>
       {modal === 'tasks' && (
-        <CreateDayModal goalId={goalId} dayDate={dayDate} onClose={closeModal} />
+        <CreateDayModal goalId={goalId} lastDate={lastDate} onClose={closeModal} />
       )}
       {modal === 'completion' && <CreateConfirmationModal goalId={goalId} onClose={closeModal} />}
     </>

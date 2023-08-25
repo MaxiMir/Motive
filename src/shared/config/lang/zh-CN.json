@@ -72,7 +72,7 @@
   "page.user.modal-goal.stage-hint": "我们建议将大型目标分为几个阶段。在下面的字段中添加每个阶段。",
   "page.user.modal-goal.start": "开始于",
   "page.user.modal-goal.tasks-header": "当天的任务",
-  "page.user.modal-goal.message-created": "目标已成功创建",
+  "page.user.modal-goal.message-created": "创建目的",
   "page.user.modal-goal.message-deleted": "删除目标",
   "page.user.modal-leave.title": "离开？",
   "page.user.modal-leave.button": "离开",

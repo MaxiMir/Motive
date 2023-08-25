@@ -186,8 +186,8 @@ function GoalCurrent({ goal, viewerPage }: GoalCurrentProps) {
                       <OwnerActs
                         goalId={id}
                         stages={stages}
-                        dayDate={day.date}
                         dayStage={day.stage}
+                        calendar={calendar}
                       />
                     )}
                     <Views views={day.views} />

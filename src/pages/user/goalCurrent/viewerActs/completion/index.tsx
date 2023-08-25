@@ -8,7 +8,7 @@ const Done = dynamic(() => import('./done'))
 interface CompletionProps {
   goalId: number
   dayId: number
-  calendar: CalendarDto[]
+  calendar: CalendarDto
   forFuture: boolean
   viewerMemberId: number
 }

@@ -16,14 +16,14 @@ import { useCreateDayForm } from './model'
 
 interface CreateDayModalProps {
   goalId: number
-  dayDate: string
+  lastDate: string
   onClose: () => void
 }
 
-function CreateDayModal({ goalId, dayDate, onClose }: CreateDayModalProps) {
+function CreateDayModal({ goalId, lastDate, onClose }: CreateDayModalProps) {
   const { formatMessage } = useIntl()
   const mobile = useDetectMobile()
-  const form = useCreateDayForm(goalId, dayDate, onClose)
+  const form = useCreateDayForm(goalId, lastDate, onClose)
   const { isSubmitting, values, setFieldValue, handleSubmit } = form
   const title = formatMessage({ id: 'page.user.modal-tasks.title' })
   const addTaskText = formatMessage({ id: 'common.task-add' })
@@ -67,7 +67,7 @@ function CreateDayModal({ goalId, dayDate, onClose }: CreateDayModalProps) {
                 renderInput={(inputProps) => (
                   <TextField size="small" {...inputProps} variant="outlined" />
                 )}
-                shouldDisableDate={(value) => dayDate === value.toISOString()}
+                shouldDisableDate={(value) => lastDate === value.toISOString()}
                 onChange={onChangeDate}
               />
               <FieldArray name="tasks">

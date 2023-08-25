@@ -9,7 +9,7 @@ import { getBorders } from './lib'
 
 interface CalendarProps {
   dayDate: string
-  calendar: CalendarDto[]
+  calendar: CalendarDto
   runningDays: number
   isLoading: boolean
   shouldDisableDate: (value: Date) => boolean

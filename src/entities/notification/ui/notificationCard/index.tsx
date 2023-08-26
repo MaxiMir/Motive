@@ -1,4 +1,5 @@
 import { Avatar as MuiAvatar, Box, Button, Stack, Typography } from '@mui/material'
+import { styled } from '@mui/system'
 import { useIntl } from 'react-intl'
 import Link from 'next/link'
 import { NotificationDto } from 'shared/api'
@@ -27,19 +28,7 @@ export function NotificationCard({ notification, href, onClose }: NotificationCa
       <Stack direction="row" alignItems="center" gap={2} width="100%">
         <Box position="relative" height={55}>
           <Avatar src={avatar} name={name} size={55} />
-          <MuiAvatar
-            sx={(theme) => ({
-              position: 'absolute',
-              bottom: '-3px',
-              right: '2px',
-              width: 21,
-              height: 21,
-              backgroundColor: theme.palette.grey[800],
-              fontSize: 12,
-            })}
-          >
-            {emoji}
-          </MuiAvatar>
+          <AvatarNotification>{emoji}</AvatarNotification>
         </Box>
         <Stack>
           <Typography fontSize={14}>
@@ -56,3 +45,13 @@ export function NotificationCard({ notification, href, onClose }: NotificationCa
     </Button>
   )
 }
+
+const AvatarNotification = styled(MuiAvatar)(({ theme }) => ({
+  position: 'absolute',
+  bottom: '-3px',
+  right: '2px',
+  width: 21,
+  height: 21,
+  backgroundColor: theme.palette.grey[900],
+  fontSize: 14,
+}))

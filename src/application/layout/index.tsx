@@ -48,6 +48,7 @@ export function Layout({
   const url = localeHrefList[locale]
   const fullTitle = `${title} - ${process.env.NEXT_PUBLIC_APP_NAME}`
   const desktopUpdating = desktop && updating
+  const breakpoints = !device.type
 
   return (
     <>
@@ -84,12 +85,12 @@ export function Layout({
         <link rel="alternate" href={localeHrefList.en} hrefLang="x-default" />
       </Head>
       {mobile && <HeaderMobile type={type} fixed={fixed} updating={updating} />}
-      {desktop && <Sidebar breakpoints={!device} />}
+      {desktop && <Sidebar breakpoints={breakpoints} />}
       <Stack component="main" id="main" flex={1} sx={{ backgroundColor: '#121212' }}>
         {online ? children : <Offline />}
       </Stack>
-      {desktopUpdating && <Updating breakpoints={!device} />}
-      {desktop && <Footer breakpoints={!device} />}
+      {desktopUpdating && <Updating breakpoints={breakpoints} />}
+      {desktop && <Footer breakpoints={breakpoints} />}
       {mobile && <FooterMobile fixed={fixed} />}
     </>
   )

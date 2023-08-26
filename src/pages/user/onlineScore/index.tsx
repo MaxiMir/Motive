@@ -34,8 +34,7 @@ function OnlineScore({ score, value, userId, characteristic, confirmations }: On
     }
 
     const [confirmation] = confirmations
-    const { clickOnElem } = await import('shared/lib/helpers')
-    clickOnElem(`confirmation-${confirmation.id}`)
+    document.getElementById(`confirmation-${confirmation.id}`)?.click()
   }
 
   const onClose = () => setModal(undefined)

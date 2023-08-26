@@ -3,7 +3,6 @@ import { useIntl } from 'react-intl'
 import { useMutation } from 'react-query'
 import { useUserPageCache } from 'entities/user'
 import { MemberDto, UserPageDto, updateMember } from 'shared/api'
-import { clickOnElem } from 'shared/lib/helpers'
 import { useSnackbar } from 'shared/ui/snackbar'
 
 interface Options {
@@ -22,7 +21,7 @@ export function useSendEndOfDay(goalId: number) {
       const message = formatMessage({ id: 'common.next-day-loading' })
 
       mutatePage(getNextState(page, dto, goalId))
-      clickOnElem(`next-${goalId}`)
+      document.getElementById(`next-${goalId}`)?.click()
       enqueueSnackbar(message, { severity: 'success', icon: '🧞‍♂️️‍' })
     },
   })

@@ -1,4 +1,5 @@
 import { Box, Typography } from '@mui/material'
+import { styled } from '@mui/system'
 import { useIntl } from 'react-intl'
 import Link from 'next/link'
 import { Route } from 'shared/config'
@@ -10,13 +11,17 @@ function OwnerDescription() {
   const description = formatMessage({ id: 'page.user.owner-description.description' })
   const link = formatMessage({ id: 'page.user.owner-description.link' })
 
+  const onClick = () => {
+    document.querySelector<HTMLElement>(`[data-act=create-goal]`)?.click()
+  }
+
   return (
     <>
       <Typography>
         {title}{' '}
-        <Box component="span" color="primary">
+        <StyledTypography color="primary" component="span" onClick={onClick}>
           {subtitle}
-        </Box>
+        </StyledTypography>
       </Typography>
       <Typography>
         {description}{' '}
@@ -27,5 +32,9 @@ function OwnerDescription() {
     </>
   )
 }
+
+const StyledTypography = styled(Typography)({
+  cursor: 'pointer',
+}) as typeof Typography
 
 export default OwnerDescription

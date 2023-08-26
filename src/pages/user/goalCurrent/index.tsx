@@ -65,15 +65,15 @@ function GoalCurrent({ goal, viewerPage }: GoalCurrentProps) {
   const onClickNextDay = () => onChangeDate(next)
 
   return (
-    <ViewTrigger ownerId={owner.id} dayId={day.id}>
-      <Box
-        id={`goal-${id}`}
-        component="article"
-        display="grid"
-        gridTemplateRows="1fr auto"
-        marginBottom="10px"
-        sx={{ breakInside: 'avoid' }}
-      >
+    <Box
+      id={`goal-${id}`}
+      component="article"
+      display="grid"
+      gridTemplateRows="1fr auto"
+      marginBottom={2}
+      sx={{ breakInside: 'avoid' }}
+    >
+      <ViewTrigger ownerId={owner.id} dayId={day.id}>
         <Gradient padding="1px" height="100%" borderRadius="12px">
           <Underlay justifyContent="space-between" position="relative" height="100%">
             <Cover goal={goal} viewerPart={viewerPart} />
@@ -197,8 +197,8 @@ function GoalCurrent({ goal, viewerPage }: GoalCurrentProps) {
             </Cont>
           </Underlay>
         </Gradient>
-      </Box>
-    </ViewTrigger>
+      </ViewTrigger>
+    </Box>
   )
 }
 

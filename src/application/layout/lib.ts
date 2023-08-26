@@ -5,8 +5,8 @@ export function useLayout(device: Device) {
   const prevScrollTopRef = useRef(0)
   const [fixedState, setFixedState] = useState(true)
   const possibleDesktop = device.type === 'desktop'
-  const desktop = !device || possibleDesktop
-  const mobile = !device || !possibleDesktop
+  const desktop = !device.type || possibleDesktop
+  const mobile = !device.type || !possibleDesktop
   const fixed = useDeferredValue(fixedState)
 
   useEffect(() => {

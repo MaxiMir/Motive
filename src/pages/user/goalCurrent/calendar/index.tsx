@@ -46,6 +46,7 @@ export function Calendar({
       minDate={min}
       maxDate={max}
       closeOnSelect
+      showToolbar={false}
       renderInput={({ inputRef }) => (
         <Button
           ref={inputRef}

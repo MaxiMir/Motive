@@ -1,4 +1,5 @@
 import { Alert, Link as MuiLink, Stack } from '@mui/material'
+import { styled } from '@mui/system'
 import { SignInOptions } from 'next-auth/react'
 import { useIntl } from 'react-intl'
 import dynamic from 'next/dynamic'
@@ -25,7 +26,7 @@ function SignInModal({ options, onClose }: SignInModalProps) {
 
   return (
     <Modal title={title} maxWidth="xs" onClose={onClose}>
-      <Stack alignSelf="stretch" gap={2} minHeight={160}>
+      <Stack alignSelf="stretch" gap={2} minHeight={335}>
         {!providers ? (
           <Loader count={4} />
         ) : (
@@ -42,15 +43,21 @@ function SignInModal({ options, onClose }: SignInModalProps) {
             ))}
           </>
         )}
-        <Alert icon={false} severity="info" variant="outlined" sx={{ textAlign: 'center' }}>
+        <StyledAlert icon={false} severity="info" variant="outlined">
           {alertText}{' '}
           <MuiLink href={Route.PrivacyPolicy} underline="hover" component={Link} onClick={onClose}>
             {alertLink}
           </MuiLink>
-        </Alert>
+        </StyledAlert>
       </Stack>
     </Modal>
   )
 }
+
+const StyledAlert = styled(Alert)({
+  textAlign: 'center',
+  color: 'white',
+  borderColor: 'white',
+})
 
 export default SignInModal

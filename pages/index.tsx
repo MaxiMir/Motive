@@ -23,7 +23,7 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
   const session = await getSession(ctx)
   const viewer = session?.user as Viewer | undefined
 
-  if (!viewer) {
+  if (!viewer?.nickname) {
     return {
       props: {
         session,

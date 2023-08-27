@@ -1,4 +1,4 @@
-import { Stack } from '@mui/material'
+import { Box, Stack } from '@mui/material'
 import { useIntl } from 'react-intl'
 import dynamic from 'next/dynamic'
 import { useDetectMobile } from 'entities/device'
@@ -7,10 +7,10 @@ import { UserBaseDto } from 'shared/api'
 import Modal from 'shared/ui/Modal'
 import { useDiscussion } from './lib'
 
+const CreateTopic = dynamic(() => import('features/topic/create-topic'))
 const EmptyList = dynamic(() => import('./emptyList'))
 const Loader = dynamic(() => import('./loader'))
 const Topic = dynamic(() => import('./topic'))
-const TopicPanel = dynamic(() => import('./topicPanel'))
 
 interface DiscussionModalProps {
   dayId: number
@@ -38,13 +38,15 @@ function DiscussionModal({ dayId, count, owner, viewerGoal, onClose }: Discussio
         !viewer || isLoading
           ? undefined
           : [
-              <TopicPanel
-                dayId={dayId}
-                user={viewer}
-                owner={owner}
-                viewerGoal={viewerGoal}
-                key="panel"
-              />,
+              <Box pt={1} flex={1} key="panel">
+                <CreateTopic
+                  type={!viewerGoal ? 'question' : 'support'}
+                  dayId={dayId}
+                  owner={owner}
+                  user={viewer}
+                  viewerGoal={viewerGoal}
+                />
+              </Box>,
             ]
       }
       onClose={onClose}

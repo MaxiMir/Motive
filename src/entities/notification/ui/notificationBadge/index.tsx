@@ -12,7 +12,7 @@ export function NotificationBadge({ notifications }: NotificationBadgeProps) {
 
   return (
     <Badge color="error" badgeContent={readCount} variant="dot" invisible={false}>
-      <Icon name="notifications" />
+      <Icon name="notifications" color="grey" />
     </Badge>
   )
 }

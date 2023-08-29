@@ -25,7 +25,7 @@ function Notifications({ expanded }: NotificationsProps) {
         <TooltipArrow title={!expanded && primary} placement="right">
           <ListItem button onClick={toggle}>
             <ListItemIcon>
-              <NotificationBadge notifications={data} />
+              <NotificationBadge notifications={data} color="grey" />
             </ListItemIcon>
             <ListItemText primary={primary} />
           </ListItem>

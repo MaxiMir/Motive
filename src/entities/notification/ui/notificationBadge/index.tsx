@@ -5,14 +5,15 @@ import { getReadCount } from './lib'
 
 interface NotificationBadgeProps {
   notifications: NotificationDto[]
+  color?: string
 }
 
-export function NotificationBadge({ notifications }: NotificationBadgeProps) {
+export function NotificationBadge({ notifications, color }: NotificationBadgeProps) {
   const readCount = getReadCount(notifications)
 
   return (
     <Badge color="error" badgeContent={readCount} variant="dot" invisible={false}>
-      <Icon name="notifications" color="grey" />
+      <Icon name="notifications" color={color} />
     </Badge>
   )
 }

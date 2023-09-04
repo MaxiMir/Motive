@@ -2,7 +2,7 @@ import { produce, Draft } from 'immer'
 import { useIntl } from 'react-intl'
 import { useMutation } from 'react-query'
 import { useUserPageCache } from 'entities/user'
-import { MemberDto, UserPageDto, updateMember } from 'shared/api'
+import { UserPageDto, updateMember } from 'shared/api'
 import { useSnackbar } from 'shared/ui/snackbar'
 
 interface Options {
@@ -17,23 +17,19 @@ export function useSendEndOfDay(goalId: number) {
   const [page, mutatePage] = useUserPageCache()
 
   return useMutation(({ id, dayId, updated }: Options) => updateMember(id, { dayId, updated }), {
-    onSuccess(dto) {
+    onSuccess(res) {
       const message = formatMessage({ id: 'common.next-day-loading' })
+      const nextState = produce(page, (draft: Draft<UserPageDto>) => {
+        const draftGoal = draft.goals.find((g) => g.id === goalId)
 
-      mutatePage(getNextState(page, dto, goalId))
+        if (!draftGoal?.member) return
+
+        draftGoal.member.dayId = res.dayId
+        draftGoal.member.updated = res.updated
+      })
+      mutatePage(nextState)
       document.getElementById(`next-${goalId}`)?.click()
       enqueueSnackbar(message, { severity: 'success', icon: '🧞‍♂️️‍' })
     },
-  })
-}
-
-function getNextState(page: UserPageDto, member: MemberDto, goalId: number) {
-  return produce(page, (draft: Draft<UserPageDto>) => {
-    const draftGoal = draft.goals.find((g) => g.id === goalId)
-
-    if (!draftGoal?.member) return
-
-    draftGoal.member.dayId = member.dayId
-    draftGoal.member.updated = member.updated
   })
 }

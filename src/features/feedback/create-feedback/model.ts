@@ -3,7 +3,7 @@ import { produce } from 'immer'
 import { useIntl } from 'react-intl'
 import { useMutation } from 'react-query'
 import { useGoalsCache } from 'entities/user'
-import { GoalDto, FeedbackDto, createFeedback } from 'shared/api'
+import { createFeedback } from 'shared/api'
 import { useSnackbar } from 'shared/ui/snackbar'
 import { FeedbackSchema } from './schema'
 
@@ -18,9 +18,13 @@ export function useCreateFeedbackForm(goalId: number, dayId: number, onSuccess: 
   const { enqueueSnackbar } = useSnackbar()
   const [goals, mutateGoals] = useGoalsCache()
   const { mutateAsync } = useMutation(createFeedback, {
-    onSuccess: (feedback) => {
+    onSuccess: (res) => {
       const message = formatMessage({ id: 'page.user.modal-feedback.message' })
-      mutateGoals(getNextState(goals, goalId, feedback))
+      const nextState = produce(goals, (draft) => {
+        const draftGoal = draft[draft.findIndex((g) => g.id === goalId)]
+        draftGoal.day.feedback = res
+      })
+      mutateGoals(nextState)
       enqueueSnackbar(message, { severity: 'success', icon: '💭' })
       onSuccess()
     },
@@ -40,12 +44,5 @@ export function useCreateFeedbackForm(goalId: number, dayId: number, onSuccess: 
       data.photos.forEach((photo) => formData.append('photos', photo))
       return mutateAsync(formData).catch(() => false)
     },
-  })
-}
-
-function getNextState(goals: GoalDto[], goalId: number, feedback: FeedbackDto) {
-  return produce(goals, (draft) => {
-    const draftGoal = draft[draft.findIndex((g) => g.id === goalId)]
-    draftGoal.day.feedback = feedback
   })
 }

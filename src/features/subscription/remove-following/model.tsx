@@ -24,10 +24,15 @@ export function useRemoveFollowing() {
         const previous = queryClient.getQueryData<FollowingPageDto>(['page', Route.Following])
 
         if (previous) {
-          queryClient.setQueryData(
-            ['page', Route.Following],
-            getNextState(previous, dto, index, insert),
-          )
+          const nextState = produce(previous, (draft) => {
+            if (insert) {
+              draft.following.splice(index, 0, dto)
+              return
+            }
+
+            draft.following.splice(index, 1)
+          })
+          queryClient.setQueryData(['page', Route.Following], nextState)
         }
 
         return { previous }
@@ -67,15 +72,4 @@ export function useRemoveFollowing() {
   }
 
   return { isLoading, remove }
-}
-
-function getNextState(page: FollowingPageDto, user: UserDto, index: number, add: boolean) {
-  return produce(page, (draft) => {
-    if (add) {
-      draft.following.splice(index, 0, user)
-      return
-    }
-
-    draft.following.splice(index, 1)
-  })
 }

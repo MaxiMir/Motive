@@ -5,7 +5,7 @@ import { flushSync } from 'react-dom'
 import { useIntl } from 'react-intl'
 import { useMutation } from 'react-query'
 import { useGoalsCache } from 'entities/user'
-import { CreateGoalDto, GoalDto, createGoal } from 'shared/api'
+import { CreateGoalDto, createGoal } from 'shared/api'
 import { FRONTEND_ID } from 'shared/config'
 import { scrollToElem } from 'shared/lib/helpers'
 import { useSnackbar } from 'shared/ui/snackbar'
@@ -16,15 +16,18 @@ export function useCreateGoalForm(onSuccess: () => void) {
   const { enqueueSnackbar } = useSnackbar()
   const [goals, mutateGoals] = useGoalsCache()
   const { mutateAsync } = useMutation(createGoal, {
-    onSuccess(dto) {
+    onSuccess(res) {
       const message = formatMessage({ id: 'page.user.modal-goal.message-created' })
 
       flushSync(() => {
-        mutateGoals(getNextState(goals, dto))
+        const nextState = produce(goals, (draft) => {
+          draft.push(res)
+        })
+        mutateGoals(nextState)
         onSuccess()
         enqueueSnackbar(message, { severity: 'success', icon: '💎' })
       })
-      setTimeout(() => scrollToElem(`goal-${dto.id}`), 250)
+      setTimeout(() => scrollToElem(`goal-${res.id}`), 250)
     },
   })
 
@@ -49,11 +52,5 @@ export function useCreateGoalForm(onSuccess: () => void) {
     onSubmit(data) {
       return mutateAsync(data)
     },
-  })
-}
-
-function getNextState(goals: GoalDto[], goal: GoalDto) {
-  return produce(goals, (draft) => {
-    draft.push(goal)
   })
 }

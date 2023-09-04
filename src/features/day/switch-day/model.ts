@@ -1,7 +1,7 @@
 import { produce } from 'immer'
 import { useMutation } from 'react-query'
 import { useChangeDayUrl, useGoalsCache } from 'entities/user'
-import { GoalDto, DayDto, getDay, getMemberDay } from 'shared/api'
+import { GoalDto, getDay, getMemberDay } from 'shared/api'
 import { getDateMap, getDayKey } from './lib'
 
 export function useSwitchDay(goal: GoalDto) {
@@ -11,9 +11,13 @@ export function useSwitchDay(goal: GoalDto) {
   const { isLoading, mutate } = useMutation(
     (dayId: number) => (!member ? getDay(dayId) : getMemberDay(member.id, dayId)),
     {
-      onSuccess: (newDay) => {
-        mutateGoals(getNextState(goals, id, newDay))
-        changeDayUrl(goals, id, newDay.id)
+      onSuccess: (res) => {
+        const nextState = produce(goals, (draft) => {
+          const draftGoal = draft[draft.findIndex((g) => g.id === id)]
+          draftGoal.day = res
+        })
+        mutateGoals(nextState)
+        changeDayUrl(goals, id, res.id)
       },
     },
   )
@@ -45,11 +49,4 @@ export function useSwitchDay(goal: GoalDto) {
     onChangeDate,
     shouldDisableDate,
   }
-}
-
-function getNextState(goals: GoalDto[], goalId: number, day: DayDto): GoalDto[] {
-  return produce(goals, (draft) => {
-    const draftGoal = draft[draft.findIndex((g) => g.id === goalId)]
-    draftGoal.day = day
-  })
 }

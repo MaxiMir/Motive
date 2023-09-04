@@ -7,8 +7,8 @@ import { TopicSchema } from './schema'
 export function useCreateTopicForm(dayId: number, onSuccess: () => void) {
   const addTopic = useAddMessage()
   const { mutateAsync } = useMutation(createTopic, {
-    onSuccess(dto) {
-      addTopic(dto)
+    onSuccess(res) {
+      addTopic(res)
       onSuccess()
     },
   })

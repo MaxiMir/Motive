@@ -4,7 +4,7 @@ import { useIntl } from 'react-intl'
 import { useMutation } from 'react-query'
 import { useRouter } from 'next/router'
 import { useUserPageCache } from 'entities/user'
-import { UserPageDto, UpdateUserDto, UserBaseDto, getUsers, updateUser } from 'shared/api'
+import { UserPageDto, UpdateUserDto, getUsers, updateUser } from 'shared/api'
 import { getCurrentSearchParams, joinToHref, setSearchParams } from 'shared/lib/helpers'
 import { UserSchema } from './schema'
 
@@ -19,10 +19,18 @@ export function useEditProfileForm(user: UserPageDto, onSuccess: () => void) {
   const [page, mutatePage] = useUserPageCache()
   const nicknameError = formatMessage({ id: 'page.user.modal-profile.nickname-error' })
   const { mutateAsync } = useMutation(({ id, dto }: Options) => updateUser(id, dto), {
-    onSuccess(dto) {
-      const href = joinToHref(dto.nickname)
+    onSuccess(res) {
+      const href = joinToHref(res.nickname)
       const as = setSearchParams(href, getCurrentSearchParams())
-      mutatePage(getNextState(page, dto))
+      const nextState = produce(page, (draft) => {
+        draft.name = res.name
+        draft.nickname = res.nickname
+        draft.avatar = res.avatar
+        draft.motto = res.motto
+        draft.location = res.location
+        draft.bio = res.bio
+      })
+      mutatePage(nextState)
       push(as, as, { shallow: true }).then(onSuccess)
     },
   })
@@ -51,16 +59,5 @@ export function useEditProfileForm(user: UserPageDto, onSuccess: () => void) {
 
       await mutateAsync({ id, dto })
     },
-  })
-}
-
-function getNextState(page: UserPageDto, user: UserBaseDto) {
-  return produce(page, (draft) => {
-    draft.name = user.name
-    draft.nickname = user.nickname
-    draft.avatar = user.avatar
-    draft.motto = user.motto
-    draft.location = user.location
-    draft.bio = user.bio
   })
 }

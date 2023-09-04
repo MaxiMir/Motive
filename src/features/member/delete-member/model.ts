@@ -18,23 +18,20 @@ export function useDeleteMember(goalId: number, viewerPage: boolean) {
       if (!viewer) return
 
       const message = formatMessage({ id: 'page.user.modal-goal.message-deleted' })
-      queryClient.setQueriesData<UserPageDto | undefined>(
-        ['page', nickname],
-        (page) => page && getNextState(page, goalId, viewerPage),
+      queryClient.setQueriesData<UserPageDto | undefined>(['page', nickname], (page) =>
+        !page
+          ? undefined
+          : produce(page, (draft: Draft<UserPageDto>) => {
+              if (viewerPage) {
+                draft.goals = draft.goals.filter((g) => g.id !== goalId)
+                return
+              }
+
+              const draftGoal = draft.goals[draft.goals.findIndex((g) => g.id === goalId)]
+              draftGoal.members -= 1
+            }),
       )
       enqueueSnackbar(message, { severity: 'success', icon: '🧞‍♂️️‍' })
     },
-  })
-}
-
-function getNextState(page: UserPageDto, goalId: number, viewerPage: boolean) {
-  return produce(page, (draft: Draft<UserPageDto>) => {
-    if (viewerPage) {
-      draft.goals = draft.goals.filter((g) => g.id !== goalId)
-      return
-    }
-
-    const draftGoal = draft.goals[draft.goals.findIndex((g) => g.id === goalId)]
-    draftGoal.members -= 1
   })
 }

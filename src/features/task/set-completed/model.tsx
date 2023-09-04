@@ -5,7 +5,7 @@ import { useMutation } from 'react-query'
 import dynamic from 'next/dynamic'
 import { useUserPageCache } from 'entities/user'
 import { useViewer } from 'entities/viewer'
-import { UserPageDto, updateCompleted } from 'shared/api'
+import { updateCompleted } from 'shared/api'
 import { useSnackbar } from 'shared/ui/snackbar'
 
 const Button = dynamic(() => import('@mui/material/Button'))
@@ -32,7 +32,14 @@ export function useSetCompleted(goalId: number, id: number, rest: number) {
   }
 
   const mutateCompleted = (value: boolean) => {
-    mutatePage(getNextState(page, goalId, id, value))
+    const nextState = produce(page, (draft) => {
+      const draftGoals = draft.goals
+      const draftGoal = draftGoals[draftGoals.findIndex((g) => g.id === goalId)]
+      const draftTask = draftGoal.day.tasks[draftGoal.day.tasks.findIndex((t) => t.id === id)]
+      draftGoal.points += value ? 1 : 0
+      draftTask.completed = value
+    })
+    mutatePage(nextState)
   }
 
   return () => {
@@ -54,19 +61,4 @@ export function useSetCompleted(goalId: number, id: number, rest: number) {
       ),
     })
   }
-}
-
-function getNextState(
-  page: UserPageDto,
-  goalId: number,
-  taskId: number,
-  completed: boolean,
-): UserPageDto {
-  return produce(page, (draft) => {
-    const draftGoals = draft.goals
-    const draftGoal = draftGoals[draftGoals.findIndex((g) => g.id === goalId)]
-    const draftTask = draftGoal.day.tasks[draftGoal.day.tasks.findIndex((t) => t.id === taskId)]
-    draftGoal.points += completed ? 1 : 0
-    draftTask.completed = completed
-  })
 }

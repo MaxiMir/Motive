@@ -11,18 +11,17 @@ export function useUpdateRead() {
     onSuccess(_, id) {
       queryClient.setQueryData<NotificationDto[] | undefined>(
         ['notifications', viewer?.id],
-        (prev) => prev && getNextState(prev, id),
+        (prev) =>
+          !prev
+            ? undefined
+            : produce(prev, (draft) => {
+                const draftNotification = draft.find((d) => d.id === id)
+
+                if (!draftNotification) return
+
+                draftNotification.read = true
+              }),
       )
     },
-  })
-}
-
-function getNextState(notifications: NotificationDto[], id: number) {
-  return produce(notifications, (draft) => {
-    const draftNotification = draft.find((d) => d.id === id)
-
-    if (!draftNotification) return
-
-    draftNotification.read = true
   })
 }

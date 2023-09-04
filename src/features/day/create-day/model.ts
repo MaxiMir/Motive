@@ -4,7 +4,7 @@ import { produce } from 'immer'
 import { useIntl } from 'react-intl'
 import { useMutation } from 'react-query'
 import { useChangeDayUrl, useGoalsCache } from 'entities/user'
-import { GoalDto, CreateDayDto, DayDto, createDay } from 'shared/api'
+import { CreateDayDto, createDay } from 'shared/api'
 import { FRONTEND_ID } from 'shared/config'
 import { useSnackbar } from 'shared/ui/snackbar'
 import { DaySchema } from './schema'
@@ -17,7 +17,12 @@ export function useCreateDayForm(goalId: number, lastDate: string, onSuccess: ()
   const { mutateAsync } = useMutation((dto: CreateDayDto) => createDay(goalId, dto), {
     onSuccess({ day }) {
       const message = formatMessage({ id: 'common.next-day-loading' })
-      mutateGoals(getNextState(goals, goalId, day))
+      const nextState = produce(goals, (draft) => {
+        const draftGoal = draft[draft.findIndex((g) => g.id === goalId)]
+        draftGoal.calendar.push({ id: day.id, date: day.date })
+        draftGoal.day = day
+      })
+      mutateGoals(nextState)
       changeDayUrl(goals, goalId, day.id)
       enqueueSnackbar(message, { severity: 'success', icon: '🧞‍♂️️‍' })
       onSuccess()
@@ -41,13 +46,5 @@ export function useCreateDayForm(goalId: number, lastDate: string, onSuccess: ()
     onSubmit(data) {
       return mutateAsync(data)
     },
-  })
-}
-
-function getNextState(goals: GoalDto[], id: number, day: DayDto) {
-  return produce(goals, (draft) => {
-    const draftGoal = draft[draft.findIndex((g) => g.id === id)]
-    draftGoal.calendar.push({ id: day.id, date: day.date })
-    draftGoal.day = day
   })
 }

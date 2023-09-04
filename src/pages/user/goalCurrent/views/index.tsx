@@ -1,4 +1,4 @@
-import { Box, Button } from '@mui/material'
+import { Button } from '@mui/material'
 import { useIntl } from 'react-intl'
 import { useFormatNumber } from 'shared/lib/hooks'
 import Icon from 'shared/ui/Icon'
@@ -15,12 +15,10 @@ export function Views({ views }: ViewsProps) {
   const formattedViews = formatNumber(views)
 
   return (
-    <Box display="flex" justifyContent="flex-end">
-      <TooltipArrow title={title}>
-        <Button size="small" startIcon={<Icon name="visibility" />} sx={{ color: 'zen.silent' }}>
-          {formattedViews}
-        </Button>
-      </TooltipArrow>
-    </Box>
+    <TooltipArrow title={title}>
+      <Button size="small" startIcon={<Icon name="visibility" />} sx={{ color: 'zen.silent' }}>
+        {formattedViews}
+      </Button>
+    </TooltipArrow>
   )
 }

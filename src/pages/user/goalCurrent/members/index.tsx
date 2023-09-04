@@ -1,10 +1,9 @@
 import { Typography } from '@mui/material'
 import Chip, { chipClasses } from '@mui/material/Chip'
 import { Box, styled } from '@mui/system'
+import { UsersList } from 'entities/user'
 import { GoalDto } from 'shared/api'
 import { useFormatNumber, useWordDeclination } from 'shared/lib/hooks'
-import { AVATAR_SIZE, AVATAR_OFFSET_PX } from './const'
-import { Member } from './member'
 
 type MembersProps = Pick<GoalDto, 'members' | 'lastMembers'>
 
@@ -12,25 +11,12 @@ export function Members({ members, lastMembers }: MembersProps) {
   const name = useWordDeclination('members', members)
   const formatNumber = useFormatNumber()
   const countAll = formatNumber(members)
-  const shownCount = lastMembers?.length || 0
-  const width = AVATAR_SIZE * shownCount - (shownCount - 1) * AVATAR_OFFSET_PX
-  const offset = -(AVATAR_OFFSET_PX / 8)
 
   return (
     <StyledChip
       label={
-        <Box display="flex" alignItems="center" gap={1}>
-          <Box width={width}>
-            {lastMembers?.map((member, index) => (
-              <Member
-                member={member}
-                count={shownCount}
-                offset={offset}
-                index={index}
-                key={member.id}
-              />
-            ))}
-          </Box>
+        <Box display="flex" alignItems="center" gap={0.5}>
+          <UsersList users={lastMembers} />
           <Typography variant="caption" color="zen.silent">
             {countAll} {name}
           </Typography>

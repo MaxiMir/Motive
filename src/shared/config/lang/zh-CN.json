@@ -110,8 +110,6 @@
   "page.user.modal-stage.title-next": "下一个阶段是",
   "page.user.like-button.goal-message": "你已经增加了目标的支持点",
   "page.user.like-button.user-message": "你已经增加了{value}支持点",
-  "page.user.topic.title-increase": "增加点",
-  "page.user.topic.title-decrease": "减少点",
   "page.user.topic.message": "您增加了目标的点数",
   "page.user.views.title": "今天的观点",
   "page.404.title": "错误404 - 找不到网页",
@@ -280,9 +278,8 @@
   "common.completing": "完成",
   "common.send": "发送",
   "common.sending": "发送中",
-  "common.helpful": "你不能喜欢自己",
+  "common.like-yourself": "你不能喜欢自己",
   "common.like": "喜欢",
-  "common.unlike": "不喜欢",
   "common.motto": "座右铭",
   "common.location": "位置",
   "common.bio": "生物",
@@ -355,5 +352,6 @@
   "common.high": "高",
   "common.nope": "缺席",
   "common.date": "日期",
-  "common.date-selection": "选择日期"
+  "common.date-selection": "选择日期",
+  "common.liked": "喜欢"
 }

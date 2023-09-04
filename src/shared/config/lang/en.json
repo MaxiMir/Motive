@@ -110,8 +110,6 @@
   "page.user.modal-stage.title-next": "Next stage is",
   "page.user.like-button.goal-message": "You have increased goal's support points",
   "page.user.like-button.user-message": "You have increased {value} support points",
-  "page.user.topic.title-increase": "Increase points",
-  "page.user.topic.title-decrease": "Decrease points",
   "page.user.topic.message": "You have increased goal's points",
   "page.user.views.title": "Day Views",
   "page.404.title": "Error 404 - Page not found",
@@ -280,9 +278,8 @@
   "common.completing": "Completing",
   "common.send": "Send",
   "common.sending": "Sending",
-  "common.helpful": "You can't like yourself",
+  "common.like-yourself": "You can't like yourself",
   "common.like": "Like",
-  "common.unlike": "Unlike",
   "common.motto": "Motto",
   "common.location": "Location",
   "common.bio": "Bio",
@@ -355,5 +352,6 @@
   "common.high": "High",
   "common.nope": "Nope",
   "common.date": "Date",
-  "common.date-selection": "Select a date"
+  "common.date-selection": "Select a date",
+  "common.liked": "liked"
 }

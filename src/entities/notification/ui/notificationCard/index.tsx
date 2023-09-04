@@ -48,8 +48,8 @@ export function NotificationCard({ notification, href, onClose }: NotificationCa
 
 const AvatarNotification = styled(MuiAvatar)(({ theme }) => ({
   position: 'absolute',
-  bottom: '-3px',
-  right: '2px',
+  bottom: -3,
+  right: 2,
   width: 21,
   height: 21,
   backgroundColor: theme.palette.grey[900],

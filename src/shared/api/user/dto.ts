@@ -9,7 +9,7 @@ export interface UserBaseDto {
   readonly nickname: string
   readonly avatar?: string | null
   readonly email?: string | null
-  readonly authId: string
+  readonly authId?: string
   readonly online?: boolean | null
   readonly lastSeen?: string | null
   readonly device?: Device | null

@@ -33,7 +33,7 @@ export interface GoalDto extends GoalBaseDto {
   readonly completed: boolean
   readonly viewerPoints: number[]
   readonly member?: MemberDto
-  readonly lastMembers: UserBaseDto[]
+  readonly lastMembers?: UserBaseDto[]
 }
 
 export type CalendarDto = Array<{ readonly id: number; readonly date: string }>

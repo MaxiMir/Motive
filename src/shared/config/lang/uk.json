@@ -110,8 +110,6 @@
   "page.user.modal-stage.title-next": "Наступний етап",
   "page.user.like-button.goal-message": "Ви збільшили очки підтримки для цілі",
   "page.user.like-button.user-message": "Ви збільшили очки підтримки {value}",
-  "page.user.topic.title-increase": "Збільшити окуляри",
-  "page.user.topic.title-decrease": "Зменшити окуляри",
   "page.user.topic.message": "Ви збільшили очки цілі",
   "page.user.views.title": "Переглядів дня",
   "page.404.title": "Помилка 404 - Сторінку не знайдено",
@@ -280,9 +278,8 @@
   "common.completing": "Завершаю",
   "common.send": "Відправити",
   "common.sending": "Надсилаю",
-  "common.helpful": "Ви не можете лайкати себе",
+  "common.like-yourself": "Ви не можете лайкати себе",
   "common.like": "Лайк",
-  "common.unlike": "Прибрати лайк",
   "common.motto": "Девіз",
   "common.location": "Місто",
   "common.bio": "Про себе",
@@ -355,5 +352,6 @@
   "common.high": "Високий",
   "common.nope": "Відсутня",
   "common.date": "Дата",
-  "common.date-selection": "Виберіть дату"
+  "common.date-selection": "Виберіть дату",
+  "common.liked": "сподобалось"
 }

@@ -110,8 +110,6 @@
   "page.user.modal-stage.title-next": "Следующий этап",
   "page.user.like-button.goal-message": "Вы увеличили очки поддержки для цели",
   "page.user.like-button.user-message": "Вы увеличили очки поддержки {value}",
-  "page.user.topic.title-increase": "Увеличить очки",
-  "page.user.topic.title-decrease": "Уменьшить очки",
   "page.user.topic.message": "Вы увеличили очки цели",
   "page.user.views.title": "Просмотров дня",
   "page.404.title": "Ошибка 404 - Страница не найдена",
@@ -280,9 +278,8 @@
   "common.completing": "Завершаю",
   "common.send": "Отправить",
   "common.sending": "Отправляю",
-  "common.helpful": "Вы не можете лайкать себя",
+  "common.like-yourself": "Вы не можете лайкать себя",
   "common.like": "Лайк",
-  "common.unlike": "Убрать лайк",
   "common.motto": "Девиз",
   "common.location": "Город",
   "common.bio": "О себе",
@@ -355,6 +352,7 @@
   "common.high": "Высокий",
   "common.nope": "Отсутствует",
   "common.date": "Дата",
-  "common.date-selection": "Выберите дату"
+  "common.date-selection": "Выберите дату",
+  "common.liked": "понравилось"
 }
 

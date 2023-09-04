@@ -2,7 +2,7 @@ import { produce } from 'immer'
 import { useIntl } from 'react-intl'
 import { useMutation, useQueryClient } from 'react-query'
 import { useUserContext } from 'entities/user'
-import { useViewerAct } from 'entities/viewer'
+import { useViewer, useViewerAct } from 'entities/viewer'
 import { UserPageDto, updatePoints } from 'shared/api'
 import { useSnackbar } from 'shared/ui/snackbar'
 
@@ -12,6 +12,7 @@ interface Options {
 
 export function useUpdatePoints(goalId: number, dayId: number, active: boolean) {
   const { formatMessage } = useIntl()
+  const viewer = useViewer()
   const queryClient = useQueryClient()
   const { nickname } = useUserContext()
   const { enqueueSnackbar } = useSnackbar()
@@ -22,10 +23,23 @@ export function useUpdatePoints(goalId: number, dayId: number, active: boolean) 
         await queryClient.cancelQueries(['page', nickname])
         const previous = queryClient.getQueryData<UserPageDto>(['page', nickname])
 
-        if (previous) {
+        if (previous && viewer) {
           queryClient.setQueryData(
             ['page', nickname],
-            getNextState(previous, goalId, dayId, insert),
+            produce(previous, (draft) => {
+              const draftGoals = draft.goals
+              const draftGoal = draftGoals[draftGoals.findIndex((g) => g.id === goalId)]
+              draftGoal.points += insert ? 1 : -1
+              draftGoal.day.points += insert ? 1 : -1
+              draftGoal.day.pointsRated += insert ? 1 : -1
+              draftGoal.day.lastRated ??= []
+              draftGoal.day.lastRated = insert
+                ? [viewer, ...draftGoal.day.lastRated]
+                : draftGoal.day.lastRated.filter((r) => r.id !== viewer?.id)
+              draftGoal.viewerPoints = insert
+                ? [...draftGoal.viewerPoints, dayId]
+                : draftGoal.viewerPoints.filter((r) => r !== dayId)
+            }),
           )
         }
 
@@ -48,17 +62,4 @@ export function useUpdatePoints(goalId: number, dayId: number, active: boolean) 
   const onClick = useViewerAct(() => mutate({ insert: !active }))
 
   return { isLoading, onClick }
-}
-
-function getNextState(page: UserPageDto, goalId: number, dayId: number, insert: boolean) {
-  return produce(page, (draft) => {
-    const draftGoals = draft.goals
-    const draftGoal = draftGoals[draftGoals.findIndex((g) => g.id === goalId)]
-    draftGoal.points += insert ? 1 : -1
-    draftGoal.day.points += insert ? 1 : -1
-    draftGoal.day.pointsRated += insert ? 1 : -1
-    draftGoal.viewerPoints = insert
-      ? [...draftGoal.viewerPoints, dayId]
-      : draftGoal.viewerPoints.filter((r) => r !== dayId)
-  })
 }

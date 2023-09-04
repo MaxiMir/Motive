@@ -4,7 +4,6 @@ import { styled } from '@mui/system'
 import { useIntl } from 'react-intl'
 import dynamic from 'next/dynamic'
 import { GoalDto } from 'shared/api'
-import { useFormatNumber } from 'shared/lib/hooks'
 import Icon from 'shared/ui/Icon'
 import TooltipArrow from 'shared/ui/TooltipArrow'
 import { useUpdatePoints } from './model'
@@ -19,9 +18,7 @@ function UpdatePoints({ goalId, day, viewerPoints }: UpdatePointsProps) {
   const { formatMessage } = useIntl()
   const active = !!viewerPoints?.some((d) => d === day.id)
   const { isLoading, onClick } = useUpdatePoints(goalId, day.id, active)
-  const title = formatMessage({ id: `page.user.topic.title-${active ? 'decrease' : 'increase'}` })
-  const formatNumber = useFormatNumber()
-  const shownCount = formatNumber(day.pointsRated)
+  const title = formatMessage({ id: 'common.like' })
   const iconColor = active ? red[800] : undefined
 
   return (
@@ -43,16 +40,15 @@ function UpdatePoints({ goalId, day, viewerPoints }: UpdatePointsProps) {
           backgroundColor: active ? '#3E2526' : '#2b2d31',
         })}
         onClick={onClick}
-      >
-        {shownCount}
-      </StyledButton>
+      />
     </TooltipArrow>
   )
 }
 
 const StyledButton = styled(Button)({
-  minWidth: 55,
+  minWidth: 50,
   height: 30,
+  paddingRight: 0,
   borderRadius: 20,
   border: 'none',
   transition: 'all .3s',

@@ -16,6 +16,7 @@ import { Feedback } from './feedback'
 import { getInteraction } from './lib'
 import { Members } from './members'
 import { Points } from './points'
+import { Rated } from './rated'
 import { SphereType } from './sphereType'
 import { Task } from './task'
 import { Views } from './views'
@@ -190,7 +191,10 @@ function GoalCurrent({ goal, viewerPage }: GoalCurrentProps) {
                         calendar={calendar}
                       />
                     )}
-                    <Views views={day.views} />
+                    <Box display="flex" justifyContent="space-between" alignItems="center" flex={1}>
+                      <Rated pointsRated={day.pointsRated} lastRated={day.lastRated} />
+                      <Views views={day.views} />
+                    </Box>
                   </Stack>
                 </StyledCard>
               </Stack>

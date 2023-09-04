@@ -29,10 +29,10 @@ function Stages({ goal, interaction }: StagesProps) {
         {stages.map((stage, index) => (
           <Box display="flex" justifyContent="space-between" alignItems="center" key={stage}>
             <FormControlLabel
-              value="female"
               control={<Radio readOnly />}
               label={stage}
               checked={day.stage > index}
+              disabled
               sx={{
                 color: day.stage > index ? '#308fe8' : 'zen.silent',
               }}

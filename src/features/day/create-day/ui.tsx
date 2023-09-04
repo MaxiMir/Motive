@@ -5,6 +5,7 @@ import { useIntl } from 'react-intl'
 import { PittRules } from 'entities/characteristic'
 import { useDetectMobile } from 'entities/device'
 import { TaskField } from 'entities/task'
+import { CalendarDto } from 'shared/api'
 import { FRONTEND_ID } from 'shared/config'
 import Accordion from 'shared/ui/Accordion'
 import CancelButton from 'shared/ui/CancelButton'
@@ -12,18 +13,20 @@ import Icon from 'shared/ui/Icon'
 import { Pitt } from 'shared/ui/icons'
 import Modal from 'shared/ui/Modal'
 import SubmitButton from 'shared/ui/SubmitButton'
+import { getInitialDate } from './lib'
 import { useCreateDayForm } from './model'
 
 interface CreateDayModalProps {
   goalId: number
-  lastDate: string
+  calendar: CalendarDto
   onClose: () => void
 }
 
-function CreateDayModal({ goalId, lastDate, onClose }: CreateDayModalProps) {
+function CreateDayModal({ goalId, calendar, onClose }: CreateDayModalProps) {
   const { formatMessage } = useIntl()
   const mobile = useDetectMobile()
-  const form = useCreateDayForm(goalId, lastDate, onClose)
+  const initialDate = getInitialDate(calendar)
+  const form = useCreateDayForm(goalId, initialDate, onClose)
   const { isSubmitting, values, setFieldValue, handleSubmit } = form
   const title = formatMessage({ id: 'page.user.modal-tasks.title' })
   const addTaskText = formatMessage({ id: 'common.task-add' })
@@ -68,7 +71,7 @@ function CreateDayModal({ goalId, lastDate, onClose }: CreateDayModalProps) {
                 renderInput={(inputProps) => (
                   <TextField size="small" {...inputProps} variant="outlined" />
                 )}
-                shouldDisableDate={(value) => lastDate === value.toISOString()}
+                shouldDisableDate={(value) => initialDate === value.toISOString()}
                 onChange={onChangeDate}
               />
               <Typography variant="h6" component="p">

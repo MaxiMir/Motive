@@ -1,4 +1,3 @@
-import { addDays, formatISO, startOfDay } from 'date-fns'
 import { useFormik } from 'formik'
 import { produce } from 'immer'
 import { useIntl } from 'react-intl'
@@ -9,7 +8,7 @@ import { FRONTEND_ID } from 'shared/config'
 import { useSnackbar } from 'shared/ui/snackbar'
 import { DaySchema } from './schema'
 
-export function useCreateDayForm(goalId: number, lastDate: string, onSuccess: () => void) {
+export function useCreateDayForm(goalId: number, date: string, onSuccess: () => void) {
   const { formatMessage } = useIntl()
   const { enqueueSnackbar } = useSnackbar()
   const [goals, mutateGoals] = useGoalsCache()
@@ -31,7 +30,7 @@ export function useCreateDayForm(goalId: number, lastDate: string, onSuccess: ()
 
   return useFormik<CreateDayDto>({
     initialValues: {
-      date: formatISO(startOfDay(addDays(new Date(lastDate), 1))),
+      date,
       tasks: [
         {
           [FRONTEND_ID]: crypto.randomUUID(),

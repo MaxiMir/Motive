@@ -1,6 +1,5 @@
 import { Stack } from '@mui/material'
 import { styled } from '@mui/system'
-import { formatISO } from 'date-fns'
 import { useState } from 'react'
 import { useIntl } from 'react-intl'
 import dynamic from 'next/dynamic'
@@ -27,7 +26,6 @@ function OwnerActs({ goalId, stages, dayStage, calendar }: OwnerActsProps) {
   const justifyContent = renderCompete ? 'space-between' : 'flex-end'
   const doneText = formatMessage({ id: 'common.done' })
   const nextText = formatMessage({ id: 'common.next' })
-  const lastDate = calendar.at(-1)?.date || formatISO(new Date())
 
   const onAddTasks = () => setModal('tasks')
 
@@ -52,7 +50,7 @@ function OwnerActs({ goalId, stages, dayStage, calendar }: OwnerActsProps) {
         )}
       </Stack>
       {modal === 'tasks' && (
-        <CreateDayModal goalId={goalId} lastDate={lastDate} onClose={closeModal} />
+        <CreateDayModal goalId={goalId} calendar={calendar} onClose={closeModal} />
       )}
       {modal === 'completion' && <CreateConfirmationModal goalId={goalId} onClose={closeModal} />}
     </>

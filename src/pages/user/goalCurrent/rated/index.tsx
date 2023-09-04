@@ -11,10 +11,11 @@ export function Rated({ pointsRated, lastRated }: RatedProps) {
   const formatNumber = useFormatNumber()
   const countAll = formatNumber(pointsRated)
   const likedText = formatMessage({ id: 'common.liked' })
+  const users = lastRated?.slice(0, 3)
 
   return (
     <Box display="flex" alignItems="center" gap={0.5}>
-      <UsersList users={lastRated} />
+      <UsersList users={users} />
       <Typography fontSize={13} color="zen.silent">
         {countAll} {likedText}
       </Typography>

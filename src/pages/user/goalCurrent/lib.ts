@@ -4,21 +4,18 @@ import { GoalDto } from 'shared/api'
 
 export type Interaction = ReturnType<typeof getInteraction>
 
-export function getInteraction(goal: GoalDto, viewerPart: ViewerPart) {
+export function getInteraction(goal: GoalDto, part: ViewerPart) {
   const { day, completed, calendar } = goal
-  const midnight = startOfDay(new Date())
   const daysGone = differenceInCalendarDays(new Date(), Date.parse(day.date))
 
   return {
     daysGone,
-    canEdit: !viewerPart.member
-      ? viewerPart.all
-      : viewerPart.page && viewerPart.member.dayId === day.id,
-    forFuture: !viewerPart.member
+    canEdit: !part.member ? part.all : part.page && part.member.dayId === day.id,
+    forFuture: !part.member
       ? daysGone <= -1
-      : differenceInCalendarDays(Date.parse(viewerPart.member.updated), midnight) > 0,
+      : differenceInCalendarDays(Date.parse(part.member.updated), startOfDay(new Date())) >= 0,
     lastDay: calendar?.at(-1)?.date === day.date,
-    viewerControls: !viewerPart.goal,
-    ownerControls: !viewerPart.goal ? false : viewerPart.page && !completed,
+    viewerControls: !part.goal,
+    ownerControls: !part.goal ? false : part.page && !completed,
   }
 }

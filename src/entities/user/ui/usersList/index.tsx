@@ -1,33 +1,31 @@
 import { Box } from '@mui/material'
 import { UserBaseDto } from 'shared/api'
-import { AvatarLink } from './avatarLink'
+import { UserLink } from './userLink'
 
-const AVATAR_SIZE = 30
-const AVATAR_OFFSET_PX = 8
-
-interface UsersListProps {
+interface UserGroupProps {
   users?: UserBaseDto[]
+  chip?: boolean
 }
 
-export function UsersList({ users }: UsersListProps) {
+export function UserGroup({ users, chip }: UserGroupProps) {
   const shownCount = users?.length || 0
-  const width = AVATAR_SIZE * shownCount - (shownCount - 1) * AVATAR_OFFSET_PX
-  const offset = -(AVATAR_OFFSET_PX / 8)
+  const offset = -1.2
 
   return (
-    <Box width={width}>
+    <div>
       {users?.map((user, index) => (
         <Box
           display="inline"
           sx={{
+            position: 'relative',
             marginLeft: !index ? undefined : offset,
             zIndex: shownCount - index,
           }}
           key={user.id}
         >
-          <AvatarLink user={user} key={user.nickname} />
+          <UserLink user={user} chip={chip} key={user.nickname} />
         </Box>
       ))}
-    </Box>
+    </div>
   )
 }

@@ -1,8 +1,10 @@
 import { Box, Typography } from '@mui/material'
 import { useIntl } from 'react-intl'
-import { UsersList } from 'entities/user'
+import dynamic from 'next/dynamic'
 import { DayDto } from 'shared/api'
 import { useFormatNumber } from 'shared/lib/hooks'
+
+const UserGroup = dynamic(() => import('entities/user').then((m) => m.UserGroup))
 
 type RatedProps = Pick<DayDto, 'pointsRated' | 'lastRated'>
 
@@ -15,7 +17,7 @@ export function Rated({ pointsRated, lastRated }: RatedProps) {
 
   return (
     <Box display="flex" alignItems="center" gap={0.5}>
-      <UsersList users={users} />
+      {pointsRated && <UserGroup users={users} />}
       <Typography fontSize={13} color="zen.silent">
         {countAll} {likedText}
       </Typography>

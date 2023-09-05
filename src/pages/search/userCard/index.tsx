@@ -1,4 +1,4 @@
-import { Typography, Button, Stack } from '@mui/material'
+import { Typography, Button, Stack, Box } from '@mui/material'
 import Link from 'next/link'
 import { UserLevel } from 'entities/user'
 import { UserDto } from 'shared/api'
@@ -26,16 +26,18 @@ function UserCard({ user }: UserCardProps) {
     >
       <Stack alignItems="center" direction={{ xs: 'column', md: 'column' }} gap={2}>
         <Avatar src={avatar} name={name} size={120} />
-        <Typography
-          color="common.white"
-          textOverflow="ellipsis"
-          whiteSpace="nowrap"
-          overflow="hidden"
-          maxWidth={150}
-        >
-          {nickname}
-        </Typography>
-        <UserLevel level={characteristic.level} />
+        <Box display="flex" alignItems="center" gap={1}>
+          <Typography
+            color="common.white"
+            textOverflow="ellipsis"
+            whiteSpace="nowrap"
+            overflow="hidden"
+            maxWidth={150}
+          >
+            {nickname}
+          </Typography>
+          <UserLevel level={characteristic.level} />
+        </Box>
         <Typography fontSize={14} color="zen.silent">
           {name}
         </Typography>

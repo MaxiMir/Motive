@@ -38,12 +38,13 @@ function Hashtag({ name, gradient, views }: HashtagProps) {
         height="100%"
         overflow="hidden"
       >
-        <Typography variant="subtitle1" component="p">
-          <b>#{name}</b>
+        <Typography variant="subtitle1" component="p" fontWeight="bold">
+          #{name}
         </Typography>
         <Typography
           variant="h4"
           component="p"
+          fontWeight="bold"
           sx={{
             background:
               'linear-gradient(to right, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.01))',
@@ -52,7 +53,7 @@ function Hashtag({ name, gradient, views }: HashtagProps) {
             color: 'rgba(255, 255, 255, 0.05)',
           }}
         >
-          <b>{name}</b>
+          {name}
         </Typography>
         <Typography sx={{ opacity: 0.5 }}>{formattedViews}</Typography>
       </Stack>

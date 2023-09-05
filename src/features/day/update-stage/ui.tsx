@@ -38,8 +38,8 @@ function UpdateStageModal({ goalId, stages, dayStage, onClose }: UpdateStageModa
     >
       <Stack alignItems="center" gap={1}>
         <FlyTypography>🚀</FlyTypography>
-        <Typography variant="subtitle1" color="support.main">
-          <b>{messages.behind}</b>
+        <Typography variant="subtitle1" color="support.main" fontWeight="bold">
+          {messages.behind}
         </Typography>
         <Typography>
           {messages.nextTitle}:{' '}

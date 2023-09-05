@@ -81,8 +81,8 @@ function GoalCurrent({ goal, viewerPage }: GoalCurrentProps) {
             <Cont gap={2}>
               <Stack gap={1}>
                 <Stack>
-                  <Typography variant="subtitle1" component="h2">
-                    <b>{name}</b>
+                  <Typography variant="subtitle1" component="h2" fontWeight="bold">
+                    {name}
                   </Typography>
                   {member && <Owner owner={owner} started={member.started} />}
                   <SphereType sphere={sphere} />

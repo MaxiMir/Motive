@@ -24,19 +24,25 @@ export function RatingPage({ users }: RatingPageProps) {
         <Grid container alignItems="center" sx={{ height: 55 }}>
           <Grid item xs={2}>
             <Box display="flex" justifyContent="center" width={22}>
-              <Typography variant="subtitle1" component="p">
-                <b>№</b>
+              <Typography variant="subtitle1" component="p" fontWeight="bold">
+                №
               </Typography>
             </Box>
           </Grid>
           <Grid item xs={7}>
-            <Typography variant="subtitle1" component="p">
-              <b>{userText}</b>
+            <Typography variant="subtitle1" component="p" fontWeight="bold">
+              {userText}
             </Typography>
           </Grid>
           <Grid item xs>
-            <Typography variant="subtitle1" component="p" align="right" color="gold">
-              <b>{lvlText}</b>
+            <Typography
+              variant="subtitle1"
+              component="p"
+              align="right"
+              color="gold"
+              fontWeight="bold"
+            >
+              {lvlText}
             </Typography>
           </Grid>
         </Grid>

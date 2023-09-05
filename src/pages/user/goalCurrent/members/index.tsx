@@ -17,7 +17,7 @@ export function Members({ members, lastMembers }: MembersProps) {
     <StyledChip
       label={
         <Box display="flex" alignItems="center" gap={0.5}>
-          {members && <UserGroup users={lastMembers} chip />}
+          {members > 0 && <UserGroup users={lastMembers} chip />}
           <Typography variant="caption" color="zen.silent">
             {countAll} {name}
           </Typography>

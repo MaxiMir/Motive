@@ -17,7 +17,7 @@ export function Rated({ pointsRated, lastRated }: RatedProps) {
 
   return (
     <Box display="flex" alignItems="center" gap={0.5}>
-      {pointsRated && <UserGroup users={users} />}
+      {pointsRated > 0 && <UserGroup users={users} />}
       <Typography fontSize={13} color="zen.silent">
         {countAll} {likedText}
       </Typography>

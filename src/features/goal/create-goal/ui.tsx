@@ -146,9 +146,12 @@ function CreateGoalModal({ onClose }: CreateGoalModalProps) {
             />
             <Stack gap={1}>
               <Stack direction="row" alignItems="center" gap={1}>
-                <Typography variant="h6" component="p">
-                  <Icon name="rocket_launch" color="primary.dark" /> {stagesHeader}
-                </Typography>
+                <Box display="flex" alignItems="center" gap={1}>
+                  <Icon name="rocket_launch" color="primary.dark" />
+                  <Typography variant="h6" component="p">
+                    {stagesHeader}
+                  </Typography>
+                </Box>
                 <TooltipArrow title={stageHint}>
                   <IconButton color="info">
                     <Icon name="help_outline" />
@@ -191,9 +194,12 @@ function CreateGoalModal({ onClose }: CreateGoalModalProps) {
               </FieldArray>
             </Stack>
             <Stack gap={2}>
-              <Typography variant="h6" component="p">
-                <Icon name="keep_public" color="error.light" /> {tasksHeader}
-              </Typography>
+              <Box display="flex" alignItems="center" gap={1}>
+                <Icon name="assignment" color="error.light" />
+                <Typography variant="h6" component="p">
+                  {tasksHeader}
+                </Typography>
+              </Box>
               <FieldArray name="tasks">
                 {({ push, remove }) => (
                   <>

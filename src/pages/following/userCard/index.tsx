@@ -24,7 +24,7 @@ function UserCard({ user, index }: UserCardProps) {
         <Stack gap={0.5}>
           <Box display="flex" alignItems="center" gap={1}>
             <Typography fontWeight={300}>{nickname}</Typography>
-            <UserLevel level={characteristic.level} />
+            <UserLevel progress={characteristic.progress} />
           </Box>
           <Typography fontSize={14} color="zen.silent">
             {name}

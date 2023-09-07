@@ -19,7 +19,7 @@ function CreateGoal() {
         <StyledButton
           size="small"
           variant="text"
-          data-act="create-goal"
+          data-unit="create-goal"
           aria-haspopup="true"
           aria-expanded={open ? 'true' : undefined}
           sx={{

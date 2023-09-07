@@ -111,7 +111,6 @@
   "page.user.like-button.goal-message": "Вы увеличили очки поддержки для цели",
   "page.user.like-button.user-message": "Вы увеличили очки поддержки {value}",
   "page.user.topic.message": "Вы увеличили очки цели",
-  "page.user.views.title": "Просмотров дня",
   "page.404.title": "Ошибка 404 - Страница не найдена",
   "page.404.description": "К сожалению, страница, которую вы ищете, не найдена. Мы сожалеем об этом. Попробуйте использовать поиск или вернуться на главную страницу",
   "page.404.header": "Страница не найдена",
@@ -279,7 +278,8 @@
   "common.send": "Отправить",
   "common.sending": "Отправляю",
   "common.like-yourself": "Вы не можете лайкать себя",
-  "common.like": "Лайк",
+  "common.like": "Нравится",
+  "common.likes": "Нравится",
   "common.motto": "Девиз",
   "common.location": "Город",
   "common.bio": "О себе",
@@ -353,6 +353,6 @@
   "common.nope": "Отсутствует",
   "common.date": "Дата",
   "common.date-selection": "Выберите дату",
-  "common.liked": "понравилось"
+  "common.views": "{value} Просмотров"
 }
 

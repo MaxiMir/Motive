@@ -111,7 +111,6 @@
   "page.user.like-button.goal-message": "你已经增加了目标的支持点",
   "page.user.like-button.user-message": "你已经增加了{value}支持点",
   "page.user.topic.message": "您增加了目标的点数",
-  "page.user.views.title": "今天的观点",
   "page.404.title": "错误404 - 找不到网页",
   "page.404.description": "对不起，无法找到你要找的页面。我们对此很抱歉。请尝试使用搜索或回到主页",
   "page.404.header": "页面未找到",
@@ -279,7 +278,8 @@
   "common.send": "发送",
   "common.sending": "发送中",
   "common.like-yourself": "你不能喜欢自己",
-  "common.like": "喜欢",
+  "common.like": "我喜欢",
+  "common.likes": "我喜欢",
   "common.motto": "座右铭",
   "common.location": "位置",
   "common.bio": "生物",
@@ -353,5 +353,5 @@
   "common.nope": "缺席",
   "common.date": "日期",
   "common.date-selection": "选择日期",
-  "common.liked": "喜欢"
+  "common.views": "{value}意见"
 }

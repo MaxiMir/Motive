@@ -1,3 +1,2 @@
-export * from './userInfoModal'
 export * from './userLevel'
-export * from './usersList'
+export * from './userLoader'

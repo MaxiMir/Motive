@@ -4,8 +4,9 @@ import { useIntl } from 'react-intl'
 import Image from 'next/image'
 // eslint-disable-next-line import/no-internal-modules
 import BinanceSrc from 'public/images/binance.webp'
-import { MY_WALLETS, Wallet } from 'entities/donate'
+import { MY_WALLETS } from 'entities/donate'
 import Container from 'shared/ui/Container'
+import { Wallet } from './wallet'
 
 export function DonatePage() {
   const { formatMessage } = useIntl()

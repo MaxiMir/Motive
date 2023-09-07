@@ -1,14 +1,8 @@
-export const ONLINE_SCORE_MAIN = ['completed', 'abandoned', 'followers', 'following'] as const
+export const SCORE_MAIN = ['completed', 'abandoned', 'followers', 'following'] as const
 
-export const ONLINE_SCORE = [
-  ...ONLINE_SCORE_MAIN,
-  'progress',
-  'level',
-  'points',
-  'nextLevelPoints',
-] as const
+export const SCORE = [...SCORE_MAIN, 'progress', 'points', 'nextLevelPoints'] as const
 
-export type OnlineScoreDto = (typeof ONLINE_SCORE)[number]
+export type ScoreDto = (typeof SCORE)[number]
 
 export const SPHERES = [
   'family',

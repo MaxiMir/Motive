@@ -27,7 +27,7 @@ export function useCreateGoalForm(onSuccess: () => void) {
         onSuccess()
         enqueueSnackbar(message, { severity: 'success', icon: '💎' })
       })
-      setTimeout(() => scrollToElem(`goal-${res.id}`), 250)
+      setTimeout(() => scrollToElem(`[data-unit=goal-${res.id}]`), 250)
     },
   })
 

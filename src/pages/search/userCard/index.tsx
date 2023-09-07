@@ -36,7 +36,7 @@ function UserCard({ user }: UserCardProps) {
           >
             {nickname}
           </Typography>
-          <UserLevel level={characteristic.level} />
+          <UserLevel progress={characteristic.progress} />
         </Box>
         <Typography fontSize={14} color="zen.silent">
           {name}

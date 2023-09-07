@@ -86,7 +86,7 @@ export function Layout({
       </Head>
       {mobile && <HeaderMobile type={type} fixed={fixed} updating={updating} />}
       {desktop && <Sidebar breakpoints={breakpoints} />}
-      <Stack component="main" id="main" flex={1} sx={{ backgroundColor: '#121212' }}>
+      <Stack component="main" data-unit="main" flex={1} sx={{ backgroundColor: '#121212' }}>
         {online ? children : <Offline />}
       </Stack>
       {desktopUpdating && <Updating breakpoints={breakpoints} />}

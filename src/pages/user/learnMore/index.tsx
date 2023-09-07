@@ -5,7 +5,7 @@ import { UserPageDto } from 'shared/api'
 import { useToggle } from 'shared/lib/hooks'
 import Icon from 'shared/ui/Icon'
 
-const UserInfoModal = dynamic(() => import('entities/user').then((m) => m.UserInfoModal))
+const LearnMoreModal = dynamic(() => import('./learnMoreModal'))
 
 interface LearnMoreProps {
   user: UserPageDto
@@ -29,7 +29,7 @@ function LearnMore({ user }: LearnMoreProps) {
       >
         {infoText}
       </Button>
-      {open && <UserInfoModal user={user} onClose={toggle} />}
+      {open && <LearnMoreModal user={user} onClose={toggle} />}
     </>
   )
 }

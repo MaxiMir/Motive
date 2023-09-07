@@ -51,12 +51,12 @@ function FooterMobile({ fixed }: FooterMobileProps) {
           '#__next': {
             main: {
               paddingBottom: fixed ? HEIGHT : 0,
-              '[data-act=create-goal]': {
+              '[data-unit=create-goal]': {
                 bottom: visible ? 72 : 24,
                 transition: 'bottom 0.2s ease-in',
               },
             },
-            '[data-act=snackbar]': {
+            '[data-unit=snackbar]': {
               bottom: visible ? 72 : 24,
               transition: 'bottom 0.2s ease-in',
             },

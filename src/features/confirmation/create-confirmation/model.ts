@@ -30,7 +30,7 @@ export function useCreateConfirmationForm(goalId: number, onSuccess: () => void)
         enqueueSnackbar(message, { severity: 'success', icon: '👾' })
         refetch()
       })
-      scrollToElem('main')
+      scrollToElem('[data-unit=main]')
     },
   })
 

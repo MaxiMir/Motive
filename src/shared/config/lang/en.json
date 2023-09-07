@@ -111,7 +111,6 @@
   "page.user.like-button.goal-message": "You have increased goal's support points",
   "page.user.like-button.user-message": "You have increased {value} support points",
   "page.user.topic.message": "You have increased goal's points",
-  "page.user.views.title": "Day Views",
   "page.404.title": "Error 404 - Page not found",
   "page.404.description": "Unfortunately, the page you are looking for was not found. We're sorry about that. Try using the search or go back to the home page",
   "page.404.header": "Page Not Found",
@@ -280,6 +279,7 @@
   "common.sending": "Sending",
   "common.like-yourself": "You can't like yourself",
   "common.like": "Like",
+  "common.likes": "Likes",
   "common.motto": "Motto",
   "common.location": "Location",
   "common.bio": "Bio",
@@ -353,5 +353,5 @@
   "common.nope": "Nope",
   "common.date": "Date",
   "common.date-selection": "Select a date",
-  "common.liked": "liked"
+  "common.views": "{value} Views"
 }

@@ -111,7 +111,6 @@
   "page.user.like-button.goal-message": "Ви збільшили очки підтримки для цілі",
   "page.user.like-button.user-message": "Ви збільшили очки підтримки {value}",
   "page.user.topic.message": "Ви збільшили очки цілі",
-  "page.user.views.title": "Переглядів дня",
   "page.404.title": "Помилка 404 - Сторінку не знайдено",
   "page.404.description": "На жаль, сторінку, яку ви шукаєте, не знайдено. Ми шкодуємо про це. Спробуйте використати пошук або повернутися на головну сторінку",
   "page.404.header": "Сторінку не знайдено",
@@ -279,7 +278,8 @@
   "common.send": "Відправити",
   "common.sending": "Надсилаю",
   "common.like-yourself": "Ви не можете лайкати себе",
-  "common.like": "Лайк",
+  "common.like": "Подобається",
+  "common.likes": "Подобається",
   "common.motto": "Девіз",
   "common.location": "Місто",
   "common.bio": "Про себе",
@@ -353,5 +353,5 @@
   "common.nope": "Відсутня",
   "common.date": "Дата",
   "common.date-selection": "Виберіть дату",
-  "common.liked": "сподобалось"
+  "common.views": "{value} Переглядів"
 }

@@ -35,7 +35,7 @@ function Provider({ id, name, options, src, disabled }: ProviderProps) {
 const StyledButton = styled(Button)({
   color: brown.A200,
   borderColor: brown.A200,
-  '&:hover': {
+  ':hover': {
     borderColor: brown.A100,
   },
 })

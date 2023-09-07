@@ -4,21 +4,19 @@ import { useIntl } from 'react-intl'
 import TooltipArrow from 'shared/ui/TooltipArrow'
 
 interface UserLevelProps {
-  level: number
+  progress: number
 }
 
-export function UserLevel({ level }: UserLevelProps) {
+export function UserLevel({ progress }: UserLevelProps) {
+  const value = Math.trunc(progress)
   const { formatMessage } = useIntl()
-  const message = formatMessage(
-    { id: 'common.level-summary', defaultMessage: '' },
-    { value: level },
-  )
+  const message = formatMessage({ id: 'common.level-summary', defaultMessage: '' }, { value })
   const title = compiler(message)
 
   return (
     <TooltipArrow title={title}>
       <Hexagon>
-        <Level>{level}</Level>
+        <Level>{value}</Level>
       </Hexagon>
     </TooltipArrow>
   )

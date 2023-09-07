@@ -1,9 +1,6 @@
 import { GetNextPageParamFunction } from 'react-query'
 
-export function partialGetNextPageParam<T>(
-  count: number,
-  take: number,
-): GetNextPageParamFunction<T[]> {
+export function toGetNextPageParam<T>(count: number, take: number): GetNextPageParamFunction<T[]> {
   return (_, allPages) => {
     const allCount = allPages.flat().length
 
@@ -11,6 +8,8 @@ export function partialGetNextPageParam<T>(
   }
 }
 
-export function partialCheckOnLoadMore(count: number, preloadDiff: number, hasNextPage?: boolean) {
-  return (index: number) => !!hasNextPage && count - index === preloadDiff
+const PRELOAD_DIFF = 5
+
+export function toCheckOnLoadMore(count: number, hasNextPage?: boolean) {
+  return (index: number) => !!hasNextPage && count - index === PRELOAD_DIFF
 }

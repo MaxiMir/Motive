@@ -1,6 +1,7 @@
 export * from './characteristic'
 export * from './confirmation'
 export * from './day'
+export * from './day-points'
 export * from './device'
 export * from './feedback'
 export * from './goal'

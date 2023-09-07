@@ -75,7 +75,7 @@ function CreateDayModal({ goalId, calendar, onClose }: CreateDayModalProps) {
                 onChange={onChangeDate}
               />
               <Typography variant="h6" component="p">
-                <Icon name="keep_public" color="error.light" /> {tasksHeader}
+                <Icon name="assignment" color="error.light" /> {tasksHeader}
               </Typography>
               <FieldArray name="tasks">
                 {({ push, remove }) => (

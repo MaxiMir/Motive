@@ -1,4 +1,5 @@
-import { Stack } from '@mui/material'
+import { Divider, Stack } from '@mui/material'
+import { Fragment } from 'react'
 import { useIntl } from 'react-intl'
 import dynamic from 'next/dynamic'
 import { useDetectMobile } from 'entities/device'
@@ -9,7 +10,7 @@ import { useNotificationHint } from './lib'
 const Loader = dynamic(() => import('./loader'))
 const Hint = dynamic(() => import('./hint'))
 const EmptyList = dynamic(() => import('./emptyList'))
-const ReadNotification = dynamic(() => import('./readNotification'))
+const NotificationCard = dynamic(() => import('./notificationCard'))
 
 interface ReadNotificationsModalProps {
   notifications: NotificationDto[]
@@ -26,6 +27,7 @@ function ReadNotificationsModal({
   const mobile = useDetectMobile()
   const title = formatMessage({ id: 'common.notifications' })
   const [showHint, onHintClick] = useNotificationHint()
+  const lastId = notifications.at(-1)?.id
 
   return (
     <Modal title={title} maxWidth="xs" contentHeight={600} fullScreen={mobile} onClose={onClose}>
@@ -40,11 +42,14 @@ function ReadNotificationsModal({
             ) : (
               <Stack flex={1} gap={2}>
                 {notifications.map((notification) => (
-                  <ReadNotification
-                    notification={notification}
-                    key={notification.id}
-                    onClose={onClose}
-                  />
+                  <Fragment key={notification.id}>
+                    <NotificationCard
+                      notification={notification}
+                      key={notification.id}
+                      onClose={onClose}
+                    />
+                    {lastId !== notification.id && <Divider light />}
+                  </Fragment>
                 ))}
               </Stack>
             )}

@@ -25,7 +25,6 @@ const StyledAvatar = styled(Avatar, {
   background,
   width: size,
   height: size,
-  color: 'common.white',
   fontSize: size / 2.5,
 }))
 

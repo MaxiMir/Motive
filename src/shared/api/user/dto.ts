@@ -1,7 +1,7 @@
-import { OnlineScoreDto, SphereDto } from '../characteristic'
+import { ScoreDto, SphereDto } from '../characteristic'
 import { Device } from '../device'
 
-export type UserCharacteristicDto = Readonly<{ [k in OnlineScoreDto | SphereDto]: number }>
+export type UserCharacteristicDto = Readonly<{ [k in ScoreDto | SphereDto]: number }>
 
 export interface UserBaseDto {
   readonly id: number

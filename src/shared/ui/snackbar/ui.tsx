@@ -24,7 +24,7 @@ function Snackbar() {
           open
           autoHideDuration={3000}
           anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }}
-          data-act="snackbar"
+          data-unit="snackbar"
           onClose={handleClose}
         >
           <Alert {...alertProps} />

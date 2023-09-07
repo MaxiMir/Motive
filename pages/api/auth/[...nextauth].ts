@@ -57,10 +57,10 @@ export default NextAuth({
       const { id, name, nickname, avatar } =
         candidate ||
         (await createUser({
-          name: token.name || 'anonymous',
-          email: token.email,
           authId,
-          avatar: token.picture,
+          name: token.name || 'anonymous',
+          email: token.email || null,
+          avatar: token.picture || null,
         }))
 
       return Promise.resolve({ ...token, id, name, nickname, avatar })

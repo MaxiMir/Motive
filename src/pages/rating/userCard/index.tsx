@@ -60,7 +60,7 @@ export function UserCard({ user, index }: UserCardProps) {
         </Grid>
         <Grid item xs>
           <Box display="flex" justifyContent="flex-end">
-            <UserLevel level={characteristic.level} />
+            <UserLevel progress={characteristic.progress} />
           </Box>
         </Grid>
       </Grid>

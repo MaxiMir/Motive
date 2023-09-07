@@ -3,21 +3,21 @@ import { styled } from '@mui/system'
 import dynamic from 'next/dynamic'
 import { UserContext, UserLevel } from 'entities/user'
 import { useViewer } from 'entities/viewer'
-import { ONLINE_SCORE_MAIN, SPHERES, UserPageDto } from 'shared/api'
+import { SCORE_MAIN, SPHERES, UserPageDto } from 'shared/api'
 import Container from 'shared/ui/Container'
 import AvatarActs from './avatarActs'
-import EmptyGoals from './emptyGoals'
 import LearnMore from './learnMore'
 import MenuActs from './menuActs'
-import OnlineScore from './onlineScore'
+import NoGoals from './noGoals'
+import Score from './score'
 import Sphere from './sphere'
-import UserStatus from './userStatus'
+import Status from './status'
 
 const Link = dynamic(() => import('@mui/material/Link'))
 const UpdateFollowing = dynamic(() => import('features/subscription/update-following'))
 const EditProfile = dynamic(() => import('./editProfile'))
-const ConfirmationList = dynamic(() => import('./confirmationList'))
-const GoalCurrent = dynamic(() => import('./goalCurrent'))
+const Confirmations = dynamic(() => import('./confirmations'))
+const GoalCard = dynamic(() => import('./goalCard'))
 const CreateGoal = dynamic(() => import('./createGoal'))
 
 interface UserViewProps {
@@ -82,7 +82,7 @@ export function UserPage({ user }: UserViewProps) {
                   <Typography variant="h5" component="p">
                     {nickname}
                   </Typography>
-                  <UserLevel level={characteristic.level} />
+                  <UserLevel progress={characteristic.progress} />
                 </Box>
                 <Stack direction="row" alignItems="center" gap={1}>
                   {viewerPage ? (
@@ -100,8 +100,8 @@ export function UserPage({ user }: UserViewProps) {
                 gap={2}
                 mb={2}
               >
-                {ONLINE_SCORE_MAIN.map((score) => (
-                  <OnlineScore
+                {SCORE_MAIN.map((score) => (
+                  <Score
                     score={score}
                     value={characteristic[score]}
                     userId={id}
@@ -111,11 +111,11 @@ export function UserPage({ user }: UserViewProps) {
                   />
                 ))}
               </Box>
-              <UserStatus online={online} lastSeen={lastSeen} device={device} mb={1}>
+              <Status online={online} lastSeen={lastSeen} device={device} mb={1}>
                 <Typography component="h1" fontWeight="bold">
                   {name}
                 </Typography>
-              </UserStatus>
+              </Status>
               {motto && <Typography fontSize={14}>{motto}</Typography>}
               {links?.map(({ href, host, title }) => (
                 <Link
@@ -144,9 +144,9 @@ export function UserPage({ user }: UserViewProps) {
             />
           ))}
         </Section>
-        {!!confirmations.length && <ConfirmationList confirmations={confirmations} />}
+        {!!confirmations.length && <Confirmations confirmations={confirmations} />}
         {!goals.length ? (
-          <EmptyGoals viewerPage={viewerPage} />
+          <NoGoals viewerPage={viewerPage} />
         ) : (
           <Box
             sx={{
@@ -157,7 +157,7 @@ export function UserPage({ user }: UserViewProps) {
             }}
           >
             {goals.map((goal) => (
-              <GoalCurrent goal={goal} viewerPage={viewerPage} key={goal.id} />
+              <GoalCard goal={goal} viewerPage={viewerPage} key={goal.id} />
             ))}
           </Box>
         )}

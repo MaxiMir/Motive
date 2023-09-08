@@ -1,6 +1,5 @@
-import { Avatar as MuiAvatar, Badge, Box, Stack, Typography } from '@mui/material'
+import { Badge, Box, Stack, Typography } from '@mui/material'
 import { red } from '@mui/material/colors'
-import { styled } from '@mui/system'
 import dynamic from 'next/dynamic'
 import Link from 'next/link'
 import { UserLevel } from 'entities/user'
@@ -9,6 +8,7 @@ import { joinToHref } from 'shared/lib/helpers'
 import { useFormatDistance } from 'shared/lib/hooks'
 import Avatar from 'shared/ui/avatar'
 import Icon from 'shared/ui/Icon'
+import { SmallAvatar } from 'shared/ui/SmallAvatar'
 
 const InView = dynamic(() => import('react-intersection-observer').then((m) => m.InView))
 
@@ -39,8 +39,8 @@ function PointCard({ point, inView, onView, onClose }: PointCardProps) {
             overlap="circular"
             anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
             badgeContent={
-              <SmallAvatar>
-                <Icon name="favorite" fontSize={13} />
+              <SmallAvatar background={red[800]}>
+                <Icon name="favorite" fontSize={13} color="common.white" />
               </SmallAvatar>
             }
           >
@@ -68,13 +68,5 @@ function PointCard({ point, inView, onView, onClose }: PointCardProps) {
     </>
   )
 }
-
-const SmallAvatar = styled(MuiAvatar)(({ theme }) => ({
-  width: 22,
-  height: 22,
-  border: `2px solid ${theme.palette.background.paper}`,
-  background: red[800],
-  color: 'white',
-}))
 
 export default PointCard

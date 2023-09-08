@@ -1,14 +1,15 @@
-import { Avatar as MuiAvatar, Badge, Box, Button, Stack, Typography } from '@mui/material'
-import { styled } from '@mui/system'
+import { Badge, Box, Button, Stack, Typography } from '@mui/material'
 import { useIntl } from 'react-intl'
 import dynamic from 'next/dynamic'
 import Link from 'next/link'
 import { getNotificationHref } from 'entities/page'
 import { useViewer } from 'entities/viewer'
 import { NotificationDto } from 'shared/api'
-import { Emoji } from 'shared/config'
 import { useFormatDistance } from 'shared/lib/hooks'
 import Avatar from 'shared/ui/avatar'
+import Icon from 'shared/ui/Icon'
+import { SmallAvatar } from 'shared/ui/SmallAvatar'
+import { getAvatarSetup } from './lib'
 import { useUpdateRead } from './model'
 
 const InView = dynamic(() => import('react-intersection-observer').then((m) => m.InView))
@@ -26,7 +27,7 @@ function NotificationCard({ notification, onClose }: NotificationCardProps) {
   const formatDistance = useFormatDistance()
   const dateDistance = formatDistance(created)
   const href = getNotificationHref(notification, viewer?.nickname)
-  const emoji = Emoji[type] || Emoji.notification
+  const avatar = getAvatarSetup(type)
   const header = formatMessage({ id: `component.notification.${type}` })
   const detailsName = !details.name ? '' : `: ${details.name}`
 
@@ -44,7 +45,11 @@ function NotificationCard({ notification, onClose }: NotificationCardProps) {
             <Badge
               overlap="circular"
               anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
-              badgeContent={<SmallAvatar>{emoji}</SmallAvatar>}
+              badgeContent={
+                <SmallAvatar background={avatar.background}>
+                  <Icon name={avatar.icon} fontSize={12} color="common.white" />
+                </SmallAvatar>
+              }
             >
               <Avatar src={initiator.avatar} name={initiator.name} size={55} />
             </Badge>
@@ -66,12 +71,5 @@ function NotificationCard({ notification, onClose }: NotificationCardProps) {
     </>
   )
 }
-
-const SmallAvatar = styled(MuiAvatar)(({ theme }) => ({
-  width: 22,
-  height: 22,
-  backgroundColor: theme.palette.grey[900],
-  fontSize: 13,
-}))
 
 export default NotificationCard

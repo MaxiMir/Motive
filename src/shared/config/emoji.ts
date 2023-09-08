@@ -12,14 +12,4 @@ export enum Emoji {
   'nextLevelPoints' = '',
   'progress' = '',
   'level' = '',
-  // notifications:
-  'new-goal' = '💎',
-  'new-follower' = '⭐',
-  'added-points' = '❤️',
-  'new-question' = '❓',
-  'new-support' = '⚡️',
-  'new-answer' = '📮',
-  'new-feedback' = '💭',
-  'web-coverage' = '🕸',
-  'notification' = '🛎',
 }

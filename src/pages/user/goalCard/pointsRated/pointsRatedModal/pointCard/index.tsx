@@ -4,23 +4,26 @@ import { styled } from '@mui/system'
 import dynamic from 'next/dynamic'
 import Link from 'next/link'
 import { UserLevel } from 'entities/user'
-import { UserDto } from 'shared/api'
+import { DayPoint } from 'shared/api'
 import { joinToHref } from 'shared/lib/helpers'
+import { useFormatDistance } from 'shared/lib/hooks'
 import Avatar from 'shared/ui/avatar'
 import Icon from 'shared/ui/Icon'
 
 const InView = dynamic(() => import('react-intersection-observer').then((m) => m.InView))
 
-interface UserCardProps {
-  user: UserDto
+interface PointCardProps {
+  point: DayPoint
   inView: boolean
   onView: () => void
   onClose: () => void
 }
 
-function UserCard({ user, inView, onView, onClose }: UserCardProps) {
-  const { nickname, name, avatar, characteristic, online } = user
+function PointCard({ point, inView, onView, onClose }: PointCardProps) {
+  const { nickname, name, avatar, characteristic, online } = point.user
+  const formatDistance = useFormatDistance()
   const href = joinToHref(nickname)
+  const distance = formatDistance(point.date)
 
   const onChange = (visible: boolean) => {
     if (!visible) return
@@ -52,6 +55,9 @@ function UserCard({ user, inView, onView, onClose }: UserCardProps) {
               </Link>
             </Typography>
             <UserLevel progress={characteristic.progress} />
+            <Typography variant="caption" color="zen.silent" ml={1}>
+              {distance}
+            </Typography>
           </Box>
           <Typography fontSize={14} color="zen.silent">
             {name}
@@ -71,4 +77,4 @@ const SmallAvatar = styled(MuiAvatar)(({ theme }) => ({
   color: 'white',
 }))
 
-export default UserCard
+export default PointCard

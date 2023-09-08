@@ -12,11 +12,12 @@ function toGetNextPageParam(count: number): GetNextPageParamFunction<TopicDto[]>
 }
 
 export function useDiscussion(day: DayDto) {
-  const getNextPageParam = toGetNextPageParam(day.topicCount)
+  const { id, topicCount } = day
+  const getNextPageParam = toGetNextPageParam(topicCount)
 
   return useInfiniteQuery(
-    ['discussion', day.id],
-    ({ pageParam = 0 }) => getTopics({ where: { day: day.id }, page: pageParam, take: TAKE }),
-    { getNextPageParam, enabled: !!day.topicCount },
+    ['discussion', id],
+    ({ pageParam = 0 }) => getTopics({ where: { day: id }, page: pageParam, take: TAKE }),
+    { getNextPageParam, enabled: topicCount > 0 },
   )
 }

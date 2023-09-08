@@ -5,25 +5,25 @@ import { useDetectMobile } from 'entities/device'
 import { DayDto } from 'shared/api'
 import { toCheckOnLoadMore } from 'shared/lib/utils'
 import Modal from 'shared/ui/Modal'
-import { useLiked } from './lib'
+import { usePointsRated } from './lib'
 
 const CircularProgress = dynamic(() => import('@mui/material/CircularProgress'))
 const UserLoader = dynamic(() => import('entities/user').then((mod) => mod.UserLoader))
 const EmptyList = dynamic(() => import('./emptyList'))
-const UserCard = dynamic(() => import('./userCard'))
+const PointCard = dynamic(() => import('./pointCard'))
 
-interface LikedModalProps {
+interface PointsRatedModalProps {
   title: string
   day: DayDto
   onClose: () => void
 }
 
-function LikedModal({ title, day, onClose }: LikedModalProps) {
-  const { isLoading, isFetching, data, hasNextPage, fetchNextPage } = useLiked(day)
-  const users = data?.pages.flat() || []
-  const checkOnInView = toCheckOnLoadMore(users.length, hasNextPage)
+function PointsRatedModal({ title, day, onClose }: PointsRatedModalProps) {
+  const { isLoading, isFetching, data, hasNextPage, fetchNextPage } = usePointsRated(day)
+  const pointsRated = data?.pages.flat() || []
+  const checkOnInView = toCheckOnLoadMore(pointsRated.length, hasNextPage)
   const mobile = useDetectMobile()
-  const lastId = users.at(-1)?.id
+  const lastId = pointsRated.at(-1)?.id
 
   return (
     <Modal title={title} maxWidth="xs" contentHeight={600} fullScreen={mobile} onClose={onClose}>
@@ -31,19 +31,19 @@ function LikedModal({ title, day, onClose }: LikedModalProps) {
         <UserLoader all={day.pointsRated} shown={8} />
       ) : (
         <>
-          {!users?.length ? (
+          {!pointsRated?.length ? (
             <EmptyList />
           ) : (
             <Stack flex={1} gap={2} height="100%">
-              {users.map((user, index) => (
-                <Fragment key={user.id}>
-                  <UserCard
-                    user={user}
+              {pointsRated.map((point, index) => (
+                <Fragment key={point.id}>
+                  <PointCard
+                    point={point}
                     inView={checkOnInView(index)}
                     onView={fetchNextPage}
                     onClose={onClose}
                   />
-                  {lastId !== user.id && <Divider light />}
+                  {lastId !== point.id && <Divider light />}
                 </Fragment>
               ))}
               {isFetching && (
@@ -59,4 +59,4 @@ function LikedModal({ title, day, onClose }: LikedModalProps) {
   )
 }
 
-export default LikedModal
+export default PointsRatedModal

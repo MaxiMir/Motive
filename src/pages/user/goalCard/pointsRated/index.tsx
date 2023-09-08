@@ -6,7 +6,7 @@ import { DayDto } from 'shared/api'
 import { useFormatNumber, useToggle } from 'shared/lib/hooks'
 
 const AvatarsGroup = dynamic(() => import('shared/ui/AvatarsGroup'))
-const LikedModal = dynamic(() => import('./likedModal'))
+const PointsRatedModal = dynamic(() => import('./pointsRatedModal'))
 
 interface PointsRatedProps {
   day: DayDto
@@ -32,7 +32,7 @@ export function PointsRated({ day }: PointsRatedProps) {
           </Typography>
         </Box>
       </StyledButton>
-      {open && <LikedModal title={title} day={day} onClose={toggle} />}
+      {open && <PointsRatedModal title={title} day={day} onClose={toggle} />}
     </>
   )
 }

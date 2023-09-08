@@ -13,6 +13,6 @@ export function useSubscription(userId: number, count: number, type: Type) {
     [type, userId, count],
     ({ pageParam = 0 }: QueryFunctionContext) =>
       getSubscription(userId, type, { page: pageParam, take: TAKE }),
-    { getNextPageParam, enabled: !!count },
+    { getNextPageParam, enabled: count > 0 },
   )
 }

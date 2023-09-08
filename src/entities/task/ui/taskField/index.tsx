@@ -76,6 +76,7 @@ export function TaskField({
             name={`tasks.${index}.description`}
             label={labelDescription}
             placeholder={placeholderDescription}
+            multiline
             component={Input}
           />
           <StyledFormControl fullWidth>

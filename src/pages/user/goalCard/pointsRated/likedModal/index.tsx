@@ -1,6 +1,5 @@
 import { Box, Divider, Stack } from '@mui/material'
 import { Fragment } from 'react'
-import { useIntl } from 'react-intl'
 import dynamic from 'next/dynamic'
 import { useDetectMobile } from 'entities/device'
 import { DayDto } from 'shared/api'
@@ -14,17 +13,16 @@ const EmptyList = dynamic(() => import('./emptyList'))
 const UserCard = dynamic(() => import('./userCard'))
 
 interface LikedModalProps {
+  title: string
   day: DayDto
   onClose: () => void
 }
 
-function LikedModal({ day, onClose }: LikedModalProps) {
-  const { formatMessage } = useIntl()
+function LikedModal({ title, day, onClose }: LikedModalProps) {
   const { isLoading, isFetching, data, hasNextPage, fetchNextPage } = useLiked(day)
   const users = data?.pages.flat() || []
   const checkOnInView = toCheckOnLoadMore(users.length, hasNextPage)
   const mobile = useDetectMobile()
-  const title = formatMessage({ id: 'common.likes' })
   const lastId = users.at(-1)?.id
 
   return (

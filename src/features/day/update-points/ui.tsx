@@ -27,6 +27,7 @@ function UpdatePoints({ goalId, day, viewerPoints }: UpdatePointsProps) {
         size="small"
         variant="outlined"
         color="inherit"
+        active={active}
         disabled={isLoading}
         startIcon={
           !isLoading ? (
@@ -35,23 +36,25 @@ function UpdatePoints({ goalId, day, viewerPoints }: UpdatePointsProps) {
             <CircularProgress size={18} color="inherit" />
           )
         }
-        sx={(theme) => ({
-          color: active ? red[400] : theme.palette.grey[400],
-          backgroundColor: active ? '#3E2526' : '#2b2d31',
-        })}
         onClick={onClick}
       />
     </TooltipArrow>
   )
 }
 
-const StyledButton = styled(Button)({
+const StyledButton = styled(Button, {
+  shouldForwardProp: (prop) => prop !== 'active',
+})<{ active: boolean }>(({ theme, active }) => ({
   minWidth: 50,
   height: 30,
   paddingRight: 0,
   borderRadius: 20,
   border: 'none',
-  transition: 'all .3s',
-}) as typeof Button
+  color: active ? red[400] : theme.palette.grey[400],
+  backgroundColor: active ? '#3E2526' : '#2b2d31',
+  ':disabled': {
+    border: 'none',
+  },
+}))
 
 export default UpdatePoints

@@ -20,6 +20,7 @@ export function PointsRated({ day }: PointsRatedProps) {
   const likedText = formatMessage({ id: day.pointsRated === 1 ? 'common.like' : 'common.likes' })
   const users = day.lastRated?.slice(0, 3)
   const renderGroup = users && users.length > 0
+  const title = `${countAll} ${likedText}`.toLowerCase()
 
   return (
     <>
@@ -27,11 +28,11 @@ export function PointsRated({ day }: PointsRatedProps) {
         <Box display="flex" alignItems="center" gap={0.5}>
           {renderGroup && <AvatarsGroup avatars={users} size={16} />}
           <Typography fontSize={13} color="zen.silent">
-            {countAll} {likedText}
+            {title}
           </Typography>
         </Box>
       </StyledButton>
-      {open && <LikedModal day={day} onClose={toggle} />}
+      {open && <LikedModal title={title} day={day} onClose={toggle} />}
     </>
   )
 }

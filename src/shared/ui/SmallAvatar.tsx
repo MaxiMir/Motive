@@ -1,7 +1,7 @@
 import { Avatar } from '@mui/material'
 import { styled } from '@mui/system'
 
-export const SmallAvatar = styled(Avatar, {
+const SmallAvatar = styled(Avatar, {
   shouldForwardProp: (prop) => prop !== 'chip',
 })<{ background?: string }>(({ theme, background }) => ({
   width: 22,
@@ -9,3 +9,5 @@ export const SmallAvatar = styled(Avatar, {
   border: `2px solid ${theme.palette.background.paper}`,
   background,
 }))
+
+export default SmallAvatar

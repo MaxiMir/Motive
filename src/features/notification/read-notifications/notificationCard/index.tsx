@@ -8,7 +8,7 @@ import { NotificationDto } from 'shared/api'
 import { useFormatDistance } from 'shared/lib/hooks'
 import Avatar from 'shared/ui/avatar'
 import Icon from 'shared/ui/Icon'
-import { SmallAvatar } from 'shared/ui/SmallAvatar'
+import SmallAvatar from 'shared/ui/SmallAvatar'
 import { getAvatarSetup } from './lib'
 import { useUpdateRead } from './model'
 

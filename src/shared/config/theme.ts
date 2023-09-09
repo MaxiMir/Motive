@@ -236,6 +236,21 @@ export function getDesignTokens(mode: PaletteMode): ThemeOptions {
           'h1, h2, h3, h4, h5, h6': {
             textWrap: 'balance',
           },
+          '::-webkit-scrollbar': {
+            width: 8,
+            height: 8,
+          },
+          '::-webkit-scrollbar-track': {
+            backgroundColor: 'rgb(255 255 255 / 10%)',
+            borderRadius: 10,
+          },
+          '::-webkit-scrollbar-thumb': {
+            backgroundColor: 'rgb(0 0 0 / 80%)',
+            borderRadius: 10,
+            '&:hover': {
+              backgroundColor: 'grey',
+            },
+          },
         },
       },
       MuiContainer: {

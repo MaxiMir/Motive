@@ -28,7 +28,7 @@ function Support({ dayId, ownerName }: SupportProps) {
           size="small"
           variant="outlined"
           color="inherit"
-          startIcon={<Icon name="bolt" />}
+          startIcon={<Icon name="ev_shadow_add" />}
           onClick={onClick}
         />
       </TooltipArrow>

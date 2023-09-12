@@ -16,6 +16,7 @@ export interface GoalBaseDto {
   readonly stage: number
   readonly owner: UserBaseDto
   readonly points: number
+  readonly pointsTasks: number
   readonly members: number
   readonly cover: string | null
   readonly sphere: SphereDto

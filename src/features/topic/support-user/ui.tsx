@@ -55,7 +55,7 @@ function SupportUserModal({ dayId, ownerName, onClose }: SupportUserModalProps) 
             <Field name="text" label={label} color="primary" multiline rows={3} component={Input} />
             <Box width="100%">
               <Accordion
-                iconStart={<Icon name="support" color="primary.dark" />}
+                iconStart={<Icon name="ev_shadow_add" color="primary.dark" />}
                 summary={header}
                 details={<SupportRules />}
               />

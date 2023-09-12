@@ -15,14 +15,13 @@ export function Row({ icon, name, value = '-' }: RowProps) {
   const formatDate = useFormatDate()
   const text = name !== 'registered' ? value : formatDate(value, { month: 'long', year: 'numeric' })
   const title = formatMessage({ id: `common.${name}` })
-  const shownText = text || <>&mdash;</>
 
   return (
     <Box display="flex" gap={1}>
       <Icon name={icon} />
       <Typography whiteSpace="nowrap">{title}:</Typography>
-      <Typography textAlign="right" color="zen.silent" sx={{ marginLeft: 'auto' }}>
-        {shownText}
+      <Typography textAlign="right" color="zen.silent" marginLeft="auto">
+        {text || <>&mdash;</>}
       </Typography>
     </Box>
   )

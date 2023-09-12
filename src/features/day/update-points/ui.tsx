@@ -3,14 +3,16 @@ import { red } from '@mui/material/colors'
 import { styled } from '@mui/system'
 import { useIntl } from 'react-intl'
 import dynamic from 'next/dynamic'
-import { GoalDto } from 'shared/api'
+import { DayDto } from 'shared/api'
 import Icon from 'shared/ui/Icon'
 import TooltipArrow from 'shared/ui/TooltipArrow'
 import { useUpdatePoints } from './model'
 
 const CircularProgress = dynamic(() => import('@mui/material/CircularProgress'))
 
-interface UpdatePointsProps extends Pick<GoalDto, 'viewerPoints' | 'day'> {
+interface UpdatePointsProps {
+  viewerPoints: number[]
+  day: DayDto
   goalId: number
 }
 

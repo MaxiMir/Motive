@@ -42,9 +42,10 @@ function GoalCard({ goal, viewerPage }: GoalCardProps) {
     owner,
     stages,
     day,
-    points,
     member,
     members,
+    points,
+    pointsTasks,
     lastMembers,
     calendar,
     started,
@@ -96,7 +97,7 @@ function GoalCard({ goal, viewerPage }: GoalCardProps) {
                 )}
               </Stack>
               <Box display="flex" justifyContent="space-between">
-                <Points points={points} />
+                <Points points={points} pointsTasks={pointsTasks} />
                 <Members members={members} lastMembers={lastMembers} />
               </Box>
               <Stack alignItems="center">

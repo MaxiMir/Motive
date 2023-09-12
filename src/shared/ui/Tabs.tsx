@@ -1,8 +1,9 @@
-import { Box, Tabs as MuiTabs, Tab as MuiTab, TabsProps as MuiTabsProps } from '@mui/material'
+import { Box, Tabs as MuiTabs, Tab as MuiTab } from '@mui/material'
 import { ChangeEvent, ReactNode, useState } from 'react'
 
-interface TabsProps extends Pick<MuiTabsProps, 'aria-label'> {
+interface TabsProps {
   tabs: string[] | ReactNode[]
+  'aria-label': string
   content: string[] | ReactNode[]
   initial?: number
 }

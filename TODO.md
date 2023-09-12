@@ -1,5 +1,6 @@
 ### TODO
-* Modal Members + Points
+* transactionalManager.save -> .update()
+* Modal Members
 * GROUP BY members + modal members
 * Редактирование цели / задач / обратной связи
 * В подписках на пользователя добавить +/-

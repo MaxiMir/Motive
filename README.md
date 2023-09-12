@@ -1,10 +1,11 @@
 ### Tips
 ```shell
-docker build -t mmirrev/frontend:1.0.96 .
+docker build -t mmirrev/frontend:1.0.97 .
+docker buildx build --platform linux/amd64 -t mmirrev/frontend:1.0.97 .
 # artifactory:
-docker tag $ mmirrev/frontend:1.0.96
-docker push mmirrev/frontend:1.0.96
-docker pull mmirrev/frontend:1.0.96
+docker tag $ mmirrev/frontend:1.0.97
+docker push mmirrev/frontend:1.0.97
+docker pull mmirrev/frontend:1.0.97
 
 # copy:
 docker cp <IMAGE_ID>:/home/node/client /home # <-
@@ -41,16 +42,16 @@ services:
       - "127.0.0.1:3000:3000"
 
   backend:
-    image: mmirrev/backend:1.0.54
+    image: mmirrev/backend:1.0.57
     environment:
       - PORT=4000
       - CLIENT=https://2bebetter.pro
       - REDIS=redis://redis:6379
       - NEXTAUTH_COOKIE=__Secure-next-auth.session-token
-      - NEXTAUTH_SECRET=******
-      - POSTGRES_HOST=188.225.37.43
+      - NEXTAUTH_SECRET=LlEderlgdhSaJS6yeP2JtPiz5h60ZyanzvAmYyOjG0w=
+      - POSTGRES_HOST=185.154.195.52
       - POSTGRES_USER=gen_user
-      - POSTGRES_PASSWORD=******
+      - POSTGRES_PASSWORD=81oyyyxjj7
       - POSTGRES_DB=default_db
       - POSTGRES_PORT=5432
       - EAT_AFTER_DAYS=28

@@ -1,8 +1,7 @@
 import { Box, Stack } from '@mui/material'
 import { useMemo } from 'react'
 import dynamic from 'next/dynamic'
-import { useToggle } from 'shared/lib/hooks'
-import { useDetectTruncated, toMarkdown } from './lib'
+import { useDetectTruncated, toMarkdown, useSwitchText } from './lib'
 
 const Switch = dynamic(() => import('./switch'))
 
@@ -13,11 +12,10 @@ interface MarkdownProps {
 }
 
 function Markdown({ text, truncate, footnote }: MarkdownProps) {
-  const [open, toggle] = useToggle()
+  const [open, onClick] = useSwitchText(text)
+  const [ref, truncated] = useDetectTruncated(text)
   const markdown = useMemo(() => toMarkdown(text), [text])
-  const [ref, truncated] = useDetectTruncated()
-  const breakCount = text.split('\r\n').length
-  const renderSwitching = open ? true : truncate && (truncated || breakCount > 1)
+  const renderSwitching = open ? true : truncated
   const fontSize = footnote ? 12 : 'initial'
 
   return (
@@ -53,7 +51,7 @@ function Markdown({ text, truncate, footnote }: MarkdownProps) {
       >
         {markdown}
       </Box>
-      {renderSwitching && <Switch open={open} onClick={toggle} />}
+      {renderSwitching && <Switch open={open} onClick={onClick} />}
     </Stack>
   )
 }

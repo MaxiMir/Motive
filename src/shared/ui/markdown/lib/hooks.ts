@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
 
-export function useDetectTruncated() {
+export function useDetectTruncated(text: string) {
   const ref = useRef<HTMLDivElement>(null)
   const [truncated, setTruncated] = useState(false)
 
@@ -20,7 +20,19 @@ export function useDetectTruncated() {
 
       observer.unobserve(firstElem)
     }
-  }, [])
+  }, [text])
 
   return [ref, truncated] as const
+}
+
+export function useSwitchText(text: string) {
+  const [open, setOpen] = useState(false)
+
+  const onClick = () => setOpen((prev) => !prev)
+
+  useEffect(() => {
+    setOpen(false)
+  }, [text])
+
+  return [open, onClick] as const
 }

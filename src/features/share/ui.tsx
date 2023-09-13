@@ -1,7 +1,8 @@
-import { Box, List, ListItem, Stack, Drawer, ListItemIcon, ListItemText } from '@mui/material'
+import { List, ListItem, Stack, ListItemIcon, ListItemText } from '@mui/material'
 import { useIntl } from 'react-intl'
 import { copy } from 'shared/lib/helpers'
 import { ContentCopy, Email, Facebook, SMS, Telegram, Twitter, VK } from 'shared/ui/icons'
+import Popup from 'shared/ui/Popup'
 import { useSnackbar } from 'shared/ui/snackbar'
 import { clickHandler } from './lib'
 
@@ -16,42 +17,41 @@ function Share({ href, title, onClose }: ShareProps) {
   const { enqueueSnackbar } = useSnackbar()
   const shareItems = getShareItems()
   const copiedText = formatMessage({ id: 'common.copied' })
+  const shareTitle = formatMessage({ id: 'common.share' })
 
   function getShareItems() {
     const url = process.env.NEXT_PUBLIC_APP_URL + href
-    const shareText = formatMessage({ id: 'component.share.share' })
-    const sendText = formatMessage({ id: 'component.share.send' })
-    const copyText = formatMessage({ id: 'component.share.copy' })
+    const copyText = formatMessage({ id: 'common.copy' })
     const error = formatMessage({ id: 'common.error' })
 
     return [
       {
-        text: `${shareText} Facebook`,
+        text: 'Facebook',
         ItemIcon: Facebook,
         onClick: () => clickHandler('facebook', title, url),
       },
       {
-        text: `${shareText} Twitter`,
+        text: 'Twitter',
         ItemIcon: Twitter,
         onClick: () => clickHandler('twitter', title, url),
       },
       {
-        text: `${shareText} VK`,
+        text: 'VK',
         ItemIcon: VK,
         onClick: () => clickHandler('vk', title, url),
       },
       {
-        text: `${shareText} Telegram`,
+        text: 'Telegram',
         ItemIcon: Telegram,
         onClick: () => clickHandler('telegram', title, url),
       },
       {
-        text: `${sendText} Email`,
+        text: 'Email',
         ItemIcon: Email,
         onClick: () => clickHandler('email', title, url),
       },
       {
-        text: `${sendText} SMS`,
+        text: 'SMS',
         ItemIcon: SMS,
         onClick: () => clickHandler('sms', title, url),
       },
@@ -67,22 +67,20 @@ function Share({ href, title, onClose }: ShareProps) {
   }
 
   return (
-    <Drawer open anchor="bottom" onClose={onClose}>
-      <Box role="presentation" onClick={onClose}>
-        <List>
-          {shareItems.map(({ text, ItemIcon, onClick }) => (
-            <ListItem button sx={{ height: 64 }} key={text} onClick={onClick}>
-              <Stack direction="row" alignItems="center" sx={{ marginInline: 'auto' }}>
-                <ListItemIcon sx={{ minWidth: 40 }}>
-                  <ItemIcon sx={{ color: 'primary.dark' }} />
-                </ListItemIcon>
-                <ListItemText sx={{ minWidth: 180 }} primary={text} />
-              </Stack>
-            </ListItem>
-          ))}
-        </List>
-      </Box>
-    </Drawer>
+    <Popup title={shareTitle} onClose={onClose}>
+      <List>
+        {shareItems.map(({ text, ItemIcon, onClick }) => (
+          <ListItem button sx={{ height: 64 }} key={text} onClick={onClick}>
+            <Stack direction="row" alignItems="center" sx={{ marginInline: 'auto' }}>
+              <ListItemIcon sx={{ minWidth: 40 }}>
+                <ItemIcon sx={{ color: 'primary.dark' }} />
+              </ListItemIcon>
+              <ListItemText sx={{ minWidth: 70 }} primary={text} />
+            </Stack>
+          </ListItem>
+        ))}
+      </List>
+    </Popup>
   )
 }
 

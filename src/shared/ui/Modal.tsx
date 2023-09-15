@@ -59,9 +59,9 @@ function Modal({
           <Typography variant="h6" component="div" textAlign="center" sx={{ ml: 2, flex: 1 }}>
             {title}
           </Typography>
-          <CloseButton edge="start" color="inherit" aria-label={closeText} onClick={onClose}>
+          <IconButton edge="start" color="inherit" aria-label={closeText} onClick={onClose}>
             <Icon name="close" />
-          </CloseButton>
+          </IconButton>
         </Toolbar>
       </AppBar>
       <Divider />
@@ -94,12 +94,5 @@ const StyledDialog = styled(Dialog)({
     backdropFilter: 'blur(5px)',
   },
 })
-
-const CloseButton = styled(IconButton)(({ theme }) => ({
-  background: theme.palette.grey[900],
-  ':hover': {
-    background: theme.palette.grey[800],
-  },
-}))
 
 export default Modal

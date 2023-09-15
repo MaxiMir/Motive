@@ -1,4 +1,6 @@
 import { Drawer, Box, Container, IconButton, Typography, Divider } from '@mui/material'
+import { backdropClasses } from '@mui/material/Backdrop'
+import { paperClasses } from '@mui/material/Paper'
 import { styled } from '@mui/system'
 import { KeyboardEvent, ReactNode } from 'react'
 import { useIntl } from 'react-intl'
@@ -22,30 +24,33 @@ function Popup({ title, children, onClose }: PopupProps) {
   }
 
   return (
-    <Drawer open anchor="bottom" onClose={onClose}>
+    <StyledDrawer open anchor="bottom" onClose={onClose}>
       <Box role="presentation" minHeight={350} onKeyDown={onKeyDown}>
         <Container fixed>
           <Box display="flex" justifyContent="space-between" alignItems="center" minHeight={64}>
             <Typography variant="h6" component="div" textAlign="center" ml={2} flex={1}>
               {title}
             </Typography>
-            <CloseButton edge="start" color="inherit" aria-label={closeText} onClick={onClose}>
+            <IconButton edge="start" color="inherit" aria-label={closeText} onClick={onClose}>
               <Icon name="close" />
-            </CloseButton>
+            </IconButton>
           </Box>
           <Divider light />
           {children}
         </Container>
       </Box>
-    </Drawer>
+    </StyledDrawer>
   )
 }
 
-const CloseButton = styled(IconButton)(({ theme }) => ({
-  background: theme.palette.grey[900],
-  ':hover': {
-    background: theme.palette.grey[800],
+const StyledDrawer = styled(Drawer)({
+  [`& .${backdropClasses.root}`]: {
+    background: 'rgba(34, 34, 34, 0.75)',
+    backdropFilter: 'blur(5px)',
   },
-}))
+  [`& .${paperClasses.root}`]: {
+    borderRadius: '32px 32px 0 0',
+  },
+})
 
 export default Popup

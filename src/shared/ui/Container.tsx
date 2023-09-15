@@ -6,7 +6,8 @@ const Container = styled((props) => <MuiContainer fixed {...props} />)({
   display: 'flex',
   flexDirection: 'column',
   alignItems: 'stretch',
-  py: 2,
+  paddingTop: 16,
+  paddingBottom: 16,
 }) as typeof MuiContainer
 
 export default Container

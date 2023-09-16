@@ -40,7 +40,6 @@ function CreateMemberModal({ goal, onClose }: CreateMemberModalProps) {
   return (
     <Modal
       title={title}
-      maxWidth="xs"
       actions={[
         <CancelButton key="cancel" onClick={onClose} />,
         <SubmitButton

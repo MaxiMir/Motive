@@ -30,7 +30,7 @@ function ReadNotificationsModal({
   const lastId = notifications.at(-1)?.id
 
   return (
-    <Modal title={title} maxWidth="xs" contentHeight={600} fullScreen={mobile} onClose={onClose}>
+    <Modal title={title} contentHeight={600} fullScreen={mobile} onClose={onClose}>
       <Stack flex={1}>
         {isLoading ? (
           <Loader />

@@ -1,10 +1,14 @@
 import { List, ListItem, Stack, ListItemIcon, ListItemText } from '@mui/material'
 import { useIntl } from 'react-intl'
+import dynamic from 'next/dynamic'
+import { useDetectMobile } from 'entities/device'
 import { copy } from 'shared/lib/helpers'
 import { ContentCopy, Email, Facebook, SMS, Telegram, Twitter, VK } from 'shared/ui/icons'
-import Popup from 'shared/ui/Popup'
 import { useSnackbar } from 'shared/ui/snackbar'
 import { clickHandler } from './lib'
+
+const Modal = dynamic(() => import('shared/ui/Modal'))
+const Drawer = dynamic(() => import('shared/ui/Drawer'))
 
 interface ShareProps {
   href: string
@@ -15,9 +19,11 @@ interface ShareProps {
 function Share({ href, title, onClose }: ShareProps) {
   const { formatMessage } = useIntl()
   const { enqueueSnackbar } = useSnackbar()
+  const mobile = useDetectMobile()
   const shareItems = getShareItems()
   const copiedText = formatMessage({ id: 'common.copied' })
   const shareTitle = formatMessage({ id: 'common.share' })
+  const ModalComponent = mobile ? Drawer : Modal
 
   function getShareItems() {
     const url = process.env.NEXT_PUBLIC_APP_URL + href
@@ -67,8 +73,8 @@ function Share({ href, title, onClose }: ShareProps) {
   }
 
   return (
-    <Popup title={shareTitle} onClose={onClose}>
-      <List>
+    <ModalComponent title={shareTitle} onClose={onClose}>
+      <List onClick={onClose}>
         {shareItems.map(({ text, ItemIcon, onClick }) => (
           <ListItem button sx={{ height: 64 }} key={text} onClick={onClick}>
             <Stack direction="row" alignItems="center" sx={{ marginInline: 'auto' }}>
@@ -80,7 +86,7 @@ function Share({ href, title, onClose }: ShareProps) {
           </ListItem>
         ))}
       </List>
-    </Popup>
+    </ModalComponent>
   )
 }
 

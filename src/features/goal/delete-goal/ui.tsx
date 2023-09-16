@@ -23,7 +23,6 @@ function DeleteGoalModal({ goalId, onClose }: DeleteGoalModalProps) {
   return (
     <Modal
       title={title}
-      maxWidth="xs"
       actions={[
         <CancelButton key="cancel" onClick={onClose} />,
         <SubmitButton

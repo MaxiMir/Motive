@@ -33,7 +33,7 @@ function Modal({
   title,
   actions,
   children,
-  maxWidth,
+  maxWidth = 'xs',
   contentHeight,
   dividers,
   fullScreen,

@@ -57,7 +57,6 @@ function EditSphereModal({ userId, sphere, icon, value, onClose }: EditSpherePro
 
   return (
     <Modal
-      maxWidth="xs"
       title={title}
       fullScreen={mobile}
       actions={[

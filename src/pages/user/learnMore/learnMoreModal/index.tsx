@@ -1,12 +1,16 @@
 import { Stack, Typography } from '@mui/material'
 import { useIntl } from 'react-intl'
+import dynamic from 'next/dynamic'
 import Link from 'next/link'
+import { useDetectMobile } from 'entities/device'
 import { UserPageDto } from 'shared/api'
 import { joinToHref } from 'shared/lib/helpers'
 import Avatar from 'shared/ui/avatar'
-import Modal from 'shared/ui/Modal'
 import { ROWS } from './consts'
 import { Row } from './row'
+
+const Modal = dynamic(() => import('shared/ui/Modal'))
+const Drawer = dynamic(() => import('shared/ui/Drawer'))
 
 interface LearnMoreModalProps {
   user: UserPageDto
@@ -15,11 +19,13 @@ interface LearnMoreModalProps {
 
 function LearnMoreModal({ user, onClose }: LearnMoreModalProps) {
   const { formatMessage } = useIntl()
+  const mobile = useDetectMobile()
   const userHref = joinToHref(user.nickname)
   const title = formatMessage({ id: 'common.info' })
+  const ModalComponent = mobile ? Drawer : Modal
 
   return (
-    <Modal title={title} maxWidth="xs" onClose={onClose}>
+    <ModalComponent title={title} onClose={onClose}>
       <Stack gap={1}>
         <Stack alignItems="center" gap={1} mb={2}>
           <Avatar src={user.avatar} name={user.name} size={80} />
@@ -34,7 +40,7 @@ function LearnMoreModal({ user, onClose }: LearnMoreModalProps) {
           <Row icon={icon} name={name} value={user[name]} key={name} />
         ))}
       </Stack>
-    </Modal>
+    </ModalComponent>
   )
 }
 

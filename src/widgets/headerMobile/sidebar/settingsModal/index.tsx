@@ -33,7 +33,7 @@ function SettingsModal({ onClose }: SettingsModalProps) {
   }
 
   return (
-    <Modal title={title} maxWidth="xs" onClose={onClose}>
+    <Modal title={title} onClose={onClose}>
       <Stack gap={3}>
         <Stack gap={1}>
           <Header variant="body2" gutterBottom>

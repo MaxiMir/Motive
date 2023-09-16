@@ -26,7 +26,7 @@ function PointsRatedModal({ title, day, onClose }: PointsRatedModalProps) {
   const lastId = pointsRated.at(-1)?.id
 
   return (
-    <Modal title={title} maxWidth="xs" contentHeight={600} fullScreen={mobile} onClose={onClose}>
+    <Modal title={title} contentHeight={600} fullScreen={mobile} onClose={onClose}>
       {isLoading ? (
         <UserLoader all={day.pointsRated} shown={8} />
       ) : (

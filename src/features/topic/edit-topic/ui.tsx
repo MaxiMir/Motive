@@ -30,7 +30,6 @@ function EditTopicModal({ message, onClose }: EditTopicModalProps) {
   return (
     <Modal
       title={title}
-      maxWidth="xs"
       actions={[
         <CancelButton key="cancel" onClick={onClose} />,
         <SubmitButton

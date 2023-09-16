@@ -33,7 +33,7 @@ function SubscriptionModal({ userId, type, count, onClose }: SubscriptionModalPr
   const lastId = users.at(-1)?.id
 
   return (
-    <Modal title={title} maxWidth="xs" contentHeight={600} fullScreen={mobile} onClose={onClose}>
+    <Modal title={title} contentHeight={600} fullScreen={mobile} onClose={onClose}>
       {isLoading ? (
         <UserLoader all={count} shown={8} />
       ) : (

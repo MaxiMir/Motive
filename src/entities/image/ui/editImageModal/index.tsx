@@ -34,7 +34,7 @@ export function EditImageModal({ description, isLoading, onSubmit, onClose }: Ed
   }
 
   return (
-    <Modal title={title} maxWidth="xs" onClose={onClose}>
+    <Modal title={title} onClose={onClose}>
       <Stack alignItems="center" gap={2}>
         <Stack alignItems="center" gap={1}>
           <Description>{description}</Description>

@@ -23,7 +23,6 @@ function UpdateStageModal({ goalId, stages, dayStage, onClose }: UpdateStageModa
   return (
     <Modal
       title={messages.title}
-      maxWidth="xs"
       actions={[
         <CancelButton key="cancel" onClick={onClose} />,
         <SubmitButton

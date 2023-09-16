@@ -15,7 +15,7 @@ function NoCompletedModal({ onClose }: NoCompletedModalProps) {
   const title = `${completed} ${goals}`
 
   return (
-    <Modal title={title} maxWidth="xs" onClose={onClose}>
+    <Modal title={title} onClose={onClose}>
       <Stack gap={2} minHeight={400}>
         <Stack alignItems="center" justifyContent="center" flex={1} gap={2}>
           <Typography variant="h6" component="p">

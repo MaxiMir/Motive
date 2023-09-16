@@ -25,7 +25,7 @@ function SignInModal({ options, onClose }: SignInModalProps) {
   const alertLink = formatMessage({ id: 'component.sign-in.alert.link' })
 
   return (
-    <Modal title={title} maxWidth="xs" onClose={onClose}>
+    <Modal title={title} onClose={onClose}>
       <Stack alignSelf="stretch" gap={2} minHeight={335}>
         {!providers ? (
           <Loader count={4} />

@@ -45,7 +45,6 @@ function CreateDayModal({ goalId, calendar, onClose }: CreateDayModalProps) {
   return (
     <Modal
       title={title}
-      maxWidth="xs"
       fullScreen={mobile}
       actions={[
         <CancelButton key="cancel" onClick={onClose} />,

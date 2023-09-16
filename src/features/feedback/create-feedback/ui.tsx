@@ -40,7 +40,6 @@ function CreateFeedback({ goalId, dayId, onClose }: AddingModalProps) {
   return (
     <Modal
       title={title}
-      maxWidth="xs"
       fullScreen={mobile}
       actions={[
         <CancelButton key="cancel" onClick={onClose} />,

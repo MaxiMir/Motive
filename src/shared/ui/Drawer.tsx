@@ -25,7 +25,7 @@ function Drawer({ title, children, onClose }: DrawerProps) {
 
   return (
     <StyledDrawer open anchor="bottom" onClose={onClose}>
-      <Box role="presentation" minHeight={350} onKeyDown={onKeyDown}>
+      <Box role="presentation" onKeyDown={onKeyDown}>
         <Container fixed>
           <Box display="flex" justifyContent="space-between" alignItems="center" minHeight={56}>
             <Typography variant="h6" component="div" textAlign="center" ml={2} flex={1}>

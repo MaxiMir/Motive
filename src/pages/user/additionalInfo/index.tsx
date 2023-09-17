@@ -5,13 +5,13 @@ import { UserPageDto } from 'shared/api'
 import { useToggle } from 'shared/lib/hooks'
 import Icon from 'shared/ui/Icon'
 
-const LearnMoreModal = dynamic(() => import('./learnMoreModal'))
+const AdditionalInfoModal = dynamic(() => import('./additionalInfoModal'))
 
-interface LearnMoreProps {
+interface AdditionalInfoProps {
   user: UserPageDto
 }
 
-function LearnMore({ user }: LearnMoreProps) {
+function AdditionalInfo({ user }: AdditionalInfoProps) {
   const [open, toggle] = useToggle()
   const { formatMessage } = useIntl()
   const infoText = formatMessage({ id: 'common.info' })
@@ -29,9 +29,9 @@ function LearnMore({ user }: LearnMoreProps) {
       >
         {infoText}
       </Button>
-      {open && <LearnMoreModal user={user} onClose={toggle} />}
+      {open && <AdditionalInfoModal user={user} onClose={toggle} />}
     </>
   )
 }
 
-export default LearnMore
+export default AdditionalInfo

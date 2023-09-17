@@ -1,4 +1,4 @@
-import { List, ListItem, Stack, ListItemIcon, ListItemText } from '@mui/material'
+import { ListItem, Stack, ListItemIcon, ListItemText, Box } from '@mui/material'
 import { useIntl } from 'react-intl'
 import dynamic from 'next/dynamic'
 import { useDetectMobile } from 'entities/device'
@@ -74,9 +74,9 @@ function Share({ href, title, onClose }: ShareProps) {
 
   return (
     <ModalComponent title={shareTitle} onClose={onClose}>
-      <List onClick={onClose}>
+      <Box display="flex" flexWrap="wrap" onClick={onClose}>
         {shareItems.map(({ text, ItemIcon, onClick }) => (
-          <ListItem button sx={{ height: 64 }} key={text} onClick={onClick}>
+          <ListItem button key={text} sx={{ flex: 1 }} onClick={onClick}>
             <Stack direction="row" alignItems="center" sx={{ marginInline: 'auto' }}>
               <ListItemIcon sx={{ minWidth: 40 }}>
                 <ItemIcon sx={{ color: 'primary.dark' }} />
@@ -85,7 +85,7 @@ function Share({ href, title, onClose }: ShareProps) {
             </Stack>
           </ListItem>
         ))}
-      </List>
+      </Box>
     </ModalComponent>
   )
 }

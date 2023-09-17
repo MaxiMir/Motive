@@ -5,8 +5,8 @@ import { UserContext, UserLevel } from 'entities/user'
 import { useViewer } from 'entities/viewer'
 import { SCORE_MAIN, SPHERES, UserPageDto } from 'shared/api'
 import Container from 'shared/ui/Container'
+import AdditionalInfo from './additionalInfo'
 import AvatarActs from './avatarActs'
-import LearnMore from './learnMore'
 import MenuActs from './menuActs'
 import NoGoals from './noGoals'
 import Score from './score'
@@ -129,7 +129,7 @@ export function UserPage({ user }: UserViewProps) {
                   {host}
                 </Link>
               ))}
-              <LearnMore user={user} />
+              <AdditionalInfo user={user} />
             </Stack>
           </Section>
         </Stack>

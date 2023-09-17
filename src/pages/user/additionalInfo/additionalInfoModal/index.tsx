@@ -12,12 +12,12 @@ import { Row } from './row'
 const Modal = dynamic(() => import('shared/ui/Modal'))
 const Drawer = dynamic(() => import('shared/ui/Drawer'))
 
-interface LearnMoreModalProps {
+interface AdditionalInfoModalProps {
   user: UserPageDto
   onClose: () => void
 }
 
-function LearnMoreModal({ user, onClose }: LearnMoreModalProps) {
+function AdditionalInfoModal({ user, onClose }: AdditionalInfoModalProps) {
   const { formatMessage } = useIntl()
   const mobile = useDetectMobile()
   const userHref = joinToHref(user.nickname)
@@ -44,4 +44,4 @@ function LearnMoreModal({ user, onClose }: LearnMoreModalProps) {
   )
 }
 
-export default LearnMoreModal
+export default AdditionalInfoModal

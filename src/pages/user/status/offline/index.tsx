@@ -2,14 +2,13 @@ import { Stack } from '@mui/material'
 import { styled } from '@mui/system'
 import { useIntl } from 'react-intl'
 import dynamic from 'next/dynamic'
-import { Device } from 'shared/api'
 import { useFormatDistance } from 'shared/lib/hooks'
 
 const DeviceIcon = dynamic(() => import('./deviceIcon'))
 
 interface OfflineProps {
   lastSeen: string
-  device?: Device | null
+  device?: string | null
 }
 
 function Offline({ lastSeen, device }: OfflineProps) {

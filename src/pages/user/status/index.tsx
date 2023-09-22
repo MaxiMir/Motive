@@ -1,7 +1,6 @@
 import { Box, BoxProps } from '@mui/material'
 import { ReactNode } from 'react'
 import dynamic from 'next/dynamic'
-import { Device } from 'shared/api'
 
 const BadgeRipple = dynamic(() => import('shared/ui/BadgeRipple'))
 const Offline = dynamic(() => import('./offline'))
@@ -9,7 +8,7 @@ const Offline = dynamic(() => import('./offline'))
 interface StatusProps extends BoxProps {
   online?: boolean | null
   lastSeen?: string | null
-  device?: Device | null
+  device?: string | null
   children: ReactNode | ReactNode[]
 }
 

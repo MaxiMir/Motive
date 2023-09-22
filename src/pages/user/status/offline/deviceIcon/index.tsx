@@ -1,9 +1,8 @@
-import { Device } from 'shared/api'
 import Icon from 'shared/ui/Icon'
 import { getIconName } from './lib'
 
 interface DeviceIconProps {
-  device: Device
+  device: string
 }
 
 function DeviceIcon({ device }: DeviceIconProps) {

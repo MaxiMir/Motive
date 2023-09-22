@@ -1,5 +1,4 @@
 import { ScoreDto, SphereDto } from '../characteristic'
-import { Device } from '../device'
 
 export type UserCharacteristicDto = Readonly<{ [k in ScoreDto | SphereDto]: number }>
 
@@ -12,7 +11,7 @@ export interface UserBaseDto {
   readonly authId?: string
   readonly online?: boolean | null
   readonly lastSeen?: string | null
-  readonly device?: Device | null
+  readonly device?: string | null
   readonly motto?: string
   readonly location?: string
   readonly bio?: string

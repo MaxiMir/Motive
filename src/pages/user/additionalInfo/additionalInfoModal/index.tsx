@@ -2,7 +2,7 @@ import { Stack, Typography } from '@mui/material'
 import { useIntl } from 'react-intl'
 import dynamic from 'next/dynamic'
 import Link from 'next/link'
-import { useDetectMobile } from 'entities/device'
+import { useDeviceContext } from 'entities/device'
 import { UserPageDto } from 'shared/api'
 import { joinToHref } from 'shared/lib/helpers'
 import Avatar from 'shared/ui/avatar'
@@ -19,10 +19,10 @@ interface AdditionalInfoModalProps {
 
 function AdditionalInfoModal({ user, onClose }: AdditionalInfoModalProps) {
   const { formatMessage } = useIntl()
-  const mobile = useDetectMobile()
+  const { isMobile } = useDeviceContext()
   const userHref = joinToHref(user.nickname)
   const title = formatMessage({ id: 'common.info' })
-  const ModalComponent = mobile ? Drawer : Modal
+  const ModalComponent = isMobile ? Drawer : Modal
 
   return (
     <ModalComponent title={title} onClose={onClose}>

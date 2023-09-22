@@ -13,7 +13,7 @@ import { ChangeEvent, useDeferredValue, useId } from 'react'
 import { useIntl } from 'react-intl'
 import dynamic from 'next/dynamic'
 import { SphereProgress } from 'entities/characteristic'
-import { useDetectMobile } from 'entities/device'
+import { useDeviceContext } from 'entities/device'
 import { SphereDto } from 'shared/api'
 import { range } from 'shared/lib/helpers'
 import Accordion from 'shared/ui/Accordion'
@@ -37,7 +37,7 @@ interface EditSphereProps {
 function EditSphereModal({ userId, sphere, icon, value, onClose }: EditSphereProps) {
   const { formatMessage } = useIntl()
   const labelId = useId()
-  const mobile = useDetectMobile()
+  const { isMobile } = useDeviceContext()
   const form = useEditSphereForm(userId, sphere, value, onClose)
   const { values, setFieldValue, isSubmitting, handleSubmit } = form
   const deferredValue = useDeferredValue(values.value)
@@ -58,7 +58,7 @@ function EditSphereModal({ userId, sphere, icon, value, onClose }: EditSpherePro
   return (
     <Modal
       title={title}
-      fullScreen={mobile}
+      fullScreen={isMobile}
       actions={[
         <CancelButton key="cancel" onClick={onClose} />,
         <SubmitButton

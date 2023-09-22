@@ -3,7 +3,7 @@ import { DatePicker } from '@mui/x-date-pickers/DatePicker'
 import { FieldArray, Form, FormikProvider } from 'formik'
 import { useIntl } from 'react-intl'
 import { PittRules } from 'entities/characteristic'
-import { useDetectMobile } from 'entities/device'
+import { useDeviceContext } from 'entities/device'
 import { TaskField } from 'entities/task'
 import { CalendarDto } from 'shared/api'
 import { FRONTEND_ID } from 'shared/config'
@@ -24,7 +24,7 @@ interface CreateDayModalProps {
 
 function CreateDayModal({ goalId, calendar, onClose }: CreateDayModalProps) {
   const { formatMessage } = useIntl()
-  const mobile = useDetectMobile()
+  const { isMobile } = useDeviceContext()
   const initialDate = getInitialDate(calendar)
   const form = useCreateDayForm(goalId, initialDate, onClose)
   const { isSubmitting, values, setFieldValue, handleSubmit } = form
@@ -45,7 +45,7 @@ function CreateDayModal({ goalId, calendar, onClose }: CreateDayModalProps) {
   return (
     <Modal
       title={title}
-      fullScreen={mobile}
+      fullScreen={isMobile}
       actions={[
         <CancelButton key="cancel" onClick={onClose} />,
         <SubmitButton

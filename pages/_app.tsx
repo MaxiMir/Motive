@@ -3,7 +3,7 @@ import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns'
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider'
 import { Locale as FnsLocale } from 'date-fns'
 import { SessionProvider } from 'next-auth/react'
-import NextNprogress from 'nextjs-progressbar'
+import NextProgress from 'nextjs-progressbar'
 import { use, useMemo } from 'react'
 import { IntlProvider } from 'react-intl'
 import { Hydrate } from 'react-query'
@@ -14,7 +14,7 @@ import QueryProvider from 'app/providers/QueryProvider'
 import ThemeProvider from 'app/providers/ThemeProvider'
 import { Socket } from 'app/socket'
 import { AppProps } from 'next/app'
-import { DeviceContext } from 'entities/device'
+import { DeviceContext, toDevice } from 'entities/device'
 import { Locale } from 'entities/locale'
 import { useSignIn } from 'entities/viewer'
 import { makeMapLoader } from 'shared/lib/helpers'
@@ -27,7 +27,7 @@ const adapterLocaleLoader = makeMapLoader<FnsLocale>()
 
 function App({
   Component,
-  pageProps: { session, dehydratedState, device, ...pageProps },
+  pageProps: { session, dehydratedState, userDevice, ...pageProps },
 }: AppProps) {
   const router = useRouter()
   const locale = router.locale === 'default' ? Locale.En : router.locale || Locale.En
@@ -39,10 +39,7 @@ function App({
   const adapterLocale = use(
     adapterLocaleLoader(locale, () => import(`date-fns/locale/${folder}/index.js`)),
   )
-  const deviceValue = useMemo(
-    () => ({ type: device?.device.type, browser: device?.client.name }),
-    [device],
-  )
+  const deviceValue = useMemo(() => toDevice(userDevice), [userDevice])
 
   return (
     <IntlProvider locale={locale} messages={messages}>
@@ -72,7 +69,7 @@ function App({
                       gtag('config', '${process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS}');
                     `}
                   </Script>
-                  <NextNprogress color="#7638fa" options={{ showSpinner: false }} />
+                  <NextProgress color="#7638fa" options={{ showSpinner: false }} />
                   <CssBaseline />
                   <Component {...pageProps} />
                   <Snackbar />

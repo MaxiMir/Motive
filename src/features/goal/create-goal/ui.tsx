@@ -17,7 +17,7 @@ import { Field, FieldArray, Form, FormikProvider } from 'formik'
 import { useId } from 'react'
 import { useIntl } from 'react-intl'
 import dynamic from 'next/dynamic'
-import { useDetectMobile } from 'entities/device'
+import { useDeviceContext } from 'entities/device'
 import { TaskField } from 'entities/task'
 import { FRONTEND_ID } from 'shared/config'
 import { useFocus } from 'shared/lib/hooks'
@@ -39,7 +39,7 @@ interface CreateGoalModalProps {
 function CreateGoalModal({ onClose }: CreateGoalModalProps) {
   const sphereLabelId = useId()
   const { formatMessage } = useIntl()
-  const mobile = useDetectMobile()
+  const { isMobile } = useDeviceContext()
   const [hashtagsRef, setHashtagsFocus] = useFocus()
   const form = useCreateGoalForm(onClose)
   const spheres = useSpheresList()
@@ -79,7 +79,7 @@ function CreateGoalModal({ onClose }: CreateGoalModalProps) {
   return (
     <Modal
       title={title}
-      fullScreen={mobile}
+      fullScreen={isMobile}
       actions={[
         <CancelButton key="cancel" onClick={onClose} />,
         <SubmitButton

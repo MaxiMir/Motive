@@ -1,7 +1,7 @@
 import { Box, Divider, Stack } from '@mui/material'
 import { Fragment } from 'react'
 import dynamic from 'next/dynamic'
-import { useDetectMobile } from 'entities/device'
+import { useDeviceContext } from 'entities/device'
 import { DayDto } from 'shared/api'
 import { toCheckOnLoadMore } from 'shared/lib/utils'
 import Modal from 'shared/ui/Modal'
@@ -19,14 +19,14 @@ interface PointsRatedModalProps {
 }
 
 function PointsRatedModal({ title, day, onClose }: PointsRatedModalProps) {
+  const { isMobile } = useDeviceContext()
   const { isLoading, isFetching, data, hasNextPage, fetchNextPage } = usePointsRated(day)
   const pointsRated = data?.pages.flat() || []
   const checkOnInView = toCheckOnLoadMore(pointsRated.length, hasNextPage)
-  const mobile = useDetectMobile()
   const lastId = pointsRated.at(-1)?.id
 
   return (
-    <Modal title={title} contentHeight={600} fullScreen={mobile} onClose={onClose}>
+    <Modal title={title} contentHeight={600} fullScreen={isMobile} onClose={onClose}>
       {isLoading ? (
         <UserLoader all={day.pointsRated} shown={8} />
       ) : (

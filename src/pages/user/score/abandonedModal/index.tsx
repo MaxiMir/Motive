@@ -5,7 +5,7 @@ import Image from 'next/image'
 // eslint-disable-next-line import/no-internal-modules
 import webSrc from 'public/images/svg/web.svg'
 import { PittRules } from 'entities/characteristic'
-import { useDetectMobile } from 'entities/device'
+import { useDeviceContext } from 'entities/device'
 import { UserCharacteristicDto } from 'shared/api'
 import { useShowProgress } from 'shared/lib/hooks'
 
@@ -19,12 +19,12 @@ interface AbandonedModalProps {
 
 function AbandonedModal({ characteristic, onClose }: AbandonedModalProps) {
   const { formatMessage } = useIntl()
-  const mobile = useDetectMobile()
+  const { isMobile } = useDeviceContext()
   const progress = useShowProgress(characteristic.abandoned, { step: 1, ms: 300 })
   const roundedProgress = Math.round(progress)
   const title = formatMessage({ id: 'common.abandoned' })
   const header = formatMessage({ id: 'page.user.modal-abandoned.header' })
-  const ModalComponent = mobile ? Drawer : Modal
+  const ModalComponent = isMobile ? Drawer : Modal
 
   return (
     <ModalComponent title={title} onClose={onClose}>

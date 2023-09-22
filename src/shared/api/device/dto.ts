@@ -1,18 +1,5 @@
-export interface Device {
-  type?:
-    | 'desktop'
-    | 'tablet'
-    | 'smartphone'
-    | 'feature phone'
-    | 'phablet'
-    | 'console'
-    | 'tv'
-    | 'car browser'
-    | 'smart display'
-    | 'camera'
-    | 'portable media player'
-    | 'smart speaker'
-    | 'wearable'
-    | 'peripheral'
-  browser?: string
+import { Details } from 'express-useragent'
+
+export interface Device extends Partial<Details> {
+  type?: 'mobile' | 'tablet' | 'desktop'
 }

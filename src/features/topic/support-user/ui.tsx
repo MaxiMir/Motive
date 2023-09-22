@@ -1,7 +1,7 @@
 import { Box, Stack } from '@mui/material'
 import { Field, Form, FormikProvider } from 'formik'
 import { useIntl } from 'react-intl'
-import { useDetectMobile } from 'entities/device'
+import { useDeviceContext } from 'entities/device'
 import { SupportRules } from 'entities/discussion'
 import { Emoji } from 'shared/config'
 import Accordion from 'shared/ui/Accordion'
@@ -21,7 +21,7 @@ interface SupportUserModalProps {
 
 function SupportUserModal({ dayId, ownerName, onClose }: SupportUserModalProps) {
   const { formatMessage } = useIntl()
-  const mobile = useDetectMobile()
+  const { isMobile } = useDeviceContext()
   const supportingText = formatMessage({ id: 'common.supporting' })
   const header = formatMessage({ id: 'common.about-support' })
   const buttonText = formatMessage({ id: 'common.supporting' })
@@ -34,7 +34,7 @@ function SupportUserModal({ dayId, ownerName, onClose }: SupportUserModalProps) 
   return (
     <Modal
       title={title}
-      fullScreen={mobile}
+      fullScreen={isMobile}
       actions={[
         <CancelButton key="cancel" onClick={onClose} />,
         <SubmitButton

@@ -1,7 +1,7 @@
 import { Box, Stack } from '@mui/material'
 import { useIntl } from 'react-intl'
 import dynamic from 'next/dynamic'
-import { useDetectMobile } from 'entities/device'
+import { useDeviceContext } from 'entities/device'
 import { useViewer } from 'entities/viewer'
 import { DayDto, UserBaseDto } from 'shared/api'
 import { toCheckOnLoadMore } from 'shared/lib/utils'
@@ -23,10 +23,10 @@ interface DiscussionModalProps {
 function DiscussionModal({ day, owner, viewerGoal, onClose }: DiscussionModalProps) {
   const viewer = useViewer()
   const { formatMessage } = useIntl()
+  const { isMobile } = useDeviceContext()
   const { isLoading, data, hasNextPage, fetchNextPage } = useDiscussion(day)
   const topics = data?.pages.flat() || []
   const checkOnInView = toCheckOnLoadMore(topics.length, hasNextPage)
-  const mobile = useDetectMobile()
   const title = formatMessage({ id: 'common.discussion' })
 
   return (
@@ -34,7 +34,7 @@ function DiscussionModal({ day, owner, viewerGoal, onClose }: DiscussionModalPro
       title={title}
       maxWidth="md"
       contentHeight={600}
-      fullScreen={mobile}
+      fullScreen={isMobile}
       dividers
       actions={
         !viewer || isLoading

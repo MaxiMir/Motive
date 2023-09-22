@@ -1,10 +1,6 @@
-import { Device } from 'shared/api'
-
-export function getIconName(device: Device): string {
+export function getIconName(device: string): string {
   switch (device) {
-    case 'feature phone':
-    case 'smartphone':
-    case 'phablet':
+    case 'mobile':
       return 'phone_iphone'
     case 'tablet':
       return 'tablet'

@@ -4,9 +4,8 @@ import { Device } from 'shared/api'
 export function useLayout(device: Device) {
   const prevScrollTopRef = useRef(0)
   const [fixedState, setFixedState] = useState(true)
-  const possibleDesktop = device.type === 'desktop'
-  const desktop = !device.type || possibleDesktop
-  const mobile = !device.type || !possibleDesktop
+  const desktop = !device?.type || device?.isDesktop
+  const mobile = !device?.type || device?.isMobile
   const fixed = useDeferredValue(fixedState)
 
   useEffect(() => {

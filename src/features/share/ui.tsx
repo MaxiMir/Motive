@@ -1,7 +1,7 @@
 import { ListItem, Stack, ListItemIcon, ListItemText, Box } from '@mui/material'
 import { useIntl } from 'react-intl'
 import dynamic from 'next/dynamic'
-import { useDetectMobile } from 'entities/device'
+import { useDeviceContext } from 'entities/device'
 import { copy } from 'shared/lib/helpers'
 import { ContentCopy, Email, Facebook, SMS, Telegram, Twitter, VK } from 'shared/ui/icons'
 import { useSnackbar } from 'shared/ui/snackbar'
@@ -19,11 +19,11 @@ interface ShareProps {
 function Share({ href, title, onClose }: ShareProps) {
   const { formatMessage } = useIntl()
   const { enqueueSnackbar } = useSnackbar()
-  const mobile = useDetectMobile()
+  const { isMobile } = useDeviceContext()
   const shareItems = getShareItems()
   const copiedText = formatMessage({ id: 'common.copied' })
   const shareTitle = formatMessage({ id: 'common.share' })
-  const ModalComponent = mobile ? Drawer : Modal
+  const ModalComponent = isMobile ? Drawer : Modal
 
   function getShareItems() {
     const url = process.env.NEXT_PUBLIC_APP_URL + href

@@ -2,7 +2,7 @@ import { Divider, Stack } from '@mui/material'
 import { Fragment } from 'react'
 import { useIntl } from 'react-intl'
 import dynamic from 'next/dynamic'
-import { useDetectMobile } from 'entities/device'
+import { useDeviceContext } from 'entities/device'
 import { toCheckOnLoadMore } from 'shared/lib/utils'
 import Modal from 'shared/ui/Modal'
 import { useSubscription } from './lib'
@@ -21,7 +21,7 @@ interface SubscriptionModalProps {
 
 function SubscriptionModal({ userId, type, count, onClose }: SubscriptionModalProps) {
   const { formatMessage } = useIntl()
-  const mobile = useDetectMobile()
+  const { isMobile } = useDeviceContext()
   const { isLoading, isFetching, data, hasNextPage, fetchNextPage } = useSubscription(
     userId,
     count,
@@ -33,7 +33,7 @@ function SubscriptionModal({ userId, type, count, onClose }: SubscriptionModalPr
   const lastId = users.at(-1)?.id
 
   return (
-    <Modal title={title} contentHeight={600} fullScreen={mobile} onClose={onClose}>
+    <Modal title={title} contentHeight={600} fullScreen={isMobile} onClose={onClose}>
       {isLoading ? (
         <UserLoader all={count} shown={8} />
       ) : (

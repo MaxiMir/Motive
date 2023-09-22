@@ -1,7 +1,7 @@
 import { Stack, Typography, Alert } from '@mui/material'
 import { useIntl } from 'react-intl'
 import dynamic from 'next/dynamic'
-import { useDetectMobile } from 'entities/device'
+import { useDeviceContext } from 'entities/device'
 import Icon from 'shared/ui/Icon'
 import { Row } from './row'
 
@@ -17,12 +17,12 @@ interface PointsModalProps {
 
 function PointsModal({ title, points, pointsTasks, onClose }: PointsModalProps) {
   const { formatMessage } = useIntl()
-  const mobile = useDetectMobile()
+  const { isMobile } = useDeviceContext()
   const ratedByUsers = points - pointsTasks
   const tasksName = formatMessage({ id: 'common.completed-tasks' })
   const likesName = formatMessage({ id: 'common.likes' })
   const summeryText = formatMessage({ id: 'common.points-summery' })
-  const ModalComponent = mobile ? Drawer : Modal
+  const ModalComponent = isMobile ? Drawer : Modal
 
   return (
     <ModalComponent title={title} onClose={onClose}>

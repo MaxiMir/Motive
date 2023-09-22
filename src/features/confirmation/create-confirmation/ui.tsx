@@ -3,7 +3,7 @@ import { ErrorMessage, Field, FieldArray, Form, FormikProvider } from 'formik'
 import { useIntl } from 'react-intl'
 import dynamic from 'next/dynamic'
 import { usePhotoLimit } from 'entities/confirmation'
-import { useDetectMobile } from 'entities/device'
+import { useDeviceContext } from 'entities/device'
 import CancelButton from 'shared/ui/CancelButton'
 import Input from 'shared/ui/Input'
 import Modal from 'shared/ui/Modal'
@@ -24,7 +24,7 @@ interface CreateConfirmationModalProps {
 
 function CreateConfirmationModal({ goalId, onClose }: CreateConfirmationModalProps) {
   const { formatMessage } = useIntl()
-  const mobile = useDetectMobile()
+  const { isMobile } = useDeviceContext()
   const form = useCreateConfirmationForm(goalId, onClose)
   const { isSubmitting, values, setFieldValue, handleSubmit } = form
   const title = formatMessage({ id: 'component.modal-completion.title' })
@@ -42,7 +42,7 @@ function CreateConfirmationModal({ goalId, onClose }: CreateConfirmationModalPro
   return (
     <Modal
       title={title}
-      fullScreen={mobile}
+      fullScreen={isMobile}
       actions={[
         <CancelButton key="cancel" onClick={onClose} />,
         <SubmitButton

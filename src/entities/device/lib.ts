@@ -1,3 +1,4 @@
+import { Details } from 'express-useragent'
 import { createContext, useContext } from 'react'
 import { Device } from 'shared/api'
 
@@ -7,14 +8,18 @@ export function useDeviceContext() {
   return useContext(DeviceContext)
 }
 
-export function useDetectMobile(): boolean {
-  const device = useDeviceContext()
+export function toDevice(details?: Details) {
+  if (!details) {
+    return {}
+  }
 
-  return ['feature phone', 'smartphone', 'phablet'].includes(device?.type || '')
-}
+  if (details.isMobile) {
+    return { type: 'mobile', ...details }
+  }
 
-export function useDetectSafari(): boolean {
-  const device = useDeviceContext()
+  if (details.isTablet) {
+    return { type: 'tablet', ...details }
+  }
 
-  return ['Safari', 'Mobile Safari'].includes(device.browser || '')
+  return { type: 'desktop', ...details }
 }

@@ -3,7 +3,7 @@ import { useIntl } from 'react-intl'
 import dynamic from 'next/dynamic'
 import Link from 'next/link'
 import { TopicLike } from 'features/topic/like-topic'
-import { useDetectSafari } from 'entities/device'
+import { useDeviceContext } from 'entities/device'
 import { MessageDto } from 'shared/api'
 import { joinToHref } from 'shared/lib/helpers'
 import { useFormatDistance } from 'shared/lib/hooks'
@@ -29,7 +29,7 @@ function Message({ message, answerFor, supportFor, replyProps }: MessageProps) {
   const { name, nickname, avatar, online } = user
   const { formatMessage } = useIntl()
   const formatDistance = useFormatDistance()
-  const safari = useDetectSafari()
+  const { isSafari } = useDeviceContext()
   const dateDistance = formatDistance(date)
   const href = joinToHref(nickname)
   const avatarSize = !answerFor ? 32 : 24
@@ -85,7 +85,7 @@ function Message({ message, answerFor, supportFor, replyProps }: MessageProps) {
             )}
             <MenuActs message={message} />
           </Box>
-          <Markdown text={textWithUser} truncate={!safari} />
+          <Markdown text={textWithUser} truncate={!isSafari} />
         </Stack>
         <Stack direction="row" alignItems="center" gap={1} width="100%" height={32} pl={2}>
           <Typography variant="caption" color="zen.silent">

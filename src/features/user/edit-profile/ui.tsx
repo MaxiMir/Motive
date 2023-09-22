@@ -2,7 +2,7 @@ import { InputAdornment, Stack } from '@mui/material'
 import { Field, Form, FormikProvider } from 'formik'
 import { ChangeEvent } from 'react'
 import { useIntl } from 'react-intl'
-import { useDetectMobile } from 'entities/device'
+import { useDeviceContext } from 'entities/device'
 import { UserPageDto } from 'shared/api'
 import CancelButton from 'shared/ui/CancelButton'
 import Input from 'shared/ui/Input'
@@ -17,7 +17,7 @@ interface EditProfileModalProps {
 
 function EditProfileModal({ user, onClose }: EditProfileModalProps) {
   const { formatMessage } = useIntl()
-  const mobile = useDetectMobile()
+  const { isMobile } = useDeviceContext()
   const form = useEditProfileForm(user, onClose)
   const { setFieldValue, isSubmitting, handleSubmit } = form
   const title = formatMessage({ id: 'page.user.modal-profile.title' })
@@ -36,7 +36,7 @@ function EditProfileModal({ user, onClose }: EditProfileModalProps) {
   return (
     <Modal
       title={title}
-      fullScreen={mobile}
+      fullScreen={isMobile}
       actions={[
         <CancelButton key="cancel" onClick={onClose} />,
         <SubmitButton

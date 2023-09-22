@@ -1,6 +1,6 @@
+import { parse } from 'express-useragent'
 import { GetServerSideProps } from 'next'
 import { getSession } from 'next-auth/react'
-import DeviceDetector from 'node-device-detector'
 import { Layout } from 'app/layout'
 import { HomePage } from 'pages/home'
 import { useMeta } from 'entities/page'
@@ -18,16 +18,15 @@ function HomeRoute() {
 
 export const getServerSideProps: GetServerSideProps = async (ctx) => {
   const { headers } = ctx.req
-  const detector = new DeviceDetector()
-  const device = detector.detect(headers['user-agent'] || '')
   const session = await getSession(ctx)
+  const userDevice = parse(headers['user-agent'] || '')
   const viewer = session?.user as Viewer | undefined
 
   if (!viewer?.nickname) {
     return {
       props: {
+        userDevice,
         session,
-        device,
       },
     }
   }

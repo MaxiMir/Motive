@@ -2,9 +2,11 @@ import CssBaseline from '@mui/material/CssBaseline'
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns'
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider'
 import { Locale as FnsLocale } from 'date-fns'
-import { SessionProvider } from 'next-auth/react'
+import { Details, parse } from 'express-useragent'
+import { Session } from 'next-auth'
+import { getSession, SessionProvider } from 'next-auth/react'
 import NextProgress from 'nextjs-progressbar'
-import { use, useMemo } from 'react'
+import { use } from 'react'
 import { IntlProvider } from 'react-intl'
 import { Hydrate } from 'react-query'
 import dynamic from 'next/dynamic'
@@ -13,7 +15,7 @@ import Script from 'next/script'
 import QueryProvider from 'app/providers/QueryProvider'
 import ThemeProvider from 'app/providers/ThemeProvider'
 import { Socket } from 'app/socket'
-import { AppProps } from 'next/app'
+import App, { AppContext, AppInitialProps, AppProps } from 'next/app'
 import { DeviceContext, toDevice } from 'entities/device'
 import { Locale } from 'entities/locale'
 import { useSignIn } from 'entities/viewer'
@@ -25,7 +27,12 @@ const SignInModal = dynamic(() => import('features/viewer/sign-in'))
 const messagesLoader = makeMapLoader<Record<string, string>>()
 const adapterLocaleLoader = makeMapLoader<FnsLocale>()
 
-function App({
+interface AppOwnProps {
+  session: Session | null
+  userDevice: Details
+}
+
+function MyApp({
   Component,
   pageProps: { session, dehydratedState, userDevice, ...pageProps },
 }: AppProps) {
@@ -39,7 +46,7 @@ function App({
   const adapterLocale = use(
     adapterLocaleLoader(locale, () => import(`date-fns/locale/${folder}/index.js`)),
   )
-  const deviceValue = useMemo(() => toDevice(userDevice), [userDevice])
+  const deviceValue = toDevice(userDevice)
 
   return (
     <IntlProvider locale={locale} messages={messages}>
@@ -85,4 +92,19 @@ function App({
   )
 }
 
-export default App
+MyApp.getInitialProps = async (appContext: AppContext): Promise<AppInitialProps<AppOwnProps>> => {
+  const appProps = await App.getInitialProps(appContext)
+  const session = await getSession(appContext.ctx)
+  const userDevice = parse(appContext.ctx.req?.headers['user-agent'] || '')
+
+  return {
+    ...appProps,
+    pageProps: {
+      ...appProps.pageProps,
+      session,
+      userDevice,
+    },
+  }
+}
+
+export default MyApp

@@ -1,6 +1,4 @@
-import { parse } from 'express-useragent'
 import { GetServerSideProps } from 'next'
-import { getSession } from 'next-auth/react'
 import { dehydrate, QueryClient } from 'react-query'
 import { useRouter } from 'next/router'
 /* eslint-disable boundaries/element-types */
@@ -31,24 +29,16 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
     getArticlePage(pathname, { headers, params }),
   )
   const state = queryClient.getQueryState<PossiblePageError>(['page', pathname])
-  const session = await getSession(ctx)
-  const userDevice = parse(headers['user-agent'] || '')
   const statusCode = state?.data?.message?.statusCode || 200
 
   if (statusCode === 404) {
     return {
-      props: {
-        userDevice,
-        session,
-      },
       notFound: true,
     }
   }
 
   return {
     props: {
-      userDevice,
-      session,
       statusCode,
       dehydratedState: dehydrate(queryClient),
     },

@@ -1,6 +1,4 @@
-import { parse } from 'express-useragent'
 import { GetServerSideProps } from 'next'
-import { getSession } from 'next-auth/react'
 import { dehydrate, QueryClient } from 'react-query'
 import { Layout } from 'app/layout'
 import { SearchPage } from 'pages/search'
@@ -24,14 +22,10 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
   const { headers, url = Route.Search } = ctx.req
   const queryClient = new QueryClient()
   const params = getSearchParams(url)
-  const session = await getSession(ctx)
-  const userDevice = parse(headers['user-agent'] || '')
   await queryClient.prefetchQuery(['page', Route.Search], () => getSearchPage({ headers, params }))
 
   return {
     props: {
-      userDevice,
-      session,
       dehydratedState: dehydrate(queryClient),
     },
   }

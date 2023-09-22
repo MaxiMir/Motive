@@ -1,14 +1,14 @@
-type MapLoader<T> = (locale: string, query: () => Promise<T>) => Promise<T>
+type MapLoader<T> = (key: string, query: () => Promise<T>) => Promise<T>
 
 export function makeMapLoader<T>(): MapLoader<T> {
   const langMap = new Map()
 
-  return (locale, query) => {
-    if (!langMap.has(locale)) {
-      langMap.set(locale, query())
+  return (key, query) => {
+    if (!langMap.has(key)) {
+      langMap.set(key, query())
     }
 
-    return langMap.get(locale)
+    return langMap.get(key)
   }
 }
 

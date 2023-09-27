@@ -15,7 +15,8 @@
     "release:major": "standard-version --release-as major",
     "ts-prune": "npx ts-prune --project tsconfig.json",
     "unused-exports": "npx ts-unused-exports tsconfig.json",
-    "unused-packages": "npx depcheck"
+    "unused-packages": "npx depcheck",
+    "unimported": "npx unimported"
   },
   "repository": {
     "type": "git",

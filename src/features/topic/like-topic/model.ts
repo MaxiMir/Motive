@@ -6,7 +6,7 @@ import { useViewerAct } from 'entities/viewer'
 import { GoalDto, MessageDto, TopicDto, updateLike } from 'shared/api'
 import { useSnackbar } from 'shared/ui/snackbar'
 
-export interface Options {
+interface Options {
   message: MessageDto
   parentId?: number
   add: boolean
@@ -82,7 +82,7 @@ function getTopicNextState(discussion: InfiniteData<TopicDto[]>, options: Option
   })
 }
 
-export function getGoalNextState(goals: GoalDto[], goalId: number, add: boolean): GoalDto[] {
+function getGoalNextState(goals: GoalDto[], goalId: number, add: boolean): GoalDto[] {
   return produce(goals, (draft) => {
     const draftGoal = draft[draft.findIndex((g) => g.id === goalId)]
     draftGoal.points += add ? 1 : -1

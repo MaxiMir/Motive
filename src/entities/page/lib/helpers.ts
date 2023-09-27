@@ -2,7 +2,7 @@ import { NotificationDto } from 'shared/api'
 import { Route, HashMark, SearchParam } from 'shared/config'
 import { joinToHref, setSearchParams } from 'shared/lib/helpers'
 
-export function getGoalHref(nickname: string, goalId: number) {
+function getGoalHref(nickname: string, goalId: number) {
   const hashMark = `#${HashMark.Goal}-${goalId}`
 
   return joinToHref(nickname, hashMark)
@@ -14,7 +14,7 @@ export function getDayHref(userHref: string, goalId: number, dayId: number) {
   return getGoalHref(url, goalId)
 }
 
-export function getDiscussionHref(nickname: string, goalId: number, dayId: number) {
+function getDiscussionHref(nickname: string, goalId: number, dayId: number) {
   const url = setSearchParams(nickname, {
     [SearchParam.ScrollTo]: HashMark.Discussion,
     [SearchParam.ScrollId]: goalId,
@@ -25,7 +25,7 @@ export function getDiscussionHref(nickname: string, goalId: number, dayId: numbe
   return joinToHref(url, hash)
 }
 
-export function getFeedbackHref(nickname: string, goalId: number, dayId: number) {
+function getFeedbackHref(nickname: string, goalId: number, dayId: number) {
   const url = setSearchParams(nickname, { [SearchParam.Dates]: `${goalId}:${dayId}` })
   const hash = `#${HashMark.Feedback}-${goalId}`
 

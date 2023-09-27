@@ -1,6 +1,6 @@
 export const SCORE_MAIN = ['completed', 'abandoned', 'followers', 'following'] as const
 
-export const SCORE = [...SCORE_MAIN, 'progress', 'points', 'nextLevelPoints'] as const
+const SCORE = [...SCORE_MAIN, 'progress', 'points', 'nextLevelPoints'] as const
 
 export type ScoreDto = (typeof SCORE)[number]
 

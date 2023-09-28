@@ -8,7 +8,7 @@ interface TunedAvatarProps {
 }
 
 function TunedAvatar({ src, size }: TunedAvatarProps) {
-  const staticSrc = getStaticSrc(src)
+  const staticSrc = getStaticSrc(src, size * 2)
 
   return <StyledAvatar src={staticSrc} alt="" draggable={false} size={size} />
 }

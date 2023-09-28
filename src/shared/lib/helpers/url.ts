@@ -33,6 +33,12 @@ export function setSearchParams(url: string, params: Record<string, string | num
   return toUrl(origin, searchParams)
 }
 
-export function getStaticSrc(src: string) {
-  return src.includes('https://') ? src : process.env.NEXT_PUBLIC_APP_URL + src
+export function getStaticSrc(src: string, width?: number) {
+  if (src.includes('https://')) {
+    return src
+  }
+
+  const uri = !width ? src : `/images/${width}${src}`
+
+  return process.env.NEXT_PUBLIC_APP_URL + uri
 }

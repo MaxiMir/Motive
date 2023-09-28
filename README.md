@@ -1,11 +1,11 @@
 ### Tips
 ```shell
-docker build -t mmirrev/frontend:1.0.98 .
-docker buildx build --platform linux/amd64 -t mmirrev/frontend:1.0.98 .
+docker build -t mmirrev/frontend:1.0.99 .
+docker buildx build --platform linux/amd64 -t mmirrev/frontend:1.0.99 .
 # artifactory:
-docker tag $ mmirrev/frontend:1.0.98
-docker push mmirrev/frontend:1.0.98
-docker pull mmirrev/frontend:1.0.98
+docker tag $ mmirrev/frontend:1.0.99
+docker push mmirrev/frontend:1.0.99
+docker pull mmirrev/frontend:1.0.99
 
 # copy:
 docker cp <IMAGE_ID>:/home/node/client /home # <-
@@ -72,6 +72,27 @@ services:
 ### NGINX config:
 ```shell
 server {
+    listen 80;
+
+    server_name 2bebetter.pro www.2bebetter.pro;
+    return 301 https://$host$request_uri;
+}
+
+server {
+    server_name localhost;
+    listen 5000;
+
+    location ~ "^/images/(?<width>\d+)/(?<image>.+)$" {
+        alias /home/client/$image;
+        image_filter resize $width -;
+        image_filter_jpeg_quality 95;
+        image_filter_buffer 20M;
+  }
+}
+
+proxy_cache_path /home/client/images-cache/ levels=1:2 keys_zone=images:10m inactive=24h max_size=100m;
+
+server {
     listen 443 ssl http2;
     listen [::]:443 ssl http2;
 
@@ -134,16 +155,21 @@ server {
        expires 30d;
     }
 
+    location ~ "^/images/(?<width>\d+)/(?<image>.+)$" {
+       proxy_pass http://localhost:5000/images/$width/$image;
+       proxy_cache images;
+       proxy_cache_valid 200 24h;
+    }
+
+    location /images {
+       # Need to explicitly define DNS resolution when using
+       # variables in the proxy_pass directive. This trick resolves that.
+       proxy_pass http://localhost:5000/;
+    }
+
     if ($host ~* ^www\.(.*)$) {
        return 301 https://2bebetter.pro$request_uri;
     }
-}
-
-server {
-    listen 80;
-
-    server_name 2bebetter.pro www.2bebetter.pro;
-    return 301 https://$host$request_uri;
 }
 ```
 

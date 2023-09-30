@@ -5,12 +5,7 @@ const PUBLIC_FILE = /\.(.*)$/
 export async function middleware(req: NextRequest) {
   const { pathname, locale, search } = req.nextUrl
 
-  if (
-    pathname.startsWith('/_next') ||
-    pathname.includes('/api/') ||
-    PUBLIC_FILE.test(pathname) ||
-    locale !== 'default'
-  ) {
+  if (PUBLIC_FILE.test(pathname) || locale !== 'default') {
     return NextResponse.next()
   }
 
@@ -20,4 +15,8 @@ export async function middleware(req: NextRequest) {
     'en'
 
   return NextResponse.redirect(new URL(`/${cookie}${pathname}${search}`, req.url))
+}
+
+export const config = {
+  matcher: ['/((?!api|_next|$).*)'],
 }

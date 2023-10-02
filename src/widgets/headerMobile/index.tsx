@@ -7,7 +7,7 @@ import { Sidebar } from './sidebar'
 const Updating = dynamic(() => import('./updating'))
 const SignIn = dynamic(() => import('./signIn'))
 const Notifications = dynamic(() => import('./notifications'))
-const UserLink = dynamic(() => import('./userLink'))
+const ProfileLink = dynamic(() => import('./profileLink'))
 
 const HEIGHT = 56
 
@@ -19,7 +19,7 @@ interface HeaderMobileProps {
 
 function HeaderMobile({ type, fixed, updating }: HeaderMobileProps) {
   const viewer = useViewer()
-  const renderUserLink = type === 'profile' && !updating
+  const renderProfileLink = type === 'profile' && !updating
 
   return (
     <AppBar
@@ -40,7 +40,7 @@ function HeaderMobile({ type, fixed, updating }: HeaderMobileProps) {
       <Container fixed>
         <Stack direction="row" justifyContent="space-between" alignItems="center">
           <Sidebar />
-          {updating ? <Updating /> : <>{renderUserLink && <UserLink />}</>}
+          {updating ? <Updating /> : <>{renderProfileLink && <ProfileLink />}</>}
           {viewer ? <Notifications /> : <SignIn />}
         </Stack>
       </Container>

@@ -1,11 +1,11 @@
 ### Tips
 ```shell
-# docker build -t mmirrev/frontend:1.0.99 .
-docker buildx build --platform linux/amd64 -t mmirrev/frontend:1.0.99 .
-# artifactory:
-docker tag $ mmirrev/frontend:1.0.99
-docker push mmirrev/frontend:1.0.99
-docker pull mmirrev/frontend:1.0.99
+docker build -t mmirrev/frontend:1.0.100 .
+docker buildx build --platform linux/amd64 -t mmirrev/frontend:1.0.100 .
+
+docker tag $ mmirrev/frontend:1.0.100
+docker push mmirrev/frontend:1.0.100
+docker pull mmirrev/frontend:1.0.100
 
 # copy:
 docker cp <IMAGE_ID>:/home/node/client /home # <-

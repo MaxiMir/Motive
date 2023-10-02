@@ -36,6 +36,7 @@ function AvatarActs({ user, viewerPage }: AvatarActsProps) {
   const editText = formatMessage({ id: 'common.edit' })
   const deleteText = formatMessage({ id: 'common.delete' })
   const cancelText = formatMessage({ id: 'common.cancel' })
+  const ariaLabel = formatMessage({ id: !viewerPage ? 'common.open' : 'common.open-menu' })
 
   const openPhoto = () => setIndex(0)
 
@@ -69,6 +70,7 @@ function AvatarActs({ user, viewerPage }: AvatarActsProps) {
           size={130}
           disabled={disabled}
           id={id}
+          aria-label={ariaLabel}
           aria-controls={open ? menuId : undefined}
           aria-haspopup
           aria-expanded={open ? 'true' : undefined}

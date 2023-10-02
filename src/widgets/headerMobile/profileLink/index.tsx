@@ -1,7 +1,7 @@
 import { Button, Typography } from '@mui/material'
 import { useRouter } from 'next/router'
 
-function UserLink() {
+function ProfileLink() {
   const { query, reload } = useRouter()
   const nickname = query.id
 
@@ -14,4 +14,4 @@ function UserLink() {
   )
 }
 
-export default UserLink
+export default ProfileLink

@@ -1,5 +1,6 @@
 import { Box, Button, Stack, Typography } from '@mui/material'
 import { styled } from '@mui/system'
+import { useIntl } from 'react-intl'
 import dynamic from 'next/dynamic'
 import { useUserContext } from 'entities/user'
 import { ConfirmationDto } from 'shared/api'
@@ -15,10 +16,12 @@ interface StoryProps {
 function Story({ confirmation }: StoryProps) {
   const { id, goal, photos, end } = confirmation
   const user = useUserContext()
+  const { formatMessage } = useIntl()
   const [open, toggle] = useToggle()
   const { ref, supported, enter, exit } = useTryFullScreen()
   const [mainPhoto] = photos
   const stories = [mainPhoto] // TODO confirmation.photos.map
+  const ariaLabel = formatMessage({ id: 'common.open' })
 
   const onClick = () => {
     toggle()
@@ -41,7 +44,13 @@ function Story({ confirmation }: StoryProps) {
           })}
         >
           <StyledBox>
-            <Avatar src={mainPhoto.src} name={goal.name} size={60} onClick={onClick} />
+            <Avatar
+              src={mainPhoto.src}
+              name={goal.name}
+              size={60}
+              aria-label={ariaLabel}
+              onClick={onClick}
+            />
           </StyledBox>
         </Box>
         <Button data-unit={`confirmation-${id}`} size="small" color="inherit" onClick={onClick}>

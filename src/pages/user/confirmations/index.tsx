@@ -1,8 +1,6 @@
 import { Tabs } from '@mui/material'
-import dynamic from 'next/dynamic'
 import { ConfirmationDto } from 'shared/api'
-
-const Story = dynamic(() => import('./story'))
+import Story from './story'
 
 interface ConfirmationsProps {
   confirmations: ConfirmationDto[]

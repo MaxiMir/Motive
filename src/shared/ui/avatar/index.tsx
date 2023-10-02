@@ -14,8 +14,10 @@ interface AvatarProps extends Omit<ButtonProps, 'size'> {
 }
 
 function Avatar({ src, name, size, badge, ...buttonProps }: AvatarProps) {
+  const role = buttonProps.onClick ? 'button' : 'img'
+
   return (
-    <StyledButton component="span" {...buttonProps}>
+    <StyledButton role={role} {...buttonProps}>
       {!src ? <Plug name={name} size={size} /> : <TunedAvatar src={src} size={size} />}
       {badge && <BadgeRipple sx={{ position: 'absolute', bottom: '20%', right: '15%' }} />}
     </StyledButton>

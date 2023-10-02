@@ -1,4 +1,5 @@
 import { ListItem, ListItemIcon, ListItemText } from '@mui/material'
+import { useIntl } from 'react-intl'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { Viewer } from 'entities/viewer'
@@ -12,11 +13,13 @@ interface UserProps {
 
 function User({ user, primary }: UserProps) {
   const { asPath } = useRouter()
+  const { formatMessage } = useIntl()
   const href = joinToHref(user.nickname)
   const selected = asPath.includes(href)
+  const title = formatMessage({ id: 'common.my-page' })
 
   return (
-    <ListItem button href={href} component={Link}>
+    <ListItem button href={href} title={title} component={Link}>
       <ListItemIcon sx={{ opacity: selected ? 1 : 0.6 }}>
         <Avatar name={user.name} src={user.avatar} size={24} />
       </ListItemIcon>

@@ -1,6 +1,6 @@
 ### Tips
 ```shell
-docker build -t mmirrev/frontend:1.0.99 .
+# docker build -t mmirrev/frontend:1.0.99 .
 docker buildx build --platform linux/amd64 -t mmirrev/frontend:1.0.99 .
 # artifactory:
 docker tag $ mmirrev/frontend:1.0.99

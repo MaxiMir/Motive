@@ -30,7 +30,13 @@ export function Cover({ goal, viewerPart }: CoverProps) {
     <Box position="relative" height={210} mb={3}>
       <SphereAvatar sphere={sphere} />
       {cover ? (
-        <Image src={cover} alt="" fill style={{ objectFit: 'cover' }} />
+        <Image
+          src={cover}
+          alt=""
+          fill
+          style={{ objectFit: 'cover' }}
+          sizes="(max-width: 768px) 91vw, 41vw"
+        />
       ) : (
         <Gradient sphere={sphere} />
       )}

@@ -53,7 +53,7 @@ function FooterMobile({ fixed }: FooterMobileProps) {
               paddingBottom: fixed ? HEIGHT : 0,
               '[data-unit=create-goal]': {
                 bottom: visible ? 72 : 24,
-                transition: 'bottom 0.2s ease-in',
+                transition: 'bottom 0.3s ease-in',
               },
             },
             '[data-unit=snackbar]': {

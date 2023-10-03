@@ -351,5 +351,6 @@
   "common.nope": "Відсутня",
   "common.date": "Дата",
   "common.date-selection": "Виберіть дату",
-  "common.views": "{value} переглядів"
+  "common.views": "{value} переглядів",
+  "common.create-goal": "Створити мету"
 }

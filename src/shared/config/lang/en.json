@@ -351,5 +351,6 @@
   "common.nope": "Nope",
   "common.date": "Date",
   "common.date-selection": "Select a date",
-  "common.views": "{value} views"
+  "common.views": "{value} views",
+  "common.create-goal": "Create a goal"
 }

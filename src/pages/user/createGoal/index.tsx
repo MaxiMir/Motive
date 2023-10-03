@@ -11,7 +11,7 @@ const CreateGoalModal = dynamic(() => import('features/goal/create-goal'))
 function CreateGoal() {
   const { formatMessage } = useIntl()
   const [open, toggle] = useToggle()
-  const buttonText = formatMessage({ id: 'common.create' })
+  const buttonText = formatMessage({ id: 'common.create-goal' })
 
   return (
     <>

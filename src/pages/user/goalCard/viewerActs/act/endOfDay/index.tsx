@@ -1,7 +1,7 @@
-import { Button } from '@mui/material'
 import { styled } from '@mui/system'
 import { addDays, startOfDay } from 'date-fns'
 import { useIntl } from 'react-intl'
+import BlueButton from 'shared/ui/BlueButton'
 import Icon from 'shared/ui/Icon'
 import TooltipArrow from 'shared/ui/TooltipArrow'
 import { useSendEndOfDay } from './lib'
@@ -33,7 +33,7 @@ function EndOfDay({ goalId, nextDayId, forFuture, viewerMemberId }: EndOfDayProp
   )
 }
 
-const StyledBlueButton = styled(Button)({
+const StyledBlueButton = styled(BlueButton)({
   minWidth: 50,
   height: 30,
   borderRadius: 20,

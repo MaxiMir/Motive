@@ -351,6 +351,7 @@
   "common.nope": "Отсутствует",
   "common.date": "Дата",
   "common.date-selection": "Выберите дату",
-  "common.views": "{value} просмотров"
+  "common.views": "{value} просмотров",
+  "common.create-goal": "Создать цель"
 }
 

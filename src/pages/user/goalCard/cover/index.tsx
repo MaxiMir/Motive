@@ -41,13 +41,13 @@ export function Cover({ goal, viewerPart }: CoverProps) {
       )}
       {viewerPart.all && (
         <Box position="absolute" top={8} right={8}>
-          <MenuEdit goalId={id} cover={cover} key="menu" />
+          <MenuEdit goalId={id} cover={cover} />
         </Box>
       )}
       <Box position="absolute" right={8} bottom={-17} zIndex={1} display="flex" gap={1}>
-        <ShareDay goalId={id} dayId={day.id} title={name} key="share" />
-        {!viewerPart.goal && <Membership goal={goal} viewerPart={viewerPart} key="member" />}
-        {deletion && <Deletion goalId={id} key="deletion" />}
+        <ShareDay goalId={id} dayId={day.id} title={name} />
+        {!viewerPart.goal && <Membership goal={goal} viewerPart={viewerPart} />}
+        {deletion && <Deletion goalId={id} />}
       </Box>
       {web && <Web />}
     </Box>

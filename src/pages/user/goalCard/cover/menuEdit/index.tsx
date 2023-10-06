@@ -32,7 +32,10 @@ function MenuEdit({ goalId, cover }: CoverMenuProps) {
   const onCloseMenu = () => setAnchorEl(null)
 
   const toOnClick = (type: ModalType) => {
-    return () => setModal(type)
+    return () => {
+      onCloseMenu()
+      setModal(type)
+    }
   }
 
   const onClose = () => {

@@ -1,4 +1,4 @@
-import { MenuItem, Button, Menu } from '@mui/material'
+import { MenuItem, Menu, IconButton } from '@mui/material'
 import { styled } from '@mui/system'
 import { MouseEvent, useId, useState } from 'react'
 import { useIntl } from 'react-intl'
@@ -43,17 +43,15 @@ function MenuEdit({ goalId, cover }: CoverMenuProps) {
   return (
     <>
       <TooltipArrow title={buttonTitle}>
-        <StyledButton
+        <StyledIconButton
           id={buttonId}
-          variant="contained"
-          color="inherit"
           aria-controls={open ? menuId : undefined}
           aria-haspopup="true"
           aria-expanded={open ? 'true' : undefined}
           onClick={onOpenMenu}
         >
-          <Icon name="edit_note" fontSize={18} />
-        </StyledButton>
+          <Icon name="palette" fontSize={18} />
+        </StyledIconButton>
       </TooltipArrow>
       <Menu
         open={open}
@@ -78,11 +76,11 @@ function MenuEdit({ goalId, cover }: CoverMenuProps) {
   )
 }
 
-const StyledButton = styled(Button)({
-  minWidth: 'initial',
-  width: 36,
-  height: 36,
-  border: '2px solid black',
+const StyledIconButton = styled(IconButton)({
+  background: 'rgba(0, 0, 0, .5)',
+  '&:hover': {
+    background: 'rgba(0, 0, 0, .3)',
+  },
 })
 
 export default MenuEdit

@@ -3,7 +3,6 @@ import {
   DialogContent,
   GlobalStyles,
   DialogProps,
-  IconButton,
   Toolbar,
   Typography,
   AppBar,
@@ -14,7 +13,7 @@ import { styled } from '@mui/system'
 import { Fragment, ReactNode } from 'react'
 import { useIntl } from 'react-intl'
 import dynamic from 'next/dynamic'
-import Icon from 'shared/ui/Icon'
+import CloseButton from 'shared/ui/CloseButton'
 
 const DialogActions = dynamic(() => import('@mui/material/DialogActions'))
 const Stack = dynamic(() => import('@mui/material/Stack'))
@@ -59,9 +58,7 @@ function Modal({
           <Typography variant="h6" component="div" textAlign="center" sx={{ ml: 2, flex: 1 }}>
             {title}
           </Typography>
-          <IconButton edge="start" color="inherit" aria-label={closeText} onClick={onClose}>
-            <Icon name="close" />
-          </IconButton>
+          <CloseButton aria-label={closeText} onClick={onClose} />
         </Toolbar>
       </AppBar>
       <Divider />

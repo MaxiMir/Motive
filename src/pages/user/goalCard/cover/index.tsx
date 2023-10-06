@@ -1,5 +1,4 @@
 import { Box } from '@mui/material'
-import { styled } from '@mui/system'
 import { differenceInCalendarDays } from 'date-fns'
 import dynamic from 'next/dynamic'
 import { ViewerPart } from 'entities/viewer'
@@ -40,20 +39,17 @@ export function Cover({ goal, viewerPart }: CoverProps) {
       ) : (
         <Gradient sphere={sphere} />
       )}
-      <BottomBox display="flex" gap={1}>
-        {viewerPart.all && <MenuEdit goalId={id} cover={cover} key="menu" />}
+      {viewerPart.all && (
+        <Box position="absolute" top={8} right={8}>
+          <MenuEdit goalId={id} cover={cover} key="menu" />
+        </Box>
+      )}
+      <Box position="absolute" right={8} bottom={-17} zIndex={1} display="flex" gap={1}>
         <ShareDay goalId={id} dayId={day.id} title={name} key="share" />
         {!viewerPart.goal && <Membership goal={goal} viewerPart={viewerPart} key="member" />}
         {deletion && <Deletion goalId={id} key="deletion" />}
-      </BottomBox>
+      </Box>
       {web && <Web />}
     </Box>
   )
 }
-
-const BottomBox = styled(Box)({
-  position: 'absolute',
-  right: 8,
-  bottom: -17,
-  zIndex: 1,
-})

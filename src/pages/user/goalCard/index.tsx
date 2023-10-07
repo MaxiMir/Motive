@@ -219,7 +219,6 @@ const StyledCard = styled(Card)({
   width: '100%',
   pb: 2,
   borderRadius: '10px',
-  backgroundColor: '#121212',
 })
 
 export default GoalCard

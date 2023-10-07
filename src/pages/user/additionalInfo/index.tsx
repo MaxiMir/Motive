@@ -1,4 +1,5 @@
 import { Button } from '@mui/material'
+import { styled } from '@mui/system'
 import { useIntl } from 'react-intl'
 import dynamic from 'next/dynamic'
 import { UserPageDto } from 'shared/api'
@@ -18,20 +19,29 @@ function AdditionalInfo({ user }: AdditionalInfoProps) {
 
   return (
     <>
-      <Button
+      <StyledButton
         size="small"
         variant="text"
         aria-haspopup="true"
         aria-expanded={open ? 'true' : undefined}
         startIcon={<Icon name="info" />}
-        sx={(theme) => ({ minWidth: 'initial', mt: 1, color: theme.palette.grey[500] })}
         onClick={toggle}
       >
         {infoText}
-      </Button>
+      </StyledButton>
       {open && <AdditionalInfoModal user={user} onClose={toggle} />}
     </>
   )
 }
+
+const StyledButton = styled(Button)(({ theme }) => ({
+  minWidth: 'initial',
+  marginTop: 8,
+  padding: 0,
+  color: theme.palette.grey[500],
+  '&:hover': {
+    background: 'none',
+  },
+}))
 
 export default AdditionalInfo

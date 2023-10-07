@@ -80,6 +80,7 @@ function MenuEdit({ goalId, cover }: CoverMenuProps) {
 }
 
 const StyledIconButton = styled(IconButton)({
+  zIndex: 1,
   background: 'rgba(0, 0, 0, .5)',
   '&:hover': {
     background: 'rgba(0, 0, 0, .3)',

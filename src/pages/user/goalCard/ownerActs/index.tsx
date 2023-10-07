@@ -36,11 +36,6 @@ function OwnerActs({ goalId, stages, dayStage, calendar }: OwnerActsProps) {
   return (
     <>
       <Stack direction="row" justifyContent={justifyContent} gap={1}>
-        <TooltipArrow title={nextText}>
-          <StyledBlueButton size="small" onClick={onAddTasks}>
-            <Icon name="arrow_forward" />
-          </StyledBlueButton>
-        </TooltipArrow>
         {renderCompete && (
           <TooltipArrow title={completeText}>
             <StyledButton size="small" variant="contained" color="warning" onClick={onComplete}>
@@ -48,6 +43,11 @@ function OwnerActs({ goalId, stages, dayStage, calendar }: OwnerActsProps) {
             </StyledButton>
           </TooltipArrow>
         )}
+        <TooltipArrow title={nextText}>
+          <StyledBlueButton size="small" onClick={onAddTasks}>
+            <Icon name="arrow_forward" />
+          </StyledBlueButton>
+        </TooltipArrow>
       </Stack>
       {modal === 'tasks' && (
         <CreateDayModal goalId={goalId} calendar={calendar} onClose={closeModal} />

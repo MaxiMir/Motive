@@ -10,7 +10,8 @@ export function useLayout(device: Device) {
   useEffect(() => {
     const scrollListener = () => {
       const { scrollTop } = document.documentElement
-      setFixedState(!scrollTop || prevScrollTopRef.current - scrollTop >= 0)
+
+      setFixedState(scrollTop <= 64 || prevScrollTopRef.current - scrollTop >= 0)
       prevScrollTopRef.current = scrollTop
     }
 

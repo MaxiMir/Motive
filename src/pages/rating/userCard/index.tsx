@@ -1,6 +1,7 @@
 import { Typography, Grid, Box, Button, Stack } from '@mui/material'
 import { blueGrey } from '@mui/material/colors'
 import { useTheme } from '@mui/material/styles'
+import { styled } from '@mui/system'
 import Link from 'next/link'
 import { UserLevel } from 'entities/user'
 import { UserDto } from 'shared/api'
@@ -48,14 +49,14 @@ export function UserCard({ user, index }: UserCardProps) {
             <Link href={href} title={name}>
               <Avatar src={avatar} name={name} size={46} badge={online} />
             </Link>
-            <Button href={href} color="inherit" component={Link}>
+            <StyledButton href={href} color="inherit" component={Link}>
               <Stack>
-                <Typography fontWeight={300}>{nickname}</Typography>
-                <Typography fontSize={14} color="zen.silent">
-                  {name}
+                <Typography>{name}</Typography>
+                <Typography color="zen.silent" fontSize={14}>
+                  {nickname}
                 </Typography>
               </Stack>
-            </Button>
+            </StyledButton>
           </Stack>
         </Grid>
         <Grid item xs>
@@ -67,3 +68,8 @@ export function UserCard({ user, index }: UserCardProps) {
     </Box>
   )
 }
+
+const StyledButton = styled(Button)({
+  flex: 1,
+  justifyContent: 'flex-start',
+}) as typeof Button

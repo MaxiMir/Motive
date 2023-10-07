@@ -41,11 +41,11 @@ function Membership({ goal, viewerPart }: MembershipProps) {
   )
 }
 
-const StyledButton = styled(BlueButton)({
+const StyledButton = styled(BlueButton)(({ theme }) => ({
   minWidth: 'initial',
   width: 36,
   height: 36,
-  border: '2px solid black',
-})
+  border: `2px solid ${theme.palette.grey[900]}`,
+}))
 
 export default Membership

@@ -35,9 +35,9 @@ export function ShareDay({ goalId, dayId, title }: ShareDayProps) {
   )
 }
 
-const StyledButton = styled(Button)({
+const StyledButton = styled(Button)(({ theme }) => ({
   minWidth: 'initial',
   width: 36,
   height: 36,
-  border: '2px solid black',
-})
+  border: `2px solid ${theme.palette.grey[900]}`,
+}))

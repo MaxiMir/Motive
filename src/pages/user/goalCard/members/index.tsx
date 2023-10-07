@@ -20,7 +20,7 @@ export function Members({ members, lastMembers }: MembersProps) {
       label={
         <Box display="flex" alignItems="center" gap={0.5}>
           {renderGroup && <AvatarsGroup avatars={lastMembers} size={20} chip />}
-          <Typography variant="caption" color="zen.silent">
+          <Typography variant="caption" color="common.white">
             {countAll} {name}
           </Typography>
         </Box>

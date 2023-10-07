@@ -24,7 +24,7 @@ function Status({ online, lastSeen, device, children, ...props }: StatusProps) {
     >
       {children}
       {online ? (
-        <BadgeRipple sx={{ ml: 2 }} />
+        <BadgeRipple />
       ) : (
         <>{lastSeen && <Offline lastSeen={lastSeen} device={device} />}</>
       )}

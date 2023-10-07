@@ -76,139 +76,130 @@ function GoalCard({ goal, viewerPage }: GoalCardProps) {
       sx={{ breakInside: 'avoid' }}
     >
       <ViewTrigger ownerId={owner.id} dayId={day.id}>
-        <Gradient padding="1px" height="100%" borderRadius="12px">
-          <Underlay justifyContent="space-between" position="relative" height="100%">
-            <Cover goal={goal} viewerPart={viewerPart} />
-            <Cont gap={2}>
-              <Stack gap={1}>
-                <Stack>
-                  <Typography variant="subtitle1" component="h2" fontWeight="bold">
-                    {name}
-                  </Typography>
-                  {member && <Owner owner={owner} started={member.started} />}
-                  <SphereType sphere={sphere} />
-                </Stack>
-                {!!hashtags.length && (
-                  <Box display="flex" flexWrap="wrap" gap={1}>
-                    {hashtags.map((hashtag) => (
-                      <Hashtag hashtag={hashtag} key={hashtag} />
-                    ))}
-                  </Box>
-                )}
+        <Underlay
+          justifyContent="space-between"
+          position="relative"
+          height="100%"
+          borderRadius="12px"
+        >
+          <Cover goal={goal} viewerPart={viewerPart} />
+          <Cont gap={2}>
+            <Stack gap={1}>
+              <Stack>
+                <Typography variant="subtitle1" component="h2" fontWeight="bold">
+                  {name}
+                </Typography>
+                {member && <Owner owner={owner} started={member.started} />}
+                <SphereType sphere={sphere} />
               </Stack>
-              <Box display="flex" justifyContent="space-between">
-                <Points points={points} pointsTasks={pointsTasks} />
-                <Members members={members} lastMembers={lastMembers} />
+              {!!hashtags.length && (
+                <Box display="flex" flexWrap="wrap" gap={1}>
+                  {hashtags.map((hashtag) => (
+                    <Hashtag hashtag={hashtag} key={hashtag} />
+                  ))}
+                </Box>
+              )}
+            </Stack>
+            <Box display="flex" justifyContent="space-between">
+              <Points points={points} pointsTasks={pointsTasks} />
+              <Members members={members} lastMembers={lastMembers} />
+            </Box>
+            <StyledCard variant="outlined">
+              <Box display="flex" alignItems="center" justifyContent="space-between" p={2}>
+                <IconButton
+                  disabled={isLoading || !prev}
+                  aria-label={prevDayText}
+                  onClick={onClickPrevDay}
+                >
+                  <Icon name="arrow_back" />
+                </IconButton>
+                <Calendar
+                  dayDate={day.date}
+                  calendar={calendar}
+                  runningDays={runningDays}
+                  isLoading={isLoading}
+                  onChangeDate={onChangeDate}
+                  shouldDisableDate={shouldDisableDate}
+                />
+                <IconButton
+                  id={`next-${id}`}
+                  disabled={isLoading || !next}
+                  aria-label={nextDayText}
+                  onClick={onClickNextDay}
+                >
+                  <Icon name="arrow_forward" />
+                </IconButton>
               </Box>
-              <Stack alignItems="center">
-                <StyledCard variant="outlined">
-                  <Box display="flex" alignItems="center" justifyContent="space-between" p={2}>
-                    <IconButton
-                      disabled={isLoading || !prev}
-                      aria-label={prevDayText}
-                      sx={{ color: 'zen.silent' }}
-                      onClick={onClickPrevDay}
-                    >
-                      <Icon name="arrow_back" />
-                    </IconButton>
-                    <Calendar
-                      dayDate={day.date}
-                      calendar={calendar}
-                      runningDays={runningDays}
-                      isLoading={isLoading}
-                      onChangeDate={onChangeDate}
-                      shouldDisableDate={shouldDisableDate}
-                    />
-                    <IconButton
-                      id={`next-${id}`}
-                      disabled={isLoading || !next}
-                      aria-label={nextDayText}
-                      sx={{ color: 'zen.silent' }}
-                      onClick={onClickNextDay}
-                    >
-                      <Icon name="arrow_forward" />
-                    </IconButton>
-                  </Box>
-                  {!!stages.length && (
-                    <Accordion
-                      iconStart={<Icon name="rocket_launch" color="primary.main" />}
-                      summary={stagesHeader}
-                      defaultExpanded
-                      details={<Stages goal={goal} interaction={interaction} />}
-                    />
-                  )}
-                  <Accordion
-                    iconStart={<Icon name="assignment" color="error.light" />}
-                    summary={tasksHeader}
-                    defaultExpanded
-                    details={
-                      <Stack spacing={1}>
-                        {day.tasks.map((task) => (
-                          <Task
-                            goalId={id}
-                            task={task}
-                            rest={restTasks}
-                            interaction={interaction}
-                            key={task.id}
-                          />
-                        ))}
-                      </Stack>
-                    }
-                  />
-                  <Accordion
-                    id={`${HashMark.Feedback}-${id}`}
-                    iconStart={<Icon name="quick_phrases" color="warning.light" />}
-                    summary={feedbackHeader}
-                    defaultExpanded
-                    details={
-                      <Feedback
+              {!!stages.length && (
+                <Accordion
+                  iconStart={<Icon name="rocket_launch" color="primary.main" />}
+                  summary={stagesHeader}
+                  defaultExpanded
+                  details={<Stages goal={goal} interaction={interaction} />}
+                />
+              )}
+              <Accordion
+                iconStart={<Icon name="assignment" color="error.light" />}
+                summary={tasksHeader}
+                defaultExpanded
+                details={
+                  <Stack spacing={1}>
+                    {day.tasks.map((task) => (
+                      <Task
                         goalId={id}
-                        day={day}
-                        forFuture={interaction.forFuture}
-                        viewerGoal={viewerPart.goal}
+                        task={task}
+                        rest={restTasks}
+                        interaction={interaction}
+                        key={task.id}
                       />
-                    }
-                  />
-                  <Discussion goalId={id} day={day} owner={owner} viewerGoal={viewerPart.goal} />
-                  <Stack spacing={2} px={2} my={2}>
-                    {interaction.viewerControls && (
-                      <ViewerActs
-                        goal={goal}
-                        forFuture={interaction.forFuture}
-                        viewerPart={viewerPart}
-                      />
-                    )}
-                    {interaction.ownerControls && (
-                      <OwnerActs
-                        goalId={id}
-                        stages={stages}
-                        dayStage={day.stage}
-                        calendar={calendar}
-                      />
-                    )}
-                    <Box display="flex" justifyContent="space-between" alignItems="center" flex={1}>
-                      <PointsRated day={day} />
-                      <Views views={day.views} />
-                    </Box>
+                    ))}
                   </Stack>
-                </StyledCard>
+                }
+              />
+              <Accordion
+                id={`${HashMark.Feedback}-${id}`}
+                iconStart={<Icon name="quick_phrases" color="warning.light" />}
+                summary={feedbackHeader}
+                defaultExpanded
+                details={
+                  <Feedback
+                    goalId={id}
+                    day={day}
+                    forFuture={interaction.forFuture}
+                    viewerGoal={viewerPart.goal}
+                  />
+                }
+              />
+              <Discussion goalId={id} day={day} owner={owner} viewerGoal={viewerPart.goal} />
+              <Stack spacing={2} px={2} my={2}>
+                {interaction.viewerControls && (
+                  <ViewerActs
+                    goal={goal}
+                    forFuture={interaction.forFuture}
+                    viewerPart={viewerPart}
+                  />
+                )}
+                {interaction.ownerControls && (
+                  <OwnerActs goalId={id} stages={stages} dayStage={day.stage} calendar={calendar} />
+                )}
+                <Box display="flex" justifyContent="space-between" alignItems="center" flex={1}>
+                  <PointsRated day={day} />
+                  <Views views={day.views} />
+                </Box>
               </Stack>
-            </Cont>
-          </Underlay>
-        </Gradient>
+            </StyledCard>
+          </Cont>
+        </Underlay>
       </ViewTrigger>
     </Box>
   )
 }
 
-const Gradient = styled(Box)(({ theme }) => ({
-  background: `linear-gradient(to top left, ${theme.palette.motivation.main}, ${theme.palette.creativity.dark}, ${theme.palette.support.dark})`,
-}))
-
 const Underlay = styled(Stack)(({ theme }) => ({
-  backgroundColor: theme.palette.underlay,
-  borderRadius: '12px',
   overflow: 'hidden',
+  borderRadius: 8,
+  backgroundColor: theme.palette.grey[900],
+  border: `0.5px solid ${theme.palette.grey[800]}`,
 }))
 
 const Cont = styled(Stack)(({ theme }) => ({
@@ -217,7 +208,6 @@ const Cont = styled(Stack)(({ theme }) => ({
 
 const StyledCard = styled(Card)({
   width: '100%',
-  pb: 2,
   borderRadius: '10px',
 })
 

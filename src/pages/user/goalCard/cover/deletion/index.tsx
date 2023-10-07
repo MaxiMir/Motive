@@ -34,7 +34,7 @@ const StyledButton = styled(Button)(({ theme }) => ({
   minWidth: 'initial',
   width: 36,
   height: 36,
-  border: '2px solid black',
+  border: `2px solid ${theme.palette.grey[900]}`,
   color: theme.palette.common.white,
   borderColor: red[800],
   backgroundColor: red[800],

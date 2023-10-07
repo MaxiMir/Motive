@@ -16,6 +16,7 @@ function UserCard({ user }: UserCardProps) {
   return (
     <Button
       variant="outlined"
+      color="inherit"
       href={href}
       sx={{
         width: '100%',
@@ -24,23 +25,24 @@ function UserCard({ user }: UserCardProps) {
       }}
       component={Link}
     >
-      <Stack alignItems="center" direction={{ xs: 'column', md: 'column' }} gap={2}>
+      <Stack alignItems="center" direction={{ xs: 'column', md: 'column' }} gap={1}>
         <Avatar src={avatar} name={name} size={120} />
+        <Typography fontSize={14} color="common.white">
+          {name}
+        </Typography>
         <Box display="flex" alignItems="center" gap={1}>
           <Typography
-            color="common.white"
+            color="zen.silent"
             textOverflow="ellipsis"
             whiteSpace="nowrap"
             overflow="hidden"
             maxWidth={150}
+            fontSize={14}
           >
             {nickname}
           </Typography>
           <UserLevel progress={characteristic.progress} />
         </Box>
-        <Typography fontSize={14} color="zen.silent">
-          {name}
-        </Typography>
       </Stack>
     </Button>
   )

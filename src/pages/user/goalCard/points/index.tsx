@@ -28,7 +28,7 @@ export function Points({ points, pointsTasks }: PointsProps) {
           </StyledAvatar>
         }
         label={
-          <Typography variant="caption" color="zen.silent">
+          <Typography variant="caption" color="common.white">
             {title}
           </Typography>
         }

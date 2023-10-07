@@ -112,7 +112,7 @@ export function UserPage({ user }: UserViewProps) {
                 ))}
               </Box>
               <Status online={online} lastSeen={lastSeen} device={device} mb={1}>
-                <Typography component="h1" fontWeight="bold">
+                <Typography component="h1" fontWeight="bold" mr={2}>
                   {name}
                 </Typography>
               </Status>

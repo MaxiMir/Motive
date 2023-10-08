@@ -67,13 +67,11 @@ function GoalCard({ goal, viewerPage }: GoalCardProps) {
   const onClickNextDay = () => onChangeDate(next)
 
   return (
-    <Box
+    <Article
       component="article"
       data-unit={`goal-${id}`}
       display="grid"
       gridTemplateRows="1fr auto"
-      marginBottom={2}
-      sx={{ breakInside: 'avoid' }}
     >
       <ViewTrigger ownerId={owner.id} dayId={day.id}>
         <Underlay
@@ -111,7 +109,7 @@ function GoalCard({ goal, viewerPage }: GoalCardProps) {
                   aria-label={prevDayText}
                   onClick={onClickPrevDay}
                 >
-                  <Icon name="arrow_back" />
+                  <Icon name="arrow_back" color="zen.silent" />
                 </IconButton>
                 <Calendar
                   dayDate={day.date}
@@ -127,7 +125,7 @@ function GoalCard({ goal, viewerPage }: GoalCardProps) {
                   aria-label={nextDayText}
                   onClick={onClickNextDay}
                 >
-                  <Icon name="arrow_forward" />
+                  <Icon name="arrow_forward" color="zen.silent" />
                 </IconButton>
               </Box>
               {!!stages.length && (
@@ -191,15 +189,21 @@ function GoalCard({ goal, viewerPage }: GoalCardProps) {
           </Cont>
         </Underlay>
       </ViewTrigger>
-    </Box>
+    </Article>
   )
 }
 
+const Article = styled(Box)({
+  breakInside: 'avoid',
+  '&:not(:last-child)': {
+    marginBottom: 16,
+  },
+})
+
 const Underlay = styled(Stack)(({ theme }) => ({
   overflow: 'hidden',
-  borderRadius: 8,
+  borderRadius: 12,
   backgroundColor: theme.palette.grey[900],
-  border: `0.5px solid ${theme.palette.grey[800]}`,
 }))
 
 const Cont = styled(Stack)(({ theme }) => ({
@@ -208,6 +212,7 @@ const Cont = styled(Stack)(({ theme }) => ({
 
 const StyledCard = styled(Card)({
   width: '100%',
+  background: 'none',
   borderRadius: '10px',
 })
 

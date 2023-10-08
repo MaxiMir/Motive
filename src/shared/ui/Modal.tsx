@@ -7,13 +7,14 @@ import {
   Typography,
   AppBar,
   Divider,
+  IconButton,
 } from '@mui/material'
 import { backdropClasses } from '@mui/material/Backdrop'
 import { styled } from '@mui/system'
 import { Fragment, ReactNode } from 'react'
 import { useIntl } from 'react-intl'
 import dynamic from 'next/dynamic'
-import CloseButton from 'shared/ui/CloseButton'
+import Icon from 'shared/ui/Icon'
 
 const DialogActions = dynamic(() => import('@mui/material/DialogActions'))
 const Stack = dynamic(() => import('@mui/material/Stack'))
@@ -58,7 +59,9 @@ function Modal({
           <Typography variant="h6" component="div" textAlign="center" sx={{ ml: 2, flex: 1 }}>
             {title}
           </Typography>
-          <CloseButton aria-label={closeText} onClick={onClose} />
+          <IconButton size="small" edge="start" aria-label={closeText} onClick={onClose}>
+            <Icon name="close" />
+          </IconButton>
         </Toolbar>
       </AppBar>
       <Divider />

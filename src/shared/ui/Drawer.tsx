@@ -1,10 +1,10 @@
-import { Drawer as MuiDrawer, Box, Container, Typography, Divider } from '@mui/material'
+import { Drawer as MuiDrawer, Box, Container, Typography, Divider, IconButton } from '@mui/material'
 import { backdropClasses } from '@mui/material/Backdrop'
 import { paperClasses } from '@mui/material/Paper'
 import { styled } from '@mui/system'
 import { KeyboardEvent, ReactNode } from 'react'
 import { useIntl } from 'react-intl'
-import CloseButton from 'shared/ui/CloseButton'
+import Icon from 'shared/ui/Icon'
 
 interface DrawerProps {
   title?: ReactNode | string
@@ -31,7 +31,9 @@ function Drawer({ title, children, onClose }: DrawerProps) {
             <Typography variant="h6" component="div" textAlign="center" ml={2} flex={1}>
               {title}
             </Typography>
-            <CloseButton aria-label={closeText} onClick={onClose} />
+            <IconButton size="small" edge="start" aria-label={closeText} onClick={onClose}>
+              <Icon name="close" />
+            </IconButton>
           </Box>
           <Divider light />
           <Box py={3} px={2}>

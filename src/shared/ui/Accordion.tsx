@@ -23,7 +23,7 @@ function Accordion({ id, iconStart, summary, iconEnd, details, defaultExpanded }
       defaultExpanded={defaultExpanded}
       TransitionProps={{ unmountOnExit: true }}
       disableGutters
-      sx={{ backgroundColor: '#121212' }}
+      sx={(theme) => ({ backgroundColor: theme.palette.grey[900] })}
     >
       <AccordionSummary
         id={id}

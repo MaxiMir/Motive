@@ -90,7 +90,7 @@ server {
   }
 }
 
-proxy_cache_path /home/client/images-cache/ levels=1:2 keys_zone=images:10m inactive=24h max_size=100m;
+proxy_cache_path /home/client/images-cache/ levels=1:2 keys_zone=images:10m inactive=24h max_size=2g;
 
 server {
     listen 443 ssl http2;

@@ -26,9 +26,11 @@ export function Cover({ goal, viewerPart }: CoverProps) {
   const web = differenceInCalendarDays(today, Date.parse(updated)) >= SHOW_WEB_AFTER_DAYS
 
   return (
-    <Box position="relative" height={210} mb={3}>
+    <Box position="relative" height={250} mb={3}>
       <SphereAvatar sphere={sphere} />
-      {cover ? (
+      {!cover ? (
+        <Gradient sphere={sphere} />
+      ) : (
         <Image
           src={cover}
           alt=""
@@ -36,8 +38,6 @@ export function Cover({ goal, viewerPart }: CoverProps) {
           style={{ objectFit: 'cover' }}
           sizes="(max-width: 768px) 91vw, 41vw"
         />
-      ) : (
-        <Gradient sphere={sphere} />
       )}
       {viewerPart.all && (
         <Box position="absolute" top={8} right={8}>

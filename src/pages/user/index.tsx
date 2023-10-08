@@ -1,6 +1,7 @@
 import { Box, Stack, Typography } from '@mui/material'
 import { styled } from '@mui/system'
 import dynamic from 'next/dynamic'
+import { useDeviceContext } from 'entities/device'
 import { UserContext, UserLevel } from 'entities/user'
 import { useViewer } from 'entities/viewer'
 import { SCORE_MAIN, SPHERES, UserPageDto } from 'shared/api'
@@ -40,11 +41,12 @@ export function UserPage({ user }: UserViewProps) {
     device,
   } = user
   const viewer = useViewer()
+  const { isMobile } = useDeviceContext()
   const viewerPage = id === viewer?.id
 
   return (
     <UserContext.Provider value={user}>
-      <Container sx={{ gap: 3 }}>
+      <Container sx={{ gap: 2, padding: isMobile ? 0 : undefined }}>
         <Stack gap="12px">
           <Section
             display="flex"
@@ -161,8 +163,8 @@ export function UserPage({ user }: UserViewProps) {
             ))}
           </Box>
         )}
-        {viewerPage && <CreateGoal />}
       </Container>
+      {viewerPage && <CreateGoal />}
     </UserContext.Provider>
   )
 }
@@ -170,5 +172,4 @@ export function UserPage({ user }: UserViewProps) {
 const Section = styled(Box)(({ theme }) => ({
   borderRadius: 8,
   backgroundColor: theme.palette.grey[900],
-  border: `0.5px solid ${theme.palette.grey[800]}`,
 }))

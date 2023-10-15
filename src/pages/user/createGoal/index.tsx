@@ -23,11 +23,10 @@ function CreateGoal() {
           aria-haspopup="true"
           aria-expanded={open ? 'true' : undefined}
           sx={{
-            right: {
-              xs: 24,
+            bottom: {
+              xs: 70,
               lg: 24,
             },
-            bottom: 24,
           }}
           onClick={toggle}
         >
@@ -41,9 +40,10 @@ function CreateGoal() {
 
 const StyledButton = styled(Button)(({ theme }) => ({
   position: 'fixed',
+  right: 20,
   minWidth: 'initial',
-  width: 56,
-  height: 56,
+  width: 48,
+  height: 48,
   padding: 0,
   borderRadius: '50%',
   zIndex: 100,

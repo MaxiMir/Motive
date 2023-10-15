@@ -28,11 +28,16 @@ function FooterMobile({ fixed }: FooterMobileProps) {
         xs: 'block',
         xl: 'none',
       }}
-      height={HEIGHT}
     >
       <InView threshold={0.1} onChange={setVisible}>
         <Container fixed>
-          <Stack direction="row" justifyContent="space-between" alignItems="center" py={1}>
+          <Stack
+            direction="row"
+            justifyContent="space-between"
+            alignItems="center"
+            py={1}
+            height={HEIGHT}
+          >
             {routes.map(({ title, href, Component }) => (
               <TooltipArrow title={title} key={href}>
                 <IconButton href={href} component={Link}>
@@ -52,8 +57,8 @@ function FooterMobile({ fixed }: FooterMobileProps) {
             main: {
               paddingBottom: fixed ? HEIGHT : 0,
               '[data-unit=create-goal]': {
-                bottom: visible ? 72 : 24,
-                transition: 'bottom 0.3s ease-in',
+                opacity: fixed ? 1 : 0,
+                transition: 'opacity 0.3s ease-in',
               },
             },
             '[data-unit=snackbar]': {

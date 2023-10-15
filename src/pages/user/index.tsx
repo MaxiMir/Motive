@@ -46,7 +46,7 @@ export function UserPage({ user }: UserViewProps) {
 
   return (
     <UserContext.Provider value={user}>
-      <Container sx={{ gap: 2, padding: isMobile ? 0 : undefined }}>
+      <Container sx={{ gap: 2, padding: isMobile ? '0 0 32px' : undefined }}>
         <Stack gap="12px">
           <Section
             display="flex"

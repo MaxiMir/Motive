@@ -1,4 +1,5 @@
 import { AppBar, Container, Stack, GlobalStyles } from '@mui/material'
+import { styled } from '@mui/system'
 import dynamic from 'next/dynamic'
 import { useViewer } from 'entities/viewer'
 import { OGType } from 'shared/api'
@@ -22,7 +23,7 @@ function HeaderMobile({ type, fixed, updating }: HeaderMobileProps) {
   const renderProfileLink = type === 'profile' && !updating
 
   return (
-    <AppBar
+    <StyledAppBar
       position="fixed"
       sx={{
         display: {
@@ -32,9 +33,6 @@ function HeaderMobile({ type, fixed, updating }: HeaderMobileProps) {
         top: fixed ? 0 : -HEIGHT,
         height: HEIGHT,
         paddingY: 1,
-        boxShadow: 'none',
-        backgroundColor: '#121212',
-        transition: 'top 0.3s ease-in-out',
       }}
     >
       <Container fixed>
@@ -51,8 +49,14 @@ function HeaderMobile({ type, fixed, updating }: HeaderMobileProps) {
           },
         }}
       />
-    </AppBar>
+    </StyledAppBar>
   )
 }
+
+const StyledAppBar = styled(AppBar)({
+  boxShadow: 'none',
+  backgroundColor: '#121212',
+  transition: 'top 0.3s ease-in-out',
+})
 
 export default HeaderMobile

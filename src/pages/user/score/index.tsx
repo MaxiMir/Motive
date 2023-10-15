@@ -46,7 +46,7 @@ function Score({ score, value, userId, characteristic, confirmations }: ScorePro
         color="inherit"
         aria-haspopup="true"
         aria-expanded={modal ? 'true' : undefined}
-        sx={{ padding: '4px' }}
+        sx={{ minWidth: 72, padding: '4px' }}
         onClick={onClick}
       >
         <Box

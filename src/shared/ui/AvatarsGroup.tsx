@@ -39,10 +39,10 @@ function AvatarsGroup({ avatars, size, chip }: UserGroupProps) {
 const StyledAvatar = styled(Avatar, {
   shouldForwardProp: (prop) => prop !== 'chip',
 })<{ chip?: boolean }>(({ theme: _, chip }) => ({
-  backgroundColor: chip ? 'rgb(41 41 41)' : '#121212',
+  backgroundColor: chip ? '#454545' : '#212121',
   boxShadow: 'none',
   ':hover': {
-    backgroundColor: chip ? 'rgb(41 41 41)' : '#121212',
+    backgroundColor: chip ? '#454545' : '#212121',
   },
 }))
 

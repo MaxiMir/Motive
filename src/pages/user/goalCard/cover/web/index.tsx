@@ -16,7 +16,7 @@ const StyledBox = styled(Box)({
   position: 'absolute',
   top: 0,
   width: '100%',
-  height: 210,
+  height: 250,
   background: 'rgba(0, 0, 0, 0.3)',
   backdropFilter: 'blur(10px)',
   pointerEvents: 'none',

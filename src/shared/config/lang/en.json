@@ -352,5 +352,7 @@
   "common.date": "Date",
   "common.date-selection": "Select a date",
   "common.views": "{value} views",
-  "common.create-goal": "Create a goal"
+  "common.create-goal": "Create a goal",
+  "common-new-version": "New version available!",
+  "common-new-version-description": "Hey, a new version is available! Please click below to update."
 }

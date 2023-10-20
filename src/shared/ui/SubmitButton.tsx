@@ -6,8 +6,8 @@ const CircularProgress = dynamic(() => import('@mui/material/CircularProgress'))
 
 interface SubmitButtonProps {
   text: string
-  loadingText: string
-  isLoading: boolean
+  loadingText?: string
+  isLoading?: boolean
   onClick: () => void
 }
 

@@ -352,6 +352,8 @@
   "common.date": "Дата",
   "common.date-selection": "Выберите дату",
   "common.views": "{value} просмотров",
-  "common.create-goal": "Создать цель"
+  "common.create-goal": "Создать цель",
+  "common-new-version": "Доступна новая версия!",
+  "common-new-version-description": "Привет, доступна новая версия! Пожалуйста, нажмите ниже, чтобы обновить."
 }
 

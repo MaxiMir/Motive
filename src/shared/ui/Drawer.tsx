@@ -15,6 +15,7 @@ interface DrawerProps {
 function Drawer({ title, children, onClose }: DrawerProps) {
   const { formatMessage } = useIntl()
   const closeText = formatMessage({ id: 'common.close' })
+
   const onKeyDown = (event: KeyboardEvent<Element>) => {
     if (event.type === 'keydown' && ['Tab', 'Shift'].includes(event.key)) {
       return

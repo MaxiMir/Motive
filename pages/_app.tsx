@@ -23,6 +23,7 @@ import { makeMapLoader } from 'shared/lib/helpers'
 import Snackbar from 'shared/ui/snackbar'
 
 const SignInModal = dynamic(() => import('features/viewer/sign-in'))
+const UpdateVersion = dynamic(() => import('features/pwa/updateVersion'), { ssr: false })
 
 const messagesLoader = makeMapLoader<Record<string, string>>()
 const adapterLocaleLoader = makeMapLoader<FnsLocale>()
@@ -80,8 +81,9 @@ function MyApp({
                   <CssBaseline />
                   <Component {...pageProps} />
                   <Snackbar />
-                  {options && <SignInModal options={options} onClose={closeSignIn} />}
                   <Socket />
+                  <UpdateVersion />
+                  {options && <SignInModal options={options} onClose={closeSignIn} />}
                 </ThemeProvider>
               </LocalizationProvider>
             </DeviceContext.Provider>

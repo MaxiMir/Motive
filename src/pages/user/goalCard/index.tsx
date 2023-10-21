@@ -104,13 +104,13 @@ function GoalCard({ goal, viewerPage }: GoalCardProps) {
             </Box>
             <StyledCard variant="outlined">
               <Box display="flex" alignItems="center" justifyContent="space-between" p={2}>
-                <IconButton
+                <StyledIconButton
                   disabled={isLoading || !prev}
                   aria-label={prevDayText}
                   onClick={onClickPrevDay}
                 >
                   <Icon name="arrow_back" color="zen.silent" />
-                </IconButton>
+                </StyledIconButton>
                 <Calendar
                   dayDate={day.date}
                   calendar={calendar}
@@ -119,14 +119,14 @@ function GoalCard({ goal, viewerPage }: GoalCardProps) {
                   onChangeDate={onChangeDate}
                   shouldDisableDate={shouldDisableDate}
                 />
-                <IconButton
+                <StyledIconButton
                   id={`next-${id}`}
                   disabled={isLoading || !next}
                   aria-label={nextDayText}
                   onClick={onClickNextDay}
                 >
                   <Icon name="arrow_forward" color="zen.silent" />
-                </IconButton>
+                </StyledIconButton>
               </Box>
               {!!stages.length && (
                 <Accordion
@@ -215,5 +215,9 @@ const StyledCard = styled(Card)({
   background: 'none',
   borderRadius: '10px',
 })
+
+const StyledIconButton = styled(IconButton)(({ disabled }) => ({
+  opacity: disabled ? 0.3 : undefined,
+}))
 
 export default GoalCard

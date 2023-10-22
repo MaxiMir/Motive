@@ -6,6 +6,7 @@
   "display": "standalone",
   "scope": "/",
   "start_url": "/",
+  "related_applications": [{ "platform": "webapp", "url": "https://2bebetter.pro/manifest.json" }],
   "icons": [
     {
       "src": "icons/icon-32.png",

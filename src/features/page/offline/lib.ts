@@ -1,28 +1,23 @@
-import { useEffect, useState } from 'react'
+import { useSyncExternalStore } from 'react'
 
-/**
- * Due to the bug https://bugs.chromium.org/p/chromium/issues/detail?id=678075,
- * it's not reliable to detect if the browser is currently online or offline
- * based on `navigator.onLine`.
- * As a workaround, it's online on the first load, and change
- * the status upon `online` or `offline` events.
- */
 export function useDetectOnline() {
-  const [online, setOnline] = useState(true)
+  return useSyncExternalStore(subscribe, getSnapshot, getServerSnapshot)
+}
 
-  useEffect(() => {
-    const onlineListener = () => setOnline(true)
+function getSnapshot() {
+  return navigator.onLine
+}
 
-    const offlineListener = () => setOnline(false)
+function subscribe(callback: () => void) {
+  window.addEventListener('online', callback)
+  window.addEventListener('offline', callback)
 
-    window.addEventListener('online', onlineListener)
-    window.addEventListener('offline', offlineListener)
+  return () => {
+    window.removeEventListener('online', callback)
+    window.removeEventListener('offline', callback)
+  }
+}
 
-    return () => {
-      window.removeEventListener('online', onlineListener)
-      window.removeEventListener('offline', offlineListener)
-    }
-  }, [])
-
-  return online
+function getServerSnapshot() {
+  return true // Always show "Online" for server-generated HTML
 }

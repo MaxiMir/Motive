@@ -1,6 +1,6 @@
+const nextPWA = require('@ducanh2912/next-pwa').default
+const { runtimeCaching } = require('@ducanh2912/next-pwa')
 const { withSentryConfig } = require('@sentry/nextjs')
-const nextPWA = require('next-pwa')
-const runtimeCaching = require('next-pwa/cache')
 
 const withPWA = nextPWA({
   dest: 'public',

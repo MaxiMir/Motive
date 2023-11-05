@@ -6,7 +6,7 @@ import { useIntl } from 'react-intl'
 import Image from 'next/image'
 // eslint-disable-next-line import/no-internal-modules
 import ContactsSrc from 'public/images/contacts.webp'
-import Container from 'shared/ui/Container'
+import Container from 'shared/ui/container'
 import { Email, LinkedIn, Telegram } from 'shared/ui/icons'
 
 export function ContactPage() {

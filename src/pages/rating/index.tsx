@@ -2,8 +2,8 @@ import { Box, Grid, Stack, Typography } from '@mui/material'
 import { blueGrey } from '@mui/material/colors'
 import { useIntl } from 'react-intl'
 import { UserDto } from 'shared/api'
-import Container from 'shared/ui/Container'
-import { UserCard } from './userCard'
+import Container from 'shared/ui/container'
+import { UserCard } from './user-card'
 
 interface RatingPageProps {
   users: UserDto[]

@@ -1,6 +1,6 @@
 {
   "name": "bebetter",
-  "version": "1.0.102",
+  "version": "1.0.103",
   "private": true,
   "scripts": {
     "dev": "next dev --show-all",
@@ -54,6 +54,7 @@
     "react-photo-album": "^2.2.2",
     "react-player": "^2.12.0",
     "react-query": "^3.39.3",
+    "react-transition-group": "^4.4.5",
     "sharp": "^0.32.6",
     "socket.io-client": "^4.6.2",
     "yet-another-react-lightbox": "^3.11.1",

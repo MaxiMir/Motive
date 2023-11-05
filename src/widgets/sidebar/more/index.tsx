@@ -3,7 +3,7 @@ import { signOut } from 'next-auth/react'
 import { MouseEvent, useId, useState } from 'react'
 import { useIntl } from 'react-intl'
 import { useViewer } from 'entities/viewer'
-import Icon from 'shared/ui/Icon'
+import Icon from 'shared/ui/icon'
 import { usePaletteMode } from 'shared/ui/palette'
 
 export function More() {

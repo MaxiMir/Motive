@@ -1,7 +1,7 @@
 import { IconButton } from '@mui/material'
 import { useIntl } from 'react-intl'
-import Icon from 'shared/ui/Icon'
-import TooltipArrow from 'shared/ui/TooltipArrow'
+import Icon from 'shared/ui/icon'
+import TooltipArrow from 'shared/ui/tooltip-arrow'
 
 interface SupportHelpProps {
   onClick: () => void

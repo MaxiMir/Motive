@@ -5,9 +5,9 @@ import dynamic from 'next/dynamic'
 import { ScoreDto, ConfirmationDto, UserCharacteristicDto } from 'shared/api'
 import { useFormatNumber, useWordDeclination } from 'shared/lib/hooks'
 
-const SubscriptionModal = dynamic(() => import('./subscriptionModal'))
-const NoCompletedModal = dynamic(() => import('./noCompletedModal'))
-const AbandonedModal = dynamic(() => import('./abandonedModal'))
+const SubscriptionModal = dynamic(() => import('./subscription-modal'))
+const NoCompletedModal = dynamic(() => import('./no-completed-modal'))
+const AbandonedModal = dynamic(() => import('./abandoned-modal'))
 
 interface ScoreProps {
   score: ScoreDto

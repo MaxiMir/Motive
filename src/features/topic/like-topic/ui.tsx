@@ -4,8 +4,8 @@ import { useIntl } from 'react-intl'
 import { useViewer } from 'entities/viewer'
 import { MessageDto } from 'shared/api'
 import { useFormatNumber } from 'shared/lib/hooks'
-import Icon from 'shared/ui/Icon'
-import TooltipArrow from 'shared/ui/TooltipArrow'
+import Icon from 'shared/ui/icon'
+import TooltipArrow from 'shared/ui/tooltip-arrow'
 import { useSetLike } from './model'
 
 interface TopicLikeProps {

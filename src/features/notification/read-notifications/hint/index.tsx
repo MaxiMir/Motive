@@ -1,6 +1,6 @@
 import { Alert, Button, Stack } from '@mui/material'
 import { useIntl } from 'react-intl'
-import Icon from 'shared/ui/Icon'
+import Icon from 'shared/ui/icon'
 
 interface HintProps {
   onClick: () => void

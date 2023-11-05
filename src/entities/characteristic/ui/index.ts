@@ -1,2 +1,2 @@
-export * from './pittRules'
-export * from './sphereProgress'
+export * from './pitt-rules'
+export * from './sphere-progress'

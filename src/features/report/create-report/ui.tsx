@@ -1,7 +1,7 @@
 import { Menu, MenuItem } from '@mui/material'
 import { useIntl } from 'react-intl'
 import { ReportType } from 'shared/api'
-import ListItem from 'shared/ui/ListItem'
+import ListItem from 'shared/ui/list-item'
 import { useSendReport } from './model'
 
 interface CreateReportProps {

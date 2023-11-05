@@ -1,6 +1,6 @@
 import { Link, LinkProps, Typography } from '@mui/material'
 import { compiler } from 'markdown-to-jsx'
-import Container from 'shared/ui/Container'
+import Container from 'shared/ui/container'
 import { useMessages } from './lib'
 
 export function PrivacyPolicyPage() {

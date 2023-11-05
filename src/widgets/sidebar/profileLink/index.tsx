@@ -2,7 +2,7 @@ import { List } from '@mui/material'
 import { useIntl } from 'react-intl'
 import dynamic from 'next/dynamic'
 import { useViewer } from 'entities/viewer'
-import TooltipArrow from 'shared/ui/TooltipArrow'
+import TooltipArrow from 'shared/ui/tooltip-arrow'
 
 const SignIn = dynamic(() => import('./signIn'))
 const User = dynamic(() => import('./user'))

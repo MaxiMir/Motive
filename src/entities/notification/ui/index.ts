@@ -1,1 +1,1 @@
-export * from './notificationBadge'
+export * from './notification-badge'

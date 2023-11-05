@@ -5,21 +5,21 @@ import { useDeviceContext } from 'entities/device'
 import { UserContext, UserLevel } from 'entities/user'
 import { useViewer } from 'entities/viewer'
 import { SCORE_MAIN, SPHERES, UserPageDto } from 'shared/api'
-import Container from 'shared/ui/Container'
-import AdditionalInfo from './additionalInfo'
-import AvatarActs from './avatarActs'
-import MenuActs from './menuActs'
-import NoGoals from './noGoals'
+import Container from 'shared/ui/container'
+import AdditionalInfo from './additional-info'
+import AvatarActs from './avatar-acts'
+import MenuActs from './menu-acts'
+import NoGoals from './no-goals'
 import Score from './score'
 import Sphere from './sphere'
 import Status from './status'
 
 const Link = dynamic(() => import('@mui/material/Link'))
 const UpdateFollowing = dynamic(() => import('features/subscription/update-following'))
-const EditProfile = dynamic(() => import('./editProfile'))
+const EditProfile = dynamic(() => import('./edit-profile'))
 const Confirmations = dynamic(() => import('./confirmations'))
-const GoalCard = dynamic(() => import('./goalCard'))
-const CreateGoal = dynamic(() => import('./createGoal'))
+const GoalCard = dynamic(() => import('./goal-card'))
+const CreateGoal = dynamic(() => import('./create-goal'))
 
 interface UserViewProps {
   user: UserPageDto

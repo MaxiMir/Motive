@@ -3,7 +3,7 @@ import { styled } from '@mui/system'
 import { useIntl } from 'react-intl'
 import Link from 'next/link'
 import { Route } from 'shared/config'
-import { SelectLanguage } from './selectLanguage'
+import { SelectLanguage } from './select-language'
 
 interface FooterProps {
   breakpoints?: boolean

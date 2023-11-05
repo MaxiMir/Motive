@@ -1,11 +1,11 @@
 ### Tips
 ```shell
-# docker build -t mmirrev/frontend:1.0.102 .
-docker buildx build --platform linux/amd64 -t mmirrev/frontend:1.0.102 .
+# docker build -t mmirrev/frontend:1.0.103 .
+docker buildx build --platform linux/amd64 -t mmirrev/frontend:1.0.103 .
 
-docker tag $ mmirrev/frontend:1.0.102
-docker push mmirrev/frontend:1.0.102
-docker pull mmirrev/frontend:1.0.102
+docker tag $ mmirrev/frontend:1.0.103
+docker push mmirrev/frontend:1.0.103
+docker pull mmirrev/frontend:1.0.103
 
 # copy:
 docker cp <IMAGE_ID>:/home/node/client /home # <-

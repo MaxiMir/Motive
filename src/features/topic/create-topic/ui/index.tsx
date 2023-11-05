@@ -7,15 +7,15 @@ import dynamic from 'next/dynamic'
 import { Viewer } from 'entities/viewer'
 import { TopicType, UserBaseDto } from 'shared/api'
 import Avatar from 'shared/ui/avatar'
-import Input from 'shared/ui/Input'
-import TooltipArrow from 'shared/ui/TooltipArrow'
+import Input from 'shared/ui/input'
+import TooltipArrow from 'shared/ui/tooltip-arrow'
 import { useCreateTopicForm } from '../model'
 
 const CircularProgress = dynamic(() => import('@mui/material/CircularProgress'))
 const InputAdornment = dynamic(() => import('@mui/material/InputAdornment'))
 const Typography = dynamic(() => import('@mui/material/Typography'))
 const SupportSign = dynamic(() => import('entities/discussion').then((m) => m.SupportSign))
-const Icon = dynamic(() => import('shared/ui/Icon'))
+const Icon = dynamic(() => import('shared/ui/icon'))
 const SelectingType = dynamic(() => import('./selectingType'))
 
 interface CreateTopicProps {

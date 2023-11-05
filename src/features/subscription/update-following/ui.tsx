@@ -2,7 +2,7 @@ import { Button } from '@mui/material'
 import { blue } from '@mui/material/colors'
 import { useIntl } from 'react-intl'
 import dynamic from 'next/dynamic'
-import Icon from 'shared/ui/Icon'
+import Icon from 'shared/ui/icon'
 import { useUpdateFollowing } from './model'
 
 const CircularProgress = dynamic(() => import('@mui/material/CircularProgress'))

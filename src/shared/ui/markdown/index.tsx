@@ -1,7 +1,8 @@
 import { Box, Stack } from '@mui/material'
 import { useMemo } from 'react'
 import dynamic from 'next/dynamic'
-import { useDetectTruncated, toMarkdown, useSwitchText } from './lib'
+import { toMarkdown } from './helpers'
+import { useDetectTruncated, useSwitchText } from './hooks'
 
 const Switch = dynamic(() => import('./switch'))
 

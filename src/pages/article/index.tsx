@@ -9,8 +9,8 @@ import { ArticlePageDto } from 'shared/api'
 import { Route } from 'shared/config'
 import { setSearchParams } from 'shared/lib/helpers'
 import { useFormatDate, useFormatNumber, useToggle } from 'shared/lib/hooks'
-import Container from 'shared/ui/Container'
-import Icon from 'shared/ui/Icon'
+import Container from 'shared/ui/container'
+import Icon from 'shared/ui/icon'
 import { generateColorByName } from 'shared/ui/palette'
 
 const Share = dynamic(() => import('features/share'))

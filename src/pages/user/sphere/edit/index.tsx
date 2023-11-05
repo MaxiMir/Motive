@@ -4,8 +4,8 @@ import { useIntl } from 'react-intl'
 import dynamic from 'next/dynamic'
 import { SphereDto } from 'shared/api'
 import { useToggle } from 'shared/lib/hooks'
-import Icon from 'shared/ui/Icon'
-import TooltipArrow from 'shared/ui/TooltipArrow'
+import Icon from 'shared/ui/icon'
+import TooltipArrow from 'shared/ui/tooltip-arrow'
 
 const EditSphereModal = dynamic(() => import('features/user/edit-sphere'))
 

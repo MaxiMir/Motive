@@ -2,9 +2,9 @@ import { Button, ButtonProps } from '@mui/material'
 import { styled } from '@mui/system'
 import dynamic from 'next/dynamic'
 
-const BadgeRipple = dynamic(() => import('../BadgeRipple'))
+const BadgeRipple = dynamic(() => import('../badge-ripple'))
 const Plug = dynamic(() => import('./plug'))
-const TunedAvatar = dynamic(() => import('./tunedAvatar'))
+const TunedAvatar = dynamic(() => import('./tuned-avatar'))
 
 interface AvatarProps extends Omit<ButtonProps, 'size'> {
   name: string

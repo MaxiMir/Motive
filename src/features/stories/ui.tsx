@@ -4,7 +4,7 @@ import { MutableRefObject } from 'react'
 import { Story } from 'features/stories/types'
 import { UserBaseDto } from 'shared/api'
 import { useSlowClose } from './lib'
-import { StoryViewer } from './storyViewer'
+import { StoryViewer } from './story-viewer'
 
 interface StoryProps {
   stories: Story[]

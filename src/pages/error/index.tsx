@@ -1,8 +1,8 @@
 import { Box, Button, Stack, Typography } from '@mui/material'
 import { useIntl } from 'react-intl'
 import { useRouter } from 'next/router'
-import Container from 'shared/ui/Container'
-import FadeTypography from 'shared/ui/FadeTypography'
+import Container from 'shared/ui/container'
+import FadeTypography from 'shared/ui/fade-typography'
 
 interface ErrorPageProps {
   header?: string

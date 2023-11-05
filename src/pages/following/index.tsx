@@ -2,10 +2,10 @@ import { Stack, Typography } from '@mui/material'
 import { useIntl } from 'react-intl'
 import dynamic from 'next/dynamic'
 import { UserDto } from 'shared/api'
-import Container from 'shared/ui/Container'
+import Container from 'shared/ui/container'
 
-const EmptyList = dynamic(() => import('./emptyList'))
-const UserCard = dynamic(() => import('./userCard'))
+const EmptyList = dynamic(() => import('./empty-list'))
+const UserCard = dynamic(() => import('./user-card'))
 
 interface FollowingPageProps {
   following: UserDto[]

@@ -2,14 +2,14 @@ import { Grid, Typography, Box } from '@mui/material'
 import { useIntl } from 'react-intl'
 import dynamic from 'next/dynamic'
 import { HashtagDto, GoalDto, UserDto } from 'shared/api'
-import Container from 'shared/ui/Container'
+import Container from 'shared/ui/container'
 import { GRADIENTS } from './consts'
-import { SearchForm } from './searchForm'
+import { SearchForm } from './search-form'
 
-const GoalCard = dynamic(() => import('./goalCard'))
-const UserCard = dynamic(() => import('./userCard'))
+const GoalCard = dynamic(() => import('./goal-card'))
+const UserCard = dynamic(() => import('./user-card'))
 const Hashtag = dynamic(() => import('./hashtag'))
-const NoResult = dynamic(() => import('./noResult'))
+const NoResult = dynamic(() => import('./no-result'))
 
 interface SearchPageProps {
   q: string

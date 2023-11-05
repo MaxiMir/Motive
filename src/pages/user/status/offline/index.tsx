@@ -4,7 +4,7 @@ import { useIntl } from 'react-intl'
 import dynamic from 'next/dynamic'
 import { useFormatDistance } from 'shared/lib/hooks'
 
-const DeviceIcon = dynamic(() => import('./deviceIcon'))
+const DeviceIcon = dynamic(() => import('./device-icon'))
 
 interface OfflineProps {
   lastSeen: string

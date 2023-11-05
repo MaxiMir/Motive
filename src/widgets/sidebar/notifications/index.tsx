@@ -4,7 +4,7 @@ import dynamic from 'next/dynamic'
 import { useNotifications, NotificationBadge } from 'entities/notification'
 import { useViewer } from 'entities/viewer'
 import { useToggle } from 'shared/lib/hooks'
-import TooltipArrow from 'shared/ui/TooltipArrow'
+import TooltipArrow from 'shared/ui/tooltip-arrow'
 
 const ReadNotificationsModal = dynamic(() => import('features/notification/read-notifications'))
 

@@ -4,13 +4,13 @@ import { useIntl } from 'react-intl'
 import dynamic from 'next/dynamic'
 import { useDeviceContext } from 'entities/device'
 import { NotificationDto } from 'shared/api'
-import Modal from 'shared/ui/Modal'
+import Modal from 'shared/ui/modal'
 import { useNotificationHint } from './lib'
 
 const Loader = dynamic(() => import('./loader'))
 const Hint = dynamic(() => import('./hint'))
-const EmptyList = dynamic(() => import('./emptyList'))
-const NotificationCard = dynamic(() => import('./notificationCard'))
+const EmptyList = dynamic(() => import('./empty-list'))
+const NotificationCard = dynamic(() => import('./notification-card'))
 
 interface ReadNotificationsModalProps {
   notifications: NotificationDto[]

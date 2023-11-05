@@ -2,7 +2,7 @@ import { Box, BoxProps } from '@mui/material'
 import { ReactNode } from 'react'
 import dynamic from 'next/dynamic'
 
-const BadgeRipple = dynamic(() => import('shared/ui/BadgeRipple'))
+const BadgeRipple = dynamic(() => import('shared/ui/badge-ripple'))
 const Offline = dynamic(() => import('./offline'))
 
 interface StatusProps extends BoxProps {

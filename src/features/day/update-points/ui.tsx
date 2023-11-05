@@ -4,8 +4,8 @@ import { styled } from '@mui/system'
 import { useIntl } from 'react-intl'
 import dynamic from 'next/dynamic'
 import { DayDto } from 'shared/api'
-import Icon from 'shared/ui/Icon'
-import TooltipArrow from 'shared/ui/TooltipArrow'
+import Icon from 'shared/ui/icon'
+import TooltipArrow from 'shared/ui/tooltip-arrow'
 import { useUpdatePoints } from './model'
 
 const CircularProgress = dynamic(() => import('@mui/material/CircularProgress'))

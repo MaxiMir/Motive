@@ -2,7 +2,7 @@ import { IconButton } from '@mui/material'
 import { useIntl } from 'react-intl'
 import { useViewerAct } from 'entities/viewer'
 import { Profile } from 'shared/ui/icons'
-import TooltipArrow from 'shared/ui/TooltipArrow'
+import TooltipArrow from 'shared/ui/tooltip-arrow'
 
 function Unauthorized() {
   const { formatMessage } = useIntl()

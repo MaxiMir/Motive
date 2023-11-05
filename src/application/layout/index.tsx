@@ -13,8 +13,8 @@ import { useLayout } from './lib'
 
 const Sidebar = dynamic(() => import('widgets/sidebar'))
 const Footer = dynamic(() => import('widgets/footer'))
-const HeaderMobile = dynamic(() => import('widgets/headerMobile'))
-const FooterMobile = dynamic(() => import('widgets/footerMobile'))
+const HeaderMobile = dynamic(() => import('src/widgets/header-mobile'))
+const FooterMobile = dynamic(() => import('src/widgets/footer-mobile'))
 const Offline = dynamic(() => import('features/page/offline'))
 const Updating = dynamic(() => import('./updating'))
 

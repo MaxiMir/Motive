@@ -2,7 +2,7 @@ import { Grid, Typography } from '@mui/material'
 import { useIntl } from 'react-intl'
 import { ArticlePreview } from 'entities/article'
 import { ArticleDto } from 'shared/api'
-import Container from 'shared/ui/Container'
+import Container from 'shared/ui/container'
 
 interface FeedPageProps {
   articles: ArticleDto[]

@@ -2,9 +2,9 @@ import { Box, IconButton, Stack, Typography } from '@mui/material'
 import { useIntl } from 'react-intl'
 import Image, { ImageProps } from 'next/image'
 import { copy } from 'shared/lib/helpers'
-import Icon from 'shared/ui/Icon'
+import Icon from 'shared/ui/icon'
 import { useSnackbar } from 'shared/ui/snackbar'
-import TooltipArrow from 'shared/ui/TooltipArrow'
+import TooltipArrow from 'shared/ui/tooltip-arrow'
 
 interface WalletProps {
   name: string

@@ -1,7 +1,7 @@
 import { ListItem, ListItemIcon, ListItemText } from '@mui/material'
 import { useRouter } from 'next/router'
 import { useViewerAct } from 'entities/viewer'
-import Icon from 'shared/ui/Icon'
+import Icon from 'shared/ui/icon'
 
 interface SignInProps {
   primary: string

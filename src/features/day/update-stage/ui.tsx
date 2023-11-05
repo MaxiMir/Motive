@@ -1,8 +1,8 @@
 import { Box, Stack, Typography } from '@mui/material'
-import CancelButton from 'shared/ui/CancelButton'
-import FlyTypography from 'shared/ui/FlyTypography'
-import Modal from 'shared/ui/Modal'
-import SubmitButton from 'shared/ui/SubmitButton'
+import CancelButton from 'shared/ui/cancel-button'
+import FlyTypography from 'shared/ui/fly-typography'
+import Modal from 'shared/ui/modal'
+import SubmitButton from 'shared/ui/submit-button'
 import { useMessages } from './lib'
 import { useUpdateStage } from './model'
 

@@ -1,8 +1,8 @@
 import { Typography } from '@mui/material'
 import { useIntl } from 'react-intl'
-import CancelButton from 'shared/ui/CancelButton'
-import Modal from 'shared/ui/Modal'
-import SubmitButton from 'shared/ui/SubmitButton'
+import CancelButton from 'shared/ui/cancel-button'
+import Modal from 'shared/ui/modal'
+import SubmitButton from 'shared/ui/submit-button'
 import { useDeleteGoal } from './model'
 
 interface DeleteGoalModalProps {

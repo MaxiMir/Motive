@@ -5,7 +5,7 @@ import { useIntl } from 'react-intl'
 import dynamic from 'next/dynamic'
 import Link from 'next/link'
 import { Route } from 'shared/config'
-import Modal from 'shared/ui/Modal'
+import Modal from 'shared/ui/modal'
 import { SOURCE, SourceKey } from './consts'
 import { useProviders } from './lib'
 

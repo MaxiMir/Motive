@@ -7,8 +7,8 @@ import { ContentCopy, Email, Facebook, SMS, Telegram, Twitter, VK } from 'shared
 import { useSnackbar } from 'shared/ui/snackbar'
 import { clickHandler } from './lib'
 
-const Modal = dynamic(() => import('shared/ui/Modal'))
-const Drawer = dynamic(() => import('shared/ui/Drawer'))
+const Modal = dynamic(() => import('shared/ui/modal'))
+const Drawer = dynamic(() => import('shared/ui/drawer'))
 
 interface ShareProps {
   href: string

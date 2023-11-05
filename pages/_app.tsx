@@ -12,8 +12,8 @@ import { Hydrate } from 'react-query'
 import dynamic from 'next/dynamic'
 import { useRouter } from 'next/router'
 import Script from 'next/script'
-import QueryProvider from 'app/providers/QueryProvider'
-import ThemeProvider from 'app/providers/ThemeProvider'
+import QueryProvider from 'app/providers/query-provider'
+import ThemeProvider from 'app/providers/theme-provider'
 import { Socket } from 'app/socket'
 import App, { AppContext, AppInitialProps, AppProps } from 'next/app'
 import { DeviceContext, toDevice } from 'entities/device'
@@ -23,7 +23,7 @@ import { makeMapLoader } from 'shared/lib/helpers'
 import Snackbar from 'shared/ui/snackbar'
 
 const SignInModal = dynamic(() => import('features/viewer/sign-in'))
-const UpdateVersion = dynamic(() => import('features/pwa/updateVersion'), { ssr: false })
+const UpdateVersion = dynamic(() => import('src/features/pwa/update-version'), { ssr: false })
 
 const messagesLoader = makeMapLoader<Record<string, string>>()
 const adapterLocaleLoader = makeMapLoader<FnsLocale>()

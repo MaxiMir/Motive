@@ -1,1 +1,1 @@
-export * from './articlePreview'
+export * from './article-preview'

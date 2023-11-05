@@ -15,11 +15,24 @@ const withPWAModule = withPWA({
   reactStrictMode: true,
   output: 'standalone',
   images: {
-    domains: [
-      'localhost',
-      '2bebetter.pro',
-      'avatars.githubusercontent.com',
-      'lh3.googleusercontent.com',
+    remotePatterns: [
+      {
+        protocol: 'http',
+        hostname: 'localhost',
+        port: '4000',
+      },
+      {
+        protocol: 'https',
+        hostname: '2bebetter.pro',
+      },
+      {
+        protocol: 'https',
+        hostname: 'avatars.githubusercontent.com',
+      },
+      {
+        protocol: 'https',
+        hostname: 'lh3.googleusercontent.com',
+      },
     ],
   },
   i18n: {

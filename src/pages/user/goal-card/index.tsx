@@ -19,8 +19,8 @@ import { Points } from './points'
 import { PointsRated } from './points-rated'
 import { SphereType } from './sphere-type'
 import { Task } from './task'
-import { Views } from './views'
 import { ViewTrigger } from './view-trigger'
+import { Views } from './views'
 
 const Owner = dynamic(() => import('./owner'))
 const Stages = dynamic(() => import('./stages'))

@@ -10,7 +10,7 @@ import { UserCharacteristicDto } from 'shared/api'
 import { useShowProgress } from 'shared/lib/hooks'
 
 const Modal = dynamic(() => import('shared/ui/modal'))
-const Drawer = dynamic(() => import('shared/ui/drawer-new'))
+const Drawer = dynamic(() => import('shared/ui/drawer'))
 
 interface AbandonedModalProps {
   characteristic: UserCharacteristicDto
@@ -27,7 +27,7 @@ function AbandonedModal({ characteristic, onClose }: AbandonedModalProps) {
   const ModalComponent = isMobile ? Drawer : Modal
 
   return (
-    <ModalComponent isOpen title={title} onClose={onClose}>
+    <ModalComponent title={title} onClose={onClose}>
       <Stack position="relative" gap={2}>
         <Stack direction="row" alignItems="center" gap={2} alignSelf="center">
           <Typography variant="h2" component="p" color="abandoned.main">

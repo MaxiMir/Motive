@@ -1,11 +1,11 @@
 import { useEffect, useRef, useState } from 'react'
 
 export function useSlowClose(onClose: () => void) {
-  const timerRef = useRef<NodeJS.Timeout>()
+  const timerRef = useRef<number>()
   const [closing, setClosing] = useState(false)
 
   const onCloseCombine = () => {
-    timerRef.current = setTimeout(onClose, 300)
+    timerRef.current = window.setTimeout(onClose, 300)
     setClosing(true)
   }
 

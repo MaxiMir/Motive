@@ -11,7 +11,7 @@ import { useSnackbar } from 'shared/ui/snackbar'
 const Button = dynamic(() => import('@mui/material/Button'))
 
 export function useSetCompleted(goalId: number, id: number, rest: number) {
-  const timerRef = useRef<NodeJS.Timeout>()
+  const timerRef = useRef<number>()
   const viewer = useViewer()
   const { formatMessage } = useIntl()
   const { enqueueSnackbar, closeSnackbar } = useSnackbar()
@@ -50,7 +50,7 @@ export function useSetCompleted(goalId: number, id: number, rest: number) {
       ? `${messagePart}, ${viewer?.name.split(' ')[0] || 'Master'}!`
       : `${messagePart}: ${nextRest}`
     mutateCompleted(true)
-    timerRef.current = setTimeout(() => mutate(id), 4000)
+    timerRef.current = window.setTimeout(() => mutate(id), 4000)
     enqueueSnackbar(message, {
       severity: 'success',
       icon: !nextRest ? '🦾️' : '🔥',

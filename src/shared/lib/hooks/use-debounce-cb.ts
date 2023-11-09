@@ -3,7 +3,7 @@ import { useCallback, useRef } from 'react'
 type Cb<T> = (t: T) => void
 
 export function useDebounceCb<T>(cb: Cb<T>, delay = 1000): Cb<T> {
-  const timerRef = useRef<NodeJS.Timeout>()
+  const timerRef = useRef<number>()
 
   return useCallback(
     (arg) => {
@@ -11,7 +11,7 @@ export function useDebounceCb<T>(cb: Cb<T>, delay = 1000): Cb<T> {
         clearTimeout(timerRef.current)
       }
 
-      timerRef.current = setTimeout(() => cb(arg), delay)
+      timerRef.current = window.setTimeout(() => cb(arg), delay)
     },
     [cb, delay],
   )

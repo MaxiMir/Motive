@@ -2,7 +2,7 @@ import { Box, Stack, Typography } from '@mui/material'
 import { useIntl } from 'react-intl'
 import Link from 'next/link'
 import { Emoji, Route } from 'shared/config'
-import { AdvantageName } from './consts'
+import { AdvantageName } from './constants'
 import { useWidth } from './lib'
 
 interface AdvantageProps {

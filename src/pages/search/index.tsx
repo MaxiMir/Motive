@@ -3,7 +3,7 @@ import { useIntl } from 'react-intl'
 import dynamic from 'next/dynamic'
 import { HashtagDto, GoalDto, UserDto } from 'shared/api'
 import Container from 'shared/ui/container'
-import { GRADIENTS } from './consts'
+import { GRADIENTS } from './constants'
 import { SearchForm } from './search-form'
 
 const GoalCard = dynamic(() => import('./goal-card'))

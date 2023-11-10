@@ -6,7 +6,7 @@ import { useDeviceContext } from 'entities/device'
 import { UserPageDto } from 'shared/api'
 import { joinToHref } from 'shared/lib/helpers'
 import Avatar from 'shared/ui/avatar'
-import { ROWS } from './consts'
+import { ROWS } from './constants'
 import { Row } from './row'
 
 const Modal = dynamic(() => import('shared/ui/modal'))

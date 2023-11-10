@@ -6,7 +6,7 @@ import dynamic from 'next/dynamic'
 import Link from 'next/link'
 import { Route } from 'shared/config'
 import Modal from 'shared/ui/modal'
-import { SOURCE, SourceKey } from './consts'
+import { SOURCE, SourceKey } from './constants'
 import { useProviders } from './lib'
 
 const Loader = dynamic(() => import('./loader'))

@@ -21,6 +21,7 @@ function UserCard({ user }: UserCardProps) {
       sx={{
         width: '100%',
         padding: 2,
+        border: '0.5px solid grey',
         borderRadius: '12px',
       }}
       component={Link}

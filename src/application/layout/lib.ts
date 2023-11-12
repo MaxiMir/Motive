@@ -1,9 +1,12 @@
 import { useEffect, useRef, useState } from 'react'
+import { useRouter } from 'next/router'
 import { Device } from 'shared/api'
 
 const HEADER_SCROLL = 64
 
 export function useLayout(device: Device) {
+  const { asPath } = useRouter()
+
   const rafIdRef = useRef<number>()
   const prevScrollTopRef = useRef(0)
   const [fixed, setFixedState] = useState(true)
@@ -33,7 +36,7 @@ export function useLayout(device: Device) {
     return () => {
       document.removeEventListener('scroll', scrollListener)
     }
-  }, [mobile])
+  }, [mobile, asPath])
 
   return { desktop, mobile, fixed }
 }

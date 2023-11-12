@@ -1,3 +1,4 @@
+import { GetServerSideProps } from 'next'
 import { Layout } from 'app/layout'
 import { PrivacyPolicyPage } from 'pages/privacy-policy'
 import { useMeta } from 'entities/page'
@@ -10,6 +11,12 @@ function PrivacyPolicyRoute() {
       <PrivacyPolicyPage />
     </Layout>
   )
+}
+
+export const getServerSideProps: GetServerSideProps = async () => {
+  return {
+    props: {},
+  }
 }
 
 export default PrivacyPolicyRoute

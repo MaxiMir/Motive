@@ -354,5 +354,6 @@
   "common.views": "{value} переглядів",
   "common.create-goal": "Створити мету",
   "common-new-version": "Доступна нова версія!",
-  "common-new-version-description": "Привіт, доступна нова версія! Натисніть нижче, щоб оновити."
+  "common-new-version-description": "Привіт, доступна нова версія! Натисніть нижче, щоб оновити.",
+  "common.version": "Версія"
 }

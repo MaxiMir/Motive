@@ -354,5 +354,6 @@
   "common.views": "{value}意见",
   "common.create-goal": "创建一个目标",
   "common-new-version": "新版本上线！",
-  "common-new-version-description": "嘿，有新版本了！ 请点击下方进行更新。"
+  "common-new-version-description": "嘿，有新版本了！ 请点击下方进行更新。",
+  "common.version": "版本"
 }

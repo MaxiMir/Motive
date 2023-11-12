@@ -4,6 +4,7 @@ import {
   Divider,
   ListItem,
   IconButton,
+  Typography,
   Drawer,
   ListItemText,
   ListItemIcon,
@@ -28,6 +29,7 @@ function SidebarModal({ onOpenSettings, onClose }: SidebarModalProps) {
   const { formatMessage } = useIntl()
   const logOut = formatMessage({ id: 'common.log-out' })
   const settings = formatMessage({ id: 'common.settings' })
+  const version = formatMessage({ id: 'common.version' })
   const closeText = formatMessage({ id: 'common.close' })
 
   const onSignOut = () => signOut()
@@ -50,9 +52,6 @@ function SidebarModal({ onOpenSettings, onClose }: SidebarModalProps) {
               <ListItemText primary={primary} />
             </ListItem>
           ))}
-        </List>
-        <Divider light />
-        <List>
           <ListItem button onClick={onOpenSettings}>
             <ListItemIcon>
               <Icon name="settings" />
@@ -74,6 +73,9 @@ function SidebarModal({ onOpenSettings, onClose }: SidebarModalProps) {
           </>
         )}
       </Box>
+      <Typography variant="caption" color="zen.silent" p={2} textAlign="center">
+        {version} 1.0.104
+      </Typography>
     </StyledDrawer>
   )
 }

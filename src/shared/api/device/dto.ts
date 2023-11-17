@@ -1,5 +1,5 @@
 import { Details } from 'express-useragent'
 
-export interface Device extends Partial<Details> {
-  type?: 'mobile' | 'tablet' | 'desktop'
+export interface Device extends Details {
+  type: 'mobile' | 'tablet' | 'desktop'
 }

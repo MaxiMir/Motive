@@ -1,6 +1,6 @@
 import { Stack, Typography } from '@mui/material'
 import { useIntl } from 'react-intl'
-import FadeBox from 'shared/ui/fadeBox'
+import FadeBox from 'shared/ui/fade-box'
 import Icon from 'shared/ui/icon'
 import OwnerDescription from './owner-description'
 

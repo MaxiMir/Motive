@@ -1,33 +1,17 @@
-import { Box, Typography, Link as MuiLink, LinkProps } from '@mui/material'
+import { Box, Typography, Link } from '@mui/material'
 import { styled } from '@mui/system'
 import { useIntl } from 'react-intl'
-import Link from 'next/link'
 import { Route } from 'shared/config'
 import { SelectLanguage } from './select-language'
 
-interface FooterProps {
-  breakpoints?: boolean
-}
-
-function Footer({ breakpoints }: FooterProps) {
+function Footer() {
   const { formatMessage } = useIntl()
   const year = new Date().getFullYear()
   const privacyPolicyText = formatMessage({ id: 'common.privacy-policy' })
   const contactText = formatMessage({ id: 'common.contact' })
 
   return (
-    <Box
-      component="footer"
-      py={2}
-      sx={{
-        display: !breakpoints
-          ? undefined
-          : {
-              xs: 'none',
-              xl: 'block',
-            },
-      }}
-    >
+    <Box component="footer" py={2}>
       <Box display="flex" flexDirection="column" alignItems="center">
         <Box display="flex" alignItems="center" gap={1}>
           <SelectLanguage />
@@ -44,11 +28,7 @@ function Footer({ breakpoints }: FooterProps) {
   )
 }
 
-const FooterLink = styled(({ children, ...props }: LinkProps) => (
-  <MuiLink {...props} component={Link}>
-    {children}
-  </MuiLink>
-))(({ theme }) => ({
+const FooterLink = styled(Link)(({ theme }) => ({
   color: theme.palette.zen.silent,
   lineHeight: 2.1,
   fontSize: 12,

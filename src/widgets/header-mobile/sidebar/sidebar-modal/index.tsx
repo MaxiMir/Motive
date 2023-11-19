@@ -74,7 +74,7 @@ function SidebarModal({ onOpenSettings, onClose }: SidebarModalProps) {
         )}
       </Box>
       <Typography variant="caption" color="zen.silent" p={2} textAlign="center">
-        {version} 1.0.105
+        {version} 1.0.106
       </Typography>
     </StyledDrawer>
   )

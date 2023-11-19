@@ -9,7 +9,7 @@ import ListItem from 'shared/ui/list-item'
 import Progress from './progress'
 import { ModalType } from './types'
 
-const LightBox = dynamic(() => import('shared/ui/lightBox'))
+const LightBox = dynamic(() => import('shared/ui/light-box'))
 const EditModal = dynamic(() => import('features/user/edit-avatar'))
 const DeleteModal = dynamic(() => import('features/user/delete-avatar'))
 

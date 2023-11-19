@@ -1,7 +1,6 @@
-import { Typography } from '@mui/material'
 import { styled } from '@mui/system'
 
-const FadeBox = styled(Typography)({
+const FadeBox = styled('div')({
   animation: 'fade 1.4s cubic-bezier(0.550, 0.085, 0.680, 0.530) both',
   '@keyframes fade': {
     from: {

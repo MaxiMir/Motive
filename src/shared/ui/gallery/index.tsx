@@ -5,7 +5,7 @@ import { PhotoDto } from 'shared/api'
 import { GalleryPhoto } from './gallery-photo'
 
 const PhotoAlbum = dynamic(() => import('react-photo-album'), { ssr: false })
-const LightBox = dynamic(() => import('shared/ui/lightBox'))
+const LightBox = dynamic(() => import('shared/ui/light-box'))
 
 export interface GalleryProps {
   photos: PhotoDto[]

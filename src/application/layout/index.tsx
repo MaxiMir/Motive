@@ -40,15 +40,14 @@ export function Layout({
   const { locale } = useIntl()
   const { asPath } = useRouter()
   const online = useDetectOnline()
-  const device = useDeviceContext()
+  const { isDesktop } = useDeviceContext()
   const localeHrefList = getLocaleHrefList(asPath)
-  const { desktop, mobile, fixed } = useLayout(device)
+  const { fixed } = useLayout(isDesktop)
   const fetchingNumber = useIsFetching({ queryKey: ['page'] })
   const updating = fetchingNumber > 0
   const url = localeHrefList[locale]
   const fullTitle = `${title} - ${process.env.NEXT_PUBLIC_APP_NAME}`
-  const desktopUpdating = desktop && updating
-  const breakpoints = !device.type
+  const desktopUpdating = isDesktop && updating
 
   return (
     <>
@@ -84,14 +83,12 @@ export function Layout({
         <link rel="alternate" href={localeHrefList.uk} hrefLang="uk" />
         <link rel="alternate" href={localeHrefList.en} hrefLang="x-default" />
       </Head>
-      {mobile && <HeaderMobile type={type} fixed={fixed} updating={updating} />}
-      {desktop && <Sidebar breakpoints={breakpoints} />}
+      {isDesktop ? <Sidebar /> : <HeaderMobile type={type} fixed={fixed} updating={updating} />}
       <Stack component="main" data-unit="main" flex={1} sx={{ backgroundColor: '#121212' }}>
         {online ? children : <Offline />}
       </Stack>
-      {desktopUpdating && <Updating breakpoints={breakpoints} />}
-      {desktop && <Footer breakpoints={breakpoints} />}
-      {mobile && <FooterMobile fixed={fixed} />}
+      {desktopUpdating && <Updating />}
+      {isDesktop ? <Footer /> : <FooterMobile fixed={fixed} />}
     </>
   )
 }

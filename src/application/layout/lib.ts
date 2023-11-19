@@ -1,17 +1,14 @@
 import { useEffect, useRef, useState } from 'react'
-import { Device } from 'shared/api'
 
 const HEADER_SCROLL = 64
 
-export function useLayout(device: Device) {
+export function useLayout(isDesktop: boolean) {
   const rafIdRef = useRef<number>()
   const prevScrollTopRef = useRef(0)
   const [fixed, setFixedState] = useState(true)
-  const desktop = !device?.type || device?.isDesktop
-  const mobile = !device?.type || device?.isMobile
 
   useEffect(() => {
-    if (!mobile) {
+    if (isDesktop) {
       return () => undefined
     }
 
@@ -33,7 +30,7 @@ export function useLayout(device: Device) {
     return () => {
       document.removeEventListener('scroll', scrollListener)
     }
-  }, [mobile])
+  }, [isDesktop])
 
-  return { desktop, mobile, fixed }
+  return { fixed }
 }

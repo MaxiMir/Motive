@@ -1,7 +1,7 @@
 import { Typography } from '@mui/material'
 import { TypographyProps } from '@mui/system'
 import { ReactNode } from 'react'
-import FadeBox from './fadeBox'
+import FadeBox from './fade-box'
 
 interface FadeTypographyProps {
   fontSize?: TypographyProps['fontSize']

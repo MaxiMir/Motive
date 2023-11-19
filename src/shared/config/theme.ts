@@ -1,6 +1,7 @@
 import { PaletteMode, ThemeOptions } from '@mui/material'
 import { CSSProperties } from 'react'
 import { Roboto } from 'next/font/google'
+import Link from 'shared/ui/link'
 
 export const roboto = Roboto({
   weight: ['300', '400', '500', '700'],
@@ -175,6 +176,7 @@ export function getDesignTokens(mode: PaletteMode): ThemeOptions {
       MuiLink: {
         defaultProps: {
           underline: 'hover',
+          component: Link,
         },
       },
       MuiAlert: {

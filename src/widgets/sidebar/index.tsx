@@ -23,11 +23,7 @@ import { ProfileLink } from './profileLink'
 
 const Notifications = dynamic(() => import('./notifications'))
 
-interface SidebarProps {
-  breakpoints?: boolean
-}
-
-function Sidebar({ breakpoints }: SidebarProps) {
+function Sidebar() {
   const { asPath } = useRouter()
   const viewer = useViewer()
   const { formatMessage } = useIntl()
@@ -37,18 +33,7 @@ function Sidebar({ breakpoints }: SidebarProps) {
   const menuIcon = expanded ? 'arrow_left' : 'arrow_right'
 
   return (
-    <Drawer
-      variant="permanent"
-      open={expanded}
-      sx={{
-        display: !breakpoints
-          ? undefined
-          : {
-              xs: 'none',
-              xl: 'block',
-            },
-      }}
-    >
+    <Drawer variant="permanent" open={expanded}>
       <Stack
         role="presentation"
         component="nav"

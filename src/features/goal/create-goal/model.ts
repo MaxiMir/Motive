@@ -36,7 +36,7 @@ export function useCreateGoalForm(onSuccess: () => void) {
       started: formatISO(startOfDay(new Date())),
       name: '',
       hashtags: '',
-      sphere: undefined as never,
+      sphere: '' as never,
       stages: [],
       tasks: [
         {

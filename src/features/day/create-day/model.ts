@@ -14,10 +14,11 @@ export function useCreateDayForm(goalId: number, date: string, onSuccess: () => 
   const [goals, mutateGoals] = useGoalsCache()
   const changeDayUrl = useChangeDayUrl()
   const { mutateAsync } = useMutation((dto: CreateDayDto) => createDay(goalId, dto), {
-    onSuccess({ day }) {
+    onSuccess({ day, updated }) {
       const message = formatMessage({ id: 'common.next-day-loading' })
       const nextState = produce(goals, (draft) => {
         const draftGoal = draft[draft.findIndex((g) => g.id === goalId)]
+        draftGoal.updated = updated
         draftGoal.calendar.push({ id: day.id, date: day.date })
         draftGoal.day = day
       })
@@ -36,7 +37,7 @@ export function useCreateDayForm(goalId: number, date: string, onSuccess: () => 
           [FRONTEND_ID]: crypto.randomUUID(),
           name: '',
           date: null,
-          description: null,
+          description: '',
           priority: null,
         },
       ],

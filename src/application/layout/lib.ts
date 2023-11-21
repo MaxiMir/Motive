@@ -3,7 +3,7 @@ import { useEffect, useRef, useState } from 'react'
 const HEADER_SCROLL = 64
 
 export function useLayout(isDesktop: boolean) {
-  const rafIdRef = useRef<number>()
+  const rafIdRef = useRef(0)
   const prevScrollTopRef = useRef(0)
   const [fixed, setFixedState] = useState(true)
 
@@ -13,9 +13,7 @@ export function useLayout(isDesktop: boolean) {
     }
 
     const scrollListener = () => {
-      if (rafIdRef.current) {
-        cancelAnimationFrame(rafIdRef.current)
-      }
+      cancelAnimationFrame(rafIdRef.current)
 
       rafIdRef.current = requestAnimationFrame(() => {
         const { scrollTop } = document.documentElement
@@ -28,6 +26,7 @@ export function useLayout(isDesktop: boolean) {
     document.addEventListener('scroll', scrollListener, { passive: true })
 
     return () => {
+      cancelAnimationFrame(rafIdRef.current)
       document.removeEventListener('scroll', scrollListener)
     }
   }, [isDesktop])

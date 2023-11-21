@@ -6,7 +6,7 @@ import { Details, parse } from 'express-useragent'
 import { Session } from 'next-auth'
 import { getSession, SessionProvider } from 'next-auth/react'
 import NextProgress from 'nextjs-progressbar'
-import { use } from 'react'
+import { use, useMemo } from 'react'
 import { IntlProvider } from 'react-intl'
 import { Hydrate } from 'react-query'
 import dynamic from 'next/dynamic'
@@ -46,7 +46,7 @@ function MyApp({
   const adapterLocale = use(
     adapterLocaleLoader(locale, () => import(`date-fns/locale/${folder}/index.js`)),
   )
-  const deviceValue = toDevice(userDevice)
+  const deviceValue = useMemo(() => toDevice(userDevice), [])
 
   return (
     <IntlProvider locale={locale} messages={messages}>

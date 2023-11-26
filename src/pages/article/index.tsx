@@ -127,7 +127,6 @@ const Progress = styled('div')({
   position: 'fixed',
   top: 0,
   left: 0,
-  width: '100dvw',
   zIndex: 100,
   height: 4,
   background: 'linear-gradient(to right, #a770ef, #cf8bf3, #fdb99b)',
@@ -135,10 +134,10 @@ const Progress = styled('div')({
   animationTimeline: 'scroll()',
   '@keyframes grow-progress': {
     from: {
-      transform: 'scaleX(0)',
+      width: 0,
     },
     to: {
-      transform: 'scaleX(1)',
+      width: '100dvw',
     },
   },
 })

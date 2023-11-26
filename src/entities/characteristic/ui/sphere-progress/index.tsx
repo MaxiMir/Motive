@@ -65,10 +65,10 @@ const Cont = styled('div')({
 const Fill = styled('div')({
   animation: 'filling 3s cubic-bezier(0.2, 0.6, 0.8, 0.4) forwards',
   '@keyframes filling': {
-    '0%': {
+    from: {
       transform: 'translate(0, calc(var(--height) * 2))',
     },
-    '100%': {
+    to: {
       transform: 'translate(0, 0)',
     },
   },
@@ -94,7 +94,7 @@ const Bubble = styled('div')({
   border: '1px solid #000000c9',
   animation: 'up 14s ease-out infinite',
   '@keyframes up': {
-    '100%': {
+    to: {
       top: -10,
     },
   },

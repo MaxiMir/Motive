@@ -31,7 +31,7 @@ function Progress({ progress, radius, children }: ProgressProps) {
               transition: 'stroke-dashoffset 1s ease-out',
               animation: 'progress 1s ease-out',
               '@keyframes progress': {
-                '0%': {
+                from: {
                   strokeDasharray: `${offset} 1100`,
                 },
               },

@@ -1,4 +1,5 @@
-import { Box, Breadcrumbs, Button, Chip, Grid, Link, Stack, Typography } from '@mui/material'
+import { Box, Breadcrumbs, Button, Chip, Grid, Stack, Typography } from '@mui/material'
+import { styled } from '@mui/system'
 import { compiler } from 'markdown-to-jsx'
 import { useIntl } from 'react-intl'
 import dynamic from 'next/dynamic'
@@ -26,7 +27,7 @@ export function ArticlePage({ article }: ArticlePageProps) {
   const formatDate = useFormatDate()
   const [sharing, toggleSharing] = useToggle()
   const formattedDate = formatDate(date, { day: 'numeric', month: 'long', year: 'numeric' })
-  const markdown = compiler(content, { wrapper: null, overrides: { p: Typography, a: Link } })
+  const markdown = compiler(content, { wrapper: null, overrides: { p: Typography } })
   const readTime = getReadTime(content)
   const backgroundColor = generateColorByName(tag, {
     saturation: 50,
@@ -46,6 +47,7 @@ export function ArticlePage({ article }: ArticlePageProps) {
     <>
       <Container
         sx={{
+          paddingTop: 3,
           '& img': {
             maxWidth: '100%',
             marginBottom: 2,
@@ -53,7 +55,7 @@ export function ArticlePage({ article }: ArticlePageProps) {
           },
         }}
       >
-        <div className="reading-progress" />
+        <Progress className="sdadsda" />
         <Box display="flex" justifyContent="space-between" alignItems="center" mb={1}>
           <Breadcrumbs separator="•" aria-label="breadcrumb">
             <Chip size="small" label={tag} sx={{ backgroundColor }} />
@@ -120,3 +122,23 @@ export function ArticlePage({ article }: ArticlePageProps) {
     </>
   )
 }
+
+const Progress = styled('div')({
+  position: 'fixed',
+  top: 0,
+  left: 0,
+  width: '100dvw',
+  zIndex: 100,
+  height: 4,
+  background: 'linear-gradient(to right, #a770ef, #cf8bf3, #fdb99b)',
+  animation: 'grow-progress auto linear',
+  animationTimeline: 'scroll()',
+  '@keyframes grow-progress': {
+    from: {
+      transform: 'scaleX(0)',
+    },
+    to: {
+      transform: 'scaleX(1)',
+    },
+  },
+})

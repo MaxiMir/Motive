@@ -22,11 +22,11 @@ const BadgeRipple = styled((props: BadgeProps) => (
     },
   },
   '@keyframes ripple': {
-    '0%': {
+    from: {
       transform: 'scale(.8)',
       opacity: 1,
     },
-    '100%': {
+    to: {
       transform: 'scale(2.4)',
       opacity: 0,
     },
